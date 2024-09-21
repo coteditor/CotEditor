@@ -528,7 +528,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let selectedRows = self.outlineView.selectedRowIndexes
         
         return if isContextMenu {
-            selectedRows.contains(clickedRow) ? selectedRows : [clickedRow]
+            if clickedRow >= 0 {
+                selectedRows.contains(clickedRow) ? selectedRows : [clickedRow]
+            } else {
+                []
+            }
         } else {
             selectedRows
         }
@@ -554,9 +558,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let targetNodes = self.targetNodes(for: sender)
         
-        guard targetNodes.count == 1 else { return nil }
-        
-        let targetNode = targetNodes[0]
+        guard
+            targetNodes.count == 1,
+            let targetNode = targetNodes.first
+        else { return nil }
         
         return targetNode.isDirectory ? targetNode : targetNode.parent
     }
