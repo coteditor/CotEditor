@@ -10,7 +10,7 @@
 
 ### Improvements
 
-- Add the “Open as Plain Text” button the preview view for the file browser.
+- Add the “Open as Plain Text” button to the preview view for the file browser.
 - Open a file selected in the file browser as plain text when the default app set in the Finder for it is CotEditor.
 - Optimize the performance of the folder browser.
 
