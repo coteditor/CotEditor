@@ -3,6 +3,11 @@
 5.0.6 (unreleased)
 --------------------------
 
+### New Features
+
+- Display information about the selected image to the preview view for the file browser.
+
+
 ### Improvements
 
 - Update the document’s syntax when the document was renamed in the file browser.
