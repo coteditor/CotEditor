@@ -3,6 +3,10 @@
 5.0.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Adjust the layout of the file preview view.
+
 
 
 5.0.1 (678)
