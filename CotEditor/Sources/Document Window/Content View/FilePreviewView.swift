@@ -40,8 +40,16 @@ struct FilePreviewView: View {
                 .fontWeight(.medium)
                 .foregroundStyle(.secondary)
             
-            Button(String(localized: "Open with External Editor", table: "Document")) {
-                NSWorkspace.shared.open(self.item.previewItemURL)
+            HStack(spacing: 12) {
+                Button(String(localized: "Open with External Editor", table: "Document")) {
+                    NSWorkspace.shared.open(self.item.previewItemURL)
+                }
+                
+                Button(String(localized: "Open as Plain Text", table: "Document")) {
+                    let menuItem = NSMenuItem()
+                    menuItem.representedObject = self.item.previewItemURL
+                    NSApp.sendAction(#selector(DirectoryDocument.openDocumentAsPlainText), to: nil, from: menuItem)
+                }
             }
             .padding(.top)
         }

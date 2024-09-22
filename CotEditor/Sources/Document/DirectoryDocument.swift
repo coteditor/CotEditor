@@ -211,6 +211,19 @@ final class DirectoryDocument: NSDocument {
     
     
     
+    // MARK: Action Messages
+    
+    @IBAction func openDocumentAsPlainText(_ sender: NSMenuItem) {
+        
+        guard let fileURL = sender.representedObject as? URL else { return }
+        
+        Task {
+            await self.openDocument(at: fileURL, asPlainText: true)
+        }
+    }
+    
+    
+    
     // MARK: Public Methods
     
     /// Returns the opened document at the given file node.
@@ -225,13 +238,20 @@ final class DirectoryDocument: NSDocument {
     
     /// Opens a document as a member.
     ///
-    /// - Parameter fileURL: The file URL of the document to open.
+    /// - Parameters:
+    ///   - fileURL: The file URL of the document to open.
+    ///   - asPlainText: If `true`, the document is forcibly opened as a plain text file.
     /// - Returns: Return `true` if the document of the given file did successfully open.
-    @discardableResult func openDocument(at fileURL: URL) async -> Bool {
+    @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false) async -> Bool {
         
         assert(!fileURL.hasDirectoryPath)
         
-        guard fileURL != self.currentDocument?.fileURL else { return true }  // already open
+        if let currentDocument,
+           fileURL == currentDocument.fileURL,
+           !asPlainText || currentDocument is Document
+        {
+            return true  // already open
+        }
         
         // existing document
         if let document = NSDocumentController.shared.document(for: fileURL) as? Document {
@@ -254,7 +274,7 @@ final class DirectoryDocument: NSDocument {
         // make document
         let document: NSDocument
         do {
-            document = Self.shouldOpen(url: fileURL, ofType: contentType)
+            document = (asPlainText || Self.shouldOpen(url: fileURL, ofType: contentType))
                 ? try NSDocumentController.shared.makeDocument(withContentsOf: fileURL, ofType: contentType.identifier)
                 : try PreviewDocument(contentsOf: fileURL, ofType: contentType.identifier)
         } catch {
