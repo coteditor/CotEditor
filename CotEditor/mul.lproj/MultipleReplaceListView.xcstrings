@@ -65,6 +65,12 @@
             "value" : "Laad alle definities opnieuw"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Załaduj ponownie wszystkie definicje"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deel…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udostępnij…"
           }
         },
         "pt" : {
@@ -245,6 +257,12 @@
             "value" : "Exporteer…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importeer…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importuj…"
           }
         },
         "pt" : {
@@ -425,6 +449,12 @@
             "value" : "Nieuwe definitie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowa definicja"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -510,6 +540,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -606,6 +642,12 @@
             "value" : "Wijzig naam"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmień nazwę"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -694,6 +736,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporteer…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj…"
           }
         },
         "pt" : {
@@ -786,6 +834,12 @@
             "value" : "Importeer…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importuj…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -874,6 +928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wijzig naam"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmień nazwę"
           }
         },
         "pt" : {
@@ -966,6 +1026,12 @@
             "value" : "Verwijder"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1054,6 +1120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dupliceer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel"
           }
         },
         "pt" : {
@@ -1146,6 +1218,12 @@
             "value" : "Toon in Finder"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Finderze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1234,6 +1312,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon in Finder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Finderze"
           }
         },
         "pt" : {
@@ -1326,6 +1410,12 @@
             "value" : "Deel…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udostępnij…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1414,6 +1504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dupliceer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel"
           }
         },
         "pt" : {

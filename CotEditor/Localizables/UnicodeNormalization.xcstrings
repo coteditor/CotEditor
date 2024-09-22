@@ -65,6 +65,12 @@
             "value" : "Onofficiële op NFC gebaseerde normalisatievorm die overeenkomt met Gewijzigd NFD"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieoficjalna postać normalizacji oparta na NFC, odpowiadająca Zmodyfikowanej NFD"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -152,6 +158,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gewijzigde NFC"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmodyfikowana NFC"
           }
         },
         "pt" : {
@@ -244,6 +256,12 @@
             "value" : "Onofficiële op NFD gebaseerde normalisatievorm gebruikt in HFS+"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieoficjalna postać normalizacji oparta na NFD, używana w HFS+"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,6 +349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gewijzigde NFD"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmodyfikowana NFD"
           }
         },
         "pt" : {
@@ -423,6 +447,12 @@
             "value" : "Canonieke decompositie, gevolgd door canonieke compositie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekompozycja kanoniczna, po której następuje złożenie kanoniczne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +537,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -602,6 +638,12 @@
             "value" : "Canonieke decompositie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekompozycja kanoniczna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -686,6 +728,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFD"
@@ -781,6 +829,12 @@
             "value" : "Compatibiliteitsdecompositie, gevolgd door canonieke compositie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekompozycja dostosowawcza, po której następuje złożenie kanoniczne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -865,6 +919,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -960,6 +1020,12 @@
             "value" : "Toepassing van NFKC, omzetten naar kleine letters en verwijdering van codepunten die standaard kunnen worden genegeerd."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastosowanie NFKC, składanie wielkości liter i usunięcie domyślnie ignorowanych punktów kodowych"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1047,6 +1113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC Casefold"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC ze składaniem wielkości liter"
           }
         },
         "pt" : {
@@ -1139,6 +1211,12 @@
             "value" : "Compatibiliteitsdecompositie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekompozycja dostosowawcza"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,6 +1301,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

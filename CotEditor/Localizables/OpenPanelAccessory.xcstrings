@@ -58,6 +58,12 @@
             "value" : "Automatisch"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatycznie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -141,6 +147,12 @@
             "value" : "Toon onzichtbare bestanden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż ukryte pliki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tekstcodering:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodowanie tekstu:"
           }
         },
         "pt" : {

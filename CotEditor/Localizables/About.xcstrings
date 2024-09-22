@@ -58,6 +58,12 @@
             "value" : "Over %@"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "en iedereen die CotEditor steunt!"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "oraz wszyscy, którzy wspierają CotEditora!"
           }
         },
         "pt" : {
@@ -224,6 +236,12 @@
             "value" : "Code Bijdragers"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Współautorzy kodu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -306,6 +324,12 @@
             "value" : "CotEditor is een open source programma\ngelicentieerd onder de Apache-licentie, versie 2.0."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor jest programem o otwartym kodzie źródłowym licencjonowanym na podstawie licencji Apache, wersja 2.0."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -386,6 +410,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor gebruikt de volgende geweldige technologieën. We zijn degenen die ons hun waardevolle werk laten gebruiken zeer dankbaar."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor wykorzystuje poniższe niesamowite technologie. Jesteśmy głęboko wdzięczni tym, którzy pozwolili nam skorzystać ze swojej cennej pracy."
           }
         },
         "pt" : {
@@ -471,6 +501,12 @@
             "value" : "Credits"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uznania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -552,6 +588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licenties"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencje"
           }
         },
         "pt" : {
@@ -637,6 +679,12 @@
             "value" : "Lokalisatie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokalizacja"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -720,6 +768,12 @@
             "value" : "alleen op niet-AppStore versie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tylko w wersji poza App Store"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -800,6 +854,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "oorspronkelijke ontwikkelaar"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pierwotny deweloper"
           }
         },
         "pt" : {
@@ -885,6 +945,12 @@
             "value" : "Speciale dank"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Specjalne podziękowania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -966,6 +1032,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het CotEditor-project"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projekt CotEditor"
           }
         },
         "pt" : {
@@ -1055,6 +1127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versie %1$@ (%2$@)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wersja %1$@ (%2$@)"
           }
         },
         "pt" : {

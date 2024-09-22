@@ -64,6 +64,12 @@
             "value" : "'%1$@' is al bezet door het commando '%2$@'."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%1$@” jest już zajęte przez polecenie „%2$@”."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De Shift-toets kan alleen worden gebruikt in combinatie met een andere speciale toets."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klawisz Shift może być użyty wyłącznie z innym klawiszem modyfikującym."
           }
         },
         "pt" : {
@@ -242,6 +254,12 @@
             "value" : "Enkel type is ongeldig voor een snelkoppeling."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pojedynczy klawisz jest nieprawidłowy jako skrót."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -329,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De combinatie '%@' wordt niet ondersteund voor het aanpassen van de snelkoppeling."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kombinacja „%@” nie jest obsługiwana w przypadku dostosowywania skrótów."
           }
         },
         "pt" : {

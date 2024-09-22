@@ -244,6 +244,42 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld polecenia"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld poleceń"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld polecenie"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld polecenia"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nie znaleziono poleceń"
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -387,6 +423,12 @@
             "value" : "Commando"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polecenie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -467,6 +509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snelle taken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szybkie czynności"
           }
         },
         "pt" : {
@@ -550,6 +598,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrypt"
           }
         },
         "pt" : {

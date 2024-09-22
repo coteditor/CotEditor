@@ -52,6 +52,12 @@
             "value" : "Spatie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spacja"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

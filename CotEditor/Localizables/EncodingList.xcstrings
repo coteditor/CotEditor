@@ -58,6 +58,12 @@
             "value" : "Voeg scheidingsteken toe"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj separator"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -141,6 +147,12 @@
             "value" : "Verwijder scheidingsteken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń separator"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sleep coderingen om de volgorde te wijzigen:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przeciągnij kodowania, aby zmienić kolejność:"
           }
         },
         "pt" : {
@@ -306,6 +324,12 @@
             "value" : "Herstel standaardinstellingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć domyślne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -386,6 +410,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deze volgorde is voor het coderingsmenu en de coderingsdetectie bij het openen van een bestand. Bij detectie krijgen de hogere items meer prioriteit."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta kolejność dotyczy menu kodowania i wykrywania kodowania przy otwieraniu pliku. Po wykryciu, wyższe pozycje mają wyższy priorytet."
           }
         },
         "pt" : {

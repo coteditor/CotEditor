@@ -64,6 +64,12 @@
             "value" : "Een lekker kopje"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smaczna filiżanka"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -148,6 +154,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espresso"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espresso"
@@ -242,6 +254,12 @@
             "value" : "Koffie voor dagelijkse ontwikkeling"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kawa dla codziennego rozwoju"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -329,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koffiebonen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kawa ziarnista"
           }
         },
         "pt" : {

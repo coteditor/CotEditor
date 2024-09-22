@@ -57,6 +57,12 @@
             "value" : "Wis recente"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż ostatnie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140,6 +146,12 @@
             "value" : "Kolom"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kolumna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -220,6 +232,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scheidingsteken:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ogranicznik:"
           }
         },
         "pt" : {
@@ -305,6 +323,12 @@
             "value" : "Leeg patroon"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pusty wzorzec"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -386,6 +410,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gehele regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cały wiersz"
           }
         },
         "pt" : {
@@ -470,6 +500,12 @@
             "value" : "Negeer hoofdletters"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj wielkość liter"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -550,6 +586,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "In aflopende volgorde"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W porządku malejącym"
           }
         },
         "pt" : {
@@ -635,6 +677,12 @@
             "value" : "Ongeldig patroon"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieprawidłowy wzorzec"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -715,6 +763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Houd de eerste regel bovenaan"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trzymaj pierwszy wiersz na górze"
           }
         },
         "pt" : {
@@ -799,6 +853,12 @@
             "value" : "Patroon:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wzorzec:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,6 +939,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Positie:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozycja:"
           }
         },
         "pt" : {
@@ -964,6 +1030,12 @@
             "value" : "Recente"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1045,6 +1117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reguliere expressie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrażenie regularne"
           }
         },
         "pt" : {
@@ -1130,6 +1208,12 @@
             "value" : "Reguliere expressie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrażenie regularne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1210,6 +1294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Respecteer taalregels"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przestrzegaj zasad języka"
           }
         },
         "pt" : {
@@ -1295,6 +1385,12 @@
             "value" : "Voorbeeldregel om te controleren welk deel in een regel wordt gebruikt voor sorteervergelijking."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przykładowy wiersz pozwalający sprawdzić, która część wiersza zostanie użyta do porównania w sortowaniu."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1375,6 +1471,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voorbeeld:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Próbka:"
           }
         },
         "pt" : {
@@ -1460,6 +1562,12 @@
             "value" : "Sorteer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortuj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1540,6 +1648,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sorteersleutel:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klucz sortowania:"
           }
         },
         "pt" : {
@@ -1624,6 +1738,12 @@
             "value" : "Sorteeroptie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcje sortowania:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1706,6 +1826,12 @@
             "value" : "Behandel getallen als numerieke waarde"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktuj liczby jako wartości liczbowe"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1786,6 +1912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruik vastgelegde groep:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj przechwyconą grupę:"
           }
         },
         "pt" : {

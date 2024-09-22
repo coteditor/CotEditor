@@ -57,6 +57,12 @@
             "value" : "(Alleen beschikbaar in de App Store-versie)"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Dostępne tylko w wersji App Store)"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bèta"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
         "pt" : {
@@ -222,6 +234,12 @@
             "value" : "Complete versienotities"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pełne informacje o wersji"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -302,6 +320,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ga door"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dalej"
           }
         },
         "pt" : {
@@ -393,6 +417,12 @@
             "value" : "Steun het CotEditor-project door koffie aan te bieden aan de ontwikkelaar."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wesprzyj projekt CotEditor oferując kawę deweloperowi."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -480,6 +510,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Donatie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darowizna"
           }
         },
         "pt" : {
@@ -571,6 +607,12 @@
             "value" : "Open een map in CotEditor om door de inhoud ervan te navigeren in de nieuwe zijbalk."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz folder w CotEditorze i przeglądaj jego zawartość w nowym pasku bocznym."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -658,6 +700,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mapnavigatie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nawigacja po folderach"
           }
         },
         "pt" : {
@@ -749,6 +797,12 @@
             "value" : "Werkt perfect met de nieuwe macOS 15."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doskonale współpracuje z nowym systemem macOS 15."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -838,6 +892,12 @@
             "value" : "Ondersteuning voor macOS 15 Sequoia"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wsparcie dla macOS 15 Sequoia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -918,6 +978,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open donatie-instellingen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz ustawienia darowizny"
           }
         },
         "pt" : {
@@ -1001,6 +1067,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wat is er nieuw in **CotEditor %@**?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowości w aplikacji **CotEditor %@**"
           }
         },
         "pt" : {

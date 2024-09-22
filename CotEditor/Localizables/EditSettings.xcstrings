@@ -57,6 +57,12 @@
             "value" : "Spring automatisch in tijdens het typen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatycznie rób wcięcia podczas pisania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snij automatisch witregels bij "
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatycznie przycinaj końcowe znaki niedrukowane"
           }
         },
         "pt" : {
@@ -221,6 +233,12 @@
             "value" : "Inhoudparsering:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analiza treści:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -301,6 +319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vertraging:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwłoka:"
           }
         },
         "pt" : {
@@ -385,6 +409,12 @@
             "value" : "Detecteer inspringstijl bij openen document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wykrywaj styl wcięć przy otwieraniu dokumentu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -465,6 +495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Markeer '<>'"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Również nawiasy <>"
           }
         },
         "pt" : {
@@ -549,6 +585,12 @@
             "value" : "Markeer geselecteerde tekst"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podświetlaj wystąpienia zaznaczonego tekstu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -629,6 +671,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Markeer overeenkomende accolades '()' '[]' '{}'"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podświetlaj pasujące nawiasy (), [], {}"
           }
         },
         "pt" : {
@@ -713,6 +761,12 @@
             "value" : "Neem regels op met alleen witruimte"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Również wiersze wyłącznie znaków niedrukowanych"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -793,6 +847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spring selectie in met Tab-toets"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rób wcięcia zaznaczenia klawiszem Tab"
           }
         },
         "pt" : {
@@ -877,6 +937,12 @@
             "value" : "Inspringbreedte:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerokość wcięcia:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -957,6 +1023,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inspringing:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wcięcia:"
           }
         },
         "pt" : {
@@ -1041,6 +1113,12 @@
             "value" : "Koppel URL's in document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktywne łącza adresów URL w dokumencie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1121,6 +1199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruik bij voorkeur"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferuj"
           }
         },
         "pt" : {
@@ -1206,6 +1290,12 @@
             "value" : "seconden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sekundy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1287,6 +1377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "spaties"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "spacje"
           }
         },
         "pt" : {
@@ -1372,6 +1468,12 @@
             "value" : "Spaties"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spacje"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1455,6 +1557,12 @@
             "value" : "Tabs"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabulatory"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1535,6 +1643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Witruimte:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znaki niedrukowane:"
           }
         },
         "pt" : {

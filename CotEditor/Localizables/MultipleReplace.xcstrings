@@ -58,6 +58,12 @@
             "value" : "Verwijder linialen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń reguły"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bewerk liniaal"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj regułę"
           }
         },
         "pt" : {
@@ -224,6 +236,12 @@
             "value" : "Voeg liniaal in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw regułę"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -307,6 +325,12 @@
             "value" : "Verplaats liniaal"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuń regułę"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -388,6 +412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang meerdere"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wielokrotne zastąpienia"
           }
         },
         "pt" : {

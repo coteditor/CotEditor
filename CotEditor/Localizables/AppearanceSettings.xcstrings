@@ -57,6 +57,12 @@
             "value" : "Antialias"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygładzanie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weergave:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygląd:"
           }
         },
         "pt" : {
@@ -228,6 +240,12 @@
             "value" : "Match systeem"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatyczny"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -315,6 +333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Donker"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciemny"
           }
         },
         "pt" : {
@@ -406,6 +430,12 @@
             "value" : "Licht"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jasny"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -487,6 +517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wil je het gebruiken voor het niet-proportionele lettertype?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz jej użyć jako czcionki o stałej szerokości?"
           }
         },
         "pt" : {
@@ -571,6 +607,12 @@
             "value" : "Doorzichtigheid bewerker"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krycie edytora:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -651,6 +693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligaturen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatury"
           }
         },
         "pt" : {
@@ -735,6 +783,12 @@
             "value" : "Regelhoogte:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysokość wiersza:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -815,6 +869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Niet-proportioneel lettertype:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czcionka o stałej szerokości:"
           }
         },
         "pt" : {
@@ -900,6 +960,12 @@
             "value" : "Selecteer…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -980,6 +1046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standaardlettertype:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czcionka podstawowa:"
           }
         },
         "pt" : {
@@ -1064,6 +1136,12 @@
             "value" : "Het geselecteerde lettertype lijkt niet monospaced te zijn."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybrana czcionka nie wydaje się mieć stałej szerokości."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1145,6 +1223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "keer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wielkości czcionki"
           }
         },
         "pt" : {

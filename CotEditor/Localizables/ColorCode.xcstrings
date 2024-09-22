@@ -58,6 +58,12 @@
             "value" : "Kleurcode"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kod koloru"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -142,6 +148,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HSL"
@@ -236,6 +248,12 @@
             "value" : "CSS HSLa"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLA"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -325,6 +343,12 @@
             "value" : "CSS-trefwoord"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Słowo kluczowe CSS"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -409,6 +433,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS RGB"
@@ -503,6 +533,12 @@
             "value" : "CSS RGBa"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBA"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -590,6 +626,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hexadecimaal"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "heksadecymalny"
           }
         },
         "pt" : {
@@ -681,6 +723,12 @@
             "value" : "Hexadecimaal met alpha"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "heksadecymalny z kanałem alfa"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -770,6 +818,12 @@
             "value" : "Hexadecimaal (Kort)"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "heksadecymalny (krótki)"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -853,6 +907,12 @@
             "value" : "Invoegen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -934,6 +994,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trefwoorden voor stijlbladen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Słowa kluczowe CSS"
           }
         },
         "pt" : {

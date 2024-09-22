@@ -57,6 +57,12 @@
             "value" : "Alles"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wszystkie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commando"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polecenie"
           }
         },
         "pt" : {
@@ -223,6 +235,12 @@
             "value" : "Beschrijving"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opis"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -304,6 +322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensies"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenia"
           }
         },
         "pt" : {
@@ -389,6 +413,12 @@
             "value" : "Bestand neerzetten"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upuszczanie plików"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -470,6 +500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bestandsextensies van neergezet bestand (door komma's gescheiden)."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenia upuszczanych plików (rozdzielone przecinkami)."
           }
         },
         "pt" : {
@@ -555,6 +591,12 @@
             "value" : "Voeg variabele in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw zmienną"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -635,6 +677,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Invoegformaat:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format wstawianego tekstu:"
           }
         },
         "pt" : {
@@ -726,6 +774,12 @@
             "value" : "Sleutel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klawisze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -807,6 +861,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meerdere items geselecteerd"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybrano wiele elementów"
           }
         },
         "pt" : {
@@ -898,6 +958,12 @@
             "value" : "Naam"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -979,6 +1045,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen item geselecteerd"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie wybrano żadnego elementu"
           }
         },
         "pt" : {
@@ -1064,6 +1136,12 @@
             "value" : "Herstel standaardinstellingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć domyślne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1145,6 +1223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia"
           }
         },
         "pt" : {
@@ -1230,6 +1314,12 @@
             "value" : "Syntaxis waarin deze instelling voor het neerzetten van bestanden wordt gebruikt."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia, w której to ustawienie upuszczenia pliku jest używane."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1312,6 +1402,12 @@
             "value" : "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst wstawiany z użyciem polecenia w menu lub skrótu klawiszowego:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1392,6 +1488,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tekst die kan worden ingevoegd door bestanden naar de bewerker te slepen:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst wstawiany w miejscu upuszczenia plików w edytorze:"
           }
         },
         "pt" : {

@@ -65,6 +65,12 @@
             "value" : "In selectie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W zaznaczeniu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voer vervanging uit door deze regels opeenvolgend van boven naar beneden te gebruiken:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wykonaj zastąpienie używając poniższych reguł w kolejności od góry do dołu:"
           }
         },
         "pt" : {
@@ -245,6 +257,12 @@
             "value" : "Markeer alle overeenkomsten van de vervangingsregels."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podświetl wszystkie dopasowania reguł zastąpienia."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -330,6 +348,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -425,6 +449,12 @@
             "value" : "Negeer hoofdletters"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj wielkość liter"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -515,6 +545,12 @@
             "value" : "Ongeldige regels worden overgeslagen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niepoprawne reguły zostaną pominięte."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -594,6 +630,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -690,6 +732,12 @@
             "value" : "Geavanceerde opties"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcje zaawansowane"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -778,6 +826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon geavanceerde opties"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż opcje zaawansowane"
           }
         },
         "pt" : {
@@ -870,6 +924,12 @@
             "value" : "Selecteer om hoofdletters en kleine letters te negeren bij het zoeken."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz, aby ignorować wielkość liter przy wyszukiwaniu."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -958,6 +1018,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Markeer alles"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podświetl wszystkie"
           }
         },
         "pt" : {
@@ -1050,6 +1116,12 @@
             "value" : "Schakel in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Włącz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1138,6 +1210,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang alles"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp wszystkie"
           }
         },
         "pt" : {
@@ -1230,6 +1308,12 @@
             "value" : "Selecteer om te zoeken met reguliere expressie."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz, aby szukać z użyciem wyrażenia regularnego."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1318,6 +1402,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang met"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp"
           }
         },
         "pt" : {
@@ -1410,6 +1500,12 @@
             "value" : "Vervang alle overeenkomsten volgens de vervangingsregels."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp wszystkie dopasowania zgodnie z regułami zastąpienia."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1498,6 +1594,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer om tekst alleen in de selectie te vervangen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz, aby zastąpić tekst jedynie w zaznaczeniu."
           }
         },
         "pt" : {
@@ -1590,6 +1692,12 @@
             "value" : "Selecteer om deze vervangingsregel te gebruiken."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz, aby użyć tej reguły zastąpienia."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1680,6 +1788,12 @@
             "value" : "Beschrijving"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opis"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1765,6 +1879,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -1860,6 +1980,12 @@
             "value" : "Reguliere expressie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrażenie regularne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1948,6 +2074,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoek"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź"
           }
         },
         "pt" : {

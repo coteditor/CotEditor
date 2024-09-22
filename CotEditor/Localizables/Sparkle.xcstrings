@@ -58,6 +58,12 @@
             "value" : "Controleer op updates…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdź aktualizacje…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

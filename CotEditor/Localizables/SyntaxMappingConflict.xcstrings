@@ -58,6 +58,12 @@
             "value" : "Dubbele syntaxen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powielone składnie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenia"
           }
         },
         "pt" : {
@@ -224,6 +236,12 @@
             "value" : "Bestandsnaam"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa pliku"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -305,6 +323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interpreter"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interpterer"
           }
         },
         "pt" : {
@@ -390,6 +414,12 @@
             "value" : "Conflicten in syntaxiskoppeling"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konflikty mapowania składni"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -470,6 +500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De volgende regels voor bestandskoppeling zijn geregistreerd in meerdere syntaxis. CotEditor gebruikt automatisch de eerste syntaxis. Bewerk elke syntaxdefinitie om conflicten op te lossen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poniższe reguły mapowania plików występują w więcej niż jednej definicji składni. CotEditor automatycznie użyje pierwszej składni. Aby rozwiązać konflikty, dokonaj edycji poszczególnych definicji składni."
           }
         },
         "pt" : {
@@ -553,6 +589,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruikte syntaxis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyta składnia"
           }
         },
         "pt" : {

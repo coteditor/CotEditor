@@ -58,6 +58,12 @@
             "value" : "Maak bestand uitvoerbaar"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ustaw plik jako wykonywalny"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

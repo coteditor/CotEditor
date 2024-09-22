@@ -65,6 +65,12 @@
             "value" : "Druk achtergronden af"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drukuj tło"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lettergrootte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozmiar czcionki"
           }
         },
         "pt" : {
@@ -245,6 +257,12 @@
             "value" : "Koptekst"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nagłówek"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Druk kop- en voetteksten af"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drukuj nagłówek i stopkę"
           }
         },
         "pt" : {
@@ -425,6 +449,12 @@
             "value" : "Druk regelnummers af"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drukuj numery wierszy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -515,6 +545,12 @@
             "value" : "Druk onzichtbaren af"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drukuj znaki niewidoczne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -600,6 +636,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -696,6 +738,12 @@
             "value" : "Voettekst"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopka"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -786,6 +834,12 @@
             "value" : "Zwart-wit"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czerń i biel"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -871,6 +925,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -967,6 +1027,12 @@
             "value" : "pt"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1052,6 +1118,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -1148,6 +1220,12 @@
             "value" : ""
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1237,6 +1315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kleur"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kolor"
           }
         },
         "pt" : {

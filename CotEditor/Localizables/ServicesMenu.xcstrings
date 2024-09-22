@@ -59,6 +59,12 @@
             "value" : "Nieuw CotEditor-venster met selectie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowe okno CotEditora zawierające zaznaczenie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140,6 +146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open in CotEditor"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz w CotEditorze"
           }
         },
         "pt" : {

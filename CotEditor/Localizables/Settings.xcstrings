@@ -64,6 +64,12 @@
             "value" : "Weergave"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygląd"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Donatie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darowizna"
           }
         },
         "pt" : {
@@ -242,6 +254,12 @@
             "value" : "Bewerk"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edycja"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -329,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indeling"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format"
           }
         },
         "pt" : {
@@ -420,6 +444,12 @@
             "value" : "Algemeen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ogólne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sneltoetsen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skróty"
           }
         },
         "pt" : {
@@ -598,6 +634,12 @@
             "value" : "Modus"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryb"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -687,6 +729,12 @@
             "value" : "Knipsels"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fragmenty kodu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -774,6 +822,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Venster"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okno"
           }
         },
         "pt" : {

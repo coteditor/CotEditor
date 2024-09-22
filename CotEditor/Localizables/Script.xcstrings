@@ -64,6 +64,12 @@
             "value" : "Geen document voor invoer."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak dokumentu do pobrania danych wejściowych."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen document voor uitvoer."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak dokumentu do umieszczenia danych wyjściowych."
           }
         },
         "pt" : {
@@ -242,6 +254,12 @@
             "value" : "Het script '%@' bestaat niet."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrypt „%@” nie istnieje."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -329,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het scriptbestand '%@' kon niet worden geopend."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie można otworzyć pliku skryptu „%@”."
           }
         },
         "pt" : {
@@ -420,6 +444,12 @@
             "value" : "Het script '%@' kan niet worden uitgevoerd omdat je geen rechten hebt om het uit te voeren."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrypt „%@” nie może zostać wykonany, ponieważ nie masz uprawnień do wykonania."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controleer de rechten van het scriptbestand."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdź uprawnienia pliku skryptu."
           }
         },
         "pt" : {
@@ -598,6 +634,12 @@
             "value" : "Het script '%@' kon niet worden gelezen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie można odczytać skryptu „%@”."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -685,6 +727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controleer het scriptbestand."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdź plik skryptu."
           }
         },
         "pt" : {

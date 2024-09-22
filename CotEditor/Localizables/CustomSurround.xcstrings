@@ -57,6 +57,12 @@
             "value" : "Begin:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "początek:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
             "value" : "Einde:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "koniec:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Omring met:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umieść w parze łańcuchów znaków:"
           }
         },
         "pt" : {

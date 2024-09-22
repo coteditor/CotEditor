@@ -64,6 +64,12 @@
             "value" : "Maak een nieuw document met de opgegeven tekst in CotEditor."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz nowy dokument z podanym tekstem w CotEditorze."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inhoud"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zawartość"
           }
         },
         "pt" : {
@@ -242,6 +254,12 @@
             "value" : "Maak document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz dokument"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -329,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maak document"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz dokument"
           }
         },
         "pt" : {

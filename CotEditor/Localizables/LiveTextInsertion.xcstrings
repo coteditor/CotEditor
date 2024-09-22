@@ -58,6 +58,12 @@
             "value" : "Sluit"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamknij"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detentie mislukt"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wykrywanie nie powiodło się"
           }
         },
         "pt" : {
@@ -223,6 +235,12 @@
             "value" : "Voeg in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -303,6 +321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen tekst gedetecteerd"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie wykryto tekstu"
           }
         },
         "pt" : {
