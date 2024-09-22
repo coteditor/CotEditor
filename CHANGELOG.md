@@ -14,6 +14,7 @@
 
 - Fix an issue on macOS 14 that the app crashed when opening a folder containing archive files.
 - Fix an issue that the file/folder in the file browser was not removed even when it was deleted in the actual file storage.
+- Fix an issue that the indent style detection was not applied.
 - Fix the display of the What’s New window in CJK localizations.
 - [AppStore ver.] Fix an issue that the Donation settings pane displayed an unnecessary alert when the user cancels an action.
 

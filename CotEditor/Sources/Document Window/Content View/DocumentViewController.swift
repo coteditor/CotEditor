@@ -83,6 +83,15 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
+        
+        switch UserDefaults.standard[.writingDirection] {
+            case .leftToRight:
+                break
+            case .rightToLeft:
+                self.writingDirection = .rightToLeft
+            case .vertical:
+                self.verticalLayoutOrientation = true
+        }
     }
     
     
@@ -105,6 +114,10 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
         self.splitState.isVertical = self.splitView.isVertical
         
+        // set first editor view
+        self.addEditorView()
+        self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
+        
         // detect indent style
         if UserDefaults.standard[.detectsIndentStyle],
            let indentStyle = self.document.textStorage.string.detectedIndentStyle
@@ -115,15 +128,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             }
         }
         
-        switch UserDefaults.standard[.writingDirection] {
-            case .leftToRight:
-                break
-            case .rightToLeft:
-                self.writingDirection = .rightToLeft
-            case .vertical:
-                self.verticalLayoutOrientation = true
-        }
-        
         // start parsing syntax for highlighting and outlines
         self.outlineParseDebouncer.perform()
         self.document.syntaxParser.highlightAll()
@@ -131,10 +135,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
                                                object: self.document.textStorage)
-        
-        // set first editor view
-        self.addEditorView()
-        self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
         
         // observe
         self.observers = [
@@ -821,6 +821,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             newEditorViewController.textView?.scrollRangeToVisible(selectedRange)
         }
         
+        self.splitState.canClose = true
+        
         // move focus to the new editor
         self.view.window?.makeFirstResponder(newEditorViewController.textView)
     }
@@ -882,8 +884,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         // add to the split view
         let index = otherViewController.flatMap(self.children.firstIndex(of:))?.advanced(by: 1) ?? 0
         self.insertSplitViewItem(splitViewItem, at: index)
-        
-        self.splitState.canClose = self.splitViewItems.count > 1
         
         // observe cursor
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
