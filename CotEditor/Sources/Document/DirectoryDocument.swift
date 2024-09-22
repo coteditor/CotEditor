@@ -254,7 +254,7 @@ final class DirectoryDocument: NSDocument {
         // make document
         let document: NSDocument
         do {
-            document = (contentType.conforms(to: .text) || fileURL.pathExtension.isEmpty && !contentType.conforms(to: .aliasFile))
+            document = Self.shouldOpen(url: fileURL, ofType: contentType)
                 ? try NSDocumentController.shared.makeDocument(withContentsOf: fileURL, ofType: contentType.identifier)
                 : try PreviewDocument(contentsOf: fileURL, ofType: contentType.identifier)
         } catch {
@@ -519,6 +519,30 @@ final class DirectoryDocument: NSDocument {
     
     
     // MARK: Private Methods
+    
+    /// Returns whether the receiver should open a file tat the given URL as a text-plain file.
+    ///
+    /// - Parameters:
+    ///   - url: The file URL.
+    ///   - type: The file's content type.
+    /// - Returns: `true` if the file should be opened as a plain-text.
+    private static func shouldOpen(url: URL, ofType type: UTType) -> Bool {
+        
+        if type.conforms(to: .text) { return true }
+        
+        if type.conforms(to: .aliasFile) { return false }
+        
+        // check the default app for the file is CotEditor
+        if let appURL = NSWorkspace.shared.urlForApplication(toOpen: url),
+           let bundleIdentifier = Bundle(url: appURL)?.bundleIdentifier,
+           bundleIdentifier == Bundle.main.bundleIdentifier
+        {
+            return true
+        }
+        
+        return url.pathExtension.isEmpty
+    }
+    
     
     /// Notifies file node update to the UI.
     ///

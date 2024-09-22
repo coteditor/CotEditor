@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Open a file selected in the file browser as plain text when the default app set in the Finder for it is CotEditor.
 - Optimize the performance of the folder browser.
 
 
