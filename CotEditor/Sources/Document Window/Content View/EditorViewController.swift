@@ -92,7 +92,7 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewWillAppear()
         
-        self.navigationBarItem.isCollapsed = UserDefaults.standard[.showNavigationBar]
+        self.navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
         
         self.outlineNavigator.items = self.document.syntaxParser.outlineItems
         self.textView?.lineEnding = self.document.lineEnding

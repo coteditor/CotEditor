@@ -13,6 +13,11 @@
 - Adjust the layout of the file preview view.
 
 
+### Fixes
+
+- Fix an issue that the initial visibility state of the navigation bar was reversed.
+
+
 
 5.0.1 (678)
 --------------------------
