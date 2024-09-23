@@ -65,7 +65,6 @@ Currently, we already have maintainers for:
 - Traditional Chinese
 - Czech
 - Dutch
-- French
 - German
 - Italian
 - Japanese
