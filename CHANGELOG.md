@@ -3,6 +3,11 @@
 5.0.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Polish localization (Thanks to Rafał Kopicki!).
+
+
 ### Improvements
 
 - Adjust the layout of the file preview view.

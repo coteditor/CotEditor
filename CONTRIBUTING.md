@@ -70,6 +70,7 @@ Currently, we already have maintainers for:
 - Italian
 - Japanese
 - Korean
+- Polish
 - Portuguese
 - Turkish
 
