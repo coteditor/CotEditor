@@ -21,77 +21,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		2A07A8FA2BABC182007CABFD /* About.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8F92BABC182007CABFD /* About.xcstrings */; };
-		2A07A8FB2BABC182007CABFD /* About.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8F92BABC182007CABFD /* About.xcstrings */; };
-		2A07A8FD2BABC1C3007CABFD /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8FC2BABC1C3007CABFD /* Syntax.xcstrings */; };
-		2A07A8FE2BABC1C3007CABFD /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8FC2BABC1C3007CABFD /* Syntax.xcstrings */; };
-		2A07A9002BABC1EB007CABFD /* LinkButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8FF2BABC1EA007CABFD /* LinkButton.xcstrings */; };
-		2A07A9012BABC1EB007CABFD /* LinkButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8FF2BABC1EA007CABFD /* LinkButton.xcstrings */; };
-		2A07A9032BABC1FA007CABFD /* CommandBar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A9022BABC1FA007CABFD /* CommandBar.xcstrings */; };
-		2A07A9042BABC1FA007CABFD /* CommandBar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A9022BABC1FA007CABFD /* CommandBar.xcstrings */; };
 		2A10D10A1E708CDF0027192A /* KeyBindingTreeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */; };
 		2A10D1281E714D230027192A /* ThemeListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* ThemeListView.storyboard */; };
 		2A10D1381E715E5B0027192A /* SyntaxListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */; };
 		2A1380092C22E9B500093BF3 /* EditorCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2A1380082C22E9B500093BF3 /* EditorCore */; };
 		2A13800B2C22EA4100093BF3 /* EditorCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2A13800A2C22EA4100093BF3 /* EditorCore */; };
-		2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */; };
-		2A1E7DD02B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */; };
-		2A1E7DD12B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */; };
-		2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
-		2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
-		2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
-		2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
-		2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */; };
-		2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */; };
-		2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */; };
-		2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */; };
-		2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */; };
-		2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */; };
-		2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */; };
-		2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */; };
-		2A1E7E602B8DC879004F0C07 /* Settings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */; };
-		2A1E7E612B8DC879004F0C07 /* Settings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
-		2A21E6732BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
-		2A21E6742BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
-		2A24F9162BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */; };
-		2A24F9172BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */; };
-		2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */; };
-		2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */; };
-		2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */; };
-		2A39AC922B8CE40400E216C9 /* GoToLine.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39AC912B8CE40400E216C9 /* GoToLine.xcstrings */; };
-		2A39AC932B8CE40400E216C9 /* GoToLine.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39AC912B8CE40400E216C9 /* GoToLine.xcstrings */; };
-		2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACA72B8CE58100E216C9 /* LiveTextInsertion.xcstrings */; };
-		2A39ACA92B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACA72B8CE58100E216C9 /* LiveTextInsertion.xcstrings */; };
-		2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACB82B8CE6DE00E216C9 /* CustomSurround.xcstrings */; };
-		2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACB82B8CE6DE00E216C9 /* CustomSurround.xcstrings */; };
-		2A39ACD52B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACD42B8CE97700E216C9 /* UnicodeInput.xcstrings */; };
-		2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACD42B8CE97700E216C9 /* UnicodeInput.xcstrings */; };
-		2A39ACE62B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */; };
-		2A39ACE72B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */; };
-		2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */; };
-		2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */; };
-		2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACFB2B8CED8B00E216C9 /* CustomTabWidth.xcstrings */; };
-		2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACFB2B8CED8B00E216C9 /* CustomTabWidth.xcstrings */; };
-		2A39ACFC2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */; };
-		2A39ACFD2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3D63FB1E769DDF00F538E1 /* MultipleReplaceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplaceView.storyboard */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
-		2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */; };
-		2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */; };
 		2A5D13421D1FE34F00D38E6A /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
-		2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */; };
-		2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */; };
-		2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */; };
-		2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */; };
-		2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */; };
-		2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */; };
 		2A63CEC91D0B0D4600ED8186 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
-		2A6566E92B73BBB400008669 /* SyntaxEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */; };
-		2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */; };
-		2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
 		2A6F0D551B5500E100C2D03C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
@@ -102,84 +43,32 @@
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */; };
 		2A7F4E002871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */; };
-		2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
-		2A7FEF0C2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
 		2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A8EAE3E2BA3B15D00448875 /* Credits.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE3D2BA3B15D00448875 /* Credits.json */; };
 		2A8EAE3F2BA3B15D00448875 /* Credits.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE3D2BA3B15D00448875 /* Credits.json */; };
 		2A8EAE562BA7E2BE00448875 /* Licenses in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE552BA7E2BE00448875 /* Licenses */; };
 		2A8EAE572BA7E2BE00448875 /* Licenses in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE552BA7E2BE00448875 /* Licenses */; };
-		2A902A9D2B86DC140053FC96 /* KeyBindingsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
-		2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* TextFind.xcstrings */; };
-		2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* TextFind.xcstrings */; };
-		2A9AB0222C35AF5E008437F9 /* Intents.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */; };
-		2A9AB0232C35AF5E008437F9 /* Intents.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */; };
 		2AA2C6FC24399A920017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FB24399A920017D1EC /* Yams */; };
 		2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FD24399AA20017D1EC /* Yams */; };
-		2AA672592B8F719900B8F7E6 /* Script.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */; };
-		2AA6725A2B8F719900B8F7E6 /* Script.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */; };
-		2AA6726C2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */; };
-		2AA6726D2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */; };
-		2AA6727E2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */; };
-		2AA6727F2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */; };
-		2AA672902B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
-		2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
-		2AA672A22B8F8AA300B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */; };
-		2AA672A32B8F8AA300B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */; };
-		2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
-		2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
-		2AA672F62B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */; };
-		2AA672F72B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */; };
-		2AA6731C2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */; };
-		2AA6731D2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */; };
-		2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */; };
 		2AAAE6E526DB82F800C5F0AC /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2AAAE6E426DB82F800C5F0AC /* Sparkle */; };
-		2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */; };
-		2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */; };
 		2AAFA7BC2B7A2DB000A2B228 /* MultipleReplaceListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AAFA7BA2B7A2DAF00A2B228 /* MultipleReplaceListView.storyboard */; };
 		2AAFA7BD2B7A2DB000A2B228 /* MultipleReplaceListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AAFA7BA2B7A2DAF00A2B228 /* MultipleReplaceListView.storyboard */; };
-		2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
-		2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2ABB27D22C38268300AFCD0B /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27CD2C3824DE00AFCD0B /* Numerics */; };
 		2ABB27D62C382AD400AFCD0B /* MacUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27D52C382AD400AFCD0B /* MacUI */; };
 		2ABB27D82C382ADF00AFCD0B /* MacUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27D72C382ADF00AFCD0B /* MacUI */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
-		2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */; };
-		2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */; };
 		2ACAAC1C2B85E74C0041B095 /* SyntaxMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACAAC1B2B85E74C0041B095 /* SyntaxMap */; };
 		2ACAAC1E2B85E7530041B095 /* SyntaxMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACAAC1D2B85E7530041B095 /* SyntaxMap */; };
 		2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BC22A87EFD00893051 /* ColorCode */; };
 		2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BE22A87F0400893051 /* ColorCode */; };
-		2ACDA2762B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */; };
-		2ACDA2772B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */; };
-		2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */; };
-		2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */; };
-		2ACDA2912B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2932B81E8B300B2EBA8 /* GeneralSettings.xcstrings */; };
-		2ACDA2922B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2932B81E8B300B2EBA8 /* GeneralSettings.xcstrings */; };
-		2ACDA2942B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */; };
-		2ACDA2952B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */; };
-		2ACDA2972B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */; };
-		2ACDA2982B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */; };
-		2ACDA29A2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */; };
-		2ACDA29B2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */; };
-		2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */; };
-		2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */; };
-		2ACDA2A52B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */; };
-		2ACDA2A62B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */; };
 		2ACDE28D2406B9C000FC31EC /* ThemeListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* ThemeListView.storyboard */; };
 		2ACDE29A2406B9C000FC31EC /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
 		2ACDE29C2406B9C000FC31EC /* SyntaxListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */; };
 		2ACDE2A22406B9C000FC31EC /* KeyBindingTreeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */; };
 		2ACDE2A32406B9C000FC31EC /* MultipleReplaceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplaceView.storyboard */; };
-		2AD544232C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */; };
-		2AD544242C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */; };
-		2AE44DCE2BE7C34D002A787D /* InAppPurchase.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */; };
-		2AE44DCF2BE7C355002A787D /* InAppPurchase.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */; };
-		2AE44DD12BE7CF48002A787D /* Donation.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AE44DD02BE7CF48002A787D /* Donation.xcstrings */; };
-		2AE44DD22BE7CF48002A787D /* Donation.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AE44DD02BE7CF48002A787D /* Donation.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,49 +114,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2A07A8F92BABC182007CABFD /* About.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = About.xcstrings; sourceTree = "<group>"; };
-		2A07A8FC2BABC1C3007CABFD /* Syntax.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Syntax.xcstrings; sourceTree = "<group>"; };
-		2A07A8FF2BABC1EA007CABFD /* LinkButton.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LinkButton.xcstrings; sourceTree = "<group>"; };
-		2A07A9022BABC1FA007CABFD /* CommandBar.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = CommandBar.xcstrings; sourceTree = "<group>"; };
 		2A10D1091E708CDF0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/KeyBindingTreeView.storyboard; sourceTree = "<group>"; };
 		2A10D1271E714D230027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ThemeListView.storyboard; sourceTree = "<group>"; };
 		2A10D1371E715E5B0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxListView.storyboard; sourceTree = "<group>"; };
-		2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = KeyBindingsSettings.xcstrings; sourceTree = "<group>"; };
-		2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ModeSettings.xcstrings; sourceTree = "<group>"; };
-		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = MultipleReplace.xcstrings; sourceTree = "<group>"; };
-		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = PrintAccessory.xcstrings; sourceTree = "<group>"; };
-		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = EditorOpacity.xcstrings; sourceTree = "<group>"; };
-		2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = SyntaxMappingConflict.xcstrings; sourceTree = "<group>"; };
-		2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = CharacterInspector.xcstrings; sourceTree = "<group>"; };
-		2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Console.xcstrings; sourceTree = "<group>"; };
-		2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Settings.xcstrings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
-		2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = DonationSettings.xcstrings; sourceTree = "<group>"; };
-		2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = WhatsNew.xcstrings; sourceTree = "<group>"; };
-		2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Sparkle.xcstrings; sourceTree = "<group>"; };
-		2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = EncodingList.xcstrings; sourceTree = "<group>"; };
-		2A39AC912B8CE40400E216C9 /* GoToLine.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = GoToLine.xcstrings; sourceTree = "<group>"; };
-		2A39ACA72B8CE58100E216C9 /* LiveTextInsertion.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = LiveTextInsertion.xcstrings; sourceTree = "<group>"; };
-		2A39ACB82B8CE6DE00E216C9 /* CustomSurround.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = CustomSurround.xcstrings; sourceTree = "<group>"; };
-		2A39ACD42B8CE97700E216C9 /* UnicodeInput.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = UnicodeInput.xcstrings; sourceTree = "<group>"; };
-		2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = OpenPanelAccessory.xcstrings; sourceTree = "<group>"; };
-		2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = SavePanelAccessory.xcstrings; sourceTree = "<group>"; };
-		2A39ACFB2B8CED8B00E216C9 /* CustomTabWidth.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = CustomTabWidth.xcstrings; sourceTree = "<group>"; };
-		2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AddRemoveButton.xcstrings; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplaceView.storyboard; sourceTree = "<group>"; };
 		2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AdvancedCharacterCount.xcstrings; sourceTree = "<group>"; };
 		2A5D13411D1FE34F00D38E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPanelFieldView.storyboard; sourceTree = "<group>"; };
-		2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = UnicodeNormalization.xcstrings; sourceTree = "<group>"; };
-		2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
-		2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ServicesMenu.xcstrings; sourceTree = "<group>"; };
 		2A5EA1662A88F54800D16730 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/PrintPanelAccessory.xcstrings; sourceTree = "<group>"; };
 		2A5EA1672A88F70C00D16730 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
-		2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InAppPurchase.xcstrings; sourceTree = "<group>"; };
 		2A65520B2BE001A10082B7D6 /* CotEditor.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = CotEditor.storekit; sourceTree = "<group>"; };
-		2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ThemeEditor.xcstrings; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E091B55043800C2D03C /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CotEditor.entitlements; sourceTree = "<group>"; };
@@ -275,40 +133,15 @@
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A7F4E012871F46D0029CE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PrintPanelAccessory.storyboard; sourceTree = "<group>"; };
-		2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = FilterField.xcstrings; sourceTree = "<group>"; };
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A8EAE3D2BA3B15D00448875 /* Credits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credits.json; sourceTree = "<group>"; };
 		2A8EAE552BA7E2BE00448875 /* Licenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Licenses; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
-		2A954B232AB28B010070FB74 /* TextFind.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = TextFind.xcstrings; sourceTree = "<group>"; };
-		2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Intents.xcstrings; sourceTree = "<group>"; };
-		2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Script.xcstrings; sourceTree = "<group>"; };
-		2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = FileDropItem.xcstrings; sourceTree = "<group>"; };
-		2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Snippet.xcstrings; sourceTree = "<group>"; };
-		2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Shortcut.xcstrings; sourceTree = "<group>"; };
-		2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Document.xcstrings; sourceTree = "<group>"; };
-		2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = OpacitySlider.xcstrings; sourceTree = "<group>"; };
-		2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = MainMenu.xcstrings; sourceTree = "<group>"; };
-		2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = SyntaxEditor.xcstrings; sourceTree = "<group>"; };
 		2AA6E0BE2B74728700E536F8 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FindPanelFieldView.xcstrings; sourceTree = "<group>"; };
-		2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = LineEnding.xcstrings; sourceTree = "<group>"; };
 		2AAFA7BB2B7A2DAF00A2B228 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplaceListView.storyboard; sourceTree = "<group>"; };
 		2AAFA7D42B7A2F5800A2B228 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MultipleReplaceView.xcstrings; sourceTree = "<group>"; };
 		2AAFA7D52B7A2F6D00A2B228 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MultipleReplaceListView.xcstrings; sourceTree = "<group>"; };
-		2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = FormatSettings.xcstrings; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = RegexReference.xcstrings; sourceTree = "<group>"; };
-		2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = PatternSort.xcstrings; sourceTree = "<group>"; };
-		2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ColorCode.xcstrings; sourceTree = "<group>"; };
-		2ACDA2932B81E8B300B2EBA8 /* GeneralSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = GeneralSettings.xcstrings; sourceTree = "<group>"; };
-		2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = EditSettings.xcstrings; sourceTree = "<group>"; };
-		2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = WindowSettings.xcstrings; sourceTree = "<group>"; };
-		2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = SnippetsSettings.xcstrings; sourceTree = "<group>"; };
-		2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = IssueReport.xcstrings; sourceTree = "<group>"; };
-		2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppearanceSettings.xcstrings; sourceTree = "<group>"; };
-		2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
-		2AE44DD02BE7CF48002A787D /* Donation.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Donation.xcstrings; sourceTree = "<group>"; };
 		2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2AF1229E2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ThemeListView.xcstrings; sourceTree = "<group>"; };
 		2AF1229F2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/KeyBindingTreeView.xcstrings; sourceTree = "<group>"; };
@@ -324,6 +157,11 @@
 		2A1AFDC32C92990300BF2C32 /* Configurations */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		2A55EAC62CA1A645001A35A4 /* Localizables */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Localizables;
 			sourceTree = "<group>";
 		};
 		2A5A72FF2C92C63D0028C333 /* Application */ = {
@@ -497,16 +335,6 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		2A1E7DE72B8D615A004F0C07 /* Text Finder */ = {
-			isa = PBXGroup;
-			children = (
-				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
-				2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */,
-				2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */,
-			);
-			name = "Text Finder";
-			sourceTree = "<group>";
-		};
 		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,7 +388,7 @@
 			children = (
 				2A1EB5C319AD469500C1E37E /* Assets.xcassets */,
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
-				2AC94B262B6E2E110086F9F2 /* Localizables */,
+				2A55EAC62CA1A645001A35A4 /* Localizables */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
 				2A8EAE552BA7E2BE00448875 /* Licenses */,
@@ -571,25 +399,6 @@
 				2A94FC781BE2256F00B454A8 /* cot */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		2A39AC942B8CE43100E216C9 /* Accessory Views */ = {
-			isa = PBXGroup;
-			children = (
-				2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */,
-				2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */,
-				2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */,
-				2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */,
-				2A39AC912B8CE40400E216C9 /* GoToLine.xcstrings */,
-				2A39ACFB2B8CED8B00E216C9 /* CustomTabWidth.xcstrings */,
-				2A39ACB82B8CE6DE00E216C9 /* CustomSurround.xcstrings */,
-				2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */,
-				2A39ACD42B8CE97700E216C9 /* UnicodeInput.xcstrings */,
-				2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */,
-				2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */,
-				2A39ACA72B8CE58100E216C9 /* LiveTextInsertion.xcstrings */,
-			);
-			name = "Accessory Views";
 			sourceTree = "<group>";
 		};
 		2A3F187D202D8773002F1CA7 /* Supporting Files */ = {
@@ -612,82 +421,6 @@
 			name = Accessories;
 			sourceTree = "<group>";
 		};
-		2A7FEF0D2B90B1800042BEFF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2A07A8FF2BABC1EA007CABFD /* LinkButton.xcstrings */,
-				2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */,
-				2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */,
-				2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		2A7FEF352B90EBEA0042BEFF /* Panels */ = {
-			isa = PBXGroup;
-			children = (
-				2A07A8F92BABC182007CABFD /* About.xcstrings */,
-				2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */,
-				2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */,
-				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
-				2A07A9022BABC1FA007CABFD /* CommandBar.xcstrings */,
-			);
-			name = Panels;
-			sourceTree = "<group>";
-		};
-		2AA6725B2B8F74D900B8F7E6 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
-				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
-				2A07A8FC2BABC1C3007CABFD /* Syntax.xcstrings */,
-				2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */,
-				2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */,
-				2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */,
-				2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */,
-				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
-				2AE44DD02BE7CF48002A787D /* Donation.xcstrings */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		2AA6731F2B917B8F00B8F7E6 /* Other Views */ = {
-			isa = PBXGroup;
-			children = (
-				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
-				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
-				2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */,
-			);
-			name = "Other Views";
-			sourceTree = "<group>";
-		};
-		2AA673202B917BA400B8F7E6 /* Panes */ = {
-			isa = PBXGroup;
-			children = (
-				2ACDA2932B81E8B300B2EBA8 /* GeneralSettings.xcstrings */,
-				2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */,
-				2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */,
-				2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */,
-				2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */,
-				2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */,
-				2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */,
-				2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */,
-				2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */,
-			);
-			name = Panes;
-			sourceTree = "<group>";
-		};
-		2AB9E4BB2B7F2378004E5BDC /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */,
-				2AA673202B917BA400B8F7E6 /* Panes */,
-				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
-				2AA6731F2B917B8F00B8F7E6 /* Other Views */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,28 +429,6 @@
 			);
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
-		};
-		2AC94B262B6E2E110086F9F2 /* Localizables */ = {
-			isa = PBXGroup;
-			children = (
-				2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */,
-				2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */,
-				2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */,
-				2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */,
-				2AB9E4BB2B7F2378004E5BDC /* Settings */,
-				2A1E7DE72B8D615A004F0C07 /* Text Finder */,
-				2A39AC942B8CE43100E216C9 /* Accessory Views */,
-				2A7FEF352B90EBEA0042BEFF /* Panels */,
-				2A7FEF0D2B90B1800042BEFF /* Views */,
-				2AA6725B2B8F74D900B8F7E6 /* Models */,
-				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
-				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
-				2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */,
-				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
-				2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */,
-			);
-			path = Localizables;
-			sourceTree = "<group>";
 		};
 		2AE459F42C9C82A2003CB621 /* CotEditor */ = {
 			isa = PBXGroup;
@@ -772,6 +483,7 @@
 				2A53326326799B08000DE73D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				2A55EAC62CA1A645001A35A4 /* Localizables */,
 				2A5A72FF2C92C63D0028C333 /* Application */,
 				2A5A73462C92C9F60028C333 /* Settings Window */,
 				2A5A73522C92C9FF0028C333 /* Setting Managers */,
@@ -846,6 +558,7 @@
 				2AD543792726B996001000CA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				2A55EAC62CA1A645001A35A4 /* Localizables */,
 				2A5A72FF2C92C63D0028C333 /* Application */,
 				2A5A73462C92C9F60028C333 /* Settings Window */,
 				2A5A73522C92C9FF0028C333 /* Setting Managers */,
@@ -986,61 +699,6 @@
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2A8EAE3E2BA3B15D00448875 /* Credits.json in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
-				2AA6731C2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
-				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
-				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
-				2AE44DCE2BE7C34D002A787D /* InAppPurchase.xcstrings in Resources */,
-				2A07A8FA2BABC182007CABFD /* About.xcstrings in Resources */,
-				2A39ACFC2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */,
-				2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
-				2ACDA2A52B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
-				2AD544242C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */,
-				2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
-				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
-				2A07A9032BABC1FA007CABFD /* CommandBar.xcstrings in Resources */,
-				2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */,
-				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
-				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
-				2AA672A22B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
-				2AE44DD12BE7CF48002A787D /* Donation.xcstrings in Resources */,
-				2A21E6732BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */,
-				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
-				2ACDA2942B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
-				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
-				2AA6726C2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,
-				2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */,
-				2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
-				2ACDA2912B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
-				2A39AC922B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
-				2A9AB0232C35AF5E008437F9 /* Intents.xcstrings in Resources */,
-				2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
-				2A902A9D2B86DC140053FC96 /* KeyBindingsSettings.xcstrings in Resources */,
-				2A1E7DD02B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */,
-				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
-				2A07A9002BABC1EB007CABFD /* LinkButton.xcstrings in Resources */,
-				2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
-				2AA672F62B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */,
-				2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
-				2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */,
-				2A39ACE62B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
-				2ACDA2762B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */,
-				2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,
-				2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
-				2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
-				2AA672592B8F719900B8F7E6 /* Script.xcstrings in Resources */,
-				2A1E7E602B8DC879004F0C07 /* Settings.xcstrings in Resources */,
-				2AA672902B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
-				2AA6727E2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,
-				2ACDA29A2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
-				2A07A8FD2BABC1C3007CABFD /* Syntax.xcstrings in Resources */,
-				2A6566E92B73BBB400008669 /* SyntaxEditor.xcstrings in Resources */,
-				2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
-				2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */,
-				2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
-				2A39ACD52B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
-				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
-				2A24F9162BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */,
-				2ACDA2972B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE29A2406B9C000FC31EC /* FindPanelFieldView.storyboard in Resources */,
 				2ACDE29C2406B9C000FC31EC /* SyntaxListView.storyboard in Resources */,
@@ -1073,62 +731,6 @@
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A8EAE3F2BA3B15D00448875 /* Credits.json in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
-				2AA6731D2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
-				2AE44DCF2BE7C355002A787D /* InAppPurchase.xcstrings in Resources */,
-				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
-				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
-				2A07A8FB2BABC182007CABFD /* About.xcstrings in Resources */,
-				2A39ACFD2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */,
-				2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
-				2ACDA2A62B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
-				2AD544232C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */,
-				2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
-				2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */,
-				2A07A9042BABC1FA007CABFD /* CommandBar.xcstrings in Resources */,
-				2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */,
-				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
-				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
-				2AA672A32B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
-				2AE44DD22BE7CF48002A787D /* Donation.xcstrings in Resources */,
-				2A21E6742BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */,
-				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
-				2ACDA2952B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
-				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,
-				2AA6726D2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,
-				2A7FEF0C2B90B05C0042BEFF /* FilterField.xcstrings in Resources */,
-				2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
-				2ACDA2922B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
-				2A39AC932B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
-				2A9AB0222C35AF5E008437F9 /* Intents.xcstrings in Resources */,
-				2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
-				2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */,
-				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
-				2A07A9012BABC1EB007CABFD /* LinkButton.xcstrings in Resources */,
-				2A39ACA92B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
-				2AA672F72B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */,
-				2A1E7DD12B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */,
-				2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
-				2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */,
-				2A39ACE72B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
-				2ACDA2772B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */,
-				2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,
-				2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
-				2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
-				2AA6725A2B8F719900B8F7E6 /* Script.xcstrings in Resources */,
-				2A1E7E612B8DC879004F0C07 /* Settings.xcstrings in Resources */,
-				2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
-				2AA6727F2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,
-				2ACDA29B2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
-				2A07A8FE2BABC1C3007CABFD /* Syntax.xcstrings in Resources */,
-				2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */,
-				2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
-				2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */,
-				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
-				2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
-				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
-				2A24F9172BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */,
-				2ACDA2982B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
-				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2A5D13421D1FE34F00D38E6A /* FindPanelFieldView.storyboard in Resources */,
 				2A10D1381E715E5B0027192A /* SyntaxListView.storyboard in Resources */,
