@@ -75,6 +75,7 @@ Currently, we already have maintainers for:
 
 We are now looking for a new maintainer for:
 
+- French
 - Spanish
 
 
