@@ -1,0 +1,390 @@
+#!/usr/bin/env python3
+"""
+cot
+
+CotEditor
+https://coteditor.com
+
+Created by 1024jp on 2015-08-12.
+
+------------------------------------------------------------------------------
+
+© 2015-2024 1024jp
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+"""
+
+import argparse
+import errno
+import os
+import sys
+import time
+from subprocess import Popen, PIPE, CalledProcessError
+
+
+# meta data
+__version__ = '2.10.0'
+__description__ = 'command-line utility for CotEditor.'
+
+
+# constants
+APPLICATION_NAME = 'CotEditor'
+WAIT_INTERVAL = 1.0
+
+
+# MARK: Style
+
+class Style:
+    """Style string for stdout/stderr.
+    """
+
+    @staticmethod
+    def bold(string):
+        return '\033[1m' + string + '\033[0m'
+
+    @staticmethod
+    def warning(string):
+        return '\033[31;1m' + string + '\033[0m'
+
+
+# MARK: Bundle
+
+def bundle_path():
+    """Return application path if this script is bundled in an application.
+
+    Returns:
+        path (str): Path to .app directory or None if not found.
+    """
+    path = os.path.realpath(__file__)
+
+    # find '.app' extension
+    while path != '/':
+        path = os.path.dirname(path)
+        _, extension = os.path.splitext(path)
+        if extension == '.app':
+            return path
+
+    return None
+
+
+# MARK: OSA Script
+
+def run_osascript(script, is_async=False):
+    """Run osascript.
+
+    Args:
+        script (str): Osascript.
+        is_async (bool): If need to wait for finish.
+    Returns:
+        result (str): Return value of the script.
+    """
+    if is_async:
+        script = 'ignoring application responses\n' + script + '\nend ignoring'
+
+    p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    stdout, stderr = p.communicate(script.encode('utf-8'))
+
+    if p.returncode:
+        raise CalledProcessError(p.returncode, script, stderr.decode('utf-8'))
+
+    result = stdout.decode('utf-8')
+
+    # strip the last line ending
+    #   -> Don't use `rstrip` since it removes multiple line endings.
+    if result.endswith('\n'):
+        result = result[:-1]
+
+    return result
+
+
+class ScriptableApplication(object):
+    """OSA-Scriptable macOS application object.
+    """
+
+    def __init__(self, name):
+        self.name = name
+
+    def tell(self, script, is_async=False):
+        """Tell OSA command to the application.
+
+        Args:
+            script (str): OSA command
+            is_async (bool):  If need to wait for finish.
+        Returns:
+            result (str): Return value of the script.
+        """
+        script = 'tell app "{}" to {}'.format(self.name, script)
+        try:
+            return run_osascript(script, is_async)
+        except CalledProcessError as error:
+            self._attempt_recovery(error)
+            raise error
+
+    def launch(self, background=False):
+        """Launch application.
+
+        Args:
+            background (bool): Open in background?
+        """
+        if background:
+            self.tell('launch')
+        else:
+            self.tell('activate')
+
+    def open(self, path):
+        """Open given file path in the application.
+
+        Args:
+            path (str): Path to file.
+        """
+        path = path.replace('\\', '\\\\').replace('"', '\\"')
+        self.tell('open POSIX file "{}"'.format(path), is_async=True)
+        # -> Opening a file that is already opened in the application takes
+        #    somehow extremely long time. So, we don't wait.
+
+    def tell_document(self, script, index=1):
+        """Tell OSA command to a document of the application.
+
+        Args:
+            script (str): OSA command
+            index (int): Index number of the document to handle (1-based).
+        Returns:
+            result (str): Return value of the script.
+        """
+        return self.tell('tell document {} to {}'.format(index, script))
+
+    def window_id(self, index=1):
+        """Get window identifier.
+
+        Args:
+            index (int): Index number of the window to get id (1-based).
+        Returns:
+            window_id (str): Identifier of document's window opened.
+        """
+        try:
+            return self.tell('id of window {}'.format(index))
+        except CalledProcessError:
+            pass
+        return None
+
+    def window_exists(self, window_id):
+        """Check if window exists.
+
+        Args:
+            window_id (str): identifier of window to check existence.
+        Returns:
+            result (bool): Window exists?
+        """
+        script = '(first window whose id is {}) is visible'.format(window_id)
+        result = None
+        try:
+            result = self.tell(script)
+        except CalledProcessError:
+            pass
+        return result == 'true'
+
+    def _attempt_recovery(self, error):
+        """Attempt recovery from CalledProcessError.
+
+        Args:
+            error (CalledProcessError): Error via osascript.
+        """
+        if '(-1743)' in error.output:
+            # show recovery suggestion for authorization error with
+            #     Apple events in Mojave (and later)
+            sys.stderr.write(
+                Style.warning('Error') + ': '
+                'User authorization required. '
+                'To authorize cot command, select ' +
+                Style.bold(self.name) + ' under your client application, '
+                'such as Terminal, in ' +
+                Style.bold('System Preferences') + ' > ' +
+                Style.bold('Security & Privacy') + ' > ' +
+                Style.bold('Privacy') + ' > ' +
+                Style.bold('Automation') + '.\n'
+            )
+            sys.exit(error.returncode)
+
+
+# MARK: Args Parse
+
+def parse_args():
+    """Parse command line arguments.
+
+    Returns:
+        Parsed args object.
+    """
+    # create parser instance
+    parser = argparse.ArgumentParser(description=__description__)
+
+    # set positional argument
+    parser.add_argument('files',
+                        type=str,
+                        metavar='FILE',
+                        nargs='*',  # allow wildcard
+                        help="path to file to open"
+                        )
+
+    # set optional arguments
+    parser.add_argument('-v', '--version',
+                        action='version',
+                        version=__version__
+                        )
+    parser.add_argument('-w', '--wait',
+                        action='store_true',
+                        default=False,
+                        help="wait for opened file to be closed"
+                        )
+    parser.add_argument('-g', '--background',
+                        action='store_true',
+                        default=False,
+                        help="do not bring the application to the foreground"
+                        )
+    parser.add_argument('-n', '--new',
+                        action='store_true',
+                        default=False,
+                        help="create a new blank document"
+                        )
+    parser.add_argument('-s', '--syntax',
+                        type=str,
+                        help="set specific syntax to opened document"
+                        )
+    parser.add_argument('-l', '--line',
+                        type=int,
+                        help="jump to specific line in opened document"
+                        )
+    parser.add_argument('-c', '--column',
+                        type=int,
+                        help="jump to specific column in opened document"
+                        )
+
+    args = parser.parse_args()
+
+    # create a flag specifying if create a new blank window or file
+    args.new_window = args.new and not args.files
+
+    # check file existence and create if needed
+    if args.files:
+        # strip symlink
+        args.files = list(map(os.path.realpath, args.files))
+        # skip file check if file is directory
+        if not args.new and os.path.isdir(args.files[0]):
+            return args
+        
+        open_mode = 'r'
+        if args.new and not os.path.exists(args.files[0]):
+            open_mode = 'w'   # overwrite mode to create new file
+            # create directory if not exists yet
+            filepath = args.files[0]
+            dirpath = os.path.dirname(filepath)
+            if dirpath:
+                try:
+                    os.makedirs(dirpath)
+                except OSError as err:  # guard against race condition
+                    if err.errno != errno.EEXIST:
+                        parser.error("argument FILE: {}".format(err))
+        # check readability or create new one
+        for path in args.files:
+            try:
+                open(path, open_mode).close()
+            except IOError as err:
+                parser.error("argument FILE: {}".format(err))
+
+    return args
+
+
+# MARK: - Main
+
+def main(args, stdin):
+    # store the client app and window
+    client = None
+    client_window_id = None
+    if args.wait:
+        system = ScriptableApplication('System Events')
+        client_name = system.tell('get path of application file of application'
+                                  ' processes whose frontmost is true')
+
+        client = ScriptableApplication(client_name)
+        client_window_id = client.window_id()
+
+    # find the app to call
+    app_identifier = bundle_path() or APPLICATION_NAME
+    app = ScriptableApplication(app_identifier)
+
+    # create document (before launching app explicitly)
+    #   -> to avoid creating extra blank document
+    document_count = 0
+    if args.files:
+        # open files
+        for path in args.files:
+            app.open(path)
+        document_count = len(args.files)
+
+    elif stdin:
+        # new document with piped text
+        sanitized_stdin = stdin.replace('\\', '\\\\').replace('"', '\\"')
+        app.tell('make new document')
+        app.tell_document('set contents to "{}"'.format(sanitized_stdin))
+        app.tell_document('set range of selection to {0, 0}')
+        document_count = 1
+
+    elif args.new_window:
+        # new blank document
+        app.tell('make new document')
+        document_count = 1
+
+    # launch
+    app.launch(background=args.background)
+
+    # set syntax
+    if args.syntax is not None and document_count > 0:
+        for index in range(document_count):
+            app.tell_document('set coloring style to "{}"'.format(args.syntax),
+                              index + 1)
+
+    if app.tell('number of documents') == '0':
+        return
+
+    # jump to location
+    if args.line is not None or args.column is not None:
+        app.tell_document('jump to line {} column {}'.format(
+            args.line or 1, args.column or 0))
+
+    # wait for window close
+    if args.wait and (len(args.files) == 1 or stdin or args.new_window):
+        window_id = app.window_id()
+        while app.window_exists(window_id):
+            time.sleep(WAIT_INTERVAL)
+
+        # raise client window to the front
+        if client_window_id:
+            client.tell('set index of window id {} to 1'.format(
+                client_window_id))
+        try:
+            client.tell('activate')
+        except Exception:
+            pass
+
+
+if __name__ == "__main__":
+    # parse arguments
+    args = parse_args()
+
+    # read piped text if exists
+    if args.files or sys.stdin.isatty():
+        stdin = None
+    else:
+        stdin = ''.join(sys.stdin)
+
+    main(args, stdin)
