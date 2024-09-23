@@ -106,7 +106,9 @@ private extension IssueReport {
         private func label(language: Locale.LanguageCode? = nil) -> String {
             
             var resource = self.labelResource
-            resource.locale = Locale(languageCode: language)
+            if let language {
+                resource.locale = Locale(languageCode: language)
+            }
             
             return String(localized: resource)
         }
