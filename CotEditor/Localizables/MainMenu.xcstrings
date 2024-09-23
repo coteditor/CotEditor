@@ -63,6 +63,12 @@
             "value" : "Groter"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiększ"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143,6 +149,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaarteken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentuj"
           }
         },
         "pt" : {
@@ -227,6 +239,12 @@
             "value" : "Converteer inspring"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konwertuj wcięcia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -307,6 +325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kopieer als RTF-tekst"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiuj jako tekst sformatowany"
           }
         },
         "pt" : {
@@ -391,6 +415,12 @@
             "value" : "Verwijder dubbele regels"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń powielone wiersze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -473,6 +503,12 @@
             "value" : "Verwijder regel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń wiersz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -553,6 +589,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dupliceer regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel wiersz"
           }
         },
         "pt" : {
@@ -638,6 +680,12 @@
             "value" : "Codering naar '%@'"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodowanie do „%@”"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -718,6 +766,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg inspringgidsen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj linie pomocnicze wcięć"
           }
         },
         "pt" : {
@@ -802,6 +856,12 @@
             "value" : "Verberg infovenster"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj Inspektora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -882,6 +942,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg onzichtbaarheden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj znaki niewidoczne"
           }
         },
         "pt" : {
@@ -966,6 +1032,12 @@
             "value" : "Verberg regelnummers"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj numery wierszy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1046,6 +1118,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg navigatiebalk"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj pasek nawigacji"
           }
         },
         "pt" : {
@@ -1130,6 +1208,12 @@
             "value" : "Verberg paginagids"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj linię pomocniczą strony"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1210,6 +1294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg navigatiekolom"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj pasek boczny"
           }
         },
         "pt" : {
@@ -1294,6 +1384,12 @@
             "value" : "Verberg statusbalk"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj pasek statusu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1374,6 +1470,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voeg kleurcode in"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw kod koloru"
           }
         },
         "pt" : {
@@ -1458,6 +1560,12 @@
             "value" : "Voeg knipsel in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw fragment kodu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1538,6 +1646,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voeg tekst in"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw tekst"
           }
         },
         "pt" : {
@@ -1622,6 +1736,12 @@
             "value" : "Inspecteer teken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw znak"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1702,6 +1822,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voeg regels samen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Złącz wiersze"
           }
         },
         "pt" : {
@@ -1787,6 +1913,12 @@
             "value" : "Regeleinden naar %@"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakończenia wierszy do „%@”"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1867,6 +1999,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verplaats regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuń wiersz"
           }
         },
         "pt" : {
@@ -1951,6 +2089,12 @@
             "value" : "Open Scriptmap"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz folder ze skryptami"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2032,6 +2176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Option-klik om script in bewerker te openen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kliknij, trzymając naciśnięty klawisz Option, by otworzyć skrypt w edytorze."
           }
         },
         "pt" : {
@@ -2122,6 +2272,12 @@
             "value" : "Standaardwaarden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć ustawienie domyślne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2202,6 +2358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keer regels om"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odwróć wiersze"
           }
         },
         "pt" : {
@@ -2286,6 +2448,12 @@
             "value" : "Script"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrypt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2368,6 +2536,12 @@
             "value" : "Selecteer alles"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz wszystko"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2448,6 +2622,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer kolom omlaag"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz kolumnę w dół"
           }
         },
         "pt" : {
@@ -2533,6 +2713,12 @@
             "value" : "Selecteer kolom links"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz kolumnę w lewo"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2614,6 +2800,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer kolom rechts"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz kolumnę w prawo"
           }
         },
         "pt" : {
@@ -2698,6 +2890,12 @@
             "value" : "Selecteer kolom omhoog"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz kolumnę w górę"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2778,6 +2976,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verplaats links"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuń w lewo"
           }
         },
         "pt" : {
@@ -2862,6 +3066,12 @@
             "value" : "Verplaats rechts"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuń w prawo"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2942,6 +3152,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon inspringgidsen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż linie pomocnicze wcięć"
           }
         },
         "pt" : {
@@ -3026,6 +3242,12 @@
             "value" : "Toon infovenster"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż Inspektora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3106,6 +3328,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon onzichtbaren"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż znaki niewidoczne"
           }
         },
         "pt" : {
@@ -3190,6 +3418,12 @@
             "value" : "Toon regelnummers"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż numerację wierszy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3270,6 +3504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon navigatiebalk"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pasek nawigacji"
           }
         },
         "pt" : {
@@ -3354,6 +3594,12 @@
             "value" : "Toon paginagids"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż linię pomocniczą strony"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3434,6 +3680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon navigatiekolom"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pasek boczny"
           }
         },
         "pt" : {
@@ -3518,6 +3770,12 @@
             "value" : "Toon statusbalk"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pasek statusu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3598,6 +3856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shuffle regels"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomieszaj wiersze"
           }
         },
         "pt" : {
@@ -3688,6 +3952,12 @@
             "value" : "Kleiner"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomniejsz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3768,6 +4038,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sorteer regels"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortuj wiersze"
           }
         },
         "pt" : {
@@ -3852,6 +4128,12 @@
             "value" : "Stapel bewerkers horizontaal"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ułóż edytory poziomo"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3932,6 +4214,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stapel bewerkers verticaal"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ułóż edytory pionowo"
           }
         },
         "pt" : {
@@ -4016,6 +4304,12 @@
             "value" : "Maak aanhalingstekens recht"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyprostuj cudzysłowy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4096,6 +4390,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tekstgrootte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wielkość tekstu"
           }
         },
         "pt" : {
@@ -4181,6 +4481,12 @@
             "value" : "Stel de onzichtbare tekens in bij de Vensterinstellingen om ze weer te geven"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aby wyświetlić znaki niewidoczne, ustaw je w ustawieniach okna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4261,6 +4567,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trim witruimte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przytnij końcowe znaki niedrukowane"
           }
         },
         "pt" : {
@@ -4345,6 +4657,12 @@
             "value" : "Verwijder opmerking"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odkomentuj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4427,6 +4745,12 @@
             "value" : "Pak regels uit"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozwiń wiersze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4507,6 +4831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pak regels in"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zawijaj wiersze"
           }
         },
         "pt" : {

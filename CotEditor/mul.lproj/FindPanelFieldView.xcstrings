@@ -65,6 +65,12 @@
             "value" : ""
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -154,6 +160,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang met"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp"
           }
         },
         "pt" : {
@@ -246,6 +258,12 @@
             "value" : "Recente zoekacties"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie wyszukiwania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recente vervangingen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie zastąpienia"
           }
         },
         "pt" : {
@@ -426,6 +450,12 @@
             "value" : "Recente zoekacties"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie wyszukiwania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -511,6 +541,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -607,6 +643,12 @@
             "value" : "Recente vervangingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie zastąpienia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -695,6 +737,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoek"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź"
           }
         },
         "pt" : {
@@ -787,6 +835,12 @@
             "value" : "Typ de tekst waar je naar wilt zoeken."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wprowadź tekst do znalezienia."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -875,6 +929,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoek"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź"
           }
         },
         "pt" : {
@@ -967,6 +1027,12 @@
             "value" : "Wis"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1052,6 +1118,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -1148,6 +1220,12 @@
             "value" : ""
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1237,6 +1315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp"
           }
         },
         "pt" : {
@@ -1329,6 +1413,12 @@
             "value" : "Typ de tekst om de gevonden tekst te vervangen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wprowadź tekst, który ma zastąpić tekst znaleziony."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1417,6 +1507,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wis recente zoekacties"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż ostatnie wyszukiwania"
           }
         },
         "pt" : {
@@ -1509,6 +1605,12 @@
             "value" : "Wis recente vervangingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż ostatnie zastąpienia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1597,6 +1699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż"
           }
         },
         "pt" : {

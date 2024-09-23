@@ -58,6 +58,12 @@
             "value" : " (%@) met BOM"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ z BOM"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

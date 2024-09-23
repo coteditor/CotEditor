@@ -64,6 +64,12 @@
             "value" : "Het absolute pad van het geplaatste bestand."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ścieżka bezwzględna upuszczonego pliku."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De bovenliggende mapnaam van het geplaatste bestand."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa katalogu nadrzędnego upuszczonego pliku."
           }
         },
         "pt" : {
@@ -242,6 +254,12 @@
             "value" : "(Als het geplaatste bestand een tekstbestand is) bestandsinhoud."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zawartość pliku (jeśli upuszczony plik jest plikiem tekstowym)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -329,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De extensie van het geplaatste bestand."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenie upuszczonego pliku."
           }
         },
         "pt" : {
@@ -420,6 +444,12 @@
             "value" : "De extensie van het geplaatste bestand (geconverteerd naar kleine letters)."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenie upuszczonego pliku (zamienione na małe litery)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De extensie van het geplaatste bestand (geconverteerd naar hoofdletters)."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenie upuszczonego pliku (zamienione na wielkie litery)."
           }
         },
         "pt" : {
@@ -598,6 +634,12 @@
             "value" : "De naam van het geplaatste bestand, inclusief extensie (indien bestaand)."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa upuszczonego pliku wraz z rozszerzeniem (jeśli istnieje)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -685,6 +727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De naam van het geplaatste bestand zonder extensie."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa upuszczonego pliku bez rozszerzenia."
           }
         },
         "pt" : {
@@ -776,6 +824,12 @@
             "value" : "(Als het geplaatste bestand een afbeelding is) afbeeldingshoogte."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysokość obrazu (jeśli upuszczony plik jest obrazem)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -865,6 +919,12 @@
             "value" : "(Als het geplaatste bestand een afbeelding is) beeldbreedte."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerokość obrazu (jeśli upuszczony plik jest obrazem)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -952,6 +1012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het relatieve pad tussen het geplaatste bestand en het document."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ścieżka względna między upuszczonym plikiem a dokumentem."
           }
         },
         "pt" : {

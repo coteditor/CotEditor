@@ -58,6 +58,12 @@
             "value" : "Voeg toe"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voeg nieuwe item toe"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj nowy element"
           }
         },
         "pt" : {
@@ -224,6 +236,12 @@
             "value" : "Verwijder"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -305,6 +323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verwijder geselecteerde items"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń wybrane elementy"
           }
         },
         "pt" : {

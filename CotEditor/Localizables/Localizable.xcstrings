@@ -58,6 +58,12 @@
             "value" : " (%@)"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -136,6 +142,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@:"
@@ -223,6 +235,12 @@
             "value" : "Annuleer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anuluj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -304,6 +322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "kopieer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kopia"
           }
         },
         "pt" : {
@@ -396,6 +420,12 @@
             "value" : "Verwijder"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deze bewerking kan niet ongedaan worden gemaakt."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tej czynności nie można cofnąć."
           }
         },
         "pt" : {
@@ -574,6 +610,12 @@
             "value" : "Weet je zeker dat je '%@' wilt verwijderen?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy na pewno chcesz usunąć „%@”?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -661,6 +703,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het bestand '%@' is al geopend in een ander venster."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik „%@” jest już otwarty w innym oknie."
           }
         },
         "pt" : {
@@ -753,6 +801,12 @@
             "value" : "Om het in dit venster te openen, sluit je eerst het bestaande venster."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aby otworzyć go w tym oknie, najpierw zamknij istniejące okno."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -840,6 +894,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het bestand '%@' bevat geen tekstgegevens."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik „%@” nie wydaje się stanowić danych tekstowych."
           }
         },
         "pt" : {
@@ -932,6 +992,12 @@
             "value" : "Het bestand is van het type %@.\n\nWeet je zeker dat je het bestand openen?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik wydaje się być typu %@.\n\nCzy na pewno chcesz otworzyć ten plik?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1020,6 +1086,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "een onbekend type"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nieznany typ"
           }
         },
         "pt" : {
@@ -1112,6 +1184,12 @@
             "value" : "Open"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1201,6 +1279,12 @@
             "value" : "Het bestand '%1$@' heeft een grootte van %2$@."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik „%1$@” ma rozmiar %2$@."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1288,6 +1372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het openen van zo'n groot bestand kan de applicatie traag of onresponsief maken.\n\nWil je het bestand echt openen?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwarcie tak dużego pliku może spowodować, że aplikacja będzie działać wolno lub przestanie odpowiadać.\n\nCzy na pewno chcesz otworzyć ten plik?"
           }
         },
         "pt" : {
@@ -1380,6 +1470,12 @@
             "value" : "Beoordeel Incompatibele Karakters"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przejrzyj niezgodne znaki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1468,6 +1564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bewaar Beschikbare Tekst"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj dostępny tekst"
           }
         },
         "pt" : {
@@ -1559,6 +1661,12 @@
             "value" : "Incompatibele tekens worden vervangen of verwijderd tijdens het opslaan. Wil je doorgaan met verwerken?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niezgodne znaki zostaną zastąpione lub usunięte przy zachowaniu. Czy chcesz kontynuować przetwarzanie?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1640,6 +1748,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dupliceer '%@'"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel „%@”"
           }
         },
         "pt" : {
@@ -1732,6 +1846,12 @@
             "value" : "Converteer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konwertuj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1820,6 +1940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Herinterpreteer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reinterpretuj"
           }
         },
         "pt" : {
@@ -1911,6 +2037,12 @@
             "value" : "Wil je dit document converteren of herinterpreteren met '%@'?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz konwertować lub reimpretować ten dokument z użyciem „%@”?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2000,6 +2132,12 @@
             "value" : "Wijziging tekstcodering"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmiana kodowania tekstu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2081,6 +2219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporteer '%@'…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj „%@”…"
           }
         },
         "pt" : {
@@ -2166,6 +2310,12 @@
             "value" : "Exporteer als:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj jako:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2247,6 +2397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importeer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importuj"
           }
         },
         "pt" : {
@@ -2339,6 +2495,12 @@
             "value" : "Vervang"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2426,6 +2588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een nieuwe vervangende definitie met de naam '%@' wordt geïnstalleerd, maar een definitie met dezelfde naam bestaat al."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zostanie zainstalowana nowa definicja zastąpienia o nazwie „%@”, jednakże definicja o tej samej nazwie już istnieje."
           }
         },
         "pt" : {
@@ -2517,6 +2685,12 @@
             "value" : "Wil je het vervangen?\nEen vervangen definitie kan niet worden hersteld."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz ją zastąpić?\nZastąpionej definicji nie można przywrócić."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2604,6 +2778,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een nieuwe syntaxis met de naam '%@' wordt geïnstalleerd, maar een aangepaste syntaxis met dezelfde naam bestaat al."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zostanie zainstalowana nowa składnia o nazwie „%@”, jednakże własna składnia o tej samej nazwie już istnieje."
           }
         },
         "pt" : {
@@ -2695,6 +2875,12 @@
             "value" : "Wil je het vervangen?\nVervangen syntaxis kan niet worden hersteld."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz ją zastąpić?\nZastąpionej składni nie można przywrócić."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2784,6 +2970,12 @@
             "value" : "Er wordt een nieuw thema met de naam '%@' geïnstalleerd, maar er bestaat al een aangepast thema met dezelfde naam."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zostanie zainstalowany nowy motyw o nazwie „%@”, jednakże własny motyw o tej samej nazwie już istnieje."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2871,6 +3063,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wil je het vervangen?\nEen vervangen thema kan niet worden hersteld."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz go zastąpić?\nZastąpionego motywu nie można przywrócić."
           }
         },
         "pt" : {
@@ -2963,6 +3161,12 @@
             "value" : "Converteer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konwertuj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3051,6 +3255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Negeer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj"
           }
         },
         "pt" : {
@@ -3143,6 +3353,12 @@
             "value" : "Beoordeel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przejrzyj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3232,6 +3448,12 @@
             "value" : "Wil je alle regeleinden converteren naar %@, de meest voorkomende regeleinden in dit document?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz zamienić wszystkie zakończenia wiersza na %@, które najczęściej występuje w tym dokumencie?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3319,6 +3541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het document heeft inconsistente regeleinden."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument zawiera mieszaninę zakończeń wierszy."
           }
         },
         "pt" : {
@@ -3411,6 +3639,12 @@
             "value" : "Vraag niet opnieuw naar dit document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie pytaj ponownie dla tego dokumentu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3492,6 +3726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voeg tekst in %lld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw tekst %lld"
           }
         },
         "pt" : {
@@ -3583,6 +3823,12 @@
             "value" : "De naam '%@' is al in gebruik."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa „%@” jest już używana."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3670,6 +3916,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Naam mag niet leeg zijn."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa nie może być pusta."
           }
         },
         "pt" : {
@@ -3762,6 +4014,12 @@
             "value" : "Naam mag geen '%@' bevatten."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa nie może zawierać „%@”."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3849,6 +4107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kies een andere naam."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybież inną zazwę."
           }
         },
         "pt" : {
@@ -3940,6 +4204,12 @@
             "value" : "De naam '%@' is gereserveerd."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa „%@” jest zarezerwowana."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4029,6 +4299,12 @@
             "value" : "Naam kan niet beginnen met '."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa nie może się zaczynać od „.” (kropki)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4110,6 +4386,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Laatst gewijzigd op %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnio modyfikowane %@"
           }
         },
         "pt" : {
@@ -4199,6 +4481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het document bevat tekens die niet compatibel zijn met '%@'."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument zawiera znaki niezgodne z „%@.”"
           }
         },
         "pt" : {
@@ -4291,6 +4579,12 @@
             "value" : "Wijzig codering"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmień kodowanie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4380,6 +4674,12 @@
             "value" : "Incompatibele tekens worden vervangen of verwijderd tijdens het opslaan. Wil je de tekstcodering wijzigen en de niet-compatibele tekens controleren?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niezgodne znaki zostaną zastąpione lub usunięte przy zachowaniu. Czy chcesz zmienić kodowanie tekstu lub przejrzeć niezgodne znaki?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4457,6 +4757,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -4543,6 +4849,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gedrukt op %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wydrukowane %@"
           }
         },
         "pt" : {
@@ -4634,6 +4946,12 @@
             "value" : "Het document heeft geen bestand om te herinterpreteren."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument nie posiada pliku do reimpretacji."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4721,6 +5039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het document kon niet worden geherinterpreteerd met de tekstcodering '%@'."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument nie mogł zostać reimpretowany z użyciem kodowania tekstu „%@.”"
           }
         },
         "pt" : {
@@ -4812,6 +5136,12 @@
             "value" : "Het document kan zijn opgeslagen met een andere tekstcodering, of het is geen tekstbestand."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument mógł zostać zachowany z użyciem innego kodowania tekstu lub może nie być plikiem tekstowym."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4893,6 +5223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hernoem '%@'"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmień nazwę „%@”"
           }
         },
         "pt" : {
@@ -4978,6 +5314,12 @@
             "value" : "Herstel '%@'"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć „%@”"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5059,6 +5401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon '%@' in Finder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż „%@” w Finderze"
           }
         },
         "pt" : {
@@ -5150,6 +5498,12 @@
             "value" : "'%@' kon niet worden verwijderd."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” nie mógł zostać usunięty."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5237,6 +5591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "'%@' kon niet worden geïmporteerd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” nie mógł zostać zaimportowany."
           }
         },
         "pt" : {
@@ -5328,6 +5688,12 @@
             "value" : "'%@' kon niet worden geladen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” nie mógł zostać załadowany."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5417,6 +5783,12 @@
             "value" : "Decoderingsfout: %@"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Błąd dekodowania: %@"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5504,6 +5876,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen origineel bestand gevonden voor '%@'."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie odnaleziono źródłowego pliku „%@”."
           }
         },
         "pt" : {
@@ -5596,6 +5974,12 @@
             "value" : "Installeer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instaluj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5684,6 +6068,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open als tekstbestand"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz jako plik tekstowy"
           }
         },
         "pt" : {
@@ -5775,6 +6165,12 @@
             "value" : "Wil je dit thema installeren?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz zainstalować ten motyw?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5864,6 +6260,12 @@
             "value" : "'%@' is een CotEditor themabestand."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” jest plikiem motywu CotEditora."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5951,6 +6353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een nieuw thema met de naam '%@' is met succes geïnstalleerd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowy motyw o nazwie „%@” został pomyślnie zainstalowany."
           }
         },
         "pt" : {
@@ -6043,6 +6451,12 @@
             "value" : "Verwijder wijzigingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odrzuć zmiany"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6131,6 +6545,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weet je zeker dat je je wijzigingen wilt verwijderen en het document opnieuw wilt openen met '%@'?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy masz pewność, że chcesz odrzucić zmiany i ponownie otworzyć dokument używając „%@”?"
           }
         },
         "pt" : {
@@ -6222,6 +6642,12 @@
             "value" : "Het document heeft niet-opgeslagen wijzigingen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument posiada niezachowane zmiany."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6305,6 +6731,12 @@
             "value" : "Naamloos"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bez nazwy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6386,6 +6818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "naamloze map"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "folder bez nazwy"
           }
         },
         "pt" : {
@@ -6478,6 +6916,12 @@
             "value" : "Bewaar uitgave van CotEditor"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj wersję CotEditora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6566,6 +7010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bijwerken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualizuj"
           }
         },
         "pt" : {
@@ -6657,6 +7107,12 @@
             "value" : "Wil je de uitgave van CotEditor behouden of deze bijwerken naar de gewijzigde uitgave?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz zachować wersję CotEditora czy uaktualnić go do zmienionej wersji?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6746,6 +7202,12 @@
             "value" : "Het bestand is gewijzigd door een andere app."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik został zmieniony przez inną aplikację."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6833,6 +7295,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Het bestand is gewijzigd door een andere app. Er zijn ook niet-opgeslagen wijzigingen in CotEditor."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik został zmieniony przez inną aplikację. Są też niezachowane zmiany w CotEditorze."
           }
         },
         "pt" : {

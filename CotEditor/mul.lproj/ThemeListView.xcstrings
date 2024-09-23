@@ -65,6 +65,12 @@
             "value" : "Exporteer…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dupliceer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel"
           }
         },
         "pt" : {
@@ -245,6 +257,12 @@
             "value" : "Laad alle thema's opnieuw"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Załaduj ponownie wszystkie motywy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wijzig naam"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmień nazwę"
           }
         },
         "pt" : {
@@ -425,6 +449,12 @@
             "value" : "Dupliceer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -513,6 +543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importeer…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importuj…"
           }
         },
         "pt" : {
@@ -605,6 +641,12 @@
             "value" : "Thema"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motyw"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importeer…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importuj…"
           }
         },
         "pt" : {
@@ -785,6 +833,12 @@
             "value" : "Herstel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -873,6 +927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wijzig naam"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmień nazwę"
           }
         },
         "pt" : {
@@ -965,6 +1025,12 @@
             "value" : "Deel…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udostępnij…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1053,6 +1119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon in Finder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Finderze"
           }
         },
         "pt" : {
@@ -1145,6 +1217,12 @@
             "value" : "Nieuw thema"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowy motyw"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1230,6 +1308,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -1326,6 +1410,12 @@
             "value" : "Exporteer…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1414,6 +1504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon in Finder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Finderze"
           }
         },
         "pt" : {
@@ -1506,6 +1602,12 @@
             "value" : "Herstel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1596,6 +1698,12 @@
             "value" : "Deel…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udostępnij…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1684,6 +1792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verwijder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
           }
         },
         "pt" : {

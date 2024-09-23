@@ -184,6 +184,36 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* bajty"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* bajtów"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* bajt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* bajta"
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -429,6 +459,36 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaki"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaków"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znak"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaku"
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -548,6 +608,12 @@
             "value" : "Geavanceerde tekentelling…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaawansowane zliczanie znaków…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -636,6 +702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Telt bytes van de tekst gecodeerd met de opgegeven codering."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj bajty tekstu zakodowanego z użyciem wskazanego kodowania."
           }
         },
         "pt" : {
@@ -728,6 +800,12 @@
             "value" : "Byte"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bajt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -816,6 +894,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tel op de intuïtieve manier zoals gedefinieerd in Unicode. Een teken dat uit meerdere Unicode-codepunten bestaat, zoals emoji's, wordt als één teken geteld."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj w intuicyjny sposób zdefiniowany w Unikodzie. Znak składający się z wielu punktów kodowych Unikodu, taki jak emoji, jest liczony jako jeden znak."
           }
         },
         "pt" : {
@@ -908,6 +992,12 @@
             "value" : "Grafeemcluster"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zbitka grafemiczna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -996,6 +1086,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tel Unicode-codepunten. Hetzelfde als UTF-32 tellen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj punkty kodowe Unikodu. To samo co zliczanie UTF-32."
           }
         },
         "pt" : {
@@ -1088,6 +1184,12 @@
             "value" : "Unicode scalar"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skalar Unikodu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1176,6 +1278,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tel Unicode-codepunten maar een surrogaatpaar als twee tekens."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj punkty kodowe Unikodu, jednak parę zastępczą jako dwa znaki."
           }
         },
         "pt" : {
@@ -1268,6 +1376,12 @@
             "value" : "UTF-16"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1349,6 +1463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kopieer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiuj"
           }
         },
         "pt" : {
@@ -1434,6 +1554,12 @@
             "value" : "Codering:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodowanie:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1515,6 +1641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "mislukt"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nie powiodło się"
           }
         },
         "pt" : {
@@ -1600,6 +1732,12 @@
             "value" : "Negeer regeleinden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj koniec wierszy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1681,6 +1819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Negeer wituimte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj znaki niedrukowane"
           }
         },
         "pt" : {
@@ -1766,6 +1910,12 @@
             "value" : "Normalisatie:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizacja:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1847,6 +1997,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon opties"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż opcje"
           }
         },
         "pt" : {
@@ -1932,6 +2088,12 @@
             "value" : "Begin"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zacznij"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2013,6 +2175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stop geavanceerde tekentelling"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatrzymaj zaawansowane zliczanie znaków"
           }
         },
         "pt" : {
@@ -2098,6 +2266,12 @@
             "value" : "Stop telling"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatrzymaj zliczanie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2179,6 +2353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Behandel opeenvolgende witruimtes als één ruimte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktuj sąsiadujące znaki niedrukowane jako pojedynczą spację"
           }
         },
         "pt" : {
@@ -2264,6 +2444,12 @@
             "value" : "Eenheid:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jednostka:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2345,6 +2531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Witruimte:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znaki niedrukowane:"
           }
         },
         "pt" : {

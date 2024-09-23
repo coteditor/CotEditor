@@ -58,6 +58,12 @@
             "value" : "(Leeg komt overeen met de hele tekenreeks)."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(pusty odpowiada całemu łańcuchowi dopasowania)"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -141,6 +147,12 @@
             "value" : "(zonder punt)"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(bez kropki)"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -218,6 +230,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@:"
@@ -432,6 +450,36 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld błędy."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld błędów."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono błąd."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld błędu."
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -551,6 +599,12 @@
             "value" : "Auteur:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -632,6 +686,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Begin string"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Łańcuch otwierający"
           }
         },
         "pt" : {
@@ -717,6 +777,12 @@
             "value" : "Begin met:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozpocznij od:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -797,6 +863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blokcommentaren hebben zowel begin- als eindbegrenzers nodig."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentarz blokowy wymaga ograniczników początku i końca."
           }
         },
         "pt" : {
@@ -882,6 +954,12 @@
             "value" : "Blokcommentaar:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentarz blokowy:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -963,6 +1041,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vet"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pogrubienie"
           }
         },
         "pt" : {
@@ -1048,6 +1132,12 @@
             "value" : "Gebundelde syntaxen kunnen niet hernoemd worden."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie można zmienić nazwy składni wbudowanej."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1129,6 +1219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voltooiing"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzupełnianie"
           }
         },
         "pt" : {
@@ -1214,6 +1310,12 @@
             "value" : "Definitie bestand"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik opisu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1295,6 +1397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beschrijving"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opis"
           }
         },
         "pt" : {
@@ -1380,6 +1488,12 @@
             "value" : "Beschrijving:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opis:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1461,6 +1575,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Distributie-URL:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL dystrybucji:"
           }
         },
         "pt" : {
@@ -1546,6 +1666,12 @@
             "value" : "Einde string"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Łańcuch zamykający"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1627,6 +1753,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eindig met:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakończ na:"
           }
         },
         "pt" : {
@@ -1712,6 +1844,12 @@
             "value" : "Gehele match"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pełne dopasowanie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1793,6 +1931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensies:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenia:"
           }
         },
         "pt" : {
@@ -1878,6 +2022,12 @@
             "value" : "Functies"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funkcje"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1959,6 +2109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mapkoppeling"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mapowanie pliku"
           }
         },
         "pt" : {
@@ -2044,6 +2200,12 @@
             "value" : "Bestandsnamen:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwy plików:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2127,6 +2289,12 @@
             "value" : "Markering"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podświetlanie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2205,6 +2373,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -2293,6 +2467,12 @@
             "value" : "Als dit niet wordt opgegeven, worden woorden ter aanvulling van de syntaxis gegenereerd op basis van de instellingen voor markeren."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeśli nie określono, uzupełniane wyrazy składni generowane są na podstawie ustawień podświetlania."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2374,6 +2554,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Negeer hoofdletters"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj wielkość liter"
           }
         },
         "pt" : {
@@ -2459,6 +2645,12 @@
             "value" : "Informatie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informacje"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2540,6 +2732,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inline-opmerkingen:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentarz wierszowy:"
           }
         },
         "pt" : {
@@ -2625,6 +2823,12 @@
             "value" : "Interpreters:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interpretery:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2705,6 +2909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ongeldige reguliere expressie."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niepoprawne wyrażenie regularne."
           }
         },
         "pt" : {
@@ -2790,6 +3000,12 @@
             "value" : "Cursief"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kursywa"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2870,6 +3086,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Soort:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rodzaj:"
           }
         },
         "pt" : {
@@ -2955,6 +3177,12 @@
             "value" : "Laatst gewijzigd:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnio modyfikowany:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3036,6 +3264,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licentie:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencja:"
           }
         },
         "pt" : {
@@ -3121,6 +3355,12 @@
             "value" : "Meerdere items geselecteerd"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybrano wiele elementów"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3202,6 +3442,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen fout gevonden."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie znaleziono błędów."
           }
         },
         "pt" : {
@@ -3287,6 +3533,12 @@
             "value" : "Geen item geselecteerd"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie wybrano żadnego elementu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3368,6 +3620,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Niet gedefinieerd"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie zdefiniowano"
           }
         },
         "pt" : {
@@ -3453,6 +3711,12 @@
             "value" : "Extractieregels op hoofdlijnen:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reguły wyodrębniania konspektu:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3531,6 +3795,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -3619,6 +3889,12 @@
             "value" : "Reguliere expressie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrażenie regularne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3700,6 +3976,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Regulier expressiepatroon"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wzorzec wyrażenia regularnego"
           }
         },
         "pt" : {
@@ -3784,6 +4066,12 @@
             "value" : "Herstel standaardinstellingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć domyślne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3864,6 +4152,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon navigatiekolom"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pasek boczny"
           }
         },
         "pt" : {
@@ -3956,6 +4250,12 @@
             "value" : "Voltooiing"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzupełnienie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4046,6 +4346,12 @@
             "value" : "Contour"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konspekt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4129,6 +4435,12 @@
             "value" : "De interpreters worden gebruikt om de syntaxis te bepalen uit de shebang in het document."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interpretery są wykorzystywane do wykrycia składni na podstawie wiersza shebang w dokumencie."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4209,6 +4521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hetzelfde woord wordt meerdere keren geregistreerd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten sam wyraz jest rejestrowany wielokrotnie."
           }
         },
         "pt" : {
@@ -4294,6 +4612,12 @@
             "value" : "Titelpatroon:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wzorzec tytułu:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4375,6 +4699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Onderstreept"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podkreślenie"
           }
         },
         "pt" : {
@@ -4460,6 +4790,12 @@
             "value" : "Validatie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poprawność"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4541,6 +4877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versie:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wersja:"
           }
         },
         "pt" : {

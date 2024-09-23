@@ -58,6 +58,12 @@
             "value" : "Ga naar URL"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz URL"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

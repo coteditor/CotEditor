@@ -65,6 +65,12 @@
             "value" : "Selecteer woord"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz wyraz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Niet-proportioneel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O stałej szerokości"
           }
         },
         "pt" : {
@@ -245,6 +257,12 @@
             "value" : "Schakel schermvullende weergave in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryb pełnoekranowy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spelling en grammatica"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pisownia i gramatyka"
           }
         },
         "pt" : {
@@ -425,6 +449,12 @@
             "value" : "Stop spraakfunctie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakończ mówienie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -513,6 +543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervanging"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąpienia"
           }
         },
         "pt" : {
@@ -605,6 +641,12 @@
             "value" : "Decodeer URL"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekoduj URL"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aangepast…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Własne…"
           }
         },
         "pt" : {
@@ -785,6 +833,12 @@
             "value" : "Inspringing"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wcięcia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -873,6 +927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start spraakfunctie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozpocznij mówienie"
           }
         },
         "pt" : {
@@ -965,6 +1025,12 @@
             "value" : "Omhoog"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuń wyżej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1053,6 +1119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alles op voorgrond"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umieść wszystko na wierzchu"
           }
         },
         "pt" : {
@@ -1145,6 +1217,12 @@
             "value" : "Controleer grammatica tegelijk met spelling"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdzaj gramatykę i pisownię"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1233,6 +1311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang alles"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp wszystkie"
           }
         },
         "pt" : {
@@ -1325,6 +1409,12 @@
             "value" : "Demarkeer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyłącz podświetlenie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1413,6 +1503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Richting"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orientacja"
           }
         },
         "pt" : {
@@ -1505,6 +1601,12 @@
             "value" : "Selecteer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1593,6 +1695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang aanhalingstekens"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp cydzysłowy"
           }
         },
         "pt" : {
@@ -1685,6 +1793,12 @@
             "value" : "Links naar rechts"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Od lewej do prawej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1773,6 +1887,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon snelle taken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż szybkie czynności…"
           }
         },
         "pt" : {
@@ -1865,6 +1985,12 @@
             "value" : "Thema"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motyw"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1955,6 +2081,12 @@
             "value" : "Omring selectie met"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otocz zaznaczenie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2040,6 +2172,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "8"
@@ -2135,6 +2273,12 @@
             "value" : "Zet aanhalingstekens recht"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyprostuj cudzysłowy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2223,6 +2367,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer vorige omtrekitem"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz poprzedni element konspektu"
           }
         },
         "pt" : {
@@ -2315,6 +2465,12 @@
             "value" : "Controleer spelling tijdens typen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdzaj pisownię, gdy piszę"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2403,6 +2559,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Infovenster"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor"
           }
         },
         "pt" : {
@@ -2495,6 +2657,12 @@
             "value" : "Voeg knipsel in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw fragment kodu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2583,6 +2751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Venster"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okno"
           }
         },
         "pt" : {
@@ -2675,6 +2849,12 @@
             "value" : "Minimaliseer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimalizuj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2763,6 +2943,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Venster"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okno"
           }
         },
         "pt" : {
@@ -2855,6 +3041,12 @@
             "value" : "Hoofdmenu"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu główne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2940,6 +3132,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor"
@@ -3035,6 +3233,12 @@
             "value" : "CotEditor"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3123,6 +3327,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Over CotEditor"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor…"
           }
         },
         "pt" : {
@@ -3215,6 +3425,12 @@
             "value" : "Open…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3303,6 +3519,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sluit"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamknij"
           }
         },
         "pt" : {
@@ -3395,6 +3617,12 @@
             "value" : "Bewaar"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3483,6 +3711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pagina-instelling…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Układ strony…"
           }
         },
         "pt" : {
@@ -3575,6 +3809,12 @@
             "value" : "Druk af…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drukuj…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3663,6 +3903,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bewaar als…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj jako…"
           }
         },
         "pt" : {
@@ -3755,6 +4001,12 @@
             "value" : "Bestand"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3843,6 +4095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nieuw"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowy"
           }
         },
         "pt" : {
@@ -3935,6 +4193,12 @@
             "value" : "Bestand"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plik"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4023,6 +4287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Help"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomoc"
           }
         },
         "pt" : {
@@ -4115,6 +4385,12 @@
             "value" : "Help"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomoc"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4203,6 +4479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor-help"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomoc CotEditora"
           }
         },
         "pt" : {
@@ -4295,6 +4577,12 @@
             "value" : "Laatst bewaarde versie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć zachowany"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4383,6 +4671,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open recente bestanden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz ostatni"
           }
         },
         "pt" : {
@@ -4475,6 +4769,12 @@
             "value" : "Open recente bestanden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz ostatni"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4563,6 +4863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wis menu"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyczyść menu"
           }
         },
         "pt" : {
@@ -4655,6 +4961,12 @@
             "value" : "Instellingen…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ustawienia…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4743,6 +5055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voorzieningen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usługi"
           }
         },
         "pt" : {
@@ -4835,6 +5153,12 @@
             "value" : "Voorzieningen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usługi"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4923,6 +5247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg CotEditor"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj CotEditora"
           }
         },
         "pt" : {
@@ -5015,6 +5345,12 @@
             "value" : "Stop CotEditor"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakończ CotEditora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5103,6 +5439,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg andere"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj pozostałe"
           }
         },
         "pt" : {
@@ -5195,6 +5537,12 @@
             "value" : "Toon alles"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż wszystkie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5283,6 +5631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kopieer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiuj"
           }
         },
         "pt" : {
@@ -5375,6 +5729,12 @@
             "value" : "Herstel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5463,6 +5823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Knip"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wytnij"
           }
         },
         "pt" : {
@@ -5555,6 +5921,12 @@
             "value" : "Wijzig"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edycja"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5643,6 +6015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verwijder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
           }
         },
         "pt" : {
@@ -5735,6 +6113,12 @@
             "value" : "Thema"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motyw"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5823,6 +6207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wijzig"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edycja"
           }
         },
         "pt" : {
@@ -5915,6 +6305,12 @@
             "value" : "Plak"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wklej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6003,6 +6399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer alles"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz wszystko"
           }
         },
         "pt" : {
@@ -6095,6 +6497,12 @@
             "value" : "Opnieuw"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6183,6 +6591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vergroot/verklein"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiększ"
           }
         },
         "pt" : {
@@ -6275,6 +6689,12 @@
             "value" : "Opmaak"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6363,6 +6783,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opmaak"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format"
           }
         },
         "pt" : {
@@ -6455,6 +6881,12 @@
             "value" : "Regelomloop"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zawijaj wiersze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6543,6 +6975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Regeleinden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koniec wiersza"
           }
         },
         "pt" : {
@@ -6635,6 +7073,12 @@
             "value" : "Regeleinden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koniec wiersza"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6723,6 +7167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tekstcodering"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodowanie tekstu"
           }
         },
         "pt" : {
@@ -6815,6 +7265,12 @@
             "value" : "Tekstcodering"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodowanie tekstu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6903,6 +7359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syntaxis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia"
           }
         },
         "pt" : {
@@ -6995,6 +7457,12 @@
             "value" : "Syntaxis"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7083,6 +7551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weergave"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widok"
           }
         },
         "pt" : {
@@ -7175,6 +7649,12 @@
             "value" : "Toon regelnummers"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż numerację wierszy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7263,6 +7743,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weergave"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widok"
           }
         },
         "pt" : {
@@ -7355,6 +7841,12 @@
             "value" : "Toon statusbalk"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pasek stanu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7443,6 +7935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wijzig doorzichtigheid van Bewerker"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmień krycie edytora…"
           }
         },
         "pt" : {
@@ -7535,6 +8033,12 @@
             "value" : "Kleiner"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mniejsza"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7623,6 +8127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Groter"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Większa"
           }
         },
         "pt" : {
@@ -7715,6 +8225,12 @@
             "value" : "Lettertype"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czcionka"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7803,6 +8319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lettertype"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czcionka"
           }
         },
         "pt" : {
@@ -7895,6 +8417,12 @@
             "value" : "Toon lettertypen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż czcionki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7983,6 +8511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verplaats rechts"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwiększ wcięcie"
           }
         },
         "pt" : {
@@ -8075,6 +8609,12 @@
             "value" : "Verplaats link"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmniejsz wcięcie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8163,6 +8703,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Herkleur alles"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ponownie pokoloruj wszystko"
           }
         },
         "pt" : {
@@ -8255,6 +8801,12 @@
             "value" : "Zoek"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8343,6 +8895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Documentinfovenster"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor dokumentu"
           }
         },
         "pt" : {
@@ -8435,6 +8993,12 @@
             "value" : "Standaardwaarden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć domyślną"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8520,6 +9084,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tekst"
@@ -8615,6 +9185,12 @@
             "value" : "Tekst"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8703,6 +9279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ASCII naar volledige breedte ASCII"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ASCII do ASCII o pełnej szerokości"
           }
         },
         "pt" : {
@@ -8795,6 +9377,12 @@
             "value" : "Volledige breedte ASCII naar ASCII"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ASCII o pełnej szerokości do ASCII"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8883,6 +9471,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiragana naar Katakana"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiragana do Katakana"
           }
         },
         "pt" : {
@@ -8975,6 +9569,12 @@
             "value" : "Katakana naar Hiragana"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katakana do Hiragana"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9063,6 +9663,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode-normalisaties"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizacje Unikodu"
           }
         },
         "pt" : {
@@ -9155,6 +9761,12 @@
             "value" : "Unicode-normalisaties"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizacje Unikodu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9243,6 +9855,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg knoppenbalk"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukryj pasek narzędzi"
           }
         },
         "pt" : {
@@ -9335,6 +9953,12 @@
             "value" : "Pas knoppenbalk aan…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dostosuj pasek narzędzi…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9423,6 +10047,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrypt"
           }
         },
         "pt" : {
@@ -9515,6 +10145,12 @@
             "value" : "Script"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrypt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9603,6 +10239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AppleScript-bibliotheek"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Słownik AppleScript"
           }
         },
         "pt" : {
@@ -9695,6 +10337,12 @@
             "value" : "Voer schuine streep in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw ukośnik wsteczny"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9783,6 +10431,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voer Yen-markering in"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw symbol jena (¥)"
           }
         },
         "pt" : {
@@ -9875,6 +10529,12 @@
             "value" : "Bewerk kleurcode…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj kod koloru…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9963,6 +10623,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Console"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konsola"
           }
         },
         "pt" : {
@@ -10055,6 +10721,12 @@
             "value" : "Waarschuwingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostrzeżenia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10143,6 +10815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon navigatiebalk"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pasek nawigacji"
           }
         },
         "pt" : {
@@ -10235,6 +10913,12 @@
             "value" : "Antialias"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygładzaj tekst"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10323,6 +11007,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon paginagids"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż linię pomocniczą strony"
           }
         },
         "pt" : {
@@ -10415,6 +11105,12 @@
             "value" : "Toon onzichtbaren"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż znaki niewidoczne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10503,6 +11199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Splits bewerker"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podziel edytor"
           }
         },
         "pt" : {
@@ -10595,6 +11297,12 @@
             "value" : "Focus op volgende splitsbewerker"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przełącz na następny podział edytora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10683,6 +11391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Focus op vorige splitsbewerker"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przełącz na poprzedni podział edytora"
           }
         },
         "pt" : {
@@ -10775,6 +11489,12 @@
             "value" : "Sluit gesplitste bewerker"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamknij podział edytora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10863,6 +11583,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versienotities"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informacje o wersji"
           }
         },
         "pt" : {
@@ -10955,6 +11681,12 @@
             "value" : "Omring selectie met"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otocz zaznaczenie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11043,6 +11775,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Omzetting"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przekształcenia"
           }
         },
         "pt" : {
@@ -11135,6 +11873,12 @@
             "value" : "Verwijder kopieën"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń powtórzenia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11223,6 +11967,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meld probleem"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zgłoś problem"
           }
         },
         "pt" : {
@@ -11315,6 +12065,12 @@
             "value" : "Selecteer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11403,6 +12159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp"
           }
         },
         "pt" : {
@@ -11495,6 +12257,12 @@
             "value" : "Regels"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiersze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11583,6 +12351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verticaal"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pionowo"
           }
         },
         "pt" : {
@@ -11675,6 +12449,12 @@
             "value" : "Houd boven"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trzymaj na wierzchu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11763,6 +12543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Slimme streepjes"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myślniki inteligentne"
           }
         },
         "pt" : {
@@ -11855,6 +12641,12 @@
             "value" : "Rechts naar links"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Od prawej do lewej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11943,6 +12735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Haakjes"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nawiasy kwadratowe"
           }
         },
         "pt" : {
@@ -12035,6 +12833,12 @@
             "value" : "Nieuw venster"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowe okno"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12123,6 +12927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz wiersz"
           }
         },
         "pt" : {
@@ -12215,6 +13025,12 @@
             "value" : "Nieuw in CotEditor"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowości w CotEditorze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12303,6 +13119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tabbreedte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerokość tabulatora"
           }
         },
         "pt" : {
@@ -12395,6 +13217,12 @@
             "value" : "Verwijder opmerking"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odkomentuj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12483,6 +13311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Halve breedte naar volledige breedte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerokość połówkowa do pełnej szerokości"
           }
         },
         "pt" : {
@@ -12575,6 +13409,12 @@
             "value" : "Voeg knipsel in"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw fragment kodu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12663,6 +13503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ga naar regel…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przejdź do wiersza…"
           }
         },
         "pt" : {
@@ -12755,6 +13601,12 @@
             "value" : "Converteer inspringing in spaties"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamień wcięcia na spacje"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12843,6 +13695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoek…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź…"
           }
         },
         "pt" : {
@@ -12935,6 +13793,12 @@
             "value" : "Opmerking"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentuj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13023,6 +13887,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maak snake case"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamień na snake_case"
           }
         },
         "pt" : {
@@ -13115,6 +13985,12 @@
             "value" : "Inline-opmerking"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentarz wierszowy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13200,6 +14076,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "4"
@@ -13295,6 +14177,12 @@
             "value" : "Haakjes"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nawiasy okrągłe"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13383,6 +14271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor-website"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strona internetowa CotEditora"
           }
         },
         "pt" : {
@@ -13475,6 +14369,12 @@
             "value" : "Spraak"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mowa"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13563,6 +14463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Omtrek"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konspekt"
           }
         },
         "pt" : {
@@ -13655,6 +14561,12 @@
             "value" : "Aangepast…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Własna…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13743,6 +14655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon vervangingen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż zastąpienia"
           }
         },
         "pt" : {
@@ -13835,6 +14753,12 @@
             "value" : "Omzetting"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przekształcenia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13923,6 +14847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang meerdere"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wielokrotnie zastąp"
           }
         },
         "pt" : {
@@ -14015,6 +14945,12 @@
             "value" : "Trim witruimte"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przytnij końcowe znaki niedrukowane"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14103,6 +15039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon navigatiekolom"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pasek boczny"
           }
         },
         "pt" : {
@@ -14195,6 +15137,12 @@
             "value" : "Zoek alles"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź wszystkie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14283,6 +15231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controleer document nu"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdź dokument teraz"
           }
         },
         "pt" : {
@@ -14375,6 +15329,12 @@
             "value" : "Vervang streepjes"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp myślniki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14463,6 +15423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruik spaties voor inspringing"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj spacji do wcięć"
           }
         },
         "pt" : {
@@ -14555,6 +15521,12 @@
             "value" : "Gebruik selectie voor zoekactie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj zaznaczenia w Znajdź"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14643,6 +15615,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schriftrichting"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kierunek pisania"
           }
         },
         "pt" : {
@@ -14735,6 +15713,12 @@
             "value" : "Selecteer ingesloten symbolen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz symbole otaczające"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14823,6 +15807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spraak"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mowa"
           }
         },
         "pt" : {
@@ -14915,6 +15905,12 @@
             "value" : "Toon infovenster"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż Inspektora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15003,6 +15999,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Richting"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kierunek"
           }
         },
         "pt" : {
@@ -15095,6 +16097,12 @@
             "value" : "Maak probleemrapport"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz zgłoszenie problemu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15183,6 +16191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kopieer als RTF-tekst"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiuj jako tekst sformatowany"
           }
         },
         "pt" : {
@@ -15275,6 +16289,12 @@
             "value" : "Omloog"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuń niżej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15363,6 +16383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Markeer alles"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podświetl wszystkie"
           }
         },
         "pt" : {
@@ -15455,6 +16481,12 @@
             "value" : "Splits selectie door lijnen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podziel zaznaczenie na wiersze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15543,6 +16575,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Horizontaal"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poziomo"
           }
         },
         "pt" : {
@@ -15635,6 +16673,12 @@
             "value" : "Regels"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiersze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15723,6 +16767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoek"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź"
           }
         },
         "pt" : {
@@ -15815,6 +16865,12 @@
             "value" : "Corrigeer spelling automatisch"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poprawiaj pisownię automatycznie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15903,6 +16959,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang en zoek volgende"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp i znajdź następne"
           }
         },
         "pt" : {
@@ -15995,6 +17057,12 @@
             "value" : "Gebruik selectie voor vervangen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj zaznaczenia w Zastąp"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16083,6 +17151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zet om in beginhoofdletters"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Od wielkiej litery"
           }
         },
         "pt" : {
@@ -16175,6 +17249,12 @@
             "value" : "Schake opmerking"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przełącz komentarz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16263,6 +17343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sorteer op patroon…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortuj według wzorca…"
           }
         },
         "pt" : {
@@ -16355,6 +17441,12 @@
             "value" : "Selecteer kolom omlaag"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz kolumnę w dół"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16443,6 +17535,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor gids voor scripting"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przewodnik tworzenia skryptów CotEditora"
           }
         },
         "pt" : {
@@ -16535,6 +17633,12 @@
             "value" : "Shuffle"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomieszaj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16623,6 +17727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbele regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel wiersz"
           }
         },
         "pt" : {
@@ -16715,6 +17825,12 @@
             "value" : "Schriftrichting"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kierunek pisania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16803,6 +17919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plak exact"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wklej dokładnie"
           }
         },
         "pt" : {
@@ -16895,6 +18017,12 @@
             "value" : "Type lettertype"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rodzaj czcionki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16983,6 +18111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maak CamelCase"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamień na camelCase"
           }
         },
         "pt" : {
@@ -17075,6 +18209,12 @@
             "value" : "Zoek volgende"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź następne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17163,6 +18303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beheer Verplaats meerdere…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarządzaj wielokrotnymi zastąpieniami…"
           }
         },
         "pt" : {
@@ -17255,6 +18401,12 @@
             "value" : "Dubbele aanhalingstekens"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cudzysłowy podwójne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17343,6 +18495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang meerdere"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wielokrotnie zastąp"
           }
         },
         "pt" : {
@@ -17435,6 +18593,12 @@
             "value" : "Navigatiekolom"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pasek boczny"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17523,6 +18687,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor gids voor scripting"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przewodnik tworzenia skryptów CotEditora"
           }
         },
         "pt" : {
@@ -17615,6 +18785,12 @@
             "value" : "Bewerk knipsels…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj fragmenty kodu…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17703,6 +18879,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sorteer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortuj"
           }
         },
         "pt" : {
@@ -17795,6 +18977,12 @@
             "value" : "Ga naar selectie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przejdź do zaznaczenia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17883,6 +19071,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open omtrekmenu"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz menu konspektu"
           }
         },
         "pt" : {
@@ -17975,6 +19169,12 @@
             "value" : "Tekstvervanging"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastępowanie tekstu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18063,6 +19263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer volgende omtrekitem"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz następny element konspektu"
           }
         },
         "pt" : {
@@ -18155,6 +19361,12 @@
             "value" : "Converteer inspringing in tabs"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamień wcięcia na tabulatory"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18243,6 +19455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vul aan"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzupełnij"
           }
         },
         "pt" : {
@@ -18335,6 +19553,12 @@
             "value" : "Slim kopiëren/plakken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiowanie/wklejanie inteligentne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18423,6 +19647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon in Finder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Finderze"
           }
         },
         "pt" : {
@@ -18515,6 +19745,12 @@
             "value" : "Toon inspringgidsen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż linie pomocnicze wcięć"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18600,6 +19836,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2"
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "2"
@@ -18695,6 +19937,12 @@
             "value" : "Nieuwe document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowy dokument"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18783,6 +20031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standaard"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podstawowa"
           }
         },
         "pt" : {
@@ -18875,6 +20129,12 @@
             "value" : "Spelling"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pisownia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18963,6 +20223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Navigatiekolom"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pasek boczny"
           }
         },
         "pt" : {
@@ -19055,6 +20321,12 @@
             "value" : "Zet om in hoofdletters"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamień na wielkie litery"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19143,6 +20415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verwijder regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń wiersz"
           }
         },
         "pt" : {
@@ -19235,6 +20513,12 @@
             "value" : "Volledige breedte naar halve breedte"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pełna szerokość do szerokości połówkowej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19323,6 +20607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geavanceerde Tekentelling…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaawansowane zliczanie znaków…"
           }
         },
         "pt" : {
@@ -19415,6 +20705,12 @@
             "value" : "Voeg in vanaf iPhone of iPad"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw z iPhone'a lub iPada"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19503,6 +20799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enkele aanhalingstekens"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cudzysłowy pojedyncze"
           }
         },
         "pt" : {
@@ -19595,6 +20897,12 @@
             "value" : "Infovenster"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19683,6 +20991,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Slimme aanhalingstekens"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cytaty inteligentne"
           }
         },
         "pt" : {
@@ -19775,6 +21089,12 @@
             "value" : "Voeg regels samen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Złącz wiersze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19863,6 +21183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deel…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udostępnij…"
           }
         },
         "pt" : {
@@ -19955,6 +21281,12 @@
             "value" : "Inspecteer teken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdź znak"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20043,6 +21375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voer Unicode-codepunt in…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wprowadź punkt kodowy Unikodu…"
           }
         },
         "pt" : {
@@ -20135,6 +21473,12 @@
             "value" : "Over Scripting"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O skryptowaniu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20223,6 +21567,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blokopmerking"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentarz blokowy"
           }
         },
         "pt" : {
@@ -20315,6 +21665,12 @@
             "value" : "Stapel bewerkers verticaal"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ułóż edytory pionowo"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20403,6 +21759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervang tekst"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąp tekst"
           }
         },
         "pt" : {
@@ -20495,6 +21857,12 @@
             "value" : "Selecteer alle zoekresultaten"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz wszystkie dopasowania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20583,6 +21951,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon spelling en grammatica"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż pisownię i gramatykę"
           }
         },
         "pt" : {
@@ -20675,6 +22049,12 @@
             "value" : "Bestandskiezer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przeglądarka plików"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20763,6 +22143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligaturen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatury"
           }
         },
         "pt" : {
@@ -20855,6 +22241,12 @@
             "value" : "Nieuw tabblad"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowa karta"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20943,6 +22335,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoek vorige"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź poprzednie"
           }
         },
         "pt" : {
@@ -21035,6 +22433,12 @@
             "value" : "Maak pascal case"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamień na PascalCase"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21123,6 +22527,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tabbreedte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerokość tabulatora"
           }
         },
         "pt" : {
@@ -21215,6 +22625,12 @@
             "value" : "Keer om"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odwróć kolejność"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21303,6 +22719,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Accolades"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nawiasy klamrowe"
           }
         },
         "pt" : {
@@ -21395,6 +22817,12 @@
             "value" : "Japanse tekst"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst japoński"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21483,6 +22911,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Coder URL"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakoduj URL"
           }
         },
         "pt" : {
@@ -21575,6 +23009,12 @@
             "value" : "Vervanging"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąpienia"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21663,6 +23103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inspringing"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wcięcia"
           }
         },
         "pt" : {
@@ -21755,6 +23201,12 @@
             "value" : "Opmerking"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentarz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21845,6 +23297,12 @@
             "value" : "Selecteer colom omhoog"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz kolumnę w górę"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21933,6 +23391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zet om in kleine letters"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamień na małe litery"
           }
         },
         "pt" : {

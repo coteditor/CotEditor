@@ -65,6 +65,12 @@
             "value" : "Vul het volgende sjabloon in en post het op %1$@ of stuur het naar %2$@. Houd er rekening mee dat de inhoud van de verzonden e-mail kan worden gedeeld op de Issue-pagina. Schrijf de inhoud in het Engels of Japans."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wypełnij następujący szablon i opublikuj go na %1$@ lub wyślij na adres %2$@. Pamiętaj, że treść wysłanego e-maila może zostać udostępniona na stronie zgłaszania problemów. Treść wpisz proszę w języku angielskim lub japońskim."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -152,6 +158,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Omgeving"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Środowisko"
           }
         },
         "pt" : {
@@ -243,6 +255,12 @@
             "value" : "Verwacht resultaat"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oczekiwany wynik"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -330,6 +348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Korte beschrijving"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krótki opis"
           }
         },
         "pt" : {
@@ -421,6 +445,12 @@
             "value" : "Stappen om het probleem te reproduceren"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kroki prowadzące do odtworzenia problemu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,6 +539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Foutrapport"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zgłoś problem"
           }
         },
         "pt" : {

@@ -58,6 +58,12 @@
             "value" : "%@ pt"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -145,6 +151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Midden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrównaj do środka"
           }
         },
         "pt" : {
@@ -236,6 +248,12 @@
             "value" : "Lijn links uit"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrównaj do lewej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -325,6 +343,12 @@
             "value" : "Lijn rechts uit"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrównaj do prawej"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -406,6 +430,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zwart-wit"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czerń i biel"
           }
         },
         "pt" : {
@@ -491,6 +521,12 @@
             "value" : "Kleur"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kolor"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -572,6 +608,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lettergrootte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozmiar czcionki"
           }
         },
         "pt" : {
@@ -657,6 +699,12 @@
             "value" : "Voettekst"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopka"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -738,6 +786,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koptekst"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nagłówek"
           }
         },
         "pt" : {
@@ -823,6 +877,12 @@
             "value" : "Onzichtbaren"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znaki niewidoczne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -904,6 +964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Regelnummer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numer wiersza"
           }
         },
         "pt" : {
@@ -988,6 +1054,12 @@
             "value" : "Op"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Włączone"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1069,6 +1141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Druk achtergronden af"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drukuj tła"
           }
         },
         "pt" : {
@@ -1160,6 +1238,12 @@
             "value" : "Documentnaam"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa dokumentu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1247,6 +1331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bestandspad"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ścieżka pliku"
           }
         },
         "pt" : {
@@ -1338,6 +1428,12 @@
             "value" : "Laatst bewerkte datum"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data ostatniej modyfikacji"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1425,6 +1521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak"
           }
         },
         "pt" : {
@@ -1516,6 +1618,12 @@
             "value" : "Paginanummer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numer strony"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1603,6 +1711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afdrukdatum"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data wydruku"
           }
         },
         "pt" : {
@@ -1694,6 +1808,12 @@
             "value" : "Syntaxisnaam"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa składni"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1775,6 +1895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thema"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motyw"
           }
         },
         "pt" : {

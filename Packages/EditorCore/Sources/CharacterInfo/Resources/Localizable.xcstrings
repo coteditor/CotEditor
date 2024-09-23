@@ -65,6 +65,12 @@
             "value" : "Emoji-stijl"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Styl emoji"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tekststijl"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Styl tekstu"
           }
         },
         "pt" : {
@@ -245,6 +257,12 @@
             "value" : "Huidskleur III"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karnacja średnio jasna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Huidskleur IV"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karnacja średnia"
           }
         },
         "pt" : {
@@ -425,6 +449,12 @@
             "value" : "Huidskleur V"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karnacja średnio ciemna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -513,6 +543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Huidskleur VI"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karnacja ciemna"
           }
         },
         "pt" : {
@@ -605,6 +641,12 @@
             "value" : "Huidskleur I-II"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karnacja jasna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -686,6 +728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Variant"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wariant"
           }
         },
         "pt" : {

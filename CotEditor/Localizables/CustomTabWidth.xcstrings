@@ -57,6 +57,12 @@
             "value" : "Tabbreedte:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerokość tabulatora:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

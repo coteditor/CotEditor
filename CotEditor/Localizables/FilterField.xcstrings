@@ -58,6 +58,12 @@
             "value" : "Wis recente filters"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż ostatnie filtry"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filter"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtr"
           }
         },
         "pt" : {
@@ -224,6 +236,12 @@
             "value" : "Geen recente filter"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak ostatnich filtrów"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -305,6 +323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recente filters"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie filtry"
           }
         },
         "pt" : {

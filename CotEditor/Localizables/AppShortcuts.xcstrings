@@ -86,6 +86,14 @@
             ]
           }
         },
+        "pl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Utwórz dokument w ${applicationName}"
+            ]
+          }
+        },
         "pt" : {
           "stringSet" : {
             "state" : "translated",

@@ -57,6 +57,12 @@
             "value" : "Beschikbare syntaxen:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dostępne składnie:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standaardcodering:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domyślne kodowanie:"
           }
         },
         "pt" : {
@@ -221,6 +233,12 @@
             "value" : "Standaard regeleinden:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domyślny koniec wierszy:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -301,6 +319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standaardsyntaxis:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domyślna składnia:"
           }
         },
         "pt" : {
@@ -385,6 +409,12 @@
             "value" : "Bewerklijst…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj listę…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -465,6 +495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prioriteit van coderingen:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priorytet kodowań:"
           }
         },
         "pt" : {
@@ -549,6 +585,12 @@
             "value" : "Zie coderingsverklaring in document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odwołaj się do deklaracji kodowania w dokumencie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -630,6 +672,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deze syntaxis bestaat niet"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta składnia nie istnieje"
           }
         },
         "pt" : {

@@ -57,6 +57,12 @@
             "value" : "0 of meerdere keren"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 lub więcej razy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
             "value" : "1 of 0 keer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 lub 0 razy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 of meerdere keren"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 lub więcej razy"
           }
         },
         "pt" : {
@@ -304,6 +322,12 @@
             "value" : "Ankers"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kotwice"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -384,6 +408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "elk teken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dowolny znak"
           }
         },
         "pt" : {
@@ -468,6 +498,12 @@
             "value" : "elk teken in bereik van A tot Z"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dowolny znak w zakresie od A do Z"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -548,6 +584,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "elk teken buiten bereik van A tot Z"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dowolny znak spoza zakresu od A do Z"
           }
         },
         "pt" : {
@@ -632,6 +674,12 @@
             "value" : "minstens 0 maar niet meer dan n keer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "co najmniej 0, ale nie więcej niż n razy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -714,6 +762,12 @@
             "value" : "minstens n maar niet meer dan m keer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "co najmniej n, ale nie więcej niż m razy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -794,6 +848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "minstens n keer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "co najmniej n razy"
           }
         },
         "pt" : {
@@ -879,6 +939,12 @@
             "value" : "Terugverwijzing"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odwołania wsteczne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -962,6 +1028,12 @@
             "value" : "Standaard syntaxis van reguliere expressies"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podstawowa składnia wyrażeń regularnych"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1042,6 +1114,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "begin van de regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "początek wiersza"
           }
         },
         "pt" : {
@@ -1127,6 +1205,12 @@
             "value" : "Tekens"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znaki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1209,6 +1293,12 @@
             "value" : "decimaal getal"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cyfra dziesiętna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1289,6 +1379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "einde van de regel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "koniec wiersza"
           }
         },
         "pt" : {
@@ -1374,6 +1470,12 @@
             "value" : "Uitgebreide groepen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grupy rozszerzone"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1454,6 +1556,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "eerste overeenkomst"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pierwsze dopasowanie"
           }
         },
         "pt" : {
@@ -1538,6 +1646,12 @@
             "value" : "ICU reguliere expressie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrażenia regularne ICU"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1618,6 +1732,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "kijk vooruit"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "asercja wyprzedzająca"
           }
         },
         "pt" : {
@@ -1702,6 +1822,12 @@
             "value" : "kijk achterom"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "asercja wsteczna"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1782,6 +1908,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n keer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n razy"
           }
         },
         "pt" : {
@@ -1866,6 +1998,12 @@
             "value" : "nieuwe regel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "znak nowego wiersza"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1946,6 +2084,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "teken zonder witruimte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "znak niebędący odstępem"
           }
         },
         "pt" : {
@@ -2031,6 +2175,12 @@
             "value" : "Factoren"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kwantyfikatory"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2111,6 +2261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "tab-teken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "znak tabulatora"
           }
         },
         "pt" : {
@@ -2196,6 +2352,12 @@
             "value" : "De syntaxis voldoet aan de %@ specificaties."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia jest zgodna ze specyfikacją %@."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2276,6 +2438,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "teken met witruimte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "znak odstępu"
           }
         },
         "pt" : {
@@ -2360,6 +2528,12 @@
             "value" : "woordgrens"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "granica wyrazu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2440,6 +2614,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "woordteken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "znak wyrazu"
           }
         },
         "pt" : {

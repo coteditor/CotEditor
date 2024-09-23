@@ -58,6 +58,12 @@
             "value" : "Wis recente"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż ostatnie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ongeldige code"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niepoprawny kod"
           }
         },
         "pt" : {
@@ -221,6 +233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recente"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie"
           }
         },
         "pt" : {

@@ -184,6 +184,36 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld filiżanki"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld filiżanek"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld filiżanka"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld filiżanki"
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -303,6 +333,12 @@
             "value" : "× %lld"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -384,6 +420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een internetverbinding is vereist om te doneren."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do dokonania darowizny wymagane jest połączenie z Internetem."
           }
         },
         "pt" : {
@@ -468,6 +510,12 @@
             "value" : "Als bewijs van je steun verschijnt er een koffiebadge op de statusbalk tijdens voortdurende steun."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jako dowód Twojego życzliwego wsparcia, podczas trwania ciągłego wsparcia na pasku stanu pojawi się odznaka kawy."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -548,6 +596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type badge:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ odznaki:"
           }
         },
         "pt" : {
@@ -632,6 +686,12 @@
             "value" : "Voortdurende steun"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciągłe wsparcie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -712,6 +772,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor biedt alle functies gratis aan iedereen. Je kunt dit project steunen door koffie aan te bieden."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor udostępnia wszystkie funkcje za darmo dla każdego.\nMożesz wesprzeć ten projekt oferując kawę."
           }
         },
         "pt" : {
@@ -796,6 +862,12 @@
             "value" : "Donatie is momenteel niet beschikbaar."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darowizna jest obecnie niedostępna."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -878,6 +950,12 @@
             "value" : "Beheer abonnementen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarządzaj subskrypcjami"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -958,6 +1036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eenmalige donatie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jednorazowa darowizna"
           }
         },
         "pt" : {
@@ -1043,6 +1127,12 @@
             "value" : "Open GitHub Sponsors"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz GitHub Sponsors"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1125,6 +1215,12 @@
             "value" : "Open in App Store"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz w App Store"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1205,6 +1301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Privacybeleid"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ochrona prywatności"
           }
         },
         "pt" : {
@@ -1290,6 +1392,12 @@
             "value" : "Aantal"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liczba"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1370,6 +1478,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Herstel abonnement"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć subskrypcję"
           }
         },
         "pt" : {
@@ -1454,6 +1568,12 @@
             "value" : "Servicevoorwaarden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warunki korzystania z usługi"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1534,6 +1654,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De donatiefunctie is alleen beschikbaar in CotEditor gedistribueerd in de App Store."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funkcja darowizny jest dostępna wyłącznie w CotEditorze dystrybuowanym przez App Store."
           }
         },
         "pt" : {

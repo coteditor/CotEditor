@@ -58,6 +58,12 @@
             "value" : "Voeg toe"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voeg automatisch haakjes en aanhalingstekens in"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatycznie wstawiaj zamykające nawiasy i cudzysłowy"
           }
         },
         "pt" : {
@@ -223,6 +235,12 @@
             "value" : "Controleer grammatica tegelijk met spelling"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdzaj gramatykę i pisownię"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -304,6 +322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controleer spelling tijdens typen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdzaj pisownię, gdy piszę"
           }
         },
         "pt" : {
@@ -388,6 +412,12 @@
             "value" : "De lijst met voltooiingen omvat:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista uzupełnień zawiera:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -468,6 +498,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voltooiing:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzupełnienia:"
           }
         },
         "pt" : {
@@ -553,6 +589,12 @@
             "value" : "Corrigeer spelling automatisch"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poprawiaj pisownię automatycznie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -633,6 +675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lettertype:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czcionka:"
           }
         },
         "pt" : {
@@ -724,6 +772,12 @@
             "value" : "Niet-proportioneel"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O stałej szerokości"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -813,6 +867,12 @@
             "value" : "Standaard"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podstawowa"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -893,6 +953,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modus"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryb"
           }
         },
         "pt" : {
@@ -978,6 +1044,12 @@
             "value" : "Niet gevonden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie znaleziono"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1059,6 +1131,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verwijder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
           }
         },
         "pt" : {
@@ -1144,6 +1222,12 @@
             "value" : "Slim kopiëren/plakken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiowanie/wklejanie inteligentne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1225,6 +1309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Slimme streepjes"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myślniki inteligentne"
           }
         },
         "pt" : {
@@ -1310,6 +1400,12 @@
             "value" : "Slimme aanhalingstekens"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cytaty inteligentne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1390,6 +1486,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spelling:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pisownia:"
           }
         },
         "pt" : {
@@ -1474,6 +1576,12 @@
             "value" : "Standaardwoorden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardowe wyrazy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1554,6 +1662,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervanging:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastąpienia:"
           }
         },
         "pt" : {
@@ -1638,6 +1752,12 @@
             "value" : "Stel voltooiingen voor tijdens typen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sugeruj uzupełnienia podczas pisania"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1718,6 +1838,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syntaxis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia"
           }
         },
         "pt" : {
@@ -1803,6 +1929,12 @@
             "value" : "Deze syntaxis bestaat niet"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta składnia nie istnieje"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1885,6 +2017,12 @@
             "value" : "Woorden gedefinieerd in syntaxis"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrazy zdefiniowane w składni"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1965,6 +2103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Woorden in document"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrazy w dokumencie"
           }
         },
         "pt" : {

@@ -58,6 +58,12 @@
             "value" : "<een letter bestaande uit %lld tekens>"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<litera składająca się z %lld znaków>"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Block:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blok:"
           }
         },
         "pt" : {
@@ -222,6 +234,12 @@
             "value" : "Categorie:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategoria:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -302,6 +320,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Codepunt:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punkt kodowy:"
           }
         },
         "pt" : {
@@ -387,6 +411,12 @@
             "value" : "verouderd"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "przestarzały"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -467,6 +497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen block"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak bloku"
           }
         },
         "pt" : {
@@ -551,6 +587,12 @@
             "value" : "Onbekend"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieznany"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,6 +673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versie:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wersja:"
           }
         },
         "pt" : {

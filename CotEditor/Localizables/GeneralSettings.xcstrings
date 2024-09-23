@@ -57,6 +57,12 @@
             "value" : "Een systeemfunctie die automatisch uw bestanden overschrijft tijdens het bewerken. Zelfs als deze functie is uitgeschakeld, maakt CotEditor heimelijk een back-up voor het geval het programma onverwacht wordt afgesloten."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funkcja systemu, która automatycznie nadpisuje Twoje pliki podczas edycji. Nawet jeśli jest wyłączona, CotEditor tworzy w ukryciu kopię zapasową na wypadek nieoczekiwanego zamknięcia."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
             "value" : "Controleer automatisch op updates"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprawdź dostępność aktualizacji automatycznie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commandoregeltool:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Narzędzie wiersza poleceń:"
           }
         },
         "pt" : {
@@ -310,6 +328,12 @@
             "value" : "De huidige `cot` symbolische link richt zich niet op de actieve CotEditor."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obecne dowiązanie symboliczne `cot` nie wskazuje działającego CotEditora."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -399,6 +423,12 @@
             "value" : "De huidige `cot` symbolische link kan een ongeldig pad als doel hebben."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obecne dowiązanie symboliczne `cot` może wskazywać nieprawidłową ścieżkę."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -479,6 +509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dialoogwaarschuwingen:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostrzeżenia:"
           }
         },
         "pt" : {
@@ -563,6 +599,12 @@
             "value" : "Wil je CotEditor nu opnieuw opstarten?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz teraz ponownie uruchomić CotEditora?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -643,6 +685,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Document bewaren:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowywanie dokumentu:"
           }
         },
         "pt" : {
@@ -734,6 +782,12 @@
             "value" : "Bewaar de versie van CotEditor"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj wersję CotEditora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -821,6 +875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vraag hoe je het oplost"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapytaj co robić"
           }
         },
         "pt" : {
@@ -912,6 +972,12 @@
             "value" : "Update naar gewijzigde editie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualizuj do zmienionej wersji"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -993,6 +1059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gereed"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gotowe"
           }
         },
         "pt" : {
@@ -1077,6 +1149,12 @@
             "value" : "Schakel automatisch bewaren in met versies"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Włącz automatyczne zachowywanie z wersjami"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1159,6 +1237,12 @@
             "value" : "Inconsistente regeleinden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niespójne końce wierszy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1239,6 +1323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "geïnstalleerd op %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zainstalowano w %@"
           }
         },
         "pt" : {
@@ -1324,6 +1414,12 @@
             "value" : "Later"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Później"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1406,6 +1502,12 @@
             "value" : "Meer info…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dowiedz się więcej…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1486,6 +1588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beheer waarschuwingen…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarządzaj ostrzeżeniami…"
           }
         },
         "pt" : {
@@ -1577,6 +1685,12 @@
             "value" : "Doe niets"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nic nie rób"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1664,6 +1778,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon dialoogvenster open"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyświetl okno dialogowe Otwórz…"
           }
         },
         "pt" : {
@@ -1755,6 +1875,12 @@
             "value" : "Maak nieuw document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz nowy dokument"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1835,6 +1961,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bij opstarten:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przy uruchamianiu:"
           }
         },
         "pt" : {
@@ -1919,6 +2051,12 @@
             "value" : "Ongeacht deze instelling worden nieuwe pre-releases altijd opgenomen als je een pre-release gebruikt."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niezależnie od tego ustawienia, w przypadku korzystania z wersji wstępnej, nowe wersje wstępne są zawsze uwzględniane."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1999,6 +2137,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Heropen vensters van vorige sessie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ponownie otwórz okna z ostatniej sesji"
           }
         },
         "pt" : {
@@ -2084,6 +2228,12 @@
             "value" : "Herstart nu"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uruchom ponownie teraz"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2164,6 +2314,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Software-update:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualizacja oprogramowania:"
           }
         },
         "pt" : {
@@ -2248,6 +2404,12 @@
             "value" : "Onderdruk de volgende waarschuwingen:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomiń następujące ostrzeżenia:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2328,6 +2490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De wijziging wordt als eerste toegepast wanneer je de volgende keer opstart."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmiana zostanie zastosowana jako pierwsza przy następnym uruchomieniu."
           }
         },
         "pt" : {
@@ -2412,6 +2580,12 @@
             "value" : "Updaten naar pre-releases wanneer beschikbaar"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualizuj do wersji wstępnych, gdy są dostępne"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2492,6 +2666,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wanneer een document wordt gewijzigd door een andere applicatie:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gdy dokument zostanie zmieniony przez inną aplikację:"
           }
         },
         "pt" : {
@@ -2576,6 +2756,12 @@
             "value" : "Als er niets anders open is:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gdy nic innego nie jest otwarte:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2656,6 +2842,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Met de commandoregel `cot` kun je CotEditor starten en bestanden laten openen vanaf de commandoregel."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Za pomocą narzędzia wiersza poleceń `cot` możesz uruchomić CotEditora i pozwolić mu otwierać pliki z poziomu wiersza poleceń."
           }
         },
         "pt" : {

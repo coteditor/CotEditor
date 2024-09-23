@@ -65,6 +65,12 @@
             "value" : "Importeer…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importuj…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -155,6 +161,12 @@
             "value" : "Voeg lege syntaxis toe"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj pustą składnię"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -240,6 +252,12 @@
           }
         },
         "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -336,6 +354,12 @@
             "value" : "Dupliceer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -424,6 +448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deze syntaxis is aangepast."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta składnia została dostosowana przez użytkownika."
           }
         },
         "pt" : {
@@ -516,6 +546,12 @@
             "value" : "Bewerk…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edycja…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -604,6 +640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon in Finder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Finderze"
           }
         },
         "pt" : {
@@ -696,6 +738,12 @@
             "value" : "Exporteer…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -784,6 +832,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dupliceer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiel"
           }
         },
         "pt" : {
@@ -876,6 +930,12 @@
             "value" : "Verwijder geselecteerde syntaxis"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń wybraną składnię"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -964,6 +1024,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Laad alle syntaxen opnieuw"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Załaduj ponownie wszystkie składnie"
           }
         },
         "pt" : {
@@ -1056,6 +1122,12 @@
             "value" : "Verwijder"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1144,6 +1216,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporteer…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj…"
           }
         },
         "pt" : {
@@ -1236,6 +1314,12 @@
             "value" : "Deel…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udostępnij…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1324,6 +1408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon in Finder"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Finderze"
           }
         },
         "pt" : {
@@ -1416,6 +1506,12 @@
             "value" : "Toon conflicten bij bestandstoewijzing"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż konflikty mapowania plików"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1504,6 +1600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Herstel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć"
           }
         },
         "pt" : {
@@ -1596,6 +1698,12 @@
             "value" : "Bewerk"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edycja"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1684,6 +1792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bewerk geselecteerde syntaxis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj wybraną składnię"
           }
         },
         "pt" : {
@@ -1776,6 +1890,12 @@
             "value" : "Deel…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udostępnij…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1864,6 +1984,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Herstel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć"
           }
         },
         "pt" : {
