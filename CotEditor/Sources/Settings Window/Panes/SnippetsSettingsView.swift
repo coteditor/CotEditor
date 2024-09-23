@@ -85,7 +85,10 @@ private struct CommandSnippetsView: View {
                 
                 TableColumn(String(localized: "Key", table: "SnippetsSettings", comment: "table column header")) { item in
                     ShortcutField(value: item.shortcut, error: $error)
-                }.width(60)
+                }
+                .width(60)
+                .alignment(.trailing)
+                
             } rows: {
                 ForEach($items) { item in
                     TableRow(item)
