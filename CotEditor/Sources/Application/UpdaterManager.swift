@@ -64,8 +64,8 @@ import Sparkle
         }
         
         let menuItem = NSMenuItem()
-        menuItem.title = String(localized: "Check for Updates…", table: "Sparkle",
-                                comment: "menu item label provided only in the non-AppStore version")
+        menuItem.title = String(localized: "Check for Updates…", table: "MainMenu",
+                                comment: "provided only in the non-AppStore version")
         menuItem.action = #selector(SPUUpdater.checkForUpdates)
         menuItem.target = self.controller.updater
         
