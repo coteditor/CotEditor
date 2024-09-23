@@ -15,8 +15,6 @@ jobs:
         swift --version
     - name: Checkout
       uses: actions/checkout@v4
-      with:
-          submodules: true
     - name: Unit Test for EditorCore
       run: |
         swift test --package-path Packages/EditorCore
