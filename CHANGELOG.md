@@ -11,6 +11,7 @@
 ### Improvements
 
 - Adjust the layout of the file preview view.
+- Update the Swift syntax to add `@Test` and `@Suite` attributes.
 
 
 ### Fixes

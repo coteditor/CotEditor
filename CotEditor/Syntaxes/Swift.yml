@@ -47,6 +47,8 @@ attributes:
 - beginString: '@Sendable'
 - beginString: '@State'
 - beginString: '@StateObject'
+- beginString: '@Suite'
+- beginString: '@Test'
 - beginString: '@testable'
 - beginString: '@transpose'
 - beginString: '@UIApplicationMain'
@@ -217,9 +219,9 @@ metadata:
   author: 1024jp
   description: Based on Swift 6.0
   distributionURL: https://coteditor.com
-  lastModified: '2024-08-02'
+  lastModified: '2024-09-24'
   license: Same as CotEditor
-  version: 4.11.0
+  version: 4.12.0
 numbers:
 - beginString: (?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\b
   ignoreCase: true
