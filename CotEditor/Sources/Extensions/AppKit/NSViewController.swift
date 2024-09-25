@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,5 +45,17 @@ extension NSViewController {
         } else {
             self.presentError(error)
         }
+    }
+    
+    
+    /// Safely ends the current editing.
+    ///
+    /// - Returns: `true` when the operation is successful; otherwise, `false`.
+    @discardableResult
+    final func endEditing() -> Bool {
+        
+        guard let window = self.viewIfLoaded?.window else { return true }
+        
+        return window.makeFirstResponder(nil)
     }
 }
