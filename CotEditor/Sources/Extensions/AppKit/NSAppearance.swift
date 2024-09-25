@@ -27,23 +27,10 @@ import AppKit.NSAppearance
 
 extension NSAppearance {
     
+    /// The receiver is in the Dark Mode.
     final var isDark: Bool {
         
         self.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
-    }
-    
-    
-    final var isHighContrast: Bool {
-        
-        switch self.name {
-            case .accessibilityHighContrastAqua,
-                 .accessibilityHighContrastDarkAqua,
-                 .accessibilityHighContrastVibrantLight,
-                 .accessibilityHighContrastVibrantDark:
-                true
-            default:
-                false
-        }
     }
     
     

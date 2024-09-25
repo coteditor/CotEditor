@@ -86,15 +86,16 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
             : cellFrame.maxX - width - 6
         let rect = NSRect(x: x, y: cellFrame.minY + 3,
                           width: width, height: cellFrame.height - 9)
-        let appearance = controlView.effectiveAppearance
+        let isDark = controlView.effectiveAppearance.isDark
+        let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
         
         // draw capsule
         let fillPath = NSBezierPath(roundedRect: rect, xRadius: 4, yRadius: 4)
-        if self.isEnabled, !appearance.isDark, appearance.isHighContrast {
+        if self.isEnabled, !isDark, isHighContrast {
             NSGradient(starting: .init(white: 0.4, alpha: 1), ending: .init(white: 0.3, alpha: 1))!
                 .draw(in: fillPath, angle: 90)
         } else {
-            let fillColor: NSColor = switch (appearance.isHighContrast, appearance.isDark, self.isEnabled) {
+            let fillColor: NSColor = switch (isHighContrast, isDark, self.isEnabled) {
                 case (false, false, true): .quaternarySystemFill
                 case (false, false, false): .quinarySystemFill
                 case (false, true, true): .tertiarySystemFill
@@ -109,7 +110,7 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
             fillPath.fill()
         }
         
-        if appearance.isHighContrast {
+        if isHighContrast {
             let strokeColor: NSColor = self.isEnabled ? .labelColor : .quaternaryLabelColor
             
             strokeColor.setStroke()
@@ -118,10 +119,10 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
         
         // draw chevron
         let chevron: NSImage = .chevronUpChevronDownNarrow
-        let chevronColor: NSColor = switch (appearance.isHighContrast, self.isEnabled) {
+        let chevronColor: NSColor = switch (isHighContrast, self.isEnabled) {
             case (false, true): .controlTextColor
             case (false, false): .disabledControlTextColor
-            case (true, true): appearance.isDark ? .black : .selectedMenuItemTextColor
+            case (true, true): isDark ? .black : .selectedMenuItemTextColor
             case (true, false): .tertiaryLabelColor
         }
         chevron.tinted(with: chevronColor)
