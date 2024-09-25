@@ -1,5 +1,5 @@
 //
-//  NSView.swift
+//  NSTextView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import AppKit
 
-extension NSView {
+extension NSTextView {
     
     /// The root view controller.
     final var viewControllerForSheet: NSViewController? {
