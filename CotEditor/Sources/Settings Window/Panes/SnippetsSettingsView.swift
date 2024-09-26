@@ -117,6 +117,14 @@ private struct CommandSnippetsView: View {
                     nil
                 }
             }
+            .onChange(of: self.format) { (_, newValue) in
+                guard
+                    let format = newValue,
+                    let id = self.selection.first
+                else { return }
+                
+                self.items[id: id]?.format = format
+            }
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
             
@@ -203,6 +211,14 @@ private struct FileDropView: View {
                 } else {
                     nil
                 }
+            }
+            .onChange(of: self.format) { (_, newValue) in
+                guard
+                    let format = newValue,
+                    let id = self.selection.first
+                else { return }
+                
+                self.items[id: id]?.format = format
             }
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))

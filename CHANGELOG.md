@@ -16,6 +16,7 @@
 
 ### Fixes
 
+- Fix an issue that changes of insertion formats in the Snippets settings pane were not saved.
 - Fix an issue that the initial visibility state of the navigation bar was reversed.
 
 

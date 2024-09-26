@@ -36,3 +36,24 @@ extension Sequence where Element: Identifiable {
         self.filter { ids.contains($0.id) }
     }
 }
+
+
+extension Array where Element: Identifiable {
+    
+    subscript(id id: Element.ID?) -> Element? {
+        
+        get {
+            self.first { $0.id == id }
+        }
+        
+        set {
+            guard let index = self.firstIndex(where: { $0.id == id }) else { return }
+            
+            if let newValue {
+                self[index] = newValue
+            } else {
+                self.remove(at: index)
+            }
+        }
+    }
+}
