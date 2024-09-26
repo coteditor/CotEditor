@@ -335,35 +335,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2A149DAF19016AD800A9D6EF /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				2A10D1261E714D230027192A /* ThemeListView.storyboard */,
-				2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */,
-				2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
 		2A149DC91902BC3900A9D6EF /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				2A836F7E1D572A5D0044E8EC /* Main.storyboard */,
-				2A149DAF19016AD800A9D6EF /* Settings */,
-				2A2D6C1A1A602D7E002451FF /* Text Finder */,
-				2A436DDC1A426EAE00275FD4 /* Accessories */,
-			);
-			name = Storyboards;
-			sourceTree = "<group>";
-		};
-		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
-			isa = PBXGroup;
-			children = (
+				2A10D1261E714D230027192A /* ThemeListView.storyboard */,
+				2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */,
+				2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */,
 				2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */,
 				2AAFA7BA2B7A2DAF00A2B228 /* MultipleReplaceListView.storyboard */,
 				2A3D63F91E769DDF00F538E1 /* MultipleReplaceView.storyboard */,
+				2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */,
 			);
-			name = "Text Finder";
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
@@ -414,14 +398,6 @@
 				2A65520B2BE001A10082B7D6 /* CotEditor.storekit */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2A436DDC1A426EAE00275FD4 /* Accessories */ = {
-			isa = PBXGroup;
-			children = (
-				2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */,
-			);
-			name = Accessories;
 			sourceTree = "<group>";
 		};
 		2AE459F42C9C82A2003CB621 /* CotEditor */ = {
