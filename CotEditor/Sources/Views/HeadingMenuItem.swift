@@ -23,43 +23,12 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSMenuItem
 
 final class HeadingMenuItem: NSMenuItem {
-    
-    // MARK: Lifecycle
-    
-    convenience init(title: String) {
-        
-        self.init(title: title, action: nil, keyEquivalent: "")
-        self.isEnabled = false
-        
-        self.updateAttributedTitle()
-    }
-    
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        self.updateAttributedTitle()
-    }
-    
     
     override var isSectionHeader: Bool {
         
         true
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Makes the menu item label heading style.
-    private func updateAttributedTitle() {
-        
-        self.attributedTitle = NSAttributedString(string: self.title, attributes: [
-            .font: NSFont.systemFont(ofSize: NSFont.smallSystemFontSize, weight: .medium),
-            .foregroundColor: NSColor.disabledControlTextColor,
-        ])
     }
 }
