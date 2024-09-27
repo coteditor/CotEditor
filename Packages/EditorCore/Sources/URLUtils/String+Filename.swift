@@ -93,7 +93,7 @@ public extension Collection<String> {
     /// - Parameters:
     ///   - proposedName: The name candidate.
     ///   - suffix: The name suffix to be appended before the number.
-    /// - Returns: An unique name.
+    /// - Returns: A unique name.
     func createAvailableName(for proposedName: String, suffix: String? = nil) -> String {
         
         let components = proposedName.numberingComponents(suffix: suffix)
