@@ -228,29 +228,13 @@ extension Document: EditorSource {
         
         get {
             // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
-            // -> The default backup URL is the same directory as the fileURL
-            //    and it doesn't work with the modern Sandboxing system.
+            // -> The default backup URL is the same directory as the fileURL and it doesn't work in a Sandbox environment.
             if !Self.autosavesInPlace,
                self.hasUnautosavedChanges,
                super.autosavedContentsFileURL == nil,
                let fileURL = self.fileURL
             {
-                // store directory URL to avoid finding Autosaved Information directory every time
-                struct AutosaveDirectory {
-                    
-                    static let url = try! URL(for: .autosavedInformationDirectory, in: .userDomainMask, create: true)
-                }
-                
-                let baseFileName = fileURL.deletingPathExtension().lastPathComponent
-                    .replacing(/^\./, with: "", maxReplacements: 1)  // avoid file to be hidden
-                
-                // append an unique string to avoid overwriting another backup file with the same filename.
-                let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
-                let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
-                
-                super.autosavedContentsFileURL =  AutosaveDirectory.url
-                    .appending(component: fileName)
-                    .appendingPathExtension(fileURL.pathExtension)
+                super.autosavedContentsFileURL = Self.autosaveElsewhereURL(for: fileURL)
             }
             
             return super.autosavedContentsFileURL
@@ -1066,6 +1050,29 @@ extension Document: EditorSource {
     
     
     // MARK: Private Methods
+    
+    /// Creates a unique file URL for `autosavedContentsFileURL` to use in Autosave Elsewhere.
+    ///
+    /// Let the contents backup in `~/Library/Autosaved Information/` directory,
+    /// since the default backup URL for the Save Elsewhere is the same directory as the fileURL,
+    /// which doesn't work in a Sandbox environment.
+    ///
+    /// - Parameter url: The original file URL.
+    /// - Returns: A file URL.
+    private nonisolated static func autosaveElsewhereURL(for url: URL) -> URL {
+        
+        let baseFileName = url.deletingPathExtension().lastPathComponent
+            .replacing(/^\./, with: "", maxReplacements: 1)  // avoid file to be hidden
+        
+        // append a unique string to avoid overwriting another backup file with the same filename.
+        let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + url.pathExtension).length
+        let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
+        
+        return try! URL(for: .autosavedInformationDirectory, in: .userDomainMask, create: true)
+            .appending(component: fileName)
+            .appendingPathExtension(url.pathExtension)
+    }
+    
     
     /// Transfers the file information to UI.
     private func applyContentToWindow() {
