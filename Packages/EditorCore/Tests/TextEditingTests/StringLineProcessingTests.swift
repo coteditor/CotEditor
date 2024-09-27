@@ -269,7 +269,7 @@ struct StringTrimmingTests {
         #expect(trimmed == expectedTrimmed)
         
         let trimmedIgnoringEmptyLines = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoringEmptyLines: true))
-        let expectedTrimmedIgnoringEmptyLines =  """
+        let expectedTrimmedIgnoringEmptyLines = """
             
             abc def
                 \t
