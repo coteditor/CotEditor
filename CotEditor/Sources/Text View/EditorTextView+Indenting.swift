@@ -33,26 +33,26 @@ extension EditorTextView: Indenting {
     /// Increases indent level.
     @IBAction func shiftRight(_ sender: Any?) {
         
-        let actionName = String(localized: "Shift Right", table: "MainMenu")
-        
         if self.baseWritingDirection == .rightToLeft {
-            guard self.outdent(actionName: actionName) else { return }
+            guard self.outdent() else { return }
         } else {
-            guard self.indent(actionName: actionName) else { return }
+            guard self.indent() else { return }
         }
+        
+        self.undoManager?.setActionName(String(localized: "Shift Right", table: "MainMenu"))
     }
     
     
     /// Decreases indent level.
     @IBAction func shiftLeft(_ sender: Any?) {
         
-        let actionName = String(localized: "Shift Left", table: "MainMenu")
-        
         if self.baseWritingDirection == .rightToLeft {
-            guard self.indent(actionName: actionName) else { return }
+            guard self.indent() else { return }
         } else {
-            guard self.outdent(actionName: actionName) else { return }
+            guard self.outdent() else { return }
         }
+        
+        self.undoManager?.setActionName(String(localized: "Shift Left", table: "MainMenu"))
     }
     
     
@@ -85,7 +85,6 @@ extension EditorTextView: Indenting {
 }
 
 
-
 // MARK: - Protocol
 
 @MainActor protocol Indenting: NSTextView {
@@ -100,9 +99,9 @@ extension Indenting {
     private var indentStyle: IndentStyle  { self.isAutomaticTabExpansionEnabled ? .space : .tab }
     
     
-    /// Increases indent level.
+    /// Increases indent level of the selected ranges.
     @discardableResult
-    func indent(actionName: String? = nil) -> Bool {
+    func indent() -> Bool {
         
         guard
             self.tabWidth > 0,
@@ -111,13 +110,13 @@ extension Indenting {
         
         let textEditing = self.string.indent(style: self.indentStyle, indentWidth: self.tabWidth, in: selectedRanges)
         
-        return self.edit(with: textEditing, actionName: actionName)
+        return self.edit(with: textEditing)
     }
     
     
-    /// Decreases indent level.
+    /// Decreases indent level of the selected ranges.
     @discardableResult
-    func outdent(actionName: String? = nil) -> Bool {
+    func outdent() -> Bool {
         
         guard
             self.tabWidth > 0,
@@ -129,7 +128,7 @@ extension Indenting {
     }
     
     
-    /// Standardizes indentation of given ranges.
+    /// Standardizes indentation of given ranges in the selected ranges.
     func convertIndentation(style: IndentStyle) {
         
         guard
