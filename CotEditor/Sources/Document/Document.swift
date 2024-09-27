@@ -224,28 +224,6 @@ extension Document: EditorSource {
     }
     
     
-    override nonisolated var autosavedContentsFileURL: URL? {
-        
-        get {
-            // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
-            // -> The default backup URL is the same directory as the fileURL and it doesn't work in a Sandbox environment.
-            if !Self.autosavesInPlace,
-               self.hasUnautosavedChanges,
-               super.autosavedContentsFileURL == nil,
-               let fileURL = self.fileURL
-            {
-                super.autosavedContentsFileURL = Self.autosaveElsewhereURL(for: fileURL)
-            }
-            
-            return super.autosavedContentsFileURL
-        }
-        
-        set {
-            super.autosavedContentsFileURL = newValue
-        }
-    }
-    
-    
     override func makeWindowControllers() {
         
         // -> The window controller already exists either when:
@@ -475,6 +453,12 @@ extension Document: EditorSource {
         if let saveOptions {
             self.isExecutable = saveOptions.isExecutable
             self.saveOptions = nil
+        }
+        
+        // modify place to create the elsewhere backup file to `~/Library/Autosaved Information/`
+        var url = url
+        if saveOperation == .autosaveElsewhereOperation, self.fileURL != nil, self.autosavedContentsFileURL == nil {
+            url = Self.autosaveElsewhereURL(for: url)
         }
         
         // workaround the issue that invoking the async version super blocks the save process
@@ -1057,7 +1041,7 @@ extension Document: EditorSource {
     /// since the default backup URL for the Save Elsewhere is the same directory as the fileURL,
     /// which doesn't work in a Sandbox environment.
     ///
-    /// - Parameter url: The original file URL.
+    /// - Parameter url: The original saving URL.
     /// - Returns: A file URL.
     private nonisolated static func autosaveElsewhereURL(for url: URL) -> URL {
         
