@@ -190,74 +190,9 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		2A5A72FF2C92C63D0028C333 /* Application */ = {
+		2A52AB3A2CA9184100ADFD76 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Application;
-			sourceTree = "<group>";
-		};
-		2A5A73462C92C9F60028C333 /* Settings Window */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Settings Window";
-			sourceTree = "<group>";
-		};
-		2A5A73522C92C9FF0028C333 /* Setting Managers */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Setting Managers";
-			sourceTree = "<group>";
-		};
-		2A5A73702C92CA070028C333 /* Text Finder */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Text Finder";
-			sourceTree = "<group>";
-		};
-		2A5A73792C92CA090028C333 /* Document */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Document;
-			sourceTree = "<group>";
-		};
-		2A5A737D2C92CA0C0028C333 /* Scanners */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Scanners;
-			sourceTree = "<group>";
-		};
-		2A5A73A82C92CA0E0028C333 /* Document Window */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Document Window";
-			sourceTree = "<group>";
-		};
-		2A5A73CB2C92CA120028C333 /* Panels */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Panels;
-			sourceTree = "<group>";
-		};
-		2A5A73D12C92CA140028C333 /* Scripting Support */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Scripting Support";
-			sourceTree = "<group>";
-		};
-		2A5A73DD2C92CA160028C333 /* Views */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Views;
-			sourceTree = "<group>";
-		};
-		2A5A73F12C92CA180028C333 /* SwiftUI */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftUI;
-			sourceTree = "<group>";
-		};
-		2A5A74102C92CA1A0028C333 /* Models */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Models;
-			sourceTree = "<group>";
-		};
-		2A5A741B2C92CA1B0028C333 /* Utilities */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		2A5A74532C92CA1D0028C333 /* Extensions */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Extensions;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		2A7041012CA1B7AB009435BA /* Tests */ = {
@@ -362,31 +297,10 @@
 			name = CotEditor;
 			sourceTree = "<group>";
 		};
-		2A37F4ABFDCFA73011CA2CEA /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				2A5A72FF2C92C63D0028C333 /* Application */,
-				2A5A73792C92CA090028C333 /* Document */,
-				2A5A73A82C92CA0E0028C333 /* Document Window */,
-				2A5A74102C92CA1A0028C333 /* Models */,
-				2A5A73CB2C92CA120028C333 /* Panels */,
-				2A5A737D2C92CA0C0028C333 /* Scanners */,
-				2A5A73D12C92CA140028C333 /* Scripting Support */,
-				2A5A73522C92C9FF0028C333 /* Setting Managers */,
-				2A5A73462C92C9F60028C333 /* Settings Window */,
-				2A5A73702C92CA070028C333 /* Text Finder */,
-				2A5A73F12C92CA180028C333 /* SwiftUI */,
-				2A5A741B2C92CA1B0028C333 /* Utilities */,
-				2A5A73DD2C92CA160028C333 /* Views */,
-				2A5A74532C92CA1D0028C333 /* Extensions */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
 		2AE459F42C9C82A2003CB621 /* CotEditor */ = {
 			isa = PBXGroup;
 			children = (
-				2A37F4ABFDCFA73011CA2CEA /* Sources */,
+				2A52AB3A2CA9184100ADFD76 /* Sources */,
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
 				2A316A202CA26F9C00577F36 /* Resources */,
 				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
@@ -441,20 +355,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				2A316A202CA26F9C00577F36 /* Resources */,
-				2A5A72FF2C92C63D0028C333 /* Application */,
-				2A5A73462C92C9F60028C333 /* Settings Window */,
-				2A5A73522C92C9FF0028C333 /* Setting Managers */,
-				2A5A73702C92CA070028C333 /* Text Finder */,
-				2A5A73792C92CA090028C333 /* Document */,
-				2A5A737D2C92CA0C0028C333 /* Scanners */,
-				2A5A73A82C92CA0E0028C333 /* Document Window */,
-				2A5A73CB2C92CA120028C333 /* Panels */,
-				2A5A73D12C92CA140028C333 /* Scripting Support */,
-				2A5A73DD2C92CA160028C333 /* Views */,
-				2A5A73F12C92CA180028C333 /* SwiftUI */,
-				2A5A74102C92CA1A0028C333 /* Models */,
-				2A5A741B2C92CA1B0028C333 /* Utilities */,
-				2A5A74532C92CA1D0028C333 /* Extensions */,
+				2A52AB3A2CA9184100ADFD76 /* Sources */,
 			);
 			name = CotEditor;
 			packageProductDependencies = (
@@ -514,20 +415,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				2A316A202CA26F9C00577F36 /* Resources */,
-				2A5A72FF2C92C63D0028C333 /* Application */,
-				2A5A73462C92C9F60028C333 /* Settings Window */,
-				2A5A73522C92C9FF0028C333 /* Setting Managers */,
-				2A5A73702C92CA070028C333 /* Text Finder */,
-				2A5A73792C92CA090028C333 /* Document */,
-				2A5A737D2C92CA0C0028C333 /* Scanners */,
-				2A5A73A82C92CA0E0028C333 /* Document Window */,
-				2A5A73CB2C92CA120028C333 /* Panels */,
-				2A5A73D12C92CA140028C333 /* Scripting Support */,
-				2A5A73DD2C92CA160028C333 /* Views */,
-				2A5A73F12C92CA180028C333 /* SwiftUI */,
-				2A5A74102C92CA1A0028C333 /* Models */,
-				2A5A741B2C92CA1B0028C333 /* Utilities */,
-				2A5A74532C92CA1D0028C333 /* Extensions */,
+				2A52AB3A2CA9184100ADFD76 /* Sources */,
 			);
 			name = "CotEditor -Sparkle";
 			packageProductDependencies = (
