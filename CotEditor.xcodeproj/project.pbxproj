@@ -225,11 +225,6 @@
 			path = "Document Window";
 			sourceTree = "<group>";
 		};
-		2A5A73C12C92CA110028C333 /* Text View */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Text View";
-			sourceTree = "<group>";
-		};
 		2A5A73CB2C92CA120028C333 /* Panels */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Panels;
@@ -356,6 +351,7 @@
 				2AF482DA279288CF00A86481 /* README.md */,
 				2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */,
 				2AF482D9279288CF00A86481 /* CHANGELOG.md */,
+				2A1AFDC32C92990300BF2C32 /* Configurations */,
 				2AE459F42C9C82A2003CB621 /* CotEditor */,
 				2A7041012CA1B7AB009435BA /* Tests */,
 				2AE45D322C9C8341003CB621 /* UI Tests */,
@@ -370,44 +366,34 @@
 			isa = PBXGroup;
 			children = (
 				2A5A72FF2C92C63D0028C333 /* Application */,
+				2A5A73792C92CA090028C333 /* Document */,
+				2A5A73A82C92CA0E0028C333 /* Document Window */,
+				2A5A74102C92CA1A0028C333 /* Models */,
+				2A5A73CB2C92CA120028C333 /* Panels */,
+				2A5A737D2C92CA0C0028C333 /* Scanners */,
+				2A5A73D12C92CA140028C333 /* Scripting Support */,
 				2A5A73522C92C9FF0028C333 /* Setting Managers */,
 				2A5A73462C92C9F60028C333 /* Settings Window */,
 				2A5A73702C92CA070028C333 /* Text Finder */,
-				2A5A73792C92CA090028C333 /* Document */,
-				2A5A737D2C92CA0C0028C333 /* Scanners */,
-				2A5A73A82C92CA0E0028C333 /* Document Window */,
-				2A5A73C12C92CA110028C333 /* Text View */,
-				2A5A73CB2C92CA120028C333 /* Panels */,
-				2A5A73D12C92CA140028C333 /* Scripting Support */,
-				2A5A73DD2C92CA160028C333 /* Views */,
 				2A5A73F12C92CA180028C333 /* SwiftUI */,
-				2A5A74102C92CA1A0028C333 /* Models */,
 				2A5A741B2C92CA1B0028C333 /* Utilities */,
+				2A5A73DD2C92CA160028C333 /* Views */,
 				2A5A74532C92CA1D0028C333 /* Extensions */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		2A3F187D202D8773002F1CA7 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8D15AC360486D014006FF6A4 /* Info.plist */,
-				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
-				2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */,
-				5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */,
-				2A65520B2BE001A10082B7D6 /* CotEditor.storekit */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		2AE459F42C9C82A2003CB621 /* CotEditor */ = {
 			isa = PBXGroup;
 			children = (
-				2A1AFDC32C92990300BF2C32 /* Configurations */,
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
 				2A316A202CA26F9C00577F36 /* Resources */,
-				2A3F187D202D8773002F1CA7 /* Supporting Files */,
+				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
+				2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */,
+				5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */,
+				8D15AC360486D014006FF6A4 /* Info.plist */,
+				2A65520B2BE001A10082B7D6 /* CotEditor.storekit */,
 			);
 			path = CotEditor;
 			sourceTree = "<group>";
@@ -462,7 +448,6 @@
 				2A5A73792C92CA090028C333 /* Document */,
 				2A5A737D2C92CA0C0028C333 /* Scanners */,
 				2A5A73A82C92CA0E0028C333 /* Document Window */,
-				2A5A73C12C92CA110028C333 /* Text View */,
 				2A5A73CB2C92CA120028C333 /* Panels */,
 				2A5A73D12C92CA140028C333 /* Scripting Support */,
 				2A5A73DD2C92CA160028C333 /* Views */,
@@ -536,7 +521,6 @@
 				2A5A73792C92CA090028C333 /* Document */,
 				2A5A737D2C92CA0C0028C333 /* Scanners */,
 				2A5A73A82C92CA0E0028C333 /* Document Window */,
-				2A5A73C12C92CA110028C333 /* Text View */,
 				2A5A73CB2C92CA120028C333 /* Panels */,
 				2A5A73D12C92CA140028C333 /* Scripting Support */,
 				2A5A73DD2C92CA160028C333 /* Views */,
