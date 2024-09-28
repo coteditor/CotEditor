@@ -84,12 +84,18 @@ extension NSTouchBar {
         didSet {
             guard isEnabled != oldValue else { return }
             
-            self.applicationObservationTask?.cancel()
-            self.applicationObservationTask = isEnabled ? Task {
-                for await _ in NotificationCenter.default.notifications(named: NSApplication.didUpdateNotification).map(\.name) {
-                    self.validateTouchBarIfNeeded()
+            if let applicationObserver {
+                NotificationCenter.default.removeObserver(applicationObserver, name: NSApplication.didUpdateNotification, object: NSApp)
+                self.applicationObserver = nil
+            }
+            
+            if isEnabled {
+                self.applicationObserver = NotificationCenter.default.addObserver(forName: NSApplication.didUpdateNotification, object: NSApp, queue: .main) { [unowned self] _ in
+                    MainActor.assumeIsolated {
+                        self.validateTouchBarIfNeeded()
+                    }
                 }
-            } : nil
+            }
         }
     }
     
@@ -98,7 +104,7 @@ extension NSTouchBar {
     // MARK: Private Properties
     
     private weak var validationTimer: Timer?
-    private var applicationObservationTask: Task<Void, Never>?
+    private var applicationObserver: (any NSObjectProtocol)?
     
     
     private enum ValidationDelay: TimeInterval {
