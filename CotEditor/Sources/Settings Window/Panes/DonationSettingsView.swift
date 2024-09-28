@@ -192,7 +192,7 @@ struct DonationSettingsView: View {
                         Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization to see whether it exists."), destination: url)
                     }
                 }
-                .buttonStyle(.capsule)
+                .buttonStyle(.bordered)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
             

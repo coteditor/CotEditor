@@ -189,6 +189,28 @@ private enum NewFeature: CaseIterable {
 }
 
 
+// MARK: - Private
+
+private extension ButtonStyle where Self == CapsuleButtonStyle {
+    
+    static var capsule: Self  { Self() }
+}
+
+
+private struct CapsuleButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        
+        configuration.label
+            .foregroundStyle(.tint)
+            .brightness(configuration.isPressed ? -0.1 : 0)
+            .padding(.vertical, 2)
+            .padding(.horizontal, 9)
+            .background(.fill.tertiary, in: Capsule())
+    }
+}
+
+
 
 // MARK: - Preview
 
