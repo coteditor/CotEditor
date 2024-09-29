@@ -27,6 +27,12 @@ import Foundation
 import UniformTypeIdentifiers
 import Shortcut
 
+private extension UTType {
+    
+    static let awkScript = UTType(exportedAs: "com.coteditor.awk")
+}
+
+
 enum ScriptingFileType: CaseIterable {
     
     case appleScript
@@ -37,7 +43,7 @@ enum ScriptingFileType: CaseIterable {
         
         switch self {
             case .appleScript: [.appleScript, .osaScript, .osaScriptBundle]  // .applescript, .scpt, .scptd
-            case .unixScript: [.shellScript, .perlScript, .phpScript, .rubyScript, .pythonScript, .javaScript, .swiftSource]
+            case .unixScript: [.shellScript, .perlScript, .phpScript, .rubyScript, .pythonScript, .javaScript, .awkScript, .swiftSource]
         }
     }
 }

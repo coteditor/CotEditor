@@ -233,6 +233,30 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>public.script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>AWK script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>config</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.awk</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>awk</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>

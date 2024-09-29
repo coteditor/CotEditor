@@ -10,6 +10,7 @@
 
 ### Improvements
 
+- Add .awk extension to file types treaded as CotEditor script.
 - Adjust the layout of the file preview view.
 - Update the Swift syntax to add `@Test` and `@Suite` attributes.
 
