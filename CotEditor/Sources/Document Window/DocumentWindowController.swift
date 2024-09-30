@@ -205,6 +205,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     func windowWillMiniaturize(_ notification: Notification) {
         
+        // Workaround issue `viewWillAppear()` and `viewDidAppear()` are not invoked
+        // on de-miniaturization when the window was initially miniaturized (2024-10, macOS 15, FB15331763)
         if self.window?.isVisible == false {
             self.needsManualOnAppear = true
         }
