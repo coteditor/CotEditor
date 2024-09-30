@@ -58,6 +58,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var directoryDocument: DirectoryDocument?
     private var hasDirectoryBrowser: Bool  { self.directoryDocument != nil }
     
+    private var needsManualOnAppear = false
+    
     private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
         .fill(.tertiary)
         .frame(width: 4, height: 4)
@@ -198,6 +200,23 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // workaround issue that window frame is not saved automatically (2022-08 macOS 12.5, FB11082729)
         window.saveFrame(usingName: window.frameAutosaveName)
+    }
+    
+    
+    func windowWillMiniaturize(_ notification: Notification) {
+        
+        if self.window?.isVisible == false {
+            self.needsManualOnAppear = true
+        }
+    }
+    
+    
+    func windowDidDeminiaturize(_ notification: Notification) {
+        
+        if self.needsManualOnAppear {
+            self.contentViewController?.performOnAppearProcedure()
+            self.needsManualOnAppear = false
+        }
     }
     
     
@@ -344,6 +363,25 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
 }
 
+
+private extension NSViewController {
+    
+    /// Recursively invokes `viewWillAppear()` and `viewDidAppear()`.
+    ///
+    /// Workaround the issue `viewWillAppear()` and `viewDidAppear()` are not invoked
+    /// on de-miniaturization when the window was initially miniaturized (2024-10, macOS 15, FB15331763).
+    func performOnAppearProcedure() {
+        
+        guard self.isViewShown else { return }
+        
+        self.viewWillAppear()
+        self.viewDidAppear()
+        
+        for child in self.children {
+            child.performOnAppearProcedure()
+        }
+    }
+}
 
 
 // MARK: - Toolbar
