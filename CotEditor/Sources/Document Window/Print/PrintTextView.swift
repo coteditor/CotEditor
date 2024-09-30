@@ -237,7 +237,7 @@ final class PrintTextView: NSTextView {
             
             self.enumerateLineFragments(in: range, options: .bySkippingExtraLine) { (lineRect, lineNumber, _) in
                 // draw number only every 5 times
-                let numberString = (!isVerticalText || lineNumber == 1 || lineNumber.isMultiple(of: 5)) ? String(lineNumber) :  "·"
+                let numberString = (!isVerticalText || lineNumber == 1 || lineNumber.isMultiple(of: 5)) ? String(lineNumber) : "·"
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * numberSize.width
