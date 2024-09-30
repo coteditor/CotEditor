@@ -104,6 +104,7 @@ private extension StatusBar.Model {
         
         self.document?.counter.statusBarRequirements = []
         self.countResult = document?.counter.result
+        self.fileEncoding = document?.fileEncoding
         
         if let document, self.isActive {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
@@ -117,7 +118,6 @@ private extension StatusBar.Model {
             ]
         } else {
             self.documentObservers.removeAll()
-            self.fileEncoding = nil
             self.lineEnding = nil
         }
     }

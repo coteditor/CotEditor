@@ -17,6 +17,7 @@
 
 ### Fixes
 
+- Fix an issue that the file encoding menu disappeared from the status bar.
 - Fix an issue that document windows were not properly initialized when the windows minimized on launch.
 - Fix an issue in the file browser that duplicate folders were displayed after renaming a folder.
 - Fix an issue in the file browser that some actions for the root folder were incorrectly disabled.
