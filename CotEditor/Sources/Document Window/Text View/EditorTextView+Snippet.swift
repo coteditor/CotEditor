@@ -1,5 +1,5 @@
 //
-//  NSTextView+Snippet.swift
+//  EditorTextView+Snippet.swift
 //
 //  CotEditor
 //  https://coteditor.com
