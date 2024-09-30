@@ -289,7 +289,8 @@ extension FileNode {
         let keepsHidden = self.isHidden && !self.name.starts(with: ".")
         
         self.name = newName
-        self.fileURL = self.fileURL.deletingLastPathComponent().appending(path: newName)
+        self.fileURL = self.fileURL.deletingLastPathComponent()
+            .appending(path: newName, directoryHint: self.isDirectory ? .isDirectory : .notDirectory)
         self.invalidateKind()
         if !keepsHidden {
             self.isHidden = newName.starts(with: ".")
