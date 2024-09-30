@@ -539,14 +539,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
-    /// Returns the target file node for the menu action.
+    /// Returns the target file nodes to perform the for the menu action.
     ///
     /// - Parameter menuItem: The sender of the action.
-    /// - Returns: A file node.
+    /// - Returns: File nodes.
     private func targetNodes(for sender: Any?) -> [FileNode] {
         
         self.targetRows(for: sender)
-            .compactMap { self.outlineView.item(atRow: $0) as? FileNode ?? self.document.fileNode }
+            .compactMap { self.outlineView.item(atRow: $0) as? FileNode }
     }
     
     
@@ -557,6 +557,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     private func targetFolderNode(for sender: NSMenuItem) -> FileNode? {
         
         let targetNodes = self.targetNodes(for: sender)
+        
+        if targetNodes.isEmpty {
+            return self.document.fileNode
+        }
         
         guard
             targetNodes.count == 1,

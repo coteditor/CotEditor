@@ -17,9 +17,10 @@
 
 ### Fixes
 
+- Fix an issue in the file browser that some actions for the root folder were incorrectly disabled.
 - Fix an issue that changes of insertion formats in the Snippets settings pane were not saved.
 - Fix an issue that the initial visibility state of the navigation bar was reversed.
-- [trivial] Fix an issue that the action name of the “Shift Left” action is not noted to the undo history.
+- [trivial] Fix an issue that the action name of the “Shift Left” action is not noted in the undo history.
 
 
 
