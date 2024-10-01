@@ -6596,7 +6596,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Powiększ"
+            "value" : "Zoom"
           }
         },
         "pt" : {
@@ -13028,7 +13028,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nowości w CotEditorze"
+            "value" : "Co nowego w CotEditorze"
           }
         },
         "pt" : {
