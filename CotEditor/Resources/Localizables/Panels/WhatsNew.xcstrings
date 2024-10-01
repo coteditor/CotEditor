@@ -1012,43 +1012,43 @@
         }
       }
     },
-    "What’s New in **CotEditor %@**" : {
+    "What’s New in CotEditor %@" : {
       "comment" : "%@ is version number",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Co je nového v aplikaci **CotEditor %@**"
+            "value" : "Co je nového v aplikaci CotEditor %@"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neue Funktionen in CotEditor **%@**"
+            "value" : "Neue Funktionen in CotEditor %@"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What’s New in **CotEditor %@**"
+            "value" : "What’s New in CotEditor %@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Novedades de **CotEditor %@**"
+            "value" : "Novedades de CotEditor %@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nouveautés de **CotEditor %@**"
+            "value" : "Nouveautés de CotEditor %@"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le novità di **CotEditor %@**"
+            "value" : "Le novità di CotEditor %@"
           }
         },
         "ja" : {
@@ -1066,25 +1066,25 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wat is er nieuw in **CotEditor %@**?"
+            "value" : "Wat is er nieuw in CotEditor %@?"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nowości w aplikacji **CotEditor %@**"
+            "value" : "Nowości w aplikacji CotEditor %@"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Novidades no **CotEditor %@**"
+            "value" : "Novidades no CotEditor %@"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**CotEditor %@** sürümünde neler yeni"
+            "value" : "CotEditor %@ sürümünde neler yeni"
           }
         },
         "zh-Hans" : {
