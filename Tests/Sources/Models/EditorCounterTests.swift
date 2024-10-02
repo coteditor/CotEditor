@@ -67,7 +67,7 @@ import Testing
     }
     
     
-    @Test func allRequiredInfo() throws {
+    @Test func allRequiredInfo() async throws {
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
@@ -77,23 +77,24 @@ import Testing
         counter.invalidateContent()
         counter.invalidateSelection()
         
-        withKnownIssue("values will be updated asynchronously (This is the issue on the test side.)") {
-            #expect(counter.result.lines.entire == 3)
-            #expect(counter.result.characters.entire == 31)
-            #expect(counter.result.words.entire == 6)
-            
-            #expect(counter.result.characters.selected == 9)
-            #expect(counter.result.lines.selected == 1)
-            #expect(counter.result.words.selected == 2)
-            
-            #expect(counter.result.location == 10)
-            #expect(counter.result.column == 0)
-            #expect(counter.result.line == 2)
-        }
+        // wait for async process
+        try await Task.sleep(for: .seconds(0.5))
+        
+        #expect(counter.result.lines.entire == 3)
+        #expect(counter.result.characters.entire == 31)
+        #expect(counter.result.words.entire == 6)
+        
+        #expect(counter.result.characters.selected == 9)
+        #expect(counter.result.lines.selected == 1)
+        #expect(counter.result.words.selected == 2)
+        
+        #expect(counter.result.location == 10)
+        #expect(counter.result.column == 0)
+        #expect(counter.result.line == 2)
     }
     
     
-    @Test func skipWholeText() throws {
+    @Test func skipWholeText() async throws {
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
@@ -106,19 +107,20 @@ import Testing
         #expect(counter.result.characters.entire == nil)
         #expect(counter.result.words.entire == nil)
         
-        withKnownIssue("values will be updated asynchronously (This is the issue on the test side.)") {
-            #expect(counter.result.lines.selected == 1)
-            #expect(counter.result.characters.selected == 9)
-            #expect(counter.result.words.selected == 2)
-            
-            #expect(counter.result.location == 10)
-            #expect(counter.result.column == 0)
-            #expect(counter.result.line == 2)
-        }
+        // wait for async process
+        try await Task.sleep(for: .seconds(0.5))
+        
+        #expect(counter.result.lines.selected == 1)
+        #expect(counter.result.characters.selected == 9)
+        #expect(counter.result.words.selected == 2)
+        
+        #expect(counter.result.location == 10)
+        #expect(counter.result.column == 0)
+        #expect(counter.result.line == 2)
     }
     
     
-    @Test func crlf() throws {
+    @Test func crlf() async throws {
         
         let source = Source(string: "a\r\nb", selectedRange: NSRange(1..<4))
         
@@ -128,19 +130,20 @@ import Testing
         counter.invalidateContent()
         counter.invalidateSelection()
         
-        withKnownIssue("values will be updated asynchronously (This is the issue on the test side.)") {
-            #expect(counter.result.lines.entire == 2)
-            #expect(counter.result.characters.entire == 3)
-            #expect(counter.result.words.entire == 2)
-            
-            #expect(counter.result.lines.selected == 2)
-            #expect(counter.result.characters.selected == 2)
-            #expect(counter.result.words.selected == 1)
-            
-            #expect(counter.result.location == 1)
-            #expect(counter.result.column == 1)
-            #expect(counter.result.line == 1)
-        }
+        // wait for async process
+        try await Task.sleep(for: .seconds(0.5))
+        
+        #expect(counter.result.lines.entire == 2)
+        #expect(counter.result.characters.entire == 3)
+        #expect(counter.result.words.entire == 2)
+        
+        #expect(counter.result.lines.selected == 2)
+        #expect(counter.result.characters.selected == 2)
+        #expect(counter.result.words.selected == 1)
+        
+        #expect(counter.result.location == 1)
+        #expect(counter.result.column == 1)
+        #expect(counter.result.line == 1)
     }
     
     
