@@ -33,9 +33,9 @@ extension UnicodeNormalizationForm: @retroactive DefaultInitializable {
 }
 
 
-extension CharacterCountOptions.CharacterUnit: DefaultInitializable {
+extension CharacterCountOptions.CharacterUnit: @retroactive DefaultInitializable {
     
-    static let defaultValue: Self = .graphemeCluster
+    public static let defaultValue: Self = .graphemeCluster
 }
 
 

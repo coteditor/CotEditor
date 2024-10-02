@@ -1,5 +1,6 @@
 //
-//  String+Counting.swift
+//  String+AdvancedCounting.swift
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,11 +25,10 @@
 //
 
 import Foundation
-import StringUtils
 
-struct CharacterCountOptions {
+public struct CharacterCountOptions: Sendable {
     
-    enum CharacterUnit: String, Sendable, CaseIterable {
+    public enum CharacterUnit: String, Sendable, CaseIterable {
         
         case graphemeCluster
         case unicodeScalar
@@ -37,16 +37,27 @@ struct CharacterCountOptions {
     }
     
     
-    var unit: CharacterUnit = .graphemeCluster
-    var normalizationForm: UnicodeNormalizationForm?
-    var ignoresNewlines = false
-    var ignoresWhitespaces = false
-    var treatsConsecutiveWhitespaceAsSingle = false
-    var encoding: String.Encoding = .utf8
+    public var unit: CharacterUnit
+    public var normalizationForm: UnicodeNormalizationForm?
+    public var ignoresNewlines: Bool
+    public var ignoresWhitespaces: Bool
+    public var treatsConsecutiveWhitespaceAsSingle: Bool
+    public var encoding: String.Encoding
+    
+    
+    public init(unit: CharacterUnit = .graphemeCluster, normalizationForm: UnicodeNormalizationForm? = nil, ignoresNewlines: Bool = false, ignoresWhitespaces: Bool = false, treatsConsecutiveWhitespaceAsSingle: Bool = false, encoding: String.Encoding = .utf8) {
+        
+        self.unit = unit
+        self.normalizationForm = normalizationForm
+        self.ignoresNewlines = ignoresNewlines
+        self.ignoresWhitespaces = ignoresWhitespaces
+        self.treatsConsecutiveWhitespaceAsSingle = treatsConsecutiveWhitespaceAsSingle
+        self.encoding = encoding
+    }
 }
 
 
-extension String {
+public extension String {
     
     /// Counts string in the way described in the `option`.
     ///

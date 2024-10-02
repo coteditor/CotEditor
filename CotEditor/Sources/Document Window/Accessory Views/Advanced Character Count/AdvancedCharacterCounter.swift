@@ -27,6 +27,7 @@ import AppKit
 import Observation
 import Combine
 import Defaults
+import StringUtils
 
 @MainActor @Observable final class AdvancedCharacterCounter {
     

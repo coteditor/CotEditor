@@ -1,6 +1,6 @@
 //
-//  StringAdvancedCountTests.swift
-//  Tests
+//  AdvancedCountingTests.swift
+//  StringUtilsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,9 +26,9 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import StringUtils
 
-struct StringAdvancedCountTests {
+struct AdvancedCountingTests {
     
     @Test func countCharactersWithOptions() {
         
