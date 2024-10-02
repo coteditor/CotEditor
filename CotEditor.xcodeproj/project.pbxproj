@@ -1,8 +1,6 @@
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
-	classes = {
-	};
 	objectVersion = 77;
 	objects = {
 
@@ -12,8 +10,6 @@
 			buildConfigurationList = 2A3E84801D07296200070A54 /* Build configuration list for PBXAggregateTarget "Update Help Index" */;
 			buildPhases = (
 				2A3E84811D07299E00070A54 /* ShellScript */,
-			);
-			dependencies = (
 			);
 			name = "Update Help Index";
 			productName = "Update Help Index";
@@ -74,8 +70,6 @@
 			buildActionMask = 2147483647;
 			dstPath = bin;
 			dstSubfolderSpec = 12;
-			files = (
-			);
 			name = "Copy Command-Line Tools";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,8 +78,6 @@
 			buildActionMask = 2147483647;
 			dstPath = bin;
 			dstSubfolderSpec = 12;
-			files = (
-			);
 			name = "Copy Command-Line Tools";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,8 +302,6 @@
 			buildPhases = (
 				2A3F18F3203270BE002F1CA7 /* Sources */,
 			);
-			buildRules = (
-			);
 			dependencies = (
 				2ABB27CB2C3823AB00AFCD0B /* PBXTargetDependency */,
 				2AA2C6F9243996EF0017D1EC /* PBXTargetDependency */,
@@ -333,8 +323,6 @@
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
-			);
-			buildRules = (
 			);
 			dependencies = (
 				2AC25E3A2C9321BD000EE905 /* PBXTargetDependency */,
@@ -367,8 +355,6 @@
 				2AC71DDD1BF0BDBC002E1434 /* Resources */,
 				2ABB27CE2C38250A00AFCD0B /* Frameworks */,
 			);
-			buildRules = (
-			);
 			dependencies = (
 				2AB756B52C25BC18005E04C3 /* PBXTargetDependency */,
 				2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */,
@@ -393,8 +379,6 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-			);
-			buildRules = (
 			);
 			dependencies = (
 				2AC25E3E2C9321D1000EE905 /* PBXTargetDependency */,
@@ -536,8 +520,6 @@
 		2AC71DDD1BF0BDBC002E1434 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8D15AC2B0486D014006FF6A4 /* Resources */ = {
@@ -562,12 +544,6 @@
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd Scripts\n./updateHelpindex.sh\n";
@@ -575,16 +551,10 @@
 		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$(SRCROOT)/CotEditor/Resources/Syntaxes",
 			);
 			name = "Build Syntax Map";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(SRCROOT)/CotEditor/Resources/SyntaxMap.json",
 			);
@@ -595,16 +565,10 @@
 		2A53326426799B3B000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$(SRCROOT)/CotEditor/Resources/Syntaxes",
 			);
 			name = "Build Syntax Map";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(SRCROOT)/CotEditor/Resources/SyntaxMap.json",
 			);
@@ -618,29 +582,21 @@
 		2A3F18F3203270BE002F1CA7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2A6F0DA31B5500E100C2D03C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2AC71DDB1BF0BDBC002E1434 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8D15AC300486D014006FF6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
