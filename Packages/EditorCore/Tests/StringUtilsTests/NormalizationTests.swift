@@ -1,6 +1,6 @@
 //
 //  NormalizationTests.swift
-//  UnicodeNormalizationTests
+//  StringUtilsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 //
 
 import Testing
-@testable import UnicodeNormalization
+@testable import StringUtils
 
 struct NormalizationTests {
     

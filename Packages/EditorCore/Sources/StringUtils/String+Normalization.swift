@@ -1,6 +1,6 @@
 //
 //  String+Normalization.swift
-//  UnicodeNormalization
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,6 +25,21 @@
 //
 
 import Foundation
+
+public enum UnicodeNormalizationForm: String, Sendable, CaseIterable {
+    
+    case nfd
+    case nfc
+    case nfkd
+    case nfkc
+    case nfkcCasefold
+    case modifiedNFD
+    case modifiedNFC
+    
+    public static let standardForms: [Self] = [.nfd, .nfc, .nfkd, .nfkc, .nfkcCasefold]
+    public static let modifiedForms: [Self] = [.modifiedNFD, .modifiedNFC]
+}
+
 
 public extension StringProtocol {
     
@@ -53,6 +68,8 @@ public extension StringProtocol {
     }
 }
 
+
+// MARK: -
 
 extension StringProtocol {
     

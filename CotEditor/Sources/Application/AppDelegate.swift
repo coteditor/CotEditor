@@ -33,7 +33,7 @@ import ControlUI
 import Defaults
 import FileEncoding
 import LineEnding
-import UnicodeNormalization
+import StringUtils
 
 extension Logger {
     

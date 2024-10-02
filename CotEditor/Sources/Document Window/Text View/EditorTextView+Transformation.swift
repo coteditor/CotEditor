@@ -24,7 +24,7 @@
 //
 
 import AppKit
-import UnicodeNormalization
+import StringUtils
 
 extension EditorTextView {
     

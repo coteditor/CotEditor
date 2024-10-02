@@ -26,7 +26,6 @@ let package = Package(
             "TextClipping",
             "TextEditing",
             "TextFind",
-            "UnicodeNormalization",
             "ValueRange",
         ]),
         
@@ -46,7 +45,6 @@ let package = Package(
         .library(name: "TextClipping", targets: ["TextClipping"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
         .library(name: "TextFind", targets: ["TextFind"]),
-        .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
     ],
     dependencies: [
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 57, 0)),
@@ -98,9 +96,6 @@ let package = Package(
         
         .target(name: "TextFind", dependencies: ["StringUtils", "ValueRange"]),
         .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
-        
-        .target(name: "UnicodeNormalization"),
-        .testTarget(name: "UnicodeNormalizationTests", dependencies: ["UnicodeNormalization"]),
         
         .target(name: "ValueRange"),
     ]

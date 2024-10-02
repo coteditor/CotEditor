@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import UnicodeNormalization
+import StringUtils
 
 extension UnicodeNormalizationForm {
     

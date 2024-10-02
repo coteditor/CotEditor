@@ -25,7 +25,7 @@
 
 import Foundation
 import Defaults
-import UnicodeNormalization
+import StringUtils
 
 extension DefaultKeys {
     

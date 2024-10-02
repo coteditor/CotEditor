@@ -24,7 +24,7 @@
 //
 
 import Foundation
-import UnicodeNormalization
+import StringUtils
 
 struct CharacterCountOptions {
     

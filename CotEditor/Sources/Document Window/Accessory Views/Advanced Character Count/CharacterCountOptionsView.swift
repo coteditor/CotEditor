@@ -25,7 +25,7 @@
 
 import SwiftUI
 import Defaults
-import UnicodeNormalization
+import StringUtils
 
 extension UnicodeNormalizationForm: @retroactive DefaultInitializable {
 
