@@ -20,6 +20,7 @@ let package = Package(
             "Invisible",
             "LineEnding",
             "LineSort",
+            "SemanticVersioning",
             "StringUtils",
             "Syntax",
             "TextClipping",
@@ -39,6 +40,7 @@ let package = Package(
         .library(name: "Invisible", targets: ["Invisible"]),
         .library(name: "LineEnding", targets: ["LineEnding"]),
         .library(name: "LineSort", targets: ["LineSort"]),
+        .library(name: "SemanticVersioning", targets: ["SemanticVersioning"]),
         .library(name: "StringUtils", targets: ["StringUtils"]),
         .library(name: "Syntax", targets: ["Syntax"]),
         .library(name: "TextClipping", targets: ["TextClipping"]),
@@ -78,6 +80,9 @@ let package = Package(
         
         .target(name: "LineSort", dependencies: ["StringUtils"]),
         .testTarget(name: "LineSortTests", dependencies: ["LineSort"]),
+        
+        .target(name: "SemanticVersioning"),
+        .testTarget(name: "SemanticVersioningTests", dependencies: ["SemanticVersioning"]),
         
         .target(name: "StringUtils"),
         .testTarget(name: "StringUtilsTests", dependencies: ["StringUtils"]),
