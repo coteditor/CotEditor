@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import SemanticVersioning
 
 extension Bundle {
     
@@ -31,6 +32,12 @@ extension Bundle {
     final var bundleName: String {
         
         self.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+    }
+    
+    
+    final var version: Version? {
+        
+        Version(self.shortVersion)
     }
     
     
@@ -59,13 +66,5 @@ extension Bundle {
     final var helpBookName: String? {
         
         self.object(forInfoDictionaryKey: "CFBundleHelpBookName") as? String
-    }
-    
-    
-    /// Is the running app a pre-release version?
-    final var isPrerelease: Bool {
-        
-        // -> Pre-release versions contain non-digit letter.
-        self.shortVersion.contains(/[^0-9.]/)
     }
 }

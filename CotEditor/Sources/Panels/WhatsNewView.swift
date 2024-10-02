@@ -26,23 +26,27 @@
 import SwiftUI
 import AppKit
 import ControlUI
+import SemanticVersioning
 
 struct WhatsNewView: View {
     
     @Environment(\.dismissWindow) private var dismiss
+    
+    @State private var versionString: String = "\(NewFeature.version.major).\(NewFeature.version.minor)"
+    @State private var isPrerelease: Bool = false
     
     
     var body: some View {
         
         VStack(spacing: 16) {
             HStack(alignment: .firstTextBaseline) {
-                Text("What’s New in CotEditor \(NewFeature.version)", tableName: "WhatsNew", comment: "%@ is version number")
+                Text("What’s New in CotEditor \(self.versionString)", tableName: "WhatsNew", comment: "%@ is version number")
                     .font(.title)
                     .fontWeight(.medium)
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityHeading(.h1)
                 
-                if Bundle.main.isPrerelease {
+                if self.isPrerelease {
                     Text("Beta", tableName: "WhatsNew", comment: "label for when the app is a prerelease version")
                         .font(.system(size: 20, weight: .regular, design: .rounded))
                         .kerning(0.5)
@@ -98,6 +102,11 @@ struct WhatsNewView: View {
             .keyboardShortcut(.cancelAction)
             .buttonStyle(.borderedProminent)
         }
+        .onAppear {
+            if let version = Bundle.main.version, version < NewFeature.version {
+                self.isPrerelease = true
+            }
+        }
         .padding()
         .scenePadding()
         .frame(width: 580)
@@ -114,7 +123,7 @@ struct WhatsNewView: View {
 
 private enum NewFeature: CaseIterable {
     
-    static let version = "5.0"
+    static let version = Version(5, 0, 0)
     
     case folderNavigation
     case macOSSupport

@@ -223,7 +223,7 @@ private struct UpdaterView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Toggle(String(localized: "Update to pre-releases when available", table: "GeneralSettings"), isOn: $checksUpdatesForBeta)
                     
-                    if Bundle.main.isPrerelease {
+                    if Bundle.main.version!.isPrerelease {
                         Text("Regardless of this setting, new pre-releases are always included while using a pre-release.", tableName: "GeneralSettings")
                             .foregroundStyle(.secondary)
                             .controlSize(.small)
