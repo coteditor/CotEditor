@@ -93,8 +93,6 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
         
         self.document = document
         self.documentSpecifier = document.objectSpecifier
-        
-        super.init()
     }
     
     
