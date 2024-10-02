@@ -1,5 +1,5 @@
 //
-//  EncodingDetectionTests.swift
+//  GeometryTests.swift
 //  Tests
 //
 //  CotEditor
