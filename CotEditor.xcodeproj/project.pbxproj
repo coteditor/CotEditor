@@ -254,17 +254,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		19C28FB0FE9D524F11CA2CBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8D15AC370486D014006FF6A4 /* CotEditor.app */,
-				2A6F0E071B5500E100C2D03C /* CotEditor.app */,
-				2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */,
-				2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2A149DC91902BC3900A9D6EF /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
