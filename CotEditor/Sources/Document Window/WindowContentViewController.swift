@@ -54,6 +54,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     init(document: DataDocument?, directoryDocument: DirectoryDocument?) {
         
+        assert(document != nil || directoryDocument != nil)
+        
         self.document = document
         self.directoryDocument = directoryDocument
         

@@ -56,9 +56,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     // MARK: Private Properties
     
     private var directoryDocument: DirectoryDocument?
-    private var hasDirectoryBrowser: Bool  { self.directoryDocument != nil }
-    private var windowAutosaveName: NSWindow.FrameAutosaveName
+    private var isDirectoryDocument: Bool
     
+    private var windowAutosaveName: NSWindow.FrameAutosaveName
     private var needsManualOnAppear = false
     
     private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
@@ -84,20 +84,23 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     required init(document: DataDocument? = nil, directoryDocument: DirectoryDocument? = nil) {
         
+        assert(document != nil || directoryDocument != nil)
+        
         self.fileDocument = document
         self.directoryDocument = directoryDocument
+        self.isDirectoryDocument = (directoryDocument != nil)
         
         // store own autosave name
         // -> `NSWindowController.windowFrameAutosaveName` doesn't work
         //    if multiple window instances have the same name (2024-10, macOS 15).
-        self.windowAutosaveName = (directoryDocument != nil) ? "DirectoryDocument": "Document"
+        self.windowAutosaveName = self.isDirectoryDocument ? "DirectoryDocument": "Document"
         
         let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
         window.styleMask.update(with: .fullSizeContentView)
         window.animationBehavior = .documentWindow
         window.setFrameAutosaveName(self.windowAutosaveName)
         
-        if directoryDocument != nil {
+        if self.isDirectoryDocument {
             window.tabbingMode = .disallowed
         }
         
@@ -107,7 +110,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         if width > 0 || height > 0 {
             let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
                                    height: height > window.minSize.height ? height : window.frame.height)
-            window.setContentSize(frameSize)
+            window.setFrame(NSRect(origin: window.frame.origin, size: frameSize), display: false)
         }
         
         super.init(window: window)
@@ -117,7 +120,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         window.delegate = self
         
         // setup toolbar
-        let toolbar = NSToolbar(identifier: self.hasDirectoryBrowser ? .directoryDocument : .document)
+        let toolbar = NSToolbar(identifier: self.isDirectoryDocument ? .directoryDocument : .document)
         toolbar.displayMode = .iconOnly
         toolbar.allowsUserCustomization = true
         toolbar.autosavesConfiguration = true
@@ -188,7 +191,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         super.synchronizeWindowTitleWithDocumentName()
         
-        if self.directoryDocument != nil {
+        if self.isDirectoryDocument {
             // display current document title as window subtitle
             self.window?.subtitle = self.fileDocument?.fileURL?.lastPathComponent
                 ?? self.fileDocument?.displayName
@@ -265,7 +268,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         }
         
         self.fileDocumentNameObserver = nil
-        if self.directoryDocument != nil {
+        if self.isDirectoryDocument {
             self.fileDocumentNameObserver = document?.publisher(for: \.fileURL, options: .initial)
                 .sink { [weak self] _ in self?.synchronizeWindowTitleWithDocumentName() }
         }
@@ -447,7 +450,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     private var directoryIdentifiers: [NSToolbarItem.Identifier] {
         
-        self.hasDirectoryBrowser ? [
+        self.isDirectoryDocument ? [
             .toggleSidebar,
             .sidebarTrackingSeparator,
         ] : []
