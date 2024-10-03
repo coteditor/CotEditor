@@ -129,7 +129,7 @@ Please follow the style of the existing codes in CotEditor.
 - Add `final` to classes and extension methods by default.
 - Insert a blank line after a class/function statement line.
     ```Swift
-    /// say moof.
+    /// Says moof.
     func moof() {
         
         print("moof")
