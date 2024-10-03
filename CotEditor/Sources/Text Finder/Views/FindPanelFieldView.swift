@@ -332,3 +332,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         textView.enclosingScrollView?.contentView.contentInsets[keyPath: leadingKeyPath] = textField.frame.width
     }
 }
+
+
+private extension NSScroller {
+    
+    final var thickness: CGFloat {
+        
+        Self.scrollerWidth(for: self.controlSize, scrollerStyle: self.scrollerStyle)
+    }
+}
