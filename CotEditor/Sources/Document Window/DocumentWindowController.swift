@@ -101,7 +101,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         if width > 0 || height > 0 {
             let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
                                    height: height > window.minSize.height ? height : window.frame.height)
-            window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
+            window.setContentSize(frameSize)
         }
         
         super.init(window: window)
@@ -136,8 +136,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .map { value in
                 switch value {
                     case .default: nil
-                    case .light:   NSAppearance(named: .aqua)
-                    case .dark:    NSAppearance(named: .darkAqua)
+                    case .light: NSAppearance(named: .aqua)
+                    case .dark: NSAppearance(named: .darkAqua)
                 }
             }
             .assign(to: \.appearance, on: window)
