@@ -3,6 +3,10 @@
 5.0.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that document window size was not properly saved.
+
 
 
 5.0.2 (680)
