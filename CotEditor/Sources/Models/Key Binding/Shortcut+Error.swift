@@ -42,23 +42,19 @@ extension Shortcut {
             switch self {
                 case .singleType:
                     String(localized: "Shortcut.CustomizationError.singleType.description",
-                           defaultValue: "Single type is invalid for a shortcut.",
-                           table: "Shortcut")
+                           defaultValue: "Single type is invalid for a shortcut.")
                     
                 case .alreadyTaken(let shortcut, let name):
                     String(localized: "Shortcut.CustomizationError.alreadyTaken.description",
-                           defaultValue: "“\(shortcut.symbol)” is already taken by the “\(name)” command.",
-                           table: "Shortcut")
+                           defaultValue: "“\(shortcut.symbol)” is already taken by the “\(name)” command.")
                     
                 case .shiftOnlyModifier:
                     String(localized: "Shortcut.CustomizationError.shiftOnlyModifier.description",
-                           defaultValue: "The Shift key can be used only with another modifier key.",
-                           table: "Shortcut")
+                           defaultValue: "The Shift key can be used only with another modifier key.")
                     
                 case .unsupported(let shortcut):
                     String(localized: "Shortcut.CustomizationError.unsupported.description",
-                           defaultValue: "The combination “\(shortcut.symbol)” is not supported for the shortcut customization.",
-                           table: "Shortcut")
+                           defaultValue: "The combination “\(shortcut.symbol)” is not supported for the shortcut customization.")
             }
         }
     }

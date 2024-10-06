@@ -1,5 +1,6 @@
 //
-//  UnicodeNormalizationForm.swift
+//  UnicodeNormalizationForm+Localizable.swift
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,9 +24,7 @@
 //  limitations under the License.
 //
 
-import StringUtils
-
-extension UnicodeNormalizationForm {
+public extension UnicodeNormalizationForm {
     
     /// The localized name.
     var localizedName: String {
@@ -34,31 +33,31 @@ extension UnicodeNormalizationForm {
             case .nfd:
                 String(localized: "UnicodeNormalization.nfd.label",
                        defaultValue: "NFD",
-                       table: "UnicodeNormalization")
+                       bundle: .module)
             case .nfc:
                 String(localized: "UnicodeNormalization.nfc.label",
                        defaultValue: "NFC",
-                       table: "UnicodeNormalization")
+                       bundle: .module)
             case .nfkd:
                 String(localized: "UnicodeNormalization.nfkd.label",
                        defaultValue: "NFKD",
-                       table: "UnicodeNormalization")
+                       bundle: .module)
             case .nfkc:
                 String(localized: "UnicodeNormalization.nfkc.label",
                        defaultValue: "NFKC",
-                       table: "UnicodeNormalization")
+                       bundle: .module)
             case .nfkcCasefold:
                 String(localized: "UnicodeNormalization.nfkcCasefold.label",
                        defaultValue: "NFKC Casefold",
-                       table: "UnicodeNormalization")
+                       bundle: .module)
             case .modifiedNFD:
                 String(localized: "UnicodeNormalization.modifiedNFD.label",
                        defaultValue: "Modified NFD",
-                       table: "UnicodeNormalization")
+                       bundle: .module)
             case .modifiedNFC:
                 String(localized: "UnicodeNormalization.modifiedNFC.label",
                        defaultValue: "Modified NFC",
-                       table: "UnicodeNormalization")
+                       bundle: .module)
         }
     }
     
@@ -70,45 +69,38 @@ extension UnicodeNormalizationForm {
             case .nfd:
                 String(localized: "UnicodeNormalization.nfd.description",
                        defaultValue: "Canonical Decomposition",
-                       table: "UnicodeNormalization",
+                       bundle: .module,
                        comment: "description for NFD")
             case .nfc:
                 String(localized: "UnicodeNormalization.nfc.description",
                        defaultValue: "Canonical Decomposition, followed by Canonical Composition",
-                       table: "UnicodeNormalization",
+                       bundle: .module,
                        comment: "description for NFC")
             case .nfkd:
                 String(localized: "UnicodeNormalization.nfkd.description",
                        defaultValue: "Compatibility Decomposition",
-                       table: "UnicodeNormalization",
+                       bundle: .module,
                        comment: "description for NFKD")
             case .nfkc:
                 String(localized: "UnicodeNormalization.nfkc.description",
                        defaultValue: "Compatibility Decomposition, followed by Canonical Composition",
-                       table: "UnicodeNormalization",
+                       bundle: .module,
                        comment: "description for NFKC")
             case .nfkcCasefold:
                 String(localized: "UnicodeNormalization.nfkcCasefold.description",
                        defaultValue: "Applying NFKC, case folding, and removal of default-ignorable code points",
-                       table: "UnicodeNormalization",
+                       bundle: .module,
                        comment: "description for NFKD Casefold")
             case .modifiedNFD:
                 String(localized: "UnicodeNormalization.modifiedNFD.description",
                        defaultValue: "Unofficial NFD-based normalization form used in HFS+",
-                       table: "UnicodeNormalization",
+                       bundle: .module,
                        comment: "description for Modified NFD")
             case .modifiedNFC:
                 String(localized: "UnicodeNormalization.modifiedNFC.description",
                        defaultValue: "Unofficial NFC-based normalization form corresponding to Modified NFD",
-                       table: "UnicodeNormalization",
+                       bundle: .module,
                        comment: "description for Modified NFC")
         }
-    }
-    
-    
-    /// Unique identifier for menu item.
-    var tag: Int {
-        
-        Self.allCases.firstIndex(of: self)!
     }
 }

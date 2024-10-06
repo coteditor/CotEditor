@@ -345,6 +345,24 @@ private extension PatternSortView.SortKey {
 }
 
 
+extension SortPatternError: @retroactive LocalizedError {
+    
+    public var errorDescription: String? {
+        
+        switch self {
+            case .emptyPattern:
+                String(localized: "Empty pattern",
+                       table: "PatternSort",
+                       comment: "error message (“pattern” is a regular expression pattern)")
+            case .invalidRegularExpressionPattern:
+                String(localized: "Invalid pattern",
+                       table: "PatternSort",
+                       comment: "error message (“pattern” is a regular expression pattern)")
+        }
+    }
+}
+
+
 
 // MARK: - Preview
 

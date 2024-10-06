@@ -131,7 +131,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: $syntax) {
-                    Text(String(localized: "SyntaxName.none", defaultValue: "None", table: "Syntax"))
+                    Text(String(localized: "SyntaxName.none", defaultValue: "None"))
                         .tag(SyntaxName.none)
                     
                     Divider()

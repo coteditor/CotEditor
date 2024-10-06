@@ -1,5 +1,6 @@
 //
 //  LineEnding+Localization.swift
+//  LineEnding
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,9 +24,7 @@
 //  limitations under the License.
 //
 
-import LineEnding
-
-extension LineEnding {
+public extension LineEnding {
     
     var description: String {
         
@@ -33,28 +32,29 @@ extension LineEnding {
             case .lf:
                 String(localized: "LineEnding.lf.description",
                        defaultValue: "macOS / Unix",
-                       table: "LineEnding")
+                       bundle: .module)
             case .cr:
                 String(localized: "LineEnding.cr.description",
                        defaultValue: "Classic Mac OS",
-                       table: "LineEnding")
+                       bundle: .module)
             case .crlf:
                 String(localized: "LineEnding.crlf.description",
-                       defaultValue: "Windows", table: "LineEnding")
+                       defaultValue: "Windows",
+                       bundle: .module)
             case .nel:
                 String(localized: "LineEnding.nel.description",
                        defaultValue: "Unix Next Line",
-                       table: "LineEnding",
+                       bundle: .module,
                        comment: "Since this is a technical term, it should be left as-is.")
             case .lineSeparator:
                 String(localized: "LineEnding.lineSeparator.description",
                        defaultValue: "Unix Line Separator",
-                       table: "LineEnding",
+                       bundle: .module,
                        comment: "Since this is a technical term, it should be left as-is.")
             case .paragraphSeparator:
                 String(localized: "LineEnding.paragraphSeparator.description",
                        defaultValue: "Unix Paragraph Separator",
-                       table: "LineEnding",
+                       bundle: .module,
                        comment: "Since this is a technical term, it should be left as-is.")
         }
     }
