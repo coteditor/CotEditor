@@ -6,6 +6,7 @@
 ### Improvements
 
 - Expand folder item by double-clicking a folder row in the file browser.
+- Directly open plist files from the file browser instead of previewing.
 
 
 ### Fixes

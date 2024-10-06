@@ -550,6 +550,15 @@ final class DirectoryDocument: NSDocument {
         
         if type.conforms(to: .text) { return true }
         
+        if type.conforms(to: .propertyList) {
+            guard let data = try? Data(contentsOf: url) else { return true }
+            
+            var format: PropertyListSerialization.PropertyListFormat = .xml
+            _ = try? PropertyListSerialization.propertyList(from: data, format: &format)
+            
+            return format != .binary
+        }
+        
         if type.conforms(to: .aliasFile) { return false }
         
         // check the default app for the file is CotEditor
