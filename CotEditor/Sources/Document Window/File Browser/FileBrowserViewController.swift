@@ -246,9 +246,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         // store expanded items
         if let rootURL = self.document.fileURL {
-            let paths = (0..<self.outlineView.numberOfRows)
-                .compactMap { self.outlineView.item(atRow: $0) }
-                .filter { self.outlineView.isItemExpanded($0) }
+            let paths = self.outlineView.expandedItems
                 .compactMap { $0 as? FileNode }
                 .map { $0.fileURL.path(relativeTo: rootURL) }
             
@@ -935,7 +933,7 @@ final class FileBrowserTableCellView: NSTableCellView {
     }
     
     
-    /// Setup subviews
+    /// Sets up subviews.
     private func setupSubviews() {
         
         let imageView = NSImageView()
@@ -987,5 +985,17 @@ private extension FileNode.Kind {
     var image: NSImage {
         
         NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)!
+    }
+}
+
+
+private extension NSOutlineView {
+    
+    /// Items of which row is expanded.
+    var expandedItems: [Any] {
+        
+        (0..<self.numberOfRows)
+            .compactMap(self.item(atRow:))
+            .filter(self.isItemExpanded)
     }
 }
