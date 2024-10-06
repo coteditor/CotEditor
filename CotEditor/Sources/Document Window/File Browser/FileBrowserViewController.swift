@@ -88,6 +88,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         outlineView.headerView = nil
         outlineView.addTableColumn(NSTableColumn())
         outlineView.setAccessibilityLabel(String(localized: "File Browser", table: "Document", comment: "accessibility label"))
+        outlineView.target = self
+        outlineView.doubleAction = #selector(outlineViewDoubleClicked)
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
@@ -512,6 +514,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @IBAction func toggleHiddenFileVisibility(_ sender: Any?) {
         
         UserDefaults.standard[.fileBrowserShowsHiddenFiles].toggle()
+    }
+    
+    
+    @objc private func outlineViewDoubleClicked(_ outlineView: NSOutlineView) {
+        
+        guard let item = outlineView.item(atRow: outlineView.clickedRow) else { return }
+        
+        if outlineView.isItemExpanded(item) {
+            outlineView.animator().collapseItem(item)
+        } else {
+            outlineView.animator().expandItem(item)
+        }
     }
     
     

@@ -3,6 +3,11 @@
 5.0.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Expand folder item by double-clicking a folder row in the file browser.
+
+
 ### Fixes
 
 - Fix an issue that document window size was not properly saved.
