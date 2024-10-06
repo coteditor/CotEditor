@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23090" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23090"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -40,9 +40,9 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin" customClass="FormPopUpButton" customModule="ControlUI">
                                         <rect key="frame" x="286" y="281" width="133" height="25"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" title="Black and White" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                        <popUpButtonCell key="cell" type="roundTextured" title="Black and White" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
                                             <menu key="menu" autoenablesItems="NO" id="e9h-Of-563">
@@ -113,9 +113,9 @@
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="printsInvisibles" id="0wL-g6-9Og"/>
                                         </connections>
                                     </switch>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha" customClass="FormPopUpButton" customModule="ControlUI">
                                         <rect key="frame" x="251" y="98" width="85" height="25"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
                                             <menu key="menu" id="3uu-24-iga">
@@ -181,9 +181,9 @@
                                             </binding>
                                         </connections>
                                     </segmentedControl>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW" customClass="FormPopUpButton" customModule="ControlUI">
                                         <rect key="frame" x="251" y="68" width="85" height="25"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
                                             <menu key="menu" id="Bk3-uv-jzy">
@@ -223,9 +223,9 @@
                                             <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="fSX-zo-exX"/>
                                         </connections>
                                     </segmentedControl>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM" customClass="FormPopUpButton" customModule="ControlUI">
                                         <rect key="frame" x="251" y="27" width="85" height="25"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
                                             <menu key="menu" id="TfU-Pz-bEH">
@@ -239,9 +239,9 @@
                                             <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="ceA-At-ocE"/>
                                         </connections>
                                     </popUpButton>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O" customClass="FormPopUpButton" customModule="ControlUI">
                                         <rect key="frame" x="251" y="-3" width="85" height="25"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="VyN-kq-VID" id="mh2-B1-LxR" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                        <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="VyN-kq-VID" id="mh2-B1-LxR" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
                                             <menu key="menu" id="fhH-st-yT7">
@@ -291,7 +291,7 @@
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="27f-Ln-A2D">
                                         <rect key="frame" x="0.0" y="275" width="416" height="5"/>
                                     </box>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pEn-Qn-GtM" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pEn-Qn-GtM" customClass="NumberTextField" customModule="ControlUI">
                                         <rect key="frame" x="340" y="323" width="40" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="pfn-ZI-xFt"/>

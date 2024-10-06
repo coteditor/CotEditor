@@ -25,26 +25,26 @@
 
 import AppKit
 
-final class FormPopUpButton: NSPopUpButton {
+public final class FormPopUpButton: NSPopUpButton {
     
-    @Invalidating(.display) private(set) var isHovered = false
+    @Invalidating(.display) public private(set) var isHovered = false
     
     
-    override static var cellClass: AnyClass? {
+    public override static var cellClass: AnyClass? {
         
         get { FormPopUpButtonCell.self }
         set { _ = newValue }
     }
     
     
-    override var intrinsicContentSize: NSSize {
+    public override var intrinsicContentSize: NSSize {
         
         NSSize(width: self.attributedTitle.size().width + 32,
                height: super.intrinsicContentSize.height)
     }
     
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         
         super.awakeFromNib()
         
@@ -54,7 +54,7 @@ final class FormPopUpButton: NSPopUpButton {
     }
     
     
-    override func mouseEntered(with event: NSEvent) {
+    public override func mouseEntered(with event: NSEvent) {
         
         super.mouseEntered(with: event)
         
@@ -62,7 +62,7 @@ final class FormPopUpButton: NSPopUpButton {
     }
     
     
-    override func mouseExited(with event: NSEvent) {
+    public override func mouseExited(with event: NSEvent) {
         
         super.mouseExited(with: event)
         
@@ -72,9 +72,9 @@ final class FormPopUpButton: NSPopUpButton {
 
 
 
-final class FormPopUpButtonCell: NSPopUpButtonCell {
+public final class FormPopUpButtonCell: NSPopUpButtonCell {
     
-    override func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
+    public override func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         if self.isEnabled, (controlView as? FormPopUpButton)?.isHovered == true {
             return super.drawBorderAndBackground(withFrame: cellFrame, in: controlView)
@@ -86,7 +86,7 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
             : cellFrame.maxX - width - 6
         let rect = NSRect(x: x, y: cellFrame.minY + 3,
                           width: width, height: cellFrame.height - 9)
-        let isDark = controlView.effectiveAppearance.isDark
+        let isDark = controlView.effectiveAppearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
         let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
         
         // draw capsule
@@ -118,7 +118,7 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
         }
         
         // draw chevron
-        let chevron: NSImage = .chevronUpChevronDownNarrow
+        let chevron = NSImage(resource: .chevronUpChevronDownNarrow)
         let chevronColor: NSColor = switch (isHighContrast, self.isEnabled) {
             case (false, true): .controlTextColor
             case (false, false): .disabledControlTextColor

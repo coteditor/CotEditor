@@ -25,9 +25,9 @@
 
 import AppKit
 
-final class NumberTextField: NSTextField {
+public final class NumberTextField: NSTextField {
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         
         super.awakeFromNib()
         

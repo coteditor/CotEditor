@@ -23,7 +23,7 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 57, 0)),
     ],
     targets: [
-        .target(name: "ControlUI"),
+        .target(name: "ControlUI", resources: [.process("Assets.xcassets")]),
         
         .target(name: "RegexHighlighting", dependencies: ["EditorCore"]),
         .testTarget(name: "RegexHighlightingTests", dependencies: ["RegexHighlighting"]),
