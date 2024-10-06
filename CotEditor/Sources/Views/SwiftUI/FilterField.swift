@@ -44,9 +44,8 @@ struct FilterField: NSViewRepresentable {
     func makeNSView(context: Context) -> NSSearchField {
         
         let searchField = InnerFilterField()
-        searchField.delegate = context.coordinator
-        searchField.placeholderString = String(localized: "Filter", table: "FilterField", comment: "placeholder for filter field")
-        searchField.sendsSearchStringImmediately = true
+        searchField.target = context.coordinator
+        searchField.action = #selector(Coordinator.didChangeSearchString)
         searchField.recentsAutosaveName = self.autosaveName
 
         return searchField
@@ -77,14 +76,20 @@ struct FilterField: NSViewRepresentable {
     
     
     
-    final class Coordinator: NSObject, NSSearchFieldDelegate {
+    final class Coordinator: NSObject {
         
-        @Binding fileprivate var text: String
+        @Binding private var text: String
         
         
         init(text: Binding<String>) {
             
             self._text = text
+        }
+        
+        
+        @MainActor @objc func didChangeSearchString(_ sender: NSSearchField) {
+            
+            self.text = sender.stringValue
         }
     }
 }
@@ -102,7 +107,6 @@ private final class InnerFilterField: NSSearchField {
         .tinted(with: .controlAccentColor)
     
     
-    
     // MARK: Lifecycle
     
     required init() {
@@ -112,13 +116,16 @@ private final class InnerFilterField: NSSearchField {
         self.searchButtonCell?.image = self.image
         
         // workaround the cancel button color is .labelColor (2022-09, macOS 13)
-        if let cancelButtonCell = (self.cell as? NSSearchFieldCell)?.cancelButtonCell {
+        if let cancelButtonCell = self.cancelButtonCell {
             cancelButtonCell.image = cancelButtonCell.image?
                 .tinted(with: .secondaryLabelColor)
         }
         
+        self.sendsSearchStringImmediately = true
+        
         self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         self.alignment = .natural
+        self.placeholderString = String(localized: "Filter", table: "FilterField", comment: "placeholder for filter field")
     }
     
     
@@ -126,7 +133,6 @@ private final class InnerFilterField: NSSearchField {
         
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     // MARK: Text Field Methods
@@ -154,24 +160,7 @@ private final class InnerFilterField: NSSearchField {
     }
     
     
-    override func sendAction(_ action: Selector?, to target: Any?) -> Bool {
-        
-        // invoked when the search string was set even by selecting the search menu
-        (self.delegate as? FilterField.Coordinator)?.text = self.stringValue
-        
-        return super.sendAction(action, to: target)
-    }
-    
-    
-    
     // MARK: Private Methods
-    
-    /// The button cell used to display the search-button image.
-    private var searchButtonCell: NSButtonCell? {
-        
-        (self.cell as? NSSearchFieldCell)?.searchButtonCell
-    }
-    
     
     /// Sets up the search menu.
     private func invalidateSearchMenu() {
@@ -190,6 +179,23 @@ private final class InnerFilterField: NSSearchField {
             .tag = NSSearchField.noRecentsMenuItemTag
         
         self.searchMenuTemplate = searchMenu
+    }
+}
+
+
+private extension NSSearchField {
+    
+    /// The button cell used to display the search button image.
+    var searchButtonCell: NSButtonCell? {
+        
+        (self.cell as? NSSearchFieldCell)?.searchButtonCell
+    }
+    
+    
+    /// The button cell used to display the cancel button image.
+    var cancelButtonCell: NSButtonCell? {
+        
+        (self.cell as? NSSearchFieldCell)?.cancelButtonCell
     }
 }
 
