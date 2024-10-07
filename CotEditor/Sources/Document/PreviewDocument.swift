@@ -30,6 +30,9 @@ import QuickLookUI
     
     // MARK: Public Properties
     
+    private(set) var isAlias = false
+    private(set) var isFolderAlias = false
+    
     private(set) var previewSize: CGSize?
     
     
@@ -45,11 +48,19 @@ import QuickLookUI
         
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
         let fileAttributes = FileAttributes(dictionary: attributes)
+        let isAlias = try url.resourceValues(forKeys: [.isAliasFileKey]).isAliasFile == true
+        let isFolderAlias = if isAlias {
+            try URL(resolvingAliasFileAt: url).resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
+        } else {
+            false
+        }
         
         let previewSize = NSImageRep(contentsOf: url)?.size
         
         Task { @MainActor in
             self.fileAttributes = fileAttributes
+            self.isAlias = isAlias
+            self.isFolderAlias = isFolderAlias
             self.previewSize = previewSize
         }
     }

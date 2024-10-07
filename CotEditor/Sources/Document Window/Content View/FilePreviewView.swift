@@ -42,8 +42,14 @@ struct FilePreviewView: View {
                 .foregroundStyle(.secondary)
             
             HStack(spacing: 12) {
-                Button(String(localized: "Open with External Editor", table: "Document")) {
-                    NSWorkspace.shared.open(self.item.previewItemURL)
+                if self.item.isFolderAlias {
+                    Button(String(localized: "Show in Finder", table: "Document")) {
+                        NSWorkspace.shared.activateFileViewerSelecting([self.item.previewItemURL])
+                    }
+                } else {
+                    Button(String(localized: "Open with External Editor", table: "Document")) {
+                        NSWorkspace.shared.open(self.item.previewItemURL)
+                    }
                 }
                 
                 Button(String(localized: "Open as Plain Text", table: "Document")) {
