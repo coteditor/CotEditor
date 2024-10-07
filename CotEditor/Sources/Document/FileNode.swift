@@ -60,7 +60,7 @@ final class FileNode {
         self.kind = Kind(filename: self.name, isDirectory: isDirectory)
         self.isHidden = fileURL.lastPathComponent.starts(with: ".")
         self.isWritable = isWritable
-        self.isAlias = false
+        self.isAlias = isAlias
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
     }
@@ -121,9 +121,11 @@ final class FileNode {
     var resolvedFileURL: URL {
         
         get throws {
-            guard self.isAlias else { return self.fileURL }
-            
-            return try URL(resolvingAliasFileAt: self.fileURL)
+            if self.isAlias {
+                try URL(resolvingAliasFileAt: self.fileURL)
+            } else {
+                self.fileURL
+            }
         }
     }
     
