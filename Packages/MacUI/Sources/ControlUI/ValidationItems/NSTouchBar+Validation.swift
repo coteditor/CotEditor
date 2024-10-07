@@ -1,5 +1,6 @@
 //
 //  NSTouchBar+Validation.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,14 +26,14 @@
 
 import AppKit
 
-protocol TouchBarItemValidations: AnyObject {
+public protocol TouchBarItemValidations: AnyObject {
     
     @MainActor func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool
 }
 
 
 
-extension NSTouchBar {
+public extension NSTouchBar {
     
     /// Flag to enable automatic touch bar item validation
     static var isAutomaticValidationEnabled = false {
