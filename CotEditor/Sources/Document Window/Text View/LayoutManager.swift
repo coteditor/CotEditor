@@ -35,7 +35,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     
     // InvisibleDrawing
     var showsControls = false
-    var invisiblesDefaultsObserver: AnyCancellable?
+    var shownInvisibles: Set<Invisible>  { UserDefaults.standard.showsInvisible }
     
     // ValidationIgnorable
     var ignoresDisplayValidation = false
@@ -86,6 +86,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     private var boundingBoxForControlGlyph: NSRect = .zero
     
     private var indentGuideObserver: AnyCancellable?
+    private var invisiblesDefaultsObserver: AnyCancellable?
     
     
     
@@ -97,6 +98,8 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         
         super.init()
         
+        self.delegate = self
+        
         self.allowsNonContiguousLayout = true
         
         self.indentGuideObserver = UserDefaults.standard.publisher(for: .showIndentGuides)
@@ -105,7 +108,10 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
                 self.invalidateDisplay(forCharacterRange: self.attributedString().range)
             }
         
-        self.delegate = self
+        let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
+            .map { UserDefaults.standard.publisher(for: $0) }
+        self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
+            .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }
     }
     
     
@@ -145,7 +151,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         }
         
         if self.showsInvisibles {
-            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset(for: .horizontal), types: UserDefaults.standard.showsInvisible)
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset(for: .horizontal))
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)

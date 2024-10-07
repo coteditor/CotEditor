@@ -36,7 +36,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     let textFont: NSFont = .systemFont(ofSize: 0)
     private(set) var showsInvisibles: Bool = false  { didSet { self.invalidateInvisibleDisplay() } }
     var showsControls: Bool = false
-    var invisiblesDefaultsObserver: AnyCancellable?
+    var shownInvisibles: Set<Invisible>  { UserDefaults.standard.showsInvisible }
     
     
     // MARK: Private Properties
@@ -45,6 +45,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     private lazy var baselineOffset = self.defaultBaselineOffset(for: self.textFont)
     private lazy var boundingBoxForControlGlyph = self.boundingBoxForControlGlyph(for: self.textFont)
     private var invisibleVisibilityObserver: AnyCancellable?
+    private var invisiblesDefaultsObserver: AnyCancellable?
     
     
     
@@ -58,6 +59,11 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         
         self.invisibleVisibilityObserver = UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
             .sink { [weak self] in self?.showsInvisibles = $0 }
+        
+        let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
+            .map { UserDefaults.standard.publisher(for: $0) }
+        self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
+            .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }
     }
     
     
@@ -73,7 +79,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if self.showsInvisibles {
-            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, types: UserDefaults.standard.showsInvisible)
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)

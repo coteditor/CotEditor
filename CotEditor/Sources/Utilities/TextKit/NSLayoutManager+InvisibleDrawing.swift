@@ -24,21 +24,19 @@
 //
 
 import AppKit
-import Combine
-import Defaults
 import Invisible
 
 protocol InvisibleDrawing: NSLayoutManager {
     
     var invisiblesColor: NSColor { get }
     var textFont: NSFont { get }
+    
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
-    var invisiblesDefaultsObserver: AnyCancellable? { get set }
+    var shownInvisibles: Set<Invisible> { get }
     
     func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool
 }
-
 
 
 extension InvisibleDrawing {
@@ -49,8 +47,9 @@ extension InvisibleDrawing {
     ///   - glyphsToShow: The range of glyphs that are drawn.
     ///   - origin: The position of the text container in the coordinate system of the currently focused view.
     ///   - baselineOffset: The baseline offset to draw glyphs.
-    ///   - types: The invisible types to draw.
-    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, types: Set<Invisible>) {
+    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat) {
+        
+        let types = self.shownInvisibles
         
         guard
             self.showsInvisibles,
@@ -142,11 +141,9 @@ extension InvisibleDrawing {
     }
     
     
-    /// Invalidates invisible character drawing.
+    /// Invalidates invisible character drawing for when a user setting was changed.
     ///
-    /// - Precondition:
-    ///   - The visibility of whole invisible characters is set by the implementer through `showsInvisibles` property.
-    ///   - The visibility of each invisible type is obtained directly from UserDefaults settings.
+    /// - Precondition: The user settings are set by the implementer through `showsInvisibles` and `shownInvisibles` properties.
     func invalidateInvisibleDisplay() {
         
         // invalidate normal invisible characters visibility
@@ -154,21 +151,10 @@ extension InvisibleDrawing {
         self.invalidateDisplay(forCharacterRange: wholeRange)
         
         // invalidate control characters visibility if needed
-        let showsControls = self.showsInvisibles && UserDefaults.standard[.showInvisibleControl]
+        let showsControls = self.showsInvisibles && self.shownInvisibles.contains(.otherControl)
         if showsControls != self.showsControls {
             self.showsControls = showsControls
             self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
-        }
-        
-        // update UserDefaults observation if needed
-        if self.showsInvisibles, self.invisiblesDefaultsObserver == nil {
-            let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
-                .map { UserDefaults.standard.publisher(for: $0) }
-            self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
-                .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }
-            
-        } else if !self.showsInvisibles {
-            self.invisiblesDefaultsObserver = nil
         }
     }
     
