@@ -36,44 +36,46 @@ extension EditorTextView {
         // override the default behavior to avoid invoking `selectWord(_:)` command
         // that is also overwritten to select the next same word.
         // -> The same for `lowercaseWord(_:)` and `capitalizeWord(_:)` below.
-        self.transformSelection { $0.localizedUppercase }
+        self.transformSelection(to: \.localizedUppercase)
     }
     
     
     /// Transforms the selections to lower case.
     @IBAction override func lowercaseWord(_ sender: Any?) {
         
-        self.transformSelection { $0.localizedLowercase }
+        self.transformSelection(to: \.localizedLowercase)
     }
     
     
     /// Transforms the selections to capitalized case.
     @IBAction override func capitalizeWord(_ sender: Any?) {
         
-        self.transformSelection { $0.localizedCapitalized }
+        self.transformSelection(to: \.localizedCapitalized)
     }
     
     
     /// Transforms the selections to snake case.
     @IBAction func snakecaseWord(_ sender: Any?) {
         
-        self.transformSelection { $0.snakecased }
+        self.transformSelection(to: \.snakecased)
     }
     
     
     /// Transforms the selections to camel case.
     @IBAction func camelcaseWord(_ sender: Any?) {
         
-        self.transformSelection { $0.camelcased }
+        self.transformSelection(to: \.camelcased)
     }
     
     
     /// Transforms the selections to pascal case.
     @IBAction func pascalcaseWord(_ sender: Any?) {
         
-        self.transformSelection { $0.pascalcased }
+        self.transformSelection(to: \.pascalcased)
     }
     
+    
+    // MARK: Action Messages (Transformations)
     
     /// Encodes URL.
     @IBAction func encodeURL(_ sender: Any?) {
@@ -94,9 +96,6 @@ extension EditorTextView {
         }
     }
     
-    
-    
-    // MARK: Action Messages (Transformations)
     
     /// Transforms all full-width-available half-width characters in the selections to full-width.
     @IBAction func exchangeFullwidth(_ sender: Any?) {
@@ -152,7 +151,6 @@ extension EditorTextView {
     }
     
     
-    
     // MARK: Action Messages (Unicode Normalization)
     
     /// Normalizes Unicode in the selections.
@@ -172,11 +170,12 @@ extension EditorTextView {
     /// - Parameter form: The Unicode normalization form.
     func normalizeUnicode(form: UnicodeNormalizationForm) {
         
-        self.transformSelection(actionName: form.localizedName) {
+        guard self.transformSelection(to: {
             $0.normalizing(in: form)
-        }
+        }) else { return }
+        
+        self.undoManager?.setActionName(form.localizedName)
     }
-    
     
     
     // MARK: Action Messages (Smart Quotes)
@@ -188,44 +187,5 @@ extension EditorTextView {
             $0.replacing(/[“”‟„]/, with: "\"")
               .replacing(/[‘’‛‚]/, with: "'")
         }
-    }
-}
-
-
-
-// MARK: Private NSTextView Extension
-
-private extension NSTextView {
-    
-    /// Transforms all selected strings and register to undo manager.
-    func transformSelection(actionName: String? = nil, block: (String) -> String) {
-        
-        // transform the word that contains the cursor if nothing is selected
-        if self.selectedRange.isEmpty {
-            self.selectWord(self)
-        }
-        
-        let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        var strings: [String] = []
-        var appliedRanges: [NSRange] = []
-        var newSelectedRanges: [NSRange] = []
-        var deltaLocation = 0
-        
-        for range in selectedRanges where !range.isEmpty {
-            let substring = (self.string as NSString).substring(with: range)
-            let string = block(substring)
-            let newRange = NSRange(location: range.location - deltaLocation, length: string.length)
-            
-            strings.append(string)
-            appliedRanges.append(range)
-            newSelectedRanges.append(newRange)
-            deltaLocation += range.length - newRange.length
-        }
-        
-        guard !strings.isEmpty else { return }
-        
-        self.replace(with: strings, ranges: appliedRanges, selectedRanges: newSelectedRanges, actionName: actionName)
-        
-        self.scrollRangeToVisible(self.selectedRange)
     }
 }

@@ -132,6 +132,43 @@ extension NSTextView {
     }
     
     
+    /// Transforms all selected strings and register to undo manager.
+    ///
+    /// When nothing is selected, this method performs the transformation to the word where the cursor exists.
+    ///
+    /// - Parameter block: The text transformation.
+    /// - Returns: `true` if the text is processed.
+    @discardableResult final func transformSelection(to block: (String) -> String) -> Bool {
+        
+        // transform the word that contains the cursor if nothing is selected
+        if self.selectedRange.isEmpty {
+            self.selectWord(self)
+        }
+        
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
+        var strings: [String] = []
+        var appliedRanges: [NSRange] = []
+        var newSelectedRanges: [NSRange] = []
+        var deltaLocation = 0
+        
+        for range in selectedRanges where !range.isEmpty {
+            let substring = (self.string as NSString).substring(with: range)
+            let string = block(substring)
+            let newRange = NSRange(location: range.location - deltaLocation, length: string.length)
+            
+            strings.append(string)
+            appliedRanges.append(range)
+            newSelectedRanges.append(newRange)
+            deltaLocation += range.length - newRange.length
+        }
+        
+        guard !strings.isEmpty else { return false }
+        
+        return self.replace(with: strings, ranges: appliedRanges, selectedRanges: newSelectedRanges)
+    }
+    
+    
+    
     // MARK: Actions
     
     /// Inputs a backslash (\\) to the insertion points.
