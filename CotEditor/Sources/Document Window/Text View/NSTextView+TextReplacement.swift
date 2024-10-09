@@ -27,8 +27,6 @@ import AppKit
 import StringUtils
 import TextEditing
 
-extension NSValue: @unchecked @retroactive Sendable { }
-
 extension NSTextView {
     
     // MARK: Public Methods
@@ -62,7 +60,7 @@ extension NSTextView {
         
         // register redo for text selection
         // -> Prefer using `rangesForUserTextChange` to save also multi-insertion points.
-        self.setSelectedRangesWithUndo(self.rangesForUserTextChange ?? self.selectedRanges)
+        self.setSelectedRangesWithUndo((self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue))
         
         // tell textEditor about beginning of the text processing
         guard self.shouldChangeText(inRanges: ranges as [NSValue], replacementStrings: strings) else { return false }
@@ -114,16 +112,16 @@ extension NSTextView {
     
     
     /// Performs undoable selection change.
-    final func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
+    final func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
         if let self = self as? any MultiCursorEditing,
-           let set = self.prepareForSelectionUpdate(ranges.map(\.rangeValue))
+           let set = self.prepareForSelectionUpdate(ranges)
         {
             self.selectedRanges = set.selectedRanges
             self.insertionLocations = set.insertionLocations
             
         } else {
-            self.selectedRanges = ranges
+            self.selectedRanges = ranges as [NSValue]
         }
         
         self.undoManager?.registerUndo(withTarget: self) { target in
@@ -131,13 +129,6 @@ extension NSTextView {
                 target.setSelectedRangesWithUndo(ranges)
             }
         }
-    }
-    
-    
-    /// Performs undoable selection change.
-    final func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
-        
-        self.setSelectedRangesWithUndo(ranges as [NSValue])
     }
     
     

@@ -677,7 +677,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if self.isAutomaticTabExpansionEnabled,
            let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth)
         {
-            self.setSelectedRangesWithUndo(self.selectedRanges)
+            self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
             self.selectedRange = deletionRange
         }
         
@@ -688,7 +688,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
            let nextCharacter = self.character(after: self.rangeForUserTextChange),
            self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
-            self.setSelectedRangesWithUndo(self.selectedRanges)
+            self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
             self.selectedRange = NSRange(location: self.rangeForUserTextChange.location - 1, length: 2)
         }
         
