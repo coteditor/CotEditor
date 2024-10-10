@@ -1114,17 +1114,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    override func updateFontPanel() {
-        
-        // update by own to avoid sending textColor to NSColorPanel
-        // -> This method is even invoked when the receiver becomes the first responder or updated just textColor/typingAttributes.
-        
-        guard let font = self.font else { return }
-        
-        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
-    }
-    
-    
     
     // MARK: Protocol
     
