@@ -83,7 +83,7 @@ import Sparkle
     
     nonisolated func allowedChannels(for updater: SPUUpdater) -> Set<String> {
         
-        let checksBeta = (Bundle.main.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
+        let checksBeta = (Bundle.main.version!.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
         
         return checksBeta ? ["prerelease"] : []
     }
