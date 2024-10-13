@@ -5,15 +5,15 @@
 
 ### Improvements
 
-- Expand folder item by double-clicking a folder row in the file browser.
-- Directly open plist files from the file browser instead of previewing.
-- Improve alias files handling in the file browser.
+- Expand folder items by double-clicking a folder row in the file browser.
+- Directly open .plist files from the file browser instead of previewing.
+- Improve alias file handling in the file browser.
 
 
 ### Fixes
 
-- Fix an issue that the application crashed when an editor is opened while the Font window appears.
-- Fix an issue that document window size was not properly saved.
+- Fix an issue that the application crashes when an editor is opened while the Font window appears.
+- Fix an issue that the document window size was not properly saved.
 
 
 
