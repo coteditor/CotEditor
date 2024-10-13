@@ -46,14 +46,14 @@ You have two options for adding a new localization to CotEditor.app. Choose one 
     - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and add your language to the table. Then, the new language you added will automatically appear in the string catalogs.
     - CotEditor uses the String Catalog format (.xcstrings), first introduced in 2023. To add localization in each string catalog file, select your language and fill each cell of your language column in the table. Cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
     - You can find the string catalogs to localize under:
-        - CotEditor/Storyboards/
         - CotEditor/Resources/Localizables/
+        - CotEditor/Resources/Storyboards/
         - Packages/EditorCore/Sources/CharacterInfo/Resources/
         - Packages/EditorCore/Sources/FileEncoding/Resources/
         - Packages/EditorCore/Sources/LineEnding/Resources/
         - Packages/EditorCore/Sources/StringUtils/Resources/
         - Packages/EditorCore/Sources/Syntax/Resources/
-    - Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. It will be done by @1024jp based on Apple's localization data.
+    - Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. It will be done by @1024jp based on the Apple's localization data.
 - Option 2: Communicate with the maintainer personally and work with a provided localization template (.xcloc file):
     - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask for the localization template (.xcloc file) for your language. When you receive the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. When finished, send the template file back to the maintainer.
 
