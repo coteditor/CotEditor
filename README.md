@@ -42,13 +42,13 @@ For those people who just want to build and play with CotEditor locally.
     1. Open `Configurations/CodeSigning.xcconfig`.
     1. Comment out `#include "CodeSigning-Default.xcconfig"`.
     1. Uncomment `#include "CodeSigning-AdHoc.xcconfig"`.
-1. Build "CotEditor" scheme in the workspace.
+1. Build “CotEditor” scheme.
 
 
 ### Build for distribution
 
 1. Open `CotEditor.xcodeproj` in Xcode.
-1. Build "CotEditor" scheme in the workspace.
+1. Build “CotEditor” scheme.
 
 
 
