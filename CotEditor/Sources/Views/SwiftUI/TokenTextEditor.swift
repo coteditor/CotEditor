@@ -1,5 +1,5 @@
 //
-//  TokenTextView.swift
+//  TokenTextEditor.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -236,4 +236,14 @@ private extension NSColor {
     static let tokenBackgroundColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
     }
+}
+
+
+
+// MARK: - Preview
+
+#Preview {
+    @Previewable @State var text: String? = "abc<<<CURSOR>>>defg"
+    
+    return TokenTextEditor(text: $text, tokenizer: Snippet.Variable.tokenizer)
 }
