@@ -205,10 +205,13 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     func windowDidResize(_ notification: Notification) {
         
-        guard self.isWindowLoaded, let window = self.window else { return }
+        self.saveWindowFrame()
+    }
+    
+    
+    func windowDidMove(_ notification: Notification) {
         
-        // workaround issue that window frame is not saved automatically (2022-08 macOS 12.5, FB11082729)
-        window.saveFrame(usingName: self.windowAutosaveName)
+        self.saveWindowFrame()
     }
     
     
@@ -284,6 +287,17 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 .merge(with: Just(document.syntaxParser.name))
                 .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
+    }
+    
+    
+    /// Saves the current window frame.
+    ///
+    /// Workaround the issue that window frame is not saved automatically.
+    private func saveWindowFrame() {
+        
+        assert(self.isWindowLoaded)
+        
+        self.window?.saveFrame(usingName: self.windowAutosaveName)
     }
     
     

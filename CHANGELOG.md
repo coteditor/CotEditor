@@ -3,6 +3,10 @@
 5.0.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the document window position was not saved in some cases.
+
 
 
 5.0.3 (682)
