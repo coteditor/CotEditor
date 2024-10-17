@@ -52,7 +52,7 @@ private extension NSSplitView {
     
     
     /// The divider configuration that was automatically saved last time, if exists.
-    var autosavingSubviewStates: [AutosavingSubviewState]? {
+    final var autosavingSubviewStates: [AutosavingSubviewState]? {
         
         guard
             let autosaveName = self.autosaveName,

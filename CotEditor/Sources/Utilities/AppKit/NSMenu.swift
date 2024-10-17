@@ -28,7 +28,7 @@ import AppKit
 extension NSMenu {
     
     /// Recursively updates all submenus.
-    func updateAll() {
+    final func updateAll() {
         
         self.update()
         for item in self.items {
