@@ -131,11 +131,11 @@ final class TokenTextView: NSTextView {
         guard
             self.selectedRange.isEmpty,
             self.selectedRange.location > 0,
-            let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: self.selectedRange.location - 1),
-            effectiveRange.upperBound == self.selectedRange.location
+            let tokenRange = self.tokenRange(at: self.selectedRange.location - 1),
+            tokenRange.upperBound == self.selectedRange.location
         else { return super.deleteBackward(sender) }
         
-        self.replace(with: "", range: effectiveRange, selectedRange: nil)
+        self.replace(with: "", range: tokenRange, selectedRange: nil)
     }
     
     
@@ -153,24 +153,10 @@ final class TokenTextView: NSTextView {
         
         guard
             granularity == .selectByWord,
-            let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: proposedCharRange.location)
+            let tokenRange = self.tokenRange(at: proposedCharRange.location)
         else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
         
-        return effectiveRange
-    }
-    
-    
-    /// Validates insertion menu.
-    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
-        
-        switch item.action {
-            case #selector(insertVariable):
-                return self.isEditable
-            default:
-                break
-        }
-        
-        return super.validateUserInterfaceItem(item)
+        return tokenRange
     }
     
     
@@ -180,13 +166,13 @@ final class TokenTextView: NSTextView {
     /// The variable insertion menu was selected.
     @IBAction func insertVariable(_ sender: NSMenuItem) {
         
-        guard let title = sender.representedObject as? String else { return }
+        guard let variable = sender.representedObject as? String else { return }
         
         let range = self.rangeForUserTextChange
         
         self.window?.makeFirstResponder(self)
-        if self.shouldChangeText(in: range, replacementString: title) {
-            self.replaceCharacters(in: range, with: title)
+        if self.shouldChangeText(in: range, replacementString: variable) {
+            self.replaceCharacters(in: range, with: variable)
             self.didChangeText()
         }
     }
@@ -194,6 +180,16 @@ final class TokenTextView: NSTextView {
     
     
     // MARK: Private Method
+    
+    /// Returns the character range of the token if the given position is a token.
+    ///
+    /// - Parameter location: The character index.
+    /// - Returns: The character range of the token.
+    private func tokenRange(at location: Int) -> NSRange? {
+        
+        self.layoutManager?.effectiveRange(of: .token, at: location)
+    }
+    
     
     /// Finds tokens in contents and mark-up them.
     private func invalidateTokens() {
@@ -206,11 +202,7 @@ final class TokenTextView: NSTextView {
         let wholeRange = self.string.nsRange
         layoutManager.removeTemporaryAttribute(.token, forCharacterRange: wholeRange)
         layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: wholeRange)
-        if let textColor = self.textColor {
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: textColor, forCharacterRange: wholeRange)
-        } else {
-            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: wholeRange)
-        }
+        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: wholeRange)
         
         tokenizer.tokenize(self.string) { (token, range, keywordRange) in
             layoutManager.addTemporaryAttribute(.token, value: token, forCharacterRange: range)
