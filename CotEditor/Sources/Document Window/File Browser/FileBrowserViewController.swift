@@ -188,6 +188,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"),
                        action: #selector(toggleHiddenFileVisibility), keyEquivalent: ""),
         ]
+        for item in contextMenu.items where !item.isSeparatorItem {
+            item.target = self
+        }
         self.outlineView.menu = contextMenu
         
         self.addButton.menu!.items += [
@@ -196,6 +199,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
                        action: #selector(addFolder), keyEquivalent: ""),
         ]
+        for item in self.addButton.menu!.items where !item.isSeparatorItem {
+            item.target = self
+        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
