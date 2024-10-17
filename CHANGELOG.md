@@ -3,6 +3,11 @@
 5.0.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the Swift syntax to add `@ViewLoading` and `@WindowLoading` attributes.
+
+
 ### Fixes
 
 - Fix an issue in the file browser that the actions in the Add button were disabled when the focus is out of the browser.

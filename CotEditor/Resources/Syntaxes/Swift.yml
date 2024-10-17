@@ -55,8 +55,10 @@ attributes:
 - beginString: '@unchecked'
 - beginString: '@unknown'
 - beginString: '@usableFromInline'
+- beginString: '@ViewLoading'
 - beginString: '@warn_unqualified_access'
 - beginString: '@warn_unused_result'
+- beginString: '@WindowLoading'
 characters:
 - beginString: ''''
   endString: ''''
@@ -219,9 +221,9 @@ metadata:
   author: 1024jp
   description: Based on Swift 6.0
   distributionURL: https://coteditor.com
-  lastModified: '2024-09-24'
+  lastModified: '2024-10-17'
   license: Same as CotEditor
-  version: 4.12.0
+  version: 4.12.1
 numbers:
 - beginString: (?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\b
   ignoreCase: true
