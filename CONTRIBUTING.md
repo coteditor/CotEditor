@@ -87,6 +87,7 @@ We are now looking for a new maintainer for:
 - French
 - Spanish
 
+Though CotEditor is not yet localized in any bidirectional languages, the project is prepared for it. If you’re interested in localizing CotEditor to those languages, please let us know.
 
 #### Localization for the App Store
 
