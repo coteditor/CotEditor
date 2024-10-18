@@ -59,7 +59,9 @@ struct TokenTextEditor: NSViewRepresentable {
         
         guard let textView = nsView.documentView as? TokenTextView else { return assertionFailure() }
         
-        textView.string = self.text ?? ""
+        if textView.string != self.text {
+            textView.string = self.text ?? ""
+        }
         textView.isEditable = self.isEnabled
     }
     
@@ -204,8 +206,8 @@ final class TokenTextView: NSTextView {
         layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: wholeRange)
         layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: wholeRange)
         
-        tokenizer.tokenize(self.string) { (token, range, keywordRange) in
-            layoutManager.addTemporaryAttribute(.token, value: token, forCharacterRange: range)
+        tokenizer.tokenize(self.string) { (_, range, keywordRange) in
+            layoutManager.addTemporaryAttribute(.token, value: UUID(), forCharacterRange: range)
             layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: NSColor.tokenBackgroundColor, forCharacterRange: range)
             layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenBracketColor, forCharacterRange: range)
             layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenTextColor, forCharacterRange: keywordRange)
