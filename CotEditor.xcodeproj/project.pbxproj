@@ -104,14 +104,6 @@
 			);
 			target = 8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */;
 		};
-		2AEBC8B42CBB745800230895 /* Exceptions for "CotEditor" folder in "Tests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Resources/Syntaxes,
-				Resources/Themes,
-			);
-			target = 2AC71DDE1BF0BDBC002E1434 /* Tests */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
@@ -164,7 +156,6 @@
 				2AEBC8B12CBB745800230895 /* Exceptions for "CotEditor" folder in "Copy Command-Line Tools" phase from "CotEditor" target */,
 				2AEBC8B22CBB745800230895 /* Exceptions for "CotEditor" folder in "CotEditor -Sparkle" target */,
 				2AEBC8B32CBB745800230895 /* Exceptions for "CotEditor" folder in "Copy Command-Line Tools" phase from "CotEditor -Sparkle" target */,
-				2AEBC8B42CBB745800230895 /* Exceptions for "CotEditor" folder in "Tests" target */,
 			);
 			explicitFileTypes = {
 				Resources/cot = text.script.python;

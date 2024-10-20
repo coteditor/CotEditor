@@ -38,8 +38,7 @@ actor SyntaxTests {
     
     init() throws {
         
-        let bundle = Bundle(for: type(of: self))
-        let urls = try #require(bundle.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
+        let urls = try #require(Bundle.main.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
         
         // load syntaxes
         let decoder = YAMLDecoder()

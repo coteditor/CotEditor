@@ -81,7 +81,7 @@ actor ThemeTests {
     /// Tests if all of bundled themes are valid.
     @Test func bundledThemes() throws {
         
-        let themeDirectoryURL = try #require(Bundle(for: type(of: self)).url(forResource: self.themeDirectoryName, withExtension: nil))
+        let themeDirectoryURL = try #require(Bundle.main.url(forResource: self.themeDirectoryName, withExtension: nil))
         let urls = try FileManager.default.contentsOfDirectory(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
             .filter { UTType.cotTheme.preferredFilenameExtension == $0.pathExtension }
         
@@ -100,7 +100,7 @@ private extension ThemeTests {
     func loadThemeWithName(_ name: String) throws -> Theme {
         
         guard
-            let url = Bundle(for: type(of: self)).url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: self.themeDirectoryName)
+            let url = Bundle.main.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: self.themeDirectoryName)
         else { throw CocoaError(.fileNoSuchFile) }
         
         return try Theme(contentsOf: url)
