@@ -95,14 +95,14 @@
 			);
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
 		};
-		2AEBC8B22CBB745800230895 /* Exceptions for "CotEditor" folder in "CotEditor -Sparkle" target */ = {
+		2AEBC8B22CBB745800230895 /* Exceptions for "CotEditor" folder in "CotEditor-Sparkle" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				CotEditor.storekit,
 				Info.plist,
 				Resources/cot,
 			);
-			target = 8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */;
+			target = 8D15AC270486D014006FF6A4 /* CotEditor-Sparkle */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -114,7 +114,7 @@
 				Resources/cot,
 			);
 		};
-		2AEBC8B32CBB745800230895 /* Exceptions for "CotEditor" folder in "Copy Command-Line Tools" phase from "CotEditor -Sparkle" target */ = {
+		2AEBC8B32CBB745800230895 /* Exceptions for "CotEditor" folder in "Copy Command-Line Tools" phase from "CotEditor-Sparkle" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = 2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */;
 			membershipExceptions = (
@@ -154,8 +154,8 @@
 			exceptions = (
 				2AEBC8B02CBB745800230895 /* Exceptions for "CotEditor" folder in "CotEditor" target */,
 				2AEBC8B12CBB745800230895 /* Exceptions for "CotEditor" folder in "Copy Command-Line Tools" phase from "CotEditor" target */,
-				2AEBC8B22CBB745800230895 /* Exceptions for "CotEditor" folder in "CotEditor -Sparkle" target */,
-				2AEBC8B32CBB745800230895 /* Exceptions for "CotEditor" folder in "Copy Command-Line Tools" phase from "CotEditor -Sparkle" target */,
+				2AEBC8B22CBB745800230895 /* Exceptions for "CotEditor" folder in "CotEditor-Sparkle" target */,
+				2AEBC8B32CBB745800230895 /* Exceptions for "CotEditor" folder in "Copy Command-Line Tools" phase from "CotEditor-Sparkle" target */,
 			);
 			explicitFileTypes = {
 				Resources/cot = text.script.python;
@@ -317,9 +317,9 @@
 			productReference = 2A7380252CAD911F00E870E5 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */ = {
+		8D15AC270486D014006FF6A4 /* CotEditor-Sparkle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor -Sparkle" */;
+			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor-Sparkle" */;
 			buildPhases = (
 				2A53326426799B3B000DE73D /* Build Syntax Map */,
 				8D15AC300486D014006FF6A4 /* Sources */,
@@ -338,7 +338,7 @@
 			fileSystemSynchronizedGroups = (
 				2AEBC6152CBB745800230895 /* CotEditor */,
 			);
-			name = "CotEditor -Sparkle";
+			name = "CotEditor-Sparkle";
 			packageProductDependencies = (
 				2ACD02BC22A87EFD00893051 /* ColorCode */,
 				2AA2C6FD24399AA20017D1EC /* Yams */,
@@ -442,7 +442,7 @@
 			projectRoot = "";
 			targets = (
 				2A6F0D4E1B5500E100C2D03C /* CotEditor */,
-				8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */,
+				8D15AC270486D014006FF6A4 /* CotEditor-Sparkle */,
 				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 				2A3F18F6203270BE002F1CA7 /* UI Tests */,
 				2A3E847D1D07296200070A54 /* Update Help Index */,
@@ -960,7 +960,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor -Sparkle" */ = {
+		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor-Sparkle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8C71D95408640EDF00C9C0BD /* Debug */,

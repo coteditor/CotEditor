@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D15AC270486D014006FF6A4"
                BuildableName = "CotEditor.app"
-               BlueprintName = "CotEditor -Sparkle"
+               BlueprintName = "CotEditor-Sparkle"
                ReferencedContainer = "container:CotEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,7 +50,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D15AC270486D014006FF6A4"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor -Sparkle"
+            BlueprintName = "CotEditor-Sparkle"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -67,7 +67,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D15AC270486D014006FF6A4"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor -Sparkle"
+            BlueprintName = "CotEditor-Sparkle"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
