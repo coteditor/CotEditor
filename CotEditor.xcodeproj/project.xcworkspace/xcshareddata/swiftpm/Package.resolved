@@ -1,5 +1,5 @@
 {
-  "originHash" : "34770a96254a92e06e0823e962989597cf6bd5d228176cb60836eca37da478eb",
+  "originHash" : "d18222465eee878b244694aa14affb255e5744535d3bee3944b98915c6ae118e",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/1024jp/WFColorCode",
       "state" : {
-        "revision" : "3f7d0c75e47e0490f2dfd353291e593e80ad85b6",
-        "version" : "3.0.0"
+        "revision" : "f261a91c064cdc9ab5271e3466c9faf5d358dc7b",
+        "version" : "3.0.1"
       }
     },
     {
