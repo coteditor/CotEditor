@@ -130,6 +130,11 @@ private enum NewFeature: CaseIterable {
     case writingTools
     case donation
     
+#if SPARKLE
+    private static let isInAppPurchaseAvailable = false
+#else
+    private static let isInAppPurchaseAvailable = true
+#endif
     
     var image: Image {
         
@@ -188,17 +193,17 @@ private enum NewFeature: CaseIterable {
         
         switch self {
             case .donation:
-                #if SPARKLE
-                Text("(Available only in the App Store version)", tableName: "WhatsNew")
-                    .foregroundStyle(.secondary)
-                    .controlSize(.small)
-                    .fixedSize()
-                #else
-                Button(String(localized: "Open Donation Settings", table: "WhatsNew")) {
-                    SettingsWindowController.shared.openPane(.donation)
+                if Self.isInAppPurchaseAvailable {
+                    Button(String(localized: "Open Donation Settings", table: "WhatsNew")) {
+                        SettingsWindowController.shared.openPane(.donation)
+                    }
+                    .buttonStyle(.capsule)
+                } else {
+                    Text("(Available only in the App Store version)", tableName: "WhatsNew")
+                        .foregroundStyle(.secondary)
+                        .controlSize(.small)
+                        .fixedSize()
                 }
-                .buttonStyle(.capsule)
-                #endif
                 
             default:
                 EmptyView()

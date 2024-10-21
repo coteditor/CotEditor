@@ -297,6 +297,12 @@ private struct CreditsView: View {
 
 private struct LicenseView: View {
     
+#if SPARKLE
+    private let hasSparkle = true
+#else
+    private let hasSparkle = false
+#endif
+    
     var body: some View {
         
         LazyVStack(alignment: .leading, spacing: 16) {
@@ -309,13 +315,14 @@ private struct LicenseView: View {
             ItemView(name: "WFColorCode",
                      url: "https://github.com/1024jp/WFColorCode",
                      license: "MIT license")
-#if SPARKLE
-            ItemView(name: "Sparkle",
-                     url: "https://sparkle-project.org",
-                     license: "MIT license",
-                     description: String(localized: "only on non-AppStore version", table: "About",
-                                         comment: "annotation for the Sparkle framework license"))
-#endif
+            
+            if self.hasSparkle {
+                ItemView(name: "Sparkle",
+                         url: "https://sparkle-project.org",
+                         license: "MIT license",
+                         description: String(localized: "only on non-AppStore version", table: "About",
+                                             comment: "annotation for the Sparkle framework license"))
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
