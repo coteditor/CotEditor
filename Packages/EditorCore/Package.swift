@@ -50,7 +50,7 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 57, 0)),
     ],
     targets: [
-        .target(name: "CharacterInfo"),
+        .target(name: "CharacterInfo", resources: [.process("Resources")]),
         .testTarget(name: "CharacterInfoTests", dependencies: ["CharacterInfo"]),
         
         .target(name: "Defaults"),
@@ -59,7 +59,7 @@ let package = Package(
         .target(name: "EditedRangeSet", dependencies: ["StringUtils"]),
         .testTarget(name: "EditedRangeSetTests", dependencies: ["EditedRangeSet"]),
         
-        .target(name: "FileEncoding", dependencies: ["ValueRange"]),
+        .target(name: "FileEncoding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),
         
         .target(name: "FilePermissions"),
@@ -73,7 +73,7 @@ let package = Package(
         
         .target(name: "Invisible"),
         
-        .target(name: "LineEnding", dependencies: ["ValueRange"]),
+        .target(name: "LineEnding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "LineEndingTests", dependencies: ["LineEnding", "StringUtils"]),
         
         .target(name: "LineSort", dependencies: ["StringUtils"]),
@@ -82,10 +82,10 @@ let package = Package(
         .target(name: "SemanticVersioning"),
         .testTarget(name: "SemanticVersioningTests", dependencies: ["SemanticVersioning"]),
         
-        .target(name: "StringUtils"),
+        .target(name: "StringUtils", resources: [.process("Resources")]),
         .testTarget(name: "StringUtilsTests", dependencies: ["StringUtils"]),
         
-        .target(name: "Syntax", dependencies: ["StringUtils", "ValueRange"]),
+        .target(name: "Syntax", dependencies: ["StringUtils", "ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "SyntaxTests", dependencies: ["Syntax"]),
         
         .target(name: "TextClipping"),

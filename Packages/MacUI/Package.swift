@@ -28,7 +28,7 @@ let package = Package(
         .target(name: "RegexHighlighting", dependencies: ["EditorCore"]),
         .testTarget(name: "RegexHighlightingTests", dependencies: ["RegexHighlighting"]),
         
-        .target(name: "Shortcut"),
+        .target(name: "Shortcut", resources: [.process("Resources")]),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),
     ]
 )
