@@ -11234,193 +11234,193 @@
       }
     },
     "794.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Focus on Next Split Editor\"; ObjectID = \"794\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Move Focus to Next Editor\"; ObjectID = \"794\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Fokus na další rozdělený editor"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auf vorherigen geteilten Editor fokussieren"
+            "value" : "Fokus in vorherigen Editor"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Focus on Next Split Editor"
+            "value" : "Move Focus to Next Editor"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Focus on Next Split Editor"
+            "value" : "Move Focus to Next Editor"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Foco en siguiente editor dividido"
+            "state" : "needs_review",
+            "value" : "Foco en siguiente editor"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Focus sur la division d’éditeur suivante"
+            "value" : "Déplacer la cible sur l’éditeur suivante"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attiva il riquadro di editing successivo"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フォーカスを次の分割エディタへ"
+            "value" : "次のエディタを操作対象にする"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "다음 분할 편집기에 포커스"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Focus op volgende splitsbewerker"
+            "value" : "Focus op volgend bewerker"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Przełącz na następny podział edytora"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Focar no Editor Dividido Seguinte"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Odak Bir Sonraki Bölünmüş Düzenleyicide"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "焦点下一个分栏编辑器"
+            "value" : "将焦点移到下一个编辑器"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "焦點下一個分欄編輯器"
+            "value" : "移動焦點至下一個編輯器"
           }
         }
       }
     },
     "795.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Focus on Previous Split Editor\"; ObjectID = \"795\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Move Focus to Previous Editor\"; ObjectID = \"795\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Fokus na předchozí rozdělený editor"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auf nächsten geteilten Editor fokussieren"
+            "value" : "Fokus in nächsten Editor"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Focus on Previous Split Editor"
+            "value" : "Move Focus to Previous Editor"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Focus on Previous Split Editor"
+            "value" : "Move Focus to Previous Editor"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Foco en anterior editor dividido"
+            "state" : "needs_review",
+            "value" : "Foco en anterior editor"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Focus sur la division d’éditeur précédente"
+            "value" : "Déplacer la cible vers l’éditeur précédente"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attiva il riquadro di editing precedente"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フォーカスを前の分割エディタへ"
+            "value" : "前のエディタを操作対象にする"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "이전 분할 편집기에 포커스"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Focus op vorige splitsbewerker"
+            "value" : "Focus op vorige bewerker"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Przełącz na poprzedni podział edytora"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Focar no Editor Dividido Anterior"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Odak Bir Önceki Bölünmüş Düzenleyicide"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "焦点前一个分栏编辑器"
+            "value" : "将焦点移到上一个编辑器"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "焦點前一個分欄編輯器"
+            "value" : "將焦點移至上一個編輯器"
           }
         }
       }

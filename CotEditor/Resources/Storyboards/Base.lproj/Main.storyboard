@@ -685,13 +685,13 @@ DQ
                                                 <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Focus on Next Split Editor" keyEquivalent="" id="794">
+                                        <menuItem title="Move Focus to Next Editor" keyEquivalent="" id="794">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="focusNextSplitTextView:" target="Ady-hI-5gd" id="y2Q-eU-ZVD"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Focus on Previous Split Editor" keyEquivalent="" id="795">
+                                        <menuItem title="Move Focus to Previous Editor" keyEquivalent="" id="795">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="focusPrevSplitTextView:" target="Ady-hI-5gd" id="DNq-8M-naF"/>

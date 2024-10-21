@@ -6,13 +6,14 @@
 ### Improvements
 
 - Update the Swift syntax to add `@ViewLoading` and `@WindowLoading` attributes.
+- [trivial] Rename “Move Focus” commands.
 
 
 ### Fixes
 
 - Fix an issue in the file browser that the actions in the Add button were disabled when the focus is out of the browser.
 - Fix an issue that the document window position was not saved in some cases.
-- Fix insertion format editors' behavior in the Snippet settings.
+- Fix insertion format editors’ behavior in the Snippet settings.
 
 
 
