@@ -304,14 +304,14 @@ private struct LicenseView: View {
                 .lineSpacing(2)
             
             ItemView(name: "Yams",
-                     url: "https://sparkle-project.org",
+                     url: "https://github.com/jpsim/Yams",
                      license: "MIT license")
             ItemView(name: "WFColorCode",
                      url: "https://github.com/1024jp/WFColorCode",
                      license: "MIT license")
 #if SPARKLE
             ItemView(name: "Sparkle",
-                     url: "https://github.com/jpsim/Yams",
+                     url: "https://sparkle-project.org",
                      license: "MIT license",
                      description: String(localized: "only on non-AppStore version", table: "About",
                                          comment: "annotation for the Sparkle framework license"))
