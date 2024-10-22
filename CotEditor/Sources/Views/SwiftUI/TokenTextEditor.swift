@@ -30,7 +30,6 @@ struct TokenTextEditor: NSViewRepresentable {
     
     typealias NSViewType = NSScrollView
     
-    
     @Binding var text: String?
     var tokenizer: Tokenizer
     
@@ -39,30 +38,28 @@ struct TokenTextEditor: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSScrollView {
         
-        let textView = TokenTextView(usingTextLayoutManager: false)
+        let scrollView = TokenTextView.scrollablePlainDocumentContentTextView()
+        let textView = scrollView.documentView as! TokenTextView
         textView.allowsUndo = true
-        textView.autoresizingMask = [.width, .height]
         textView.textContainerInset = CGSize(width: 4, height: 6)
-        textView.isRichText = false
         textView.font = .systemFont(ofSize: 0)
         textView.delegate = context.coordinator
+        textView.textLayoutManager?.delegate = context.coordinator
         textView.tokenizer = self.tokenizer
         
-        let nsView = NSScrollView()
-        nsView.documentView = textView
-        
-        return nsView
+        return scrollView
     }
     
     
     func updateNSView(_ nsView: NSScrollView, context: Context) {
         
-        guard let textView = nsView.documentView as? TokenTextView else { return assertionFailure() }
+        guard let textView = nsView.documentView as? NSTextView else { return assertionFailure() }
         
-        if textView.string != self.text {
-            textView.string = self.text ?? ""
-        }
         textView.isEditable = self.isEnabled
+        
+        guard textView.string != self.text else { return }
+        
+        textView.string = self.text ?? ""
     }
     
     
@@ -73,7 +70,7 @@ struct TokenTextEditor: NSViewRepresentable {
     
     
     
-    final class Coordinator: NSObject, NSTextViewDelegate {
+    final class Coordinator: NSObject, NSTextViewDelegate, NSTextLayoutManagerDelegate {
         
         @Binding private var text: String?
         
@@ -90,6 +87,12 @@ struct TokenTextEditor: NSViewRepresentable {
             
             self.text = textView.string
         }
+        
+        
+        func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, textLayoutFragmentFor location: any NSTextLocation, in textElement: NSTextElement) -> NSTextLayoutFragment {
+            
+           TokenLayoutFragment(textElement: textElement, range: textElement.elementRange)
+        }
     }
 }
 
@@ -97,6 +100,40 @@ struct TokenTextEditor: NSViewRepresentable {
 private extension NSAttributedString.Key {
     
     static let token = NSAttributedString.Key("token")
+    static let tokenKeyword = NSAttributedString.Key("tokenKeyword")
+}
+
+
+private final class TokenLayoutFragment: NSTextLayoutFragment {
+    
+    override func draw(at point: CGPoint, in context: CGContext) {
+        
+        // draw capsules
+        context.saveGState()
+        
+        for lineFragment in self.textLineFragments {
+            lineFragment.attributedString.enumerateAttribute(.token, type: UUID.self, in: lineFragment.characterRange) { (_, range, _) in
+                let lineBounds = lineFragment.typographicBounds
+                let lowerBound = lineFragment.locationForCharacter(at: range.lowerBound).x
+                let upperBound = lineFragment.locationForCharacter(at: range.upperBound).x
+                
+                let frameRect = NSRect(x: lowerBound, y: lineBounds.minY,
+                                       width: upperBound - lowerBound, height: lineBounds.height)
+                let radius = frameRect.height / 3
+                
+                context.addPath(CGPath(roundedRect: frameRect, cornerWidth: radius, cornerHeight: radius, transform: nil))
+            }
+        }
+        
+        if !context.isPathEmpty {
+            context.setFillColor(NSColor.tokenBackgroundColor.cgColor)
+            context.fillPath()
+        }
+        context.restoreGState()
+        
+        // draw text
+        super.draw(at: point, in: context)
+    }
 }
 
 
@@ -141,15 +178,6 @@ final class TokenTextView: NSTextView {
     }
     
     
-    /// Draws token capsule.
-    override func drawBackground(in rect: NSRect) {
-        
-        super.drawBackground(in: rect)
-        
-        self.drawRoundedBackground(in: rect)
-    }
-    
-    
     /// Selects token by selecting word.
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
@@ -189,29 +217,30 @@ final class TokenTextView: NSTextView {
     /// - Returns: The character range of the token.
     private func tokenRange(at location: Int) -> NSRange? {
         
-        self.layoutManager?.effectiveRange(of: .token, at: location)
+        var range = NSRange.notFound
+        guard self.textStorage?.attribute(.token, at: location, longestEffectiveRange: &range, in: self.string.nsRange) != nil else { return nil }
+        
+        return range
     }
     
     
     /// Finds tokens in contents and mark-up them.
     private func invalidateTokens() {
         
-        guard
-            let tokenizer = self.tokenizer,
-            let layoutManager = self.layoutManager
-        else { return }
+        guard let tokenizer, let textStorage else { return }
         
-        let wholeRange = self.string.nsRange
-        layoutManager.removeTemporaryAttribute(.token, forCharacterRange: wholeRange)
-        layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: wholeRange)
-        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: wholeRange)
+        textStorage.beginEditing()
+        
+        textStorage.removeAttribute(.token, range: textStorage.range)
+        textStorage.addAttribute(.foregroundColor, value: NSColor.labelColor, range: textStorage.range)
         
         tokenizer.tokenize(self.string) { (_, range, keywordRange) in
-            layoutManager.addTemporaryAttribute(.token, value: UUID(), forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: NSColor.tokenBackgroundColor, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenBracketColor, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenTextColor, forCharacterRange: keywordRange)
+            textStorage.addAttribute(.token, value: UUID(), range: range)
+            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenBracketColor, range: range)
+            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenTextColor, range: keywordRange)
         }
+        
+        textStorage.endEditing()
     }
 }
 
@@ -237,7 +266,7 @@ private extension NSColor {
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var text: String? = "abc<<<CURSOR>>><<<CURSOR>>>defg\n<<<SELECTION>>>"
+    @Previewable @State var text: String? = "abc<<<CURSOR>>><<<CURSOR>>>defg\n<<<SELECTION>>>abc"
     
     return TokenTextEditor(text: $text, tokenizer: Snippet.Variable.tokenizer)
 }
