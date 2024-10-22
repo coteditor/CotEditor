@@ -26,10 +26,26 @@
 import SwiftUI
 import AppKit
 
+extension NSTextView {
+    
+    /// Inserts the string provided by the menu item to the insertion point.
+    @IBAction func insertVariable(_ sender: NSMenuItem) {
+        
+        guard let string = sender.representedObject as? String else { return assertionFailure() }
+        
+        let range = self.rangeForUserTextChange
+        
+        guard self.shouldChangeText(in: range, replacementString: string) else { return }
+        
+        self.replaceCharacters(in: range, with: string)
+        self.didChangeText()
+    }
+}
+
+
 struct TokenTextEditor: NSViewRepresentable {
     
     typealias NSViewType = NSScrollView
-    
     
     @Binding var text: String?
     var tokenizer: Tokenizer
@@ -39,57 +55,130 @@ struct TokenTextEditor: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSScrollView {
         
-        let textView = TokenTextView(usingTextLayoutManager: false)
+        let scrollView = NSTextView.scrollablePlainDocumentContentTextView()
+        let textView = scrollView.documentView as! NSTextView
         textView.allowsUndo = true
-        textView.autoresizingMask = [.width, .height]
         textView.textContainerInset = CGSize(width: 4, height: 6)
-        textView.isRichText = false
         textView.font = .systemFont(ofSize: 0)
         textView.delegate = context.coordinator
-        textView.tokenizer = self.tokenizer
+        textView.textLayoutManager?.delegate = context.coordinator
         
-        let nsView = NSScrollView()
-        nsView.documentView = textView
-        
-        return nsView
+        return scrollView
     }
     
     
     func updateNSView(_ nsView: NSScrollView, context: Context) {
         
-        guard let textView = nsView.documentView as? TokenTextView else { return assertionFailure() }
+        guard let textView = nsView.documentView as? NSTextView else { return assertionFailure() }
         
-        if textView.string != self.text {
-            textView.string = self.text ?? ""
-        }
         textView.isEditable = self.isEnabled
+        
+        guard textView.string != self.text else { return }
+        
+        textView.string = self.text ?? ""
+        if let textStorage = textView.textStorage {
+            self.tokenizer.invalidateTokens(in: textStorage)
+        }
     }
     
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(text: $text)
+        Coordinator(tokenizer: self.tokenizer, text: $text)
     }
     
     
     
-    final class Coordinator: NSObject, NSTextViewDelegate {
+    final class Coordinator: NSObject, NSTextViewDelegate, NSTextLayoutManagerDelegate {
+        
+        let tokenizer: Tokenizer
         
         @Binding private var text: String?
         
         
-        init(text: Binding<String?>) {
+        init(tokenizer: Tokenizer, text: Binding<String?>) {
             
+            self.tokenizer = tokenizer
             self._text = text
         }
         
+        
+        // MARK: Text View Delegate
         
         func textDidChange(_ notification: Notification) {
             
             guard let textView = notification.object as? NSTextView else { return assertionFailure() }
             
             self.text = textView.string
+            if let textStorage = textView.textStorage {
+                self.tokenizer.invalidateTokens(in: textStorage)
+            }
         }
+        
+        
+        func textView(_ textView: NSTextView, willChangeSelectionFromCharacterRange oldSelectedCharRange: NSRange, toCharacterRange newSelectedCharRange: NSRange) -> NSRange {
+            
+            // select token by selecting word
+            guard
+                textView.selectionGranularity == .selectByWord,
+                let effectiveRange = textView.textStorage?.longestEffectiveRange(of: .token, at: oldSelectedCharRange.location)
+            else { return newSelectedCharRange }
+            
+            return effectiveRange
+        }
+        
+        
+        func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+            
+            switch commandSelector {
+                case #selector(NSTextView.deleteBackward):
+                    // delete whole token if cursor located at the end of a token
+                    let selectedRange = textView.selectedRange
+                    guard
+                        selectedRange.isEmpty,
+                        selectedRange.location > 0,
+                        let effectiveRange = textView.textStorage?.longestEffectiveRange(of: .token, at: selectedRange.location - 1),
+                        effectiveRange.upperBound == selectedRange.location
+                    else { return false }
+                    
+                    textView.replace(with: "", range: effectiveRange, selectedRange: nil)
+                    return true
+                    
+                default:
+                    return false
+            }
+        }
+        
+        
+        // MARK: Text Layout Manager Delegate
+        
+        func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, textLayoutFragmentFor location: any NSTextLocation, in textElement: NSTextElement) -> NSTextLayoutFragment {
+            
+            TokenLayoutFragment(textElement: textElement, range: textElement.elementRange)
+        }
+    }
+}
+
+
+// MARK: Private APIs
+
+private extension Tokenizer {
+    
+    /// Updates token highlights in text storage.
+    func invalidateTokens(in textStorage: NSTextStorage) {
+        
+        textStorage.beginEditing()
+        
+        textStorage.removeAttribute(.token, range: textStorage.range)
+        textStorage.addAttribute(.foregroundColor, value: NSColor.labelColor, range: textStorage.range)
+        
+        self.tokenize(textStorage.string) { (_, range, keywordRange) in
+            textStorage.addAttribute(.token, value: UUID(), range: range)
+            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenBracketColor, range: range)
+            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenTextColor, range: keywordRange)
+        }
+        
+        textStorage.endEditing()
     }
 }
 
@@ -97,124 +186,41 @@ struct TokenTextEditor: NSViewRepresentable {
 private extension NSAttributedString.Key {
     
     static let token = NSAttributedString.Key("token")
+    static let tokenKeyword = NSAttributedString.Key("tokenKeyword")
 }
 
 
-
-final class TokenTextView: NSTextView {
+private final class TokenLayoutFragment: NSTextLayoutFragment {
     
-    // MARK: Public Properties
-    
-    var tokenizer: Tokenizer?
-    
-    
-    
-    // MARK: Text View Methods
-    
-    override var string: String {
+    override func draw(at point: CGPoint, in context: CGContext) {
         
-        didSet {
-            self.invalidateTokens()
+        // draw capsules
+        context.saveGState()
+        
+        for lineFragment in self.textLineFragments {
+            lineFragment.attributedString.enumerateAttribute(.token, type: UUID.self, in: lineFragment.characterRange) { (_, range, _) in
+                let lineBounds = lineFragment.typographicBounds
+                let lowerBound = lineFragment.locationForCharacter(at: range.lowerBound).x
+                let upperBound = lineFragment.locationForCharacter(at: range.upperBound).x
+                
+                let frameRect = NSRect(x: lowerBound, y: lineBounds.minY,
+                                       width: upperBound - lowerBound, height: lineBounds.height)
+                let radius = frameRect.height / 3
+                
+                context.addPath(CGPath(roundedRect: frameRect, cornerWidth: radius, cornerHeight: radius, transform: nil))
+            }
         }
-    }
-    
-    
-    override func didChangeText() {
         
-        super.didChangeText()
-        
-        self.invalidateTokens()
-    }
-    
-    
-    /// Deletes whole token if cursor located at the end of a token.
-    override func deleteBackward(_ sender: Any?) {
-        
-        guard
-            self.selectedRange.isEmpty,
-            self.selectedRange.location > 0,
-            let tokenRange = self.tokenRange(at: self.selectedRange.location - 1),
-            tokenRange.upperBound == self.selectedRange.location
-        else { return super.deleteBackward(sender) }
-        
-        self.replace(with: "", range: tokenRange, selectedRange: nil)
-    }
-    
-    
-    /// Draws token capsule.
-    override func drawBackground(in rect: NSRect) {
-        
-        super.drawBackground(in: rect)
-        
-        self.drawRoundedBackground(in: rect)
-    }
-    
-    
-    /// Selects token by selecting word.
-    override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
-        
-        guard
-            granularity == .selectByWord,
-            let tokenRange = self.tokenRange(at: proposedCharRange.location)
-        else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
-        
-        return tokenRange
-    }
-    
-    
-    
-    // MARK: Actions
-    
-    /// The variable insertion menu was selected.
-    @IBAction func insertVariable(_ sender: NSMenuItem) {
-        
-        guard let variable = sender.representedObject as? String else { return }
-        
-        let range = self.rangeForUserTextChange
-        
-        self.window?.makeFirstResponder(self)
-        if self.shouldChangeText(in: range, replacementString: variable) {
-            self.replaceCharacters(in: range, with: variable)
-            self.didChangeText()
+        if !context.isPathEmpty {
+            context.setFillColor(NSColor.tokenBackgroundColor.cgColor)
+            context.fillPath()
         }
-    }
-    
-    
-    
-    // MARK: Private Method
-    
-    /// Returns the character range of the token if the given position is a token.
-    ///
-    /// - Parameter location: The character index.
-    /// - Returns: The character range of the token.
-    private func tokenRange(at location: Int) -> NSRange? {
+        context.restoreGState()
         
-        self.layoutManager?.effectiveRange(of: .token, at: location)
-    }
-    
-    
-    /// Finds tokens in contents and mark-up them.
-    private func invalidateTokens() {
-        
-        guard
-            let tokenizer = self.tokenizer,
-            let layoutManager = self.layoutManager
-        else { return }
-        
-        let wholeRange = self.string.nsRange
-        layoutManager.removeTemporaryAttribute(.token, forCharacterRange: wholeRange)
-        layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: wholeRange)
-        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: wholeRange)
-        
-        tokenizer.tokenize(self.string) { (_, range, keywordRange) in
-            layoutManager.addTemporaryAttribute(.token, value: UUID(), forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: NSColor.tokenBackgroundColor, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenBracketColor, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenTextColor, forCharacterRange: keywordRange)
-        }
+        // draw text
+        super.draw(at: point, in: context)
     }
 }
-
 
 
 private extension NSColor {
@@ -233,11 +239,29 @@ private extension NSColor {
 }
 
 
+private extension NSAttributedString {
+    
+    /// Returns the full range over which the value of the named attribute is the same as that at index.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of an attribute.
+    ///   - index: The index at which to test for `attributeName`.
+    /// - Returns: The character range of the attribute, or `nil`if  the attribute was not specified.
+    func longestEffectiveRange(of attrName: NSAttributedString.Key, at index: Int) -> NSRange? {
+        
+        var range = NSRange.notFound
+        guard self.attribute(attrName, at: index, longestEffectiveRange: &range, in: self.range) != nil else { return nil }
+        
+        return range
+    }
+}
+
+
 
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var text: String? = "abc<<<CURSOR>>><<<CURSOR>>>defg\n<<<SELECTION>>>"
+    @Previewable @State var text: String? = "abc<<<CURSOR>>><<<CURSOR>>>defg\n<<<SELECTION>>>abc"
     
     return TokenTextEditor(text: $text, tokenizer: Snippet.Variable.tokenizer)
 }
