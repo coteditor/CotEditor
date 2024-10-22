@@ -126,3 +126,22 @@ extension Invisible {
         }
     }
 }
+
+
+// MARK: - Preview
+
+import SwiftUI
+
+#Preview {
+    HStack(spacing: 20) {
+        ForEach(Invisible.allCases, id: \.self) { invisible in
+            let size = CGSize(width: (invisible == .tab) ? 30 : 12, height: 16)
+            
+            Path(invisible.path(in: size, lineWidth: 1.5))
+                .frame(width: size.width, height: size.height)
+                .border(.tertiary, width: 0.5)
+        }
+    }
+    .padding()
+    .background()
+}
