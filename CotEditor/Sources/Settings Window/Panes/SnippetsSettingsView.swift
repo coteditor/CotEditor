@@ -327,7 +327,7 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
                             Button {
                                 let menuItem = NSMenuItem()
                                 menuItem.representedObject = variable.token
-                                NSApp.sendAction(#selector(TokenTextView.insertVariable), to: nil, from: menuItem)
+                                NSApp.sendAction(#selector(NSTextView.insertVariable), to: nil, from: menuItem)
                             } label: {
                                 Text(variable.token + "\n") + Text(variable.localizedDescription).foregroundColor(.secondary)
                             }

@@ -26,6 +26,23 @@
 import SwiftUI
 import AppKit
 
+extension NSTextView {
+    
+    /// Inserts the string provided by the menu item to the insertion point.
+    @IBAction func insertVariable(_ sender: NSMenuItem) {
+        
+        guard let string = sender.representedObject as? String else { return assertionFailure() }
+        
+        let range = self.rangeForUserTextChange
+        
+        guard self.shouldChangeText(in: range, replacementString: string) else { return }
+        
+        self.replaceCharacters(in: range, with: string)
+        self.didChangeText()
+    }
+}
+
+
 struct TokenTextEditor: NSViewRepresentable {
     
     typealias NSViewType = NSScrollView
@@ -38,14 +55,13 @@ struct TokenTextEditor: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSScrollView {
         
-        let scrollView = TokenTextView.scrollablePlainDocumentContentTextView()
-        let textView = scrollView.documentView as! TokenTextView
+        let scrollView = NSTextView.scrollablePlainDocumentContentTextView()
+        let textView = scrollView.documentView as! NSTextView
         textView.allowsUndo = true
         textView.textContainerInset = CGSize(width: 4, height: 6)
         textView.font = .systemFont(ofSize: 0)
         textView.delegate = context.coordinator
         textView.textLayoutManager?.delegate = context.coordinator
-        textView.tokenizer = self.tokenizer
         
         return scrollView
     }
@@ -60,39 +76,109 @@ struct TokenTextEditor: NSViewRepresentable {
         guard textView.string != self.text else { return }
         
         textView.string = self.text ?? ""
+        if let textStorage = textView.textStorage {
+            self.tokenizer.invalidateTokens(in: textStorage)
+        }
     }
     
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(text: $text)
+        Coordinator(tokenizer: self.tokenizer, text: $text)
     }
     
     
     
     final class Coordinator: NSObject, NSTextViewDelegate, NSTextLayoutManagerDelegate {
         
+        let tokenizer: Tokenizer
+        
         @Binding private var text: String?
         
         
-        init(text: Binding<String?>) {
+        init(tokenizer: Tokenizer, text: Binding<String?>) {
             
+            self.tokenizer = tokenizer
             self._text = text
         }
         
+        
+        // MARK: Text View Delegate
         
         func textDidChange(_ notification: Notification) {
             
             guard let textView = notification.object as? NSTextView else { return assertionFailure() }
             
             self.text = textView.string
+            if let textStorage = textView.textStorage {
+                self.tokenizer.invalidateTokens(in: textStorage)
+            }
         }
         
+        
+        func textView(_ textView: NSTextView, willChangeSelectionFromCharacterRange oldSelectedCharRange: NSRange, toCharacterRange newSelectedCharRange: NSRange) -> NSRange {
+            
+            // select token by selecting word
+            guard
+                textView.selectionGranularity == .selectByWord,
+                let effectiveRange = textView.textStorage?.longestEffectiveRange(of: .token, at: oldSelectedCharRange.location)
+            else { return newSelectedCharRange }
+            
+            return effectiveRange
+        }
+        
+        
+        func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+            
+            switch commandSelector {
+                case #selector(NSTextView.deleteBackward):
+                    // delete whole token if cursor located at the end of a token
+                    let selectedRange = textView.selectedRange
+                    guard
+                        selectedRange.isEmpty,
+                        selectedRange.location > 0,
+                        let effectiveRange = textView.textStorage?.longestEffectiveRange(of: .token, at: selectedRange.location - 1),
+                        effectiveRange.upperBound == selectedRange.location
+                    else { return false }
+                    
+                    textView.replace(with: "", range: effectiveRange, selectedRange: nil)
+                    return true
+                    
+                default:
+                    return false
+            }
+        }
+        
+        
+        // MARK: Text Layout Manager Delegate
         
         func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, textLayoutFragmentFor location: any NSTextLocation, in textElement: NSTextElement) -> NSTextLayoutFragment {
             
-           TokenLayoutFragment(textElement: textElement, range: textElement.elementRange)
+            TokenLayoutFragment(textElement: textElement, range: textElement.elementRange)
         }
+    }
+}
+
+
+// MARK: Private APIs
+
+private extension Tokenizer {
+    
+    /// Updates token highlights in text storage.
+    func invalidateTokens(in textStorage: NSTextStorage) {
+        
+        textStorage.beginEditing()
+        
+        textStorage.removeAttribute(.token, range: textStorage.range)
+        textStorage.addAttribute(.foregroundColor, value: NSColor.labelColor, range: textStorage.range)
+        
+        self.tokenize(textStorage.string) { (_, range, keywordRange) in
+            textStorage.addAttribute(.token, value: UUID(), range: range)
+            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenBracketColor, range: range)
+            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenTextColor, range: keywordRange)
+        }
+        
+        textStorage.endEditing()
     }
 }
 
@@ -137,115 +223,6 @@ private final class TokenLayoutFragment: NSTextLayoutFragment {
 }
 
 
-
-final class TokenTextView: NSTextView {
-    
-    // MARK: Public Properties
-    
-    var tokenizer: Tokenizer?
-    
-    
-    
-    // MARK: Text View Methods
-    
-    override var string: String {
-        
-        didSet {
-            self.invalidateTokens()
-        }
-    }
-    
-    
-    override func didChangeText() {
-        
-        super.didChangeText()
-        
-        self.invalidateTokens()
-    }
-    
-    
-    /// Deletes whole token if cursor located at the end of a token.
-    override func deleteBackward(_ sender: Any?) {
-        
-        guard
-            self.selectedRange.isEmpty,
-            self.selectedRange.location > 0,
-            let tokenRange = self.tokenRange(at: self.selectedRange.location - 1),
-            tokenRange.upperBound == self.selectedRange.location
-        else { return super.deleteBackward(sender) }
-        
-        self.replace(with: "", range: tokenRange, selectedRange: nil)
-    }
-    
-    
-    /// Selects token by selecting word.
-    override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
-        
-        guard
-            granularity == .selectByWord,
-            let tokenRange = self.tokenRange(at: proposedCharRange.location)
-        else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
-        
-        return tokenRange
-    }
-    
-    
-    
-    // MARK: Actions
-    
-    /// The variable insertion menu was selected.
-    @IBAction func insertVariable(_ sender: NSMenuItem) {
-        
-        guard let variable = sender.representedObject as? String else { return }
-        
-        let range = self.rangeForUserTextChange
-        
-        self.window?.makeFirstResponder(self)
-        if self.shouldChangeText(in: range, replacementString: variable) {
-            self.replaceCharacters(in: range, with: variable)
-            self.didChangeText()
-        }
-    }
-    
-    
-    
-    // MARK: Private Method
-    
-    /// Returns the character range of the token if the given position is a token.
-    ///
-    /// - Parameter location: The character index.
-    /// - Returns: The character range of the token.
-    private func tokenRange(at location: Int) -> NSRange? {
-        
-        var range = NSRange.notFound
-        guard self.textStorage?.attribute(.token, at: location, longestEffectiveRange: &range, in: self.string.nsRange) != nil else { return nil }
-        
-        return range
-    }
-    
-    
-    /// Finds tokens in contents and mark-up them.
-    private func invalidateTokens() {
-        
-        guard let tokenizer, let textStorage else { return }
-        
-        textStorage.beginEditing()
-        
-        textStorage.removeAttribute(.token, range: textStorage.range)
-        textStorage.addAttribute(.foregroundColor, value: NSColor.labelColor, range: textStorage.range)
-        
-        tokenizer.tokenize(self.string) { (_, range, keywordRange) in
-            textStorage.addAttribute(.token, value: UUID(), range: range)
-            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenBracketColor, range: range)
-            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenTextColor, range: keywordRange)
-        }
-        
-        textStorage.endEditing()
-    }
-}
-
-
-
 private extension NSColor {
     
     static let tokenTextColor = NSColor(name: nil) { appearance in
@@ -258,6 +235,24 @@ private extension NSColor {
     
     static let tokenBackgroundColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
+    }
+}
+
+
+private extension NSAttributedString {
+    
+    /// Returns the full range over which the value of the named attribute is the same as that at index.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of an attribute.
+    ///   - index: The index at which to test for `attributeName`.
+    /// - Returns: The character range of the attribute, or `nil`if  the attribute was not specified.
+    func longestEffectiveRange(of attrName: NSAttributedString.Key, at index: Int) -> NSRange? {
+        
+        var range = NSRange.notFound
+        guard self.attribute(attrName, at: index, longestEffectiveRange: &range, in: self.range) != nil else { return nil }
+        
+        return range
     }
 }
 
