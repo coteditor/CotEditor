@@ -76,8 +76,8 @@ struct TokenTextEditor: NSViewRepresentable {
         guard textView.string != self.text else { return }
         
         textView.string = self.text ?? ""
-        if let textStorage = textView.textStorage {
-            self.tokenizer.invalidateTokens(in: textStorage)
+        if let storage = textView.textContentStorage {
+            self.tokenizer.invalidateTokens(in: storage)
         }
     }
     
@@ -110,8 +110,8 @@ struct TokenTextEditor: NSViewRepresentable {
             guard let textView = notification.object as? NSTextView else { return assertionFailure() }
             
             self.text = textView.string
-            if let textStorage = textView.textStorage {
-                self.tokenizer.invalidateTokens(in: textStorage)
+            if let storage = textView.textContentStorage {
+                self.tokenizer.invalidateTokens(in: storage)
             }
         }
         
@@ -165,20 +165,20 @@ struct TokenTextEditor: NSViewRepresentable {
 private extension Tokenizer {
     
     /// Updates token highlights in text storage.
-    func invalidateTokens(in textStorage: NSTextStorage) {
+    func invalidateTokens(in storage: NSTextContentStorage) {
         
-        textStorage.beginEditing()
+        guard let textStorage = storage.textStorage else { return }
         
-        textStorage.removeAttribute(.token, range: textStorage.range)
-        textStorage.addAttribute(.foregroundColor, value: NSColor.labelColor, range: textStorage.range)
-        
-        self.tokenize(textStorage.string) { (_, range, keywordRange) in
-            textStorage.addAttribute(.token, value: UUID(), range: range)
-            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenBracketColor, range: range)
-            textStorage.addAttribute(.foregroundColor, value: NSColor.tokenTextColor, range: keywordRange)
+        storage.performEditingTransaction {
+            textStorage.removeAttribute(.token, range: textStorage.range)
+            textStorage.addAttribute(.foregroundColor, value: NSColor.labelColor, range: textStorage.range)
+            
+            self.tokenize(textStorage.string) { (_, range, keywordRange) in
+                textStorage.addAttribute(.token, value: UUID(), range: range)
+                textStorage.addAttribute(.foregroundColor, value: NSColor.tokenBracketColor, range: range)
+                textStorage.addAttribute(.foregroundColor, value: NSColor.tokenTextColor, range: keywordRange)
+            }
         }
-        
-        textStorage.endEditing()
     }
 }
 
