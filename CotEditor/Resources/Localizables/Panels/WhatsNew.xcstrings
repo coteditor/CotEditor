@@ -987,6 +987,12 @@
             "value" : "De aankomende Schrijfhulp van Apple Intelligence zullen goed werken."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadchodzące Narzędzia pisania napędzane mocą Apple Intelligence będą działać prawidłowo."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1074,6 +1080,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klaar voor Apple Intelligentie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gotowy na Apple Intelligence"
           }
         },
         "pt" : {
