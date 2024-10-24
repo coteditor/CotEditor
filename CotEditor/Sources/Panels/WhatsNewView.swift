@@ -176,7 +176,7 @@ private enum NewFeature: CaseIterable {
                        defaultValue: "Work perfectly with new macOS 15.", table: "WhatsNew")
             case .writingTools:
                 String(localized: "NewFeature.writingTools.description",
-                       defaultValue: "The upcoming Writing Tools by Apple Intelligence will work properly.", table: "WhatsNew")
+                       defaultValue: "The upcoming Writing Tools powered by Apple Intelligence will work properly.", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.description",
                        defaultValue: "Support the CotEditor project by offering coffee to the developer.", table: "WhatsNew")
