@@ -23,8 +23,9 @@
 //  limitations under the License.
 //
 
-#if SPARKLE
 import AppKit
+
+#if SPARKLE
 import Sparkle
 
 @MainActor final class UpdaterManager: NSObject, SPUUpdaterDelegate {
@@ -64,8 +65,7 @@ import Sparkle
         }
         
         let menuItem = NSMenuItem()
-        menuItem.title = String(localized: "Check for Updates…", table: "MainMenu",
-                                comment: "provided only in the non-AppStore version")
+        menuItem.title = NSMenuItem.updateMenuTitle
         menuItem.action = #selector(SPUUpdater.checkForUpdates)
         menuItem.target = self.controller.updater
         
@@ -89,3 +89,10 @@ import Sparkle
     }
 }
 #endif
+
+
+private extension NSMenuItem {
+    
+    static let updateMenuTitle = String(localized: "Check for Updates…", table: "MainMenu",
+                                        comment: "provided only in the non-AppStore version")
+}
