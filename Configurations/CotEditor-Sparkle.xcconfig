@@ -33,3 +33,6 @@ CODE_SIGN_ENTITLEMENTS = CotEditor/$(PRODUCT_NAME)-Sparkle.entitlements
 // Code signing may need to override any predefined values.
 // Therefore, it should be included at the end.
 #include "CodeSigning.xcconfig"
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherit) SPARKLE
+// OTHER_LDFLAGS = $(inherit) -l SPARKLE
