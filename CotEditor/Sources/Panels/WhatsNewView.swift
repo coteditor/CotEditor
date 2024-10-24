@@ -127,6 +127,7 @@ private enum NewFeature: CaseIterable {
     
     case folderNavigation
     case macOSSupport
+    case writingTools
     case donation
     
     
@@ -137,6 +138,8 @@ private enum NewFeature: CaseIterable {
                 Image(systemName: "folder")
             case .macOSSupport:
                 Image(systemName: "sparkles")
+            case .writingTools:
+                Image(systemName: "bubble.and.pencil")
             case .donation:
                 Image(.bagCoffee)
         }
@@ -152,6 +155,9 @@ private enum NewFeature: CaseIterable {
             case .macOSSupport:
                 String(localized: "NewFeature.macOSSupport.label",
                        defaultValue: "macOS 15 Sequoia Support", table: "WhatsNew")
+            case .writingTools:
+                String(localized: "NewFeature.writingTools.label",
+                       defaultValue: "Apple Intelligence Ready", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.label",
                        defaultValue: "Donation", table: "WhatsNew")
@@ -168,6 +174,9 @@ private enum NewFeature: CaseIterable {
             case .macOSSupport:
                 String(localized: "NewFeature.macOSSupport.description",
                        defaultValue: "Work perfectly with new macOS 15.", table: "WhatsNew")
+            case .writingTools:
+                String(localized: "NewFeature.writingTools.description",
+                       defaultValue: "The upcoming Writing Tools by Apple Intelligence will work properly.", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.description",
                        defaultValue: "Support the CotEditor project by offering coffee to the developer.", table: "WhatsNew")
