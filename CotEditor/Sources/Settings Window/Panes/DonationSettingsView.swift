@@ -73,7 +73,7 @@ struct DonationSettingsView: View {
                             .font(.system(size: 14))
                             .accessibilityAddTraits(.isHeader)
                         
-                        ProductView(id: Donation.ProductID.continuous, prefersPromotionalIcon: true) {
+                        ProductView(id: Donation.Product.continuous.id, prefersPromotionalIcon: true) {
                             Label(String(localized: "donation.subscription.yearly.displayName", table: "InAppPurchase"), image: .bagCoffee)
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 40))
@@ -133,7 +133,7 @@ struct DonationSettingsView: View {
                             .font(.system(size: 14))
                             .accessibilityAddTraits(.isHeader)
                         
-                        ProductView(id: Donation.ProductID.onetime, prefersPromotionalIcon: true) {
+                        ProductView(id: Donation.Product.onetime.id, prefersPromotionalIcon: true) {
                             Label(String(localized: "donation.onetime.displayName", table: "InAppPurchase"), image: .espresso)
                                 .labelStyle(.iconOnly)
                         }.productViewStyle(OnetimeProductViewStyle())
@@ -164,7 +164,7 @@ struct DonationSettingsView: View {
                         .offset(y: 40)
                     }
                 }
-                .storeProductsTask(for: Donation.ProductID.allCases) { taskState in
+                .storeProductsTask(for: Donation.Product.allCases.map(\.id)) { taskState in
                     switch taskState {
                         case .loading, .success:
                             break

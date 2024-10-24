@@ -27,12 +27,13 @@ enum Donation {
     
     static let groupID = "21481959"
     
-    enum ProductID {
+    
+    enum Product: String, CaseIterable {
         
-        static let allCases = [Self.onetime, Self.continuous]
+        case onetime = "com.coteditor.CotEditor.donation.onetime"
+        case continuous = "com.coteditor.CotEditor.donation.subscription.yearly"
         
-        static let onetime = "com.coteditor.CotEditor.donation.onetime"
-        static let continuous = "com.coteditor.CotEditor.donation.subscription.yearly"
+        var id: String  { self.rawValue }
     }
 }
 
