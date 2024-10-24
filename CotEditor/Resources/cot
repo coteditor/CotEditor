@@ -120,7 +120,7 @@ class ScriptableApplication(object):
 
         Args:
             script (str): OSA command
-            is_async (bool):  If need to wait for finish.
+            is_async (bool): If need to wait for finish.
         Returns:
             result (str): Return value of the script.
         """

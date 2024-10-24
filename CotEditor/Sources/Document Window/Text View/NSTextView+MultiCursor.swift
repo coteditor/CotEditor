@@ -256,7 +256,7 @@ extension MultiCursorEditing {
         
         let rangeToVisible: NSRange = switch affinity {
             case .downstream: ranges.first!
-            case .upstream:   ranges.last!
+            case .upstream: ranges.last!
             @unknown default: fatalError()
         }
         self.scrollRangeToVisible(rangeToVisible)

@@ -34,7 +34,7 @@ struct LineRangeTests {
         
         let string = "foo\n\rbar\n\r"
         
-        #expect(string.lineContentsRange(for: string.startIndex..<string.endIndex)  ==
+        #expect(string.lineContentsRange(for: string.startIndex..<string.endIndex) ==
                 string.startIndex..<string.index(before: string.endIndex))
         
         #expect(string.lineRange(at: string.index(after: string.startIndex)) ==
