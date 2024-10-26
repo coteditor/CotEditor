@@ -28,10 +28,19 @@ import StringUtils
 
 struct CustomSurroundView: View {
     
+    private enum Focus {
+        
+        case beginField
+        case endField
+    }
+    
+    
     weak var parent: NSHostingController<Self>?
     
     @AppStorage("beginCustomSurroundString") private var defaultBeginString: String?
     @AppStorage("endCustomSurroundString") private var defaultEndString: String?
+    
+    @FocusState private var focus: Focus?
     
     @State private var pair: Pair<String> = .init("", "")
     private let completionHandler: (_ pair: Pair<String>) -> Void
@@ -66,12 +75,15 @@ struct CustomSurroundView: View {
                 LabeledContent(String(localized: "Begin:", table: "CustomSurround")) {
                     TextField(text: $pair.begin, label: EmptyView.init)
                         .frame(width: 48)
-                }.padding(.trailing)
+                }
+                .focused($focus, equals: .beginField)
+                .padding(.trailing)
                 
                 LabeledContent(String(localized: "End:", table: "CustomSurround")) {
                     TextField(text: $pair.end, prompt: Text(verbatim: self.pair.begin), label: EmptyView.init)
                         .frame(width: 48)
                 }
+                .focused($focus, equals: .endField)
             }
             .onSubmit { self.submit() }
             .fixedSize()
@@ -84,6 +96,9 @@ struct CustomSurroundView: View {
                     self.parent?.dismiss(nil)
                 }
             }
+        }
+        .onAppear {
+            self.focus = .beginField
         }
         .fixedSize()
         .scenePadding()

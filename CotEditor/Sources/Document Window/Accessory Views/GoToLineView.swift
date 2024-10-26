@@ -28,6 +28,12 @@ import FuzzyRange
 
 struct GoToLineView: View {
     
+    private enum Focus {
+        
+        case field
+    }
+    
+    
     weak var parent: NSHostingController<Self>?
     
     /// The current line range.
@@ -35,6 +41,8 @@ struct GoToLineView: View {
     
     /// The callback method to perform when the command was accepted.
     let completionHandler: (_ lineRange: FuzzyRange) -> Bool
+    
+    @FocusState private var focus: Focus?
     
     
     // MARK: View
@@ -47,6 +55,7 @@ struct GoToLineView: View {
                           prompt: Text("Line Number", tableName: "GoToLine", comment: "placeholder"))
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
+                    .focused($focus, equals: .field)
                     .onSubmit { self.submit() }
             }
             
@@ -61,6 +70,9 @@ struct GoToLineView: View {
                     self.parent?.dismiss(nil)
                 }
             }
+        }
+        .onAppear {
+            self.focus = .field
         }
         .fixedSize()
         .scenePadding()
