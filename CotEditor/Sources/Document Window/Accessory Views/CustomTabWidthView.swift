@@ -51,7 +51,7 @@ struct CustomTabWidthView: View {
     
     var body: some View {
         
-        VStack(alignment: .trailing) {
+        VStack {
             LabeledContent(String(localized: "Tab width:", table: "CustomTabWidth")) {
                 StepperNumberField(value: $value, default: self.defaultWidth, in: 1...99)
                     .onSubmit { self.submit() }
@@ -66,6 +66,7 @@ struct CustomTabWidthView: View {
                 }
             }
         }
+        .fixedSize()
         .scenePadding()
     }
     

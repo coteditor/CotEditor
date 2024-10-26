@@ -65,16 +65,16 @@ struct CustomSurroundView: View {
             HStack(alignment: .firstTextBaseline) {
                 LabeledContent(String(localized: "Begin:", table: "CustomSurround")) {
                     TextField(text: $pair.begin, label: EmptyView.init)
-                        .onSubmit { self.submit() }
                         .frame(width: 48)
                 }.padding(.trailing)
                 
                 LabeledContent(String(localized: "End:", table: "CustomSurround")) {
                     TextField(text: $pair.end, prompt: Text(verbatim: self.pair.begin), label: EmptyView.init)
-                        .onSubmit { self.submit() }
                         .frame(width: 48)
                 }
-            }.fixedSize()
+            }
+            .onSubmit { self.submit() }
+            .fixedSize()
             
             HStack {
                 Spacer()
