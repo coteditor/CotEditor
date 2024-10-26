@@ -140,6 +140,8 @@ struct DonationSettingsView: View {
                     }
                     .accessibilityElement(children: .contain)
                 }
+                .disabled(self.storeKitError != nil)
+                .opacity((self.storeKitError == nil) ? 1 : 0.5)
                 .overlay(alignment: .top) {
                     if let error = self.storeKitError {
                         VStack {
