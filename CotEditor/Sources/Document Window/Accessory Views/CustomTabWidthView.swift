@@ -51,7 +51,7 @@ struct CustomTabWidthView: View {
     ///   - completionHandler: The callback method to perform when the command was accepted.
     init(tabWidth: Int, completionHandler: @escaping (_ tabWidth: Int) -> Void) {
         
-        self._value = State(initialValue: tabWidth)
+        self.value = tabWidth
         self.defaultWidth = tabWidth
         self.completionHandler = completionHandler
     }

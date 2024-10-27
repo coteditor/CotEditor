@@ -80,7 +80,7 @@ struct SyntaxEditView: View {
     
     init(syntax: Syntax? = nil, originalName: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction) {
         
-        self._syntax = State(wrappedValue: SyntaxObject(value: syntax))
+        self.syntax = SyntaxObject(value: syntax)
         self.originalName = originalName
         self.isBundled = isBundled
         self.saveAction = saveAction

@@ -113,7 +113,7 @@ private struct ConflictTable: View {
     init(_ name: String, conflicts: [Item]) {
         
         self.name = name
-        self._conflicts = .init(wrappedValue: conflicts)
+        self.conflicts = conflicts
     }
     
     

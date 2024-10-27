@@ -66,7 +66,7 @@ struct PatternSortView: View {
         self.sampleFontName = sampleFontName
         self.completionHandler = completionHandler
         
-        self._attributedSampleLine = State(initialValue: AttributedString(sampleLine))
+        self.attributedSampleLine = AttributedString(sampleLine)
     }
     
     

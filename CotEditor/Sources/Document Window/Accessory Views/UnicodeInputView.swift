@@ -28,9 +28,8 @@ import Defaults
 
 struct UnicodeInputView: View {
     
-    let completionHandler: (_ character: Character) -> Void
-    
-    @State private var codePoint: String = ""
+    @State var codePoint: String = ""
+    var completionHandler: (_ character: Character) -> Void = { _ in }
     
     
     // MARK: View
@@ -153,17 +152,6 @@ private extension UTF32.CodeUnit {
 
 
 // MARK: - Preview
-
-private extension UnicodeInputView {
-    
-    /// Initializer for preview.
-    init(codePoint: String) {
-        
-        self._codePoint = State(initialValue: codePoint)
-        self.completionHandler = { _ in }
-    }
-}
-
 
 #Preview("Empty") {
     UnicodeInputView(codePoint: "")
