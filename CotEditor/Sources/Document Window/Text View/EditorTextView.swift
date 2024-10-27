@@ -756,7 +756,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // interrupt rectangular selection
         if self.isPerformingRectangularSelection {
-            if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
+            if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges, affinity: affinity) {
                 ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
                 self.insertionLocations = Array(locations[1...])
             } else {

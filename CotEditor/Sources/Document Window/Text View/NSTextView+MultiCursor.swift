@@ -135,8 +135,9 @@ extension MultiCursorEditing {
     /// - Parameters:
     ///   - startPoint: The point where the dragging started, in view coordinates.
     ///   - candidates: The candidate ranges for selectedRanges that is passed to `setSelectedRanges(_s:affinity:stillSelecting:)`.
+    ///   - affinity: The selection affinity for the selection.
     /// - Returns: Locations for all insertion points.
-    func insertionLocations(from startPoint: NSPoint, candidates ranges: [NSValue]) -> [Int]? {
+    func insertionLocations(from startPoint: NSPoint, candidates ranges: [NSValue], affinity: NSSelectionAffinity) -> [Int]? {
         
         // perform only when normal rectangular selection was failed
         guard
@@ -146,7 +147,8 @@ extension MultiCursorEditing {
         
         guard let layoutManager = self.layoutManager else { assertionFailure(); return nil }
         
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        let startIndex = self.characterIndexForInsertion(at: startPoint)
+        let numberOfRows = layoutManager.numberOfWrappedRows(at: startIndex, affinity: affinity)
         
         // possibility of the very last insertion point in the extra line fragment
         var containsLastLine = {
@@ -162,30 +164,44 @@ extension MultiCursorEditing {
             return layoutManager.extraLineFragmentUsedRect.maxY < endPoint.y
         }()
         
+        let lineStartRange = (self.string as NSString).lineStartIndex(at: range.location)
+        
         var locations: [Int] = []
-        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, lineGlyphRange, _) in
-            let rect = usedRect.offset(by: self.textContainerOrigin)  // to view-based
-            let point = NSPoint(x: startPoint.x, y: rect.midY)
+        (self.string as NSString).enumerateSubstrings(in: NSRange(lineStartRange..<range.upperBound), options: [.byLines, .substringNotRequired]) { [unowned self] (_, lineRange, _, _) in
+            let glyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             
-            guard rect.contains(point) else { return }
-            
-            let index = self.characterIndexForInsertion(at: point)
-            
-            // -> The extra line fragment can be an insertion point
-            //    only when the other locations are at the line heads.
-            if containsLastLine {
-                let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-                containsLastLine = (glyphIndex == lineGlyphRange.lowerBound)
+            var count = 0
+            layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, lineGlyphRange, stop) in
+                guard count == numberOfRows else {
+                    count += 1
+                    return
+                }
+                
+                let rect = usedRect.offset(by: self.textContainerOrigin)  // to view-based
+                let point = NSPoint(x: startPoint.x, y: rect.midY)
+                
+                guard rect.contains(point) else { return }
+                
+                let index = self.characterIndexForInsertion(at: point)
+                
+                // -> The extra line fragment can be an insertion point
+                //    only when the other locations are at the line heads.
+                if containsLastLine {
+                    let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+                    containsLastLine = (glyphIndex == lineGlyphRange.lowerBound)
+                }
+                
+                locations.append(index)
+                
+                stop.pointee = true
             }
-            
-            locations.append(index)
         }
         
         if containsLastLine {
             locations.append(self.string.length)
         }
         
-        guard locations.count > 1 else { return nil }
+        guard locations.count > 0 else { return nil }
         
         return locations
     }
@@ -504,6 +520,34 @@ extension NSTextView {
 // MARK: Private
 
 private extension NSLayoutManager {
+    
+    /// Counts the number of wrapped rows where the insertion point at the given glyph index locates.
+    ///
+    /// - Parameters:
+    ///   - glyphIndex: The glyph index of the insertion point.
+    ///   - affinity: The current selection affinity.
+    /// - Returns: The number of rows (0-based).
+    func numberOfWrappedRows(at glyphIndex: Int, affinity: NSSelectionAffinity) -> Int {
+        
+        let characterIndex = self.characterIndexForGlyph(at: glyphIndex)
+        let lineRange = (self.attributedString().string as NSString).lineRange(at: characterIndex)
+        let lineGlyphRange = self.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
+        
+        var count = 0
+        self.enumerateLineFragments(forGlyphRange: lineGlyphRange) { (_, _, _, glyphRange, stop) in
+            guard glyphIndex > glyphRange.upperBound ||
+                    (glyphIndex == glyphRange.upperBound && affinity == .downstream)
+            else {
+                stop.pointee = true
+                return
+            }
+            
+            count += 1
+        }
+        
+        return count
+    }
+    
     
     /// Returns the bounds between upper and lower bounds of the given `range` in horizontal axis.
     ///
