@@ -12,6 +12,7 @@
 ### Improvements
 
 - Allow insertion points only at the same number of wrapped lines by rectangular selection.
+- Allow selections only at the same number of wrapped lines by selecting the column up/down.
 - Update the document’s syntax based on the filename when renaming it in the file browser.
 - Always open a file as a plain-text document if its file extension or filename is determined by syntaxes.
 - Enhance the “Move Focus to Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.
