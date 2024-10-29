@@ -108,6 +108,9 @@ extension FileBrowserViewController: @preconcurrency QLPreviewPanelDataSource {
 
 // MARK: Preview Panel Delegate
 
+// redundant declaration of NSWindowDelegate to suppress the wrong no-effect @preconcurrency attribute warning for QLPreviewPanelDelegate
+extension FileBrowserViewController: NSWindowDelegate { }
+
 extension FileBrowserViewController: @preconcurrency QLPreviewPanelDelegate {
     
     func previewPanel(_ panel: QLPreviewPanel!, handle event: NSEvent!) -> Bool {
