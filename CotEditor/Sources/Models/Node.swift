@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,13 +23,17 @@
 //  limitations under the License.
 //
 
-struct Node<Value> {
+import Foundation
+
+struct Node<Value>: Identifiable {
     
     enum Item {
         
         case value(Value)
         case children([Node])
     }
+    
+    let id = UUID()
     
     var name: String
     var item: Item
@@ -44,22 +48,38 @@ extension Node {
     
     var children: [Node]? {
         
-        switch self.item {
-            case .value:
-                nil
-            case .children(let children):
-                children
+        get {
+            switch self.item {
+                case .value:
+                    nil
+                case .children(let children):
+                    children
+            }
+        }
+        
+        set {
+            guard let newValue else { return assertionFailure() }
+            
+            self.item = .children(newValue)
         }
     }
     
     
     var value: Value? {
         
-        switch self.item {
-            case .value(let value):
-                value
-            case .children:
-                nil
+        get {
+            switch self.item {
+                case .value(let value):
+                    value
+                case .children:
+                    nil
+            }
+        }
+        
+        set {
+            guard let newValue else { return assertionFailure() }
+            
+            self.item = .value(newValue)
         }
     }
     

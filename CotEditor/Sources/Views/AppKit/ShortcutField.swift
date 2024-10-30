@@ -114,7 +114,7 @@ struct ShortcutField: NSViewRepresentable {
 }
 
 
-final class ShortcutTextField: NSTextField, NSTextViewDelegate {
+private final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     
     // MARK: Private Properties
     

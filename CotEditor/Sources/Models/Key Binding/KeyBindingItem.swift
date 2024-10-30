@@ -23,10 +23,10 @@
 //  limitations under the License.
 //
 
-import struct Foundation.Selector
+import Foundation
 import Shortcut
 
-final class KeyBindingItem {
+@Observable final class KeyBindingItem {
     
     let action: Selector
     let tag: Int
@@ -40,5 +40,17 @@ final class KeyBindingItem {
         self.tag = tag
         self.shortcut = shortcut
         self.defaultShortcut = defaultShortcut
+    }
+}
+
+
+extension KeyBindingItem: Equatable {
+    
+    static func == (lhs: KeyBindingItem, rhs: KeyBindingItem) -> Bool {
+        
+        lhs.action == rhs.action &&
+        lhs.tag == rhs.tag &&
+        lhs.shortcut == rhs.shortcut &&
+        lhs.defaultShortcut == rhs.defaultShortcut
     }
 }

@@ -24,33 +24,56 @@
 //
 
 import SwiftUI
-import AppKit
 import OSLog
 import Shortcut
 
 struct KeyBindingsSettingsView: View {
     
-    @State private var model = KeyBindingModel()
+    private typealias Item = Node<KeyBindingItem>
+    
+    let manager: KeyBindingManager = .shared
+    
+    
+    @State private var tree: [Item] = []
+    
+    @State private var isRestorable: Bool = false
+    @State private var selection: Item.ID?
+    @State private var error: (any Error)?
     
     
     var body: some View {
         
         VStack(alignment: .leading) {
             Text("To change a shortcut, click the key column, and then type the new keys.", tableName: "KeyBindingsSettings")
-                .lineLimit(10)
                 .fixedSize(horizontal: false, vertical: true)
             
-            KeyBindingTreeView(model: $model)
-                .frame(height: 260)
+            HStack(spacing: 0) {
+                Table(self.tree, selection: $selection) {
+                    TableColumn(String(localized: "Menu", table: "KeyBindingsSettings", comment: "table column header"), value: \.name)
+                }
+                .frame(width: 120)
+                
+                if let selection,
+                   let item = Binding($tree[id: selection]),
+                   let items = Binding(item.children)
+                {
+                    KeyBindingCommandTable(items: items, error: $error)
+                        .padding(.leading, -1)
+                }
+            }
+            .tableStyle(.bordered)
+            .alternatingRowBackgrounds(.disabled)
+            .border(Color(nsColor: .gridColor))
+            .frame(height: 260)
             
             HStack(alignment: .firstTextBaseline) {
-                Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
-                    .disabled(!self.model.isRestorable)
+                Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.restore)
+                    .disabled(!self.isRestorable)
                     .fixedSize()
                 
                 Spacer()
                 
-                if let error = self.model.error {
+                if let error = self.error {
                     Text(error.localizedDescription)
                         .foregroundStyle(.red)
                         .controlSize(.small)
@@ -59,37 +82,20 @@ struct KeyBindingsSettingsView: View {
             }.frame(minHeight: 20)
         }
         .onAppear {
-            self.model.load()
+            self.tree = self.manager.menuTree
+            self.isRestorable = self.manager.isCustomized
+            self.selection = self.tree.first?.id
+        }
+        .onChange(of: self.tree) {
+            self.save()
         }
         .scenePadding()
         .frame(width: 620)
     }
-}
-
-
-@MainActor @Observable private final class KeyBindingModel {
-    
-    typealias Item = Node<KeyBindingItem>
-    
-    private(set) var tree: [Item] = []
-    private(set) var isRestorable: Bool = false
-    var error: (any Error)?
-    
-    var rootIndex: Int?
-    
-    private let manager: KeyBindingManager = .shared
-    
-    
-    /// Loads data from the user defaults.
-    func load() {
-        
-        self.tree = self.manager.menuTree
-        self.isRestorable = self.manager.isCustomized
-    }
     
     
     /// Restores key binding setting to default.
-    func restore() {
+    private func restore() {
         
         try? self.manager.restoreDefaults()
         
@@ -100,7 +106,7 @@ struct KeyBindingsSettingsView: View {
     
     
     /// Saves the current settings.
-    func save() {
+    private func save() {
         
         do {
             try self.manager.save(tree: self.tree)
@@ -113,234 +119,59 @@ struct KeyBindingsSettingsView: View {
 }
 
 
-private struct KeyBindingTreeView: NSViewControllerRepresentable {
+private struct KeyBindingCommandTable: View {
     
-    typealias NSViewControllerType = NSViewController
+    typealias Item = Node<KeyBindingItem>
+    
+    @Binding var items: [Item]
+    @Binding var error: (any Error)?
+    
+    @State private var selection: Item.ID?
     
     
-    @Binding var model: KeyBindingModel
-    
-    
-    func makeNSViewController(context: Context) -> NSViewController {
+    var body: some View {
         
-        NSStoryboard(name: "KeyBindingTreeView", bundle: nil).instantiateInitialController { coder in
-            KeyBindingTreeViewController(model: self.model, coder: coder)
-        }!
-    }
-    
-    
-    func updateNSViewController(_ nsViewController: NSViewController, context: Context) {
-        
-    }
-}
-
-
-// MARK: -
-
-/// Column identifiers for outline view.
-private extension NSUserInterfaceItemIdentifier {
-    
-    static let command = NSUserInterfaceItemIdentifier("command")
-    static let key = NSUserInterfaceItemIdentifier("key")
-}
-
-
-final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
-    
-    // MARK: Private Properties
-    
-    private let model: KeyBindingModel
-    
-    @IBOutlet private weak var listView: NSTableView?
-    @IBOutlet private weak var outlineView: NSOutlineView?
-    
-    
-    // MARK: Lifecycle
-    
-    fileprivate init?(model: KeyBindingModel, coder: NSCoder) {
-        
-        self.model = model
-        
-        super.init(coder: coder)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.listView?.rowSizeStyle = .medium
-        self.outlineView?.rowSizeStyle = .medium
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.listView?.reloadData()
-        self.outlineView?.reloadData()
-        
-        self.observe()
-    }
-    
-    
-    // MARK: Outline View Data Source
-    
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        
-        if let node = item as? Node<KeyBindingItem> {
-            node.children?.count ?? 0
-        } else if let rootIndex = self.model.rootIndex, rootIndex >= 0 {
-            self.model.tree[rootIndex].children?.count ?? 0
-        } else {
-            0
-        }
-    }
-    
-    
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        
-        (item as? Node<KeyBindingItem>)?.children != nil
-    }
-    
-    
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        
-        if let node = item as? Node<KeyBindingItem> {
-            node.children![index]
-        } else if let rootIndex = self.model.rootIndex {
-            self.model.tree[rootIndex].children![index]
-        } else {
-            preconditionFailure()
-        }
-    }
-    
-    
-    // MARK: Outline View Delegate
-    
-    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        
-        guard
-            let node = item as? Node<KeyBindingItem>,
-            let identifier = tableColumn?.identifier,
-            let cellView = outlineView.makeView(withIdentifier: identifier, owner: self) as? NSTableCellView
-        else { return nil }
-        
-        switch identifier {
-            case .command:
-                cellView.objectValue = node.name
-                
-            case .key:
-                switch node.item {
-                    case .value(let item):
-                        cellView.objectValue = item.shortcut
-                        cellView.textField?.placeholderString = item.defaultShortcut?.symbol
-                        
-                    case .children:
-                        cellView.textField?.isEditable = false
+        Table(of: Binding<Item>.self, selection: $selection) {
+            TableColumn(String(localized: "Command", table: "KeyBindingsSettings", comment: "table column header"), value: \.name.wrappedValue)
+            
+            TableColumn(String(localized: "Key", table: "KeyBindingsSettings", comment: "table column header")) {
+                if let keyBindingItem = Binding($0.value) {
+                    ShortcutField(value: keyBindingItem.shortcut, error: $error)
                 }
-                
-            default:
-                preconditionFailure()
-        }
-        
-        return cellView
-    }
-    
-    
-    // MARK: Action Messages
-    
-    /// Validates and apply new shortcut key input.
-    @IBAction func didEditShortcut(_ sender: ShortcutTextField) {
-        
-        guard let outlineView = self.outlineView else { return assertionFailure() }
-        
-        let row = outlineView.row(for: sender)
-        let column = outlineView.column(for: sender)
-        
-        guard
-            let node = outlineView.item(atRow: row) as? Node<KeyBindingItem>,
-            let item = node.value
-        else { return }
-        
-        let oldShortcut = item.shortcut
-        let shortcut = sender.objectValue as? Shortcut
-        
-        // reset once warning
-        self.model.error = nil
-        
-        // not edited
-        guard shortcut != oldShortcut else { return }
-        
-        if let shortcut {
-            do {
-                try shortcut.checkCustomizationAvailability(for: NSApp.mainMenu)
-            } catch {
-                self.model.error = error
-                sender.objectValue = oldShortcut  // reset text field
-                NSSound.beep()
-                
-                // make text field edit mode again
-                Task {
-                    outlineView.editColumn(column, row: row, with: nil, select: true)
-                }
-                return
             }
-        }
-        
-        // successfully update data
-        item.shortcut = shortcut
-        self.model.save()
-        outlineView.reloadData(forRowIndexes: [row], columnIndexes: [column])
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Recursively observes the `.isRestorable` flag.
-    private func observe() {
-        
-        withObservationTracking { [weak self] in
-            if self?.model.isRestorable == false {
-                self?.outlineView?.reloadData()
-            }
-        } onChange: {
-            Task { @MainActor [weak self] in
-                self?.observe()
-            }
+            .width(80)
+            
+        } rows: {
+            RecursiveDisclosureTableRows($items)
         }
     }
 }
 
 
-extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelegate {
+private struct RecursiveDisclosureTableRows: TableRowContent {
     
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    typealias Item = Node<KeyBindingItem>
+    
+    @Binding var items: [Item]
+    
+    
+    init(_ items: Binding<[Item]>) {
         
-        self.model.tree.count
+        self._items = items
     }
     
     
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    var tableRowBody: some TableRowContent<Binding<Item>> {
         
-        self.model.tree[row].name
-    }
-    
-    
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        
-        guard let tableView = notification.object as? NSTableView else { return }
-        
-        tableView.window?.makeFirstResponder(nil)
-        self.model.rootIndex = tableView.selectedRow
-        self.outlineView?.reloadData()
+        ForEach($items) { item in
+            if let children = Binding(item.children) {
+                DisclosureTableRow(item) {
+                    RecursiveDisclosureTableRows(children)
+                }
+            } else {
+                TableRow(item)
+            }
+        }
     }
 }
 
