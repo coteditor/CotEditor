@@ -965,8 +965,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Gli Strumenti di scrittura di Apple Intelligence funzioneranno correttamente."
+            "state" : "translated",
+            "value" : "Pienamente compatibile con i\nprossimi Strumenti di Scrittura di Apple Intelligence"
           }
         },
         "ja" : {
@@ -1007,8 +1007,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "即将推出的Apple Intelligence的Writing Tools将正常工作。"
+            "state" : "translated",
+            "value" : "即将来到的Apple智能写作工具将正确工作。"
           }
         },
         "zh-Hant" : {
@@ -1060,8 +1060,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pronti per Apple Intelligence"
+            "state" : "translated",
+            "value" : "Pronto per Apple Intelligence"
           }
         },
         "ja" : {
@@ -1102,8 +1102,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "支持Apple Intelligence"
+            "state" : "translated",
+            "value" : "已为Apple智能预备好"
           }
         },
         "zh-Hant" : {
