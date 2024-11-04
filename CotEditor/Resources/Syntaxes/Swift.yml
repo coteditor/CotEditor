@@ -6,6 +6,7 @@ attributes:
 - beginString: '@autoclosure'
 - beginString: '@available'
 - beginString: '@backDeployed'
+- beginString: '@Bindable'
 - beginString: '@Binding'
 - beginString: '@convention'
 - beginString: '@derivative'
@@ -221,7 +222,7 @@ metadata:
   author: 1024jp
   description: Based on Swift 6.0
   distributionURL: https://coteditor.com
-  lastModified: '2024-10-17'
+  lastModified: '2024-11-04'
   license: Same as CotEditor
   version: 4.12.1
 numbers:

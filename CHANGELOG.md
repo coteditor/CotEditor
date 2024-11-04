@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- Update the Swift syntax to add `@ViewLoading` and `@WindowLoading` attributes.
+- Update the Swift syntax to add `@Bindable`, `@ViewLoading`, and `@WindowLoading` attributes.
 - [trivial] Rename “Move Focus” commands.
 - [trivial] Focus on the first input field when opening a dialog.
 
