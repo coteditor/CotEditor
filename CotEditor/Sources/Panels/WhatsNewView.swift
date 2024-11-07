@@ -144,7 +144,11 @@ private enum NewFeature: CaseIterable {
             case .macOSSupport:
                 Image(systemName: "sparkles")
             case .writingTools:
-                Image(systemName: "bubble.and.pencil")
+                if #available(macOS 15, *) {
+                    Image(systemName: "apple.intelligence")
+                } else {
+                    Image(systemName: "bubble.and.pencil")
+                }
             case .donation:
                 Image(.bagCoffee)
         }
