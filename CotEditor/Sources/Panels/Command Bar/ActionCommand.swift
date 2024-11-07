@@ -101,7 +101,9 @@ extension NSApplication {
     /// All active ActionCommands in the main menu for the Quick Action bar.
     final var actionCommands: [ActionCommand] {
         
-        self.mainMenu?.items.flatMap(\.actionCommands) ?? []
+        self.mainMenu?.items
+            .filter { !$0.title.isEmpty }  // ignore the Debug menu and other unexpected odd menus
+            .flatMap(\.actionCommands) ?? []
     }
 }
 

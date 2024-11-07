@@ -3,6 +3,10 @@
 5.0.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Omit commands in the Debug (ladybug) menu from the results of the Quick Action bar.
+
 
 
 5.0.4 (684)
