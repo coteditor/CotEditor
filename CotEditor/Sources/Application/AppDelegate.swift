@@ -404,7 +404,11 @@ private enum BundleIdentifier {
     /// Shows the Quick Action command bar.
     @IBAction func showQuickActions(_ sender: Any?) {
         
-        CommandBarWindowController.shared.showWindow(sender)
+        if CommandBarWindowController.shared.window?.isVisible == true {
+            CommandBarWindowController.shared.close()
+        } else {
+            CommandBarWindowController.shared.showWindow(sender)
+        }
     }
     
     
