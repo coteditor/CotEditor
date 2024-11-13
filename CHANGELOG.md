@@ -8,6 +8,11 @@
 - [trivial] Omit commands in the Debug (ladybug) menu from the results of the Quick Action bar.
 
 
+### Fixes
+
+- Fix crashing when opening the Print dialog.
+
+
 
 5.0.4 (684)
 --------------------------
