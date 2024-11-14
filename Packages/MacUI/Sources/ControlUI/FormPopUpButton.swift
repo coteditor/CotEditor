@@ -118,7 +118,7 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
         }
         
         // draw chevron
-        let chevron = NSImage(resource: .chevronUpChevronDownNarrow)
+        let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow", bundle: .packageResources))
         let chevronColor: NSColor = switch (isHighContrast, self.isEnabled) {
             case (false, true): .controlTextColor
             case (false, false): .disabledControlTextColor
@@ -129,6 +129,31 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
             .draw(in: rect.insetBy(dx: (rect.width - chevron.size.width) / 2,
                                    dy: (rect.height - chevron.size.height) / 2))
     }
+}
+
+
+private extension Bundle {
+    
+    /// Returns the resource bundle associated with the current Swift module.
+    static let packageResources: Bundle = {
+        
+        let bundleName = "MacUI_ControlUI"
+        let candidates = [
+            Bundle.main.resourceURL,  // for when the package is linked into an app
+            Bundle(for: BundleFinder.self).resourceURL,  // for when the package is linked into a framework
+            Bundle.main.bundleURL,  // for command-line tools
+        ]
+        
+        for candidate in candidates {
+            let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
+            if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
+                return bundle
+            }
+        }
+        fatalError("unable to find bundle named \(bundleName)")
+    }()
+    
+    private final class BundleFinder { }
 }
 
 
