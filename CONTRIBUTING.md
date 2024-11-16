@@ -47,7 +47,7 @@ You have two options for adding a new localization to CotEditor.app. Choose one 
     - CotEditor uses the String Catalog format (.xcstrings), first introduced in 2023. To add localization in each string catalog file, select your language and fill each cell of your language column in the table. Cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
     - You can find the string catalogs to localize under:
         - CotEditor/Resources/Localizables/
-        - CotEditor/Resources/Storyboards/
+        - CotEditor/Storyboards/mul.lproj
         - Packages/EditorCore/Sources/CharacterInfo/Resources/
         - Packages/EditorCore/Sources/FileEncoding/Resources/
         - Packages/EditorCore/Sources/LineEnding/Resources/
