@@ -97,26 +97,23 @@ struct FilterField: NSViewRepresentable {
 
 private final class InnerFilterField: NSSearchField {
     
-    // MARK: Private Properties
-    
-    private let image: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle",
-                                       accessibilityDescription: String(localized: "Filter", table: "FilterField"))!
-        .tinted(with: .secondaryLabelColor)
-    private let filteringImage: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
-                                                accessibilityDescription: String(localized: "Filter", table: "FilterField"))!
-        .tinted(with: .controlAccentColor)
-    
-    
     // MARK: Lifecycle
     
     required init() {
         
         super.init(frame: .zero)
         
-        self.searchButtonCell?.image = self.image
+        if let searchButtonCell {
+            searchButtonCell.image = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle",
+                                             accessibilityDescription: String(localized: "Filter", table: "FilterField"))?
+                .tinted(with: .secondaryLabelColor)
+            searchButtonCell.alternateImage = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
+                                                      accessibilityDescription: String(localized: "Filter", table: "FilterField"))?
+                .tinted(with: .controlAccentColor)
+        }
         
         // workaround the cancel button color is .labelColor (2022-09, macOS 13)
-        if let cancelButtonCell = self.cancelButtonCell {
+        if let cancelButtonCell {
             cancelButtonCell.image = cancelButtonCell.image?
                 .tinted(with: .secondaryLabelColor)
         }
@@ -140,7 +137,7 @@ private final class InnerFilterField: NSSearchField {
     override var stringValue: String  {
         
         didSet {
-            self.searchButtonCell?.image = stringValue.isEmpty ? self.image : self.filteringImage
+            self.searchButtonCell?.isHighlighted = !stringValue.isEmpty
         }
     }
     
