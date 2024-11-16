@@ -37,7 +37,6 @@ class FindPanelTextView: NSTextView {
     @objc private dynamic var isEmpty: Bool = true
     
     
-    
     // MARK: Lifecycle
     
     required init?(coder: NSCoder) {
@@ -58,7 +57,7 @@ class FindPanelTextView: NSTextView {
         self.textContainer?.size = self.infiniteSize
         self.isHorizontallyResizable = true
         
-        // behave as field editor for Tab, Shift-Tab, and Return keys.
+        // behave as field editor for Tab, Shift-Tab, and Return keys
         self.isFieldEditor = true
         
         // disable automatic text substitutions
@@ -72,7 +71,6 @@ class FindPanelTextView: NSTextView {
         let layoutManager = FindPanelLayoutManager()
         self.textContainer?.replaceLayoutManager(layoutManager)
     }
-    
     
     
     // MARK: TextView Methods
