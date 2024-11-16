@@ -27,7 +27,7 @@ import AppKit
 
 public final class FormPopUpButton: NSPopUpButton {
     
-    @Invalidating(.display) public private(set) var isHovered = false
+    @Invalidating(.display) private(set) var isHovered = false
     
     
     public override static var cellClass: AnyClass? {
@@ -39,7 +39,7 @@ public final class FormPopUpButton: NSPopUpButton {
     
     public override var intrinsicContentSize: NSSize {
         
-        NSSize(width: self.attributedTitle.size().width + 32,
+        NSSize(width: ceil(self.attributedTitle.size().width) + 32,
                height: super.intrinsicContentSize.height)
     }
     
