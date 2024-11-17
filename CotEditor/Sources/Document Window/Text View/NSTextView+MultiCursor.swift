@@ -130,6 +130,8 @@ extension MultiCursorEditing {
     
     /// Calculates multiple insertion points for rectangular selection.
     ///
+    /// - Note: This API requires TextKit 1.
+    ///
     /// - Parameters:
     ///   - startPoint: The point where the dragging started, in view coordinates.
     ///   - candidates: The candidate ranges for selectedRanges that is passed to `setSelectedRanges(_s:affinity:stillSelecting:)`.
@@ -290,13 +292,15 @@ extension MultiCursorEditing {
             
             newOrigins.append(origin ?? newOrigin)
             
-            if (newCursor < newOrigin && newOrigin < cursor) || (cursor < newOrigin && newOrigin < newCursor) {
-                return NSRange(newOrigin..<newOrigin)
+            let range = if (newCursor < newOrigin && newOrigin < cursor) || (cursor < newOrigin && newOrigin < newCursor) {
+                newOrigin..<newOrigin
             } else if newOrigin < newCursor {
-                return NSRange(newOrigin..<newCursor)
+                newOrigin..<newCursor
             } else {
-                return NSRange(newCursor..<newOrigin)
+                newCursor..<newOrigin
             }
+            
+            return NSRange(range)
         }
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }
@@ -313,6 +317,8 @@ extension MultiCursorEditing {
     
     
     /// Adds new insertion points just above/below to the current insertions.
+    ///
+    /// - Note: This API requires TextKit 1.
     ///
     /// - Parameter affinity: The direction to add new ones; `.downstream` to add above, otherwise `.upstream`.
     func addSelectedColumn(affinity: NSSelectionAffinity) {
@@ -387,6 +393,8 @@ extension MultiCursorEditing {
     
     
     /// Updates insertion indicators.
+    ///
+    /// - Note: This API requires TextKit 1.
     func updateInsertionIndicators() {
         
         assert(Thread.isMainThread)
@@ -449,6 +457,8 @@ extension NSTextView {
     
     /// Finds the location for the insertion point where one (visual) line above to the given insertion point location.
     ///
+    /// - Note: This API requires TextKit 1.
+    ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or `0` if cannot move.
     final func upperInsertionLocation(of index: Int) -> Int {
@@ -468,6 +478,8 @@ extension NSTextView {
     
     
     /// Finds the location for the insertion point where one (visual) line below to the given insertion point location.
+    ///
+    /// - Note: This API requires TextKit 1.
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or end of the document if cannot move.

@@ -51,6 +51,8 @@ extension NSTextView {
     
     /// Enumerates line fragments in area with line numbers.
     ///
+    /// - Note: This API requires TextKit 1.
+    ///
     /// - Parameters:
     ///   - range: The character range to process lines.
     ///   - options: The options to skip invoking `body` in some specific fragments.
@@ -108,6 +110,8 @@ extension NSTextView {
     // MARK: Private Methods
     
     /// The object calculating line range.
+    ///
+    /// - Note: This API requires TextKit 1.
     private var lineRangeCalculating: (any LineRangeCalculating)? {
         
         (self.layoutManager as? LayoutManager)?.lineEndingScanner
@@ -117,6 +121,8 @@ extension NSTextView {
     /// Returns the 1-based line number at the given character index.
     ///
     /// This method has a performance advantage if the receiver has any LineRangeCalculating.
+    ///
+    /// - Note: This API requires TextKit 1.
     ///
     /// - Parameter location: NSRange-based character index.
     /// - Returns: The number of lines (1-based).

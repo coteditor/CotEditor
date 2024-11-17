@@ -64,6 +64,8 @@ extension NSTextView {
     
     
     /// Returns the location of the beginning of the current visual line considering indent.
+    ///
+    /// - Note: This API requires TextKit 1.
     final func locationOfBeginningOfLine(for location: Int) -> Int {
         
         let string = self.string as NSString

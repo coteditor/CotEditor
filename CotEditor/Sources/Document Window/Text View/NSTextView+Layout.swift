@@ -30,6 +30,8 @@ import AppKit
 extension NSTextView {
     
     /// The range of visible characters.
+    ///
+    /// - Note: This API requires TextKit 1.
     final var visibleRange: NSRange? {
         
         self.range(for: self.visibleRect, withoutAdditionalLayout: true)
@@ -37,6 +39,8 @@ extension NSTextView {
     
     
     /// Returns the range of characters in the given rect.
+    ///
+    /// - Note: This API requires TextKit 1.
     final func range(for rect: NSRect, withoutAdditionalLayout: Bool = false) -> NSRange? {
         
         guard
@@ -54,6 +58,8 @@ extension NSTextView {
     
     
     /// Returns bounding rectangle (in text view coordinates) enclosing all the given character range.
+    ///
+    /// - Note: This API requires TextKit 1.
     final func boundingRect(for range: NSRange) -> NSRect? {
         
         guard
@@ -69,6 +75,8 @@ extension NSTextView {
     
     
     /// Returns bounding rectangles (in text view coordinates) enclosing all the given character range.
+    ///
+    /// - Note: This API requires TextKit 1.
     final func boundingRects(for range: NSRange) -> [NSRect] {
         
         var count = 0
@@ -132,6 +140,8 @@ extension NSTextView {
     
     
     /// Zooms to the scale keeping passed-in point position in scroll view.
+    ///
+    /// - Note: This API requires TextKit 1.
     final func setScale(_ scale: CGFloat, centeredAt point: NSPoint) {
         
         let currentScale = self.scale
@@ -164,6 +174,8 @@ extension NSTextView {
     
     
     /// Zooms to the scale keeping current visible rect position in scroll view.
+    ///
+    /// - Note: This API requires TextKit 1.
     final func setScaleKeepingVisibleArea(_ scale: CGFloat) {
         
         self.setScale(scale, centeredAt: self.visibleRect.mid)
@@ -177,6 +189,8 @@ extension NSTextView {
 extension NSTextView {
     
     /// Whether soft wraps lines.
+    ///
+    /// - Note: This API requires TextKit 1.
     final var wrapsLines: Bool {
         
         get {

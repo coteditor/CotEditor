@@ -30,6 +30,8 @@ extension NSTextView {
     
     /// Finds the matching braces for the character before the cursors and highlights them.
     ///
+    /// - Note: This API requires TextKit 1 if `rect` is not `nil`.
+    ///
     /// - Parameters:
     ///   - candidates: Brace pairs to find.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
