@@ -36,9 +36,9 @@ struct StringExtensionsTests {
             
             let string = "a\\a\\\\aa"
             
-            #expect(!string.isCharacterEscaped(at: 0))
-            #expect(string.isCharacterEscaped(at: 2))
-            #expect(!string.isCharacterEscaped(at: 5))
+            #expect(!string.isEscaped(at: 0))
+            #expect(string.isEscaped(at: 2))
+            #expect(!string.isEscaped(at: 5))
         }
         
         

@@ -88,7 +88,7 @@ public extension StringProtocol {
     /// - Returns: The character index of the matched pair.
     func indexOfBracePair(at index: Index, candidates: [BracePair], in range: Range<Index>? = nil, ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
         
-        guard !self.isCharacterEscaped(at: index) else { return nil }
+        guard !self.isEscaped(at: index) else { return nil }
         
         let character = self[index]
         
@@ -135,20 +135,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.begin where ignoredNestDepth == 0:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.end where ignoredNestDepth == 0:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.begin:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.end:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -189,20 +189,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.end where ignoredNestDepth == 0:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.begin where ignoredNestDepth == 0:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.end:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.begin:
-                    guard !self.isCharacterEscaped(at: index) else { continue }
+                    guard !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -299,7 +299,7 @@ private final class BracePairScanner {
             index = self.string.index(before: index)
             
             if let pair = self.candidates.first(where: { $0.begin == character }) {
-                guard !self.string.isCharacterEscaped(at: index) else { continue }
+                guard !self.string.isEscaped(at: index) else { continue }
                 
                 if nestDepths[pair, default: 0] > 0 {
                     nestDepths[pair, default: 0] -= 1
@@ -311,7 +311,7 @@ private final class BracePairScanner {
                 }
                 
             } else if let pair = self.candidates.first(where: { $0.end == character }) {
-                guard !self.string.isCharacterEscaped(at: index) else { continue }
+                guard !self.string.isEscaped(at: index) else { continue }
                 
                 nestDepths[pair, default: 0] += 1
             }

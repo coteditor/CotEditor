@@ -138,7 +138,7 @@ public struct HighlightParser: Sendable {
                     }
             }
         }
-            .filter { !string.isCharacterEscaped(at: $0.range.location) }  // remove escaped ones
+            .filter { !string.isEscaped(at: $0.range.location) }  // remove escaped ones
             .sorted {  // sort by location
                 if $0.range.location != $1.range.location {
                     $0.range.location < $1.range.location

@@ -56,7 +56,7 @@ public extension StringProtocol {
     ///
     /// - Parameter index: The index of the character to check.
     /// - Returns: `true` when the character at the given index is escaped.
-    func isCharacterEscaped(at index: Index) -> Bool {
+    func isEscaped(at index: Index) -> Bool {
         
         let escapes = self[..<index].suffix(maxEscapesCheckLength).reversed().prefix { $0 == "\\" }
         
@@ -68,7 +68,7 @@ public extension StringProtocol {
     ///
     /// - Parameter location: The UTF16-based location of the character to check.
     /// - Returns: `true` when the character at the given index is escaped.
-    func isCharacterEscaped(at location: Int) -> Bool {
+    func isEscaped(at location: Int) -> Bool {
         
         let escape = 0x005C
         let index = UTF16View.Index(utf16Offset: location, in: self)
