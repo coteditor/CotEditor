@@ -790,7 +790,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             // highlight matching brace
             if UserDefaults.standard[.highlightBraces] {
                 let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-                self.highlightMatchingBrace(candidates: bracePairs)
+                self.highlightMatchingBrace(candidates: bracePairs, in: self.visibleRect)
             }
             
             // update instances highlight

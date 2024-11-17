@@ -29,7 +29,12 @@ import StringUtils
 extension NSTextView {
     
     /// Finds the matching braces for the character before the cursors and highlights them.
-    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
+    ///
+    /// - Parameters:
+    ///   - candidates: Brace pairs to find.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - rect: The rect in the text view to find in.
+    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, in rect: NSRect? = nil) {
         
         guard
             !self.string.isEmpty,
@@ -39,24 +44,23 @@ extension NSTextView {
         let lastIndexes = selectedRanges
             .filter { $0.isEmpty }
             .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
-            .filter { $0 > self.string.startIndex }
-            .map(self.string.index(before:))
+            .compactMap { self.string.index($0, offsetBy: -1, limitedBy: self.string.startIndex) }
         
-        guard
-            !lastIndexes.isEmpty,
-            let visibleRange = self.visibleRange,
-            let range = Range(visibleRange, in: self.string)
-        else { return }
+        guard !lastIndexes.isEmpty else { return }
+        
+        let range: Range<String.Index>? = rect
+            .flatMap { self.range(for: $0, withoutAdditionalLayout: true) }
+            .flatMap { Range($0, in: self.string) }
         
         lastIndexes
             .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore) }
             .compactMap { pairIndex in
                 switch pairIndex {
-                    case .begin(let index), .end(let index): index
+                    case .begin(let index), .end(let index): index...index
                     case .odd: nil
                 }
             }
-            .map { NSRange($0...$0, in: self.string) }
+            .map { NSRange($0, in: self.string) }
             .forEach { self.showFindIndicator(for: $0) }
     }
 }
