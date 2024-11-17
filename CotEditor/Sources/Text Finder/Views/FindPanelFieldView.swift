@@ -67,12 +67,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private var defaultsObservers: Set<AnyCancellable> = []
     private var resultObservers: Set<AnyCancellable> = []
     
-    @IBOutlet private weak var findTextView: RegexFindPanelTextView?
+    @IBOutlet private weak var findTextView: FindPanelTextView?
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
     @IBOutlet private weak var findClearButtonConstraint: NSLayoutConstraint?
     
-    @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
+    @IBOutlet private weak var replacementTextView: FindPanelTextView?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var replacementResultField: NSTextField?
     @IBOutlet private weak var replacementClearButtonConstraint: NSLayoutConstraint?
@@ -147,7 +147,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// Invoked when a find/replacement string did change.
     func textDidChange(_ notification: Notification) {
         
-        guard let textView = notification.object as? RegexFindPanelTextView else { return assertionFailure() }
+        guard let textView = notification.object as? FindPanelTextView else { return assertionFailure() }
         
         switch textView {
             case self.findTextView!:

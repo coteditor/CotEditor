@@ -25,8 +25,8 @@
 
 import AppKit
 
-/// Text view that behaves like a NSTextField.
-class FindPanelTextView: NSTextView {
+/// Text view that behaves like an NSTextField.
+final class FindPanelTextView: RegexTextView {
     
     var action: Selector?
     var target: AnyObject?

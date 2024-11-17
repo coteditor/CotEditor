@@ -1,5 +1,5 @@
 //
-//  RegexFindPanelTextView.swift
+//  RegexTextView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,7 +27,7 @@ import AppKit
 import RegexHighlighting
 import StringUtils
 
-final class RegexFindPanelTextView: FindPanelTextView {
+class RegexTextView: NSTextView {
     
     // MARK: Public Properties
     
