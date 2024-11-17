@@ -1798,16 +1798,8 @@ extension EditorTextView {
         }
         
         // select inside of brackets
-        if let pairIndex = self.string.indexOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
-            switch pairIndex {
-                case .begin(let beginIndex):
-                    return NSRange(beginIndex...characterIndex, in: self.string)
-                case .end(let endIndex):
-                    return NSRange(characterIndex...endIndex, in: self.string)
-                case .odd:
-                    NSSound.beep()
-                    return NSRange(characterIndex...characterIndex, in: self.string)  // By double-clicking an odd brace, only the clicked brace should be selected.
-            }
+        if let pairRange = self.string.rangeOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
+            return NSRange(pairRange, in: self.string)
         }
         
         return range

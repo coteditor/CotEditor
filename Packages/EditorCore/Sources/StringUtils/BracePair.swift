@@ -41,7 +41,6 @@ public extension Pair where T == Character {
         
         case begin(String.Index)
         case end(String.Index)
-        case odd
     }
 }
 
@@ -59,6 +58,23 @@ public extension StringProtocol {
     func rangeOfEnclosingBracePair(at range: Range<Index>, candidates: [BracePair]) -> Range<Index>? {
         
         BracePairScanner(string: String(self), candidates: candidates, baseRange: range).scan()
+    }
+    
+    
+    /// Finds the range enclosed by the brace pair, one of which locates at the given index.
+    ///
+    /// - Parameters:
+    ///   - index: The character index of the brace character to find the mate.
+    ///   - candidates: Brace pairs to find.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    func rangeOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) -> ClosedRange<Index>? {
+        
+        guard let pairIndex = self.indexOfBracePair(at: index, candidates: candidates, ignoring: pairToIgnore) else { return nil }
+        
+        return switch pairIndex {
+            case .begin(let beginIndex): beginIndex...index
+            case .end(let endIndex): index...endIndex
+        }
     }
     
     
@@ -80,11 +96,11 @@ public extension StringProtocol {
         
         switch character {
             case pair.begin:
-                guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore) else { return .odd }
+                guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore) else { return nil }
                 return .end(endIndex)
                 
             case pair.end:
-                guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore) else { return .odd }
+                guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore) else { return nil }
                 return .begin(beginIndex)
                 
             default: preconditionFailure()

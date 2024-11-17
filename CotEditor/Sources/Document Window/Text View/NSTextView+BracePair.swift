@@ -59,7 +59,6 @@ extension NSTextView {
             .compactMap { pairIndex in
                 switch pairIndex {
                     case .begin(let index), .end(let index): index...index
-                    case .odd: nil
                 }
             }
             .map { NSRange($0, in: self.string) }
