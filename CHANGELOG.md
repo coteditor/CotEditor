@@ -5,7 +5,6 @@
 
 ### Improvements
 
-- Expand the draggable area in the Quick Action bar.
 - [trivial] Omit commands in the Debug (ladybug) menu from the results of the Quick Action bar.
 
 
