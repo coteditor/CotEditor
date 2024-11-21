@@ -3,6 +3,10 @@
 5.0.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update syntax when the document was renamed in the file browser.
+
 
 
 5.0.5 (686)

@@ -1004,6 +1004,21 @@ extension Document: EditorSource {
     }
     
     
+    /// Updates syntax according to the given filename and shebang.
+    ///
+    /// - Parameters:
+    ///   - filename: The new filename.
+    func invalidateSyntax(filename: String) {
+        
+        guard
+            let syntaxName = SyntaxManager.shared.settingName(documentName: filename, contents: self.textStorage.string),
+            syntaxName != self.syntaxParser.name
+        else { return }
+        
+        self.setSyntax(name: syntaxName)
+    }
+    
+    
     
     // MARK: Action Messages
     

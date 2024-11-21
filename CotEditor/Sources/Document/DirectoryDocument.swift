@@ -376,6 +376,7 @@ final class DirectoryDocument: NSDocument {
             throw InvalidNameError.invalidCharacter(":")
         }
         
+        let isCurrentDocument = (self.currentDocument as? Document)?.fileURL == node.fileURL
         let newURL = node.fileURL.deletingLastPathComponent().appending(component: name)
         
         do {
@@ -384,6 +385,11 @@ final class DirectoryDocument: NSDocument {
             throw InvalidNameError.duplicated(name: name)
         } catch {
             throw error
+        }
+        
+        if isCurrentDocument, let document = self.currentDocument as? Document {
+            // -> At this time point, the document still not updates its fileURL yet.
+            document.invalidateSyntax(filename: name)
         }
         
         node.rename(with: name)
