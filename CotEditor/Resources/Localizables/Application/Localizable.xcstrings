@@ -3951,7 +3951,7 @@
       }
     },
     "InvalidNameError.invalidCharacter.description" : {
-      "comment" : "%@ is an invalid character for filename",
+      "comment" : "%@ is the character invalid for filename",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4374,6 +4374,53 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱不能含有「.」。"
+          }
+        }
+      }
+    },
+    "InvalidNameError.tooLong.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Name ist zu lang."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The name is too long."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The name is too long."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El nombre demasiado largo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le nom est trop long."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名前が長すぎます。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De naam is te lang."
           }
         }
       }

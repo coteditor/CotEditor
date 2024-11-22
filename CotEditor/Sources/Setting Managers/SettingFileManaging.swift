@@ -241,6 +241,10 @@ extension SettingFileManaging {
             throw .empty
         }
         
+        if (settingName + (Self.fileType.preferredFilenameExtension.flatMap({ "." + $0 }) ?? "")).utf16.count > Int(NAME_MAX) {
+            throw .tooLong
+        }
+        
         if settingName.contains("/") {  // invalid for filename
             throw .invalidCharacter("/")
         }
@@ -489,6 +493,7 @@ extension SettingFileManaging {
 enum InvalidNameError: LocalizedError {
     
     case empty
+    case tooLong
     case invalidCharacter(String)
     case newLine
     case startWithDot
@@ -502,10 +507,13 @@ enum InvalidNameError: LocalizedError {
             case .empty:
                 String(localized: "InvalidNameError.empty.description",
                        defaultValue: "Name can’t be empty.")
+            case .tooLong:
+                String(localized: "InvalidNameError.tooLong.description",
+                       defaultValue: "The name is too long.")
             case .invalidCharacter(let string):
                 String(localized: "InvalidNameError.invalidCharacter.description",
                        defaultValue: "Name can’t contain “\(string)”.",
-                       comment: "%@ is an invalid character for filename")
+                       comment: "%@ is the character invalid for filename")
             case .newLine:
                 String(localized: "InvalidNameError.newLine.description",
                        defaultValue: "Name can’t contain new lines.")
