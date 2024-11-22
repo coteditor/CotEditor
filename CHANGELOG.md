@@ -5,7 +5,12 @@
 
 ### Improvements
 
-- Update syntax when the document was renamed in the file browser.
+- Update the document’s syntax when the document was renamed in the file browser.
+
+
+### Fixes
+
+- Fix an issue that the application became not responding when the filename renamed in the file browser contains new line characters.
 
 
 

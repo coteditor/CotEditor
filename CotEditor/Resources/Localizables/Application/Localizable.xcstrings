@@ -4046,6 +4046,53 @@
         }
       }
     },
+    "InvalidNameError.newLine.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name darf keine neuen Zeilen enthalten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Name can’t contain new lines."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name can’t contain new lines."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El nombre no puede contener nuevas líneas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le nom ne peut pas contenir de nouvelles lignes."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名前に改行を含めることはできません。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam kan geen nieuwe regels bevatten."
+          }
+        }
+      }
+    },
     "InvalidNameError.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

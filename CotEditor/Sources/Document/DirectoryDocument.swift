@@ -375,6 +375,9 @@ final class DirectoryDocument: NSDocument {
         guard !name.contains(":") else {
             throw InvalidNameError.invalidCharacter(":")
         }
+        guard !name.contains(where: \.isNewline) else {
+            throw InvalidNameError.newLine
+        }
         
         let isCurrentDocument = (self.currentDocument as? Document)?.fileURL == node.fileURL
         let newURL = node.fileURL.deletingLastPathComponent().appending(component: name)

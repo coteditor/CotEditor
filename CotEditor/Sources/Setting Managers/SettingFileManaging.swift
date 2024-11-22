@@ -249,6 +249,10 @@ extension SettingFileManaging {
             throw .invalidCharacter(":")
         }
         
+        if settingName.contains(where: \.isNewline) {  // invalid for filename
+            throw .newLine
+        }
+        
         if settingName.hasPrefix(".") {  // invalid for filename
             throw .startWithDot
         }
@@ -486,6 +490,7 @@ enum InvalidNameError: LocalizedError {
     
     case empty
     case invalidCharacter(String)
+    case newLine
     case startWithDot
     case duplicated(name: String)
     case reserved(name: String)
@@ -501,6 +506,9 @@ enum InvalidNameError: LocalizedError {
                 String(localized: "InvalidNameError.invalidCharacter.description",
                        defaultValue: "Name can’t contain “\(string)”.",
                        comment: "%@ is an invalid character for filename")
+            case .newLine:
+                String(localized: "InvalidNameError.newLine.description",
+                       defaultValue: "Name can’t contain new lines.")
             case .startWithDot:
                 String(localized: "InvalidNameError.startWithDot.description",
                        defaultValue: "Name can’t begin with “.”.")

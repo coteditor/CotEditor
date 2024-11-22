@@ -909,6 +909,21 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         
         return true
     }
+    
+    
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        
+        switch commandSelector {
+            case #selector(NSTextView.insertNewlineIgnoringFieldEditor),
+                 #selector(NSTextView.insertTabIgnoringFieldEditor):
+                // avoid inserting new line / tab
+                textView.insertNewline(nil)
+                return true
+                
+            default:
+                return false
+        }
+    }
 }
 
 
