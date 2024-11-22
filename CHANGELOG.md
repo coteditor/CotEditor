@@ -4961,7 +4961,7 @@ no change.
 - Fix an issue where printing color theme couldn't be changed to “Black and White” on print panel.
 - Fix an issue where print preview collapsed if paper size is changed on print panel.
 - Fix an issue where “ignore case” option in syntax style definition didn't actually ignore case.
-- Fix an issue where the current file extension was omitted from new suggested file name on “Save As…” operation.
+- Fix an issue where the current file extension was omitted from new suggested filename on “Save As…” operation.
 - Fix some typos in German localization. (Thanks to Chris Eidhof!)
 
 
@@ -5450,7 +5450,7 @@ no change.
     - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file *only when* the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal.
 - Line number view for vertical text orientation.
 - Print with vertical text orientation.
-- Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file contents for in case when syntax style cannot be determined from the file name.
+- Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file contents for in case when syntax style cannot be determined from the filename.
     - From this change, some of the bundled syntax styles are also updated.
 - Add `encoding:` and `coding:` to the encoding declaration keywords which will be used on encoding auto-detection (interpreting priorities are: `charset=` > `encoding=` > `@charset` > `encoding:` > `coding:`).
 
@@ -5619,7 +5619,7 @@ no change.
 - [beta] Fix an issue where split orientation setting was ignored.
 - [beta] Fix an issue where text replacement could occasionally fail.
 - [beta] Fix an issue where closed windows remained in memory.
-- [beta] Fix an issue where the application hangs up on opening documents with the specific file name on Mountain Lion.
+- [beta] Fix an issue where the application hangs up on opening documents with the specific filename on Mountain Lion.
 - [beta] Fix line number drawing with non-opaque view on Mountain Lion.
 
 
@@ -5823,7 +5823,7 @@ no change.
 - Update Ruby syntax style:
     - Improve highlighting `%` literals.
 - Update R syntax style:
-    - Add file name `.Rprofile` to file mapping.
+    - Add filename `.Rprofile` to file mapping.
 - Update JavaScript syntax style:
     - Highlight shebang as a comment.
 - Update documents for scripting with AppleScript.
@@ -5959,7 +5959,7 @@ no change.
 - Now, syntax style can be determined not only from file extensions but also from filenames.
     - From this, rename “Extensions” in syntax edit sheet to “File Mapping.”
 - Add metadata fields for syntax styles.
-- Append a correspondent extension to the file name on saving.
+- Append a correspondent extension to the filename on saving.
     - The top extension in the extension list in the syntax style definition will be used.
     - From this, setting for “Append “txt” on saving” was deprecated.
         - If you want to keep using “txt” as default extension, set “Plain Text” syntax style as default style in Preferences > Format.

@@ -146,7 +146,7 @@ final class FileNode {
     }
     
     
-    /// Updates `.kind` with current file name.
+    /// Updates `.kind` with current filename.
     private func invalidateKind() {
         
         guard !(self.isAlias && self.kind == .folder) else { return }

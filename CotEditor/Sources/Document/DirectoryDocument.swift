@@ -301,7 +301,7 @@ final class DirectoryDocument: NSDocument {
         
         assert(parentNode.isDirectory)
         
-        let name = String(localized: "Untitled", comment: "default file name for new creation")
+        let name = String(localized: "Untitled", comment: "default filename for new creation")
         let pathExtension = (try? SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]))?.extensions.first
         let fileURL = parentNode.fileURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
         
@@ -362,7 +362,7 @@ final class DirectoryDocument: NSDocument {
     ///
     /// - Parameters:
     ///   - node: The file node to rename.
-    ///   - name: The new file name.
+    ///   - name: The new filename.
     func renameItem(at node: FileNode, with name: String) throws {
         
         // validate new name

@@ -7244,7 +7244,7 @@
       }
     },
     "Untitled" : {
-      "comment" : "default file name for new creation\ninitial setting file name",
+      "comment" : "default filename for new creation\ninitial setting filename",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

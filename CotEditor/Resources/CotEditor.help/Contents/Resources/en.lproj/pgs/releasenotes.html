@@ -5976,7 +5976,7 @@
 	<li>Fix an issue where printing color theme couldn’t be changed to “Black and White” on print panel.</li>
 	<li>Fix an issue where print preview collapsed if paper size is changed on print panel.</li>
 	<li>Fix an issue where “ignore case” option in syntax style definition didn’t actually ignore case.</li>
-	<li>Fix an issue where the current file extension was omitted from new suggested file name on “Save As…” operation.</li>
+	<li>Fix an issue where the current file extension was omitted from new suggested filename on “Save As…” operation.</li>
 	<li>Fix some typos in German localization. (Thanks to Chris Eidhof!)</li>
 </ul>
 </section>
@@ -6550,7 +6550,7 @@
 	<ul>
 		<li><strong>for advanced users</strong>: In this feature, CotEditor saves an <i>extended attribute</i> which named <code>com.coteditor.VerticalText</code> to the file <strong>only when</strong> the editor’s text orientation is vertical. You can even disable the feature running the command <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> in Terminal.</li>
 	</ul></li>
-	<li>Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file contents for in case when syntax style cannot be determined from the file name.</li>
+	<li>Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file contents for in case when syntax style cannot be determined from the filename.</li>
 	<ul>
 		<li>From this change, some of the bundled syntax styles are also updated.</li>
 	</ul>
@@ -7075,7 +7075,7 @@
 	</ul></li>
 	<li>Update “R” syntax style:
 	<ul>
-		<li>Add file name <code>.Rprofile</code> to file mapping.</li>
+		<li>Add filename <code>.Rprofile</code> to file mapping.</li>
 	</ul></li>
 	<li>Update “JavaScript” syntax style:
 	<ul>
@@ -7127,12 +7127,12 @@
 	<li>Coloring theme feature.</li>
 	<li>Comment toggling feature.</li>
 	<li>Add “types,” “attributes,” and “variables” to syntax highlighting colors.</li>
-	<li>Now, syntax style can be determined not only from file extension but also from file name.
+	<li>Now, syntax style can be determined not only from file extension but also from filename.
 		<ul>
 		<li>From this, rename “Extensions” in syntax edit sheet to “File Mapping.”</li>
 	</ul></li>
 	<li>Add metadata fields for syntax styles.</li>
-	<li>Append a correspondent extension to the file name on saving.
+	<li>Append a correspondent extension to the filename on saving.
 		<ul>
 		<li>The top extension in the extension list in the syntax style definition will be used.</li>
 		<li>From this, setting for “Append “txt” on saving” was deprecated.
@@ -8556,7 +8556,7 @@
 <ul>
 	<li>Added syntax style files for C, C++, Objective-C.</li>
 	<li>“Finder’s Lock” in the Get Info drawer now shows ‘-’ when the file is not locked.</li>
-	<li>When saving, the “Save” dialogue now shows the file name as its name part selected (excluding the suffix part).</li>
+	<li>When saving, the “Save” dialogue now shows the filename as its name part selected (excluding the suffix part).</li>
 	<li>When failed to open a file, the alert now shows proper text.</li>
 	<li>As opening a file with encoding auto-detection enabled, CotEditor now reads the declaration ‘charset=’ or ‘encoding=’ written in the file and uses it (if any) to determine the character encoding.</li>
 	<li>File Drop now recognizes uppercase file extensions.</li>
@@ -8768,7 +8768,7 @@
 	<li>Slightly improved the performance of the first time invoking an AppleScript script via the Script menu.</li>
 	<li>When the AppleScript command ‘Replace’ received the Find and Replace strings that are identical to each other, it now returns an error.</li>
 	<li>After executing the AppleScript command ‘Replace,’ the caret now moves to the head of the inserted text.</li>
-	<li>The Script menu can now display the appropriate name of a script even if its file name contains ‘. (dot)’ unrelated to file extension or keyboard shortcut.</li>
+	<li>The Script menu can now display the appropriate name of a script even if its filename contains ‘. (dot)’ unrelated to file extension or keyboard shortcut.</li>
 	<li>After editing/deleting a coloring style in the Preferences, coloring will now be updated when a document using that style is made frontmost.</li>
 	<li>When editing a coloring style in the Preferences, you can now start editing right after adding an element.</li>
 	<li>The “Show Extension Error” button in the Syntax preferences is now active only when an error occurred.</li>

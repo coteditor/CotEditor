@@ -555,7 +555,7 @@ extension Document: EditorSource {
             .flatMap { UTType(filenameExtension: $0) }
             .flatMap { [$0] } ?? []
         
-        // avoid the Hide Extension option removes actual file extension (macOS 14, 2024-05)
+        // avoid the Hide Extension option removes actual filename extension (macOS 14, 2024-05)
         savePanel.canSelectHiddenExtension = false
         savePanel.isExtensionHidden = false
         
