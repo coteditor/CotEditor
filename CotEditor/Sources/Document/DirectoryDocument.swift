@@ -382,7 +382,7 @@ final class DirectoryDocument: NSDocument {
             throw InvalidNameError.newLine
         }
         
-        let isCurrentDocument = (self.currentDocument as? Document)?.fileURL == node.fileURL
+        let isCurrentDocument = self.currentDocument?.fileURL == node.fileURL
         let newURL = node.fileURL.deletingLastPathComponent().appending(component: name)
         
         do {
@@ -394,7 +394,7 @@ final class DirectoryDocument: NSDocument {
         }
         
         if isCurrentDocument, let document = self.currentDocument as? Document {
-            // -> At this time point, the document still not updates its fileURL yet.
+            // -> At this point, the document hasn’t updated its fileURL yet.
             document.invalidateSyntax(filename: name)
         }
         
