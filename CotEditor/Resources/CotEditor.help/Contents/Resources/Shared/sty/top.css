@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2023 CotEditor Project
+ © 2006-2024 CotEditor Project
 */
 
 
@@ -31,21 +31,21 @@ a:hover {
 
 header {
 	position: relative;
-	height: 88px;
-	padding: 12px 0;
+	height: 80px;
+	padding: 4px 0;
 	border-bottom: 1px solid -apple-system-quaternary-label;
-	padding-left: 100px;
+	padding-left: 80px;
 }
 header img {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 96px;
+	width: 76px;
 }
 header h1 {
-	font-size: 220%;
-	font-weight: 600;
-	margin: 0 0 1rem;
+	font-size: 210%;
+	font-weight: 650;
+	margin: 0 0 0.6rem;
 }
 header .toc::before {
     display: inline-block;

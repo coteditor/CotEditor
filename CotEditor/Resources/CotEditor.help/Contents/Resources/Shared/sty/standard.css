@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2023 CotEditor Project
+ © 2006-2024 CotEditor Project
 */
 
 
@@ -61,8 +61,8 @@ pre code {
 
 body > h1 {
 	font-family: -apple-system-headline, sans-serif;
-    font-size: 1.692rem;
-	font-weight: 500;
+    font-size: 1.6rem;
+	font-weight: 400;
     line-height: 1.3;
 	margin: 2.5rem 0 1.5rem;
 }
@@ -338,5 +338,6 @@ table.settings td ul li strong {
 	font-style: italic;
 }
 table.settings td ul li strong:lang(ja) {
+	font-weight: 600;
 	font-style: normal;
 }
