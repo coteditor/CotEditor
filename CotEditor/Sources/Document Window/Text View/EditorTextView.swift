@@ -226,7 +226,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
             defaults.publisher(for: .highlightSelectionInstance)
                 .filter { !$0 }
-                .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange) },
+                .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range) },
         ]
     }
     
@@ -782,7 +782,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if UserDefaults.standard[.highlightSelectionInstance] {
             self.instanceHighlightTask?.cancel()
             if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
-                layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range)
             }
         }
         
@@ -893,10 +893,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             
             if font.isFixedPitch {
                 self.typingAttributes[.kern] = 0
-                self.textStorage?.addAttribute(.kern, value: 0, range: self.string.nsRange)
+                self.textStorage?.addAttribute(.kern, value: 0, range: self.string.range)
             } else {
                 self.typingAttributes[.kern] = nil
-                self.textStorage?.removeAttribute(.kern, range: self.string.nsRange)
+                self.textStorage?.removeAttribute(.kern, range: self.string.range)
             }
             
             // let LayoutManager keep the set font to avoid an inconsistent line height
@@ -1442,7 +1442,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.defaultParagraphStyle = paragraphStyle
         self.typingAttributes[.paragraphStyle] = paragraphStyle
-        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
+        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
         
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
@@ -1529,7 +1529,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             let substring = (string as NSString).substring(with: selectedRange)
             let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
             let regex = try! NSRegularExpression(pattern: pattern)
-            let ranges = try regex.cancellableMatches(in: string, range: string.nsRange)
+            let ranges = try regex.cancellableMatches(in: string, range: string.range)
                 .map(\.range)
                 .filter { $0 != selectedRange }
             
@@ -1643,7 +1643,7 @@ extension EditorTextView {
                 let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: partialWord) + "\\w+?(?:$|\\b)"
                 let regex = try! NSRegularExpression(pattern: pattern)
                 
-                return regex.matches(in: self.string, range: self.string.nsRange).map { (self.string as NSString).substring(with: $0.range) }
+                return regex.matches(in: self.string, range: self.string.range).map { (self.string as NSString).substring(with: $0.range) }
             }()
             candidateWords.append(contentsOf: documentWords)
         }

@@ -148,7 +148,7 @@ final class PrintTextView: NSTextView {
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             self.typingAttributes[.paragraphStyle] = paragraphStyle
-            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
+            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
             
             // set font also to layout manager
             (self.layoutManager as? LayoutManager)?.textFont = font

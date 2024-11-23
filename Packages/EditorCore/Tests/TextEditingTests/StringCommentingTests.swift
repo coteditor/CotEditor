@@ -137,7 +137,7 @@ struct StringCommentingTests {
             //
             // foo bar
             """
-        let editor = Editor(string: string, selectedRanges: [string.nsRange])
+        let editor = Editor(string: string, selectedRanges: [string.range])
         
         #expect(editor.canUncomment(partly: false))
         #expect(editor.canUncomment(partly: true))
@@ -151,7 +151,7 @@ struct StringCommentingTests {
             
             // foo bar
             """
-        let editor = Editor(string: string, selectedRanges: [string.nsRange])
+        let editor = Editor(string: string, selectedRanges: [string.range])
         
         #expect(!editor.canUncomment(partly: false))
         #expect(editor.canUncomment(partly: true))

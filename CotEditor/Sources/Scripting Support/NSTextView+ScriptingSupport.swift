@@ -46,7 +46,7 @@ extension NSTextView {
             case .afterSelection:
                 NSRange(location: self.selectedRange.upperBound, length: 0)
             case .replaceAll:
-                self.string.nsRange
+                self.string.range
             case .afterAll:
                 NSRange(location: (self.string as NSString).length, length: 0)
         }

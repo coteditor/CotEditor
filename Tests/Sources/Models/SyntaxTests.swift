@@ -116,7 +116,7 @@ actor SyntaxTests {
         let source = try String(contentsOf: sourceURL, encoding: .utf8)
         
         let outlineItems = try syntax.outlineExtractors
-            .flatMap { try $0.items(in: source, range: source.nsRange) }
+            .flatMap { try $0.items(in: source, range: source.range) }
             .sorted(using: SortDescriptor(\.range.location))
         
         

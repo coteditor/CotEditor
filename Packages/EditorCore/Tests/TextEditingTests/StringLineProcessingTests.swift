@@ -101,7 +101,7 @@ struct StringLineProcessingTests {
         
         #expect(string.sortLinesAscending(in: NSRange(4, 1)) == nil)
         
-        context = try #require(string.sortLinesAscending(in: string.nsRange))
+        context = try #require(string.sortLinesAscending(in: string.range))
         #expect(context.strings == ["aa\nbbbb\nccc"])
         #expect(context.ranges == [NSRange(0, 11)])
         #expect(context.selectedRanges == [NSRange(0, 11)])
@@ -124,7 +124,7 @@ struct StringLineProcessingTests {
         
         #expect(string.reverseLines(in: NSRange(4, 1)) == nil)
         
-        context = try #require(string.reverseLines(in: string.nsRange))
+        context = try #require(string.reverseLines(in: string.range))
         #expect(context.strings == ["ccc\nbbbb\naa"])
         #expect(context.ranges == [NSRange(0, 11)])
         #expect(context.selectedRanges == [NSRange(0, 11)])
@@ -149,7 +149,7 @@ struct StringLineProcessingTests {
         
         #expect(string.deleteDuplicateLine(in: [NSRange(4, 1)]) == nil)
         
-        context = try #require(string.deleteDuplicateLine(in: [string.nsRange]))
+        context = try #require(string.deleteDuplicateLine(in: [string.range]))
         #expect(context.strings == ["", ""])
         #expect(context.ranges == [NSRange(12, 4), NSRange(16, 4)])
         #expect(context.selectedRanges == nil)

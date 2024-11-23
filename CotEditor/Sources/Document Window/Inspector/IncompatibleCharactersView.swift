@@ -239,7 +239,7 @@ private extension NSTextStorage {
     /// Clears all background highlight (including text finder's highlights).
     @MainActor func clearAllMarkup() {
         
-        let range = self.string.nsRange
+        let range = self.string.range
         
         for manager in self.layoutManagers {
             manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: range)

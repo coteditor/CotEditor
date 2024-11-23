@@ -108,7 +108,7 @@ public struct TextFind: Equatable, Sendable {
         self.inSelection = inSelection
         self.string = string
         self.selectedRanges = selectedRanges
-        self.scopeRanges = inSelection ? selectedRanges : [string.nsRange]
+        self.scopeRanges = inSelection ? selectedRanges : [string.range]
     }
     
     

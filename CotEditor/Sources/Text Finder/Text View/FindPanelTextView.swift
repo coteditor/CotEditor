@@ -79,7 +79,7 @@ final class FindPanelTextView: RegexTextView {
     override func becomeFirstResponder() -> Bool {
         
         // select whole string on focus (standard NSTextField behavior)
-        self.selectedRange = self.string.nsRange
+        self.selectedRange = self.string.range
         
         return super.becomeFirstResponder()
     }
@@ -139,7 +139,7 @@ final class FindPanelTextView: RegexTextView {
     /// Clears the current text.
     @IBAction func clear(_ sender: Any?) {
         
-        guard self.shouldChangeText(in: self.string.nsRange, replacementString: "") else { return }
+        guard self.shouldChangeText(in: self.string.range, replacementString: "") else { return }
         
         self.window?.makeFirstResponder(self)
         self.string = ""

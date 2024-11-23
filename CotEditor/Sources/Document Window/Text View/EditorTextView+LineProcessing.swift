@@ -62,7 +62,7 @@ extension EditorTextView {
     @IBAction func sortLinesAscending(_ sender: Any?) {
         
         // process whole document if no text selected
-        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
         guard let context = self.string.sortLinesAscending(in: range) else { return }
         
@@ -74,7 +74,7 @@ extension EditorTextView {
     @IBAction func reverseLines(_ sender: Any?) {
         
         // process whole document if no text selected
-        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
         guard let context = self.string.reverseLines(in: range) else { return }
         
@@ -86,7 +86,7 @@ extension EditorTextView {
     @IBAction func shuffleLines(_ sender: Any?) {
         
         // process whole document if no text selected
-        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
         guard let context = self.string.shuffleLines(in: range) else { return }
         
@@ -100,7 +100,7 @@ extension EditorTextView {
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
         // process whole document if no text selected
-        let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : selectedRanges
+        let ranges = self.selectedRange.isEmpty ? [self.string.range] : selectedRanges
         
         guard let context = self.string.deleteDuplicateLine(in: ranges) else { return }
         
@@ -187,7 +187,7 @@ extension EditorTextView {
     private func sortLines(pattern: some SortPattern, options: SortOptions) {
         
         // process whole document if no text selected
-        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
         let string = self.string as NSString
         let lineRange = string.lineContentsRange(for: range)

@@ -64,8 +64,8 @@ extension NSTextView {
             // apply to the text view
             if let layoutManager = self.layoutManager {
                 let color = NSColor.textHighlighterColor
-                layoutManager.groupTemporaryAttributesUpdate(in: string.nsRange) {
-                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
+                layoutManager.groupTemporaryAttributesUpdate(in: string.range) {
+                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.range)
                     for range in ranges {
                         layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
                     }
@@ -120,7 +120,7 @@ extension NSTextView {
         
         if progress.count > 0 {
             // apply to the text view
-            self.replace(with: [result.string], ranges: [string.nsRange], selectedRanges: result.selectedRanges, actionName: String(localized: "Replace All", table: "TextFind"))
+            self.replace(with: [result.string], ranges: [string.range], selectedRanges: result.selectedRanges, actionName: String(localized: "Replace All", table: "TextFind"))
         } else {
             NSSound.beep()
         }

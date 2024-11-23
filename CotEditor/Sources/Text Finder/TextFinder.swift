@@ -465,8 +465,8 @@ struct TextFindAllResult {
         
         // mark all matches
         if isIncremental, let layoutManager = client.layoutManager {
-            layoutManager.groupTemporaryAttributesUpdate(in: client.string.nsRange) {
-                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: client.string.nsRange)
+            layoutManager.groupTemporaryAttributesUpdate(in: client.string.range) {
+                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: client.string.range)
                 for range in matches {
                     layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
                 }
@@ -594,7 +594,7 @@ struct TextFindAllResult {
         
         // highlight in client
         if let layoutManager = client.layoutManager {
-            let wholeRange = textFind.string.nsRange
+            let wholeRange = textFind.string.range
             layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
                 for highlight in highlights {
@@ -693,6 +693,6 @@ extension NSTextView {
     
     @IBAction final func unhighlight(_ sender: Any?) {
         
-        self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
+        self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
     }
 }
