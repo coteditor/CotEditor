@@ -57,7 +57,7 @@ public struct RegularExpressionSortPattern: SortPattern, Equatable, Sendable {
         
         guard
             let regex = try? self.regex,
-            let match = regex.firstMatch(in: line, range: line.range)
+            let match = regex.firstMatch(in: line, range: line.nsRange)
         else { return nil }
         
         if self.usesCaptureGroup {

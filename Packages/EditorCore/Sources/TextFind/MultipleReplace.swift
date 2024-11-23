@@ -154,7 +154,7 @@ extension MultipleReplace {
         
         for replacement in self.replacements where replacement.isEnabled {
             let mode = replacement.mode(settings: self.settings)
-            let findRanges = result.selectedRanges ?? [result.string.range]
+            let findRanges = result.selectedRanges ?? [result.string.nsRange]
             
             // -> Invalid replacement rules will just be ignored.
             guard let textFind = try? TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges) else { continue }

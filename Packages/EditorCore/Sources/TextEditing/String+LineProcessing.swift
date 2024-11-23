@@ -337,6 +337,6 @@ extension String {
         let pattern = ignoringEmptyLines ? "(?<!^|[ \\t])[ \\t]++$" : "[ \\t]++$"
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         
-        return regex.matches(in: self, range: self.range).map(\.range)
+        return regex.matches(in: self, range: self.nsRange).map(\.range)
     }
 }

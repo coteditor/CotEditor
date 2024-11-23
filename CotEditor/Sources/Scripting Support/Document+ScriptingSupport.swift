@@ -322,9 +322,9 @@ extension Document {
                     return 0
                 }
                 
-                count = regex.replaceMatches(in: mutableString, range: string.range, withTemplate: replacementString)
+                count = regex.replaceMatches(in: mutableString, range: string.nsRange, withTemplate: replacementString)
             } else {
-                count = mutableString.replaceOccurrences(of: searchString, with: replacementString, options: options, range: string.range)
+                count = mutableString.replaceOccurrences(of: searchString, with: replacementString, options: options, range: string.nsRange)
             }
             
             guard count > 0 else { return 0 }

@@ -594,7 +594,7 @@ struct TextFindAllResult {
         
         // highlight in client
         if let layoutManager = client.layoutManager {
-            let wholeRange = textFind.string.range
+            let wholeRange = textFind.string.nsRange
             layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
                 for highlight in highlights {

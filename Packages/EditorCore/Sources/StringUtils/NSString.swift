@@ -38,6 +38,13 @@ public extension String {
 
 public extension StringProtocol {
     
+    /// Whole range in NSRange.
+    var nsRange: NSRange {
+        
+        NSRange(location: 0, length: self.length)
+    }
+    
+    
     /// The `NSRange` like length.
     var length: Int {
         

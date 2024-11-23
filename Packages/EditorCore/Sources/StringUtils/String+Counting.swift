@@ -154,7 +154,7 @@ public extension String {
     /// - Returns: The number of lines.
     func numberOfLines(in range: NSRange? = nil, includesLastBreak: Bool = false) -> Int {
         
-        let range = range ?? self.range
+        let range = range ?? self.nsRange
         
         if self.isEmpty || range.isEmpty { return 0 }
         
