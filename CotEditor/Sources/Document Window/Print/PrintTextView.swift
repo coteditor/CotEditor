@@ -156,10 +156,16 @@ final class PrintTextView: NSTextView {
     }
     
     
-    /// Returns the number of pages available for printing.
     override func knowsPageRange(_ range: NSRangePointer) -> Bool {
         
         if let printInfo = NSPrintOperation.current?.printInfo {
+            self.apply(printInfo: printInfo)
+            
+            // adjust paddings considering the line numbers
+            let printsAtLeft = (self.printsLineNumber && self.baseWritingDirection != .rightToLeft)
+            self.xOffset = printsAtLeft ? self.lineFragmentPadding : 0
+            self.textContainerInset.width = printsAtLeft ? self.lineFragmentPadding : 0
+            
             // set scope to print
             (self.layoutManager as? PrintLayoutManager)?.visibleRange = printInfo.isSelectionOnly ? self.selectedRange : nil
             
@@ -173,15 +179,6 @@ final class PrintTextView: NSTextView {
         }
         
         return super.knowsPageRange(range)
-    }
-    
-    
-    override func viewWillDraw() {
-        
-        super.viewWillDraw()
-        
-        // apply print settings
-        self.applyPrintSettings()
     }
     
     
@@ -261,35 +258,25 @@ final class PrintTextView: NSTextView {
     
     // MARK: Private Methods
     
-    /// Parses the current print settings in printInfo.
-    private func applyPrintSettings() {
+    /// Applies the current print settings in the print info.
+    ///
+    /// - Parameter printInfo: The print info to apply.
+    private func apply(printInfo: NSPrintInfo) {
         
         guard
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let printInfo = NSPrintOperation.current?.printInfo
+            let layoutManager = self.layoutManager as? LayoutManager
         else { return assertionFailure() }
         
-        // set font size
         if let fontSize: CGFloat = printInfo[.fontSize], self.font?.pointSize != fontSize {
             self.font = self.font?.withSize(fontSize)
         }
-        
-        // set line numbers
+        self.drawsBackground = printInfo[.printsBackground] ?? true
         self.printsLineNumber = printInfo[.printsLineNumbers] ?? false
-        // adjust paddings considering the line numbers
-        let printsAtLeft = (self.printsLineNumber && self.baseWritingDirection != .rightToLeft)
-        self.xOffset = printsAtLeft ? self.lineFragmentPadding : 0
-        self.textContainerInset.width = printsAtLeft ? self.lineFragmentPadding : 0
-        
-        // set invisibles
         layoutManager.showsInvisibles = printInfo[.printsInvisibles] ?? false
         
-        // set whether draws background
-        self.drawsBackground = printInfo[.printsBackground] ?? true
-        
         // create theme
-        let themeName = printInfo[.theme] ?? ThemeName.blackAndWhite
-        let theme = try? ThemeManager.shared.setting(name: themeName)  // nil for Black and White
+        let themeName: String? = printInfo[.theme]
+        let theme = themeName.flatMap { try? ThemeManager.shared.setting(name: $0) }  // nil for Black and White
         
         guard self.theme?.name != theme?.name else { return }
         

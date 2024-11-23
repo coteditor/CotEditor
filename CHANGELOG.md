@@ -10,6 +10,7 @@
 
 ### Fixes
 
+- Fix an issue that the printing area in the print preview was trimmed when the line numbers are drawn.
 - Fix an issue that the application became not responding when the filename renamed in the file browser contains new line characters.
 
 
