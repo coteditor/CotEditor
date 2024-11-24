@@ -59,6 +59,18 @@ struct FilePreviewView: View {
                 }
             }
             .padding(.top)
+            
+            Group {
+                switch self.item.contentAttributes {
+                    case .image(let attributes):
+                        ImageAttributesView(attributes: attributes)
+                    default:
+                        EmptyView()
+                }
+            }
+            .monospacedDigit()
+            .formStyle(.grouped)
+            .frame(maxWidth: 400)
         }
         .scenePadding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -102,6 +114,48 @@ private struct QuickLookView: NSViewRepresentable {
 }
 
 
+struct ImageAttributesView: View {
+    
+    var attributes: ImageAttributes
+    
+    
+    var body: some View {
+        
+        Form {
+            LabeledContent(String(localized: "Image size", table: "Document"),
+                           value: self.attributes.pixelSize.formatted)
+            LabeledContent(String(localized: "Image DPI", table: "Document"),
+                           value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
+            LabeledContent(String(localized: "Color model", table: "Document")) {
+                if let name = self.attributes.colorSpace?.colorSpaceModel.localizedName {
+                    Text(name)
+                } else {
+                    Text(verbatim: "–")
+                        .foregroundStyle(.tertiary)
+                }
+            }
+            LabeledContent(String(localized: "ColorSync profile", table: "Document")) {
+                if let name = self.attributes.colorSpace?.localizedName {
+                    Text(name)
+                } else {
+                    Text(verbatim: "–")
+                        .foregroundStyle(.tertiary)
+                }
+            }
+        }
+    }
+}
+
+
+private extension PixelSize {
+    
+    var formatted: String {
+        
+        String(localized: "\(self.width) × \(self.height) pixels", table: "Document")
+    }
+}
+
+
 
 // MARK: - Preview
 
@@ -110,4 +164,13 @@ private struct QuickLookView: NSViewRepresentable {
     let item = try! PreviewDocument(contentsOf: url, ofType: UTType.icns.identifier)
     
     return FilePreviewView(item: item)
+}
+
+#Preview("ImageAttributesView") {
+    ImageAttributesView(attributes: ImageAttributes(pixelSize: .init(width: 1024, height: 900),
+                                                    dotsPerInch: 72,
+                                                    colorSpace: .extendedGenericGamma22Gray))
+    
+    ImageAttributesView(attributes: ImageAttributes(pixelSize: .init(width: 0, height: 0),
+                                                    dotsPerInch: 0.5))
 }

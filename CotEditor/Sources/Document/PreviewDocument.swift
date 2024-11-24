@@ -28,12 +28,19 @@ import QuickLookUI
 
 @Observable final class PreviewDocument: DataDocument {
     
+    enum Attributes {
+        
+        case image(ImageAttributes)
+    }
+    
+    
     // MARK: Public Properties
     
     private(set) var isAlias = false
     private(set) var isFolderAlias = false
     
     private(set) var previewSize: CGSize?
+    private(set) var contentAttributes: Attributes?
     
     
     // MARK: Document Methods
@@ -55,13 +62,24 @@ import QuickLookUI
             false
         }
         
-        let previewSize = NSImageRep(contentsOf: url)?.size
+        var previewSize: CGSize?
+        var contentAttributes: Attributes?
+        if let type = UTType(typeName) {
+            if let rep = NSImageRep(contentsOf: url) {
+                previewSize = rep.size
+                
+                if type.conforms(to: .image) {
+                    contentAttributes = .image(rep.attributes)
+                }
+            }
+        }
         
         Task { @MainActor in
             self.fileAttributes = fileAttributes
             self.isAlias = isAlias
             self.isFolderAlias = isFolderAlias
             self.previewSize = previewSize
+            self.contentAttributes = contentAttributes
         }
     }
 }
