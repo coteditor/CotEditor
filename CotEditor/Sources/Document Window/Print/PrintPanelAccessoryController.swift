@@ -297,7 +297,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     }
     
     
-    /// @hether draws line numbers.
+    /// Whether draws line numbers.
     @objc dynamic var printsLineNumbers: Bool {
         
         get { self.printInfo?[.printsLineNumbers] ?? false }
