@@ -16,7 +16,7 @@
 <p>This page explains how to pass your document’s text to UNIX scripts that are executable from the Script menu, or how to receive the outputs from them.</p>
 
 <ul>
-	<li>The file extensions of the scripts you can add to the Script menu are: .sh, .pl, .php, .rb, .py, .js, .awk, and .swift (regardless of the language)</li>
+	<li>The file extensions of the scripts you can add to the Script menu are .sh, .pl, .php, .rb, .py, .js, .awk, and .swift (regardless of the language)</li>
 	<li>To run a script, you need to set execute permission for the script file.</li>
 </ul>
 
@@ -51,7 +51,7 @@
 <p>CotEditor can receive the output text from the script on STDOUT (standard out) and apply it to the document and so on. To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>” inside. Replace <code><var>xxxx</var></code> with one of the parameters below. Without parameters, CotEditor does nothing just like when you put “<code>Discard</code>.”</p>
 
 <ul>
-	<li>The encoding of the text that CotEditor receives must be UTF-8.</li>
+	<li>The text that CotEditor receives must be encoded in UTF-8.</li>
 </ul>
 
 <table>

@@ -557,7 +557,7 @@
 
 		<ul>
 			<li>Support the alpha channel in theme settings (Custom themes using alpha channel are not compatible with CotEditor prior to version 4.7.4).</li>
-			<li>Make sections in the document inspector collapsable.</li>
+			<li>Make sections in the document inspector collapsible.</li>
 			<li>Add “Hexadecimal with Alpha” format to the Color Code window.</li>
 			<li>Add Czech localization (Thanks to Martin Růžička!).</li>
 
@@ -746,7 +746,7 @@
 
 		<ul>
 			<li>Optimize the performance of the incompatible character scan.</li>
-			<li><span class="trivial">trivial</span>: Add a tooltip to font fields in the Appearance settings pane.</li>
+			<li><span class="trivial">trivial</span>: Add help tags to font fields in the Appearance settings pane.</li>
 			<li><span class="trivial">dev</span>: Migrate the custom sort pattern view to SwiftUI.</li>
 		</ul>
 	</section>
@@ -805,7 +805,7 @@
 		<ul>
 			<li>Set the text kerning in the editor to zero if the font is monospaced.</li>
 			<li>Improve localization.</li>
-			<li><span class="trivial">trivial</span>: Update the label and tooltip for the Line Wrapping toolbar item.</li>
+			<li><span class="trivial">trivial</span>: Update the label and help tag for the Line Wrapping toolbar item.</li>
 			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.5.0 to 2.5.1.</li>
 		</ul>
 	</section>
@@ -2468,7 +2468,7 @@
 	<li>Remove the toolbar button to toggle page guide visibility.</li>
 	<li>Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.</li>
 	<li><span class="trivial">trivial</span>: Update the preferences window layout.</li>
-	<li><span class="trivial">trivial</span>: Improve tooltips of toolbar icons to reflect the current document state.</li>
+	<li><span class="trivial">trivial</span>: Improve help tags of toolbar icons to reflect the current document state.</li>
 	<li><span class="trivial">trivial</span>: Optimize the line number calculation in vertical text orientation.</li>
 	<li><span class="trivial">trivial</span>: Always enable non-contiguous layout by the normal horizontal text orientation.</li>
 	<li><span class="trivial">dev</span>: Update the build environment to Xcode 12.2 (Swift 5.3, macOS 11 SDK).</li>
@@ -4585,7 +4585,7 @@
 	<li>Swap position of “View” with “Format” menu to conform to the Apple’s Human Interface Guidelines.</li>
 	<li>Move the menu item changing the text orientation into Format &gt; Writing Direction.</li>
 	<li>Display full encoding name in the status bar instead of the IANA charset name.</li>
-	<li>Add tooltips to the Unicode normalization forms in Text menu.</li>
+	<li>Add help tags to the Unicode normalization forms in Text menu.</li>
 	<li>Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.</li>
 	<li>Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code…” command in “Text” menu instead).</li>
 	<li>Remove “share find text with other applications” option.</li>
@@ -5175,7 +5175,7 @@
 
 <ul>
 	<li>Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.</li>
-	<li>Add tooltips to the line endings menu in the toolbar.</li>
+	<li>Add help tags to the line endings menu in the toolbar.</li>
 	<li>Improve calculation of the vertical position of line numbers.</li>
 	<li>Tweak the behavior of the incompatible character table and the find result table to highlight the correspondent range in the editor every time when clicking a row in the table.</li>
 	<li>Update default settings about the visibility of invisible characters.
@@ -6735,7 +6735,7 @@
 	<li>Add suppression button to the IANA charset name conflict alert.</li>
 	<li>Improve word completion with words that exist in the document.</li>
 	<li>Modify layout of “General” pane in Preferences.</li>
-	<li>Add tooltip hint to controls in the find panel.</li>
+	<li>Add help tag hint to controls in the find panel.</li>
 	<li>Optimize image resources size.</li>
 	<li>Update Sparkle framework to version 1.10.0.</li>
 </ul>
@@ -6903,7 +6903,7 @@
 	<li>Prefer using user custom syntax style if the file mapping conflicts with other bundled style.</li>
 	<li>Make key bindings for panel windows customizable.</li>
 	<li>Change to save <code>com.apple.TextEncoding</code> xattr only if the file already has the encoding xattr or it’s a new document.</li>
-	<li>Move removed themes/styles to Trash instead delete them immediately.</li>
+	<li>Move removed themes/styles to the Trash instead delete them immediately.</li>
 	<li>Now, Utility actions perform with multiple selections.</li>
 	<li>Avoid showing not-writable alert on Resume again.</li>
 	<li>Delay timing to save text key bindings setting.</li>
@@ -7293,8 +7293,8 @@
 		<li>The user setting for menu key bindings on CotEditor 1.x will be reset on the first launch of v2.0.</li>
 	</ul></li>
 	<li>Improve key bindings edit sheets.</li>
-	<li>Change line hight value to line height based, that includes the hight of the line itself.</li>
-	<li>Change default line hight value to 1.3.</li>
+	<li>Change line height value to line height based, that includes the height of the line itself.</li>
+	<li>Change default line height value to 1.3.</li>
 	<li>Add thousands separators to values in document info.</li>
 	<li>Change date format in document info drawer.</li>
 	<li>Tweak status bar design.</li>
@@ -7333,7 +7333,7 @@
 	<li>Fix an issue that unfocused windows performed also re-coloring after “Replace All.”</li>
 	<li>Fix an issue that page guide was occasionally drawn at wrong place if fallback font is used.</li>
 	<li>Fix to highlight current line only in focused view of split views.</li>
-	<li>Fix an issue that text lines vibrated during moving caret if text orientation is vertical and line hight is fixed.</li>
+	<li>Fix an issue that text lines vibrated during moving caret if text orientation is vertical and line height is fixed.</li>
 	<li>Fix an issue that line numbers in unfocused views were not updated.</li>
 	<li>Fix an issue that lately added toolbar icons didn’t represent the state at the moment.</li>
 	<li>Fix an issue that an error was output in console if blank area of incompatible chars table was clicked.</li>
@@ -7480,7 +7480,7 @@
 		<li>Fix an issue that the color selected in the color panel was applied also to texts in text view.</li>
 	</ul></li>
 	<li>Add “Input Char in Unicode Hex” feature to “Edit” menu.</li>
-	<li>Informations to display in status bar become selectable.</li>
+	<li>Information to display in status bar become selectable.</li>
 	<li>Add word count and file size to status bar info choices.</li>
 	<li>Add word count, file size and byte size to info drawer.</li>
 	<li>Tab format becomes settable via “Format” menu and toolbar to apply only to the current document.</li>
@@ -7590,7 +7590,7 @@
 	<li>Change line/character selection on Go To panel from radio buttons to popup menu.</li>
 	<li>Improve inspector drawer layout.</li>
 	<li>Now line number view updates while window resizing.</li>
-	<li>Improve syntax coloring on text inputing.</li>
+	<li>Improve syntax coloring on text inputting.</li>
 	<li>Migrate memory management to ARC (Automatic Reference Counting).</li>
 	<li>Optimize processes on application launch.</li>
 	<li>Update Sparkle framework to version 1.6.0:<ul>
@@ -8111,7 +8111,7 @@
 	<li>Corrected a problem where an image could be pasted into the Find panel’s Replace field.</li>
 	<li>Fixed some scrolling bugs.</li>
 	<li>Fixed a bug where the menu wasn’t updated after importing a new syntax file.</li>
-	<li>Some of the “pre-formatted string” menu items in the File Drop preferences pane didn’t show tooltips. This problem has been fixed.</li>
+	<li>Some of the “pre-formatted string” menu items in the File Drop preferences pane didn’t show help tags. This problem has been fixed.</li>
 	<li>Showing invisible characters such as control characters would slow down the application performance. This problem has been slightly fixed.</li>
 </ul>
 </section>
@@ -8196,7 +8196,7 @@
 	<li>“Additional Text Key Bindings” now doesn’t work while the Japanese input method is active.</li>
 	<li>Double clicking on a character in the “Incompatible Char” drawer now selects the corresponding character and scrolls the window if needed so that the character can be seen.</li>
 	<li>When editing “Menu Key Bindings” in the Preferences, you can now double click on a collapsed line to expand.</li>
-	<li>Added tooltips to some navigation view items.</li>
+	<li>Added help tags to some navigation view items.</li>
 	<li>Slightly modified the Preferences layout.</li>
 	<li>Updated development environment.</li>
 </ul>
@@ -8351,7 +8351,7 @@
 	<li>Assigned Command-D to “Don’t Save” on the Close dialogue of unwritable files.</li>
 	<li>Pressing Shift-Return now inserts ‘<code>&lt;br /&gt;</code>’ by the default “Additional Text Key Bindings” setting.</li>
 	<li>Increased the bottom margin of text area.</li>
-	<li>Expressly added main file extensions to the build setting (in order to make CotEditor appear in the “Open With” contextual menu in Finder).</li>
+	<li>Expressly added main file extensions to the build setting (in order to make CotEditor appear in the “Open With” contextual menu in the Finder).</li>
 	<li>Toggling the “Use Antialiasing Text” option is now reflected immediately.</li>
 </ul>
 </section>
@@ -8613,7 +8613,7 @@
 
 <ul>
 	<li>Added toolbar icons for “Edit HexColorCode as Fore” and “Edit HexColorCode as BG.”</li>
-	<li>Implemented the function which allows you to save files that are read-only or locked in Finder (doesn’t work when you are not the file’s owner).</li>
+	<li>Implemented the function which allows you to save files that are read-only or locked in the Finder (doesn’t work when you are not the file’s owner).</li>
 	<li>Added an option for specifying whether to apply anti-aliasing to text.</li>
 	<li>Added an option for enabling Smart Insert/Delete.</li>
 	<li>Added “Select All” to the contextual menu.</li>
@@ -8665,7 +8665,7 @@
 	<li>Modified the layout and interface of the “HexColorCode Editor” panel.</li>
 	<li>Modified the layout of the Get Info drawer.</li>
 	<li>The Window menu now has the Panels sub menu including Transparency and GoTo.</li>
-	<li>Rebuilded OgreKit under Mac OS X 10.3.9.</li>
+	<li>Rebuilt OgreKit under Mac OS X 10.3.9.</li>
 </ul>
 </section>
 
@@ -8894,7 +8894,7 @@
 
 <ul>
 	<li>Added toolbar icons.</li>
-	<li>Selecting an item via the AppleScript menu while pressing Option and Shift keys now shows the corresponding script in Finder.</li>
+	<li>Selecting an item via the AppleScript menu while pressing Option and Shift keys now shows the corresponding script in the Finder.</li>
 	<li>Implemented the function which enables you to insert a boilerplate string by dropping a file onto the document window.</li>
 </ul>
 </section>

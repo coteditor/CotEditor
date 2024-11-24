@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Display information about the selected image to the preview view for the file browser.
+- Show information about the selected image to the preview view for the file browser.
 
 
 ### Improvements
@@ -528,7 +528,7 @@
 ### New Features
 
 - Support the alpha channel in theme settings (Custom themes using alpha channel are not compatible with CotEditor prior to version 4.7.4).
-- Make sections in the document inspector collapsable.
+- Make sections in the document inspector collapsible.
 - Add “Hexadecimal with Alpha” format to the Color Code window.
 - Add Czech localization (Thanks to Martin Růžička!).
 
@@ -702,7 +702,7 @@
 ### Improvements
 
 - Optimize the performance of the incompatible character scan.
-- [trivial] Add a tooltip to font fields in the Appearance settings pane.
+- [trivial] Add help tags to font fields in the Appearance settings pane.
 - [dev] Migrate the custom sort pattern view to SwiftUI.
 
 
@@ -737,7 +737,7 @@
 
 - Set the text kerning in the editor to zero if the font is monospaced.
 - Improve localization.
-- [trivial] Update the label and tooltip for the Line Wrapping toolbar item.
+- [trivial] Update the label and help tag for the Line Wrapping toolbar item.
 - [non-AppStore ver.] Update Sparkle from 2.5.0 to 2.5.1.
 
 
@@ -2156,7 +2156,7 @@
 - Avoid showing the "edited" indicator in the close button of document windows when the document contents are empty and therefore can close the window without the confirmation dialog.
 - Remove the toolbar button to toggle page guide visibility.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
-- [trivial] Improve tooltips of toolbar icons to reflect the current document state.
+- [trivial] Improve help tags of toolbar icons to reflect the current document state.
 - [trivial] Optimize the line number calculation in vertical text orientation.
 - [trivial] Always enable non-contiguous layout by the normal horizontal text orientation.
 - [dev] Update the build environment to Xcode 12.2 (Swift 5.3, macOS 11 SDK).
@@ -3944,7 +3944,7 @@ no change.
 - Swap position of “View” with “Format” menu to conform to the Apple's Human Interface Guidelines.
 - Move the menu item changing the text orientation into Format > Writing Direction.
 - Display full encoding name in the status bar instead of the IANA charset name.
-- Add tooltips to the Unicode normalization forms in Text menu.
+- Add help tags to the Unicode normalization forms in Text menu.
 - Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.
 - Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).
 - Remove “share find text with other applications” option.
@@ -4334,7 +4334,7 @@ no change.
 ### Improvements
 
 - Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.
-- Add tooltips to the line endings menu in the toolbar.
+- Add help tags to the line endings menu in the toolbar.
 - Improve calculation of the vertical position of line numbers.
 - Tweak the behavior of the incompatible character table and the find result table to highlight the correspondent range in the editor every time when clicking a row in the table.
 - Update default settings about the visibility of invisible characters.
@@ -4575,7 +4575,7 @@ no change.
 - [beta] Fix an issue where document could silently be updated by an external document file update even if user doesn't set to “Update to modified version.”
 - [beta] Fix an issue where smart dashes substitution state could be set wrongly.
 - [beta] Fix an issue where auto indent style detection didn't work.
-- [beta] Fix an issue where files were treated as dropped-files instead of just inserting filenames when files are copied-and-pasted from Finder.
+- [beta] Fix an issue where files were treated as dropped-files instead of just inserting filenames when files are copied-and-pasted from the Finder.
 - [beta] Fix an issue where the find panel was occasionally collapsed.
 - [beta] And some trivial fixes.
 
@@ -5370,7 +5370,7 @@ no change.
 - Improve contextual menu for theme/syntax style list on preferences.
 - Tweak syntax style edit sheet layout.
 - Remove sample scripts.
-    - You can get them online on [Archives](http://coteditor.com/archives) page.
+    - You can get them online on [Archives](https://coteditor.com/archives) page.
 - Update documents.
 - [beta] Improve side inspector switcher.
 
@@ -5539,7 +5539,7 @@ no change.
 - Add suppression button to the IANA charset name conflict alert.
 - Improve word completion with words that exist in the document.
 - Modify layout of “General” pane in Preferences.
-- Add tooltip hint to controls in the find panel.
+- Add help tag hint to controls in the find panel.
 - Optimize image resources size.
 - Update Sparkle framework to version 1.10.0.
 
@@ -5929,7 +5929,7 @@ no change.
 - [beta] Avoid horizontal scrollers on syntax edit sheets in Japanese localization.
 - [beta] Fix an issue that coloring label names were partially missing in syntax style validator.
 - [beta] Fix syntax colorings of Haskell, LaTeX, and PHP styles.
-- [beta] Fill missing tooltips of some toolbar icons in the English localization.
+- [beta] Fill missing help tags of some toolbar icons in the English localization.
 - [beta] Fix a possible issue that syntax highlighting could not be updated after style edit.
 
 
@@ -6065,7 +6065,7 @@ no change.
 - Rename “Inspect Glyph” to “Inspect Character.”
 - Delay timing to store user’s menu key bindings.
     - The user setting for menu key bindings on CotEditor 1.x will be reset on the first launch of v2.0.
-- Change line hight value to line height based, that includes the hight of the line itself.
+- Change line height value to line height based, that includes the height of the line itself.
 - Change the default line-height value to 1.3.
 - Add thousand separators to values in document info.
 - Change date format in document info drawer.

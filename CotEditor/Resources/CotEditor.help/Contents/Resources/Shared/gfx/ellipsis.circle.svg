@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+                     "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13">
+
+<style type="text/css">
+	* { fill: transparent; stroke: -apple-system-secondary-label; }
+</style>
+
+<circle cx="6.5" cy="6.5" r="6"/>
+<circle cx="3.7" cy="6.5" r="0.4"/>
+<circle cx="6.5" cy="6.5" r="0.4"/>
+<circle cx="9.3" cy="6.5" r="0.4"/>
+
+
+</svg>
