@@ -42,7 +42,7 @@ struct ShiftJISTests {
     }
     
     
-    @Test func encodeTilda() {
+    @Test func encodeTilde() {
         
         #expect(ShiftJIS.shiftJIS.encode("~") == "?")
         #expect(ShiftJIS.shiftJIS_X0213.encode("~") == "〜")

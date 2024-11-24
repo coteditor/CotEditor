@@ -486,10 +486,10 @@ final class DirectoryDocument: NSDocument {
     /// Properly moves the item to the trash.
     ///
     /// - Parameters:
-    ///   - node: The file node to move to trash.
+    ///   - node: The file node to move to the Trash.
     func trashItem(_ node: FileNode) throws {
         
-        // close if the item to trash is opened as a document
+        // close if the item to the Trash is opened as a document
         if let document = self.documents.first(where: { $0.fileURL == node.fileURL }) {
             if document == self.currentDocument {
                 self.windowController?.fileDocument = nil

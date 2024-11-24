@@ -1995,7 +1995,7 @@
         }
       }
     },
-    "Regardless of this setting, new pre-releases are always included while using a pre-release." : {
+    "Regardless of this setting, new prereleases are always included while using a prerelease." : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2048,7 +2048,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ongeacht deze instelling worden nieuwe pre-releases altijd opgenomen als je een pre-release gebruikt."
+            "value" : "Ongeacht deze instelling worden nieuwe prereleases altijd opgenomen als je een prerelease gebruikt."
           }
         },
         "pl" : {
@@ -2524,7 +2524,7 @@
         }
       }
     },
-    "Update to pre-releases when available" : {
+    "Update to prereleases when available" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2577,7 +2577,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Updaten naar pre-releases wanneer beschikbaar"
+            "value" : "Updaten naar prereleases wanneer beschikbaar"
           }
         },
         "pl" : {

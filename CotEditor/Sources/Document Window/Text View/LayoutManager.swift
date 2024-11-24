@@ -274,7 +274,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
         
         // avoid inconsistent line height by a composite font
         // -> The line height by normal input keeps consistent when overriding the related methods in NSLayoutManager.
-        //    but then, the drawing won't be update properly when the font or line hight is changed.
+        //    but then, the drawing won't be update properly when the font or line height is changed.
         // -> NSParagraphStyle's `.lineHeightMultiple` can also control the line height,
         //    but it causes an issue when the first character of the string uses a fallback font.
         lineFragmentRect.pointee.size.height = self.lineHeight

@@ -1739,7 +1739,7 @@ extension EditorTextView {
     /// Displays the word completion candidates list.
     private func performCompletion() {
         
-        // abord if:
+        // abort if:
         guard
             !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.isEmpty,  // selected

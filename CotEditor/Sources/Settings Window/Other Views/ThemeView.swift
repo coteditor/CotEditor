@@ -368,7 +368,7 @@ private extension Theme.SystemDefaultStyle {
 
 #Preview("Metadata (fixed)") {
     @Previewable @State var metadata = Theme.Metadata(
-        author: "Claus"
+        author: "Clarus"
     )
     
     return ThemeMetadataView(metadata: $metadata, isEditable: false)

@@ -221,10 +221,10 @@ private struct UpdaterView: View {
                 Toggle(String(localized: "Check for updates automatically", table: "GeneralSettings"), isOn: $enableAutomaticUpdateChecks)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Toggle(String(localized: "Update to pre-releases when available", table: "GeneralSettings"), isOn: $checksUpdatesForBeta)
+                    Toggle(String(localized: "Update to prereleases when available", table: "GeneralSettings"), isOn: $checksUpdatesForBeta)
                     
                     if Bundle.main.version!.isPrerelease {
-                        Text("Regardless of this setting, new pre-releases are always included while using a pre-release.", tableName: "GeneralSettings")
+                        Text("Regardless of this setting, new prereleases are always included while using a prerelease.", tableName: "GeneralSettings")
                             .foregroundStyle(.secondary)
                             .controlSize(.small)
                             .fixedSize(horizontal: false, vertical: true)

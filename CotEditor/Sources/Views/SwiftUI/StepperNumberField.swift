@@ -36,7 +36,7 @@ struct StepperNumberField: View {
     private var fieldWidth: CGFloat? = 32
     
     
-    /// Creates a text field editing numerical value with a stepper.
+    /// Creates a text field editing numeric value with a stepper.
     ///
     /// - Parameters:
     ///   - value: The underlying value to edit.
