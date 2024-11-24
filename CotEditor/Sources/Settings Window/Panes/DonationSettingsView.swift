@@ -200,7 +200,7 @@ struct DonationSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpLink(anchor: "settings_appearance")
+                HelpLink(anchor: "settings_donation")
             }
         }
         .scenePadding()
