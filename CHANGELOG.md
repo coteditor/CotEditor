@@ -10,7 +10,7 @@
 
 ### Improvements
 
-- Add cursor only at the same number of wrapped lines by rectangular selection.
+- Add insertion points only at the same number of wrapped lines by rectangular selection.
 - Update the document’s syntax when the document was renamed in the file browser.
 
 
