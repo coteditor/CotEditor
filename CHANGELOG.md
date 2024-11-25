@@ -18,6 +18,7 @@
 
 - Fix an issue that the printing area in the print preview was trimmed when the line numbers are drawn.
 - Fix an issue that the application became not responding when the filename renamed in the file browser contains new line characters.
+- Fix an issue that the window height unwontedly shrank when opening a document with vertical layout orientation from the file browser.
 - [trivial] Fix the Help button in the Donation settings pane.
 
 

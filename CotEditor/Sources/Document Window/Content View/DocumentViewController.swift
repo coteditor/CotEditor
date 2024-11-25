@@ -486,7 +486,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     /// Whether lines soft-wrap at the window edge.
-    @objc dynamic var wrapsLines = false {
+    @objc dynamic var wrapsLines = true {
         
         didSet {
             for textView in self.editorViewControllers.compactMap(\.textView) {
