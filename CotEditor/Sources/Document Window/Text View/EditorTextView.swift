@@ -370,11 +370,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     override func setFrameSize(_ newSize: NSSize) {
         
-        let didChange = newSize != self.frame.size
+        let oldSize = self.frame.size
         
         super.setFrameSize(newSize)
         
-        guard didChange else { return }
+        guard newSize != oldSize else { return }
         
         if !self.inLiveResize {
             self.overscrollResizingDebouncer.schedule()
@@ -382,6 +382,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.needsUpdateInsertionIndicators = true
         self.needsUpdateLineHighlight = true
+        
+        // set initial scroll position
+        // -> Otherwise, it would shift by the top inset (2024-12, macOS 15).
+        if oldSize.width == 0, newSize.width > 0 {
+            self.scroll(.zero)
+        }
     }
     
     
