@@ -29,7 +29,7 @@ import StringUtils
 
 struct Console {
     
-    struct Log {
+    struct Log: Hashable, Equatable {
         
         var message: String
         var title: String?
@@ -119,7 +119,7 @@ extension ConsolePanelController: NSToolbarDelegate {
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Clear Log", table: "Console", comment: "toolbar item label")
-                item.toolTip = String(localized: "Clear error log", table: "Console", comment: "toolbar item tooltip")
+                item.toolTip = item.label
                 item.image = NSImage(systemSymbolName: "trash", accessibilityDescription: item.label)
                 item.action = #selector(ConsoleViewController.clearAll)
                 return item
@@ -227,8 +227,8 @@ private final class ConsoleViewController: NSViewController {
         guard let storage = self.textView.textStorage else { return }
         
         storage.beginEditing()
-        storage.enumerateAttribute(.consolePart, type: Console.Log.Part.self, in: storage.range) { (part, range, _) in
-            storage.addAttributes(part.attributes(fontSize: fontSize), range: range)
+        storage.enumerateAttribute(.font, type: NSFont.self, in: storage.range) { (font, range, _) in
+            storage.addAttribute(.font, value: font.withSize(fontSize), range: range)
         }
         storage.endEditing()
     }
@@ -238,15 +238,9 @@ private final class ConsoleViewController: NSViewController {
 
 // MARK: -
 
-private extension NSAttributedString.Key {
-    
-    static let consolePart = Self("consolePart")
-}
-
-
 private extension Console.Log {
     
-    enum Part {
+    private enum Part {
         
         case timestamp
         case title
@@ -266,50 +260,37 @@ private extension Console.Log {
             .dateTimeSeparator(.space)
             .time(includingFractionalSeconds: false)
         string += NSAttributedString(string: "[\(self.date.formatted(dateFormat))]",
-                                     attributes: Part.timestamp.attributes(fontSize: fontSize))
+                                     attributes: [.font: Self.font(for: .timestamp, size: fontSize)])
         if let title = self.title {
-            string += NSAttributedString(string: " " + title, attributes: Part.title.attributes(fontSize: fontSize))
+            string += NSAttributedString(string: " " + title,
+                                         attributes: [.font: Self.font(for: .title, size: fontSize)])
         }
         string += NSAttributedString(string: "\n")
         
         // body
-        string += NSAttributedString(string: self.message + "\n", attributes: Part.message.attributes(fontSize: fontSize))
+        let paragraphStyle = NSParagraphStyle.default.mutable
+        paragraphStyle.headIndent = 10
+        paragraphStyle.firstLineHeadIndent = 10
+        string += NSAttributedString(string: self.message + "\n",
+                                     attributes: [.font: Self.font(for: .message, size: fontSize),
+                                                  .paragraphStyle: paragraphStyle])
         
         // style
         string.addAttribute(.foregroundColor, value: NSColor.labelColor, range: string.range)
         
         return string
     }
-}
-
-
-private extension Console.Log.Part {
     
-    func attributes(fontSize: Double) -> [NSAttributedString.Key: Any] {
+    
+    private static func font(for part: Part, size: Double) -> sending NSFont {
         
-        switch self {
+        switch part {
             case .timestamp:
-                return [
-                    .consolePart: self,
-                    .font: NSFont.systemFont(ofSize: fontSize),
-                ]
-                
+                    .monospacedDigitSystemFont(ofSize: size, weight: .regular)
             case .title:
-                return [
-                    .consolePart: self,
-                    .font: NSFont.systemFont(ofSize: fontSize, weight: .semibold),
-                ]
-                
+                    .systemFont(ofSize: size, weight: .semibold)
             case .message:
-                let paragraphStyle = NSParagraphStyle.default.mutable
-                paragraphStyle.headIndent = fontSize
-                paragraphStyle.firstLineHeadIndent = fontSize
-                
-                return [
-                    .consolePart: self,
-                    .font: NSFont.monospacedSystemFont(ofSize: fontSize, weight: .regular),
-                    .paragraphStyle: paragraphStyle,
-                ]
+                    .monospacedSystemFont(ofSize: size, weight: .regular)
         }
     }
 }
