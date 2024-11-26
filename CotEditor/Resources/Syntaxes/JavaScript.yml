@@ -1010,6 +1010,7 @@ comments:
 completions: []
 extensions:
 - keyString: js
+- keyString: mjs
 - keyString: pac
 filenames: []
 interpreters: []

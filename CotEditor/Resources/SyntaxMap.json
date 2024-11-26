@@ -343,6 +343,7 @@
   "JavaScript" : {
     "extensions" : [
       "js",
+      "mjs",
       "pac"
     ],
     "filenames" : [

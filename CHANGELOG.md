@@ -12,6 +12,7 @@
 
 - Add insertion points only at the same number of wrapped lines by rectangular selection.
 - Update the document’s syntax when the document was renamed in the file browser.
+- Update JavaScript syntax to add .mjs file extension.
 
 
 ### Fixes
