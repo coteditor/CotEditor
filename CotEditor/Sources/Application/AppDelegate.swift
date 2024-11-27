@@ -243,6 +243,7 @@ private enum BundleIdentifier {
     func applicationWillFinishLaunching(_ notification: Notification) {
         
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
+        ProcessInfo.processInfo.enableSuddenTermination()
         
         _ = DocumentController.shared
         
