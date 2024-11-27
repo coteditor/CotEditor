@@ -242,6 +242,7 @@ private enum BundleIdentifier {
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         
+        // programmatically setting `automaticTerminationSupportEnabled` seems not working (macOS 15.1 2024-11, FB15979536)
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
         ProcessInfo.processInfo.enableSuddenTermination()
         
