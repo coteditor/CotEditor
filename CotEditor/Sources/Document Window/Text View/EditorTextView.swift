@@ -77,10 +77,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var isAutomaticTabExpansionEnabled = false
     var isApprovedTextChange = false
     
-    var isAutomaticSymbolBalancingEnabled = false
-    var isAutomaticCompletionEnabled = false
-    var isAutomaticIndentEnabled = false
-    
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
     var syntaxCompletionWords: [String] = []
     
@@ -121,6 +117,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var textHighlightColor: NSColor = .accent
     private var instanceHighlightTask: Task<Void, any Error>?
+    
+    private var isAutomaticSymbolBalancingEnabled = false
+    private var isAutomaticCompletionEnabled = false
+    private var isAutomaticIndentEnabled = false
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
