@@ -6,6 +6,7 @@
 ### New Features
 
 - Show information about the selected image to the preview view for the file browser.
+- Add the “Add period with double-space” option to the Mode setting options (deselected by default).
 
 
 ### Improvements

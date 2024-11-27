@@ -29,6 +29,10 @@ import StringUtils
 
 extension DefaultKeys {
     
+    // system keys
+    static let automaticPeriodSubstitutionEnabled = DefaultKey<Bool>("NSAutomaticPeriodSubstitutionEnabled")
+    
+    
     // General
     static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
     static let noDocumentOnLaunchOption = RawRepresentableDefaultKey<NoDocumentOnLaunchOption>("noDocumentOnLaunchOption")

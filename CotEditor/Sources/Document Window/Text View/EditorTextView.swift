@@ -103,9 +103,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     // MARK: Private Properties
     
-    private let textFinder = TextFinder()
+    private nonisolated static let textContainerInset = NSSize(width: 4, height: 6)
     
-    private static let textContainerInset = NSSize(width: 4, height: 6)
+    private let textFinder = TextFinder()
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
     private var isTypingPairedQuotes = false
@@ -118,6 +118,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private var textHighlightColor: NSColor = .accent
     private var instanceHighlightTask: Task<Void, any Error>?
     
+    private var isAutomaticPeriodSubstitutionEnabled = false  { didSet { self.invalidateAutomaticPeriodSubstitution() } }
     private var isAutomaticSymbolBalancingEnabled = false
     private var isAutomaticCompletionEnabled = false
     private var isAutomaticIndentEnabled = false
@@ -304,6 +305,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         defer {
             self.invalidateInsertionIndicatorDisplayMode()
+            self.invalidateAutomaticPeriodSubstitution()
         }
         
         return true
@@ -316,6 +318,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         defer {
             self.invalidateInsertionIndicatorDisplayMode()
+            self.invalidateAutomaticPeriodSubstitution()
         }
         
         return true
@@ -338,17 +341,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 self?.enclosingScrollView?.drawsBackground = $0
             }
         
-        // observe key window state for insertion points drawing
+        // observe key window state for insertion points drawing and automatic period substition
         if let window {
             self.keyStateObservers = [
                 NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [unowned self] _ in
                     MainActor.assumeIsolated {
                         self.invalidateInsertionIndicatorDisplayMode()
+                        self.invalidateAutomaticPeriodSubstitution()
                     }
                 },
                 NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: .main) { [unowned self] _ in
                     MainActor.assumeIsolated {
                         self.invalidateInsertionIndicatorDisplayMode()
+                        self.invalidateAutomaticPeriodSubstitution()
                     }
                 },
             ]
@@ -1405,6 +1410,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.smartInsertDeleteEnabled = mode.smartInsertDelete
         self.isAutomaticDashSubstitutionEnabled = mode.automaticDashSubstitution
         self.isAutomaticQuoteSubstitutionEnabled = mode.automaticQuoteSubstitution
+        self.isAutomaticPeriodSubstitutionEnabled = mode.automaticPeriodSubstitution
         self.isAutomaticSymbolBalancingEnabled = mode.automaticSymbolBalancing
         
         self.isContinuousSpellCheckingEnabled = mode.continuousSpellChecking
@@ -1412,6 +1418,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.isAutomaticSpellingCorrectionEnabled = mode.automaticSpellingCorrection
         
         self.isAutomaticCompletionEnabled = mode.automaticCompletion && !mode.completionWordTypes.isEmpty
+    }
+    
+    
+    /// Updates the app-wide automatic period substation behavior based on the receiver's `mode`.
+    ///
+    /// Workaround for that the view-specific API to customize this behavior is currently not available  (macOS 15, 2024-11, FB13669125).
+    private func invalidateAutomaticPeriodSubstitution() {
+        
+        if self.window?.firstResponder == self {
+            UserDefaults.standard[.automaticPeriodSubstitutionEnabled] = self.isAutomaticPeriodSubstitutionEnabled
+        } else {
+            UserDefaults.standard.restore(key: .automaticPeriodSubstitutionEnabled)
+        }
     }
     
     

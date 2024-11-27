@@ -33,6 +33,7 @@ struct ModeOptions: Equatable, Codable {
     var smartInsertDelete: Bool = false
     var automaticQuoteSubstitution: Bool = false
     var automaticDashSubstitution: Bool = false
+    var automaticPeriodSubstitution: Bool = false
     var automaticSymbolBalancing: Bool = false
     
     var continuousSpellChecking: Bool = false
@@ -65,6 +66,7 @@ extension Syntax.Kind {
                     smartInsertDelete: true,
                     automaticQuoteSubstitution: false,
                     automaticDashSubstitution: false,
+                    automaticPeriodSubstitution: false,
                     automaticSymbolBalancing: false,
                     continuousSpellChecking: true,
                     grammarChecking: false,
@@ -79,6 +81,7 @@ extension Syntax.Kind {
                     smartInsertDelete: false,
                     automaticQuoteSubstitution: false,
                     automaticDashSubstitution: false,
+                    automaticPeriodSubstitution: false,
                     automaticSymbolBalancing: true,
                     continuousSpellChecking: false,
                     grammarChecking: false,
@@ -112,6 +115,7 @@ extension ModeOptions {
         self.smartInsertDelete = dictionary[.smartInsertDelete] as? Bool ?? false
         self.automaticQuoteSubstitution = dictionary[.automaticQuoteSubstitution] as? Bool ?? false
         self.automaticDashSubstitution = dictionary[.automaticDashSubstitution] as? Bool ?? false
+        self.automaticPeriodSubstitution = dictionary[.automaticPeriodSubstitution] as? Bool ?? false
         self.automaticSymbolBalancing = dictionary[.automaticSymbolBalancing] as? Bool ?? false
         
         self.continuousSpellChecking = dictionary[.continuousSpellChecking] as? Bool ?? false
@@ -132,6 +136,7 @@ extension ModeOptions {
          .smartInsertDelete: self.smartInsertDelete,
          .automaticQuoteSubstitution: self.automaticQuoteSubstitution,
          .automaticDashSubstitution: self.automaticDashSubstitution,
+         .automaticPeriodSubstitution: self.automaticPeriodSubstitution,
          .automaticSymbolBalancing: self.automaticSymbolBalancing,
          
          .continuousSpellChecking: self.continuousSpellChecking,
