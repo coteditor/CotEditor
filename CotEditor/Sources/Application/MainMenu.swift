@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,7 +34,6 @@ enum MainMenu: Int {
     case find
     case window
     case script
-    case help
     
     
     /// Menu item tags not to list in the Key Bindings setting.
