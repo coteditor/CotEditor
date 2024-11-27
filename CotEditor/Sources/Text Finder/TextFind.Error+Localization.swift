@@ -58,7 +58,7 @@ extension TextFind.Error: @retroactive LocalizedError {
                        table: "TextFind")
             case .emptyInSelectionSearch:
                 String(localized: "TextFind.Error.emptyInSelectionSearch.recoverySuggestion",
-                       defaultValue: "Select the search scope in the document or turn off the “in selection” option.",
+                       defaultValue: "Select the search scope in the document or unselect the “in selection” option.",
                        table: "TextFind")
         }
     }
