@@ -259,9 +259,18 @@ private enum BundleIdentifier {
         NSApp.servicesProvider = ServicesProvider()
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
-        // Show What's New panel for CotEditor 5.0.0
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 666 {
+        let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init)
+        
+        // show What's New panel for CotEditor 5.0.0
+        if let lastVersion, lastVersion <= 666 {
             self.showWhatsNew(nil)
+        }
+        
+        // store the latest version
+        // -> migration processes should be finished until here.
+        let thisVersion = Bundle.main.bundleVersion
+        if lastVersion == nil || Int(thisVersion)! > lastVersion! {
+            UserDefaults.standard[.lastVersion] = thisVersion
         }
     }
     
@@ -269,14 +278,6 @@ private enum BundleIdentifier {
     func applicationWillTerminate(_ notification: Notification) {
         
         ScriptManager.shared.cancelScriptsDirectoryObservation()
-        
-        // store the latest version before termination
-        // -> The bundle version (build number) must be Int.
-        let thisVersion = Bundle.main.bundleVersion
-        let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init)
-        if lastVersion == nil || Int(thisVersion)! > lastVersion! {
-            UserDefaults.standard[.lastVersion] = thisVersion
-        }
         
         if self.needsRelaunch {
             NSApp.relaunch()
