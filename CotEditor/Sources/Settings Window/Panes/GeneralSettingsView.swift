@@ -260,6 +260,7 @@ private struct WarningsSettingView: View {
                 }.keyboardShortcut(.defaultAction)
             }.padding(.top)
         }
+        .fixedSize()
         .scenePadding()
     }
 }
