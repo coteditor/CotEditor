@@ -12,6 +12,7 @@
 
 - Add insertion points only at the same number of wrapped lines by rectangular selection.
 - Update the document’s syntax when the document was renamed in the file browser.
+- Expand the draggable area in the Quick Action bar.
 - Update JavaScript syntax to add .mjs file extension.
 - [trivial] Enable the sudden termination.
 - [trivial] Update the User Guide.

@@ -127,28 +127,61 @@ private final class DraggableTextField: NSTextField {
         set { _ = newValue }
     }
     
-    override var mouseDownCanMoveWindow: Bool  { true }
+    
+    override var mouseDownCanMoveWindow: Bool  {
+        
+        true
+    }
 }
 
 
 private final class DraggableTextFieldCell: NSTextFieldCell {
     
-    private lazy var fieldEditor: NSTextView = {
-        
-        let editor = DraggableTextView()
-        editor.isFieldEditor = true
-        return editor
-    }()
+    private lazy var fieldEditor = DraggableFieldEditor()
     
     
     override func fieldEditor(for controlView: NSView) -> NSTextView? {
         
-        self.fieldEditor
+        self.fieldEditor.isFieldEditor = true
+        self.fieldEditor.placeholderString = self.placeholderString
+        
+        return self.fieldEditor
     }
 }
 
 
-private final class DraggableTextView: NSTextView {
+private final class DraggableFieldEditor: NSTextView {
     
-    override var mouseDownCanMoveWindow: Bool  { true }
+    var placeholderString: String?  { didSet { self.sizeToFitTextWidth() } }
+    
+    
+    override var mouseDownCanMoveWindow: Bool  {
+        
+        self.string.isEmpty
+    }
+    
+    
+    override func didChangeText() {
+        
+        super.didChangeText()
+        
+        self.sizeToFitTextWidth()
+    }
+    
+    
+    /// Resizes the receiver's frame width just enough to draw the current text.
+    private func sizeToFitTextWidth() {
+        
+        // keep size to draw placeholder text
+        let attributedString = if self.string.isEmpty, let placeholderString {
+            NSAttributedString(string: placeholderString, attributes: self.typingAttributes)
+        } else {
+            self.attributedString()
+        }
+        
+        let textWidth = attributedString.size().width
+        let padding = self.textContainer?.lineFragmentPadding ?? 0
+        
+        self.frame.size.width = ceil(textWidth) + 2 * padding
+    }
 }
