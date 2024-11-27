@@ -154,7 +154,7 @@ struct DonationSettingsView: View {
                             }
                             Text("Donation is currently not available.", tableName: "DonationSettings")
                             Text(description)
-                                .foregroundStyle(.tertiary)
+                                .foregroundStyle(.secondary)
                                 .textScale(.secondary)
                         }
                         .textSelection(.enabled)
