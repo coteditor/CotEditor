@@ -16,6 +16,7 @@
 - Expand the draggable area in the Quick Action bar.
 - Update JavaScript syntax to add .mjs file extension.
 - [trivial] Enable the sudden termination.
+- [trivial] Make the close window in the About window the standard size.
 - [trivial] Update the User Guide.
 
 

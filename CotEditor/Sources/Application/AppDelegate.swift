@@ -96,7 +96,7 @@ private enum BundleIdentifier {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var aboutPanel = NSPanel(view: AboutView(), utility: true)
+    private lazy var aboutPanel = NSPanel(view: AboutView())
     private lazy var whatsNewPanel = NSPanel(view: WhatsNewView())
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
@@ -539,9 +539,7 @@ private extension NSPanel {
     ///
     /// - Parameters:
     ///   - view: The SwiftUI view.
-    ///   - utility: Whether the panel to create is an utility panel.
-    /// - Returns: A panel.
-    convenience init(view: any View, utility: Bool = false) {
+    convenience init(view: any View) {
         
         let viewController = NSHostingController(rootView: AnyView(view))
         viewController.safeAreaRegions = []
@@ -553,9 +551,6 @@ private extension NSPanel {
         self.titlebarAppearsTransparent = true
         self.hidesOnDeactivate = false
         self.becomesKeyOnlyIfNeeded = true
-        if utility {
-            self.styleMask.insert(.utilityWindow)
-        }
         self.setContentSize(viewController.view.intrinsicContentSize)
         
         self.center()
