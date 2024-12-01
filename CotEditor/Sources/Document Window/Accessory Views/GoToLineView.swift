@@ -56,7 +56,7 @@ struct GoToLineView: View {
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
                     .focused($focus, equals: .field)
-                    .onSubmit { self.submit() }
+                    .onSubmit(self.submit)
             }
             
             HStack {

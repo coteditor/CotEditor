@@ -64,7 +64,7 @@ struct CommandBarView: View {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: "magnifyingglass")
                 WindowDraggableTextField(String(localized: "Quick Actions", table: "CommandBar"), text: $input)
-                    .onSubmit { self.perform() }
+                    .onSubmit(self.perform)
                     .fontWeight(.light)
                     .textFieldStyle(.plain)
                     .accessibilityAddTraits(.isSearchField)

@@ -63,7 +63,7 @@ struct CustomTabWidthView: View {
             LabeledContent(String(localized: "Tab width:", table: "CustomTabWidth")) {
                 StepperNumberField(value: $value, default: self.defaultWidth, in: 1...99)
                     .focused($focus, equals: .field)
-                    .onSubmit { self.submit() }
+                    .onSubmit(self.submit)
             }
             
             HStack {
