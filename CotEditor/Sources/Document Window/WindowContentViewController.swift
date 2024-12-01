@@ -233,7 +233,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Action Messages
     
-    /// Focuses on the file browser.
+    /// Moves the focus to the file browser.
     @IBAction func showFileBrowser(_ sender: Any?) {
         
         guard
