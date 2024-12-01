@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -676,37 +677,34 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="366"/>
+                                        <menuItem title="Move Focus to Next Editor" keyEquivalent="`" id="794">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            <connections>
+                                                <action selector="focusNextEditor:" target="Ady-hI-5gd" id="dKM-na-6Sj"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Move Focus to Previous Editor" alternate="YES" keyEquivalent="`" id="795">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
+                                            <connections>
+                                                <action selector="focusPreviousEditor:" target="Ady-hI-5gd" id="JvA-uY-8af"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Split Editor" id="793">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move Focus to Next Editor" keyEquivalent="" id="794">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="focusNextSplitTextView:" target="Ady-hI-5gd" id="y2Q-eU-ZVD"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move Focus to Previous Editor" keyEquivalent="" id="795">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="focusPrevSplitTextView:" target="Ady-hI-5gd" id="DNq-8M-naF"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
+                                                <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Close Split Editor" id="796">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kAE-Tf-I6P"/>

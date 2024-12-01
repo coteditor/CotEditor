@@ -400,9 +400,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
                 : String(localized: "Stack Editors Vertically", table: "MainMenu")
                 
-            case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
-                return self.splitViewItems.count > 1
-                
             case #selector(closeSplitTextView):
                 return self.splitViewItems.count > 1
                 
@@ -789,16 +786,16 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     /// Moves focus to the next text view.
-    @IBAction func focusNextSplitTextView(_ sender: Any?) {
+    @IBAction func focusNextEditor(_ sender: Any?) {
         
-        self.focusSplitTextView(onNext: true)
+        self.focusNextSplitEditor()
     }
     
     
     /// Moves focus to the previous text view.
-    @IBAction func focusPrevSplitTextView(_ sender: Any?) {
+    @IBAction func focusPreviousEditor(_ sender: Any?) {
         
-        self.focusSplitTextView(onNext: false)
+        self.focusNextSplitEditor(reverse: true)
     }
     
     
@@ -935,19 +932,18 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Moves focus to the next/previous text view.
+    /// Moves focus to the next/previous text view, or if not split, refocuses the current text view.
     ///
-    /// - Parameter onNext: Move to the next if `true`, otherwise previous.
-    private func focusSplitTextView(onNext: Bool) {
+    /// - Parameter reverse: If `true`, move to the previous editor.
+    private func focusNextSplitEditor(reverse: Bool = false) {
         
         let children = self.editorViewControllers
         
-        guard children.count > 1 else { return }
         guard let focusedChild = self.focusedChild,
               let focusIndex = children.firstIndex(of: focusedChild),
-              let nextChild = onNext
-                ? children[safe: focusIndex + 1] ?? children.first
-                : children[safe: focusIndex - 1] ?? children.last
+              let nextChild = reverse
+                ? children[safe: focusIndex - 1] ?? children.last
+                :children[safe: focusIndex + 1] ?? children.first
         else { return assertionFailure() }
         
         self.view.window?.makeFirstResponder(nextChild.textView)

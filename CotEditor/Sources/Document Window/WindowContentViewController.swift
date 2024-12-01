@@ -233,6 +233,24 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Action Messages
     
+    /// Moves the focus to the editor.
+    ///
+    /// - Note: The selector name should be the same as one in `DocumentViewController`.
+    @IBAction func focusNextEditor(_ sender: Any?) {
+        
+        self.focusEditor()
+    }
+    
+    
+    /// Moves the focus to the editor.
+    ///
+    /// - Note: The selector name should be the same as one in `DocumentViewController`.
+    @IBAction func focusPreviousEditor(_ sender: Any?) {
+        
+        self.focusEditor()
+    }
+    
+    
     /// Moves the focus to the file browser.
     @IBAction func showFileBrowser(_ sender: Any?) {
         
@@ -291,6 +309,15 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     private func isInspectorShown(pane: InspectorPane) -> Bool {
         
         !self.inspectorViewItem.isCollapsed && (self.inspectorViewController.selectedPane == pane)
+    }
+    
+    
+    /// Moves the focus to the editor.
+    private func focusEditor() {
+        
+        guard let textView = self.documentViewController?.focusedTextView else { return }
+        
+        self.view.window?.makeFirstResponder(textView)
     }
     
     

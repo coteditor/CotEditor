@@ -13,6 +13,8 @@
 
 - Add insertion points only at the same number of wrapped lines by rectangular selection.
 - Update the document’s syntax when the document was renamed in the file browser.
+- Improve the “Move Focus on Next/Previous Editor” commands to move the focus to the main editor if the focus is out of the editors.
+- Update the default keyboard shortcuts for the split editor-related commands.
 - Expand the draggable area in the Quick Action bar.
 - Update JavaScript syntax to add .mjs file extension.
 - [trivial] Enable the sudden termination.
