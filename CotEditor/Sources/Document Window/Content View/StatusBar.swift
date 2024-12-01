@@ -26,6 +26,7 @@
 import SwiftUI
 import Observation
 import Combine
+import ControlUI
 import Defaults
 import FileEncoding
 import LineEnding

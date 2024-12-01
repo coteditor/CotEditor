@@ -1,5 +1,6 @@
 //
 //  OptionalMenu.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,10 +26,10 @@
 
 import AppKit
 
-/// Menu dynamically shows optional menu items by pressing the Option key.
+/// A menu dynamically shows optional menu items by pressing the Option key.
 ///
 /// Optional items should have an empty key equivalent and the Option key only modifier key.
-final class OptionalMenu: NSMenu, NSMenuDelegate {
+public final class OptionalMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Private Properties
     
@@ -38,7 +39,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Lifecycle
     
-    required override init(title: String = "") {
+    public required override init(title: String = "") {
         
         super.init(title: title)
         
@@ -56,18 +57,19 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Menu Delegate Methods
     
-    func menuWillOpen(_ menu: NSMenu) {
+    public func menuWillOpen(_ menu: NSMenu) {
         
         self.update()  // UI validation is performed here
         self.validateKeyEvent(forcibly: true)
         
         let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(validateKeyEvent), userInfo: nil, repeats: true)
+        timer.tolerance = 0.05
         RunLoop.current.add(timer, forMode: .eventTracking)
         self.trackingTimer = timer
     }
     
     
-    func menuDidClose(_ menu: NSMenu) {
+    public func menuDidClose(_ menu: NSMenu) {
         
         self.trackingTimer?.invalidate()
         self.trackingTimer = nil

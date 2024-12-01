@@ -1,5 +1,6 @@
 //
 //  NumberTextField.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
