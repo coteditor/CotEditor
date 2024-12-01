@@ -350,7 +350,7 @@ extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelega
         
         guard let tableView = notification.object as? NSTableView else { return }
         
-        self.commitEditing()
+        self.endEditing()
         self.model.rootIndex = tableView.selectedRow
         self.outlineView?.reloadData()
     }

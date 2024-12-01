@@ -27,6 +27,7 @@
 - Fix an issue that the application became not responding when the filename renamed in the file browser contains new line characters.
 - Fix an issue that the window height unwontedly shrank when opening a document with vertical layout orientation from the file browser.
 - [trivial] Fix the Help button in the Donation settings pane.
+- [trivial] Fix an issue that undetermined text conversions were ignored on submit in some dialogs.
 
 
 

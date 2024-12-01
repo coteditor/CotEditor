@@ -173,7 +173,7 @@ struct PatternSortView: View {
     private func submit() {
         
         guard
-            self.parent?.commitEditing() == true
+            self.parent?.endEditing() == true
         else { return NSSound.beep() }
         
         let pattern = self.sortPattern

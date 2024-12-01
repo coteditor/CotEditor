@@ -110,9 +110,10 @@ struct CustomSurroundView: View {
     /// Submits the current input.
     private func submit() {
         
-        self.parent?.commitEditing()
-        
-        guard !self.pair.begin.isEmpty else { return NSSound.beep() }
+        guard
+            self.parent?.endEditing() == true,
+            !self.pair.begin.isEmpty
+        else { return NSSound.beep() }
         
         // use beginString also for end delimiter if endString is empty
         let endString = self.pair.end.isEmpty ? self.pair.begin : self.pair.end
