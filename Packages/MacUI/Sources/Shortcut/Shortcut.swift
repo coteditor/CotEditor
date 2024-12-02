@@ -43,8 +43,6 @@ public struct Shortcut: Sendable {
     /// - Note: This initializer accepts the Fn key while the others not.
     public init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
         
-        assert(keyEquivalent.count <= 1)
-        
         guard !keyEquivalent.isEmpty else { return nil }
         
         self.keyEquivalent = keyEquivalent
