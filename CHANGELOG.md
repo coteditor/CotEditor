@@ -5,29 +5,29 @@
 
 ### New Features
 
-- Show information about the selected image to the preview view for the file browser.
+- Display information about the selected image in the preview view for the file browser.
 - Add the “Add period with double-space” option to the Mode setting options (deselected by default).
 
 
 ### Improvements
 
-- Add insertion points only at the same number of wrapped lines by rectangular selection.
-- Update the document’s syntax when the document was renamed in the file browser.
-- Improve the “Move Focus on Next/Previous Editor” commands to move the focus to the main editor if the focus is out of the editors.
-- Update the default keyboard shortcuts for the split editor-related commands.
+- Allow insertion points only at the same number of wrapped lines by rectangular selection.
+- Update the document’s syntax when renaming it in the file browser.
+- Enhance the “Move Focus on Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.
+- Update the default keyboard shortcuts for split editor-related commands.
 - Expand the draggable area in the Quick Action bar.
-- Update JavaScript syntax to add .mjs file extension.
-- [trivial] Enable the sudden termination.
+- Update the JavaScript syntax to include the .mjs file extension.
+- [trivial] Enable the sudden termination feature provided by the macOS system.
 - [trivial] Make the close window in the About window the standard size.
 - [trivial] Update the User Guide.
 
 
 ### Fixes
 
-- Fix an issue that the application did no more automatically terminate when the app went to the background without opened documents.
-- Fix an issue that the printing area in the print preview was trimmed when the line numbers are drawn.
-- Fix an issue that the application became not responding when the filename renamed in the file browser contains new line characters.
-- Fix an issue that the window height unwontedly shrank when opening a document with vertical layout orientation from the file browser.
+- Fix an issue that the application no longer automatically terminated when the app went to the background without open documents.
+- Fix an issue that the printing area in the print preview was trimmed when line numbers were drawn.
+- Fix an issue that the application became unresponsive when renaming a filename in the file browser that contained newline characters.
+- Fix an issue that the window height unexpectedly shrunk when opening a document with the vertical layout orientation from the file browser.
 - [trivial] Fix the Help button in the Donation settings pane.
 - [trivial] Fix an issue that undetermined text conversions were ignored on submit in some dialogs.
 
