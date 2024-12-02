@@ -396,7 +396,7 @@ Gw
                                     <items>
                                         <menuItem title="Line Endings" tag="100" id="294">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target"/>
+                                            <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="ControlUI"/>
                                         </menuItem>
                                         <menuItem title="Text Encoding" id="299">
                                             <modifierMask key="keyEquivalentModifierMask"/>
