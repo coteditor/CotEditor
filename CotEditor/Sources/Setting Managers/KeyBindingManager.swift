@@ -34,10 +34,11 @@ import URLUtils
     
     static let shared = KeyBindingManager()
     
+    let defaultKeyBindings: [KeyBinding]
+    
     
     // MARK: Private Properties
     
-    private let defaultKeyBindings: [KeyBinding]
     private var userKeyBindings: [KeyBinding] = []
     private var modifiedKeyBindings: Set<KeyBinding> = []
     

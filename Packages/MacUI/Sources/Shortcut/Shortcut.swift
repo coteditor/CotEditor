@@ -40,8 +40,10 @@ public struct Shortcut: Sendable {
     
     /// Initializes Shortcut directly from a key equivalent character and modifiers.
     ///
-    /// - Note: This initializer accepts the fn key while the others not.
+    /// - Note: This initializer accepts the Fn key while the others not.
     public init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
+        
+        assert(keyEquivalent.count <= 1)
         
         guard !keyEquivalent.isEmpty else { return nil }
         
