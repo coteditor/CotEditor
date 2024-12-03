@@ -402,14 +402,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @IBAction func openWithExternalEditor(_ sender: Any?) {
         
-        let fileURLs = self.targetNodes(for: sender).map(\.fileURL)
+        let nodes = self.targetNodes(for: sender)
         
-        guard !fileURLs.isEmpty else { return }
+        guard !nodes.isEmpty else { return }
         
         let bundleIdentifier = Bundle.main.bundleIdentifier!
         let configuration = NSWorkspace.OpenConfiguration()
         
-        for fileURL in fileURLs {
+        for node in nodes {
+            let fileURL = node.fileURL
             guard
                 let appURL = NSWorkspace.shared.urlsForApplications(toOpen: fileURL)
                     .first(where: { Bundle(url: $0)?.bundleIdentifier != bundleIdentifier })
