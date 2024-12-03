@@ -116,6 +116,62 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
+    /// Returns the syntax name corresponding to the given filename.
+    ///
+    /// - Parameters:
+    ///   - fileName: The filename of the document to detect the corresponding syntax name.
+    /// - Returns: A setting name, or `nil` if not exists.
+    func settingName(documentName fileName: String) -> SettingName? {
+        
+        let mappingTable = self.mappingTable
+        
+        if let settingName = mappingTable[\.filenames]?[fileName]?.first {
+            return settingName
+        }
+        
+        if let pathExtension = fileName.split(separator: ".").last,
+           let extensionTable = mappingTable[\.extensions]
+        {
+            if let settingName = extensionTable[String(pathExtension)]?.first {
+                return settingName
+            }
+            
+            // check case-insensitively
+            let lowerPathExtension = pathExtension.lowercased()
+            if let settingName = extensionTable
+                .first(where: { $0.key.lowercased() == lowerPathExtension })?
+                .value.first
+            {
+                return settingName
+            }
+        }
+        
+        return nil
+    }
+    
+    
+    /// Returns the syntax name scanning the shebang in the contents.
+    ///
+    /// - Parameters:
+    ///   - contents: The contents of the document.
+    /// - Returns: A setting name, or `nil` if not exists.
+    func settingName(documentContents contents: String) -> SettingName? {
+        
+        if let interpreter = contents.scanInterpreterInShebang(),
+           let settingName = self.mappingTable[\.interpreters]?[interpreter]?.first
+        {
+            return settingName
+        }
+        
+        // check XML declaration
+        if contents.hasPrefix("<?xml ") {
+            return SyntaxName.xml
+        }
+        
+        return nil
+    }
+    
+    
     /// Saves the given setting file to the user domain.
     ///
     /// - Parameters:
@@ -273,62 +329,6 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
             
             try FileManager.default.moveItem(at: url, to: newURL)
         }
-    }
-    
-    
-    /// Returns the syntax name corresponding to the given filename.
-    ///
-    /// - Parameters:
-    ///   - fileName: The filename of the document to detect the corresponding syntax name.
-    /// - Returns: A setting name, or `nil` if not exists.
-    private func settingName(documentName fileName: String) -> SettingName? {
-        
-        let mappingTable = self.mappingTable
-        
-        if let settingName = mappingTable[\.filenames]?[fileName]?.first {
-            return settingName
-        }
-        
-        if let pathExtension = fileName.split(separator: ".").last,
-           let extensionTable = mappingTable[\.extensions]
-        {
-            if let settingName = extensionTable[String(pathExtension)]?.first {
-                return settingName
-            }
-            
-            // check case-insensitively
-            let lowerPathExtension = pathExtension.lowercased()
-            if let settingName = extensionTable
-                .first(where: { $0.key.lowercased() == lowerPathExtension })?
-                .value.first
-            {
-                return settingName
-            }
-        }
-        
-        return nil
-    }
-    
-    
-    /// Returns the syntax name scanning the shebang in the contents.
-    ///
-    /// - Parameters:
-    ///   - contents: The contents of the document.
-    /// - Returns: A setting name, or `nil` if not exists.
-    private func settingName(documentContents contents: String) -> SettingName? {
-        
-        if let interpreter = contents.scanInterpreterInShebang(),
-           let settingName = self.mappingTable[\.interpreters]?[interpreter]?.first
-        {
-            return settingName
-        }
-        
-        // check XML declaration
-        if contents.hasPrefix("<?xml ") {
-            return SyntaxName.xml
-        }
-        
-        return nil
     }
 }
 

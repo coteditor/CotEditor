@@ -581,6 +581,8 @@ final class DirectoryDocument: NSDocument {
             return true
         }
         
+        if SyntaxManager.shared.settingName(documentName: url.lastPathComponent) != nil { return true }
+        
         return url.pathExtension.isEmpty
     }
     

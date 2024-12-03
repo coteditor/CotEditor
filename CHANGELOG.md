@@ -13,6 +13,7 @@
 
 - Allow insertion points only at the same number of wrapped lines by rectangular selection.
 - Update the document’s syntax when renaming it in the file browser.
+- Open a file selected in the file browser as a plain-text document if either its file extension or filename is determined by syntaxes.
 - Enhance the “Move Focus on Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.
 - Update the default keyboard shortcuts for split editor-related commands.
 - Expand the draggable area in the Quick Action bar.
