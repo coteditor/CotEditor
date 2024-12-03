@@ -525,8 +525,16 @@ final class DirectoryDocument: NSDocument {
     
     /// Open the document at a given fileURL in a new window.
     ///
-    /// - Parameter fileURL: The fileURL to open.
-    func openInWindow(fileURL: URL) {
+    /// - Parameter node: The file node to open.
+    func openInWindow(at node: FileNode) {
+        
+        let fileURL: URL
+        do {
+            fileURL = try node.resolvedFileURL
+        } catch {
+            self.presentError(error)
+            return
+        }
         
         if let document = self.currentDocument, fileURL == document.fileURL {
             // remove from the current window

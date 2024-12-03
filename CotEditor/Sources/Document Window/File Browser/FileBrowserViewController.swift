@@ -425,7 +425,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let nodes = self.targetNodes(for: sender)
         
         for node in nodes {
-            self.openInWindow(at: node)
+            self.document.openInWindow(at: node)
         }
     }
     
@@ -607,23 +607,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         if edit {
             self.outlineView.editColumn(0, row: row, with: nil, select: false)
         }
-    }
-    
-    
-    /// Open in a separate window by resolving any file link.
-    ///
-    /// - Parameter node: The file node to open.
-    private func openInWindow(at node: FileNode) {
-        
-        let fileURL: URL
-        do {
-            fileURL = try node.resolvedFileURL
-        } catch {
-            self.presentError(error)
-            return
-        }
-        
-        self.document.openInWindow(fileURL: fileURL)
     }
     
     
