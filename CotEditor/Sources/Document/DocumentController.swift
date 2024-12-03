@@ -381,7 +381,8 @@ final class DocumentController: NSDocumentController {
     private nonisolated func checkOpeningSafetyOfDocument(at url: URL, type typeName: String) throws(DocumentOpeningError) {
         
         // check if the file is possible binary
-        if let type = UTType(typeName),
+        if SyntaxManager.shared.settingName(documentName: url.lastPathComponent) == nil,
+           let type = UTType(typeName),
            !type.isPlainText,
            [.image, .audiovisualContent, .archive].contains(where: type.conforms(to:))
         {
