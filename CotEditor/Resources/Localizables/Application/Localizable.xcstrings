@@ -4079,16 +4079,46 @@
             "value" : "Le nom ne peut pas contenir de nouvelles lignes."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il nome non può contenere\nulteriori righe."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "名前に改行を含めることはできません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름에 줄바꿈 문자를 포함할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Naam kan geen nieuwe regels bevatten."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa nie może zawierać znaków nowego wiersza."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O nome não pode conter novas linhas."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ad yeni satırlar içeremez."
           }
         }
       }
@@ -4411,16 +4441,46 @@
             "value" : "Le nom est trop long."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome troppo lungo."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "名前が長すぎます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름이 너무 깁니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "De naam is te lang."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa jest za długa."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O nome é muito longo."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ad pek uzun."
           }
         }
       }
