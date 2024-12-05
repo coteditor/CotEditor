@@ -4049,6 +4049,12 @@
     "InvalidNameError.newLine.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název nemůže obsahovat nové řádky."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4119,6 +4125,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ad yeni satırlar içeremez."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名称不能包含换行符。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱不得出現換行符號。"
           }
         }
       }
@@ -4411,6 +4429,12 @@
     "InvalidNameError.tooLong.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název je příliš dlouhý."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4481,6 +4505,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ad pek uzun."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名称太长了。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱太長了。"
           }
         }
       }
