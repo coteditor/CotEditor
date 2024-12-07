@@ -162,9 +162,7 @@ class ScriptableApplication(object):
             path (str): Path to file.
         """
         path = path.replace('\\', '\\\\').replace('"', '\\"')
-        self.tell('open POSIX file "{}"'.format(path), is_async=True)
-        # -> Opening a file that is already opened in the application takes
-        #    somehow extremely long time. So, we don't wait.
+        self.tell('open POSIX file "{}"'.format(path))
 
     def tell_document(self, script, index=1):
         """Tell OSA command to a document of the application.
