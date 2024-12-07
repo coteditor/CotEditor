@@ -1423,7 +1423,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     /// Updates the app-wide automatic period substation behavior based on the receiver's `mode`.
     ///
-    /// Workaround for that the view-specific API to customize this behavior is currently not available  (macOS 15, 2024-11, FB13669125).
+    /// Workaround for that the view-specific API to customize this behavior is currently not available (macOS 15, 2024-11, FB13669125).
     private func invalidateAutomaticPeriodSubstitution() {
         
         if self.window?.firstResponder == self {

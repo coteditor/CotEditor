@@ -64,7 +64,7 @@ struct LineEndingScannerTests {
         let storage = NSTextStorage(string: "dog\ncat\r\ncow")
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
-        // add \r before \n  (LF -> CRLF)
+        // add \r before \n (LF -> CRLF)
         storage.replaceCharacters(in: NSRange(3..<3), with: "\r")
         // remove \n after \r (CRLF -> CR)
         storage.replaceCharacters(in: NSRange(9..<10), with: "")

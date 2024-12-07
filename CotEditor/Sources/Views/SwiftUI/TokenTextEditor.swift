@@ -246,7 +246,7 @@ private extension NSAttributedString {
     /// - Parameters:
     ///   - attrName: The name of an attribute.
     ///   - index: The index at which to test for `attributeName`.
-    /// - Returns: The character range of the attribute, or `nil`if  the attribute was not specified.
+    /// - Returns: The character range of the attribute, or `nil`if the attribute was not specified.
     func longestEffectiveRange(of attrName: NSAttributedString.Key, at index: Int) -> NSRange? {
         
         var range = NSRange.notFound

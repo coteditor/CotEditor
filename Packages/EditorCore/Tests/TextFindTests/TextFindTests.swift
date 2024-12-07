@@ -230,7 +230,7 @@ struct TextFindTests {
         textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)",
                                 mode: .regularExpression(options: .caseInsensitive, unescapesReplacement: false))
         
-        (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { (_, _, _)  in }
+        (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { (_, _, _) in }
         #expect(replacementItems.count == 1)
         #expect(replacementItems[0].value == "ac\\tdefg AC\\tDEFG")
         #expect(replacementItems[0].range == NSRange(location: 0, length: 15))
@@ -243,7 +243,7 @@ struct TextFindTests {
                                 selectedRanges: [NSRange(location: 1, length: 14),
                                                  NSRange(location: 16, length: 7)])
         
-        (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { (_, _, _)  in }
+        (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { (_, _, _) in }
         #expect(replacementItems.count == 2)
         #expect(replacementItems[0].value == "bcdefg _defg")
         #expect(replacementItems[0].range == NSRange(location: 1, length: 14))

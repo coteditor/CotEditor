@@ -67,7 +67,7 @@ public struct SortOptions: Equatable, Sendable {
     /// If the receiver's `.numeric` property is `false`, it certainly returns `nil`.
     ///
     /// - Parameter value: The string to parse.
-    /// - Returns: The numeric  value or `nil` if failed.
+    /// - Returns: The numeric value or `nil` if failed.
     func parse(_ value: String) -> Double? {
         
         guard self.numeric else { return nil }
