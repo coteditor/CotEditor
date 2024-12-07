@@ -29,6 +29,7 @@
 - Fix an issue that the printing area in the print preview was trimmed when line numbers were drawn.
 - Fix an issue that the application became unresponsive when renaming a filename in the file browser that contained newline characters.
 - Fix an issue that the window height unexpectedly shrunk when opening a document with the vertical layout orientation from the file browser.
+- Fix an issue in the `cot` command that the `--wait` option relaunched CotEditor when the app was quitted instead of closing the document.
 - [trivial] Fix the Help button in the Donation settings pane.
 - [trivial] Fix an issue that undetermined text conversions were ignored on submit in some dialogs.
 

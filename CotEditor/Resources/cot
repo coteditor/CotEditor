@@ -34,7 +34,7 @@ from subprocess import Popen, PIPE, CalledProcessError
 
 
 # meta data
-__version__ = '2.10.0'
+__version__ = '2.10.1'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -114,6 +114,19 @@ class ScriptableApplication(object):
 
     def __init__(self, name):
         self.name = name
+
+    def is_running(self):
+        """Check if the app is running.
+
+        Returns:
+            result (bool): Is the app running?
+        """
+        script = 'app "{}" is running'.format(self.name)
+        try:
+            return run_osascript(script) == 'true'
+        except CalledProcessError as error:
+            self._attempt_recovery(error)
+            raise error
 
     def tell(self, script, is_async=False):
         """Tell OSA command to the application.
@@ -364,7 +377,7 @@ def main(args, stdin):
     # wait for window close
     if args.wait and (len(args.files) == 1 or stdin or args.new_window):
         window_id = app.window_id()
-        while app.window_exists(window_id):
+        while app.is_running() and app.window_exists(window_id):
             time.sleep(WAIT_INTERVAL)
 
         # raise client window to the front
