@@ -436,7 +436,7 @@ private enum BundleIdentifier {
     }
     
     
-    /// Opens OSAScript dictionary in Script Editor.
+    /// Opens OSA script dictionary in Script Editor.
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
         guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.scriptEditor) else { return }

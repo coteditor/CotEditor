@@ -81,10 +81,10 @@ def bundle_path():
 # MARK: OSA Script
 
 def run_osascript(script, is_async=False):
-    """Run osascript.
+    """Run OSA script.
 
     Args:
-        script (str): Osascript.
+        script (str): OSA script.
         is_async (bool): If need to wait for finish.
     Returns:
         result (str): Return value of the script.
@@ -209,7 +209,7 @@ class ScriptableApplication(object):
         """Attempt recovery from CalledProcessError.
 
         Args:
-            error (CalledProcessError): Error via osascript.
+            error (CalledProcessError): Error via OSA script.
         """
         if '(-1743)' in error.output:
             # show recovery suggestion for authorization error with
