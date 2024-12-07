@@ -26,8 +26,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-// TODO: Migrate the other build settings.
-
 CODE_SIGN_ENTITLEMENTS = CotEditor/$(PRODUCT_NAME)-Sparkle.entitlements
 
 // Code signing may need to override any predefined values.
