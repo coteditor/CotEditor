@@ -18,6 +18,61 @@
 
 <article>
 	<header>
+		<h1>CotEditor 5.0.6</h1>
+		<p>release: <time>2024-12-09</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Display information about the selected image in the preview view for the file browser.</li>
+			<li>Add the “Add period with double-space” option to the Mode setting options (deselected by default).</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Allow insertion points only at the same number of wrapped lines by rectangular selection.</li>
+			<li>Update the document’s syntax based on the filename when renaming it in the file browser.</li>
+			<li>Always open a file as a plain-text document if its file extension or filename is determined by syntaxes.</li>
+			<li>Enhance the “Move Focus to Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.</li>
+			<li>Update the default keyboard shortcuts for split editor-related commands.</li>
+			<li>Replace the “Open with External Editor” button with the “Show in Finder” button when the file selected in the file browser is alias.</li>
+			<li>Display the icon preview for a symbolic link selected in the file browser instead of showing a dialog.</li>
+			<li>Expand the draggable area in the Quick Action bar.</li>
+			<li>Update the JavaScript syntax to include the .mjs file extension.</li>
+			<li><span class="trivial">trivial</span>: Enable the sudden termination feature provided by the macOS system.</li>
+			<li><span class="trivial">trivial</span>: Make the close window in the About window the standard size.</li>
+			<li><span class="trivial">trivial</span>: Update the User Guide.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that the application no longer automatically terminated when the app went to the background without open documents.</li>
+			<li>Fix an issue that the application became unresponsive when renaming a filename in the file browser that contained newline characters.</li>
+			<li>Fix an issue that the file browser showed nothing for folders containing broken links.</li>
+			<li>Fix an issue that the printing area in the print preview was trimmed when line numbers were drawn.</li>
+			<li>Fix an issue that the window height unexpectedly shrunk when opening a document with the vertical layout orientation from the file browser.</li>
+			<li>Fix an issue in the <code>cot</code> command that the <code>--wait</code> option relaunched CotEditor when the app was quitted instead of closing the document.</li>
+			<li>Fix an issue in the <code>cot</code> command that the <code>--wait</code> option did not wait for the window to close if the application was not yet launched when running th e command.</li>
+			<li>Fix an issue that undetermined text conversions were ignored on submit in some dialogs.</li>
+			<li><span class="trivial">trivial</span>: Fix the Help button in the Donation settings pane.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 5.0.5</h1>
 		<p>release: <time>2024-11-21</time></p>
 	</header>

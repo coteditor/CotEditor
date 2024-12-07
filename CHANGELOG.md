@@ -12,9 +12,9 @@
 ### Improvements
 
 - Allow insertion points only at the same number of wrapped lines by rectangular selection.
-- Update the document’s syntax when renaming it in the file browser.
+- Update the document’s syntax based on the filename when renaming it in the file browser.
 - Always open a file as a plain-text document if its file extension or filename is determined by syntaxes.
-- Enhance the “Move Focus on Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.
+- Enhance the “Move Focus to Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.
 - Update the default keyboard shortcuts for split editor-related commands.
 - Replace the “Open with External Editor” button with the “Show in Finder” button when the file selected in the file browser is alias.
 - Display the icon preview for a symbolic link selected in the file browser instead of showing a dialog.
@@ -29,13 +29,13 @@
 
 - Fix an issue that the application no longer automatically terminated when the app went to the background without open documents.
 - Fix an issue that the file browser showed nothing for folders containing broken links.
-- Fix an issue that the printing area in the print preview was trimmed when line numbers were drawn.
 - Fix an issue that the application became unresponsive when renaming a filename in the file browser that contained newline characters.
+- Fix an issue that the printing area in the print preview was trimmed when line numbers were drawn.
 - Fix an issue that the window height unexpectedly shrunk when opening a document with the vertical layout orientation from the file browser.
 - Fix an issue in the `cot` command that the `--wait` option relaunched CotEditor when the app was quitted instead of closing the document.
-- Fix an issue in the `cot` command that the `--wait` option did not wait for the window to close if the application was not yet launched.
+- Fix an issue in the `cot` command that the `--wait` option did not wait for the window to close if the application was not yet launched when running the command.
+- Fix an issue that undetermined text conversions were ignored on submit in some dialogs.
 - [trivial] Fix the Help button in the Donation settings pane.
-- [trivial] Fix an issue that undetermined text conversions were ignored on submit in some dialogs.
 
 
 
