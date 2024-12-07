@@ -16,6 +16,7 @@
 - Always open a file as a plain-text document if its file extension or filename is determined by syntaxes.
 - Enhance the “Move Focus on Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.
 - Update the default keyboard shortcuts for split editor-related commands.
+- Display the icon preview for a symbolic link selected in the file browser instead of showing a dialog.
 - Expand the draggable area in the Quick Action bar.
 - Update the JavaScript syntax to include the .mjs file extension.
 - [trivial] Enable the sudden termination feature provided by the macOS system.

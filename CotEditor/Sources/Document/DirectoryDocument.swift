@@ -570,6 +570,9 @@ final class DirectoryDocument: NSDocument {
         
         if type.conforms(to: .text) { return true }
         
+        // symbolic link and alias file
+        if type.conforms(to: .resolvable) { return false }
+        
         if type.conforms(to: .propertyList) {
             guard let data = try? Data(contentsOf: url) else { return true }
             
@@ -578,8 +581,6 @@ final class DirectoryDocument: NSDocument {
             
             return format != .binary
         }
-        
-        if type.conforms(to: .aliasFile) { return false }
         
         // check the default app for the file is CotEditor
         if let appURL = NSWorkspace.shared.urlForApplication(toOpen: url),
