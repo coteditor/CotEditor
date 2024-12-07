@@ -26,6 +26,7 @@
 ### Fixes
 
 - Fix an issue that the application no longer automatically terminated when the app went to the background without open documents.
+- Fix an issue that the file browser showed nothing for folders containing broken links.
 - Fix an issue that the printing area in the print preview was trimmed when line numbers were drawn.
 - Fix an issue that the application became unresponsive when renaming a filename in the file browser that contained newline characters.
 - Fix an issue that the window height unexpectedly shrunk when opening a document with the vertical layout orientation from the file browser.

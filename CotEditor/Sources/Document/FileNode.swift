@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import OSLog
 import UniformTypeIdentifiers
 import URLUtils
 
@@ -79,7 +80,7 @@ final class FileNode {
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
         
-        self.kind = if self.isAlias, try URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true {
+        self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
             .folder
         } else {
             Kind(filename: self.name, isDirectory: self.isDirectory)
@@ -91,7 +92,11 @@ final class FileNode {
     var children: [FileNode]? {
         
         if self.cachedChildren == nil, self.isDirectory {
-            self.cachedChildren = try? self.readChildren()
+            do {
+                self.cachedChildren = try self.readChildren()
+            } catch {
+                Logger.app.error("Failed reading folder contents: \(error)")
+            }
         }
         return self.cachedChildren
     }
