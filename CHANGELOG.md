@@ -16,6 +16,7 @@
 - Always open a file as a plain-text document if its file extension or filename is determined by syntaxes.
 - Enhance the “Move Focus on Next/Previous Editor” commands to move the focus to the main editor if it’s outside the editors.
 - Update the default keyboard shortcuts for split editor-related commands.
+- Replace the “Open with External Editor” button with the “Show in Finder” button when the file selected in the file browser is alias.
 - Display the icon preview for a symbolic link selected in the file browser instead of showing a dialog.
 - Expand the draggable area in the Quick Action bar.
 - Update the JavaScript syntax to include the .mjs file extension.

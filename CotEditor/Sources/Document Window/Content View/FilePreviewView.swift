@@ -42,7 +42,7 @@ struct FilePreviewView: View {
                 .foregroundStyle(.secondary)
             
             HStack(spacing: 12) {
-                if self.item.isFolderAlias {
+                if self.item.isAlias {
                     Button(String(localized: "Show in Finder", table: "Document")) {
                         NSWorkspace.shared.activateFileViewerSelecting([self.item.previewItemURL])
                     }
