@@ -494,7 +494,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        self.directoryIdentifiers + [
+        var identifiers = self.directoryIdentifiers + [
             .syntax,
             .inspector,
             .textSize,
@@ -517,6 +517,12 @@ extension DocumentWindowController: NSToolbarDelegate {
             .space,
             .flexibleSpace,
         ]
+        
+        if #available(macOS 15.2, *), NSWritingToolsCoordinator.isWritingToolsAvailable {
+            identifiers.insert(.writingToolsItemIdentifier, at: identifiers.count - 3)
+        }
+        
+        return identifiers
     }
     
     

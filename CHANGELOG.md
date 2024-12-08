@@ -7,6 +7,7 @@
 
 - Display information about the selected image in the preview view for the file browser.
 - Add the “Add period with double-space” option to the Mode setting options (deselected by default).
+- Add the toolbar item for Writing Tools to the toolbar customization options (only for macOS 15.2 and later and when the Writing Tools feature is available).
 
 
 ### Improvements
