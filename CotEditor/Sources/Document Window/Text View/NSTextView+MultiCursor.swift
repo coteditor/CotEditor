@@ -387,7 +387,6 @@ extension MultiCursorEditing {
             .filter { baseLineFragmentRange.intersects($0) }
             .map { layoutManager.minimumRowBounds(of: $0, in: textContainer) }
         
-        // TODO: filter not in the same wrap
         let newRanges = (lineFragmentUsedRects + [newLineRect])
             .flatMap { lineRect in rowBounds
                 .filter { ($0.x...($0.x + $0.width)).overlaps(lineRect.minX...lineRect.maxX) }
