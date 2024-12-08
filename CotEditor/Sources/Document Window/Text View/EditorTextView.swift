@@ -341,7 +341,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 self?.enclosingScrollView?.drawsBackground = $0
             }
         
-        // observe key window state for insertion points drawing and automatic period substition
+        // observe key window state for insertion points drawing and automatic period substitution
         if let window {
             self.keyStateObservers = [
                 NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [unowned self] _ in
