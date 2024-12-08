@@ -6,7 +6,7 @@ jobs:
   macOS:
     runs-on: macos-14
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.app
+      DEVELOPER_DIR: /Applications/Xcode_16.2.app
 
     steps:
     - name: Show environments

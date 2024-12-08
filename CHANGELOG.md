@@ -24,6 +24,7 @@
 - [trivial] Enable the sudden termination feature provided by the macOS system.
 - [trivial] Make the close window in the About window the standard size.
 - [trivial] Update the User Guide.
+- [dev] Update the build environment to Xcode 16.2 (macOS 15.2 SDK).
 
 
 ### Fixes
