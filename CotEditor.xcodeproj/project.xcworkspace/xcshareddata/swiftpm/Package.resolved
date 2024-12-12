@@ -1,5 +1,5 @@
 {
-  "originHash" : "d18222465eee878b244694aa14affb255e5744535d3bee3944b98915c6ae118e",
+  "originHash" : "f17b235a839869e6c387eada630ee5a98453fe88020ef5e27ff8b91312e595c1",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
       "state" : {
-        "revision" : "7c80ce6f142164b0201871e580b021d1b2c69804",
-        "version" : "0.57.0"
+        "revision" : "f9731bef175c3eea3a0ca960f1be78fcc2bc7853",
+        "version" : "0.57.1"
       }
     },
     {
