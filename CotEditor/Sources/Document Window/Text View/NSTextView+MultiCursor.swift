@@ -288,7 +288,8 @@ extension MultiCursorEditing {
     ///   - affinity: The selection affinity for the movement.
     ///   - block: The block that describes the rule how to move the cursor.
     ///   - cursor: The character index of the cursor to move.
-    func moveCursorsAndModifySelection(forward: Bool, affinity: NSSelectionAffinity, using block: (_ cursor: Int) -> Int) {
+    ///   - origin: The character index of the selection origin.
+    func moveCursorsAndModifySelection(forward: Bool, affinity: NSSelectionAffinity, using block: (_ cursor: Int, _ origin: Int) -> Int) {
         
         var origins = self.selectionOrigins
         var newOrigins: [Int] = []
@@ -304,7 +305,7 @@ extension MultiCursorEditing {
                 case (true, _):                 (range.upperBound, range.lowerBound)
             }
             
-            let newCursor = block(cursor)
+            let newCursor = block(cursor, newOrigin)
             
             newOrigins.append(origin ?? newOrigin)
             
@@ -484,9 +485,11 @@ extension NSTextView {
     ///
     /// - Note: This API requires TextKit 1.
     ///
-    /// - Parameter index: The character index of the reference insertion point.
+    /// - Parameters:
+    ///   - index: The character index of the reference insertion point.
+    ///   - origin: The character index of the reference for the column location, or `nil` if `index` is also used to refer to the column.
     /// - Returns: The character index of the objective insertion point location or `0` if cannot move.
-    final func upperInsertionLocation(of index: Int) -> Int {
+    final func upperInsertionLocation(of index: Int, origin: Int? = nil) -> Int {
         
         guard
             let layoutManager = self.layoutManager,
@@ -495,8 +498,17 @@ extension NSTextView {
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
+        
+        let x: CGFloat
+        if let origin {
+            let glyphIndex = layoutManager.glyphIndexForCharacter(at: origin)
+            x = layoutManager.location(forGlyphAt: glyphIndex).x
+        } else {
+            x = rect.minX
+        }
+        
+        let point = NSPoint(x: x, y: rect.minY - 1)
             .offset(by: self.textContainerOrigin)
-        let point = NSPoint(x: rect.minX, y: rect.minY - 1)
         
         return self.characterIndexForInsertion(at: point)
     }
@@ -506,9 +518,11 @@ extension NSTextView {
     ///
     /// - Note: This API requires TextKit 1.
     ///
-    /// - Parameter index: The character index of the reference insertion point.
+    /// - Parameters:
+    ///   - index: The character index of the reference insertion point.
+    ///   - origin: The character index of the reference for the column location, or `nil` if `index` is also used to refer to the column.
     /// - Returns: The character index of the objective insertion point location or end of the document if cannot move.
-    final func lowerInsertionLocation(of index: Int) -> Int {
+    final func lowerInsertionLocation(of index: Int, origin: Int? = nil) -> Int {
         
         guard
             let layoutManager = self.layoutManager,
@@ -517,8 +531,17 @@ extension NSTextView {
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
+        
+        let x: CGFloat
+        if let origin {
+            let glyphIndex = layoutManager.glyphIndexForCharacter(at: origin)
+            x = layoutManager.location(forGlyphAt: glyphIndex).x
+        } else {
+            x = rect.minX
+        }
+        
+        let point = NSPoint(x: x, y: rect.maxY + 1)
             .offset(by: self.textContainerOrigin)
-        let point = NSPoint(x: rect.minX, y: rect.maxY + 1)
         
         return self.characterIndexForInsertion(at: point)
     }

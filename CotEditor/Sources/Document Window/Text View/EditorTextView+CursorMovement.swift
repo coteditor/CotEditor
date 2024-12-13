@@ -59,8 +59,8 @@ extension EditorTextView {
             return super.moveLeftAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            self.layoutManager!.leftCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { (cursor, _) in
+            self.layoutManager!.leftCharacterIndex(of: cursor, baseWritingDirection: self.baseWritingDirection)
         }
     }
     
@@ -90,8 +90,8 @@ extension EditorTextView {
             return super.moveRightAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            self.layoutManager!.rightCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { (cursor, _) in
+            self.layoutManager!.rightCharacterIndex(of: cursor, baseWritingDirection: self.baseWritingDirection)
         }
     }
     
@@ -116,8 +116,8 @@ extension EditorTextView {
             return super.moveUpAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            self.upperInsertionLocation(of: $0)
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { (cursor, origin) in
+            self.upperInsertionLocation(of: cursor, origin: origin)
         }
     }
     
@@ -142,8 +142,8 @@ extension EditorTextView {
             return super.moveDownAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: true, affinity: .downstream) {
-            self.lowerInsertionLocation(of: $0)
+        self.moveCursorsAndModifySelection(forward: true, affinity: .downstream) { (cursor, origin) in
+            self.lowerInsertionLocation(of: cursor, origin: origin)
         }
     }
     
@@ -171,8 +171,8 @@ extension EditorTextView {
             return self.moveWordAndModifySelection(sender, left: true)
         }
         
-        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0, forward: self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { (cursor, _) in
+            self.textStorage!.nextWord(from: cursor, forward: self.layoutManager!.isRTL(at: cursor), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -195,8 +195,8 @@ extension EditorTextView {
             return self.moveWordAndModifySelection(sender, left: false)
         }
         
-        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0, forward: !self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { (cursor, _) in
+            self.textStorage!.nextWord(from: cursor, forward: !self.layoutManager!.isRTL(at: cursor), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -208,8 +208,8 @@ extension EditorTextView {
             return super.moveParagraphBackwardAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            (self.string as NSString).lineStartIndex(at: self.string.index(before: $0))
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { (cursor, _) in
+            (self.string as NSString).lineStartIndex(at: self.string.index(before: cursor))
         }
     }
     
@@ -221,8 +221,8 @@ extension EditorTextView {
             return super.moveParagraphForwardAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            (self.string as NSString).lineContentsEndIndex(at: self.string.index(after: $0))
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { (cursor, _) in
+            (self.string as NSString).lineContentsEndIndex(at: self.string.index(after: cursor))
         }
     }
     
@@ -322,8 +322,8 @@ extension EditorTextView {
             return
         }
         
-        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            self.locationOfBeginningOfLine(for: $0)
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { (cursor, _) in
+            self.locationOfBeginningOfLine(for: cursor)
         }
     }
     
@@ -350,8 +350,8 @@ extension EditorTextView {
         }
         
         let length = self.attributedString().length
-        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            self.layoutManager?.lineFragmentRange(at: $0).upperBound ?? length
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { (cursor, _) in
+            self.layoutManager?.lineFragmentRange(at: cursor).upperBound ?? length
         }
     }
     
@@ -435,8 +435,8 @@ extension EditorTextView {
             return super.moveToBeginningOfParagraphAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            (self.string as NSString).lineStartIndex(at: $0)
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { (cursor, _) in
+            (self.string as NSString).lineStartIndex(at: cursor)
         }
     }
     
@@ -463,8 +463,8 @@ extension EditorTextView {
             return super.moveToEndOfParagraphAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            (self.string as NSString).lineContentsEndIndex(at: $0)
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { (cursor, _) in
+            (self.string as NSString).lineContentsEndIndex(at: cursor)
         }
     }
     
@@ -489,8 +489,8 @@ extension EditorTextView {
             return super.moveWordBackwardAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0, forward: false, delimiters: .additionalWordSeparators)
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { (cursor, _) in
+            self.textStorage!.nextWord(from: cursor, forward: false, delimiters: .additionalWordSeparators)
         }
     }
     
@@ -515,8 +515,8 @@ extension EditorTextView {
             return super.moveWordForwardAndModifySelection(sender)
         }
         
-        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0, forward: true, delimiters: .additionalWordSeparators)
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { (cursor, _) in
+            self.textStorage!.nextWord(from: cursor, forward: true, delimiters: .additionalWordSeparators)
         }
     }
     

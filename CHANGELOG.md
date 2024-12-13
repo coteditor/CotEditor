@@ -3,6 +3,10 @@
 5.0.7 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the end point of the selection shifted after the hanging indent of a wrapped line when the line endings are CRLF and the selection is expanded by using the `⇧↑` or `⇧↓` shortcuts.
+
 
 
 5.0.6 (688)
