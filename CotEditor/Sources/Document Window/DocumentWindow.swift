@@ -163,9 +163,9 @@ extension DocumentWindow {
         guard !super.performKeyEquivalent(with: event) else { return true }
         
         // prefer existing shortcut that user might define
-        guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
+        guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return false }
         
-        guard let shortcut = Shortcut(keyDownEvent: event) else { return true }
+        guard let shortcut = Shortcut(keyDownEvent: event) else { return false }
         
         // toggle tab bar with ⌘⇧T`
         // -> This is needed under the case when "Show/Hide Tab Bar" menu item is not yet added to the View menu. (2020-01)
