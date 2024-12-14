@@ -293,11 +293,15 @@ private struct CharacterPaneView: View {
     
         DisclosureGroup(String(localized: "Character", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                if let character {
-                    LabeledContent(String(localized: "Code Points", table: "Document",
-                                          comment: "label in document inspector")) {
+                if let scalars = self.character?.unicodeScalars {
+                    let label = (scalars.count == 1)
+                    ? String(localized: "Code Point", table: "Document",
+                             comment: "label in document inspector")
+                    : String(localized: "Code Points", table: "Document",
+                             comment: "label in document inspector")
+                    LabeledContent(label) {
                         WrappingHStack {
-                            ForEach(Array(character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
+                            ForEach(Array(scalars.enumerated()), id: \.offset) { (_, scalar) in
                                 Text(scalar.codePoint)
                                     .monospacedDigit()
                                     .textSelection(.enabled)
@@ -306,6 +310,18 @@ private struct CharacterPaneView: View {
                                         .stroke(.tertiary))
                             }
                         }
+                    }
+                    if scalars.count == 1, let scalar = scalars.first {
+                        OptionalLabeledContent(String(localized: "Name", table: "Document",
+                                                      comment: "label in document inspector"),
+                                               value: scalar.name)
+                        OptionalLabeledContent(String(localized: "Block", table: "Document",
+                                                      comment: "label in document inspector"),
+                                               value: scalar.localizedBlockName)
+                        let category = scalar.properties.generalCategory
+                        OptionalLabeledContent(String(localized: "Category", table: "Document",
+                                                      comment: "label in document inspector"),
+                                               value: "\(category.longName) (\(category.shortName))")
                     }
                 } else {
                     Text("Not selected", tableName: "Document", comment: "placeholder")

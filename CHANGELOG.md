@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Display more Unicode information in the character section in the document inspector.
 - Improve trimming whitespaces in extracted outline items.
 
 
