@@ -71,7 +71,7 @@ public struct OutlineExtractor: Sendable {
                 let title = (self.template.isEmpty
                              ? (string as NSString).substring(with: result.range)
                              : self.regex.replacementString(for: result, in: string, offset: 0, template: self.template))
-                    .replacing(/(?!^)\s+/, with: " ")
+                    .replacing(/(\S)\s+/) { "\($0.1) " }
                 
                 guard !title.isEmpty else { return nil }
                 
