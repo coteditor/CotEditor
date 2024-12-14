@@ -292,7 +292,7 @@ def parse_args():
         # skip file check if file is directory
         if not args.new and os.path.isdir(args.files[0]):
             return args
-        
+
         open_mode = 'r'
         if args.new and not os.path.exists(args.files[0]):
             open_mode = 'w'   # overwrite mode to create new file
