@@ -7,6 +7,7 @@
 
 - Provide more Unicode information about the selected character in the document inspector.
 - Improve the trimming of whitespaces in the extracted outline labels.
+- Adjust the editor’s initial scroll position.
 
 
 ### Fixes
