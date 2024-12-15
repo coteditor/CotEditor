@@ -91,7 +91,7 @@ struct OutlineInspectorView: View {
         
         
         var items: [Item] = []
-        var selection: Item.ID?
+        var selection: Item.ID?  { didSet { self.selectItem(id: selection) } }
         
         var document: Document?  { didSet { self.invalidateObservation() } }
         
@@ -119,7 +119,8 @@ struct OutlineInspectorView: View {
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             
-            let items = self.model.items.compactMap { $0.filter(self.filterString, keyPath: \.title) }
+            let items = self.model.items
+                .compactMap { $0.filter(self.filterString, keyPath: \.title) }
             
             List(items, selection: $model.selection) { item in
                 OutlineRowView(item: item, fontSize: self.fontSize)
@@ -132,9 +133,6 @@ struct OutlineInspectorView: View {
                         .foregroundStyle(.secondary)
                         .controlSize(.regular)
                 }
-            }
-            .onChange(of: self.model.selection) { (_, id) in
-                self.model.selectItem(id: id)
             }
             .contextMenu {
                 Menu(String(localized: "Text Size", table: "MainMenu")) {
@@ -211,23 +209,7 @@ private struct OutlineRowView: View {
 
 private extension OutlineInspectorView.Model {
     
-    /// Selects correspondence range of the item in the editor.
-    ///
-    /// - Parameter id: The `id` of the item to select.
-    func selectItem(id: Item.ID?) {
-        
-        guard
-            !self.isOwnSelectionChange,
-            let item = self.items[id: id],
-            let textView = self.document?.textView,
-            textView.string.length >= item.range.upperBound
-        else { return }
-        
-        textView.selectedRange = item.range
-        textView.centerSelectionInVisibleArea(self)
-    }
-    
-    
+    /// Updates observations.
     func invalidateObservation() {
         
         if let document {
@@ -262,9 +244,28 @@ private extension OutlineInspectorView.Model {
     }
     
     
+    /// Selects correspondence range of the item in the editor.
+    ///
+    /// - Parameter id: The `id` of the item to select.
+    private func selectItem(id: Item.ID?) {
+        
+        guard
+            !self.isOwnSelectionChange,
+            let item = self.items[id: id],
+            let textView = self.document?.textView,
+            textView.string.length >= item.range.upperBound
+        else { return }
+        
+        textView.selectedRange = item.range
+        textView.centerSelectionInVisibleArea(self)
+    }
+    
+    
     /// Updates row selection to synchronize with the editor's cursor location.
     ///
-    /// - Parameter textView: The text view to apply the selection. when nil, the current focused editor will be used (the document can have multiple editors).
+    /// - Parameters:
+    ///   - textView: The text view to apply the selection. when `nil`,
+    ///               the current focused editor will be used (the document can have multiple editors).
     private func invalidateCurrentItem(in textView: NSTextView? = nil) {
         
         guard
@@ -274,11 +275,7 @@ private extension OutlineInspectorView.Model {
         
         self.isOwnSelectionChange = true
         self.selection = item.id
-        // adjust the timing to restore flag for selectItem(id:)
-        Task {
-            await Task.yield()
-            self.isOwnSelectionChange = false
-        }
+        self.isOwnSelectionChange = false
     }
 }
 
