@@ -208,25 +208,26 @@ public struct Syntax: Equatable, Sendable {
     
     // MARK: Public Methods
     
-    public init(kind: Kind = .general,
-                keywords: [Highlight] = [],
-                commands: [Highlight] = [],
-                types: [Highlight] = [],
-                attributes: [Highlight] = [],
-                variables: [Highlight] = [],
-                values: [Highlight] = [],
-                numbers: [Highlight] = [],
-                strings: [Highlight] = [],
-                characters: [Highlight] = [],
-                comments: [Highlight] = [],
-                commentDelimiters: Comment = .init(),
-                outlines: [Outline] = [],
-                completions: [String] = [],
-                filenames: [String] = [],
-                extensions: [String] = [],
-                interpreters: [String] = [],
-                metadata: Metadata = .init())
-    {
+    public init(
+        kind: Kind = .general,
+        keywords: [Highlight] = [],
+        commands: [Highlight] = [],
+        types: [Highlight] = [],
+        attributes: [Highlight] = [],
+        variables: [Highlight] = [],
+        values: [Highlight] = [],
+        numbers: [Highlight] = [],
+        strings: [Highlight] = [],
+        characters: [Highlight] = [],
+        comments: [Highlight] = [],
+        commentDelimiters: Comment = .init(),
+        outlines: [Outline] = [],
+        completions: [String] = [],
+        filenames: [String] = [],
+        extensions: [String] = [],
+        interpreters: [String] = [],
+        metadata: Metadata = .init()
+    ) {
         
         self.kind = kind
         self.keywords = keywords
