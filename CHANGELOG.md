@@ -3,6 +3,10 @@
 6.1.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve the algorithm to comment-out block comments.
+
 
 
 6.0.4 (756)

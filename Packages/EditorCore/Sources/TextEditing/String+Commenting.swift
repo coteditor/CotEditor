@@ -61,7 +61,7 @@ public extension String {
         let items: [NSRange.InsertionItem] = {
             let targetRanges = selectedRanges
                 .map { fromLineHead ? self.lineContentsRange(for: $0) : $0 }
-                .uniqued
+                .merged
             
             if types.contains(.inline), let delimiter = delimiters.inline {
                 return self.inlineCommentOut(delimiter: delimiter, ranges: targetRanges)

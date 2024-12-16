@@ -79,6 +79,8 @@ struct StringCommentingTests {
         
         // ok, this is currently in spec, but not a good one...
         #expect("<-foo-><-bar->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<14)]) == [NSRange(0..<2), NSRange(12..<14)])
+        
+        #expect("a<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
     }
     
     
