@@ -656,8 +656,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         guard let clipView = self.outlineView.enclosingScrollView?.contentView else { return assertionFailure() }
         
         let visibleRect = clipView.documentVisibleRect
+        let inset = clipView.contentInsets.bottom
         
-        self.bottomSeparator.animator().alphaValue = (visibleRect.maxY < clipView.documentRect.maxY) ? 1 : 0
+        self.bottomSeparator.animator().alphaValue = (visibleRect.maxY < clipView.documentRect.maxY + inset) ? 1 : 0
     }
 }
 
