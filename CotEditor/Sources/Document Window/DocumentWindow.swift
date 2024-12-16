@@ -163,7 +163,7 @@ extension DocumentWindow {
         guard !super.performKeyEquivalent(with: event) else { return true }
         
         // prefer existing shortcut that user might define
-        guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return false }
+        guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
         
         guard let shortcut = Shortcut(keyDownEvent: event) else { return false }
         
