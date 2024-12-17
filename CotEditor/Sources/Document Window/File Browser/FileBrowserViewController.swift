@@ -821,7 +821,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         cellView.isAlias = node.isAlias
         
         cellView.textField!.stringValue = node.name
-        cellView.textField!.textColor = node.isHidden ? .disabledControlTextColor : .labelColor
+        cellView.textField!.textColor = node.isHidden ? .tertiaryLabelColor : .labelColor
         
         return cellView
     }

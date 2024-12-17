@@ -332,7 +332,7 @@ private extension AttributedString {
     init(_ label: String, value: String?) {
         
         self = Self(label, attributes: AttributeContainer.foregroundColor(.secondary))
-        + Self(value ?? "–", attributes: AttributeContainer.foregroundColor((value == nil) ? .disabledControlTextColor : .labelColor))
+        + Self(value ?? "–", attributes: AttributeContainer.foregroundColor((value == nil) ? .tertiaryLabelColor : .labelColor))
     }
 }
 
