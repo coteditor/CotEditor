@@ -55,7 +55,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     private var showsHiddenFiles: Bool
     
     private var defaultObservers: Set<AnyCancellable> = []
-    private var scrollObserver: (any NSObjectProtocol)?
+    private var scrollObservers: [any NSObjectProtocol] = []
     
     
     // MARK: Lifecycle
@@ -225,11 +225,22 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 },
         ]
         
-        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: self.outlineView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
-            MainActor.assumeIsolated {
-                self?.invalidateSeparatorVisibility()
-            }
+        let scrollView = self.outlineView.enclosingScrollView!
+        for observer in self.scrollObservers {
+            NotificationCenter.default.removeObserver(observer)
         }
+        self.scrollObservers = [
+            NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: scrollView.contentView, queue: .main) { [weak self] _ in
+                MainActor.assumeIsolated {
+                    self?.invalidateSeparatorVisibility()
+                }
+            },
+            NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: scrollView.documentView, queue: .main) { [weak self] _ in
+                MainActor.assumeIsolated {
+                    self?.invalidateSeparatorVisibility()
+                }
+            },
+        ]
     }
     
     
@@ -239,10 +250,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.defaultObservers.removeAll()
         
-        if let scrollObserver {
-            NotificationCenter.default.removeObserver(scrollObserver)
-            self.scrollObserver = nil
+        for observer in self.scrollObservers {
+            NotificationCenter.default.removeObserver(observer)
         }
+        self.scrollObservers.removeAll()
     }
     
     
@@ -840,20 +851,12 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
     func outlineViewItemDidExpand(_ notification: Notification) {
         
         self.invalidateRestorableState()
-        
-        Task {
-            self.invalidateSeparatorVisibility()
-        }
     }
     
     
     func outlineViewItemDidCollapse(_ notification: Notification) {
         
         self.invalidateRestorableState()
-        
-        Task {
-            self.invalidateSeparatorVisibility()
-        }
     }
 }
 
