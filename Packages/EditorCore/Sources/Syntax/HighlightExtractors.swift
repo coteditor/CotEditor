@@ -82,7 +82,6 @@ private struct BeginEndStringExtractor: HighlightExtractable {
             location = beginRange.upperBound
             
             guard beginRange.location != NSNotFound else { break }
-            guard !string.isEscaped(at: beginRange.lowerBound) else { continue }
             
             while location != NSNotFound {
                 // find end string
@@ -90,7 +89,6 @@ private struct BeginEndStringExtractor: HighlightExtractable {
                 location = endRange.upperBound
                 
                 guard endRange.location != NSNotFound else { break }
-                guard !string.isEscaped(at: endRange.lowerBound) else { continue }
                 
                 ranges.append(NSRange(beginRange.lowerBound..<endRange.upperBound))
                 

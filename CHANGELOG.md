@@ -7,6 +7,7 @@
 
 - Provide more Unicode information about the selected character in the document inspector.
 - Improve the trimming of whitespaces in the extracted outline labels.
+- Change the syntax highlighting rule to extract strings in the form of “begin-end” string pairs even if one of those is escaped.
 - Adjust the editor’s initial scroll position.
 
 
