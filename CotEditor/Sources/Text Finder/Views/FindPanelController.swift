@@ -39,6 +39,7 @@ final class FindPanelController: NSWindowController, NSWindowDelegate {
         let window = NSPanel(contentViewController: FindPanelContentViewController())
         window.styleMask = [.titled, .closable, .resizable, .utilityWindow]
         window.level = .floating
+        window.titlebarAppearsTransparent = true
         window.autorecalculatesKeyViewLoop = true
         window.standardWindowButton(.zoomButton)?.isEnabled = false
         window.title = String(localized: "Find & Replace", table: "TextFind", comment: "window title")
