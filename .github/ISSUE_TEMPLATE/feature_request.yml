@@ -1,6 +1,7 @@
 name: Feature request
 description: Suggest an idea for CotEditor.
-labels: request
+labels: feature
+type: 'feature'
 
 body:
   - type: textarea
