@@ -108,7 +108,7 @@ struct GeneralSettingsView: View {
                         } message: {
                             Text("Do you want to restart CotEditor now?", tableName: "GeneralSettings")
                         }
-                    Text("A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit.", tableName: "GeneralSettings")
+                    Text("A system feature that automatically overwrites your files while editing. Even if turned off, CotEditor covertly creates a backup in case it unexpectedly quits.", tableName: "GeneralSettings")
                         .foregroundStyle(.secondary)
                         .controlSize(.small)
                         .lineLimit(10)
