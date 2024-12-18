@@ -669,7 +669,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        self.children(of: item)?.count ?? 0
+        self.children(of: item as? FileNode)?.count ?? 0
     }
     
     
@@ -681,7 +681,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        self.children(of: item)![index]
+        self.children(of: item as? FileNode)![index]
     }
     
     
@@ -792,15 +792,25 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     
     /// Returns the casted children of the given item.
     ///
-    /// - Parameter item: An item in the data source, or `nil` for the root.
+    /// - Parameter node: An item in the data source, or `nil` for the root.
     /// - Returns: An array of file nodes, or `nil` if no data source is provided yet.
-    private func children(of item: Any?) -> [FileNode]? {
+    private func children(of node: FileNode?) -> [FileNode]? {
         
-        let children = (item as? FileNode ?? self.document.fileNode)?.children
+        guard let children = (node ?? self.document.fileNode)?.children else { return nil }
         
-        return self.showsHiddenFiles
-            ? children
-            : children?.filter { !$0.isHidden }
+        return self.filterNodes(children)
+    }
+    
+    
+    /// Filters given file nodes according to the current settings.
+    ///
+    /// - Parameter nodes: The nodes to filter.
+    /// - Returns: An array of file nodes.
+    private func filterNodes(_ nodes: [FileNode]) -> [FileNode] {
+        
+        self.showsHiddenFiles
+            ? nodes
+            : nodes.filter { !$0.isHidden }
     }
 }
 
