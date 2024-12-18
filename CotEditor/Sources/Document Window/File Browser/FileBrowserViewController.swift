@@ -54,6 +54,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     private var showsHiddenFiles: Bool
     
+    private var expandingNodes: [FileNode: [FileNode]] = [:]
+    
     private var defaultObservers: Set<AnyCancellable> = []
     private var scrollObservers: [any NSObjectProtocol] = []
     
@@ -681,7 +683,14 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        self.children(of: item as? FileNode)![index]
+        let node = item as? FileNode
+        
+        // use available cache when expanding a folder
+        if let node, let children = self.expandingNodes[node] {
+            return children[index]
+        }
+        
+        return self.children(of: node)![index]
     }
     
     
@@ -859,9 +868,28 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
     }
     
     
+    func outlineViewItemWillExpand(_ notification: Notification) {
+        
+        guard
+            let node = notification.userInfo?["NSObject"] as? FileNode,
+            let children = node.children
+        else { return }
+        
+        // cache filtered children to avoid taking time for expanding a folder with large number of items
+        // cf. [#1711](https://github.com/coteditor/CotEditor/issues/1711)
+        self.expandingNodes[node] = self.filterNodes(children)
+    }
+    
+    
     func outlineViewItemDidExpand(_ notification: Notification) {
         
         self.invalidateRestorableState()
+        
+        if let node = notification.userInfo?["NSObject"] as? FileNode {
+            Task {
+                self.expandingNodes[node] = nil
+            }
+        }
     }
     
     
