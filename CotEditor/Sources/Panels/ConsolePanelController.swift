@@ -56,6 +56,7 @@ final class ConsolePanelController: NSWindowController {
         let panel = NSPanel(contentViewController: viewController)
         panel.styleMask = [.closable, .resizable, .titled, .fullSizeContentView, .utilityWindow]
         panel.isFloatingPanel = false
+        panel.hidesOnDeactivate = false
         panel.title = String(localized: "Console", table: "Console", comment: "window title")
         panel.setContentSize(NSSize(width: 360, height: 200))
         

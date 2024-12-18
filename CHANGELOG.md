@@ -6,6 +6,7 @@
 ### Improvements
 
 - Provide more Unicode information about the selected character in the document inspector.
+- Don’t hide the console when the application has gone to the background.
 - Optimize file browser’s performance when expanding a folder containing a large number of items.
 - Improve the trimming of whitespaces in the extracted outline labels.
 - Change the syntax highlighting rule to extract strings in the form of “begin-end” string pairs even if one of those is escaped.
