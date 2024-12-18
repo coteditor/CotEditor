@@ -29,7 +29,9 @@ import StringUtils
 
 struct Console {
     
-    struct Log: Hashable, Equatable {
+    struct Log: Hashable, Equatable, Identifiable {
+        
+        let id = UUID()
         
         var message: String
         var title: String?
@@ -253,6 +255,12 @@ private final class ConsoleViewController: NSViewController {
 
 // MARK: -
 
+private extension NSAttributedString.Key {
+    
+    static let consoleLogID = NSAttributedString.Key(rawValue: "consoleLogID")
+}
+
+
 private extension Console.Log {
     
     private enum Part {
@@ -294,8 +302,11 @@ private extension Console.Log {
                                      attributes: [.font: Self.font(for: .message, size: fontSize),
                                                   .paragraphStyle: paragraphStyle])
         
-        // style
-        string.addAttribute(.foregroundColor, value: NSColor.labelColor, range: string.range)
+        // all
+        string.addAttributes([
+            .foregroundColor: NSColor.labelColor,
+            .consoleLogID: self.id,
+        ], range: string.range)
         
         return string
     }
