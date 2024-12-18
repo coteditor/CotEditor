@@ -3,6 +3,11 @@
 5.0.7 (unreleased)
 --------------------------
 
+### New Features
+
+- Add `title` and `timestamp` options to the AppleScript’s `write to console` command.
+
+
 ### Improvements
 
 - Provide more Unicode information about the selected character in the document inspector.
