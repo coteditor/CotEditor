@@ -29,11 +29,21 @@ final class WriteToConsoleCommand: NSScriptCommand {
     
     override func performDefaultImplementation() -> Any? {
         
-        guard let message = self.directParameter as? String else { return false }
+        guard
+            let message = self.directParameter as? String,
+            let arguments = self.evaluatedArguments
+        else { return false }
+    
+        let title = (arguments["title"] as? Bool) ?? true
+        let timestamp = (arguments["timestamp"] as? Bool) ?? true
+        
+        let options = Console.DisplayOptions()
+            .union(title ? .title : [])
+            .union(timestamp ? .timestamp : [])
         
         Task { @MainActor in
             let log = Console.Log(message: message, title: ScriptManager.shared.currentScriptName)
-            ConsolePanelController.shared.append(log: log)
+            ConsolePanelController.shared.append(log: log, options: options)
             ConsolePanelController.shared.showWindow(nil)
         }
         

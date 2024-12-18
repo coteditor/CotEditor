@@ -169,10 +169,16 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 <dl class="tree">
 	<dt><code class="command">write to console</code></dt>
 	<dd>文字列をCotEditorのコンソールウインドウに表示する。</dd>
-	
+	<dd><dl class="subtree">
+		<dt>[<code>title</code> (boolean)]</dt>
+		<dd>スクリプト名を表示するか <span class="added">(CotEditor 5.0.7で追加)</span></dd>
+
+		<dt>[<code>timestamp</code> (boolean)]</dt>
+		<dd>タイムスタンプを表示するか <span class="added">(CotEditor 5.0.7で追加)</span></dd>
+	</dl></dd>
 	<dd><dl>
 		<dt>対象</dt>
-		<dd>documentオブジェクト</dd>
+		<dd>applicationオブジェクト</dd>
 	</dl></dd>
 </dl>
 
@@ -184,6 +190,11 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 <figure>
 	<pre class="source"><code class="AppleScript">write to console &quot;Script failed.&quot;</code></pre>
 	<figcaption>「Script failed.」という文字列をコンソールで表示する。</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">write to console &quot;calculating…&quot; without title and timestamp</code></pre>
+	<figcaption>タイトルやタイムスタンプは表示せず「calculating…」という文字列のみをコンソールで表示する。</figcaption>
 </figure>
 </section>
 

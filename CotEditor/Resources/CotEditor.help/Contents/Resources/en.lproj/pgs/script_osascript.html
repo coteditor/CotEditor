@@ -169,9 +169,16 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 <dl class="tree">
 	<dt><code class="command">write to console</code></dt>
 	<dd>Print a string on CotEditor’s console window.</dd>
+	<dd><dl class="subtree">
+		<dt>[<code>title</code> (boolean)]</dt>
+		<dd>Should the script name be displayed with? <span class="added">(added on CotEditor 5.0.7)</span></dd>
+
+		<dt>[<code>timestamp</code> (boolean)]</dt>
+		<dd>Should the timestamp be displayed with? <span class="added">(added on CotEditor 5.0.7)</span></dd>
+	</dl></dd>
 	<dd><dl>
 		<dt>target</dt>
-		<dd>‘document’ object</dd>
+		<dd>‘application’ object</dd>
 	</dl></dd>
 </dl>
 
@@ -183,6 +190,11 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 <figure>
 	<pre class="source"><code class="AppleScript">write to console &quot;Script failed.&quot;</code></pre>
 	<figcaption>Appears the message &quot;Script failed.&quot; on the CotEditor’s console.</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">write to console &quot;calculating…&quot; without title and timestamp</code></pre>
+	<figcaption>Appears the message &quot;calculating…&quot; without the script name and timestamp on the CotEditor’s console.</figcaption>
 </figure>
 </section>
 

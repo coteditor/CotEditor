@@ -29,11 +29,24 @@ import StringUtils
 
 struct Console {
     
-    struct Log: Hashable, Equatable {
+    struct Log: Hashable, Equatable, Identifiable {
+        
+        let id = UUID()
         
         var message: String
         var title: String?
         var date: Date = .now
+    }
+    
+    
+    struct DisplayOptions: OptionSet {
+        
+        let rawValue: Int
+        
+        static let title     = Self(rawValue: 1 << 0)
+        static let timestamp = Self(rawValue: 1 << 1)
+        
+        static let all: Self = [.title, .timestamp]
     }
 }
 
@@ -56,6 +69,7 @@ final class ConsolePanelController: NSWindowController {
         let panel = NSPanel(contentViewController: viewController)
         panel.styleMask = [.closable, .resizable, .titled, .fullSizeContentView, .utilityWindow]
         panel.isFloatingPanel = false
+        panel.hidesOnDeactivate = false
         panel.title = String(localized: "Console", table: "Console", comment: "window title")
         panel.setContentSize(NSSize(width: 360, height: 200))
         
@@ -82,9 +96,10 @@ final class ConsolePanelController: NSWindowController {
     ///
     /// - Parameters:
     ///   - log: The console log to show.
-    func append(log: Console.Log) {
+    ///   - options: The metadata to display in the console.
+    func append(log: Console.Log, options: Console.DisplayOptions = .all) {
         
-        (self.contentViewController as! ConsoleViewController).append(log: log)
+        (self.contentViewController as! ConsoleViewController).append(log: log, options: options)
     }
 }
 
@@ -167,12 +182,14 @@ private final class ConsoleViewController: NSViewController {
     
     /// Appends the given log message to the console.
     ///
-    /// - Parameter log: The log to append.
-    func append(log: Console.Log) {
+    /// - Parameters:
+    ///   - log: The log to append.
+    ///   - options: The metadata to display in the console.
+    func append(log: Console.Log, options: Console.DisplayOptions) {
         
         let textView = self.textView
         let lastLocation = textView.string.length
-        let attributedString = log.attributedString(fontSize: self.fontSize)
+        let attributedString = log.attributedString(fontSize: self.fontSize, options: options)
         let range = NSRange(location: lastLocation, length: attributedString.length)
         
         textView.textStorage?.append(attributedString)
@@ -238,6 +255,12 @@ private final class ConsoleViewController: NSViewController {
 
 // MARK: -
 
+private extension NSAttributedString.Key {
+    
+    static let consoleLogID = NSAttributedString.Key(rawValue: "consoleLogID")
+}
+
+
 private extension Console.Log {
     
     private enum Part {
@@ -248,24 +271,28 @@ private extension Console.Log {
     }
     
     
-    func attributedString(fontSize: Double) -> sending NSAttributedString {
+    func attributedString(fontSize: Double, options: Console.DisplayOptions) -> sending NSAttributedString {
         
         var string = NSMutableAttributedString()
         
         // header
-        let dateFormat = Date.ISO8601FormatStyle(timeZone: .current)
-            .year()
-            .month()
-            .day()
-            .dateTimeSeparator(.space)
-            .time(includingFractionalSeconds: false)
-        string += NSAttributedString(string: "[\(self.date.formatted(dateFormat))]",
-                                     attributes: [.font: Self.font(for: .timestamp, size: fontSize)])
-        if let title = self.title {
+        if options.contains(.timestamp) {
+            let dateFormat = Date.ISO8601FormatStyle(timeZone: .current)
+                .year()
+                .month()
+                .day()
+                .dateTimeSeparator(.space)
+                .time(includingFractionalSeconds: false)
+            string += NSAttributedString(string: "[\(self.date.formatted(dateFormat))]",
+                                         attributes: [.font: Self.font(for: .timestamp, size: fontSize)])
+        }
+        if options.contains(.title), let title = self.title {
             string += NSAttributedString(string: " " + title,
                                          attributes: [.font: Self.font(for: .title, size: fontSize)])
         }
-        string += NSAttributedString(string: "\n")
+        if string.length > 0 {
+            string += NSAttributedString(string: "\n")
+        }
         
         // body
         let paragraphStyle = NSParagraphStyle.default.mutable
@@ -275,8 +302,11 @@ private extension Console.Log {
                                      attributes: [.font: Self.font(for: .message, size: fontSize),
                                                   .paragraphStyle: paragraphStyle])
         
-        // style
-        string.addAttribute(.foregroundColor, value: NSColor.labelColor, range: string.range)
+        // all
+        string.addAttributes([
+            .foregroundColor: NSColor.labelColor,
+            .consoleLogID: self.id,
+        ], range: string.range)
         
         return string
     }
