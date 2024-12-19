@@ -252,12 +252,12 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
         
         HStack(alignment: .top, spacing: 10) {
             icon
-                .font(.system(size: 22))
+                .font(.system(size: 28))
                 .foregroundStyle(.secondary)
                 .productIconBorder()
-                .frame(width: 50, height: 50)
+                .frame(width: 64, height: 64)
             
-            VStack(alignment: .leading, spacing: 1) {
+            VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     HStack {
                         Text(product.displayName)
@@ -270,30 +270,34 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                     Stepper(value: $quantity, in: 1...99, label: EmptyView.init)
                         .accessibilityValue(String(localized: "\(self.quantity) cups", table: "DonationSettings"))
                         .accessibilityLabel(String(localized: "Quantity", table: "DonationSettings", comment: "accessibility label for item quantity stepper"))
-                    Spacer()
-                    Button((product.price * Decimal(self.quantity)).formatted(product.priceFormatStyle)) {
-                        Task {
-                            do {
-                                _ = try await product.purchase(options: [.quantity(self.quantity)])
-                            } catch {
-                                self.error = error
-                            }
-                        }
-                    }
-                    .monospacedDigit()
-                    .fixedSize()
-                    .contentTransition(.numericText())
-                    .animation(.default, value: self.quantity)
-                    .accessibilitySortPriority(-1)
                 }
                 
                 Text(product.description)
                     .font(.system(size: 12))
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+                
+                Button {
+                    Task {
+                        do {
+                            _ = try await product.purchase(options: [.quantity(self.quantity)])
+                        } catch {
+                            self.error = error
+                        }
+                    }
+                } label: {
+                    Text((product.price * Decimal(self.quantity)).formatted(product.priceFormatStyle))
+                        .font(.system(size: 11))
+                }
+                .monospacedDigit()
+                .fixedSize()
+                .padding(.top, 6)
+                .contentTransition(.numericText())
+                .animation(.default, value: self.quantity)
             }
             .accessibilityElement(children: .contain)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .alert(error: $error)
     }
 }
