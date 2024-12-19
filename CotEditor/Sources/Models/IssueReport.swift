@@ -47,7 +47,7 @@ struct IssueReport {
          
          Heading.allCases[1...]
             .map { $0.display() }
-            .joined(separator: String(repeating: "\n", count: 3))
+            .joined(separator: String(repeating: "\n", count: 3)),
         ].joined(separator: String(repeating: "\n", count: 3)) + "\n"
     }
     

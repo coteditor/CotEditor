@@ -44,7 +44,7 @@ struct SettingState: Equatable {
 extension NSNotification.Name {
     
     /// Notification when a setting file is updated with new/previous setting names.
-    static let didUpdateSettingNotification = Notification.Name(rawValue: "SettingFileManaging.didUpdateSettingNotification")
+    static let didUpdateSettingNotification = Notification.Name("SettingFileManaging.didUpdateSettingNotification")
 }
 
 
