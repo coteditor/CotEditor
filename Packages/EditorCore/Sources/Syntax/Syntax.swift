@@ -291,7 +291,7 @@ public struct Syntax: Equatable, Sendable {
                 for highlight in item.value {
                     // extract paired delimiters such as quotes
                     if !highlight.isRegularExpression,
-                       let pair = highlight.end.flatMap({ Pair(highlight.begin, $0) }),
+                       let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
                        pair.begin == pair.end,
                        pair.begin.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                        Set(pair.begin).count == 1,  // consists of the same characters
@@ -347,7 +347,8 @@ public struct Syntax: Equatable, Sendable {
             completions
         } else {
             // from normal highlighting words
-            SyntaxType.allCases.map(Self.highlightKeyPath(for:))
+            SyntaxType.allCases
+                .map(Self.highlightKeyPath(for:))
                 .flatMap { self[keyPath: $0] }
                 .filter { $0.end == nil && !$0.isRegularExpression }
                 .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }

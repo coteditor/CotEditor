@@ -97,7 +97,7 @@ public extension Collection<String> {
     func createAvailableName(for proposedName: String, suffix: String? = nil) -> String {
         
         let components = proposedName.numberingComponents(suffix: suffix)
-        let baseName = String(components.base) + (suffix.flatMap { " " + $0 } ?? "")
+        let baseName = String(components.base) + (suffix.map { " " + $0 } ?? "")
         
         guard components.count != nil || self.contains(baseName) else { return baseName }
         

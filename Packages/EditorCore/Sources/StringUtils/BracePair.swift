@@ -174,7 +174,7 @@ public extension StringProtocol {
         assert(beginIndex >= self.startIndex)
         
         // avoid (endIndex == self.startIndex)
-        guard !self.isEmpty, endIndex.flatMap({ $0 > self.startIndex }) != false else { return nil }
+        guard !self.isEmpty, endIndex.map({ $0 > self.startIndex }) != false else { return nil }
         
         let endIndex = self.index(before: endIndex ?? self.endIndex)
         

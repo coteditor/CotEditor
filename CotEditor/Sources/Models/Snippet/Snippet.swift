@@ -112,7 +112,7 @@ extension Snippet {
         let insertions = ranges.map { range in
             let selectedString = (string as NSString).substring(with: range)
             let indent = string.rangeOfIndent(at: range.location)
-                .flatMap { (string as NSString).substring(with: $0) } ?? ""
+                .map((string as NSString).substring(with:)) ?? ""
             
             let insertion = self.insertion(selectedString: selectedString, indent: indent)
             let selectedRanges = insertion.selectedRanges.map { $0.shifted(by: range.location + offset) }

@@ -139,7 +139,7 @@ public extension FileManager {
 
 public extension URL {
     
-    private static let homeDirectory = getpwuid(getuid())?.pointee.pw_dir.flatMap { String(cString: $0) } ?? NSHomeDirectory()
+    private static let homeDirectory = getpwuid(getuid())?.pointee.pw_dir.map { String(cString: $0) } ?? NSHomeDirectory()
     
     
     /// A path string that replaces the user's home directory with a tilde (~) character.

@@ -553,7 +553,7 @@ extension Document: EditorSource {
         savePanel.allowedContentTypes = self.fileType
             .flatMap { self.fileNameExtension(forType: $0, saveOperation: .saveOperation) }
             .flatMap { UTType(filenameExtension: $0) }
-            .flatMap { [$0] } ?? []
+            .map { [$0] } ?? []
         
         // avoid the Hide Extension option removes actual filename extension (macOS 14, 2024-05)
         savePanel.canSelectHiddenExtension = false

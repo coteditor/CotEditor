@@ -132,7 +132,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     /// The area the receiver located in the superview.
     private var preferredEdge: Edge? {
         
-        self.superview.flatMap { superview in
+        self.superview.map { superview in
             Edge(horizontal: superview.frame.width/2 < self.frame.midX ? .right : .left,
                  vertical: superview.frame.height/2 < self.frame.midY ? .top : .bottom)
         }

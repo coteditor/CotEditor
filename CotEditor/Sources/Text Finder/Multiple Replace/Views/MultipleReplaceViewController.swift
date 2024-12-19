@@ -226,7 +226,7 @@ final class MultipleReplaceViewController: NSViewController {
     var client: NSTextView? {
         
         NSApp.mainWindow?.firstResponder
-            .flatMap { sequence(first: $0, next: \.nextResponder) }?
+            .map { sequence(first: $0, next: \.nextResponder) }?
             .compactMap { $0 as? NSTextView }
             .first { $0 is any TextFinderClient }
     }

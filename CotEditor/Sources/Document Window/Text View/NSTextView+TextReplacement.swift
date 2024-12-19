@@ -43,7 +43,7 @@ extension NSTextView {
     @discardableResult
     final func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
-        let selectedRanges: [NSRange]? = selectedRange.flatMap { [$0] }
+        let selectedRanges: [NSRange]? = selectedRange.map { [$0] }
         
         return self.replace(with: [string], ranges: [range], selectedRanges: selectedRanges, actionName: actionName)
     }

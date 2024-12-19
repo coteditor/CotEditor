@@ -42,7 +42,7 @@ public struct CharacterInfo: Sendable {
     public var pictureCharacter: Character? {
         
         self.character.unicodeScalars.count == 1  // ignore CRLF
-            ? self.character.unicodeScalars.first?.pictureRepresentation.flatMap(Character.init)
+            ? self.character.unicodeScalars.first?.pictureRepresentation.map(Character.init)
             : nil
     }
     

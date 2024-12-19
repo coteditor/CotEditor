@@ -296,7 +296,7 @@ extension MultiCursorEditing {
         let ranges = self.insertionRanges.map { range -> NSRange in
             let origin: Int? = origins
                 .firstIndex { range.upperBound == $0 || range.lowerBound == $0 }
-                .flatMap { origins.remove(at: $0) }
+                .map { origins.remove(at: $0) }
             
             let (cursor, newOrigin): (Int, Int) = switch (forward, origin) {
                 case (false, range.lowerBound): (range.upperBound, range.lowerBound)

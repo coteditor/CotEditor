@@ -214,7 +214,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         }
         
         // update internal cache
-        let change: SettingChange = oldName.flatMap { .updated(from: $0, to: name) } ?? .added(name)
+        let change: SettingChange = oldName.map { .updated(from: $0, to: name) } ?? .added(name)
         self.updateSettingList(change: change)
     }
     

@@ -136,7 +136,7 @@ struct ShortcutTests {
         let f10 = try #require(String(NSEvent.SpecialKey.f10.unicodeScalar))
         #expect(Shortcut(keySpecChars: "@" + f10)?.symbol == "⌘ F10")
         
-        let delete = try #require(UnicodeScalar(NSDeleteCharacter).flatMap(String.init))
+        let delete = try #require(UnicodeScalar(NSDeleteCharacter).map(String.init))
         #expect(Shortcut(keySpecChars: "@" + delete)?.symbol == "⌘ ⌫")
         
         // test creation

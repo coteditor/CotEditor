@@ -381,10 +381,10 @@ final class PrintTextView: NSTextView {
                 String(localized: "Printed on \(.now, format: .dateTime)", comment: "print header/footer (%@ is date)")
             case .lastModifiedDate:
                 self.documentInfo.lastModifiedDate
-                    .flatMap { String(localized: "Last modified on \($0, format: .dateTime)", comment: "print header/footer (%@ is date)") }
+                    .map { String(localized: "Last modified on \($0, format: .dateTime)", comment: "print header/footer (%@ is date)") }
                     ?? "–"
             case .pageNumber:
-                NSPrintOperation.current.flatMap { String($0.currentPage) }
+                NSPrintOperation.current.map(\.currentPage).map(String.init)
             case .none:
                 nil
         }

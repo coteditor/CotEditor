@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ extension NSTextView {
             
             // sanitize value
             let scale = self.enclosingScrollView
-                .flatMap { $0.minMagnification...$0.maxMagnification }
+                .map { $0.minMagnification...$0.maxMagnification }
                 .map { newValue.clamped(to: $0) } ?? newValue
             
             guard scale != self.scale else { return }

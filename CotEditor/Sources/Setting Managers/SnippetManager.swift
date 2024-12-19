@@ -124,7 +124,7 @@ import URLUtils
         guard menu.items.count > 1 || !self.snippets.isEmpty else { return }
         
         let generalSnippets = self.snippets.filter { $0.scope == nil }
-        let scopeSnippets = self.scope.flatMap { scope in self.snippets.filter { $0.scope == scope } } ?? []
+        let scopeSnippets = self.scope.map { scope in self.snippets.filter { $0.scope == scope } } ?? []
         
         let editItem = menu.items.last!
         let action = #selector((any SnippetInsertable).insertSnippet)
