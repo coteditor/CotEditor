@@ -357,7 +357,7 @@ final class DocumentController: NSDocumentController {
     /// - Parameters:
     ///   - transientDocument: The transient document to be replaced.
     ///   - document: The new document to replace.
-    @MainActor private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
+    private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
         
         for controller in transientDocument.windowControllers {
             document.addWindowController(controller)
