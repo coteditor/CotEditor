@@ -158,14 +158,14 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         guard let scripts = await self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
         
-        // Create an Apple event caused by the given `Document`.
-        let documentDescriptor = documentSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
         let event = NSAppleEventDescriptor(eventClass: "cEd1",
                                            eventID: eventType.eventID,
-                                           targetDescriptor: nil,
+                                           targetDescriptor: .currentProcess(),
                                            returnID: AEReturnID(kAutoGenerateReturnID),
                                            transactionID: AETransactionID(kAnyTransactionID))
-        event.setParam(documentDescriptor, forKeyword: keyDirectObject)
+        
+        let documentDescriptor = documentSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
+        event.setParam(documentDescriptor, forKeyword: AEKeyword(keyDirectObject))
         
         await self.dispatch(event, handlers: scripts)
     }
