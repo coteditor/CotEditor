@@ -17,6 +17,7 @@
 - Change the syntax highlighting rule to extract strings in the form of “begin-end” string pairs even if one of those is escaped.
 - Adjust the editor’s initial scroll position.
 - [trivial] Update the layout of the Donation settings pane.
+- [trivial] Update the User Guide.
 
 
 ### Fixes
