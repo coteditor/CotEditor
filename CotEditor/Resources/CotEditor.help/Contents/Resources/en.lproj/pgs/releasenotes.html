@@ -18,6 +18,50 @@
 
 <article>
 	<header>
+		<h1>CotEditor 5.0.7</h1>
+		<p>release: <time>2024-12-22</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Add <code>title</code> and <code>timestamp</code> options to the AppleScript’s <code>write to console</code> command.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Provide more Unicode information about the selected character in the document inspector.</li>
+			<li>Prevent the console from hiding when the app goes into the background.</li>
+			<li>Optimize the file browser’s performance when expanding a folder containing a large number of items.</li>
+			<li>Improve the trimming of whitespaces in the extracted outline labels.</li>
+			<li>Modify the syntax highlighting rule to extract strings in the form of “begin-end” string pairs, even if one of those is escaped.</li>
+			<li>Adjust the editor’s initial scroll position.</li>
+			<li><span class="trivial">trivial</span>: Update the layout of the Donation settings pane.</li>
+			<li><span class="trivial">trivial</span>: Update the User Guide.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that the shortcut key for cycling through windows was not functioning correctly for certain input modes.</li>
+			<li>Fix an issue that the end point of a selection shifted after a hanging indent on a wrapped line when the line endings are CRLF and the selection is expanded using the <kbd>Shift</kbd>-<kbd>↑</kbd> or <kbd>Shift</kbd>-<kbd>↓</kbd> shortcuts.</li>
+			<li>Fix an issue that the insertion point rarely jumped to the nearest outline item when the outline inspector is shown.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 5.0.6</h1>
 		<p>release: <time>2024-12-09</time></p>
 	</header>

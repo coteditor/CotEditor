@@ -11,10 +11,10 @@
 ### Improvements
 
 - Provide more Unicode information about the selected character in the document inspector.
-- Don’t hide the console when the application has gone to the background.
+- Prevent the console from hiding when the app goes into the background.
 - Optimize the file browser’s performance when expanding a folder containing a large number of items.
 - Improve the trimming of whitespaces in the extracted outline labels.
-- Change the syntax highlighting rule to extract strings in the form of “begin-end” string pairs even if one of those is escaped.
+- Modify the syntax highlighting rule to extract strings in the form of “begin-end” string pairs, even if one of those is escaped.
 - Adjust the editor’s initial scroll position.
 - [trivial] Update the layout of the Donation settings pane.
 - [trivial] Update the User Guide.
@@ -22,8 +22,8 @@
 
 ### Fixes
 
-- Fix an issue that the shortcut key for cycling through windows was not functioning correctly for certain input methods.
-- Fix an issue that the end point of a selection shifted after a hanging indent on a wrapped line when the line endings are CRLF and the selection is expanded using the `⇧↑` or `⇧↓` shortcuts.
+- Fix an issue that the shortcut key for cycling through windows was not functioning correctly for certain input modes.
+- Fix an issue that the end point of a selection shifted after a hanging indent on a wrapped line when the line endings are CRLF and the selection is expanded using the `Shift`-`↑` or `Shift`-`↓` shortcuts.
 - Fix an issue that the insertion point rarely jumped to the nearest outline item when the outline inspector is shown.
 
 
