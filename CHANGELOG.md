@@ -1,6 +1,6 @@
 # Change Log
 
-5.0.7 (unreleased)
+5.0.7 (690)
 --------------------------
 
 ### New Features
