@@ -1337,6 +1337,7 @@ extension Document: EditorSource {
     }
     
     
+    /// Updates the receiver's mode based on the current syntax.
     private func invalidateMode() {
         
         self.mode = ModeManager.shared.mode(for: self.syntaxParser.name)

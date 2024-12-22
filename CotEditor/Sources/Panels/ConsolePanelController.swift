@@ -271,6 +271,12 @@ private extension Console.Log {
     }
     
     
+    /// Returns attributed string to display in the console.
+    ///
+    /// - Parameters:
+    ///   - fontSize: The font size.
+    ///   - options: The display options.
+    /// - Returns: An attributed string.
     func attributedString(fontSize: Double, options: Console.DisplayOptions) -> sending NSAttributedString {
         
         var string = NSMutableAttributedString()

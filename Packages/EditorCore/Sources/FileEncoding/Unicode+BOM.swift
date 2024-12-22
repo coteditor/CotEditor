@@ -36,6 +36,7 @@ public extension Unicode {
         case utf16LittleEndian
         
         
+        /// The byte sequence.
         public var sequence: [UInt8] {
             
             switch self {
@@ -48,6 +49,7 @@ public extension Unicode {
         }
         
         
+        /// The corresponding string encoding.
         var encoding: String.Encoding {
             
             switch self {

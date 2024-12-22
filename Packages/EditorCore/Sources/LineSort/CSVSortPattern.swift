@@ -39,6 +39,8 @@ public struct CSVSortPattern: SortPattern, Equatable, Sendable {
     }
     
     
+    // MARK: Sort Pattern Methods
+    
     public func sortKey(for line: String) -> String? {
         
         assert(self.column > 0)

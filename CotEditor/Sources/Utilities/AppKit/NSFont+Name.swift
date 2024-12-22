@@ -60,6 +60,10 @@ extension NSFont {
 
 private extension NSFont.Name {
     
+    /// The PostScript name for the given font weight.
+    ///
+    /// - Parameter weight: The font weight.
+    /// - Returns: A PostScript name.
     func postScriptName(weight: NSFont.Weight) -> String? {
         
         guard let weightName = self.weightName(of: weight) else { return nil }
@@ -69,6 +73,10 @@ private extension NSFont.Name {
     }
     
     
+    /// The font weight string for PostScript name.
+    ///
+    /// - Parameter weight: The font weight.
+    /// - Returns: A font weight name.
     private func weightName(of weight: NSFont.Weight) -> String? {
         
         switch self {

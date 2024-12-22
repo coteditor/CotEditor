@@ -143,6 +143,7 @@ private extension IncompatibleCharactersView.Model {
     }
     
     
+    /// Updates observations.
     func invalidateObservation() {
         
         if let document {

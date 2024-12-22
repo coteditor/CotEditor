@@ -219,6 +219,10 @@ private extension NSTextView {
 
 private extension TextFindAllResult.Match {
     
+    /// Returns the attributed string truncated from the head.
+    ///
+    /// - Parameter offset: The maximum number of composed characters to truncate.
+    /// - Returns: An attributed string.
     func attributedLineString(offset: Int) -> NSAttributedString {
         
         self.attributedLineString.truncatedHead(until: self.inlineLocation, offset: offset)

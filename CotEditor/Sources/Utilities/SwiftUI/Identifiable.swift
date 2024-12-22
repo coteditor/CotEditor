@@ -31,6 +31,10 @@ extension Sequence where Element: Identifiable {
     }
     
     
+    /// Returns an array containing, in order, the elements with the given ids.
+    ///
+    /// - Parameter ids: The identifiers of the elements to include.
+    /// - Returns: An array of the elements.
     func filter(with ids: Set<Element.ID>) -> [Element] {
         
         self.filter { ids.contains($0.id) }

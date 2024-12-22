@@ -98,6 +98,9 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
     
     // MARK: Public Methods
     
+    /// Selects the specified setting.
+    ///
+    /// - Parameter settingName: The name of the setting to select.
     func select(settingName: String) {
         
         let row = self.settingNames.firstIndex(of: settingName) ?? 0
@@ -498,6 +501,10 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
     }
     
     
+    /// Returns the target setting name represents for the current action.
+    ///
+    /// - Parameter menu: The parent menu of the sender if a specific sender exists.
+    /// - Returns: A setting name, or `nil` if not found.
     private func representedSettingName(for menu: NSMenu?) -> String? {
         
         guard self.tableView?.menu == menu else {

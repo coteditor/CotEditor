@@ -86,6 +86,9 @@ final class HoleContentView: NSView {
     }
     
     
+    /// Updates the holes.
+    ///
+    /// - Parameter isOpaque: The opacity of the parent window.
     private func invalidateHoles(isOpaque: Bool) {
         
         if isOpaque {

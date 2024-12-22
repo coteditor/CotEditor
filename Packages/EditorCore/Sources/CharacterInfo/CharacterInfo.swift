@@ -39,6 +39,7 @@ public struct CharacterInfo: Sendable {
     }
     
     
+    /// The representative character to display in the user interface.
     public var pictureCharacter: Character? {
         
         self.character.unicodeScalars.count == 1  // ignore CRLF
@@ -47,12 +48,14 @@ public struct CharacterInfo: Sendable {
     }
     
     
+    /// Whether the character consists with multiple Unicode scalars.
     public var isComplex: Bool {
         
         self.character.unicodeScalars.count > 1 && !self.isVariant
     }
     
     
+    /// Whether the character is a single variant character.
     public var isVariant: Bool {
         
         (self.character.unicodeScalars.count == 2 &&

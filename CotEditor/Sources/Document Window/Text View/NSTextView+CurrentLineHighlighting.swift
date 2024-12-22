@@ -128,6 +128,10 @@ extension CurrentLineHighlighting {
 
 private extension NSLayoutManager {
     
+    /// Returns a rectangle containing all line fragment rectangles where the characters in the specified range lie.
+    ///
+    /// - Parameter range: The character range.
+    /// - Returns: A rectangle.
     func lineFragmentsRect(for range: NSRange) -> NSRect {
         
         guard

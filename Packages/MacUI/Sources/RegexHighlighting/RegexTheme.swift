@@ -49,6 +49,10 @@ public struct RegexTheme<Color: Sendable>: Sendable {
 
 extension RegexTheme {
     
+    /// The foreground color for the given syntax type.
+    ///
+    /// - Parameter type: The regular expression syntax type.
+    /// - Returns: A color.
     func color(for type: RegexSyntaxType) -> Color {
         
         switch type {

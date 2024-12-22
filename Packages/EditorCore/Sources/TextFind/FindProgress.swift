@@ -36,6 +36,7 @@ import Observation
         case cancelled
         
         
+        /// Whether the progress is terminated.
         public var isTerminated: Bool {
             
             switch self {

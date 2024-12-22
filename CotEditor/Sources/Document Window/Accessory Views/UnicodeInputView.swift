@@ -128,6 +128,7 @@ struct UnicodeInputView: View {
     }
     
     
+    /// Clears the recent history.
     private func clearRecents() {
         
         UserDefaults.standard[.unicodeHistory].removeAll()

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,9 +24,17 @@
 //
 
 import SwiftUI
+import AppKit
 
 extension View {
     
+    /// Presents a detachable popover when a given condition is true.
+    ///
+    /// - Parameters:
+    ///   - isPresented: A binding to a Boolean value that determines whether to present the popover content.
+    ///   - arrowEdge: The edge of the bounds that defines the location of the popover’s arrow.
+    ///   - content: A closure returning the content of the popover.
+    /// - Returns: Some view.
     func detachablePopover<Content>(isPresented: Binding<Bool>, arrowEdge: Edge = .top, content: @escaping () -> Content) -> some View where Content: View {
         
         self.background(PopoverHolderView(isPresented: isPresented, arrowEdge: arrowEdge, content: content))
@@ -96,7 +104,14 @@ private struct PopoverHolderView<Content: View>: NSViewRepresentable {
         }
         
         
+        /// Updates the visibility of the popover.
+        ///
+        /// - Parameters:
+        ///   - isPresented: The visibility.
+        ///   - view: The view relative to which the popover should be positioned.
+        ///   - preferredEdge: The edge of positioning view the popover should prefer to be anchored to.
         func setVisible(_ isPresented: Bool, in view: NSView, preferredEdge: NSRectEdge) {
+            
             if isPresented {
                 self.popover.show(relativeTo: view.bounds, of: view, preferredEdge: preferredEdge)
             } else {

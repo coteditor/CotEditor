@@ -270,12 +270,14 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
+    /// The valid outline extractors.
     public var outlineExtractors: [OutlineExtractor] {
         
         self.outlines.compactMap { try? OutlineExtractor(definition: $0) }
     }
     
     
+    /// The highlight parser.
     public var highlightParser: HighlightParser {
         
         var nestables: [NestableToken: SyntaxType] = [:]
@@ -338,6 +340,7 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
+    /// The completion words.
     public var completionWords: [String] {
         
         let completions = self.completions.filter { !$0.isEmpty }

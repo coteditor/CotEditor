@@ -114,6 +114,9 @@ struct DocumentInspectorView: View {
         private var observers: Set<AnyCancellable> = []
         
         
+        /// Updates the represented document.
+        ///
+        /// - Parameter document: The new data document, or `nil`.
         func updateDocument(to document: DataDocument?) {
             
             self.invalidateObservation(document: document)
@@ -397,6 +400,7 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 
 private extension DocumentInspectorView.Model {
     
+    /// Updates observations.
     func invalidateObservation(document: DataDocument?) {
         
         (self.document as? Document)?.counter.updatesAll = false

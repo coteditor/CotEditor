@@ -69,6 +69,7 @@ final class StatusBarController: NSHostingController<StatusBar> {
 
 private extension StatusBar.Model {
     
+    /// Called when the view is fully transitioned onto the screen.
     func onAppear() {
         
         self.isActive = true
@@ -91,6 +92,7 @@ private extension StatusBar.Model {
     }
     
     
+    /// Called after the view  is removed from the view hierarchy in a window.
     func onDisappear() {
         
         self.isActive = false
@@ -101,6 +103,7 @@ private extension StatusBar.Model {
     }
     
     
+    /// Updates observations.
     private func invalidateObservation(document: Document?) {
         
         self.document?.counter.statusBarRequirements = []
@@ -166,6 +169,9 @@ struct StatusBar: View {
         }
         
         
+        /// Updates the represented document.
+        ///
+        /// - Parameter document: The new document, or `nil`.
         func updateDocument(to document: Document?) {
             
             self.invalidateObservation(document: document)

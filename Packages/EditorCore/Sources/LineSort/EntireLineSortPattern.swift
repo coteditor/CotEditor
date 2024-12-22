@@ -29,6 +29,8 @@ public struct EntireLineSortPattern: SortPattern, Equatable, Sendable {
     public init() { }
     
     
+    // MARK: Sort Pattern Methods
+    
     public func sortKey(for line: String) -> String? {
         
         line

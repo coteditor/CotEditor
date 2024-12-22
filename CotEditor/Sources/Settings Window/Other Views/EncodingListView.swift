@@ -177,6 +177,19 @@ private struct EncodingView: View {
 
 extension EncodingListView.Model {
     
+    /// Whether the current order differs from the default.
+    var canRestore: Bool {
+        
+        self.items.map(\.encoding) != self.defaults[initial: .encodingList]
+    }
+    
+    
+    /// Moves items to the given destination.
+    ///
+    /// - Parameters:
+    ///   - source: The indexes of items to move.
+    ///   - destination: The destination index to move to.
+    ///   - undoManager: The undo manager.
     func move(from source: IndexSet, to destination: Int, undoManager: UndoManager? = nil) {
         
         self.registerUndo(to: undoManager)
@@ -184,13 +197,6 @@ extension EncodingListView.Model {
         withAnimation {
             self.items.move(fromOffsets: source, toOffset: destination)
         }
-    }
-    
-    
-    /// Whether the current order differs from the default.
-    var canRestore: Bool {
-        
-        self.items.map(\.encoding) != self.defaults[initial: .encodingList]
     }
     
     

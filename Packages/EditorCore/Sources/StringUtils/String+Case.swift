@@ -64,6 +64,9 @@ public extension String {
     
     // MARK: Private Methods
     
+    /// <#Description#>
+    /// - Parameter pattern: <#pattern description#>
+    /// - Returns: <#description#>
     private func ranges(pattern: String) -> [Range<Index>] {
         
         (try! NSRegularExpression(pattern: pattern))

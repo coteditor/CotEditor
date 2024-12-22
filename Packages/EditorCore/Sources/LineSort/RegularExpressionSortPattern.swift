@@ -45,6 +45,8 @@ public struct RegularExpressionSortPattern: SortPattern, Equatable, Sendable {
     }
     
     
+    // MARK: Sort Pattern Methods
+    
     public func sortKey(for line: String) -> String? {
         
         guard let range = self.range(for: line) else { return nil }
@@ -83,6 +85,8 @@ public struct RegularExpressionSortPattern: SortPattern, Equatable, Sendable {
         }
     }
     
+    
+    // MARK: Private Methods
     
     private var regex: NSRegularExpression? {
         

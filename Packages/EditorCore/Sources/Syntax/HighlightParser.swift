@@ -69,6 +69,7 @@ public struct HighlightParser: Sendable {
     
     // MARK: Public Methods
     
+    /// Whether the receiver has highlight rules.
     public var isEmpty: Bool {
         
         self.extractors.isEmpty && self.nestables.isEmpty

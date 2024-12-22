@@ -469,6 +469,9 @@ private extension DocumentViewController {
     }
     
     
+    /// Applies the scripting property to the user interface.
+    ///
+    /// - Parameter property: The scripting property.
     func apply(scriptingProperty property: ScriptingProperty) {
         
         switch property {

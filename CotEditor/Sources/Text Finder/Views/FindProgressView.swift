@@ -107,14 +107,18 @@ struct FindProgressView: View {
     /// Updates the current value label.
     private func updateDescription() {
         
-        self.description = self.unit.format(self.progress.count)
+        self.description = self.unit.resultMessage(self.progress.count)
     }
 }
 
 
 private extension FindProgressView.Unit {
     
-    func format(_ count: Int) -> String {
+    /// The formatted result message.
+    ///
+    /// - Parameter count: The number of processed items.
+    /// - Returns: The formatted string.
+    func resultMessage(_ count: Int) -> String {
         
         switch self {
             case _ where count == 0:

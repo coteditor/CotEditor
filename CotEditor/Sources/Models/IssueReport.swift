@@ -95,6 +95,7 @@ private extension IssueReport {
         case expectedResult
         
         
+        /// Returns the markdown heading string.
         func display() -> String {
             
             (Locale.current.language.languageCode == .english)
@@ -103,6 +104,10 @@ private extension IssueReport {
         }
         
         
+        /// The label string for the given language.
+        ///
+        /// - Parameter language: The language.
+        /// - Returns: A label string.
         private func label(language: Locale.LanguageCode? = nil) -> String {
             
             var resource = self.labelResource
@@ -114,6 +119,7 @@ private extension IssueReport {
         }
         
         
+        /// The localized string resource for the label.
         private var labelResource: LocalizedStringResource {
             
             switch self {

@@ -89,6 +89,9 @@ struct WarningInspectorView: View {
         let incompatibleCharactersModel = IncompatibleCharactersView.Model()
         
         
+        /// Updates the represented document.
+        ///
+        /// - Parameter document: The new document, or `nil`.
         func updateDocument(to document: Document?) {
             
             self.document = document

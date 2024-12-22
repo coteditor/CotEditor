@@ -81,6 +81,10 @@ private struct OpacitySample: View {
     
     private struct Triangle: Shape {
         
+        /// Returns the path that is filled in the specified rectangle.
+        ///
+        /// - Parameter rect: The bounds.
+        /// - Returns: A path.
         func path(in rect: CGRect) -> Path {
             
             Path { path in

@@ -324,6 +324,10 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
+    /// Returns the target setting name represents for the current action.
+    ///
+    /// - Parameter menu: The parent menu of the sender if a specific sender exists.
+    /// - Returns: A setting name, or `nil` if not found.
     private func representedSettingName(for menu: NSMenu?) -> String? {
         
         guard self.tableView?.menu == menu else {

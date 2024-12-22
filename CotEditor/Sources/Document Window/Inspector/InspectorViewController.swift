@@ -196,6 +196,10 @@ private extension InspectorPane {
     }
     
     
+    /// The image for tab view label.
+    ///
+    /// - Parameter selected: The selection state of the pane.
+    /// - Returns: An image.
     func image(selected: Bool = false) -> sending NSImage? {
         
         NSImage(systemSymbolName: selected ? self.selectedImageName : self.imageName, accessibilityDescription: self.name)?

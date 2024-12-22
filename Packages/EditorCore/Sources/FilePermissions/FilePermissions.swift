@@ -46,6 +46,7 @@ public struct FilePermissions: Equatable, Sendable {
         }
         
         
+        /// The human-readable permission expression like “rwx”.
         public var symbolic: String {
             
             (self.contains(.read) ? "r" : "-") +

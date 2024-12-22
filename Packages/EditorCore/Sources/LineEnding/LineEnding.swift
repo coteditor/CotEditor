@@ -34,24 +34,28 @@ public enum LineEnding: Character, Sendable, CaseIterable {
     case paragraphSeparator = "\u{2029}"
     
     
+    /// The string representation of the line ending.
     public var string: String {
         
         String(self.rawValue)
     }
     
     
+    /// The length in Unicode scalars.
     public var length: Int {
         
         self.rawValue.unicodeScalars.count
     }
     
     
+    /// The index in the `enum`.
     public var index: Int {
         
         Self.allCases.firstIndex(of: self)!
     }
     
     
+    /// Whether the line ending is a basic one.
     public var isBasic: Bool {
         
         switch self {
@@ -61,6 +65,7 @@ public enum LineEnding: Character, Sendable, CaseIterable {
     }
     
     
+    /// The short label to display.
     public var label: String {
         
         switch self {
