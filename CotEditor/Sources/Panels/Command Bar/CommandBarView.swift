@@ -74,30 +74,26 @@ struct CommandBarView: View {
             
             if !self.candidates.isEmpty {
                 Divider()
-                ScrollViewReader { proxy in
-                    ScrollView(.vertical) {
-                        LazyVStack(spacing: 6) {
-                            ForEach(self.candidates) { candidate in
-                                ActionCommandView(command: candidate.command, matches: candidate.matches)
-                                    .selected(candidate.id == self.selection)
-                                    .focused($focus, equals: candidate.id)
-                                    .accessibilityFocused($accessibilityFocus, equals: candidate.id)
-                                    .id(candidate.id)
-                                    .onMouseDown {
-                                        self.selection = candidate.id
-                                    } onMouseUp: { translation in
-                                        if translation == .zero {
-                                            self.perform()
-                                        }
+                ScrollView(.vertical) {
+                    LazyVStack(spacing: 6) {
+                        ForEach(self.candidates) { candidate in
+                            ActionCommandView(command: candidate.command, matches: candidate.matches)
+                                .selected(candidate.id == self.selection)
+                                .focused($focus, equals: candidate.id)
+                                .accessibilityFocused($accessibilityFocus, equals: candidate.id)
+                                .id(candidate.id)
+                                .onMouseDown {
+                                    self.selection = candidate.id
+                                } onMouseUp: { translation in
+                                    if translation == .zero {
+                                        self.perform()
                                     }
-                            }
+                                }
                         }
-                        .padding(.horizontal, 10)
                     }
-                    .onChange(of: self.selection) { (_, newValue) in
-                        proxy.scrollTo(newValue)
-                    }
+                    .padding(.horizontal, 10)  // workaround for FB16141979
                 }
+                .scrollPosition(id: $selection)
                 .contentMargins(.vertical, 10, for: .scrollContent)
                 .frame(maxHeight: 300)
                 .fixedSize(horizontal: false, vertical: true)
