@@ -56,7 +56,7 @@ public extension StringProtocol {
 public extension NSString {
     
     /// Whole range in NSRange
-    var range: NSRange {
+    final var range: NSRange {
         
         NSRange(location: 0, length: self.length)
     }
@@ -68,7 +68,7 @@ public extension NSString {
     /// - Parameter location: NSRange-based character index to refer.
     /// - Returns: NSRange-based character index just before the given `location`,
     ///            or `0` when the given `location` is the first.
-    func index(before location: Int) -> Int {
+    final func index(before location: Int) -> Int {
         
         guard location > 0 else { return 0 }
         
@@ -86,7 +86,7 @@ public extension NSString {
     /// - Parameter location: NSRange-based character index to refer.
     /// - Returns: NSRange-based character index just before the given `location`,
     ///            or `location` when the given `location` is the last.
-    func index(after location: Int) -> Int {
+    final func index(after location: Int) -> Int {
         
         guard location < self.length - 1 else { return self.length }
         
@@ -105,7 +105,7 @@ public extension NSString {
     ///   - options: A mask specifying search options.
     ///   - searchRange: The range with in the receiver for which to search for aString.
     /// - Returns: An array of NSRange in the receiver of `searchString` within `searchRange`.
-    func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange? = nil) -> [NSRange] {
+    final func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange? = nil) -> [NSRange] {
         
         let searchRange = searchRange ?? self.range
         var ranges: [NSRange] = []
@@ -125,14 +125,14 @@ public extension NSString {
     
     
     /// Returns line range containing a given location.
-    func lineRange(at location: Int) -> NSRange {
+    final func lineRange(at location: Int) -> NSRange {
         
         self.lineRange(for: NSRange(location: location, length: 0))
     }
     
     
     /// Returns line content range containing a given location.
-    func lineContentsRange(at location: Int) -> NSRange {
+    final func lineContentsRange(at location: Int) -> NSRange {
         
         self.lineContentsRange(for: NSRange(location: location, length: 0))
     }
@@ -143,7 +143,7 @@ public extension NSString {
     /// - Parameters:
     ///   - range: A range within the receiver.
     /// - Returns: The range of characters representing the line or lines containing a given range.
-    func lineContentsRange(for range: NSRange) -> NSRange {
+    final func lineContentsRange(for range: NSRange) -> NSRange {
         
         var start = 0
         var contentsEnd = 0
@@ -158,7 +158,7 @@ public extension NSString {
     /// - Parameters:
     ///   - index: The index of character for finding the line start.
     /// - Returns: The character index of the nearest line start.
-    func lineStartIndex(at index: Int) -> Int {
+    final func lineStartIndex(at index: Int) -> Int {
         
         var start = 0
         self.getLineStart(&start, end: nil, contentsEnd: nil, for: NSRange(location: index, length: 0))
@@ -172,7 +172,7 @@ public extension NSString {
     /// - Parameters:
     ///   - index: The index of character for finding the line contents end.
     /// - Returns: The character index of the nearest line contents end.
-    func lineContentsEndIndex(at index: Int) -> Int {
+    final func lineContentsEndIndex(at index: Int) -> Int {
         
         var contentsEnd = 0
         self.getLineStart(nil, end: nil, contentsEnd: &contentsEnd, for: NSRange(location: index, length: 0))
@@ -187,7 +187,7 @@ public extension NSString {
     ///   - ranges: Ranges to include.
     ///   - includingLastEmptyLine: Whether the last empty line should be included; otherwise, return value can be empty.
     /// - Returns: Array of ranges of each individual line.
-    func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
+    final func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
         
         guard !ranges.isEmpty else { return [] }
         
@@ -221,7 +221,7 @@ public extension NSString {
     ///
     /// - Parameter location: NSRange-based character index.
     /// - Returns: The number of lines (1-based).
-    func lineNumber(at location: Int) -> Int {
+    final func lineNumber(at location: Int) -> Int {
         
         assert(location == 0 || location <= self.length)
         
@@ -249,7 +249,7 @@ public extension NSString {
     ///   - index: The index of character to be contained to the result range. `index` must be within `range`.
     ///   - range: The range in which to search. `range` must not exceed the bounds of the receiver.
     /// - Returns: The found character range.
-    func rangeOfCharacter(until set: CharacterSet, at index: Int, range: NSRange? = nil) -> NSRange {
+    final func rangeOfCharacter(until set: CharacterSet, at index: Int, range: NSRange? = nil) -> NSRange {
         
         let range = range ?? self.range
         
@@ -271,7 +271,7 @@ public extension NSString {
     ///   - index: The reference character index in UTF-16.
     ///   - offset: The number of composed character sequences to move index.
     /// - Returns: A character index in UTF-16.
-    func lowerBoundOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
+    final func lowerBoundOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
         
         assert((0...self.length).contains(index))
         assert(offset >= 0)

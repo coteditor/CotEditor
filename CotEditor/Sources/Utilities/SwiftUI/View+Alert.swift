@@ -49,19 +49,19 @@ extension View {
 
 extension NSError: @retroactive LocalizedError {
     
-    public var errorDescription: String? {
+    public final var errorDescription: String? {
         
         self.localizedDescription
     }
     
     
-    public var failureReason: String? {
+    public final var failureReason: String? {
         
         self.localizedFailureReason
     }
     
     
-    public var recoverySuggestion: String? {
+    public final var recoverySuggestion: String? {
         
         self.localizedRecoverySuggestion
     }

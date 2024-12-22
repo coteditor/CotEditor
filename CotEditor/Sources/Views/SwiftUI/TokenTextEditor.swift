@@ -29,7 +29,7 @@ import AppKit
 extension NSTextView {
     
     /// Inserts the string provided by the menu item to the insertion point.
-    @IBAction func insertVariable(_ sender: NSMenuItem) {
+    @IBAction final func insertVariable(_ sender: NSMenuItem) {
         
         guard let string = sender.representedObject as? String else { return assertionFailure() }
         
