@@ -69,12 +69,10 @@ struct SyntaxOutlineEditView: View {
             
             if self.selection.count > 1 {
                 PatternView(outline: .constant(.init()), error: .multipleSelection)
-                    .disabled(true)
             } else if let outline = $items[id: self.selection.first] {
                 PatternView(outline: outline)
             } else {
                 PatternView(outline: .constant(.init()), error: .noSelection)
-                    .disabled(true)
             }
             
             HStack {
@@ -115,7 +113,7 @@ struct SyntaxOutlineEditView: View {
                     Toggle(String(localized: "Underline", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.underline)
                         .underline()
                 }.controlSize(.small)
-            }
+            }.disabled(self.error != nil)
         }
         
         
