@@ -42,7 +42,7 @@ extension Sequence where Element: Identifiable {
 }
 
 
-extension Array where Element: Identifiable {
+extension MutableCollection where Self: RangeReplaceableCollection, Element: Identifiable {
     
     subscript(id id: Element.ID?) -> Element? {
         
