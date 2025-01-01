@@ -6,17 +6,18 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2024 CotEditor Project
+ © 2006-2025 CotEditor Project
 */
 
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 13px/1.5 -apple-system, sans-serif;
+	font: 350 13px/1.5 -apple-system, sans-serif;
+	text-rendering: optimizeLegibility;
 	color: -apple-system-label;
 }
 body {
-	margin: 1rem 2rem;
+	margin: 1rem 2.75rem;
 }
 
 a {
@@ -48,7 +49,7 @@ header h1 {
 	margin: 0 0 0.6rem;
 }
 header .toc::before {
-    display: inline-block;
+	display: inline-block;
 	content: url(../gfx/toc.svg);
 	vertical-align: -2px;
 	padding-right: 0.3rem;

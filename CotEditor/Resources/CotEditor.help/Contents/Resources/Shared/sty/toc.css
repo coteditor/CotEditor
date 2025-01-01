@@ -6,12 +6,15 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2023 CotEditor Project
+ © 2006-2025 CotEditor Project
 */
 
 
 body > h1::before {
 	display: none;
+}
+a {
+	color: -apple-system-label !important;
 }
 
 ul {
@@ -30,6 +33,19 @@ summary::-webkit-details-marker {
 }
 
 body > ul > li {
-	border-bottom: 0.5px solid -apple-system-tertiary-label;
-	padding: 0.3rem 0;
+	padding: 0.15rem 0;
+}
+
+details[open] > ul {
+	animation: 0.3s ease fadeIn;
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: none;
+	}
 }
