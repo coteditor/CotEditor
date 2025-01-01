@@ -35,6 +35,7 @@ struct Node<Value> {
     var item: Item
 }
 
+
 extension Node.Item: Equatable where Value: Equatable { }
 extension Node: Equatable where Value: Equatable { }
 

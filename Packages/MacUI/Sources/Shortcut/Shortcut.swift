@@ -30,6 +30,7 @@ import AppKit.NSEvent
 
 extension NSEvent.SpecialKey: @retroactive @unchecked Sendable { }
 
+
 public struct Shortcut: Sendable {
     
     public var keyEquivalent: String

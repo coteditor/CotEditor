@@ -28,6 +28,7 @@ import AppKit
 
 public protocol Validatable: AnyObject { }
 
+
 public extension Validatable where Self: NSToolbarItem {
     
     /// Validates the item.

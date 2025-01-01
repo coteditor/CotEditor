@@ -31,4 +31,5 @@ public protocol StatableItem: AnyObject {
     @MainActor var state: NSControl.StateValue { get set }
 }
 
+
 extension NSMenuItem: StatableItem { }
