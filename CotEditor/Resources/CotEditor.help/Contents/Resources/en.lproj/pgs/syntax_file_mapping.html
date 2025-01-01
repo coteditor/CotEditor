@@ -27,23 +27,23 @@
 <ol>
 	<li>File extension<ul>
 		<li>Try determining syntax from the file extension. The case is basically ignored; however, case-matched ones are prioritized if multiple syntaxes are found</li>
-		<li>e.g., .html → HTML</li>
-		<li>e.g., .hTmL → HTML</li>
-		<li>e.g., .py → Python</li>
+		<li>For example, .html → HTML</li>
+		<li>For example, .hTmL → HTML</li>
+		<li>For example, .py → Python</li>
 	</ul></li>
 	<li>Filename<ul>
 		<li>When there is no syntax in which the find file extension is defined or the filename doesn’t have an extension, then try determining syntax from the whole filename.</li>
-		<li>e.g., .htaccess → Apache</li>
-		<li>e.g., makefile → Makefile</li>
+		<li>For example, .htaccess → Apache</li>
+		<li>For example, makefile → Makefile</li>
 	</ul></li>
 	<li>Shebang in the first line of the document<ul>
 		<li>When there is no corresponding syntax for the extension and the filename, and if the first line of the document contents are a shebang, then try determining syntax from the shebang. In this trial, the interpreter names which is defined in the syntaxes are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</li>
-		<li>e.g., <code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</li>
-		<li>e.g., <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</li>
+		<li>For example, <code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</li>
+		<li>For example, <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</li>
 	</ul></li>
 	<li>XML declaration<ul>
 		<li>When there is no corresponding syntax up to here but the file contents start with an XML declaration, syntax is automatically set to XML.</li>
-		<li>e.g., <code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</li>
+		<li>For example, <code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</li>
 	</ul></li>
 	<li>None<ul>
 		<li>If no appropriate syntax can be found at all, the “None” syntax would be set.</li>
