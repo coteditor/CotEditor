@@ -1346,97 +1346,97 @@
       }
     },
     "5is-7G-OVT.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Unhighlight\"; ObjectID = \"5is-7G-OVT\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Remove Highlights\"; ObjectID = \"5is-7G-OVT\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zrušit zvýraznění"
+            "value" : "Odstranit zvýraznění"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Markierung entfernen"
+            "value" : "Markierungen entfernen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unhighlight"
+            "value" : "Remove Highlights"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unhighlight"
+            "value" : "Remove Highlights"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No resaltado"
+            "value" : "Eliminar resaltados"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ne pas surligner"
+            "value" : "Supprimer les surlignages"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rimuovi evidenziazione"
+            "value" : "Rimuovi evidenziazioni"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ハイライトを解除"
+            "value" : "ハイライトを削除"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "강조 해제"
+            "value" : "하이라이트 제거"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Demarkeer"
+            "value" : "Verwijder markeringen"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyłącz podświetlenie"
+            "value" : "Usuń wyróżnienia"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remover Destaque"
+            "value" : "Remover Destaques"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vurguyu Kaldır"
+            "value" : "Vurguları Sil"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取消高亮"
+            "value" : "移除高亮标记"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取消高亮"
+            "value" : "移除高亮"
           }
         }
       }

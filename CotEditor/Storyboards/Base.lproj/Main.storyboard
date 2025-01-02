@@ -1138,7 +1138,7 @@ CA
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="dTZ-B1-rbb"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Unhighlight" tag="104" keyEquivalent="H" id="5is-7G-OVT">
+                                        <menuItem title="Remove Highlights" tag="104" keyEquivalent="H" id="5is-7G-OVT">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="Ifa-Ul-lRg"/>
