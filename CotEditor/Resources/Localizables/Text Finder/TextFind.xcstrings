@@ -6459,13 +6459,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Select the search scope in the document or unselect the “in selection” option."
+            "value" : "Select the search scope in the document or deselect the “in selection” option."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select the search scope in the document or unselect the “in selection” option."
+            "value" : "Select the search scope in the document or deselect the “in selection” option."
           }
         },
         "es" : {
