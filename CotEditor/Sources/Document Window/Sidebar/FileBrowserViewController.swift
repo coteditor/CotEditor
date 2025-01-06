@@ -38,11 +38,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
+    @ViewLoading private var filterField: NSSearchField
+    @ViewLoading private var messageField: NSTextField
     
     private var showsHiddenFiles: Bool
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
     
+    private lazy var filterDebouncer = Debouncer { [weak self] in self?.updateFilter() }
     private var defaultObservers: Set<AnyCancellable> = []
     private var scrollObservers: [any NSObjectProtocol] = []
     
@@ -83,6 +86,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // when the scroller knob is shown (2025-09, macOS 26, FB20309978)
         outlineView.tableColumns.first?.width = scrollView.contentView.frame.width
         
+        let message = String(localized: "No Filter Results", table: "Document", comment: "filtering result message")
+        let messageField = NSTextField(labelWithString: message)
+        messageField.textColor = .secondaryLabelColor
+        messageField.isHidden = true
+        outlineView.addSubview(messageField)
+        
+        messageField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            messageField.centerXAnchor.constraint(equalTo: outlineView.centerXAnchor),
+            messageField.centerYAnchor.constraint(equalTo: outlineView.centerYAnchor),
+        ])
+        
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator
         
@@ -105,14 +120,25 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
+        let filterField = if #available(macOS 26, *) { FilterSearchField() } else { LegacyFilterSearchField() }
+        filterField.focusRingType = .none
+        filterField.target = self
+        filterField.action = #selector(filterTextDidChange)
+        filterField.recentsAutosaveName = "FileBrowserSearch"
+        
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
         (footerView as? NSVisualEffectView)?.material = .sidebar
         addButton.translatesAutoresizingMaskIntoConstraints = false
+        filterField.translatesAutoresizingMaskIntoConstraints = false
         footerView.addSubview(addButton)
+        footerView.addSubview(filterField)
         
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 10 : 6),
+            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 8 : 6),
+            filterField.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
+            filterField.leadingAnchor.constraint(equalToSystemSpacingAfter: addButton.trailingAnchor, multiplier: 0.5),
+            filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -5),
         ])
         
         self.view = NSView()
@@ -147,6 +173,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
+        self.filterField = filterField
+        self.messageField = messageField
     }
     
     
@@ -569,7 +597,19 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    @objc private func filterTextDidChange(_ sender: NSSearchField) {
+        
+        self.filterDebouncer.schedule(delay: Duration.seconds(0.5))
+    }
+    
+    
     // MARK: Private Methods
+    
+    /// Filters nodes in the outline view.
+    private func updateFilter() {
+        
+    }
+    
     
     /// Returns the target outline rows for the menu action.
     ///
