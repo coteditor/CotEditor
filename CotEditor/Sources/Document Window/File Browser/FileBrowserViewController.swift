@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,12 +40,6 @@ private extension NSUserInterfaceItemIdentifier {
 
 final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
-    private enum SerializationKey {
-        
-        static let expandedItems = "expandedItems"
-    }
-    
-    
     let document: DirectoryDocument
     
     @ViewLoading private(set) var outlineView: NSOutlineView
@@ -68,9 +62,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.showsHiddenFiles = UserDefaults.standard[.fileBrowserShowsHiddenFiles]
         
         super.init(nibName: nil, bundle: nil)
-        
-        // set identifier for state restoration
-        self.identifier = NSUserInterfaceItemIdentifier("FileBrowserViewController")
         
         document.fileBrowserViewController = self
     }
@@ -155,6 +146,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView.allowsMultipleSelection = true
         self.outlineView.dataSource = self
         self.outlineView.delegate = self
+        self.outlineView.autosaveName = "FileBrowserOutlineView"
+        self.outlineView.autosaveExpandedItems = true
         
         self.outlineView.registerForDraggedTypes([.fileURL])
         self.outlineView.setDraggingSourceOperationMask([.copy, .move, .delete], forLocal: false)
@@ -256,42 +249,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             NotificationCenter.default.removeObserver(observer)
         }
         self.scrollObservers.removeAll()
-    }
-    
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        
-        super.encodeRestorableState(with: coder)
-        
-        // store expanded items
-        if let rootURL = self.document.fileURL {
-            let paths = self.outlineView.expandedItems
-                .compactMap { $0 as? FileNode }
-                .map { $0.fileURL.path(relativeTo: rootURL) }
-            
-            if !paths.isEmpty {
-                coder.encode(paths, forKey: SerializationKey.expandedItems)
-            }
-        }
-    }
-    
-    
-    override func restoreState(with coder: NSCoder) {
-        
-        super.restoreState(with: coder)
-        
-        // restore expanded items
-        if let rootURL = self.document.fileURL,
-           let paths = coder.decodeArrayOfObjects(ofClass: NSString.self, forKey: SerializationKey.expandedItems) as? [String]
-        {
-            let nodes = paths
-                .map { URL(filePath: $0, relativeTo: rootURL) }
-                .compactMap { self.document.fileNode?.node(at: $0) }
-            
-            for node in nodes {
-                self.outlineView.expandItem(node)
-            }
-        }
     }
     
     
@@ -799,6 +756,30 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     }
     
     
+    func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
+       
+        guard
+            let rootURL = self.document.fileURL,
+            let path = object as? String
+        else { return nil }
+        
+        let url = URL(filePath: path, relativeTo: rootURL)
+        
+        return self.document.fileNode?.node(at: url)
+    }
+    
+    
+    func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
+        
+        guard
+            let rootURL = self.document.fileURL,
+            let node = item as? FileNode
+        else { return nil }
+        
+        return node.fileURL.path(relativeTo: rootURL)
+    }
+    
+    
     /// Returns the casted children of the given item.
     ///
     /// - Parameter node: An item in the data source, or `nil` for the root.
@@ -883,19 +864,11 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
     
     func outlineViewItemDidExpand(_ notification: Notification) {
         
-        self.invalidateRestorableState()
-        
         if let node = notification.userInfo?["NSObject"] as? FileNode {
             Task {
                 self.expandingNodes[node] = nil
             }
         }
-    }
-    
-    
-    func outlineViewItemDidCollapse(_ notification: Notification) {
-        
-        self.invalidateRestorableState()
     }
 }
 
@@ -1032,17 +1005,5 @@ private extension FileNode.Kind {
     var image: NSImage {
         
         NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)!
-    }
-}
-
-
-private extension NSOutlineView {
-    
-    /// Items of which row is expanded.
-    var expandedItems: [Any] {
-        
-        (0..<self.numberOfRows)
-            .compactMap(self.item(atRow:))
-            .filter(self.isItemExpanded)
     }
 }
