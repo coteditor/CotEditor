@@ -116,10 +116,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.view.addSubview(bottomSeparator)
         self.view.addSubview(footerView)
         
-        self.outlineView = outlineView
-        self.bottomSeparator = bottomSeparator
-        self.addButton = addButton
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
         footerView.translatesAutoresizingMaskIntoConstraints = false
@@ -136,6 +132,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
+        
+        self.outlineView = outlineView
+        self.bottomSeparator = bottomSeparator
+        self.addButton = addButton
     }
     
     
