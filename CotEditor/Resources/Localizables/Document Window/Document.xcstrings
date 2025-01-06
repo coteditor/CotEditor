@@ -6014,7 +6014,7 @@
       }
     },
     "No Filter Results" : {
-      "comment" : "display on the outline list when no results in filtering outline items",
+      "comment" : "filtering result message",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

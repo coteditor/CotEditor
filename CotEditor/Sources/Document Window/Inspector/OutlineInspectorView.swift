@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -129,7 +129,7 @@ struct OutlineInspectorView: View {
             }
             .overlay {
                 if !self.filterString.isEmpty, items.isEmpty {
-                    Text("No Filter Results", tableName: "Document", comment: "display on the outline list when no results in filtering outline items")
+                    Text("No Filter Results", tableName: "Document", comment: "filtering result message")
                         .foregroundStyle(.secondary)
                         .controlSize(.regular)
                 }
