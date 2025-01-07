@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -388,7 +388,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSToolbarItemGroup)?.selectedIndex = self.verticalLayoutOrientation ? 1 : 0
                 
             case #selector(showOpacitySlider):
-                return self.view.window?.styleMask.contains(.fullScreen) == false
+                return !self.view.isInFullScreenMode
                 
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
