@@ -31,13 +31,6 @@ import Defaults
 import ControlUI
 import URLUtils
 
-/// Column identifiers for outline view.
-private extension NSUserInterfaceItemIdentifier {
-    
-    static let node = NSUserInterfaceItemIdentifier("node")
-}
-
-
 final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     let document: DirectoryDocument
@@ -815,8 +808,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         let cellView = outlineView.makeView(withIdentifier: .node, owner: self) as? FileBrowserTableCellView ?? .init()
         cellView.textField?.delegate = self
         
-        cellView.imageView!.image = node.kind.image
-        cellView.imageView!.setAccessibilityLabel(node.kind.label)
+        cellView.imageView!.image = NSImage(systemSymbolName: node.kind.symbolName, accessibilityDescription: node.kind.label)!
         cellView.imageView!.alphaValue = node.isHidden ? 0.5 : 1
         cellView.isAlias = node.isAlias
         
@@ -928,7 +920,15 @@ extension FileBrowserViewController: NSTextFieldDelegate {
 
 // MARK: -
 
-final class FileBrowserTableCellView: NSTableCellView {
+/// Column identifiers for outline view.
+private extension NSUserInterfaceItemIdentifier {
+    
+    static let node = NSUserInterfaceItemIdentifier("node")
+}
+
+
+
+private final class FileBrowserTableCellView: NSTableCellView {
     
     var isAlias: Bool = false { didSet { self.aliasArrowView?.isHidden = !isAlias } }
     
@@ -993,17 +993,5 @@ final class FileBrowserTableCellView: NSTableCellView {
             textField.leadingAnchor.constraint(equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1),
             textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2),
         ])
-    }
-}
-
-
-// MARK: - Extensions
-
-private extension FileNode.Kind {
-    
-    /// The symbol image in `NSImage`.
-    var image: NSImage {
-        
-        NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)!
     }
 }
