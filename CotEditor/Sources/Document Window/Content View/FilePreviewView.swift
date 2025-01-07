@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,22 +126,10 @@ struct ImageAttributesView: View {
                            value: self.attributes.pixelSize.formatted)
             LabeledContent(String(localized: "Image DPI", table: "Document"),
                            value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
-            LabeledContent(String(localized: "Color model", table: "Document")) {
-                if let name = self.attributes.colorSpace?.colorSpaceModel.localizedName {
-                    Text(name)
-                } else {
-                    Text(verbatim: "–")
-                        .foregroundStyle(.tertiary)
-                }
-            }
-            LabeledContent(String(localized: "ColorSync profile", table: "Document")) {
-                if let name = self.attributes.colorSpace?.localizedName {
-                    Text(name)
-                } else {
-                    Text(verbatim: "–")
-                        .foregroundStyle(.tertiary)
-                }
-            }
+            OptionalLabeledContent(String(localized: "Color model", table: "Document"),
+                                   value: self.attributes.colorSpace?.colorSpaceModel.localizedName)
+            OptionalLabeledContent(String(localized: "ColorSync profile", table: "Document"),
+                                   value: self.attributes.colorSpace?.localizedName)
         }
     }
 }

@@ -44,7 +44,6 @@ struct OptionalLabeledContent: View {
             if let value {
                 Text(value)
                     .textSelection(.enabled)
-                    .foregroundStyle(.primary)
             } else {
                 Text(verbatim: "–")
                     .foregroundStyle(.tertiary)

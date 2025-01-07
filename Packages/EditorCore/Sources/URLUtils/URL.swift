@@ -35,7 +35,7 @@ public extension URL {
     }
     
     
-    /// Returns relative-path string.
+    /// Returns the path string relative to the given URL.
     ///
     /// - Note: The `baseURL` is assumed its `directoryHint` is properly set.
     ///
@@ -93,7 +93,7 @@ public extension URL {
     }
     
     
-    /// Checks the given URL is ancestor of the receiver.
+    /// Checks the given URL is an ancestor of the receiver.
     ///
     /// - Parameter url: The child candidate URL.
     /// - Returns: `true` if the given URL is child.
