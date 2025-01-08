@@ -500,7 +500,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Również nawiasy <>"
+            "value" : "Wyróżniaj nawiasy <>"
           }
         },
         "pt" : {
@@ -588,7 +588,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podświetlaj wystąpienia zaznaczonego tekstu"
+            "value" : "Wyróżniaj wystąpienia zaznaczonego tekstu"
           }
         },
         "pt" : {
@@ -676,7 +676,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podświetlaj pasujące nawiasy (), [], {}"
+            "value" : "Wyróżniaj pasujące nawiasy (), [], {}"
           }
         },
         "pt" : {

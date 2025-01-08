@@ -2292,7 +2292,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podświetlanie"
+            "value" : "Wyróżnianie"
           }
         },
         "pt" : {
@@ -2470,7 +2470,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jeśli nie określono, uzupełniane wyrazy składni generowane są na podstawie ustawień podświetlania."
+            "value" : "Jeśli nie określono, uzupełniane wyrazy składni generowane są na podstawie ustawień wyróżniania."
           }
         },
         "pt" : {
