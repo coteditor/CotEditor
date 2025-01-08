@@ -267,17 +267,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // -> reload later in viewWillAppear
         guard !self.view.isHiddenOrHasHiddenAncestor else { return }
         
-        let selectedNodes = self.outlineView.selectedRowIndexes
-            .compactMap { self.outlineView.item(atRow: $0) }
-        
         self.outlineView.reloadItem((self.document.fileNode == node) ? nil : node, reloadChildren: true)
-        
-        let indexes = selectedNodes
-            .compactMap { self.outlineView.row(forItem: $0) }
-            .reduce(into: IndexSet()) { $0.insert($1) }
-        if !indexes.isEmpty {
-            self.outlineView.selectRowIndexes(indexes, byExtendingSelection: false)
-        }
     }
     
     
