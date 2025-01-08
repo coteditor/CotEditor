@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -97,7 +97,7 @@ struct EncodingListView: View {
             }
             .border(.separator)
             .scrollContentBackground(.hidden)
-            .background(.primary.opacity(0.02))
+            .background(.fill.quaternary)
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
                 

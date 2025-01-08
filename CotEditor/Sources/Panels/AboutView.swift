@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -133,7 +133,7 @@ private struct TabPickerButtonView: View {
             .brightness(-0.2)
             .padding(.vertical, 1)
             .padding(.horizontal, 4)
-            .background(.primary.opacity(self.backgroundOpacity),
+            .background(.fill.opacity(self.backgroundOpacity),
                         in: RoundedRectangle(cornerRadius: 3))
             .overlay(self.contrast == .increased
                      ? RoundedRectangle(cornerRadius: 3).stroke(.tertiary)
@@ -145,9 +145,9 @@ private struct TabPickerButtonView: View {
     private var backgroundOpacity: Double {
         
         if self.isHovered {
-            0.10
+            1
         } else if self.isSelected {
-            0.05
+            0.5
         } else {
             0
         }
