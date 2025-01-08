@@ -10,7 +10,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -133,7 +133,7 @@ public struct Shortcut: Sendable {
     
     // MARK: Public Methods
     
-    /// Unique string to store in plist.
+    /// The unique string to store in plist.
     public var keySpecChars: String {
         
         let shortcut = self.normalized
@@ -146,7 +146,7 @@ public struct Shortcut: Sendable {
     }
     
     
-    /// Shortcut string to display.
+    /// The shortcut string to display.
     public var symbol: String {
         
         let shortcut = self.normalized
@@ -182,7 +182,7 @@ public struct Shortcut: Sendable {
     }
     
     
-    /// SF Symbol name for modifier keys to display.
+    /// The SF Symbol names for modifier keys to display.
     public var modifierSymbolNames: [String] {
         
         ModifierKey.allCases
@@ -191,7 +191,7 @@ public struct Shortcut: Sendable {
     }
     
     
-    /// Key equivalent to display.
+    /// The key equivalent to display.
     public var keyEquivalentSymbol: String {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
@@ -200,7 +200,7 @@ public struct Shortcut: Sendable {
     }
     
     
-    /// SF Symbol name for key equivalent if exists
+    /// The SF Symbol name for key equivalent, if exists.
     public var keyEquivalentSymbolName: String? {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return nil }
@@ -209,9 +209,9 @@ public struct Shortcut: Sendable {
     }
     
     
-    /// Normalizes Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
+    /// The normalized Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
     ///
-    /// According to the AppKit's specification, the Command-Shift-c and Command-C should be considered to be identical.
+    /// According to the AppKit's specification, Command-Shift-c and Command-C should be considered to be identical.
     public var normalized: Self {
         
         let needsShift = self.keyEquivalent.last?.isUppercase == true
@@ -270,7 +270,7 @@ public struct Shortcut: Sendable {
     ]
     
     
-    /// Table for key equivalent that have special symbols to display.
+    /// The table for key equivalents that have special symbols to display.
     private static let keyEquivalentSymbols: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
         .backspace: "⌫",
@@ -333,7 +333,7 @@ public struct Shortcut: Sendable {
     ].mapKeys(\.unicodeScalar)
     
     
-    /// Table for key equivalent that have SF Symbols to display.
+    /// The table for key equivalents that have SF Symbols to display.
     static let keyEquivalentSymbolNames: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
         .backspace: "delete.backward",

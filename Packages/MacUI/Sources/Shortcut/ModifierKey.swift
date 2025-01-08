@@ -10,7 +10,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ enum ModifierKey: CaseIterable {
     }
     
     
-    /// Symbol to display in GUI.
+    /// The symbol string to display in GUI.
     var symbol: String {
         
         switch self {
@@ -68,7 +68,7 @@ enum ModifierKey: CaseIterable {
     }
     
     
-    /// SF Symbol name to display in GUI.
+    /// The SF Symbol name to display in GUI.
     var symbolName: String {
         
         switch self {
@@ -81,7 +81,7 @@ enum ModifierKey: CaseIterable {
     }
     
     
-    /// Symbol to store.
+    /// The symbol string to store.
     var keySpecChar: String {
         
         switch self {
@@ -109,7 +109,7 @@ enum ModifierKey: CaseIterable {
 
 extension [ModifierKey] {
     
-    /// NSEvent.ModifierFlags representation.
+    /// The NSEvent.ModifierFlags representation.
     var mask: NSEvent.ModifierFlags {
         
         self.reduce(into: []) { $0.formUnion($1.mask) }
