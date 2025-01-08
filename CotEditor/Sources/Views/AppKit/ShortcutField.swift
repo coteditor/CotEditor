@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,11 +126,11 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     
     // MARK: Text Field Methods
     
-    override func awakeFromNib() {
+    override func viewWillMove(toSuperview newSuperview: NSView?) {
         
-        super.awakeFromNib()
+        super.viewWillMove(toSuperview: newSuperview)
         
-        MainActor.assumeIsolated {
+        if newSuperview != nil {
             // fix the alignment to right regardless the UI layout direction
             self.alignment = .right
             self.baseWritingDirection = .leftToRight
