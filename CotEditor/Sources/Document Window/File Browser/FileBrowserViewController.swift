@@ -894,6 +894,8 @@ extension FileBrowserViewController: NSTextFieldDelegate {
     
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         
+        guard self.outlineView.row(for: control) >= 0 else { return false }
+        
         switch commandSelector {
             case #selector(NSTextView.insertNewlineIgnoringFieldEditor),
                  #selector(NSTextView.insertTabIgnoringFieldEditor):
