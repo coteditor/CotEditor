@@ -7,17 +7,19 @@ Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/i
 
 ### Issue reports
 
-Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one by filling out the “Bug report” template. Do not hesitate to post the same phenomenon as the existing issue as long as there are fewer than 10 cases. Multiple instances help a lot in finding the cause. In that situation, include your environment (versions of both CotEditor and macOS) in your post.
+First, search for existing issues related to your problem. If you find a similar issue that has already been reported, post your case to that thread. If not, create a new issue by filling out the “Bug report” template. Feel free to post the same issue to the existing one, as long as there are fewer than 10 cases. Multiple instances of the same issue can be very helpful in finding the cause. In that case, please include your environment (versions of both CotEditor and macOS) in your post.
 
-If possible, attach screenshots or screencasts of the issue you face. It is also helpful to attach sample files that can reproduce the issue.
+If possible, attach screenshots or screencasts of the issue you encounter. It is also helpful to attach sample files that can reproduce the issue.
 
-If your issue relates to the syntax highlight, include the sample code that can reproduce the unwanted highlight in your post.
+If your issue relates to syntax highlighting, include the sample code that can reproduce the unwanted highlight in your post.
 
 
 ### Feature requests
 
-Search for existing requests first. If you find your idea among the requests already posted, post your comment on that issue; otherwise, create a new one by filling out the “Feature request” template.
+First, search for existing feature requests. If your idea is already posted, comment on that thread. Otherwise, create a new one using the “Feature request” template.
 Create an issue per feature instead of listing multiple features in a single post.
+
+Please __don’t just post “+1”__ to existing requests; it makes no difference and adds noise.
 
 
 
@@ -25,9 +27,9 @@ Create an issue per feature instead of listing multiple features in a single pos
 
 ### General Code Improvements
 
-Bug fixes and improvements are welcome. If you want to add a new feature or make a major change, it's better to ask the team first whether your idea will be accepted.
+Bug fixes and improvements are welcome. If you want to add a new feature or make a major change, ask the team first whether your idea will be accepted.
 
-By adding code, please follow our coding style guide below.
+When contributing code, please adhere to our coding style guide below for consistency and maintainability.
 
 
 ### Localizations
@@ -82,7 +84,7 @@ Currently, we already have maintainers for:
 - Portuguese
 - Turkish
 
-We are now looking for a new maintainer for:
+We are now looking for new maintainers for:
 
 - French
 - Spanish
@@ -111,7 +113,7 @@ You also need to take care of how Apple treats punctuation characters and symbol
 
 #### Adding a new bundled syntax
 
-Put just your new syntax into the `/CotEditor/syntaxes/` directory. You don't need to modify the `SyntaxMap.json` file because it will be automatically generated in the build phase.
+Put just your new syntax into the `/CotEditor/Resources/syntaxes/` directory. You don't need to modify the `SyntaxMap.json` file because it will be automatically generated in the build phase.
 
 The license for the bundled syntaxes must be “Same as CotEditor.”
 
