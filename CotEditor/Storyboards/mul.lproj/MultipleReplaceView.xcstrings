@@ -260,7 +260,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podświetl wszystkie dopasowania reguł zastąpienia."
+            "value" : "Wyróżnij wszystkie dopasowania reguł zastąpienia."
           }
         },
         "pt" : {
@@ -945,7 +945,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podświetl wszystkie"
+            "value" : "Wyróżnij wszystkie"
           }
         },
         "pt" : {

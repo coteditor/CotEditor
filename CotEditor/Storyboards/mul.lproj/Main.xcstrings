@@ -11299,8 +11299,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Przełącz na następny podział edytora"
+            "state" : "translated",
+            "value" : "Przenieś fokus do następnego edytora"
           }
         },
         "pt" : {
@@ -11395,8 +11395,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Przełącz na poprzedni podział edytora"
+            "state" : "translated",
+            "value" : "Przenieś fokus do poprzedniego edytora"
           }
         },
         "pt" : {
@@ -16388,7 +16388,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podświetl wszystkie"
+            "value" : "Wyróżnij wszystkie"
           }
         },
         "pt" : {
