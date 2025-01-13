@@ -897,10 +897,9 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         guard self.outlineView.row(for: control) >= 0 else { return false }
         
         switch commandSelector {
-            case #selector(NSTextView.insertNewlineIgnoringFieldEditor),
-                 #selector(NSTextView.insertTabIgnoringFieldEditor):
-                // avoid inserting new line / tab
-                textView.insertNewline(nil)
+            case #selector(NSTextView.insertTabIgnoringFieldEditor):
+                // avoid inserting tab
+                textView.insertTab(nil)
                 return true
                 
             default:
@@ -949,19 +948,17 @@ private final class FileBrowserTableCellView: NSTableCellView {
     private func setupSubviews() {
         
         let imageView = NSImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.alignment = .center
         imageView.setAccessibilityRoleDescription(nil)  // omit "image" automatically added after the label utterance
         
         let textField = FilenameTextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.usesSingleLineMode = true
         textField.drawsBackground = false
         textField.isBordered = false
         textField.lineBreakMode = .byTruncatingMiddle
         textField.isEditable = true
         
         let aliasArrowView = NSImageView()
-        aliasArrowView.translatesAutoresizingMaskIntoConstraints = false
         aliasArrowView.alignment = .center
         aliasArrowView.image = .arrowAliasFill
         aliasArrowView.symbolConfiguration = .init(paletteColors: [.labelColor, .controlBackgroundColor])
@@ -975,6 +972,9 @@ private final class FileBrowserTableCellView: NSTableCellView {
         self.imageView = imageView
         self.aliasArrowView = aliasArrowView
         
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        aliasArrowView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),
             aliasArrowView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),

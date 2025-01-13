@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@ struct FilterField: NSViewRepresentable {
     func makeNSView(context: Context) -> NSSearchField {
         
         let searchField = InnerFilterField()
+        searchField.usesSingleLineMode = true
         searchField.target = context.coordinator
         searchField.action = #selector(Coordinator.didChangeSearchString)
         searchField.recentsAutosaveName = self.autosaveName
