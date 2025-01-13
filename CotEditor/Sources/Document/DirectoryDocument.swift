@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -176,7 +176,8 @@ final class DirectoryDocument: NSDocument {
         }
         
         if let documentObserver {
-            NotificationCenter.default.removeObserver(documentObserver)
+            NotificationCenter.default.removeObserver(documentObserver, name: Document.didUpdateChange, object: nil)
+            self.documentObserver = nil
         }
     }
     

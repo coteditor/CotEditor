@@ -58,7 +58,7 @@ import ValueRange
     func cancel() {
         
         if let textEditingObserver {
-            NotificationCenter.default.removeObserver(textEditingObserver)
+            NotificationCenter.default.removeObserver(textEditingObserver, name: NSTextStorage.didProcessEditingNotification, object: self.textStorage)
             self.textEditingObserver = nil
         }
         
