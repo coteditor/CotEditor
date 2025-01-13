@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -162,19 +162,22 @@ extension DocumentWindow {
         
         guard !super.performKeyEquivalent(with: event) else { return true }
         
+        guard
+            self.tabbingMode != .disallowed,
+            let shortcut = Shortcut(keyDownEvent: event)
+        else { return false }
+        
         // prefer existing shortcut that user might define
         guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
         
-        guard let shortcut = Shortcut(keyDownEvent: event) else { return false }
-        
         // toggle tab bar with ⌘⇧T`
         // -> This is needed under the case when "Show/Hide Tab Bar" menu item is not yet added to the View menu. (2020-01)
-        if shortcut.modifiers == [.command, .shift], shortcut.keyEquivalent == "T" {
+        if shortcut == Shortcut("T", modifiers: [.command, .shift]) {
             self.toggleTabBar(nil)
             return true
         }
         
-        // select tabbed window with `⌘+number` (`⌘9` for the last tab)
+        // select tabbed window with `⌘-number` (`⌘9` for the last tab)
         if shortcut.modifiers == [.command],
            let number = Int(shortcut.keyEquivalent), number > 0,
            let windows = self.tabbedWindows,
