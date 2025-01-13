@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -77,13 +77,13 @@ import ValueRange
     /// - Returns: The notification observer.
     private func observeTextStorage(_ textStorage: NSTextStorage) -> any NSObjectProtocol {
         
-        NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: textStorage, queue: .main) { [unowned self] notification in
+        NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: textStorage, queue: .main) { [weak self] notification in
             let textStorage = notification.object as! NSTextStorage
             
             guard textStorage.editedMask.contains(.editedCharacters) else { return }
             
             MainActor.assumeIsolated {
-                self.invalidate(in: textStorage.editedRange, changeInLength: textStorage.changeInLength)
+                self?.invalidate(in: textStorage.editedRange, changeInLength: textStorage.changeInLength)
             }
         }
     }
