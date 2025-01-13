@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,6 +46,7 @@ struct WindowDraggableTextField: NSViewRepresentable {
     func makeNSView(context: Context) -> NSTextField {
         
         let textField = DraggableTextField(string: self.text)
+        textField.usesSingleLineMode = true
         textField.placeholderString = self.prompt
         textField.delegate = context.coordinator
         textField.isBordered = false
@@ -137,13 +138,21 @@ private final class DraggableTextField: NSTextField {
 
 private final class DraggableTextFieldCell: NSTextFieldCell {
     
-    private lazy var fieldEditor = DraggableFieldEditor()
+    private weak var fieldEditor: NSTextView?
     
     
     override func fieldEditor(for controlView: NSView) -> NSTextView? {
         
-        self.fieldEditor.isFieldEditor = true
-        self.fieldEditor.placeholderString = self.placeholderString
+        if self.fieldEditor == nil {
+            let fieldEditor = DraggableFieldEditor()
+            fieldEditor.isFieldEditor = true
+            fieldEditor.placeholderString = self.placeholderString
+            
+            self.fieldEditor = fieldEditor
+        }
+        
+        // update field width to follow field editor size
+        controlView.layoutSubtreeIfNeeded()
         
         return self.fieldEditor
     }
@@ -152,10 +161,10 @@ private final class DraggableTextFieldCell: NSTextFieldCell {
 
 private final class DraggableFieldEditor: NSTextView {
     
-    var placeholderString: String?  { didSet { self.sizeToFitTextWidth() } }
+    var placeholderString: String?
     
     
-    override var mouseDownCanMoveWindow: Bool  {
+    override var mouseDownCanMoveWindow: Bool {
         
         self.string.isEmpty
     }
@@ -172,7 +181,7 @@ private final class DraggableFieldEditor: NSTextView {
     /// Resizes the receiver's frame width just enough to draw the current text.
     private func sizeToFitTextWidth() {
         
-        // keep size to draw placeholder text
+        // keep width to draw placeholder text
         let attributedString = if self.string.isEmpty, let placeholderString {
             NSAttributedString(string: placeholderString, attributes: self.typingAttributes)
         } else {
