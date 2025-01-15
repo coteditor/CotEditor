@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -345,13 +345,13 @@
 // Blocks added in Unicode 14.0.0 (2021-01)
 "Arabic Extended-B" = "아랍어 확장-B";
 "Latin Extended-F" = "라틴 확장-F";
-"Vithkuqi" = "Vithkuqi";
-"Old Uyghur" = "Old Uyghur";
+"Vithkuqi" = "비츠쿠키";
+"Old Uyghur" = "고대 위구르";
 "Unified Canadian Aboriginal Syllabics Extended-A" = "통합 캐나다 원주민 문자 확장-A";
-"Cypro-Minoan" = "Cypro-Minoan";
-"Tangsa" = "Tangsa";
+"Cypro-Minoan" = "키프로스-미노스";
+"Tangsa" = "당사";
 "Kana Extended-B" = "가나 확장-B";
-"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Znamenny Musical Notation" = "즈나메니 악보용 기호";
 "Latin Extended-G" = "라틴 확장-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "에티오피아 문자 확장 B";
@@ -360,10 +360,10 @@
 // Blocks added in Unicode 15.0.0 (2022-01)
 "Arabic Extended-C" = "아랍어 확장-C";
 "Devanagari Extended-A" = "데바나가리 문자 확장-A";
-"Kawi" = "Kawi";
-"Kaktovik Numerals" = "Kaktovik Numerals";
+"Kawi" = "카위";
+"Kaktovik Numerals" = "카크토빅 숫자";
 "Cyrillic Extended-D" = "키릴 문자 확장-D";
-"Nag Mundari" = "Nag Mundari";
+"Nag Mundari" = "나그 문다리";
 "CJK Unified Ideographs Ext. H" = "한중일 통합 한자 확장 H";
 
 

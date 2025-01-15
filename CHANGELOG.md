@@ -3,6 +3,11 @@
 5.0.8 (unreleased)
 --------------------------
 
+### Improvements
+
+- Add missing localization of Unicode block names.
+
+
 ### Fixes
 
 - Fix an issue where the text fields in the syntax editor could restored the contents after the input under certain conditions.

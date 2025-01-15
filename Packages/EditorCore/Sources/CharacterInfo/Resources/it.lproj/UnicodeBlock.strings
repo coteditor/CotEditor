@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 CotEditor Project
+//  © 2016-2025 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -345,13 +345,13 @@
 // Blocks added in Unicode 14.0.0 (2021-01)
 "Arabic Extended-B" = "Arabo esteso-B";
 "Latin Extended-F" = "Latino Esteso-F";
-"Vithkuqi" = "Vithkuqi";
-"Old Uyghur" = "Old Uyghur";
+"Vithkuqi" = "Vithkuq";
+"Old Uyghur" = "Uigurico antico";
 "Unified Canadian Aboriginal Syllabics Extended-A" = "Scrittura sillabica aborigena canadese unificata esteso-A";
-"Cypro-Minoan" = "Cypro-Minoan";
+"Cypro-Minoan" = "Cipriota‑Minoico";
 "Tangsa" = "Tangsa";
 "Kana Extended-B" = "Kana Extended-B";
-"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Znamenny Musical Notation" = "Notazione musicale znamenny";
 "Latin Extended-G" = "Latino Esteso-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Etiopico esteso-B";
@@ -361,7 +361,7 @@
 "Arabic Extended-C" = "Arabo esteso-C";
 "Devanagari Extended-A" = "Devanagari esteso-A";
 "Kawi" = "Kawi";
-"Kaktovik Numerals" = "Kaktovik Numerals";
+"Kaktovik Numerals" = "Numeri di Kaktovik";
 "Cyrillic Extended-D" = "Cirillico esteso-D";
 "Nag Mundari" = "Nag Mundari";
 "CJK Unified Ideographs Ext. H" = "Ideogrammi unificati CJK Est. H";

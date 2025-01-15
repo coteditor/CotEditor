@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -345,13 +345,13 @@
 // Blocks added in Unicode 14.0.0 (2021-01)
 "Arabic Extended-B" = "Arapça Genişletilmiş-B";
 "Latin Extended-F" = "Genişletilmiş Latin-F";
-"Vithkuqi" = "Vithkuqi";
-"Old Uyghur" = "Old Uyghur";
+"Vithkuqi" = "Vitkuk";
+"Old Uyghur" = "Eski Uygurca";
 "Unified Canadian Aboriginal Syllabics Extended-A" = "Birleştirilmiş Kanada Yerli Heceleri - Genişletilmiş A";
-"Cypro-Minoan" = "Cypro-Minoan";
+"Cypro-Minoan" = "Kibro-Minoan";
 "Tangsa" = "Tangsa";
 "Kana Extended-B" = "Genişletilmiş Kana B";
-"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Znamenny Musical Notation" = "Znamenny Müzik Gösterimi";
 "Latin Extended-G" = "Genişletilmiş Latin-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Genişletilmiş Etiyopyaca-B";
@@ -360,8 +360,8 @@
 // Blocks added in Unicode 15.0.0 (2022-01)
 "Arabic Extended-C" = "Arapça Genişletilmiş-C";
 "Devanagari Extended-A" = "Genişletilmiş Devanagari A";
-"Kawi" = "Kawi";
-"Kaktovik Numerals" = "Kaktovik Numerals";
+"Kawi" = "Kavice";
+"Kaktovik Numerals" = "Kaktovik Rakamları";
 "Cyrillic Extended-D" = "Genişletilmiş Kiril D";
 "Nag Mundari" = "Nag Mundari";
 "CJK Unified Ideographs Ext. H" = "CJK Birleştirilmiş İdeogramları Ek H";

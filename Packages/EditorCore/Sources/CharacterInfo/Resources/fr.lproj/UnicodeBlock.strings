@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 CotEditor Project
+//  © 2015-2025 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -346,12 +346,12 @@
 "Arabic Extended-B" = "Arabe étendu-B";
 "Latin Extended-F" = "Latin étendu-F";
 "Vithkuqi" = "Vithkuqi";
-"Old Uyghur" = "Old Uyghur";
+"Old Uyghur" = "Ouïghour ancien";
 "Unified Canadian Aboriginal Syllabics Extended-A" = "Syllabes autochtones canadiennes étendues-A";
-"Cypro-Minoan" = "Cypro-Minoan";
+"Cypro-Minoan" = "Chypro-minoen";
 "Tangsa" = "Tangsa";
 "Kana Extended-B" = "Kana étendu-B";
-"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Znamenny Musical Notation" = "Notation musicale Znamenny";
 "Latin Extended-G" = "Latin étendu-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Éthiopique étendu-B";
@@ -361,7 +361,7 @@
 "Arabic Extended-C" = "Arabe étendu-C";
 "Devanagari Extended-A" = "Devanagari étendu-A";
 "Kawi" = "Kawi";
-"Kaktovik Numerals" = "Kaktovik Numerals";
+"Kaktovik Numerals" = "Numération Kaktovik";
 "Cyrillic Extended-D" = "Cyrillique étendu-D";
 "Nag Mundari" = "Nag Mundari";
 "CJK Unified Ideographs Ext. H" = "Idéogr. unifiés CJK d’ext. H";

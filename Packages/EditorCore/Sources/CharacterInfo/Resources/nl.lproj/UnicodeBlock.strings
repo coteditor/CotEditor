@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -346,12 +346,12 @@
 "Arabic Extended-B" = "Arabisch Uitgebreid-B";
 "Latin Extended-F" = "Latijns Uitgebreid-F";
 "Vithkuqi" = "Vithkuqi";
-"Old Uyghur" = "Old Uyghur";
+"Old Uyghur" = "Oud-Oejgoers";
 "Unified Canadian Aboriginal Syllabics Extended-A" = "Inheems-Canadese syllaben Algemeen Uitgebreid-A";
-"Cypro-Minoan" = "Cypro-Minoan";
+"Cypro-Minoan" = "Cypro-Minoïsch";
 "Tangsa" = "Tangsa";
 "Kana Extended-B" = "Kana Uitgebreid-B";
-"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Znamenny Musical Notation" = "Znamenny-muzieknotatie";
 "Latin Extended-G" = "Latijns Uitgebreid-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Ethiopisch Uitgebreid-B";
@@ -361,7 +361,7 @@
 "Arabic Extended-C" = "Arabisch Uitgebreid-C";
 "Devanagari Extended-A" = "Devanagari Uitgebreid-A";
 "Kawi" = "Kawi";
-"Kaktovik Numerals" = "Kaktovik Numerals";
+"Kaktovik Numerals" = "Kaktovik-cijfers";
 "Cyrillic Extended-D" = "Cyrillisch Uitgebreid-D";
 "Nag Mundari" = "Nag Mundari";
 "CJK Unified Ideographs Ext. H" = "CJK-ideogr. Alg. Uitgebr. H";

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -346,12 +346,12 @@
 "Arabic Extended-B" = "Arabština rozšířená - B";
 "Latin Extended-F" = "Latinka rozšířená – F";
 "Vithkuqi" = "Vithkuqi";
-"Old Uyghur" = "Old Uyghur";
+"Old Uyghur" = "Staroujgurština";
 "Unified Canadian Aboriginal Syllabics Extended-A" = "Písma kanadských původních obyvatel rozšířená – A";
-"Cypro-Minoan" = "Cypro-Minoan";
+"Cypro-Minoan" = "Kypersko-mínojské písmo";
 "Tangsa" = "Tangsa";
 "Kana Extended-B" = "Kana Extended-B";
-"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Znamenny Musical Notation" = "Znamenná hudební notace";
 "Latin Extended-G" = "Latinka rozšířená – G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Etiopština rozšířená - B";
@@ -361,7 +361,7 @@
 "Arabic Extended-C" = "Arabština rozšířená - C";
 "Devanagari Extended-A" = "Devanagari Extended-A";
 "Kawi" = "Kawi";
-"Kaktovik Numerals" = "Kaktovik Numerals";
+"Kaktovik Numerals" = "Kaktovikské číslice";
 "Cyrillic Extended-D" = "Cyrilice rozšířená – D";
 "Nag Mundari" = "Nag Mundari";
 "CJK Unified Ideographs Ext. H" = "Sjednocené ideogramy CJK – rozšíření H";
