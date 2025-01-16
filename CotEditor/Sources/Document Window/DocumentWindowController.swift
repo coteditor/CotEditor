@@ -276,8 +276,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 .sink { [weak self] _ in self?.synchronizeWindowTitleWithDocumentName() }
         }
         
-        self.synchronizeWindowTitleWithDocumentName()
-        
         self.syntaxPopUpButton?.isEnabled = (document is Document)
         
         // observe document's syntax change for toolbar
