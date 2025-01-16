@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -506,7 +506,7 @@ extension EditorTextViewController: EditorTextView.Delegate {
                 string += textView.lineEnding.string
             }
             
-            string += url.isFileURL ? url.path : url.absoluteString
+            string += url.isFileURL ? url.path(percentEncoded: false) : url.absoluteString
         }
         
         guard !replacementString.isEmpty else { return true }

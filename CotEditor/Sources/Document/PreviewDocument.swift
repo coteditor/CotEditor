@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ import QuickLookUI
     
     override nonisolated func read(from url: URL, ofType typeName: String) throws {
         
-        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))
         let fileAttributes = FileAttributes(dictionary: attributes)
         let isAlias = try url.resourceValues(forKeys: [.isAliasFileKey]).isAliasFile == true
         let isFolderAlias = if isAlias {

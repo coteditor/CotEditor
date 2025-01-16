@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -329,7 +329,7 @@ extension Document: EditorSource {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let data = try Data(contentsOf: url)  // FILE_READ
-        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_READ
         let extendedAttributes = ExtendedFileAttributes(dictionary: attributes)
         
         let strategy: String.DecodingStrategy = {
@@ -504,7 +504,7 @@ extension Document: EditorSource {
             
             // get the latest file attributes
             do {
-                let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
+                let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_ACCESS
                 self.fileAttributes = FileAttributes(dictionary: attributes)
             } catch {
                 assertionFailure(error.localizedDescription)

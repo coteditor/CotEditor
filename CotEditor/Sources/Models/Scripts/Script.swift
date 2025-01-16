@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -107,7 +107,7 @@ struct ScriptFileError: LocalizedError {
                        table: "Script")
             case .open:
                 String(localized: "ScriptFileError.open.description",
-                       defaultValue: "The script file “\(self.url.path)” couldn’t be opened.",
+                       defaultValue: "The script file “\(self.url, format: .url.scheme(.never))” couldn’t be opened.",
                        table: "Script")
             case .permission:
                 String(localized: "ScriptFileError.permission.description",

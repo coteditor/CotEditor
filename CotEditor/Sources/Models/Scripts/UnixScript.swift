@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -102,7 +102,7 @@ struct UnixScript: Script {
         }
         
         let outputType = OutputType(scanning: script)
-        let arguments: [String] = [document?.fileURL?.path].compactMap(\.self)
+        let arguments: [String] = [document?.fileURL?.path()].compactMap(\.self)
         let task = try UserUnixTask(url: self.url)
         
         if let input {

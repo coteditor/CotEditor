@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -201,8 +201,8 @@ extension FileDropItem {
         
         // replace template
         var dropText = self.format
-            .replacing(Variable.absolutePath.token, with: droppedFileURL.path)
-            .replacing(Variable.relativePath.token, with: documentURL.map(droppedFileURL.path(relativeTo:)) ?? droppedFileURL.path)
+            .replacing(Variable.absolutePath.token, with: droppedFileURL.path(percentEncoded: false))
+            .replacing(Variable.relativePath.token, with: documentURL.map(droppedFileURL.path(relativeTo:)) ?? droppedFileURL.path(percentEncoded: false))
             .replacing(Variable.filename.token, with: droppedFileURL.lastPathComponent)
             .replacing(Variable.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
             .replacing(Variable.fileExtension.token, with: droppedFileURL.pathExtension)
