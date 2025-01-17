@@ -1,5 +1,15 @@
 # Change Log
 
+
+5.1.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Append the nearest unique ancestor folder name to the document title if multiple documents with the same name are opened.
+
+
+
 5.0.8 (unreleased)
 --------------------------
 
