@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2024 1024jp
+//  © 2013-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,6 +60,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private var windowAutosaveName: NSWindow.FrameAutosaveName
     private var needsManualOnAppear = false
+    private var uniqueDirectory: String?
     
     private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
         .fill(.tertiary)
@@ -73,6 +74,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
     private var fileDocumentNameObserver: AnyCancellable?
+    private var documentsObserver: AnyCancellable?
     
     private var documentSyntaxObserver: AnyCancellable?
     private var syntaxListObserver: AnyCancellable?
@@ -156,6 +158,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                                    UserDefaults.standard.publisher(for: .recentSyntaxNames))
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
+        
+        // observe documents to update window title
+        self.documentsObserver = Publishers.Merge(
+            NotificationCenter.default.publisher(for: NSDocument.didChangeFileURLNotification, object: nil),
+            NotificationCenter.default.publisher(for: NSDocument.didMakeWindowNotification, object: nil)
+        )
+        .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
+        .sink { [weak self] _ in self?.invalidateUniqueDirectory() }
     }
     
     
@@ -184,6 +194,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.window?.tab.accessoryView = dirtyFlag ? self.editedIndicator : nil
         
         super.setDocumentEdited(self.isWhitePaper ? false : dirtyFlag)
+    }
+    
+    
+    override func windowTitle(forDocumentDisplayName displayName: String) -> String {
+        
+        if let uniqueDirectory {
+            displayName + " \u{2014} " + uniqueDirectory  // EM DASH
+        } else {
+            displayName
+        }
     }
     
     
@@ -303,6 +323,26 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private func restoreWindowOpacity() {
         
         self.window?.isOpaque = (self.window as? DocumentWindow)?.backgroundAlpha == 1
+    }
+    
+    
+    /// Updates `uniqueDirectory`,
+    private func invalidateUniqueDirectory() {
+        
+        // apply unique folder name to the window title
+        let fileURLs = NSApp.windows
+            .compactMap(\.windowController)
+            .compactMap { $0.document as? NSDocument }
+            .compactMap(\.fileURL)
+        
+        let uniqueDirectory = (self.document as? NSDocument)?.fileURL?
+            .firstUniqueDirectoryURL(in: fileURLs)
+            .map { FileManager.default.displayName(atPath: $0.path(percentEncoded: false)) }
+        
+        guard uniqueDirectory != self.uniqueDirectory else { return }
+        
+        self.uniqueDirectory = uniqueDirectory
+        self.synchronizeWindowTitleWithDocumentName()
     }
     
     

@@ -224,6 +224,14 @@ extension Document: EditorSource {
     }
     
     
+    @ObservationIgnored override nonisolated var fileURL: URL? {
+        
+        didSet {
+            NotificationCenter.default.post(name: NSDocument.didChangeFileURLNotification, object: self)
+        }
+    }
+    
+    
     override func makeWindowControllers() {
         
         // -> The window controller already exists either when:
@@ -243,6 +251,8 @@ extension Document: EditorSource {
                     .receive(on: RunLoop.main)
                     .assign(to: \.isWhitePaper, on: windowController)
             }
+            
+            NotificationCenter.default.post(name: NSDocument.didMakeWindowNotification, object: self)
         }
         
         self.applyContentToWindow()
