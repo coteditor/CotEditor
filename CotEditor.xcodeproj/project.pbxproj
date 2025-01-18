@@ -225,9 +225,9 @@
 		2AC36A322CE86B2D0059204D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				2AC36A1B2CE86B2D0059204D /* Main.storyboard */,
 				2AC36A132CE86B2D0059204D /* FindPanelFieldView.storyboard */,
 				2AC36A172CE86B2D0059204D /* KeyBindingTreeView.storyboard */,
-				2AC36A1B2CE86B2D0059204D /* Main.storyboard */,
 				2AC36A1F2CE86B2D0059204D /* MultipleReplaceListView.storyboard */,
 				2AC36A232CE86B2D0059204D /* MultipleReplaceView.storyboard */,
 				2AC36A272CE86B2D0059204D /* PrintPanelAccessory.storyboard */,
