@@ -10,7 +10,7 @@
 
 ### Fixes
 
-- Fix an issue where the text fields in the syntax editor could restored the contents after the input under certain conditions.
+- Fix an issue where the text fields in the syntax editor could restore the contents after the input under certain conditions.
 - Fix a potential crash that rarely occurs when interacting with the Quick Action bar.
 
 
