@@ -200,6 +200,12 @@ struct StatusBar: View {
                 CoffeeBadge(type: self.badgeType)
                     .transition(.symbolEffect)
             }
+            if self.model.isEditable == false {
+                Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil")
+                    .symbolVariant(.slash)
+                    .labelStyle(.iconOnly)
+                    .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
+            }
             if let result = self.model.countResult {
                 EditorCountView(result: result)
             }
@@ -266,6 +272,7 @@ struct StatusBar: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
+        .animation(.default.speed(1.5), value: self.model.isEditable)
         .buttonStyle(.borderless)
         .controlSize(.small)
         .padding(.leading, 10)
