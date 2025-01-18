@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import SwiftUI
 import Defaults
 import TextFind
 
-final class MultipleReplaceViewController: NSViewController {
+final class MultipleReplaceViewController: NSViewController, NSUserInterfaceValidations {
     
     // MARK: Public Properties
     
@@ -85,6 +85,19 @@ final class MultipleReplaceViewController: NSViewController {
     
     
     // MARK: Actions
+    
+    func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
+        
+        switch item.action {
+            case #selector(batchReplaceAll):
+                return self.client?.isEditable == true
+            case nil:
+                return false
+            default:
+                return true
+        }
+    }
+    
     
     /// The segmented control for the add/remove actions was clicked.
     @IBAction func addRemove(_ sender: NSSegmentedControl) {

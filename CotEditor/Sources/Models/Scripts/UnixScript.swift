@@ -155,18 +155,22 @@ struct UnixScript: Script {
         switch type {
             case .replaceSelection:
                 guard let editor else { throw ScriptError.noOutputTarget }
+                guard editor.isEditable else { throw ScriptError.notEditable }
                 editor.insert(string: output, at: .replaceSelection)
                 
             case .replaceAllText:
                 guard let editor else { throw ScriptError.noOutputTarget }
+                guard editor.isEditable else { throw ScriptError.notEditable }
                 editor.insert(string: output, at: .replaceAll)
                 
             case .insertAfterSelection:
                 guard let editor else { throw ScriptError.noOutputTarget }
+                guard editor.isEditable else { throw ScriptError.notEditable }
                 editor.insert(string: output, at: .afterSelection)
                 
             case .appendToAllText:
                 guard let editor else { throw ScriptError.noOutputTarget }
+                guard editor.isEditable else { throw ScriptError.notEditable }
                 editor.insert(string: output, at: .afterAll)
                 
             case .newDocument:

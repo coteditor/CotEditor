@@ -188,7 +188,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         //   - Take Photo: .jpeg, .tiff
         //   - Scan Documents: .pdf, .tiff
         //   - Sketch: .png
-        if let returnType, NSImage.imageTypes.contains(returnType.rawValue) {
+        if let returnType, NSImage.imageTypes.contains(returnType.rawValue), self.textView.isEditable {
             return (returnType != .png) ? self : nil
         }
         
@@ -456,6 +456,8 @@ extension EditorTextViewController: NSUserInterfaceValidations {
     func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(showUnicodeInputPanel):
+                return self.textView.isEditable
             case #selector(toggleAdvancedCounter):
                 (item as? NSMenuItem)?.title = (self.advancedCounterView == nil)
                     ? String(localized: "Advanced Character Count…", table: "AdvancedCharacterCount", comment: "menu item")

@@ -138,6 +138,7 @@ enum ScriptError: LocalizedError {
     case standardError(String)
     case noInputTarget
     case noOutputTarget
+    case notEditable
     
     
     var errorDescription: String? {
@@ -152,6 +153,10 @@ enum ScriptError: LocalizedError {
             case .noOutputTarget:
                 String(localized: "ScriptError.noOutputTarget.description",
                        defaultValue: "No document to put output.",
+                       table: "Script")
+            case .notEditable:
+                String(localized: "ScriptError.notEditable.description",
+                       defaultValue: "The document is not editable.",
                        table: "Script")
         }
     }

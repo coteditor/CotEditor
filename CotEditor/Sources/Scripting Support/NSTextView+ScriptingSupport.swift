@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ enum InsertionLocation {
 extension NSTextView {
     
     /// Inserts string at desired location and select inserted range.
-    final func insert(string: String, at location: InsertionLocation) {
+    @discardableResult final func insert(string: String, at location: InsertionLocation) -> Bool {
         
         let replacementRange: NSRange = switch location {
             case .replaceSelection:
@@ -53,7 +53,7 @@ extension NSTextView {
         
         let selectedRange = NSRange(location: replacementRange.location, length: (string as NSString).length)
         
-        self.replace(with: string, range: replacementRange, selectedRange: selectedRange,
-                     actionName: String(localized: "Insert Text", table: "MainMenu"))
+        return self.replace(with: string, range: replacementRange, selectedRange: selectedRange,
+                            actionName: String(localized: "Insert Text", table: "MainMenu"))
     }
 }

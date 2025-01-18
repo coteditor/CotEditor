@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -1131,6 +1131,46 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(pasteAsIs),
+                 #selector(shiftRight),
+                 #selector(shiftLeft),
+                 #selector(shift),
+                 #selector(convertIndentationToSpaces),
+                 #selector(convertIndentationToTabs),
+                 #selector(moveLineUp),
+                 #selector(moveLineDown),
+                 #selector(sortLinesAscending),
+                 #selector(reverseLines),
+                 #selector(shuffleLines),
+                 #selector(deleteDuplicateLine),
+                 #selector(duplicateLine),
+                 #selector(deleteLine),
+                 #selector(joinLines),
+                 #selector(trimTrailingWhitespace),
+                 #selector(patternSort),
+                 #selector(insertSnippet),
+                 #selector(surroundSelectionWithSingleQuotes),
+                 #selector(surroundSelectionWithDoubleQuotes),
+                 #selector(surroundSelectionWithParentheses),
+                 #selector(surroundSelectionWithBraces),
+                 #selector(surroundSelectionWithSquareBrackets),
+                 #selector(surroundSelection),
+                 #selector(snakecaseWord),
+                 #selector(camelcaseWord),
+                 #selector(pascalcaseWord),
+                 #selector(encodeURL),
+                 #selector(decodeURL),
+                 #selector(exchangeFullwidth),
+                 #selector(exchangeHalfwidth),
+                 #selector(exchangeFullwidthRoman),
+                 #selector(exchangeHalfwidthRoman),
+                 #selector(exchangeKatakana),
+                 #selector(exchangeHiragana),
+                 #selector(normalizeUnicode(_:)),
+                 #selector(inputBackSlash),
+                 #selector(inputYenMark):
+                return self.isEditable
+            
             case #selector(selectColumnUp):
                 if let menuItem = item as? NSMenuItem {
                     switch self.layoutOrientation {
@@ -1149,6 +1189,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                             assertionFailure()
                     }
                 }
+                return self.isEditable
                 
             case #selector(selectColumnDown):
                 if let menuItem = item as? NSMenuItem {
@@ -1168,6 +1209,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                             assertionFailure()
                     }
                 }
+                return self.isEditable
                 
             case #selector(performTextFinderAction):
                 guard let action = TextFinder.Action(rawValue: item.tag) else { return false }
@@ -1179,22 +1221,25 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             case #selector(straightenQuotesInSelection):
                 // -> Although `straightenQuotesInSelection(:_)` actually works also when selections are empty,
                 //    disable it to make the state same as `replaceQuotesInSelection(_:)`.
-                return !self.selectedRange.isEmpty
+                return self.isEditable && !self.selectedRange.isEmpty
                 
             case #selector(toggleComment):
                 (item as? NSMenuItem)?.title = self.canUncomment(partly: false)
                     ? String(localized: "Uncomment", table: "MainMenu")
                     : String(localized: "Comment Out", table: "MainMenu")
-                return (self.commentDelimiters.inline != nil) || (self.commentDelimiters.block != nil)
+                return self.isEditable && ((self.commentDelimiters.inline != nil) || (self.commentDelimiters.block != nil))
+            
+            case #selector(commentOut):
+                return self.isEditable
                 
             case #selector(inlineCommentOut):
-                return (self.commentDelimiters.inline != nil)
+                return self.isEditable && (self.commentDelimiters.inline != nil)
                 
             case #selector(blockCommentOut):
-                return (self.commentDelimiters.block != nil)
+                return self.isEditable && (self.commentDelimiters.block != nil)
                 
             case #selector(uncomment(_:)):
-                return self.canUncomment(partly: true)
+                return self.isEditable && self.canUncomment(partly: true)
                 
             default: break
         }

@@ -82,7 +82,7 @@ line_length:
   warning: 1000
 
 type_body_length:
-  warning: 1000
+  warning: 1200
 
 function_body_length:
   warning: 350

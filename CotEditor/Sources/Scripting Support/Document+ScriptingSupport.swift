@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -299,7 +299,8 @@ extension Document {
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
             let replacementString = arguments["newString"] as? String,
-            let textView = self.textView
+            let textView = self.textView,
+            textView.isEditable
         else { return 0 }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
