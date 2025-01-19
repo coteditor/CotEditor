@@ -178,7 +178,7 @@
 
 - Add the “Open as Plain Text” button to the preview view for the file browser.
 - Open a file selected in the file browser as plain text when the default app set in the Finder for it is CotEditor.
-- Optimize the performance of the folder browser.
+- Optimize the performance of the file browser.
 
 
 ### Fixes
@@ -226,7 +226,7 @@
 
 ### Fixes
 
-- [beta] Fix an issue that UNIX scripts failed to get the document object displayed in a window with the folder browser.
+- [beta] Fix an issue that UNIX scripts failed to get the document object displayed in a window with the file browser.
 - [beta.3] Fix an issue that the editor unwontedly selects the nearest outline item when the Outline inspector is shown.
 
 
