@@ -39,6 +39,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
 struct OpenOptions {
     
     var encoding: String.Encoding?
+    var isReadOnly = false
 }
 
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -107,6 +107,7 @@ private extension StatusBar.Model {
     private func invalidateObservation(document: Document?) {
         
         self.document?.counter.statusBarRequirements = []
+        self.isEditable = document?.isEditable != false
         self.countResult = document?.counter.result
         self.fileEncoding = document?.fileEncoding
         
@@ -114,6 +115,9 @@ private extension StatusBar.Model {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
             
             self.documentObservers = [
+                document.$isEditable
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.isEditable = $0 },
                 document.didChangeFileEncoding
                     .sink { [weak self] in self?.fileEncoding = $0 },
                 document.$lineEnding
@@ -153,6 +157,7 @@ struct StatusBar: View {
         
         private(set) var document: Document?
         
+        var isEditable: Bool = true
         var countResult: EditorCounter.Result?
         
         var fileEncoding: FileEncoding?
@@ -194,6 +199,12 @@ struct StatusBar: View {
             if self.hasDonated, self.badgeType != .invisible {
                 CoffeeBadge(type: self.badgeType)
                     .transition(.symbolEffect)
+            }
+            if self.model.isEditable == false {
+                Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil")
+                    .symbolVariant(.slash)
+                    .labelStyle(.iconOnly)
+                    .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
             }
             if let result = self.model.countResult {
                 EditorCountView(result: result)
@@ -246,6 +257,7 @@ struct StatusBar: View {
                     
                     LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
                                      selection: $model.lineEnding ?? .lf)
+                    .disabled(self.model.isEditable != true)
                     .onChange(of: lineEnding) { (_, newValue) in
                         self.model.document?.changeLineEnding(to: newValue)
                     }
@@ -260,6 +272,7 @@ struct StatusBar: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
+        .animation(.default.speed(1.5), value: self.model.isEditable)
         .buttonStyle(.borderless)
         .controlSize(.small)
         .padding(.leading, 10)

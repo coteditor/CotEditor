@@ -82,6 +82,14 @@ struct OpenPanelAccessory: View {
                 }
                 .disabled(self.model.isDirectory)
                 
+                Toggle(String(localized: "Open as read-only", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $model.options.isReadOnly)
+                    .disabled(self.model.isDirectory)
+                    .onChange(of: self.model.isDirectory) { (_, newValue) in
+                        if newValue {
+                            self.model.options.isReadOnly = false
+                        }
+                    }
+                
                 Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
                     .onChange(of: self.showsHiddenFiles) { (_, newValue) in
                         guard let openPanel = self.openPanel else { return }

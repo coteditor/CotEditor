@@ -5,7 +5,14 @@
 
 ### New Features
 
+- The new “prevent editing” option that prevents documents from being unintentionally edited.
 - Append the nearest unique ancestor folder name to the document title if multiple documents with the same name are opened.
+
+
+### TODO
+
+- Localize new strings.
+- Update the What’s New panel.
 
 
 

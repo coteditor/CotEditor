@@ -488,6 +488,7 @@ private extension NSToolbarItem.Identifier {
     static let indentGuides = Self(Self.prefix + "indentGuides")
     
     static let keepOnTop = Self(Self.prefix + "keepOnTop")
+    static let editable = Self(Self.prefix + "editable")
     static let opacity = Self(Self.prefix + "opacity")
     static let spellCheck = Self(Self.prefix + "spellCheck")
     static let emojiAndSymbols = Self(Self.prefix + "emojiAndSymbols")
@@ -545,6 +546,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             .invisibles,
             .indentGuides,
             .keepOnTop,
+            .editable,
             .opacity,
             .spellCheck,
             .emojiAndSymbols,
@@ -810,6 +812,18 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.stateImages[.on] = NSImage(systemSymbolName: "pin.slash", accessibilityDescription: item.label)
                 item.stateImages[.off] = NSImage(systemSymbolName: "pin", accessibilityDescription: item.label)
                 item.action = #selector(DocumentWindow.toggleKeepOnTop)
+                return item
+                
+            case .editable:
+                let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
+                item.isBordered = true
+                item.label = String(localized: "Toolbar.editable.label",
+                                    defaultValue: "Edit", table: "Document")
+                item.toolTip = String(localized: "Toolbar.editable.tooltip.off",
+                                      defaultValue: "Prevent the document from being edited", table: "Document")
+                item.stateImages[.on] = NSImage(systemSymbolName: "pencil", accessibilityDescription: item.label)
+                item.stateImages[.off] = NSImage(systemSymbolName: "pencil.slash", accessibilityDescription: item.label)
+                item.action = #selector(Document.toggleEditable)
                 return item
                 
             case .opacity:
