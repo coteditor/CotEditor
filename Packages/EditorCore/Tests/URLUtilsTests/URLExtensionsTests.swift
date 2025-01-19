@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,6 +79,20 @@ struct URLExtensionsTests {
         #expect(parent.isAncestor(of: leaf))
         #expect(!parent.isAncestor(of: URL(fileURLWithPath: "/Dog/Cow 1/Cat")))
         #expect(!leaf.isAncestor(of: leaf))
+    }
+    
+    
+    @Test func firstUniqueDirectoryURL() {
+        
+        let urls: [URL] = [
+            URL(string: "Dog/Cow/file.txt")!,
+            URL(string: "Dog/Sheep/file.txt")!,
+            
+        ]
+        
+        #expect(URL(string: "Dog/Cow/file copy.txt")!.firstUniqueDirectoryURL(in: urls) == nil)
+        #expect(URL(string: "Cat/Cow/file.txt")!.firstUniqueDirectoryURL(in: urls) == URL(string: "Cat/"))
+        #expect(URL(string: "Dog/Pig/file.txt")!.firstUniqueDirectoryURL(in: urls) == URL(string: "Dog/Pig/"))
     }
     
     

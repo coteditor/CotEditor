@@ -106,6 +106,39 @@ public extension URL {
         
         return zip(ancestorComponents, childComponents).allSatisfy(==)
     }
+    
+    
+    /// Returns the URL of the first unique directory among the given URLs.
+    ///
+    /// - Parameter urls: The file URLs to find.
+    /// - Returns: A directory URL.
+    func firstUniqueDirectoryURL(in urls: [URL]) -> URL? {
+        
+        let duplicatedURLs = urls
+            .filter { $0 != self }
+            .filter { $0.lastPathComponent == self.lastPathComponent }
+        
+        guard !duplicatedURLs.isEmpty else { return nil }
+        
+        let components = duplicatedURLs
+            .map { Array($0.pathComponents.reversed()) }
+        
+        let offset = self.pathComponents
+            .reversed()
+            .enumerated()
+            .dropFirst()  // last path component is already checked
+            .first { (index, component) in
+                !components
+                    .filter { $0.indices.contains(index) }
+                    .compactMap { $0[index] }
+                    .contains(component)
+            }?
+            .offset
+        
+        guard let offset else { return nil }
+        
+        return (0..<offset).reduce(into: self) { (url, _) in url.deleteLastPathComponent() }
+    }
 }
 
 

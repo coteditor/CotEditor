@@ -61,6 +61,14 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    override nonisolated var fileURL: URL? {
+        
+        didSet {
+            NotificationCenter.default.post(name: NSDocument.didChangeFileURLNotification, object: self)
+        }
+    }
+    
+    
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -101,6 +109,8 @@ final class DirectoryDocument: NSDocument {
     override func makeWindowControllers() {
         
         self.addWindowController(DocumentWindowController(directoryDocument: self))
+        
+        NotificationCenter.default.post(name: NSDocument.didMakeWindowNotification, object: self)
         
         // observe document updates for the edited marker in the close button
         if self.documentObserver == nil {
