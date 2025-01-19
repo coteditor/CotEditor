@@ -581,6 +581,13 @@ Gw
                                                 <action selector="toggleLineWrap:" target="Ady-hI-5gd" id="6Yy-Bp-Aq9"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="V3B-22-vTe"/>
+                                        <menuItem title="Prevent Editing" id="EzX-9S-WvS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleEditable:" target="Ady-hI-5gd" id="jii-oY-CPs"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

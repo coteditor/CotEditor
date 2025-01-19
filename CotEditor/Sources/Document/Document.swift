@@ -846,6 +846,13 @@ extension Document: EditorSource {
                     item.state = (item.representedObject as? String == self.syntaxParser.name) ? .on : .off
                 }
                 
+            case #selector(toggleEditable):
+                if let item = item as? NSMenuItem {
+                    item.title = self.isEditable
+                        ? String(localized: "Prevent Editing", table: "MainMenu")
+                        : String(localized: "Allow Editing", table: "MainMenu")
+                }
+                
             default: break
         }
         
