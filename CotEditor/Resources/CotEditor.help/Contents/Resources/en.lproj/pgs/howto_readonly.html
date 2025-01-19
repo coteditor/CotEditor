@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<a name="howto_readonly"></a>
 
 <h1>Make read-only documents in CotEditor on Mac</h1>
 
@@ -25,11 +26,14 @@
 
 <ul>
 	<li>To prevent a document from being edited, do one of the following:<ul>
-		<li>choose Format &gt; Prevent Editing.</li>
+		<li>Choose Format &gt; Prevent Editing.</li>
 		<li>From an AppleScript, set the <code>editable</code> property of the <code>document</code> object to <code>false</code>.</li>
 	</ul></li>
 	
-	<li>To open a document as read-only, choose File &gt; Open, and select the “Open as read-only” checkbox in the Open dialog.</li>
+	<li>To open a document as read-only, do one of the following:<ul>
+		<li>Choose File &gt; Open, and select the “Open as read-only” checkbox in the Open dialog.</li>
+		<li>From the <a href="about_cot.html">cot command-line tool</a>, open documents with the <code>--readonly</code> (<code>-r</code>) option.</li>
+	</ul></li>
 	
 	<li>To allow editing a document being prevented from editing, choose Format &gt; Allow Editing.</li>
 </ul>

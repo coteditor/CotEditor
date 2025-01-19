@@ -7,6 +7,7 @@
 
 - Append the nearest unique ancestor folder name to the document title if multiple documents with the same name are opened.
 - The new “prevent editing” option that prevents documents from being unintentionally edited.
+- Introduce the `--readonly` (`-r`) option to the `cot` command-line tool to open documents as read-only.
 - Introduce the new AppleScript parameter `editable` to document objects.
 
 

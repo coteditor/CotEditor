@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<a name="howto_readonly"></a>
 
 <h1>MacのCotEditorで読み出し専用の書類にする</h1>
 
@@ -29,7 +30,10 @@
 		<li>AppleScriptで<code>document</code>オブジェクトの<code>editable</code>プロパティを<code>false</code>にします。</li>
 	</ul></li>
 	
-	<li>書類を読み出し専用で開くには、「ファイル」 ＞ 「開く」を選択し、「開く」ダイアログの「読み出し専用で開く」チェックボックスを有効にする。</li>
+	<li>書類を読み出し専用で開くには、以下のいずれかの操作を行います：<ul>
+		<li>「ファイル」 ＞ 「開く」を選択し、「開く」ダイアログの「読み出し専用で開く」チェックボックスを有効にする。</li>
+		<li><a href="about_cot.html">cotコマンドラインツール</a>で<code>--readonly</code> (<code>-r</code>）オプションを付けて書類を開きます。</li>
+	</ul></li>
 	
 	<li>編集不可の書類をふたたび編集可能にするには、「フォーマット」＞「編集可能にする」と選択します。</li>
 </ul>

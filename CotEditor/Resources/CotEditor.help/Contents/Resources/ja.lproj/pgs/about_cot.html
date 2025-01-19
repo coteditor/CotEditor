@@ -52,6 +52,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	</thead>
 	<tbody>
 		<tr><th><code>-w</code>, <code>--wait</code></th><td>開いたファイルが閉じるまでコマンドの終了を待ちます。</td></tr>
+		<tr><th><code>-r</code>, <code>--readonly</code></th><td>書類を<a href="howto_readonly.html">読み出し専用</a>として開きます。</td></tr>
 		<tr><th><code>-n</code>, <code>--new</code></th><td>空の新規書類を開きます。</td></tr>
 		<tr><th><code>-s</code>, <code>--syntax</code></th><td>開いた書類に任意のシンタックスをセットします。</td></tr>
 		<tr><th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th><td>開いた書類の指定した行に移動します。<code>&lt;line&gt;</code>は行を指定する整数型です。</td></tr>
@@ -62,7 +63,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	</tbody>
 </table>
 
-<p><code>--line</code>オプションと<code>--column</code>は負の値を指定することもできます。そのとき、<code>--line</code>オプションの場合は書類の末尾から、<code>--column</code>オプションの場合は行の末尾からカウントがされます。</p>
+<p><code>--line</code>オプションと<code>--column</code>は負の値を指定することもできます。そのとき、<code>--line</code>オプションの場合は書類の末尾から、<code>--column</code>オプションの場合は行の末尾からカウントされます。</p>
 
 <h2>例</h2>
 <p><code>cot</code>コマンド単体でCotEditorが起動します。</p>
