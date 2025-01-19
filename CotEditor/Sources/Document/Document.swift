@@ -119,6 +119,8 @@ extension Document: EditorSource {
         
         let openOptions = (DocumentController.shared as! DocumentController).openOptions
         
+        self.isEditable = if let openOptions { !openOptions.isReadOnly } else { true }
+        
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
         
