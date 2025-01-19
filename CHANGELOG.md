@@ -5,8 +5,9 @@
 
 ### New Features
 
-- The new “prevent editing” option that prevents documents from being unintentionally edited.
 - Append the nearest unique ancestor folder name to the document title if multiple documents with the same name are opened.
+- The new “prevent editing” option that prevents documents from being unintentionally edited.
+- Introduce the new AppleScript parameter `editable` to document objects.
 
 
 ### TODO

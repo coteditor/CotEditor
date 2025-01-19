@@ -65,7 +65,7 @@ extension Document: EditorSource {
     
     // MARK: Public Properties
     
-    @ObservationIgnored @Published private(set) var isEditable = true  { didSet { self.invalidateRestorableState() } }
+    @ObservationIgnored @Published @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }
     var isTransient = false  // untitled & empty document that was created automatically
     nonisolated(unsafe) var isVerticalText = false
     
