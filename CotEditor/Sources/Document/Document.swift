@@ -30,6 +30,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 import OSLog
+import ControlUI
 import Defaults
 import FileEncoding
 import FilePermissions
@@ -851,6 +852,14 @@ extension Document: EditorSource {
                     item.title = self.isEditable
                         ? String(localized: "Prevent Editing", table: "MainMenu")
                         : String(localized: "Allow Editing", table: "MainMenu")
+                    
+                } else if let item = item as? StatableToolbarItem {
+                    item.toolTip = self.isEditable
+                        ? String(localized: "Toolbar.editable.tooltip.off",
+                                 defaultValue: "Prevent the document from being edited", table: "Document")
+                        : String(localized: "Toolbar.editable.tooltip.on",
+                                 defaultValue: "Allow editing the document", table: "Document")
+                    item.state = self.isEditable ? .off : .on
                 }
                 
             default: break
