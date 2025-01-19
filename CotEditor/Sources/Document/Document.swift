@@ -53,6 +53,7 @@ extension Document: EditorSource {
     private enum SerializationKey {
         
         static let allowsLossySaving = "allowsLossySaving"
+        static let isEditable = "isEditable"
         static let isTransient = "isTransient"
         static let isVerticalText = "isVerticalText"
         static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
@@ -63,6 +64,7 @@ extension Document: EditorSource {
     
     // MARK: Public Properties
     
+    @ObservationIgnored @Published private(set) var isEditable = true  { didSet { self.invalidateRestorableState() } }
     var isTransient = false  // untitled & empty document that was created automatically
     nonisolated(unsafe) var isVerticalText = false
     
@@ -164,6 +166,7 @@ extension Document: EditorSource {
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(self.allowsLossySaving, forKey: SerializationKey.allowsLossySaving)
+        coder.encode(self.isEditable, forKey: SerializationKey.isEditable)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
@@ -182,6 +185,9 @@ extension Document: EditorSource {
         
         if coder.containsValue(forKey: SerializationKey.allowsLossySaving) {
             self.allowsLossySaving = coder.decodeBool(forKey: SerializationKey.allowsLossySaving)
+        }
+        if coder.containsValue(forKey: SerializationKey.isEditable) {
+            self.isEditable = coder.decodeBool(forKey: SerializationKey.isEditable)
         }
         if coder.containsValue(forKey: SerializationKey.isTransient) {
             self.isTransient = coder.decodeBool(forKey: SerializationKey.isTransient)
@@ -457,7 +463,7 @@ extension Document: EditorSource {
         }
         
         // trim trailing whitespace if needed
-        if !saveOperation.isAutosave, UserDefaults.standard[.autoTrimsTrailingWhitespace] {
+        if self.isEditable, !saveOperation.isAutosave, UserDefaults.standard[.autoTrimsTrailingWhitespace] {
             textViews.first?.trimTrailingWhitespace(ignoringEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
         }
         
@@ -833,6 +839,7 @@ extension Document: EditorSource {
                 if let item = item as? NSMenuItem {
                     item.state = (item.tag == self.lineEnding.index) ? .on : .off
                 }
+                return self.isEditable
                 
             case #selector(changeSyntax(_:)):
                 if let item = item as? NSMenuItem {
@@ -951,8 +958,12 @@ extension Document: EditorSource {
     func changeLineEnding(to lineEnding: LineEnding) {
         
         assert(Thread.isMainThread)
+        assert(self.isEditable)
         
-        guard lineEnding != self.lineEnding || !self.lineEndingScanner.inconsistentLineEndings.isEmpty else { return }
+        guard
+            self.isEditable,
+            lineEnding != self.lineEnding || !self.lineEndingScanner.inconsistentLineEndings.isEmpty
+        else { return }
         
         // register undo
         if let undoManager = self.undoManager {
@@ -1064,6 +1075,13 @@ extension Document: EditorSource {
         guard let name = sender.representedObject as? String else { return assertionFailure() }
         
         self.setSyntax(name: name)
+    }
+    
+    
+    /// Toggles the state of the read-only mode.
+    @IBAction func toggleEditable(_ sender: Any?) {
+        
+        self.isEditable.toggle()
     }
     
     

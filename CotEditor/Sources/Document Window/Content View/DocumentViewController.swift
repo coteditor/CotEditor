@@ -155,6 +155,15 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
                 .sink { [weak self] in self?.setTheme(name: $0) },
             
+            // observe editable change
+            self.document.$isEditable
+                .receive(on: RunLoop.main)
+                .sink { [weak self] isEditable in
+                    self?.editorViewControllers
+                        .compactMap(\.textView)
+                        .forEach { $0.isEditable = isEditable }
+                },
+            
             // observe appearance change for theme toggle
             self.view.publisher(for: \.effectiveAppearance)
                 .sink { [weak self] appearance in
@@ -889,6 +898,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // setup textView
         let textView = viewController.textView!
+        textView.isEditable = self.document.isEditable
         textView.wrapsLines = self.wrapsLines
         textView.showsInvisibles = self.showsInvisibles
         textView.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
