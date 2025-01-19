@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,12 +36,18 @@ protocol AdditionalDocumentPreparing: NSDocument {
 }
 
 
+struct OpenOptions {
+    
+    var encoding: String.Encoding?
+}
+
+
 final class DocumentController: NSDocumentController {
     
     // MARK: Public Properties
     
     @Published private(set) var currentSyntaxName: String?
-    private(set) var accessorySelectedEncoding: String.Encoding?
+    private(set) var openOptions: OpenOptions?
     
     
     // MARK: Private Properties
@@ -106,7 +112,7 @@ final class DocumentController: NSDocumentController {
         let (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
         
         // invalidate encoding that was set in the open panel
-        self.accessorySelectedEncoding = nil
+        self.openOptions = nil
         
         if let transientDocument, let document = document as? Document {
             self.replaceTransientDocument(transientDocument, with: document)
@@ -183,12 +189,12 @@ final class DocumentController: NSDocumentController {
     
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?) async -> Int {
         
-        let options = OpenOptions()
-        let accessory = OpenPanelAccessory(options: options, openPanel: openPanel, fileEncodings: EncodingManager.shared.fileEncodings)
+        let model = OpenPanelModel(fileEncodings: EncodingManager.shared.fileEncodings)
+        let accessory = OpenPanelAccessory(model: model, openPanel: openPanel)
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         
-        openPanel.delegate = options
+        openPanel.delegate = model
         openPanel.canChooseDirectories = true
         openPanel.accessoryView = accessoryView
         openPanel.isAccessoryViewDisclosed = true
@@ -196,7 +202,7 @@ final class DocumentController: NSDocumentController {
         let result = await super.beginOpenPanel(openPanel, forTypes: inTypes)
         
         if result == NSApplication.ModalResponse.OK.rawValue {
-            self.accessorySelectedEncoding = options.encoding
+            self.openOptions = model.options
         }
         
         return result

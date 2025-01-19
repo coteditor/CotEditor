@@ -114,6 +114,8 @@ extension Document: EditorSource {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
+        let openOptions = (DocumentController.shared as! DocumentController).openOptions
+        
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
         
@@ -125,7 +127,7 @@ extension Document: EditorSource {
         
         // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
-        self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
+        self.readingEncoding = openOptions?.encoding
         
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
