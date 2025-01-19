@@ -911,7 +911,7 @@
 ### Improvements
 
 - Remove the Print settings in the Settings window (Instead, set print settings directly in the Print dialog).
-- [beta] Adjust layout in the Settings window, print dialog, and syntax editor.
+- [beta] Adjust layout in the Settings window, Print dialog, and syntax editor.
 - [beta] Update the User Guide.
 - [beta] Port changes in CotEditor 4.5.9.
 
@@ -954,7 +954,7 @@
 - Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
 - Migrate the sharing interface to the modern version.
 - Reorganize the Settings window.
-- Add a font size field to the print dialog.
+- Add a font size field to the Print dialog.
 - Deprecate the print font option in the Print settings.
 - Deprecate the cursor type option.
 - Deprecate the Color Code toolbar button.
@@ -1114,7 +1114,7 @@
 
 ### Fixes
 
-- Workaround an issue on macOS 12 that the application uses 100% CPU after searching files in the open dialog.
+- Workaround an issue on macOS 12 that the application uses 100% CPU after searching files in the Open dialog.
 - Fix typos in German and Italian localizations (thanks to Jan Richter and DAnn2012!).
 
 
@@ -1266,13 +1266,13 @@
 - Deprecate the option not to select the next match after the replacement when clicking the Replace button in the Find window.
 - [trivial] Make the target document the key window when selecting a matched line in the find result view.
 - [trivial] Tweak the style of headings in menus.
-- [trivial] Tweak the setting summary display in the print dialog.
+- [trivial] Tweak the setting summary display in the Print dialog.
 - [dev] Migrate the most of sheets and popovers to SwiftUI.
 
 
 ### Fixes
 
-- Fix an issue on macOS 13 the total page did not update when changing the print scope option to “Selection in CotEditor” in the print dialog.
+- Fix an issue on macOS 13 the total page did not update when changing the print scope option to “Selection in CotEditor” in the Print dialog.
 - Fix an issue that timestamps in the Console window do not reflect the local time zone.
 - Fix an issue that the right-to-left writing direction option for new documents was not applied.
 - Fix an issue that the regular expression pattern was wrongly highlighted in a specific condition.
@@ -1306,7 +1306,7 @@
 ### Improvements
 
 - Rename the Highlight command to Highlight All.
-- Tweak CotEditor's setting view in the print dialog.
+- Tweak CotEditor's setting view in the Print dialog.
 - Update Markdown syntax style to highlight code blocks with indentation (Thanks to Rafael Viotti!).
 - [trivial] Improve the text selection behavior with key bindings.
 - [trivial] Disable the Select All command when no documents are available.
@@ -1417,7 +1417,7 @@
     - [for advanced users] Now you can also disable the feature entirely within the application by running the following command in Terminal: `defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES`, though it is not recommended.
 - Deprecate the `length` property in AppleScript (Use `number of characters of contents` instead).
 - Support the split cursor for bidirectional languages in multi-cursor editing.
-- Update the CotEditor's setting view in the print dialog.
+- Update the CotEditor's setting view in the Print dialog.
 - Change the location and column count to start with zero.
 - Display the error message in the pattern sort dialog if the regular expression pattern is invalid.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
@@ -1441,7 +1441,7 @@
 
 ### Fixes
 
-- Fix an issue on CotEditor 4.3.5 that the option “Give execute permission” in the save dialog was occasionally ignored.
+- Fix an issue on CotEditor 4.3.5 that the option “Give execute permission” in the Save dialog was occasionally ignored.
 - Fix a typo in PHP syntax style (Thanks to DAnn2012!).
 
 
@@ -1457,8 +1457,8 @@
 ### Fixes
 
 - Fix an issue that memory could leak when the opacity toolbar item is used.
-- Fix an issue that the option “Give execute permission” in the save dialog was applied to the document even when the save operation was canceled.
-- Address an issue since macOS 12.4 that the buttons in the save dialog became occasionally unresponsive when the application is running in some specific Japanese environment.
+- Fix an issue that the option “Give execute permission” in the Save dialog was applied to the document even when the save operation was canceled.
+- Address an issue since macOS 12.4 that the buttons in the Save dialog became occasionally unresponsive when the application is running in some specific Japanese environment.
 - Fix an issue that memory could leak when the opacity toolbar item is used.
 - Fix an issue that the column of the outline pane was narrower than the list width.
 - Fix an issue that the width of the line number view was not updated when the content was changed on disk.
@@ -1794,7 +1794,7 @@
 
 ### Fixes
 
-- Fix an issue that the filename extension proposed in the save dialog for untitled document did not reflect the latest syntax style.
+- Fix an issue that the filename extension proposed in the Save dialog for untitled document did not reflect the latest syntax style.
 - Fix an issue that the application could not open Haskell files.
 - Fix a potential crash when opening files via Services.
 
@@ -2000,7 +2000,7 @@
 
 - Fix an issue that the document theme did occasionally not change when switching the default theme to “Anura” in Dark Mode.
 - Fix an issue that disabling the “Reopen windows from last session” option did not work if the Auto Save is disabled.
-- Fix an issue on the latest systems that the open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
+- Fix an issue on the latest systems that the Open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
 - Fix an issue that the visual window state occasionally did not restore from the last session correctly.
 - Fix an issue in the inspector that the content occasionally overlapped with the pane controller above if it is shown when the window opens.
 - Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
@@ -2040,7 +2040,7 @@
 - Fix an issue that the application did not terminate when all windows are closed.
 - Fix an issue in the script menu that a script bundle (.scptd) was handled not as a script but as a folder.
 - Fix an issue in the snippet key bindings that shortcuts with only the Shift key for modifier keys were accepted though does not work correctly.
-- Fix an issue that the application rarely showed the open dialog on launch even when the user setting for the startup behavior is not “show open dialog.”
+- Fix an issue that the application rarely showed the Open dialog on launch even when the user setting for the startup behavior is not “show open dialog.”
 - Fix literal number highlight with Ruby syntax style.
 - Address an issue that an annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
 
@@ -2871,7 +2871,7 @@ no change.
 ### Improvements
 
 - Apply the change of “show other invisible characters” option immediately to the editors.
-- Add “Hide extension” option to the save dialog.
+- Add “Hide extension” option to the Save dialog.
 - Use the system appearance in the input candidate window even when the theme has a dark background color.
 - Give some feedback about the search result in VoiceOver.
 - Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
@@ -3877,7 +3877,7 @@ no change.
 
 - Fix an issue where lossy saving was failed.
 - Fix an issue where `⌘←` was ignored when the cursor locates at the end of the document.
-- Fix an issue where save dialog layout corrupted when toggling the visibility of the file browser.
+- Fix an issue where the save dialog layout corrupted when toggling the visibility of the file browser.
 - Fix an issue where no alert was raised on saving even when a document contains lossy yen signs.
 - Fix an issue where document syntax was parsed twice on file open.
 - Fix a possible crash on print.
@@ -3895,8 +3895,8 @@ no change.
 ### Improvements
 
 - Change the behavior of  `⌘←` so that the cursor moves first to the beginning of the visual lines, then to the column right after indentation, and finally to the beginning of the line.
-- Remove “Open Hidden” command (Use “Show hidden files” option in the open dialog instead).
-- Display an open dialog on launch if so set even when iCloud storage is disabled.
+- Remove “Open Hidden” command (Use “Show hidden files” option in the Open dialog instead).
+- Display the Open dialog on launch if so set even when iCloud storage is disabled.
 - Improve stability on text encoding change.
 - Refine dialog messages on text encoding change.
 - Change sidebar behavior to close inward when it was opened inward because of insufficient space.
@@ -3913,7 +3913,7 @@ no change.
 - Fix an issue where key-binding setting field sometimes ignored user input.
 - Fix an issue where wrong file creation date and file permission could be displayed in the document inspector.
 - Fix an issue where document files did not forget vertical orientation state when once set before.
-- Fix an issue where the encoding selected in the open dialog last time was unwontedly applied to the newly opened document when a document opened with the open dialog previously had already opened.
+- Fix an issue where the encoding selected in the Open dialog last time was unwontedly applied to the newly opened document when a document opened with the Open dialog previously had already opened.
 - Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanese localization.
 
 
