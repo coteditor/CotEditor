@@ -87,7 +87,6 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Menu Item Validation
     
-    /// Applies the current state to menu items.
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextMenu = (menuItem.menu == self.contextMenu)

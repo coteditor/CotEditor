@@ -104,7 +104,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     
     // MARK: Menu Item Validation
     
-    /// Applies current state to menu items.
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.tableView?.menu)

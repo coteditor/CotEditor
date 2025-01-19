@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,23 +28,6 @@ import AppKit
 // -> Pass all possible actions manually since NSDocument has no next responder (2024-05, macOS 14)
 extension DirectoryDocument {
     
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        
-        switch menuItem.action {
-            case #selector(changeEncoding),
-                 #selector(changeLineEnding),
-                 #selector(changeSyntax):
-                return (self.currentDocument as? Document)?.validateMenuItem(menuItem) ?? false
-                
-            case #selector(showInFinder):
-                return self.currentDocument?.validateMenuItem(menuItem) ?? false
-                
-            default:
-                return super.validateMenuItem(menuItem)
-        }
-    }
-    
-    
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
@@ -60,7 +43,10 @@ extension DirectoryDocument {
                  #selector(lock(_:)),
                  #selector(unlock(_:)),
                  #selector(runPageLayout),
-                 #selector(printDocument):
+                 #selector(printDocument),
+                 #selector(changeEncoding),
+                 #selector(changeLineEnding),
+                 #selector(changeSyntax):
                 // -> PreviewDocument doesn't support file manipulation.
                 return (self.currentDocument as? Document)?.validateUserInterfaceItem(item) ?? false
                 

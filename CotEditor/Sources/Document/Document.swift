@@ -819,22 +819,28 @@ extension Document: EditorSource {
     }
     
     
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
-        switch menuItem.action {
+        switch item.action {
             case #selector(changeEncoding(_:)):
-                menuItem.state = (menuItem.representedObject as? FileEncoding == self.fileEncoding) ? .on : .off
+                if let item = item as? NSMenuItem {
+                    item.state = (item.representedObject as? FileEncoding == self.fileEncoding) ? .on : .off
+                }
                 
             case #selector(changeLineEnding(_:)):
-                menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
+                if let item = item as? NSMenuItem {
+                    item.state = (item.tag == self.lineEnding.index) ? .on : .off
+                }
                 
             case #selector(changeSyntax(_:)):
-                menuItem.state = (menuItem.representedObject as? String == self.syntaxParser.name) ? .on : .off
+                if let item = item as? NSMenuItem {
+                    item.state = (item.representedObject as? String == self.syntaxParser.name) ? .on : .off
+                }
                 
             default: break
         }
         
-        return super.validateMenuItem(menuItem)
+        return super.validateUserInterfaceItem(item)
     }
     
     

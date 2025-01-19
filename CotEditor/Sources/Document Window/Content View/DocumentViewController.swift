@@ -397,8 +397,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(toggleSplitOrientation):
                 (item as? NSMenuItem)?.title = self.splitView.isVertical
-                ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
-                : String(localized: "Stack Editors Vertically", table: "MainMenu")
+                    ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
+                    : String(localized: "Stack Editors Vertically", table: "MainMenu")
                 
             case #selector(closeSplitTextView):
                 return self.splitViewItems.count > 1

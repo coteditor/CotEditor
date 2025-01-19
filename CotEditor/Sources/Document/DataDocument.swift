@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,16 +36,16 @@ import AppKit
     
     // MARK: Document Methods
     
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
-        switch menuItem.action {
+        switch item.action {
             case #selector(showInFinder):
                 return self.fileURL != nil
                 
             default: break
         }
         
-        return super.validateMenuItem(menuItem)
+        return super.validateUserInterfaceItem(item)
     }
     
     
