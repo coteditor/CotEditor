@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -114,15 +114,21 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
             
             let string = textView.selectedString
             let textStorage = NSTextStorage(string: string)
-            textStorage.observeDirectEditing { [weak textView] editedString in
-                textView?.insert(string: editedString, at: .replaceSelection)
+            if self.isEditable {
+                textStorage.observeDirectEditing { [weak textView] editedString in
+                    textView?.insert(string: editedString, at: .replaceSelection)
+                }
             }
             
             return textStorage
         }
         
         set {
-            guard let newValue, let string = String(anyString: newValue) else { return }
+            guard
+                self.isEditable,
+                let newValue,
+                let string = String(anyString: newValue)
+            else { return }
             
             self.textView?.insert(string: string, at: .replaceSelection)
         }
@@ -346,6 +352,13 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     
     
     // MARK: Private Methods
+    
+    /// Whether the document is editable.
+    private var isEditable: Bool {
+        
+        self.document?.isEditable == true
+    }
+    
     
     private var textView: EditorTextView? {
         

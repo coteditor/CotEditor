@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,7 +56,11 @@ extension NSTextView {
         assert(Thread.isMainThread)
         assert(strings.count == ranges.count, "unbalanced number of strings and ranges for multiple replacement")
         
-        guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
+        guard
+            self.isEditable,
+            !strings.isEmpty,
+            let textStorage = self.textStorage
+        else { return false }
         
         // register redo for text selection
         // -> Prefer using `rangesForUserTextChange` to save also multi-insertion points.
@@ -139,6 +143,8 @@ extension NSTextView {
     /// - Parameter block: The text transformation.
     /// - Returns: `true` if the text is processed.
     @discardableResult final func transformSelection(to block: (String) -> String) -> Bool {
+        
+        guard self.isEditable else { return false }
         
         // transform the word that contains the cursor if nothing is selected
         if self.selectedRange.isEmpty {

@@ -75,15 +75,20 @@ extension Document {
         
         get {
             let textStorage = NSTextStorage(string: self.textStorage.string)
-            textStorage.observeDirectEditing { [weak self] editedString in
-                self?.textView?.insert(string: editedString, at: .replaceAll)
+            if self.isEditable {
+                textStorage.observeDirectEditing { [weak self] editedString in
+                    self?.textView?.insert(string: editedString, at: .replaceAll)
+                }
             }
             
             return textStorage
         }
         
         set {
-            guard let string = String(anyString: newValue) else { return }
+            guard
+                self.isEditable,
+                let string = String(anyString: newValue)
+            else { return }
             
             self.textView?.insert(string: string, at: .replaceAll)
         }
@@ -127,6 +132,8 @@ extension Document {
         }
         
         set {
+            guard self.isEditable else { return }
+            
             let lineEnding = OSALineEnding(rawValue: newValue)?.lineEnding
             
             self.changeLineEnding(to: lineEnding ?? .lf)
@@ -230,6 +237,12 @@ extension Document {
         
         guard fileEncoding != self.fileEncoding else { return true }
         
+        guard self.isEditable else {
+            command.scriptErrorNumber = editingNotAllowed
+            command.scriptErrorString = "The document is not editable."
+            return false
+        }
+        
         let lossy = (arguments["lossy"] as? Bool) ?? false
         if !lossy, !self.canBeConverted(to: fileEncoding) {
             command.scriptErrorNumber = errOSAGeneralError
@@ -299,9 +312,14 @@ extension Document {
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
             let replacementString = arguments["newString"] as? String,
-            let textView = self.textView,
-            textView.isEditable
+            let textView = self.textView
         else { return 0 }
+        
+        guard self.isEditable else {
+            command.scriptErrorNumber = editingNotAllowed
+            command.scriptErrorString = "The document is not editable."
+            return 0
+        }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
