@@ -1291,15 +1291,22 @@ extension Document: EditorSource {
                 return
             }
             
+            let isEditable = self.isEditable
+            
             let alert = NSAlert()
             alert.alertStyle = .warning
             alert.messageText = String(localized: "InconsistentLineEndingAlert.message",
                                        defaultValue: "The document has inconsistent line endings.")
-            alert.informativeText = String(localized: "InconsistentLineEndingAlert.informativeText",
-                                           defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
-            alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
-                                              defaultValue: "Convert",
-                                              comment: "button label"))
+            alert.informativeText = isEditable
+                ? String(localized: "InconsistentLineEndingAlert.informativeText",
+                         defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
+                : String(localized: "InconsistentLineEndingAlert.informativeText.notEditable",
+                         defaultValue: "The most common line endings in this document is \(self.lineEnding.label).")
+            if self.isEditable {
+                alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
+                                                  defaultValue: "Convert",
+                                                  comment: "button label"))
+            }
             alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
                                               defaultValue: "Review",
                                               comment: "button label"))
@@ -1327,12 +1334,14 @@ extension Document: EditorSource {
                     }
                 }
                 
-                switch returnCode {
-                    case .alertFirstButtonReturn:  // == Convert
+                switch (returnCode, isEditable) {
+                    case (.alertFirstButtonReturn, true):  // == Convert
                         self.changeLineEnding(to: self.lineEnding)
-                    case .alertSecondButtonReturn:  // == Review
+                    case (.alertSecondButtonReturn, true),
+                         (.alertFirstButtonReturn, false):  // == Review
                         self.showWarningInspector()
-                    case .alertThirdButtonReturn:  // == Ignore
+                    case (.alertThirdButtonReturn, true),
+                         (.alertSecondButtonReturn, false):  // == Ignore
                         break
                     default:
                         fatalError()

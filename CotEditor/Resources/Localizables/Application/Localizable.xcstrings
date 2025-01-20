@@ -3480,6 +3480,47 @@
         }
       }
     },
+    "InconsistentLineEndingAlert.informativeText.notEditable" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "die häufigsten Zeilenenden in diesem Dokument　sind %@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The most common line endings in this document is %@."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The most common line endings in this document is %@."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Los finales de línea más comunes en este documento son %@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La fin de ligne la plus courante dans le document est %@."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この書類で最も使われている改行コードは%@です。"
+          }
+        }
+      }
+    },
     "InconsistentLineEndingAlert.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
