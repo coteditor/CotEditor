@@ -943,6 +943,10 @@ extension Document: EditorSource {
         
         guard fileEncoding != self.fileEncoding else { return }
         
+        guard self.isEditable else {
+            return self.presentErrorAsSheet(DocumentError.notEditable)
+        }
+        
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
@@ -1417,6 +1421,41 @@ extension Document: EditorSource {
 
 
 // MARK: - Errors
+
+private enum DocumentError: LocalizedError {
+    
+    case notEditable
+    
+    
+    var errorDescription: String? {
+        
+        switch self {
+            case .notEditable:
+                String(localized: "DocumentError.notEditable.description",
+                       defaultValue: "The document is not editable.")
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        switch self {
+            case .notEditable:
+                String(localized: "DocumentError.notEditable.recoverySuggestion",
+                       defaultValue: "To make changes to the contents of the document, first allow editing it.")
+        }
+    }
+    
+    
+    var helpAnchor: String? {
+        
+        switch self {
+            case .notEditable:
+                "howto_readonly"
+        }
+    }
+}
+
 
 enum ReinterpretationError: LocalizedError {
     

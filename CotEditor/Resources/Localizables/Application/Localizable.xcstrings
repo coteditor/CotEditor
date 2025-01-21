@@ -833,6 +833,88 @@
         }
       }
     },
+    "DocumentError.notEditable.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Dokument kann nicht bearbeitet werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The document is not editable."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The document is not editable."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El documento no es editable."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le document n’est pas modifiable."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この書類は編集できません。"
+          }
+        }
+      }
+    },
+    "DocumentError.notEditable.recoverySuggestion" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um Änderungen am Inhalt des Dokuments vorzunehmen, lass es zunächst die Bearbeitung zu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "To make changes to the contents of the document, first allow editing it."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To make changes to the contents of the document, first allow editing it."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Para efectuar cambios en el contenido del documento, primero permitir su edición."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pour modifier le contenu du document, autoriser d'abord les modifications."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類の内容を変更するためには、まず書類を編集可能にしてください。"
+          }
+        }
+      }
+    },
     "DocumentOpeningError.binaryFile.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
