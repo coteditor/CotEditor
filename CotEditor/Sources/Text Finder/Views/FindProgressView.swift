@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,8 +75,7 @@ struct FindProgressView: View {
             Button("Cancel", systemImage: "xmark", role: .cancel) {
                 self.progress.cancel()
             }
-            .symbolVariant(.circle)
-            .symbolVariant(.fill)
+            .symbolVariant(.circle.fill)
             .labelStyle(.iconOnly)
             .buttonStyle(.borderless)
         }

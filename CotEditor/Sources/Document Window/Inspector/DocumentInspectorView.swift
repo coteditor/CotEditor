@@ -200,8 +200,7 @@ private struct DocumentFileView: View {
                             Button(String(localized: "Show in Finder", table: "Document"), systemImage: "arrow.forward") {
                                 NSWorkspace.shared.activateFileViewerSelecting([fileURL])
                             }
-                            .symbolVariant(.circle)
-                            .symbolVariant(.fill)
+                            .symbolVariant(.circle.fill)
                             .fontWeight(.bold)
                             .labelStyle(.iconOnly)
                             .controlSize(.mini)
