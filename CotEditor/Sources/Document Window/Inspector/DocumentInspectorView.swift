@@ -259,23 +259,29 @@ private struct CountLocationView: View {
                 OptionalLabeledContent(String(localized: "Lines", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.lines.formatted)
+                .accessibilityAddTraits(.updatesFrequently)
                 OptionalLabeledContent(String(localized: "Characters", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.characters.formatted)
+                .accessibilityAddTraits(.updatesFrequently)
                 OptionalLabeledContent(String(localized: "Words", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.words.formatted)
+                .accessibilityAddTraits(.updatesFrequently)
                 .padding(.bottom, 8)
                 
                 OptionalLabeledContent(String(localized: "Location", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.location?.formatted())
+                .accessibilityAddTraits(.updatesFrequently)
                 OptionalLabeledContent(String(localized: "Line", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.line?.formatted())
+                .accessibilityAddTraits(.updatesFrequently)
                 OptionalLabeledContent(String(localized: "Column", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.column?.formatted())
+                .accessibilityAddTraits(.updatesFrequently)
             }
             .monospacedDigit()
             .frame(maxWidth: .infinity, alignment: .leading)

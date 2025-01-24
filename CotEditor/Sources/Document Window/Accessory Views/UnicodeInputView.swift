@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ struct UnicodeInputView: View {
             HStack(alignment: .center) {
                 Text(self.pictureString ?? "⬚")
                     .font(.system(size: 26))
+                    .accessibilityHidden(self.unicodeName == nil)
                     .frame(minWidth: 30, minHeight: 30)
                 
                 Text(self.unicodeName ?? String(localized: "Invalid code", table: "UnicodeInput"))

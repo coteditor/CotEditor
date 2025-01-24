@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,6 +50,7 @@ struct NavigationBar: View {
                 .padding(.vertical, 4)
                 .padding(.horizontal, 3)
                 .opacity(self.splitState.canClose ? 1 : 0)
+                .accessibilityHidden(!self.splitState.canClose)
             
             OutlineNavigationView(navigator: $outlineNavigator)
             

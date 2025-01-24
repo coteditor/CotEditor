@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2024 1024jp
+//  © 2013-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -96,7 +96,7 @@ private enum BundleIdentifier {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var aboutPanel = NSPanel(view: AboutView())
+    private lazy var aboutPanel = NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
     private lazy var whatsNewPanel = NSPanel(view: WhatsNewView())
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
@@ -541,7 +541,8 @@ private extension NSPanel {
     ///
     /// - Parameters:
     ///   - view: The SwiftUI view.
-    convenience init(view: any View) {
+    ///   - title: The window title mainly for the accessibility.
+    convenience init(view: any View, title: String? = nil) {
         
         let viewController = NSHostingController(rootView: AnyView(view))
         viewController.safeAreaRegions = []
@@ -554,6 +555,10 @@ private extension NSPanel {
         self.hidesOnDeactivate = false
         self.becomesKeyOnlyIfNeeded = true
         self.setContentSize(viewController.view.intrinsicContentSize)
+        
+        if let title {
+            self.title = title
+        }
         
         self.center()
     }

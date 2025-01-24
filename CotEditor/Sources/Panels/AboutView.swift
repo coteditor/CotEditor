@@ -53,6 +53,7 @@ struct AboutView: View {
         HStack(spacing: 0) {
             VStack(spacing: 6) {
                 Image(nsImage: NSApp.applicationIconImage)
+                    .accessibilityLabel(String(localized: "\(Bundle.main.bundleName) icon", table: "About", comment: "%@ is application name"))
                 Text(Bundle.main.bundleName)
                     .font(.title)
                 Text("Version \(Bundle.main.shortVersion) (\(Bundle.main.bundleVersion))",
@@ -86,6 +87,15 @@ struct AboutView: View {
                         }
                     }
                 }
+                .accessibilityRepresentation {
+                    Picker(selection: $pane) {
+                        ForEach(Pane.allCases, id: \.self) {
+                            Text($0.label)
+                        }
+                    } label: {
+                        EmptyView()
+                    }
+                }
                 .padding(.vertical, 6)
                 Divider()
                 
@@ -100,7 +110,6 @@ struct AboutView: View {
             }
             .background()
         }
-        .accessibilityLabel(String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
         .controlSize(.small)
         .frame(width: 540, height: 320)
     }
@@ -139,6 +148,8 @@ private struct TabPickerButtonView: View {
                      ? RoundedRectangle(cornerRadius: 3).stroke(.tertiary)
                      : nil)
             .onHover { self.isHovered = $0 }
+            .accessibilityAddTraits(self.isSelected ? .isSelected : [])
+            .accessibilityRemoveTraits(self.isSelected ? [] : .isSelected)
     }
     
     
@@ -174,6 +185,8 @@ private struct Credits: Decodable {
 
 private struct CreditsView: View {
     
+    @Namespace private var accessibility
+    
     @State private var credits: Credits = .init()
     
     
@@ -193,11 +206,13 @@ private struct CreditsView: View {
                             Text(Locale.current.localizedString(forIdentifier: item.key)!)
                                 .foregroundStyle(.secondary)
                                 .gridColumnAlignment(.trailing)
+                                .accessibilityLabeledPair(role: .label, id: item.key, in: self.accessibility)
                             VStack(alignment: .leading, spacing: 3) {
                                 ForEach(item.value, id: \.name) {
                                     ContributorView(contributor: $0)
                                 }
                             }
+                            .accessibilityLabeledPair(role: .content, id: item.key, in: self.accessibility)
                         }
                     }
                 }
@@ -226,6 +241,7 @@ private struct CreditsView: View {
             Image(systemName: "dog")
                 .symbolVariant(.fill)
                 .foregroundStyle(.tertiary)
+                .accessibilityHidden(true)
             
             Text("CotEditor is an open source program\nlicensed under the Apache License, Version 2.0.", tableName: "About")
                 .textSelection(.enabled)
@@ -365,8 +381,7 @@ private struct LicenseView: View {
             }
             .onAppear {
                 guard
-                    let url =
-                        Bundle.main.url(forResource: self.name, withExtension: "txt", subdirectory: "Licenses"),
+                    let url = Bundle.main.url(forResource: self.name, withExtension: "txt", subdirectory: "Licenses"),
                     let string = try? String(contentsOf: url, encoding: .utf8)
                 else { return assertionFailure() }
                 

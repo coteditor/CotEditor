@@ -11,6 +11,11 @@
 - Introduce the new AppleScript parameter `editable` to document objects.
 
 
+### Improvements
+
+- Improve the VoiceOver support.
+
+
 ### TODO
 
 - Localize new strings.

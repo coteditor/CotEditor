@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,7 +43,6 @@ struct WhatsNewView: View {
                 Text("What’s New in CotEditor \(self.versionString)", tableName: "WhatsNew", comment: "%@ is version number")
                     .font(.title)
                     .fontWeight(.medium)
-                    .accessibilityAddTraits(.isHeader)
                     .accessibilityHeading(.h1)
                 
                 if self.isPrerelease {
@@ -62,13 +61,13 @@ struct WhatsNewView: View {
                         feature.image
                             .font(.system(size: 44, weight: .thin))
                             .foregroundStyle(.tint)
-                            .frame(width: 64, alignment: .center)
+                            .frame(width: 60, alignment: .center)
+                            .accessibilityHidden(true)
                         
                         VStack(alignment: .leading) {
                             Text(feature.label)
                                 .font(.title3)
                                 .fontWeight(.medium)
-                                .accessibilityAddTraits(.isHeader)
                                 .accessibilityHeading(.h2)
                             
                             Text(feature.description)
@@ -116,6 +115,7 @@ struct WhatsNewView: View {
                 .rotationEffect(.degrees(180))
                 .opacity(0.025)
                 .background()
+                .accessibilityHidden(true)
         }
     }
 }

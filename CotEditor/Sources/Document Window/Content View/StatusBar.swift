@@ -298,6 +298,7 @@ private struct EditorCountView: View {
         
         Text(self.attributedString)
             .monospacedDigit()
+            .accessibilityAddTraits(.updatesFrequently)
     }
     
     
