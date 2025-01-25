@@ -64,7 +64,7 @@
                                                                         </binding>
                                                                     </connections>
                                                                 </customView>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vqS-e3-gjG">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vqS-e3-gjG">
                                                                     <rect key="frame" x="14" y="0.0" width="241" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="SYNTAX NAME" id="4X7-DR-Qz6">
                                                                         <font key="font" metaFont="system"/>
@@ -250,7 +250,7 @@
                 <customObject id="vgQ-KV-Jhz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="enl-Xp-NM4">
                     <items>
-                        <menuItem title="Edit…" state="on" id="371-P0-KPK">
+                        <menuItem title="Edit…" id="371-P0-KPK">
                             <connections>
                                 <action selector="editSetting:" target="Lgm-sL-YIF" id="FqD-Sv-a2f"/>
                             </connections>
