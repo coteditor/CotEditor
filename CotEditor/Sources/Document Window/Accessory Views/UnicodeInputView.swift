@@ -72,6 +72,7 @@ struct UnicodeInputView: View {
                                     Text(scalar.name ?? "–")
                                         .font(.system(size: NSFont.smallSystemFontSize))
                                         .foregroundStyle(.secondary)
+                                        .accessibilityLabel(scalar.name ?? String(localized: "None", comment: "accessibility label for “–”"))
                                 }
                             }
                         }

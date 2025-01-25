@@ -47,6 +47,7 @@ struct OptionalLabeledContent: View {
             } else {
                 Text(verbatim: "–")
                     .foregroundStyle(.tertiary)
+                    .accessibilityLabel(String(localized: "None", comment: "accessibility label for “–”"))
             }
         }
     }
