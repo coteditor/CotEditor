@@ -14,13 +14,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="258" height="135"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzJ-WA-1ao">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzJ-WA-1ao">
                                 <rect key="frame" x="0.0" y="25" width="258" height="110"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="C5l-vq-00a">
                                     <rect key="frame" x="0.0" y="0.0" width="258" height="110"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="18" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="BAM-wf-Klc">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="BAM-wf-Klc">
                                             <rect key="frame" x="0.0" y="0.0" width="258" height="108"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -39,8 +39,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView misplaced="YES" id="GWs-bF-15e">
-                                                            <rect key="frame" x="1" y="1" width="255" height="18"/>
+                                                        <tableCellView id="GWs-bF-15e">
+                                                            <rect key="frame" x="1" y="1" width="255" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <customView toolTip="This syntax is customized." translatesAutoresizingMaskIntoConstraints="NO" id="7Wv-pO-nVZ" customClass="DotView" customModule="CotEditor" customModuleProvider="target">
