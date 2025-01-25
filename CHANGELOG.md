@@ -9,6 +9,7 @@
 - The new “prevent editing” option that prevents documents from being unintentionally edited.
 - Introduce the `--readonly` (`-r`) option to the `cot` command-line tool to open documents as read-only.
 - Introduce the new AppleScript parameter `editable` to document objects.
+- Read input from the standard input when the `cot` command-line tool is used with the `-` option.
 
 
 ### Improvements

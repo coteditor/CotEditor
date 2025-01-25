@@ -291,7 +291,7 @@ def parse_args():
     args.new_window = args.new and not args.files
 
     # check file existence and create if needed
-    if args.files:
+    if args.files and args.files != ['-']:
         # strip symlink
         args.files = list(map(os.path.realpath, args.files))
         # skip file check if file is directory
@@ -402,10 +402,13 @@ if __name__ == "__main__":
     # parse arguments
     args = parse_args()
 
-    # read piped text if exists
-    if args.files or sys.stdin.isatty():
+    # read standard input if exists
+    if args.files == ['-']:
+        stdin = sys.stdin.read()
+        args.files = []
+    elif args.files or sys.stdin.isatty():
         stdin = None
-    else:
+    else:  # piped text
         stdin = ''.join(sys.stdin)
 
     main(args, stdin)

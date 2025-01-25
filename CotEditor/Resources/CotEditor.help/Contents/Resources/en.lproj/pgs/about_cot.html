@@ -80,6 +80,11 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
 
+<p>Passing a dash (<code>-</code>) in place of filenames enters the mode to receive standard input. The input received will be opened as a new document.</p>
+
+<pre class="source"><code>cot -
+</code></pre>
+
 <p>You can also pipe a text. Then, CotEditor opens a new document with the piped text.</p>
 
 <pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot

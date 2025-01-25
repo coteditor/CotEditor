@@ -81,6 +81,11 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
 
+<p>ファイル名の代わりにダッシュを渡すと、標準入力を受け取るモードになります。受け取った入力は新規書類として開かれます。</p>
+
+<pre class="source"><code>cot -
+</code></pre>
+
 <p>文字列をパイプで渡すこともできます。CotEditorは渡された文字列を新規書類として開きます。</p>
 
 <pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
