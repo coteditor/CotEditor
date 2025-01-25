@@ -284,7 +284,20 @@ keywords:
 - beginString: background-position
 - beginString: background-repeat
 - beginString: background-size
+- beginString: block-size
 - beginString: border
+- beginString: border-block
+- beginString: border-block-color
+- beginString: border-block-end
+- beginString: border-block-end-color
+- beginString: border-block-end-style
+- beginString: border-block-end-width
+- beginString: border-block-start
+- beginString: border-block-start-color
+- beginString: border-block-start-style
+- beginString: border-block-start-width
+- beginString: border-block-style
+- beginString: border-block-width
 - beginString: border-bottom
 - beginString: border-bottom-color
 - beginString: border-bottom-left-radius
@@ -293,12 +306,26 @@ keywords:
 - beginString: border-bottom-width
 - beginString: border-collapse
 - beginString: border-color
+- beginString: border-end-end-radius
+- beginString: border-end-start-radius
 - beginString: border-image
 - beginString: border-image-outset
 - beginString: border-image-repeat
 - beginString: border-image-slice
 - beginString: border-image-source
 - beginString: border-image-width
+- beginString: border-inline
+- beginString: border-inline-color
+- beginString: border-inline-end
+- beginString: border-inline-end-color
+- beginString: border-inline-end-style
+- beginString: border-inline-end-width
+- beginString: border-inline-start
+- beginString: border-inline-start-color
+- beginString: border-inline-start-style
+- beginString: border-inline-start-width
+- beginString: border-inline-style
+- beginString: border-inline-width
 - beginString: border-left
 - beginString: border-left-color
 - beginString: border-left-style
@@ -309,6 +336,8 @@ keywords:
 - beginString: border-right-style
 - beginString: border-right-width
 - beginString: border-spacing
+- beginString: border-start-end-radius
+- beginString: border-start-start-radius
 - beginString: border-style
 - beginString: border-top
 - beginString: border-top-color
@@ -408,6 +437,13 @@ keywords:
 - beginString: image-rendering
 - beginString: image-resolution
 - beginString: inline-size
+- beginString: inset
+- beginString: inset-block
+- beginString: inset-block-end
+- beginString: inset-block-start
+- beginString: inset-inline
+- beginString: inset-inline-end
+- beginString: inset-inline-start
 - beginString: isolation
 - beginString: justify-content
 - beginString: justify-items
@@ -422,7 +458,13 @@ keywords:
 - beginString: list-style-position
 - beginString: list-style-type
 - beginString: margin
+- beginString: margin-block
+- beginString: margin-block-end
+- beginString: margin-block-start
 - beginString: margin-bottom
+- beginString: margin-inline
+- beginString: margin-inline-end
+- beginString: margin-inline-start
 - beginString: margin-left
 - beginString: margin-right
 - beginString: margin-top
@@ -433,9 +475,13 @@ keywords:
 - beginString: mask
 - beginString: mask-border
 - beginString: mask-type
+- beginString: max-block-size
 - beginString: max-height
+- beginString: max-inline-size
 - beginString: max-width
+- beginString: min-block-size
 - beginString: min-height
+- beginString: min-inline-size
 - beginString: min-width
 - beginString: mix-blend-mode
 - beginString: nav-down
@@ -468,7 +514,13 @@ keywords:
 - beginString: overscroll-behavior-x
 - beginString: overscroll-behavior-y
 - beginString: padding
+- beginString: padding-block
+- beginString: padding-block-end
+- beginString: padding-block-start
 - beginString: padding-bottom
+- beginString: padding-inline
+- beginString: padding-inline-end
+- beginString: padding-inline-start
 - beginString: padding-left
 - beginString: padding-right
 - beginString: padding-top
@@ -579,9 +631,9 @@ metadata:
   author: CotEditor Project
   description: Support CSS3 partly.
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2025-01-25'
   license: Same as CotEditor
-  version: 2.3.0
+  version: 2.4.0
 numbers:
 - beginString: '#[0-9a-f]{3}\b'
   ignoreCase: true
@@ -646,6 +698,8 @@ values:
 - beginString: blanchedalmond
 - beginString: blink
 - beginString: block
+- beginString: block-end
+- beginString: block-start
 - beginString: blue
 - beginString: blueviolet
 - beginString: bold
@@ -741,6 +795,7 @@ values:
 - beginString: fill
 - beginString: firebrick
 - beginString: first
+- beginString: fit-content
 - beginString: fixed
 - beginString: flat
 - beginString: flex-end
@@ -784,6 +839,8 @@ values:
 - beginString: ink
 - beginString: inline
 - beginString: inline-block
+- beginString: inline-end
+- beginString: inline-start
 - beginString: inline-table
 - beginString: inset
 - beginString: inside
@@ -845,6 +902,7 @@ values:
 - beginString: marquee-block
 - beginString: marquee-line
 - beginString: match-parent
+- beginString: max-content
 - beginString: medium
 - beginString: mediumaquamarine
 - beginString: mediumblue
@@ -859,6 +917,7 @@ values:
 - beginString: message-box
 - beginString: middle
 - beginString: midnightblue
+- beginString: min-content
 - beginString: mintcream
 - beginString: mistyrose
 - beginString: mixed
