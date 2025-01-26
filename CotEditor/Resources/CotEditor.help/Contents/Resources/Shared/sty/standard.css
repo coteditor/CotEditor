@@ -215,6 +215,12 @@ img.bordered {
 	border: 0.5px solid -apple-system-tertiary-label;
 	border-radius: 3px;
 }
+object.symbol {
+	vertical-align: -0.2em;
+}
+object.symbol:lang(ja) {
+	padding: 0 0.2em;
+}
 
 dt {
 	font-weight: 600;
