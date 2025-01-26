@@ -326,6 +326,9 @@ span.variable {
 p img.appicon {
 	vertical-align: text-bottom;
 }
+p img.appicon:lang(ja) {
+	padding: 0 0.1em;
+}
 
 table.settings th {
 	width: 18em;
