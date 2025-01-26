@@ -17,6 +17,11 @@
 - Improve the VoiceOver support.
 
 
+### Fixes
+
+- Fixed an issue in CotEditor 5.0.8 where the file path argument passed to CotEditor scripts was percent-encoded.
+
+
 ### TODO
 
 - Localize new strings.
