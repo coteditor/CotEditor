@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -302,15 +302,11 @@ struct RegularExpressionSortPatternView: View {
             .accessibilityElement(children: .contain)
         }
         
-        Toggle(isOn: $pattern.usesCaptureGroup) {
-            HStack(alignment: .firstTextBaseline) {
-                Text("Use captured group:", tableName: "PatternSort")
-                    .accessibilityLabeledPair(role: .label, id: "useGroup", in: self.accessibility)
-                StepperNumberField(value: $pattern.group, default: 1,
-                                   in: 0...self.pattern.numberOfCaptureGroups)
+        HStack(alignment: .firstTextBaseline) {
+            Toggle(String(localized: "Use captured group:", table: "PatternSort"), isOn: $pattern.usesCaptureGroup)
+            StepperNumberField(value: $pattern.group, default: 1, in: 0...self.pattern.numberOfCaptureGroups)
                 .disabled(!self.pattern.usesCaptureGroup)
-                .accessibilityLabeledPair(role: .content, id: "useGroup", in: self.accessibility)
-            }
+                .accessibilityLabel(String(localized: "Use captured group:", table: "PatternSort"))
         }
     }
     

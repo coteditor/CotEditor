@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -97,7 +97,7 @@ struct WindowSettingsView: View {
                         VStack(spacing: 1) {
                             TextField(value: $windowWidth, format: .number, prompt: Text("Auto", tableName: "WindowSettings", comment: "placeholder for window size field"), label: EmptyView.init)
                                 .monospacedDigit()
-                                .environment(\.layoutDirection, .rightToLeft)
+                                .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                                 .frame(width: 64)
                                 .accessibilityLabeledPair(role: .content, id: "windowWidth", in: self.accessibility)
                             Text("Width", tableName: "WindowSettings")
@@ -113,7 +113,7 @@ struct WindowSettingsView: View {
                         VStack(spacing: 1) {
                             TextField(value: $windowHeight, format: .number, prompt: Text("Auto", tableName: "WindowSettings", comment: "placeholder for window size field"), label: EmptyView.init)
                                 .monospacedDigit()
-                                .environment(\.layoutDirection, .rightToLeft)
+                                .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                                 .frame(width: 64)
                                 .accessibilityLabeledPair(role: .label, id: "windowHeight", in: self.accessibility)
                             Text("Height", tableName: "WindowSettings")
@@ -158,12 +158,11 @@ struct WindowSettingsView: View {
                     .fixedSize()
                     
                     Toggle(String(localized: "Indent guides", table: "WindowSettings"), isOn: $showIndentGuides)
-                    Toggle(isOn: $showPageGuide) {
-                        HStack(alignment: .firstTextBaseline) {
-                            Text("Page guide at column:", tableName: "WindowSettings")
-                            StepperNumberField(value: $pageGuideColumn, default: UserDefaults.standard[initial: .pageGuideColumn], in: 1...999)
-                                .disabled(!self.showPageGuide)
-                        }
+                    HStack(alignment: .firstTextBaseline) {
+                        Toggle(String(localized: "Page guide at column:", table: "WindowSettings"), isOn: $showPageGuide)
+                        StepperNumberField(value: $pageGuideColumn, default: UserDefaults.standard[initial: .pageGuideColumn], in: 1...999)
+                            .accessibilityLabel(String(localized: "Page guide at column:", table: "WindowSettings"))
+                            .disabled(!self.showPageGuide)
                     }
                 }
             }
@@ -184,13 +183,12 @@ struct WindowSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Toggle(String(localized: "Wrap lines to editor width", table: "WindowSettings"), isOn: $wrapLines)
-                    Toggle(isOn: $enablesHangingIndent) {
-                        HStack {
-                            Text("Indent wrapped lines by", tableName: "WindowSettings")
-                            StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
-                                .disabled(!self.enablesHangingIndent)
-                            Text("spaces", tableName: "WindowSettings", comment: "unit for indentation")
-                        }
+                    HStack(alignment: .firstTextBaseline) {
+                        Toggle(String(localized: "Indent wrapped lines by", table: "WindowSettings"), isOn: $enablesHangingIndent)
+                        StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
+                            .disabled(!self.enablesHangingIndent)
+                            .accessibilityLabel(String(localized: "wrapped line indent spaces", table: "WindowSettings", comment: "accessibility label"))
+                        Text("spaces", tableName: "WindowSettings", comment: "unit for indentation")
                     }
                 }
             }

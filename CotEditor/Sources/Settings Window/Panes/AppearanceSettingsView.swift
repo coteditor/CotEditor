@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -99,10 +99,12 @@ struct AppearanceSettingsView: View {
                     Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)), label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
+                        .accessibilityValue(String(localized: "\(self.lineHeight, format: .number) times", table: "AppearanceSettings",
+                                                   comment: "accessibility label for line height"))
                     
                     Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
+                        .accessibilityHidden(true)
                 }
-                .accessibilityElement(children: .combine)
                 .accessibilityLabeledPair(role: .content, id: "lineHeight", in: self.accessibility)
             }
             
@@ -135,7 +137,7 @@ struct AppearanceSettingsView: View {
                     
                     TextField(value: $windowAlpha, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
                         .monospacedDigit()
-                        .environment(\.layoutDirection, .rightToLeft)
+                        .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                         .frame(width: 48)
                 }
                 .accessibilityLabeledPair(role: .content, id: "windowAlpha", in: self.accessibility)

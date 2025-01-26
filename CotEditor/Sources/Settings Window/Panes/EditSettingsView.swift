@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -101,10 +101,13 @@ struct EditSettingsView: View {
                         Text("Delay:", tableName: "EditSettings")
                             .accessibilityLabeledPair(role: .label, id: "selectionInstanceHighlightDelay", in: self.accessibility)
                         Stepper(value: $selectionInstanceHighlightDelay, in: 0...10, step: 0.25, format: .number.precision(.fractionLength(2)), label: EmptyView.init)
-                        .monospacedDigit()
-                        .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)  // width: 40
-                        .accessibilityLabeledPair(role: .content, id: "selectionInstanceHighlightDelay", in: self.accessibility)
+                            .monospacedDigit()
+                            .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)  // width: 40
+                            .accessibilityValue(Duration.seconds(self.selectionInstanceHighlightDelay)
+                                .formatted(.units(allowed: [.seconds], width: .wide, fractionalPart: .show(length: 2))))
+                            .accessibilityLabeledPair(role: .content, id: "selectionInstanceHighlightDelay", in: self.accessibility)
                         Text("seconds", tableName: "EditSettings", comment: "init for delay time")
+                            .accessibilityHidden(true)
                     }
                     .disabled(!self.highlightSelectionInstance)
                     .foregroundStyle(self.highlightSelectionInstance ? .primary : .tertiary)

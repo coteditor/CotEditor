@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -305,6 +306,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="dCk-qa-Upw" id="gK8-NZ-jHN"/>
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="fontSize" id="eG0-pg-3e7"/>
                                         </connections>
                                     </textField>
@@ -316,10 +318,11 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qUW-qA-jm5">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qUW-qA-jm5" customClass="AccessibleStepper" customModule="ControlUI">
                                         <rect key="frame" x="381" y="320" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="4" maxValue="100" doubleValue="4" id="JEm-ad-tne"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="dCk-qa-Upw" id="WOb-g6-1iM"/>
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="fontSize" id="DQA-Be-3I9"/>
                                         </connections>
                                     </stepper>

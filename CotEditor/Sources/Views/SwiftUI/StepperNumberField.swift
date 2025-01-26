@@ -27,6 +27,8 @@ import SwiftUI
 
 struct StepperNumberField: View {
     
+    @Environment(\.layoutDirection) private var layoutDirection
+    
     @Binding private var value: Int
     private var defaultValue: Int?
     private var bounds: ClosedRange<Int>
@@ -59,7 +61,7 @@ struct StepperNumberField: View {
         HStack(spacing: 4) {
             TextField(value: $value, format: .ranged(self.bounds), prompt: self.prompt, label: EmptyView.init)
                 .monospacedDigit()
-                .environment(\.layoutDirection, .rightToLeft)
+                .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                 .frame(width: self.fieldWidth)
             
             Stepper(value: $value, in: self.bounds, step: self.step, label: EmptyView.init)
