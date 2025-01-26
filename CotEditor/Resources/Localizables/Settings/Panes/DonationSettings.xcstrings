@@ -1071,7 +1071,7 @@
       }
     },
     "Open GitHub Sponsors" : {
-      "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization to see whether it exists.",
+      "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

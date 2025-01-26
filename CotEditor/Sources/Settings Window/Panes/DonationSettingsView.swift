@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -191,7 +191,7 @@ struct DonationSettingsView: View {
                         Link(String(localized: "Open in App Store", table: "DonationSettings"), destination: url)
                     }
                     if let url = URL(string: "https://github.com/sponsors/1024jp/") {
-                        Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization to see whether it exists."), destination: url)
+                        Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization."), destination: url)
                     }
                 }
                 .buttonStyle(.bordered)
@@ -216,13 +216,10 @@ struct DonationSettingsView: View {
     private func presentError(_ error: any Error) {
         
         switch error {
+            case StoreKitError.userCancelled:
+                break
             case let error as StoreKitError:
-                switch error {
-                    case .userCancelled:
-                        break
-                    default:
-                        self.storeKitError = error
-                }
+                self.storeKitError = error
             default:
                 self.error = error
         }
