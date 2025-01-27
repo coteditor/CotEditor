@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,15 @@ import Foundation.NSRegularExpression
 
 public extension String {
     
-    /// Transform all camel and pascal case words to snake case.
+    /// Straightens all curly quotes.
+    var straighteningQuotes: String {
+        
+        self.replacing(/[‘’‚‛]/, with: "'")   // U+2018..201B
+            .replacing(/[“”„‟]/, with: "\"")  // U+201C..201F
+    }
+    
+    
+    /// The string transformed all camel- and pascal-case words to snake-case.
     var snakecased: String {
         
         self.ranges(pattern: "(?<=\\w)(?=\\p{uppercase})")
@@ -39,7 +47,7 @@ public extension String {
     }
     
     
-    /// Transform all snake and pascal case words to camel case.
+    /// The string transformed all snake- and pascal-case words to camel-case.
     var camelcased: String {
         
         self.ranges(pattern: "(?<=\\w)(?:\\p{uppercase}|_\\w)")
@@ -50,7 +58,7 @@ public extension String {
     }
     
     
-    /// Transform all snake and camel case words to pascal case.
+    /// The string transformed all snake- and camel-case words to pascal-case.
     var pascalcased: String {
         
         self.ranges(pattern: "(?:\\b|(?<=\\w)_)\\w")
@@ -64,9 +72,10 @@ public extension String {
     
     // MARK: Private Methods
     
-    /// <#Description#>
-    /// - Parameter pattern: <#pattern description#>
-    /// - Returns: <#description#>
+    /// Returns the ranges matching the given regular expression pattern.
+    ///
+    /// - Parameter pattern: The regular expression pattern.
+    /// - Returns: The ranges of matched.
     private func ranges(pattern: String) -> [Range<Index>] {
         
         (try! NSRegularExpression(pattern: pattern))
