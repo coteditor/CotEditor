@@ -25,7 +25,6 @@
 ### TODO
 
 - Localize new strings.
-- Update the What’s New panel.
 
 
 

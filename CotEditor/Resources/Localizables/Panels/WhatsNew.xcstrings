@@ -1,94 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "(Available only in the App Store version)" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(K dispozici pouze ve verzi pro App Store)"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Nur auf der App Store version verfügbar)"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Available only in the App Store version)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(Disponible sólo en la versión para App Store)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(Disponible uniquement dans la version App Store)"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Disponibile solo nella versione dell'App Store)"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "（App Store版でのみ有効）"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(App Store 버전에서만 가능)"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Alleen beschikbaar in de App Store-versie)"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Dostępne tylko w wersji App Store)"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Disponível apenas na versão da AppStore)"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Yalnızca App Store sürümünde kullanılabilir)"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "（仅在App Store版本中可用）"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "（僅可用於敝軟體的App Store發行版）"
-          }
-        }
-      }
-    },
     "Beta" : {
       "comment" : "label for when the app is a prerelease version",
       "localizations" : {
@@ -354,850 +266,166 @@
         }
       }
     },
-    "NewFeature.donation.description" : {
+    "NewFeature.readOnly.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpořte projekt CotEditor tím, že vývojáři nabídnete kávu."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anbieten von Kaffee für Entwickler zur Unterstützung des CotEditor-Projektes"
+            "value" : "Schutz vor versehentlicher Bearbeitung, indem Dokumente auf Schreibschutz gesetzt werden."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Support the CotEditor project by offering coffee to the developer."
+            "value" : "Prevent accidental editing by making documents read-only."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Support the CotEditor project by offering coffee to the developer."
+            "value" : "Prevent accidental editing by making documents read-only."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Apoye el proyecto CotEditor ofreciendo café al desarrollador."
+            "value" : "Impedir la edición accidental haciendo que los documentos sean de sólo lectura."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Soutenez le projet CotEditor en offrant du café au développeur."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sostieni il progetto CotEditor offrendo un caffè allo sviluppatore."
+            "value" : "Empêcher les modifications accidentelles en mettant les documents en lecture seule."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開発者にコーヒーを送ってCotEditorプロジェクトをサポート。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "개발자에게 커피를 사주시면 CotEditor 프로젝트를 후원할 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Steun het CotEditor-project door koffie aan te bieden aan de ontwikkelaar."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wesprzyj projekt CotEditor oferując kawę deweloperowi."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apoie o projeto CotEditor pagando um cafézinho ao desenvolvedor."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geliştiricisine bir kahve ısmarlayarak CotEditor projesini destekleyin."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "支持CotEditor项目，为开发者提供咖啡。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以捐贈咖啡費用的方式支援開發者"
+            "value" : "読み出し専用に変更することで、意図しない編集から書類を守ります。"
           }
         }
       }
     },
-    "NewFeature.donation.label" : {
+    "NewFeature.readOnly.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darování"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spende"
+            "value" : "Schreibschutzmodus"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Donation"
+            "value" : "Read-Only Mode"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Donation"
+            "value" : "Read-Only Mode"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Donación"
+            "value" : "Modo solo lectura"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Donation"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donazione"
+            "value" : "Mode lecture seule"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "寄付"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "후원"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donatie"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darowizna"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Doação"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bağış"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "捐赠"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "捐贈"
+            "value" : "読み出し専用モード"
           }
         }
       }
     },
-    "NewFeature.folderNavigation.description" : {
+    "NewFeature.uniqueFolder.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otevřete složku v CotEditoru a procházejte její obsah v novém bočním panelu."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einen Ordner in CotEditor öffnen, um durch seinen Inhalt in der neuen Seitenleiste zu navigieren."
+            "value" : "Der Name eines übergeordneten Ordners wird im Fenstertitel für Dokumente mit demselben Dateinamen angezeigt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open a folder in CotEditor to navigate its contents in the new sidebar."
+            "value" : "A parent folder name appears in the window title for documents with the same filename."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open a folder in CotEditor to navigate its contents in the new sidebar."
+            "value" : "A parent folder name appears in the window title for documents with the same filename."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Abra una carpeta en CotEditor para navegar por su contenido en la nueva barra lateral."
+            "value" : "En el título de la ventana aparece el nombre de la carpeta principal para los documentos con el mismo nombre de archivo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ouvrez un dossier dans CotEditor pour naviguer dans son contenu dans la nouvelle barre latérale."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri una cartella in CotEditor per sfogliarne i contenuti nella nuova barra laterale."
+            "value" : "Le nom d'un dossier parent apparaît dans le titre de la fenêtre pour les documents portant le même nom de fichier."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フォルダをCotEditorで開いて新しいサイドバーで内容をナビゲート。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor에서 폴더를 열고 내용을 새 사이드바에서 탐색할 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open een map in CotEditor om door de inhoud ervan te navigeren in de nieuwe zijbalk."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otwórz folder w CotEditorze i przeglądaj jego zawartość w nowym pasku bocznym."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abra uma pasta no CotEditor para navegar em seu conteúdo na nova barra lateral."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yeni kenar çubuğunda içeriğine gitmek için bir klasörü CotEditor ile açın."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在CotEditor中打开文件夹，在新的侧边栏中对其内容进行导航。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "用CotEditor直接開啟一個檔案夾、以在視窗邊欄內導覽該檔案夾的內容。"
+            "value" : "同じ名前の書類にはウインドウタイトルに親フォルダの名前が表示されます。"
           }
         }
       }
     },
-    "NewFeature.folderNavigation.label" : {
+    "NewFeature.uniqueFolder.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Navigace ve složce"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordnernavigation"
+            "value" : "Leichtere Unterscheidung von Dokumenten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Folder Navigation"
+            "value" : "Easier to Distinguish Documents"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folder Navigation"
+            "value" : "Easier to Distinguish Documents"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Navegación por carpetas"
+            "value" : "Documentos más fáciles de distinguir"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Navigation des dossiers"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Navigazione delle cartelle"
+            "value" : "Distinction plus facile des documents"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フォルダナビゲーション"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "폴더 탐색"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mapnavigatie"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nawigacja po folderach"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Navegação de Pastas"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klasör Dolaşımı"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文件夹导航"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "檔案夾導覽"
-          }
-        }
-      }
-    },
-    "NewFeature.macOSSupport.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perfektní práce s novým systémem macOS 15."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mit dem neuen macOS 15 perfekt funktionieren."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Work perfectly with new macOS 15."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Work perfectly with new macOS 15."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Funciona perfectamente con el nuevo macOS 15."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Fonctionne parfaitement avec le nouveau macOS 15."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pienamente compatibile con macOS 15."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新しいmacOSを完全にサポートしています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "새 macOS 15에서 완벽하게 작동합니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Werkt perfect met de nieuwe macOS 15."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Doskonale współpracuje z nowym systemem macOS 15."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Funciona perfeitamente no novo macOS 15."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yeni macOS 15 ile sorunsuzca çalışır."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完美兼容全新的macOS 15"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "可完美運作於macOS 15系統平台。"
-          }
-        }
-      }
-    },
-    "NewFeature.macOSSupport.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpora systému macOS 15 Sequoia"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterstützung für macOS 15 Sequoia"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "macOS 15 Sequoia Support"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 15 Sequoia Support"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Compatibilidad con macOS 15 Sequoia"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prise en charge de macOS 15 Sequoia"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Supporto di macOS 15 Sequoia"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 15サポート"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 15 Sequoia 지원"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ondersteuning voor macOS 15 Sequoia"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wsparcie dla macOS 15 Sequoia"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suporte ao macOS 15 Sequoia"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 15 Sequoia Desteği"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "支持macOS 15 Sequoia"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "對macOS 15 Sequoia的支援"
-          }
-        }
-      }
-    },
-    "NewFeature.writingTools.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nadcházející psací nástroje (Writing Tools) pro Apple Intelligence budou fungovat správně."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die kommenden Schreibwerkzeuge von Apple Intelligence werden ordnungsgemäß funktionieren."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The upcoming Writing Tools powered by Apple Intelligence will work properly."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The upcoming Writing Tools powered by Apple Intelligence will work properly."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Las próximas Herramientas de Escritura de Apple Intelligence funcionarán correctamente."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Les prochains outils d'écriture d'Apple Intelligence fonctionneront correctement."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pienamente compatibile con i\nprossimi Strumenti di Scrittura di Apple Intelligence"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "きたるApple Intelligenceの作文ツールもしっかり動作します。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "공개 예정인 Apple Intelligence 글쓰기 도구가 잘 작동합니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "De aankomende Schrijfhulp van Apple Intelligence zullen goed werken."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nadchodzące Narzędzia pisania napędzane mocą Apple Intelligence będą działać prawidłowo."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Writing Tools do Apple Intelligence funcionará corretamente."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence’ın yakında kullanıma sunacağı Yazma Araçları düzgünce çalışacak."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "即将来到的Apple智能写作工具将正确工作。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "即將由Apple推出的智能寫作工具（Writing Tools by Apple Intelligence）將可在敝App內正常工作。"
-          }
-        }
-      }
-    },
-    "NewFeature.writingTools.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Připraven na Apple Intelligence"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence bereit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Apple Intelligence Ready"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence Ready"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Listo para Apple Intelligence"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prêt pour Apple Intelligence"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronto per Apple Intelligence"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence対応"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 대응"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Klaar voor Apple Intelligentie"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gotowy na Apple Intelligence"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronto para o Apple Intelligence"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence’a Hazır"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已为Apple智能预备好"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已對Apple Intelligence就緒"
-          }
-        }
-      }
-    },
-    "Open Donation Settings" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otevřít nastavení Darování"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spende-Einstellungen öffnen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Donation Settings"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Abrir ajustes de la donación"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ouvrir les paramètres de donation"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri le impostazioni della donazione"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "寄付設定を開く"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "후원 설정 열기"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open donatie-instellingen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otwórz ustawienia darowizny"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir Configurações de Doação"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bağış Ayarlarını Aç"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "打开捐赠设定"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "開啟捐贈設定"
+            "value" : "書類を見分けやすく"
           }
         }
       }

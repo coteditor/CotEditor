@@ -25,7 +25,6 @@
 
 import SwiftUI
 import AppKit
-import ControlUI
 import SemanticVersioning
 
 struct WhatsNewView: View {
@@ -38,7 +37,7 @@ struct WhatsNewView: View {
     
     var body: some View {
         
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             HStack(alignment: .firstTextBaseline) {
                 Text("What’s New in CotEditor \(self.versionString)", tableName: "WhatsNew", comment: "%@ is version number")
                     .font(.title)
@@ -55,26 +54,35 @@ struct WhatsNewView: View {
                 }
             }
             
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 20) {
                 ForEach(NewFeature.allCases, id: \.self) { feature in
                     HStack {
                         feature.image
-                            .font(.system(size: 44, weight: .thin))
+                            .font(.system(size: 36, weight: .thin))
                             .foregroundStyle(.tint)
                             .frame(width: 60, alignment: .center)
                             .accessibilityHidden(true)
                         
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 4) {
                             Text(feature.label)
-                                .font(.title3)
-                                .fontWeight(.medium)
+                                .font(.system(size: 14, weight: .semibold))
                                 .accessibilityHeading(.h2)
                             
                             Text(feature.description)
+                                .font(.body.leading(.tight))
                                 .fixedSize(horizontal: false, vertical: true)
-                                .opacity(0.75)
+                                .foregroundStyle(.secondary)
                             
                             feature.supplementalView
+                        }
+                        
+                        if let anchor = feature.helpAnchor {
+                            Spacer()
+                            VStack {
+                                Spacer()
+                                HelpLink(anchor: anchor)
+                                    .controlSize(.small)
+                            }
                         }
                     }
                 }
@@ -98,6 +106,7 @@ struct WhatsNewView: View {
                 Text("Continue", tableName: "WhatsNew")
                     .frame(minWidth: 120)
             }
+            .controlSize(.large)
             .keyboardShortcut(.cancelAction)
             .buttonStyle(.borderedProminent)
         }
@@ -123,34 +132,19 @@ struct WhatsNewView: View {
 
 private enum NewFeature: CaseIterable {
     
-    static let version = Version(5, 0, 0)
+    static let version = Version(5, 1, 0)
     
-    case folderNavigation
-    case macOSSupport
-    case writingTools
-    case donation
+    case uniqueFolder
+    case readOnly
     
-#if SPARKLE
-    private static let isInAppPurchaseAvailable = false
-#else
-    private static let isInAppPurchaseAvailable = true
-#endif
     
     var image: Image {
         
         switch self {
-            case .folderNavigation:
-                Image(systemName: "folder")
-            case .macOSSupport:
-                Image(systemName: "sparkles")
-            case .writingTools:
-                if #available(macOS 15, *) {
-                    Image(systemName: "apple.intelligence")
-                } else {
-                    Image(systemName: "bubble.and.pencil")
-                }
-            case .donation:
-                Image(.bagCoffee)
+            case .uniqueFolder:
+                Image(systemName: "macwindow.on.rectangle")
+            case .readOnly:
+                Image(systemName: "pencil.slash")
         }
     }
     
@@ -158,18 +152,12 @@ private enum NewFeature: CaseIterable {
     var label: String {
         
         switch self {
-            case .folderNavigation:
-                String(localized: "NewFeature.folderNavigation.label",
-                       defaultValue: "Folder Navigation", table: "WhatsNew")
-            case .macOSSupport:
-                String(localized: "NewFeature.macOSSupport.label",
-                       defaultValue: "macOS 15 Sequoia Support", table: "WhatsNew")
-            case .writingTools:
-                String(localized: "NewFeature.writingTools.label",
-                       defaultValue: "Apple Intelligence Ready", table: "WhatsNew")
-            case .donation:
-                String(localized: "NewFeature.donation.label",
-                       defaultValue: "Donation", table: "WhatsNew")
+            case .uniqueFolder:
+                String(localized: "NewFeature.uniqueFolder.label",
+                       defaultValue: "Easier to Distinguish Documents", table: "WhatsNew")
+            case .readOnly:
+                String(localized: "NewFeature.readOnly.label",
+                       defaultValue: "Read-Only Mode", table: "WhatsNew")
         }
     }
     
@@ -177,18 +165,23 @@ private enum NewFeature: CaseIterable {
     var description: String {
         
         switch self {
-            case .folderNavigation:
-                String(localized: "NewFeature.folderNavigation.description",
-                       defaultValue: "Open a folder in CotEditor to navigate its contents in the new sidebar.", table: "WhatsNew")
-            case .macOSSupport:
-                String(localized: "NewFeature.macOSSupport.description",
-                       defaultValue: "Work perfectly with new macOS 15.", table: "WhatsNew")
-            case .writingTools:
-                String(localized: "NewFeature.writingTools.description",
-                       defaultValue: "The upcoming Writing Tools powered by Apple Intelligence will work properly.", table: "WhatsNew")
-            case .donation:
-                String(localized: "NewFeature.donation.description",
-                       defaultValue: "Support the CotEditor project by offering coffee to the developer.", table: "WhatsNew")
+            case .uniqueFolder:
+                String(localized: "NewFeature.uniqueFolder.description",
+                       defaultValue: "A parent folder name appears in the window title for documents with the same filename.", table: "WhatsNew")
+            case .readOnly:
+                String(localized: "NewFeature.readOnly.description",
+                       defaultValue: "Prevent accidental editing by making documents read-only.", table: "WhatsNew")
+        }
+    }
+    
+    
+    var helpAnchor: String? {
+        
+        switch self {
+            case .readOnly:
+                "howto_readonly"
+            default:
+                nil
         }
     }
     
@@ -196,19 +189,6 @@ private enum NewFeature: CaseIterable {
     @MainActor @ViewBuilder var supplementalView: some View {
         
         switch self {
-            case .donation:
-                if Self.isInAppPurchaseAvailable {
-                    Button(String(localized: "Open Donation Settings", table: "WhatsNew")) {
-                        SettingsWindowController.shared.openPane(.donation)
-                    }
-                    .buttonStyle(.capsule)
-                } else {
-                    Text("(Available only in the App Store version)", tableName: "WhatsNew")
-                        .foregroundStyle(.secondary)
-                        .controlSize(.small)
-                        .fixedSize()
-                }
-                
             default:
                 EmptyView()
         }

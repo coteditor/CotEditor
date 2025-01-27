@@ -265,8 +265,8 @@ private enum BundleIdentifier {
         
         let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init)
         
-        // show What's New panel for CotEditor 5.0.0
-        if let lastVersion, lastVersion <= 666 {
+        // show What's New panel for CotEditor 5.1.0
+        if let lastVersion, lastVersion < 693 {
             self.showWhatsNew(nil)
         }
         
