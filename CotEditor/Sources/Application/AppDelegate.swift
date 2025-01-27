@@ -96,8 +96,8 @@ private enum BundleIdentifier {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var aboutPanel = NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
-    private lazy var whatsNewPanel = NSPanel(view: WhatsNewView())
+    private weak var aboutPanel: NSPanel?
+    private weak var whatsNewPanel: NSPanel?
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -388,14 +388,20 @@ private enum BundleIdentifier {
     /// Shows the about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        self.aboutPanel.makeKeyAndOrderFront(sender)
+        let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
+        panel.makeKeyAndOrderFront(sender)
+        
+        self.aboutPanel = panel
     }
     
     
     /// Shows the What's New panel.
     @IBAction func showWhatsNew(_ sender: Any?) {
         
-        self.whatsNewPanel.makeKeyAndOrderFront(sender)
+        let panel = self.whatsNewPanel ?? NSPanel(view: WhatsNewView())
+        panel.makeKeyAndOrderFront(sender)
+        
+        self.whatsNewPanel = panel
     }
     
     
