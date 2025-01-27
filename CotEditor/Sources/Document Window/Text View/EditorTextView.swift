@@ -946,17 +946,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    override func setNeedsDisplay(_ invalidRect: NSRect) {
-        
-        // expand rect as a workaround for multiple cursors (2018-11 macOS 10.14)
-        if self.hasMultipleInsertions {
-            super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-        }
-        
-        super.setNeedsDisplay(invalidRect)
-    }
-    
-    
     override func viewWillDraw() {
         
         super.viewWillDraw()
