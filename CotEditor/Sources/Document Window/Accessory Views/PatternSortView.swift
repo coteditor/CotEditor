@@ -84,12 +84,12 @@ struct PatternSortView: View {
                 }.padding(.bottom)
             }
             
-            Grid(alignment: .leadingFirstTextBaseline) {
+            Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 14) {
                 GridRow {
                     Text("Sort key:", tableName: "PatternSort")
                         .gridColumnAlignment(.trailing)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 6) {
                         Picker(selection: $sortKey) {
                             ForEach(SortKey.allCases, id: \.self) {
                                 Text($0.label)
@@ -120,7 +120,7 @@ struct PatternSortView: View {
                 GridRow {
                     Text("Sort option:", tableName: "PatternSort")
                     
-                    VStack(alignment: .leading, spacing: 6) {  // 6 is natural AppKit spacing
+                    VStack(alignment: .leading, spacing: 6) {
                         Toggle(String(localized: "Ignore case", table: "PatternSort"),
                                isOn: self.$options.ignoresCase)
                         Toggle(String(localized: "Respect language rules", table: "PatternSort"),
@@ -146,6 +146,7 @@ struct PatternSortView: View {
                     self.parent?.dismiss(nil)
                 }.disabled(self.error != nil)
             }
+            .padding(.top, 8)
         }
         .onAppear {
             self.validate()
@@ -222,7 +223,7 @@ struct ColumnSortPatternView: View {
     
     var body: some View {
         
-        HStack {
+        HStack(alignment: .firstTextBaseline) {
             LabeledContent(String(localized: "Delimiter:", table: "PatternSort")) {
                 TextField(text: $pattern.delimiter, prompt: Text(verbatim: ","), label: EmptyView.init)
                     .frame(width: 32)
@@ -252,7 +253,7 @@ struct RegularExpressionSortPatternView: View {
             GridRow {
                 Text("Pattern:", tableName: "PatternSort")
                     .accessibilityLabeledPair(role: .label, id: "pattern", in: self.accessibility)
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 6) {
                     RegexTextField(text: $pattern.searchPattern, prompt: String(localized: "Regular Expression", table: "PatternSort", comment: "placeholder for regular expression pattern field"))
                         .leadingInset(18)
                         .overlay(alignment: .leadingLastTextBaseline) {

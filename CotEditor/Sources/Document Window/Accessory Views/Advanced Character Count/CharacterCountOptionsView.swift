@@ -56,7 +56,7 @@ struct CharacterCountOptionsView: View {
     
     var body: some View {
         
-        Grid(alignment: .topLeading) {
+        Grid(alignment: .topLeading, verticalSpacing: 14) {
             GridRow {
                 Text("Whitespace:", tableName: "AdvancedCharacterCount", comment: "label")
                     .gridColumnAlignment(.trailing)
@@ -89,7 +89,6 @@ struct CharacterCountOptionsView: View {
                     .fixedSize()
                     .accessibilityLabeledPair(role: .content, id: "unit", in: self.accessibility)
 
-                    
                     Text(self.unit.description)
                         .foregroundStyle(.secondary)
                         .controlSize(.small)

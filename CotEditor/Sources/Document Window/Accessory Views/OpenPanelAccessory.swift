@@ -89,6 +89,7 @@ struct OpenPanelAccessory: View {
                             self.model.options.isReadOnly = false
                         }
                     }
+                    .padding(.bottom, -4)  // negative padding to keep 6 px margin in Form
                 
                 Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
                     .onChange(of: self.showsHiddenFiles) { (_, newValue) in

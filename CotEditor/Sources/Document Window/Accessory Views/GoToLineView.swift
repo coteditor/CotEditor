@@ -70,6 +70,7 @@ struct GoToLineView: View {
                     self.parent?.dismiss(nil)
                 }
             }
+            .padding(.top, 8)
         }
         .onAppear {
             self.focus = .field
