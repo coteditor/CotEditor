@@ -836,6 +836,12 @@
     "DocumentError.notEditable.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument nelze upravovat."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -866,10 +872,40 @@
             "value" : "Le document n’est pas modifiable."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il documento non è modificabile."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "この書類は編集できません。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O documento não é editável."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge düzenlenebilir değil."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该文档不可编辑。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "該文件無法編輯。"
           }
         }
       }
@@ -877,6 +913,12 @@
     "DocumentError.notEditable.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chcete-li provést změny v obsahu dokumentu, povolte nejprve jeho úpravy."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -907,10 +949,40 @@
             "value" : "Pour modifier le contenu du document, autoriser d'abord les modifications."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per modificare il contenuto del documento, bisogna prima consentire le modifiche."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の内容を変更するためには、まず書類を編集可能にしてください。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para fazer alterações no conteúdo do documento, primeiro permita a edição."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgenin içeriğinde değişiklik yapmak için önce onu düzenlemeye izin　verin."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "若要修改文档内容，请先允许编辑。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "若要修改文件內容，請先允許編輯。"
           }
         }
       }
@@ -3565,6 +3637,12 @@
     "InconsistentLineEndingAlert.informativeText.notEditable" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nejčastější konec řádku v tomto dokumentu je %@."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3595,10 +3673,40 @@
             "value" : "La fin de ligne la plus courante dans le document est %@."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il fine riga più frequente in questo documento è %@."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "この書類で最も使われている改行コードは%@です。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os finais de linha mais comuns neste documento são %@."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu belgedeki en yaygın satır sonu %@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文档中最常见的行尾格式是%@。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文件中的最常見換行符號為%@。"
           }
         }
       }

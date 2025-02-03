@@ -194,6 +194,12 @@
     "ScriptError.notEditable.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument nelze upravovat."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -224,6 +230,12 @@
             "value" : "Le document n’est pas modifiable."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il documento non è modificabile."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -234,6 +246,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het document kan niet worden bewerkt."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O documento não é editável."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge düzenlenebilir değil."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该文档不可编辑。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "該文件無法編輯。"
           }
         }
       }

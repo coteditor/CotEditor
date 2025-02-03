@@ -11239,8 +11239,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Fokus na další rozdělený editor"
+            "state" : "translated",
+            "value" : "Přesunout soustředění na další editor"
           }
         },
         "de" : {
@@ -11275,8 +11275,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Attiva il riquadro di editing successivo"
+            "state" : "translated",
+            "value" : "Sposta il focus sul prossimo editor"
           }
         },
         "ja" : {
@@ -11305,20 +11305,20 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Focar no Editor Dividido Seguinte"
+            "state" : "translated",
+            "value" : "Mover o Foco para o Próximo Editor"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Odak Bir Sonraki Bölünmüş Düzenleyicide"
+            "state" : "translated",
+            "value" : "Odağı Sonraki Düzenleyiciye Taşı"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "将焦点移到下一个编辑器"
+            "value" : "将焦点移至下一个编辑器"
           }
         },
         "zh-Hant" : {
@@ -11335,8 +11335,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Fokus na předchozí rozdělený editor"
+            "state" : "translated",
+            "value" : "Přesunout soustředění na předchozí editor"
           }
         },
         "de" : {
@@ -11371,8 +11371,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Attiva il riquadro di editing precedente"
+            "state" : "translated",
+            "value" : "Sposta il focus sull'editor precedente"
           }
         },
         "ja" : {
@@ -11401,26 +11401,26 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Focar no Editor Dividido Anterior"
+            "state" : "translated",
+            "value" : "Mover o Foco para o Editor Anterior"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Odak Bir Önceki Bölünmüş Düzenleyicide"
+            "state" : "translated",
+            "value" : "Odağı Önceki Düzenleyiciye Taşı"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "将焦点移到上一个编辑器"
+            "value" : "将焦点移至上一个编辑器"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將焦點移至上一個編輯器"
+            "value" : "移動焦點至上一個編輯器"
           }
         }
       }
@@ -18343,8 +18343,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vícenásobné nahrazení…"
+            "state" : "translated",
+            "value" : "Spravovat vícenásobné nahrazení…"
           }
         },
         "de" : {
@@ -18416,19 +18416,19 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Çoklu Değiştirmeyi Yönet…"
+            "value" : "Birden Çok Değiştirmeyi Yönet…"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "多重替换…"
+            "value" : "管理多重替换…"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "多重取代⋯"
+            "state" : "translated",
+            "value" : "管理多重替換…"
           }
         }
       }

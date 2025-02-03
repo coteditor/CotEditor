@@ -6371,8 +6371,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Otevřít jako textový soubor"
+            "state" : "translated",
+            "value" : "Otevřít jako prostý text"
           }
         },
         "de" : {
@@ -6401,7 +6401,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Apri come testo semplice"
           }
         },
@@ -6431,26 +6431,26 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Abrir como Texto Simples"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Metin Dosyası Olarak Aç"
+            "state" : "translated",
+            "value" : "Düz Metin Olarak Aç"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "以文本方式打开"
+            "state" : "translated",
+            "value" : "以纯文本打开"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "以文字方式開啟"
+            "state" : "translated",
+            "value" : "以純文字開啟"
           }
         }
       }
@@ -8237,6 +8237,12 @@
     "The document is not editable." : {
       "comment" : "tooltip",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument nelze upravovat."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8261,6 +8267,12 @@
             "value" : "Le document n’est pas modifiable."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il documento non è modificabile."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8271,6 +8283,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het document kan niet worden bewerkt."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O documento não é editável."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge düzenlenebilir değil."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该文档不可编辑。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "該文件無法編輯。"
           }
         }
       }
@@ -8563,6 +8599,12 @@
     "Toolbar.editable.tooltip.off" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zabránit úpravě dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8593,10 +8635,40 @@
             "value" : "Empêcher la modification du document"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impedisci che il documento venga modificato"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類を編集不可にする"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impedir que o documento seja editado"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgenin düzenlenmesini engelle"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止文档被编辑"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止文件被編輯"
           }
         }
       }
@@ -8604,6 +8676,12 @@
     "Toolbar.editable.tooltip.on" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolit úpravu dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8634,10 +8712,40 @@
             "value" : "Autoriser la modification du document"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti la modifica del documento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類を編集可能にする"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permitir a edição do documento"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgeyi düzenlemeye izin ver"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许编辑文档"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許編輯文件"
           }
         }
       }

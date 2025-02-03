@@ -269,6 +269,12 @@
     "NewFeature.readOnly.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nechtěným úpravám dokumentů zabráníte nastavením jen ke čtení."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -299,10 +305,40 @@
             "value" : "Empêcher les modifications accidentelles en mettant les documents en lecture seule."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evita modifiche involontarie rendendo i documenti non modificabili."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み出し専用に変更することで、意図しない編集から書類を守ります。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evite edições acidentais tornando os documentos somente leitura."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgeleri salt okunur yaparak yanlışlıkla düzenlemeyi önleyin."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过将文档设为只读，防止意外编辑。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將文件設為唯讀，避免誤操作編輯。"
           }
         }
       }
@@ -310,6 +346,12 @@
     "NewFeature.readOnly.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Režim jen ke čtení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -340,10 +382,40 @@
             "value" : "Mode lecture seule"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo in sola lettura"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み出し専用モード"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo Somente Leitura"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salt Okunur Kip"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "只读模式"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "唯讀模式"
           }
         }
       }
@@ -351,6 +423,12 @@
     "NewFeature.uniqueFolder.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U dokumentů se stejným názvem se v názvu okna zobrazí název nadřazené složky."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -381,10 +459,40 @@
             "value" : "Le nom d'un dossier parent apparaît dans le titre de la fenêtre pour les documents portant le même nom de fichier."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nei documenti con lo stesso nome, la finestra del titolo contiene il nome della cartella superiore."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "同じ名前の書類にはウインドウタイトルに親フォルダの名前が表示されます。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O nome do diretório pai aparece no título da janela para documentos com o mesmo nome de arquivo."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aynı adlı belgeler için belgenin üst klasörün adı başlık çubuğunda görünür."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "对于文件名相同的文档，父文件夹名称将显示在窗口标题中。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "具有相同檔案名稱的文件會顯示其父檔案夾名稱於視窗標題中。"
           }
         }
       }
@@ -392,6 +500,12 @@
     "NewFeature.uniqueFolder.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jednodušší rozlišování dokumentů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -422,10 +536,40 @@
             "value" : "Distinction plus facile des documents"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facilita l'individuazione dei documenti"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類を見分けやすく"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais Fácil de Distinguir Documentos"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha Kolay Ayırt Edilebilen Belgeler"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更易区分文档"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更容易區分文件"
           }
         }
       }

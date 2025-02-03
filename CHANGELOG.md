@@ -22,9 +22,9 @@
 - Fixed an issue in CotEditor 5.0.8 where the file path argument passed to CotEditor scripts was percent-encoded.
 
 
-### TODO
+### Known Issue
 
-- Localize new strings.
+- Some text are not localized yet in Dutch, Korean, and Polish.
 
 
 
