@@ -48,7 +48,7 @@ struct SnippetsSettingsView: View {
                 HelpLink(anchor: "settings_snippets")
             }
         }
-        .padding(.top, 10)
+        .padding(.top, 12)
         .scenePadding([.horizontal, .bottom])
         .frame(width: 600, height: 450)
     }
@@ -317,7 +317,7 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
     var body: some View {
         
         VStack {
-            HStack {
+            HStack(alignment: .firstTextBaseline) {
                 Text("Insertion format:", tableName: "SnippetsSettings")
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
                 Spacer()

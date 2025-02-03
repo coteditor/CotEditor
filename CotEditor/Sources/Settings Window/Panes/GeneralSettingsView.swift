@@ -55,12 +55,12 @@ struct GeneralSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 12) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 14) {
             GridRow {
                 Text("On startup:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 6) {
                     Toggle(String(localized: "Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
                     
                     Text("When nothing else is open:", tableName: "GeneralSettings")
@@ -84,7 +84,7 @@ struct GeneralSettingsView: View {
                 Text("Document save:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
                     Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
                         .onChange(of: self.enablesAutosaveInPlace) { (_, newValue) in
                             if newValue != self.initialEnablesAutosaveInPlace {
@@ -108,6 +108,7 @@ struct GeneralSettingsView: View {
                         } message: {
                             Text("Do you want to restart CotEditor now?", tableName: "GeneralSettings")
                         }
+                    
                     Text("A system feature that automatically overwrites your files while editing. Even if turned off, CotEditor covertly creates a backup in case it unexpectedly quits.", tableName: "GeneralSettings")
                         .foregroundStyle(.secondary)
                         .controlSize(.small)
@@ -119,16 +120,16 @@ struct GeneralSettingsView: View {
             
             
             GridRow {
-                Text("When document is changed by another application:",
-                     tableName: "GeneralSettings")
-                .accessibilityLabeledPair(role: .label, id: "documentConflictOption", in: self.accessibility)
-                .gridCellColumns(2)
-            }.padding(.bottom, -6)
+                Text("When document is changed by another application:", tableName: "GeneralSettings")
+                    .accessibilityLabeledPair(role: .label, id: "documentConflictOption", in: self.accessibility)
+                    .gridCellColumns(2)
+            }.padding(.bottom, -8)
             
             GridRow {
                 Color.clear
                     .frame(width: 1, height: 1)
                     .gridCellUnsizedAxes([.vertical, .vertical])
+                    .accessibilityHidden(true)
                 
                 Picker(selection: $documentConflictOption) {
                     ForEach(DocumentConflictOption.allCases, id: \.self) {
@@ -156,6 +157,7 @@ struct GeneralSettingsView: View {
             }
             
             Divider()
+                .padding(.vertical, 6)
             
             GridRow {
                 Text("Command-line tool:", tableName: "GeneralSettings")
@@ -187,6 +189,7 @@ struct GeneralSettingsView: View {
             
             if self.showsUpdaterSettings {
                 Divider()
+                    .padding(.vertical, 6)
                 UpdaterView()
             }
             
@@ -199,7 +202,8 @@ struct GeneralSettingsView: View {
             self.commandLineToolStatus = CommandLineToolManager.shared.validateSymlink()
             self.commandLineToolURL = CommandLineToolManager.shared.linkURL
         }
-        .scenePadding()
+        .padding(.top, 14)
+        .scenePadding([.horizontal, .bottom])
         .frame(minWidth: 600, idealWidth: 600)
     }
 }
@@ -217,10 +221,10 @@ private struct UpdaterView: View {
             Text("Software update:", tableName: "GeneralSettings")
                 .gridColumnAlignment(.trailing)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 6) {
                 Toggle(String(localized: "Check for updates automatically", table: "GeneralSettings"), isOn: $enableAutomaticUpdateChecks)
                 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 2) {
                     Toggle(String(localized: "Update to prereleases when available", table: "GeneralSettings"), isOn: $checksUpdatesForBeta)
                     
                     if Bundle.main.version!.isPrerelease {

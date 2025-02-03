@@ -129,7 +129,7 @@ struct WindowSettingsView: View {
             }
             
             Divider()
-                .padding(.vertical, 4)
+                .padding(.vertical, 6)
             
             GridRow {
                 Text("Show:", tableName: "WindowSettings")
@@ -175,7 +175,7 @@ struct WindowSettingsView: View {
             }
             
             Divider()
-                .padding(.vertical, 4)
+                .padding(.vertical, 6)
             
             GridRow {
                 Text("Line wrapping:", tableName: "WindowSettings")
@@ -223,14 +223,14 @@ struct WindowSettingsView: View {
             }
             
             Divider()
-                .padding(.vertical, 4)
+                .padding(.vertical, 6)
             
             GridRow {
                 Text("Status bar shows:", tableName: "WindowSettings")
                     .accessibilityLabeledPair(role: .label, id: "sideBarShows", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
-                HStack(spacing: 20) {
+                HStack(alignment: .firstTextBaseline, spacing: 20) {
                     VStack(alignment: .leading, spacing: 6) {
                         Toggle(String(localized: "Line count", table: "WindowSettings"), isOn: $showStatusBarLines)
                         Toggle(String(localized: "Character count", table: "WindowSettings"), isOn: $showStatusBarChars)
@@ -251,7 +251,8 @@ struct WindowSettingsView: View {
                 HelpLink(anchor: "settings_window")
             }.padding(.top, -8)
         }
-        .scenePadding()
+        .padding(.top, 14)
+        .scenePadding([.horizontal, .bottom])
         .frame(minWidth: 600)
     }
 }

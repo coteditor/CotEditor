@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ struct FormatSettingsView: View {
             }
             
             Divider()
-                .padding(.vertical, 8)
+                .padding(.vertical, 6)
             
             GridRow {
                 Text("Default encoding:", tableName: "FormatSettings")
@@ -123,7 +123,7 @@ struct FormatSettingsView: View {
             }
             
             Divider()
-                .padding(.vertical, 8)
+                .padding(.vertical, 6)
             
             GridRow {
                 Text("Default syntax:", tableName: "FormatSettings")
@@ -173,7 +173,8 @@ struct FormatSettingsView: View {
         .onReceive(SyntaxManager.shared.$settingNames) { settingNames in
             self.syntaxNames = settingNames
         }
-        .scenePadding()
+        .padding(.top, 14)
+        .scenePadding([.horizontal, .bottom])
         .frame(width: 600)
     }
 }

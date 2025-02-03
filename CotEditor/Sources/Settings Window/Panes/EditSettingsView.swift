@@ -50,7 +50,7 @@ struct EditSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 12) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 14) {
             GridRow {
                 Text("Indentation:", tableName: "EditSettings")
                     .gridColumnAlignment(.trailing)
@@ -121,7 +121,8 @@ struct EditSettingsView: View {
                 HelpLink(anchor: "settings_edit")
             }
         }
-        .scenePadding()
+        .padding(.top, 14)
+        .scenePadding([.horizontal, .bottom])
         .frame(minWidth: 600)
     }
 }
