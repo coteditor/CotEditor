@@ -884,6 +884,12 @@
             "value" : "この書類は編集できません。"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentu nie można edytować."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -959,6 +965,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の内容を変更するためには、まず書類を編集可能にしてください。"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aby dokonać zmian w zawartości dokumentu, najpierw pozwól na jego edycję."
           }
         },
         "pt" : {
@@ -3683,6 +3695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この書類で最も使われている改行コードは%@です。"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Najczęstszym końcem wiersza w tym dokumencie jest %@."
           }
         },
         "pt" : {
