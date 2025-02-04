@@ -6,9 +6,9 @@
 ### New Features
 
 - Append the nearest unique ancestor folder name to the document title if multiple documents with the same name are opened.
-- The new “prevent editing” option that prevents documents from being unintentionally edited.
-- Introduce the `--readonly` (`-r`) option to the `cot` command-line tool to open documents as read-only.
+- The new “prevent editing” command that prevents documents from being unintentionally edited.
 - Introduce the new AppleScript parameter `editable` to document objects.
+- Introduce the `--readonly` (`-r`) option to the `cot` command-line tool to open documents as read-only.
 - Read input from the standard input when the `cot` command-line tool is used with the `-` option.
 
 
@@ -19,12 +19,12 @@
 
 ### Fixes
 
-- Fixed an issue in CotEditor 5.0.8 where the file path argument passed to CotEditor scripts was percent-encoded.
+- Fixed an issue in CotEditor 5.0.8 where the file path argument passed to CotEditor scripts is percent-encoded.
 
 
 ### Known Issue
 
-- Some text are not localized yet in Dutch, Korean, and Polish.
+- Some text is not localized yet in Dutch, Korean, and Polish.
 
 
 
