@@ -317,6 +317,12 @@
             "value" : "読み出し専用に変更することで、意図しない編集から書類を守ります。"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapobiegnij przypadkowej edycji, ustawiając dokument jako tylko do odczytu."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -392,6 +398,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み出し専用モード"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryb tylko do odczytu"
           }
         },
         "pt" : {
@@ -471,6 +483,12 @@
             "value" : "同じ名前の書類にはウインドウタイトルに親フォルダの名前が表示されます。"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dla dokumentów o tej samej nazwie pliku, w tytule okna wyświetlana jest nazwa folderu nadrzędnego."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -546,6 +564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類を見分けやすく"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Łatwiejsze rozróżnianie dokumentów"
           }
         },
         "pt" : {

@@ -8285,6 +8285,12 @@
             "value" : "Het document kan niet worden bewerkt."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentu nie można edytować."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8647,6 +8653,12 @@
             "value" : "書類を編集不可にする"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie pozwalaj na edycję dokumentu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8722,6 +8734,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類を編集可能にする"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozwalaj na edycję dokumentu"
           }
         },
         "pt" : {

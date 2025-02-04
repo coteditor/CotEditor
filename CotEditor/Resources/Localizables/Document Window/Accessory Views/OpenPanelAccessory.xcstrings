@@ -135,6 +135,12 @@
             "value" : "読み出し専用で開く"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz tylko do odczytu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
