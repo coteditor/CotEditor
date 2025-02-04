@@ -1,6 +1,20 @@
 # Change Log
 
-5.1.0 (694)
+5.1.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Add the Polish localizations for strings newly added in CotEditor 5.1.0.
+
+
+### Known Issue
+
+- Some text is not localized yet in Dutch and Korean.
+
+
+
+5.1.0-beta (694)
 --------------------------
 
 ### New Features
