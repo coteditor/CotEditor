@@ -1303,9 +1303,9 @@ extension Document: EditorSource {
                                        defaultValue: "The document has inconsistent line endings.")
             alert.informativeText = isEditable
                 ? String(localized: "InconsistentLineEndingAlert.informativeText",
-                         defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
+                         defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line ending in this document?")
                 : String(localized: "InconsistentLineEndingAlert.informativeText.notEditable",
-                         defaultValue: "The most common line endings in this document is \(self.lineEnding.label).")
+                         defaultValue: "The most common line ending in this document is \(self.lineEnding.label).")
             if self.isEditable {
                 alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
                                                   defaultValue: "Convert",

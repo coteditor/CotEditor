@@ -3556,32 +3556,32 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Chcete převést všechny konce řádků do %@, což jsou nejčastější konce řádků v tomto dokumentu?"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Möchtest du alle Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?"
+            "value" : "Möchtest du alle Zeilenenden in %@ umwandeln, das häufigste Zeilenende in diesem Dokument?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Do you want to convert all line endings to %@, the most common line endings in this document?"
+            "value" : "Do you want to convert all line endings to %@, the most common line ending in this document?"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Do you want to convert all line endings to %@, the most common line endings in this document?"
+            "value" : "Do you want to convert all line endings to %@, the most common line ending in this document?"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Quieres convertir todos los finales de línea en %@, los finales de línea más comunes en este documento?"
+            "state" : "needs_review",
+            "value" : "¿Quieres convertir todos los finales de línea en %@, el final de línea más comunes en este documento?"
           }
         },
         "fr" : {
@@ -3592,7 +3592,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Si desidera convertire tutti i fine riga in %@, il fine riga più comune del documento?"
           }
         },
@@ -3610,25 +3610,25 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Wil je alle regeleinden converteren naar %@, de meest voorkomende regeleinden in dit document?"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Czy chcesz zamienić wszystkie zakończenia wiersza na %@, które najczęściej występuje w tym dokumencie?"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Você deseja converter todos os finais de linha para %@, a maior parte dos finais de linha desse arquivo?"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tüm satır sonlarını bu belgedeki en yaygın satır sonu olan %@ olarak değiştirmek istiyor musunuz?"
           }
         },
@@ -3651,32 +3651,32 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Nejčastější konec řádku v tomto dokumentu je %@."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "die häufigsten Zeilenenden in diesem Dokument　sind %@."
+            "value" : "Das häufigste Zeilenende in diesem Dokument ist %@."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The most common line endings in this document is %@."
+            "value" : "The most common line ending in this document is %@."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The most common line endings in this document is %@."
+            "value" : "The most common line ending in this document is %@."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Los finales de línea más comunes en este documento son %@."
+            "value" : "La final de línea más comunes en este documento es %@."
           }
         },
         "fr" : {
@@ -3687,7 +3687,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Il fine riga più frequente in questo documento è %@."
           }
         },
@@ -3699,19 +3699,19 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Najczęstszym końcem wiersza w tym dokumencie jest %@."
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Os finais de linha mais comuns neste documento são %@."
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bu belgedeki en yaygın satır sonu %@."
           }
         },
