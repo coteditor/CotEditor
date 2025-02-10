@@ -165,7 +165,7 @@ private struct ModeOptionsView: View {
     
     @Binding var options: ModeOptions
     
-    @Environment(\.isEnabled) var isEnabled
+    @Environment(\.isEnabled) private var isEnabled
     
     
     var body: some View {

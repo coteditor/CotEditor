@@ -313,8 +313,8 @@ private struct CharacterPaneView: View {
                                     .monospacedDigit()
                                     .textSelection(.enabled)
                                     .padding(.horizontal, 2)
-                                    .overlay(RoundedRectangle(cornerRadius: 3.5).inset(by: 0.5)
-                                        .stroke(.tertiary))
+                                    .overlay(RoundedRectangle(cornerRadius: 3.5)
+                                        .strokeBorder(.tertiary))
                             }
                         }
                     }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,16 +62,13 @@ private struct OpacitySample: View {
             ZStack {
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
                     .fill(.background)
+                    .strokeBorder(.tertiary)
                 
                 Triangle()
                     .fill(.primary)
                     .opacity(1 - self.opacity)
-                    .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous)
+                    .clipShape(.rect(cornerRadius: radius, style: .continuous)
                         .inset(by: self.inset))
-                
-                RoundedRectangle(cornerRadius: radius, style: .continuous)
-                    .inset(by: 0.5)
-                    .stroke(.tertiary, lineWidth: 1)
             }
         }
         .aspectRatio(1, contentMode: .fit)

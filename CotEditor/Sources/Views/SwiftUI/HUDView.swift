@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ struct HUDView: View {
                 .padding(28)
                 .foregroundStyle(.secondary)
                 .background(.ultraThinMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                .clipShape(.rect(cornerRadius: 14, style: .continuous))
                 .onAppear {
                     withAnimation(.default.delay(0.5)) {
                         self.isPresented = false
