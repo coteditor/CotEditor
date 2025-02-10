@@ -25,6 +25,49 @@
 
 import SwiftUI
 
+struct TagsView: View {
+    
+    var tags: [FinderTag]
+    var isSelected = false
+    
+    var offset: Double = 5
+    
+    
+    var body: some View {
+        
+        let tags = self.tags.filter { $0.color != .none }
+        let description = tags.map(\.name).formatted(.list(type: .and, width: .short))
+        
+        ZStack(alignment: .trailing) {
+            ForEach(Array(tags.enumerated()), id: \.offset) { (index, tag) in
+                TagColorView(color: tag.color)
+                    .overlay {
+                        if self.isSelected {
+                            Circle()
+                                .strokeBorder(.white.opacity(0.9), lineWidth: 0.9)
+                        }
+                    }
+                    .mask {
+                        Rectangle()
+                            .overlay {
+                                if index < tags.count - 1 {
+                                    Circle()
+                                        .inset(by: -1)
+                                        .blendMode(.destinationOut)
+                                        .offset(x: -self.offset)
+                                }
+                            }
+                    }
+                    .padding(.trailing, Double(index) * self.offset)
+            }
+        }
+        .help(description)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(description)
+    }
+}
+
+
 struct TagColorView: View {
     
     var color: FinderTag.Color
@@ -60,6 +103,16 @@ private extension FinderTag.Color {
 
 
 // MARK: - Preview
+
+#Preview("TagsView") {
+    TagsView(tags: [
+        FinderTag(name: "Green", color: .green),
+        FinderTag(name: "Blue", color: .blue),
+        FinderTag(name: "Purple", color: .purple)
+    ])
+    .frame(height: 12)
+    .padding()
+}
 
 #Preview {
     HStack {
