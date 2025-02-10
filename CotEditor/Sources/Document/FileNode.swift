@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ final class FileNode {
     private(set) var isHidden: Bool
     private(set) var isWritable: Bool
     private(set) var isAlias: Bool
+    private(set) var tags: [FinderTag]
     private(set) var fileURL: URL
     private(set) weak var parent: FileNode?
     
@@ -54,7 +55,7 @@ final class FileNode {
     
     
     /// Initializes a file node instance.
-    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?, isWritable: Bool = true, isAlias: Bool = false) {
+    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?, isWritable: Bool = true, isAlias: Bool = false, tags: [FinderTag] = []) {
         
         self.isDirectory = isDirectory
         self.name = fileURL.lastPathComponent
@@ -62,6 +63,7 @@ final class FileNode {
         self.isHidden = fileURL.lastPathComponent.starts(with: ".")
         self.isWritable = isWritable
         self.isAlias = isAlias
+        self.tags = tags
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
     }
@@ -79,6 +81,9 @@ final class FileNode {
         self.isAlias = resourceValues.isAliasFile ?? false
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
+        
+        self.tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
+            .map(FinderTag.tags(data:)) ?? []
         
         self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
             .folder

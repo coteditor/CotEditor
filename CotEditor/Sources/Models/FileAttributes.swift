@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ extension FileAttributeKey {
 enum FileExtendedAttributeName {
     
     static let encoding = "com.apple.TextEncoding"
+    static let userTags = "com.apple.metadata:_kMDItemUserTags"
     static let verticalText = "com.coteditor.VerticalText"
     static let allowLineEndingInconsistency = "com.coteditor.AllowLineEndingInconsistency"
 }
@@ -47,6 +48,7 @@ struct FileAttributes: Equatable {
     var size: Int64
     var permissions: FilePermissions
     var owner: String?
+    var tags: [FinderTag] = []
 }
 
 
@@ -59,6 +61,7 @@ extension FileAttributes {
         self.size = dictionary[.size] as? Int64 ?? 0
         self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? Int16 ?? 0)
         self.owner = dictionary[.ownerAccountName] as? String
+        self.tags = (dictionary[.extendedAttributes] as? [String: Data])?[FileExtendedAttributeName.userTags].flatMap(FinderTag.tags(data:)) ?? []
     }
 }
 
