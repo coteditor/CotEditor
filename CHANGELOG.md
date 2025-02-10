@@ -3,6 +3,11 @@
 5.1.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Display file tags to the document inspector.
+
+
 ### Improvements
 
 - [beta] Add the Polish localizations for strings newly added in CotEditor 5.1.0.

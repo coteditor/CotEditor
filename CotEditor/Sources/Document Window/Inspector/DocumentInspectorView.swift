@@ -181,6 +181,22 @@ private struct DocumentFileView: View {
                 OptionalLabeledContent(String(localized: "Size", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true)))
+                
+                LabeledContent(String(localized: "Tags", table: "Document", comment: "label in document inspector")) {
+                    if let tags = self.attributes?.tags, !tags.isEmpty {
+                        WrappingHStack(horizontalSpacing: 7) {
+                            ForEach(Array(tags.enumerated()), id: \.offset) { (_, tag) in
+                                HStack(spacing: 4) {
+                                    TagColorView(color: tag.color)
+                                        .frame(height: 9)
+                                    Text(tag.name)
+                                }.accessibilityLabel(tag.name)
+                            }
+                        }
+                    } else {
+                        NoneTextView()
+                    }
+                }
                 OptionalLabeledContent(String(localized: "Permissions", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.attributes?.permissions.formatted())
@@ -428,7 +444,10 @@ private extension DocumentInspectorView.Model {
         modificationDate: .now,
         size: 1024,
         permissions: FilePermissions(mask: 0o644),
-        owner: "clarus"
+        owner: "clarus",
+        tags: [FinderTag(name: "Green", color: .green),
+               FinderTag(name: "Blue", color: .blue),
+               FinderTag(name: "None")]
     )
     model.fileURL = URL(filePath: "/Users/clarus/Desktop/My Script.py")
     model.textSettings = .init(encoding: .init(encoding: .utf8, withUTF8BOM: true),
