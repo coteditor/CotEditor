@@ -45,11 +45,20 @@ struct OptionalLabeledContent: View {
                 Text(value)
                     .textSelection(.enabled)
             } else {
-                Text(verbatim: "–")
-                    .foregroundStyle(.tertiary)
-                    .accessibilityLabel(String(localized: "None", comment: "accessibility label for “–”"))
+                NoneTextView()
             }
         }
+    }
+}
+
+
+struct NoneTextView: View {
+    
+    var body: some View {
+        
+        Text(verbatim: "–")
+            .foregroundStyle(.tertiary)
+            .accessibilityLabel(String(localized: "None", comment: "accessibility label for “–”"))
     }
 }
 

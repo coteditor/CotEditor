@@ -207,9 +207,7 @@ private struct DocumentFileView: View {
                             .buttonStyle(.borderless)
                         }
                     } else {
-                        Text(verbatim: "–")
-                            .foregroundStyle(.tertiary)
-                            .accessibilityLabel(String(localized: "None", comment: "accessibility label for “–”"))
+                        NoneTextView()
                     }
                 }
             }
