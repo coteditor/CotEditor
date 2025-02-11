@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Display file tags to the document inspector and the file browser.
+- Display Finder tags to the document inspector and the file browser.
 
 
 ### Improvements

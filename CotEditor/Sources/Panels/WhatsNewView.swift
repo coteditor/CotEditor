@@ -136,6 +136,7 @@ private enum NewFeature: CaseIterable {
     
     case uniqueFolder
     case readOnly
+    case tag
     
     
     var image: Image {
@@ -145,6 +146,8 @@ private enum NewFeature: CaseIterable {
                 Image(systemName: "macwindow.on.rectangle")
             case .readOnly:
                 Image(systemName: "pencil.slash")
+            case .tag:
+                Image(systemName: "circlebadge.2")
         }
     }
     
@@ -158,6 +161,9 @@ private enum NewFeature: CaseIterable {
             case .readOnly:
                 String(localized: "NewFeature.readOnly.label",
                        defaultValue: "Read-Only Mode", table: "WhatsNew")
+            case .tag:
+                String(localized: "NewFeature.tag.label",
+                       defaultValue: "Finder Tags", table: "WhatsNew")
         }
     }
     
@@ -171,6 +177,9 @@ private enum NewFeature: CaseIterable {
             case .readOnly:
                 String(localized: "NewFeature.readOnly.description",
                        defaultValue: "Prevent accidental editing by making documents read-only.", table: "WhatsNew")
+            case .tag:
+                String(localized: "NewFeature.tag.description",
+                       defaultValue: "The document inspector and the file browser now display Finder tags.", table: "WhatsNew")
         }
     }
     
