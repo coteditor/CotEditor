@@ -1,6 +1,6 @@
 # Change Log
 
-5.1.0 (unreleased)
+5.1.0-beta.2 (unreleased)
 --------------------------
 
 ### New Features
@@ -15,7 +15,7 @@
 
 ### Known Issue
 
-- Some text is not localized yet in Dutch.
+- Some text is not localized yet in Dutch.p[[[[[l=ew2w10wowoqpp]]]]]]
 
 
 

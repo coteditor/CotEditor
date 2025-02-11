@@ -477,10 +477,28 @@
             "value" : "L'inspecteur de documents et le navigateur de fichiers affichent désormais les tags du Finder."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ora l'ispettore dei documenti ed il\n browser dei file mostrano le etichette del Finder."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類インスペクタとファイルブラウザにFinderタグを表示するようになりました。"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor dokumentu i przeglądarka plików wyświetlają teraz tagi Findera."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O inspetor de documentos e o navegador de arquivos agora exibem tags do Finder."
           }
         }
       }

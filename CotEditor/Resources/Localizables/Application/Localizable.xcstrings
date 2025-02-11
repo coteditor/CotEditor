@@ -3604,7 +3604,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Si desidera convertire tutti i fine riga in %@, il fine riga più comune del documento?"
           }
         },
@@ -3628,14 +3628,14 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Czy chcesz zamienić wszystkie zakończenia wiersza na %@, które najczęściej występuje w tym dokumencie?"
+            "state" : "translated",
+            "value" : "Czy chcesz przekonwertować wszystkie końce wierszy na %@ – najczęściej występujący koniec wiersza w tym dokumencie?"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Você deseja converter todos os finais de linha para %@, a maior parte dos finais de linha desse arquivo?"
+            "state" : "translated",
+            "value" : "Você quer converter todos os finais de linha para %@, o final de linha mais comum neste documento?"
           }
         },
         "tr" : {
@@ -3699,7 +3699,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Il fine riga più frequente in questo documento è %@."
           }
         },
@@ -3717,14 +3717,14 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Najczęstszym końcem wiersza w tym dokumencie jest %@."
+            "state" : "translated",
+            "value" : "Najczęściej występującym końcem wiersza w tym dokumencie jest %@."
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Os finais de linha mais comuns neste documento são %@."
+            "state" : "translated",
+            "value" : "O final de linha mais comum neste documento é %@."
           }
         },
         "tr" : {
