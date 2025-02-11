@@ -15,7 +15,7 @@
 
 ### Known Issue
 
-- Some text is not localized yet in Dutch.p[[[[[l=ew2w10wowoqpp]]]]]]
+- Some text is not localized yet in Dutch.
 
 
 
