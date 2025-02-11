@@ -162,7 +162,7 @@ struct DonationSettingsView: View {
                         .padding(.vertical, 8)
                         .padding(.horizontal, 12)
                         .background(.background.shadow(.drop(radius: 3, y: 1.5)),
-                                    in: RoundedRectangle(cornerRadius: 8))
+                                    in: .rect(cornerRadius: 8))
                         .offset(y: 40)
                     }
                 }

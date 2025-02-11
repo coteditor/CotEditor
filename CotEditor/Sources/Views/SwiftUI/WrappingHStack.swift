@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,7 +120,7 @@ private struct WrappingHStackLayout: Layout {
             Text($0)
                 .monospacedDigit()
                 .padding(.horizontal, 2)
-                .background(.selection, in: RoundedRectangle(cornerRadius: 3))
+                .background(.selection, in: .rect(cornerRadius: 3))
         }
     }
     .border(.separator)

@@ -142,8 +142,7 @@ private struct TabPickerButtonView: View {
             .brightness(-0.2)
             .padding(.vertical, 1)
             .padding(.horizontal, 4)
-            .background(.fill.opacity(self.backgroundOpacity),
-                        in: RoundedRectangle(cornerRadius: 3))
+            .background(.fill.opacity(self.backgroundOpacity), in: .rect(cornerRadius: 3))
             .overlay(self.contrast == .increased
                      ? RoundedRectangle(cornerRadius: 3).stroke(.tertiary)
                      : nil)
