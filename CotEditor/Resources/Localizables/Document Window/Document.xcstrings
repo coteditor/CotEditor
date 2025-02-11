@@ -6413,8 +6413,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "텍스트 파일로 열기"
+            "state" : "translated",
+            "value" : "일반 텍스트로 열기"
           }
         },
         "nl" : {
@@ -8368,6 +8368,12 @@
             "value" : "この書類は編集できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서를 편집할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -8742,6 +8748,12 @@
             "value" : "書類を編集不可にする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서 편집 허용 안 함"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8823,6 +8835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類を編集可能にする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서 편집 허용"
           }
         },
         "pl" : {

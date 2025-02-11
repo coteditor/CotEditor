@@ -884,6 +884,12 @@
             "value" : "この書類は編集できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서를 편집할 수 없습니다."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -965,6 +971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の内容を変更するためには、まず書類を編集可能にしてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 문서의 내용을 변경하려면, 먼저 편집을 허용하십시오."
           }
         },
         "pl" : {
@@ -3695,6 +3707,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この書類で最も使われている改行コードは%@です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 문서에서 가장 흔한 줄바꿈은 %@ 입니다."
           }
         },
         "pl" : {

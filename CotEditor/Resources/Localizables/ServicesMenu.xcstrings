@@ -138,7 +138,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "CotEditor에서 열기"
           }
         },

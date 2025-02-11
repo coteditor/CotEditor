@@ -242,6 +242,12 @@
             "value" : "この書類は編集できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서를 편집할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

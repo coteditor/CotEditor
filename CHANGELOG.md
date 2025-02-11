@@ -10,12 +10,12 @@
 
 ### Improvements
 
-- [beta] Add the Polish localizations for strings newly added in CotEditor 5.1.0.
+- [beta] Add the Korean and Polish localizations for strings newly added in CotEditor 5.1.0.
 
 
 ### Known Issue
 
-- Some text is not localized yet in Dutch and Korean.
+- Some text is not localized yet in Dutch.
 
 
 

@@ -11287,8 +11287,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "다음 분할 편집기에 포커스"
+            "state" : "translated",
+            "value" : "다음 편집기로 초점 이동"
           }
         },
         "nl" : {
@@ -11383,8 +11383,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "이전 분할 편집기에 포커스"
+            "state" : "translated",
+            "value" : "이전 편집기로 초점 이동"
           }
         },
         "nl" : {

@@ -317,6 +317,12 @@
             "value" : "読み出し専用に変更することで、意図しない編集から書類を守ります。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서를 읽기 전용으로 만들어 실수로 편집하지 않도록 할 수 있습니다."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -398,6 +404,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み出し専用モード"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "읽기 전용 모드"
           }
         },
         "pl" : {
@@ -483,6 +495,12 @@
             "value" : "同じ名前の書類にはウインドウタイトルに親フォルダの名前が表示されます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "같은 파일 이름을 가진 문서를 구분하기 위해 윈도우에 부모 폴더의 이름이 표시됩니다."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -564,6 +582,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類を見分けやすく"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 쉬운 문서 구분"
           }
         },
         "pl" : {
