@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 import QuickLookUI
 import Combine
 import AudioToolbox
@@ -792,6 +793,12 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
 
 extension FileBrowserViewController: NSOutlineViewDelegate {
     
+    func outlineView(_ outlineView: NSOutlineView, rowViewForItem item: Any) -> NSTableRowView? {
+        
+        FileBrowserTableRowView()
+    }
+    
+    
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         let node = item as! FileNode
@@ -801,6 +808,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         cellView.imageView!.image = NSImage(systemSymbolName: node.kind.symbolName, accessibilityDescription: node.kind.label)!
         cellView.imageView!.alphaValue = node.isHidden ? 0.5 : 1
         cellView.isAlias = node.isAlias
+        cellView.tags = node.tags
         
         cellView.textField!.stringValue = node.name
         cellView.textField!.textColor = node.isHidden ? .tertiaryLabelColor : .labelColor
@@ -918,12 +926,28 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
+private final class FileBrowserTableRowView: NSTableRowView {
+    
+    override var isSelected: Bool {
+        
+        didSet {
+            self.subviews
+                .compactMap { $0 as? FileBrowserTableCellView }
+                .forEach { $0.isSelected = isSelected }
+        }
+    }
+}
+
 
 private final class FileBrowserTableCellView: NSTableCellView {
     
-    var isAlias: Bool = false { didSet { self.aliasArrowView?.isHidden = !isAlias } }
+    var isAlias: Bool = false  { didSet { self.aliasArrowView?.isHidden = !isAlias } }
+    var tags: [FinderTag] = []  { didSet { self.updateTagsView() } }
+    var isSelected = false  { didSet { self.updateTagsView() } }
     
     private var aliasArrowView: NSImageView?
+    private var tagsView: NSHostingView<TagsView>?
+    private var tagsLayoutConstraint: NSLayoutConstraint?
     
     
     override init(frame frameRect: NSRect) {
@@ -965,25 +989,46 @@ private final class FileBrowserTableCellView: NSTableCellView {
         aliasArrowView.setAccessibilityLabel(String(localized: "Alias", table: "Document", comment: "accessibility label"))
         aliasArrowView.setAccessibilityRoleDescription(nil)
         
+        let tagsView = NSHostingView(rootView: TagsView(tags: self.tags))
+        tagsView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        
         self.addSubview(textField)
         self.addSubview(imageView)
         self.addSubview(aliasArrowView)
+        self.addSubview(tagsView)
         self.textField = textField
         self.imageView = imageView
         self.aliasArrowView = aliasArrowView
+        self.tagsView = tagsView
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         aliasArrowView.translatesAutoresizingMaskIntoConstraints = false
+        tagsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2)
+        textFieldTrailingAnchor.priority = .defaultLow
+        self.tagsLayoutConstraint = tagsView.leadingAnchor.constraint(equalToSystemSpacingAfter: textField.trailingAnchor, multiplier: 1)
+        
         NSLayoutConstraint.activate([
             imageView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),
             aliasArrowView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),
             textField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            tagsView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2),
             imageView.widthAnchor.constraint(equalToConstant: 17),  // the value used in a sample code by Apple
             aliasArrowView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
             textField.leadingAnchor.constraint(equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1),
-            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2),
+            textFieldTrailingAnchor,
+            tagsView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2),
         ])
+    }
+    
+    
+    /// Updates the tags view.
+    private func updateTagsView() {
+        
+        self.tagsView?.rootView = TagsView(tags: self.tags, isSelected: self.isSelected)
+        self.tagsLayoutConstraint?.isActive = !self.tags.isEmpty
     }
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ final class FileNode {
     private(set) var isHidden: Bool
     private(set) var isWritable: Bool
     private(set) var isAlias: Bool
+    private(set) var tags: [FinderTag]
     private(set) var fileURL: URL
     private(set) weak var parent: FileNode?
     
@@ -54,7 +55,7 @@ final class FileNode {
     
     
     /// Initializes a file node instance.
-    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?, isWritable: Bool = true, isAlias: Bool = false) {
+    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?, isWritable: Bool = true, isAlias: Bool = false, tags: [FinderTag] = []) {
         
         self.isDirectory = isDirectory
         self.name = fileURL.lastPathComponent
@@ -62,6 +63,7 @@ final class FileNode {
         self.isHidden = fileURL.lastPathComponent.starts(with: ".")
         self.isWritable = isWritable
         self.isAlias = isAlias
+        self.tags = tags
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
     }
@@ -70,7 +72,7 @@ final class FileNode {
     /// Initializes a file node instance by reading the information from the actual file.
     init(at fileURL: URL, parent: FileNode? = nil) throws {
         
-        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
+        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey])
         
         self.isDirectory = resourceValues.isDirectory ?? false
         self.name = fileURL.lastPathComponent
@@ -79,6 +81,9 @@ final class FileNode {
         self.isAlias = resourceValues.isAliasFile ?? false
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
+        
+        self.tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
+            .map(FinderTag.tags(data:)) ?? []
         
         self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
             .folder
@@ -157,6 +162,37 @@ final class FileNode {
         guard !(self.isAlias && self.kind == .folder) else { return }
         
         self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
+    }
+    
+    
+    /// Updates resource values by reading the file.
+    ///
+    /// - Returns: Whether the related file resources actually changed.
+    @discardableResult private func invalidateResources() throws -> Bool {
+        
+        let resourceValues = try self.fileURL.resourceValues(forKeys: [.isHiddenKey, .isAliasFileKey, .isWritableKey])
+        
+        let isHidden = resourceValues.isHidden ?? false
+        let isWritable = resourceValues.isWritable ?? true
+        let tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
+            .map(FinderTag.tags(data:)) ?? []
+        
+        var didChange = false
+        
+        if self.isHidden != isHidden {
+            self.isHidden = isHidden
+            didChange = true
+        }
+        if self.isWritable != isWritable {
+            self.isWritable = isWritable
+            didChange = true
+        }
+        if self.tags != tags {
+            self.tags = tags
+            didChange = true
+        }
+        
+        return didChange
     }
 }
 
@@ -241,9 +277,9 @@ extension FileNode {
         }
         
         if fileURL.isReachable {
-            if children.contains(where: { $0.fileURL == fileURL }) {
-                // -> The file structure is not changed.
-                return nil
+            if let child = children.first(where: { $0.fileURL == fileURL }) {
+                guard (try? child.invalidateResources()) == true else { return nil }
+                return child
                 
             } else {
                 // -> The fileURL is added.

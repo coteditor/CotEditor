@@ -218,9 +218,7 @@ struct StatusBar: View {
                         .monospacedDigit()
                         .help(String(localized: "File size", table: "Document", comment: "tooltip"))
                 } else {
-                    Text(verbatim: "–")
-                        .foregroundStyle(.tertiary)
-                        .accessibilityLabel(String(localized: "None", comment: "accessibility label for “–”"))
+                    NoneTextView()
                 }
             }
             
