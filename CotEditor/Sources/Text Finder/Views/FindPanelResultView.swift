@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@
 
 import AppKit
 import SwiftUI
-import Observation
 import Defaults
 
 final class FindPanelResultViewController: NSHostingController<FindPanelResultView> {
@@ -51,8 +50,6 @@ final class FindPanelResultViewController: NSHostingController<FindPanelResultVi
         self.model.matches = result.matches
         self.model.findString = result.findString
         self.model.target = client
-        
-        self.rootView = FindPanelResultView(model: self.model)
     }
 }
 
@@ -71,11 +68,11 @@ struct FindPanelResultView: View {
     
     @State var model: Model
     
+    @State private var documentName: String?
     @State private var selection: Set<Match.ID> = []
     @State private var sortOrder = [KeyPathComparator(\Match.range.location)]
     
     @AppStorage(.findResultViewFontSize) private var fontSize: Double
-    
     
     
     // MARK: View
@@ -137,6 +134,9 @@ struct FindPanelResultView: View {
             .onChange(of: self.sortOrder) { (_, newValue) in
                 self.model.matches.sort(using: newValue)
             }
+            .onChange(of: self.model.target, initial: true) { (_, newValue) in
+                self.documentName = newValue?.documentName
+            }
             .contextMenu {
                 Menu(String(localized: "Text Size", table: "MainMenu")) {
                     Button(String(localized: "Bigger", table: "MainMenu"), action: self.biggerFont)
@@ -159,7 +159,7 @@ struct FindPanelResultView: View {
     
     private var message: String {
         
-        let documentName = self.model.target?.documentName ?? "Unknown"  // This should never be nil.
+        let documentName = self.documentName ?? "Unknown"  // This should never be nil.
         
         return self.model.matches.isEmpty
             ? String(localized: "No strings found in “\(documentName).”", table: "TextFind",
