@@ -527,7 +527,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "文稿检查器和文件浏览器现在可以显示访达标签。"
           }
         },
