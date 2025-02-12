@@ -412,6 +412,12 @@
             "value" : "읽기 전용 모드"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Alleen-lezen modus"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -447,6 +453,12 @@
     "NewFeature.tag.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor dokumentů a prohlížeč souborů nyní zobrazují značky Finderu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -489,6 +501,12 @@
             "value" : "書類インスペクタとファイルブラウザにFinderタグを表示するようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서 인스펙터 및 파일 브라우저에 Finder 태그가 표시됩니다."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -499,6 +517,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O inspetor de documentos e o navegador de arquivos agora exibem tags do Finder."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge denetçisi ve dosya tarayıcısı artık Finder etiketlerini görüntülüyor."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "文稿检查器和文件浏览器现在可以显示访达标签。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件檢視器與檔案瀏覽器現在可以顯示Finder標籤。"
           }
         }
       }
@@ -742,6 +778,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "더 쉬운 문서 구분"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Documenten makkelijker te onderscheiden"
           }
         },
         "pl" : {

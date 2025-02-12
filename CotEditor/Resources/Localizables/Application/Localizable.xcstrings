@@ -3568,8 +3568,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Chcete převést všechny konce řádků do %@, což jsou nejčastější konce řádků v tomto dokumentu?"
+            "state" : "translated",
+            "value" : "Chcete převést všechny konce řádků na %@, což je nejčastější konec řádku v tomto dokumentu?"
           }
         },
         "de" : {
@@ -3640,8 +3640,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tüm satır sonlarını bu belgedeki en yaygın satır sonu olan %@ olarak değiştirmek istiyor musunuz?"
+            "state" : "translated",
+            "value" : "Tüm satır sonlarını, bu belgedeki en yaygın satır sonu olan %@ olarak değiştirmek istiyor musunuz?"
           }
         },
         "zh-Hans" : {
@@ -3663,7 +3663,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Nejčastější konec řádku v tomto dokumentu je %@."
           }
         },
@@ -3729,7 +3729,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bu belgedeki en yaygın satır sonu %@."
           }
         },

@@ -5,17 +5,17 @@
 
 ### New Features
 
-- Display Finder tags to the document inspector and the file browser.
+- Display Finder tags in the document inspector and the file browser.
 
 
 ### Improvements
 
-- [beta] Add the Korean and Polish localizations for strings newly added in CotEditor 5.1.0.
+- [beta] Update the Korean and Polish localizations for strings newly added in CotEditor 5.1.0.
 
 
 ### Known Issue
 
-- Some text is not localized yet in Dutch.
+- The texts added in CotEditor 5.1.0 are not localized yet in Dutch.
 
 
 
