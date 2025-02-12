@@ -71,10 +71,7 @@ extension FinderTag {
         
         let components = string.split(separator: "\n")
         
-        guard
-            let name = components.first,
-            !name.isEmpty
-        else { return nil }
+        guard let name = components.first else { return nil }
         
         self.name = String(name)
         
