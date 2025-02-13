@@ -476,10 +476,10 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
         // update warning icon
         if identifier == .findString, let imageView = cellView.imageView {
             let errorMessage: String? = {
-                do {
+                do throws(TextFind.Error) {
                     try replacement.validate(regexOptions: self.definition.settings.regexOptions)
                 } catch {
-                    guard let suggestion = (error as any LocalizedError).recoverySuggestion else { return error.localizedDescription }
+                    guard let suggestion = error.recoverySuggestion else { return error.localizedDescription }
                     
                     return "[" + error.localizedDescription + "] " + suggestion
                 }

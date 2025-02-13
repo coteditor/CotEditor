@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,27 +43,6 @@ extension View {
         } message: { error in
             Text(error.recoverySuggestion ?? "")
         }
-    }
-}
-
-
-extension NSError: @retroactive LocalizedError {
-    
-    public final var errorDescription: String? {
-        
-        self.localizedDescription
-    }
-    
-    
-    public final var failureReason: String? {
-        
-        self.localizedFailureReason
-    }
-    
-    
-    public final var recoverySuggestion: String? {
-        
-        self.localizedRecoverySuggestion
     }
 }
 
