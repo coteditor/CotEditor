@@ -1,5 +1,14 @@
 # Change Log
 
+5.1.0-beta.3 (unreleased)
+--------------------------
+
+### Improvements
+
+- [dev] Update Yams from 5.1.3 to 5.2.0.
+
+
+
 5.1.0-beta.2 (696)
 --------------------------
 
