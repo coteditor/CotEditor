@@ -64,9 +64,9 @@ extension FinderTag {
     }
     
     
-    /// Instantiates a finder tag from the string set in the extended attributes.
+    /// Instantiates a Finder tag from the string stored in the extended attributes.
     ///
-    /// - Parameter string: The string set in the extended attributes.
+    /// - Parameter string: The string stored in the extended attributes.
     private init?(string: String) {
         
         let components = string.split(separator: "\n")
