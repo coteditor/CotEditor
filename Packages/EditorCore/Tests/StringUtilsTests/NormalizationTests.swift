@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ struct NormalizationTests {
     
     @Test func normalize() {
         
-        #expect("É \t 神 ㍑ ＡＢC".precomposedStringWithCompatibilityMappingWithCasefold == "é \t 神 リットル abc")
+        #expect("É \t 神 ㍑ ＡＢC".precomposedStringWithCompatibilityMappingWithCaseFold == "é \t 神 リットル abc")
         #expect("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping == "\u{1f71} \u{03ac}")
         #expect("\u{1f71}".precomposedStringWithHFSPlusMapping == "\u{1f71}")  // test single char
         #expect("\u{1f71}".decomposedStringWithHFSPlusMapping == "\u{03b1}\u{0301}")
@@ -52,7 +52,7 @@ struct NormalizationTests {
                 #expect(normalized == "É \t 神 リットル ABC")
             case .nfkc:
                 #expect(normalized == "É \t 神 リットル ABC")
-            case .nfkcCasefold:
+            case .nfkcCaseFold:
                 #expect(normalized == "é \t 神 リットル abc")
             case .modifiedNFD:
                 #expect(normalized == "É \t 神 ㍑ ＡＢC")

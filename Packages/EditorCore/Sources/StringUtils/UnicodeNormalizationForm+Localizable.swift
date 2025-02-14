@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,9 +46,9 @@ public extension UnicodeNormalizationForm {
                 String(localized: "UnicodeNormalization.nfkc.label",
                        defaultValue: "NFKC",
                        bundle: .module)
-            case .nfkcCasefold:
-                String(localized: "UnicodeNormalization.nfkcCasefold.label",
-                       defaultValue: "NFKC Casefold",
+            case .nfkcCaseFold:
+                String(localized: "UnicodeNormalization.nfkcCaseFold.label",
+                       defaultValue: "NFKC Case-Fold",
                        bundle: .module)
             case .modifiedNFD:
                 String(localized: "UnicodeNormalization.modifiedNFD.label",
@@ -86,11 +86,11 @@ public extension UnicodeNormalizationForm {
                        defaultValue: "Compatibility Decomposition, followed by Canonical Composition",
                        bundle: .module,
                        comment: "description for NFKC")
-            case .nfkcCasefold:
-                String(localized: "UnicodeNormalization.nfkcCasefold.description",
+            case .nfkcCaseFold:
+                String(localized: "UnicodeNormalization.nfkcCaseFold.description",
                        defaultValue: "Applying NFKC, case folding, and removal of default-ignorable code points",
                        bundle: .module,
-                       comment: "description for NFKD Casefold")
+                       comment: "description for NFKD case-fold")
             case .modifiedNFD:
                 String(localized: "UnicodeNormalization.modifiedNFD.description",
                        defaultValue: "Unofficial NFD-based normalization form used in HFS+",

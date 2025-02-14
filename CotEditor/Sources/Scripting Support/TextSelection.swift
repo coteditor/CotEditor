@@ -68,7 +68,7 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
             case .nfd: .nfd
             case .nfkc: .nfkc
             case .nfkd: .nfkd
-            case .nfkcCasefold: .nfkcCasefold
+            case .nfkcCasefold: .nfkcCaseFold
             case .modifiedNFC: .modifiedNFC
             case .modifiedNFD: .modifiedNFD
         }

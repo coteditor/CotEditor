@@ -956,8 +956,8 @@
         }
       }
     },
-    "UnicodeNormalization.nfkcCasefold.description" : {
-      "comment" : "description for NFKD Casefold",
+    "UnicodeNormalization.nfkcCaseFold.description" : {
+      "comment" : "description for NFKD case-fold",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -1052,31 +1052,31 @@
         }
       }
     },
-    "UnicodeNormalization.nfkcCasefold.label" : {
+    "UnicodeNormalization.nfkcCaseFold.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "es" : {
@@ -1088,31 +1088,31 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "pl" : {
@@ -1124,7 +1124,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Case Fold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "tr" : {
@@ -1136,13 +1136,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Casefold"
+            "value" : "NFKC Case-Fold"
           }
         }
       }

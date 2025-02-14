@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,11 +32,11 @@ public enum UnicodeNormalizationForm: String, Sendable, CaseIterable {
     case nfc
     case nfkd
     case nfkc
-    case nfkcCasefold
+    case nfkcCaseFold
     case modifiedNFD
     case modifiedNFC
     
-    public static let standardForms: [Self] = [.nfd, .nfc, .nfkd, .nfkc, .nfkcCasefold]
+    public static let standardForms: [Self] = [.nfd, .nfc, .nfkd, .nfkc, .nfkcCaseFold]
     public static let modifiedForms: [Self] = [.modifiedNFD, .modifiedNFC]
 }
 
@@ -58,8 +58,8 @@ public extension StringProtocol {
                 self.decomposedStringWithCompatibilityMapping
             case .nfkc:
                 self.precomposedStringWithCompatibilityMapping
-            case .nfkcCasefold:
-                self.precomposedStringWithCompatibilityMappingWithCasefold
+            case .nfkcCaseFold:
+                self.precomposedStringWithCompatibilityMappingWithCaseFold
             case .modifiedNFD:
                 String(self).decomposedStringWithHFSPlusMapping
             case .modifiedNFC:
@@ -73,8 +73,8 @@ public extension StringProtocol {
 
 extension StringProtocol {
     
-    /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold a.k.a. `NFKC_Casefold` or `NFKC_CF`.
-    var precomposedStringWithCompatibilityMappingWithCasefold: String {
+    /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with case-fold a.k.a. `NFKC_Casefold` or `NFKC_CF`.
+    var precomposedStringWithCompatibilityMappingWithCaseFold: String {
         
         self.precomposedStringWithCompatibilityMapping
             .folding(options: .caseInsensitive, locale: nil)

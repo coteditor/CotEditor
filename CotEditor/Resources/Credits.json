@@ -141,7 +141,7 @@
         {
             "name" : "Yusuke Terada",
             "url" : "https://doratex.hatenablog.jp",
-            "description": "improvement of the character inspector, and addition of normalizations in NFKC Casefold, modified NFC, and modified NFD"
+            "description": "improvement of the character inspector, and addition of normalizations in NFKC case-fold, modified NFC, and modified NFD"
         },
         {
             "name" : "Hetima",
