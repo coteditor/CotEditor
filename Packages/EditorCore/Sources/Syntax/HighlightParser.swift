@@ -119,6 +119,12 @@ public struct HighlightParser: Sendable {
             switch token {
                 case .inline(let delimiter):
                     return string.ranges(of: delimiter, range: parseRange)
+                        .filter { range in
+                            // ignore single-character delimiter just after a non-whitespace character
+                            range.length > 1 ||
+                            range.lowerBound == 0 ||
+                            Unicode.Scalar((string as NSString).character(at: range.lowerBound - 1))?.properties.isWhitespace == true
+                        }
                         .flatMap { range -> [NestableItem] in
                             let lineEnd = string.lineContentsEndIndex(at: range.upperBound)
                             let endRange = NSRange(location: lineEnd, length: 0)
