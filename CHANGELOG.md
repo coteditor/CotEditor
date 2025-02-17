@@ -7,7 +7,7 @@
 
 - Improve stability.
 - [experimental] Modify the syntax highlighting algorithm for inline comments.
-- [dev] Update Yams from 5.1.3 to 5.2.0.
+- [dev] Update Yams from 5.1.3 to 5.3.0.
 
 
 
