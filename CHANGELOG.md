@@ -8,6 +8,7 @@
 - Improve stability.
 - [experimental] Modify the syntax highlighting algorithm for inline comments.
 - [dev] Update Yams from 5.1.3 to 5.3.0.
+- [beta.2] Update the Dutch localizations for strings newly added in CotEditor 5.1.0.
 
 
 

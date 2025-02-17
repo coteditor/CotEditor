@@ -8754,6 +8754,12 @@
             "value" : "문서 편집 허용 안 함"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sta bewerking van het document niet toe"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8841,6 +8847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "문서 편집 허용"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sta bewerking van het document toe"
           }
         },
         "pl" : {

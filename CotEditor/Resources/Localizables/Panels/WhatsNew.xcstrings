@@ -323,6 +323,12 @@
             "value" : "문서를 읽기 전용으로 만들어 실수로 편집하지 않도록 할 수 있습니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Voorkom per ongeluk bewerken door documenten alleen-lezen te maken."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +513,12 @@
             "value" : "문서 인스펙터 및 파일 브라우저에 Finder 태그가 표시됩니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De documentinspector en de bestandskiezer geven nu Finder-tags weer."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -689,6 +701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "같은 파일 이름을 가진 문서를 구분하기 위해 윈도우에 부모 폴더의 이름이 표시됩니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Een bovenliggende mapnaam verschijnt in de venstertitel voor documenten met dezelfde bestandsnaam."
           }
         },
         "pl" : {

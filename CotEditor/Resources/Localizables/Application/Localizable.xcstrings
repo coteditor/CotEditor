@@ -3715,6 +3715,12 @@
             "value" : "이 문서에서 가장 흔한 줄바꿈은 %@ 입니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De meest voorkomende regeleinden in dit document zijn %@."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",

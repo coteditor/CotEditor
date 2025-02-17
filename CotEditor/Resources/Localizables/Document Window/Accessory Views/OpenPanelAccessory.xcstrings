@@ -141,6 +141,12 @@
             "value" : "읽기 전용으로 열기"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open als alleen-lezen"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
