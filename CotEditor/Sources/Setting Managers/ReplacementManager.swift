@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -107,8 +107,8 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     /// Loads the setting from the file at the given URL.
     nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
         
-        let decoder = JSONDecoder()
         let data = try Data(contentsOf: fileURL)
+        let decoder = JSONDecoder()
         
         return try decoder.decode(Setting.self, from: data)
     }
