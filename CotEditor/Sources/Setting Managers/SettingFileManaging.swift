@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -448,6 +448,9 @@ extension SettingFileManaging {
         
         let name = Self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)
+        
+        // test if the setting file can be read correctly
+        _ = try self.loadSetting(at: fileURL)
         
         try FileManager.default.createIntermediateDirectories(to: destURL)
         
