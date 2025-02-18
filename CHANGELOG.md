@@ -5,8 +5,8 @@
 
 ### Improvements
 
-- Show an alert and abort importing if the setting file to import is not in a valid format.
-- Improve stability.
+- Show an alert and abort importing setting files if they are not in a valid format.
+- Improve the stability.
 - [experimental] Modify the syntax highlighting algorithm for inline comments.
 - [dev] Update Yams from 5.1.3 to 5.3.0.
 - [beta.2] Update the Dutch localizations for strings newly added in CotEditor 5.1.0.
