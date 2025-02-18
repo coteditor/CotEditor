@@ -1450,6 +1450,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.smartInsertDeleteEnabled = mode.smartInsertDelete
         self.isAutomaticDashSubstitutionEnabled = mode.automaticDashSubstitution
         self.isAutomaticQuoteSubstitutionEnabled = mode.automaticQuoteSubstitution
+        self.isAutomaticTextReplacementEnabled = mode.automaticTextReplacement
         self.isAutomaticPeriodSubstitutionEnabled = mode.automaticPeriodSubstitution
         self.isAutomaticSymbolBalancingEnabled = mode.automaticSymbolBalancing
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ struct ModeOptions: Equatable, Codable {
     var smartInsertDelete: Bool = false
     var automaticQuoteSubstitution: Bool = false
     var automaticDashSubstitution: Bool = false
+    var automaticTextReplacement: Bool = false
     var automaticPeriodSubstitution: Bool = false
     var automaticSymbolBalancing: Bool = false
     
@@ -66,6 +67,7 @@ extension Syntax.Kind {
                     smartInsertDelete: true,
                     automaticQuoteSubstitution: false,
                     automaticDashSubstitution: false,
+                    automaticTextReplacement: true,
                     automaticPeriodSubstitution: false,
                     automaticSymbolBalancing: false,
                     continuousSpellChecking: true,
@@ -81,6 +83,7 @@ extension Syntax.Kind {
                     smartInsertDelete: false,
                     automaticQuoteSubstitution: false,
                     automaticDashSubstitution: false,
+                    automaticTextReplacement: true,
                     automaticPeriodSubstitution: false,
                     automaticSymbolBalancing: true,
                     continuousSpellChecking: false,
@@ -115,6 +118,7 @@ extension ModeOptions {
         self.smartInsertDelete = dictionary[.smartInsertDelete] as? Bool ?? false
         self.automaticQuoteSubstitution = dictionary[.automaticQuoteSubstitution] as? Bool ?? false
         self.automaticDashSubstitution = dictionary[.automaticDashSubstitution] as? Bool ?? false
+        self.automaticTextReplacement = dictionary[.automaticTextReplacement] as? Bool ?? false
         self.automaticPeriodSubstitution = dictionary[.automaticPeriodSubstitution] as? Bool ?? false
         self.automaticSymbolBalancing = dictionary[.automaticSymbolBalancing] as? Bool ?? false
         
@@ -136,6 +140,7 @@ extension ModeOptions {
          .smartInsertDelete: self.smartInsertDelete,
          .automaticQuoteSubstitution: self.automaticQuoteSubstitution,
          .automaticDashSubstitution: self.automaticDashSubstitution,
+         .automaticTextReplacement: self.automaticTextReplacement,
          .automaticPeriodSubstitution: self.automaticPeriodSubstitution,
          .automaticSymbolBalancing: self.automaticSymbolBalancing,
          

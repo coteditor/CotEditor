@@ -188,6 +188,8 @@ private struct ModeOptionsView: View {
                            isOn: $options.automaticQuoteSubstitution)
                     Toggle(String(localized: "Smart dashes", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticDashSubstitution)
+                    Toggle(String(localized: "Text replacement", table: "ModeSettings", comment: "use localization provided by Apple"),
+                           isOn: $options.automaticTextReplacement)
                     Toggle(String(localized: "Add period with double-space", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticPeriodSubstitution)
                     Toggle(String(localized: "Automatically insert closing brackets and quotes", table: "ModeSettings"),
