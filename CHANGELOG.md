@@ -3,6 +3,11 @@
 5.1.0-beta.3 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the “text replacement” option to the Mode settings.
+
+
 ### Improvements
 
 - Show an alert and abort importing setting files if they are not in a valid format.
