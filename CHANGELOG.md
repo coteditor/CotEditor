@@ -11,6 +11,7 @@
 ### Improvements
 
 - Show an alert and abort importing setting files if they are not in a valid format.
+- Update the JSON syntax to add the .jsonl file extension.
 - Improve the stability.
 - [experimental] Modify the syntax highlighting algorithm for inline comments.
 - [dev] Update Yams from 5.1.3 to 5.3.0.

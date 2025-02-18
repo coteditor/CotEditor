@@ -9,6 +9,7 @@ comments: []
 completions: []
 extensions:
 - keyString: json
+- keyString: jsonl
 - keyString: geojson
 - keyString: resolved
 - keyString: cottheme
@@ -20,9 +21,9 @@ kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2024-02-18'
   license: Same as CotEditor
-  version: 1.4.0
+  version: 1.5.0
 numbers:
 - beginString: (?<=[:,\[])[\r\n\t ]*-?[0-9]+(\.[0-9]+)?([eE][-+]?[0-9]+)?\b
   regularExpression: true
