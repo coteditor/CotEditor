@@ -316,6 +316,7 @@
   "JSON" : {
     "extensions" : [
       "json",
+      "jsonl",
       "geojson",
       "resolved",
       "cottheme",
