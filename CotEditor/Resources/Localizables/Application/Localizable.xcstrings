@@ -890,6 +890,12 @@
             "value" : "문서를 편집할 수 없습니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Het document kan niet worden bewerkt."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -977,6 +983,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 문서의 내용을 변경하려면, 먼저 편집을 허용하십시오."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Om wijzigingen aan te brengen in de inhoud van het document, sta je eerst bewerken toe."
           }
         },
         "pl" : {
