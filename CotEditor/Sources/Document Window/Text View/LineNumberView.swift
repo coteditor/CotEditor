@@ -32,11 +32,11 @@ final class LineNumberView: NSView {
     
     private struct DrawingInfo {
         
-        let fontSize: CGFloat
-        let charWidth: CGFloat
-        let digitGlyphs: [CGGlyph]
-        let padding: CGFloat
-        let tickLength: CGFloat
+        var fontSize: CGFloat
+        var charWidth: CGFloat
+        var digitGlyphs: [CGGlyph]
+        var padding: CGFloat
+        var tickLength: CGFloat
         
         
         init(font: CGFont, fontSize: CGFloat, scale: CGFloat) {

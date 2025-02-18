@@ -160,8 +160,8 @@ private struct ActionCommandView: View {
     
     @Environment(\.colorSchemeContrast) private var colorContrast
     
-    let command: ActionCommand
-    let matches: [ActionCommand.MatchedPath]
+    var command: ActionCommand
+    var matches: [ActionCommand.MatchedPath]
     
     var isSelected = false
     

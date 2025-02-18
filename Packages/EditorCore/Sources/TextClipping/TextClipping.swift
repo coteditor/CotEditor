@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2024 1024jp
+//  © 2019-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public struct TextClipping: Equatable, Sendable, Decodable {
     
     public static let pathExtension = "textClipping"
     
-    public let string: String
+    public var string: String
     
     
     enum CodingKeys: String, CodingKey {

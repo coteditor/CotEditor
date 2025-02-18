@@ -43,8 +43,8 @@ struct WrappingHStack<Content: View>: View {
 
 private struct WrappingHStackLayout: Layout {
     
-    let horizontalSpacing: Double
-    let verticalSpacing: Double
+    var horizontalSpacing: Double
+    var verticalSpacing: Double
     
     
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {

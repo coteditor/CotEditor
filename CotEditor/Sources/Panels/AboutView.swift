@@ -346,9 +346,9 @@ private struct LicenseView: View {
     
     private struct ItemView: View {
         
-        let name: String
-        let url: String
-        let license: String
+        var name: String
+        var url: String
+        var license: String
         var description: String?
         
         @State private var content: String = ""

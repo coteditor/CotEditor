@@ -78,7 +78,7 @@ struct SyntaxFileMappingEditView: View {
         
         
         @Binding var items: [Item]
-        let label: () -> Label
+        var label: () -> Label
         
         @State private var selection: Set<Item.ID> = []
         @FocusState private var focusedField: Item.ID?

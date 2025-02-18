@@ -49,7 +49,7 @@ struct OpacitySlider: View {
 
 private struct OpacitySample: View {
     
-    let opacity: Double
+    var opacity: Double
     
     private let inset: Double = 3
     

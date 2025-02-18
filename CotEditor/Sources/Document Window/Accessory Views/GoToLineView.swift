@@ -40,7 +40,7 @@ struct GoToLineView: View {
     @State var lineRange: FuzzyRange
     
     /// The callback method to perform when the command was accepted.
-    let completionHandler: (_ lineRange: FuzzyRange) -> Bool
+    var completionHandler: (_ lineRange: FuzzyRange) -> Bool
     
     @FocusState private var focus: Focus?
     

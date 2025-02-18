@@ -30,7 +30,7 @@ import StringUtils
 struct AdvancedCharacterCounterView: View {
     
     @State var counter: AdvancedCharacterCounter
-    let dismissAction: () -> Void
+    var dismissAction: () -> Void
     
     @AppStorage(.countUnit) private var unit: CharacterCountOptions.CharacterUnit
     

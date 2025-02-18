@@ -27,7 +27,7 @@ import SwiftUI
 
 struct LinkButton: View {
     
-    let url: String
+    var url: String
     
     
     var body: some View {

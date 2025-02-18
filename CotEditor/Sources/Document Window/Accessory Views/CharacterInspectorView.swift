@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2024 1024jp
+//  © 2021-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ private struct ScalarDetailView: View {
     }
     
     
-    let scalar: Unicode.Scalar
+    var scalar: Unicode.Scalar
     var items: Items = .all
     
     @Namespace private var accessibility

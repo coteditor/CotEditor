@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import SwiftUI
 
 struct SubmitButtonGroup: View {
     
-    private let submitLabel: String
-    private let submitAction: () -> Void
-    private let cancelAction: () -> Void
+    private var submitLabel: String
+    private var submitAction: () -> Void
+    private var cancelAction: () -> Void
     
     
     // MARK: View

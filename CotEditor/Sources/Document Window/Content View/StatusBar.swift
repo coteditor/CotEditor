@@ -360,7 +360,7 @@ private struct LineEndingPicker: NSViewRepresentable {
     
     typealias NSViewType = NSPopUpButton
     
-    let label: String
+    var label: String
     @Binding var selection: LineEnding
     
     

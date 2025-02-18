@@ -43,7 +43,7 @@ struct CustomSurroundView: View {
     @FocusState private var focus: Focus?
     
     @State private var pair: Pair<String> = .init("", "")
-    private let completionHandler: (_ pair: Pair<String>) -> Void
+    private var completionHandler: (_ pair: Pair<String>) -> Void
     
     
     // MARK: View

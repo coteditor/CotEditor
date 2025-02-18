@@ -39,9 +39,9 @@ struct PatternSortView: View {
     
     weak var parent: NSHostingController<Self>?
     
-    private let sampleLine: String
-    private let sampleFontName: String?
-    private let completionHandler: (_ pattern: any SortPattern, _ options: SortOptions) -> Void
+    private var sampleLine: String
+    private var sampleFontName: String?
+    private var completionHandler: (_ pattern: any SortPattern, _ options: SortOptions) -> Void
     
     @State private var sortKey: SortKey = .column
     @State private var columnSortPattern = CSVSortPattern()

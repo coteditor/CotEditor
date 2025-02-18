@@ -35,9 +35,9 @@ struct LiveTextInsertionView: View {
     
     weak var parent: NSHostingController<Self>?
     
-    let image: NSImage
+    var image: NSImage
     var length: Double = 500
-    let actionHandler: (String) -> Void
+    var actionHandler: (String) -> Void
     
     private static let analyzer = ImageAnalyzer()
     
@@ -89,7 +89,7 @@ struct LiveTextInsertionView: View {
     
     private struct OverlayView: View {
         
-        let result: Result<ImageAnalysis, any Error>?
+        var result: Result<ImageAnalysis, any Error>?
         
         
         var body: some View {

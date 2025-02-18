@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -135,7 +135,7 @@ private struct ThemeListView: NSViewControllerRepresentable {
 private struct ThemeEditorView: View {
     
     @Binding var theme: Theme
-    let isBundled: Bool
+    var isBundled: Bool
     
     @State private var isMetadataPresenting = false
     
@@ -231,7 +231,7 @@ private struct ThemeEditorView: View {
 
 private struct SystemColorPicker: View {
     
-    let label: String
+    var label: String
     @Binding var selection: Theme.SystemDefaultStyle
     var systemColor: Color
     var supportsOpacity: Bool
@@ -267,7 +267,7 @@ private struct SystemColorPicker: View {
 private struct ThemeMetadataView: View {
     
     @Binding var metadata: Theme.Metadata
-    let isEditable: Bool
+    var isEditable: Bool
     
     @Namespace private var accessibility
     

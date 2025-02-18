@@ -38,8 +38,8 @@ struct FindProgressView: View {
     weak var parent: NSHostingController<Self>?
     
     @State private var progress: FindProgress
-    private let unit: Unit
-    private let label: String
+    private var unit: Unit
+    private var label: String
     
     private let timer = Timer.publish(every: 0.1, tolerance: 0.1, on: .main, in: .common).autoconnect()
     @State private var description: String = ""

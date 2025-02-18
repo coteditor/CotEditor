@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import Shortcut
 
 struct ShortcutView: View {
     
-    private let shortcut: Shortcut
+    private var shortcut: Shortcut
     
     
     init(_ shortcut: Shortcut) {

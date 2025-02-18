@@ -51,7 +51,7 @@ extension View {
 
 private struct LocalizedAlertError: LocalizedError {
     
-    private let underlyingError: any LocalizedError
+    private var underlyingError: any LocalizedError
     
     
     /// Creates an existential error confirms to `LocalizedError` protocol from a general `Swift.Error`.

@@ -108,16 +108,16 @@ struct ScriptDescriptor {
     
     // MARK: Public Properties
     
-    let url: URL
-    let name: String
-    let shortcut: Shortcut?
-    let eventTypes: [ScriptingEventType]
+    var url: URL
+    var name: String
+    var shortcut: Shortcut?
+    var eventTypes: [ScriptingEventType]
     
     
     // MARK: Private Properties
     
-    private let type: ScriptingFileType
-    private let executionModel: ScriptingExecutionModel
+    private var type: ScriptingFileType
+    private var executionModel: ScriptingExecutionModel
     
     
     

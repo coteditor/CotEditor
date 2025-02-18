@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ struct InsetTextField: NSViewRepresentable {
     typealias NSViewType = NSTextField
     
     @Binding private var text: String
-    private let prompt: String?
+    private var prompt: String?
     
     private var insets: EdgeInsets = .init()
     private var usesMonospacedDigit = false

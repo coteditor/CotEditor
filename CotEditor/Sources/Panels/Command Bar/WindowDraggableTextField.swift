@@ -31,7 +31,7 @@ struct WindowDraggableTextField: NSViewRepresentable {
     typealias NSViewType = NSTextField
     
     @Binding private var text: String
-    private let prompt: String
+    private var prompt: String
     
     private var onSubmit: () -> Void = {}
     

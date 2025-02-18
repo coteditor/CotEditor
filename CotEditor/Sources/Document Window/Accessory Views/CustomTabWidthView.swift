@@ -38,8 +38,8 @@ struct CustomTabWidthView: View {
     @FocusState private var focus: Focus?
     
     @State private var value: Int
-    private let defaultWidth: Int
-    private let completionHandler: (_ tabWidth: Int) -> Void
+    private var defaultWidth: Int
+    private var completionHandler: (_ tabWidth: Int) -> Void
     
     
     // MARK: View
