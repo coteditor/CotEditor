@@ -72,6 +72,14 @@ private enum BundleIdentifier {
 }
 
 
+@MainActor @objc protocol TextSizeChanging: AnyObject {
+    
+    func biggerFont(_ sender: Any?)
+    func smallerFont(_ sender: Any?)
+    func resetFont(_ sender: Any?)
+}
+
+
 
 @main
 @MainActor final class AppDelegate: NSObject, NSApplicationDelegate {

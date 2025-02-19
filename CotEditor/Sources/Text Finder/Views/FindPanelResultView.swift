@@ -144,9 +144,9 @@ struct FindPanelResultView: View {
                     Button(String(localized: "Reset to Default", table: "MainMenu"), action: self.resetFont)
                 }
             }
-            .onCommand(#selector(EditorTextView.biggerFont), perform: self.biggerFont)
-            .onCommand(#selector(EditorTextView.smallerFont), perform: self.smallerFont)
-            .onCommand(#selector(EditorTextView.resetFont), perform: self.resetFont)
+            .onCommand(#selector((any TextSizeChanging).biggerFont), perform: self.biggerFont)
+            .onCommand(#selector((any TextSizeChanging).smallerFont), perform: self.smallerFont)
+            .onCommand(#selector((any TextSizeChanging).resetFont), perform: self.resetFont)
         }
         .controlSize(.small)
         .padding(.top, 8)

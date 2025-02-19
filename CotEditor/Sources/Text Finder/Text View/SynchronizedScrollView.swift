@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ final class SynchronizedScrollView: NSScrollView {
 
 // MARK: Actions
 
-extension SynchronizedScrollView: NSUserInterfaceValidations {
+extension SynchronizedScrollView: NSUserInterfaceValidations, TextSizeChanging {
     
     func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
