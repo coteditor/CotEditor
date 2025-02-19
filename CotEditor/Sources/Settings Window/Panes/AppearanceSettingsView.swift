@@ -73,6 +73,12 @@ struct AppearanceSettingsView: View {
                             !font.isFixedPitch
                         else { return }
                         
+                        // ignore if only font size changed
+                        if let oldValue,
+                           let oldFont = NSFont(archivedData: oldValue),
+                           font.fontName == oldFont.fontName
+                        { return }
+                        
                         self.selectingFont = oldValue
                         self.isMonospacedFontAlertPresented = true
                     }

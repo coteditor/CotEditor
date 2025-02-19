@@ -18,6 +18,12 @@
 - [beta.2] Update the Dutch localizations for strings newly added in CotEditor 5.1.0.
 
 
+### Fixes
+
+- Fix an issue in the Appearance settings pane where the alert about potential non-monospace fonts keeps appearing even after changing only the font size.
+
+
+
 
 5.1.0-beta.2 (696)
 --------------------------
