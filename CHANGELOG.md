@@ -5,17 +5,17 @@
 
 ### New Features
 
-- Add the “text replacement” option to the Mode settings.
+- Add the “text replacement” option to the Mode settings to disable the future in the editor.
 
 
 ### Improvements
 
-- Show an alert and abort importing setting files if they are not in a valid format.
-- Update the JSON syntax to add the .jsonl file extension.
+- Show an alert and abort the import of setting files if they are not in a valid format.
+- Update the JSON syntax to include the .jsonl file extension.
 - Improve the stability.
-- [experimental] Modify the syntax highlighting algorithm for inline comments.
+- [experimental] Improve the syntax highlighting algorithm for inline comments.
 - [dev] Update Yams from 5.1.3 to 5.3.0.
-- [beta.2] Update the Dutch localizations for strings newly added in CotEditor 5.1.0.
+- [beta.2] Update the Dutch localizations for strings added in CotEditor 5.1.0.
 
 
 ### Fixes

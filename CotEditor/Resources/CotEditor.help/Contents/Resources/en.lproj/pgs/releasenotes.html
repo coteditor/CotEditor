@@ -34,6 +34,7 @@
 			<li>Introduce the <code>--readonly</code> (<code>-r</code>) option to the <code>cot</code> command-line tool to open documents as read-only.</li>
 			<li>Read input from the standard input when the <code>cot</code> command-line tool is used with the <code>-</code> option.</li>
 			<li>Display Finder tags in the document inspector and the file browser.</li>
+			<li>Add the “text replacement” option to the Mode settings to disable the future in the editor.</li>
 		</ul>
 	</section>
 
@@ -42,7 +43,12 @@
 		<h2>Improvements</h2>
 
 		<ul>
+			<li>Show an alert and abort the import of setting files if they are not in a valid format.</li>
+			<li>Update the JSON syntax to include the .jsonl file extension.</li>
 			<li>Improve the VoiceOver support.</li>
+			<li>Improve the stability.</li>
+			<li><span class="trivial">experimental</span>: Improve the syntax highlighting algorithm for inline comments.</li>
+			<li><span class="trivial">dev</span>: Update Yams from 5.1.3 to 5.3.0.</li>
 		</ul>
 	</section>
 
@@ -52,6 +58,7 @@
 
 		<ul>
 			<li>Fixed an issue in CotEditor 5.0.8 where the file path argument passed to CotEditor scripts is percent-encoded.</li>
+			<li>Fix an issue in the Appearance settings pane where the alert about potential non-monospace fonts keeps appearing even after changing only the font size.</li>
 		</ul>
 	</section>
 </article>
@@ -7658,7 +7665,7 @@
 	<li>On Auto-Indent mode, indent become automatically deeper when return key is pressed exactly between <code>{</code> and <code>}</code> or just after <code>:</code> character.</li>
 	<li>Add new “CoffeeScript,” <a href="#v1.5fnote1"><sup>1</sup></a> “Dart,” “Diff,” “INI,” <a href="#v1.5fnote1"><sup>1</sup></a>, “JSON,” “Makefile,” “reStructuredText,” <a href="#v1.5fnote1"><sup>1</sup></a> “Textile,” <a href="#v1.5fnote1"><sup>1</sup></a> and “YAML” syntax style definitions.</li>
 	<li>Now, script folder whose name begins with underscore (_) are not displayed in script menu.</li>
-	<li>[experimental] Add “Use Vertical Orientation” action to “Format” menu (Line numbers are always disabled while vertical orientation mode).</li>
+	<li><span class="trivial">experimental</span> Add “Use Vertical Orientation” action to “Format” menu (Line numbers are always disabled while vertical orientation mode).</li>
 </ul>
 </section>
 
