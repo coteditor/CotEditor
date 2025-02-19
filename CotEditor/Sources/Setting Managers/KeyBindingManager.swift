@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -213,12 +213,6 @@ import URLUtils
         }
         
         // specific items
-        switch MainMenu.MenuItemTag(rawValue: menuItem.tag) {
-            case .recentDocuments:
-                return false
-            case nil:
-                break
-        }
         if menuItem.submenu == NSApp.servicesMenu {
             return false
         }
@@ -233,6 +227,7 @@ import URLUtils
                  #selector((any SnippetInsertable).insertSnippet),
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
+                 #selector(NSDocumentController.clearRecentDocuments),
                  #selector(NSDocument.saveAs),
                  #selector(NSWindow.makeKeyAndOrderFront),  // documents in Window menu
                  #selector(NSApplication.showHelp),

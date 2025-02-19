@@ -82,7 +82,7 @@
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="hxD-kB-kqu"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open Recent" tag="2999" id="124">
+                                        <menuItem title="Open Recent" id="124">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                                 <items>
@@ -394,7 +394,7 @@ Gw
                             <menuItem title="Format" id="247">
                                 <menu key="submenu" title="Format" id="246">
                                     <items>
-                                        <menuItem title="Line Endings" tag="100" id="294">
+                                        <menuItem title="Line Endings" id="294">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="ControlUI"/>
                                         </menuItem>
@@ -444,12 +444,12 @@ Gw
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="398"/>
-                                                    <menuItem title="Bigger" tag="3" keyEquivalent="+" id="405">
+                                                    <menuItem title="Bigger" keyEquivalent="+" id="405">
                                                         <connections>
                                                             <action selector="biggerFont:" target="Ady-hI-5gd" id="VXR-9f-nOU"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Smaller" tag="4" keyEquivalent="-" id="404">
+                                                    <menuItem title="Smaller" keyEquivalent="-" id="404">
                                                         <connections>
                                                             <action selector="smallerFont:" target="Ady-hI-5gd" id="Uds-lf-yjO"/>
                                                         </connections>
