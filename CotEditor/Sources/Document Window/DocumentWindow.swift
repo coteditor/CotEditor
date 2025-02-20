@@ -81,13 +81,8 @@ final class DocumentWindow: NSWindow {
     
     override var isOpaque: Bool {
         
-        willSet {
-            self.willChangeValue(for: \.isOpaque)
-        }
-        
-        didSet {
-            self.didChangeValue(for: \.isOpaque)
-        }
+        willSet { self.willChangeValue(for: \.isOpaque) }
+        didSet { self.didChangeValue(for: \.isOpaque) }
     }
     
     
@@ -117,11 +112,10 @@ final class DocumentWindow: NSWindow {
     // MARK: Private Methods
     
     /// Whether the window level is floating.
-    private var isFloating: Bool = false {
+    private var isFloating: Bool {
         
-        didSet {
-            self.level = isFloating ? .floating : .normal
-        }
+        get { self.level == .floating }
+        set { self.level = newValue ? .floating : .normal }
     }
 }
 
