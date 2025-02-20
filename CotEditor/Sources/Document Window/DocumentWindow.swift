@@ -60,7 +60,6 @@ final class DocumentWindow: NSWindow {
     }
     
     
-    
     // MARK: Window Methods
     
     override static var restorableStateKeyPaths: [String] {
@@ -97,10 +96,6 @@ final class DocumentWindow: NSWindow {
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(toggleTabBar):
-                (item as? NSMenuItem)?.keyEquivalentModifierMask = [.command, .shift]
-                (item as? NSMenuItem)?.keyEquivalent = "t"
-                
             case #selector(toggleKeepOnTop):
                 (item as? any StatableItem)?.state = self.isFloating ? .on : .off
                 
@@ -140,7 +135,6 @@ extension DocumentWindow {
     static var tabbingPreference: NSWindow.UserTabbingPreference?
     
     
-    
     // MARK: Window Methods
     
     override class var userTabbingPreference: NSWindow.UserTabbingPreference {
@@ -157,32 +151,22 @@ extension DocumentWindow {
     }
     
     
-    /// Processes user's shortcut input
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         
         guard !super.performKeyEquivalent(with: event) else { return true }
         
-        guard
-            self.tabbingMode != .disallowed,
-            let shortcut = Shortcut(keyDownEvent: event)
-        else { return false }
-        
-        // prefer existing shortcut that user might define
-        guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
-        
-        // toggle tab bar with ⌘⇧T`
-        // -> This is needed under the case when "Show/Hide Tab Bar" menu item is not yet added to the View menu. (2020-01)
-        if shortcut == Shortcut("T", modifiers: [.command, .shift]) {
-            self.toggleTabBar(nil)
-            return true
-        }
-        
         // select tabbed window with `⌘-number` (`⌘9` for the last tab)
-        if shortcut.modifiers == [.command],
-           let number = Int(shortcut.keyEquivalent), number > 0,
-           let windows = self.tabbedWindows,
-           let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
+        if
+            self.tabbingMode != .disallowed,
+            let shortcut = Shortcut(keyDownEvent: event),
+            shortcut.modifiers == [.command],
+            let number = Int(shortcut.keyEquivalent), number > 0,
+            let windows = self.tabbedWindows,
+            let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
         {
+            // prefer existing shortcut that user might define
+            guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
+            
             window.tabGroup?.selectedWindow = window
             return true
         }

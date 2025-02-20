@@ -594,6 +594,11 @@ Gw
                             <menuItem title="View" id="322">
                                 <menu key="submenu" title="View" id="324">
                                     <items>
+                                        <menuItem title="Show Tab Bar" keyEquivalent="T" id="MRo-QR-whQ">
+                                            <connections>
+                                                <action selector="toggleTabBar:" target="Ady-hI-5gd" id="ehM-lG-1tm"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Hide Toolbar" keyEquivalent="t" id="612">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
