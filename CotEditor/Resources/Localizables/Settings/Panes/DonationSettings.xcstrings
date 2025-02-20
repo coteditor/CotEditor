@@ -1600,90 +1600,90 @@
         }
       }
     },
-    "The donation feature is available only in CotEditor distributed in the App Store." : {
+    "The In-App donation feature is available only in CotEditor distributed in the App Store." : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Funkce darování je k dispozici pouze v CotEditoru distribuovaném v App Store."
+            "value" : "Funkce darování v aplikaci je k dispozici pouze v CotEditoru distribuovaném v App Store."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Spendenfunktion ist nur in CotEditor verfügbar, der im App Store vertrieben wird."
+            "value" : "Die In-App-Spendenfunktion ist nur in CotEditor verfügbar, der im App Store vertrieben wird."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The donation feature is available only in CotEditor distributed in the App Store."
+            "value" : "The In-App donation feature is available only in CotEditor distributed in the App Store."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "La función de donación sólo está disponible en CotEditor distribuido en la App Store."
+            "value" : "La función de donación dentro de la app sólo está disponible en CotEditor distribuido en la App Store."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "La fonction de donation n'est disponible que dans CotEditor distribué dans l'App Store."
+            "value" : "La fonction de donation intégré n'est disponible que dans CotEditor distribué dans l'App Store."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si può donare solo tramite il CotEditor distribuito dall'App Store."
+            "value" : "Si può donare in-app solo tramite il CotEditor distribuito dall'App Store."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "寄付機能はApp Storeで配布されているCotEditorでのみ有効です。"
+            "value" : "アプリ内寄付機能はApp Storeで配布されているCotEditorでのみ有効です。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "후원 기능은 App Store에서 배포된 CotEditor에서만 사용할 수 있습니다."
+            "value" : "인앱 후원 기능은 App Store에서 배포된 CotEditor에서만 사용할 수 있습니다."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De donatiefunctie is alleen beschikbaar in CotEditor gedistribueerd in de App Store."
+            "value" : "De in-app donatiefunctie is alleen beschikbaar in CotEditor gedistribueerd in de App Store."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Funkcja darowizny jest dostępna wyłącznie w CotEditorze dystrybuowanym przez App Store."
+            "value" : "Funkcja darowizny w aplikacji jest dostępna wyłącznie w CotEditorze dystrybuowanym przez App Store."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O recurso de doação está disponível apenas no CotEditor distribuído na App Store."
+            "value" : "O recurso de doação Dentro do App está disponível apenas no CotEditor distribuído na App Store."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bağış özelliği, yalnızca App Store üzerinden dağıtılan CotEditor üzerinde kullanılabilir."
+            "value" : "Uygulama içi bağış özelliği, yalnızca App Store üzerinden dağıtılan CotEditor üzerinde kullanılabilir."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "捐赠功能仅在App Store分发的CotEditor中可用。"
+            "value" : "App内捐赠功能仅在App Store分发的CotEditor中可用。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "該捐贈功能僅可用於藉由 App Store 安裝的 CotEditor。"
+            "value" : "App內該捐贈功能僅可用於藉由 App Store 安裝的 CotEditor。"
           }
         }
       }

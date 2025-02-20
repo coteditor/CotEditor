@@ -184,7 +184,7 @@ struct DonationSettingsView: View {
                         .font(.system(size: 64, weight: .light))
                         .foregroundStyle(.tertiary)
                         .padding(.vertical, 6)
-                    Text("The donation feature is available only in CotEditor distributed in the App Store.", tableName: "DonationSettings")
+                    Text("The in-App donation feature is available only in CotEditor distributed in the App Store.", tableName: "DonationSettings")
                         .foregroundStyle(.secondary)
                     
                     if let url = URL(string: "itms-apps://itunes.apple.com/app/id1024640650") {
