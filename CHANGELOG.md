@@ -1,5 +1,10 @@
 # Change Log
 
+5.1.0 (unreleased)
+--------------------------
+
+
+
 5.1.0-beta.3 (698)
 --------------------------
 
@@ -15,7 +20,7 @@
 - Improve the stability.
 - [experimental] Improve the syntax highlighting algorithm for inline comments.
 - [dev] Update Yams from 5.1.3 to 5.3.0.
-- [beta.2] Update the Dutch localizations for strings added in CotEditor 5.1.0.
+- [beta.2] Update the Dutch localization for strings added in CotEditor 5.1.0.
 
 
 ### Fixes
