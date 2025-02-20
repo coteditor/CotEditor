@@ -687,7 +687,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.1.0-beta.3";
+				MARKETING_VERSION = "5.1.0-beta.4";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -812,7 +812,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.1.0-beta.3";
+				MARKETING_VERSION = "5.1.0-beta.4";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -915,7 +915,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.1.0-beta.3";
+				MARKETING_VERSION = "5.1.0-beta.4";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -945,7 +945,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.1.0-beta.3";
+				MARKETING_VERSION = "5.1.0-beta.4";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_STRICT_CONCURRENCY = complete;
