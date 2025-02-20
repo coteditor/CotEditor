@@ -52,7 +52,6 @@ struct SyntaxCompletionEditView: View {
                     if let item = $items[id: wrappedItem.id] {
                         TextField(text: item.string, label: EmptyView.init)
                             .focused($focusedField, equals: item.id)
-                        
                     }
                 }
             }
