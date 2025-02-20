@@ -5674,8 +5674,10 @@ filenames: []
 interpreters:
 - keyString: php
 keywords:
-- beginString: <?php
-- beginString: ?>
+- beginString: <\?php\b
+  regularExpression: true
+- beginString: \?>
+  regularExpression: true
 - beginString: abstract
 - beginString: and
 - beginString: as
@@ -5743,9 +5745,9 @@ metadata:
 
     Maintained by 1024jp since 2013.'
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2025-02-21'
   license: Same as CotEditor
-  version: 2.6.0
+  version: 2.6.1
 numbers:
 - beginString: \b-?0[0-7]+(_[0-7]+)*\b
   description: octal

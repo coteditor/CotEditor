@@ -3,6 +3,10 @@
 5.1.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the PHP syntax.
+
 
 
 5.1.0-beta.3 (698)
