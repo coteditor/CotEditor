@@ -128,8 +128,8 @@ struct CharacterCountOptionsView: View {
                             }
                             .labelsHidden()
                             .disabled(!self.normalizes)
-                            .fixedSize()
                         }
+                        .fixedSize()
                     }
                 }
             }
