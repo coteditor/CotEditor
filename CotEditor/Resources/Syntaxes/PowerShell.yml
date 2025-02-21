@@ -3960,6 +3960,7 @@ outlineMenu:
 - beginString: ^([\t ]*)class[\t ]+((?:\p{L}|\d|_|-|\.)+)\b
   bold: true
   description: class
+  ignoreCase: true
   keyString: $1$2
 strings:
 - beginString: '"'
@@ -3978,7 +3979,6 @@ strings:
 types:
 - beginString: (?<=\[)\w+(?=\])
   regularExpression: true
-- beginString: Mandatory
 values:
 - beginString: $False
   ignoreCase: true
