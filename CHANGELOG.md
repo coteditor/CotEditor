@@ -3,6 +3,11 @@
 5.1.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the PowerShell syntax.
+
+
 ### Improvements
 
 - Update the PHP syntax.

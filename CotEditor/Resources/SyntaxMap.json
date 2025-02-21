@@ -533,6 +533,18 @@
 
     ]
   },
+  "PowerShell" : {
+    "extensions" : [
+      "ps1",
+      "psm1"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "pwsh"
+    ]
+  },
   "Properties" : {
     "extensions" : [
       "properties"
