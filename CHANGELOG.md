@@ -11,6 +11,8 @@
 ### Improvements
 
 - Update the PHP syntax.
+- [dev] Update Yams from 5.3.0 to 5.3.1.
+- [non-AppStore ver.] Update Sparkle from 2.6.4 to 2.7.0.
 
 
 
