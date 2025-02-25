@@ -130,14 +130,18 @@ struct WhatsNewView: View {
 }
 
 
-private enum NewFeature: CaseIterable {
+enum NewFeature: CaseIterable {
     
     static let version = Version(5, 1, 0)
+    static let buildNumber = 700
     
     case uniqueFolder
     case readOnly
     case tag
+}
     
+
+private extension NewFeature {
     
     var image: Image {
         
