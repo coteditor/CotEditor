@@ -250,7 +250,8 @@ private enum BundleIdentifier {
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         
-        // programmatically setting `automaticTerminationSupportEnabled` seems not working (macOS 15.1 2024-11, FB15979536)
+        // -> Setting `automaticTerminationSupportEnabled` programmatically doesn't appear to be working.
+        //    (macOS 15.1 2024-11, FB15979536)
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
         if Document.autosavesInPlace {
             ProcessInfo.processInfo.enableSuddenTermination()
@@ -279,7 +280,7 @@ private enum BundleIdentifier {
         }
         
         // store the latest version
-        // -> migration processes should be finished until here.
+        // -> Migration processes should be completed up to this point.
         let thisVersion = Bundle.main.bundleVersion
         if lastVersion == nil || Int(thisVersion)! > lastVersion! {
             UserDefaults.standard[.lastVersion] = thisVersion
