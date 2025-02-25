@@ -80,6 +80,7 @@
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.directory</string>
+				<string>public.folder</string>
 			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).DirectoryDocument</string>
