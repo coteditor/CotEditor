@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -86,7 +86,7 @@ struct ShortcutTests {
     }
     
     
-    @Test(arguments: Shortcut.keyEquivalentSymbolNames.values) func symbol(name: String) {
+    @Test(arguments: Set(Shortcut.keyEquivalentSymbolNames.values)) func symbol(name: String) {
         
         #expect(NSImage(systemSymbolName: name, accessibilityDescription: nil) != nil)
     }
@@ -133,14 +133,14 @@ struct ShortcutTests {
         #expect(Shortcut(keySpecChars: "~@b")?.symbol == "⌥ ⌘ B")
         
         // test unprintable keys
-        let f10 = try #require(String(NSEvent.SpecialKey.f10.unicodeScalar))
+        let f10 = String(NSEvent.SpecialKey.f10.unicodeScalar)
         #expect(Shortcut(keySpecChars: "@" + f10)?.symbol == "⌘ F10")
         
         let delete = try #require(UnicodeScalar(NSDeleteCharacter).map(String.init))
         #expect(Shortcut(keySpecChars: "@" + delete)?.symbol == "⌘ ⌫")
         
         // test creation
-        let deleteForward = try #require(String(NSEvent.SpecialKey.deleteForward.unicodeScalar))
+        let deleteForward = String(NSEvent.SpecialKey.deleteForward.unicodeScalar)
         #expect(Shortcut(symbolRepresentation: "") == nil)
         #expect(Shortcut(symbolRepresentation: "^ ⇧ A")?.keySpecChars == "^$a")
         #expect(Shortcut(symbolRepresentation: "⌥ ⌘ B")?.keySpecChars == "~@b")
