@@ -16,6 +16,11 @@
 - [non-AppStore ver.] Update Sparkle from 2.6.4 to 2.7.0.
 
 
+### Fixes
+
+- Fix an issue where the Settings window was not accessible from the Window menu.
+
+
 
 5.1.0-beta.3 (698)
 --------------------------
