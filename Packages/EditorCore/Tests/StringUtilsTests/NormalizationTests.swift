@@ -40,6 +40,7 @@ struct NormalizationTests {
     
     @Test(arguments: UnicodeNormalizationForm.allCases) func normalize(form: UnicodeNormalizationForm) {
         
+        #expect("".normalizing(in: form).isEmpty)
         #expect("abc".normalizing(in: form) == "abc")
         
         let normalized = "É \t 神 ㍑ ＡＢC".normalizing(in: form)
