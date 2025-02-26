@@ -2,7 +2,7 @@
 
 ## General Feedback
 
-Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). You can write your feedback either in English (recommended) or in Japanese.
+Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). We welcome feedback in either English (preferred) or Japanese.
 
 
 ### Issue reports
@@ -17,9 +17,9 @@ If your issue relates to syntax highlighting, include the sample code that can r
 ### Feature requests
 
 First, search for existing feature requests. If your idea is already posted, comment on that thread. Otherwise, create a new one using the “Feature request” template.
-Create an issue per feature instead of listing multiple features in a single post.
+Instead of listing multiple features in a single post, create an issue for each feature.
 
-Please __don’t just post “+1”__ to existing requests; it makes no difference and adds noise.
+Please __don't just post “+1”__ to existing requests; it makes no difference and adds noise.
 
 
 
@@ -27,26 +27,26 @@ Please __don’t just post “+1”__ to existing requests; it makes no differen
 
 ### General Code Improvements
 
-Bug fixes and improvements are welcome. If you want to add a new feature or make a major change, ask the team first whether your idea will be accepted.
+Bug fixes and improvements are welcome. Before adding a new feature or making a significant change, please consult the team to ensure its acceptance.
 
-When contributing code, please adhere to our coding style guide below for consistency and maintainability.
+When contributing code, please adhere to our coding style guide for consistency and maintainability.
 
 
 ### Localizations
 
-Fixing/updating existing localizations is always welcome. See each .xcstrings file to find which strings need to be localized or reviewed by native speakers. By localization, please refer to the comments and key naming so that you can know where and how each string will be used. If you are uncertain, feel free to ask @1024jp.
+Fixing or updating existing localizations is always appreciated. See each .xcstrings file to find which strings need to be localized or reviewed by native speakers. Please refer to the comments and key naming to understand where and how each string will be used. If you are uncertain, feel free to ask @1024jp.
 
-If your localization destroys some layout in views, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull request. We'll update the view to lay out your localized text correctly.
+If your localization disrupts the layout of views, try first shortening the sentence. However, if it's impossible, provide a screenshot when you submit a pull request. We'll update the view to correctly lay out your localized text.
 
 #### Submitting a new localization
 
-Currently, the CotEditor project only accepts new localizations whose provider can maintain them thereafter. When submitting a new localization, please explicitly tell us if you also intend to be a localization maintainer. The standard maintenance process of localization is described in the following subsection.
+Currently, the CotEditor project only accepts new localizations from providers who can maintain them in the future. When submitting a new localization, please explicitly indicate if you also intend to be a localization maintainer. For more information on the standard maintenance process of localizations, please refer to the following subsection.
 
-You have two options for adding a new localization to CotEditor.app. Choose one of them depending on your knowledge and preference:
+You have two options for adding a new localization to CotEditor.app. Choose one of them depending on your knowledge and preferences:
 
 - Option 1: Add a new localization in Xcode by yourself and make a pull request (for those who get used to git and Xcode projects):
     - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and add your language to the table. Then, the new language you added will automatically appear in the string catalogs.
-    - CotEditor uses the String Catalog format (.xcstrings), first introduced in 2023. To add localization in each string catalog file, select your language and fill each cell of your language column in the table. Cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
+    - CotEditor uses the String Catalog format (.xcstrings), introduced in 2023. To add localization to each string catalog file, select your language and fill in the corresponding cells in the table. Cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
     - You can find the string catalogs to localize under:
         - CotEditor/Resources/Localizables/
         - CotEditor/Storyboards/mul.lproj/
@@ -55,19 +55,19 @@ You have two options for adding a new localization to CotEditor.app. Choose one 
         - Packages/EditorCore/Sources/LineEnding/Resources/
         - Packages/EditorCore/Sources/StringUtils/Resources/
         - Packages/EditorCore/Sources/Syntax/Resources/
-    - Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. It will be done by @1024jp based on the Apple's localization data.
+    - Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. This will be handled by @1024jp based on Apple's localization data.
 - Option 2: Communicate with the maintainer personally and work with a provided localization template (.xcloc file):
-    - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask for the localization template (.xcloc file) for your language. When you receive the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. When finished, send the template file back to the maintainer.
+    - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask for the localization template (.xcloc file) for your language. Upon receiving the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. Once completed, send the template file back to the maintainer.
 
 #### Localization maintenance process
 
 A standard localization update proceeds as follows:
 
-1. When CotEditor has new strings to be localized, the CotEditor maintainer, @1024jp, creates a new ticket on GitHub Issues and mentions the localization maintainers in it so that they can keep all their localized strings up to date. The ticket includes all strings to be updated and their descriptions, sometimes with screenshots. e.g., [#1519](https://github.com/coteditor/CotEditor/issues/1519).
-2. The localizers either post the localized strings to the thread or make a pull request on GitHub. The maintainers should localize the updated strings within about one week (the shorter period is, of course, welcome, but not required). All the responses must be done on GitHub. Not via email.
+1. When CotEditor has new strings to be localized, the CotEditor maintainer, @1024jp, creates a new ticket on GitHub Issues. This ticket includes all the strings to be updated along with their descriptions and, sometimes, screenshots. For instance, [#1519](https://github.com/coteditor/CotEditor/issues/1519) is an example of such a ticket.
+2. The localizers then post the localized strings to the thread or make a pull request on GitHub. The maintainers are responsible for localizing the updated strings within approximately one week. While a shorter period is preferred, it’s not mandatory. All responses must be made on GitHub, not via email.
 3. The CotEditor maintainer reviews and merges the updates provided by the localizers.
 
-Localization updates may happen once per few months, in general. If a maintainer wants to decline further ongoing maintenance for some reason, it would be kind to express their intentions to the maintainer via email or something. In that case, I will contact the community to find a new maintainer.
+Localization updates may happen once per few months, in general. If a maintainer wants to decline further ongoing maintenance for some reason, it would be kind to express their intentions to the maintainer via email or something. In that case, I will reach out to the community to find a new maintainer.
 
 Currently, we already have maintainers for:
 
@@ -89,7 +89,7 @@ We are now looking for new maintainers for:
 - French
 - Spanish
 
-Though CotEditor is not yet localized in any bidirectional languages, the project is prepared for it. If you’re interested in localizing CotEditor to those languages, please let us know.
+Although CotEditor is not yet localized in any bidirectional languages, the project is prepared for it. If you're interested in localizing CotEditor to those languages, please let us know.
 
 #### Localization for the App Store
 
@@ -105,8 +105,8 @@ Especially, follow the terms of the following applications:
 - The Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-Furthermore, we recommend utilizing [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS apps and frameworks.
-You also need to take care of how Apple treats punctuation characters and symbols. For example, regarding quotation marks, they normally prefer the typographer's ones.
+Additionally, we recommend utilizing the [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS apps and frameworks.
+You also need to take care of how Apple treats punctuation characters and symbols. For example, regarding quotation marks, they generally prefer the typographer's ones.
 
 
 ### Syntaxes
