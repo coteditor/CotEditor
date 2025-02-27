@@ -114,7 +114,15 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                    height: height > window.minSize.height ? height : window.frame.height)
             window.setFrame(NSRect(origin: window.frame.origin, size: frameSize), display: false)
         }
-        if let cascadingPoint = NSApp.mainWindow?.cascadeTopLeft(from: .zero) {
+        if let mainWindow = NSApp.mainWindow {
+            let frame = if #available(macOS 15, *) {
+                mainWindow.cascadingReferenceFrame
+            } else {
+                NSRect.zero
+            }
+            let topLeft = NSPoint(x: frame.minX, y: frame.maxY)
+            let cascadingPoint = mainWindow.cascadeTopLeft(from: topLeft)
+            
             window.cascadeTopLeft(from: cascadingPoint)
         }
         
