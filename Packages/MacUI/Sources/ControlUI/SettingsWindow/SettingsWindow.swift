@@ -30,6 +30,12 @@ final class SettingsWindow: NSWindow {
     
     // MARK: Window Methods
     
+    override var canBecomeMain: Bool  {
+        
+        false
+    }
+    
+    
     override func cancelOperation(_ sender: Any?) {
     
         self.close()

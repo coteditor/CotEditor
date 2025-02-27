@@ -106,13 +106,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.tabbingMode = .disallowed
         }
         
-        // set window size
+        // set window frame
         let width = UserDefaults.standard[.windowWidth] ?? 0
         let height = UserDefaults.standard[.windowHeight] ?? 0
         if width > 0 || height > 0 {
             let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
                                    height: height > window.minSize.height ? height : window.frame.height)
             window.setFrame(NSRect(origin: window.frame.origin, size: frameSize), display: false)
+        }
+        if let cascadingPoint = NSApp.mainWindow?.cascadeTopLeft(from: .zero) {
+            window.cascadeTopLeft(from: cascadingPoint)
         }
         
         super.init(window: window)
@@ -129,11 +132,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         toolbar.delegate = self
         window.toolbarStyle = .unified
         window.toolbar = toolbar
-        
-        // cascade window position
-        // -> Perform after setting the toolbar.
-        let cascadingPoint = NSApp.mainWindow?.cascadeTopLeft(from: .zero) ?? .zero
-        window.cascadeTopLeft(from: cascadingPoint)
         
         // observe opacity setting change
         // -> Keep opaque when the window was created as a browsing window (the right side ones in the browsing mode).
