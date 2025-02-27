@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,10 +68,12 @@ struct UTTypeExtensionTests {
     }
     
     
-    @Test func isPlainText() {
+    @Test func isPlainText() throws {
         
         #expect(UTType.propertyList.isPlainText)
         #expect(UTType.svg.isPlainText)
-        #expect(UTType(filenameExtension: "ts")!.isPlainText)
+        
+        let ts = try #require(UTType(filenameExtension: "ts"))
+        #expect(ts.isPlainText)
     }
 }

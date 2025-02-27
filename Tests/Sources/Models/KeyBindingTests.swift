@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,8 +28,7 @@ import Shortcut
 import AppKit.NSEvent
 @testable import CotEditor
 
-
-struct KeyBindingTests {
+@MainActor struct KeyBindingTests {
     
     /// Shortcuts that are reserved for use with the Accessibility features in macOS.
     ///
@@ -67,23 +66,22 @@ struct KeyBindingTests {
         Shortcut(.f5, modifiers: [.command]),
     ]
     
+    private let keyBindings = KeyBindingManager.shared.defaultKeyBindings
+    
     
     /// Tests .defaultKeyBindings expectedly contains key bindings determined in CotEditor.
-    @Test func defaultKeyBindings() async {
+    @Test func defaultKeyBindings() async throws {
         
-        let keyBindings = await KeyBindingManager.shared.defaultKeyBindings
+        let shortcut = try #require(Shortcut("k", modifiers: .command))
+        let shortcuts = self.keyBindings.compactMap(\.shortcut)
         
-        #expect(keyBindings
-            .compactMap(\.shortcut)
-            .contains(Shortcut("k", modifiers: .command)!))
+        #expect(shortcuts.contains(shortcut))
     }
     
     
     @Test func reservedShortcuts() async {
         
-        let keyBindings = await KeyBindingManager.shared.defaultKeyBindings
-        
-        for keyBinding in keyBindings {
+        for keyBinding in self.keyBindings {
             guard let shortcut = keyBinding.shortcut else { continue }
             
             #expect(!self.accessibilityShortcuts.contains(shortcut),

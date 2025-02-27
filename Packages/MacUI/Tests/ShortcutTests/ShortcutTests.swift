@@ -92,14 +92,14 @@ struct ShortcutTests {
     }
     
     
-    @Test func menuItemShortcut() {
+    @Test func menuItemShortcut() throws {
         
         let menuItem = NSMenuItem(title: "", action: nil, keyEquivalent: "C")
         menuItem.keyEquivalentModifierMask = [.command]
         
-        let shortcut = Shortcut(menuItem.keyEquivalent, modifiers: menuItem.keyEquivalentModifierMask)
+        let shortcut = try #require(Shortcut(menuItem.keyEquivalent, modifiers: menuItem.keyEquivalentModifierMask))
         
-        #expect(shortcut?.symbol == "⇧ ⌘ C")
+        #expect(shortcut.symbol == "⇧ ⌘ C")
         #expect(shortcut == menuItem.shortcut)
         
         let shortcutA = Shortcut("A", modifiers: [.shift])
@@ -112,7 +112,7 @@ struct ShortcutTests {
     }
     
     
-    @Test func menuItemCommand() {
+    @Test func menuItemCommand() throws {
         
         let menu = NSMenu()
         menu.items = [
@@ -120,8 +120,9 @@ struct ShortcutTests {
             NSMenuItem(title: "bbb", action: nil, keyEquivalent: "B"),
             NSMenuItem(title: "ccc", action: nil, keyEquivalent: "C"),
         ]
+        let shortcut = try #require(Shortcut("B", modifiers: .command))
         
-        #expect(menu.commandName(for: Shortcut("B", modifiers: .command)!) == "bbb")
+        #expect(menu.commandName(for: shortcut) == "bbb")
     }
     
     
