@@ -73,11 +73,11 @@ struct URLExtensionsTests {
     
     @Test func ancestor() throws {
         
-        let leaf = URL(fileURLWithPath: "/Dog/Cow/Cat")
+        let leaf = URL(filePath: "/Dog/Cow/Cat")
         let parent = leaf.deletingLastPathComponent()
         
         #expect(parent.isAncestor(of: leaf))
-        #expect(!parent.isAncestor(of: URL(fileURLWithPath: "/Dog/Cow 1/Cat")))
+        #expect(!parent.isAncestor(of: URL(filePath: "/Dog/Cow 1/Cat")))
         #expect(!leaf.isAncestor(of: leaf))
     }
     
@@ -87,7 +87,6 @@ struct URLExtensionsTests {
         let urls: [URL] = [
             URL(string: "Dog/Cow/file.txt")!,
             URL(string: "Dog/Sheep/file.txt")!,
-            
         ]
         
         #expect(URL(string: "Dog/Cow/file copy.txt")!.firstUniqueDirectoryURL(in: urls) == nil)

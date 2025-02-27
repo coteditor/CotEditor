@@ -330,7 +330,8 @@ private enum BundleIdentifier {
         
         assert(Thread.isMainThread)
         
-        let documentURLs = filenames.map(URL.init(fileURLWithPath:))
+        let documentURLs = filenames
+            .map { URL(filePath: $0) }
             .filter {
                 // ask installation if the file is CotEditor theme file
                 $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(at: $0) : true
