@@ -97,7 +97,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         //    if multiple window instances have the same name (2024-10, macOS 15).
         self.windowAutosaveName = self.isDirectoryDocument ? "DirectoryDocument": "Document"
         
-        let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
+        let viewController = WindowContentViewController(document: document, directoryDocument: directoryDocument)
+        let window = DocumentWindow(contentViewController: viewController)
         window.styleMask.update(with: .fullSizeContentView)
         window.animationBehavior = .documentWindow
         window.setFrameAutosaveName(self.windowAutosaveName)
@@ -106,7 +107,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.tabbingMode = .disallowed
         }
         
-        // set window frame
+        // set window size
         let width = UserDefaults.standard[.windowWidth] ?? 0
         let height = UserDefaults.standard[.windowHeight] ?? 0
         if width > 0 || height > 0 {
@@ -114,6 +115,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                    height: height > window.minSize.height ? height : window.frame.height)
             window.setFrame(NSRect(origin: window.frame.origin, size: frameSize), display: false)
         }
+        
+        // cascade window position
         if let mainWindow = NSApp.mainWindow {
             let frame = if #available(macOS 15, *) {
                 mainWindow.cascadingReferenceFrame
