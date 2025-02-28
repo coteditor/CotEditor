@@ -133,7 +133,7 @@ struct WhatsNewView: View {
 enum NewFeature: CaseIterable {
     
     static let version = Version(5, 1, 0)
-    static let buildNumber = 700
+    static let buildNumber = 696
     
     case uniqueFolder
     case readOnly

@@ -19,8 +19,8 @@
 ### Fixes
 
 - Fix an issue in the AppleScript support where the `print` command is ignored.
-- Fix an issue where the Settings window was not accessible from the Window menu.
-- Fix an issue on macOS 15 where newly created documents are incorrectly positioned when the frontmost document is tiled.
+- Fix an issue where the Settings window is not accessible from the Window menu.
+- Fix an issue on macOS 15 where newly created documents are mispositioned when the frontmost document is tiled.
 
 
 
