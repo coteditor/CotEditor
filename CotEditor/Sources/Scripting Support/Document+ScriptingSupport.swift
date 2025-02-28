@@ -217,7 +217,19 @@ extension Document {
     
     
     
-    // MARK: AppleScript Handler
+    // MARK: AppleScript Handlers
+    
+    override func handlePrint(_ command: NSScriptCommand) -> Any? {
+        
+        let arguments = command.evaluatedArguments ?? [:]
+        let showPrintPanel = arguments["ShowPrintDialog"] as? Bool ?? false
+        let settings = arguments["PrintSettings"] as? [NSPrintInfo.AttributeKey: Any] ?? [:]
+        
+        self.print(withSettings: settings, showPrintPanel: showPrintPanel, delegate: nil, didPrint: nil, contextInfo: nil)
+        
+        return true
+    }
+    
     
     /// Handles the Convert AppleScript by changing the text encoding and converting the text.
     @objc func handleConvert(_ command: NSScriptCommand) -> NSNumber {
