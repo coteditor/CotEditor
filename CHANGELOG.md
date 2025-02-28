@@ -19,7 +19,7 @@
 ### Fixes
 
 - Fix an issue where the Settings window was not accessible from the Window menu.
-- Fix an issue in macOS 15 where newly created documents are incorrectly positioned when the frontmost document is tiled.
+- Fix an issue on macOS 15 where newly created documents are incorrectly positioned when the frontmost document is tiled.
 
 
 
