@@ -295,7 +295,7 @@
 // The following blocks are (mostly newly added to Unicode and therefore) not in the glossaries.
 "Syriac Supplement" = "敘利亞文補充";
 "Cyrillic Extended-C" = "斯拉夫文延伸-C";
-"High Private Use Surrogates" = "高度私有使用區";
+"High Private Use Surrogates" = "高位專用代理";
 "Georgian Extended" = "喬治亞文延伸";
 "Osage" = "奧塞奇文";
 "Hanifi Rohingya" = "哈乃斐羅興亞文";
