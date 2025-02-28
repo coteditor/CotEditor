@@ -569,7 +569,6 @@ private extension NSPanel {
         self.titleVisibility = .hidden
         self.titlebarAppearsTransparent = true
         self.hidesOnDeactivate = false
-        self.becomesKeyOnlyIfNeeded = true
         self.setContentSize(viewController.view.intrinsicContentSize)
         
         if let title {
