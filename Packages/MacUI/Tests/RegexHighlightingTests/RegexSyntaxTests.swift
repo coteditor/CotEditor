@@ -30,6 +30,17 @@ import Testing
 
 struct RegexSyntaxTests {
     
+    @Test func regexSyntaxType() {
+        
+        // check regex patterns are valid (otherwise, it crashes)
+        for type in RegexSyntaxType.allCases {
+            _ = type.ranges(in: "a", mode: .search)
+            _ = type.ranges(in: "a", mode: .replacement(unescapes: true))
+            _ = type.ranges(in: "a", mode: .replacement(unescapes: false))
+        }
+    }
+    
+    
     @Test func highlightBracket() throws {
         
         // -> Only the `]` at the first position will be evaluated as a character.

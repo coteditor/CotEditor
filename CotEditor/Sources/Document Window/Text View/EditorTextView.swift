@@ -1582,7 +1582,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 return (self.string.immutable, self.selectedRange)
             }
             
-            guard (try! NSRegularExpression(pattern: "\\A\\b\\w.*\\w\\b\\z"))
+            guard (try! NSRegularExpression(pattern: #"\A\b\w.*\w\b\z"#))
                 .firstMatch(in: string, options: [.withTransparentBounds], range: selectedRange) != nil
             else { return }
             
@@ -1700,7 +1700,7 @@ extension EditorTextView {
                 // do nothing if the particle word is a symbol
                 guard charRange.length > 1 || CharacterSet.alphanumerics.contains(partialWord.unicodeScalars.first!) else { return [] }
                 
-                let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: partialWord) + "\\w+?(?:$|\\b)"
+                let pattern = #"(?:^|\b|(?<=\W))"# + NSRegularExpression.escapedPattern(for: partialWord) + #"\w+?(?:$|\b)"#
                 let regex = try! NSRegularExpression(pattern: pattern)
                 
                 return regex.matches(in: self.string, range: self.string.range).map { (self.string as NSString).substring(with: $0.range) }

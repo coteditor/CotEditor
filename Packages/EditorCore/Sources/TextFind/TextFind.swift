@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -92,7 +92,7 @@ public struct TextFind: Equatable, Sendable {
             case .textual(let options, let isFullWord):
                 assert(!options.contains(.backwards))
                 self.regex = nil
-                self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: "^\\b.+\\b$") : nil
+                self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^\b.+\b$"#) : nil
                 
             case .regularExpression(let options, _):
                 do {

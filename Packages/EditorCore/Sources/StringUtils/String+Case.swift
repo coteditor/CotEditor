@@ -39,7 +39,7 @@ public extension String {
     /// The string transformed all camel- and pascal-case words to snake-case.
     var snakecased: String {
         
-        self.ranges(pattern: "(?<=\\w)(?=\\p{uppercase})")
+        self.ranges(pattern: #"(?<=\w)(?=\p{uppercase})"#)
             .reversed()
             .reduce(into: self.lowercased()) { (string, range) in
                 string.replaceSubrange(range, with: "_")
@@ -50,7 +50,7 @@ public extension String {
     /// The string transformed all snake- and pascal-case words to camel-case.
     var camelcased: String {
         
-        self.ranges(pattern: "(?<=\\w)(?:\\p{uppercase}|_\\w)")
+        self.ranges(pattern: #"(?<=\w)(?:\p{uppercase}|_\w)"#)
             .reversed()
             .reduce(into: self.lowercased()) { (string, range) in
                 string.replaceSubrange(range, with: string[range].last!.uppercased())
@@ -61,7 +61,7 @@ public extension String {
     /// The string transformed all snake- and camel-case words to pascal-case.
     var pascalcased: String {
         
-        self.ranges(pattern: "(?:\\b|(?<=\\w)_)\\w")
+        self.ranges(pattern: #"(?:\b|(?<=\w)_)\w"#)
             .reversed()
             .reduce(into: self) { (string, range) in
                 string.replaceSubrange(range, with: string[range].last!.uppercased())

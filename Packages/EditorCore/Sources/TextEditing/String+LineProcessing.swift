@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -334,7 +334,7 @@ extension String {
     
     func rangesOfTrailingWhitespace(ignoringEmptyLines: Bool) -> [NSRange] {
         
-        let pattern = ignoringEmptyLines ? "(?<!^|[ \\t])[ \\t]++$" : "[ \\t]++$"
+        let pattern = ignoringEmptyLines ? "(?<!^|[ \t])[ \t]++$" : "[ \t]++$"
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         
         return regex.matches(in: self, range: self.nsRange).map(\.range)

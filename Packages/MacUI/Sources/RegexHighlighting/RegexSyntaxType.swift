@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,6 +46,7 @@ enum RegexSyntaxType: CaseIterable {
     func ranges(in string: String, mode: RegexParseMode = .search) -> [NSRange] {
         
         var ranges = self.patterns(for: mode)
+            .map { #"(?<!\\)(?:\\\\)*"# + $0 }  // regex pattern to avoid matching escaped character
             .map { try! NSRegularExpression(pattern: $0) }
             .flatMap { $0.matches(in: string, range: NSRange(..<string.utf16.count)) }
             .map(\.range)
@@ -73,65 +74,62 @@ enum RegexSyntaxType: CaseIterable {
     /// - Returns: The regular expression patterns.
     private func patterns(for mode: RegexParseMode) -> [String] {
         
-        // regex pattern to avoid matching escaped character
-        let escapeIgnorer = "(?<!\\\\)(?:\\\\\\\\)*"
-        
         switch mode {
             case .search:
                 switch self {
                     case .character:
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
-                        return [
-                            escapeIgnorer + "\\.",  // .
-                            escapeIgnorer + "\\\\" + "[^AbGkZzQE1-9]",  // all escaped characters
-                            escapeIgnorer + "\\\\" + "[sdDefnrsStwWX]",  // \s, \d, ...
-                            escapeIgnorer + "\\\\" + "v",  // \v
-                            escapeIgnorer + "\\\\" + "\\\\",  // \\
-                            escapeIgnorer + "\\\\" + "c[a-z]",  // \cX (control)
-                            escapeIgnorer + "\\\\" + "N\\{[a-zA-Z0-9 ]+\\}",  // \N{UNICODE CHARACTER NAME}
-                            escapeIgnorer + "\\\\" + "[pP]\\{[a-zA-Z0-9 ]+\\}",  // \p{UNICODE PROPERTY NAME}
-                            escapeIgnorer + "\\\\" + "u[0-9a-fA-F]{4}",  // \uhhhh (h: hex)
-                            escapeIgnorer + "\\\\" + "U[0-9a-fA-F]{8}",  // \Uhhhhhhhh (h: hex)
-                            escapeIgnorer + "\\\\" + "x\\{[0-9a-fA-F]{1,6}\\}",  // \x{hhhh} (h: hex)
-                            escapeIgnorer + "\\\\" + "x[0-9a-fA-F]{2}",  // \xhh (h: hex)
-                            escapeIgnorer + "\\\\" + "0[0-7]{1,3}",  // \0ooo (o: octal)
+                        [
+                            #"\."#,  // .
+                            #"\\[^AbGkZzQE1-9]"#,  // all escaped characters
+                            #"\\[sdDefnrsStwWX]"#,  // \s, \d, ...
+                            #"\\v"#,  // \v
+                            #"\\\\"#,  // \\
+                            #"\\c[a-z]"#,  // \cX (control)
+                            #"\\N\{[a-zA-Z0-9 ]+\}"#,  // \N{UNICODE CHARACTER NAME}
+                            #"\\[pP]\{[a-zA-Z0-9 ]+\}"#,  // \p{UNICODE PROPERTY NAME}
+                            #"\\u[0-9a-fA-F]{4}"#,  // \uhhhh (h: hex)
+                            #"\\U[0-9a-fA-F]{8}"#,  // \Uhhhhhhhh (h: hex)
+                            #"\\x\{[0-9a-fA-F]{1,6}\}"#,  // \x{hhhh} (h: hex)
+                            #"\\x[0-9a-fA-F]{2}"#,  // \xhh (h: hex)
+                            #"\\0[0-7]{1,3}"#,  // \0ooo (o: octal)
                         ]
                     case .backReference:
-                        return [
-                            escapeIgnorer + "\\$[0-9]+",  // $0
-                            escapeIgnorer + "\\\\[1-9]+",  // \1
-                            escapeIgnorer + "\\\\k<[a-zA-Z][a-zA-Z0-9]+>",  // \k<name>
+                        [
+                            #"\$[0-9]+"#,  // $0
+                            #"\\[1-9]+"#,  // \1
+                            #"\\k<[a-zA-Z][a-zA-Z0-9]+>"#,  // \k<name>
                         ]
                     case .symbol:
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
-                        return [
-                            escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?|<[a-zA-Z][a-zA-Z0-9]*>)",  // (?...
-                            escapeIgnorer + "[()|]",  // () |
-                            escapeIgnorer + "\\\\[QE]",  // \Q ... \E
+                        [
+                            #"\(\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?|<[a-zA-Z][a-zA-Z0-9]*>)"#,  // (?...
+                            #"[()|]"#,  // () |
+                            #"\\[QE]"#,  // \Q ... \E
                         ]
                     case .quantifier:
                         // -> `?` is also used for .symbol.
-                        return [
-                            escapeIgnorer + "[*+?]",  // * + ?
-                            escapeIgnorer + "\\{[0-9]+(,[0-9]*)?\\}",  // {n,m}
+                        [
+                            #"[*+?]"#,  // * + ?
+                            #"\{[0-9]+(,[0-9]*)?\}"#,  // {n,m}
                         ]
                     case .anchor:
                         // -> `^` is also used for [^abc].
                         // -> `$` is also used for .backReference.
-                        return [
-                            escapeIgnorer + "[$^]",  // ^ $
-                            escapeIgnorer + "\\\\[AbGZz]",  // \A, \b, ...
+                        [
+                            #"[$^]"#,  // ^ $
+                            #"\\[AbGZz]"#,  // \A, \b, ...
                         ]
                 }
                 
             case .replacement(let unescapes):
                 switch self {
                     case .character where unescapes:
-                        return [escapeIgnorer + "\\\\[$0tnr\"'\\\\]"]
+                        [#"\\[$0tnr"'\\]"#]
                     case .backReference:
-                        return [escapeIgnorer + "\\$[0-9]+"]
+                        [#"\$[0-9]+"#]
                     default:
-                        return []
+                        []
                 }
         }
     }

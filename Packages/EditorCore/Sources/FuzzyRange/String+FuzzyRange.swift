@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ public extension String {
     func rangeForLine(in lineRange: FuzzyRange, includingLineEnding: Bool = true) -> NSRange? {
         
         let length = (self as NSString).length
-        let pattern = includingLineEnding ? "(?<=\\A|\\R).*(?:\\R|\\z)" : "(?<=\\A|\\R).*$"
+        let pattern = includingLineEnding ? #"(?<=\A|\R).*(?:\R|\z)"# : #"(?<=\A|\R).*$"#
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         let lineRanges = regex.matches(in: self, range: NSRange(..<length)).map(\.range)
         let count = lineRanges.count
