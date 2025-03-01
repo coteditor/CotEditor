@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- Update the Fortrun syntax to include the .cuf file extension.
+- Update the Fortran syntax to include the .cuf file extension.
 
 
 
