@@ -28,7 +28,7 @@ extension Unicode.UTF32.CodeUnit {
     
     /// Unicode block name.
     ///
-    /// Based on Unicode 15.1.0 (2023-09)
+    /// Based on Unicode 16.0.0 (2024-02-02)
     /// cf. <https://www.unicode.org/Public/UNIDATA/Blocks.txt>
     var blockName: String? {
         
@@ -218,6 +218,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x10500...0x1052F: "Elbasan"
             case 0x10530...0x1056F: "Caucasian Albanian"
             case 0x10570...0x105BF: "Vithkuqi"
+            case 0x105C0...0x105FF: "Todhri"
             case 0x10600...0x1077F: "Linear A"
             case 0x10780...0x107BF: "Latin Extended-F"
             case 0x10800...0x1083F: "Cypriot Syllabary"
@@ -240,6 +241,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x10C00...0x10C4F: "Old Turkic"
             case 0x10C80...0x10CFF: "Old Hungarian"
             case 0x10D00...0x10D3F: "Hanifi Rohingya"
+            case 0x10D40...0x10D8F: "Garay"
             case 0x10E60...0x10E7F: "Rumi Numeral Symbols"
             case 0x10E80...0x10EBF: "Yezidi"
             case 0x10EC0...0x10EFF: "Arabic Extended-C"
@@ -259,12 +261,14 @@ extension Unicode.UTF32.CodeUnit {
             case 0x11280...0x112AF: "Multani"
             case 0x112B0...0x112FF: "Khudawadi"
             case 0x11300...0x1137F: "Grantha"
+            case 0x11380...0x113FF: "Tulu-Tigalari"
             case 0x11400...0x1147F: "Newa"
             case 0x11480...0x114DF: "Tirhuta"
             case 0x11580...0x115FF: "Siddham"
             case 0x11600...0x1165F: "Modi"
             case 0x11660...0x1167F: "Mongolian Supplement"
             case 0x11680...0x116CF: "Takri"
+            case 0x116D0...0x116FF: "Myanmar Extended-C"
             case 0x11700...0x1174F: "Ahom"
             case 0x11800...0x1184F: "Dogra"
             case 0x118A0...0x118FF: "Warang Citi"
@@ -275,6 +279,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x11AB0...0x11ABF: "Unified Canadian Aboriginal Syllabics Extended-A"
             case 0x11AC0...0x11AFF: "Pau Cin Hau"
             case 0x11B00...0x11B5F: "Devanagari Extended-A"
+            case 0x11BC0...0x11BFF: "Sunuwar"
             case 0x11C00...0x11C6F: "Bhaiksuki"
             case 0x11C70...0x11CBF: "Marchen"
             case 0x11D00...0x11D5F: "Masaram Gondi"
@@ -289,12 +294,15 @@ extension Unicode.UTF32.CodeUnit {
             case 0x12F90...0x12FFF: "Cypro-Minoan"
             case 0x13000...0x1342F: "Egyptian Hieroglyphs"
             case 0x13430...0x1345F: "Egyptian Hieroglyph Format Controls"
+            case 0x13460...0x143FF: "Egyptian Hieroglyphs Extended-A"
             case 0x14400...0x1467F: "Anatolian Hieroglyphs"
+            case 0x16100...0x1613F: "Gurung Khema"
             case 0x16800...0x16A3F: "Bamum Supplement"
             case 0x16A40...0x16A6F: "Mro"
             case 0x16A70...0x16ACF: "Tangsa"
             case 0x16AD0...0x16AFF: "Bassa Vah"
             case 0x16B00...0x16B8F: "Pahawh Hmong"
+            case 0x16D40...0x16D7F: "Kirat Rai"
             case 0x16E40...0x16E9F: "Medefaidrin"
             case 0x16F00...0x16F9F: "Miao"
             case 0x16FE0...0x16FFF: "Ideographic Symbols and Punctuation"
@@ -309,6 +317,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x1B170...0x1B2FF: "Nushu"
             case 0x1BC00...0x1BC9F: "Duployan"
             case 0x1BCA0...0x1BCAF: "Shorthand Format Controls"
+            case 0x1CC00...0x1CEBF: "Symbols for Legacy Computing Supplement"
             case 0x1CF00...0x1CFCF: "Znamenny Musical Notation"
             case 0x1D000...0x1D0FF: "Byzantine Musical Symbols"
             case 0x1D100...0x1D1FF: "Musical Symbols"
@@ -326,6 +335,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x1E290...0x1E2BF: "Toto"
             case 0x1E2C0...0x1E2FF: "Wancho"
             case 0x1E4D0...0x1E4FF: "Nag Mundari"
+            case 0x1E5D0...0x1E5FF: "Ol Onal"
             case 0x1E7E0...0x1E7FF: "Ethiopic Extended-B"
             case 0x1E800...0x1E8DF: "Mende Kikakui"
             case 0x1E900...0x1E95F: "Adlam"

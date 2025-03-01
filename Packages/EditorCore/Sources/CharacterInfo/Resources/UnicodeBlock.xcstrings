@@ -606,7 +606,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "古希腊音乐记号"
+            "value" : "古希腊乐谱记号"
           }
         },
         "zh-Hant" : {
@@ -940,7 +940,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony arabski A"
+            "value" : "Arabski, rozszerzenie A"
           }
         },
         "pt" : {
@@ -1398,7 +1398,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "阿拉伯文表达形式-B"
+            "value" : "阿拉伯字母表达形式-B"
           }
         },
         "zh-Hant" : {
@@ -2700,7 +2700,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzone Bopomofo"
+            "value" : "Bopomofo, rozszerzenie"
           }
         },
         "pt" : {
@@ -4700,7 +4700,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ideogrammi unificati CJK Est. A"
+            "value" : "Ideogrammi unificati CJK est. A"
           }
         },
         "ja" : {
@@ -4788,7 +4788,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ideogrammi unificati CJK Est. B"
+            "value" : "Ideogrammi unificati CJK est. B"
           }
         },
         "ja" : {
@@ -4876,7 +4876,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ideogrammi unificati CJK Est. C"
+            "value" : "Ideogrammi unificati CJK est. C"
           }
         },
         "ja" : {
@@ -4964,7 +4964,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ideogrammi unificati CJK Est. D"
+            "value" : "Ideogrammi unificati CJK est. D"
           }
         },
         "ja" : {
@@ -5052,7 +5052,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ideogrammi unificati CJK Est. E"
+            "value" : "Ideogrammi unificati CJK est. E"
           }
         },
         "ja" : {
@@ -5140,7 +5140,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ideogrammi unificati CJK Est. F"
+            "value" : "Ideogrammi unificati CJK est. F"
           }
         },
         "ja" : {
@@ -5228,7 +5228,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ideogrammi unificati CJK Est. G"
+            "value" : "Ideogrammi unificati CJK est. G"
           }
         },
         "ja" : {
@@ -5604,7 +5604,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Składające znaki diakrytyczne (rozszerzenie)"
+            "value" : "Składające znaki diakrytyczne, rozszerzenie"
           }
         },
         "pt" : {
@@ -6924,7 +6924,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony cyrylicki A"
+            "value" : "Cyrylicki, rozszerzenie A"
           }
         },
         "pt" : {
@@ -7012,7 +7012,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony cyrylicki B"
+            "value" : "Cyrylicki, rozszerzenie B"
           }
         },
         "pt" : {
@@ -7100,7 +7100,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony cyrylicki C"
+            "value" : "Cyrylicki, rozszerzenie C"
           }
         },
         "pt" : {
@@ -7188,7 +7188,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arabski, rozszerzenie D"
+            "value" : "Cyrylicki, rozszerzenie D"
           }
         },
         "pt" : {
@@ -8361,6 +8361,94 @@
         }
       }
     },
+    "Egyptian Hieroglyphs Extended-A" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyptské hieroglyfy rozšířená - A"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ägyptische Hieroglyphen Erweitert-A"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyptian Hieroglyphs Extended-A"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeroglíficos egipcios ampliado-A"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiéroglyphes égyptiens étendu-A"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geroglifici egiziani esteso-A"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エジプト聖刻文字拡張A"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이집트 상형 문자 확장-A"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyptische hiërogliefen Uitgebreid-A"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hieroglify egipskie, rozszerzenie A"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hieróglifos Egípcios Estendido-A"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Genişletilmiş Mısır Hiyeroglifleri A"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "埃及象形文字扩展-A"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "埃及象形文字延伸-A"
+          }
+        }
+      }
+    },
     "Elbasan" : {
       "localizations" : {
         "cs" : {
@@ -9124,7 +9212,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony etiopski"
+            "value" : "Etiopski, rozszerzenie"
           }
         },
         "pt" : {
@@ -9212,7 +9300,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony-A etiopski"
+            "value" : "Etiopski, rozszerzenie A"
           }
         },
         "pt" : {
@@ -9416,6 +9504,9 @@
           }
         }
       }
+    },
+    "Garay" : {
+
     },
     "General Punctuation" : {
       "localizations" : {
@@ -9652,7 +9743,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzone kształty geometryczne"
+            "value" : "Kształty geometryczne, rozszerzenie"
           }
         },
         "pt" : {
@@ -9828,7 +9919,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony gruziński"
+            "value" : "Gruziński, rozszerzenie"
           }
         },
         "pt" : {
@@ -10444,7 +10535,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grecki rozszerzony"
+            "value" : "Grecki, rozszerzenie"
           }
         },
         "pt" : {
@@ -10532,7 +10623,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gudźaracki"
+            "value" : "Gudżaracki"
           }
         },
         "pt" : {
@@ -10736,6 +10827,9 @@
           }
         }
       }
+    },
+    "Gurung Khema" : {
+
     },
     "Halfwidth and Fullwidth Forms" : {
       "localizations" : {
@@ -14169,6 +14263,9 @@
         }
       }
     },
+    "Kirat Rai" : {
+
+    },
     "Lao" : {
       "localizations" : {
         "cs" : {
@@ -14316,7 +14413,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Łaciński rozszerzony dodatkowy"
+            "value" : "Łaciński, rozszerzenie dodatkowe"
           }
         },
         "pt" : {
@@ -14380,7 +14477,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latino Esteso A"
+            "value" : "Latino esteso-A"
           }
         },
         "ja" : {
@@ -14404,7 +14501,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony łaciński A"
+            "value" : "Łaciński, rozszerzenie A"
           }
         },
         "pt" : {
@@ -14468,7 +14565,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latino Esteso B"
+            "value" : "Latino esteso-B"
           }
         },
         "ja" : {
@@ -14492,7 +14589,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony łaciński B"
+            "value" : "Łaciński, rozszerzenie B"
           }
         },
         "pt" : {
@@ -14556,7 +14653,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latino esteso C"
+            "value" : "Latino esteso-C"
           }
         },
         "ja" : {
@@ -14580,7 +14677,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony łaciński C"
+            "value" : "Łaciński, rozszerzenie C"
           }
         },
         "pt" : {
@@ -14644,7 +14741,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latino esteso D"
+            "value" : "Latino esteso-D"
           }
         },
         "ja" : {
@@ -14668,7 +14765,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony łaciński D"
+            "value" : "Łaciński, rozszerzenie D"
           }
         },
         "pt" : {
@@ -14732,7 +14829,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latino Esteso E"
+            "value" : "Latino esteso-E"
           }
         },
         "ja" : {
@@ -14756,7 +14853,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzony łaciński E"
+            "value" : "Łaciński, rozszerzenie E"
           }
         },
         "pt" : {
@@ -19009,6 +19106,94 @@
         }
       }
     },
+    "Myanmar Extended-C" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myanmar rozšíření - C"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myanmar Erweitert-C"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myanmar Extended-C"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birmania ampliado-C"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birman étendu-C"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myanmar esteso-C"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ミャンマー文字拡張C"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미얀마 확장-C"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myanmar Uitgebreid-C"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birmański, rozszerzenie C"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mianmar Ampliado-C"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genişletilmiş Myanmar C"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "缅甸文扩展-C"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緬甸文延伸-C"
+          }
+        }
+      }
+    },
     "N'Ko" : {
       "localizations" : {
         "cs" : {
@@ -19976,6 +20161,9 @@
           }
         }
       }
+    },
+    "Ol Onal" : {
+
     },
     "Old Hungarian" : {
       "localizations" : {
@@ -24025,6 +24213,9 @@
         }
       }
     },
+    "Sunuwar" : {
+
+    },
     "Superscripts and Subscripts" : {
       "localizations" : {
         "cs" : {
@@ -25052,7 +25243,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzone symbole i piktogramy A"
+            "value" : "Symbole i piktogramy, rozszerzenie A"
           }
         },
         "pt" : {
@@ -25168,6 +25359,9 @@
           }
         }
       }
+    },
+    "Symbols for Legacy Computing Supplement" : {
+
     },
     "Syriac" : {
       "localizations" : {
@@ -27105,6 +27299,9 @@
         }
       }
     },
+    "Todhri" : {
+
+    },
     "Toto" : {
 
     },
@@ -27195,6 +27392,9 @@
           }
         }
       }
+    },
+    "Tulu-Tigalari" : {
+
     },
     "Ugaritic" : {
       "localizations" : {
@@ -27431,7 +27631,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ujednolicony sylabariusz rozszerzony rdzennych Kanadyjczyków"
+            "value" : "Ujednolicony sylabariusz rdzennych Kanadyjczyków, rozszerzenie"
           }
         },
         "pt" : {

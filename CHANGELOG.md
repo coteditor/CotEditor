@@ -3,6 +3,10 @@
 5.1.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the Unicode block name list.
+
 
 
 5.1.0 (703)
