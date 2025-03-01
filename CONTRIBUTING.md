@@ -55,7 +55,7 @@ You have two options for adding a new localization to CotEditor.app. Choose one 
         - Packages/EditorCore/Sources/LineEnding/Resources/
         - Packages/EditorCore/Sources/StringUtils/Resources/
         - Packages/EditorCore/Sources/Syntax/Resources/
-    - Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. This will be handled by @1024jp based on Apple's localization data.
+    - Note that you don't need to localize the UnicodeBlock.xcstrings file in Packages/Libraries/Sources/CharacterInfo/. This will be handled by @1024jp based on Apple's localization data.
 - Option 2: Communicate with the maintainer personally and work with a provided localization template (.xcloc file):
     - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask for the localization template (.xcloc file) for your language. Upon receiving the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. Once completed, send the template file back to the maintainer.
 

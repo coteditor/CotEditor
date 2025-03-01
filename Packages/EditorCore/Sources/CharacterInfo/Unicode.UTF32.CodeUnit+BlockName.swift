@@ -28,7 +28,7 @@ extension Unicode.UTF32.CodeUnit {
     
     /// Unicode block name.
     ///
-    /// Based on Unicode 15.0.0 (2022-01-28)
+    /// Based on Unicode 15.1.0 (2023-09)
     /// cf. <https://www.unicode.org/Public/UNIDATA/Blocks.txt>
     var blockName: String? {
         
@@ -353,6 +353,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x2B740...0x2B81F: "CJK Unified Ideographs Extension D"
             case 0x2B820...0x2CEAF: "CJK Unified Ideographs Extension E"
             case 0x2CEB0...0x2EBEF: "CJK Unified Ideographs Extension F"
+            case 0x2EBF0...0x2EE5F: "CJK Unified Ideographs Extension I"
             case 0x2F800...0x2FA1F: "CJK Compatibility Ideographs Supplement"
             case 0x30000...0x3134F: "CJK Unified Ideographs Extension G"
             case 0x31350...0x323AF: "CJK Unified Ideographs Extension H"

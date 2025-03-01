@@ -57,13 +57,7 @@ public extension Unicode.Scalar {
         
         guard let blockName else { return nil }
         
-        // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
-        //    Otherwise, we cannot localize block names correctly. (2015-11)
-        let key = blockName
-            .replacing(/\ ([A-Z])$/) { "-\($0.1)" }
-            .replacing("Description", with: "Desc.")
-        
-        return String(localized: String.LocalizationValue(key), table: "UnicodeBlock", bundle: .module)
+        return localizeBlockName(blockName) ?? blockName
     }
 }
 

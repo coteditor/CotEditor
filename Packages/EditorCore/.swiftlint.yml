@@ -1,1 +1,4 @@
 parent_config: ../../.swiftlint.yml
+
+# for `localizeBlockName(_:)`
+cyclomatic_complexity: 350
