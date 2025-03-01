@@ -1483,9 +1483,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         guard let paragraphStyle = self.defaultParagraphStyle?.mutable else { return assertionFailure() }
         
         // set line height
-        // -> The actual line height will be calculated in LayoutManager based on this line height multiple.
+        // -> The actual line height will be calculated in LayoutManager based on this line height multiplier.
         //    Because the default implementation calculates the line height differently
-        //     if the first character is drawn with another font (typically by a composite font).
+        //    if the first character is drawn with another font (typically by a composite font).
         paragraphStyle.lineHeightMultiple = self.lineHeight
         
         // calculate tab interval
