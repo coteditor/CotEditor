@@ -3,7 +3,9 @@
 5.1.0 (unreleased)
 --------------------------
 
-- No change.
+### Improvements
+
+- Update the Fortrun syntax to include the .cuf file extension.
 
 
 

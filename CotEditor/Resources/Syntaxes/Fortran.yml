@@ -607,6 +607,7 @@ extensions:
 - keyString: f95
 - keyString: f90
 - keyString: for
+- keyString: cuf
 filenames: []
 interpreters: []
 keywords:
@@ -830,9 +831,9 @@ metadata:
   author: 1024jp
   description: Support from Fortran 90 to Fortran 2008
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2025-03-01'
   license: Same as CotEditor
-  version: 1.1.0
+  version: 1.2.0
 numbers:
 - beginString: \.false\.(_[a-z0-9_]+)?
   ignoreCase: true

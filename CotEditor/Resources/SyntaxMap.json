@@ -220,7 +220,8 @@
       "f03",
       "f95",
       "f90",
-      "for"
+      "for",
+      "cuf"
     ],
     "filenames" : [
 
