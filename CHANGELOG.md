@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Just move the insertion point instead of inserting a new one when typing a double quotation mark just before a double quotation mark automatically inserted by the “Automatically insert closing brackets and quotes” option.
 - Update the Unicode block name list.
 
 

@@ -539,10 +539,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             }
             
             // just move cursor if closing bracket is already typed
-            if BracePair.braces.contains(where: { String($0.end) == plainString }),  // ignore "
+            if self.matchingBracketPairs.contains(where: { String($0.end) == plainString }),
                plainString.unicodeScalars.first == self.character(after: self.rangeForUserTextChange),
-               self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
+               self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool == true
             {
+                self.textStorage?.removeAttribute(.autoBalancedClosingBracket, range: NSRange(location: self.selectedRange.location, length: 1))
                 self.selectedRange.location += 1
                 return
             }
