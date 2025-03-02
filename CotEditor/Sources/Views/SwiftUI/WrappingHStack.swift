@@ -51,9 +51,7 @@ private struct WrappingHStackLayout: Layout {
         
         let width = proposal.replacingUnspecifiedDimensions().width
         let rowCount = Double(self.countRows(for: subviews, in: width))
-        let minHeight = subviews
-            .map { $0.sizeThatFits(proposal).height }
-            .reduce(0) { max($0, $1).rounded(.up) }
+        let minHeight = subviews.map { $0.sizeThatFits(proposal).height }.max()?.rounded(.up) ?? 0
         let height = rowCount * minHeight + max(rowCount - 1, 0) * self.verticalSpacing
         
         return CGSize(width: width, height: height)
@@ -62,9 +60,7 @@ private struct WrappingHStackLayout: Layout {
     
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         
-        let minHeight = subviews
-            .map { $0.sizeThatFits(proposal).height }
-            .reduce(0) { max($0, $1).rounded(.up) }
+        let minHeight = subviews.map { $0.sizeThatFits(proposal).height }.max()?.rounded(.up) ?? 0
         var point = bounds.origin
         
         for subview in subviews {
