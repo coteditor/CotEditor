@@ -260,19 +260,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
         
-        // append Script menu
-        if let scriptMenu = ScriptManager.shared.contextualMenu {
-            let item = NSMenuItem()
-            item.title = ""
-            item.setAccessibilityLabel(String(localized: "Script", table: "MainMenu"))
-            item.image = NSImage(systemSymbolName: "applescript.fill",
-                                 accessibilityDescription: String(localized: "Script", table: "MainMenu"))
-            item.toolTip = String(localized: "Script", table: "MainMenu")
-            item.submenu = scriptMenu
-            
-            menu.addItem(item)
-        }
-        
         // add "Inspect Character" menu item if single character is selected
         if self.textView.selectsSingleCharacter == true {
             menu.insertItem(withTitle: String(localized: "Inspect Character", table: "MainMenu"),

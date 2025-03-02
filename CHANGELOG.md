@@ -3,6 +3,10 @@
 5.1.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Remove the Script menu from the context menu.
+
 
 
 5.1.1 (705)

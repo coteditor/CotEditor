@@ -109,21 +109,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     // MARK: Public Methods
     
-    /// Script menu for context menu.
-    @MainActor var contextualMenu: NSMenu? {
-        
-        let items = self.scriptMenu!.items
-            .filter { $0.action != #selector(openScriptFolder) }
-        
-        guard items.contains(where: { !$0.isSeparatorItem }) else { return nil }
-        
-        let menu = NSMenu()
-        menu.items = items.map { $0.copy() as! NSMenuItem }
-        
-        return menu
-    }
-    
-    
     /// Starts observing the scripts directory.
     ///
     /// This method should be called only once.
