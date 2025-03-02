@@ -8,6 +8,11 @@
 - Update the Unicode block name list.
 
 
+### Fixes
+
+- Fix an issue in the What’s New window where an unwanted beta label would appear even in stable versions.
+
+
 
 5.1.0 (703)
 --------------------------

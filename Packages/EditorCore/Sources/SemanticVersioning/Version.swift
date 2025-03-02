@@ -83,10 +83,9 @@ extension Version: Comparable {
             lhs.minor < rhs.minor
         } else if lhs.patch != rhs.patch {
             lhs.patch < rhs.patch
-            
         } else {
             switch (lhs.prerelease, rhs.prerelease) {
-                case (.none, .none): true
+                case (.none, .none): false
                 case (.some, .none): true
                 case (.none, .some): false
                 case (.some(let lPrerelease), .some(let rPrerelease)): lPrerelease < rPrerelease

@@ -43,6 +43,10 @@ struct VersionTests {
     
     @Test func comparison() {
         
+        #expect(Version(5, 0, 1) == Version(5, 0, 1))
+        #expect((Version(5, 0, 1) < Version(5, 0, 1)) == false)
+        #expect((Version(5, 0, 1) > Version(5, 0, 1)) == false)
+        
         #expect(Version(5, 0, 1) < Version(6, 0, 1))
         #expect(Version(5, 0, 1) < Version(5, 1, 1))
         #expect(Version(5, 0, 1) < Version(5, 0, 2))
