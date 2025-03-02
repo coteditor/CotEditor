@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -322,7 +322,7 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
             fieldEditor.string = oldName
             
             // show alert
-            NSAlert(error: error).beginSheetModal(for: self.view.window!)
+            self.presentErrorAsSheet(error)
             return false
         }
         
@@ -538,12 +538,9 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
             
             do {
                 try ThemeManager.shared.removeSetting(name: name)
-                
             } catch {
-                alert.window.orderOut(nil)
                 NSSound.beep()
-                await NSAlert(error: error).beginSheetModal(for: window)
-                return
+                return self.presentErrorAsSheet(error)
             }
             
             AudioServicesPlaySystemSound(.moveToTrash)

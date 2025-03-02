@@ -63,7 +63,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
             do {
                 try ReplacementManager.shared.createUntitledSetting()
             } catch {
-                NSAlert(error: error).beginSheetModal(for: self.view.window!)
+                self.presentErrorAsSheet(error)
             }
         }
         
@@ -365,12 +365,9 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
             
             do {
                 try ReplacementManager.shared.removeSetting(name: name)
-                
             } catch {
-                alert.window.orderOut(nil)
                 NSSound.beep()
-                await NSAlert(error: error).beginSheetModal(for: window)
-                return
+                return self.presentErrorAsSheet(error)
             }
             
             AudioServicesPlaySystemSound(.moveToTrash)
@@ -598,7 +595,7 @@ extension MultipleReplaceListViewController: NSTextFieldDelegate {
             fieldEditor.string = oldName
             
             // show alert
-            NSAlert(error: error).beginSheetModal(for: self.view.window!)
+            self.presentErrorAsSheet(error)
             return false
         }
         
