@@ -7,6 +7,8 @@ Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/i
 
 ### Issue reports
 
+Update CotEditor to the latest version and make sure that the issue you are having is also present in the latest version.
+
 First, search for existing issues related to your problem. If you find a similar issue that has already been reported, post your case to that thread. If not, create a new issue by filling out the “Bug report” template. Feel free to post the same issue to the existing one, as long as there are fewer than 10 cases. Multiple instances of the same issue can be very helpful in finding the cause. In that case, please include your environment (versions of both CotEditor and macOS) in your post.
 
 If possible, attach screenshots or screencasts of the issue you encounter. It is also helpful to attach sample files that can reproduce the issue.
