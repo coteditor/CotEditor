@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     private static let separator = "-"
     
-    private var scriptsDirectoryURL: URL?
+    private let scriptsDirectoryURL: URL?
     private var scope: String?
     @MainActor private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
@@ -60,9 +60,17 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     private override init() {
         
+        // -> The application scripts folder will be created automatically by the first launch.
+        //    In addition, individual applications cannot create its script folder for in case
+        //    when user explicitly delete the folder.
+        //    cf. https://developer.apple.com/forums/thread/79384
+        self.scriptsDirectoryURL = try? URL(for: .applicationScriptsDirectory, in: .userDomainMask)
+        
         super.init()
         
         Task { @MainActor in
+            await self.buildScriptMenu()
+            
             let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
             for await scope in scopes where scope != self.scope {
                 self.scope = scope
@@ -81,7 +89,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     
     /// Contents of the script folder did change.
-    func presentedItemDidChange() {
+    nonisolated func presentedItemDidChange() {
         
         self.menuUpdateTask?.cancel()
         self.menuUpdateTask = Task {
@@ -121,21 +129,8 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// This method should be called only once.
     func observeScriptsDirectory() {
         
-        assert(self.scriptsDirectoryURL == nil)
-        
-        Task.detached {
-            // -> The application scripts folder will be created automatically by the first launch.
-            //    In addition, individual applications cannot create its script folder for in case
-            //    when user explicitly delete the folder.
-            //    cf. https://developer.apple.com/forums/thread/79384
-            self.scriptsDirectoryURL = try? URL(for: .applicationScriptsDirectory, in: .userDomainMask)
-            
-            // observe script folder change if it exists
-            if self.presentedItemURL != nil {
-                NSFileCoordinator.addFilePresenter(self)
-            }
-            
-            await self.buildScriptMenu()
+        if self.presentedItemURL != nil {
+            NSFileCoordinator.addFilePresenter(self)
         }
     }
     
