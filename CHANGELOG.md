@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Revert the steppers to the font setting controls in the Appearance settings pane.
 - Remove the Script menu from the context menu.
 
 
