@@ -21,7 +21,7 @@ If your issue relates to syntax highlighting, include the sample code that can r
 First, search for existing feature requests. If your idea is already posted, comment on that thread. Otherwise, create a new one using the “Feature request” template.
 Instead of listing multiple features in a single post, create an issue for each feature.
 
-Please __don't just post “+1”__ to existing requests; it makes no difference and adds noise.
+Please refrain from simply adding “+1” or similar comments to existing requests; it serves no purpose and contributes to unnecessary clutter.
 
 
 
