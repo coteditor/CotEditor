@@ -9,6 +9,11 @@
 - Remove the Script menu from the context menu.
 
 
+### Fixes
+
+- Fix an issue where multiple text insertion points persist as visible even when the document is made not editable.
+
+
 
 5.1.1 (705)
 --------------------------

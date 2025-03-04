@@ -296,6 +296,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
+    override var isEditable: Bool {
+        
+        didSet {
+            self.invalidateInsertionIndicatorDisplayMode()
+        }
+    }
+    
+    
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
