@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -95,7 +95,7 @@ final class LineNumberView: NSView {
     private let minimumNumberOfDigits = 3
     
     private var drawingInfo: DrawingInfo?
-    @Invalidating(.intrinsicContentSize) private var thickness: Double = 32
+    @Invalidating(.display, .intrinsicContentSize) private var thickness: Double = 32
     
     @Invalidating(.display) private var textColor: NSColor = .textColor
     @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
@@ -301,7 +301,6 @@ final class LineNumberView: NSView {
         self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textFont.pointSize, scale: textView.scale)
         
         self.invalidateThickness()
-        self.needsDisplay = true
     }
     
     
@@ -353,7 +352,6 @@ final class LineNumberView: NSView {
                         .sink { [weak self] _ in
                             // -> The digit of the line numbers affect thickness.
                             self?.invalidateThickness()
-                            self?.needsDisplay = true
                         }
                 },
             
