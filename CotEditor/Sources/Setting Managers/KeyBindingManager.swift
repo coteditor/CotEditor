@@ -207,8 +207,7 @@ import URLUtils
         if menuItem.isSeparatorItem ||
             menuItem.isAlternate ||
             menuItem.isHidden ||
-            menuItem.keyEquivalentModifierMask.contains(.function) ||
-            menuItem.title.isEmpty {
+            menuItem.keyEquivalentModifierMask.contains(.function) {
             return false
         }
         
@@ -223,15 +222,12 @@ import URLUtils
                  #selector((any SyntaxChanging).changeSyntax),
                  #selector((any ThemeChanging).changeTheme),
                  #selector(Document.changeLineEnding(_:)),
-                 #selector(DocumentViewController.changeTabWidth),
                  #selector((any SnippetInsertable).insertSnippet),
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
-                 #selector(NSDocumentController.clearRecentDocuments),
                  #selector(NSDocument.saveAs),
                  #selector(NSWindow.makeKeyAndOrderFront),  // documents in Window menu
-                 #selector(NSApplication.showHelp),
-                 #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
+                 #selector(NSApplication.showHelp):
                 return false
                 
             default: break
