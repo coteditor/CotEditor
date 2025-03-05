@@ -2189,6 +2189,7 @@
 - [dev] Update Yams from 4.0.1 to 4.0.4.
 - [dev] Update the build environment to Xcode 12.4.
 
+
 ### Fixes
 
 - Fix French localization.
