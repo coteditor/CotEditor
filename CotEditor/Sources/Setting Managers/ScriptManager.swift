@@ -41,6 +41,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     static let shared = ScriptManager()
     
+    @MainActor var menu: NSMenu?  { didSet { Task { await self.updateMenu() } } }
     @MainActor private(set) var currentScriptName: String?
     
     
@@ -68,14 +69,23 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         super.init()
         
+        guard self.presentedItemURL != nil else { return }
+        
+        NSFileCoordinator.addFilePresenter(self)
+        
         Task { @MainActor in
-            await self.buildScriptMenu()
-            
             let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
             for await scope in scopes where scope != self.scope {
                 self.scope = scope
                 self.applyShortcuts()
             }
+        }
+    }
+    
+    
+    deinit {
+        if self.presentedItemURL != nil {
+            NSFileCoordinator.removeFilePresenter(self)
         }
     }
     
@@ -95,10 +105,10 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         self.menuUpdateTask = Task {
             if await NSApp.isActive {
                 try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
-                await self.buildScriptMenu()
+                await self.updateMenu()
             } else {
                 for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
-                    await self.buildScriptMenu()
+                    await self.updateMenu()
                     return
                 }
             }
@@ -108,26 +118,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     
     // MARK: Public Methods
-    
-    /// Starts observing the scripts directory.
-    ///
-    /// This method should be called only once.
-    func observeScriptsDirectory() {
-        
-        if self.presentedItemURL != nil {
-            NSFileCoordinator.addFilePresenter(self)
-        }
-    }
-    
-    
-    /// Stops the observation on the user scripts directory.
-    func cancelScriptsDirectoryObservation() {
-        
-        if self.presentedItemURL != nil {
-            NSFileCoordinator.removeFilePresenter(self)
-        }
-    }
-    
     
     /// Dispatches an Apple event that notifies the given document was opened.
     ///
@@ -200,15 +190,8 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     // MARK: Private Methods
     
-    /// The Scripts menu in the main menu.
-    @MainActor private var scriptMenu: NSMenu? {
-        
-        NSApp.mainMenu?.item(at: MainMenu.script.rawValue)?.submenu
-    }
-    
-    
     /// Builds the Script menu and scan script handlers.
-    @MainActor private func buildScriptMenu() async {
+    @MainActor private func updateMenu() async {
         
         self.menuUpdateTask?.cancel()
         self.menuUpdateTask = nil
@@ -231,7 +214,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                                       action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
         
-        self.scriptMenu?.items = menuItems + [.separator(), openMenuItem]
+        self.menu?.items = menuItems + [.separator(), openMenuItem]
         self.applyShortcuts()
     }
     
@@ -312,7 +295,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// Applies the keyboard shortcuts to the Script menu items.
     @MainActor private func applyShortcuts() {
         
-        guard let menu = self.scriptMenu else { return assertionFailure() }
+        guard let menu else { return assertionFailure() }
         
         // clear all shortcuts
         menu.items.forEach { $0.removeAllShortcuts() }

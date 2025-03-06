@@ -204,7 +204,7 @@ private enum BundleIdentifier {
             
             SnippetManager.shared.menu = self.snippetMenu!
             
-            ScriptManager.shared.observeScriptsDirectory()
+            ScriptManager.shared.menu = NSApp.mainMenu?.item(at: MainMenu.script.rawValue)?.submenu
             
             // build Unicode normalization menu items
             self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
@@ -289,8 +289,6 @@ private enum BundleIdentifier {
     
     
     func applicationWillTerminate(_ notification: Notification) {
-        
-        ScriptManager.shared.cancelScriptsDirectoryObservation()
         
         if self.needsRelaunch {
             NSApp.relaunch()
