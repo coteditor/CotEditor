@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,9 +35,9 @@ struct EncodingDetectionTests {
         // -> String(data:encoding:) preserves BOM since Swift 5 (2019-03)
         let data = try self.dataForFileName("UTF-8 BOM")
         withKnownIssue {
-            #expect(String(decoding: data, as: UTF8.self) == "0")
+            #expect(String(data: data, encoding: .utf8) == "0")
         }
-        #expect(String(decoding: data, as: UTF8.self) == "\u{FEFF}0")
+        #expect(String(data: data, encoding: .utf8) == "\u{FEFF}0")
         #expect(String(bomCapableData: data, encoding: .utf8) == "0")
         
         var encoding: String.Encoding?
@@ -181,9 +181,9 @@ struct EncodingDetectionTests {
     
     @Test func initializeEncoding() {
         
-        #expect(String.Encoding(cfEncodings: CFStringEncodings.dosJapanese) == .shiftJIS)
-        #expect(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS) != .shiftJIS)
-        #expect(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213) != .shiftJIS)
+        #expect(String.Encoding(cfEncodings: .dosJapanese) == .shiftJIS)
+        #expect(String.Encoding(cfEncodings: .shiftJIS) != .shiftJIS)
+        #expect(String.Encoding(cfEncodings: .shiftJIS_X0213) != .shiftJIS)
         
         #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)) == .shiftJIS)
         #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)) != .shiftJIS)
