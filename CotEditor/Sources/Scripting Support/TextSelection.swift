@@ -106,7 +106,7 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     
     // MARK: AppleScript Accessors
     
-    /// String of the selection (Unicode text).
+    /// The string of the selection (Unicode text).
     @objc var contents: Any? {
         
         get {
@@ -135,7 +135,7 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     }
     
     
-    /// Character range (location and length) of the selection.
+    /// The character range (location and length) of the selection.
     @objc var range: [Int]? {
         
         get {
@@ -163,7 +163,7 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     }
     
     
-    /// Line range (location and length) of the selection (list type).
+    /// The line range (location and length) of the selection (list type).
     @objc var lineRange: [Int]? {
         
         get {
@@ -197,7 +197,7 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     
     // MARK: AppleScript Handlers
     
-    /// Shift the selection to right.
+    /// Shifts the selection to right.
     @objc func handleShiftRight(_ command: NSScriptCommand) {
         
         self.textView?.shiftRight(command)
@@ -265,17 +265,19 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
         
         guard
             let argument = command.evaluatedArguments?["caseType"] as? UInt32,
-            let type = OSACaseType(rawValue: argument),
-            let textView = self.textView
-        else { return }
+            let type = OSACaseType(rawValue: argument)
+        else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            return
+        }
         
         switch type {
             case .lowercase:
-                textView.lowercaseWord(command)
+                self.textView?.lowercaseWord(command)
             case .uppercase:
-                textView.uppercaseWord(command)
+                self.textView?.uppercaseWord(command)
             case .capitalized:
-                textView.capitalizeWord(command)
+                self.textView?.capitalizeWord(command)
         }
     }
     
@@ -285,15 +287,17 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
         
         guard
             let argument = command.evaluatedArguments?["widthType"] as? UInt32,
-            let type = OSAWidthType(rawValue: argument),
-            let textView = self.textView
-        else { return }
+            let type = OSAWidthType(rawValue: argument)
+        else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            return
+        }
         
         switch type {
             case .half:
-                textView.exchangeHalfwidthRoman(command)
+                self.textView?.exchangeHalfwidthRoman(command)
             case .full:
-                textView.exchangeFullwidthRoman(command)
+                self.textView?.exchangeFullwidthRoman(command)
         }
     }
     
@@ -303,15 +307,17 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
         
         guard
             let argument = command.evaluatedArguments?["kanaType"] as? UInt32,
-            let type = OSAKanaType(rawValue: argument),
-            let textView = self.textView
-        else { return }
+            let type = OSAKanaType(rawValue: argument)
+        else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            return
+        }
         
         switch type {
             case .hiragana:
-                textView.exchangeHiragana(command)
+                self.textView?.exchangeHiragana(command)
             case .katakana:
-                textView.exchangeKatakana(command)
+                self.textView?.exchangeKatakana(command)
         }
     }
     
@@ -342,11 +348,13 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
         
         guard
             let argument = command.evaluatedArguments?["unfType"] as? UInt32,
-            let type = OSAUnicodeNormalizationType(rawValue: argument),
-            let textView = self.textView
-        else { return }
+            let type = OSAUnicodeNormalizationType(rawValue: argument)
+        else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            return
+        }
         
-        textView.normalizeUnicode(form: type.form)
+        self.textView?.normalizeUnicode(form: type.form)
     }
     
     

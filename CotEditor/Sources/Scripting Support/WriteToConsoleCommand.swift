@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,11 +29,13 @@ final class WriteToConsoleCommand: NSScriptCommand {
     
     override func performDefaultImplementation() -> Any? {
         
-        guard
-            let message = self.directParameter as? String,
-            let arguments = self.evaluatedArguments
-        else { return false }
+        guard let message = self.directParameter as? String else {
+            self.scriptErrorNumber = OSAMissingParameter
+            self.scriptErrorOffendingObjectDescriptor = NSAppleEventDescriptor(string: "message")
+            return false
+        }
         
+        let arguments = self.evaluatedArguments ?? [:]
         let title = (arguments["title"] as? Bool) ?? true
         let timestamp = (arguments["timestamp"] as? Bool) ?? true
         
