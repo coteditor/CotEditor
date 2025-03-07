@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,14 +75,14 @@ public final class BidiScrollView: NSScrollView {
         
         switch self.scrollerDirection {
             case .leftToRight:
-                if self.contentInsets != .zero, self.contentInsets.left != 0 {
+                if self.contentInsets.left != 0 {
                     self.contentView.contentInsets.left -= scrollerThickness
                     self.contentView.contentInsets.right += scrollerThickness
                 } else {
                     self.contentView.frame.origin.x = 0
                 }
             case .rightToLeft:
-                if self.contentInsets != .zero, self.contentInsets.right != 0 {
+                if self.contentInsets.right != 0 {
                     self.contentView.contentInsets.left += scrollerThickness
                     self.contentView.contentInsets.right -= scrollerThickness
                 } else {
@@ -91,20 +91,5 @@ public final class BidiScrollView: NSScrollView {
             @unknown default:
                 assertionFailure()
         }
-    }
-}
-
-
-extension NSEdgeInsets: @retroactive Equatable {
-    
-    static let zero = NSEdgeInsetsZero
-    
-    
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        
-        lhs.left == rhs.left &&
-        lhs.top == rhs.top &&
-        lhs.right == rhs.right &&
-        lhs.bottom == rhs.bottom
     }
 }
