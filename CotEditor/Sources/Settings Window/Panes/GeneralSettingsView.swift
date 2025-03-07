@@ -44,7 +44,7 @@ struct GeneralSettingsView: View {
     
     @State private var initialEnablesAutosaveInPlace: Bool = false
     
-    @State private var isAutosaveChangeDialogPresented = false
+    @State private var isAutosaveChangeConfirmationPresented = false
     @State private var isWarningsSettingPresented = false
     
     @State private var commandLineToolStatus: CommandLineToolManager.Status = .none
@@ -88,13 +88,13 @@ struct GeneralSettingsView: View {
                     Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
                         .onChange(of: self.enablesAutosaveInPlace) { (_, newValue) in
                             if newValue != self.initialEnablesAutosaveInPlace {
-                                self.isAutosaveChangeDialogPresented = true
+                                self.isAutosaveChangeConfirmationPresented = true
                             }
                         }
                         .onAppear {
                             self.initialEnablesAutosaveInPlace = self.enablesAutosaveInPlace
                         }
-                        .alert(String(localized: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeDialogPresented) {
+                        .confirmationDialog(String(localized: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
                             Button(String(localized: "Restart Now", table: "GeneralSettings", comment: "button label")) {
                                 (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
                                 NSApp.terminate(self)

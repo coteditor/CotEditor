@@ -85,12 +85,11 @@ struct AppearanceSettingsView: View {
                     .accessibilityLabeledPair(role: .content, id: "monospacedFont", in: self.accessibility)
                     .alert(String(localized: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), isPresented: $isMonospacedFontAlertPresented, presenting: self.selectingFont) { font in
                         Button("OK") {
-                            self.isMonospacedFontAlertPresented = false
-                        }.keyboardShortcut(.defaultAction)
+                            // do nothing
+                        }
                         Button("Cancel", role: .cancel) {
                             self.monospacedFont = font
-                            self.isMonospacedFontAlertPresented = false
-                        }.keyboardShortcut(.cancelAction)
+                        }
                     } message: { _ in
                         Text("Do you want to use it for the monospaced font?", tableName: "AppearanceSettings", comment: "“it” is the selected font.")
                     }
