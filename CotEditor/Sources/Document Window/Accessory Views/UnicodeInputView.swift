@@ -70,7 +70,7 @@ struct UnicodeInputView: View {
                                     Text(scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
                                         .monospacedDigit() +
                                     Text(scalar.name ?? "–")
-                                        .font(.system(size: NSFont.smallSystemFontSize))
+                                        .textScale(.secondary)
                                         .foregroundStyle(.secondary)
                                         .accessibilityLabel(scalar.name ?? String(localized: "None", comment: "accessibility label for “–”"))
                                 }
