@@ -122,7 +122,6 @@ public extension String {
 }
 
 
-
 public enum FuzzyLocationError: Error, Equatable {
     
     case invalidLine(Int)

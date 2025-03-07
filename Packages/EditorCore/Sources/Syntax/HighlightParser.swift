@@ -55,16 +55,12 @@ private struct NestableItem {
 }
 
 
-
-// MARK: -
-
 public struct HighlightParser: Sendable {
     
     // MARK: Internal Properties
     
     var extractors: [SyntaxType: [any HighlightExtractable]]
     var nestables: [NestableToken: SyntaxType]
-    
     
     
     // MARK: Public Methods
@@ -100,7 +96,6 @@ public struct HighlightParser: Sendable {
             return try Highlight.highlights(dictionary: dictionary)
         }
     }
-    
     
     
     // MARK: Private Methods

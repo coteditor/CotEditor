@@ -42,7 +42,6 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
     private let showsError: Bool
     
     
-    
     // MARK: Lifecycle
     
     /// Instantiates the RegexFormatter.

@@ -42,7 +42,6 @@ import Sparkle
     private lazy var controller = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
     
     
-    
     // MARK: Lifecycle
     
     private override init() {

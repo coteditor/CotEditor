@@ -41,7 +41,6 @@ public extension UserDefaults {
     }
     
     
-    
     struct Publisher<Value: Equatable>: Combine.Publisher {
         
         public typealias Output = Value
@@ -53,7 +52,6 @@ public extension UserDefaults {
         let userDefaults: UserDefaults
         let key: DefaultKey<Value>
         let initial: Bool
-        
         
         
         // MARK: Publisher Methods
@@ -69,9 +67,6 @@ public extension UserDefaults {
 }
 
 
-
-// MARK: -
-
 private extension UserDefaults.Publisher {
     
     final class Subscription<S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value {
@@ -83,7 +78,6 @@ private extension UserDefaults.Publisher {
         private let key: DefaultKey<Value>
         private var demand: Subscribers.Demand = .none
         private var lastValue: Value?
-        
         
         
         // MARK: Lifecycle
@@ -101,7 +95,6 @@ private extension UserDefaults.Publisher {
         }
         
         
-        
         // MARK: Subscription Methods
         
         func request(_ demand: Subscribers.Demand) {
@@ -116,7 +109,6 @@ private extension UserDefaults.Publisher {
             self.userDefaults = nil
             self.subscriber = nil
         }
-        
         
         
         // MARK: KVO

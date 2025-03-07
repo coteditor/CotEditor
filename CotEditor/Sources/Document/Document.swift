@@ -110,7 +110,6 @@ extension Document: EditorSource {
     private var defaultObservers: Set<AnyCancellable> = []
     
     
-    
     // MARK: Lifecycle
     
     override init() {
@@ -209,7 +208,6 @@ extension Document: EditorSource {
             self.textStorage.replaceContent(with: string)
         }
     }
-    
     
     
     // MARK: Document Methods
@@ -787,7 +785,6 @@ extension Document: EditorSource {
     }
     
     
-    
     // MARK: Protocols
     
     override nonisolated func presentedItemDidChange() {
@@ -883,7 +880,6 @@ extension Document: EditorSource {
             await ScriptManager.shared.dispatch(event: .documentOpened, document: self.objectSpecifier)
         }
     }
-    
     
     
     // MARK: Public Methods
@@ -1070,7 +1066,6 @@ extension Document: EditorSource {
     }
     
     
-    
     // MARK: Action Messages
     
     /// Changes the document text encoding with sender's tag.
@@ -1105,7 +1100,6 @@ extension Document: EditorSource {
         
         self.isEditable.toggle()
     }
-    
     
     
     // MARK: Private Methods
@@ -1419,7 +1413,6 @@ extension Document: EditorSource {
 }
 
 
-
 // MARK: - Errors
 
 private enum DocumentError: LocalizedError {
@@ -1491,7 +1484,6 @@ enum ReinterpretationError: LocalizedError {
 }
 
 
-
 struct LossyEncodingError: LocalizedError, RecoverableError {
     
     var encoding: FileEncoding
@@ -1523,7 +1515,6 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
         (recoveryOptionIndex == 0)
     }
 }
-
 
 
 private struct DocumentSavingError: LocalizedError, CustomNSError {

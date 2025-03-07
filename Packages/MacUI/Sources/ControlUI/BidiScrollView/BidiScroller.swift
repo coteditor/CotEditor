@@ -81,7 +81,6 @@ final class BidiScroller: NSScroller {
     }
     
     
-    
     // MARK: Private Methods
     
     /// The scroller view where the receiver participates.

@@ -105,7 +105,6 @@ struct OpenPanelAccessory: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

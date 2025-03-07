@@ -138,7 +138,6 @@ struct UnicodeInputView: View {
 }
 
 
-
 // MARK: Private Extensions
 
 private extension UTF32.CodeUnit {
@@ -151,7 +150,6 @@ private extension UTF32.CodeUnit {
         self.init(hexString, radix: 16)
     }
 }
-
 
 
 // MARK: - Preview

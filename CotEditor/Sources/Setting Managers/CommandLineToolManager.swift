@@ -53,7 +53,6 @@ final class CommandLineToolManager: Sendable {
     private let preferredApplicationURL: URL  // path to .app in /Applications directory
     
     
-    
     // MARK: Public Methods
     
     private init(bundle: Bundle) {

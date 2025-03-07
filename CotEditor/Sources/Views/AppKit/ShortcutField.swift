@@ -123,7 +123,6 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     private var windowObservationTask: Task<Void, Never>?
     
     
-    
     // MARK: Text Field Methods
     
     override func viewWillMove(toSuperview newSuperview: NSView?) {
@@ -209,7 +208,6 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
         
         super.textDidEndEditing(notification)
     }
-    
     
     
     // MARK: Text View Delegate

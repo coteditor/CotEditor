@@ -65,7 +65,6 @@ enum RegexSyntaxType: CaseIterable {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Returns regular expression patterns to extract the ranges of the receiver type in a string.
@@ -161,7 +160,6 @@ private extension StringProtocol {
         
         return braceRanges.map { NSRange($0, in: self) }
     }
-    
     
     
     // MARK: Private Methods

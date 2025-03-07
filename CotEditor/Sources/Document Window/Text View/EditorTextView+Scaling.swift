@@ -80,7 +80,6 @@ extension EditorTextView: TextSizeChanging {
     }
     
     
-    
     // MARK: Action Messages
     
     /// Changes scale from segmented control button.

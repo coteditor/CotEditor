@@ -75,7 +75,6 @@ struct InsetTextField: NSViewRepresentable {
     }
     
     
-    
     final class Coordinator: NSObject, NSTextFieldDelegate {
         
         @Binding private var text: String
@@ -175,7 +174,6 @@ private final class PaddingTextField: NSTextField {
         set { (self.cell as? PaddingTextFieldCell)?.trailingPadding = newValue }
     }
 }
-
 
 
 // MARK: - Preview

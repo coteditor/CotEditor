@@ -72,7 +72,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.document.syntaxParser.invalidateOutline() }
     
     
-    
     // MARK: Lifecycle
     
     init(document: Document) {
@@ -279,7 +278,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    
     // MARK: Split View Controller Methods
     
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
@@ -419,7 +417,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    
     // MARK: Notifications
     
     /// Invoked when the text was edited (invoked right **before** notifying layout managers).
@@ -454,7 +451,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         self.document.counter.invalidateSelection()
     }
-    
     
     
     // MARK: Public Methods
@@ -604,7 +600,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         textStorage.addAttributes(textView.typingAttributes, range: textStorage.range)
     }
-    
     
     
     // MARK: Action Messages
@@ -863,7 +858,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         self.splitState.canClose = self.splitViewItems.count > 1
     }
-    
     
     
     // MARK: Private Methods

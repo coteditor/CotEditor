@@ -40,7 +40,6 @@ extension EditorTextView: ColorCodeReceiver {
     @IBAction override func changeColor(_ sender: Any?) { }
     
     
-    
     // MARK: Protocol
     
     /// Inserts color code from color code panel.

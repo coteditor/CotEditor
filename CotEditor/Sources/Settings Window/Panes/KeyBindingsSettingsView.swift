@@ -141,7 +141,6 @@ private struct KeyBindingTreeView: NSViewControllerRepresentable {
 }
 
 
-
 // MARK: -
 
 /// Column identifiers for outline view.
@@ -160,7 +159,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     
     @IBOutlet private weak var listView: NSTableView?
     @IBOutlet private weak var outlineView: NSOutlineView?
-    
     
     
     // MARK: Lifecycle
@@ -199,7 +197,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     }
     
     
-    
     // MARK: Outline View Data Source
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -232,7 +229,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     }
     
     
-    
     // MARK: Outline View Delegate
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
@@ -263,7 +259,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         
         return cellView
     }
-    
     
     
     // MARK: Action Messages
@@ -332,7 +327,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
 }
 
 
-
 extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -356,7 +350,6 @@ extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelega
         self.outlineView?.reloadData()
     }
 }
-
 
 
 // MARK: - Preview

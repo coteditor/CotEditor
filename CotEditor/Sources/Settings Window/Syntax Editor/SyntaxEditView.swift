@@ -403,7 +403,6 @@ extension PartialKeyPath<SyntaxObject> {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

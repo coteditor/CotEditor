@@ -51,7 +51,6 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     var cachedSettings: [String: Setting] = [:]
     
     
-    
     // MARK: Lifecycle
     
     private init() {
@@ -64,7 +63,6 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
         // cache user setting names
         self.loadUserSettings()
     }
-    
     
     
     // MARK: Public Methods
@@ -189,7 +187,6 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
         
         return nil
     }
-    
     
     
     // MARK: Setting File Managing

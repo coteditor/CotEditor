@@ -49,13 +49,11 @@ enum ScriptingFileType: CaseIterable {
 }
 
 
-
 enum ScriptingExecutionModel: String, Decodable {
     
     case unrestricted
     case persistent
 }
-
 
 
 enum ScriptingEventType: String, CaseIterable, Decodable {
@@ -72,7 +70,6 @@ enum ScriptingEventType: String, CaseIterable, Decodable {
         }
     }
 }
-
 
 
 private struct ScriptInfo: Decodable {
@@ -101,7 +98,6 @@ private struct ScriptInfo: Decodable {
 }
 
 
-
 // MARK: -
 
 struct ScriptDescriptor {
@@ -118,7 +114,6 @@ struct ScriptDescriptor {
     
     private var type: ScriptingFileType
     private var executionModel: ScriptingExecutionModel
-    
     
     
     // MARK: Lifecycle
@@ -156,7 +151,6 @@ struct ScriptDescriptor {
     }
     
     
-    
     // MARK: Public Methods
     
     /// Creates and returns a user script instance.
@@ -173,7 +167,6 @@ struct ScriptDescriptor {
             return script
         }
     }
-    
     
     
     // MARK: Private Methods

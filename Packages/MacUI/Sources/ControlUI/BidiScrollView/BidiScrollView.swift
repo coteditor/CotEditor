@@ -95,7 +95,6 @@ public final class BidiScrollView: NSScrollView {
 }
 
 
-
 extension NSEdgeInsets: @retroactive Equatable {
     
     static let zero = NSEdgeInsetsZero

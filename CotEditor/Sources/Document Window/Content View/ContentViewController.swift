@@ -114,7 +114,6 @@ final class ContentViewController: NSSplitViewController {
     }
     
     
-    
     // MARK: Split View Controller Methods
     
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {

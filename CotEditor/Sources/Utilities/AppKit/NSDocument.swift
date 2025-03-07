@@ -145,7 +145,6 @@ extension NSDocument {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Performs didRecoverBlock after recovering presented error.

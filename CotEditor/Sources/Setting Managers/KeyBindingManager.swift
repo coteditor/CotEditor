@@ -43,7 +43,6 @@ import URLUtils
     private var modifiedKeyBindings: Set<KeyBinding> = []
     
     
-    
     // MARK: Lifecycle
     
     private init() {
@@ -57,7 +56,6 @@ import URLUtils
         
         self.modifiedKeyBindings.formUnion(self.userKeyBindings)
     }
-    
     
     
     // MARK: Public Methods
@@ -128,7 +126,6 @@ import URLUtils
         // apply new settings to the menu
         self.applyShortcutsToMainMenu()
     }
-    
     
     
     // MARK: Private Methods

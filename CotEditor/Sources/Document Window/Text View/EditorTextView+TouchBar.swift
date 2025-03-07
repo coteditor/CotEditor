@@ -39,7 +39,6 @@ extension NSTouchBarItem.Identifier {
 }
 
 
-
 extension EditorTextView {
     
     override func makeTouchBar() -> NSTouchBar? {
@@ -93,7 +92,6 @@ extension EditorTextView {
         }
     }
 }
-
 
 
 extension EditorTextView {

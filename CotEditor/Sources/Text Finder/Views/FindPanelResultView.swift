@@ -230,7 +230,6 @@ private extension TextFindAllResult.Match {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

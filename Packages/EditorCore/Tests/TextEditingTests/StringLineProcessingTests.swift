@@ -281,7 +281,6 @@ struct StringTrimmingTests {
 }
 
 
-
 // MARK: -
 
 private extension String {

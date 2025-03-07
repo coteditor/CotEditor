@@ -52,7 +52,6 @@ struct SavePanelAccessory: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

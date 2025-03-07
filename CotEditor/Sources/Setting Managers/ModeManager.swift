@@ -41,14 +41,12 @@ import Syntax
     private let defaults: UserDefaults
     
     
-    
     // MARK: Lifecycle
     
     private init(defaults: UserDefaults) {
         
         self.defaults = defaults
     }
-    
     
     
     // MARK: Public Methods

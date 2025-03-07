@@ -140,7 +140,6 @@ struct CharacterCountOptionsView: View {
 }
 
 
-
 // MARK: Model
 
 private extension CharacterCountOptions.CharacterUnit {
@@ -198,7 +197,6 @@ private extension CharacterCountOptions.CharacterUnit {
         }
     }
 }
-
 
 
 // MARK: - Preview

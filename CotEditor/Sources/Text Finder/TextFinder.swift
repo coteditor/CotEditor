@@ -105,7 +105,6 @@ struct TextFindAllResult {
 }
 
 
-
 // MARK: -
 
 @MainActor final class TextFinder {
@@ -153,7 +152,6 @@ struct TextFindAllResult {
     
     private var findTask: Task<Void, any Error>?
     private var highlightObservationTask: Task<Void, Never>?
-    
     
     
     // MARK: Public Methods
@@ -269,7 +267,6 @@ struct TextFindAllResult {
                 self.multiReplaceAll(name: name)
         }
     }
-    
     
     
     // MARK: Private Actions
@@ -394,7 +391,6 @@ struct TextFindAllResult {
         
         TextFinderSettings.shared.replacementString = self.client.selectedString
     }
-    
     
     
     // MARK: Private Methods
@@ -684,7 +680,6 @@ struct TextFindAllResult {
         AccessibilityNotification.Announcement(result.message).post()
     }
 }
-
 
 
 // MARK: -

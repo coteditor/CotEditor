@@ -71,7 +71,6 @@ struct SyntaxCompletionEditView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

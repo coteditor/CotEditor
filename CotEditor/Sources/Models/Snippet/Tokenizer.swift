@@ -51,7 +51,6 @@ extension TokenRepresentable {
 }
 
 
-
 // MARK: -
 
 final class Tokenizer: Sendable {
@@ -61,7 +60,6 @@ final class Tokenizer: Sendable {
     let suffix: String
     
     private let regex: NSRegularExpression
-    
     
     
     // MARK: Lifecycle
@@ -80,7 +78,6 @@ final class Tokenizer: Sendable {
         
         self.regex = try! NSRegularExpression(pattern: pattern)
     }
-    
     
     
     // MARK: Public Methods

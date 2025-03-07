@@ -94,7 +94,6 @@ struct StringIndentationTests {
 }
 
 
-
 private extension String {
     
     func indentLevel(at location: Int, tabWidth: Int) -> Int {

@@ -107,7 +107,6 @@ final class LineNumberView: NSView {
     private var draggingInfo: DraggingInfo?
     
     
-    
     // MARK: View Methods
     
     override func accessibilityLabel() -> String? {
@@ -177,7 +176,6 @@ final class LineNumberView: NSView {
         
         NSGraphicsContext.restoreGraphicsState()
     }
-    
     
     
     // MARK: Private Methods
@@ -384,7 +382,6 @@ final class LineNumberView: NSView {
 }
 
 
-
 // MARK: - Controlling Text View
 
 extension LineNumberView {
@@ -394,7 +391,6 @@ extension LineNumberView {
         var index: Int
         var selectedRanges: [NSRange]
     }
-    
     
     
     // MARK: View Methods
@@ -439,7 +435,6 @@ extension LineNumberView {
         
         self.draggingInfo = nil
     }
-    
     
     
     // MARK: Private Methods

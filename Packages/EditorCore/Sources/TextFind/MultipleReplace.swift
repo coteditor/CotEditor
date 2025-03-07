@@ -79,7 +79,6 @@ public struct MultipleReplace: Equatable, Sendable, Codable {
 }
 
 
-
 // MARK: - Replacement
 
 extension MultipleReplace {
@@ -209,7 +208,6 @@ private extension MultipleReplace.Replacement {
         }
     }
 }
-
 
 
 // MARK: - Validation

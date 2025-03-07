@@ -60,7 +60,6 @@ final class DocumentController: NSDocumentController {
     private var syntaxObserver: AnyCancellable?
     
     
-    
     // MARK: Lifecycle
     
     override init() {
@@ -86,7 +85,6 @@ final class DocumentController: NSDocumentController {
         
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     // MARK: Document Controller Methods
@@ -256,7 +254,6 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    
     // MARK: Public Methods
     
     /// The current `Document`.
@@ -320,7 +317,6 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    
     // MARK: Action Messages
     
     /// Opens a new document as a new window.
@@ -339,7 +335,6 @@ final class DocumentController: NSDocumentController {
         self.newDocument(sender)
         DocumentWindow.tabbingPreference = nil
     }
-    
     
     
     // MARK: Private Methods
@@ -426,7 +421,6 @@ final class DocumentController: NSDocumentController {
         context.perform(from: self, flag: didCloseAll)
     }
 }
-
 
 
 // MARK: - Error

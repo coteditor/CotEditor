@@ -33,7 +33,6 @@ import AppKit
 }
 
 
-
 extension CurrentLineHighlighting {
     
     // MARK: Public Methods
@@ -80,7 +79,6 @@ extension CurrentLineHighlighting {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Returns the character ranges for the lines where the insertion points locate.
@@ -123,7 +121,6 @@ extension CurrentLineHighlighting {
             .offset(by: self.textContainerOrigin)
     }
 }
-
 
 
 private extension NSLayoutManager {

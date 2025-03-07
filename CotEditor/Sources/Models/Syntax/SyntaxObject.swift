@@ -112,7 +112,6 @@ struct SyntaxObjectKeyString: Identifiable {
 }
 
 
-
 // MARK: Definition Conversion
 
 extension SyntaxObject {

@@ -44,7 +44,6 @@ final class InspectorViewController: NSTabViewController {
     var selectedPane: InspectorPane { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
     
     
-    
     // MARK: Lifecycle
     
     init(document: DataDocument? = nil) {
@@ -114,7 +113,6 @@ final class InspectorViewController: NSTabViewController {
     }
     
     
-    
     // MARK: Tab View Controller Methods
     
     override var selectedTabViewItemIndex: Int {
@@ -157,7 +155,6 @@ final class InspectorViewController: NSTabViewController {
         }
     }
 }
-
 
 
 extension InspectorViewController: InspectorTabViewDelegate {

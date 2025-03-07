@@ -39,7 +39,6 @@ public extension StringProtocol {
 }
 
 
-
 // MARK: - Private Extensions
 
 private extension Unicode.Scalar {

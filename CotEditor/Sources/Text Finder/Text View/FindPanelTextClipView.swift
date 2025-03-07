@@ -33,7 +33,6 @@ final class FindPanelTextClipView: NSClipView {
     private let trailingPadding: CGFloat = 22  // for clear button
     
     
-    
     // MARK: View Methods
     
     override var frame: NSRect {

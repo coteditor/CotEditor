@@ -117,7 +117,6 @@ struct SyntaxHighlightEditView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

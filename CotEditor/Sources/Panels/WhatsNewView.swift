@@ -231,7 +231,6 @@ private struct CapsuleButtonStyle: ButtonStyle {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

@@ -43,7 +43,6 @@ struct OutlineTests {
     private let emptyItems: [OutlineItem] = []
     
     
-    
     @Test func index() throws {
         
         #expect(self.emptyItems.item(at: 10) == nil)

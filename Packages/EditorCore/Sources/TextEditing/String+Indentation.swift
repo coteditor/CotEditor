@@ -291,7 +291,6 @@ public extension String {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Calculates column number at location in the line expanding tab (\t) character.

@@ -47,9 +47,6 @@ public extension Unicode.Scalar {
 }
 
 
-
-// MARK: -
-
 private enum EmojiVariationSelector: UInt32 {
     
     case text = 0xFE0E

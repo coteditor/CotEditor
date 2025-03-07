@@ -57,7 +57,6 @@ extension RangeReplaceableCollection where Element: Equatable {
 }
 
 
-
 extension Collection {
     
     /// Returns the element at the specified index only if it is within bounds, otherwise nil.
@@ -68,7 +67,6 @@ extension Collection {
         self.indices.contains(index) ? self[index] : nil
     }
 }
-
 
 
 extension Sequence {
@@ -84,7 +82,6 @@ extension Sequence {
         return values
     }
 }
-
 
 
 extension Dictionary {

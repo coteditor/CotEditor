@@ -56,7 +56,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     private var menuUpdateTask: Task<Void, any Error>?
     
     
-    
     // MARK: Lifecycle
     
     private override init() {
@@ -90,7 +89,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     }
     
     
-    
     // MARK: File Presenter Protocol
     
     let presentedItemOperationQueue: OperationQueue = .init()
@@ -114,7 +112,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
             }
         }
     }
-    
     
     
     // MARK: Public Methods
@@ -141,8 +138,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     }
     
     
-    
-    // MARK: Action Message
+    // MARK: Action Messages
     
     /// Launches a script (invoked by menu item).
     @IBAction func launchScript(_ sender: NSMenuItem) {
@@ -185,7 +181,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         NSWorkspace.shared.activateFileViewerSelecting([directoryURL])
     }
-    
     
     
     // MARK: Private Methods
@@ -311,7 +306,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         menu.items.forEach { $0.applyShortcut(recursively: true, exclude: usedShortcuts) }
     }
 }
-
 
 
 private extension NSMenuItem {

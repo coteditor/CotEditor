@@ -344,7 +344,6 @@ private extension DocumentConflictOption {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

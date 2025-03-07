@@ -94,7 +94,6 @@ actor ThemeTests {
 }
 
 
-
 private extension ThemeTests {
     
     func loadThemeWithName(_ name: String) throws -> Theme {

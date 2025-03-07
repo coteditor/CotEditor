@@ -69,7 +69,6 @@ struct MultipleReplaceSettingsView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

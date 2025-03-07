@@ -42,7 +42,6 @@ struct PersistentOSAScript: EventScript {
     private let compiledData: Data
     
     
-    
     // MARK: Lifecycle
     
     init(url: URL, name: String, shortcut: Shortcut?) throws {
@@ -57,7 +56,6 @@ struct PersistentOSAScript: EventScript {
         self.shortcut = shortcut
         self.compiledData = data
     }
-    
     
     
     // MARK: Script Methods

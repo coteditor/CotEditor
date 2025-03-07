@@ -39,7 +39,6 @@ final class Atomic<T> {
     private var value: T
     
     
-    
     // MARK: Lifecycle
     
     /// Initializer for propertyWrapper.
@@ -47,7 +46,6 @@ final class Atomic<T> {
         
         self.value = wrappedValue
     }
-    
     
     
     // MARK: Public Methods

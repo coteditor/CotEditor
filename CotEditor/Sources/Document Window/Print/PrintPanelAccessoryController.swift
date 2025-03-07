@@ -50,7 +50,6 @@ enum ThemeName {
 }
 
 
-
 final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccessorizing {
     
     // MARK: Public Properties
@@ -76,7 +75,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     @IBOutlet private weak var leadingPaddingConstraint: NSLayoutConstraint?
     @IBOutlet private weak var trailingPaddingConstraint: NSLayoutConstraint?
-    
     
     
     // MARK: View Controller Method
@@ -143,7 +141,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         self.setupColorMenu()
     }
-    
     
     
     // MARK: NSPrintPanelAccessorizing Protocol
@@ -214,7 +211,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     }
     
     
-    
     // MARK: Private Methods
     
     /// Casts `representedObject` to `NSPrintInfo`.
@@ -250,7 +246,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             popUpButton.selectItem(at: 0)  // -> select "Black and White"
         }
     }
-    
     
     
     // MARK: Setting Accessors
@@ -438,7 +433,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         }
     }
 }
-
 
 
 // MARK: Private Extensions

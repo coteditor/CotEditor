@@ -33,7 +33,6 @@ final class PaddingTextFieldCell: NSTextFieldCell {
     var trailingPadding: CGFloat = 0
     
     
-    
     // MARK: Cell Methods
     
     /// Adds padding to area to draw text.

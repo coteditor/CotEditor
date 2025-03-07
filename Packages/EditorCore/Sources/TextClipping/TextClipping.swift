@@ -39,7 +39,6 @@ public struct TextClipping: Equatable, Sendable, Decodable {
     }
     
     
-    
     public init(contentsOf url: URL) throws {
         
         let data = try Data(contentsOf: url)

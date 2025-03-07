@@ -46,7 +46,6 @@ import FileEncoding
     private var defaultObserver: AnyCancellable?
     
     
-    
     // MARK: Lifecycle
     
     private init(defaults: UserDefaults) {
@@ -68,7 +67,6 @@ import FileEncoding
             }
             .sink { [weak self] in self?.fileEncodings = $0 }
     }
-    
     
     
     // MARK: Public Methods
@@ -116,7 +114,6 @@ import FileEncoding
             .map(\.encoding)
             .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
     }
-    
     
     
     // MARK: Private Methods

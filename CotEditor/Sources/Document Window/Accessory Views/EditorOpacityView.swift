@@ -57,7 +57,6 @@ struct EditorOpacityView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

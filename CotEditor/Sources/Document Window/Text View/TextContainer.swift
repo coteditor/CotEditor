@@ -40,7 +40,6 @@ final class TextContainer: NSTextContainer {
     private var indentWidthCache: [String: Double] = [:]
     
     
-    
     // MARK: Text Container Methods
     
     override var isSimpleRectangularTextContainer: Bool {
@@ -103,7 +102,6 @@ final class TextContainer: NSTextContainer {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Lets layoutManager invalidate the entire layout.
@@ -114,7 +112,6 @@ final class TextContainer: NSTextContainer {
         layoutManager.invalidateLayout(forCharacterRange: layoutManager.attributedString().range, actualCharacterRange: nil)
     }
 }
-
 
 
 // MARK: -

@@ -199,7 +199,6 @@ struct FindRegularExpressionOptionsView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

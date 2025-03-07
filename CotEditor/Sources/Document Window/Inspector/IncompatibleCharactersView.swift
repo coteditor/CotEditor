@@ -249,7 +249,6 @@ private extension NSTextStorage {
 }
 
 
-
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {

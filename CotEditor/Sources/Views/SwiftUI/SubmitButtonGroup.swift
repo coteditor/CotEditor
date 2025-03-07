@@ -129,7 +129,6 @@ private struct EqualWidthHStack: Layout {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

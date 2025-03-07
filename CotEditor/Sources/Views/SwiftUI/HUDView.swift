@@ -51,7 +51,6 @@ extension NSView {
 }
 
 
-
 struct HUDView: View {
     
     enum Symbol {
@@ -114,7 +113,6 @@ private extension HUDView.Symbol {
         }
     }
 }
-
 
 
 // MARK: - Preview

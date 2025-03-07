@@ -95,7 +95,6 @@ private struct OpacitySample: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 200, height: 50)) {

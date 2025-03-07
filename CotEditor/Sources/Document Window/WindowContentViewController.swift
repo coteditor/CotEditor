@@ -49,7 +49,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     private var versionBrowserExitObservationTask: Task<Void, Never>?
     
     
-    
     // MARK: Split View Controller Methods
     
     init(document: DataDocument?, directoryDocument: DirectoryDocument?) {
@@ -217,7 +216,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     }
     
     
-    
     // MARK: Public Methods
     
     /// Opens the desired inspector pane.
@@ -228,7 +226,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.inspectorViewItem.animator().isCollapsed = false
         self.inspectorViewController.selectedTabViewItemIndex = pane.rawValue
     }
-    
     
     
     // MARK: Action Messages
@@ -283,7 +280,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         self.showInspector(pane: .warnings)
     }
-    
     
     
     // MARK: Private Methods

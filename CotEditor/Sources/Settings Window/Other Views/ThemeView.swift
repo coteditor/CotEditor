@@ -344,7 +344,6 @@ private extension Theme.SystemDefaultStyle {
 }
 
 
-
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 480, height: 280)) {

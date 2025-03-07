@@ -47,7 +47,6 @@ public final class InspectorTabView: NSTabView {
     private let segmentWidth: CGFloat = 30
     
     
-    
     // MARK: Lifecycle
     
     public override init(frame frameRect: NSRect) {
@@ -87,7 +86,6 @@ public final class InspectorTabView: NSTabView {
         
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     // MARK: Tab View Methods
@@ -136,7 +134,6 @@ public final class InspectorTabView: NSTabView {
         
         self.rebuildSegmentedControl()
     }
-    
     
     
     // MARK: Private Methods

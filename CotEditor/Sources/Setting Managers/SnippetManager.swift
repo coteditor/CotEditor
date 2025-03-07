@@ -53,7 +53,6 @@ import URLUtils
     private var scope: String?
     
     
-    
     // MARK: Lifecycle
     
     private init(defaults: UserDefaults) {
@@ -157,7 +156,6 @@ import URLUtils
         menu.items.append(editItem)
     }
 }
-
 
 
 // MARK: - Migration

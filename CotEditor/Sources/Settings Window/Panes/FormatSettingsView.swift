@@ -197,7 +197,6 @@ private struct SyntaxListView: NSViewControllerRepresentable {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

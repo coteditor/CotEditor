@@ -38,7 +38,6 @@ final class CommandBarWindowController: NSWindowController {
     private let model = CommandBarView.Model()
     
     
-    
     // MARK: Lifecycle
     
     init() {
@@ -83,7 +82,6 @@ final class CommandBarWindowController: NSWindowController {
         super.showWindow(sender)
     }
 }
-
 
 
 // MARK: - Private Classes

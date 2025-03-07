@@ -73,7 +73,7 @@ nesting:
     warning: 2
 
 vertical_whitespace:
-  max_empty_lines: 3
+  max_empty_lines: 2
 
 file_length:
   warning: 2000
@@ -91,7 +91,8 @@ large_tuple:
   warning: 3
 
 cyclomatic_complexity:
-  warning: 30
+  ignores_case_statements: true
+  warning: 15
 
 identifier_name:
   max_length:

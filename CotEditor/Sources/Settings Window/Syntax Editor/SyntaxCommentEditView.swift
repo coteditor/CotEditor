@@ -80,7 +80,6 @@ private struct CommentDelimitersEditView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

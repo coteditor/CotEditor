@@ -391,7 +391,6 @@ private struct LicenseView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

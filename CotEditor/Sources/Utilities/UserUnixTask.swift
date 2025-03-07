@@ -39,7 +39,6 @@ actor UserUnixTask {
     private var buffer: AsyncStream<Data>?
     
     
-    
     // MARK: Public Methods
     
     /// Creates an Unix script task with a script file in the user domain.
@@ -116,7 +115,6 @@ actor UserUnixTask {
         return string
     }
 }
-
 
 
 private extension Pipe {

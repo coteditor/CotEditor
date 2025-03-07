@@ -129,7 +129,6 @@ public extension StringProtocol {
 }
 
 
-
 // MARK: NSRange based
 
 public extension String {

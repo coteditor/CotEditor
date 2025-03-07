@@ -36,7 +36,6 @@ struct FindPanelOptionView: View {
     @State private var isSettingsPresented = false
     
     
-    
     // MARK: View
     
     var body: some View {
@@ -77,7 +76,6 @@ struct FindPanelOptionView: View {
         .controlSize(.small)
     }
 }
-
 
 
 // MARK: - Preview

@@ -54,7 +54,6 @@ extension NSFont {
 }
 
 
-
 extension CTFont {
     
     /// Creates CGGlyph from a character.

@@ -364,7 +364,6 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

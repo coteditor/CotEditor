@@ -33,14 +33,12 @@ private extension NSTouchBarItem.Identifier {
 }
 
 
-
 final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceValidations {
     
     // MARK: Private Properties
     
     private weak var textView: NSTextView?
     private var scaleObserver: AnyCancellable?
-    
     
     
     // MARK: Lifecycle
@@ -62,7 +60,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     // MARK: Touch Bar Delegate
@@ -110,7 +107,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     }
     
     
-    
     // MARK: User Interface Validations
     
     func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
@@ -124,7 +120,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 return true
         }
     }
-    
     
     
     // MARK: Action Messages

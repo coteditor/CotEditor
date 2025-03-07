@@ -215,7 +215,6 @@ struct PatternSortView: View {
 }
 
 
-
 struct ColumnSortPatternView: View {
     
     @Binding var pattern: CSVSortPattern
@@ -235,7 +234,6 @@ struct ColumnSortPatternView: View {
         }.fixedSize()
     }
 }
-
 
 
 struct RegularExpressionSortPatternView: View {
@@ -358,7 +356,6 @@ extension SortPatternError: @retroactive LocalizedError {
         }
     }
 }
-
 
 
 // MARK: - Preview

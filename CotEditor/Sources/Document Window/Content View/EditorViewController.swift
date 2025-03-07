@@ -127,7 +127,6 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    
     // MARK: Split View Controller Methods
     
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
@@ -161,7 +160,6 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    
     // MARK: Public Methods
     
     /// Whether line number view is visible.
@@ -170,7 +168,6 @@ final class EditorViewController: NSSplitViewController {
         get { self.textViewController.showsLineNumber }
         set { self.textViewController.showsLineNumber = newValue }
     }
-    
     
     
     // MARK: Action Messages

@@ -90,7 +90,6 @@ public struct FilePermissions: Equatable, Sendable {
 }
 
 
-
 extension FilePermissions: CustomStringConvertible {
     
     public var description: String {

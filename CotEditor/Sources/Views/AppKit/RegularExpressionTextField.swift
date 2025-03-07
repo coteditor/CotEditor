@@ -54,7 +54,6 @@ final class RegularExpressionTextField: NSTextField {
     @IBInspectable private var isReplacement: Bool = false
     
     
-    
     // MARK: Text Field Methods
     
     override static var cellClass: AnyClass? {
@@ -110,7 +109,6 @@ final class RegularExpressionTextField: NSTextField {
             self.invalidateFieldEditor()
         }
     }
-    
     
     
     // MARK: Private Methods

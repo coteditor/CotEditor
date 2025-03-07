@@ -80,7 +80,6 @@ private enum BundleIdentifier {
 }
 
 
-
 @main
 @MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -123,7 +122,6 @@ private enum BundleIdentifier {
             Logger.app.debug("\(textView.className) did switch to NSLayoutManager.")
         }
     #endif
-    
     
     
     // MARK: Lifecycle
@@ -243,7 +241,6 @@ private enum BundleIdentifier {
                 .store(in: &self.menuUpdateObservers)
         }
     }
-    
     
     
     // MARK: Application Delegate
@@ -382,7 +379,6 @@ private enum BundleIdentifier {
     }
     
     
-    
     // MARK: Action Messages
     
     /// Activates self and perform New menu action (from Dock menu).
@@ -500,7 +496,6 @@ private enum BundleIdentifier {
             NSApp.presentError(error)
         }
     }
-    
     
     
     // MARK: Private Methods

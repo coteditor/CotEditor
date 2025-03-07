@@ -47,7 +47,6 @@ import Defaults
         }
     
     
-    
     // MARK: Window Delegate
     
     func windowWillClose(_ notification: Notification) {
@@ -92,7 +91,6 @@ import Defaults
         panel.orderFront(self)
     }
 }
-
 
 
 // MARK: -
@@ -226,7 +224,6 @@ private struct ColorCodePanelAccessory: View {
 }
 
 
-
 private extension ColorCodeType {
     
     static let hexTypes: [Self] = [.hex, .hexWithAlpha, .shortHex]
@@ -271,7 +268,6 @@ private extension ColorCodeType {
         }
     }
 }
-
 
 
 // MARK: - Preview

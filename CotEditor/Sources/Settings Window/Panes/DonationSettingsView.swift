@@ -316,7 +316,6 @@ private extension SubscriptionInformationURL {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

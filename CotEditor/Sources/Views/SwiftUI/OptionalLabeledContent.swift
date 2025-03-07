@@ -63,7 +63,6 @@ struct NoneTextView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

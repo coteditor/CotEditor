@@ -43,9 +43,6 @@ private struct FileMappingConflict: Identifiable {
 }
 
 
-
-// MARK: - SwiftUI View
-
 struct SyntaxMappingConflictView: View {
     
     weak var parent: NSHostingController<Self>?

@@ -174,7 +174,6 @@ extension NSTextView {
     }
     
     
-    
     // MARK: Actions
     
     /// Inputs a backslash (\\) to the insertion points.
@@ -190,7 +189,6 @@ extension NSTextView {
         self.insertText("¥", replacementRange: .notFound)
     }
 }
-
 
 
 extension String {

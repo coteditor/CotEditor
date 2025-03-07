@@ -70,7 +70,6 @@ extension EventScript {
 }
 
 
-
 // MARK: - Errors
 
 struct ScriptFileError: LocalizedError {

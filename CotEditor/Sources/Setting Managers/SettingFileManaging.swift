@@ -63,7 +63,6 @@ extension URL {
 }
 
 
-
 // MARK: -
 
 protocol SettingFileManaging: AnyObject, Sendable {
@@ -102,7 +101,6 @@ protocol SettingFileManaging: AnyObject, Sendable {
     /// Tells that a setting did update.
     func didUpdateSetting(change: SettingChange)
 }
-
 
 
 extension SettingFileManaging {
@@ -153,7 +151,6 @@ extension SettingFileManaging {
         
         // do nothing
     }
-    
     
     
     // MARK: Public Methods
@@ -429,7 +426,6 @@ extension SettingFileManaging {
     }
     
     
-    
     // MARK: Private Methods
     
     /// The user setting directory URL in Application Support.
@@ -490,7 +486,6 @@ extension SettingFileManaging {
 }
 
 
-
 // MARK: - Errors
 
 enum InvalidNameError: LocalizedError {
@@ -539,7 +534,6 @@ enum InvalidNameError: LocalizedError {
                defaultValue: "Choose another name.")
     }
 }
-
 
 
 struct SettingFileError: LocalizedError {
@@ -595,7 +589,6 @@ struct SettingFileError: LocalizedError {
         }
     }
 }
-
 
 
 struct ImportDuplicationError: LocalizedError, RecoverableError {

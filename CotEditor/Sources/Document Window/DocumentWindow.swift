@@ -120,7 +120,6 @@ final class DocumentWindow: NSWindow {
 }
 
 
-
 // MARK: Window Tabbing
 
 extension DocumentWindow {

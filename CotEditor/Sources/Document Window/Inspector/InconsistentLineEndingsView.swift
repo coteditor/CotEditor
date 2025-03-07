@@ -118,7 +118,6 @@ struct InconsistentLineEndingsView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {

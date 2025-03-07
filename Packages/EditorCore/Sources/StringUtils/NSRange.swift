@@ -98,7 +98,6 @@ public extension NSRange {
 }
 
 
-
 public extension NSRange {
     
     struct InsertionItem: Equatable, Sendable {

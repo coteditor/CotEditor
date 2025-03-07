@@ -205,7 +205,6 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
-    
     // MARK: Public Methods
     
     public init(

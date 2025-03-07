@@ -127,7 +127,6 @@ private extension SyntaxObject.Error {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

@@ -35,7 +35,6 @@ private final class Wrapper<T> {
 }
 
 
-
 func bridgeWrapped<T: Any>(_ obj: T) -> UnsafeMutableRawPointer {
     
     let wrapper = Wrapper<T>(value: obj)

@@ -52,7 +52,6 @@ final class DirectoryDocument: NSDocument {
     private var documentObserver: (any NSObjectProtocol)?
     
     
-    
     // MARK: Document Methods
     
     override static var autosavesInPlace: Bool {
@@ -221,7 +220,6 @@ final class DirectoryDocument: NSDocument {
     }
     
     
-    
     // MARK: Action Messages
     
     @IBAction func openDocumentAsPlainText(_ sender: NSMenuItem) {
@@ -232,7 +230,6 @@ final class DirectoryDocument: NSDocument {
             await self.openDocument(at: fileURL, asPlainText: true)
         }
     }
-    
     
     
     // MARK: Public Methods
@@ -566,7 +563,6 @@ final class DirectoryDocument: NSDocument {
             }
         }
     }
-    
     
     
     // MARK: Private Methods

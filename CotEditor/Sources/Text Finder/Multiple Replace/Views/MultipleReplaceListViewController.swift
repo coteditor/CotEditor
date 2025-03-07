@@ -46,7 +46,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     @IBOutlet private weak var actionButton: NSButton?
     
     
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -106,7 +105,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    
     // MARK: Menu Item Validation
     
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
@@ -157,7 +155,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         
         return true
     }
-    
     
     
     // MARK: Action Messages
@@ -294,7 +291,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
             ReplacementManager.shared.loadUserSettings()
         }
     }
-    
     
     
     // MARK: Private Methods
@@ -437,7 +433,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
 }
 
 
-
 // MARK: - TableView Data Source
 
 extension MultipleReplaceListViewController: NSTableViewDataSource {
@@ -570,7 +565,6 @@ extension MultipleReplaceListViewController: NSTableViewDelegate {
         UserDefaults.standard[.selectedMultipleReplaceSettingName] = settingName
     }
 }
-
 
 
 // MARK: - TextField Delegate

@@ -71,7 +71,6 @@ extension EditorTextView: Commenting {
 }
 
 
-
 // MARK: - Protocol
 
 @MainActor protocol Commenting: NSTextView {

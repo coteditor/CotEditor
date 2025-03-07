@@ -90,7 +90,6 @@ class RegexTextView: NSTextView {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Highlights the content string as a regular expression pattern.

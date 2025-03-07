@@ -50,7 +50,6 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     private let model = DocumentInspectorView.Model()
     
     
-    
     // MARK: Lifecycle
     
     required init(document: DataDocument?) {
@@ -432,7 +431,6 @@ private extension DocumentInspectorView.Model {
         }
     }
 }
-
 
 
 // MARK: - Preview

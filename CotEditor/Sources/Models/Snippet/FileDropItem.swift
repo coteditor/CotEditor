@@ -43,7 +43,6 @@ struct FileDropItem: Equatable, Identifiable {
     var description: String?
     
     
-    
     // MARK: Public Methods
     
     /// Tests whether the given conditions are supported.
@@ -61,7 +60,6 @@ struct FileDropItem: Equatable, Identifiable {
             : self.extensions.contains { $0.lowercased() == pathExtension?.lowercased() }
     }
 }
-
 
 
 // MARK: Coding
@@ -106,7 +104,6 @@ extension FileDropItem {
         .compactMapValues(\.self)
     }
 }
-
 
 
 // MARK: Composition
@@ -186,7 +183,6 @@ extension FileDropItem {
             }
         }
     }
-    
     
     
     // MARK: Public Methods

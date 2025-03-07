@@ -133,7 +133,6 @@ struct RegexTextField: NSViewRepresentable {
     }
     
     
-    
     final class Coordinator: NSObject, NSTextFieldDelegate {
         
         @Binding private var text: String
@@ -176,7 +175,6 @@ struct RegexTextField: NSViewRepresentable {
 }
 
 
-
 private final class RegexNSTextField: NSTextField {
     
     // MARK: Public Properties
@@ -194,7 +192,6 @@ private final class RegexNSTextField: NSTextField {
     // MARK: Private Properties
     
     private let regexFormatter: RegexFormatter<NSColor>
-    
     
     
     // MARK: Text Field Methods
@@ -254,7 +251,6 @@ private final class RegexNSTextField: NSTextField {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Updates the syntax highlight in the field editor.
@@ -265,7 +261,6 @@ private final class RegexNSTextField: NSTextField {
         editor.highlightAsRegularExpressionPattern(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
     }
 }
-
 
 
 // MARK: - Preview

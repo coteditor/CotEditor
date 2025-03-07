@@ -92,7 +92,6 @@ extension NSTextView {
 }
 
 
-
 // MARK: - Scaling
 
 // cf. https://developer.apple.com/library/mac/qa/qa1346/_index.html
@@ -181,7 +180,6 @@ extension NSTextView {
         self.setScale(scale, centeredAt: self.visibleRect.mid)
     }
 }
-
 
 
 // MARK: - Wrapping

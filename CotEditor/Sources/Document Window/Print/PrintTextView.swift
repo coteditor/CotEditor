@@ -63,7 +63,6 @@ final class PrintTextView: NSTextView {
     private var lastPaperContentSize: NSSize = .zero
     
     
-    
     // MARK: Lifecycle
     
     init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner, info: DocumentInfo) {
@@ -101,7 +100,6 @@ final class PrintTextView: NSTextView {
         
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     // MARK: Text View Methods
@@ -255,7 +253,6 @@ final class PrintTextView: NSTextView {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Applies the current print settings in the print info.
@@ -392,7 +389,6 @@ final class PrintTextView: NSTextView {
 }
 
 
-
 private extension NSLayoutManager {
     
     /// This method causes the text to be laid out in the foreground.
@@ -406,7 +402,6 @@ private extension NSLayoutManager {
         self.textContainer(forGlyphAt: self.numberOfGlyphs - 1, effectiveRange: nil)
     }
 }
-
 
 
 // MARK: -
@@ -462,7 +457,6 @@ private final class PrintLayoutManager: LayoutManager {
 }
 
 
-
 // MARK: -
 
 private enum HeaderFooterLocation {
@@ -497,7 +491,6 @@ private enum HeaderFooterLocation {
         }
     }
 }
-
 
 
 private extension AlignmentType {

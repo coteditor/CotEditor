@@ -41,7 +41,6 @@ extension NSTouchBarItem.Identifier {
 }
 
 
-
 extension DocumentViewController: NSTouchBarDelegate {
     
     // MARK: View Controller Methods
@@ -59,7 +58,6 @@ extension DocumentViewController: NSTouchBarDelegate {
         
         return touchBar
     }
-    
     
     
     // MARK: Touch Bar Delegate
@@ -123,7 +121,6 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Updates UI manually.
@@ -168,7 +165,6 @@ extension DocumentViewController: NSSharingServicePickerTouchBarItemDelegate {
         [self.document]
     }
 }
-
 
 
 private extension NSColor {

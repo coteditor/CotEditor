@@ -163,7 +163,6 @@ struct RegularExpressionReferenceView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

@@ -84,7 +84,6 @@ struct IncompatibleCharacterTests {
 }
 
 
-
 private extension String.Encoding {
     
     static let plainShiftJIS = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))

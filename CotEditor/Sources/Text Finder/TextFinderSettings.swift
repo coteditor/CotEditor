@@ -46,7 +46,6 @@ import TextFind
     private var applicationActivationObservationTask: Task<Void, Never>?
     
     
-    
     // MARK: Lifecycle
     
     private init(defaults: UserDefaults = .standard) {
@@ -65,7 +64,6 @@ import TextFind
             }
         }
     }
-    
     
     
     // MARK: Public Methods
@@ -131,7 +129,6 @@ import TextFind
         self.appendHistory(self.findString, forKey: .findHistory)
         self.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
-    
     
     
     // MARK: Private Methods

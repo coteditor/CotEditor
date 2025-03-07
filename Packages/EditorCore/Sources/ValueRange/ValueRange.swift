@@ -35,7 +35,6 @@ public struct ValueRange<Value> {
     public var upperBound: Int  { self.range.upperBound }
     
     
-    
     public init(value: Value, range: NSRange) {
         
         self.value = value
@@ -66,7 +65,6 @@ public struct ValueRange<Value> {
 extension ValueRange: Equatable where Value: Equatable { }
 extension ValueRange: Hashable where Value: Hashable { }
 extension ValueRange: Sendable where Value: Sendable { }
-
 
 
 // MARK: - Private

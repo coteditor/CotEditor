@@ -70,7 +70,6 @@ struct EncodingListView: View {
     @State private var selection: Set<EncodingItem.ID> = []
     
     
-    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -170,7 +169,6 @@ private struct EncodingView: View {
         CFStringConvertEncodingToIANACharSetName(self.encoding) as String? ?? "–"
     }
 }
-
 
 
 // MARK: -
@@ -293,7 +291,6 @@ private extension CFStringEncoding {
     
     static let utf8 = CFStringEncoding(CFStringBuiltInEncodings.UTF8.rawValue)
 }
-
 
 
 // MARK: - Preview

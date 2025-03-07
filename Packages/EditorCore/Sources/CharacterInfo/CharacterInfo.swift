@@ -64,7 +64,6 @@ public struct CharacterInfo: Sendable {
 }
 
 
-
 extension CharacterInfo: CustomStringConvertible {
     
     public var description: String {

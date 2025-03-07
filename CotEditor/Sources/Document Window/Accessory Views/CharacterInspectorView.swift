@@ -43,7 +43,6 @@ struct CharacterInspectorView: View {
 }
 
 
-
 private struct CharacterDetailView: View {
     
     var info: CharacterInfo
@@ -190,7 +189,6 @@ private struct ScalarDetailView: View {
 }
 
 
-
 private struct CharacterView: NSViewRepresentable {
     
     typealias NSViewType = NSTextField
@@ -258,7 +256,6 @@ private extension CharacterInfo {
         return unicodeName
     }
 }
-
 
 
 // MARK: - Preview

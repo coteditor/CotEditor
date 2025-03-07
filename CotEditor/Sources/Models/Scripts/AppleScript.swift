@@ -37,7 +37,6 @@ struct AppleScript: EventScript {
     var eventTypes: [ScriptingEventType] = []
     
     
-    
     // MARK: Lifecycle
     
     init(url: URL, name: String, shortcut: Shortcut?) throws {
@@ -46,7 +45,6 @@ struct AppleScript: EventScript {
         self.name = name
         self.shortcut = shortcut
     }
-    
     
     
     // MARK: Script Methods

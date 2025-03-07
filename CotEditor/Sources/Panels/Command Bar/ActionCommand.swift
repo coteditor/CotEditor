@@ -108,7 +108,6 @@ extension NSApplication {
 }
 
 
-
 // MARK: - Private Extensions
 
 private extension NSMenuItem {

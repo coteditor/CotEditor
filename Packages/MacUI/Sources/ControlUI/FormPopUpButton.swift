@@ -72,7 +72,6 @@ public final class FormPopUpButton: NSPopUpButton {
 }
 
 
-
 public final class FormPopUpButtonCell: NSPopUpButtonCell {
     
     public override func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
@@ -156,7 +155,6 @@ private extension Bundle {
     
     private final class BundleFinder { }
 }
-
 
 
 // MARK: - Preview

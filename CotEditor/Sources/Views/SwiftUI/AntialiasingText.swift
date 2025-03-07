@@ -141,7 +141,6 @@ private final class CenteringTextFieldCell: NSTextFieldCell {
 }
 
 
-
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 200, height: 400)) {

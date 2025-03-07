@@ -106,7 +106,6 @@ extension NSTextView {
     }
     
     
-    
     // MARK: Private Methods
     
     /// The object calculating line range.

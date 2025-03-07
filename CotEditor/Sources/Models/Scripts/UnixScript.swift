@@ -38,7 +38,6 @@ struct UnixScript: Script {
     let shortcut: Shortcut?
     
     
-    
     // MARK: Lifecycle
     
     init(url: URL, name: String, shortcut: Shortcut?) throws {
@@ -47,7 +46,6 @@ struct UnixScript: Script {
         self.name = name
         self.shortcut = shortcut
     }
-    
     
     
     // MARK: Private Enum
@@ -72,7 +70,6 @@ struct UnixScript: Script {
         
         static let token = "CotEditorXInput"
     }
-    
     
     
     // MARK: Script Methods
@@ -119,7 +116,6 @@ struct UnixScript: Script {
             throw ScriptError.standardError(error)
         }
     }
-    
     
     
     // MARK: Private Methods
@@ -182,7 +178,6 @@ struct UnixScript: Script {
         }
     }
 }
-
 
 
 // MARK: - ScriptToken

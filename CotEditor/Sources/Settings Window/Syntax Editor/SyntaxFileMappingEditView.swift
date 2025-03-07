@@ -119,7 +119,6 @@ struct SyntaxFileMappingEditView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

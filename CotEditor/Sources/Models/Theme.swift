@@ -60,7 +60,6 @@ struct Theme: Equatable {
     }
     
     
-    
     // MARK: Public Properties
     
     /// Name of the theme
@@ -87,7 +86,6 @@ struct Theme: Equatable {
     var comments: Style
     
     var metadata: Metadata?
-    
     
     
     // MARK: Lifecycle
@@ -125,7 +123,6 @@ struct Theme: Equatable {
         self = try decoder.decode(Theme.self, from: data)
         self.name = fileURL.deletingPathExtension().lastPathComponent
     }
-    
     
     
     // MARK: Public Methods
@@ -230,7 +227,6 @@ extension Theme: Codable {
 }
 
 
-
 extension Theme.Style: Codable {
     
     private enum CodingKeys: String, CodingKey {
@@ -267,7 +263,6 @@ extension Theme.Style: Codable {
         try container.encode(color.colorCode(type: type), forKey: .color)
     }
 }
-
 
 
 extension Theme.SystemDefaultStyle: Codable {

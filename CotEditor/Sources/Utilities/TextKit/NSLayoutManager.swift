@@ -71,7 +71,6 @@ extension NSLayoutManager {
 }
 
 
-
 // MARK: - Temporary Attributes
 
 extension NSLayoutManager {
@@ -143,7 +142,6 @@ extension NSLayoutManager {
         return value != nil || effectiveRange.upperBound < range.upperBound
     }
 }
-
 
 
 // MARK: - Bidi-Text
@@ -271,7 +269,6 @@ extension NSLayoutManager {
         return characterIndexes
     }
 }
-
 
 
 // MARK: - Debug

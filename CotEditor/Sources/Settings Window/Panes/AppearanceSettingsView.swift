@@ -235,7 +235,6 @@ private extension AppearanceMode {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

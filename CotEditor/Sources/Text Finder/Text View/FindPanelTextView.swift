@@ -133,7 +133,6 @@ final class FindPanelTextView: RegexTextView {
     }
     
     
-    
     // MARK: Actions
     
     /// Clears the current text.

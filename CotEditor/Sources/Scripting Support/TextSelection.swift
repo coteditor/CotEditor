@@ -76,7 +76,6 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
 }
 
 
-
 // MARK: -
 
 @MainActor final class TextSelection: NSObject {
@@ -101,7 +100,6 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
         
          NSNameSpecifier(containerSpecifier: self.documentSpecifier, key: "text selection")
     }
-    
     
     
     // MARK: AppleScript Accessors
@@ -192,7 +190,6 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
             textView.selectedRange = range
         }
     }
-    
     
     
     // MARK: AppleScript Handlers
@@ -356,7 +353,6 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
         
         self.textView?.normalizeUnicode(form: type.form)
     }
-    
     
     
     // MARK: Private Methods

@@ -548,7 +548,6 @@ extension NSTextView {
 }
 
 
-
 // MARK: Private
 
 private extension NSLayoutManager {

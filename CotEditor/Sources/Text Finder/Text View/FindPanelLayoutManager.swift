@@ -48,7 +48,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     private var invisiblesDefaultsObserver: AnyCancellable?
     
     
-    
     // MARK: Lifecycle
     
     override init() {
@@ -73,7 +72,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     }
     
     
-    
     // MARK: Layout Manager Methods
     
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
@@ -84,7 +82,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
     }
-    
     
     
     // MARK: Layout Manager Delegate Methods
@@ -112,7 +109,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         // make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
         self.boundingBoxForControlGlyph
     }
-    
     
     
     // MARK: Invisible Drawing Methods

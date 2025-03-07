@@ -67,7 +67,6 @@ struct SyntaxMetadataEditView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

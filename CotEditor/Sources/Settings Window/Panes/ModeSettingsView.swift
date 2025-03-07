@@ -160,7 +160,6 @@ private struct ModeListView: View {
 }
 
 
-
 private struct ModeOptionsView: View {
     
     @Binding var options: ModeOptions
@@ -273,7 +272,6 @@ private extension FontType {
         }
     }
 }
-
 
 
 // MARK: - Preview

@@ -73,7 +73,6 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
                                                       \.interpreters: [:]]
     
     
-    
     // MARK: Lifecycle
     
     private init() {
@@ -90,7 +89,6 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         // cache user syntaxes
         self.loadUserSettings()
     }
-    
     
     
     // MARK: Public Methods
@@ -229,7 +227,6 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    
     // MARK: Setting File Managing
     
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
@@ -312,7 +309,6 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Standardizes the file extensions of user setting files.
@@ -331,7 +327,6 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         }
     }
 }
-
 
 
 private extension StringProtocol {

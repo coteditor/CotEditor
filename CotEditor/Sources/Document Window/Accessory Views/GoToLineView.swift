@@ -94,7 +94,6 @@ struct GoToLineView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

@@ -81,7 +81,6 @@ extension EditorTextView {
 }
 
 
-
 extension NSTextView {
     
     /// Inserts strings around selections.

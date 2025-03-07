@@ -56,7 +56,6 @@ private struct FindPanelFieldView: NSViewControllerRepresentable {
 }
 
 
-
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
@@ -76,7 +75,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var replacementResultField: NSTextField?
     @IBOutlet private weak var replacementClearButtonConstraint: NSLayoutConstraint?
-    
     
     
     // MARK: View Controller Methods
@@ -141,7 +139,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    
     // MARK: Text View Delegate
     
     /// Invoked when a find/replacement string did change.
@@ -172,7 +169,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                 break
         }
     }
-    
     
     
     // MARK: Action Messages
@@ -233,7 +229,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         UserDefaults.standard.restore(key: .replaceHistory)
     }
-    
     
     
     // MARK: Private Methods

@@ -48,7 +48,6 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     @IBOutlet private weak var actionButton: NSButton?
     
     
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -82,7 +81,6 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         
         self.observer = nil
     }
-    
     
     
     // MARK: Menu Item Validation
@@ -144,7 +142,6 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         
         return true
     }
-    
     
     
     // MARK: Delegate & Data Source
@@ -262,7 +259,6 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         
         self.filePromiseQueue
     }
-    
     
     
     // MARK: Action Messages
@@ -409,7 +405,6 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             SyntaxManager.shared.loadUserSettings()
         }
     }
-    
     
     
     // MARK: Private Methods

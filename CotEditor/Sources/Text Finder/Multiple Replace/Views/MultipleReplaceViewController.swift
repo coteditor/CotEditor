@@ -48,7 +48,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
     
     
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -81,7 +80,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         
         return true
     }
-    
     
     
     // MARK: Actions
@@ -205,7 +203,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     }
     
     
-    
     // MARK: Public Methods
     
     /// Sets another replacement definition.
@@ -230,7 +227,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         
         self.invalidateRemoveButton()
     }
-    
     
     
     // MARK: Private Methods
@@ -412,7 +408,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
 }
 
 
-
 // MARK: - TableView Data Source & Delegate
 
 private extension NSUserInterfaceItemIdentifier {
@@ -498,7 +493,6 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
         
         return cellView
     }
-    
     
     
     // MARK: Actions

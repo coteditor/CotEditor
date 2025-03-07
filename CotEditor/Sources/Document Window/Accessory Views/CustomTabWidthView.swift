@@ -95,7 +95,6 @@ struct CustomTabWidthView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

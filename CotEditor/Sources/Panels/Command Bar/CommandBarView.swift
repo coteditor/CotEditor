@@ -302,7 +302,6 @@ private extension Color {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

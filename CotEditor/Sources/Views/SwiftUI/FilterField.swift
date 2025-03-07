@@ -76,7 +76,6 @@ struct FilterField: NSViewRepresentable {
     }
     
     
-    
     final class Coordinator: NSObject {
         
         @Binding private var text: String
@@ -196,7 +195,6 @@ private extension NSSearchField {
         (self.cell as? NSSearchFieldCell)?.cancelButtonCell
     }
 }
-
 
 
 // MARK: - Preview

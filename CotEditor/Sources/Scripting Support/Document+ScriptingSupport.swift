@@ -216,7 +216,6 @@ extension Document {
     }
     
     
-    
     // MARK: AppleScript Handlers
     
     override func handlePrint(_ command: NSScriptCommand) -> Any? {
@@ -454,7 +453,6 @@ extension Document {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Sets the value to DocumentViewController but lazily by waiting the DocumentViewController is attached if it is not available yet.
@@ -515,7 +513,6 @@ private extension DocumentViewController {
         }
     }
 }
-
 
 
 // MARK: -

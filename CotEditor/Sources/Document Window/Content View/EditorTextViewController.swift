@@ -61,7 +61,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     private var observers: Set<AnyCancellable> = []
     
     
-    
     // MARK: Lifecycle
     
     init(document: Document) {
@@ -179,7 +178,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    
     // MARK: View Controller
     
     override func validRequestor(forSendType sendType: NSPasteboard.PasteboardType?, returnType: NSPasteboard.PasteboardType?) -> Any? {
@@ -194,7 +192,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         return super.validRequestor(forSendType: sendType, returnType: returnType)
     }
-    
     
     
     // MARK: Services Menu Requestor
@@ -214,7 +211,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         return false
     }
-    
     
     
     // MARK: Text View Delegate
@@ -270,7 +266,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         return menu
     }
-    
     
     
     // MARK: Action Messages
@@ -361,7 +356,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    
     // MARK: Public Methods
     
     /// The visibility of the line number view.
@@ -370,7 +364,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         get { self.lineNumberView.isHidden == false }
         set { self.lineNumberView.isHidden = !newValue }
     }
-    
     
     
     // MARK: Private Methods
@@ -435,7 +428,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         self.invalidateRestorableState()
     }
 }
-
 
 
 extension EditorTextViewController: NSUserInterfaceValidations {
@@ -511,7 +503,6 @@ extension EditorTextViewController: EditorTextView.Delegate {
 }
 
 
-
 extension EditorTextViewController: NSFontChanging {
     
     // MARK: Font Changing Methods
@@ -522,7 +513,6 @@ extension EditorTextViewController: NSFontChanging {
         [.collection, .face, .size]
     }
 }
-
 
 
 // MARK: -

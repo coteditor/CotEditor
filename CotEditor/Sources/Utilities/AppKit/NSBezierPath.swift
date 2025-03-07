@@ -40,7 +40,6 @@ struct RectCorner: OptionSet {
 }
 
 
-
 extension NSBezierPath {
     
     /// Creates and returns a new NSBezierPath object initialized with a rounded rectangular path.

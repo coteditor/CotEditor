@@ -32,7 +32,6 @@ final class CharacterField: NSTextField {
     @Invalidating(.display) private var drawsGuide = false
     
     
-    
     // MARK: Text Field Methods
     
     override var intrinsicContentSize: NSSize {
@@ -70,7 +69,6 @@ final class CharacterField: NSTextField {
     }
     #endif
 }
-
 
 
 private extension NSAttributedString {

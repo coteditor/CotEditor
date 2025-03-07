@@ -50,14 +50,12 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     var cachedSettings: [String: Setting] = [:]
     
     
-    
     // MARK: Lifecycle
     
     private init() {
         
         self.loadUserSettings()
     }
-    
     
     
     // MARK: Public Methods
@@ -99,7 +97,6 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
         
         return name
     }
-    
     
     
     // MARK: Setting File Managing

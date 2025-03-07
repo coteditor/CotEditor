@@ -148,7 +148,6 @@ extension EditorTextView {
     }
     
     
-    
     // MARK: Text View Methods - Option+Arrow
     
     /// Moves cursor to the beginning of the word continuously (opt←)
@@ -294,7 +293,6 @@ extension EditorTextView {
     }
     
     
-    
     // MARK: Text View Methods - Command+Arrow
     
     /// Moves cursor to the beginning of the current visual line (⌘←)
@@ -354,7 +352,6 @@ extension EditorTextView {
             self.layoutManager?.lineFragmentRange(at: cursor).upperBound ?? length
         }
     }
-    
     
     
     // MARK: Text View Methods - Emacs
@@ -529,7 +526,6 @@ extension EditorTextView {
     // moveToRightEndOfLineAndModifySelection(_ sender: Any?)
     
     
-    
     // MARK: Text View Methods - Select
     
     /// Selects logical line.
@@ -582,7 +578,6 @@ extension EditorTextView {
     }
     
     
-    
     // MARK: Actions
     
     /// Adds insertion point just above the first selected range (^⇧↑).
@@ -608,7 +603,6 @@ extension EditorTextView {
             .flatMap(self.string.lineContentsRanges(for:)) as [NSValue]
     }
 }
-
 
 
 // MARK: -
@@ -675,7 +669,6 @@ extension EditorTextView {
     }
     
     
-    
     // MARK: Editing
     
     /// Swaps characters before and after insertions (^T).
@@ -711,12 +704,10 @@ extension EditorTextView {
 }
 
 
-
 private extension CharacterSet {
     
     static let additionalWordSeparators = CharacterSet(charactersIn: ".;")
 }
-
 
 
 private extension NSAttributedString {

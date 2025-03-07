@@ -89,7 +89,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     private var invisiblesDefaultsObserver: AnyCancellable?
     
     
-    
     // MARK: Lifecycle
     
     init(lineEndingScanner: LineEndingScanner) {
@@ -119,7 +118,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     // MARK: Layout Manager Methods
@@ -220,7 +218,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     }
     
     
-    
     // MARK: Invisible Drawing Methods
     
     func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool {
@@ -232,7 +229,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
                 false
         }
     }
-    
     
     
     // MARK: Public Methods
@@ -264,7 +260,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         }
     }
 }
-
 
 
 extension LayoutManager: NSLayoutManagerDelegate {
@@ -329,7 +324,6 @@ extension LayoutManager: NSLayoutManagerDelegate {
         attrs
     }
 }
-
 
 
 // MARK: Private Extension

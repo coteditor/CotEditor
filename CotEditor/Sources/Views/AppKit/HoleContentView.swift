@@ -36,7 +36,6 @@ final class HoleContentView: NSView {
     private var holeViewObserver: AnyCancellable?
     
     
-    
     // MARK: View Methods
     
     override var isOpaque: Bool {
@@ -100,7 +99,6 @@ final class HoleContentView: NSView {
         }
     }
 }
-
 
 
 private extension NSView {

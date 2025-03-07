@@ -49,7 +49,6 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     private let model = OutlineInspectorView.Model()
     
     
-    
     // MARK: Lifecycle
     
     required init(document: Document?) {
@@ -278,7 +277,6 @@ private extension OutlineInspectorView.Model {
         self.isOwnSelectionChange = false
     }
 }
-
 
 
 // MARK: - Preview

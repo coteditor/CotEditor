@@ -47,7 +47,6 @@ private struct Edge {
 }
 
 
-
 final class DraggableHostingView<Content>: NSHostingView<Content> where Content: View {
     
     // MARK: Public Properties
@@ -59,7 +58,6 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     
     private var clickedPoint: NSPoint = .zero
     private var liveResizingEdge: Edge?
-    
     
     
     // MARK: View Methods
@@ -124,7 +122,6 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         self.frame.origin = superview.convert(event.locationInWindow, from: nil)
             .offset(by: -self.clickedPoint)
     }
-    
     
     
     // MARK: Private Methods

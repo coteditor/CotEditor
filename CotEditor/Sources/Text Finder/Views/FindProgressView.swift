@@ -133,7 +133,6 @@ private extension FindProgressView.Unit {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

@@ -51,7 +51,6 @@ struct Console {
 }
 
 
-
 // MARK: -
 
 final class ConsolePanelController: NSWindowController {
@@ -104,7 +103,6 @@ final class ConsolePanelController: NSWindowController {
 }
 
 
-
 private extension NSToolbarItem.Identifier {
     
     private static let prefix = "com.coteditor.CotEditor.Console.ToolbarItem."
@@ -144,7 +142,6 @@ extension ConsolePanelController: NSToolbarDelegate {
         }
     }
 }
-
 
 
 // MARK: -
@@ -250,7 +247,6 @@ private final class ConsoleViewController: NSViewController, TextSizeChanging {
         storage.endEditing()
     }
 }
-
 
 
 // MARK: -

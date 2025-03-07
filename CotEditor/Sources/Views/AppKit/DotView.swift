@@ -34,7 +34,6 @@ final class DotView: NSView {
     @IBInspectable @Invalidating(.display, .intrinsicContentSize) var dotLength: CGFloat = 4
     
     
-    
     // MARK: View Methods
     
     override var intrinsicContentSize: NSSize {

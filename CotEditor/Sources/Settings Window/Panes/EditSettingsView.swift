@@ -128,7 +128,6 @@ struct EditSettingsView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

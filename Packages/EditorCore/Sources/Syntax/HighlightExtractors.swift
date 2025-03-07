@@ -55,7 +55,6 @@ extension Syntax.Highlight {
 }
 
 
-
 private struct BeginEndStringExtractor: HighlightExtractable {
     
     var begin: String
@@ -103,7 +102,6 @@ private struct BeginEndStringExtractor: HighlightExtractable {
 }
 
 
-
 private struct RegularExpressionExtractor: HighlightExtractable {
     
     private var regex: NSRegularExpression
@@ -124,7 +122,6 @@ private struct RegularExpressionExtractor: HighlightExtractable {
             .map(\.range)
     }
 }
-
 
 
 private struct BeginEndRegularExpressionExtractor: HighlightExtractable {

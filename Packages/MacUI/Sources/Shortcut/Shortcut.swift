@@ -223,7 +223,6 @@ public struct Shortcut: Sendable {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Some special keys allowed to assign without modifier keys.

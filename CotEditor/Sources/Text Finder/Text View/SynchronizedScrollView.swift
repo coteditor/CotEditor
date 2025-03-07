@@ -55,7 +55,6 @@ final class SynchronizedScrollView: NSScrollView {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Auto-founded scroll views to sync (including the receiver itself).
@@ -71,7 +70,6 @@ final class SynchronizedScrollView: NSScrollView {
         super.smartMagnify(with: event)
     }
 }
-
 
 
 // MARK: Actions

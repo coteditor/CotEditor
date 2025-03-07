@@ -118,7 +118,6 @@ public extension NSAttributedString {
 }
 
 
-
 public extension NSMutableAttributedString {
     
     /// Appends another attributed string.
@@ -148,7 +147,6 @@ public extension NSMutableAttributedString {
         self.replaceCharacters(in: NSRange(..<truncationIndex), with: "…")
     }
 }
-
 
 
 public extension Sequence<NSAttributedString> {

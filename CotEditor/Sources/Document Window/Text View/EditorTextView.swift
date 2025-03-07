@@ -136,7 +136,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private var keyStateObservers: [any NSObjectProtocol] = []
     
     
-    
     // MARK: Lifecycle
     
     required init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner) {
@@ -276,7 +275,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             self.insertionLocations = insertionLocations
         }
     }
-    
     
     
     // MARK: Text View Methods
@@ -1123,7 +1121,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    
     // MARK: Protocol
     
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
@@ -1246,7 +1243,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    
     // MARK: Public Accessors
     
     /// Tab width in number of spaces.
@@ -1354,7 +1350,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    
     // MARK: Action Messages
     
     /// Copies the selections with syntax highlight and font style.
@@ -1415,7 +1410,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.selectedRange = NSRange(enclosingRange, in: self.string)
     }
-    
     
     
     // MARK: Private Methods
@@ -1623,7 +1617,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
 }
 
 
-
 // MARK: - Text Find
 
 extension EditorTextView: TextFinderClient {
@@ -1667,7 +1660,6 @@ extension EditorTextView: TextFinderClient {
         self.textFinder.incrementalSearch()
     }
 }
-
 
 
 // MARK: - Word Completion
@@ -1802,7 +1794,6 @@ extension EditorTextView {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Displays the word completion candidates list.
@@ -1820,7 +1811,6 @@ extension EditorTextView {
         self.complete(self)
     }
 }
-
 
 
 // MARK: - Word Selection
@@ -1873,7 +1863,6 @@ extension EditorTextView {
         
         return range
     }
-    
     
     
     // MARK: Public Methods

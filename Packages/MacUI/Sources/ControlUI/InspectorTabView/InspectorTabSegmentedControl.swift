@@ -34,7 +34,6 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     private var selectedImages: [Int: NSImage] = [:]
     
     
-    
     // MARK: Segmented Control Methods
     
     override func viewWillDraw() {
@@ -61,7 +60,6 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     override func setImage(_ image: NSImage?, forSegment segment: Int) { }
     
     
-    
     // MARK: Public Methods
     
     /// Sets images for both normal and selected states for the specified segment.
@@ -82,7 +80,6 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
         self.images[segment] = image
         self.selectedImages[segment] = selectedImage
     }
-    
     
     
     // MARK: Private Methods

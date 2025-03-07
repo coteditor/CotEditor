@@ -165,7 +165,6 @@ private extension NSImage {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

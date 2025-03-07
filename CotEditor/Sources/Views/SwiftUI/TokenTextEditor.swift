@@ -88,7 +88,6 @@ struct TokenTextEditor: NSViewRepresentable {
     }
     
     
-    
     final class Coordinator: NSObject, NSTextViewDelegate, NSTextLayoutManagerDelegate {
         
         let tokenizer: Tokenizer
@@ -255,7 +254,6 @@ private extension NSAttributedString {
         return range
     }
 }
-
 
 
 // MARK: - Preview

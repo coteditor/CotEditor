@@ -42,9 +42,6 @@ extension View {
 }
 
 
-
-// MARK: - Private
-
 private extension Edge {
     
     var rectEdge: NSRectEdge {
@@ -82,7 +79,6 @@ private struct PopoverHolderView<Content: View>: NSViewRepresentable {
         
         Coordinator(state: self._isPresented, content: self.content)
     }
-    
     
     
     @MainActor final class Coordinator: NSObject, NSPopoverDelegate {

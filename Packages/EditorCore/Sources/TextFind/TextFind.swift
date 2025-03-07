@@ -47,7 +47,6 @@ public struct TextFind: Equatable, Sendable {
     }
     
     
-    
     // MARK: Public Properties
     
     public let findString: String
@@ -63,7 +62,6 @@ public struct TextFind: Equatable, Sendable {
     private let regex: NSRegularExpression?
     private let fullWordChecker: NSRegularExpression?
     private let scopeRanges: [NSRange]
-    
     
     
     // MARK: Lifecycle
@@ -307,7 +305,6 @@ public struct TextFind: Equatable, Sendable {
         
         return (replacementItems, self.inSelection ? selectedRanges : nil)
     }
-    
     
     
     // MARK: Private Methods

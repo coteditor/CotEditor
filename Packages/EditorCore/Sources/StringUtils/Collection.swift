@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-// MARK: - unique
+// MARK: Unique
 
 public extension Sequence where Element: Equatable {
     
@@ -40,7 +40,6 @@ public extension Sequence where Element: Equatable {
 }
 
 
-
 public extension Array where Element: Equatable {
     
     /// Removes duplicated elements by keeping ordering.
@@ -51,8 +50,7 @@ public extension Array where Element: Equatable {
 }
 
 
-
-// MARK: - Count
+// MARK: Count
 
 public enum QuantityComparisonResult {
     

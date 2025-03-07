@@ -74,7 +74,6 @@ extension MultipleReplace.Replacement: Codable {
 }
 
 
-
 extension MultipleReplace.Settings: Codable {
     
     private enum CodingKeys: String, CodingKey {

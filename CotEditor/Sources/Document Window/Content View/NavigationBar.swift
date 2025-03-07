@@ -180,7 +180,6 @@ private struct OutlineNavigationView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

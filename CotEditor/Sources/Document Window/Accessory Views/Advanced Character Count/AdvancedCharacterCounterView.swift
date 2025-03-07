@@ -108,7 +108,6 @@ struct AdvancedCharacterCounterView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

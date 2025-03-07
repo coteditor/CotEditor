@@ -81,7 +81,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private weak var syntaxPopUpButton: NSPopUpButton?
     
     
-    
     // MARK: Lifecycle
     
     required init(document: DataDocument? = nil, directoryDocument: DirectoryDocument? = nil) {
@@ -184,7 +183,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    
     // MARK: Window Controller Methods
     
     override unowned(unsafe) var document: AnyObject? {
@@ -227,7 +225,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 ?? ""
         }
     }
-    
     
     
     // MARK: Window Delegate
@@ -285,7 +282,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         self.restoreWindowOpacity()
     }
-    
     
     
     // MARK: Private Methods

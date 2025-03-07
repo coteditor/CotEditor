@@ -69,7 +69,6 @@ public extension String {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Returns the ranges matching the given regular expression pattern.

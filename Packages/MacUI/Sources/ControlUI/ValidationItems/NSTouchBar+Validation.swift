@@ -32,7 +32,6 @@ public protocol TouchBarItemValidations: AnyObject {
 }
 
 
-
 public extension NSTouchBar {
     
     /// Flag to enable automatic touch bar item validation
@@ -70,7 +69,6 @@ public extension NSTouchBar {
 }
 
 
-
 // MARK: -
 
 @MainActor private final class TouchBarValidator {
@@ -101,7 +99,6 @@ public extension NSTouchBar {
     }
     
     
-    
     // MARK: Private Properties
     
     private weak var validationTimer: Timer?
@@ -115,11 +112,9 @@ public extension NSTouchBar {
     }
     
     
-    
     // MARK: Lifecycle
     
     private init() { }
-    
     
     
     // MARK: Private Methods
@@ -188,7 +183,6 @@ public extension NSTouchBar {
 }
 
 
-
 // MARK: -
 
 extension NSCustomTouchBarItem: @retroactive NSValidatedUserInterfaceItem {
@@ -213,7 +207,6 @@ extension NSCustomTouchBarItem: @retroactive NSValidatedUserInterfaceItem {
     }
     
     
-    
     // MARK: Validated User Interface Item Protocol
     
     public final var action: Selector? {
@@ -226,7 +219,6 @@ extension NSCustomTouchBarItem: @retroactive NSValidatedUserInterfaceItem {
         
         self.control?.tag ?? 0
     }
-    
     
     
     // MARK: Private Methods

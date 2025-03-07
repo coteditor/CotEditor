@@ -45,7 +45,6 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     private let model = WarningInspectorView.Model()
     
     
-    
     // MARK: Lifecycle
     
     required init(document: Document?) {
@@ -115,7 +114,6 @@ struct WarningInspectorView: View {
         .accessibilityLabel(Text("Warnings", tableName: "Document"))
     }
 }
-
 
 
 // MARK: - Preview

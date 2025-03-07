@@ -96,7 +96,6 @@ struct StepperNumberField: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

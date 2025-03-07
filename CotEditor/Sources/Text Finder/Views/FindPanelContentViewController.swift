@@ -38,7 +38,6 @@ final class FindPanelContentViewController: NSSplitViewController {
     private var resultObservationTask: Task<Void, Never>?
     
     
-    
     // MARK: Lifecycle
     
     deinit {
@@ -106,7 +105,6 @@ final class FindPanelContentViewController: NSSplitViewController {
     }
     
     
-    
     // MARK: Split View Controller Methods
     
     override func splitViewDidResizeSubviews(_ notification: Notification) {
@@ -130,7 +128,6 @@ final class FindPanelContentViewController: NSSplitViewController {
     }
     
     
-    
     // MARK: Action Messages
     
     /// Closes the find result view.
@@ -138,7 +135,6 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         self.setResultShown(false)
     }
-    
     
     
     // MARK: Private Methods

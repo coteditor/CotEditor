@@ -148,7 +148,6 @@ private extension UserDefaults {
 }
 
 
-
 // MARK: -
 
 struct StatusBar: View {

@@ -63,7 +63,6 @@ extension NSAttributedString.Key {
     private var invalidRanges: EditedRangeSet
     
     
-    
     // MARK: Lifecycle
     
     init(textStorage: NSTextStorage, syntax: Syntax, name: String) {
@@ -105,7 +104,6 @@ extension NSAttributedString.Key {
 }
 
 
-
 // MARK: Outline
 
 extension SyntaxParser {
@@ -143,7 +141,6 @@ extension SyntaxParser {
         }
     }
 }
-
 
 
 // MARK: Syntax Highlight
@@ -244,7 +241,6 @@ extension SyntaxParser {
         
         self.parse(string: string, range: highlightRange)
     }
-    
     
     
     // MARK: Private Methods

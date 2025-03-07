@@ -57,7 +57,6 @@ extension NSFont {
 }
 
 
-
 private extension NSFont.Name {
     
     /// The PostScript name for the given font weight.

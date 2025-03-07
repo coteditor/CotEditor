@@ -48,7 +48,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
     @IBOutlet private var contextMenu: NSMenu?
     
     
-    
     // MARK: View Controller Methods
     
     init?(coder: NSCoder, selection: Binding<String>) {
@@ -106,7 +105,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
         let row = self.settingNames.firstIndex(of: settingName) ?? 0
         self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
-    
     
     
     // MARK: User Interface Validation
@@ -175,7 +173,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
         
         return true
     }
-    
     
     
     // MARK: Data Source
@@ -253,7 +250,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
     }
     
     
-    
     // MARK: File Promise Provider Delegate
     
     func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
@@ -277,7 +273,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
         
         self.filePromiseQueue
     }
-    
     
     
     // MARK: Delegate
@@ -330,7 +325,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
         
         return true
     }
-    
     
     
     // MARK: Action Messages
@@ -473,7 +467,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
             ThemeManager.shared.loadUserSettings()
         }
     }
-    
     
     
     // MARK: Private Methods

@@ -58,7 +58,6 @@ struct CharacterCountOptionsSheetView: View {
 }
 
 
-
 // MARK: - Preview
 
 #Preview {

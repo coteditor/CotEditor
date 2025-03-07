@@ -71,7 +71,6 @@ extension NSTextView {
     }
     
     
-    
     // MARK: Private Methods
     
     /// Returns fragment bezier paths of which a rounded rect for given range consists.
