@@ -127,7 +127,7 @@ private struct ScalarDetailView: View {
                         .accessibilityLabeledPair(role: .label, id: "codePoint", in: self.accessibility)
                         .gridColumnAlignment(.trailing)
                     
-                    HStack {
+                    HStack(alignment: .firstTextBaseline) {
                         if let surrogates = self.scalar.surrogateCodePoints {
                             Text(verbatim: "\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
                         } else {

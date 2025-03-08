@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -105,7 +105,7 @@ struct SyntaxOutlineEditView: View {
                 RegexTextField(text: $outline.template, mode: .replacement(unescapes: false), prompt: self.prompt)
                     .accessibilityLabeledPair(role: .content, id: "titlePattern", in: self.accessibility)
                 
-                HStack {
+                HStack(alignment: .firstTextBaseline) {
                     Toggle(String(localized: "Bold", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.bold)
                         .bold()
                     Toggle(String(localized: "Italic", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.italic)

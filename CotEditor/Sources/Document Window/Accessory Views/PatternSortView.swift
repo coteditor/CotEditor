@@ -279,7 +279,7 @@ struct RegularExpressionSortPatternView: View {
                             .padding(.leading, 4)
                         }
                     
-                    HStack {
+                    HStack(alignment: .firstTextBaseline) {
                         Toggle(String(localized: "Ignore case", table: "PatternSort"),
                                isOn: $pattern.ignoresCase)
                             .fixedSize()
