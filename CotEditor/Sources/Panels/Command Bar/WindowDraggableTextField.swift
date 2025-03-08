@@ -143,6 +143,10 @@ private final class DraggableTextFieldCell: NSTextFieldCell {
     
     override func fieldEditor(for controlView: NSView) -> NSTextView? {
         
+        guard self.userInterfaceLayoutDirection != .rightToLeft else {
+            return super.fieldEditor(for: controlView)
+        }
+        
         if self.fieldEditor == nil {
             let fieldEditor = DraggableFieldEditor()
             fieldEditor.isFieldEditor = true

@@ -28,6 +28,8 @@ import Shortcut
 
 struct ShortcutView: View {
     
+    @Environment(\.layoutDirection) private var layoutDirection
+    
     private var shortcut: Shortcut
     
     
@@ -56,9 +58,11 @@ struct ShortcutView: View {
             }
             .frame(minWidth: 14, alignment: .leading)
         }
+        .environment(\.layoutDirection, .leftToRight)  // shortcut is always LTR
         .fontWeight(.medium)
         .imageScale(.small)
         .fixedSize()
+        .frame(minWidth: self.layoutDirection == .rightToLeft ? 60 : nil, alignment: .leading)
     }
 }
 
