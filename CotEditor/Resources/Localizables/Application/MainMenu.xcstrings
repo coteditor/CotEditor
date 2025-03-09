@@ -4601,6 +4601,47 @@
         }
       }
     },
+    "The sidebar is only available when a folder is opened as a document." : {
+      "comment" : "tooltip for the “Show Sidebar” menu item",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Seitenleiste ist nur verfügbar, wenn ein Ordner als Dokument geöffnet ist."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The sidebar is only available when a folder is opened as a document."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La barra lateral sólo está disponible cuando se abre una carpeta como documento."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La barre latérale n'est disponible que lorsqu'un dossier est ouvert en tant que document."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サイドバーはフォルダを書類として開いたときのみ有効です。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De navigatiekolom is alleen beschikbaar als een map als document wordt geopend."
+          }
+        }
+      }
+    },
     "To show invisible characters, set them in the Window settings" : {
       "comment" : "tooltip for the “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled",
       "localizations" : {

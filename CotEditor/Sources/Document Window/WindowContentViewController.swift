@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -187,12 +187,21 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         switch item.action {
             case #selector(showFileBrowser):
                 (item as? NSMenuItem)?.state = (self.sidebarViewItem?.isCollapsed == true) ? .on : .off
+                (item as? NSMenuItem)?.toolTip = (self.sidebarViewItem == nil)
+                    ? String(localized: "The sidebar is only available when a folder is opened as a document.",
+                             table: "MainMenu", comment: "tooltip for the “Show Sidebar” menu item")
+                    : nil
                 return self.sidebarViewItem != nil
                 
             case #selector(toggleSidebar):
+                // The menu item is not validated when the responder has no sidebar (2025-03, macOS 15).
                 (item as? NSMenuItem)?.title = self.sidebarViewItem?.isCollapsed == false
                     ? String(localized: "Hide Sidebar", table: "MainMenu")
                     : String(localized: "Show Sidebar", table: "MainMenu")
+                (item as? NSMenuItem)?.toolTip = (self.sidebarViewItem == nil)
+                    ? String(localized: "The sidebar is only available when a folder is opened as a document.",
+                             table: "MainMenu", comment: "tooltip for the “Show Sidebar” menu item")
+                    : nil
                 return self.sidebarStateCache == nil
                 
             case #selector(toggleInspector):
