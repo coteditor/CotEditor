@@ -97,9 +97,8 @@ struct AdvancedCharacterCounterView: View {
                 Divider()
             }
             Button(String(localized: "Stop Count", table: "AdvancedCharacterCount",
-                          comment: "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)")) {
-                self.dismissAction()
-            }
+                          comment: "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)"),
+                   action: self.dismissAction)
         }
         .onDisappear {
             self.counter.stopObservation()

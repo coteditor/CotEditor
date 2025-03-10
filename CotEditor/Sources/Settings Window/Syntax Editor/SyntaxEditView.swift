@@ -124,7 +124,8 @@ struct SyntaxEditView: View {
                     if self.isBundled {
                         Text(self.name)
                             .fontWeight(.medium)
-                            .help(String(localized: "Bundled syntaxes can’t be renamed.", table: "SyntaxEditor", comment: "tooltip for name field for bundled syntax"))
+                            .help(String(localized: "Bundled syntaxes can’t be renamed.", table: "SyntaxEditor",
+                                         comment: "tooltip for name field for bundled syntax"))
                     } else {
                         TextField(text: $name, label: EmptyView.init)
                             .focused($isNameFieldFocused)
@@ -160,9 +161,8 @@ struct SyntaxEditView: View {
                 
                 HStack {
                     if self.isBundled {
-                        Button(String(localized: "Restore Defaults", table: "SyntaxEditor")) {
-                            self.restore()
-                        }.fixedSize()
+                        Button(String(localized: "Restore Defaults", table: "SyntaxEditor"), action: self.restore)
+                            .fixedSize()
                     }
                     Spacer()
                     SubmitButtonGroup(action: self.submit) {
