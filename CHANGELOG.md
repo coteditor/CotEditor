@@ -9,6 +9,7 @@
 - Remove the Script menu from the context menu.
 - Add a help tag for “Show Sidebar” menu item when the command is unavailable.
 - Update the Swift syntax to support highlighting regex literals.
+- Update the JSON syntax to include the .xcstrings file extension.
 
 
 ### Fixes

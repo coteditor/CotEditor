@@ -14,6 +14,7 @@ extensions:
 - keyString: resolved
 - keyString: cottheme
 - keyString: cotrpl
+- keyString: xcstrings
 filenames: []
 interpreters: []
 keywords: []
@@ -21,9 +22,9 @@ kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2024-02-18'
+  lastModified: '2025-03-10'
   license: Same as CotEditor
-  version: 1.5.0
+  version: 1.6.0
 numbers:
 - beginString: (?<=[:,\[])[\r\n\t ]*-?[0-9]+(\.[0-9]+)?([eE][-+]?[0-9]+)?\b
   regularExpression: true

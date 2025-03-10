@@ -321,7 +321,8 @@
       "geojson",
       "resolved",
       "cottheme",
-      "cotrpl"
+      "cotrpl",
+      "xcstrings"
     ],
     "filenames" : [
 
