@@ -138,48 +138,37 @@ extension FileDropItem {
             switch self {
                 case .absolutePath:
                     String(localized: "FileDropItem.Variable.absolutePath.description",
-                           defaultValue: "The dropped file absolute path.",
-                           table: "FileDropItem")
+                           defaultValue: "The dropped file absolute path.")
                 case .relativePath:
                     String(localized: "FileDropItem.Variable.relativePath.description",
-                           defaultValue: "The relative path between the dropped file and the document.",
-                           table: "FileDropItem")
+                           defaultValue: "The relative path between the dropped file and the document.")
                 case .filename:
                     String(localized: "FileDropItem.Variable.filename.description",
-                           defaultValue: "The dropped file’s name including extension (if exists).",
-                           table: "FileDropItem")
+                           defaultValue: "The dropped file’s name including extension (if exists).")
                 case .filenameWithoutExtension:
                     String(localized: "FileDropItem.Variable.filenameWithoutExtension.description",
-                           defaultValue: "The dropped file’s name without extension.",
-                           table: "FileDropItem")
+                           defaultValue: "The dropped file’s name without extension.")
                 case .fileExtension:
                     String(localized: "FileDropItem.Variable.fileExtension.description",
-                           defaultValue: "The dropped file’s extension.",
-                           table: "FileDropItem")
+                           defaultValue: "The dropped file’s extension.")
                 case .fileExtensionLowercase:
                     String(localized: "FileDropItem.Variable.fileExtensionLowercase.description",
-                           defaultValue: "The dropped file’s extension (converted to lowercase).",
-                           table: "FileDropItem")
+                           defaultValue: "The dropped file’s extension (converted to lowercase).")
                 case .fileExtensionUppercase:
                     String(localized: "FileDropItem.Variable.fileExtensionUppercase.description",
-                           defaultValue: "The dropped file’s extension (converted to uppercase).",
-                           table: "FileDropItem")
+                           defaultValue: "The dropped file’s extension (converted to uppercase).")
                 case .directory:
                     String(localized: "FileDropItem.Variable.directory.description",
-                           defaultValue: "The parent directory name of dropped file.",
-                           table: "FileDropItem")
+                           defaultValue: "The parent directory name of dropped file.")
                 case .fileContents:
                     String(localized: "FileDropItem.Variable.fileContents.description",
-                           defaultValue: "(If the dropped file is a text file) file contents.",
-                           table: "FileDropItem")
+                           defaultValue: "(If the dropped file is a text file) file contents.")
                 case .imageWidth:
                     String(localized: "FileDropItem.Variable.imageWidth.description",
-                           defaultValue: "(If the dropped file is an image) image width.",
-                           table: "FileDropItem")
+                           defaultValue: "(If the dropped file is an image) image width.")
                 case .imageHeight:
                     String(localized: "FileDropItem.Variable.imageHeight.description",
-                           defaultValue: "(If the dropped file is an image) image height.",
-                           table: "FileDropItem")
+                           defaultValue: "(If the dropped file is an image) image height.")
             }
         }
     }

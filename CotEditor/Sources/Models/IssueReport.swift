@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ struct IssueReport {
     /// The generic report title.
     var title: String {
         
-        String(localized: "IssueReport.title", defaultValue: "Issue Report", table: "IssueReport", comment: "document title")
+        String(localized: "IssueReport.title", defaultValue: "Issue Report", comment: "document title")
     }
     
     
@@ -62,7 +62,6 @@ struct IssueReport {
         
         String(localized: "IssueReport.description",
                defaultValue: "Fill the following template, and post it on \(Self.issueLink) or send to \(Self.mail). Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese.",
-               table: "IssueReport",
                comment: "%1$@ is a link to a web page and %2$@ is an e-mail")
     }
     
@@ -125,20 +124,16 @@ private extension IssueReport {
             switch self {
                 case .environment:
                     LocalizedStringResource("IssueReport.Heading.environment",
-                                            defaultValue: "Environment",
-                                            table: "IssueReport")
+                                            defaultValue: "Environment")
                 case .shortDescription:
                     LocalizedStringResource("IssueReport.Heading.shortDescription",
-                                            defaultValue: "Short Description",
-                                            table: "IssueReport")
+                                            defaultValue: "Short Description")
                 case .stepsToReproduce:
                     LocalizedStringResource("IssueReport.Heading.stepsToReproduce",
-                                            defaultValue: "Steps to Reproduce the Issue",
-                                            table: "IssueReport")
+                                            defaultValue: "Steps to Reproduce the Issue")
                 case .expectedResult:
                     LocalizedStringResource("IssueReport.Heading.expectedResult",
-                                            defaultValue: "Expected Result",
-                                            table: "IssueReport")
+                                            defaultValue: "Expected Result")
             }
         }
     }

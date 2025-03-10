@@ -58,12 +58,10 @@ enum BadgeType: Int, CaseIterable {
         switch self {
             case .mug:
                 String(localized: "BadgeType.mug.label",
-                       defaultValue: "Coffee Mug",
-                       table: "Donation")
+                       defaultValue: "Coffee Mug")
             case .invisible:
                 String(localized: "BadgeType.invisible.label",
-                       defaultValue: "Invisible Coffee",
-                       table: "Donation")
+                       defaultValue: "Invisible Coffee")
         }
     }
 }
