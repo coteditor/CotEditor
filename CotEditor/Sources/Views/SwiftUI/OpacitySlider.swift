@@ -100,7 +100,8 @@ private struct OpacitySample: View {
 #Preview(traits: .fixedLayout(width: 200, height: 50)) {
     @Previewable @State var value = 0.6
     
-    return OpacitySlider(value: $value).padding()
+    OpacitySlider(value: $value)
+        .padding()
 }
 
 #Preview("OpacitySample") {

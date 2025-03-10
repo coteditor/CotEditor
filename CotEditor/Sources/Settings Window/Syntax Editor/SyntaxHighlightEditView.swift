@@ -126,6 +126,6 @@ struct SyntaxHighlightEditView: View {
         .init(begin: "[]", isRegularExpression: true, ignoreCase: true),
     ]
     
-    return SyntaxHighlightEditView(items: $items)
+    SyntaxHighlightEditView(items: $items)
         .padding()
 }

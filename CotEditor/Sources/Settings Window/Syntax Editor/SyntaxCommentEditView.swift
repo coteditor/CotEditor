@@ -86,6 +86,6 @@ private struct CommentDelimitersEditView: View {
     @Previewable @State var comment = SyntaxObject.Comment()
     @Previewable @State var highlights: [SyntaxObject.Highlight] = []
     
-    return SyntaxCommentEditView(comment: $comment, highlights: $highlights)
+    SyntaxCommentEditView(comment: $comment, highlights: $highlights)
         .padding()
 }

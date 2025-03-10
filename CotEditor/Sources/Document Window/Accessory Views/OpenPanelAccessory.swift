@@ -110,5 +110,5 @@ struct OpenPanelAccessory: View {
 #Preview {
     @Previewable @State var model = OpenPanelModel(fileEncodings: [.utf8])
     
-    return OpenPanelAccessory(model: model)
+    OpenPanelAccessory(model: model)
 }

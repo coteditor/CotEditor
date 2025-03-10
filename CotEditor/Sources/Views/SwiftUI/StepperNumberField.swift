@@ -101,5 +101,5 @@ struct StepperNumberField: View {
 #Preview {
     @Previewable @State var value = 4
     
-    return StepperNumberField(value: $value, in: 0...10)
+    StepperNumberField(value: $value, in: 0...10)
 }

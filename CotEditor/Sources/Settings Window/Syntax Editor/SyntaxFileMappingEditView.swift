@@ -126,8 +126,6 @@ struct SyntaxFileMappingEditView: View {
     @Previewable @State var filenames: [SyntaxObject.KeyString] = []
     @Previewable @State var interpreters: [SyntaxObject.KeyString] = []
     
-    return SyntaxFileMappingEditView(extensions: $extensions,
-                                     filenames: $filenames,
-                                     interpreters: $interpreters)
-    .padding()
+    SyntaxFileMappingEditView(extensions: $extensions, filenames: $filenames, interpreters: $interpreters)
+        .padding()
 }

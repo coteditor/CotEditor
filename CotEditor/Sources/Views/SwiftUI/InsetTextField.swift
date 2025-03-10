@@ -181,7 +181,7 @@ private final class PaddingTextField: NSTextField {
 #Preview {
     @Previewable @State var text = ""
     
-    return InsetTextField(text: $text, prompt: "Prompt")
+    InsetTextField(text: $text, prompt: "Prompt")
         .inset(.leading, 20)
         .frame(width: 160)
 }

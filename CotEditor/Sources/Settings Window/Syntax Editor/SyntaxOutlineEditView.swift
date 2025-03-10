@@ -150,6 +150,6 @@ enum SelectionError: Error {
         .init(pattern: "def", ignoreCase: true, italic: true),
     ]
     
-    return SyntaxOutlineEditView(items: $items)
+    SyntaxOutlineEditView(items: $items)
         .padding()
 }

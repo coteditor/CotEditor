@@ -201,7 +201,7 @@ private extension NSSearchField {
 #Preview {
     @Previewable @State var text = ""
     
-    return FilterField(text: $text)
+    FilterField(text: $text)
         .autosaveName("FilterField Preview")
         .frame(width: 160)
         .padding()

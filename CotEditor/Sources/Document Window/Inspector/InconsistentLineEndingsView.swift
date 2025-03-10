@@ -122,7 +122,7 @@ struct InconsistentLineEndingsView: View {
 
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     InconsistentLineEndingsView(items: [
-        .init(value: .cr, range: .notFound)
+        .init(value: .cr, range: .notFound),
     ])
     .padding(12)
 }

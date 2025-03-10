@@ -76,6 +76,6 @@ struct SyntaxCompletionEditView: View {
 #Preview {
     @Previewable @State var items: [SyntaxObject.KeyString] = [.init(string: "abc")]
     
-    return SyntaxCompletionEditView(items: $items)
+    SyntaxCompletionEditView(items: $items)
         .padding()
 }

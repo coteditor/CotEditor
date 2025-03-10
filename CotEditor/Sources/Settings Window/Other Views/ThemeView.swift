@@ -353,7 +353,7 @@ private extension Theme.SystemDefaultStyle {
 #Preview("ThemeEditorView", traits: .fixedLayout(width: 360, height: 280)) {
     @Previewable @State var theme = try! ThemeManager.shared.setting(name: "Anura")
     
-    return ThemeEditorView(theme: $theme, isBundled: false)
+    ThemeEditorView(theme: $theme, isBundled: false)
 }
 
 #Preview("Metadata (editable)") {
@@ -362,7 +362,7 @@ private extension Theme.SystemDefaultStyle {
         distributionURL: "https://coteditor.com"
     )
     
-    return ThemeMetadataView(metadata: $metadata, isEditable: true)
+    ThemeMetadataView(metadata: $metadata, isEditable: true)
 }
 
 #Preview("Metadata (fixed)") {
@@ -370,5 +370,5 @@ private extension Theme.SystemDefaultStyle {
         author: "Clarus"
     )
     
-    return ThemeMetadataView(metadata: $metadata, isEditable: false)
+    ThemeMetadataView(metadata: $metadata, isEditable: false)
 }

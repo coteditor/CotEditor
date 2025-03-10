@@ -261,5 +261,5 @@ private extension NSAttributedString {
 #Preview {
     @Previewable @State var text: String? = "abc<<<CURSOR>>><<<CURSOR>>>defg\n<<<SELECTION>>>abc"
     
-    return TokenTextEditor(text: $text, tokenizer: Snippet.Variable.tokenizer)
+    TokenTextEditor(text: $text, tokenizer: Snippet.Variable.tokenizer)
 }
