@@ -52,7 +52,7 @@ struct SubmitButtonGroup: View {
         
         EqualWidthHStack {
             Button(role: .cancel, action: self.cancelAction) {
-                Text(String(localized: "Cancel"))
+                Text("Cancel")
                     .frame(maxWidth: .infinity)
             }
             .keyboardShortcut(.cancelAction)
@@ -118,8 +118,8 @@ private struct EqualWidthHStack: Layout {
     
     
     private func spacing(subviews: Subviews) -> [CGFloat] {
+        
         subviews.indices.map { index in
-            
             guard index < subviews.count - 1 else { return 0 }
             
             return subviews[index].spacing
@@ -132,7 +132,8 @@ private struct EqualWidthHStack: Layout {
 // MARK: - Preview
 
 #Preview {
-    VStack {
+    HStack {
+        Spacer()
         SubmitButtonGroup(action: {}, cancelAction: {})
     }
     .padding()
