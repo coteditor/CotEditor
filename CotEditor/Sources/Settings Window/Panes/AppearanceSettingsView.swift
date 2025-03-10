@@ -182,10 +182,10 @@ private struct FontSettingView: View {
         
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                AntialiasingText(self.displayFontName)
+                AntialiasingText(self.font.wrappedValue.displayNameAndSize)
                     .antialiasDisabled(!self.antialias)
                     .font(nsFont: self.font.wrappedValue.withSize(0))
-                    .help(self.displayFontName)
+                    .help(self.font.wrappedValue.displayNameAndSize)
                     .frame(maxWidth: 260)
                     .alignmentGuide(.firstTextBaseline) { $0.height }
                 FontSizeStepper(String(localized: "Font size", table: "AppearanceSettings"), font: self.font)
@@ -200,14 +200,15 @@ private struct FontSettingView: View {
             }.controlSize(.small)
         }
     }
-    
+}
+
+
+private extension NSFont {
     
     /// Returns the font name and size to display.
-    private var displayFontName: String {
-        
-        let font = self.font.wrappedValue
-        
-        return "\(font.displayName ?? font.fontName)  \(font.pointSize.formatted())"
+    var displayNameAndSize: String {
+     
+        "\(self.displayName ?? self.fontName)  \(self.pointSize.formatted())"
     }
 }
 
