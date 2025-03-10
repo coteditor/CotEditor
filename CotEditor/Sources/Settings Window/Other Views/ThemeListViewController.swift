@@ -311,7 +311,6 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
         
         do {
             try ThemeManager.shared.renameSetting(name: oldName, to: newName)
-            
         } catch {
             // revert name
             fieldEditor.string = oldName

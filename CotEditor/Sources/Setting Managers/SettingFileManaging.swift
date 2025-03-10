@@ -355,7 +355,6 @@ extension SettingFileManaging {
         NSFileCoordinator().coordinate(readingItemAt: sourceURL, options: .withoutChanges,
                                        writingItemAt: fileURL, options: .forMoving, error: &coordinationError)
         { (newReadingURL, newWritingURL) in
-            
             do {
                 if newWritingURL.isReachable {
                     try FileManager.default.removeItem(at: newWritingURL)
@@ -457,7 +456,6 @@ extension SettingFileManaging {
                                        writingItemAt: destURL, options: byDeletingOriginal ? .forMoving : .forReplacing,
                                        error: &coordinationError)
         { (newReadingURL, newWritingURL) in
-            
             do {
                 if newWritingURL.isReachable {
                     try FileManager.default.removeItem(at: newWritingURL)

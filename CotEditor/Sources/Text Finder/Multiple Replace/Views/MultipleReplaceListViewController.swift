@@ -583,7 +583,6 @@ extension MultipleReplaceListViewController: NSTextFieldDelegate {
         
         do {
             try ReplacementManager.shared.renameSetting(name: oldName, to: newName)
-            
         } catch {
             // revert name
             fieldEditor.string = oldName

@@ -522,12 +522,9 @@ private enum BundleIdentifier {
         // import theme
         do {
             try ThemeManager.shared.importSetting(at: fileURL)
-            
         } catch {
             // ask whether the old theme should be replaced with new one if the same name theme is already exists
-            let success = NSApp.presentError(error)
-            
-            guard success else { return true }  // cancelled
+            guard NSApp.presentError(error) else { return true }  // cancelled
         }
         
         // feedback for success

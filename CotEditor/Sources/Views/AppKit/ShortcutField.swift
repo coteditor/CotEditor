@@ -93,7 +93,6 @@ struct ShortcutField: NSViewRepresentable {
             if let shortcut {
                 do {
                     try shortcut.checkCustomizationAvailability(for: NSApp.mainMenu)
-                    
                 } catch {
                     self.error = error
                     sender.objectValue = self.shortcut  // reset text field

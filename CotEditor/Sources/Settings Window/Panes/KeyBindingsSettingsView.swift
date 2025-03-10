@@ -288,7 +288,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         if let shortcut {
             do {
                 try shortcut.checkCustomizationAvailability(for: NSApp.mainMenu)
-                
             } catch {
                 self.model.error = error
                 sender.objectValue = oldShortcut  // reset text field
