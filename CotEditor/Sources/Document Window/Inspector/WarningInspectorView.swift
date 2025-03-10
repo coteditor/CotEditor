@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -111,7 +111,8 @@ struct WarningInspectorView: View {
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
-        .accessibilityLabel(Text("Warnings", tableName: "Document"))
+        .accessibilityLabel(String(localized: "InspectorPane.warnings.label",
+                                   defaultValue: "Warnings", table: "Document"))
     }
 }
 

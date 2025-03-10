@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -173,9 +173,15 @@ private extension InspectorPane {
     var name: String {
         
         switch self {
-            case .document: String(localized: "Document Inspector", table: "Document", comment: "inspector pane title")
-            case .outline: String(localized: "Outline", table: "Document", comment: "inspector pane title")
-            case .warnings: String(localized: "Warnings", table: "Document", comment: "inspector pane title")
+            case .document:
+                String(localized: "InspectorPane.document.label",
+                       defaultValue: "Document Inspector", table: "Document")
+            case .outline:
+                String(localized: "InspectorPane.outline.label",
+                       defaultValue: "Outline", table: "Document")
+            case .warnings:
+                String(localized: "InspectorPane.warnings.label",
+                       defaultValue: "Warnings", table: "Document")
         }
     }
     

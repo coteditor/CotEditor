@@ -153,7 +153,8 @@ struct DocumentInspectorView: View {
                 self.model.attributes = newValue
             }
         }
-        .accessibilityLabel(Text("Document Inspector", tableName: "Document"))
+        .accessibilityLabel(String(localized: "InspectorPane.document.label",
+                                   defaultValue: "Document Inspector", table: "Document"))
         .controlSize(.small)
     }
 }

@@ -152,7 +152,8 @@ struct OutlineInspectorView: View {
                 .controlSize(.regular)
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Outline", tableName: "Document"))
+        .accessibilityLabel(String(localized: "InspectorPane.outline.label",
+                                   defaultValue: "Outline", table: "Document"))
         .controlSize(.small)
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
     }
