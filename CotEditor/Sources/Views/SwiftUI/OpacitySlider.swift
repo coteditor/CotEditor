@@ -38,10 +38,10 @@ struct OpacitySlider: View {
             EmptyView()
         } minimumValueLabel: {
             OpacitySample(opacity: self.bounds.lowerBound)
-                .help(String(localized: "Transparent", table: "OpacitySlider", comment: "tooltip for min label in opacity slider"))
+                .help(String(localized: "OpacitySlider.minimumValue.tooltip", defaultValue: "Transparent", table: "Control"))
         } maximumValueLabel: {
             OpacitySample(opacity: self.bounds.upperBound)
-                .help(String(localized: "Opaque", table: "OpacitySlider", comment: "tooltip for max label in opacity slider"))
+                .help(String(localized: "OpacitySlider.maximumValue.tooltip", defaultValue: "Opaque", table: "Control"))
         }
     }
 }

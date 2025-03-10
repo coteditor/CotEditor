@@ -104,12 +104,11 @@ private final class InnerFilterField: NSSearchField {
         super.init(frame: .zero)
         
         if let searchButtonCell {
-            searchButtonCell.image = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle",
-                                             accessibilityDescription: String(localized: "Filter", table: "FilterField"))?
+            searchButtonCell.image = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle", accessibilityDescription: nil)?
                 .tinted(with: .secondaryLabelColor)
-            searchButtonCell.alternateImage = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
-                                                      accessibilityDescription: String(localized: "Filter", table: "FilterField"))?
+            searchButtonCell.alternateImage = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle.fill", accessibilityDescription: nil)?
                 .tinted(with: .controlAccentColor)
+            searchButtonCell.setAccessibilityLabel(String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"))
         }
         
         // workaround the cancel button color is .labelColor (2022-09, macOS 13)
@@ -122,7 +121,7 @@ private final class InnerFilterField: NSSearchField {
         
         self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         self.alignment = .natural
-        self.placeholderString = String(localized: "Filter", table: "FilterField", comment: "placeholder for filter field")
+        self.placeholderString = String(localized: "FilterField.placeholder", defaultValue: "Filter", table: "Control")
     }
     
     
@@ -162,16 +161,16 @@ private final class InnerFilterField: NSSearchField {
     /// Sets up the search menu.
     private func invalidateSearchMenu() {
         
-        let searchMenu = NSMenu(title: String(localized: "Recent Filters", table: "FilterField", comment: "menu label"))
-        searchMenu.addItem(withTitle: String(localized: "Recent Filters", table: "FilterField"), action: nil, keyEquivalent: "")
+        let searchMenu = NSMenu(title: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"))
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
         searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
         searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: String(localized: "Clear Recent Filters", table: "FilterField", comment: "menu item label"),
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.clear.label", defaultValue: "Clear Recent Filters", table: "Control"),
                            action: nil, keyEquivalent: "")
             .tag = NSSearchField.clearRecentsMenuItemTag
-        searchMenu.addItem(withTitle: String(localized: "No Recent Filter", table: "FilterField", comment: "menu item label"),
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.noItem.label", defaultValue: "No Recent Filter", table: "Control"),
                            action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
         
