@@ -1210,9 +1210,9 @@ extension Document: EditorSource {
             alert.informativeText = String(localized: "EncodingChangeAlert.informativeText",
                                            defaultValue: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.convert",
-                                              defaultValue: "Convert", comment: "button label"))
+                                              defaultValue: "Convert"))
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.reinterpret",
-                                              defaultValue: "Reinterpret", comment: "button label"))
+                                              defaultValue: "Reinterpret"))
             alert.addButton(withTitle: String(localized: "Cancel"))
             
             let documentWindow = self.windowForSheet!
@@ -1244,7 +1244,7 @@ extension Document: EditorSource {
                                                            defaultValue: "Are you sure you want to discard your changes and reopen the document using “\(fileEncoding.localizedName)”?", comment: "%@ is an encoding name")
                             alert.addButton(withTitle: String(localized: "Cancel"))
                             alert.addButton(withTitle: String(localized: "UnsavedReinterpretationAlert.button.discard",
-                                                              defaultValue: "Discard Changes", comment: "button label"))
+                                                              defaultValue: "Discard Changes"))
                             alert.buttons.last?.hasDestructiveAction = true
                             
                             let returnCode = await alert.beginSheetModal(for: documentWindow)
@@ -1302,15 +1302,12 @@ extension Document: EditorSource {
                          defaultValue: "The most common line ending in this document is \(self.lineEnding.label).")
             if self.isEditable {
                 alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
-                                                  defaultValue: "Convert",
-                                                  comment: "button label"))
+                                                  defaultValue: "Convert"))
             }
             alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
-                                              defaultValue: "Review",
-                                              comment: "button label"))
+                                              defaultValue: "Review"))
             alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.ignore",
-                                              defaultValue: "Ignore",
-                                              comment: "button label"))
+                                              defaultValue: "Ignore"))
             alert.showsSuppressionButton = true
             alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
                                                     defaultValue: "Don’t ask again for this document",
@@ -1375,11 +1372,9 @@ extension Document: EditorSource {
             alert.informativeText = String(localized: "UpdatedByExternalProcessAlert.informativeText",
                                            defaultValue: "Do you want to keep CotEditor’s edition or update it to the modified edition?")
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.keep",
-                                              defaultValue: "Keep CotEditor’s Edition",
-                                              comment: "button label"))
+                                              defaultValue: "Keep CotEditor’s Edition"))
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.update",
-                                              defaultValue: "Update",
-                                              comment: "button label"))
+                                              defaultValue: "Update"))
             
             // mark the alert as critical in order to interrupt other sheets already attached
             if documentWindow.attachedSheet != nil {

@@ -547,7 +547,6 @@
       }
     },
     "DeletionConfirmationAlert.button.delete" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2163,7 +2162,6 @@
       }
     },
     "EncodingChangeAlert.button.convert" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2259,7 +2257,6 @@
       }
     },
     "EncodingChangeAlert.button.reinterpret" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2574,7 +2571,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Export de « %@ »…"
+            "value" : "Exporter « %@ »…"
           }
         },
         "it" : {
@@ -2616,7 +2613,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” Ögesini Dışa Aktar"
+            "value" : "Dışa Aktar: “%@”…"
           }
         },
         "zh-Hans" : {
@@ -2639,7 +2636,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportovat jako:"
+            "value" : "Exportovat:"
           }
         },
         "de" : {
@@ -2663,7 +2660,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporter sous :"
+            "value" : "Exporter comme :"
           }
         },
         "it" : {
@@ -2675,7 +2672,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名前:"
+            "value" : "書き出し名:"
           }
         },
         "ko" : {
@@ -2705,7 +2702,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Farklı Dışa Aktar:"
+            "value" : "Farklı Aktar:"
           }
         },
         "zh-Hans" : {
@@ -4523,7 +4520,6 @@
       }
     },
     "InconsistentLineEndingAlert.button.convert" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4619,7 +4615,6 @@
       }
     },
     "InconsistentLineEndingAlert.button.ignore" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4715,7 +4710,6 @@
       }
     },
     "InconsistentLineEndingAlert.button.review" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -10470,7 +10464,6 @@
       }
     },
     "ThemeImportAlert.button.install" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -10566,7 +10559,6 @@
       }
     },
     "ThemeImportAlert.button.openAsText" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -10947,7 +10939,6 @@
       }
     },
     "UnsavedReinterpretationAlert.button.discard" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -10977,19 +10968,19 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descartar los cambios"
+            "value" : "No guardar cambios"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonner les modifications"
+            "value" : "Annuler les modifications"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annulla modifiche"
+            "value" : "Non salvare le modifiche"
           }
         },
         "ja" : {
@@ -11001,7 +10992,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "변경 사항 복귀"
+            "value" : "변경 사항 폐기"
           }
         },
         "nl" : {
@@ -11025,7 +11016,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Değişiklikleri At"
+            "value" : "Değişikliklerden Vazgeç"
           }
         },
         "zh-Hans" : {
@@ -11037,7 +11028,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "放棄修改"
+            "value" : "捨棄所作更動"
           }
         }
       }
@@ -11412,7 +11403,6 @@
       }
     },
     "UpdatedByExternalProcessAlert.button.keep" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -11508,7 +11498,6 @@
       }
     },
     "UpdatedByExternalProcessAlert.button.update" : {
-      "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

@@ -1246,7 +1246,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skrýt panel navigace"
+            "value" : "Skrýt navigační panel"
           }
         },
         "de" : {
@@ -1276,7 +1276,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nascondi barra di navigazione"
+            "value" : "Nascondi la barra di navigazione"
           }
         },
         "ja" : {
@@ -1312,13 +1312,13 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dolaşım Çubuğunu Gizle"
+            "value" : "Dolaşma Çubuğunu Gizle"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "隐藏导航栏"
+            "value" : "隐藏导览栏"
           }
         },
         "zh-Hant" : {
@@ -3632,7 +3632,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit panel navigace"
+            "value" : "Zobrazit navigační panel"
           }
         },
         "de" : {
@@ -3662,7 +3662,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra barra di navigazione"
+            "value" : "Mostra la barra di navigazione"
           }
         },
         "ja" : {
@@ -3698,13 +3698,13 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dolaşım Çubuğunu Göster"
+            "value" : "Dolaşma Çubuğunu Göster"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "显示导航栏"
+            "value" : "显示导览栏"
           }
         },
         "zh-Hant" : {

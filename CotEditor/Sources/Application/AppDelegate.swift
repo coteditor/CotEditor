@@ -512,8 +512,8 @@ private enum BundleIdentifier {
         let alert = NSAlert()
         alert.messageText = String(localized: "ThemeImportAlert.message", defaultValue: "“\(fileURL.lastPathComponent)” is a CotEditor theme file.")
         alert.informativeText = String(localized: "ThemeImportAlert.informativeText", defaultValue: "Do you want to install this theme?")
-        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.install", defaultValue: "Install", comment: "button label"))
-        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.openAsText", defaultValue: "Open as Text File", comment: "button label"))
+        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.install", defaultValue: "Install"))
+        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.openAsText", defaultValue: "Open as Text File"))
         
         let returnCode = alert.runModal()
         

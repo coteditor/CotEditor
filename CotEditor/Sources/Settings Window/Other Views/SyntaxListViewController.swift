@@ -475,7 +475,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                                        defaultValue: "This action cannot be undone.")
         alert.addButton(withTitle: String(localized: "Cancel"))
         alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete",
-                                          defaultValue: "Delete", comment: "button label"))
+                                          defaultValue: "Delete"))
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!

@@ -272,13 +272,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nebyl zjištěn žádný text"
+            "value" : "Nebyl detekován žádný text"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Text erkennt"
+            "value" : "Kein Text erkannt"
           }
         },
         "en-GB" : {
@@ -289,8 +289,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No se detectó texto"
+            "state" : "translated",
+            "value" : "No se ha detectado texto"
           }
         },
         "fr" : {
@@ -302,13 +302,13 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessun testo individuato"
+            "value" : "Nessun testo rilevato"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "テキストが検出されませんでした"
+            "value" : "テキストは検出されませんでした"
           }
         },
         "ko" : {
@@ -332,25 +332,25 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texto não detectado"
+            "value" : "Nenhum texto detectado"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Algılanan metin yok"
+            "value" : "Metin saptanmadı"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "没有检测到文本"
+            "value" : "未检测到文本"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "沒能偵測到文字"
+            "value" : "未偵測到文字"
           }
         }
       }

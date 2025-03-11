@@ -5774,7 +5774,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Panel navigace"
+            "value" : "Navigační panel"
           }
         },
         "de" : {
@@ -5840,13 +5840,13 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dolaşım Çubuğu"
+            "value" : "Dolaşma Çubuğu"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "导航栏"
+            "value" : "导览栏"
           }
         },
         "zh-Hant" : {
