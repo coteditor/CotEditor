@@ -60,8 +60,11 @@ private struct CommandSnippetsView: View {
     private typealias Item = Snippet
     
     
+    private var manager: SnippetManager = .shared
+    
     @State private var items: [Item] = []
     @State private var selection: Set<Item.ID> = []
+    @State private var syntaxes: [String] = []
     
     @State private var error: (any Error)?
     @State private var format: String?
@@ -74,7 +77,7 @@ private struct CommandSnippetsView: View {
             
             Table(of: Binding<Item>.self, selection: $selection) {
                 TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { item in
-                    SyntaxPicker(selection: item.scope)
+                    SyntaxPicker(syntaxes: self.syntaxes, selection: item.scope)
                         .buttonStyle(.borderless)
                         .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
                 }.width(160)
@@ -129,7 +132,7 @@ private struct CommandSnippetsView: View {
             
             HStack(alignment: .firstTextBaseline) {
                 AddRemoveButton($items, selection: $selection) {
-                    SnippetManager.shared.createUntitledSetting()
+                    self.manager.createUntitledSetting()
                 }
                 Spacer()
                 if let error {
@@ -143,13 +146,14 @@ private struct CommandSnippetsView: View {
             InsertionFormatView<Snippet.Variable>(text: $format, count: self.selection.count)
         }
         .onAppear {
-            self.items = SnippetManager.shared.snippets
+            self.items = self.manager.snippets
             if let item = self.items.first {
                 self.selection = [item.id]
             }
+            self.syntaxes = SyntaxManager.shared.settingNames
         }
         .onChange(of: self.items) { (_, newValue) in
-            SnippetManager.shared.save(newValue)
+            self.manager.save(newValue)
         }
     }
 }
@@ -159,9 +163,9 @@ private struct FileDropView: View {
     
     private typealias Item = FileDropItem
     
-    
     @State private var items: [Item] = []
     @State private var selection: Set<Item.ID> = []
+    @State private var syntaxes: [String] = []
     
     @State private var format: String?
     @State private var canRestore: Bool = false
@@ -174,7 +178,7 @@ private struct FileDropView: View {
             
             Table(of: Binding<Item>.self, selection: $selection) {
                 TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { item in
-                    SyntaxPicker(selection: item.scope)
+                    SyntaxPicker(syntaxes: self.syntaxes, selection: item.scope)
                         .buttonStyle(.borderless)
                         .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
                 }.width(160)
@@ -234,6 +238,7 @@ private struct FileDropView: View {
         }
         .onAppear {
             self.load()
+            self.syntaxes = SyntaxManager.shared.settingNames
         }
         .onChange(of: self.items) { (_, newValue) in
             self.save(items: newValue)
@@ -286,6 +291,8 @@ private struct FileDropView: View {
 
 private struct SyntaxPicker: View {
     
+    var syntaxes: [String]
+    
     @Binding var selection: String?
     
     
@@ -296,7 +303,7 @@ private struct SyntaxPicker: View {
                 .foregroundStyle(.tertiary)
                 .tag(String?.none)
             Divider()
-            ForEach(SyntaxManager.shared.settingNames, id: \.self) {
+            ForEach(self.syntaxes, id: \.self) {
                 Text($0).tag(String?.some($0))
             }
         } label: {

@@ -80,21 +80,23 @@ struct KeyBindingsSettingsView: View {
     
     var rootIndex: Int?
     
+    private let manager: KeyBindingManager = .shared
+    
     
     /// Loads data from the user defaults.
     func load() {
         
-        self.tree = KeyBindingManager.shared.menuTree
-        self.isRestorable = KeyBindingManager.shared.isCustomized
+        self.tree = self.manager.menuTree
+        self.isRestorable = self.manager.isCustomized
     }
     
     
     /// Restores key binding setting to default.
     func restore() {
         
-        try? KeyBindingManager.shared.restoreDefaults()
+        try? self.manager.restoreDefaults()
         
-        self.tree = KeyBindingManager.shared.menuTree
+        self.tree = self.manager.menuTree
         self.isRestorable = false
         self.error = nil
     }
@@ -109,12 +111,12 @@ struct KeyBindingsSettingsView: View {
             .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
         
         do {
-            try KeyBindingManager.shared.saveKeyBindings(keyBindings)
+            try self.manager.saveKeyBindings(keyBindings)
         } catch {
             Logger.app.error("\(error.localizedDescription)")
         }
         
-        self.isRestorable = KeyBindingManager.shared.isCustomized
+        self.isRestorable = self.manager.isCustomized
     }
 }
 

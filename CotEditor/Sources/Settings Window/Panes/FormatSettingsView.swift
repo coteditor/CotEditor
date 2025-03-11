@@ -40,6 +40,8 @@ struct FormatSettingsView: View {
     
     @AppStorage(.syntax) private var syntax
     
+    private var syntaxManager: SyntaxManager = .shared
+    
     @State private var encodingManager: EncodingManager = .shared
     @State private var syntaxNames: [String] = []
     
@@ -170,7 +172,7 @@ struct FormatSettingsView: View {
                 HelpLink(anchor: "settings_format")
             }
         }
-        .onReceive(SyntaxManager.shared.$settingNames) { settingNames in
+        .onReceive(self.syntaxManager.$settingNames) { settingNames in
             self.syntaxNames = settingNames
         }
         .padding(.top, 14)

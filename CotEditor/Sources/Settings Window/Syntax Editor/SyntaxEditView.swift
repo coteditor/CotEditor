@@ -66,6 +66,7 @@ struct SyntaxEditView: View {
     
     
     private static var viewSize = CGSize(width: 680, height: 525)
+    private var manager: SyntaxManager = .shared
     
     @State private var name: String = ""
     @State private var message: String?
@@ -256,7 +257,7 @@ struct SyntaxEditView: View {
         
         guard
             self.isBundled,
-            let syntax = SyntaxManager.shared.bundledSetting(name: self.name)
+            let syntax = self.manager.bundledSetting(name: self.name)
         else { return }
         
         self.syntax.update(with: syntax)
@@ -274,7 +275,7 @@ struct SyntaxEditView: View {
         if self.isBundled { return true }  // cannot edit syntax name
         
         do {
-            try SyntaxManager.shared.validate(settingName: name, originalName: self.originalName)
+            try self.manager.validate(settingName: name, originalName: self.originalName)
         } catch {
             self.message = error.localizedDescription
             return false

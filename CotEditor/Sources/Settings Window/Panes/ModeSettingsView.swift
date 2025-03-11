@@ -28,6 +28,9 @@ import Syntax
 
 struct ModeSettingsView: View {
     
+    private var manager: ModeManager = .shared
+    
+    @State private var syntaxes: [String] = []
     @State private var selection: Mode = .kind(.general)
     @State private var options: ModeOptions = .init()
     
@@ -36,14 +39,14 @@ struct ModeSettingsView: View {
         
         VStack {
             HStack {
-                ModeListView(selection: $selection)
+                ModeListView(manager: self.manager, selection: $selection, syntaxes: self.syntaxes)
                     .frame(width: 120)
                 
                 GroupBox {
                     ModeOptionsView(options: $options)
-                        .disabled(!self.selection.available)
+                        .disabled(!self.selection.available(within: self.syntaxes))
                         .onChange(of: self.options) { (_, newValue) in
-                            ModeManager.shared.save(setting: newValue, mode: self.selection)
+                            self.manager.save(setting: newValue, mode: self.selection)
                         }
                         .frame(maxWidth: .infinity)
                 }
@@ -54,8 +57,11 @@ struct ModeSettingsView: View {
                 HelpLink(anchor: "settings_mode")
             }
         }
+        .onAppear {
+            self.syntaxes = SyntaxManager.shared.settingNames
+        }
         .onChange(of: self.selection, initial: true) { (_, newValue) in
-            self.options = ModeManager.shared.setting(for: newValue)
+            self.options = self.manager.setting(for: newValue)
         }
         .padding(.top, 14)
         .scenePadding([.horizontal, .bottom])
@@ -66,8 +72,11 @@ struct ModeSettingsView: View {
 
 private struct ModeListView: View {
     
+    var manager: ModeManager
+    
     @Binding var selection: Mode
     
+    var syntaxes: [String]
     @State private var syntaxModes: [Mode] = []
     @State private var error: (any Error)?
     
@@ -87,7 +96,7 @@ private struct ModeListView: View {
                 if !self.syntaxModes.isEmpty {
                     Section(String(localized: "Syntax", table: "ModeSettings")) {
                         ForEach(self.syntaxModes, id: \.self) { mode in
-                            let available = mode.available
+                            let available = mode.available(within: self.syntaxes)
                             HStack {
                                 Text(mode.label)
                                 if !available {
@@ -112,14 +121,14 @@ private struct ModeListView: View {
             HStack(spacing: 0) {
                 Menu(String(localized: "Add", table: "ModeSettings"), systemImage: "plus") {
                     Section(String(localized: "Syntax", table: "ModeSettings")) {
-                        ForEach(SyntaxManager.shared.settingNames, id: \.self) { syntaxName in
+                        ForEach(self.syntaxes, id: \.self) { syntaxName in
                             Button(syntaxName) {
                                 do {
-                                    try ModeManager.shared.addSetting(for: syntaxName)
+                                    try self.manager.addSetting(for: syntaxName)
                                 } catch {
                                     self.error = error
                                 }
-                                let syntaxModes = ModeManager.shared.syntaxModes
+                                let syntaxModes = self.manager.syntaxModes
                                 withAnimation {
                                     self.syntaxModes = syntaxModes
                                     self.selection = .syntax(syntaxName)
@@ -133,8 +142,8 @@ private struct ModeListView: View {
                 .alert(error: $error)
                 
                 Button {
-                    ModeManager.shared.removeSetting(for: self.selection)
-                    let syntaxModes = ModeManager.shared.syntaxModes
+                    self.manager.removeSetting(for: self.selection)
+                    let syntaxModes = self.manager.syntaxModes
                     withAnimation {
                         self.syntaxModes = syntaxModes
                         self.selection = .kind(.general)
@@ -152,7 +161,7 @@ private struct ModeListView: View {
             .buttonStyle(.borderless)
         }
         .onAppear {
-            self.syntaxModes = ModeManager.shared.syntaxModes
+            self.syntaxModes = self.manager.syntaxModes
         }
         .border(.separator)
         .background()
@@ -246,11 +255,14 @@ private extension Mode {
     
     
     /// Whether the given mode is available in the current user environment.
-    var available: Bool {
+    /// 
+    /// - Parameter syntaxes: The available syntax names.
+    /// - Returns: `true` if available.
+    func available(within syntaxes: [String]) -> Bool {
         
         switch self {
             case .kind: true
-            case .syntax(let name): SyntaxManager.shared.settingNames.contains(name)
+            case .syntax(let name): syntaxes.contains(name)
         }
     }
 }

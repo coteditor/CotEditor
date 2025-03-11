@@ -30,6 +30,8 @@ import Syntax
 
 struct ThemeView: View {
     
+    private var manager: ThemeManager = .shared
+    
     @AppStorage(.theme) private var themeName
     @AppStorage(.pinsThemeAppearance) private var pinsThemeAppearance
     @AppStorage(.documentAppearance) private var documentAppearance
@@ -51,28 +53,28 @@ struct ThemeView: View {
                 .frame(width: 360)
                 .onChange(of: self.theme) { (_, newValue) in
                     do {
-                        try ThemeManager.shared.save(setting: newValue, name: self.themeName)
+                        try self.manager.save(setting: newValue, name: self.themeName)
                     } catch {
                         self.error = error
                     }
                 }
         }
         .onChange(of: self.documentAppearance, initial: true) {
-            self.themeName = ThemeManager.shared.userDefaultSettingName
+            self.themeName = self.manager.userDefaultSettingName
         }
         .onChange(of: self.themeName, initial: true) { (_, newValue) in
             self.setTheme(name: newValue)
         }
         .task {
             let changes = NotificationCenter.default
-                .notifications(named: .didUpdateSettingNotification, object: ThemeManager.shared)
+                .notifications(named: .didUpdateSettingNotification, object: self.manager)
                 .compactMap { $0.userInfo?["change"] as? SettingChange }
             
             for await name in changes.compactMap(\.new) {
                 await MainActor.run {
                     guard
                         name == self.themeName,
-                        let theme = try? ThemeManager.shared.setting(name: name)
+                        let theme = try? self.manager.setting(name: name)
                     else { return }
                     
                     self.theme = theme
@@ -92,7 +94,7 @@ struct ThemeView: View {
         
         let theme: Theme
         do {
-            theme = try ThemeManager.shared.setting(name: name)
+            theme = try self.manager.setting(name: name)
         } catch {
             self.error = error
             return
@@ -100,11 +102,11 @@ struct ThemeView: View {
         
         // update default theme setting
         let isDarkTheme = ThemeManager.isDark(name: name)
-        let usesDarkAppearance = ThemeManager.shared.usesDarkAppearance
+        let usesDarkAppearance = self.manager.usesDarkAppearance
         self.pinsThemeAppearance = (isDarkTheme != usesDarkAppearance)
         self.themeName = name
         
-        self.isBundled = ThemeManager.shared.state(of: name)?.isBundled == true
+        self.isBundled = self.manager.state(of: name)?.isBundled == true
         self.theme = theme
     }
 }
