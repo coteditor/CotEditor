@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Switch the localized block name and the block name defined in Unicode by clicking the block name in the character inspector.
 - Revert the steppers to the font setting controls in the Appearance settings pane.
 - Remove the Script menu from the context menu.
 - Add a help tag for “Show Sidebar” menu item when the command is unavailable.

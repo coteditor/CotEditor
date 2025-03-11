@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,14 +26,14 @@
 
 public extension Unicode.Scalar {
     
-    /// Code point string in format like `U+000F`.
+    /// The code point string in format like `U+000F`.
     var codePoint: String {
         
         String(format: "U+%04tX", self.value)
     }
     
     
-    /// Code point pair in UTF-16 surrogate pair.
+    /// The code point pair in UTF-16 surrogate pair.
     var surrogateCodePoints: (lead: String, trail: String)? {
         
         guard self.isSurrogatePair else { return nil }
@@ -43,7 +43,7 @@ public extension Unicode.Scalar {
     }
     
     
-    /// Unicode name.
+    /// The Unicode name.
     var name: String? {
         
         self.properties.nameAlias
@@ -52,7 +52,14 @@ public extension Unicode.Scalar {
     }
     
     
-    /// Localized and sanitized unicode block name.
+    /// The Unicode block name defined in the Unicode.
+    var blockName: String? {
+        
+        self.value.blockName
+    }
+    
+    
+    /// The localized Unicode block name.
     var localizedBlockName: String? {
         
         guard let blockName else { return nil }
@@ -68,12 +75,5 @@ extension Unicode.Scalar {
     var isSurrogatePair: Bool {
         
         (UTF16.width(self) == 2)
-    }
-    
-    
-    /// Unicode block name.
-    var blockName: String? {
-        
-        self.value.blockName
     }
 }

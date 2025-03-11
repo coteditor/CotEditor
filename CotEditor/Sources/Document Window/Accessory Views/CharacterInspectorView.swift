@@ -117,6 +117,8 @@ private struct ScalarDetailView: View {
     
     @Namespace private var accessibility
     
+    @State private var isBlockNameLocalized = true
+    
     
     var body: some View {
         
@@ -151,9 +153,12 @@ private struct ScalarDetailView: View {
                         .accessibilityLabeledPair(role: .label, id: "block", in: self.accessibility)
                     
                     Group {
-                        if let blockName = self.scalar.localizedBlockName {
-                            Text(blockName)
-                                .textSelection(.enabled)
+                        if let blockName = self.isBlockNameLocalized ? self.scalar.localizedBlockName : self.scalar.blockName {
+                            Button(blockName) {
+                                self.isBlockNameLocalized.toggle()
+                            }
+                            .buttonStyle(.plain)
+                            .textSelection(.enabled)
                         } else {
                             Text("No Block", tableName: "CharacterInspector")
                                 .foregroundStyle(.secondary)
