@@ -202,9 +202,10 @@ import URLUtils
         
         // specific item types
         if menuItem.isSeparatorItem ||
-            menuItem.isAlternate ||
-            menuItem.isHidden ||
-            menuItem.keyEquivalentModifierMask.contains(.function) {
+           menuItem.isAlternate ||
+           menuItem.isHidden ||
+           menuItem.title.isEmpty ||
+           menuItem.keyEquivalentModifierMask.contains(.function) {
             return false
         }
         
