@@ -640,9 +640,9 @@ metadata:
   author: CotEditor Project
   description: Support CSS3 partly.
   distributionURL: https://coteditor.com
-  lastModified: '2025-01-25'
+  lastModified: '2025-03-12'
   license: Same as CotEditor
-  version: 2.4.0
+  version: 2.5.0
 numbers:
 - beginString: '#[0-9a-f]{3}\b'
   ignoreCase: true
