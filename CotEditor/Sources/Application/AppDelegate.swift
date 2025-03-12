@@ -113,6 +113,7 @@ private enum BundleIdentifier {
     @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var snippetMenu: NSMenu?
     @IBOutlet private weak var multipleReplaceMenu: NSMenu?
+    @IBOutlet private weak var scriptMenu: NSMenu?
     
     
     #if DEBUG
@@ -201,8 +202,7 @@ private enum BundleIdentifier {
                 .store(in: &self.menuUpdateObservers)
             
             SnippetManager.shared.menu = self.snippetMenu!
-            
-            ScriptManager.shared.menu = NSApp.mainMenu?.item(at: MainMenu.script.rawValue)?.submenu
+            ScriptManager.shared.menu = self.scriptMenu!
             
             // build Unicode normalization menu items
             self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +

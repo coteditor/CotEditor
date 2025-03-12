@@ -1299,6 +1299,7 @@ CA
                         <outlet property="lineEndingsMenu" destination="296" id="U4V-rN-Wn0"/>
                         <outlet property="multipleReplaceMenu" destination="OaT-5c-bMY" id="YLT-05-lBG"/>
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
+                        <outlet property="scriptMenu" destination="616" id="5Z8-hr-h6d"/>
                         <outlet property="snippetMenu" destination="dZy-7n-iCq" id="3hf-hr-ScA"/>
                         <outlet property="syntaxesMenu" destination="304" id="KxC-5F-otD"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
