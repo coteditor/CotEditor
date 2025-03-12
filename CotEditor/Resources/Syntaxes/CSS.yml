@@ -56,6 +56,9 @@ attributes:
   regularExpression: true
 - beginString: :fullscreen
   regularExpression: true
+- beginString: :has\(
+  endString: \)
+  regularExpression: true
 - beginString: :host(\(\w+\))?
   regularExpression: true
 - beginString: :hover
@@ -138,6 +141,8 @@ characters:
   regularExpression: true
 - beginString: calc(?=\()
   regularExpression: true
+- beginString: clamp(?=\()
+  regularExpression: true
 - beginString: contrast(?=\()
   regularExpression: true
 - beginString: cubic-bezier(?=\()
@@ -167,6 +172,10 @@ characters:
 - beginString: matrix(?=\()
   regularExpression: true
 - beginString: matrix3d(?=\()
+  regularExpression: true
+- beginString: max(?=\()
+  regularExpression: true
+- beginString: min(?=\()
   regularExpression: true
 - beginString: opacity(?=\()
   regularExpression: true
@@ -1061,6 +1070,7 @@ values:
 - beginString: super
 - beginString: sw-resize
 - beginString: swash
+- beginString: system-ui
 - beginString: table
 - beginString: table-caption
 - beginString: table-cell
