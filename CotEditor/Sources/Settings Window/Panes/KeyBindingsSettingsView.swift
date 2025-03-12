@@ -105,13 +105,8 @@ struct KeyBindingsSettingsView: View {
     /// Saves the current settings.
     func save() {
         
-        let keyBindings = self.tree
-            .flatMap(\.flatValues)
-            .filter { $0.shortcut?.isValid ?? true }
-            .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
-        
         do {
-            try self.manager.saveKeyBindings(keyBindings)
+            try self.manager.save(tree: self.tree)
         } catch {
             Logger.app.error("\(error.localizedDescription)")
         }

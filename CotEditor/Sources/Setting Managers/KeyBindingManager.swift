@@ -36,10 +36,12 @@ import URLUtils
     
     let defaultKeyBindings: [KeyBinding]
     
+    private(set) var isCustomized: Bool = false
+    
     
     // MARK: Private Properties
     
-    private var userKeyBindings: [KeyBinding] = []
+    private var userKeyBindings: [KeyBinding] = []  { didSet { self.isCustomized = !userKeyBindings.isEmpty } }
     private var modifiedKeyBindings: Set<KeyBinding> = []
     
     
@@ -59,13 +61,6 @@ import URLUtils
     
     
     // MARK: Public Methods
-    
-    /// Whether shortcuts are customized.
-    var isCustomized: Bool {
-        
-        !self.userKeyBindings.isEmpty
-    }
-    
     
     /// A collection of the menu tree to display in the settings view.
     var menuTree: [Node<KeyBindingItem>] {
@@ -97,31 +92,17 @@ import URLUtils
     }
     
     
-    /// Saves the passed-in key binding settings.
+    /// Saves key bindings in the passed-in tree.
     ///
-    /// - Parameter keyBindings: The key bindings to save.
-    func saveKeyBindings(_ keyBindings: [KeyBinding]) throws {
+    /// - Parameter tree: The collection of the menu tree to display in the settings view.
+    func save(tree: [Node<KeyBindingItem>]) throws {
         
-        let defaultExistsActions = self.defaultKeyBindings.map(\.action)
+        let keyBindings = tree
+            .flatMap(\.flatValues)
+            .filter { $0.shortcut?.isValid ?? true }
+            .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
         
-        // store new values
-        self.userKeyBindings = Set(keyBindings).subtracting(self.defaultKeyBindings)
-            .filter { $0.shortcut != nil || defaultExistsActions.contains($0.action) }
-        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
-        
-        // write to file
-        if self.userKeyBindings.isEmpty {
-            try self.removeSettingFile()
-        } else {
-            let encoder = PropertyListEncoder()
-            encoder.outputFormat = .xml
-            let descriptions = self.userKeyBindings.sorted(using: SortDescriptor(\.action.description))
-            let data = try encoder.encode(descriptions)
-            let fileURL = self.settingFileURL
-            
-            try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try data.write(to: fileURL)
-        }
+        try self.save(keyBindings: keyBindings)
         
         // apply new settings to the menu
         self.applyShortcutsToMainMenu()
@@ -175,6 +156,34 @@ import URLUtils
         let parent = self.settingFileURL.deletingLastPathComponent()
         if try FileManager.default.contentsOfDirectory(at: parent, includingPropertiesForKeys: [], options: .skipsHiddenFiles).isEmpty {
             try FileManager.default.removeItem(at: parent)
+        }
+    }
+    
+    
+    /// Saves the passed-in key binding settings to a file.
+    ///
+    /// - Parameter keyBindings: The key bindings to save.
+    private func save(keyBindings: [KeyBinding]) throws {
+        
+        let defaultExistsActions = self.defaultKeyBindings.map(\.action)
+        
+        // store new values
+        self.userKeyBindings = Set(keyBindings).subtracting(self.defaultKeyBindings)
+            .filter { $0.shortcut != nil || defaultExistsActions.contains($0.action) }
+        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
+        
+        // write to file
+        if self.userKeyBindings.isEmpty {
+            try self.removeSettingFile()
+        } else {
+            let encoder = PropertyListEncoder()
+            encoder.outputFormat = .xml
+            let descriptions = self.userKeyBindings.sorted(using: SortDescriptor(\.action.description))
+            let data = try encoder.encode(descriptions)
+            let fileURL = self.settingFileURL
+            
+            try FileManager.default.createIntermediateDirectories(to: fileURL)
+            try data.write(to: fileURL)
         }
     }
     
