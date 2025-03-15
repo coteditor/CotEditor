@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,7 +59,8 @@ import Sparkle
     func setup() {
         
         // insert "Check for Updates…" menu item
-        guard let applicationMenu = NSApp.mainMenu?.item(at: MainMenu.application.rawValue)?.submenu else {
+        
+        guard let applicationMenu = NSApp.mainMenu?.item(at: 0)?.submenu else {
             return assertionFailure("Found no menu to attach the update menu item.")
         }
         
