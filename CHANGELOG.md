@@ -1,6 +1,6 @@
 # Change Log
 
-5.1.2 (unreleased)
+5.1.2 (707)
 --------------------------
 
 ### Improvements
