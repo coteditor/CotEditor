@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,11 +39,6 @@ final class CommandLineToolManager: Sendable {
     }
     
     
-    // MARK: Public Methods
-    
-    static let shared = CommandLineToolManager(bundle: .main)
-    
-    
     // MARK: Public Properties
     
     let linkURL: URL
@@ -55,7 +50,7 @@ final class CommandLineToolManager: Sendable {
     
     // MARK: Public Methods
     
-    private init(bundle: Bundle) {
+    init(bundle: Bundle = .main) {
         
         self.bundledCommandURL = bundle.cotURL!
         self.preferredLinkURL = URL(filePath: "/usr/local/bin/cot")
@@ -79,8 +74,8 @@ final class CommandLineToolManager: Sendable {
         guard url.isReachable else { return .invalidTarget }
         
         if url == self.linkURL ||
-            url == self.bundledCommandURL ||
-            url == Bundle(url: self.preferredApplicationURL)?.cotURL
+           url == self.bundledCommandURL ||
+           url == Bundle(url: self.preferredApplicationURL)?.cotURL
         { return .validTarget }
         
         return .differentTarget

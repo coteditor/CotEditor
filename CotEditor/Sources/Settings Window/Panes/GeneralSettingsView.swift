@@ -199,8 +199,9 @@ struct GeneralSettingsView: View {
             }
         }
         .onAppear {
-            self.commandLineToolStatus = CommandLineToolManager.shared.validateSymlink()
-            self.commandLineToolURL = CommandLineToolManager.shared.linkURL
+            let manager = CommandLineToolManager()
+            self.commandLineToolStatus = manager.validateSymlink()
+            self.commandLineToolURL = manager.linkURL
         }
         .padding(.top, 14)
         .scenePadding([.horizontal, .bottom])
