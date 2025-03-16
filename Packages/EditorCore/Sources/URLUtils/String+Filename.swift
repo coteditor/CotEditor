@@ -51,36 +51,19 @@ extension String {
     ///
     /// - Parameter suffix: The suffix for filename numbering, such as " copy".
     /// - Returns: The components.
-    func numberingComponents(suffix: String? = nil) -> (base: Substring, count: Int?) {
+    func numberingComponents(suffix: String? = nil) -> (base: String, count: Int) {
         
         assert(!self.isEmpty)
-        assert(suffix?.isEmpty != true)
         
-        let base: Substring
-        let number: Substring?
-        let hasSuffix: Bool
-        if let suffix {
-            let suffix = NSRegularExpression.escapedTemplate(for: suffix)
-            let regex = try! Regex("(?<base>.+?)(?<suffix>\(suffix)(?: (?<number>[0-9]+))?)?",
-                                   as: (Substring, base: Substring, suffix: Substring?, number: Substring?).self)
-            let match = self.wholeMatch(of: regex)!
-            base = match.base
-            number = match.number
-            hasSuffix = match.suffix != nil
+        let regex = if let suffix = suffix.map(NSRegularExpression.escapedPattern(for:)) {
+            try! Regex("(?<base>.+?)(?:\(suffix)(?: (?<number>[0-9]+))?)?",
+                       as: (Substring, base: Substring, number: Substring?).self)
         } else {
-            let match = self.wholeMatch(of: /(?<base>.+?)(?: (?<number>[0-9]+))?/)!
-            base = match.base
-            number = match.number
-            hasSuffix = false
+            /(?<base>.+?)(?: (?<number>[0-9]+))?/
         }
-        
-        let count: Int? = if let number {
-            Int(number)
-        } else if hasSuffix {
-            1
-        } else {
-            nil
-        }
+        let match = self.wholeMatch(of: regex)!
+        let base = String(match.base)
+        let count = match.number.flatMap { Int($0) } ?? 1
         
         return (base, count)
     }
@@ -97,10 +80,9 @@ public extension Collection<String> {
     func createAvailableName(for proposedName: String) -> String {
         
         let components = proposedName.numberingComponents()
-        let baseName = String(components.base)
-        let count = components.count ?? 1
+        let baseName = components.base
         
-        return (count...).lazy
+        return (components.count...).lazy
             .map { $0 < 2 ? baseName : "\(baseName) \($0)" }
             .first { !self.contains($0) }!
     }
