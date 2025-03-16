@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -12,8 +12,6 @@
 			buildConfigurationList = 2A3E84801D07296200070A54 /* Build configuration list for PBXAggregateTarget "Update Help Index" */;
 			buildPhases = (
 				2A3E84811D07299E00070A54 /* ShellScript */,
-			);
-			dependencies = (
 			);
 			name = "Update Help Index";
 			productName = "Update Help Index";
@@ -58,13 +56,11 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = bin;
-			dstSubfolderSpec = 12;
+			dstSubfolder = SharedSupport;
 			files = (
 			);
 			name = "Copy Command-Line Tools";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -172,7 +168,6 @@
 /* Begin PBXFrameworksBuildPhase section */
 		2A6F0DFD1B5500E100C2D03C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
 				2A1380092C22E9B500093BF3 /* EditorCore in Frameworks */,
@@ -181,15 +176,12 @@
 				2ACAAC1C2B85E74C0041B095 /* SyntaxMap in Frameworks */,
 				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2ABB27CE2C38250A00AFCD0B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				2ABB27D22C38268300AFCD0B /* Numerics in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -345,7 +337,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1630;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {
@@ -406,7 +398,7 @@
 				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 2A7380232CAD911F00E870E5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -422,7 +414,6 @@
 /* Begin PBXResourcesBuildPhase section */
 		2A6F0D541B5500E100C2D03C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				2AC36B732CE86B2D0059204D /* FindPanelFieldView.storyboard in Resources */,
 				2AC36B752CE86B2D0059204D /* KeyBindingTreeView.storyboard in Resources */,
@@ -433,14 +424,11 @@
 				2AC36B7F2CE86B2D0059204D /* SyntaxListView.storyboard in Resources */,
 				2AC36B812CE86B2D0059204D /* ThemeListView.storyboard in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2AC71DDD1BF0BDBC002E1434 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
@@ -448,18 +436,16 @@
 		2A3E84811D07299E00070A54 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd Scripts\n./updateHelpindex.sh\n";
+			shellScript = (
+				"cd Scripts",
+				"./updateHelpindex.sh",
+				"",
+				"",
+			);
 		};
 		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
 			inputPaths = (
 				"$(SRCROOT)/CotEditor/Resources/Syntaxes",
 			);
@@ -467,33 +453,30 @@
 			outputPaths = (
 				"$(SRCROOT)/CotEditor/Resources/SyntaxMap.json",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = (
+				"\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"",
+				"",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A3F18F3203270BE002F1CA7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2A6F0DA31B5500E100C2D03C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2AC71DDB1BF0BDBC002E1434 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -610,7 +593,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2A36F0462C931B7A00C0F3C4 /* Debug-Sparkle */ = {
+		2A36F0462C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXProject "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -664,7 +647,6 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -675,7 +657,7 @@
 			};
 			name = "Debug-Sparkle";
 		};
-		2A36F0472C931B7A00C0F3C4 /* Debug-Sparkle */ = {
+		2A36F0472C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "CotEditor-Sparkle.xcconfig";
@@ -705,7 +687,7 @@
 			};
 			name = "Debug-Sparkle";
 		};
-		2A36F0492C931B7A00C0F3C4 /* Debug-Sparkle */ = {
+		2A36F0492C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
@@ -718,7 +700,7 @@
 			};
 			name = "Debug-Sparkle";
 		};
-		2A36F04A2C931B7A00C0F3C4 /* Debug-Sparkle */ = {
+		2A36F04A2C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
@@ -730,7 +712,7 @@
 			};
 			name = "Debug-Sparkle";
 		};
-		2A36F04B2C931B7A00C0F3C4 /* Debug-Sparkle */ = {
+		2A36F04B2C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -738,7 +720,7 @@
 			};
 			name = "Debug-Sparkle";
 		};
-		2A36F04C2C931B9600C0F3C4 /* Release-Sparkle */ = {
+		2A36F04C2C931B9600C0F3C4 /* Release-Sparkle configuration for PBXProject "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -790,8 +772,6 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -800,7 +780,7 @@
 			};
 			name = "Release-Sparkle";
 		};
-		2A36F04D2C931B9600C0F3C4 /* Release-Sparkle */ = {
+		2A36F04D2C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "CotEditor-Sparkle.xcconfig";
@@ -830,7 +810,7 @@
 			};
 			name = "Release-Sparkle";
 		};
-		2A36F04F2C931B9600C0F3C4 /* Release-Sparkle */ = {
+		2A36F04F2C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
@@ -843,7 +823,7 @@
 			};
 			name = "Release-Sparkle";
 		};
-		2A36F0502C931B9600C0F3C4 /* Release-Sparkle */ = {
+		2A36F0502C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
@@ -855,7 +835,7 @@
 			};
 			name = "Release-Sparkle";
 		};
-		2A36F0512C931B9600C0F3C4 /* Release-Sparkle */ = {
+		2A36F0512C931B9600C0F3C4 /* Release-Sparkle configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -863,7 +843,7 @@
 			};
 			name = "Release-Sparkle";
 		};
-		2A3E847E1D07296200070A54 /* Debug */ = {
+		2A3E847E1D07296200070A54 /* Debug configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -871,7 +851,7 @@
 			};
 			name = Debug;
 		};
-		2A3E847F1D07296200070A54 /* Release */ = {
+		2A3E847F1D07296200070A54 /* Release configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -879,7 +859,7 @@
 			};
 			name = Release;
 		};
-		2A3F18FF203270BE002F1CA7 /* Debug */ = {
+		2A3F18FF203270BE002F1CA7 /* Debug configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
@@ -891,7 +871,7 @@
 			};
 			name = Debug;
 		};
-		2A3F1900203270BE002F1CA7 /* Release */ = {
+		2A3F1900203270BE002F1CA7 /* Release configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
@@ -903,7 +883,7 @@
 			};
 			name = Release;
 		};
-		2A6F0E051B5500E100C2D03C /* Debug */ = {
+		2A6F0E051B5500E100C2D03C /* Debug configuration for PBXNativeTarget "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = CotEditor.xcconfig;
@@ -933,7 +913,7 @@
 			};
 			name = Debug;
 		};
-		2A6F0E061B5500E100C2D03C /* Release */ = {
+		2A6F0E061B5500E100C2D03C /* Release configuration for PBXNativeTarget "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = CotEditor.xcconfig;
@@ -963,7 +943,7 @@
 			};
 			name = Release;
 		};
-		2AC71DE61BF0BDBC002E1434 /* Debug */ = {
+		2AC71DE61BF0BDBC002E1434 /* Debug configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
@@ -976,7 +956,7 @@
 			};
 			name = Debug;
 		};
-		2AC71DE71BF0BDBC002E1434 /* Release */ = {
+		2AC71DE71BF0BDBC002E1434 /* Release configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
@@ -989,7 +969,7 @@
 			};
 			name = Release;
 		};
-		8C71D95808640EDF00C9C0BD /* Debug */ = {
+		8C71D95808640EDF00C9C0BD /* Debug configuration for PBXProject "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1043,7 +1023,6 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1054,7 +1033,7 @@
 			};
 			name = Debug;
 		};
-		8C71D95908640EDF00C9C0BD /* Release */ = {
+		8C71D95908640EDF00C9C0BD /* Release configuration for PBXProject "CotEditor" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1106,8 +1085,6 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1122,56 +1099,51 @@
 		2A3E84801D07296200070A54 /* Build configuration list for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A3E847E1D07296200070A54 /* Debug */,
-				2A36F04B2C931B7A00C0F3C4 /* Debug-Sparkle */,
-				2A3E847F1D07296200070A54 /* Release */,
-				2A36F0512C931B9600C0F3C4 /* Release-Sparkle */,
+				2A3E847E1D07296200070A54 /* Debug configuration for PBXAggregateTarget "Update Help Index" */,
+				2A36F04B2C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXAggregateTarget "Update Help Index" */,
+				2A3E847F1D07296200070A54 /* Release configuration for PBXAggregateTarget "Update Help Index" */,
+				2A36F0512C931B9600C0F3C4 /* Release-Sparkle configuration for PBXAggregateTarget "Update Help Index" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		2A3F18FE203270BE002F1CA7 /* Build configuration list for PBXNativeTarget "UI Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A3F18FF203270BE002F1CA7 /* Debug */,
-				2A36F04A2C931B7A00C0F3C4 /* Debug-Sparkle */,
-				2A3F1900203270BE002F1CA7 /* Release */,
-				2A36F0502C931B9600C0F3C4 /* Release-Sparkle */,
+				2A3F18FF203270BE002F1CA7 /* Debug configuration for PBXNativeTarget "UI Tests" */,
+				2A36F04A2C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "UI Tests" */,
+				2A3F1900203270BE002F1CA7 /* Release configuration for PBXNativeTarget "UI Tests" */,
+				2A36F0502C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "UI Tests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A6F0E051B5500E100C2D03C /* Debug */,
-				2A36F0472C931B7A00C0F3C4 /* Debug-Sparkle */,
-				2A6F0E061B5500E100C2D03C /* Release */,
-				2A36F04D2C931B9600C0F3C4 /* Release-Sparkle */,
+				2A6F0E051B5500E100C2D03C /* Debug configuration for PBXNativeTarget "CotEditor" */,
+				2A36F0472C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "CotEditor" */,
+				2A6F0E061B5500E100C2D03C /* Release configuration for PBXNativeTarget "CotEditor" */,
+				2A36F04D2C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "CotEditor" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2AC71DE61BF0BDBC002E1434 /* Debug */,
-				2A36F0492C931B7A00C0F3C4 /* Debug-Sparkle */,
-				2AC71DE71BF0BDBC002E1434 /* Release */,
-				2A36F04F2C931B9600C0F3C4 /* Release-Sparkle */,
+				2AC71DE61BF0BDBC002E1434 /* Debug configuration for PBXNativeTarget "Tests" */,
+				2A36F0492C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "Tests" */,
+				2AC71DE71BF0BDBC002E1434 /* Release configuration for PBXNativeTarget "Tests" */,
+				2A36F04F2C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "Tests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		8C71D95708640EDF00C9C0BD /* Build configuration list for PBXProject "CotEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8C71D95808640EDF00C9C0BD /* Debug */,
-				2A36F0462C931B7A00C0F3C4 /* Debug-Sparkle */,
-				8C71D95908640EDF00C9C0BD /* Release */,
-				2A36F04C2C931B9600C0F3C4 /* Release-Sparkle */,
+				8C71D95808640EDF00C9C0BD /* Debug configuration for PBXProject "CotEditor" */,
+				2A36F0462C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXProject "CotEditor" */,
+				8C71D95908640EDF00C9C0BD /* Release configuration for PBXProject "CotEditor" */,
+				2A36F04C2C931B9600C0F3C4 /* Release-Sparkle configuration for PBXProject "CotEditor" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
