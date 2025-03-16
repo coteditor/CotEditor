@@ -66,25 +66,6 @@ public extension URL {
     }
     
     
-    /// Creates an URL with a unique filename at the same directory by appending a number before the path extension.
-    ///
-    /// - Parameters:
-    ///   - suffix: The name suffix to be appended before the number.
-    /// - Returns: A unique file URL, or `self` if it is already unique.
-    func appendingUniqueNumber(suffix: String? = nil) -> URL {
-        
-        let components = self.deletingPathExtension().lastPathComponent.numberingComponents(suffix: suffix)
-        let baseName = components.base.appending(suffix ?? "")
-        let pathExtension = self.pathExtension
-        let baseURL = self.deletingLastPathComponent()
-        
-        return (components.count...).lazy
-            .map { $0 < 2 ? baseName : "\(baseName) \($0)" }
-            .map { baseURL.appending(component: $0).appendingPathExtension(pathExtension) }
-            .first { !$0.isReachable }!
-    }
-    
-    
     /// Checks the given URL is an ancestor of the receiver.
     ///
     /// - Parameter url: The child candidate URL.

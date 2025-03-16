@@ -468,9 +468,14 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: The file node created.
     func duplicateItem(at node: FileNode) throws -> FileNode {
         
-        let suffix = String(localized: "copy", defaultValue: " copy",
-                            comment: "suffix for duplicated file/folder name (Note that there is a space before the word. In certain languages, this space should be removed.)")
-        let duplicatedURL = node.fileURL.appendingUniqueNumber(suffix: suffix)
+        let format = NumberingFormat { (base) in
+            String(localized: "FileCopyFormat.single", defaultValue: "\(base) copy",
+                   comment: "duplicated form of file/folder name")
+        } numbered: { (base, count) in
+            String(localized: "FileCopyFormat.numbered", defaultValue: "\(base) copy \(count)",
+                   comment: "duplicated form of file/folder name with number")
+        }
+        let duplicatedURL = node.fileURL.appendingUniqueNumber(format: format)
         
         var coordinationError: NSError?
         var copyError: (any Error)?

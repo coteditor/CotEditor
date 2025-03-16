@@ -62,17 +62,82 @@ struct StringFilename {
         #expect("test 5".numberingComponents() == ("test", 5))
         #expect("test copy".numberingComponents() == ("test copy", 1))
         #expect("test copy 5".numberingComponents() == ("test copy", 5))
+    }
+    
+    
+    @Test func englishFormat() {
         
-        #expect(" ".numberingComponents(suffix: " copy") == (" ", 1))
-        #expect("1".numberingComponents(suffix: " copy") == ("1", 1))
-        #expect(" 1".numberingComponents(suffix: " copy") == (" 1", 1))
-        #expect("test".numberingComponents(suffix: " copy") == ("test", 1))
-        #expect("test 5".numberingComponents(suffix: " copy") == ("test 5", 1))
-        #expect("test copy".numberingComponents(suffix: " copy") == ("test", 1))
-        #expect("test copy 5".numberingComponents(suffix: " copy") == ("test", 5))
-        #expect(" copy".numberingComponents(suffix: " copy") == (" copy", 1))
-        #expect("  copy".numberingComponents(suffix: " copy") == (" ", 1))
-        #expect("copy 5".numberingComponents(suffix: " copy") == ("copy 5", 1))
+        let format = NumberingFormat { base in
+            "\(base) copy"
+        } numbered: { base, count in
+            "\(base) copy \(count)"
+        }
+        
+        #expect(format.components(" ") == (" ", 1))
+        #expect(format.components("1") == ("1", 1))
+        #expect(format.components(" 1") == (" 1", 1))
+        #expect(format.components("test") == ("test", 1))
+        #expect(format.components("test 5") == ("test 5", 1))
+        #expect(format.components("test copy") == ("test", 1))
+        #expect(format.components("test copy 5") == ("test", 5))
+        #expect(format.components(" copy") == (" copy", 1))
+        #expect(format.components("  copy") == (" ", 1))
+        #expect(format.components("copy 5") == ("copy 5", 1))
+        
+        #expect(format.filename(base: "test", count: 1) == "test copy")
+        #expect(format.filename(base: "test 1", count: 1) == "test 1 copy")
+        #expect(format.filename(base: "test", count: 2) == "test copy 2")
+        #expect(format.filename(base: "test 1", count: 2) == "test 1 copy 2")
+    }
+    
+    
+    @Test func czechFormat() {
+        
+        let format = NumberingFormat { base in
+            "\(base) (kopie)"
+        } numbered: { base, count in
+            "\(base) (kopie \(count))"
+        }
+        #expect(format.components(" ") == (" ", 1))
+        #expect(format.components("1") == ("1", 1))
+        #expect(format.components(" 1") == (" 1", 1))
+        #expect(format.components("test") == ("test", 1))
+        #expect(format.components("test 5") == ("test 5", 1))
+        #expect(format.components("test (kopie)") == ("test", 1))
+        #expect(format.components("test (kopie 5)") == ("test", 5))
+        #expect(format.components(" (kopie)") == (" (kopie)", 1))
+        #expect(format.components("  (kopie)") == (" ", 1))
+        #expect(format.components("(kopie 5)") == ("(kopie 5)", 1))
+        
+        #expect(format.filename(base: "test", count: 1) == "test (kopie)")
+        #expect(format.filename(base: "test 1", count: 1) == "test 1 (kopie)")
+        #expect(format.filename(base: "test", count: 2) == "test (kopie 2)")
+        #expect(format.filename(base: "test 1", count: 2) == "test 1 (kopie 2)")
+    }
+    
+    
+    @Test func spanishFormat() {
+        
+        let format = NumberingFormat { base in
+            "Copia de \(base)"
+        } numbered: { base, count in
+            "Copia de \(base) \(count)"
+        }
+        #expect(format.components(" ") == (" ", 1))
+        #expect(format.components("1") == ("1", 1))
+        #expect(format.components(" 1") == (" 1", 1))
+        #expect(format.components("test") == ("test", 1))
+        #expect(format.components("test 5") == ("test 5", 1))
+        #expect(format.components("Copia de test") == ("test", 1))
+        #expect(format.components("Copia de test 5") == ("test", 5))
+        #expect(format.components("Copia de ") == ("Copia de ", 1))
+        #expect(format.components("Copia de  ") == (" ", 1))
+        #expect(format.components("Copia de 5") == ("5", 1))
+        
+        #expect(format.filename(base: "test", count: 1) == "Copia de test")
+        #expect(format.filename(base: "test 1", count: 1) == "Copia de test 1")
+        #expect(format.filename(base: "test", count: 2) == "Copia de test 2")
+        #expect(format.filename(base: "test 1", count: 2) == "Copia de test 1 2")
     }
     
     
