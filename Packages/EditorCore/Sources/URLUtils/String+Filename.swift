@@ -42,6 +42,22 @@ public extension String {
         
         return String(match.1)
     }
+    
+    
+    /// Creates a unique name from the given names by adding the smallest unique number if needed.
+    ///
+    /// - Parameters:
+    ///   - names: The names already taken.
+    /// - Returns: A unique name.
+    func appendingUniqueNumber(in names: [String]) -> String {
+        
+        let components = self.numberingComponents()
+        let baseName = components.base
+        
+        return (components.count...).lazy
+            .map { $0 < 2 ? baseName : "\(baseName) \($0)" }
+            .first { !names.contains($0) }!
+    }
 }
 
 
@@ -66,24 +82,5 @@ extension String {
         let count = match.number.flatMap { Int($0) } ?? 1
         
         return (base, count)
-    }
-}
-
-
-public extension Collection<String> {
-    
-    /// Creates a unique name from the receiver's elements by adding the smallest unique number if needed.
-    ///
-    /// - Parameters:
-    ///   - proposedName: The name candidate.
-    /// - Returns: A unique name.
-    func createAvailableName(for proposedName: String) -> String {
-        
-        let components = proposedName.numberingComponents()
-        let baseName = components.base
-        
-        return (components.count...).lazy
-            .map { $0 < 2 ? baseName : "\(baseName) \($0)" }
-            .first { !self.contains($0) }!
     }
 }

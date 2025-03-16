@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -158,7 +158,8 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     @discardableResult
     func createUntitledSetting() throws -> String {
         
-        let name = self.savableSettingName(for: String(localized: "Untitled", comment: "initial setting filename"))
+        let name = String(localized: "Untitled", comment: "initial setting filename")
+            .appendingUniqueNumber(in: self.settingNames)
         
         try self.save(setting: Setting(), name: name)
         

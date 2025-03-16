@@ -213,13 +213,6 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns setting name appending number suffix without extension.
-    func savableSettingName(for proposedName: String) -> String {
-        
-        self.settingNames.createAvailableName(for: proposedName)
-    }
-    
-    
     /// Validates whether the setting name is valid (for a filename) and throw an error if not.
     ///
     /// - Parameters:
@@ -304,7 +297,7 @@ extension SettingFileManaging {
     @discardableResult
     func duplicateSetting(name: String) throws -> String {
         
-        let newName = self.savableSettingName(for: name)
+        let newName = name.appendingUniqueNumber(in: self.settingNames)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
             throw SettingFileError(.noSourceFile, name: name)

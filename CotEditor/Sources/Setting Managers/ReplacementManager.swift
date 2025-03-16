@@ -91,7 +91,8 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     @discardableResult
     func createUntitledSetting() throws -> String {
         
-        let name = self.savableSettingName(for: String(localized: "Untitled", comment: "initial setting filename"))
+        let name = String(localized: "Untitled", comment: "initial setting filename")
+            .appendingUniqueNumber(in: self.settingNames)
         
         try self.save(setting: Setting(), name: name)
         

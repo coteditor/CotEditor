@@ -76,14 +76,14 @@ struct StringFilename {
     }
     
     
-    @Test func createAvailableNames() {
+    @Test func appendingUniqueNumber() {
         
         let names = ["foo", "foo 3", "foo copy 3", "foo 4", "foo 7"]
         
-        #expect(names.createAvailableName(for: "foo") == "foo 2")
-        #expect(names.createAvailableName(for: "foo 2") == "foo 2")
-        #expect(names.createAvailableName(for: "foo 3") == "foo 5")
+        #expect("foo".appendingUniqueNumber(in: names) == "foo 2")
+        #expect("foo 2".appendingUniqueNumber(in: names) == "foo 2")
+        #expect("foo 3".appendingUniqueNumber(in: names) == "foo 5")
         
-        #expect([].createAvailableName(for: "foo") == "foo")
+        #expect("foo".appendingUniqueNumber(in: []) == "foo")
     }
 }
