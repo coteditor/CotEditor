@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Update the naming format when duplicating files/folders in the file browser.
 - Stop appending the “copy” suffix when duplicating user settings, such as syntax definitions.
 
 

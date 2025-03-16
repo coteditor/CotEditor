@@ -74,7 +74,7 @@ public extension URL {
     func appendingUniqueNumber(suffix: String? = nil) -> URL {
         
         let components = self.deletingPathExtension().lastPathComponent.numberingComponents(suffix: suffix)
-        let baseName = if let suffix { "\(components.base) \(suffix)" } else { String(components.base) }
+        let baseName = if let suffix { "\(components.base)\(suffix)" } else { String(components.base) }
         let count = components.count ?? 1
         let pathExtension = self.pathExtension
         let baseURL = self.deletingLastPathComponent()

@@ -458,84 +458,91 @@
       }
     },
     "copy" : {
-      "comment" : "suffix for duplicated file/folder name",
+      "comment" : "suffix for duplicated file/folder name (Note that there is a space before the word. In certain languages, this space should be removed.)",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopírovat"
+            "value" : " (kopie)"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "kopie"
+            "value" : " Kopie"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : " copy"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "copy"
+            "value" : " copy"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "copiar"
+            "value" : " copiar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "copie"
+            "value" : " copie"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copia"
+            "value" : " copia"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "コピー"
+            "value" : "のコピー"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "복사"
+            "value" : " 복사본"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "kopieer"
+            "value" : " kopie"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "kopia"
+            "value" : "-kopia"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(cópia)"
+            "value" : " - cópia"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "kopyası"
+            "value" : " kopyası"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拷贝"
+            "value" : "_副本"
           }
         },
         "zh-Hant" : {

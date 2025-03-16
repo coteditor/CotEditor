@@ -49,7 +49,7 @@ extension String {
     
     /// Splits the receiver into parts of filename for unique numbering.
     ///
-    /// - Parameter suffix: The suffix for filename numbering, such as "copy".
+    /// - Parameter suffix: The suffix for filename numbering, such as " copy".
     /// - Returns: The components.
     func numberingComponents(suffix: String? = nil) -> (base: Substring, count: Int?) {
         
@@ -61,7 +61,7 @@ extension String {
         let hasSuffix: Bool
         if let suffix {
             let suffix = NSRegularExpression.escapedTemplate(for: suffix)
-            let regex = try! Regex("(?<base>.+?)(?<suffix> \(suffix)(?: (?<number>[0-9]+))?)?",
+            let regex = try! Regex("(?<base>.+?)(?<suffix>\(suffix)(?: (?<number>[0-9]+))?)?",
                                    as: (Substring, base: Substring, suffix: Substring?, number: Substring?).self)
             let match = self.wholeMatch(of: regex)!
             base = match.base
