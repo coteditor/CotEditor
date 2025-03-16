@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,6 +60,7 @@ extension String {
         let number: Substring?
         let hasSuffix: Bool
         if let suffix {
+            let suffix = NSRegularExpression.escapedTemplate(for: suffix)
             let regex = try! Regex("(?<base>.+?)(?<suffix> \(suffix)(?: (?<number>[0-9]+))?)?",
                                    as: (Substring, base: Substring, suffix: Substring?, number: Substring?).self)
             let match = self.wholeMatch(of: regex)!

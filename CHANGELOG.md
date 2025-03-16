@@ -3,6 +3,10 @@
 5.1.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the Portuguese localization where the app crashes when attempting to duplicate an item in the file browser.
+
 
 
 5.1.2 (707)
