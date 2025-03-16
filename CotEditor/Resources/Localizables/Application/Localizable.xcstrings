@@ -458,7 +458,7 @@
       }
     },
     "copy" : {
-      "comment" : "suffix for copied setting file",
+      "comment" : "suffix for duplicated file/folder name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -3,6 +3,11 @@
 5.1.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Stop appending the “copy” suffix when duplicating user settings, such as syntax definitions.
+
+
 ### Fixes
 
 - Fix an issue in the Portuguese localization where the app crashes when attempting to duplicate an item in the file browser.

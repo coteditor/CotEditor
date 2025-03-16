@@ -468,7 +468,8 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: The file node created.
     func duplicateItem(at node: FileNode) throws -> FileNode {
         
-        let duplicatedURL = node.fileURL.appendingUniqueNumber(suffix: String(localized: "copy", comment: "suffix for copied setting file"))
+        let suffix = String(localized: "copy", comment: "suffix for duplicated file/folder name")
+        let duplicatedURL = node.fileURL.appendingUniqueNumber(suffix: suffix)
         
         var coordinationError: NSError?
         var copyError: (any Error)?

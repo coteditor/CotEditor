@@ -214,11 +214,9 @@ extension SettingFileManaging {
     
     
     /// Returns setting name appending number suffix without extension.
-    func savableSettingName(for proposedName: String, appendingCopySuffix: Bool = false) -> String {
+    func savableSettingName(for proposedName: String) -> String {
         
-        let suffix = appendingCopySuffix ? String(localized: "copy", comment: "suffix for copied setting file") : nil
-        
-        return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
+        self.settingNames.createAvailableName(for: proposedName)
     }
     
     
@@ -306,7 +304,7 @@ extension SettingFileManaging {
     @discardableResult
     func duplicateSetting(name: String) throws -> String {
         
-        let newName = self.savableSettingName(for: name, appendingCopySuffix: true)
+        let newName = self.savableSettingName(for: name)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
             throw SettingFileError(.noSourceFile, name: name)

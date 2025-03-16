@@ -89,21 +89,19 @@ extension String {
 
 public extension Collection<String> {
     
-    /// Creates a unique name from the receiver's elements by adding the suffix and also a number if needed.
+    /// Creates a unique name from the receiver's elements by adding the smallest unique number if needed.
     ///
     /// - Parameters:
     ///   - proposedName: The name candidate.
-    ///   - suffix: The name suffix to be appended before the number.
     /// - Returns: A unique name.
-    func createAvailableName(for proposedName: String, suffix: String? = nil) -> String {
+    func createAvailableName(for proposedName: String) -> String {
         
-        let components = proposedName.numberingComponents(suffix: suffix)
-        let baseName = String(components.base) + (suffix.map { " " + $0 } ?? "")
+        let components = proposedName.numberingComponents()
+        let baseName = String(components.base)
+        let count = components.count ?? 1
         
-        guard components.count != nil || self.contains(baseName) else { return baseName }
-        
-        return ((components.count ?? 2)...).lazy
-            .map { "\(baseName) \($0)" }
+        return (count...).lazy
+            .map { $0 < 2 ? baseName : "\(baseName) \($0)" }
             .first { !self.contains($0) }!
     }
 }
