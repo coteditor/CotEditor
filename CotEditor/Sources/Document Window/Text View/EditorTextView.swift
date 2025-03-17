@@ -107,7 +107,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private let textFinder = TextFinder()
     
-    private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
+    private let matchingBracketPairs: [BracePair] = BracePair.braces + BracePair.quotes
     private var isTypingPairedQuotes = false
     
     private var mouseDownPoint: NSPoint = .zero

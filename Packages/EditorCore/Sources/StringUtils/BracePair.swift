@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,8 +33,10 @@ public extension Pair where T == Character {
     static let braces: [BracePair] = [BracePair("(", ")"),
                                       BracePair("{", "}"),
                                       BracePair("[", "]")]
+    static let quotes: [BracePair] = [BracePair("\"", "\""),
+                                      BracePair("'", "'"),
+                                      BracePair("`", "`")]
     static let ltgt = BracePair("<", ">")
-    static let doubleQuotes = BracePair("\"", "\"")
     
     
     enum PairIndex: Equatable, Sendable {
