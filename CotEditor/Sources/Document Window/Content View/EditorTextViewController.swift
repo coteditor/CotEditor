@@ -268,6 +268,12 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
+    func textViewDidChangeSelection(_ notification: Notification) {
+        
+        self.document.userActivity?.needsSave = true
+    }
+    
+    
     // MARK: Action Messages
     
     /// Shows the Go To sheet.

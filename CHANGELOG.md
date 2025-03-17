@@ -8,6 +8,7 @@
 - Automatically insert a closing pair also for single quotation mark and back quotation mark when the “Automatically insert closing brackets and quotes” option is enabled.
 - Update the naming format when duplicating files/folders in the file browser.
 - Stop appending the “copy” suffix when duplicating user settings, such as syntax definitions.
+- Improve the stability.
 
 
 ### Fixes

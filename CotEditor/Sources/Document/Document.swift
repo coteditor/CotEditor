@@ -727,18 +727,17 @@ extension Document: EditorSource {
     }
     
     
-    override func updateUserActivityState(_ activity: NSUserActivity) {
+    override func updateUserActivityState(_ userActivity: NSUserActivity) {
         
-        super.updateUserActivityState(activity)
+        super.updateUserActivityState(userActivity)
         
         if let textView = self.textView {
             let selectedRanges = textView.selectedRanges
                 .map(\.rangeValue)
                 .map(NSStringFromRange)
-            activity.addUserInfoEntries(from: [
+            userActivity.addUserInfoEntries(from: [
                 UserActivityInfo.selectedRanges.key: selectedRanges,
             ])
-            activity.needsSave = true
         }
     }
     
