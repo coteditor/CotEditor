@@ -470,10 +470,10 @@ final class DirectoryDocument: NSDocument {
         
         let format = NumberingFormat { (base) in
             String(localized: "FileCopyFormat.single", defaultValue: "\(base) copy",
-                   comment: "duplicated form of file/folder name")
+                   comment: "duplicated form of filename")
         } numbered: { (base, count) in
             String(localized: "FileCopyFormat.numbered", defaultValue: "\(base) copy \(count)",
-                   comment: "duplicated form of file/folder name with number")
+                   comment: "duplicated form of filename with number")
         }
         let duplicatedURL = node.fileURL.appendingUniqueNumber(format: format)
         

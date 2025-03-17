@@ -28,7 +28,7 @@ import Foundation
 
 public extension String {
     
-    /// The remainder of string after last dot removed.
+    /// The remainder of the string after the last dot removed.
     var deletingPathExtension: String {
         
         self.replacing(/^(.+)\.[^ .]+$/, with: \.1)
@@ -51,11 +51,10 @@ public extension String {
     /// - Returns: A unique name.
     func appendingUniqueNumber(in names: [String]) -> String {
         
-        let components = self.numberingComponents()
-        let baseName = components.base
+        let (base, count) = self.numberingComponents
         
-        return (components.count...).lazy
-            .map { $0 < 2 ? baseName : "\(baseName) \($0)" }
+        return (count...).lazy
+            .map { ($0 < 2) ? base : "\(base) \($0)" }
             .first { !names.contains($0) }!
     }
 }
@@ -63,10 +62,8 @@ public extension String {
 
 extension String {
     
-    /// Splits the receiver into parts of filename for unique numbering.
-    ///
-    /// - Returns: The components.
-    func numberingComponents() -> (base: String, count: Int) {
+    /// Splits the receiver into parts of filename for unique numbering..
+    var numberingComponents: (base: String, count: Int) {
         
         assert(!self.isEmpty)
         

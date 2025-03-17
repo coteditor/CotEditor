@@ -2631,7 +2631,7 @@
       }
     },
     "FileCopyFormat.numbered" : {
-      "comment" : "duplicated form of file/folder name with number",
+      "comment" : "duplicated form of filename with number",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2727,7 +2727,7 @@
       }
     },
     "FileCopyFormat.single" : {
-      "comment" : "duplicated form of file/folder name",
+      "comment" : "duplicated form of filename",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

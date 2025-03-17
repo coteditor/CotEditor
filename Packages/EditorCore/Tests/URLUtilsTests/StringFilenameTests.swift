@@ -55,13 +55,13 @@ struct StringFilename {
     
     @Test func numberingComponents() {
         
-        #expect(" ".numberingComponents() == (" ", 1))
-        #expect("1".numberingComponents() == ("1", 1))
-        #expect(" 1".numberingComponents() == (" 1", 1))
-        #expect("test".numberingComponents() == ("test", 1))
-        #expect("test 5".numberingComponents() == ("test", 5))
-        #expect("test copy".numberingComponents() == ("test copy", 1))
-        #expect("test copy 5".numberingComponents() == ("test copy", 5))
+        #expect(" ".numberingComponents == (" ", 1))
+        #expect("1".numberingComponents == ("1", 1))
+        #expect(" 1".numberingComponents == (" 1", 1))
+        #expect("test".numberingComponents == ("test", 1))
+        #expect("test 5".numberingComponents == ("test", 5))
+        #expect("test copy".numberingComponents == ("test copy", 1))
+        #expect("test copy 5".numberingComponents == ("test copy", 5))
     }
     
     
@@ -84,10 +84,10 @@ struct StringFilename {
         #expect(format.components("  copy") == (" ", 1))
         #expect(format.components("copy 5") == ("copy 5", 1))
         
-        #expect(format.filename(base: "test", count: 1) == "test copy")
-        #expect(format.filename(base: "test 1", count: 1) == "test 1 copy")
-        #expect(format.filename(base: "test", count: 2) == "test copy 2")
-        #expect(format.filename(base: "test 1", count: 2) == "test 1 copy 2")
+        #expect(format.filename("test", count: 1) == "test copy")
+        #expect(format.filename("test 1", count: 1) == "test 1 copy")
+        #expect(format.filename("test", count: 2) == "test copy 2")
+        #expect(format.filename("test 1", count: 2) == "test 1 copy 2")
     }
     
     
@@ -109,10 +109,10 @@ struct StringFilename {
         #expect(format.components("  (kopie)") == (" ", 1))
         #expect(format.components("(kopie 5)") == ("(kopie 5)", 1))
         
-        #expect(format.filename(base: "test", count: 1) == "test (kopie)")
-        #expect(format.filename(base: "test 1", count: 1) == "test 1 (kopie)")
-        #expect(format.filename(base: "test", count: 2) == "test (kopie 2)")
-        #expect(format.filename(base: "test 1", count: 2) == "test 1 (kopie 2)")
+        #expect(format.filename("test", count: 1) == "test (kopie)")
+        #expect(format.filename("test 1", count: 1) == "test 1 (kopie)")
+        #expect(format.filename("test", count: 2) == "test (kopie 2)")
+        #expect(format.filename("test 1", count: 2) == "test 1 (kopie 2)")
     }
     
     
@@ -134,10 +134,10 @@ struct StringFilename {
         #expect(format.components("Copia de  ") == (" ", 1))
         #expect(format.components("Copia de 5") == ("5", 1))
         
-        #expect(format.filename(base: "test", count: 1) == "Copia de test")
-        #expect(format.filename(base: "test 1", count: 1) == "Copia de test 1")
-        #expect(format.filename(base: "test", count: 2) == "Copia de test 2")
-        #expect(format.filename(base: "test 1", count: 2) == "Copia de test 1 2")
+        #expect(format.filename("test", count: 1) == "Copia de test")
+        #expect(format.filename("test 1", count: 1) == "Copia de test 1")
+        #expect(format.filename("test", count: 2) == "Copia de test 2")
+        #expect(format.filename("test 1", count: 2) == "Copia de test 1 2")
     }
     
     

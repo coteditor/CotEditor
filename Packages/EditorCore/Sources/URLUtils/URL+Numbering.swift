@@ -1,5 +1,5 @@
 //
-//  NumberingFormat.swift
+//  URL+Numbering.swift
 //  URLUtils
 //
 //  CotEditor
@@ -28,8 +28,8 @@ import Foundation
 
 public struct NumberingFormat: Sendable {
     
-    var format: (@Sendable ( _ base: String) -> String)
-    var numberedFormat: (@Sendable ( _ base: String, _ count: Int) -> String)
+    private var format: @Sendable (String) -> String
+    private var numberedFormat: @Sendable (String, Int) -> String
     
     
     public init(_ format: @Sendable @escaping (_ base: String) -> String, numbered numberedFormat: @Sendable @escaping (_ base: String, _ count: Int) -> String) {
@@ -50,12 +50,12 @@ public extension URL {
     func appendingUniqueNumber(format: NumberingFormat? = nil) -> URL {
         
         let format = format ?? NumberingFormat({ $0 }, numbered: { "\($0) \($1)" })
-        let components = format.components(self.deletingPathExtension().lastPathComponent)
-        let pathExtension = self.pathExtension
+        let (baseName, count) = format.components(self.deletingPathExtension().lastPathComponent)
         let baseURL = self.deletingLastPathComponent()
+        let pathExtension = self.pathExtension
         
-        return (components.count...).lazy
-            .map { format.filename(base: components.base, count: $0) }
+        return (count...).lazy
+            .map { format.filename(baseName, count: $0) }
             .map { baseURL.appending(component: $0).appendingPathExtension(pathExtension) }
             .first { !$0.isReachable }!
     }
@@ -64,18 +64,15 @@ public extension URL {
 
 extension NumberingFormat {
     
-    /// Creates the file name.
+    /// Creates the filename.
     ///
     /// - Parameters:
     ///   - base: The base name.
     ///   - count: The number to append.
     /// - Returns: A filename.
-    func filename(base: String, count: Int) -> String {
+    func filename(_ base: String, count: Int) -> String {
         
-        switch count {
-            case ...1: self.format(base)
-            default: self.numberedFormat(base, count)
-        }
+        (count < 2) ? self.format(base) : self.numberedFormat(base, count)
     }
     
     
@@ -98,20 +95,20 @@ extension NumberingFormat {
     /// The regular expression for parsing a numbered name.
     private var multiRegex: Regex<(Substring, base: Substring, count: Substring)> {
         
-        let multiPattern = NSRegularExpression.escapedPattern(for: self.numberedFormat("%@", 0))
+        let pattern = NSRegularExpression.escapedPattern(for: self.numberedFormat("%@", 0))
             .replacing("%@", with: "(?<base>.+)")
             .replacing("0", with: "(?<count>[0-9]+)")
         
-        return try! Regex(multiPattern)
+        return try! Regex(pattern)
     }
     
     
     /// The regular expression for parsing  name.
     private var singleRegex: Regex<(Substring, base: Substring)> {
         
-        let singlePattern = NSRegularExpression.escapedPattern(for: self.format("%@"))
+        let pattern = NSRegularExpression.escapedPattern(for: self.format("%@"))
             .replacing("%@", with: "(?<base>.+)")
         
-        return try! Regex(singlePattern)
+        return try! Regex(pattern)
     }
 }
