@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import Observation
 import Combine
 import ControlUI
 import Defaults
@@ -98,7 +97,6 @@ private extension StatusBar.Model {
         self.isActive = false
         
         self.defaultsObserver = nil
-        self.documentObservers.removeAll()
         self.document?.counter.statusBarRequirements = []
     }
     
@@ -107,43 +105,10 @@ private extension StatusBar.Model {
     private func invalidateObservation(document: Document?) {
         
         self.document?.counter.statusBarRequirements = []
-        self.isEditable = document?.isEditable != false
-        self.countResult = document?.counter.result
-        self.fileEncoding = document?.fileEncoding
         
         if let document, self.isActive {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
-            
-            self.documentObservers = [
-                document.$isEditable
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.isEditable = $0 },
-                document.didChangeFileEncoding
-                    .sink { [weak self] in self?.fileEncoding = $0 },
-                document.$lineEnding
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.lineEnding = $0 },
-            ]
-        } else {
-            self.documentObservers.removeAll()
-            self.lineEnding = nil
         }
-    }
-}
-
-
-private extension UserDefaults {
-    
-    /// The info types needed to be calculated.
-    var statusBarEditorInfo: EditorCounter.Types {
-        
-        EditorCounter.Types()
-            .union(self[.showStatusBarChars] ? .characters : [])
-            .union(self[.showStatusBarLines] ? .lines : [])
-            .union(self[.showStatusBarWords] ? .words : [])
-            .union(self[.showStatusBarLocation] ? .location : [])
-            .union(self[.showStatusBarLine] ? .line : [])
-            .union(self[.showStatusBarColumn] ? .column : [])
     }
 }
 
@@ -156,15 +121,8 @@ struct StatusBar: View {
         
         private(set) var document: Document?
         
-        var isEditable: Bool = true
-        var countResult: EditorCounter.Result?
-        
-        var fileEncoding: FileEncoding?
-        var lineEnding: LineEnding?
-        
         private var isActive: Bool = false
         private var defaultsObserver: AnyCancellable?
-        private var documentObservers: Set<AnyCancellable> = []
         
         
         init(document: Document? = nil) {
@@ -188,7 +146,6 @@ struct StatusBar: View {
     
     @AppStorage(.donationBadgeType) private var badgeType
     
-    @State private var encodingManager: EncodingManager = .shared
     @State private var hasDonated: Bool = false
     
     
@@ -197,72 +154,12 @@ struct StatusBar: View {
         HStack {
             if self.hasDonated, self.badgeType != .invisible {
                 CoffeeBadge(type: self.badgeType)
-                    .transition(.symbolEffect)
             }
-            if self.model.isEditable == false {
-                Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil")
-                    .symbolVariant(.slash)
-                    .labelStyle(.iconOnly)
-                    .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
-            }
-            if let result = self.model.countResult {
-                EditorCountView(result: result)
-            }
-            
-            Spacer()
             
             if let document = self.model.document {
-                if let fileSize = document.fileAttributes?.size {
-                    Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
-                        .monospacedDigit()
-                        .help(String(localized: "File size", table: "Document", comment: "tooltip"))
-                } else {
-                    NoneTextView()
-                }
-            }
-            
-            HStack(spacing: 2) {
-                if let fileEncoding = self.model.fileEncoding {
-                    Divider()
-                        .padding(.vertical, 4)
-                    
-                    Picker(selection: $model.fileEncoding ?? .utf8) {
-                        if !self.encodingManager.fileEncodings.contains(fileEncoding) {
-                            Text(fileEncoding.localizedName).tag(fileEncoding)
-                        }
-                        Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
-                            ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
-                                if let fileEncoding {
-                                    Text(fileEncoding.localizedName).tag(fileEncoding)
-                                } else {
-                                    Divider()
-                                }
-                            }
-                        }
-                    } label: {
-                        EmptyView()
-                    }
-                    .onChange(of: fileEncoding) { (_, newValue) in
-                        self.model.document?.askChangingEncoding(to: newValue)
-                    }
-                    .help(String(localized: "Text Encoding", table: "Document"))
-                    .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
-                }
-                
-                if let lineEnding = self.model.lineEnding {
-                    Divider()
-                        .padding(.vertical, 4)
-                    
-                    LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
-                                     selection: $model.lineEnding ?? .lf)
-                    .disabled(self.model.isEditable != true)
-                    .onChange(of: lineEnding) { (_, newValue) in
-                        self.model.document?.changeLineEnding(to: newValue)
-                    }
-                    .help(String(localized: "Line Endings", table: "Document"))
-                    .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
-                    .frame(width: 48)
-                }
+                DocumentStatusBar(document: document)
+            } else {
+                Spacer()
             }
         }
         .subscriptionStatusTask(for: Donation.groupID) { taskState in
@@ -270,12 +167,110 @@ struct StatusBar: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
-        .animation(.default.speed(1.5), value: self.model.isEditable)
         .buttonStyle(.borderless)
         .controlSize(.small)
         .padding(.leading, 10)
         .frame(height: 23)
         .background(.windowBackground)
+    }
+}
+
+
+private struct CoffeeBadge: View {
+    
+    var type: BadgeType
+    
+    @State private var isMessagePresented = false
+    
+    
+    var body: some View {
+        
+        Toggle(self.type.label, systemImage: self.type.symbolName, isOn: $isMessagePresented)
+            .toggleStyle(.button)
+            .fontWeight(.semibold)
+            .labelStyle(.iconOnly)
+            .popover(isPresented: $isMessagePresented) {
+                Text("Thank you for your kind support!", tableName: "Document", comment: "message for users who made a donation")
+                    .padding(.vertical, 8)
+                    .padding(.horizontal)
+            }
+    }
+}
+
+
+private struct DocumentStatusBar: View {
+    
+    var document: Document
+    
+    
+    @State private var isEditable: Bool = true
+    @State private var lineEnding: LineEnding = .lf
+    @State private var fileEncoding: FileEncoding = .utf8
+    @State private var encodingManager: EncodingManager = .shared
+    
+    
+    var body: some View {
+        
+        HStack {
+            if self.isEditable == false {
+                Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil.slash")
+                    .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
+                    .labelStyle(.iconOnly)
+            }
+            EditorCountView(result: self.document.counter.result)
+            
+            Spacer()
+            
+            if let fileSize = self.document.fileAttributes?.size {
+                Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
+                    .monospacedDigit()
+                    .help(String(localized: "File size", table: "Document", comment: "tooltip"))
+            } else {
+                NoneTextView()
+            }
+            
+            HStack(spacing: 4) {
+                Divider()
+                    .padding(.vertical, 4)
+                
+                Picker(String(localized: "Text Encoding", table: "Document"), selection: $fileEncoding) {
+                    Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
+                        ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
+                            if let fileEncoding {
+                                Text(fileEncoding.localizedName).tag(fileEncoding)
+                            } else {
+                                Divider()
+                            }
+                        }
+                    }
+                }
+                .onChange(of: self.fileEncoding) { (_, newValue) in
+                    self.document.askChangingEncoding(to: newValue)
+                }
+                .help(String(localized: "Text Encoding", table: "Document"))
+                .labelsHidden()
+                
+                Divider()
+                    .padding(.vertical, 4)
+                
+                LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
+                                 selection: $lineEnding)
+                .disabled(!self.document.isEditable)
+                .onChange(of: self.lineEnding) { (_, newValue) in
+                    self.document.changeLineEnding(to: newValue)
+                }
+                .help(String(localized: "Line Endings", table: "Document"))
+                .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
+                .frame(width: 48)
+            }
+        }
+        .onReceive(self.document.$isEditable) { self.isEditable = $0 }
+        .onReceive(self.document.$lineEnding) { self.lineEnding = $0 }
+        .onReceive(self.document.didChangeFileEncoding) { self.fileEncoding = $0 }
+        .onChange(of: self.document, initial: true) { (_, newValue) in
+            self.fileEncoding = newValue.fileEncoding
+        }
+        .animation(.default.speed(1.5), value: self.isEditable)
     }
 }
 
@@ -430,31 +425,18 @@ private struct LineEndingPicker: NSViewRepresentable {
 }
 
 
-private struct CoffeeBadge: View {
+private extension UserDefaults {
     
-    var type: BadgeType
-    
-    @State private var isMessagePresented = false
-    
-    
-    var body: some View {
+    /// The info types needed to be calculated.
+    var statusBarEditorInfo: EditorCounter.Types {
         
-        Button {
-            self.isMessagePresented.toggle()
-        } label: {
-            Label {
-                Text(self.type.label)
-            } icon: {
-                Image(systemName: self.type.symbolName)
-            }
-        }
-        .fontWeight(.semibold)
-        .labelStyle(.iconOnly)
-        .popover(isPresented: $isMessagePresented) {
-            Text("Thank you for your kind support!", tableName: "Document", comment: "message for users who made a donation")
-                .padding(.vertical, 8)
-                .padding(.horizontal)
-        }
+        EditorCounter.Types()
+            .union(self[.showStatusBarChars] ? .characters : [])
+            .union(self[.showStatusBarLines] ? .lines : [])
+            .union(self[.showStatusBarWords] ? .words : [])
+            .union(self[.showStatusBarLocation] ? .location : [])
+            .union(self[.showStatusBarLine] ? .line : [])
+            .union(self[.showStatusBarColumn] ? .column : [])
     }
 }
 
@@ -462,10 +444,9 @@ private struct CoffeeBadge: View {
 // MARK: - Preview
 
 #Preview {
-    let model = StatusBar.Model()
-    let result = EditorCounter.Result()
-    result.characters = .init(entire: 1024, selected: 64)
-    model.countResult = result
+    let document = Document()
+    document.isEditable = false
+    document.counter.result.lines = .init(entire: 1024, selected: 64)
     
-    return StatusBar(model: StatusBar.Model())
+    return StatusBar(model: StatusBar.Model(document: document))
 }
