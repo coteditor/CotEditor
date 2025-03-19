@@ -14,8 +14,8 @@ commands:
 - beginString: make
 - beginString: new
 - beginString: panic
-- beginString: print
-- beginString: println
+- beginString: Print
+- beginString: Println
 - beginString: real
 - beginString: recover
 commentDelimiters:
