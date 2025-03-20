@@ -305,7 +305,7 @@ private struct ThemeMetadataView: View {
     }
     
     
-    @ViewBuilder private func itemView(_ title: String, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
+    @ViewBuilder private func itemView(_ title: some StringProtocol, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
         
         Text(title)
             .fontWeight(.bold)
