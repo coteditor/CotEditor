@@ -226,7 +226,7 @@ private struct DocumentStatusBar: View {
                     .monospacedDigit()
                     .help(String(localized: "File size", table: "Document", comment: "tooltip"))
             } else {
-                NoneTextView()
+                Text.none
             }
             
             HStack(spacing: 4) {

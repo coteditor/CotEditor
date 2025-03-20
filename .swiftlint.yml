@@ -104,6 +104,8 @@ identifier_name:
     - x
     - y
 
+type_name:
+  allowed_symbols: "_"
 
 custom_rules:
   comment_space:

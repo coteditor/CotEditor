@@ -172,15 +172,15 @@ private struct DocumentFileView: View {
         
         DisclosureGroup(String(localized: "File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                OptionalLabeledContent(String(localized: "Created", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.attributes?.creationDate?.formatted(date: .abbreviated, time: .shortened))
-                OptionalLabeledContent(String(localized: "Modified", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.attributes?.modificationDate?.formatted(date: .abbreviated, time: .shortened))
-                OptionalLabeledContent(String(localized: "Size", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true)))
+                LabeledContent(String(localized: "Created", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.attributes?.creationDate?.formatted(date: .abbreviated, time: .shortened))
+                LabeledContent(String(localized: "Modified", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.attributes?.modificationDate?.formatted(date: .abbreviated, time: .shortened))
+                LabeledContent(String(localized: "Size", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true)))
                 
                 LabeledContent(String(localized: "Tags", table: "Document", comment: "label in document inspector")) {
                     if let tags = self.attributes?.tags, !tags.isEmpty {
@@ -194,15 +194,15 @@ private struct DocumentFileView: View {
                             }
                         }
                     } else {
-                        NoneTextView()
+                        Text.none
                     }
                 }
-                OptionalLabeledContent(String(localized: "Permissions", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.attributes?.permissions.formatted())
-                OptionalLabeledContent(String(localized: "Owner", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.attributes?.owner)
+                LabeledContent(String(localized: "Permissions", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.attributes?.permissions.formatted())
+                LabeledContent(String(localized: "Owner", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.attributes?.owner)
                 
                 LabeledContent(String(localized: "Full Path", table: "Document", comment: "label in document inspector")) {
                     if let fileURL = self.fileURL {
@@ -223,7 +223,7 @@ private struct DocumentFileView: View {
                             .buttonStyle(.borderless)
                         }
                     } else {
-                        NoneTextView()
+                        Text.none
                     }
                 }
             }
@@ -271,31 +271,31 @@ private struct CountLocationView: View {
         
         DisclosureGroup(String(localized: "Count", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                OptionalLabeledContent(String(localized: "Lines", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.result.lines.formatted)
+                LabeledContent(String(localized: "Lines", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.result.lines.formatted)
                 .accessibilityAddTraits(.updatesFrequently)
-                OptionalLabeledContent(String(localized: "Characters", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.result.characters.formatted)
+                LabeledContent(String(localized: "Characters", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.result.characters.formatted)
                 .accessibilityAddTraits(.updatesFrequently)
-                OptionalLabeledContent(String(localized: "Words", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.result.words.formatted)
+                LabeledContent(String(localized: "Words", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.result.words.formatted)
                 .accessibilityAddTraits(.updatesFrequently)
                 .padding(.bottom, 8)
                 
-                OptionalLabeledContent(String(localized: "Location", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.result.location?.formatted())
+                LabeledContent(String(localized: "Location", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.result.location?.formatted())
                 .accessibilityAddTraits(.updatesFrequently)
-                OptionalLabeledContent(String(localized: "Line", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.result.line?.formatted())
+                LabeledContent(String(localized: "Line", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.result.line?.formatted())
                 .accessibilityAddTraits(.updatesFrequently)
-                OptionalLabeledContent(String(localized: "Column", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.result.column?.formatted())
+                LabeledContent(String(localized: "Column", table: "Document",
+                                      comment: "label in document inspector"),
+                               optional: self.result.column?.formatted())
                 .accessibilityAddTraits(.updatesFrequently)
             }
             .monospacedDigit()
@@ -313,7 +313,7 @@ private struct CharacterPaneView: View {
     
     
     var body: some View {
-    
+        
         DisclosureGroup(String(localized: "Character", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 if let scalars = self.character?.unicodeScalars {
@@ -335,16 +335,16 @@ private struct CharacterPaneView: View {
                         }
                     }
                     if scalars.count == 1, let scalar = scalars.first {
-                        OptionalLabeledContent(String(localized: "Name", table: "Document",
-                                                      comment: "label in document inspector"),
-                                               value: scalar.name)
-                        OptionalLabeledContent(String(localized: "Block", table: "Document",
-                                                      comment: "label in document inspector"),
-                                               value: scalar.localizedBlockName)
+                        LabeledContent(String(localized: "Name", table: "Document",
+                                              comment: "label in document inspector"),
+                                       optional: scalar.name)
+                        LabeledContent(String(localized: "Block", table: "Document",
+                                              comment: "label in document inspector"),
+                                       optional: scalar.localizedBlockName)
                         let category = scalar.properties.generalCategory
-                        OptionalLabeledContent(String(localized: "Category", table: "Document",
-                                                      comment: "label in document inspector"),
-                                               value: "\(category.longName) (\(category.shortName))")
+                        LabeledContent(String(localized: "Category", table: "Document",
+                                              comment: "label in document inspector"),
+                                       value: "\(category.longName) (\(category.shortName))")
                     }
                 } else {
                     Text("Not selected", tableName: "Document", comment: "placeholder")

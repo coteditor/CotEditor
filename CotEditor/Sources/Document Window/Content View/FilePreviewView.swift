@@ -126,10 +126,10 @@ struct ImageAttributesView: View {
                            value: self.attributes.pixelSize.formatted)
             LabeledContent(String(localized: "Image DPI", table: "Document"),
                            value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
-            OptionalLabeledContent(String(localized: "Color model", table: "Document"),
-                                   value: self.attributes.colorSpace?.colorSpaceModel.localizedName)
-            OptionalLabeledContent(String(localized: "ColorSync profile", table: "Document"),
-                                   value: self.attributes.colorSpace?.localizedName)
+            LabeledContent(String(localized: "Color model", table: "Document"),
+                           optional: self.attributes.colorSpace?.colorSpaceModel.localizedName)
+            LabeledContent(String(localized: "ColorSync profile", table: "Document"),
+                           optional: self.attributes.colorSpace?.localizedName)
         }
     }
 }

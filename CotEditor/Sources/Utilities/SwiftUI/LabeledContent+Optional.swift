@@ -1,5 +1,5 @@
 //
-//  OptionalLabeledContent.swift
+//  LabeledContent+Optional.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,40 +25,46 @@
 
 import SwiftUI
 
-struct OptionalLabeledContent: View {
+extension LabeledContent where Label == Text, Content == _OptionalContent {
     
-    var title: String
-    var value: String?
-    
-    
-    init(_ title: String, value: String?) {
+    /// Creates a labeled informational view showing “–” if the value is `nil`.
+    ///
+    /// - Parameters:
+    ///   - title: A string that describes the purpose of the view.
+    ///   - value: The optional value being labeled.
+    init(_ title: some StringProtocol, optional value: String?) {
         
-        self.title = title
-        self.value = value
-    }
-    
-    
-    var body: some View {
-        
-        LabeledContent(self.title) {
-            if let value {
-                Text(value)
-                    .textSelection(.enabled)
-            } else {
-                NoneTextView()
-            }
+        self.init(title) {
+            _OptionalContent(value: value)
         }
     }
 }
 
 
-struct NoneTextView: View {
+struct _OptionalContent: View {
+    
+    var value: String?
+    
     
     var body: some View {
         
+        if let value {
+            Text(value)
+                .textSelection(.enabled)
+        } else {
+            Text.none
+        }
+    }
+}
+
+
+extension Text {
+    
+    static var none: Text {
+        
         Text(verbatim: "–")
-            .foregroundStyle(.tertiary)
             .accessibilityLabel(String(localized: "None", comment: "accessibility label for “–”"))
+            .foregroundStyle(.tertiary)
     }
 }
 
@@ -67,8 +73,8 @@ struct NoneTextView: View {
 
 #Preview {
     Form {
-        OptionalLabeledContent("Value:", value: 1024.formatted())
-        OptionalLabeledContent("None:", value: nil)
+        LabeledContent("Value:", optional: 1024.formatted())
+        LabeledContent("None:", optional: nil)
     }
     .formStyle(.columns)
     .scenePadding()
