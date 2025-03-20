@@ -14,8 +14,8 @@ commands:
 - beginString: make
 - beginString: new
 - beginString: panic
-- beginString: print
-- beginString: println
+- beginString: Print
+- beginString: Println
 - beginString: real
 - beginString: recover
 commentDelimiters:
@@ -58,9 +58,9 @@ kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2025-03-21'
   license: Same as CotEditor
-  version: 1.1.0
+  version: 1.1.1
 numbers:
 - beginString: 0[xX][0-9a-fA-F]+
   regularExpression: true
