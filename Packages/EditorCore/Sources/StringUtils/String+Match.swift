@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,20 +47,18 @@ public extension FilteredItem {
     /// Attributed string of which matched parts are styled as `.inlinePresentationIntent = .stronglyEmphasized`.
     var attributedString: AttributedString {
         
-        var attributedString = AttributedString(self.string)
+        let attributedString = AttributedString(self.string)
         
         switch self.state {
             case .noFilter:
                 return attributedString
                 
             case .filtered(let ranges):
-                for range in ranges {
-                    guard let attrRange = Range(range, in: attributedString) else { continue }
-                    
-                    attributedString[attrRange].inlinePresentationIntent = .stronglyEmphasized
-                }
-                
-                return attributedString
+                return ranges
+                    .compactMap { Range($0, in: attributedString) }
+                    .reduce(into: attributedString) { attributedString, range in
+                        attributedString[range].inlinePresentationIntent = .stronglyEmphasized
+                    }
         }
     }
 }
