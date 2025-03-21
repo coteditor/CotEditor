@@ -14,6 +14,7 @@
 ### Fixes
 
 - Fix an issue in the Portuguese localization where the app crashes when attempting to duplicate an item in the file browser.
+- Fix an issue on CotEditor 5.1.2 where the line number view doesn't update properly under certain circumstances.
 
 
 

@@ -30,7 +30,7 @@ import CoreText.CTFont
 
 final class LineNumberView: NSView {
     
-    private struct DrawingInfo {
+    private struct DrawingInfo: Equatable {
         
         var fontSize: CGFloat
         var charWidth: CGFloat
@@ -296,7 +296,12 @@ final class LineNumberView: NSView {
             let textFont = textView.font
         else { return assertionFailure() }
         
-        self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textFont.pointSize, scale: textView.scale)
+        let drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textFont.pointSize, scale: textView.scale)
+        
+        guard self.drawingInfo != drawingInfo else { return }
+        
+        self.drawingInfo = drawingInfo
+        self.needsDisplay = true
         
         self.invalidateThickness()
     }
@@ -328,7 +333,6 @@ final class LineNumberView: NSView {
     private func updateTextView(_ textView: NSTextView?) {
         
         guard let textView else {
-            self.drawingInfo = nil
             self.textStorageObserver?.cancel()
             self.textViewSubscriptions.removeAll()
             return
@@ -350,6 +354,7 @@ final class LineNumberView: NSView {
                         .sink { [weak self] _ in
                             // -> The digit of the line numbers affect thickness.
                             self?.invalidateThickness()
+                            self?.needsDisplay = true
                         }
                 },
             
