@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,7 +47,9 @@ struct IncompatibleCharactersView: View {
     }
     
     
-    @State var model: Model
+    var document: Document?
+    
+    @State var model = Model()
     
     @State private var selection: Model.Item.ID?
     @State private var sortOrder: [KeyPathComparator<Model.Item>] = []
@@ -76,7 +78,7 @@ struct IncompatibleCharactersView: View {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
                     TableColumn(String(localized: "Line", table: "Document", comment: "table column header"), value: \.lowerBound) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
-                        if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.lowerBound) {
+                        if let line = self.document?.lineEndingScanner.lineNumber(at: $0.lowerBound) {
                             Text(line, format: .number)
                                 .monospacedDigit()
                         }
@@ -103,7 +105,7 @@ struct IncompatibleCharactersView: View {
                     }
                 }
                 .onChange(of: self.selection) { (_, newValue) in
-                    self.model.selectItem(id: newValue)
+                    self.selectItem(id: newValue)
                 }
                 .onChange(of: self.sortOrder) { (_, newValue) in
                     withAnimation {
@@ -117,23 +119,25 @@ struct IncompatibleCharactersView: View {
         .onDisappear {
             self.model.task?.cancel()
         }
+        .onChange(of: self.document, initial: true) { (_, newValue) in
+            self.model.document = newValue
+        }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Incompatible Characters", tableName: "Document"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, minHeight: self.model.items.isEmpty ? 60 : 120, alignment: .topLeading)
     }
-}
-
-
-private extension IncompatibleCharactersView.Model {
+    
+    
+    // MARK: Private Methods
     
     /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter id: The `id` of the item to select.
-    func selectItem(id: Item.ID?) {
+    func selectItem(id: Model.Item.ID?) {
         
         guard
-            let item = self.items[id: id],
+            let item = self.model.items[id: id],
             let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }
@@ -141,7 +145,10 @@ private extension IncompatibleCharactersView.Model {
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
     }
-    
+}
+
+
+private extension IncompatibleCharactersView.Model {
     
     /// Updates observations.
     func invalidateObservation() {
@@ -263,6 +270,6 @@ private extension NSTextStorage {
 }
 
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
-    IncompatibleCharactersView(model: .init())
+    IncompatibleCharactersView()
         .padding(12)
 }

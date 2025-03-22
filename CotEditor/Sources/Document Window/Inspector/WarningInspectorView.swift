@@ -34,7 +34,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         didSet {
             if self.isViewShown {
-                self.model.updateDocument(to: document)
+                self.model.document = document
             }
         }
     }
@@ -50,7 +50,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     required init(document: Document?) {
         
         self.document = document
-        self.model.updateDocument(to: document)
+        self.model.document = document
         
         super.init(rootView: WarningInspectorView(model: self.model))
     }
@@ -66,7 +66,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewWillAppear()
         
-        self.model.updateDocument(to: self.document)
+        self.model.document = self.document
     }
     
     
@@ -74,7 +74,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewDidDisappear()
         
-        self.model.updateDocument(to: nil)
+        self.model.document = nil
     }
 }
 
@@ -83,19 +83,7 @@ struct WarningInspectorView: View {
     
     @MainActor @Observable final class Model {
         
-        private(set) var document: Document?
-        
-        let incompatibleCharactersModel = IncompatibleCharactersView.Model()
-        
-        
-        /// Updates the represented document.
-        ///
-        /// - Parameter document: The new document, or `nil`.
-        func updateDocument(to document: Document?) {
-            
-            self.document = document
-            self.incompatibleCharactersModel.document = document
-        }
+        fileprivate(set) var document: Document?
     }
     
     
@@ -105,7 +93,7 @@ struct WarningInspectorView: View {
     var body: some View {
         
         VSplitView {
-            IncompatibleCharactersView(model: self.model.incompatibleCharactersModel)
+            IncompatibleCharactersView(document: self.model.document)
                 .padding(.bottom, 12)
             InconsistentLineEndingsView(document: self.model.document)
                 .padding(.top, 8)
