@@ -91,7 +91,7 @@ private extension StatusBar.Model {
     }
     
     
-    /// Called after the view  is removed from the view hierarchy in a window.
+    /// Called after the view is removed from the view hierarchy in a window.
     func onDisappear() {
         
         self.isActive = false

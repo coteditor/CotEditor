@@ -103,7 +103,7 @@ extension NumberingFormat {
     }
     
     
-    /// The regular expression for parsing  name.
+    /// The regular expression for parsing name.
     private var singleRegex: Regex<(Substring, base: Substring)> {
         
         let pattern = NSRegularExpression.escapedPattern(for: self.format("%@"))
