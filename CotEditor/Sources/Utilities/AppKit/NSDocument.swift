@@ -68,7 +68,7 @@ extension NSDocument {
     /// Invokes the passed-in block with `continueAsynchronousWorkOnMainThread` by marking it as `@MainActor`.
     ///
     /// - Parameter block: The block to be invoked.
-    nonisolated func continueAsynchronousWorkOnMainActor(_ block: @MainActor @escaping () -> Void) {
+    nonisolated final func continueAsynchronousWorkOnMainActor(_ block: @MainActor @escaping () -> Void) {
         
         self.continueAsynchronousWorkOnMainThread {
             MainActor.assumeIsolated(block)
