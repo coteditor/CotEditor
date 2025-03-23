@@ -611,6 +611,7 @@ extension Document: EditorSource {
         
         self.syntaxUpdateObserver?.cancel()
         self.textStorageObserver?.cancel()
+        self.defaultObservers.removeAll()
         self.counter.cancel()
         self.syntaxParser.cancel()
         self.urlDetector?.cancel()
