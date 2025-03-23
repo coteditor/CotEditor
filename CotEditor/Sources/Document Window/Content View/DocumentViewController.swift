@@ -156,7 +156,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             
             // observe editable change
             self.document.$isEditable
-                .receive(on: RunLoop.main)
                 .sink { [weak self] isEditable in
                     self?.editorViewControllers
                         .compactMap(\.textView)

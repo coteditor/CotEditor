@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -106,7 +106,6 @@ final class EditorViewController: NSSplitViewController {
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.outlineNavigator.items = $0 },
             self.document.$lineEnding
-                .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.textView?.lineEnding = $0 },
             self.document.didChangeSyntax
                 .sink { [weak self] _ in self?.applySyntax() },

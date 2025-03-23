@@ -410,10 +410,8 @@ private extension DocumentInspectorView.Model {
                 document.$fileEncoding
                     .sink { [weak self] in self?.textSettings?.encoding = $0 },
                 document.$lineEnding
-                    .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.textSettings?.lineEnding = $0 },
                 document.$mode
-                    .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.textSettings?.mode = $0 },
             ]
             
