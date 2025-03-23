@@ -74,7 +74,7 @@ import QuickLookUI
             }
         }
         
-        Task { @MainActor in
+        self.continueAsynchronousWorkOnMainActor {
             self.fileAttributes = fileAttributes
             self.isAlias = isAlias
             self.isFolderAlias = isFolderAlias

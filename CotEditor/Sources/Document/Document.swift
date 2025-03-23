@@ -380,7 +380,7 @@ extension Document: EditorSource {
         let fileAttributes = (self.fileURL != nil) ? FileAttributes(dictionary: attributes) : nil
         
         // set read values
-        DispatchQueue.syncOnMain {
+        self.continueAsynchronousWorkOnMainActor {
             if let fileAttributes {
                 self.fileAttributes = fileAttributes
                 self.isExecutable = fileAttributes.permissions.user.contains(.execute)
@@ -526,7 +526,7 @@ extension Document: EditorSource {
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_ACCESS
                 let fileEncoding = FileAttributes(dictionary: attributes)
-                Task { @MainActor in
+                self.continueAsynchronousWorkOnMainActor {
                     self.fileAttributes = fileEncoding
                 }
             } catch {

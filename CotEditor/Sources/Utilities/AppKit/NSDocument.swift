@@ -65,6 +65,17 @@ extension NSDocument.SaveOperationType {
 
 extension NSDocument {
     
+    /// Invokes the passed-in block with `continueAsynchronousWorkOnMainThread` by marking it as `@MainActor`.
+    ///
+    /// - Parameter block: The block to be invoked.
+    nonisolated func continueAsynchronousWorkOnMainActor(_ block: @MainActor @escaping () -> Void) {
+        
+        self.continueAsynchronousWorkOnMainThread {
+            MainActor.assumeIsolated(block)
+        }
+    }
+    
+    
     /// Reverts the receiver with the current document file without asking to the user in advance.
     ///
     /// - Parameter fileURL: The location from which the document contents are read, or `nil` to revert at the same location.
