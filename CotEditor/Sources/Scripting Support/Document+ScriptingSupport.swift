@@ -108,10 +108,10 @@ extension Document {
     }
     
     
-    /// Selection-object (TextSelection).
+    /// Selection-object (`TextSelection`).
     @objc var selectionObject: TextSelection {
         
-        self.selection
+        TextSelection(document: self)
     }
     
     

@@ -80,7 +80,6 @@ extension Document: EditorSource {
     
     let lineEndingScanner: LineEndingScanner
     let counter: EditorCounter
-    @ObservationIgnored private(set) lazy var selection = TextSelection(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
     
