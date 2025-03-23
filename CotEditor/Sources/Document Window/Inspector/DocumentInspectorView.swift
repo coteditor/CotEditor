@@ -407,7 +407,7 @@ private extension DocumentInspectorView.Model {
                 document.publisher(for: \.fileURL, options: .initial)
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.fileURL = $0 },
-                document.didChangeFileEncoding
+                document.$fileEncoding
                     .sink { [weak self] in self?.textSettings?.encoding = $0 },
                 document.$lineEnding
                     .receive(on: DispatchQueue.main)

@@ -74,7 +74,7 @@ extension Document: EditorSource {
     
     let textStorage = NSTextStorage()
     let syntaxParser: SyntaxParser
-    private(set) var fileEncoding: FileEncoding  { didSet { self.didChangeFileEncoding.send(fileEncoding) } }
+    @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
     @ObservationIgnored @Published private(set) var mode: Mode
     
@@ -83,7 +83,6 @@ extension Document: EditorSource {
     @ObservationIgnored private(set) lazy var selection = TextSelection(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
-    let didChangeFileEncoding = PassthroughSubject<FileEncoding, Never>()
     
     
     // MARK: Private Properties

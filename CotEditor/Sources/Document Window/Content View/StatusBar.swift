@@ -266,10 +266,7 @@ private struct DocumentStatusBar: View {
         }
         .onReceive(self.document.$isEditable) { self.isEditable = $0 }
         .onReceive(self.document.$lineEnding) { self.lineEnding = $0 }
-        .onReceive(self.document.didChangeFileEncoding) { self.fileEncoding = $0 }
-        .onChange(of: self.document, initial: true) { (_, newValue) in
-            self.fileEncoding = newValue.fileEncoding
-        }
+        .onReceive(self.document.$fileEncoding) { self.fileEncoding = $0 }
         .animation(.default.speed(1.5), value: self.isEditable)
     }
 }
