@@ -530,7 +530,7 @@ extension Document: EditorSource {
                     self.fileAttributes = fileEncoding
                 }
             } catch {
-                assertionFailure(error.localizedDescription)
+                Logger.app.error("Failed reading attributes of the saved file: \(error)")
             }
             
             // store file data in order to check the file contents identity in `presentedItemDidChange()`
