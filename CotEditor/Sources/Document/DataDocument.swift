@@ -29,7 +29,7 @@ import AppKit
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) var fileAttributes: FileAttributes?
+    var fileAttributes: FileAttributes?
     
     weak var windowController: DocumentWindowController?
     

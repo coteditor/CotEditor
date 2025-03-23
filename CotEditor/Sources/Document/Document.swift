@@ -67,14 +67,14 @@ extension Document: EditorSource {
     
     @ObservationIgnored @Published @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }
     var isTransient = false  // untitled & empty document that was created automatically
-    nonisolated(unsafe) var isVerticalText = false
+    var isVerticalText = false
     
     
     // MARK: Readonly Properties
     
     let textStorage = NSTextStorage()
     let syntaxParser: SyntaxParser
-    private(set) nonisolated(unsafe) var fileEncoding: FileEncoding  { didSet { Task { @MainActor in self.didChangeFileEncoding.send(fileEncoding) } } }
+    private(set) var fileEncoding: FileEncoding  { didSet { self.didChangeFileEncoding.send(fileEncoding) } }
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
     @ObservationIgnored @Published private(set) var mode: Mode
     
@@ -92,12 +92,12 @@ extension Document: EditorSource {
     
     private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
     private nonisolated(unsafe) var fileData: Data?
-    private nonisolated(unsafe) var shouldSaveEncodingXattr = true
-    private nonisolated(unsafe) var isExecutable = false
+    private var shouldSaveEncodingXattr = true
+    private var isExecutable = false
     private nonisolated(unsafe) var syntaxFileExtension: String?
-    private nonisolated(unsafe) var suppressesInconsistentLineEndingAlert = false
     private nonisolated(unsafe) var isExternalUpdateAlertShown = false
-    private nonisolated(unsafe) var allowsLossySaving = false
+    private var suppressesInconsistentLineEndingAlert = false
+    private var allowsLossySaving = false
     private var isInitialized = false
     
     private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
@@ -356,10 +356,11 @@ extension Document: EditorSource {
                 return .specific(encoding)
             }
             
-            var encodingCandidates = EncodingManager.shared.fileEncodings.compactMap { $0?.encoding }
+            var encodingCandidates = EncodingManager.shared.fileEncodings.compactMap(\.self?.encoding)
             let isInitialOpen = (self.fileData == nil) && (self.textStorage.length == 0)
             if !isInitialOpen {  // prioritize the current encoding
-                encodingCandidates.insert(self.fileEncoding.encoding, at: 0)
+                let currentEncoding = DispatchQueue.syncOnMain { self.fileEncoding.encoding }
+                encodingCandidates.insert(currentEncoding, at: 0)
             }
             
             return .automatic(.init(candidates: encodingCandidates,
@@ -367,10 +368,10 @@ extension Document: EditorSource {
                                     tagScanLength: UserDefaults.standard[.referToEncodingTag] ? 2000 : nil))
         }()
         
+        let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
+        
         // .readingEncoding is only valid once
         self.readingEncoding = nil
-        
-        let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
         
         // store file data in order to check the file contents identity in `presentedItemDidChange()`
         self.fileData = data
@@ -378,29 +379,30 @@ extension Document: EditorSource {
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
         //    for example on resuming an unsaved document.
-        if self.fileURL != nil {
-            let fileAttributes = FileAttributes(dictionary: attributes)
-            self.fileAttributes = fileAttributes
-            self.isExecutable = fileAttributes.permissions.user.contains(.execute)
-        }
-        
-        // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
-        self.shouldSaveEncodingXattr = (extendedAttributes.encoding != nil)
-        
-        // set text orientation state
-        // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwontedly.
-        if UserDefaults.standard[.savesTextOrientation], extendedAttributes.isVerticalText {
-            self.isVerticalText = true
-        }
-        
-        if extendedAttributes.allowsInconsistentLineEndings {
-            self.suppressesInconsistentLineEndingAlert = true
-        }
-        
-        self.allowsLossySaving = false
+        let fileAttributes = (self.fileURL != nil) ? FileAttributes(dictionary: attributes) : nil
         
         // set read values
         DispatchQueue.syncOnMain {
+            if let fileAttributes {
+                self.fileAttributes = fileAttributes
+                self.isExecutable = fileAttributes.permissions.user.contains(.execute)
+            }
+            
+            // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
+            self.shouldSaveEncodingXattr = (extendedAttributes.encoding != nil)
+            
+            // set text orientation state
+            // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwontedly.
+            if UserDefaults.standard[.savesTextOrientation], extendedAttributes.isVerticalText {
+                self.isVerticalText = true
+            }
+            
+            if extendedAttributes.allowsInconsistentLineEndings {
+                self.suppressesInconsistentLineEndingAlert = true
+            }
+            
+            self.allowsLossySaving = false
+            
             self.textStorage.replaceContent(with: string)
             
             self.fileEncoding = fileEncoding
@@ -518,13 +520,17 @@ extension Document: EditorSource {
         if saveOperation != .autosaveElsewhereOperation {
             // set/remove flag for vertical text orientation
             if UserDefaults.standard[.savesTextOrientation] {
-                try? url.setExtendedAttribute(data: self.isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
+                let isVerticalText = DispatchQueue.syncOnMain { self.isVerticalText }
+                try? url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
             }
             
             // get the latest file attributes
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_ACCESS
-                self.fileAttributes = FileAttributes(dictionary: attributes)
+                let fileEncoding = FileAttributes(dictionary: attributes)
+                Task { @MainActor in
+                    self.fileAttributes = fileEncoding
+                }
             } catch {
                 assertionFailure(error.localizedDescription)
             }
@@ -539,30 +545,10 @@ extension Document: EditorSource {
     
     override nonisolated func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
-        var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
+        let attributes = DispatchQueue.syncOnMain { self.additionalFileAttributes(for: saveOperation) }
         
-        // give the execute permission if user requested
-        if self.isExecutable, !saveOperation.isAutosave {
-            var permissions = self.fileAttributes?.permissions ?? FilePermissions(mask: 0o644)  // ???: Is the default permission really always 644?
-            permissions.user.insert(.execute)
-            attributes[FileAttributeKey.posixPermissions] = permissions.mask
-        }
-        
-        // save document state to the extended file attributes
-        // -> Save FileExtendedAttributeName.verticalText at `super.writeSafely(to:ofType:for:)`
-        //     since the xattr already set to the file cannot remove at this point. (2024-06-12)
-        var xattrs: [String: Data] = [:]
-        if self.shouldSaveEncodingXattr {
-            xattrs[FileExtendedAttributeName.encoding] = self.fileEncoding.encoding.xattrEncodingData
-        }
-        if self.suppressesInconsistentLineEndingAlert {
-            xattrs[FileExtendedAttributeName.allowLineEndingInconsistency] = Data([1])
-        }
-        if !xattrs.isEmpty {
-            attributes[FileAttributeKey.extendedAttributes.rawValue] = xattrs
-        }
-        
-        return attributes
+        return try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
+            .merging(attributes) { (_, new) in new }
     }
     
     
@@ -766,7 +752,9 @@ extension Document: EditorSource {
         
         switch recoveryOptionIndex {
             case 0:  // == Save
-                self.allowsLossySaving = true
+                Task { @MainActor in
+                    self.allowsLossySaving = true
+                }
             case 1:  // == Show Incompatible Characters
                 Task {
                     await self.showWarningInspector()
@@ -1123,6 +1111,35 @@ extension Document: EditorSource {
         return try! URL(for: .autosavedInformationDirectory, in: .userDomainMask, create: true)
             .appending(component: fileName)
             .appendingPathExtension(url.pathExtension)
+    }
+    
+    
+    private func additionalFileAttributes(for saveOperation: NSDocument.SaveOperationType) -> [String: any Sendable] {
+        
+        var attributes: [String: any Sendable] = [:]
+        
+        // give the execute permission if user requested
+        if self.isExecutable, !saveOperation.isAutosave {
+            var permissions = self.fileAttributes?.permissions ?? FilePermissions(mask: 0o644)  // ???: Is the default permission really always 644?
+            permissions.user.insert(.execute)
+            attributes[FileAttributeKey.posixPermissions] = permissions.mask
+        }
+        
+        // save document state to the extended file attributes
+        // -> Save FileExtendedAttributeName.verticalText at `super.writeSafely(to:ofType:for:)`
+        //     since the xattr already set to the file cannot remove at this point. (2024-06-12)
+        var xattrs: [String: Data] = [:]
+        if self.shouldSaveEncodingXattr {
+            xattrs[FileExtendedAttributeName.encoding] = self.fileEncoding.encoding.xattrEncodingData
+        }
+        if self.suppressesInconsistentLineEndingAlert {
+            xattrs[FileExtendedAttributeName.allowLineEndingInconsistency] = Data([1])
+        }
+        if !xattrs.isEmpty {
+            attributes[FileAttributeKey.extendedAttributes.rawValue] = xattrs
+        }
+        
+        return attributes
     }
     
     
