@@ -10,7 +10,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -293,9 +293,8 @@ public struct Syntax: Equatable, Sendable {
                     // extract paired delimiters such as quotes
                     if !highlight.isRegularExpression,
                        let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
-                       pair.begin == pair.end,
+                       Set(pair.begin) == Set(pair.end),
                        pair.begin.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
-                       Set(pair.begin).count == 1,  // consists of the same characters
                        !nestables.keys.contains(.pair(pair))  // not registered yet
                     {
                         nestables[.pair(pair)] = item.key
