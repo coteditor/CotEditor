@@ -380,7 +380,7 @@ extension Document: EditorSource {
         let fileAttributes = (self.fileURL != nil) ? FileAttributes(dictionary: attributes) : nil
         
         // set read values
-        self.continueAsynchronousWorkOnMainActor {
+        DispatchQueue.syncOnMain {
             if let fileAttributes {
                 self.fileAttributes = fileAttributes
                 self.isExecutable = fileAttributes.permissions.user.contains(.execute)
