@@ -5,9 +5,9 @@
 
 ### Improvements
 
-- Automatically insert a closing pair also for single quotation mark and back quotation mark when the “Automatically insert closing brackets and quotes” option is enabled.
-- Update the naming format when duplicating files/folders in the file browser.
-- Stop appending the “copy” suffix when duplicating user settings, such as syntax definitions.
+- Automatically insert closing symbol for single and back quotation marks when the “Automatically insert closing brackets and quotes” option is enabled.
+- Update the naming convention when duplicating files or folders in the file browser.
+- Discontinue appending the “copy” suffix when duplicating user settings, such as syntax definitions.
 - Improve the syntax highlighting algorithm.
 - Update the Markdown syntax to improve the highlighting of code blocks.
 - Update the Go syntax to fix some highlighting keywords (thanks to Karam!).
@@ -17,7 +17,7 @@
 ### Fixes
 
 - Fix an issue in the Portuguese localization where the app crashes when attempting to duplicate an item in the file browser.
-- Fix an issue on CotEditor 5.1.2 where the line number view doesn't update properly under certain circumstances.
+- Fix an issue in CotEditor 5.1.2 where the line number view fails to update correctly under certain conditions.
 
 
 
