@@ -9,15 +9,15 @@ characters:
 - beginString: (?:\R{2,}|\A)((?:([ ]{4}|\t)(.*(?:\R+|\Z)))+)((?=^[ ]{0,4}\S)|\Z)
   description: codeblock
   regularExpression: true
-- beginString: (?<!\\)(\`{1,2})[^ \t`]((?!\R{2})(?:.|\R))*?(?<![\\ ])\1
-  description: code
-  regularExpression: true
 - beginString: ^[~]{3,}[{[:space:]](?!~~~)(?:.|\R)*?\R[\t ]*[~]{3,}[\t ]*$
   description: '[extra] codeblock'
   regularExpression: true
-- beginString: ^```[^`](?!```)(?:.|\R)*?\R[\t ]*```
+- beginString: '`'
+  description: code
+  endString: '`'
+- beginString: '```'
   description: '[github] codeblock'
-  regularExpression: true
+  endString: '```'
 commands:
 - beginString: (?<!\\)(\*{2,3})[^ \t*]((?!\R{2})(?:.|\R))*?(?<![\\ ])\1
   description: strong
@@ -71,9 +71,9 @@ kind: general
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2024-06-09'
+  lastModified: '2025-03-24'
   license: Same as CotEditor
-  version: 1.4.1
+  version: 1.4.2
 numbers:
 - beginString: (?<!\\)!\[.*?(?<!\\)\](?=\()
   description: img

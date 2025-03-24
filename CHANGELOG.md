@@ -9,6 +9,7 @@
 - Update the naming format when duplicating files/folders in the file browser.
 - Stop appending the “copy” suffix when duplicating user settings, such as syntax definitions.
 - Improve the syntax highlighting algorithm.
+- Update the Markdown syntax to improve the highlighting of code blocks.
 - Update the Go syntax to fix some highlighting keywords (thanks to Karam!).
 - Improve the stability.
 
