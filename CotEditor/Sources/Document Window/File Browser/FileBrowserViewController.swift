@@ -977,6 +977,7 @@ private final class FileBrowserTableCellView: NSTableCellView {
         
         let textField = FilenameTextField()
         textField.usesSingleLineMode = true
+        textField.allowsExpansionToolTips = true
         textField.drawsBackground = false
         textField.isBordered = false
         textField.lineBreakMode = .byTruncatingMiddle

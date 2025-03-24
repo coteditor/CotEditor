@@ -10,7 +10,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,22 +38,6 @@ public final class FilenameTextField: NSTextField {
     }
     
     
-    public override var stringValue: String {
-        
-        didSet {
-            self.invalidateToolTip()
-        }
-    }
-    
-    
-    public override func setFrameSize(_ newSize: NSSize) {
-        
-        super.setFrameSize(newSize)
-        
-        self.invalidateToolTip()
-    }
-    
-    
     public override func mouseDown(with event: NSEvent) {
         
         super.mouseDown(with: event)
@@ -71,18 +55,6 @@ public final class FilenameTextField: NSTextField {
         }
         
         return true
-    }
-    
-    
-    /// Invalidates whether showing the tool tip if the label is truncated.
-    private func invalidateToolTip() {
-        
-        guard let cell else { return }
-        
-        let expansionFrame = cell.expansionFrame(withFrame: self.frame, in: self)
-        let isTruncated = !expansionFrame.isEmpty
-        
-        self.toolTip = isTruncated ? self.stringValue : nil
     }
 }
 
