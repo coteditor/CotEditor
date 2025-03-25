@@ -157,8 +157,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicode(_ sender: NSMenuItem) {
         
         guard
-            let tag = sender.representedObject as? String,
-            let form = UnicodeNormalizationForm(rawValue: tag)
+            let form = sender.representedObject as? UnicodeNormalizationForm
         else { return assertionFailure() }
         
         self.normalizeUnicode(form: form)

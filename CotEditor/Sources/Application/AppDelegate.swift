@@ -213,7 +213,7 @@ private enum BundleIdentifier {
                 let item = NSMenuItem()
                 item.title = form.localizedName
                 item.action = #selector(EditorTextView.normalizeUnicode(_:))
-                item.representedObject = form.rawValue
+                item.representedObject = form
                 item.tag = form.tag  // for the shortcut customization
                 item.toolTip = form.localizedDescription
                 return item
