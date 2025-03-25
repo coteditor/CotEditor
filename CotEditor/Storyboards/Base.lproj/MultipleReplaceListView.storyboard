@@ -44,7 +44,7 @@
                                                             <rect key="frame" x="11" y="3" width="116" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wai-xU-XpG">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wai-xU-XpG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="116" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="SETTING NAME" id="cXu-L5-hWg">
                                                                         <font key="font" metaFont="system"/>
