@@ -81,7 +81,7 @@ public struct HighlightParser: Sendable {
     /// - Throws: CancellationError.
     public func parse(string: String, range: NSRange) async throws -> [Highlight] {
         
-        try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { group in
+        try await withThrowingTaskGroup { group in
             for (type, extractors) in self.extractors {
                 for extractor in extractors {
                     group.addTask { [type: try extractor.ranges(in: string, range: range)] }

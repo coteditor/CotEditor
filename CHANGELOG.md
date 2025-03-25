@@ -13,6 +13,7 @@
 - Update the Go syntax to fix some highlighting keywords (thanks to Karam!).
 - Improve the stability.
 - [trivial] Improve the tooltip appearance when hovering over a truncated item in the file browser.
+- [dev] Update the build environment to Xcode 16.3 (Swift 6.1, macOS 15.4 SDK).
 
 
 ### Fixes

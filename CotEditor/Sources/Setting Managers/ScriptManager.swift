@@ -239,7 +239,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     ///   - scripts: AppleScripts handling the given Apple event.
     private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [any EventScript]) async {
         
-        await withTaskGroup(of: Void.self) { group in
+        await withTaskGroup { group in
             for script in scripts {
                 group.addTask {
                     do {

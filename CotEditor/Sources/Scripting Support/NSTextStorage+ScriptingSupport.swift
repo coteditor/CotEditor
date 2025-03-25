@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ extension NSTextStorage {
         let notifications = NotificationCenter.default.notifications(named: NSTextStorage.didProcessEditingNotification, object: self)
         
         Task {
-            try await withThrowingTaskGroup(of: Void.self) { group in
+            try await withThrowingTaskGroup { group in
                 // observe text storage update
                 group.addTask {
                     for await textStorage in notifications.map({ $0.object as! NSTextStorage }) {
