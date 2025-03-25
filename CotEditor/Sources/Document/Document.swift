@@ -91,7 +91,7 @@ extension NSTextView: EditorCounter.Source { }
     
     // MARK: Private Properties
     
-    @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
+    @ObservationIgnored private lazy var printSettings = PrintSettingsModel()
     
     @ObservationIgnored private nonisolated(unsafe) var isInitialized = false
     @ObservationIgnored private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
@@ -677,8 +677,8 @@ extension NSTextView: EditorCounter.Source { }
         
         let viewController = self.viewController!
         
-        self.printPanelAccessoryController.documentShowsInvisibles = viewController.showsInvisibles
-        self.printPanelAccessoryController.documentShowsLineNumber = viewController.showsLineNumber
+        self.printSettings.printsInvisibles = viewController.showsInvisibles
+        self.printSettings.printsLineNumbers = viewController.showsLineNumber
         
         // create printView
         // -> Because the last *edited* date is not recorded anywhere, use `.now` if the document was modified since the last save.
@@ -716,7 +716,8 @@ extension NSTextView: EditorCounter.Source { }
         printOperation.showsProgressPanel = true
         
         // setup print panel
-        printOperation.printPanel.addAccessoryController(self.printPanelAccessoryController)
+        let accessoryController = PrintPanelAccessoryController(model: self.printSettings, contentView: PrintPanelAccessory.init(model:))
+        printOperation.printPanel.addAccessoryController(accessoryController)
         printOperation.printPanel.options.formUnion([.showsPaperSize, .showsOrientation, .showsScaling])
         if printView.selectedRanges.count == 1, !printView.selectedRange.isEmpty {
             printOperation.printPanel.options.formUnion(.showsPrintSelection)
