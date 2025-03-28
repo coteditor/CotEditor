@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -224,15 +224,15 @@ private final class TokenLayoutFragment: NSTextLayoutFragment {
 
 private extension NSColor {
     
-    static let tokenTextColor = NSColor(name: nil) { appearance in
+    static let tokenTextColor = NSColor(name: "tokenTextColor") { appearance in
         NSColor.selectedControlColor.blended(withFraction: 0.7, of: appearance.isDark ? .white : .black)!
     }
     
-    static let tokenBracketColor = NSColor(name: nil) { appearance in
+    static let tokenBracketColor = NSColor(name: "tokenBracketColor") { appearance in
         NSColor.selectedControlColor.blended(withFraction: 0.3, of: appearance.isDark ? .white : .black)!
     }
     
-    static let tokenBackgroundColor = NSColor(name: nil) { appearance in
+    static let tokenBackgroundColor = NSColor(name: "tokenBackgroundColor") { appearance in
         NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
     }
 }
