@@ -5,9 +5,9 @@
 
 ### Improvements
 
-- Automatically insert closing symbol for single and back quotation marks when the “Automatically insert closing brackets and quotes” option is enabled.
-- Update the naming convention when duplicating files or folders in the file browser.
-- Discontinue appending the “copy” suffix when duplicating user settings, such as syntax definitions.
+- Automatically insert a closing symbol also for single and back quotation marks when the “Automatically insert closing brackets and quotes” option is enabled.
+- Update the naming convention for duplicated files and folders in the file browser.
+- Discontinue appending the “copy” suffix to user settings, such as syntax definitions, when duplicating them.
 - Improve the syntax highlighting algorithm.
 - Update the Markdown syntax to improve the highlighting of code blocks.
 - Update the Go syntax to fix some highlighting keywords (thanks to Karam!).
