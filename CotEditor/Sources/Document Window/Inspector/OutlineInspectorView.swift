@@ -161,14 +161,14 @@ struct OutlineInspectorView: View {
     
     // MARK: Private Methods
     
-    /// Make the outline list's font size bigger.
+    /// Makes the outline list's font size bigger.
     private func biggerFont() {
         
         self.fontSize += 1
     }
     
     
-    /// Make the outline list's font size smaller.
+    /// Makes the outline list's font size smaller.
     private func smallerFont() {
         
         self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)

@@ -186,14 +186,14 @@ struct FindPanelResultView: View {
     }
     
     
-    /// Make the table's font size bigger.
+    /// Makes the table's font size bigger.
     private func biggerFont() {
         
         self.fontSize += 1
     }
     
     
-    /// Make the table's font size smaller.
+    /// Makes the table's font size smaller.
     private func smallerFont() {
         
         self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
