@@ -34,26 +34,14 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     
     // MARK: Public Properties
     
-    var document: Document? {
-        
-        didSet {
-            if self.isViewShown {
-                self.model.document = document
-            }
-        }
-    }
-    
-    
-    // MARK: Private Properties
-    
-    private let model = OutlineInspectorView.Model()
+    let model = OutlineInspectorViewModel()
     
     
     // MARK: Lifecycle
     
     required init(document: Document?) {
         
-        self.document = document
+        self.model.document = document
         
         super.init(rootView: OutlineInspectorView(model: self.model))
     }
@@ -69,7 +57,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
         
         super.viewWillAppear()
         
-        self.model.document = self.document
+        self.model.isPresented = true
     }
     
     
@@ -77,35 +65,115 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
         
         super.viewDidDisappear()
         
-        self.model.document = nil
+        self.model.isPresented = false
     }
 }
 
 
-struct OutlineInspectorView: View {
+@MainActor @Observable final class OutlineInspectorViewModel: OutlineInspectorView.ModelProtocol {
     
-    @MainActor @Observable final class Model {
+    var items: [Item] = []
+    var selection: Item.ID?
+    
+    var isPresented = false  { didSet { self.invalidateObservation() } }
+    var document: Document?  { didSet { self.invalidateObservation() } }
+    
+    private var isOwnSelectionChange = false
+    private var documentObserver: AnyCancellable?
+    private var syntaxObserver: AnyCancellable?
+    private var selectionObserver: AnyCancellable?
+    
+    
+    /// Selects correspondence range of the item in the editor.
+    ///
+    /// - Parameter id: The `id` of the item to select.
+    func selectItem(id: Item.ID?) {
         
-        typealias Item = OutlineItem
+        guard
+            !self.isOwnSelectionChange,
+            let item = self.items[id: id],
+            let textView = self.document?.textView,
+            textView.string.length >= item.range.upperBound
+        else { return }
         
-        
-        var items: [Item] = []
-        var selection: Item.ID?  { didSet { self.selectItem(id: selection) } }
-        
-        var document: Document?  { didSet { self.invalidateObservation() } }
-        
-        private var isOwnSelectionChange = false
-        private var documentObserver: AnyCancellable?
-        private var syntaxObserver: AnyCancellable?
-        private var selectionObserver: AnyCancellable?
+        textView.selectedRange = item.range
+        textView.centerSelectionInVisibleArea(self)
     }
     
     
-    @State var model: Model
+    /// Updates observations.
+    private func invalidateObservation() {
+        
+        if let document, self.isPresented {
+            self.documentObserver = document.didChangeSyntax
+                .merge(with: Just(""))  // initial
+                .sink { [weak self] _ in
+                    self?.syntaxObserver = self?.document?.syntaxParser.$outlineItems
+                        .compactMap(\.self)
+                        .receive(on: DispatchQueue.main)
+                        .sink { [weak self] in
+                            self?.items = $0
+                            self?.invalidateCurrentItem()
+                        }
+                }
+            
+            self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
+                .map { $0.object as! NSTextView }
+                .filter { [weak self] in $0.textStorage == self?.document?.textStorage }
+                .filter { !$0.hasMarkedText() }
+            // avoid updating outline item selection before finishing outline parse
+            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+            //    You can ignore text selection change at this time point because the outline selection will be updated when the parse finished.
+                .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
+                .sink { [weak self] in self?.invalidateCurrentItem(in: $0) }
+            
+        } else {
+            self.documentObserver = nil
+            self.syntaxObserver = nil
+            self.selectionObserver = nil
+            self.items.removeAll()
+        }
+    }
+    
+    
+    /// Updates row selection to synchronize with the editor's cursor location.
+    ///
+    /// - Parameters:
+    ///   - textView: The text view to apply the selection. When `nil`, the current focused editor will be used.
+    private func invalidateCurrentItem(in textView: NSTextView? = nil) {
+        
+        guard
+            let textView = textView ?? self.document?.textView,
+            let item = self.items.item(at: textView.selectedRange.location)
+        else { return }
+        
+        self.isOwnSelectionChange = true
+        self.selection = item.id
+        self.isOwnSelectionChange = false
+    }
+}
+
+
+// MARK: - View
+
+struct OutlineInspectorView: View {
+    
+    @MainActor protocol ModelProtocol {
+        
+        typealias Item = OutlineItem
+        
+        var items: [Item] { get }
+        var selection: Item.ID? { get set }
+        
+        func selectItem(id: Item.ID?)
+    }
+    
+    
+    @State var model: any ModelProtocol
     
     @AppStorage(.outlineViewFontSize) private var fontSize: Double
     
-    @State var filterString: String = ""
+    @State private var filterString: String = ""
     
     
     // MARK: View Methods
@@ -150,6 +218,9 @@ struct OutlineInspectorView: View {
                 .autosaveName("OutlineSearch")
                 .accessibilityAddTraits(.isSearchField)
                 .controlSize(.regular)
+        }
+        .onChange(of: self.model.selection) { (_, newValue) in
+            self.model.selectItem(id: newValue)
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "InspectorPane.outline.label",
@@ -207,89 +278,24 @@ private struct OutlineRowView: View {
 }
 
 
-private extension OutlineInspectorView.Model {
-    
-    /// Updates observations.
-    func invalidateObservation() {
-        
-        if let document {
-            self.documentObserver = document.didChangeSyntax
-                .merge(with: Just(""))  // initial
-                .sink { [weak self] _ in
-                    self?.syntaxObserver = self?.document?.syntaxParser.$outlineItems
-                        .compactMap(\.self)
-                        .receive(on: DispatchQueue.main)
-                        .sink { [weak self] in
-                            self?.items = $0
-                            self?.invalidateCurrentItem()
-                        }
-                }
-            
-            self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
-                .map { $0.object as! NSTextView }
-                .filter { [weak self] in $0.textStorage == self?.document?.textStorage }
-                .filter { !$0.hasMarkedText() }
-                // avoid updating outline item selection before finishing outline parse
-                // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
-                //    You can ignore text selection change at this time point because the outline selection will be updated when the parse finished.
-                .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
-                .sink { [weak self] in self?.invalidateCurrentItem(in: $0) }
-            
-        } else {
-            self.documentObserver = nil
-            self.syntaxObserver = nil
-            self.selectionObserver = nil
-            self.items.removeAll()
-        }
-    }
-    
-    
-    /// Selects correspondence range of the item in the editor.
-    ///
-    /// - Parameter id: The `id` of the item to select.
-    private func selectItem(id: Item.ID?) {
-        
-        guard
-            !self.isOwnSelectionChange,
-            let item = self.items[id: id],
-            let textView = self.document?.textView,
-            textView.string.length >= item.range.upperBound
-        else { return }
-        
-        textView.selectedRange = item.range
-        textView.centerSelectionInVisibleArea(self)
-    }
-    
-    
-    /// Updates row selection to synchronize with the editor's cursor location.
-    ///
-    /// - Parameters:
-    ///   - textView: The text view to apply the selection. when `nil`,
-    ///               the current focused editor will be used (the document can have multiple editors).
-    private func invalidateCurrentItem(in textView: NSTextView? = nil) {
-        
-        guard
-            let textView = textView ?? self.document?.textView,
-            let item = self.items.item(at: textView.selectedRange.location)
-        else { return }
-        
-        self.isOwnSelectionChange = true
-        self.selection = item.id
-        self.isOwnSelectionChange = false
-    }
-}
-
-
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
-    let model = OutlineInspectorView.Model()
-    model.items = [
+    
+    @MainActor struct MockedModel: OutlineInspectorView.ModelProtocol {
+        
+        var items: [Item] = []
+        var selection: Item.ID?
+        
+        func selectItem(id: Item.ID?) { }
+    }
+    
+    @Previewable @State var model = MockedModel(items: [
         OutlineItem(title: "Hallo", range: .notFound),
         OutlineItem(title: "Guten Tag!", range: .notFound, style: [.bold]),
         OutlineItem.separator(range: .notFound),
         OutlineItem(title: "Hund", range: .notFound, style: [.underline]),
-    ]
+    ])
     
     return OutlineInspectorView(model: model)
 }

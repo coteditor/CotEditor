@@ -146,7 +146,7 @@ final class InspectorViewController: NSTabViewController {
                 case let viewController as DocumentInspectorViewController:
                     viewController.document = self.document
                 case let viewController as OutlineInspectorViewController:
-                    viewController.document = self.document as? Document
+                    viewController.model.document = self.document as? Document
                 case let viewController as WarningInspectorViewController:
                     viewController.document = self.document as? Document
                 default:
