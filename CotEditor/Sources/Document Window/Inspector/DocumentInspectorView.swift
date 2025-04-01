@@ -35,26 +35,14 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     
     // MARK: Public Properties
     
-    var document: DataDocument? {
-        
-        didSet {
-            if self.isViewShown {
-                self.model.updateDocument(to: document)
-            }
-        }
-    }
-    
-    
-    // MARK: Private Properties
-    
-    private let model = DocumentInspectorView.Model()
+    let model = DocumentInspectorViewModel()
     
     
     // MARK: Lifecycle
     
     required init(document: DataDocument?) {
         
-        self.document = document
+        self.model.document = document
         
         super.init(rootView: DocumentInspectorView(model: self.model))
     }
@@ -70,7 +58,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         super.viewWillAppear()
         
-        self.model.updateDocument(to: self.document)
+        self.model.isPresented = true
     }
     
     
@@ -78,53 +66,111 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         super.viewDidDisappear()
         
-        self.model.updateDocument(to: nil)
+        self.model.isPresented = false
     }
 }
 
 
-@Observable final class TextSettings {
+@MainActor @Observable final class DocumentInspectorViewModel: DocumentInspectorView.ModelProtocol {
+    
+    var attributes: FileAttributes?  { self.document?.fileAttributes }
+    var fileURL: URL?
+    var textSettings: TextSettings?
+    var countResult: EditorCounter.Result?  { (self.document as? Document)?.counter.result }
+    
+    fileprivate var isPresented = false  { didSet { self.invalidateObservation() } }
+    var document: DataDocument?  { willSet { self.cancelObservation() } didSet { self.didUpdateDocument() } }
+    
+    private var observers: Set<AnyCancellable> = []
+    
+    
+    // MARK: Private Methods
+    
+    /// Updates observations.
+    private func didUpdateDocument() {
+        
+        self.textSettings = if let document = self.document as? Document {
+            TextSettings(encoding: document.fileEncoding, lineEnding: document.lineEnding, mode: document.mode)
+        } else {
+            nil
+        }
+        
+        if self.isPresented {
+            self.startObservation()
+        }
+    }
+    
+    
+    /// Invalidates observation on the document depending on the current view visibility state.
+    private func invalidateObservation() {
+        
+        if self.isPresented {
+            self.startObservation()
+        } else {
+            self.cancelObservation()
+        }
+    }
+    
+    
+    /// Starts observations on the document.
+    private func startObservation() {
+        
+        if let document = document as? Document {
+            document.counter.updatesAll = true
+            
+            self.observers = [
+                document.publisher(for: \.fileURL, options: .initial)
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.fileURL = $0 },
+                document.$fileEncoding
+                    .sink { [weak self] in self?.textSettings?.encoding = $0 },
+                document.$lineEnding
+                    .sink { [weak self] in self?.textSettings?.lineEnding = $0 },
+                document.$mode
+                    .sink { [weak self] in self?.textSettings?.mode = $0 },
+            ]
+            
+        } else if let document {
+            self.observers = [
+                document.publisher(for: \.fileURL, options: .initial)
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.fileURL = $0 },
+            ]
+        }
+    }
+    
+    
+    /// Cancels the observations on the document.
+    private func cancelObservation() {
+        
+        (self.document as? Document)?.counter.updatesAll = false
+        self.observers.removeAll()
+    }
+}
+
+
+// MARK: - View
+
+struct TextSettings {
     
     var encoding: FileEncoding
     var lineEnding: LineEnding
     var mode: Mode
-    
-    
-    init(encoding: FileEncoding, lineEnding: LineEnding, mode: Mode) {
-        
-        self.encoding = encoding
-        self.lineEnding = lineEnding
-        self.mode = mode
-    }
 }
 
 
 struct DocumentInspectorView: View {
     
-    @MainActor @Observable final class Model {
+    @MainActor protocol ModelProtocol {
         
-        fileprivate var attributes: FileAttributes?
-        fileprivate var fileURL: URL?
-        fileprivate var textSettings: TextSettings?
-        fileprivate var countResult: EditorCounter.Result?
-        
-        private(set) var document: DataDocument?
-        
-        private var observers: Set<AnyCancellable> = []
-        
-        
-        /// Updates the represented document.
-        ///
-        /// - Parameter document: The new data document, or `nil`.
-        func updateDocument(to document: DataDocument?) {
-            
-            self.invalidateObservation(document: document)
-            self.document = document
-        }
+        var attributes: FileAttributes? { get }
+        var fileURL: URL? { get }
+        var textSettings: TextSettings? { get }
+        var countResult: EditorCounter.Result? { get }
     }
     
     
-    @State var model: Model
+    @State var model: any ModelProtocol
     
     
     var body: some View {
@@ -140,7 +186,7 @@ struct DocumentInspectorView: View {
                 
                 if let countResult = self.model.countResult {
                     Divider()
-                    CountLocationView(result: countResult)
+                    EditorCountView(result: countResult)
                     
                     Divider()
                     CharacterPaneView(character: countResult.character)
@@ -149,9 +195,6 @@ struct DocumentInspectorView: View {
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
-            .onChange(of: self.model.document?.fileAttributes, initial: true) { (_, newValue) in
-                self.model.attributes = newValue
-            }
         }
         .accessibilityLabel(String(localized: "InspectorPane.document.label",
                                    defaultValue: "Document Inspector", table: "Document"))
@@ -260,7 +303,7 @@ private struct TextSettingsView: View {
 }
 
 
-private struct CountLocationView: View {
+private struct EditorCountView: View {
     
     var result: EditorCounter.Result
     
@@ -389,78 +432,47 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 }
 
 
-private extension DocumentInspectorView.Model {
+// MARK: - Preview
+
+@MainActor private struct MockedModel: DocumentInspectorView.ModelProtocol {
     
-    /// Updates observations.
-    func invalidateObservation(document: DataDocument?) {
-        
-        (self.document as? Document)?.counter.updatesAll = false
-        self.countResult = (document as? Document)?.counter.result
-        
-        if let document = document as? Document {
-            document.counter.updatesAll = true
-            
-            self.textSettings = TextSettings(encoding: document.fileEncoding,
-                                             lineEnding: document.lineEnding,
-                                             mode: .kind(.general))
-            self.observers = [
-                document.publisher(for: \.fileURL, options: .initial)
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.fileURL = $0 },
-                document.$fileEncoding
-                    .sink { [weak self] in self?.textSettings?.encoding = $0 },
-                document.$lineEnding
-                    .sink { [weak self] in self?.textSettings?.lineEnding = $0 },
-                document.$mode
-                    .sink { [weak self] in self?.textSettings?.mode = $0 },
-            ]
-            
-        } else if let document {
-            self.textSettings = nil
-            self.observers = [
-                document.publisher(for: \.fileURL, options: .initial)
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.fileURL = $0 },
-            ]
-            
-        } else {
-            self.textSettings = nil
-            self.observers.removeAll()
-            self.fileURL = nil
-        }
-    }
+    var attributes: FileAttributes?
+    var fileURL: URL?
+    var textSettings: TextSettings?
+    var countResult: EditorCounter.Result?
+    
+    var document: DataDocument?
 }
 
 
-// MARK: - Preview
-
 #Preview(traits: .fixedLayout(width: 240, height: 520)) {
-    let model = DocumentInspectorView.Model()
-    model.attributes = .init(
-        creationDate: .now,
-        modificationDate: .now,
-        size: 1024,
-        permissions: FilePermissions(mask: 0o644),
-        owner: "clarus",
-        tags: [FinderTag(name: "Green", color: .green),
-               FinderTag(name: "Blue", color: .blue),
-               FinderTag(name: "None")]
-    )
-    model.fileURL = URL(filePath: "/Users/clarus/Desktop/My Script.py")
-    model.textSettings = .init(encoding: .init(encoding: .utf8, withUTF8BOM: true),
-                               lineEnding: .lf,
-                               mode: .kind(.general))
+    @Previewable @State var model = MockedModel(
+        attributes: .init(
+            creationDate: .now,
+            modificationDate: .now,
+            size: 1024,
+            permissions: FilePermissions(mask: 0o644),
+            owner: "clarus",
+            tags: [FinderTag(name: "Green", color: .green),
+                   FinderTag(name: "Blue", color: .blue),
+                   FinderTag(name: "None")]
+        ),
+        fileURL: URL(filePath: "/Users/clarus/Desktop/My Script.py"),
+        textSettings: .init(
+            encoding: .init(encoding: .utf8, withUTF8BOM: true),
+            lineEnding: .lf,
+            mode: .kind(.general)
+        ),
+        countResult: .init())
     
-    let result = EditorCounter.Result()
-    result.characters = .init(entire: 1024, selected: 4)
-    result.lines = .init(entire: 10, selected: 1)
-    result.character = "🐈‍⬛"
-    
-    model.countResult = result
+    model.countResult?.characters = .init(entire: 1024, selected: 4)
+    model.countResult?.lines = .init(entire: 10, selected: 1)
+    model.countResult?.character = "🐈‍⬛"
     
     return DocumentInspectorView(model: model)
 }
 
+
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 520)) {
-    DocumentInspectorView(model: .init())
+    DocumentInspectorView(model: MockedModel())
 }

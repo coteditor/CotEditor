@@ -144,7 +144,7 @@ final class InspectorViewController: NSTabViewController {
         for item in self.tabViewItems {
             switch item.viewController {
                 case let viewController as DocumentInspectorViewController:
-                    viewController.document = self.document
+                    viewController.model.document = self.document
                 case let viewController as OutlineInspectorViewController:
                     viewController.model.document = self.document as? Document
                 case let viewController as WarningInspectorViewController:
