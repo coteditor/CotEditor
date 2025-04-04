@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,16 +35,16 @@ extension NSTextView {
     
     // MARK: Public Methods
     
-    /// Draws rounded background rects for .roundedBackgroundColor temporary attributes in the layoutManager.
+    /// Draws rounded background rects for `.roundedBackgroundColor` temporary attributes in the layout manager.
     ///
     /// - Note: This API requires TextKit 1.
-    final func drawRoundedBackground(in dirtyRect: NSRect) {
+    ///
+    /// - Parameters:
+    ///   - dirtyRange: The character range to draw.
+    ///   - dirtyRect: The bounds to draw.
+    final func drawRoundedBackground(range dirtyRange: NSRange, in dirtyRect: NSRect) {
         
-        // avoid invoking heavy-duty `range(for:)` as possible
-        guard
-            let layoutManager = self.layoutManager,
-            let dirtyRange = self.range(for: dirtyRect)
-        else { return }
+        guard let layoutManager = self.layoutManager else { return }
         
         var coloredPaths: [NSColor: [NSBezierPath]] = [:]
         layoutManager.enumerateTemporaryAttribute(.roundedBackgroundColor, type: NSColor.self, in: dirtyRange) { (color, range, _) in

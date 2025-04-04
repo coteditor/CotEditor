@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,12 +41,14 @@ extension CurrentLineHighlighting {
     ///
     /// - Note: This API requires TextKit 1.
     ///
-    /// - Parameter dirtyRect: The A rectangle defining the portion of the view that requires redrawing.
-    func drawCurrentLine(in dirtyRect: NSRect) {
+    /// - Parameters:
+    ///   - dirtyRange: The character range requires redrawing.
+    ///   - dirtyRect: The rectangle defining the portion of the view that requires redrawing.
+    func drawCurrentLine(range dirtyRange: NSRange, in dirtyRect: NSRect) {
         
         // calculate rects but only when needed
         // to avoid unneeded high-cost calculation for a latter part of a large document
-        if self.needsUpdateLineHighlight, let dirtyRange = self.range(for: dirtyRect) {
+        if self.needsUpdateLineHighlight {
             let lineRanges = self.selectedLineRanges()
             
             if lineRanges.contains(where: { $0.touches(dirtyRange) }) {
@@ -58,22 +60,22 @@ extension CurrentLineHighlighting {
             }
         }
         
-        let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
-        let radius = fontSize / 4
-        let paths = self.lineHighlightRects
+        let rects = self.lineHighlightRects
             .filter { $0.intersects(dirtyRect) }
-            .map { self.centerScanRect($0) }
-            .map { NSBezierPath(roundedRect: $0, xRadius: radius, yRadius: radius) }
+            .map(self.centerScanRect)
         
         guard
-            !paths.isEmpty,
+            !rects.isEmpty,
             let color = self.lineHighlightColor
         else { return }
         
+        let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
+        let radius = fontSize / 4
+        
         NSGraphicsContext.saveGraphicsState()
         color.setFill()
-        for path in paths {
-            path.fill()
+        for rect in rects {
+            NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius).fill()
         }
         NSGraphicsContext.restoreGraphicsState()
     }

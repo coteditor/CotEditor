@@ -968,12 +968,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         super.drawBackground(in: rect)
         
+        guard let range = self.range(for: rect) else { return }
+        
         // draw current line highlight
         if UserDefaults.standard[.highlightCurrentLine] {
-            self.drawCurrentLine(in: rect)
+            self.drawCurrentLine(range: range, in: rect)
         }
         
-        self.drawRoundedBackground(in: rect)
+        self.drawRoundedBackground(range: range, in: rect)
     }
     
     
