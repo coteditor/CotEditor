@@ -2342,7 +2342,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionner l’élément de structure suivant"
+            "value" : "Sélectionner l’élément de structure précédent"
           }
         },
         "it" : {
@@ -19424,7 +19424,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionner l’élément de structure précédent"
+            "value" : "Sélectionner l’élément de structure suivant"
           }
         },
         "it" : {
