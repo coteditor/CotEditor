@@ -30,26 +30,13 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     
     // MARK: Public Properties
     
-    var document: Document? {
-        
-        didSet {
-            if self.isViewShown {
-                self.model.document = document
-            }
-        }
-    }
-    
-    
-    // MARK: Private Properties
-    
-    private let model = WarningInspectorView.Model()
+    let model = WarningInspectorView.Model()
     
     
     // MARK: Lifecycle
     
     required init(document: Document?) {
         
-        self.document = document
         self.model.document = document
         
         super.init(rootView: WarningInspectorView(model: self.model))
@@ -66,7 +53,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewWillAppear()
         
-        self.model.document = self.document
+        self.model.isPresented = true
     }
     
     
@@ -74,7 +61,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewDidDisappear()
         
-        self.model.document = nil
+        self.model.isPresented = false
     }
 }
 
@@ -83,7 +70,8 @@ struct WarningInspectorView: View {
     
     @MainActor @Observable final class Model {
         
-        fileprivate(set) var document: Document?
+        fileprivate(set) var isPresented = false
+        var document: Document?
     }
     
     
@@ -93,9 +81,9 @@ struct WarningInspectorView: View {
     var body: some View {
         
         VSplitView {
-            IncompatibleCharactersView(document: self.model.document)
+            IncompatibleCharactersView(document: self.model.isPresented ? self.model.document : nil)
                 .padding(.bottom, 12)
-            InconsistentLineEndingsView(document: self.model.document)
+            InconsistentLineEndingsView(document: self.model.isPresented ? self.model.document : nil)
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))

@@ -40,7 +40,7 @@ struct IncompatibleCharactersView: View {
         var items: [Item] = []
         private(set) var isScanning = false
         
-        var document: Document?  { didSet { self.invalidateObservation() } }
+        private var document: Document?
         
         private(set) var task: Task<Void, any Error>?
         private var observer: AnyCancellable?
@@ -78,7 +78,7 @@ struct IncompatibleCharactersView: View {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
                     TableColumn(String(localized: "Line", table: "Document", comment: "table column header"), value: \.lowerBound) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
-                        if let line = self.document?.lineEndingScanner.lineNumber(at: $0.lowerBound) {
+                        if let line = self.model.lineNumber(at: $0.lowerBound) {
                             Text(line, format: .number)
                                 .monospacedDigit()
                         }
@@ -105,7 +105,7 @@ struct IncompatibleCharactersView: View {
                     }
                 }
                 .onChange(of: self.selection) { (_, newValue) in
-                    self.selectItem(id: newValue)
+                    self.model.selectItem(id: newValue)
                 }
                 .onChange(of: self.sortOrder) { (_, newValue) in
                     withAnimation {
@@ -120,24 +120,25 @@ struct IncompatibleCharactersView: View {
             self.model.task?.cancel()
         }
         .onChange(of: self.document, initial: true) { (_, newValue) in
-            self.model.document = newValue
+            self.model.updateDocument(newValue)
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Incompatible Characters", tableName: "Document"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, minHeight: self.model.items.isEmpty ? 60 : 120, alignment: .topLeading)
     }
-    
-    
-    // MARK: Private Methods
+}
+
+
+private extension IncompatibleCharactersView.Model {
     
     /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter id: The `id` of the item to select.
-    func selectItem(id: Model.Item.ID?) {
+    func selectItem(id: Item.ID?) {
         
         guard
-            let item = self.model.items[id: id],
+            let item = self.items[id: id],
             let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }
@@ -145,13 +146,30 @@ struct IncompatibleCharactersView: View {
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
     }
-}
-
-
-private extension IncompatibleCharactersView.Model {
+    
+    
+    /// Returns the line number at the character location.
+    ///
+    /// - Parameter location: The character location.
+    /// - Returns: A line number.
+    func lineNumber(at location: Int) -> Int? {
+        
+        self.document?.lineEndingScanner.lineNumber(at: location)
+    }
+    
+    
+    /// Updates the document.
+    ///
+    /// - Parameter document: The new document.
+    func updateDocument(_ document: Document?) {
+        
+        self.document = document
+        self.invalidateObservation()
+    }
+    
     
     /// Updates observations.
-    func invalidateObservation() {
+    private func invalidateObservation() {
         
         if let document {
             self.observer = Publishers.Merge3(

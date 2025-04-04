@@ -62,7 +62,7 @@ struct InconsistentLineEndingsView: View {
                 Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                     TableColumn(String(localized: "Line", table: "Document", comment: "table column header"), value: \.lowerBound) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
-                        if let line = self.document?.lineEndingScanner.lineNumber(at: $0.lowerBound) {
+                        if let line = self.lineNumber(at: $0.lowerBound) {
                             Text(line, format: .number)
                                 .monospacedDigit()
                         }
@@ -113,6 +113,16 @@ struct InconsistentLineEndingsView: View {
         
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
+    }
+    
+    
+    /// Returns the line number at the character location.
+    ///
+    /// - Parameter location: The character location.
+    /// - Returns: A line number.
+    private func lineNumber(at location: Int) -> Int? {
+        
+        self.document?.lineEndingScanner.lineNumber(at: location)
     }
 }
 
