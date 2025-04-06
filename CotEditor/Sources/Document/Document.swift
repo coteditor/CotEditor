@@ -1116,6 +1116,10 @@ extension Document: EditorSource {
     }
     
     
+    /// Collects the additional file attributes on the main thread to use in `fileAttributesToWrite(to:ofType:for:originalContentsURL)`.
+    ///
+    /// - Parameter saveOperation: The save operation.
+    /// - Returns: The file attributes.
     private func additionalFileAttributes(for saveOperation: NSDocument.SaveOperationType) -> [String: any Sendable] {
         
         var attributes: [String: any Sendable] = [:]
