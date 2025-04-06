@@ -55,7 +55,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
-    private static weak var currentWindow: NSWindow?
+    private static weak var lastWindow: NSWindow?
     
     private var directoryDocument: DirectoryDocument?
     private var isDirectoryDocument: Bool
@@ -119,14 +119,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // cascade window position
         // -> Don't use `NSApp.mainWindow` since it returns `nil` when the app is inactive. (2025-04)
-        if let currentWindow = Self.currentWindow {
+        if let lastWindow = Self.lastWindow {
             let frame = if #available(macOS 15, *) {
-                currentWindow.cascadingReferenceFrame
+                lastWindow.cascadingReferenceFrame
             } else {
                 NSRect.zero
             }
             let topLeft = NSPoint(x: frame.minX, y: frame.maxY)
-            let cascadingPoint = currentWindow.cascadeTopLeft(from: topLeft)
+            let cascadingPoint = lastWindow.cascadeTopLeft(from: topLeft)
             
             window.cascadeTopLeft(from: cascadingPoint)
         }
@@ -234,7 +234,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     func windowDidBecomeKey(_ notification: Notification) {
         
-        Self.currentWindow = notification.object as? NSWindow
+        Self.lastWindow = notification.object as? NSWindow
     }
     
     
