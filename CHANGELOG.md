@@ -3,6 +3,10 @@
 5.1.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where the document position doesn’t cascade from the previous document when the app is inactive.
+
 
 
 5.1.3 (709)
