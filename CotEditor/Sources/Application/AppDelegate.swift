@@ -548,9 +548,9 @@ private extension NSPanel {
     /// - Parameters:
     ///   - view: The SwiftUI view.
     ///   - title: The window title mainly for the accessibility.
-    convenience init(view: any View, title: String? = nil) {
+    convenience init(view: some View, title: String? = nil) {
         
-        let viewController = NSHostingController(rootView: AnyView(view))
+        let viewController = NSHostingController(rootView: view)
         viewController.safeAreaRegions = []
         
         self.init(contentViewController: viewController)

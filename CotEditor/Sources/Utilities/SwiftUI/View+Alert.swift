@@ -32,7 +32,7 @@ extension View {
     /// - Parameters:
     ///   - error: An optional Error that is used to generate the alert.
     ///   - buttonTitle: The title for the button in the alert panel, or `nil` for the default "OK."
-    func alert(error: Binding<(any Error)?>, buttonTitle: String? = nil) -> some View {
+    func alert(error: Binding<(some Error)?>, buttonTitle: String? = nil) -> some View {
         
         let localizedError = LocalizedAlertError(error.wrappedValue)
         
@@ -55,7 +55,7 @@ private struct LocalizedAlertError: LocalizedError {
     
     
     /// Creates an existential error confirms to `LocalizedError` protocol from a general `Swift.Error`.
-    init?(_ error: (any Error)?) {
+    init?(_ error: (some Error)?) {
         
         guard let localizedError = error as? any LocalizedError else { return nil }
         
