@@ -3,6 +3,11 @@
 5.1.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- Enable the “text replacement” option by default in custom modes.
+
+
 ### Fixes
 
 - Fix an issue on CotEditor 5.1.3 where the app would rarely become unresponsive when a save was performed.

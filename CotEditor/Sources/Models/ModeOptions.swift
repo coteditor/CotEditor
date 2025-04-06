@@ -33,7 +33,7 @@ struct ModeOptions: Equatable, Codable {
     var smartInsertDelete: Bool = false
     var automaticQuoteSubstitution: Bool = false
     var automaticDashSubstitution: Bool = false
-    var automaticTextReplacement: Bool = false
+    var automaticTextReplacement: Bool = true
     var automaticPeriodSubstitution: Bool = false
     var automaticSymbolBalancing: Bool = false
     
@@ -118,7 +118,7 @@ extension ModeOptions {
         self.smartInsertDelete = dictionary[.smartInsertDelete] as? Bool ?? false
         self.automaticQuoteSubstitution = dictionary[.automaticQuoteSubstitution] as? Bool ?? false
         self.automaticDashSubstitution = dictionary[.automaticDashSubstitution] as? Bool ?? false
-        self.automaticTextReplacement = dictionary[.automaticTextReplacement] as? Bool ?? false
+        self.automaticTextReplacement = dictionary[.automaticTextReplacement] as? Bool ?? true
         self.automaticPeriodSubstitution = dictionary[.automaticPeriodSubstitution] as? Bool ?? false
         self.automaticSymbolBalancing = dictionary[.automaticSymbolBalancing] as? Bool ?? false
         
