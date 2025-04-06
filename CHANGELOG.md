@@ -5,6 +5,7 @@
 
 ### Fixes
 
+- Fix an issue on CotEditor 5.1.3 where the app would rarely become unresponsive when a save was performed.
 - Fix an issue where the document position doesn’t cascade from the previous document when the app is inactive.
 
 

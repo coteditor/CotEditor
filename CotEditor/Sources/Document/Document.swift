@@ -67,7 +67,7 @@ extension Document: EditorSource {
     
     @ObservationIgnored @Published @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }
     var isTransient = false  // untitled & empty document that was created automatically
-    var isVerticalText = false
+    nonisolated(unsafe) var isVerticalText = false
     
     
     // MARK: Readonly Properties
@@ -97,9 +97,11 @@ extension Document: EditorSource {
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
     private var isInitialized = false
-    
-    private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
     private var saveOptions: SaveOptions?
+    
+    // temporal data used only within saving process
+    private nonisolated(unsafe) var lastSavedData: Data?
+    private nonisolated(unsafe) var lastAdditionalFileAttributes: [String: any Sendable] = [:]
     
     private var urlDetector: URLDetector?
     
@@ -480,6 +482,9 @@ extension Document: EditorSource {
             url = Self.autosaveElsewhereURL(for: url)
         }
         
+        // obtain the additional file attributes to save while the saving process remains on the main thread (macOS 15, 2025-04)
+        self.lastAdditionalFileAttributes = self.additionalFileAttributes(for: saveOperation)
+        
         // workaround the issue that invoking the async version super blocks the save process
         // with macOS 12-14 + Xcode 13-15 (2022 FB11203469).
         // To reproduce the issue:
@@ -518,7 +523,7 @@ extension Document: EditorSource {
         if saveOperation != .autosaveElsewhereOperation {
             // set/remove flag for vertical text orientation
             if UserDefaults.standard[.savesTextOrientation] {
-                let isVerticalText = DispatchQueue.syncOnMain { self.isVerticalText }
+                let isVerticalText = self.isVerticalText
                 try? url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
             }
             
@@ -543,10 +548,8 @@ extension Document: EditorSource {
     
     override nonisolated func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
-        let attributes = DispatchQueue.syncOnMain { self.additionalFileAttributes(for: saveOperation) }
-        
-        return try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
-            .merging(attributes) { (_, new) in new }
+        try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
+            .merging(self.lastAdditionalFileAttributes) { (_, new) in new }
     }
     
     
