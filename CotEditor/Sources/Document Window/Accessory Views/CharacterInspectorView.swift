@@ -67,7 +67,7 @@ private struct CharacterDetailView: View {
             }
             
             if self.info.character.unicodeScalars.count > 1 {
-                VStack(spacing: 4) {
+                VStack(spacing: 0) {
                     ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
                         DisclosureGroup {
                             HStack(alignment: .top) {
@@ -78,6 +78,7 @@ private struct CharacterDetailView: View {
                                 ScalarDetailView(scalar: scalar, items: [.block, .category])
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.bottom, 6)
                         } label: {
                             Text(scalar.codePoint)
                                 .monospacedDigit()
@@ -91,6 +92,7 @@ private struct CharacterDetailView: View {
                 }
                 .controlSize(.small)
                 .textSelection(.enabled)
+                .padding(.top, 6)
             }
         }.fixedSize()
     }
@@ -275,6 +277,11 @@ private extension CharacterInfo {
 
 #Preview("ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡") {
     CharacterInspectorView(info: CharacterInfo(character: "ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡"))
+}
+
+#Preview("✔︎") {
+    CharacterInspectorView(info: CharacterInfo(character: "✔︎"))
+        .frame(height: 240, alignment: .top)
 }
 
 #Preview("🏴‍☠️") {
