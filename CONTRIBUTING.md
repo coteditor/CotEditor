@@ -99,7 +99,7 @@ The CotEditor project is also asking for localization of descriptions on the Mac
 
 #### Hints on localization
 
-By localization, use macOS standard terms. It may be helpful to study native Apple applications like TextEdit.app or System Settings to learn how Apple localizes terms in their apps.
+By localization, use macOS standard terms. It may be helpful to study native Apple applications like TextEdit.app or System Settings to learn how Apple localizes terms in their way.
 
 Especially, follow the terms of the following applications:
 
@@ -107,7 +107,7 @@ Especially, follow the terms of the following applications:
 - The Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-Additionally, we recommend utilizing the [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS apps and frameworks.
+Additionally, we strongly recommend utilizing the [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS apps and frameworks.
 You also need to take care of how Apple treats punctuation characters and symbols. For example, regarding quotation marks, they generally prefer the typographer's ones.
 
 
@@ -129,7 +129,7 @@ We don't accept pull requests adding bundled themes at the moment. You can distr
 
 ### Graphic Resources
 
-We don't accept pull requests for image resources. @1024jp enjoys creating and brushing up on the graphics ;). If you find a graphic resource having some kind of issues to be fixed, please just point it out on the Issues page.
+We don't accept pull requests for image resources. @1024jp enjoys creating and brushing up on the graphics ;). If you find a graphic resource having some issue to be fixed, please just point it out on the Issues page.
 
 
 
@@ -144,12 +144,12 @@ Please follow the style of the existing codes in CotEditor.
 - Insert a blank line after a class/function statement line.
     ```Swift
     /// Says moof.
-    func moof() {
+    func bark() {
         
         print("moof")
     }
     ```
-- Write the `guard` statement in one line if just returning a simple value.
+- Write the `guard` statement in one line by just returning a simple value.
     ```Swift
     // prefer
     guard !foo.isEmpty else { return nil }
