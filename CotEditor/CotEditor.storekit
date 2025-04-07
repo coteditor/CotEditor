@@ -20,19 +20,9 @@
       "internalID" : "6499507688",
       "localizations" : [
         {
-          "description" : "Uma saborosa xícara",
+          "description" : "Chutný šálek",
           "displayName" : "Espresso",
-          "locale" : "pt_BR"
-        },
-        {
-          "description" : "Eine köstliche Tasse",
-          "displayName" : "Espresso",
-          "locale" : "de"
-        },
-        {
-          "description" : "A tasty cup",
-          "displayName" : "Espresso",
-          "locale" : "en_US"
+          "locale" : "cs"
         },
         {
           "description" : "Lezzetli bir kupa",
@@ -40,19 +30,9 @@
           "locale" : "tr"
         },
         {
-          "description" : "Une tasse savoureuse",
-          "displayName" : "Espresso",
-          "locale" : "fr"
-        },
-        {
-          "description" : "Smaczna filiżanka",
-          "displayName" : "Espresso",
-          "locale" : "pl"
-        },
-        {
-          "description" : "Een lekker kopje",
-          "displayName" : "Espresso",
-          "locale" : "nl"
+          "description" : "一杯美味的咖啡",
+          "displayName" : "浓缩咖啡",
+          "locale" : "zh_Hans"
         },
         {
           "description" : "Una gustosa tazza",
@@ -60,24 +40,49 @@
           "locale" : "it"
         },
         {
-          "description" : "커피 한 잔",
-          "displayName" : "에스프레소",
-          "locale" : "ko"
-        },
-        {
-          "description" : "Chutný šálek",
+          "description" : "A tasty cup",
           "displayName" : "Espresso",
-          "locale" : "cs"
-        },
-        {
-          "description" : "一杯美味的咖啡",
-          "displayName" : "濃縮咖啡",
-          "locale" : "zh_CN"
+          "locale" : "en_US"
         },
         {
           "description" : "おいしい1杯",
           "displayName" : "エスプレッソ",
           "locale" : "ja"
+        },
+        {
+          "description" : "커피 한 잔",
+          "displayName" : "에스프레소",
+          "locale" : "ko"
+        },
+        {
+          "description" : "Een lekker kopje",
+          "displayName" : "Espresso",
+          "locale" : "nl"
+        },
+        {
+          "description" : "Uma saborosa xícara",
+          "displayName" : "Espresso",
+          "locale" : "pt_BR"
+        },
+        {
+          "description" : "一杯美味的咖啡",
+          "displayName" : "濃縮咖啡",
+          "locale" : "zh_Hant"
+        },
+        {
+          "description" : "Smaczna filiżanka",
+          "displayName" : "Espresso",
+          "locale" : "pl"
+        },
+        {
+          "description" : "Une tasse savoureuse",
+          "displayName" : "Espresso",
+          "locale" : "fr"
+        },
+        {
+          "description" : "Eine köstliche Tasse",
+          "displayName" : "Espresso",
+          "locale" : "de"
         }
       ],
       "productID" : "com.coteditor.CotEditor.donation.onetime",
@@ -89,7 +94,7 @@
     "_applicationInternalID" : "1024640650",
     "_developerTeamID" : "HT3Z3A72WZ",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 748782866.54114997,
+    "_lastSynchronizedDate" : 765692306.84510303,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -177,11 +182,6 @@
               "locale" : "tr"
             },
             {
-              "description" : "Kaffee für die tägliche Entwicklung",
-              "displayName" : "Kaffeebohnen",
-              "locale" : "de"
-            },
-            {
               "description" : "Café pour le développement quotidien",
               "displayName" : "Grains de café",
               "locale" : "fr"
@@ -197,9 +197,14 @@
               "locale" : "pt_BR"
             },
             {
+              "description" : "Kaffee für die tägliche Entwicklung",
+              "displayName" : "Kaffeebohnen",
+              "locale" : "de"
+            },
+            {
               "description" : "以咖啡資助軟體研發",
               "displayName" : "咖啡豆",
-              "locale" : "zh_CN"
+              "locale" : "zh_Hant"
             },
             {
               "description" : "日々の開発のためのコーヒー",
@@ -219,7 +224,7 @@
             {
               "description" : "日常开发的咖啡",
               "displayName" : "咖啡豆",
-              "locale" : "zh_CN"
+              "locale" : "zh_Hans"
             },
             {
               "description" : "Coffee for daily development",
