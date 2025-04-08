@@ -3,6 +3,11 @@
 5.1.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Keep syntax highlights by text selection in the Dark mode as well.
+
+
 ### Fixes
 
 - Fix an issue on CotEditor 5.1.4 which insertion point rarely jumped to the nearest outline item when the outline inspector is shown.

@@ -1437,6 +1437,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         (self.layoutManager as? LayoutManager)?.unemphasizedSelectedContentBackgroundColor = theme.unemphasizedSelectionColor
         self.textHighlightColor = theme.highlightColor
         
+        // explicitly set the foreground color to nil,
+        // otherwise the syntax highlighting disappears by selecting text
+        // in the Dark mode (2025-04, macOS 15).
+        self.selectedTextAttributes[.foregroundColor] = nil
+        
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
