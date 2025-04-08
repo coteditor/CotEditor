@@ -3,6 +3,10 @@
 5.1.5 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue on CotEditor 5.1.4 which insertion point rarely jumped to the nearest outline item when the outline inspector is shown.
+
 
 
 5.1.4 (712)

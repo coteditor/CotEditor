@@ -73,7 +73,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
 @MainActor @Observable final class OutlineInspectorViewModel: OutlineInspectorView.ModelProtocol {
     
     var items: [Item] = []
-    var selection: Item.ID?
+    var selection: Item.ID?  { didSet { self.selectItem(id: selection) } }
     
     var isPresented = false  { didSet { self.invalidateObservation() } }
     var document: Document?  { didSet { self.invalidateObservation() } }
@@ -85,6 +85,8 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     
     
     /// Selects correspondence range of the item in the editor.
+    ///
+    /// Call this method in `didSet` of `selection` instead of `onChange(of:)` in SwiftUI view.
     ///
     /// - Parameter id: The `id` of the item to select.
     func selectItem(id: Item.ID?) {
@@ -164,8 +166,6 @@ struct OutlineInspectorView: View {
         
         var items: [Item] { get }
         var selection: Item.ID? { get set }
-        
-        func selectItem(id: Item.ID?)
     }
     
     
@@ -218,9 +218,6 @@ struct OutlineInspectorView: View {
                 .autosaveName("OutlineSearch")
                 .accessibilityAddTraits(.isSearchField)
                 .controlSize(.regular)
-        }
-        .onChange(of: self.model.selection) { (_, newValue) in
-            self.model.selectItem(id: newValue)
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "InspectorPane.outline.label",
@@ -286,8 +283,6 @@ private struct OutlineRowView: View {
         
         var items: [Item] = []
         var selection: Item.ID?
-        
-        func selectItem(id: Item.ID?) { }
     }
     
     @Previewable @State var model = MockedModel(items: [
