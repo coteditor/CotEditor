@@ -10,7 +10,7 @@
 
 ### Fixes
 
-- Fix an issue on CotEditor 5.1.4 which insertion point rarely jumped to the nearest outline item when the outline inspector is shown.
+- Fix an issue on CotEditor 5.1.4 where the insertion point rarely jumps to the nearest outline item when the outline inspector is shown.
 
 
 
