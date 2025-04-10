@@ -157,7 +157,6 @@ struct DonationSettingsView: View {
                                 .foregroundStyle(.secondary)
                                 .textScale(.secondary)
                         }
-                        .textSelection(.enabled)
                         .accessibilityElement(children: .contain)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 12)
