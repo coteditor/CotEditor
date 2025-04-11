@@ -125,8 +125,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             } else {
                 NSRect.zero
             }
-            let topLeft = NSPoint(x: frame.minX, y: frame.maxY)
-            let cascadingPoint = lastWindow.cascadeTopLeft(from: topLeft)
+            let cascadingPoint = lastWindow.cascadeTopLeft(from: frame.topLeft)
             
             window.cascadeTopLeft(from: cascadingPoint)
         }
