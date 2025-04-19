@@ -281,11 +281,6 @@ def parse_args():
 
     args = parser.parse_args()
 
-    # create a flag specifying if create a new blank window or file
-    if not args.files:
-        args.new_window = True
-        return args
-
     if args.files == ['-']:
         return args
 
@@ -345,7 +340,7 @@ def main(args, stdin):
         app.tell_document('set range of selection to {0, 0}')
         document_count = 1
 
-    elif args.new_window:
+    else:
         # new blank document
         app.tell('make new document')
         document_count = 1
@@ -373,7 +368,7 @@ def main(args, stdin):
             args.line or 1, args.column or 0))
 
     # wait for window close
-    if args.wait and (len(args.files) == 1 or stdin or args.new_window):
+    if args.wait and (len(args.files) <= 1 or stdin):
         window_id = app.window_id()
         while app.is_running() and app.window_exists(window_id):
             time.sleep(WAIT_INTERVAL)
