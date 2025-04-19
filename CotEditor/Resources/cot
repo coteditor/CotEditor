@@ -26,7 +26,6 @@ limitations under the License.
 """
 
 import argparse
-import errno
 import os
 import sys
 import time
@@ -34,7 +33,7 @@ from subprocess import Popen, PIPE, CalledProcessError
 
 
 # meta data
-__version__ = '5.1.0'
+__version__ = '6.0.0'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -244,7 +243,7 @@ def parse_args():
                         type=str,
                         metavar='FILE',
                         nargs='*',  # allow wildcard
-                        help="path to file to open"
+                        help="edit specified file(s)"
                         )
 
     # set optional arguments
@@ -267,11 +266,6 @@ def parse_args():
                         default=False,
                         help="open the document as read-only"
                         )
-    parser.add_argument('-n', '--new',
-                        action='store_true',
-                        default=False,
-                        help="create a new blank document"
-                        )
     parser.add_argument('-s', '--syntax',
                         type=str,
                         help="set specific syntax to opened document"
@@ -288,34 +282,30 @@ def parse_args():
     args = parser.parse_args()
 
     # create a flag specifying if create a new blank window or file
-    args.new_window = args.new and not args.files
+    if not args.files:
+        args.new_window = True
+        return args
 
-    # check file existence and create if needed
-    if args.files and args.files != ['-']:
-        # strip symlink
-        args.files = list(map(os.path.realpath, args.files))
+    if args.files == ['-']:
+        return args
+
+    # strip symlink
+    args.files = list(map(os.path.realpath, args.files))
+
+    for path in args.files:
         # skip file check if file is directory
-        if not args.new and os.path.isdir(args.files[0]):
-            return args
-
-        open_mode = 'r'
-        if args.new and not os.path.exists(args.files[0]):
-            open_mode = 'w'   # overwrite mode to create new file
-            # create directory if not exists yet
-            filepath = args.files[0]
-            dirpath = os.path.dirname(filepath)
-            if dirpath:
-                try:
-                    os.makedirs(dirpath)
-                except OSError as err:  # guard against race condition
-                    if err.errno != errno.EEXIST:
-                        parser.error("argument FILE: {}".format(err))
+        if os.path.isdir(path):
+            continue
+        # create directory if not exists yet
+        try:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+        except OSError as err:
+            parser.error("argument FILE: {}".format(err))
         # check readability or create new one
-        for path in args.files:
-            try:
-                open(path, open_mode).close()
-            except IOError as err:
-                parser.error("argument FILE: {}".format(err))
+        try:
+            open(path, 'a').close()
+        except IOError as err:
+            parser.error("argument FILE: {}".format(err))
 
     return args
 
