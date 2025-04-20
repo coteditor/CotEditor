@@ -282,16 +282,21 @@ final class DocumentController: NSDocumentController {
         
         let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
         
-        document.textStorage.replaceContent(with: contents)
-        document.updateChangeCount(.changeDone)
+        if !contents.isEmpty {
+            document.textStorage.replaceContent(with: contents)
+            document.updateChangeCount(.changeDone)
+        }
+        
+        if let title {
+            document.displayName = title
+        }
         
         if displayDocument {
             document.makeWindowControllers()
             document.showWindows()
         }
         
-        if let title {
-            document.displayName = title
+        if title != nil {
             document.windowControllers
                 .forEach { $0.synchronizeWindowTitleWithDocumentName() }
         }
