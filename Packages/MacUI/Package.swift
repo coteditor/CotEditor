@@ -36,7 +36,7 @@ let package = Package(
 
 for target in package.targets {
     target.plugins = [
-        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
+//        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
     ]
     target.swiftSettings = [
         .enableUpcomingFeature("ExistentialAny"),
