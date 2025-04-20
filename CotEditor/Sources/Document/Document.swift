@@ -632,10 +632,12 @@ extension Document: EditorSource {
         // create printView
         // -> Because the last *edited* date is not recorded anywhere, use `.now` if the document was modified since the last save.
         let lastModifiedDate = self.hasUnautosavedChanges ? .now : self.fileModificationDate
-        let info = PrintTextView.DocumentInfo(name: self.displayName,
-                                              fileURL: self.fileURL,
-                                              lastModifiedDate: lastModifiedDate,
-                                              syntaxName: self.syntaxParser.name)
+        let info = PrintTextView.DocumentInfo(
+            name: self.displayName,
+            fileURL: self.fileURL,
+            lastModifiedDate: lastModifiedDate,
+            syntaxName: self.syntaxParser.name
+        )
         let textStorage = NSTextStorage(string: self.textStorage.string)
         let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info)
         if let selectedRanges = self.textView?.selectedRanges {
@@ -652,9 +654,9 @@ extension Document: EditorSource {
         }
         
         // detect URLs manually (2019-05 macOS 10.14).
-        // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
-        //    but then, multiline-URLs over a page break would be broken. (cf. #958)
-        Task { try? await printView.textStorage?.linkURLs() }
+        // -> TextView links all URLs in the printed PDF, even if the auto URL detection is disabled,
+        //    but then, multiline URLs over a page break would be broken. (cf. #958)
+        Task { try? await textStorage.linkURLs() }
         
         // create print operation
         let printInfo = self.printInfo
@@ -678,14 +680,11 @@ extension Document: EditorSource {
         get {
             let printInfo = super.printInfo
             
-            printInfo.horizontalPagination = .fit
-            printInfo.isHorizontallyCentered = false
             printInfo.isVerticallyCentered = false
             printInfo.leftMargin = PrintTextView.margin.left
             printInfo.rightMargin = PrintTextView.margin.right
             printInfo.topMargin = PrintTextView.margin.top
             printInfo.bottomMargin = PrintTextView.margin.bottom
-            printInfo.dictionary()[NSPrintInfo.AttributeKey.headerAndFooter] = true
             
             return printInfo
         }
