@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -78,6 +78,19 @@ public final class InspectorTabView: NSTabView {
             separator.topAnchor.constraint(equalTo: self.segmentedControl.bottomAnchor, constant: self.controlOffset),
             separator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        ])
+        
+        // draw titlebar separator by myself
+        // instead of setting `.separator` to split view item's `titlebarSeparatorStyle` property
+        // to avoid the separator being aligned to the bottom of the tab bar (macOS 15 2025-04, FB17317262)
+        let titlebarSeparator = NSBox()
+        titlebarSeparator.boxType = .separator
+        titlebarSeparator.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(titlebarSeparator)
+        NSLayoutConstraint.activate([
+            titlebarSeparator.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            titlebarSeparator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            titlebarSeparator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
     }
     

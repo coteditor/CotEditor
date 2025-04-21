@@ -3,6 +3,12 @@
 5.1.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- [trivial] Fix an issue where the titlebar separator in the inspector is drawn in the incorrect position when the tab bar is shown.
+
+
+
 5.1.5 (714)
 --------------------------
 
