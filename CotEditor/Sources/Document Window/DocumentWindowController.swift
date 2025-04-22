@@ -375,19 +375,21 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                defaultValue: "Recently Used", table: "Document", comment: "menu item header")
             menu.addItem(.sectionHeader(title: title))
             
-            menu.items += recentSyntaxNames.map {
+            menu.items += recentSyntaxNames.reversed()
+                .map {
+                    let item = NSMenuItem(title: $0, action: action, keyEquivalent: "")
+                    item.representedObject = $0
+                    return item
+                }
+            menu.addItem(.separator())
+        }
+        
+        menu.items += syntaxNames
+            .map {
                 let item = NSMenuItem(title: $0, action: action, keyEquivalent: "")
                 item.representedObject = $0
                 return item
             }
-            menu.addItem(.separator())
-        }
-        
-        menu.items += syntaxNames.map {
-            let item = NSMenuItem(title: $0, action: action, keyEquivalent: "")
-            item.representedObject = $0
-            return item
-        }
         
         if let document = self.fileDocument as? Document {
             self.selectSyntaxPopUpItem(with: document.syntaxParser.name)

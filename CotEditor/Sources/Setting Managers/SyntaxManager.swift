@@ -222,6 +222,8 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     /// - Parameter name: The setting name to note.
     func noteRecentSetting(name: String) {
         
+        guard name != SyntaxName.none else { return }
+        
         let maximum = max(0, UserDefaults.standard[.maximumRecentSyntaxCount])
         UserDefaults.standard[.recentSyntaxNames].appendUnique(name, maximum: maximum)
     }

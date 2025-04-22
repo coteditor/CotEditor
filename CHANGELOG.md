@@ -3,6 +3,11 @@
 5.1.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Improve the Recently Used list of syntaxes in the toolbar item. 
+
+
 ### Fixes
 
 - Fix an issue where an existing document may unintentionally shift when a new document is opened.
