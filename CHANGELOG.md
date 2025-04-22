@@ -5,6 +5,7 @@
 
 ### Fixes
 
+- Fix an issue where an existing document may unintentionally shift when a new document is opened.
 - [trivial] Fix an issue where the titlebar separator in the inspector is drawn in the incorrect position when the tab bar is shown.
 
 
