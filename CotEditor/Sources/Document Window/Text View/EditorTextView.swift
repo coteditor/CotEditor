@@ -140,7 +140,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     required init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner) {
         
-        // setup textContainer and layoutManager
         let textContainer = TextContainer()
         textContainer.widthTracksTextView = true
         let layoutManager = LayoutManager(lineEndingScanner: lineEndingScanner)
@@ -165,15 +164,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.allowsUndo = true
         self.isRichText = false
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
-        self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
-                                   .underlineStyle: NSUnderlineStyle.single.rawValue]
-        
-        // writing tools behavior
-        if #available(macOS 15, *) {
-            // -> rewrite in place doesn't work well with TextKit 1 (macOS 15.1, 2024-09)
-            self.writingToolsBehavior = .limited
-            self.allowedWritingToolsResultOptions = .plainText
-        }
+        self.linkTextAttributes?.removeValue(forKey: .foregroundColor)
         
         let defaults = UserDefaults.standard
         
