@@ -116,15 +116,6 @@ private enum BundleIdentifier {
     @IBOutlet private weak var scriptMenu: NSMenu?
     
     
-    #if DEBUG
-    private let textKitObserver = NotificationCenter.default
-        .addObserver(forName: NSTextView.didSwitchToNSLayoutManagerNotification, object: nil, queue: .main) { notification in
-            let textView = notification.object as! NSTextView
-            Logger.app.debug("\(textView.className) did switch to NSLayoutManager.")
-        }
-    #endif
-    
-    
     // MARK: Lifecycle
     
     override init() {
