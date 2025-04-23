@@ -35,9 +35,13 @@ final class DocumentWindow: NSWindow {
     var contentBackgroundColor: NSColor = .controlBackgroundColor {
         
         didSet {
-            guard !self.isOpaque, contentBackgroundColor != oldValue else { return }
+            guard
+                !self.isOpaque,
+                contentBackgroundColor != oldValue
+            else { return }
             
             self.backgroundColor = contentBackgroundColor.withAlphaComponent(self.backgroundAlpha)
+            
             self.invalidateShadow()
             self.contentView?.needsDisplay = true
         }
@@ -46,12 +50,14 @@ final class DocumentWindow: NSWindow {
     @objc dynamic var backgroundAlpha: Double = 1.0 {
         
         didSet {
-            backgroundAlpha = backgroundAlpha.clamped(to: 0.2...1.0)
+            backgroundAlpha.clamp(to: 0.2...1.0)
             
-            guard !self.styleMask.contains(.fullScreen) else { return }
+            guard
+                !self.styleMask.contains(.fullScreen),
+                backgroundAlpha != oldValue
+            else { return }
             
             self.isOpaque = (backgroundAlpha == 1.0)
-            
             self.backgroundColor = self.isOpaque ? nil : self.contentBackgroundColor.withAlphaComponent(backgroundAlpha)
             
             self.invalidateShadow()
