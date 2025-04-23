@@ -124,7 +124,7 @@ final class DocumentWindow: NSWindow {
 
 extension DocumentWindow {
     
-    /// Settable window user tabbing preference (Don't forget to set to `nil` after use.).
+    /// The temporal tabbing preference (remember to set it to `nil` after use).
     static var tabbingPreference: NSWindow.UserTabbingPreference?
     
     
