@@ -219,7 +219,7 @@ private struct ActionCommandView: View {
         .lineLimit(1)
         .padding(.vertical, 4)
         .padding(.horizontal, 10)
-        .contentShape(Rectangle())  // for clicking
+        .contentShape(.rect)  // for clicking
         .foregroundStyle(self.isSelected ? Color.selectedMenuItemText : .primary)
         .background(self.isSelected ? Color.accentColor : .clear, in: .rect(cornerRadius: 6))
     }

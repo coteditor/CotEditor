@@ -226,7 +226,7 @@ private struct CapsuleButtonStyle: ButtonStyle {
             .brightness(configuration.isPressed ? -0.1 : 0)
             .padding(.vertical, 2)
             .padding(.horizontal, 9)
-            .background(.fill.tertiary, in: Capsule())
+            .background(.fill.tertiary, in: .capsule)
     }
 }
 
