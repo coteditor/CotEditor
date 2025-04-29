@@ -650,7 +650,7 @@ numbers:
 - beginString: '#[0-9a-f]{6}\b'
   ignoreCase: true
   regularExpression: true
-- beginString: (?<![a-zA-Z0-9\._\-\+])\-?([0-9]+(\.[0-9]*)?|\.[0-9]+)(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx)?(?!\w)
+- beginString: (?<![a-zA-Z0-9\._\-\+])\-?([0-9]+(\.[0-9]*)?|\.[0-9]+)(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx|ch|lh|rlh)?(?!\w)
   regularExpression: true
 outlineMenu:
 - beginString: \@(media|page)\b(.+?)(?=($|\{))
@@ -807,6 +807,7 @@ values:
 - beginString: fit-content
 - beginString: fixed
 - beginString: flat
+- beginString: flex
 - beginString: flex-end
 - beginString: flex-start
 - beginString: floralwhite
@@ -826,6 +827,7 @@ values:
 - beginString: green
 - beginString: greenyellow
 - beginString: grey
+- beginString: grid
 - beginString: groove
 - beginString: hanging
 - beginString: hard-light
@@ -1050,6 +1052,7 @@ values:
 - beginString: space
 - beginString: space-around
 - beginString: space-between
+- beginString: span
 - beginString: spell-out
 - beginString: springgreen
 - beginString: square
@@ -1118,6 +1121,7 @@ values:
 - beginString: wheat
 - beginString: white
 - beginString: whitesmoke
+- beginString: wrap
 - beginString: wrap-reverse
 - beginString: x-fast
 - beginString: x-high
