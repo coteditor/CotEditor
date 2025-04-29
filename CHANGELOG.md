@@ -3,6 +3,10 @@
 5.1.7 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the CSS syntax to add new keywords (thanks to Karam!).
+
 
 
 5.1.6 (716)
