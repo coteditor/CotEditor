@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ extension NSLayoutManager {
     ///   - range: The range to update syntax highlight.
     @MainActor final func apply(highlights: [Highlight], theme: Theme?, in range: NSRange) {
         
-        assert(highlights.sorted(using: SortDescriptor(\.range.location)) == highlights)
+        assert(highlights.sorted(using: KeyPathComparator(\.range.location)) == highlights)
         
         // skip if never colorized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
         guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: range) else { return }

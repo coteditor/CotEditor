@@ -132,7 +132,7 @@ extension SyntaxParser {
                 }
                 
                 return try await group.reduce(into: []) { $0 += $1 }
-                    .sorted(using: SortDescriptor(\.range.location))
+                    .sorted(using: KeyPathComparator(\.range.location))
             }
             
             await MainActor.run {

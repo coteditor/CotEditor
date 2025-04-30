@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@ actor SyntaxTests {
         
         let outlineItems = try syntax.outlineExtractors
             .flatMap { try $0.items(in: source, range: source.range) }
-            .sorted(using: SortDescriptor(\.range.location))
+            .sorted(using: KeyPathComparator(\.range.location))
         
         
         #expect(outlineItems.count == 3)

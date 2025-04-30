@@ -200,7 +200,7 @@ private struct CreditsView: View {
             
             SectionView(String(localized: "Localization", table: "About", comment: "section heading")) {
                 Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
-                    ForEach(self.credits.localization.sorted(using: SortDescriptor(\.key)), id: \.key) { item in
+                    ForEach(self.credits.localization.sorted(using: KeyPathComparator(\.key)), id: \.key) { item in
                         GridRow {
                             Text(Locale.current.localizedString(forIdentifier: item.key)!)
                                 .foregroundStyle(.secondary)

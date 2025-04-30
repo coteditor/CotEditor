@@ -178,7 +178,7 @@ import URLUtils
         } else {
             let encoder = PropertyListEncoder()
             encoder.outputFormat = .xml
-            let descriptions = self.userKeyBindings.sorted(using: SortDescriptor(\.action.description))
+            let descriptions = self.userKeyBindings.sorted(using: KeyPathComparator(\.action.description))
             let data = try encoder.encode(descriptions)
             let fileURL = self.settingFileURL
             
