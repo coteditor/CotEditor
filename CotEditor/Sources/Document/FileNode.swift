@@ -140,6 +140,13 @@ final class FileNode {
     }
     
     
+    /// The sort order for display.
+    private nonisolated static let sortOrder: [KeyPathComparator<FileNode>] = [
+        KeyPathComparator(\.isFolder),
+        KeyPathComparator(\.name, comparator: .localizedStandard)
+    ]
+    
+    
     /// Reads the contents of the directory at the receiver's `fileURL`.
     ///
     /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
@@ -151,8 +158,7 @@ final class FileNode {
             .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
             .filter { $0.lastPathComponent != ".DS_Store" }
             .map { try FileNode(at: $0, parent: self) }
-            .sorted(using: [KeyPathComparator(\.isFolder),
-                            KeyPathComparator(\.name, comparator: .localizedStandard)])
+            .sorted(using: Self.sortOrder)
     }
     
     
@@ -339,7 +345,7 @@ extension FileNode {
             self.isHidden = newName.starts(with: ".")
         }
         
-        self.parent?.cachedChildren?.sort()
+        self.parent?.cachedChildren?.sort(using: Self.sortOrder)
     }
     
     
@@ -370,7 +376,7 @@ extension FileNode {
         assert(self.isDirectory)
         
         self.cachedChildren?.append(node)
-        self.cachedChildren?.sort()
+        self.cachedChildren?.sort(using: Self.sortOrder)
     }
     
     
@@ -392,17 +398,6 @@ extension FileNode {
             child.fileURL = fileURL.appending(component: child.name)
             child.moveChildren(to: self.fileURL)
         }
-    }
-}
-
-
-private extension [FileNode] {
-    
-    /// Sorts items for display.
-    mutating func sort() {
-        
-        self.sort(using: [KeyPathComparator(\.isFolder),
-                          KeyPathComparator(\.name, comparator: .localizedStandard)])
     }
 }
 
