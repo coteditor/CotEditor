@@ -419,7 +419,7 @@ extension SettingFileManaging {
     // MARK: Private Methods
     
     /// The user setting directory URL in Application Support.
-    nonisolated private var userSettingDirectoryURL: URL {
+    private nonisolated var userSettingDirectoryURL: URL {
         
         .applicationSupportDirectory(component: Self.directoryName)
     }

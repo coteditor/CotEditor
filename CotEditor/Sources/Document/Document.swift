@@ -1168,7 +1168,7 @@ extension Document: EditorSource {
     /// Checks if the file contents did change since the last read.
     ///
     /// - Returns: A boolean whether the file did change and the content modification date if available.
-    nonisolated private func checkFileContentsDidChange() throws -> (Bool, Date?) {
+    private nonisolated func checkFileContentsDidChange() throws -> (Bool, Date?) {
         
         guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
         

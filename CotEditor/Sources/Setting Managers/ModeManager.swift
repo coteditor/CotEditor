@@ -145,7 +145,7 @@ import Syntax
     ///
     /// - Parameter name: The name of the syntax.
     /// - Returns: Syntax.Kind.
-    nonisolated private func syntaxKind(name: SyntaxManager.SettingName) throws -> Syntax.Kind {
+    private nonisolated func syntaxKind(name: SyntaxManager.SettingName) throws -> Syntax.Kind {
         
         try SyntaxManager.shared.setting(name: name).kind
     }
