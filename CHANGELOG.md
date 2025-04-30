@@ -3,6 +3,11 @@
 5.1.7 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the document kind to the file preview view for the file browser.
+
+
 ### Improvements
 
 - Update the CSS syntax to add new keywords (thanks to Karam!).

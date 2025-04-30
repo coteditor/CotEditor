@@ -60,7 +60,18 @@ struct FilePreviewView: View {
             }
             .padding(.top)
             
-            Group {
+            Form {
+                LabeledContent(String(localized: "Kind", table: "Document")) {
+                    if let type = self.item.fileType, let typeName = UTType(type)?.localizedDescription {
+                        Text(typeName)
+                    } else {
+                        Text("Unknown")
+                            .italic()
+                            .foregroundStyle(.secondary)
+                            .textSelection(.disabled)
+                    }
+                }
+                
                 switch self.item.contentAttributes {
                     case .image(let attributes):
                         ImageAttributesView(attributes: attributes)
@@ -121,16 +132,14 @@ struct ImageAttributesView: View {
     
     var body: some View {
         
-        Form {
-            LabeledContent(String(localized: "Image size", table: "Document"),
-                           value: self.attributes.pixelSize.formatted)
-            LabeledContent(String(localized: "Image DPI", table: "Document"),
-                           value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
-            LabeledContent(String(localized: "Color model", table: "Document"),
-                           optional: self.attributes.colorSpace?.colorSpaceModel.localizedName)
-            LabeledContent(String(localized: "ColorSync profile", table: "Document"),
-                           optional: self.attributes.colorSpace?.localizedName)
-        }
+        LabeledContent(String(localized: "Image size", table: "Document"),
+                       value: self.attributes.pixelSize.formatted)
+        LabeledContent(String(localized: "Image DPI", table: "Document"),
+                       value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
+        LabeledContent(String(localized: "Color model", table: "Document"),
+                       optional: self.attributes.colorSpace?.colorSpaceModel.localizedName)
+        LabeledContent(String(localized: "ColorSync profile", table: "Document"),
+                       optional: self.attributes.colorSpace?.localizedName)
     }
 }
 
