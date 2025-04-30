@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,15 +62,8 @@ extension SyntaxObject {
         
         for keyPath in SyntaxType.allCases.map(Self.highlightKeyPath(for:)) {
             let highlights = self[keyPath: keyPath]
-                .sorted {  // sort for duplication check
-                    if $0.begin != $1.begin {
-                        $0.begin < $1.begin
-                    } else if let end0 = $0.end, let end1 = $1.end {
-                        end0 < end1
-                    } else {
-                        true
-                    }
-                }
+                .sorted(using: [KeyPathComparator(\.begin),
+                                KeyPathComparator(\.end)])  // sort for duplication check
             
             // allow appearing the same highlights in different kinds
             var lastHighlight: Highlight?

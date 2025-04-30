@@ -81,7 +81,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         self.bundledMaps = try! JSONDecoder().decode([SettingName: SyntaxMap].self, from: data)
-        self.bundledSettingNames = self.bundledMaps.keys.sorted(using: .localized)
+        self.bundledSettingNames = self.bundledMaps.keys.sorted(using: .localizedStandard)
         
         // sanitize user setting file extensions
         try? self.sanitizeUserSettings()

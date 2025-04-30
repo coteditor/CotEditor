@@ -140,14 +140,9 @@ public struct HighlightParser: Sendable {
                     }
             }
         }
-            .filter { !string.isEscaped(at: $0.range.location) }  // remove escaped ones
-            .sorted {  // sort by location
-                if $0.range.location != $1.range.location {
-                    $0.range.location < $1.range.location
-                } else {
-                    $0.range.length > $1.range.length
-                }
-            }
+            .filter { !string.isEscaped(at: $0.range.location) }
+            .sorted(using: [KeyPathComparator(\.range.location),
+                            KeyPathComparator(\.range.length, order: .reverse)])
         
         guard !positions.isEmpty else { return [:] }
         

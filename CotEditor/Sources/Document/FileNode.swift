@@ -151,8 +151,8 @@ final class FileNode {
             .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
             .filter { $0.lastPathComponent != ".DS_Store" }
             .map { try FileNode(at: $0, parent: self) }
-            .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
-            .sorted(using: SortDescriptor(\.isFolder))
+            .sorted(using: [KeyPathComparator(\.isFolder),
+                            KeyPathComparator(\.name, comparator: .localizedStandard)])
     }
     
     
@@ -401,8 +401,8 @@ private extension [FileNode] {
     /// Sorts items for display.
     mutating func sort() {
         
-        self.sort(using: SortDescriptor(\.name, comparator: .localizedStandard))
-        self.sort(using: SortDescriptor(\.isFolder))
+        self.sort(using: [KeyPathComparator(\.isFolder),
+                          KeyPathComparator(\.name, comparator: .localizedStandard)])
     }
 }
 
