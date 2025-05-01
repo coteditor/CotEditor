@@ -25,12 +25,14 @@
 
 import AppKit
 import QuickLookUI
+import AVFoundation
 
 @Observable final class PreviewDocument: DataDocument {
     
     enum Attributes {
         
         case image(ImageAttributes)
+        case movie(MovieAttributes)
     }
     
     
@@ -70,6 +72,16 @@ import QuickLookUI
                 
                 if type.conforms(to: .image) {
                     contentAttributes = .image(rep.attributes)
+                }
+                
+            } else if type.conforms(to: .movie) {
+                Task {
+                    let attributes = try await AVAsset(url: url).attributes
+                    
+                    await MainActor.run {
+                        self.previewSize = attributes.dimensions
+                        self.contentAttributes = .movie(attributes)
+                    }
                 }
             }
         }

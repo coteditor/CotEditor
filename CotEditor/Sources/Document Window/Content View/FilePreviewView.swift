@@ -75,6 +75,8 @@ struct FilePreviewView: View {
                 switch self.item.contentAttributes {
                     case .image(let attributes):
                         ImageAttributesView(attributes: attributes)
+                    case .movie(let attributes):
+                        MovieAttributesView(attributes: attributes)
                     default:
                         EmptyView()
                 }
@@ -147,6 +149,22 @@ struct ImageAttributesView: View {
 }
 
 
+struct MovieAttributesView: View {
+    
+    var attributes: MovieAttributes
+    
+    
+    var body: some View {
+        
+        LabeledContent(String(localized: "Dimensions", table: "Document"),
+                       value: self.attributes.dimensions.formatted)
+        LabeledContent(String(localized: "Duration", table: "Document"),
+                       value: self.attributes.duration,
+                       format: .time(pattern: self.attributes.duration.naturalPattern))
+    }
+}
+
+
 private extension CGSize {
     
     /// The human-readable representation.
@@ -155,6 +173,16 @@ private extension CGSize {
         func format(_ value: Double) -> String { Int(value).formatted(.number.grouping(.never)) }
         
         return "\(format(self.width))×\(format(self.height))"
+    }
+}
+
+
+private extension Duration {
+    
+    /// The natural format pattern based on the length.
+    var naturalPattern: TimeFormatStyle.Pattern {
+        
+        (self.components.seconds >= 60 * 60) ? .hourMinuteSecond : .minuteSecond
     }
 }
 
