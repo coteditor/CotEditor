@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Add the document kind to the file preview view for the file browser.
+- Enhance the content of the file preview view for the file browser.
 
 
 ### Improvements

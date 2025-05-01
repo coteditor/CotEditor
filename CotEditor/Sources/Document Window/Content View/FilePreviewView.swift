@@ -133,23 +133,28 @@ struct ImageAttributesView: View {
     
     var body: some View {
         
-        LabeledContent(String(localized: "Image size", table: "Document"),
-                       value: self.attributes.pixelSize.formatted)
+        LabeledContent(String(localized: "Dimensions", table: "Document"),
+                       value: self.attributes.dimensions.formatted)
         LabeledContent(String(localized: "Image DPI", table: "Document"),
                        value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
-        LabeledContent(String(localized: "Color model", table: "Document"),
-                       optional: self.attributes.colorSpace?.colorSpaceModel.localizedName)
-        LabeledContent(String(localized: "ColorSync profile", table: "Document"),
-                       optional: self.attributes.colorSpace?.localizedName)
+        if let colorSpace = self.attributes.colorSpace {
+            LabeledContent(String(localized: "Color space", table: "Document"),
+                           optional: colorSpace.colorSpaceModel.localizedName)
+            LabeledContent(String(localized: "Color profile", table: "Document"),
+                           optional: colorSpace.localizedName)
+        }
     }
 }
 
 
-private extension PixelSize {
+private extension CGSize {
     
+    /// The human-readable representation.
     var formatted: String {
         
-        String(localized: "\(self.width) × \(self.height) pixels", table: "Document")
+        func format(_ value: Double) -> String { Int(value).formatted(.number.grouping(.never)) }
+        
+        return "\(format(self.width))×\(format(self.height))"
     }
 }
 
@@ -164,10 +169,10 @@ private extension PixelSize {
 }
 
 #Preview("ImageAttributesView") {
-    ImageAttributesView(attributes: ImageAttributes(pixelSize: .init(width: 1024, height: 900),
+    ImageAttributesView(attributes: ImageAttributes(dimensions: .init(width: 1024, height: 900),
                                                     dotsPerInch: 72,
                                                     colorSpace: .extendedGenericGamma22Gray))
     
-    ImageAttributesView(attributes: ImageAttributes(pixelSize: .init(width: 0, height: 0),
+    ImageAttributesView(attributes: ImageAttributes(dimensions: .init(width: 0, height: 0),
                                                     dotsPerInch: 0.5))
 }

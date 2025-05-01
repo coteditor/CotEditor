@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,16 +27,9 @@ import AppKit
 
 struct ImageAttributes {
     
-    var pixelSize: PixelSize
+    var dimensions: CGSize
     var dotsPerInch: Double
     var colorSpace: NSColorSpace?
-}
-
-
-struct PixelSize {
-    
-    var width: Int
-    var height: Int
 }
 
 
@@ -44,21 +37,23 @@ extension NSImageRep {
     
     final var attributes: ImageAttributes {
         
-        ImageAttributes(pixelSize: self.pixelSize,
-                        dotsPerInch: self.dotsPerInch,
-                        colorSpace: (self as? NSBitmapImageRep)?.colorSpace)
+        ImageAttributes(
+            dimensions: self.pixelSize,
+            dotsPerInch: self.dotsPerInch,
+            colorSpace: (self as? NSBitmapImageRep)?.colorSpace
+        )
     }
     
     
     /// The size of image.
-    final var pixelSize: PixelSize {
+    private var pixelSize: CGSize {
         
-        PixelSize(width: self.pixelsWide, height: self.pixelsHigh)
+        CGSize(width: self.pixelsWide, height: self.pixelsHigh)
     }
     
     
     /// The image DPI only considering X axis.
-    final var dotsPerInch: Double {
+    private var dotsPerInch: Double {
         
         72 * Double(self.pixelsWide) / self.size.width
     }
