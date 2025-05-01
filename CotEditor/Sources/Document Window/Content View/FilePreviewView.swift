@@ -82,6 +82,7 @@ struct FilePreviewView: View {
             .monospacedDigit()
             .formStyle(.grouped)
             .frame(maxWidth: 400)
+            .accessibilityLabel(String(localized: "Information", table: "Document", comment: "accessibility label"))
         }
         .scenePadding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)

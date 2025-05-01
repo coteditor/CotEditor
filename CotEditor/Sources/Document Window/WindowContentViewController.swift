@@ -97,6 +97,11 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
         self.addSplitViewItem(self.contentViewItem)
+        if self.directoryDocument != nil {
+            contentViewController.view.setAccessibilityElement(true)
+            contentViewController.view.setAccessibilityRole(.group)
+            contentViewController.view.setAccessibilityLabel(self.document?.displayName ?? "")
+        }
         
         let inspectorViewController = InspectorViewController(document: self.document)
         self.inspectorViewItem = NSSplitViewItem(inspectorWithViewController: inspectorViewController)
@@ -331,5 +336,9 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         self.contentViewController.document = self.document
         self.inspectorViewController.document = self.document
+        
+        if self.directoryDocument != nil {
+            self.contentViewController.view.setAccessibilityLabel(self.document?.displayName ?? "")
+        }
     }
 }
