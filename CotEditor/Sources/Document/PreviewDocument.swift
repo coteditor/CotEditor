@@ -64,14 +64,14 @@ import AVFoundation
             false
         }
         
-        var previewSize: CGSize?
-        var contentAttributes: Attributes?
         if let type = UTType(typeName) {
             if let rep = NSImageRep(contentsOf: url) {
-                previewSize = rep.size
+                let previewSize = rep.size
+                let attributes = rep.attributes
                 
-                if type.conforms(to: .image) {
-                    contentAttributes = .image(rep.attributes)
+                Task { @MainActor in
+                    self.previewSize = previewSize
+                    self.contentAttributes = attributes.dotsPerInch.isZero ? nil : .image(attributes)
                 }
                 
             } else if type.conforms(to: .movie) {
@@ -90,8 +90,6 @@ import AVFoundation
             self.fileAttributes = fileAttributes
             self.isAlias = isAlias
             self.isFolderAlias = isFolderAlias
-            self.previewSize = previewSize
-            self.contentAttributes = contentAttributes
         }
     }
 }
