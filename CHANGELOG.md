@@ -27,7 +27,7 @@
 
 ### Improvements
 
-- [trivial] Improve the Recently Used list of syntaxes in the toolbar item. 
+- [trivial] Improve the Recently Used list of syntaxes in the toolbar item.
 
 
 ### Fixes
