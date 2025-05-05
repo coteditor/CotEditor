@@ -217,9 +217,11 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         self.undoManager?.removeAllActions(withTarget: self)
         self.tableView?.reloadData()
         
-        // workaround drawing issue (macOS 13, 2022-11)
+        // workaround drawing issue (macOS 13, 2022-11, fixed on macOS 15 at least)
         // cf. [#1402](https://github.com/coteditor/CotEditor/issues/1402)
-        self.tableView?.needsDisplay = true
+        if #unavailable(macOS 15) {
+            self.tableView?.needsDisplay = true
+        }
         
         if setting.replacements.isEmpty {
             self.add(self)

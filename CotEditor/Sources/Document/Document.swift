@@ -486,7 +486,7 @@ extension Document: EditorSource {
         self.lastAdditionalFileAttributes = self.additionalFileAttributes(for: saveOperation)
         
         // workaround the issue that invoking the async version super blocks the save process
-        // with macOS 12-14 + Xcode 13-15 (2022 FB11203469).
+        // with macOS 12-15 + Xcode 13-16 (2022 FB11203469).
         // To reproduce the issue:
         //     1. Make a document unsaved ("Edited" status in the window subtitle).
         //     2. Open the save panel once and cancel it.
