@@ -109,9 +109,9 @@ enum ModifierKey: CaseIterable {
 
 extension [ModifierKey] {
     
-    /// The NSEvent.ModifierFlags representation.
+    /// The `NSEvent.ModifierFlags` representation.
     var mask: NSEvent.ModifierFlags {
         
-        self.reduce(into: []) { $0.formUnion($1.mask) }
+        NSEvent.ModifierFlags(self.map(\.mask))
     }
 }
