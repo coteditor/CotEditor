@@ -43,7 +43,7 @@ struct IncompatibleCharactersView: View {
         private var document: Document?
         
         private(set) var task: Task<Void, any Error>?
-        private var observer: AnyCancellable?
+        private var observers: Set<AnyCancellable> = []
     }
     
     
@@ -66,12 +66,12 @@ struct IncompatibleCharactersView: View {
             
             if self.model.isScanning {
                 Text("Scanning incompatible characters…", tableName: "Document")
-            } else if self.model.items.isEmpty {
-                Text("No issues found.", tableName: "Document")
-                    .foregroundStyle(.secondary)
-            } else {
+            } else if !self.model.items.isEmpty {
                 Text("Found \(self.model.items.count) incompatible characters.", tableName: "Document",
                      comment: "%lld is the number of characters.")
+            } else {
+                Text("No issues found.", tableName: "Document")
+                    .foregroundStyle(.secondary)
             }
             
             if !self.model.items.isEmpty {
@@ -168,43 +168,51 @@ private extension IncompatibleCharactersView.Model {
     }
     
     
+    // MARK: Private Methods
+    
     /// Updates observations.
     private func invalidateObservation() {
         
+        self.observers.removeAll()
+        
         if let document {
-            self.observer = Publishers.Merge3(
-                Just(Void()),  // initial scan
-                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: document.textStorage)
-                    .map { $0.object as! NSTextStorage }
-                    .filter { $0.editedMask.contains(.editedCharacters) }
-                    .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
-                    .eraseToVoid(),
-                document.$fileEncoding
-                    .map(\.encoding)
-                    .removeDuplicates()
-                    .eraseToVoid()
-            )
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                guard let self else { return }
-                self.task?.cancel()
-                self.task = Task {
-                    let items = try await self.scan()
-                    self.updateMarkup(items)
-                    self.items = items
+            self.invalidateIncompatibleCharacters()
+            
+            NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: document.textStorage)
+                .map { $0.object as! NSTextStorage }
+                .filter { $0.editedMask.contains(.editedCharacters) }
+                .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in
+                    self?.invalidateIncompatibleCharacters()
                 }
-            }
+                .store(in: &self.observers)
+            document.$fileEncoding
+                .map(\.encoding)
+                .removeDuplicates()
+                .sink { [weak self] _ in
+                    self?.invalidateIncompatibleCharacters()
+                }
+                .store(in: &self.observers)
+            
         } else {
-            self.observer = nil
             self.task?.cancel()
             self.items.removeAll()
             self.isScanning = false
-            self.updateMarkup([])
         }
     }
     
     
-    // MARK: Private Methods
+    /// Update incompatible characters.
+    private func invalidateIncompatibleCharacters() {
+        
+        self.task?.cancel()
+        self.task = Task {
+            self.items = try await self.scan()
+            self.updateMarkup()
+        }
+    }
+    
     
     /// Scans the characters incompatible with the current encoding in the document contents.
     ///
@@ -230,15 +238,10 @@ private extension IncompatibleCharactersView.Model {
     }
     
     
-    /// Update markup in the editors.
-    ///
-    /// - Parameter items: The new incompatible characters.
-    private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
+    /// Updates markup in the editors.
+    private func updateMarkup() {
         
-        if !self.items.isEmpty {
-            self.document?.textStorage.clearAllMarkup()
-        }
-        self.document?.textStorage.markup(ranges: items.map(\.range))
+        self.document?.textStorage.markup(ranges: self.items.map(\.range))
     }
 }
 
@@ -249,6 +252,8 @@ private extension NSTextStorage {
     ///
     /// - Parameter ranges: The ranges to markup.
     @MainActor func markup(ranges: [NSRange]) {
+        
+        self.clearAllMarkup()
         
         guard !ranges.isEmpty else { return }
         
@@ -265,10 +270,9 @@ private extension NSTextStorage {
     /// Clears all background highlight (including text finder's highlights).
     @MainActor func clearAllMarkup() {
         
-        let range = self.string.range
-        
-        for manager in self.layoutManagers {
-            manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: range)
+        // perform clear only when really needed to avoid unwanted layout update
+        for manager in self.layoutManagers where manager.hasTemporaryAttribute(.backgroundColor) {
+            manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
         }
     }
 }
