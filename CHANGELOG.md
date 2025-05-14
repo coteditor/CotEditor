@@ -12,6 +12,7 @@
 
 - Update the CSS syntax to add new keywords (thanks to Karam!).
 - Improve the VoiceOver support in folder documents.
+- [dev] Update Yams from 5.3.1 to 6.0.0.
 
 
 
