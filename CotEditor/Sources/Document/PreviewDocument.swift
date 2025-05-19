@@ -79,6 +79,15 @@ protocol FileContentAttributes: Sendable, Equatable { }
                         self.contentAttributes = attributes
                     }
                 }
+                
+            } else if type.conforms(to: .audio) {
+                Task {
+                    let attributes = try await AVAsset(url: url).audioAttributes
+                    
+                    await MainActor.run {
+                        self.contentAttributes = attributes
+                    }
+                }
             }
         }
         

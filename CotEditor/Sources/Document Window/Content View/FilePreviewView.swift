@@ -77,6 +77,8 @@ struct FilePreviewView: View {
                         ImageAttributesView(attributes: attributes)
                     case let attributes as MovieAttributes:
                         MovieAttributesView(attributes: attributes)
+                    case let attributes as AudioAttributes:
+                        AudioAttributesView(attributes: attributes)
                     default:
                         EmptyView()
                 }
@@ -158,6 +160,20 @@ struct MovieAttributesView: View {
         
         LabeledContent(String(localized: "Dimensions", table: "Document"),
                        value: self.attributes.dimensions.formatted)
+        LabeledContent(String(localized: "Duration", table: "Document"),
+                       value: self.attributes.duration,
+                       format: .time(pattern: self.attributes.duration.naturalPattern))
+    }
+}
+
+
+struct AudioAttributesView: View {
+    
+    var attributes: AudioAttributes
+    
+    
+    var body: some View {
+        
         LabeledContent(String(localized: "Duration", table: "Document"),
                        value: self.attributes.duration,
                        format: .time(pattern: self.attributes.duration.naturalPattern))
