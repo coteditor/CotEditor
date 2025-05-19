@@ -25,7 +25,7 @@
 
 import AppKit
 
-struct ImageAttributes {
+struct ImageAttributes: FileContentAttributes {
     
     var dimensions: CGSize
     var dotsPerInch: Double

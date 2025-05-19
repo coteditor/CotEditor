@@ -25,7 +25,7 @@
 
 import AVFoundation
 
-struct MovieAttributes {
+struct MovieAttributes: FileContentAttributes {
     
     var dimensions: CGSize
     var duration: Duration
@@ -34,11 +34,11 @@ struct MovieAttributes {
 
 extension AVAsset {
     
-    final var attributes: MovieAttributes {
+    final var movieAttributes: MovieAttributes {
         
         get async throws {
             guard let track = try await self.loadTracks(withMediaType: .video).first else {
-                throw CocoaError.error(.fileReadCorruptFile)
+                throw AVError(.noSourceTrack)
             }
             
             return try await MovieAttributes(
@@ -52,6 +52,9 @@ extension AVAsset {
 
 private extension AVAssetTrack {
     
+    /// The video dimensions in `CGSize`.
+    ///
+    /// - Note: The size can be `zero` if the receiver is non-visual track.
     var size: CGSize {
         
         get async throws {

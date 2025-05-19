@@ -27,14 +27,10 @@ import AppKit
 import QuickLookUI
 import AVFoundation
 
+protocol FileContentAttributes: Sendable, Equatable { }
+
+
 @Observable final class PreviewDocument: DataDocument {
-    
-    enum Attributes {
-        
-        case image(ImageAttributes)
-        case movie(MovieAttributes)
-    }
-    
     
     // MARK: Public Properties
     
@@ -42,7 +38,7 @@ import AVFoundation
     private(set) var isFolderAlias = false
     
     private(set) var previewSize: CGSize?
-    private(set) var contentAttributes: Attributes?
+    private(set) var contentAttributes: (any FileContentAttributes)?
     
     
     // MARK: Document Methods
@@ -71,16 +67,16 @@ import AVFoundation
                 
                 Task { @MainActor in
                     self.previewSize = previewSize
-                    self.contentAttributes = attributes.dotsPerInch.isZero ? nil : .image(attributes)
+                    self.contentAttributes = attributes.dotsPerInch.isZero ? nil : attributes
                 }
                 
             } else if type.conforms(to: .movie) {
                 Task {
-                    let attributes = try await AVAsset(url: url).attributes
+                    let attributes = try await AVAsset(url: url).movieAttributes
                     
                     await MainActor.run {
                         self.previewSize = attributes.dimensions
-                        self.contentAttributes = .movie(attributes)
+                        self.contentAttributes = attributes
                     }
                 }
             }

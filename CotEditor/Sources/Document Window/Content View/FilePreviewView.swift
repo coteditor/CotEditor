@@ -73,9 +73,9 @@ struct FilePreviewView: View {
                 }
                 
                 switch self.item.contentAttributes {
-                    case .image(let attributes):
+                    case let attributes as ImageAttributes:
                         ImageAttributesView(attributes: attributes)
-                    case .movie(let attributes):
+                    case let attributes as MovieAttributes:
                         MovieAttributesView(attributes: attributes)
                     default:
                         EmptyView()
