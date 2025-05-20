@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -122,6 +122,12 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showInFinder:" target="Ady-hI-5gd" id="c7U-Ai-EpC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy File Path" alternate="YES" id="9sv-l5-xwG">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                            <connections>
+                                                <action selector="copyPath:" target="Ady-hI-5gd" id="32y-EP-V8T"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Share…" id="TNF-pL-CAZ">

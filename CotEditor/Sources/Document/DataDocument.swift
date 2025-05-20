@@ -39,7 +39,8 @@ import AppKit
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(showInFinder):
+            case #selector(showInFinder),
+                 #selector(copyPath):
                 return self.fileURL != nil
                 
             default: break
@@ -57,6 +58,16 @@ import AppKit
         guard let fileURL else { return }
         
         NSWorkspace.shared.activateFileViewerSelecting([fileURL])
+    }
+    
+    
+    /// Copies the file path to the clipboard.
+    @IBAction func copyPath(_ sender: Any?) {
+        
+        guard let fileURL else { return }
+        
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.writeObjects([fileURL as NSURL])
     }
     
     

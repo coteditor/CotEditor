@@ -6,6 +6,7 @@
 ### New Features
 
 - Enhance the content of the file preview view for the file browser.
+- Add the “Copy File Path” command to the File menu as an alternative to the “Show in Finder” command, which can be shown while pressing the Option key.
 
 
 ### Improvements

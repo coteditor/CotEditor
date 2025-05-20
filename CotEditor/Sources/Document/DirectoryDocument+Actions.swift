@@ -52,6 +52,7 @@ extension DirectoryDocument {
                 return (self.currentDocument as? Document)?.validateUserInterfaceItem(item) ?? false
                 
             case #selector(showInFinder),
+                 #selector(copyPath),
                  #selector(shareDocument):
                 return self.currentDocument?.validateUserInterfaceItem(item) ?? false
                 
@@ -122,6 +123,12 @@ extension DirectoryDocument {
     @objc func showInFinder(_ sender: Any?) {
         
         self.currentDocument?.showInFinder(sender)
+    }
+    
+    
+    @objc func copyPath(_ sender: Any?) {
+        
+        self.currentDocument?.copyPath(sender)
     }
     
     
