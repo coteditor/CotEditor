@@ -1022,6 +1022,9 @@ private final class FileBrowserTableCellView: NSTableCellView {
             textField.leadingAnchor.constraint(equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1),
             textFieldTrailingAnchor,
             tagsView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2),
+            
+            // fix the height for the case when the file name contains line breaks
+            textField.heightAnchor.constraint(lessThanOrEqualToConstant: textField.fittingSize.height),
         ])
     }
     

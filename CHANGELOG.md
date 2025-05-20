@@ -15,6 +15,11 @@
 - [dev] Update Yams from 5.3.1 to 6.0.0.
 
 
+### Fixes
+
+- [trivial] Fix the layout of the file browser when a filename contains line ending characters.
+
+
 
 5.1.6 (716)
 --------------------------
