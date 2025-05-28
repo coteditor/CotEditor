@@ -208,8 +208,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Café invisible"
+            "state" : "translated",
+            "value" : "Café Invisible"
           }
         },
         "fr" : {
@@ -304,7 +304,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Taza de café"
+            "value" : "Taza de Café"
           }
         },
         "fr" : {
@@ -771,7 +771,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "El archivo “%@” ya está abierto en otra ventana."
           }
         },
@@ -867,7 +867,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Para abrirla en esta ventana, cierre primero la ventana existente."
           }
         },
@@ -962,7 +962,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "El documento no es editable."
           }
         },
@@ -1057,8 +1057,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Para efectuar cambios en el contenido del documento, primero permitir su edición."
+            "state" : "translated",
+            "value" : "Tienes que permitir editar este documento, para poder hacer cambios en él."
           }
         },
         "fr" : {
@@ -1344,7 +1344,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "un tipo desconocido"
           }
         },
@@ -1726,7 +1726,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Revisar caracteres incompatibles"
           }
         },
@@ -2386,8 +2386,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cambiar la codificación del texto"
+            "state" : "translated",
+            "value" : "Cambiar codificación del texto"
           }
         },
         "fr" : {
@@ -4936,7 +4936,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "¿Quieres convertir todos los finales de línea en %@, el final de línea más comunes en este documento?"
           }
         },
@@ -5031,8 +5031,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "La final de línea más comunes en este documento es %@."
+            "state" : "translated",
+            "value" : "El final de línea más común en este documento es %@."
           }
         },
         "fr" : {
@@ -5692,8 +5692,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "El nombre no puede contener nuevas líneas."
+            "state" : "translated",
+            "value" : "El nombre no puede tener más líneas."
           }
         },
         "fr" : {
@@ -5882,7 +5882,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "El nombre “%@” está reservado."
           }
         },
@@ -6072,8 +6072,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "El nombre demasiado largo."
+            "state" : "translated",
+            "value" : "El nombre és demasiado largo."
           }
         },
         "fr" : {
@@ -6358,7 +6358,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Resultado Esperado"
           }
         },
@@ -6548,7 +6548,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Pasos para reproducir el problema"
           }
         },
@@ -6828,7 +6828,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "El documento contiene caracteres incompatibles con “%@”."
           }
         },
@@ -7019,8 +7019,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Los caracteres incompatibles se sustituyen o eliminan al guardar. ¿Quieres cambiar la codificación y revisar caracteres incompatibles?"
+            "state" : "translated",
+            "value" : "Los caracteres incompatibles son sustituyidos o eliminanados al guardar. ¿Quieres cambiar la codificación y revisar caracteres incompatibles?"
           }
         },
         "fr" : {
@@ -8796,7 +8796,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "El documento no es editable."
           }
         },
@@ -11254,8 +11254,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "¿QSeguro que quieres descartar los cambios y volver a abrir el documento usando “%@”?"
+            "state" : "translated",
+            "value" : "¿Estas seguro que quieres descartar los cambios y volver a abrir el documento usando “%@”?"
           }
         },
         "fr" : {

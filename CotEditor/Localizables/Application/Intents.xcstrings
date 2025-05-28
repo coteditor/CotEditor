@@ -30,8 +30,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Crea un nuevo documento con el texto especificado en CotEditor."
+            "state" : "translated",
+            "value" : "Crear un nuevo documento con el texto especificado en CotEditor."
           }
         },
         "fr" : {
@@ -125,8 +125,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Contenido"
+            "state" : "translated",
+            "value" : "Contenidos"
           }
         },
         "fr" : {
@@ -220,8 +220,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Créer un document"
+            "state" : "translated",
+            "value" : "Crear Documento"
           }
         },
         "fr" : {
@@ -315,8 +315,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Créer un document"
+            "state" : "translated",
+            "value" : "Crear Documento"
           }
         },
         "fr" : {

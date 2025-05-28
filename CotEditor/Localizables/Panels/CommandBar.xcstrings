@@ -364,7 +364,8 @@
             }
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Command" : {
       "comment" : "command type",

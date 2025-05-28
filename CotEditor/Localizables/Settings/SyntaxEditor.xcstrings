@@ -1098,8 +1098,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Las sintaxis incluidos no se pueden cambiar de nombre."
+            "state" : "translated",
+            "value" : "No se pueden cambiar el nombre de los paquetes de sintaxis."
           }
         },
         "fr" : {
@@ -1276,7 +1276,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Archivo de definición"
           }
         },
@@ -1810,8 +1810,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Toda coincidencia"
+            "state" : "translated",
+            "value" : "Correspondencia completa"
           }
         },
         "fr" : {
@@ -1988,7 +1988,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Recursos"
           }
         },
@@ -2255,7 +2255,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Resaltando"
           }
         },
@@ -2433,7 +2433,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Si no se encuentra la palabra, la lista final se generará de los ajustes de coloración."
           }
         },
@@ -3054,7 +3054,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Clase:"
           }
         },
@@ -3321,7 +3321,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Varios items seleccionados"
           }
         },
@@ -3499,8 +3499,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nenhum item selecionado"
+            "state" : "translated",
+            "value" : "No hay artículos seleccionados"
           }
         },
         "fr" : {
@@ -3677,7 +3677,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Reglas de extracción de esquemas:"
           }
         },
@@ -3944,8 +3944,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cadena de la expresión regula"
+            "state" : "translated",
+            "value" : "Patrón de expresión regular"
           }
         },
         "fr" : {
@@ -4216,7 +4216,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Completado"
           }
         },
@@ -4401,8 +4401,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Los intérpretes se utilizan para determinar el sintaxis a partir del shebang en el documento."
+            "state" : "translated",
+            "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del shebang en el documento."
           }
         },
         "fr" : {
