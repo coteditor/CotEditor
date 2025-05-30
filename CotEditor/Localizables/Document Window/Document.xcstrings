@@ -6235,7 +6235,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Siguiente elemento del esquema"
           }
         },
@@ -6323,7 +6323,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ningún documento seleccionado"
           }
         },
@@ -6765,7 +6765,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Abrir como texto sin formato"
           }
         },
@@ -6943,7 +6943,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Abrir con editor externo"
           }
         },
@@ -7121,7 +7121,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Menu del esquema"
           }
         },
@@ -7388,7 +7388,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Anterior elemento del esquema"
           }
         },
@@ -7743,7 +7743,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mostrar archivos ocultos"
           }
         },
@@ -8633,8 +8633,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "¡Gracias por su amable apoyo!"
+            "state" : "translated",
+            "value" : "¡Muchas gracias por su apoyo!"
           }
         },
         "fr" : {
@@ -8722,7 +8722,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "El documento no es editable."
           }
         },
@@ -9102,7 +9102,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Impedir la edición del documento"
           }
         },
@@ -9197,7 +9197,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Permitir la edición del documento"
           }
         },
@@ -9768,7 +9768,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Tipo de fuente"
           }
         },
@@ -10148,7 +10148,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Cambiar fuente"
           }
         },
@@ -12429,7 +12429,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sintaxis"
           }
         },
@@ -13192,7 +13192,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Usar espacios para sangría"
           }
         },
@@ -13287,8 +13287,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Usar pestañas para sangría"
+            "state" : "translated",
+            "value" : "Usar tabulaciones para sangría"
           }
         },
         "fr" : {

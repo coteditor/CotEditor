@@ -24,7 +24,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sintaxis duplicadas"
           }
         },
@@ -380,7 +380,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Conflictos de mapeo de sintaxis"
           }
         },
@@ -468,7 +468,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Las siguientes reglas de asignación de archivos están registradas en varias sintaxis. CotEditor utiliza la primera sintaxis automáticamente. Para resolver conflictos, edite cada definición de sintaxis."
           }
         },
@@ -557,7 +557,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sintaxis usada"
           }
         },

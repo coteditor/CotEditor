@@ -202,8 +202,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "¡y a todos los que apoyan CotEditor!"
+            "state" : "translated",
+            "value" : "¡Y a todos los que apoyan CotEditor!"
           }
         },
         "fr" : {
@@ -291,8 +291,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Contribuyentes de código"
+            "state" : "translated",
+            "value" : "Contribuyentes del código"
           }
         },
         "fr" : {
@@ -467,8 +467,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CotEditor se desarrolla utilizando las siguientes tecnologías increíbles. Estamos profundamente agradecidos por aquellos que nos dejaron usar sus programas e informaciones valiosas."
+            "state" : "translated",
+            "value" : "CotEditor se desarrolla utilizando las siguientes tecnologías excepcionales. Agradecemos profundamente a quienes nos permiten usar su valioso trabajo."
           }
         },
         "fr" : {
@@ -556,7 +556,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Créditos"
           }
         },

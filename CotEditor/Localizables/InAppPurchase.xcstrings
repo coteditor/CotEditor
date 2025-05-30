@@ -30,8 +30,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Una sabrosa taza"
+            "state" : "translated",
+            "value" : "Una deliciosa taza"
           }
         },
         "fr" : {
@@ -220,7 +220,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Café para el desarrollo diario"
           }
         },

@@ -2767,7 +2767,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seleccionar columna abajo"
           }
         },
@@ -2856,7 +2856,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seleccionar columna izquierda"
           }
         },
@@ -2945,7 +2945,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seleccionar columna derecha"
           }
         },
@@ -3033,7 +3033,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seleccionar columna arriba"
           }
         },
@@ -4618,7 +4618,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "La barra lateral sólo está disponible cuando se abre una carpeta como documento."
           }
         },
@@ -4638,6 +4638,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De navigatiekolom is alleen beschikbaar als een map als document wordt geopend."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅當資料夾作為文件開啟時，側邊欄才可用。"
           }
         }
       }

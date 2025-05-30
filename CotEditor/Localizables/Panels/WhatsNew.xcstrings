@@ -112,7 +112,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Notas de la versión completa"
           }
         },
@@ -295,7 +295,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Impedir la edición accidental haciendo que los documentos sean de sólo lectura."
           }
         },
@@ -390,7 +390,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Modo solo lectura"
           }
         },
@@ -485,7 +485,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "El inspector de documentos y el explorador de archivos muestran ahora las etiquetas del Finder."
           }
         },
@@ -675,7 +675,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "En el título de la ventana aparece el nombre de la carpeta principal para los documentos con el mismo nombre de archivo."
           }
         },
@@ -770,7 +770,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Documentos más fáciles de distinguir"
           }
         },

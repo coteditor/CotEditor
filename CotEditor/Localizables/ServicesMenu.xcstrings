@@ -25,8 +25,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Abrir fichero en CotEditor"
+            "state" : "translated",
+            "value" : "Nueva ventana de CotEditor que contiene la selección"
           }
         },
         "fr" : {
