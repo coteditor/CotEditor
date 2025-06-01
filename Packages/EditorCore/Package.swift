@@ -73,7 +73,7 @@ let package = Package(
         
         .target(name: "Invisible"),
         
-        .target(name: "LineEnding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
+        .target(name: "LineEnding", dependencies: ["StringUtils", "ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "LineEndingTests", dependencies: ["LineEnding", "StringUtils"]),
         
         .target(name: "LineSort", dependencies: ["StringUtils"]),
