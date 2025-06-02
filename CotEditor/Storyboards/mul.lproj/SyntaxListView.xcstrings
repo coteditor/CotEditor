@@ -127,7 +127,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Añade sintaxis vacía"
           }
         },
@@ -332,7 +332,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Esta sintaxis está personalizada."
           }
         },
@@ -812,7 +812,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Eliminar la sintaxis seleccionada"
           }
         },
@@ -1676,7 +1676,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Editar la sintaxis seleccionada"
           }
         },

@@ -663,7 +663,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "¿Quieres usarlo para la fuente monoespaciada?"
           }
         },
@@ -1103,7 +1103,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Fuente monoespaciada:"
           }
         },
@@ -1280,7 +1280,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Fuente estándar:"
           }
         },
@@ -1368,7 +1368,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "La fuente seleccionada no parece ser monoespaciada."
           }
         },

@@ -39,7 +39,7 @@
         },
         "es" : {
           "stringSet" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "values" : [
               "Crear un documento en ${applicationName}"
             ]

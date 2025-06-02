@@ -25,7 +25,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Abrir fichero en CotEditor"
           }
         },
