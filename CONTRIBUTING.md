@@ -84,12 +84,12 @@ Currently, we already have maintainers for:
 - Korean
 - Polish
 - Portuguese
+- Spanish
 - Turkish
 
 We are now looking for new maintainers for:
 
 - French
-- Spanish
 
 Although CotEditor is not yet localized in any bidirectional languages, the project is prepared for it. If you're interested in localizing CotEditor to those languages, please let us know.
 
