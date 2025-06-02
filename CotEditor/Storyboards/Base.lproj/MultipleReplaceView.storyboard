@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -66,7 +66,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="findString" editable="NO" width="103.5" minWidth="40" maxWidth="1000" id="zee-UW-TVR">
+                                                <tableColumn identifier="findString" editable="NO" width="104" minWidth="40" maxWidth="1000" id="zee-UW-TVR">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Find">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -79,11 +79,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Rqz-SK-mda">
-                                                            <rect key="frame" x="29" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="29" y="1" width="104" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-ma-bo2">
-                                                                    <rect key="frame" x="85" y="-2.5" width="16.5" height="22"/>
+                                                                    <rect key="frame" x="86" y="-2.5" width="16.5" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="16" id="MKU-qq-mme"/>
                                                                         <constraint firstAttribute="width" secondItem="iAj-ma-bo2" secondAttribute="height" multiplier="1:1" id="bPQ-kY-hnR"/>
@@ -93,7 +93,7 @@
                                                                     </imageCell>
                                                                 </imageView>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -120,7 +120,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="replacementString" editable="NO" width="103.5" minWidth="40" maxWidth="1000" id="nRC-aM-NZ2">
+                                                <tableColumn identifier="replacementString" editable="NO" width="104" minWidth="40" maxWidth="1000" id="nRC-aM-NZ2">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Replace With">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -133,7 +133,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="135.5" y="1" width="104" height="16"/>
+                                                            <rect key="frame" x="136" y="1" width="104" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
@@ -177,7 +177,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gVj-CA-2D0">
-                                                            <rect key="frame" x="242" y="1" width="28" height="17"/>
+                                                            <rect key="frame" x="243" y="1" width="28" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button identifier="regularExpression" toolTip="Select to search with regular expression." translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Ym-IrV">
@@ -214,7 +214,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="E0A-sg-252">
-                                                            <rect key="frame" x="273" y="1" width="28" height="17"/>
+                                                            <rect key="frame" x="274" y="1" width="28" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button identifier="regularExpression" toolTip="Select to ignore character case on search." translatesAutoresizingMaskIntoConstraints="NO" id="I23-3I-yq5">
@@ -238,7 +238,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="description" width="67.5" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
+                                                <tableColumn identifier="description" width="68" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -251,11 +251,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="rOM-3j-LP8">
-                                                            <rect key="frame" x="304" y="1" width="71" height="16"/>
+                                                            <rect key="frame" x="305" y="1" width="72" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="71" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="gsY-y4-MMs">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

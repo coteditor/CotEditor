@@ -11359,7 +11359,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Foco en siguiente editor"
           }
         },
@@ -11455,7 +11455,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Foco en anterior editor"
           }
         },
@@ -15583,7 +15583,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Usar espacios para sangría"
           }
         },
@@ -15871,7 +15871,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seleccionar símbolos adjuntos"
           }
         },
@@ -16639,7 +16639,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Dividir selección por líneas"
           }
         },
@@ -17599,7 +17599,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seleccionar columna abajo"
           }
         },
@@ -18265,7 +18265,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Tipo de fuente"
           }
         },
@@ -18553,7 +18553,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Reemplazo múltiple…"
           }
         },
@@ -23545,7 +23545,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seleccionar columna arriba"
           }
         },

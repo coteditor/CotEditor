@@ -829,7 +829,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Varios items seleccionados"
           }
         },
@@ -1013,8 +1013,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nenhum item selecionado"
+            "state" : "translated",
+            "value" : "Ningún item selecionado"
           }
         },
         "fr" : {
@@ -1280,7 +1280,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sintaxis utilizada si se utiliza soltar archivos."
           }
         },

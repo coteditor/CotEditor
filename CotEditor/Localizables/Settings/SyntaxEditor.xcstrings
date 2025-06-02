@@ -3500,7 +3500,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No hay artículos seleccionados"
+            "value" : "Ningún item seleccionado"
           }
         },
         "fr" : {

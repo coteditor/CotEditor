@@ -640,7 +640,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Esta sintaxis no existe"
           }
         },

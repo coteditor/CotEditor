@@ -93,13 +93,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "%lld taza"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "%lld tazas"
                 }
               }
@@ -388,7 +388,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Para donar se requiere conexión a internet."
           }
         },
@@ -476,8 +476,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Como prueba de su amable ayuda, aparece una tarjeta de café en la barra de estado durante la ayuda continua."
+            "state" : "translated",
+            "value" : "Como prueba de su generosa ayuda, aparecerá una insignia de café en la barra de estado durante el soporte continuo."
           }
         },
         "fr" : {
@@ -564,8 +564,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tipo de tarjeta:"
+            "state" : "translated",
+            "value" : "Tipo de insignia:"
           }
         },
         "fr" : {
@@ -652,8 +652,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ayuda continua"
+            "state" : "translated",
+            "value" : "Soporte continuo"
           }
         },
         "fr" : {
@@ -740,7 +740,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "CotEditor ofrece todas las funciones de forma gratuita para todo el mundo. Puedes ayudar a este proyecto ofreciendo café."
           }
         },
@@ -828,7 +828,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "La donación no está disponible actualmente."
           }
         },
@@ -1004,7 +1004,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Donación única"
           }
         },
@@ -1093,7 +1093,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Abrir GitHub Sponsors"
           }
         },
@@ -1358,7 +1358,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Cantidad"
           }
         },
@@ -1622,7 +1622,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "La función de donación dentro de la app sólo está disponible en CotEditor distribuido en la App Store."
           }
         },

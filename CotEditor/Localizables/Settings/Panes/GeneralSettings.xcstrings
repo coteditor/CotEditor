@@ -477,7 +477,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Advertencias de diálogo:"
           }
         },
@@ -1556,7 +1556,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Administrar advertencias…"
           }
         },

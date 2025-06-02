@@ -209,7 +209,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Café Invisible"
+            "value" : "Café invisible"
           }
         },
         "fr" : {
@@ -304,7 +304,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Taza de Café"
+            "value" : "Taza de café"
           }
         },
         "fr" : {
