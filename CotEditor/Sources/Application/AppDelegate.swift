@@ -416,6 +416,17 @@ private enum BundleIdentifier {
     }
     
     
+    /// Shows the Encoding List to customize encodings list.
+    @IBAction func showEncodingsListEditor(_ sender: Any?) {
+        
+        SettingsWindowController.shared.openPane(.format)
+        Task {
+            try await Task.sleep(for: .seconds(0.3))
+            NSApp.sendAction(#selector((any EncodingsListHolder).showEncodingsListView), to: nil, from: nil)
+        }
+    }
+    
+    
     /// Shows the Color panel with the color code control.
     @IBAction func editColorCode(_ sender: Any?) {
         
@@ -561,7 +572,10 @@ extension AppDelegate: NSMenuDelegate {
                 case .none:
                     return .separator()
             }
-        }
+        } + [
+            .separator(),
+            NSMenuItem(title: String(localized: "Customize Encodings List…", table: "MainMenu"), action: #selector(showEncodingsListEditor), keyEquivalent: ""),
+        ]
     }
 }
 
