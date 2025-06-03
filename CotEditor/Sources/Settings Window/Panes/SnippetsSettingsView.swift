@@ -35,12 +35,19 @@ struct SnippetsSettingsView: View {
         
         VStack {
             TabView {
-                CommandSnippetsView()
-                    .padding(self.insets)
-                    .tabItem { Text("Command", tableName: "SnippetsSettings", comment: "tab label") }
-                FileDropView()
-                    .padding(self.insets)
-                    .tabItem { Text("File Drop", tableName: "SnippetsSettings", comment: "tab label") }
+                Tab {
+                    CommandSnippetsView()
+                        .padding(self.insets)
+                } label: {
+                    Text("Command", tableName: "SnippetsSettings", comment: "tab label")
+                }
+                
+                Tab {
+                    FileDropView()
+                        .padding(self.insets)
+                } label: {
+                    Text("File Drop", tableName: "SnippetsSettings", comment: "tab label")
+                }
             }
             
             HStack {
