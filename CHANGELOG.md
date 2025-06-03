@@ -3,6 +3,10 @@
 6.0.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the system requirement to __macOS 15 Sequoia and later__.
+
 
 
 5.2.0 (724)
