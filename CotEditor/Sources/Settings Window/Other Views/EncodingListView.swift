@@ -51,6 +51,7 @@ struct EncodingListView: View {
         
         
         var items: [Item]
+        var selection: Set<Item.ID> = []
         
         private let defaults: UserDefaults
         
@@ -67,15 +68,13 @@ struct EncodingListView: View {
     @Environment(\.undoManager) private var undoManager
     @Environment(\.dismiss) private var dismiss
     
-    @State private var selection: Set<EncodingItem.ID> = []
-    
     
     var body: some View {
         
         VStack(alignment: .leading) {
             Text("Drag encodings to change the order:", tableName: "EncodingList")
             
-            List(selection: $selection) {
+            List(selection: $model.selection) {
                 ForEach(self.model.items) { item in
                     VStack(alignment: .leading, spacing: 8) {
                         if item.isSeparator {
@@ -92,7 +91,7 @@ struct EncodingListView: View {
                 }
             }
             .onDeleteCommand {
-                self.model.deleteSeparators(in: self.selection, undoManager: self.undoManager)
+                self.model.remove(ids: self.model.selection, undoManager: self.undoManager)
             }
             .border(.separator)
             .scrollContentBackground(.hidden)
@@ -100,28 +99,51 @@ struct EncodingListView: View {
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
             
-            HStack {
-                Spacer()
-                Button(String(localized: "Add Separator", table: "EncodingList", comment: "button label")) {
-                    self.model.addSeparator(after: self.selection, undoManager: self.undoManager)
-                }
-                Button(String(localized: "Delete Separator", table: "EncodingList", comment: "button label")) {
-                    self.model.deleteSeparators(in: self.selection, undoManager: self.undoManager)
-                }
-                .disabled(!self.model.containSeparators(in: self.selection))
-            }.controlSize(.small)
-            
-            Text("This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.", tableName: "EncodingList")
+            Text("This order is for the encoding menu and the encoding detection. The detection process only considers the items listed here, with higher items being prioritized.", tableName: "EncodingList")
                 .controlSize(.small)
                 .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom)
             
             HStack {
-                HelpLink(anchor: "howto_customize_encoding_order")
-                
                 Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.model.restore)
                     .disabled(!self.model.canRestore)
                     .fixedSize()
+                
+                Spacer()
+                
+                ControlGroup {
+                    Menu(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"), systemImage: "plus") {
+                        let listedEncodings = self.model.items.compactMap(\.encoding)
+                        let encodings = String.availableStringEncodings
+                            .filter { !listedEncodings.contains($0.cfEncoding) }
+                            .sorted(using: KeyPathComparator(\.localizedName, comparator: .localizedStandard))
+                        
+                        Button(String(localized: "Separator", table: "EncodingList")) {
+                            self.model.addSeparator(after: self.model.selection, undoManager: self.undoManager)
+                        }
+                        
+                        Section(String(localized: "Text Encoding", table: "EncodingList")) {
+                            ForEach(encodings, id: \.rawValue) { encoding in
+                                Button(encoding.localizedName) {
+                                    self.model.addEncoding(encoding.cfEncoding, after: self.model.selection, undoManager: self.undoManager)
+                                }
+                            }
+                        }
+                    }
+                    Button(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus") {
+                        self.model.remove(ids: self.model.selection, undoManager: self.undoManager)
+                    }
+                    .disabled(self.model.selection.isEmpty || self.model.canRemove(ids: self.model.selection) != nil)
+                    .help(self.model.canRemove(ids: self.model.selection)?.localizedDescription ?? "")
+                }
+                .menuStyle(.button)
+                .menuIndicator(.hidden)
+                .labelStyle(.iconOnly)
+                .fixedSize()
+            }
+            .padding(.bottom)
+            
+            HStack {
+                HelpLink(anchor: "howto_customize_encoding_order")
                 
                 Spacer()
                 
@@ -169,9 +191,22 @@ private struct EncodingView: View {
 }
 
 
+private extension String.Encoding {
+    
+    var localizedName: String  { String.localizedName(of: self) }
+}
+
+
 // MARK: -
 
 extension EncodingListView.Model {
+    
+    enum RemovalError: Error {
+        
+        case encoding(String.Encoding)
+        case defaultEncoding
+    }
+    
     
     /// Whether the current order differs from the default.
     var canRestore: Bool {
@@ -196,15 +231,13 @@ extension EncodingListView.Model {
     }
     
     
-    /// Returns whether the items of given ids contain separators.
+    /// Returns whether the all items of given ids can be removed.
     ///
     /// - Parameter ids: The item ids to check.
-    /// - Returns: A `Bool` value.
-    func containSeparators(in ids: Set<Item.ID>) -> Bool {
+    /// - Returns: `nil` if it can be removed, otherwise `RemovalError`.
+    func canRemove(ids: Set<Item.ID>) -> RemovalError? {
         
-        self.items
-            .filter(with: ids)
-            .contains(where: \.isSeparator)
+        self.items.filter(with: ids).lazy.compactMap(self.canRemove).first
     }
     
     
@@ -232,29 +265,70 @@ extension EncodingListView.Model {
         self.registerUndo(to: undoManager)
         
         let index = self.items.lastIndex { ids.contains($0.id) }
+        let item: Item = .separator
         
         withAnimation {
-            self.items.insert(.separator, at: index?.advanced(by: 1) ?? 0)
+            self.items.insert(item, at: index?.advanced(by: 1) ?? 0)
+            self.selection = [item.id]
         }
     }
     
     
-    /// Deletes separators in the selection.
+    /// Adds a text encoding below the last of the given items.
+    ///
+    /// - Parameters:
+    ///   - encoding: The text encoding to add.
+    ///   - ids: The selection ids.
+    ///   - undoManager: The undo manager.
+    func addEncoding(_ encoding: CFStringEncoding, after ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
+        
+        guard self.items.allSatisfy({ $0.encoding != encoding }) else { return assertionFailure() }
+        
+        self.registerUndo(to: undoManager)
+        
+        let index = self.items.lastIndex { ids.contains($0.id) }
+        let item = Item(encoding: encoding)
+        
+        withAnimation {
+            self.items.insert(item, at: index?.advanced(by: 1) ?? 0)
+            self.selection = [item.id]
+        }
+    }
+    
+    
+    /// Removes items in the selection.
     ///
     /// - Parameters:
     ///   - ids: The selection ids.
     ///   - undoManager: The undo manager.
-    func deleteSeparators(in ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
+    func remove(ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
         
         self.registerUndo(to: undoManager)
         
         withAnimation {
-            self.items.removeAll { $0.isSeparator && ids.contains($0.id) }
+            self.items.removeAll { ids.contains($0.id) && (self.canRemove($0) == nil) }
         }
     }
     
     
     // MARK: Private Methods
+    
+    /// Checks whether the given item can be removed.
+    ///
+    /// - Parameter item: The item to remove.
+    /// - Returns: `nil` if it can be removed, otherwise `RemovalError`.
+    private func canRemove(_ item: Item) -> RemovalError? {
+        
+        switch item.encoding {
+            case .utf8:
+                .encoding(.utf8)
+            case UInt32(self.defaults[.encoding]):
+                .defaultEncoding
+            default:
+                nil
+        }
+    }
+    
     
     /// Registers the current state by allowing undo/redo.
     ///
@@ -280,6 +354,25 @@ extension EncodingListView.Model {
         
         withAnimation {
             self.items = items
+        }
+    }
+}
+
+
+private extension EncodingListView.Model.RemovalError {
+    
+    var localizedDescription: String {
+     
+        switch self {
+            case .encoding(let encoding):
+                String(localized: "EncodingListView.Model.RemovalError.utf8.description",
+                       defaultValue: "\(String.localizedName(of: encoding)) can’t be removed.",
+                       table: "EncodingList",
+                       comment: "%@ is a localized encoding name.")
+            case .defaultEncoding:
+                String(localized: "EncodingListView.Model.RemovalError.defaultEncoding.description",
+                       defaultValue: "The encoding set as default can’t be removed.",
+                       table: "EncodingList")
         }
     }
 }
