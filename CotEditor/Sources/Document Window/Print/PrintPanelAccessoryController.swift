@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -73,20 +73,12 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @IBOutlet private weak var primaryFooterAlignmentControl: NSSegmentedControl?
     @IBOutlet private weak var secondaryFooterAlignmentControl: NSSegmentedControl?
     
-    @IBOutlet private weak var leadingPaddingConstraint: NSLayoutConstraint?
-    @IBOutlet private weak var trailingPaddingConstraint: NSLayoutConstraint?
-    
     
     // MARK: View Controller Method
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        if #unavailable(macOS 15) {
-            self.leadingPaddingConstraint?.constant = 0
-            self.trailingPaddingConstraint?.constant = 0
-        }
         
         self.primaryHeaderPopUpButton!.menu!.items = PrintInfoType.menuItems
         self.secondaryHeaderPopUpButton!.menu!.items = PrintInfoType.menuItems

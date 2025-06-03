@@ -121,11 +121,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .compactMap(\.windowControllers.first?.window)
             .first(where: \.isVisible)
         {
-            let referenceFrame: NSRect = if #available(macOS 15, *) {
-                lastWindow.cascadingReferenceFrame
-            } else {
-                lastWindow.frame
-            }
+            let referenceFrame = lastWindow.cascadingReferenceFrame
             let cascadingPoint = window.cascadeTopLeft(from: referenceFrame.topLeft)
             window.cascadeTopLeft(from: cascadingPoint)
         }

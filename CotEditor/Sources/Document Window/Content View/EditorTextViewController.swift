@@ -241,7 +241,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    @available(macOS 15, *)
     func textViewWritingToolsDidEnd(_ textView: NSTextView) {
         
         guard
