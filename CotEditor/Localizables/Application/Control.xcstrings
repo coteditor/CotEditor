@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "AddRemoveButton.add.label" : {
+    "Button.add.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -96,7 +96,7 @@
         }
       }
     },
-    "AddRemoveButton.add.tooltip" : {
+    "Button.add.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -191,7 +191,7 @@
         }
       }
     },
-    "AddRemoveButton.remove.label" : {
+    "Button.remove.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -286,7 +286,7 @@
         }
       }
     },
-    "AddRemoveButton.remove.tooltip" : {
+    "Button.remove.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -377,6 +377,101 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "移除所選項目"
+          }
+        }
+      }
+    },
+    "Button.restoreDefaults.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výchozí hodnoty"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard wiederherstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Restore Defaults"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore Defaults"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar valores por omisión"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages par défaut"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ripristina default"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デフォルトに戻す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본값 복원"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herstel standaardinstellingen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przywróć domyślne"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar Padrões"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saptanmışlara Dön"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复默认"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復預設值"
           }
         }
       }

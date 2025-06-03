@@ -44,11 +44,9 @@ struct KeyBindingsSettingsView: View {
             KeyBindingTreeView(model: $model)
             
             HStack(alignment: .firstTextBaseline) {
-                Button(String(localized: "Restore Defaults", table: "KeyBindingsSettings", comment: "button label")) {
-                    self.model.restore()
-                }
-                .disabled(!self.model.isRestorable)
-                .fixedSize()
+                Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.model.restore)
+                    .disabled(!self.model.isRestorable)
+                    .fixedSize()
                 
                 Spacer()
                 

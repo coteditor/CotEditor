@@ -55,7 +55,7 @@ struct AddRemoveButton<Item: Identifiable>: View {
     var body: some View {
         
         ControlGroup {
-            Button(String(localized: "AddRemoveButton.add.label", defaultValue: "Add", table: "Control"), systemImage: "plus") {
+            Button(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"), systemImage: "plus") {
                 let item = self.newItem()
                 let index = self.items.lastIndex { self.selection.contains($0.id) } ?? self.items.endIndex - 1
                 
@@ -70,9 +70,9 @@ struct AddRemoveButton<Item: Identifiable>: View {
             .onChange(of: self.added) { (_, newValue) in
                 self.focus?.wrappedValue = newValue
             }
-            .help(String(localized: "AddRemoveButton.add.tooltip", defaultValue: "Add new item", table: "Control"))
+            .help(String(localized: "Button.add.tooltip", defaultValue: "Add new item", table: "Control"))
             
-            Button(String(localized: "AddRemoveButton.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus") {
+            Button(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus") {
                 withAnimation {
                     self.items.removeAll {
                         self.selection.contains($0.id)
@@ -80,7 +80,7 @@ struct AddRemoveButton<Item: Identifiable>: View {
                     self.selection.removeAll()
                 }
             }
-            .help(String(localized: "AddRemoveButton.remove.tooltip", defaultValue: "Remove selected items", table: "Control"))
+            .help(String(localized: "Button.remove.tooltip", defaultValue: "Remove selected items", table: "Control"))
             .disabled(self.selection.isEmpty)
         }
         .frame(width: 52)

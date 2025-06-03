@@ -119,7 +119,7 @@ private struct ModeListView: View {
                 .padding(.horizontal, 6)
             
             HStack(spacing: 0) {
-                Menu(String(localized: "Add", table: "ModeSettings"), systemImage: "plus") {
+                Menu(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"), systemImage: "plus") {
                     Section(String(localized: "Syntax", table: "ModeSettings")) {
                         ForEach(self.syntaxes, id: \.self) { syntaxName in
                             Button(syntaxName) {
@@ -149,7 +149,7 @@ private struct ModeListView: View {
                         self.selection = .kind(.general)
                     }
                 } label: {
-                    Label(String(localized: "Remove", table: "ModeSettings"), systemImage: "minus")
+                    Label(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus")
                         .frame(width: 14, height: 14)
                         .fontWeight(.medium)
                 }

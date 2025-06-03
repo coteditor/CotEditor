@@ -45,7 +45,7 @@ private struct EncodingItem: Identifiable {
 
 struct EncodingListView: View {
     
-     @Observable fileprivate final class Model {
+    @Observable fileprivate final class Model {
         
         typealias Item = EncodingItem
         
@@ -99,7 +99,7 @@ struct EncodingListView: View {
             .background(.fill.quaternary)
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
-                
+            
             HStack {
                 Spacer()
                 Button(String(localized: "Add Separator", table: "EncodingList", comment: "button label")) {
@@ -119,11 +119,9 @@ struct EncodingListView: View {
             HStack {
                 HelpLink(anchor: "howto_customize_encoding_order")
                 
-                Button(String(localized: "Restore Defaults", table: "EncodingList", comment: "button label")) {
-                    self.model.restore()
-                }
-                .disabled(!self.model.canRestore)
-                .fixedSize()
+                Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.model.restore)
+                    .disabled(!self.model.canRestore)
+                    .fixedSize()
                 
                 Spacer()
                 
