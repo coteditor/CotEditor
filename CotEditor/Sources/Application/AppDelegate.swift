@@ -542,7 +542,13 @@ extension AppDelegate: NSMenuDelegate {
     private func updateEncodingMenu(_ menu: NSMenu) {
         
         let action = #selector((any EncodingChanging).changeEncoding)
-        let fileEncodings = EncodingManager.shared.fileEncodings
+        var fileEncodings = EncodingManager.shared.fileEncodings
+        
+        if let document = NSApp.target(forAction: action) as? Document,
+           !fileEncodings.contains(document.fileEncoding)
+        {
+            fileEncodings.insert(contentsOf: [document.fileEncoding, nil], at: 0)
+        }
         
         menu.items = fileEncodings.map {
             switch $0 {

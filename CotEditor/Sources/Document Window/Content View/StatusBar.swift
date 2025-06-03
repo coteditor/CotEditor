@@ -235,6 +235,10 @@ private struct DocumentStatusBar: View {
                 
                 Picker(String(localized: "Text Encoding", table: "Document"), selection: $fileEncoding) {
                     Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
+                        if !self.encodingManager.fileEncodings.contains(self.fileEncoding) {
+                            Text(self.fileEncoding.localizedName).tag(self.fileEncoding)
+                            Divider()
+                        }
                         ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
                             if let fileEncoding {
                                 Text(fileEncoding.localizedName).tag(fileEncoding)
