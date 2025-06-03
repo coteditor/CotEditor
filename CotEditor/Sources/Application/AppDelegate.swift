@@ -126,11 +126,6 @@ private enum BundleIdentifier {
             .mapKeys(\.rawValue)
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
-        
-        // migrate settings on CotEditor 4.6.0 (2023-08)
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 586 {
-            UserDefaults.standard.migrateFontSetting()
-        }
     }
     
     
@@ -615,26 +610,5 @@ private extension UnicodeNormalizationForm {
     var tag: Int {
         
         Self.allCases.firstIndex(of: self)!
-    }
-}
-
-
-private extension UserDefaults {
-    
-    /// Migrates the user font setting to new format introduced on CotEditor 4.6.0 (2023-09).
-    @available(macOS, deprecated: 16, message: "The font setting migration is outdated.")
-    func migrateFontSetting() {
-        
-        guard
-            self.data(forKey: DefaultKey<Data>.font.rawValue) == nil,
-            self.data(forKey: DefaultKey<Data>.monospacedFont.rawValue) == nil,
-            let name = self.string(forKey: "fontName"),
-            let font = NSFont(name: name, size: self.double(forKey: "fontSize")),
-            self[.font] == nil,
-            self[.monospacedFont] == nil,
-            let data = try? font.archivedData
-        else { return }
-        
-        self[font.isFixedPitch ? .monospacedFont : .font] = data
     }
 }
