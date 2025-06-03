@@ -141,15 +141,6 @@ private enum BundleIdentifier {
         MainActor.assumeIsolated {
             self.menuUpdateObservers.removeAll()
             
-            // sync menus with setting list updates
-            withContinuousObservationTracking(initial: true) {
-                _ = EncodingManager.shared.fileEncodings
-            } onChange: {
-                Task { @MainActor in
-                    self.encodingsMenu?.items = EncodingManager.shared.fileEncodings.map(\.menuItem)
-                }
-            }
-            
             self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
                 let item = NSMenuItem()
                 item.title = "\(lineEnding.description) (\(lineEnding.label))"
@@ -532,6 +523,43 @@ private enum BundleIdentifier {
 }
 
 
+extension AppDelegate: NSMenuDelegate {
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        switch menu {
+            case self.encodingsMenu:
+                self.updateEncodingMenu(menu)
+            default:
+                break
+        }
+    }
+    
+    
+    /// Updates the Text Encoding menu.
+    ///
+    /// - Parameter menu: The menu to update.
+    private func updateEncodingMenu(_ menu: NSMenu) {
+        
+        let action = #selector((any EncodingChanging).changeEncoding)
+        let fileEncodings = EncodingManager.shared.fileEncodings
+        
+        menu.items = fileEncodings.map {
+            switch $0 {
+                case .some(let fileEncoding):
+                    let item = NSMenuItem()
+                    item.title = fileEncoding.localizedName
+                    item.action = action
+                    item.representedObject = fileEncoding
+                    return item
+                case .none:
+                    return .separator()
+            }
+        }
+    }
+}
+
+
 private extension NSPanel {
     
     /// Instantiates a panel with a SwiftUI view.
@@ -557,23 +585,6 @@ private extension NSPanel {
         }
         
         self.center()
-    }
-}
-
-
-private extension Optional<FileEncoding> {
-    
-    /// Creates menu item with action `changeEncoding(_:)`.
-    var menuItem: NSMenuItem {
-        
-        switch self {
-            case .some(let fileEncoding):
-                let item = NSMenuItem(title: fileEncoding.localizedName, action: #selector((any EncodingChanging).changeEncoding), keyEquivalent: "")
-                item.representedObject = fileEncoding
-                return item
-            case .none:
-                return .separator()
-        }
     }
 }
 

@@ -406,7 +406,11 @@ Gw
                                         </menuItem>
                                         <menuItem title="Text Encoding" id="299">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Text Encoding" id="300"/>
+                                            <menu key="submenu" title="Text Encoding" id="300">
+                                                <connections>
+                                                    <outlet property="delegate" destination="Voe-Tx-rLC" id="rhv-dX-qYL"/>
+                                                </connections>
+                                            </menu>
                                         </menuItem>
                                         <menuItem title="Syntax" id="302">
                                             <modifierMask key="keyEquivalentModifierMask"/>
