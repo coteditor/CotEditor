@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="ファイルドロップ, 定型文字列"/>
+	<meta name="keywords" content="ファイルドロップ, スニペット"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
@@ -25,7 +25,7 @@
 		<tr><td><code>&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの絶対パス</td></tr>
 		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td>ドロップ先ファイルからドロップ元ファイルへの相対パス</td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの、拡張子を含むファイル名</td></tr>
-		<tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの名前から拡張子を削除した文字列</td></tr>
+		<tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの名前から拡張子を削除したテキスト</td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの拡張子</td></tr>
 		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの拡張子（小文字）</td></tr>
 		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの拡張子（大文字）</td></tr>
@@ -42,7 +42,7 @@
 	<caption>例1) hoge.htmlをドロップした場合:</caption>
 	<tbody>
 		<tr><th>フォーマット</th><td><code>&lt;a href=&quot;&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;&quot;&gt;&lt;/a&gt;</code></td></tr>
-		<tr><th>挿入文字列</th><td><code>&lt;a href=&quot;foo.html&quot;&gt;&lt;/a&gt;</code></td></tr>
+		<tr><th>挿入テキスト</th><td><code>&lt;a href=&quot;foo.html&quot;&gt;&lt;/a&gt;</code></td></tr>
 	</tbody>
 </table>
 
@@ -50,7 +50,7 @@
 	<caption>例2) hoge.jpgをドロップした場合:</caption>
 	<tbody>
 		<tr><th>フォーマット</th><td><code>&lt;img src=&quot;&lt;&lt;&lt;FILENAME&gt;&gt;&gt;&quot; width=&quot;&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;&quot; height=&quot;&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;&quot; /&gt;</code></td></tr>
-		<tr><th>挿入文字列</th><td><code>&lt;img src=&quot;hoge.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</code></td></tr>
+		<tr><th>挿入テキスト</th><td><code>&lt;img src=&quot;hoge.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</code></td></tr>
 	</tbody>
 </table>
 
