@@ -3,6 +3,11 @@
 5.1.8 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Update the User Guide.
+
+
 
 5.1.7 (718)
 --------------------------
