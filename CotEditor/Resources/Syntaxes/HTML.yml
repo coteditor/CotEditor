@@ -32,6 +32,9 @@ attributes:
 - beginString: (?<=\s)archive(?=\b[^<>]*>)
   ignoreCase: true
   regularExpression: true
+- beginString: (?<=\s)aria-[a-z\-]+(?=\b[^<>]*>)
+  ignoreCase: true
+  regularExpression: true
 - beginString: (?<=\s)async(?=\b[^<>]*>)
   ignoreCase: true
   regularExpression: true
