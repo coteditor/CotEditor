@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Update the HTML syntax to highlight ARIA attributes (thanks to Karam!).
 - [trivial] Update the User Guide.
 
 
