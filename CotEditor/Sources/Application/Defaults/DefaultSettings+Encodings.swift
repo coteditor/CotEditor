@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -99,7 +99,6 @@ extension DefaultSettings {
         CFStringEncodings.windowsLatin2,         // Central European (Windows Latin 2)
         CFStringBuiltInEncodings.nextStepLatin,  // Western (NextStep)
         CFStringBuiltInEncodings.ASCII,          // Western (ASCII)
-        CFStringBuiltInEncodings.nonLossyASCII,  // Non-lossy ASCII
         kCFStringEncodingInvalidId,
         
         CFStringBuiltInEncodings.UTF16,    // Unicode (UTF-16)

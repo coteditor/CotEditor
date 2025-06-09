@@ -3,8 +3,14 @@
 5.2.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Allow adding and removing text encodings from the text encoding list, and enabling the handling of a wider range of encodings.
+
+
 ### Improvements
 
+- Update the default encoding priority list.
 - Update the HTML syntax to highlight ARIA attributes (thanks to Karam!).
 - [trivial] Update the User Guide.
 

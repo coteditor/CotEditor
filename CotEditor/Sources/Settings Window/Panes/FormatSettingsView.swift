@@ -28,6 +28,12 @@ import Defaults
 import FileEncoding
 import LineEnding
 
+@MainActor @objc protocol EncodingsListHolder: AnyObject {
+    
+    func showEncodingsListView(_ sender: Any?)
+}
+
+
 struct FormatSettingsView: View {
     
     @Namespace private var accessibility
@@ -174,6 +180,9 @@ struct FormatSettingsView: View {
         }
         .onReceive(self.syntaxManager.$settingNames) { settingNames in
             self.syntaxNames = settingNames
+        }
+        .onCommand(#selector((any EncodingsListHolder).showEncodingsListView)) {
+            self.isEncodingListPresented = true
         }
         .padding(.top, 14)
         .scenePadding([.horizontal, .bottom])

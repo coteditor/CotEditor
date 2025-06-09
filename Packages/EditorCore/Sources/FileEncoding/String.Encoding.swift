@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,11 +37,16 @@ public extension String.Encoding {
     }
     
     
+    /// The `CFStringEncoding` constant that is the closest mapping to the receiver.
+    var cfEncoding: CFStringEncoding {
+        
+        CFStringConvertNSStringEncodingToEncoding(self.rawValue)
+    }
+    
+    
     /// The name of the IANA registry “charset” that is the closest mapping to the encoding.
     var ianaCharSetName: String? {
         
-        let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
-        
-        return CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?
+        CFStringConvertEncodingToIANACharSetName(self.cfEncoding) as String?
     }
 }
