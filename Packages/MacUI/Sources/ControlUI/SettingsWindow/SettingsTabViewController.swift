@@ -104,6 +104,7 @@ final class SettingsTabViewController: NSTabViewController {
             return
         }
         
+        let label = tabViewItem.label
         let animates = !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
         if animates {
             NSAnimationContext.runAnimationGroup { _ in
@@ -111,12 +112,14 @@ final class SettingsTabViewController: NSTabViewController {
                 window.animator().setFrame(for: contentSize)
                 
             } completionHandler: { [weak self] in
-                self?.view.isHidden = false
-                self?.title = tabViewItem.label
+                Task { @MainActor in
+                    self?.view.isHidden = false
+                    self?.title = label
+                }
             }
         } else {
             window.setFrame(for: contentSize)
-            self.title = tabViewItem.label
+            self.title = label
         }
     }
 }
