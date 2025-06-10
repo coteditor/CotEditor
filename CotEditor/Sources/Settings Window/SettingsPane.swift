@@ -101,7 +101,7 @@ enum SettingsPane: String, ControlUI.SettingsPane {
             case .edit: "square.and.pencil"
             case .mode: "switch.2"
             case .format: "doc.text"
-            case .snippets: "note.text"
+            case .snippets: "text.viewfinder"
             case .keyBindings: "keyboard"
             case .donation: "mug"
         }
