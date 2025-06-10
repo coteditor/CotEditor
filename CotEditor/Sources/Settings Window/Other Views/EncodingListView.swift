@@ -45,7 +45,7 @@ private struct EncodingItem: Identifiable {
 
 struct EncodingListView: View {
     
-    @Observable fileprivate final class Model {
+    @MainActor @Observable fileprivate final class Model {
         
         typealias Item = EncodingItem
         

@@ -405,7 +405,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         NSAnimationContext.runAnimationGroup { _ in
             counterView.animator().alphaValue = 0
         } completionHandler: {
-            counterView.removeFromSuperview()
+            Task { @MainActor in
+                counterView.removeFromSuperview()
+            }
         }
         
         self.invalidateRestorableState()
