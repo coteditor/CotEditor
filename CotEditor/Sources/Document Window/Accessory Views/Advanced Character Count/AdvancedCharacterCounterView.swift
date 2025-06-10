@@ -88,7 +88,7 @@ struct AdvancedCharacterCounterView: View {
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
             if let count = self.counter.count {
-                Button(String(localized: "Copy", table: "AdvancedCharacterCount", comment: "menu item")) {
+                Button(String(localized: "Copy", table: "AdvancedCharacterCount", comment: "menu item"), systemImage: "document.on.document") {
                     NSPasteboard.general.clearContents()
                     NSPasteboard.general.setString(String(count), forType: .string)
                 }
@@ -96,6 +96,7 @@ struct AdvancedCharacterCounterView: View {
             }
             Button(String(localized: "Stop Count", table: "AdvancedCharacterCount",
                           comment: "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)"),
+                   systemImage: "numbers.rectangle",
                    action: self.dismissAction)
         }
         .onDisappear {

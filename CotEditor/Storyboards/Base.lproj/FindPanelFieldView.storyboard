@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdE-8e-ywb">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdE-8e-ywb">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.7"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -51,11 +50,11 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="9IF-SN-YIL"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="JOy-bP-bNy">
-                                    <rect key="frame" x="1" y="39" width="458" height="14"/>
+                                    <rect key="frame" x="1" y="38" width="458" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="MOp-wH-Ump">
-                                    <rect key="frame" x="445" y="1" width="14" height="52"/>
+                                    <rect key="frame" x="444" y="1" width="15" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -90,11 +89,11 @@
                                     <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="pGV-vQ-vMo">
-                                    <rect key="frame" x="1" y="39" width="458" height="14"/>
+                                    <rect key="frame" x="1" y="38" width="458" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="xAh-LI-niW">
-                                    <rect key="frame" x="445" y="1" width="14" height="52"/>
+                                    <rect key="frame" x="444" y="1" width="15" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -112,7 +111,7 @@
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" tag="-1" id="9ex-ep-oaq"/>
-                                            <menuItem title="Clear Recent Searches" tag="-1" id="vE8-oK-xlC">
+                                            <menuItem title="Clear Recent Searches" secondaryImage="trash" catalog="system" tag="-1" id="vE8-oK-xlC">
                                                 <connections>
                                                     <action selector="clearFindHistory:" target="fdE-8e-ywb" id="kT7-Zo-52M"/>
                                                 </connections>
@@ -136,7 +135,7 @@
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" tag="-1" id="dFE-4K-Okr"/>
-                                            <menuItem title="Clear Recent Replacements" tag="-1" id="vfK-an-Qnl">
+                                            <menuItem title="Clear Recent Replacements" secondaryImage="trash" catalog="system" tag="-1" id="vfK-an-Qnl">
                                                 <connections>
                                                     <action selector="clearReplaceHistory:" target="fdE-8e-ywb" id="rH0-V7-gYt"/>
                                                 </connections>
@@ -242,5 +241,6 @@
         <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
+        <image name="trash" catalog="system" width="15" height="17"/>
     </resources>
 </document>

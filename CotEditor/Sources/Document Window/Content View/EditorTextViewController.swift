@@ -257,9 +257,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         // add "Inspect Character" menu item if single character is selected
         if self.textView.selectsSingleCharacter == true {
-            menu.insertItem(withTitle: String(localized: "Inspect Character", table: "MainMenu"),
-                            action: #selector(showSelectionInfo),
-                            keyEquivalent: "",
+            menu.insertItem(.init(title: String(localized: "Inspect Character", table: "MainMenu"),
+                                  systemImage: "character.bubble",
+                                  action: #selector(showSelectionInfo)),
                             at: 1)
         }
         

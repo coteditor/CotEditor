@@ -66,6 +66,7 @@ import Sparkle
         
         let menuItem = NSMenuItem()
         menuItem.title = NSMenuItem.updateMenuTitle
+        menuItem.image = NSImage(systemSymbolName: "arrow.trianglehead.2.counterclockwise", accessibilityDescription: nil)
         menuItem.action = #selector(SPUUpdater.checkForUpdates)
         menuItem.target = self.controller.updater
         

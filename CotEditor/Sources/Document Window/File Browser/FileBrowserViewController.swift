@@ -149,33 +149,42 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let contextMenu = NSMenu()
         contextMenu.items = [
             NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
-                       action: #selector(showInFinder), keyEquivalent: ""),
+                       systemImage: "finder",
+                       action: #selector(showInFinder)),
             .separator(),
             
             NSMenuItem(title: String(localized: "Open in New Window", table: "Document", comment: "menu item label"),
-                       action: #selector(openInNewWindow), keyEquivalent: ""),
+                       systemImage: "macwindow.badge.plus",
+                       action: #selector(openInNewWindow)),
             NSMenuItem(title: String(localized: "Open with External Editor", table: "Document", comment: "menu item label"),
-                       action: #selector(openWithExternalEditor), keyEquivalent: ""),
+                       systemImage: "arrow.up.forward.square",
+                       action: #selector(openWithExternalEditor)),
             .separator(),
             
             NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "menu item label"),
-                       action: #selector(moveToTrash), keyEquivalent: ""),
+                       systemImage: "trash",
+                       action: #selector(moveToTrash)),
             NSMenuItem(title: String(localized: "Duplicate", table: "Document", comment: "menu item label"),
-                       action: #selector(duplicate), keyEquivalent: ""),
+                       systemImage: "plus.square.on.square",
+                       action: #selector(duplicate)),
             .separator(),
             
             NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
-                       action: #selector(addFile), keyEquivalent: ""),
+                       systemImage: "document.badge.plus",
+                       action: #selector(addFile)),
             NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
-                       action: #selector(addFolder), keyEquivalent: ""),
+                       systemImage: "folder.badge.plus",
+                       action: #selector(addFolder)),
             .separator(),
             
             NSMenuItem(title: String(localized: "Share…", table: "Document", comment: "menu item label"),
-                       action: #selector(share), keyEquivalent: ""),
+                       systemImage: "square.and.arrow.up",
+                       action: #selector(share)),
             .separator(),
             
             NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"),
-                       action: #selector(toggleHiddenFileVisibility), keyEquivalent: ""),
+                       systemImage: "eye",
+                       action: #selector(toggleHiddenFileVisibility)),
         ]
         for item in contextMenu.items where !item.isSeparatorItem {
             item.target = self
@@ -184,9 +193,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.addButton.menu!.items += [
             NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
-                       action: #selector(addFile), keyEquivalent: ""),
+                       systemImage: "document.badge.plus",
+                       action: #selector(addFile)),
             NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
-                       action: #selector(addFolder), keyEquivalent: ""),
+                       systemImage: "folder.badge.plus",
+                       action: #selector(addFolder)),
         ]
         for item in self.addButton.menu!.items where !item.isSeparatorItem {
             item.target = self

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="y8N-kI-aI7">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.8" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="y8N-kI-aI7">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.8"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,16 +14,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="139" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-4N-kRH">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-4N-kRH">
                                 <rect key="frame" x="0.0" y="27" width="139" height="211"/>
                                 <clipView key="contentView" drawsBackground="NO" id="fvK-do-Kwl">
                                     <rect key="frame" x="0.0" y="0.0" width="139" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="32" rowSizeStyle="systemDefault" viewBased="YES" id="XJK-Ch-OtB">
                                             <rect key="frame" x="0.0" y="0.0" width="139" height="211"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <size key="intercellSpacing" width="3" height="6"/>
+                                            <size key="intercellSpacing" width="3" height="0.0"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
@@ -41,7 +40,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Utg-o8-Jhc">
-                                                            <rect key="frame" x="11" y="3" width="116" height="16"/>
+                                                            <rect key="frame" x="11" y="0.0" width="116" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wai-xU-XpG">
@@ -59,8 +58,7 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="wai-xU-XpG" secondAttribute="trailing" constant="2" id="4Kl-Hp-92k"/>
-                                                                <constraint firstAttribute="bottom" secondItem="wai-xU-XpG" secondAttribute="bottom" id="JXy-uQ-jas"/>
-                                                                <constraint firstItem="wai-xU-XpG" firstAttribute="top" secondItem="Utg-o8-Jhc" secondAttribute="top" id="sQb-n8-jlc"/>
+                                                                <constraint firstItem="wai-xU-XpG" firstAttribute="centerY" secondItem="Utg-o8-Jhc" secondAttribute="centerY" id="Z6t-Ql-DpI"/>
                                                                 <constraint firstItem="wai-xU-XpG" firstAttribute="leading" secondItem="Utg-o8-Jhc" secondAttribute="leading" constant="2" id="zrJ-v8-frh"/>
                                                             </constraints>
                                                             <connections>
@@ -122,44 +120,44 @@
                                             <menuItem image="NSActionTemplate" hidden="YES" id="3mW-VX-9wW">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Duplicate" id="mF9-q3-LmX">
+                                            <menuItem title="Duplicate" secondaryImage="plus.square.on.square" catalog="system" id="mF9-q3-LmX">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="duplicateSetting:" target="y8N-kI-aI7" id="zq9-VQ-bvb"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Rename" id="cZ9-i9-VsM">
+                                            <menuItem title="Rename" secondaryImage="pencil" catalog="system" id="cZ9-i9-VsM">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="renameSetting:" target="y8N-kI-aI7" id="jGs-VC-DtO"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Export…" id="fN1-Tr-8T8">
+                                            <menuItem title="Export…" secondaryImage="square.and.arrow.up" catalog="system" id="fN1-Tr-8T8">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="exportSetting:" target="y8N-kI-aI7" id="90I-1i-AWc"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Reveal in Finder" alternate="YES" id="tLz-9S-3we">
+                                            <menuItem title="Reveal in Finder" secondaryImage="finder" catalog="system" alternate="YES" id="tLz-9S-3we">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="dJi-7f-h6N"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Share…" id="XIe-MY-JEs">
+                                            <menuItem title="Share…" secondaryImage="square.and.arrow.up" catalog="system" id="XIe-MY-JEs">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="shareSetting:" target="y8N-kI-aI7" id="mHs-0D-ETd"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="jIk-dY-Dto"/>
-                                            <menuItem title="Import…" id="iZn-Pw-tgJ">
+                                            <menuItem title="Import…" secondaryImage="square.and.arrow.down" catalog="system" id="iZn-Pw-tgJ">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="importSetting:" target="y8N-kI-aI7" id="nVL-3S-Fsz"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Reload All Definitions" alternate="YES" id="0ca-Jy-pHT">
+                                            <menuItem title="Reload All Definitions" secondaryImage="arrow.clockwise" catalog="system" alternate="YES" id="0ca-Jy-pHT">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="reloadAllSettings:" target="y8N-kI-aI7" id="fdq-vw-L3k"/>
@@ -200,50 +198,50 @@
                 <customObject id="P7x-3b-9Pa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="3B8-6q-gru">
                     <items>
-                        <menuItem title="New Definition" id="ah0-d7-MIb">
+                        <menuItem title="New Definition" secondaryImage="plus.square" catalog="system" id="ah0-d7-MIb">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="addSetting:" target="y8N-kI-aI7" id="uG1-Mw-0U9"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Duplicate" id="zRC-iK-Noh">
+                        <menuItem title="Duplicate" secondaryImage="plus.square.on.square" catalog="system" id="zRC-iK-Noh">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="duplicateSetting:" target="y8N-kI-aI7" id="BpG-JC-Nu5"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Rename" id="KGb-Yh-gXR">
+                        <menuItem title="Rename" secondaryImage="pencil" catalog="system" id="KGb-Yh-gXR">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="renameSetting:" target="y8N-kI-aI7" id="NaK-Do-gOW"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Delete" id="M9A-ds-FNR">
+                        <menuItem title="Delete" secondaryImage="trash" catalog="system" id="M9A-ds-FNR">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="deleteSetting:" target="y8N-kI-aI7" id="flB-QJ-UWP"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Export…" id="5mf-DX-YT5">
+                        <menuItem title="Export…" secondaryImage="square.and.arrow.up" catalog="system" id="5mf-DX-YT5">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="exportSetting:" target="y8N-kI-aI7" id="ofD-M1-29O"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Reveal in Finder" alternate="YES" id="sYx-dd-JiV">
+                        <menuItem title="Reveal in Finder" secondaryImage="finder" catalog="system" alternate="YES" id="sYx-dd-JiV">
                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                             <connections>
                                 <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="q39-5a-B8m"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Share…" id="3hj-yI-UYg">
+                        <menuItem title="Share…" secondaryImage="square.and.arrow.up" catalog="system" id="3hj-yI-UYg">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="shareSetting:" target="y8N-kI-aI7" id="FY7-au-g1j"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="xX2-1H-iy6"/>
-                        <menuItem title="Import…" id="8TG-QH-hxz">
+                        <menuItem title="Import…" secondaryImage="square.and.arrow.down" catalog="system" id="8TG-QH-hxz">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="importSetting:" target="y8N-kI-aI7" id="ox9-7r-Yit"/>
@@ -259,5 +257,13 @@
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="NSAddTemplate" width="18" height="17"/>
         <image name="NSRemoveTemplate" width="18" height="5"/>
+        <image name="arrow.clockwise" catalog="system" width="14" height="16"/>
+        <image name="finder" catalog="system" width="16" height="15"/>
+        <image name="pencil" catalog="system" width="14" height="13"/>
+        <image name="plus.square" catalog="system" width="15" height="14"/>
+        <image name="plus.square.on.square" catalog="system" width="17" height="16"/>
+        <image name="square.and.arrow.down" catalog="system" width="15" height="17"/>
+        <image name="square.and.arrow.up" catalog="system" width="15" height="18"/>
+        <image name="trash" catalog="system" width="15" height="17"/>
     </resources>
 </document>

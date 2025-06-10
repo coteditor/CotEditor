@@ -206,7 +206,8 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         let menuItems = scriptMenuItems.map { $0.menuItem(action: #selector(launchScript), target: self) }
         
         let openMenuItem = NSMenuItem(title: String(localized: "Open Scripts Folder", table: "MainMenu"),
-                                      action: #selector(openScriptFolder), keyEquivalent: "")
+                                      systemImage: "folder",
+                                      action: #selector(openScriptFolder))
         openMenuItem.target = self
         
         self.menu?.items = menuItems + [.separator(), openMenuItem]

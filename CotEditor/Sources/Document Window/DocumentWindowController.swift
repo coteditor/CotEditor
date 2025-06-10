@@ -887,7 +887,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                     .separator(),
                     NSMenuItem(title: String(localized: "Toolbar.fonts.menu.showFonts.label",
                                              defaultValue: "Show Fonts", table: "Document"),
-                               action: #selector(NSFontManager.orderFrontFontPanel), keyEquivalent: ""),
+                               systemImage: "textformat",
+                               action: #selector(NSFontManager.orderFrontFontPanel)),
                 ]
                 return item
                 
