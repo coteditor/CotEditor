@@ -74,7 +74,14 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.view.frame.size = NSSize(width: 640, height: 720)
         self.view.addSubview(self.splitView)
         
+        let layoutGuide = self.view.safeAreaLayoutGuide
         self.splitView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.splitView.leftAnchor.constraint(equalTo: layoutGuide.leftAnchor),
+            self.splitView.rightAnchor.constraint(equalTo: layoutGuide.rightAnchor),
+            self.splitView.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
+            self.splitView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
+        ])
     }
     
     
