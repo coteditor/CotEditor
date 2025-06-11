@@ -110,6 +110,15 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         super.viewDidLoad()
         
+        let layoutGuide = self.view.safeAreaLayoutGuide
+        self.splitView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.splitView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor),
+            self.splitView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor),
+            self.splitView.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
+            self.splitView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
+        ])
+        
         self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
         self.splitState.isVertical = self.splitView.isVertical
         
