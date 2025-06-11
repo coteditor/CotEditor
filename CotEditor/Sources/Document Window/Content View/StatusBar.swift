@@ -169,8 +169,8 @@ struct StatusBar: View {
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
         .buttonStyle(.borderless)
         .controlSize(.small)
-        .padding(.leading, 10)
-        .frame(height: 23)
+        .padding(isLiquidGlass ? .horizontal : .leading)
+        .frame(height: isLiquidGlass ? 27 : 23)
         .background(.windowBackground)
     }
 }

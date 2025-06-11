@@ -55,12 +55,12 @@ struct GeneralSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 14) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: isLiquidGlass ? 18 : 14) {
             GridRow {
                 Text("On startup:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
                     
                     Text("When nothing else is open:", tableName: "GeneralSettings")
@@ -84,7 +84,7 @@ struct GeneralSettingsView: View {
                 Text("Document save:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 0) {
                     Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
                         .onChange(of: self.enablesAutosaveInPlace) { (_, newValue) in
                             if newValue != self.initialEnablesAutosaveInPlace {
@@ -114,7 +114,7 @@ struct GeneralSettingsView: View {
                         .controlSize(.small)
                         .lineLimit(10)
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding(.leading, 20)
+                        .padding(.leading, isLiquidGlass ? 22 : 20)
                 }
             }
             
@@ -222,7 +222,7 @@ private struct UpdaterView: View {
             Text("Software update:", tableName: "GeneralSettings")
                 .gridColumnAlignment(.trailing)
             
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                 Toggle(String(localized: "Check for updates automatically", table: "GeneralSettings"), isOn: $enableAutomaticUpdateChecks)
                 
                 VStack(alignment: .leading, spacing: 2) {

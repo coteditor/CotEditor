@@ -135,14 +135,14 @@ struct WindowSettingsView: View {
                 Text("Show:", tableName: "WindowSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Line numbers", table: "WindowSettings"), isOn: $showLineNumbers)
                     Toggle(String(localized: "Draw separator", table: "WindowSettings"), isOn: $showLineNumberSeparator)
                         .disabled(!self.showLineNumbers)
                         .padding(.leading, 20)
                     
                     Toggle(String(localized: "Invisible characters", table: "WindowSettings"), isOn: $showInvisibles)
-                    Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: 6) {
+                    Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: isLiquidGlass ? nil : 6) {
                         GridRow {
                             Toggle(String(localized: "Line ending", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleNewLine)
                             Toggle(String(localized: "Tab", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleTab)
@@ -181,7 +181,7 @@ struct WindowSettingsView: View {
                 Text("Line wrapping:", tableName: "WindowSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Wrap lines to editor width", table: "WindowSettings"), isOn: $wrapLines)
                     HStack(alignment: .firstTextBaseline) {
                         Toggle(String(localized: "Indent wrapped lines by", table: "WindowSettings"), isOn: $enablesHangingIndent)
@@ -231,12 +231,12 @@ struct WindowSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 HStack(alignment: .firstTextBaseline, spacing: 20) {
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                         Toggle(String(localized: "Line count", table: "WindowSettings"), isOn: $showStatusBarLines)
                         Toggle(String(localized: "Character count", table: "WindowSettings"), isOn: $showStatusBarChars)
                         Toggle(String(localized: "Word count", table: "WindowSettings"), isOn: $showStatusBarWords)
                     }
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                         Toggle(String(localized: "Location", table: "WindowSettings"), isOn: $showStatusBarLocation)
                         Toggle(String(localized: "Current line", table: "WindowSettings"), isOn: $showStatusBarLine)
                         Toggle(String(localized: "Current column", table: "WindowSettings"), isOn: $showStatusBarColumn)

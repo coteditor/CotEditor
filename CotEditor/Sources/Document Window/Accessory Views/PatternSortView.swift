@@ -89,7 +89,7 @@ struct PatternSortView: View {
                     Text("Sort key:", tableName: "PatternSort")
                         .gridColumnAlignment(.trailing)
                     
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                         Picker(selection: $sortKey) {
                             ForEach(SortKey.allCases, id: \.self) {
                                 Text($0.label)
@@ -120,7 +120,7 @@ struct PatternSortView: View {
                 GridRow {
                     Text("Sort option:", tableName: "PatternSort")
                     
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                         Toggle(String(localized: "Ignore case", table: "PatternSort"),
                                isOn: self.$options.ignoresCase)
                         Toggle(String(localized: "Respect language rules", table: "PatternSort"),

@@ -50,7 +50,7 @@ struct AppearanceSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 8) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: isLiquidGlass ? 12 : 8) {
             GridRow {
                 Text("Standard font:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
@@ -180,7 +180,7 @@ private struct FontSettingView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 5) {
             HStack {
                 AntialiasingText(self.font.wrappedValue.displayNameAndSize)
                     .antialiasDisabled(!self.antialias)
