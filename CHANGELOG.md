@@ -15,6 +15,11 @@
 - [trivial] Update the User Guide.
 
 
+### Fixes
+
+- [dev] Fix an issue on macOS 26 beta where the editor goes under the titlebar.
+
+
 
 5.1.7 (718)
 --------------------------
