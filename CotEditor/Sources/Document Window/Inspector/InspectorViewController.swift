@@ -63,14 +63,7 @@ final class InspectorViewController: NSTabViewController {
     override func loadView() {
         
         let tabView = InspectorTabView()
-        tabView.wantsLayer = true
-        
-        // set identifier for pane restoration
-        tabView.identifier = NSUserInterfaceItemIdentifier("InspectorTabView")
-        
-        // cover the entire area with an NSVisualEffectView
-        let view = NSVisualEffectView()
-        view.material = .windowBackground
+        let view = NSView()
         view.addSubview(tabView)
         
         tabView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +82,9 @@ final class InspectorViewController: NSTabViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // set identifier for pane restoration
+        self.tabView.identifier = NSUserInterfaceItemIdentifier("InspectorTabView")
         
         self.tabViewItems = InspectorPane.allCases.map { pane in
             let item = NSTabViewItem(viewController: pane.viewController(document: self.document))

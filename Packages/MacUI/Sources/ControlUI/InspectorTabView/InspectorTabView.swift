@@ -53,6 +53,7 @@ public final class InspectorTabView: NSTabView {
         
         super.init(frame: frameRect)
         
+        self.wantsLayer = true
         self.tabViewType = .noTabsNoBorder
         
         // setup the private tab control
