@@ -8,11 +8,16 @@
 - Allow adding and removing text encodings from the text encoding list, and enabling the handling of a wider range of encodings.
 
 
+
+5.1.8 (720)
+--------------------------
+
 ### Improvements
 
 - Update the default encoding priority list.
 - Update the HTML syntax to highlight ARIA attributes (thanks to Karam!).
 - [trivial] Update the User Guide.
+- [dev] Update Yams from 6.0.0 to 6.0.1.
 
 
 ### Fixes
