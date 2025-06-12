@@ -227,7 +227,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         let themeNames = ThemeManager.shared.settingNames
         
-        // build popup button
+        // build pop-up button
         popUpButton.removeAllItems()
         
         popUpButton.addItem(withTitle: ThemeName.blackAndWhite)

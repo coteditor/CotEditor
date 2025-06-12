@@ -1218,7 +1218,7 @@ extension Document: EditorSource {
         self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
             let completionHandler = { [weak self] didChange in
                 if !didChange, let self {
-                    // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
+                    // reset status bar selection for in case when the operation was invoked from the pop-up button in the status bar
                     self.fileEncoding = self.fileEncoding
                 }
                 activityCompletionHandler()

@@ -353,7 +353,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    /// Builds syntax popup menu in toolbar.
+    /// Builds syntax pop-up menu in toolbar.
     private func buildSyntaxPopUpButton() {
         
         guard let menu = self.syntaxPopUpButton?.menu else { return }
