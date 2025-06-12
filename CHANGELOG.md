@@ -7,6 +7,7 @@
 
 - Update the HTML syntax to highlight ARIA attributes (thanks to Karam!).
 - [trivial] Update the User Guide.
+- [dev] Update Yams from 6.0.0 to 6.0.1.
 
 
 ### Fixes
