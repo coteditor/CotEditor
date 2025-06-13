@@ -30,6 +30,7 @@ import Defaults
 import FileEncoding
 import LineEnding
 
+@available(macOS, deprecated: 26, message: "Use StatusBarAccessoryViewController")
 final class StatusBarController: NSHostingController<StatusBar> {
     
     let model: StatusBar.Model
@@ -46,6 +47,54 @@ final class StatusBarController: NSHostingController<StatusBar> {
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.model.onAppear()
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.model.onDisappear()
+    }
+}
+
+
+@available(macOS 26, *)
+final class StatusBarAccessoryViewController: NSSplitViewItemAccessoryViewController {
+    
+    let model: StatusBar.Model
+    
+    
+    required init(model: StatusBar.Model) {
+        
+        self.model = model
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.automaticallyAppliesContentInsets = false
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func loadView() {
+        
+        self.view = NSHostingView(rootView: VStack(spacing: 0) {
+            Divider()
+            StatusBar(model: self.model)
+        })
     }
     
     
@@ -170,7 +219,7 @@ struct StatusBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .padding(isLiquidGlass ? .horizontal : .leading)
-        .frame(height: isLiquidGlass ? 27 : 23)
+        .frame(height: isLiquidGlass ? 30 : 23)
         .background(.windowBackground)
     }
 }
@@ -238,7 +287,7 @@ private struct DocumentStatusBar: View {
             
             HStack(spacing: 4) {
                 Divider()
-                    .padding(.vertical, 4)
+                    .padding(.vertical, isLiquidGlass ? 8 : 4)
                 
                 Picker(String(localized: "Text Encoding", table: "Document"), selection: $fileEncoding) {
                     Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
@@ -262,7 +311,7 @@ private struct DocumentStatusBar: View {
                 .labelsHidden()
                 
                 Divider()
-                    .padding(.vertical, 4)
+                    .padding(.vertical, isLiquidGlass ? 8 : 4)
                 
                 LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
                                  selection: $lineEnding) { lineEnding in
@@ -278,6 +327,7 @@ private struct DocumentStatusBar: View {
         .onReceive(self.document.$lineEnding) { self.lineEnding = $0 }
         .onReceive(self.document.$fileEncoding) { self.fileEncoding = $0 }
         .animation(.default.speed(1.5), value: self.isEditable)
+        .lineLimit(1)
     }
 }
 

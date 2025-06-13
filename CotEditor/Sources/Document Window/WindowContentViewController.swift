@@ -25,6 +25,7 @@
 
 import AppKit
 import SwiftUI
+import Combine
 
 final class WindowContentViewController: NSSplitViewController, NSToolbarItemValidation {
     
@@ -39,6 +40,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     // MARK: Private Properties
     
     private var sidebarStateCache: Bool?
+    private let statusBarModel: StatusBar.Model
     
     private var sidebarViewItem: NSSplitViewItem?
     @ViewLoading private var contentViewItem: NSSplitViewItem
@@ -47,6 +49,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     private var windowObserver: NSKeyValueObservation?
     private var versionBrowserEnterObservationTask: Task<Void, Never>?
     private var versionBrowserExitObservationTask: Task<Void, Never>?
+    
+    private var defaultsObserver: AnyCancellable?
     
     
     // MARK: Split View Controller Methods
@@ -57,6 +61,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         self.document = document
         self.directoryDocument = directoryDocument
+        self.statusBarModel = .init(document: document as? Document)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -96,6 +101,16 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
+        if #available(macOS 26, *) {
+            let statusBarController = StatusBarAccessoryViewController(model: self.statusBarModel)
+            statusBarController.isHidden = !UserDefaults.standard[.showStatusBar]
+            self.contentViewItem.addBottomAlignedAccessoryViewController(statusBarController)
+        } else {
+            let statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
+            statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
+            self.contentViewController.splitViewItems.append(statusBarItem)
+        }
+        
         self.addSplitViewItem(self.contentViewItem)
         if self.directoryDocument != nil {
             contentViewController.view.setAccessibilityElement(true)
@@ -141,6 +156,19 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 }
             }
         }
+        
+        // observe user defaults for status bar
+        if #available(macOS 26, *) {
+            let statusBarController = self.contentViewItem.bottomAlignedAccessoryViewControllers.last
+            statusBarController?.isHidden = !UserDefaults.standard[.showStatusBar]
+            self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar)
+                .sink { statusBarController?.animator().isHidden = !$0 }
+        } else {
+            let statusBarItem = self.contentViewController.splitViewItems.last
+            statusBarItem?.isCollapsed = !UserDefaults.standard[.showStatusBar]
+            self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar)
+                .sink { statusBarItem?.animator().isCollapsed = !$0 }
+        }
     }
     
     
@@ -157,6 +185,9 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             self.sidebarViewItem?.isCollapsed = sidebarStateCache
             self.sidebarStateCache = nil
         }
+        
+        self.defaultsObserver?.cancel()
+        self.defaultsObserver = nil
     }
     
     
@@ -222,6 +253,11 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 
             case #selector(showWarningsInspector):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .warnings) ? .on : .off
+                
+            case #selector(toggleStatusBar):
+                (item as? NSMenuItem)?.title = UserDefaults.standard[.showStatusBar]
+                    ? String(localized: "Hide Status Bar", table: "MainMenu")
+                    : String(localized: "Show Status Bar", table: "MainMenu")
                 
             default: break
         }
@@ -296,6 +332,13 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     }
     
     
+    /// Toggles the visibility of status bar with fancy animation (sync all documents).
+    @IBAction func toggleStatusBar(_ sender: Any?) {
+        
+        UserDefaults.standard[.showStatusBar].toggle()
+    }
+    
+    
     // MARK: Private Methods
     
     /// The view controller for the content view.
@@ -340,5 +383,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         if self.directoryDocument != nil {
             self.contentViewController.view.setAccessibilityLabel(self.document?.displayName ?? "")
         }
+        
+        self.statusBarModel.updateDocument(to: self.document as? Document)
     }
 }

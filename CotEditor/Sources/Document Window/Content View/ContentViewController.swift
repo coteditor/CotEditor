@@ -25,8 +25,6 @@
 
 import AppKit
 import SwiftUI
-import Combine
-import Defaults
 
 final class ContentViewController: NSSplitViewController {
     
@@ -36,17 +34,8 @@ final class ContentViewController: NSSplitViewController {
     
     var documentViewController: DocumentViewController? {
         
-        self.documentViewItem.viewController as? DocumentViewController
+        self.splitViewItems.first?.viewController as? DocumentViewController
     }
-    
-    
-    // MARK: Private Properties
-    
-    @ViewLoading private var documentViewItem: NSSplitViewItem
-    @ViewLoading private var statusBarItem: NSSplitViewItem
-    private lazy var statusBarModel = StatusBar.Model(document: self.document as? Document)
-    
-    private var defaultsObserver: AnyCancellable?
     
     
     // MARK: Lifecycle
@@ -69,35 +58,11 @@ final class ContentViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        // set document view
-        self.documentViewItem = NSSplitViewItem(viewController: self.createDocumentViewController())
-        
-        // set status bar
-        self.statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
-        self.statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
-        
         self.splitView.isVertical = false
-        self.splitViewItems = [self.documentViewItem, self.statusBarItem]
-    }
-    
-    
-    override func viewWillAppear() {
         
-        super.viewWillAppear()
-        
-        // observe user defaults
-        self.statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
-        self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar, initial: false)
-            .sink { [weak self] in self?.statusBarItem.animator().isCollapsed = !$0 }
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.defaultsObserver?.cancel()
-        self.defaultsObserver = nil
+        self.splitViewItems = [
+            NSSplitViewItem(viewController: self.createDocumentViewController()),
+        ]
     }
     
     
@@ -110,30 +75,6 @@ final class ContentViewController: NSSplitViewController {
     }
     
     
-    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
-        
-        switch item.action {
-            case #selector(toggleStatusBar):
-                (item as? NSMenuItem)?.title = !self.statusBarItem.isCollapsed
-                    ? String(localized: "Hide Status Bar", table: "MainMenu")
-                    : String(localized: "Show Status Bar", table: "MainMenu")
-                
-            default: break
-        }
-        
-        return super.validateUserInterfaceItem(item)
-    }
-    
-    
-    // MARK: Action Messages
-    
-    /// Toggles the visibility of status bar with fancy animation (sync all documents).
-    @IBAction func toggleStatusBar(_ sender: Any?) {
-        
-        UserDefaults.standard[.showStatusBar].toggle()
-    }
-    
-    
     // MARK: Private Methods
     
     /// Updates the document in children.
@@ -141,10 +82,7 @@ final class ContentViewController: NSSplitViewController {
         
         guard oldDocument != self.document else { return }
         
-        self.documentViewItem = NSSplitViewItem(viewController: self.createDocumentViewController())
-        self.splitViewItems[0] = self.documentViewItem
-        
-        self.statusBarModel.updateDocument(to: self.document as? Document)
+        self.splitViewItems[0] = NSSplitViewItem(viewController: self.createDocumentViewController())
     }
     
     
