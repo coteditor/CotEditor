@@ -69,7 +69,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     override func loadView() {
         
-        let footerHeight: CGFloat = 23
+        let footerHeight: CGFloat = isLiquidGlass ? 28 : 23
         
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
@@ -80,8 +80,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
-        scrollView.contentView.automaticallyAdjustsContentInsets = false
-        scrollView.contentView.contentInsets.bottom = footerHeight
         
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator
@@ -95,8 +93,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                                                accessibilityDescription: String(localized: "Add", table: "Document"))
         addButton.setAccessibilityLabel(String(localized: "Add", table: "Document"))
         
-        let footerView = NSVisualEffectView()
-        footerView.material = .sidebar
+        let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
+        (footerView as? NSVisualEffectView)?.material = .sidebar
         footerView.addSubview(addButton)
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
@@ -117,7 +115,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             bottomSeparator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -footerHeight),
@@ -126,6 +123,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
+        
+        if #available(macOS 26, *) {
+            scrollView.bottomAnchor.constraint(equalTo: bottomSeparator.topAnchor).isActive = true
+        } else {
+            scrollView.contentView.automaticallyAdjustsContentInsets = false
+            scrollView.contentView.contentInsets.bottom = footerHeight
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        }
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
@@ -1050,5 +1055,25 @@ private final class FileBrowserTableCellView: NSTableCellView {
         
         self.tagsView?.rootView = TagsView(tags: self.tags, isSelected: self.isSelected)
         self.tagsLayoutConstraint?.isActive = !self.tags.isEmpty
+        
+        self.imageView?.contentTintColor = self.tags.last?.color.color
+    }
+}
+
+
+private extension FinderTag.Color {
+    
+    var color: NSColor? {
+        
+        switch self {
+            case .none: nil
+            case .gray: .systemGray
+            case .green: .systemGreen
+            case .purple: .systemPurple
+            case .blue: .systemBlue
+            case .yellow: .systemYellow
+            case .red: .systemRed
+            case .orange: .systemOrange
+        }
     }
 }
