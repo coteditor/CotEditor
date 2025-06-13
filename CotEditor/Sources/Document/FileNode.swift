@@ -442,7 +442,7 @@ extension FileNode.Kind {
         
         switch self {
             case .folder: "folder"
-            case .general: "doc"
+            case .general: "document"
             case .archive: "zipper.page"
             case .image: "photo"
             case .movie: "film"

@@ -209,7 +209,7 @@ private extension InspectorPane {
     private var imageName: String {
         
         switch self {
-            case .document: "doc"
+            case .document: "document"
             case .outline: "list.bullet.indent"
             case .warnings: "exclamationmark.triangle"
         }
@@ -219,7 +219,7 @@ private extension InspectorPane {
     private var selectedImageName: String {
         
         switch self {
-            case .document: "doc.fill"
+            case .document: "document.fill"
             case .outline: "list.bullet.indent"
             case .warnings: "exclamationmark.triangle.fill"
         }
