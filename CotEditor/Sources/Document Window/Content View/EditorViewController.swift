@@ -92,12 +92,8 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewWillAppear()
         
-        self.navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
-        
         self.outlineNavigator.items = self.document.syntaxParser.outlineItems
-        self.textView?.lineEnding = self.document.lineEnding
-        self.textView?.mode = ModeManager.shared.setting(for: self.document.mode)
-        self.applySyntax()
+        self.navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
         
         // observe document and defaults
         self.observers = [
@@ -105,13 +101,6 @@ final class EditorViewController: NSSplitViewController {
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.outlineNavigator.items = $0 },
-            self.document.$lineEnding
-                .sink { [weak self] in self?.textView?.lineEnding = $0 },
-            self.document.didChangeSyntax
-                .sink { [weak self] _ in self?.applySyntax() },
-            self.document.$mode
-                .removeDuplicates()
-                .sink { [weak self] in self?.textView?.mode = ModeManager.shared.setting(for: $0) },
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
         ]
@@ -197,19 +186,5 @@ final class EditorViewController: NSSplitViewController {
     @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
         self.outlineNavigator.selectNextItem()
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Applies syntax to the inner text view.
-    private func applySyntax() {
-        
-        guard let textView = self.textView else { return assertionFailure() }
-        
-        let parser = self.document.syntaxParser
-        textView.syntaxName = parser.name
-        textView.commentDelimiters = parser.syntax.commentDelimiters
-        textView.syntaxCompletionWords = parser.syntax.completionWords
     }
 }
