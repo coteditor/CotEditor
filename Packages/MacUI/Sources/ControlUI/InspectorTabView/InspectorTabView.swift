@@ -26,6 +26,7 @@
 
 import AppKit
 
+@available(macOS, deprecated: 26, message: "Use normal NSSegmentedControl.")
 public protocol InspectorTabViewDelegate: NSTabViewDelegate {
     
     /// Provides custom image for selected tab view item.
@@ -42,14 +43,24 @@ public final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
-    private let segmentedControl = InspectorTabSegmentedControl()
+    private let segmentedControl: NSSegmentedControl
+    
+    @available(macOS, deprecated: 26)
     private let controlOffset: CGFloat = 2
-    private let segmentWidth: CGFloat = 30
     
     
     // MARK: Lifecycle
     
     public override init(frame frameRect: NSRect) {
+        
+        if #available(macOS 26, *) {
+            self.segmentedControl = NSSegmentedControl()
+            self.segmentedControl.controlSize = .large
+            self.segmentedControl.segmentDistribution = .fillEqually
+        } else {
+            self.segmentedControl = InspectorTabSegmentedControl()
+            self.segmentedControl.cell?.isBordered = false
+        }
         
         super.init(frame: frameRect)
         
@@ -57,19 +68,29 @@ public final class InspectorTabView: NSTabView {
         self.tabViewType = .noTabsNoBorder
         
         // setup the private tab control
-        self.segmentedControl.cell?.isBordered = false
         self.segmentedControl.target = self
         self.segmentedControl.action = #selector(takeSelectedTabViewItemFromSender)
         
         // add control parts
         self.segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.segmentedControl)
-        NSLayoutConstraint.activate([
-            self.segmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.controlOffset),
-            self.segmentedControl.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            self.segmentedControl.leadingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: self.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
-            self.segmentedControl.trailingAnchor.constraint(lessThanOrEqualToSystemSpacingAfter: self.safeAreaLayoutGuide.trailingAnchor, multiplier: 1),
-        ])
+        
+        if #available(*, macOS 26) {
+            NSLayoutConstraint.activate([
+                self.segmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+                self.segmentedControl.leadingAnchor.constraint(equalToSystemSpacingAfter: self.safeAreaLayoutGuide.leadingAnchor, multiplier: 1/2),
+                self.segmentedControl.trailingAnchor.constraint(equalToSystemSpacingAfter: self.safeAreaLayoutGuide.trailingAnchor, multiplier: -1/2),
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                self.segmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.controlOffset),
+                self.segmentedControl.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+                self.segmentedControl.leadingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: self.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
+                self.segmentedControl.trailingAnchor.constraint(lessThanOrEqualToSystemSpacingAfter: self.safeAreaLayoutGuide.trailingAnchor, multiplier: 1),
+            ])
+        }
+        
+        guard #unavailable(macOS 26) else { return }
         
         let separator = NSBox()
         separator.boxType = .separator
@@ -107,8 +128,10 @@ public final class InspectorTabView: NSTabView {
     public override var contentRect: NSRect {
         
         // take off control space
-        let controlHeight = self.segmentedControl.frame.height + self.controlOffset * 2
-        let offset = self.safeAreaInsets.top + controlHeight + 1  // +1 for border
+        var offset = self.safeAreaInsets.top + self.segmentedControl.frame.height
+        if #unavailable(macOS 26) {
+            offset += self.controlOffset * 2 + 1  // +1 for border
+        }
         
         var rect = self.bounds
         rect.origin.y = offset
@@ -158,11 +181,16 @@ public final class InspectorTabView: NSTabView {
         self.segmentedControl.segmentCount = self.numberOfTabViewItems
         
         for (segment, item) in self.tabViewItems.enumerated() {
-            let selectedImage = (self.delegate as? any InspectorTabViewDelegate)?
-                .tabView(self, selectedImageForItem: item)
-            self.segmentedControl.setImage(item.image, selectedImage: selectedImage, forSegment: segment)
+            if let segmentedControl = self.segmentedControl as? InspectorTabSegmentedControl {
+                let segmentWidth: CGFloat = 30
+                let selectedImage = (self.delegate as? any InspectorTabViewDelegate)?
+                    .tabView(self, selectedImageForItem: item)
+                segmentedControl.setImage(item.image, selectedImage: selectedImage, forSegment: segment)
+                self.segmentedControl.setWidth(segmentWidth, forSegment: segment)
+            } else {
+                self.segmentedControl.setImage(item.image, forSegment: segment)
+            }
             self.segmentedControl.setToolTip(item.label, forSegment: segment)
-            self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
         }
     }
 }
