@@ -36,7 +36,6 @@ struct FilePreviewView: View {
         VStack {
             QuickLookView(item: self.item)
                 .frame(maxWidth: self.item.previewSize?.width, maxHeight: self.item.previewSize?.height, alignment: .center)
-//                .aspectRatio(self.item.previewSize?.aspectRatio, contentMode: .fit)
             Text(self.item.previewItemTitle)
                 .fontWeight(.medium)
                 .foregroundStyle(.secondary)
