@@ -232,6 +232,9 @@ attributes:
 - beginString: (?<=\s)inlist(?=\b[^<>]*>)
   ignoreCase: true
   regularExpression: true
+- beginString: (?<=\s)inputmode(?=\b[^<>]*>)
+  ignoreCase: true
+  regularExpression: true
 - beginString: (?<=\s)ismap(?=\b[^<>]*>)
   ignoreCase: true
   regularExpression: true
@@ -419,6 +422,9 @@ attributes:
   ignoreCase: true
   regularExpression: true
 - beginString: (?<=\s)sizes(?=\b[^<>]*>)
+  ignoreCase: true
+  regularExpression: true
+- beginString: (?<=\s)slot(?=\b[^<>]*>)
   ignoreCase: true
   regularExpression: true
 - beginString: (?<=\s)sortable(?=\b[^<>]*>)
@@ -770,6 +776,7 @@ completions:
 - keyString: applet
 - keyString: archive
 - keyString: area
+- keyString: aria-
 - keyString: article
 - keyString: aside
 - keyString: async
@@ -891,6 +898,7 @@ completions:
 - keyString: inert
 - keyString: inlist
 - keyString: input
+- keyString: inputmode
 - keyString: ins
 - keyString: isindex
 - keyString: ismap
@@ -1052,6 +1060,7 @@ completions:
 - keyString: script
 - keyString: scrolling
 - keyString: seamless
+- keyString: search
 - keyString: section
 - keyString: select
 - keyString: selected
@@ -1059,6 +1068,7 @@ completions:
 - keyString: sheme
 - keyString: size
 - keyString: sizes
+- keyString: slot
 - keyString: small
 - keyString: source
 - keyString: span
@@ -1417,6 +1427,9 @@ keywords:
   ignoreCase: true
   regularExpression: true
 - beginString: (?<=</?)script\b
+  ignoreCase: true
+  regularExpression: true
+- beginString: (?<=</?)search\b
   ignoreCase: true
   regularExpression: true
 - beginString: (?<=</?)section\b
