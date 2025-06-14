@@ -8,6 +8,11 @@
 - Allow adding and removing text encodings from the text encoding list, and enabling the handling of a wider range of encodings.
 
 
+### Improvements
+
+- Update the HTML syntax to highlight more keywords (thanks to Karam!).
+
+
 
 5.1.8 (720)
 --------------------------
