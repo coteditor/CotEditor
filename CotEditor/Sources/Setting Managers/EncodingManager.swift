@@ -59,11 +59,13 @@ import FileEncoding
         }
         
         self.defaultObserver = defaults.publisher(for: .encodingList, initial: true)
-            .map { $0.map { $0 != kCFStringEncodingInvalidId ? FileEncoding(encoding: String.Encoding(cfEncoding: $0)) : nil }
-                    .flatMap {
-                        // add "UTF-8 with BOM" item just after the normal UTF-8
-                        ($0?.encoding == .utf8) ? [$0, FileEncoding(encoding: .utf8, withUTF8BOM: true)] : [$0]
-                    }
+            .map { $0
+                .map { $0 != kCFStringEncodingInvalidId ? FileEncoding(encoding: String.Encoding(cfEncoding: $0)) : nil }
+                .filter { $0.map { String.availableStringEncodings.contains($0.encoding) } ?? true }
+                .flatMap {
+                    // add "UTF-8 with BOM" item just after the normal UTF-8
+                    ($0?.encoding == .utf8) ? [$0, FileEncoding(encoding: .utf8, withUTF8BOM: true)] : [$0]
+                }
             }
             .sink { [weak self] in self?.fileEncodings = $0 }
     }
