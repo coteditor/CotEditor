@@ -15,6 +15,11 @@
 - [non-AppStore ver.] Update Sparkle from 2.7.0 to 2.7.1.
 
 
+### Fixes
+
+ - Fix an issue where the `⌥⌦` shortcut deletes the previous word instead of the next word by the multi-cursor editing mode.
+
+
 
 5.1.8 (720)
 --------------------------
