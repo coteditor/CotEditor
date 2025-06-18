@@ -122,13 +122,13 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
                 
             case #selector(renameSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Rename “\(name)”", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.rename.named.label", defaultValue: "Rename “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
                 
             case #selector(duplicateSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Duplicate “\(name)”", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.duplicate.named.label", defaultValue: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
                 
@@ -137,13 +137,13 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
                 
             case #selector(exportSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Export “\(name)”…", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.export.named.label", defaultValue: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 
             case #selector(revealSettingInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Reveal “\(name)” in Finder", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.revealInFinder.named.label", defaultValue: "Reveal “\(name)” in Finder")
                 }
                 
             case nil:

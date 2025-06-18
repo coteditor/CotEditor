@@ -102,7 +102,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                 
             case #selector(duplicateSetting(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Duplicate “\(settingName)”", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.duplicate.named.label", defaultValue: "Duplicate “\(settingName)”")
                 }
                 menuItem.isHidden = !itemSelected
                 
@@ -111,14 +111,14 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                 
             case #selector(restoreSetting(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Restore “\(settingName)”", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.restore.named.label", defaultValue: "Restore “\(settingName)”")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable ?? false
                 
             case #selector(exportSetting(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Export “\(settingName)”…", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.export.named.label", defaultValue: "Export “\(settingName)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized ?? false
@@ -129,7 +129,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                 
             case #selector(revealSettingInFinder(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Reveal “\(settingName)” in Finder", comment: "menu item label")
+                    menuItem.title = String(localized: "Action.revealInFinder.named.label", defaultValue: "Reveal “\(settingName)” in Finder")
                 }
                 return state?.isCustomized ?? false
                 
