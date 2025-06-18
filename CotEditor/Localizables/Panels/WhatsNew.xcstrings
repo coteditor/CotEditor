@@ -266,572 +266,72 @@
         }
       }
     },
-    "NewFeature.readOnly.description" : {
+    "NewFeature.encoding.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nechtěným úpravám dokumentů zabráníte nastavením jen ke čtení."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schutz vor versehentlicher Bearbeitung, indem Dokumente auf Schreibschutz gesetzt werden."
+            "value" : "Jede von macOS unterstützte Textcodierung lässt sich jetzt zur Kodierungskandidatenliste hinzufügen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Prevent accidental editing by making documents read-only."
+            "value" : "Any text encoding supported by macOS can now be added to the encoding candidate list."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prevent accidental editing by making documents read-only."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Impedir la edición accidental haciendo que los documentos sean de sólo lectura."
+            "value" : "Any text encoding supported by macOS can now be added to the encoding candidate list."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Empêcher les modifications accidentelles en mettant les documents en lecture seule."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Evita modifiche involontarie rendendo i documenti non modificabili."
+            "value" : "Il est désormais possible d’ajouter n’importe quel encodage pris en charge par macOS à la liste des encodages proposés."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "読み出し専用に変更することで、意図しない編集から書類を守ります。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "문서를 읽기 전용으로 만들어 실수로 편집하지 않도록 할 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Voorkom per ongeluk bewerken door documenten alleen-lezen te maken."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zapobiegnij przypadkowej edycji, ustawiając dokument jako tylko do odczytu."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Evite edições acidentais tornando os documentos somente leitura."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belgeleri salt okunur yaparak yanlışlıkla düzenlemeyi önleyin."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通过将文档设为只读，防止意外编辑。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "將文件設為唯讀，避免誤操作編輯。"
+            "value" : "macOSが対応するすべてのテキストエンコーディングをエンコーディング候補リストに追加できるようになりました。"
           }
         }
       }
     },
-    "NewFeature.readOnly.label" : {
+    "NewFeature.encoding.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Režim jen ke čtení"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schreibschutzmodus"
+            "value" : "Mehr Verschiedene Codierungen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Read-Only Mode"
+            "value" : "More Various Encodings"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Read-Only Mode"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo solo lectura"
+            "value" : "More Various Encodings"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mode lecture seule"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo in sola lettura"
+            "value" : "Plus de types d’encodage"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "読み出し専用モード"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "읽기 전용 모드"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Alleen-lezen modus"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tryb tylko do odczytu"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo Somente Leitura"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salt Okunur Kip"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "只读模式"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "唯讀模式"
-          }
-        }
-      }
-    },
-    "NewFeature.tag.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inspektor dokumentů a prohlížeč souborů nyní zobrazují značky Finderu."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Der Dokumentinspektor und die Dateiübersicht zeigen jetzt Finder-Tags an."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The document inspector and the file browser now display Finder tags."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The document inspector and the file browser now display Finder tags."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El inspector de documentos y el explorador de archivos muestran ahora las etiquetas del Finder."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "L'inspecteur de documents et le navigateur de fichiers affichent désormais les tags du Finder."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ora l'ispettore dei documenti ed il\n browser dei file mostrano le etichette del Finder."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書類インスペクタとファイルブラウザにFinderタグが表示されるようになりました。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "문서 인스펙터 및 파일 브라우저에 Finder 태그가 표시됩니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "De documentinspector en de bestandskiezer geven nu Finder-tags weer."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inspektor dokumentu i przeglądarka plików wyświetlają teraz tagi Findera."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O inspetor de documentos e o navegador de arquivos agora exibem tags do Finder."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belge denetçisi ve dosya tarayıcısı artık Finder etiketlerini görüntülüyor."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文稿检查器和文件浏览器现在可以显示访达标签。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文件檢視器與檔案瀏覽器現在可以顯示Finder標籤。"
-          }
-        }
-      }
-    },
-    "NewFeature.tag.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Značky Finderu"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finder-Tags"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Finder Tags"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finder Tags"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Etiquetas del Finder"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tags du Finder"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tag del Finder"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finderタグ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finder 태그"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finder-tags"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tagi Findera"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Etiquetas do Finder"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finder etiketleri"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "“访达”标签"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finder標籤"
-          }
-        }
-      }
-    },
-    "NewFeature.uniqueFolder.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "U dokumentů se stejným názvem se v názvu okna zobrazí název nadřazené složky."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Der Name eines übergeordneten Ordners wird im Fenstertitel für Dokumente mit demselben Dateinamen angezeigt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "A parent folder name appears in the window title for documents with the same filename."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A parent folder name appears in the window title for documents with the same filename."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En el título de la ventana aparece el nombre de la carpeta principal para los documentos con el mismo nombre de archivo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Le nom d'un dossier parent apparaît dans le titre de la fenêtre pour les documents portant le même nom de fichier."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nei documenti con lo stesso nome, la finestra del titolo contiene il nome della cartella superiore."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "同じ名前の書類にはウインドウタイトルに親フォルダの名前が表示されます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "같은 파일 이름을 가진 문서를 구분하기 위해 윈도우에 부모 폴더의 이름이 표시됩니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Een bovenliggende mapnaam verschijnt in de venstertitel voor documenten met dezelfde bestandsnaam."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dla dokumentów o tej samej nazwie pliku, w tytule okna wyświetlana jest nazwa folderu nadrzędnego."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O nome do diretório pai aparece no título da janela para documentos com o mesmo nome de arquivo."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aynı adlı belgeler için belgenin üst klasörün adı başlık çubuğunda görünür."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "对于文件名相同的文档，父文件夹名称将显示在窗口标题中。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "具有相同檔案名稱的文件會顯示其父檔案夾名稱於視窗標題中。"
-          }
-        }
-      }
-    },
-    "NewFeature.uniqueFolder.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jednodušší rozlišování dokumentů"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leichtere Unterscheidung von Dokumenten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Easier to Distinguish Documents"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Easier to Distinguish Documents"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Documentos más fáciles de distinguir"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Distinction plus facile des documents"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Facilita l'individuazione dei documenti"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書類を見分けやすく"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "더 쉬운 문서 구분"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Documenten makkelijker te onderscheiden"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Łatwiejsze rozróżnianie dokumentów"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mais Fácil de Distinguir Documentos"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daha Kolay Ayırt Edilebilen Belgeler"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更易区分文档"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更容易區分文件"
+            "value" : "もっと色んなエンコーディング"
           }
         }
       }

@@ -31,7 +31,7 @@ struct WhatsNewView: View {
     
     @Environment(\.dismissWindow) private var dismiss
     
-    @State private var versionString: String = "\(NewFeature.version.major).\(NewFeature.version.minor)"
+    private var versionString: String = "\(NewFeature.version.major).\(NewFeature.version.minor)"
     @State private var isPrerelease: Bool = false
     
     
@@ -132,12 +132,10 @@ struct WhatsNewView: View {
 
 enum NewFeature: CaseIterable {
     
-    static let version = Version(5, 1, 0)
-    static let buildNumber = 703
+    static let version = Version(5, 2, 0)
+    static let buildNumber = 720
     
-    case uniqueFolder
-    case readOnly
-    case tag
+    case encoding
 }
     
 
@@ -146,12 +144,8 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
-            case .uniqueFolder:
-                Image(systemName: "macwindow.on.rectangle")
-            case .readOnly:
-                Image(systemName: "pencil.slash")
-            case .tag:
-                Image(systemName: "circlebadge.2")
+            case .encoding:
+                Image(systemName: "arrow.2.squarepath")
         }
     }
     
@@ -159,15 +153,9 @@ private extension NewFeature {
     var label: String {
         
         switch self {
-            case .uniqueFolder:
-                String(localized: "NewFeature.uniqueFolder.label",
-                       defaultValue: "Easier to Distinguish Documents", table: "WhatsNew")
-            case .readOnly:
-                String(localized: "NewFeature.readOnly.label",
-                       defaultValue: "Read-Only Mode", table: "WhatsNew")
-            case .tag:
-                String(localized: "NewFeature.tag.label",
-                       defaultValue: "Finder Tags", table: "WhatsNew")
+            case .encoding:
+                String(localized: "NewFeature.encoding.label",
+                       defaultValue: "More Various Encodings", table: "WhatsNew")
         }
     }
     
@@ -175,15 +163,9 @@ private extension NewFeature {
     var description: String {
         
         switch self {
-            case .uniqueFolder:
-                String(localized: "NewFeature.uniqueFolder.description",
-                       defaultValue: "A parent folder name appears in the window title for documents with the same filename.", table: "WhatsNew")
-            case .readOnly:
-                String(localized: "NewFeature.readOnly.description",
-                       defaultValue: "Prevent accidental editing by making documents read-only.", table: "WhatsNew")
-            case .tag:
-                String(localized: "NewFeature.tag.description",
-                       defaultValue: "The document inspector and the file browser now display Finder tags.", table: "WhatsNew")
+            case .encoding:
+                String(localized: "NewFeature.encoding.description",
+                       defaultValue: "Any text encoding supported by macOS can now be added to the encoding candidate list.", table: "WhatsNew")
         }
     }
     
@@ -191,42 +173,18 @@ private extension NewFeature {
     var helpAnchor: String? {
         
         switch self {
-            case .readOnly:
-                "howto_readonly"
-            default:
-                nil
+            case .encoding:
+                "howto_customize_encoding_order"
         }
     }
     
     
-    @MainActor @ViewBuilder var supplementalView: some View {
+    @ViewBuilder var supplementalView: some View {
         
         switch self {
             default:
                 EmptyView()
         }
-    }
-}
-
-
-// MARK: - Private
-
-private extension ButtonStyle where Self == CapsuleButtonStyle {
-    
-    static var capsule: Self  { Self() }
-}
-
-
-private struct CapsuleButtonStyle: ButtonStyle {
-    
-    func makeBody(configuration: Configuration) -> some View {
-        
-        configuration.label
-            .foregroundStyle(.tint)
-            .brightness(configuration.isPressed ? -0.1 : 0)
-            .padding(.vertical, 2)
-            .padding(.horizontal, 9)
-            .background(.fill.tertiary, in: .capsule)
     }
 }
 
