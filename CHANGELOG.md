@@ -18,6 +18,7 @@
 ### Fixes
 
  - Fix an issue where the `⌥⌦` shortcut deletes the previous word instead of the next word by the multi-cursor editing mode.
+ - Fix an issue in the file browser where the order of renamed items remains unchanged.
 
 
 
