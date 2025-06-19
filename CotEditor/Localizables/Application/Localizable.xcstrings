@@ -8830,6 +8830,12 @@
             "value" : "Het document kan niet worden bewerkt."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentu nie można edytować."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
