@@ -11,6 +11,7 @@
 ### Improvements
 
 - Change the system requirement to __macOS 15 Sequoia and later__.
+- Update the user interface on macOS 26 to the Liquid Glass style.
 - [dev] Update the build environment to Xcode 26.0 Beta 2 (Swift 6.2, macOS 26 SDK).
 
 

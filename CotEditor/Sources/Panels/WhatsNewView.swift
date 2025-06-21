@@ -132,10 +132,10 @@ struct WhatsNewView: View {
 
 enum NewFeature: CaseIterable {
     
-    static let version = Version(5, 2, 0)
+    static let version = Version(6, 0, 0)
     static let buildNumber = 720
     
-    case encoding
+    case liquidGlass
 }
     
 
@@ -144,8 +144,8 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
-            case .encoding:
-                Image(systemName: "arrow.2.squarepath")
+            case .liquidGlass:
+                Image(systemName: "sparkles")
         }
     }
     
@@ -153,9 +153,9 @@ private extension NewFeature {
     var label: String {
         
         switch self {
-            case .encoding:
-                String(localized: "NewFeature.encoding.label",
-                       defaultValue: "More Various Encodings", table: "WhatsNew")
+            case .liquidGlass:
+                String(localized: "NewFeature.liquidGlass.label",
+                       defaultValue: "New Liquid Glass Look", table: "WhatsNew")
         }
     }
     
@@ -163,9 +163,9 @@ private extension NewFeature {
     var description: String {
         
         switch self {
-            case .encoding:
-                String(localized: "NewFeature.encoding.description",
-                       defaultValue: "Any text encoding supported by macOS can now be added to the encoding candidate list.", table: "WhatsNew")
+            case .liquidGlass:
+                String(localized: "NewFeature.liquidGlass.description",
+                       defaultValue: "Experience the refreshed interface with the new Liquid Glass style in macOS 26 Tahoe.", table: "WhatsNew")
         }
     }
     
@@ -173,8 +173,8 @@ private extension NewFeature {
     var helpAnchor: String? {
         
         switch self {
-            case .encoding:
-                "howto_customize_encoding_order"
+            default:
+                nil
         }
     }
     
