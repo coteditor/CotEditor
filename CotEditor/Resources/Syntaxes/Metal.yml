@@ -1,0 +1,170 @@
+kind: code
+
+extensions:
+  - keyString: "metal"
+  - keyString: "msl"
+
+metadata:
+  author: aybarsnazlica
+  description: Metal Shading Language syntax based on Apple's MSL
+  version: 1.0.0
+  license: Same as CotEditor
+  lastModified: "2025-06-21"
+  distributionURL: https://developer.apple.com/metal/
+
+attributes:
+  - beginString: "#define"
+  - beginString: "#include"
+  - beginString: "#ifdef"
+  - beginString: "#ifndef"
+  - beginString: "#endif"
+  - beginString: "#if"
+  - beginString: "#else"
+  - beginString: "#elif"
+  - beginString: "#pragma"
+  - beginString: "#undef"
+  - beginString: "#error"
+  - beginString: "#line"
+  - beginString: "#warning"
+
+characters:
+  - beginString: "'"
+    endString: "'"
+  - beginString: '"'
+    endString: '"'
+
+commands:
+  - beginString: dot
+  - beginString: cross
+  - beginString: normalize
+  - beginString: length
+  - beginString: reflect
+  - beginString: sample
+  - beginString: read
+  - beginString: write
+  - beginString: get_thread_position_in_grid
+  - beginString: get_thread_position_in_threadgroup
+  - beginString: get_threadgroup_position_in_grid
+
+keywords:
+  - beginString: kernel
+  - beginString: vertex
+  - beginString: fragment
+  - beginString: compute
+  - beginString: constant
+  - beginString: device
+  - beginString: thread
+  - beginString: threadgroup
+  - beginString: return
+  - beginString: if
+  - beginString: else
+  - beginString: for
+  - beginString: while
+  - beginString: do
+  - beginString: switch
+  - beginString: case
+  - beginString: break
+  - beginString: continue
+  - beginString: typedef
+  - beginString: struct
+  - beginString: enum
+  - beginString: namespace
+  - beginString: static
+  - beginString: inline
+  - beginString: aligna
+  - beginString: alignof
+  - beginString: and
+  - beginString: and_eq
+  - beginString: asm
+  - beginString: auto
+  - beginString: bitand
+  - beginString: bitor
+  - beginString: bool
+  - beginString: catch
+  - beginString: char
+  - beginString: class
+  - beginString: compl
+  - beginString: const
+  - beginString: decltype
+  - beginString: default
+  - beginString: double
+  - beginString: explicit
+  - beginString: export
+  - beginString: extern
+  - beginString: float
+  - beginString: friend
+  - beginString: int
+  - beginString: long
+  - beginString: mutable
+  - beginString: not
+  - beginString: not_eq
+  - beginString: nullptr
+  - beginString: operator
+  - beginString: or
+  - beginString: or_eq
+  - beginString: private
+  - beginString: protected
+  - beginString: public
+  - beginString: register
+  - beginString: short
+  - beginString: signed
+  - beginString: sizeof
+  - beginString: static_assert
+  - beginString: static_cast
+  - beginString: template
+  - beginString: this
+  - beginString: thread_local
+  - beginString: throw
+  - beginString: try
+  - beginString: typeid
+  - beginString: typename
+  - beginString: union
+  - beginString: unsigned
+  - beginString: using
+  - beginString: volatile
+  - beginString: xor
+  - beginString: xor_eq
+
+numbers:
+  - beginString: "0"
+    description: zero
+  - beginString: \b-?[1-9][0-9]*[ul]{0,3}\b
+    description: integer
+    ignoreCase: true
+    regularExpression: true
+  - beginString: \b-?\d+(\.\d+)?(e[-+]?\d+)?[fl]?\b
+    description: float
+    ignoreCase: true
+    regularExpression: true
+  - beginString: \b0[1-7][0-7]*[ul]{0,3}\b
+    description: octal
+    ignoreCase: true
+    regularExpression: true
+
+types:
+  - beginString: bool
+  - beginString: char
+  - beginString: char16_t
+  - beginString: char32_t
+  - beginString: double
+  - beginString: float
+  - beginString: int
+  - beginString: long
+  - beginString: short
+  - beginString: signed
+  - beginString: unsigned
+  - beginString: void
+  - beginString: wchar_t
+
+values:
+  - beginString: "false"
+  - beginString: "NULL"
+  - beginString: "true"
+
+outlineMenu:
+  - beginString: "\\b(kernel|vertex|fragment|compute)\\s+\\w+\\s+(\\w+)\\s*\\("
+    keyString: "$1 function: $2"
+  - beginString: "\\bstruct\\s+(\\w+)"
+    keyString: "struct: $1"
+  - beginString: "\\btypedef\\s+.*\\s+(\\w+)\\s*;"
+    keyString: "typedef: $1"
