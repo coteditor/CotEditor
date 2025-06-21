@@ -20,39 +20,19 @@
       "internalID" : "6499507688",
       "localizations" : [
         {
-          "description" : "Chutný šálek",
-          "displayName" : "Espresso",
-          "locale" : "cs"
-        },
-        {
-          "description" : "Lezzetli bir kupa",
-          "displayName" : "Espresso",
-          "locale" : "tr"
-        },
-        {
-          "description" : "一杯美味的咖啡",
-          "displayName" : "浓缩咖啡",
-          "locale" : "zh_Hans"
-        },
-        {
           "description" : "Una gustosa tazza",
           "displayName" : "Espresso",
           "locale" : "it"
         },
         {
-          "description" : "A tasty cup",
+          "description" : "Une tasse savoureuse",
           "displayName" : "Espresso",
-          "locale" : "en_US"
+          "locale" : "fr"
         },
         {
-          "description" : "おいしい1杯",
-          "displayName" : "エスプレッソ",
-          "locale" : "ja"
-        },
-        {
-          "description" : "커피 한 잔",
-          "displayName" : "에스프레소",
-          "locale" : "ko"
+          "description" : "一杯美味的咖啡",
+          "displayName" : "濃縮咖啡",
+          "locale" : "zh_Hant"
         },
         {
           "description" : "Een lekker kopje",
@@ -65,9 +45,24 @@
           "locale" : "pt_BR"
         },
         {
+          "description" : "커피 한 잔",
+          "displayName" : "에스프레소",
+          "locale" : "ko"
+        },
+        {
+          "description" : "Lezzetli bir kupa",
+          "displayName" : "Espresso",
+          "locale" : "tr"
+        },
+        {
           "description" : "一杯美味的咖啡",
-          "displayName" : "濃縮咖啡",
-          "locale" : "zh_Hant"
+          "displayName" : "浓缩咖啡",
+          "locale" : "zh_Hans"
+        },
+        {
+          "description" : "おいしい1杯",
+          "displayName" : "エスプレッソ",
+          "locale" : "ja"
         },
         {
           "description" : "Smaczna filiżanka",
@@ -75,14 +70,19 @@
           "locale" : "pl"
         },
         {
-          "description" : "Une tasse savoureuse",
-          "displayName" : "Espresso",
-          "locale" : "fr"
-        },
-        {
           "description" : "Eine köstliche Tasse",
           "displayName" : "Espresso",
           "locale" : "de"
+        },
+        {
+          "description" : "Chutný šálek",
+          "displayName" : "Espresso",
+          "locale" : "cs"
+        },
+        {
+          "description" : "A tasty cup",
+          "displayName" : "Espresso",
+          "locale" : "en_US"
         }
       ],
       "productID" : "com.coteditor.CotEditor.donation.onetime",
@@ -92,58 +92,55 @@
   ],
   "settings" : {
     "_applicationInternalID" : "1024640650",
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
     "_developerTeamID" : "HT3Z3A72WZ",
+    "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 765692306.84510303,
+    "_lastSynchronizedDate" : 772183917.51927102,
     "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "USA",
     "_storeKitErrors" : [
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Load Products"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Purchase"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Verification"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "App Store Sync"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Subscription Status"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "App Transaction"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Manage Subscriptions Sheet"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Refund Request Sheet"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Offer Code Redeem Sheet"
       }
-    ]
+    ],
+    "_timeRate" : 0
   },
   "subscriptionGroups" : [
     {
@@ -182,6 +179,11 @@
               "locale" : "tr"
             },
             {
+              "description" : "Kaffee für die tägliche Entwicklung",
+              "displayName" : "Kaffeebohnen",
+              "locale" : "de"
+            },
+            {
               "description" : "Café pour le développement quotidien",
               "displayName" : "Grains de café",
               "locale" : "fr"
@@ -195,11 +197,6 @@
               "description" : "Café para desenvolvimento diário",
               "displayName" : "Grãos de Café",
               "locale" : "pt_BR"
-            },
-            {
-              "description" : "Kaffee für die tägliche Entwicklung",
-              "displayName" : "Kaffeebohnen",
-              "locale" : "de"
             },
             {
               "description" : "以咖啡資助軟體研發",
