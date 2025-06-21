@@ -7,7 +7,7 @@
 
 - Allow adding and removing text encodings from the text encoding list, and enabling the handling of a wider range of encodings.
 - Add the Xcode Project syntax (.pbxproj).
-- Add the Metal syntax (thanks to Karam!).
+- Add the Metal syntax (thanks to Aybars Nazlica!).
 
 
 ### Improvements
