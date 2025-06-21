@@ -6,6 +6,7 @@
 ### New Features
 
 - Allow adding and removing text encodings from the text encoding list, and enabling the handling of a wider range of encodings.
+- Add the Xcode Project syntax (.pbxproj).
 
 
 ### Improvements

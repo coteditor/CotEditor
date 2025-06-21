@@ -1,0 +1,59 @@
+attributes:
+- beginString: PBXAggregateTarget
+- beginString: PBXBuildFile
+- beginString: PBXContainerItemProxy
+- beginString: PBXCopyFilesBuildPhase
+- beginString: PBXFileReference
+- beginString: PBXFrameworksBuildPhase
+- beginString: PBXGroup
+- beginString: PBXHeadersBuildPhase
+- beginString: PBXNativeTarget
+- beginString: PBXProject
+- beginString: PBXReferenceProxy
+- beginString: PBXResourcesBuildPhase
+- beginString: PBXRezBuildPhase
+- beginString: PBXShellScriptBuildPhase
+- beginString: PBXSourcesBuildPhase
+- beginString: PBXTargetDependency
+- beginString: PBXVariantGroup
+- beginString: XCBuildConfiguration
+- beginString: XCConfigurationList
+characters: []
+commands: []
+commentDelimiters:
+  beginDelimiter: /*
+  endDelimiter: '*/'
+  inlineDelimiter: //
+comments: []
+completions: []
+extensions:
+- keyString: pbxproj
+filenames: []
+interpreters: []
+keywords:
+- beginString: \b[a-z0-9_.]+(?= \= )
+  ignoreCase: true
+  regularExpression: true
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2025-06-21'
+  license: Same as CotEditor
+  version: 1.0.1
+numbers:
+- beginString: \s[0-9A-F][0-9A-F.]*(?=\s|;)
+  regularExpression: true
+outlineMenu:
+- beginString: ^/\* Begin (.+) section \*/$
+  keyString: $1
+strings:
+- beginString: '"'
+  endString: '"'
+types: []
+values:
+- beginString: 'NO'
+- beginString: 'YES'
+- beginString: YES_AGGRESSIVE
+- beginString: YES_ERROR
+variables: []

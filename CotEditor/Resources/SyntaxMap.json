@@ -805,6 +805,17 @@
 
     ]
   },
+  "Xcode Project" : {
+    "extensions" : [
+      "pbxproj"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "YAML" : {
     "extensions" : [
       "yml",
