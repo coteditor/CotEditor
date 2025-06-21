@@ -6,11 +6,11 @@ extensions:
 
 metadata:
   author: aybarsnazlica
-  description: Metal Shading Language syntax based on Apple's MSL
+  description: "Metal Shading Language syntax based on Apple's MSL"
   version: 1.0.0
   license: Same as CotEditor
   lastModified: "2025-06-21"
-  distributionURL: https://developer.apple.com/metal/
+  distributionURL: https://coteditor.com
 
 attributes:
   - beginString: "#define"

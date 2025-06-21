@@ -133,6 +133,11 @@
             "description": "syntax: Python"
         },
         {
+            "name" : "Aybars Nazlica",
+            "url" : "https://github.com/aybarsnazlica",
+            "description": "syntax: Metal"
+        },
+        {
             "name" : "Kaito Udagawa",
             "url" : "https://github.com/umireon",
             "description": "scripting hook implementation"
