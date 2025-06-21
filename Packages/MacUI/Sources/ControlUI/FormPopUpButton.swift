@@ -45,13 +45,12 @@ public final class FormPopUpButton: NSPopUpButton {
     }
     
     
-    public override func awakeFromNib() {
+    public override func viewWillMove(toWindow newWindow: NSWindow?) {
         
-        super.awakeFromNib()
+        super.viewWillMove(toWindow: newWindow)
         
-        MainActor.assumeIsolated {
-            _ = self.addTrackingRect(self.bounds, owner: self, userData: nil, assumeInside: true)
-        }
+        let area = NSTrackingArea(rect: self.bounds, options: [.mouseEnteredAndExited, .inVisibleRect, .activeAlways], owner: self)
+        self.addTrackingArea(area)
     }
     
     
