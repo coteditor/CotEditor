@@ -471,6 +471,18 @@
 
     ]
   },
+  "Metal" : {
+    "extensions" : [
+      "metal",
+      "msl"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "Mojo" : {
     "extensions" : [
       "mojo",
