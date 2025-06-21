@@ -11,6 +11,7 @@
 
 ### Improvements
 
+- Improve differentiation without color.
 - Update the CSS syntax to highlight more keywords (thanks to Karam!).
 - Update the HTML syntax to highlight more keywords (thanks to Karam!).
 - [non-AppStore ver.] Update Sparkle from 2.7.0 to 2.7.1.

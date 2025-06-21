@@ -174,7 +174,8 @@ struct GeneralSettingsView: View {
                             Label {
                                 Text("installed at \(url, format: .url.scheme(.never))", tableName: "GeneralSettings")
                             } icon: {
-                                Image(status: self.commandLineToolStatus.imageStatus)
+                                StatusImage(status: self.commandLineToolStatus.imageStatus)
+                                    .imageScale(.small)
                                     .help(self.commandLineToolStatus.message ?? "")
                             }.foregroundStyle(.secondary)
                         }
@@ -273,7 +274,7 @@ private struct WarningsSettingView: View {
 
 private extension CommandLineToolManager.Status {
     
-    var imageStatus: Image.Status {
+    var imageStatus: StatusImage.Status {
         
         switch self {
             case .none: .none

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ struct SyntaxValidationView: View {
             Label {
                 Text(self.message)
             } icon: {
-                Image(status: (self.count == 0) ? .available : .unavailable)
+                StatusImage(status: (self.count == 0) ? .available : .unavailable)
             }
         }
         
