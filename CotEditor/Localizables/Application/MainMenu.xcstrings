@@ -4692,6 +4692,12 @@
     "The sidebar is only available when a folder is opened as a document." : {
       "comment" : "tooltip for the “Show Sidebar” menu item",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boční panel je k dispozici pouze v případě, když je složka otevřena jako dokument."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4728,10 +4734,22 @@
             "value" : "De navigatiekolom is alleen beschikbaar als een map als document wordt geopend."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kenar çubuğu yalnızca bir klasör belge olarak açıldığında kullanılabilir."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "侧边栏仅在以文档形式打开文件夹时可用。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "僅當資料夾作為文件開啟時，側邊欄才可用。"
+            "value" : "側邊欄僅在以文件形式打開檔案夾時可用。"
           }
         }
       }

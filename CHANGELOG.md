@@ -24,6 +24,11 @@
  - Fix an issue in the file browser where the order of renamed items remains unchanged.
 
 
+### Known Issue
+
+- The texts added in CotEditor 5.2.0 are not localized yet in Dutch, Italian, Korean, Polish, Portuguese, and Spanish.
+
+
 
 5.1.8 (720)
 --------------------------

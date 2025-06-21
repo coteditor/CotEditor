@@ -269,6 +269,12 @@
     "NewFeature.encoding.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do seznamu kandidátů na kódování lze nyní přidat jakékoli textové kódování podporované systémem macOS."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -298,12 +304,36 @@
             "state" : "translated",
             "value" : "macOSが対応するすべてのテキストエンコーディングをエンコーディング候補リストに追加できるようになりました。"
           }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS tarafından desteklenen herhangi bir metin kodlaması artık kodlama adayları listesine eklenebilir."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现在可以将 macOS 支持的任何文本编码添加到候选编码列表中。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在可以將macOS支援的任何文字編碼添加到候選編碼清單中。"
+          }
         }
       }
     },
     "NewFeature.encoding.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Více různých kódování"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -332,6 +362,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "もっと色んなエンコーディング"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha Fazla Kodlama Seçeneği"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更多编码选择"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更多編碼選擇"
           }
         }
       }

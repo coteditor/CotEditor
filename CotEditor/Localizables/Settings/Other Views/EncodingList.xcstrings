@@ -92,6 +92,12 @@
     "EncodingListView.Model.RemovalError.defaultEncoding.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódování nastavené jako výchozí nelze odstranit."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,24 @@
             "state" : "translated",
             "value" : "デフォルトに設定されているエンコーディングは削除できません。"
           }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saptanmış olarak ayarlanan kodlama kaldırılamaz."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置为默认的编码无法被移除。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定為預設的編碼無法被移除。"
+          }
         }
       }
     },
@@ -128,6 +152,12 @@
       "comment" : "%@ is a localized encoding name.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ nelze odstranit."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +186,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@は削除できません。"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kaldırılamaz."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@无法被移除。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@無法被移除。"
           }
         }
       }
@@ -340,8 +388,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Toto pořadí se týká nabídky kódování a detekce kódování při otevření souboru. Při detekci mají vyšší položky vyšší prioritu."
+            "state" : "translated",
+            "value" : "Toto pořadí platí pro nabídku kódování a detekci kódování. Proces detekce zohledňuje pouze zde uvedené položky, přičemž vyšší položky mají přednost."
           }
         },
         "de" : {
@@ -406,20 +454,20 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bu sıralama, kodlama menüsü ve dosya açılışındaki kodlama algılaması içindir. Algılama ile, daha yüksek olasılıklı ögelere öncelik verilir."
+            "state" : "translated",
+            "value" : "Bu sıralama, kodlama menüsü ve kodlama algılaması içindir. Algılama süreci yalnızca burada listelenen öğeleri, sıra önceliğine göre dikkate alır."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "这个列表是为编码菜单中的自动检测准备的。\n通过检测，较高的项目将获得较高的优先级。"
+            "state" : "translated",
+            "value" : "此顺序适用于编码菜单和编码检测。检测过程只会考虑此处列出的项目，排列越靠前的项目优先级越高。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "這個列表是為編碼選單中的自動檢測準備的。\n透過檢測，較高的條目將獲得較高的優先順序。"
+            "state" : "translated",
+            "value" : "此順序適用於編碼選單和編碼偵測。偵測過程僅考慮此處列出的條目，排列順序靠前的條目擁有更高的優先權。"
           }
         }
       }
