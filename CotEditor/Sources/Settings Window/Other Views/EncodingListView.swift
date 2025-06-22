@@ -47,7 +47,6 @@ struct EncodingListView: View {
         
         
         private(set) var items: [Item]
-        var selection: Set<Item.ID> = []
         
         @ObservationIgnored var undoManager: UndoManager?
         
@@ -63,6 +62,8 @@ struct EncodingListView: View {
     
     
     @State private var model = Model()
+    @State private var selection: Set<Model.Item.ID> = []
+    
     @Environment(\.undoManager) private var undoManager
     @Environment(\.dismiss) private var dismiss
     
@@ -72,7 +73,7 @@ struct EncodingListView: View {
         VStack(alignment: .leading) {
             Text("Drag encodings to change the order:", tableName: "EncodingList")
             
-            List(selection: $model.selection) {
+            List(selection: $selection) {
                 ForEach(self.model.items) { item in
                     VStack(alignment: .leading, spacing: 8) {
                         if item.isSeparator {
@@ -89,8 +90,9 @@ struct EncodingListView: View {
                 }
             }
             .onDeleteCommand {
-                self.model.remove(ids: self.model.selection)
+                self.model.remove(ids: self.selection)
             }
+            .animation(.default, value: self.model.items)
             .border(.separator)
             .scrollContentBackground(.hidden)
             .background(.fill.quaternary)
@@ -115,21 +117,23 @@ struct EncodingListView: View {
                             .sorted(using: KeyPathComparator(\.localizedName, comparator: .localizedStandard))
                         
                         Button(String(localized: "Separator", table: "EncodingList")) {
-                            self.model.addSeparator(after: self.model.selection)
+                            let item = self.model.addSeparator(after: self.selection)
+                            self.selection = [item.id]
                         }
                         
                         Section(String(localized: "Text Encoding", table: "EncodingList")) {
                             ForEach(encodings, id: \.rawValue) { encoding in
                                 Button(encoding.localizedName) {
-                                    self.model.addEncoding(encoding.cfEncoding, after: self.model.selection)
+                                    let item = self.model.addEncoding(encoding.cfEncoding, after: self.selection)
+                                    self.selection = [item.id]
                                 }
                             }
                         }
                     }
                     
-                    let removalError = self.model.canRemove(ids: self.model.selection)
+                    let removalError = self.model.canRemove(ids: self.selection)
                     Button(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus") {
-                        self.model.remove(ids: self.model.selection)
+                        self.model.remove(ids: self.selection)
                     }
                     .disabled(removalError != nil)
                     .help(removalError?.localizedDescription ?? "")
@@ -201,7 +205,7 @@ private extension String.Encoding {
 
 // MARK: -
 
-extension EncodingListView.Model {
+private extension EncodingListView.Model {
     
     enum RemovalError: Error {
         
@@ -227,9 +231,7 @@ extension EncodingListView.Model {
         
         self.registerUndo()
         
-        withAnimation {
-            self.items.move(fromOffsets: source, toOffset: destination)
-        }
+        self.items.move(fromOffsets: source, toOffset: destination)
     }
     
     
@@ -263,17 +265,15 @@ extension EncodingListView.Model {
     ///
     /// - Parameters:
     ///   - ids: The selection ids.
-    func addSeparator(after ids: Set<Item.ID>) {
+    func addSeparator(after ids: Set<Item.ID>) -> Item {
         
         self.registerUndo()
         
         let index = self.items.lastIndex { ids.contains($0.id) }
         let item: Item = .separator
+        self.items.insert(item, at: index?.advanced(by: 1) ?? 0)
         
-        withAnimation {
-            self.items.insert(item, at: index?.advanced(by: 1) ?? 0)
-            self.selection = [item.id]
-        }
+        return item
     }
     
     
@@ -282,23 +282,21 @@ extension EncodingListView.Model {
     /// - Parameters:
     ///   - encoding: The text encoding to add.
     ///   - ids: The selection ids.
-    func addEncoding(_ encoding: CFStringEncoding, after ids: Set<Item.ID>) {
+    func addEncoding(_ encoding: CFStringEncoding, after ids: Set<Item.ID>) -> Item {
         
-        guard self.items.allSatisfy({ $0.encoding != encoding }) else { return assertionFailure() }
+        assert(self.items.allSatisfy({ $0.encoding != encoding }))
         
         self.registerUndo()
         
         let index = self.items.lastIndex { ids.contains($0.id) }
         let item = Item(encoding: encoding)
+        self.items.insert(item, at: index?.advanced(by: 1) ?? 0)
         
-        withAnimation {
-            self.items.insert(item, at: index?.advanced(by: 1) ?? 0)
-            self.selection = [item.id]
-        }
+        return item
     }
     
     
-    /// Removes items in the selection.
+    /// Removes items with the given IDs.
     ///
     /// - Parameters:
     ///   - ids: The selection ids.
@@ -306,9 +304,7 @@ extension EncodingListView.Model {
         
         self.registerUndo()
         
-        withAnimation {
-            self.items.removeAll { ids.contains($0.id) && (self.canRemove($0) == nil) }
-        }
+        self.items.removeAll { ids.contains($0.id) && (self.canRemove($0) == nil) }
     }
     
     
@@ -354,9 +350,7 @@ extension EncodingListView.Model {
             }
         }
         
-        withAnimation {
-            self.items = items
-        }
+        self.items = items
     }
 }
 
@@ -364,7 +358,7 @@ extension EncodingListView.Model {
 private extension EncodingListView.Model.RemovalError {
     
     var localizedDescription: String? {
-     
+        
         switch self {
             case .noItem:
                 nil
