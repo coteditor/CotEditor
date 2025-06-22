@@ -24,14 +24,10 @@
 //
 
 import SwiftUI
-import Observation
 import Defaults
 import FileEncoding
 
-extension UndoManager: @retroactive @unchecked Sendable { }
-
-
-private struct EncodingItem: Identifiable {
+private struct EncodingItem: Equatable, Identifiable {
     
     /// Returns every time a new instance with a different id.
     static var separator: Self  { Self(encoding: kCFStringEncodingInvalidId) }
@@ -50,8 +46,10 @@ struct EncodingListView: View {
         typealias Item = EncodingItem
         
         
-        var items: [Item]
+        private(set) var items: [Item]
         var selection: Set<Item.ID> = []
+        
+        @ObservationIgnored var undoManager: UndoManager?
         
         private let defaults: UserDefaults
         
@@ -87,11 +85,11 @@ struct EncodingListView: View {
                         }
                     }.listRowSeparator(.hidden)
                 }.onMove { (indexes, index) in
-                    self.model.move(from: indexes, to: index, undoManager: self.undoManager)
+                    self.model.move(from: indexes, to: index)
                 }
             }
             .onDeleteCommand {
-                self.model.remove(ids: self.model.selection, undoManager: self.undoManager)
+                self.model.remove(ids: self.model.selection)
             }
             .border(.separator)
             .scrollContentBackground(.hidden)
@@ -106,7 +104,6 @@ struct EncodingListView: View {
             HStack {
                 Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.model.restore)
                     .disabled(!self.model.canRestore)
-                    .fixedSize()
                 
                 Spacer()
                 
@@ -118,22 +115,24 @@ struct EncodingListView: View {
                             .sorted(using: KeyPathComparator(\.localizedName, comparator: .localizedStandard))
                         
                         Button(String(localized: "Separator", table: "EncodingList")) {
-                            self.model.addSeparator(after: self.model.selection, undoManager: self.undoManager)
+                            self.model.addSeparator(after: self.model.selection)
                         }
                         
                         Section(String(localized: "Text Encoding", table: "EncodingList")) {
                             ForEach(encodings, id: \.rawValue) { encoding in
                                 Button(encoding.localizedName) {
-                                    self.model.addEncoding(encoding.cfEncoding, after: self.model.selection, undoManager: self.undoManager)
+                                    self.model.addEncoding(encoding.cfEncoding, after: self.model.selection)
                                 }
                             }
                         }
                     }
+                    
+                    let removalError = self.model.canRemove(ids: self.model.selection)
                     Button(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus") {
-                        self.model.remove(ids: self.model.selection, undoManager: self.undoManager)
+                        self.model.remove(ids: self.model.selection)
                     }
-                    .disabled(self.model.selection.isEmpty || self.model.canRemove(ids: self.model.selection) != nil)
-                    .help(self.model.canRemove(ids: self.model.selection)?.localizedDescription ?? "")
+                    .disabled(removalError != nil)
+                    .help(removalError?.localizedDescription ?? "")
                 }
                 .menuStyle(.button)
                 .menuIndicator(.hidden)
@@ -155,6 +154,9 @@ struct EncodingListView: View {
                 }
             }
         }
+        .onAppear {
+            self.model.undoManager = self.undoManager
+        }
         .scenePadding()
         .frame(idealWidth: 380, maxHeight: 450)
     }
@@ -173,7 +175,7 @@ private struct EncodingView: View {
             Text(self.name)
             Text(self.ianaCharsetName)
                 .foregroundStyle(.secondary)
-        }.frame(height: 13)
+        }.frame(height: 14)
     }
     
     
@@ -203,6 +205,7 @@ extension EncodingListView.Model {
     
     enum RemovalError: Error {
         
+        case noItem
         case encoding(String.Encoding)
         case defaultEncoding
     }
@@ -220,10 +223,9 @@ extension EncodingListView.Model {
     /// - Parameters:
     ///   - source: The indexes of items to move.
     ///   - destination: The destination index to move to.
-    ///   - undoManager: The undo manager.
-    func move(from source: IndexSet, to destination: Int, undoManager: UndoManager? = nil) {
+    func move(from source: IndexSet, to destination: Int) {
         
-        self.registerUndo(to: undoManager)
+        self.registerUndo()
         
         withAnimation {
             self.items.move(fromOffsets: source, toOffset: destination)
@@ -234,10 +236,12 @@ extension EncodingListView.Model {
     /// Returns whether the all items of given ids can be removed.
     ///
     /// - Parameter ids: The item ids to check.
-    /// - Returns: `nil` if it can be removed, otherwise `RemovalError`.
+    /// - Returns: `nil` if the items can be removed, otherwise `RemovalError`.
     func canRemove(ids: Set<Item.ID>) -> RemovalError? {
         
-        self.items.filter(with: ids).lazy.compactMap(self.canRemove).first
+        guard !ids.isEmpty else { return .noItem }
+        
+        return self.items.filter(with: ids).lazy.compactMap(self.canRemove).first
     }
     
     
@@ -259,10 +263,9 @@ extension EncodingListView.Model {
     ///
     /// - Parameters:
     ///   - ids: The selection ids.
-    ///   - undoManager: The undo manager.
-    func addSeparator(after ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
+    func addSeparator(after ids: Set<Item.ID>) {
         
-        self.registerUndo(to: undoManager)
+        self.registerUndo()
         
         let index = self.items.lastIndex { ids.contains($0.id) }
         let item: Item = .separator
@@ -279,12 +282,11 @@ extension EncodingListView.Model {
     /// - Parameters:
     ///   - encoding: The text encoding to add.
     ///   - ids: The selection ids.
-    ///   - undoManager: The undo manager.
-    func addEncoding(_ encoding: CFStringEncoding, after ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
+    func addEncoding(_ encoding: CFStringEncoding, after ids: Set<Item.ID>) {
         
         guard self.items.allSatisfy({ $0.encoding != encoding }) else { return assertionFailure() }
         
-        self.registerUndo(to: undoManager)
+        self.registerUndo()
         
         let index = self.items.lastIndex { ids.contains($0.id) }
         let item = Item(encoding: encoding)
@@ -300,10 +302,9 @@ extension EncodingListView.Model {
     ///
     /// - Parameters:
     ///   - ids: The selection ids.
-    ///   - undoManager: The undo manager.
-    func remove(ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
+    func remove(ids: Set<Item.ID>) {
         
-        self.registerUndo(to: undoManager)
+        self.registerUndo()
         
         withAnimation {
             self.items.removeAll { ids.contains($0.id) && (self.canRemove($0) == nil) }
@@ -330,13 +331,13 @@ extension EncodingListView.Model {
     }
     
     
-    /// Registers the current state by allowing undo/redo.
-    ///
-    /// - Parameter undoManager: The undo manager.
-    private func registerUndo(to undoManager: UndoManager?) {
+    /// Registers the current state for both undo/redo.
+    private func registerUndo() {
         
-        undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
-            target.update(items: items, undoManager: undoManager)
+        self.undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
+            MainActor.assumeIsolated {
+                target.update(items: items)
+            }
         }
     }
     
@@ -345,11 +346,12 @@ extension EncodingListView.Model {
     ///
     /// - Parameters:
     ///   - items: The new items.
-    ///   - undoManager: The undo manager.
-    private func update(items: [Item], undoManager: UndoManager?) {
+    private func update(items: [Item]) {
         
-        undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
-            target.update(items: items, undoManager: undoManager)
+        self.undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
+            MainActor.assumeIsolated {
+                target.update(items: items)
+            }
         }
         
         withAnimation {
@@ -361,9 +363,11 @@ extension EncodingListView.Model {
 
 private extension EncodingListView.Model.RemovalError {
     
-    var localizedDescription: String {
+    var localizedDescription: String? {
      
         switch self {
+            case .noItem:
+                nil
             case .encoding(let encoding):
                 String(localized: "EncodingListView.Model.RemovalError.utf8.description",
                        defaultValue: "\(String.localizedName(of: encoding)) can’t be removed.",
