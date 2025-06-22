@@ -299,6 +299,12 @@
             "value" : "Il est désormais possible d’ajouter n’importe quel encodage pris en charge par macOS à la liste des encodages proposés."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si può aggiungere alla lista qualsiasi codifica testo supportata da macOS."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -356,6 +362,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Plus de types d’encodage"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Più codifiche disponibili"
           }
         },
         "ja" : {

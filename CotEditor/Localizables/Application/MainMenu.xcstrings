@@ -4722,6 +4722,12 @@
             "value" : "La barre latérale n'est disponible que lorsqu'un dossier est ouvert en tant que document."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La barra laterale è disponibile solo quando una cartella è aperta come documento."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

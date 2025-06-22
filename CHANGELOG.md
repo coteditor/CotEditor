@@ -26,7 +26,7 @@
 
 ### Known Issue
 
-- The texts added in CotEditor 5.2.0 are not localized yet in Dutch, Italian, Korean, Polish, Portuguese, and Spanish.
+- The texts added in CotEditor 5.2.0 are not localized yet in Dutch, Korean, Polish, Portuguese, and Spanish.
 
 
 

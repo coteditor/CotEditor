@@ -122,6 +122,12 @@
             "value" : "L'encodage défini par défaut ne peut pas être supprimé."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La codifica impostata come predefinita non può essere rimossa."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -180,6 +186,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "%@ ne peut être supprimé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ non può essere\nrimossa."
           }
         },
         "ja" : {
@@ -418,8 +430,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Questo è l’ordine del menu delle codifiche rilevate all’apertura del file. Le codifiche elencate in cima hanno una maggiore priorità."
+            "state" : "translated",
+            "value" : "Questo elenco è per il menu delle codifiche e per il loro rilevamento. Il processo di rilevamento considera solo gli elementi elencati qui. Le codifiche elencate in cima hanno priorità."
           }
         },
         "ja" : {
