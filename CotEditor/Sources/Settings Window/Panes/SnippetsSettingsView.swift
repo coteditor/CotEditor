@@ -101,21 +101,17 @@ private struct CommandSnippetsView: View {
             } rows: {
                 ForEach($items) { item in
                     TableRow(item)
-                        .itemProvider { [id = item.id] in id.itemProvider }
+                        .draggable(item.id)
                 }
-                .onInsert(of: [.uuid]) { (index, providers) in
-                    // `onInsert(of:perform:)` shows a plus badge which should be avoided
+                .dropDestination(for: UUID.self) { (index, ids)  in
+                    // `dropDestination(for:)` shows a plus badge which should be avoided
                     // on just moving items in the identical table,
                     // but `onMove()` is not provided yet for DynamicTableRowContent.
-                    // (2024-05, macOS 14)
-                    Task {
-                        let indexes = try await providers
-                            .asyncMap { try await $0.load(type: UUID.self) }
-                            .compactMap { uuid in self.items.firstIndex(where: { $0.id == uuid }) }
-                        
-                        withAnimation {
-                            self.items.move(fromOffsets: IndexSet(indexes), toOffset: index)
-                        }
+                    // (2025-06, macOS 26)
+                    let indexes = ids.compactMap { uuid in self.items.firstIndex(where: { $0.id == uuid }) }
+                    
+                    withAnimation {
+                        self.items.move(fromOffsets: IndexSet(indexes), toOffset: index)
                     }
                 }
             }
@@ -199,17 +195,13 @@ private struct FileDropView: View {
             } rows: {
                 ForEach($items) { item in
                     TableRow(item)
-                        .itemProvider { [id = item.id] in id.itemProvider }
+                        .draggable(item.id)
                 }
-                .onInsert(of: [.uuid]) { (index, providers) in
-                    Task {
-                        let indexes = try await providers
-                            .asyncMap { try await $0.load(type: UUID.self) }
-                            .compactMap { uuid in self.items.firstIndex(where: { $0.id == uuid }) }
-                        
-                        withAnimation {
-                            self.items.move(fromOffsets: IndexSet(indexes), toOffset: index)
-                        }
+                .dropDestination(for: UUID.self) { (index, ids)  in
+                    let indexes = ids.compactMap { uuid in self.items.firstIndex(where: { $0.id == uuid }) }
+                    
+                    withAnimation {
+                        self.items.move(fromOffsets: IndexSet(indexes), toOffset: index)
                     }
                 }
             }

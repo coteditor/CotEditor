@@ -40,34 +40,3 @@ extension UUID: @retroactive Transferable {
         CodableRepresentation(for: UUID.self, contentType: .uuid)
     }
 }
-
-
-extension UUID {
-    
-    var itemProvider: NSItemProvider {
-        
-        let provider = NSItemProvider()
-        provider.register(self)
-        return provider
-    }
-}
-
-
-// MARK: Item Provider
-
-extension NSItemProvider {
-    
-    func load<T: Transferable & Sendable>(type: T.Type) async throws -> sending T {
-        
-        try await withCheckedThrowingContinuation { continuation in
-            _ = self.loadTransferable(type: T.self) { result in
-                switch result {
-                    case .success(let success):
-                        continuation.resume(returning: success)
-                    case .failure(let error):
-                        continuation.resume(throwing: error)
-                }
-            }
-        }
-    }
-}
