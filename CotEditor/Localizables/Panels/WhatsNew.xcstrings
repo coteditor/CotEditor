@@ -311,6 +311,12 @@
             "value" : "macOSが対応するすべてのテキストエンコーディングをエンコーディング候補リストに追加できるようになりました。"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dowolne kodowanie tekstu obsługiwane przez system macOS można teraz dodać do listy propozycji kodowania."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -374,6 +380,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "もっと色んなエンコーディング"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Większa różnorodność kodowań"
           }
         },
         "tr" : {

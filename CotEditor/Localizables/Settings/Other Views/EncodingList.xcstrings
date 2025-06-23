@@ -134,6 +134,12 @@
             "value" : "デフォルトに設定されているエンコーディングは削除できません。"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodowanie ustawione jako domyślne nie może zostać usunięte."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -198,6 +204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@は削除できません。"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ nie może zostać usunięte."
           }
         },
         "tr" : {
@@ -454,8 +466,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ta kolejność dotyczy menu kodowania i wykrywania kodowania przy otwieraniu pliku. Po wykryciu, wyższe pozycje mają wyższy priorytet."
+            "state" : "translated",
+            "value" : "Ta kolejność dotyczy menu kodowania i wykrywania kodowania. Proces wykrywania bierze pod uwagę tylko pozycje z listy, przy czym wyższe mają wyższy priorytet."
           }
         },
         "pt" : {

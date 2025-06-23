@@ -4740,6 +4740,12 @@
             "value" : "De navigatiekolom is alleen beschikbaar als een map als document wordt geopend."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pasek boczny jest dostępny tylko wtedy, gdy folder jest otwarty jako dokument."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
