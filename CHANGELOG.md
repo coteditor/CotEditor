@@ -3,6 +3,15 @@
 5.2.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Update Korean, Polish, and Portuguese localizations.
+
+
+### Known Issue
+
+- The texts added in CotEditor 5.2.0 are not localized yet in Dutch and Spanish.
+
 
 
 5.2.0-beta (721)
@@ -31,7 +40,7 @@
 
 ### Known Issue
 
-- The texts added in CotEditor 5.2.0 are not localized yet in Dutch and Spanish.
+- The texts added in CotEditor 5.2.0 are not localized yet in Dutch, Korean, Polish, Portuguese, and Spanish.
 
 
 
