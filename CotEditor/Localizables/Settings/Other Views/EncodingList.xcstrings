@@ -134,10 +134,22 @@
             "value" : "デフォルトに設定されているエンコーディングは削除できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 인코딩으로 설정된 항목은 삭제할 수 없습니다."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kodowanie ustawione jako domyślne nie może zostać usunięte."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O conjunto de codificação definido como padrão não pode ser removido."
           }
         },
         "tr" : {
@@ -206,10 +218,22 @@
             "value" : "%@は削除できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@은(는) 삭제할 수 없습니다."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ nie może zostać usunięte."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ não pode ser removido."
           }
         },
         "tr" : {
@@ -454,8 +478,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "이 순서는 인코딩 메뉴 및 파일 인코딩 탐지에 사용됩니다. 파일을 열 때 더 높은 위치에 있는 인코딩을 더 높은 우선 순위로 탐지합니다."
+            "state" : "translated",
+            "value" : "이 순서는 인코딩 메뉴 및 인코딩 감지에 사용됩니다. 감지 과정에서는 여기에 나열된 항목만을 고려하며, 목록 상단에 있는 항목이 더 우선시됩니다."
           }
         },
         "nl" : {
@@ -472,8 +496,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Esta ordem é para o menu de Codificação do Arquivo e para a detecção ao abrir arquivos. Para a detecção, serão priorizados os items ao topo da lista."
+            "state" : "translated",
+            "value" : "Essa ordem é para o menu de codificação e a detecção de codificação. O processo de detecção considera apenas os itens listados aqui, com os itens mais ao topo sendo priorizados."
           }
         },
         "tr" : {

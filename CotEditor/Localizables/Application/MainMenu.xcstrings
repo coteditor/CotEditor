@@ -4734,6 +4734,12 @@
             "value" : "サイドバーはフォルダを書類として開いたときのみ有効です。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사이드바는 폴더를 열었을 때만 사용할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4744,6 +4750,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pasek boczny jest dostępny tylko wtedy, gdy folder jest otwarty jako dokument."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A barra lateral está disponível apenas quando uma pasta é aberta como um documento."
           }
         },
         "tr" : {

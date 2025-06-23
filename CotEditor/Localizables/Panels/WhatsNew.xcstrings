@@ -311,10 +311,22 @@
             "value" : "macOSが対応するすべてのテキストエンコーディングをエンコーディング候補リストに追加できるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS에서 지원하는 모든 텍스트 인코딩을 인코딩 후보 목록에 추가할 수 있습니다."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dowolne kodowanie tekstu obsługiwane przez system macOS można teraz dodać do listy propozycji kodowania."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qualquer codificação de texto suportada pelo macOS agora pode ser adicionada à lista de codificações candidatas."
           }
         },
         "tr" : {
@@ -382,10 +394,22 @@
             "value" : "もっと色んなエンコーディング"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다양한 인코딩 추가 지원"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Większa różnorodność kodowań"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais Codificações"
           }
         },
         "tr" : {
