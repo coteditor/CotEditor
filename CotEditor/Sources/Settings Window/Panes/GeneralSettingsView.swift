@@ -143,7 +143,6 @@ struct GeneralSettingsView: View {
                 .accessibilityLabeledPair(role: .content, id: "documentConflictOption", in: self.accessibility)
             }
             
-            
             GridRow {
                 Text("Dialog warnings:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
