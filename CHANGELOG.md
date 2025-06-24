@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- [trivial] Adjust the layout of the multiple replacement definition editor.
 - [dev] Update Yams from 6.0.1 to 6.0.2.
 - [beta] Update Korean, Polish, and Portuguese localizations.
 
