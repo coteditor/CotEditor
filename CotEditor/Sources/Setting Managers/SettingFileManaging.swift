@@ -348,41 +348,6 @@ extension SettingFileManaging {
     }
     
     
-    /// Exports setting file to passed-in URL.
-    func exportSetting(name: String, to fileURL: URL, hidesExtension: Bool? = nil) throws {
-        
-        let sourceURL = self.preparedURLForUserSetting(name: name)
-        
-        var resourceValues = URLResourceValues()
-        if let hidesExtension {
-            resourceValues.hasHiddenExtension = hidesExtension
-        }
-        
-        var coordinationError: NSError?
-        var writingError: (any Error)?
-        NSFileCoordinator().coordinate(readingItemAt: sourceURL, options: .withoutChanges,
-                                       writingItemAt: fileURL, options: .forMoving, error: &coordinationError)
-        { (newReadingURL, newWritingURL) in
-            do {
-                if newWritingURL.isReachable {
-                    try FileManager.default.removeItem(at: newWritingURL)
-                }
-                try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
-                
-                var newWritingURL = newWritingURL
-                try newWritingURL.setResourceValues(resourceValues)
-                
-            } catch {
-                writingError = error as NSError
-            }
-        }
-        
-        if let error = writingError ?? coordinationError {
-            throw error
-        }
-    }
-    
-    
     /// Imports the setting.
     ///
     /// - Parameters:
@@ -421,28 +386,6 @@ extension SettingFileManaging {
             ? .updated(from: name, to: name)
             : .added(name)
         self.updateSettingList(change: change)
-    }
-    
-    
-    /// Imports setting at passed-in URL.
-    ///
-    /// - Throws: `SettingFileError` or `ImportDuplicationError`
-    func importSetting(at fileURL: URL, byDeletingOriginal: Bool = true) throws {
-        
-        let importName = Self.settingName(from: fileURL)
-        
-        // check duplication
-        for name in self.settingNames {
-            guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
-            
-            guard self.state(of: name)?.isCustomized != true else {  // duplicated
-                throw ImportDuplicationError(name: name, continuationHandler: { [unowned self] in
-                    try self.forciblyImportSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
-                })
-            }
-        }
-        
-        try self.forciblyImportSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
     }
     
     
@@ -495,55 +438,6 @@ extension SettingFileManaging {
     private nonisolated var userSettingDirectoryURL: URL {
         
         .applicationSupportDirectory(component: Self.directoryName)
-    }
-    
-    
-    /// Forcibly imports the setting at the passed-in URL.
-    ///
-    /// - Parameters:
-    ///   - fileURL: The URL of the file to import.
-    ///   - byDeletingOriginal: `true` if removing the original file at the `fileURL`; otherwise, it is kept.
-    private func forciblyImportSetting(at fileURL: URL, byDeletingOriginal: Bool) throws {
-        
-        let name = Self.settingName(from: fileURL)
-        let destURL = self.preparedURLForUserSetting(name: name)
-        
-        // test if the setting file can be read correctly
-        _ = try self.loadSetting(at: fileURL)
-        
-        try FileManager.default.createIntermediateDirectories(to: destURL)
-        
-        // copy/move the file
-        var coordinationError: NSError?
-        var writingError: NSError?
-        NSFileCoordinator().coordinate(readingItemAt: fileURL, options: [byDeletingOriginal ? [] : .withoutChanges, .resolvesSymbolicLink],
-                                       writingItemAt: destURL, options: byDeletingOriginal ? .forMoving : .forReplacing,
-                                       error: &coordinationError)
-        { (newReadingURL, newWritingURL) in
-            do {
-                if newWritingURL.isReachable {
-                    try FileManager.default.removeItem(at: newWritingURL)
-                }
-                if byDeletingOriginal {
-                    try FileManager.default.moveItem(at: newReadingURL, to: newWritingURL)
-                } else {
-                    try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
-                }
-                
-            } catch {
-                writingError = error as NSError
-            }
-        }
-        
-        if let error = writingError ?? coordinationError {
-            throw SettingFileError(.importFailed, name: name, underlyingError: error)
-        }
-        
-        // update internal cache
-        let change: SettingChange = self.settingNames.contains(name)
-            ? .updated(from: name, to: name)
-            : .added(name)
-        self.updateSettingList(change: change)
     }
 }
 
@@ -672,59 +566,5 @@ struct SettingImportError: LocalizedError {
         String(localized: "ImportDuplicationError.recoverySuggestion",
                defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
                comment: "Refer similar expressions by Apple.")
-    }
-}
-
-
-struct ImportDuplicationError: LocalizedError, RecoverableError {
-    
-    var name: String
-    var continuationHandler: (@Sendable () throws -> Void)
-    
-    
-    var errorDescription: String? {
-        
-        String(localized: "ImportDuplicationError.description",
-               defaultValue: "“\(self.name)” already exists. Do you want to replace it?",
-               comment: "%@ is a name of a setting. Refer the same expression by Apple.")
-    }
-    
-    
-    var recoverySuggestion: String? {
-        
-        String(localized: "ImportDuplicationError.recoverySuggestion",
-               defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
-               comment: "Refer similar expressions by Apple.")
-    }
-    
-    
-    var recoveryOptions: [String] {
-        
-        [String(localized: .cancel),
-         String(localized: "ImportDuplicationError.recoveryOption.replace",
-                defaultValue: "Replace", comment: "button label")]
-    }
-    
-    
-    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
-        
-        switch recoveryOptionIndex {
-            case 0:  // == Cancel
-                return false
-                
-            case 1:  // == Replace
-                do {
-                    try self.continuationHandler()
-                } catch {
-                    Task { @MainActor in
-                        NSApp.presentError(error)
-                    }
-                    return false
-                }
-                return true
-                
-            default:
-                preconditionFailure()
-        }
     }
 }

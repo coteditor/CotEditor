@@ -93,10 +93,4 @@ struct URLExtensionsTests {
         #expect(URL(string: "Cat/Cow/file.txt")!.firstUniqueDirectoryURL(in: urls) == URL(string: "Cat/"))
         #expect(URL(string: "Dog/Pig/file.txt")!.firstUniqueDirectoryURL(in: urls) == URL(string: "Dog/Pig/"))
     }
-    
-    
-    @Test func createItemReplacementDirectory() throws {
-        
-        #expect(throws: Never.self) { try URL.itemReplacementDirectory }
-    }
 }
