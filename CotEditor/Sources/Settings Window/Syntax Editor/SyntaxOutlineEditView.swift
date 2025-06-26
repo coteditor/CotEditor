@@ -64,8 +64,10 @@ struct SyntaxOutlineEditView: View {
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
             
-            AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
-                .padding(.bottom, 8)
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+            .padding(.bottom, 8)
             
             if self.selection.count > 1 {
                 PatternView(outline: .constant(.init()), error: .multipleSelection)

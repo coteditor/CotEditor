@@ -138,9 +138,7 @@ private struct CommandSnippetsView: View {
             .border(Color(nsColor: .gridColor))
             
             HStack(alignment: .firstTextBaseline) {
-                AddRemoveButton($items, selection: $selection) {
-                    self.manager.createUntitledSetting()
-                }
+                AddRemoveButton($items, selection: $selection, newItem: self.manager.createUntitledSetting())
                 Spacer()
                 if let error {
                     Text(error.localizedDescription)
@@ -234,7 +232,7 @@ private struct FileDropView: View {
             .border(Color(nsColor: .gridColor))
             
             HStack(alignment: .firstTextBaseline) {
-                AddRemoveButton($items, selection: $selection, newItem: Item.init)
+                AddRemoveButton($items, selection: $selection, newItem: Item())
                 Spacer()
                 Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.restore)
                     .disabled(!self.canRestore)
