@@ -200,13 +200,20 @@ private struct CoffeeBadge: View {
 
 private struct DocumentStatusBar: View {
     
-    var document: Document
-    
+    private var document: Document
     
     @State private var isEditable: Bool = true
-    @State private var lineEnding: LineEnding = .lf
-    @State private var fileEncoding: FileEncoding = .utf8
+    @State private var lineEnding: LineEnding
+    @State private var fileEncoding: FileEncoding
     @State private var encodingManager: EncodingManager = .shared
+    
+    
+    init(document: Document) {
+        
+        self.document = document
+        self.lineEnding = document.lineEnding
+        self.fileEncoding = document.fileEncoding
+    }
     
     
     var body: some View {

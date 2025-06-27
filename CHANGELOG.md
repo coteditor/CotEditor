@@ -10,6 +10,11 @@
 - [beta] Update Korean, Polish, and Portuguese localizations.
 
 
+### Fixes
+
+- Fix an issue where opening a document with mixed line endings incorrectly unifies them to the dominant line ending when it is not LF.
+
+
 
 5.2.0-beta (721)
 --------------------------
