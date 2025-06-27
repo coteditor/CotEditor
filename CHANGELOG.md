@@ -10,11 +10,6 @@
 - [beta] Update Korean, Polish, and Portuguese localizations.
 
 
-### Known Issue
-
-- The texts added in CotEditor 5.2.0 are not localized yet in Dutch and Spanish.
-
-
 
 5.2.0-beta (721)
 --------------------------

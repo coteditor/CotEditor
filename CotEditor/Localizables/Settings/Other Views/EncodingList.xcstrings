@@ -116,6 +116,12 @@
             "value" : "The encoding set as default can’t be removed."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La codificación establecida por defecto no puede eliminarse."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "기본 인코딩으로 설정된 항목은 삭제할 수 없습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De standaard ingestelde codering kan niet worden verwijderd."
           }
         },
         "pl" : {
@@ -200,6 +212,12 @@
             "value" : "%@ can’t be removed."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ no puede eliminarse."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -222,6 +240,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@은(는) 삭제할 수 없습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ kan niet worden verwijderd."
           }
         },
         "pl" : {
