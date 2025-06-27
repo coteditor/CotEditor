@@ -933,6 +933,294 @@
         }
       }
     },
+    "DocumentClosingAlert.button.dontSave" : {
+      "comment" : "Refer the same sentence in AppKit.framework by Apple.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neukládat"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht sichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Don’t Save"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don’t Save"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No guardar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne pas enregistrer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non salvare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存しない"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장하지 않음"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewaar niet"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie zachowuj"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não Salvar"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaydetme"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不存储"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不儲存"
+          }
+        }
+      }
+    },
+    "DocumentClosingAlert.lossyEncoding.informativeText" : {
+      "comment" : "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingAlert.lossyEncoding.recoverySuggestion.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokud změny neuložíte, budou ztraceny. Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Änderungen gehen verloren, wenn du diese nicht sicherst. Inkompatible Zeichen werden beim Speichern entweder ersetzt oder entfernt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your changes will be lost if you don’t save them. Incompatible characters are either substituted or removed in saving."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your changes will be lost if you don’t save them. Incompatible characters are either substituted or removed in saving."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si no guardas los cambios, se perderán. Los caracteres incompatibles se sustituyen o eliminan al guardar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos modifications seront perdues si vous ne les enregistrez pas. Les caractères incompatibles sont soit remplacés, soit supprimés lors de l’enregistrement."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le tue modifiche andranno perse se non le salvi. Il salvataggio cancellerà o sostituirà i caratteri non compatibili."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存しないと、変更内容は失われます。互換性のない文字は保存時に代替または削除されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장하지 않으면 변경 사항이 유실됩니다. 호환되지 않는 문자는 저장하면 대체되거나 삭제됩니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je wijzigingen gaan verloren als je ze niet bewaart. Incompatibele tekens worden vervangen of verwijderd tijdens het opslaan."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmiany zostaną utracone, jeśli ich nie zachowasz. Niezgodne znaki zostaną zastąpione lub usunięte przy zachowaniu."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As alterações serão perdidas se você não salvá-las. Caracteres incompatíveis são substituídos ou excluídos ao salvar."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaydetmezseniz değişiklikleriniz kaybolacaktır. Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果不存储，你更改的内容将会丢失。保存时将替换或删除不兼容的字符。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "若不儲存，將會遺失所作的更動。存檔時會自動置換或刪除不相容的字元。"
+          }
+        }
+      }
+    },
+    "DocumentClosingAlert.message" : {
+      "comment" : "Refer the same sentence in AppKit.framework by Apple.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chcete uložit změny provedené v dokumentu „%@“?"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du die Änderungen am Dokument „%@“ sichern?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Do you want to save the changes made to the document “%@”?"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to save the changes made to the document “%@”?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Quieres guardar los cambios realizados en el documento “%@”?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Souhaitez-vous enregistrer les modifications apportées au document « %@ » ?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desideri salvare le modifiche apportate al documento “%@”?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類“%@”に加えた変更を保存しますか?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’ 문서의 변경 사항을 저장하겠습니까?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je de gemaakte wijzigingen in het document '%@' bewaren?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz zachować zmiany dokonane w dokumencie „%@”?"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deseja salvar as alterações realizadas no documento “%@”?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” belgesinde yapılan değişiklikleri kaydetmek ister misiniz?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要存储对文稿“%@”所做的更改吗？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要儲存對文件「%@」所作的更動嗎？"
+          }
+        }
+      }
+    },
     "DocumentError.notEditable.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

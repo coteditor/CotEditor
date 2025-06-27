@@ -604,6 +604,46 @@ extension Document: EditorSource {
             return
         }
         
+        if self.hasUnautosavedChanges, !self.allowsLossySaving, !self.canBeConverted() {
+            let alert = NSAlert()
+            alert.messageText = String(
+                localized: "DocumentClosingAlert.message",
+                defaultValue: "Do you want to save the changes made to the document “\(self.displayName!)”?",
+                comment: "Refer the same sentence in AppKit.framework by Apple."
+            ) + "\n" + LossyEncodingError(encoding: self.fileEncoding).localizedDescription
+            alert.informativeText = String(
+                localized: "DocumentClosingAlert.lossyEncoding.informativeText",
+                defaultValue: "Your changes will be lost if you don’t save them. Incompatible characters are either substituted or removed in saving.",
+                comment: "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingAlert.lossyEncoding.recoverySuggestion.")
+            alert.addButton(withTitle: String(
+                localized: "DocumentSavingError.lossyEncoding.recoveryOption.save",
+                defaultValue: "Save Available Text"))
+            alert.addButton(withTitle: String(
+                localized: "DocumentClosingAlert.button.dontSave",
+                defaultValue: "Don’t Save",
+                comment: "Refer the same sentence in AppKit.framework by Apple."))
+            alert.addButton(withTitle: String(localized: "Cancel"))
+            alert.buttons[1].hasDestructiveAction = true
+            
+            alert.beginSheetModal(for: self.windowForSheet!) { returnCode in
+                switch returnCode {
+                    case .alertFirstButtonReturn:  // Save
+                        self.allowsLossySaving = true
+                        super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+                    case .alertSecondButtonReturn:  // Don't Save
+                        // tell the document can be closed without saving
+                        DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
+                            .perform(from: self, flag: true)
+                    case .alertThirdButtonReturn:  // Cancel
+                        DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
+                            .perform(from: self, flag: false)
+                    default:
+                        fatalError()
+                }
+            }
+            return
+        }
+        
         super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
     }
     

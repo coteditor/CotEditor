@@ -13,6 +13,7 @@
 ### Fixes
 
 - Fix an issue where opening a document with mixed line endings incorrectly unifies them to the dominant line ending when it is not LF.
+- Fix an issue where a document containing incompatible characters cannot be closed without lossy saving.
 
 
 
