@@ -60,6 +60,7 @@ extension Document: EditorSource {
         static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
         static let syntax = "syntax"
         static let originalContentString = "originalContentString"
+        static let encoding = "encoding"
     }
     
     
@@ -177,6 +178,7 @@ extension Document: EditorSource {
         // store unencoded string but only when incompatible
         if !self.canBeConverted() {
             coder.encode(self.textStorage.string, forKey: SerializationKey.originalContentString)
+            coder.encode(Int(self.fileEncoding.encoding.rawValue), forKey: SerializationKey.encoding)
         }
     }
     
@@ -206,6 +208,10 @@ extension Document: EditorSource {
         
         if let string = coder.decodeObject(of: NSString.self, forKey: SerializationKey.originalContentString) as? String {
             self.textStorage.replaceContent(with: string)
+        }
+        if coder.containsValue(forKey: SerializationKey.encoding) {
+            let rawValue = coder.decodeInteger(forKey: SerializationKey.encoding)
+            self.fileEncoding = FileEncoding(encoding: String.Encoding(rawValue: UInt(rawValue)))
         }
     }
     
