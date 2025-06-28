@@ -52,6 +52,9 @@
 		<h2>Fixes</h2>
 
 		<ul>
+			<li>Fix an issue where opening a document with mixed line endings incorrectly unifies them to the dominant line ending when it is not LF.</li>
+			<li>Fix an issue where a document containing incompatible characters cannot be closed without lossy saving.</li>
+			<li>Fix an issue where the text encoding of restored documents could be incorrectly set to Unicode (UTF-8).</li>
 			<li>Fix an issue where the <kbd>Option</kbd>-<kbd>Delete Forward</kbd> shortcut deletes the previous word instead of the next word by the multi-cursor editing mode.</li>
 			<li>Fix an issue in the file browser where the order of renamed items remains unchanged.</li>
 		</ul>
