@@ -631,7 +631,8 @@ extension Document: EditorSource {
             alert.addButton(withTitle: String(localized: "Cancel"))
             alert.buttons[1].hasDestructiveAction = true
             
-            alert.beginSheetModal(for: self.windowForSheet!) { returnCode in
+            Task {
+                let returnCode = await alert.beginSheetModal(for: self.windowForSheet!)
                 switch returnCode {
                     case .alertFirstButtonReturn:  // Save
                         self.allowsLossySaving = true
