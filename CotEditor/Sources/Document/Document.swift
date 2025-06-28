@@ -1388,7 +1388,8 @@ extension Document: EditorSource {
             alert.showsHelp = true
             alert.helpAnchor = "inconsistent_line_endings"
             
-            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
                 if alert.suppressionButton?.state == .on {
                     self.suppressesInconsistentLineEndingAlert = true
                     self.invalidateRestorableState()
@@ -1454,7 +1455,8 @@ extension Document: EditorSource {
                 alert.alertStyle = .critical
             }
             
-            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
                 if returnCode == .alertSecondButtonReturn {  // == Revert
                     self.revert()
                 }
