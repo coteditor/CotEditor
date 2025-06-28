@@ -1515,7 +1515,7 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
     var recoverySuggestion: String? {
         
         String(localized: "LossyEncodingError.recoverySuggestion",
-               defaultValue: "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?")
+               defaultValue: "Incompatible characters are either substituted or removed in saving. Do you want to change the text encoding and review the incompatible characters?")
     }
     
     
@@ -1573,7 +1573,8 @@ private struct DocumentSavingError: LocalizedError, CustomNSError {
     var recoverySuggestion: String? {
         
         String(localized: "DocumentSavingError.lossyEncoding.recoverySuggestion",
-               defaultValue: "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?")
+               defaultValue: "Incompatible characters are either substituted or removed in saving. Do you want to save anyway?",
+               comment: "“save anyway” is the standard phrase in macOS. Refer the Apple's translation.")
     }
     
     

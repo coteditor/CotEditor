@@ -1889,96 +1889,97 @@
       }
     },
     "DocumentSavingError.lossyEncoding.recoverySuggestion" : {
+      "comment" : "“save anyway” is the standard phrase in macOS. Refer the Apple's translation.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete pokračovat ve zpracování?"
+            "value" : "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete jej přesto uložit?"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen werden beim Speichern ersetzt oder gelöscht. Möchtest du mit der Bearbeitung fortfahren?"
+            "value" : "Inkompatible Zeichen werden beim Speichern entweder ersetzt oder entfernt. Möchtest du dennoch sichern?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?"
+            "value" : "Incompatible characters are either substituted or removed in saving. Do you want to save anyway?"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?"
+            "value" : "Incompatible characters are either substituted or removed in saving. Save anyway?"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los caracteres incompatibles se sustituyen o eliminan al guardar. ¿Quieres continuar con el procesamiento?"
+            "value" : "Los caracteres incompatibles se sustituyen o eliminan al guardar. ¿Quieres guardarlo de todos modos?"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Certains caractères devront être altérés ou supprimés en sauvegardant. Voulez-vous poursuivre ?"
+            "value" : "Les caractères incompatibles sont soit remplacés, soit supprimés lors de l’enregistrement. Voulez-vous quand même enregistrer ?"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il salvataggio cancellerà o sostituirà i caratteri non compatibili. Sei sicuro di voler continuare?"
+            "value" : "Il salvataggio cancellerà o sostituirà i caratteri non compatibili. Vuoi salvare comunque?"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互換性のない文字は保存時に代替または削除されます。保存を続けますか?"
+            "value" : "互換性のない文字は保存時に代替または削除されます。それでも保存しますか?"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "호환되지 않는 문자는 저장하면 대체되거나 삭제됩니다. 계속 진행하시겠습니까?"
+            "value" : "호환되지 않는 문자는 저장하면 대체되거나 삭제됩니다. 그래도 저장하겠습니까?"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incompatibele tekens worden vervangen of verwijderd tijdens het opslaan. Wil je doorgaan met verwerken?"
+            "state" : "needs_review",
+            "value" : "Incompatibele tekens worden vervangen of verwijderd tijdens het opslaan. Wil je het document toch bewaren?"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Niezgodne znaki zostaną zastąpione lub usunięte przy zachowaniu. Czy chcesz kontynuować przetwarzanie?"
+            "value" : "Niezgodne znaki zostaną zastąpione lub usunięte przy zachowaniu. Zachować mimo to?"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caracteres incompatíveis são substituídos ou excluídos ao salvar. Você deseja continuar o processamento?"
+            "value" : "Caracteres incompatíveis são substituídos ou excluídos ao salvar. Quer salvar mesmo assim?"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. İşlemi sürdürmek istiyor musunuz?"
+            "value" : "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. Yine de kaydedilsin mi?"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "保存时将替换或删除不兼容的字符。您确认要继续处理吗？"
+            "value" : "保存时将替换或删除不兼容的字符。仍要存储吗？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存檔時會自動置換或刪除不相容的字元。您真的要繼續處理嗎？"
+            "value" : "存檔時會自動置換或刪除不相容的字元。確定要儲存嗎？"
           }
         }
       }
@@ -7002,31 +7003,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen werden beim Speichern ersetzt oder gelöscht. Möchtest du die Textcodierung ändern und die inkompatiblen Zeichen überprüfen?"
+            "value" : "Inkompatible Zeichen werden beim Speichern entweder ersetzt oder entfernt. Möchtest du die Textcodierung ändern und die inkompatiblen Zeichen überprüfen?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?"
+            "value" : "Incompatible characters are either substituted or removed in saving. Do you want to change the text encoding and review the incompatible characters?"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?"
+            "value" : "Incompatible characters are either substituted or removed in saving. Do you want to change the text encoding and review the incompatible characters?"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los caracteres incompatibles son sustituyidos o eliminanados al guardar. ¿Quieres cambiar la codificación y revisar caracteres incompatibles?"
+            "value" : "Los caracteres incompatibles se sustituyen o eliminan al guardar. ¿Quieres cambiar la codificación y revisar caracteres incompatibles?"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les caractères incompatibles sont remplacés ou supprimés lors de l’enregistrement. Voulez-vous modifier l’encodage du texte et revoir les caractères incompatibles ?"
+            "value" : "Les caractères incompatibles sont soit remplacés, soit supprimés lors de l’enregistrement. Voulez-vous modifier l’encodage du texte et revoir les caractères incompatibles ?"
           }
         },
         "it" : {
