@@ -308,48 +308,47 @@ private enum BundleIdentifier {
         let documentURLs = filenames
             .map { URL(filePath: $0) }
             .filter {
-                // ask installation if the file is CotEditor theme file
+                // ask installation if the file is CotEditor theme
                 $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(at: $0) : true
             }
         
         guard !documentURLs.isEmpty else { return NSApp.reply(toOpenOrPrint: .success) }
         
-        let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (documentURLs.count > 1)
-        let dispatchGroup = DispatchGroup()
-        var firstWindowOpened = false
-        var reply: NSApplication.DelegateReply = .success
-        
-        for url in documentURLs {
-            dispatchGroup.enter()
-            DocumentController.shared.openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
-                defer {
-                    dispatchGroup.leave()
+        Task {
+            let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (documentURLs.count > 1)
+            
+            let reply: NSApplication.DelegateReply = await withThrowingTaskGroup { group in
+                for url in documentURLs {
+                    group.addTask { try await NSDocumentController.shared.openDocument(withContentsOf: url, display: true) }
                 }
                 
-                if let error {
-                    let cancelled = (error as? CocoaError)?.code == .userCancelled
-                    reply = cancelled ? .cancel : .failure
-                    
-                    // ask user for opening file
-                    if !cancelled {
-                        DispatchQueue.main.async {
-                            NSApp.presentError(error)
-                        }
+                var firstWindowOpened = false
+                var reply: NSApplication.DelegateReply = .failure
+                
+                while let result = await group.nextResult() {
+                    switch result {
+                        case .success(let (_, documentWasAlreadyOpen)):
+                            reply = .success
+                            // on first window opened
+                            // -> The first document needs to open a new window.
+                            if isAutomaticTabbing, !documentWasAlreadyOpen, !firstWindowOpened {
+                                DocumentWindow.tabbingPreference = .always
+                                firstWindowOpened = true
+                            }
+                        case .failure(let error):
+                            let cancelled = (error as? CocoaError)?.code == .userCancelled
+                            if cancelled {
+                                reply = (reply == .failure) ? .cancel : reply
+                            } else {
+                                // ask user for opening file
+                                NSApp.presentError(error)
+                            }
                     }
                 }
                 
-                // on first window opened
-                // -> The first document needs to open a new window.
-                if isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
-                    DocumentWindow.tabbingPreference = .always
-                    firstWindowOpened = true
-                }
+                return reply
             }
-        }
-        
-        // wait until finish
-        dispatchGroup.notify(queue: .main) {
-            // reset tabbing setting
+            
             if isAutomaticTabbing {
                 DocumentWindow.tabbingPreference = nil
             }
