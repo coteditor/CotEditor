@@ -93,9 +93,12 @@ struct EncodingListView: View {
                 self.model.remove(ids: self.selection)
             }
             .animation(.default, value: self.model.items)
-            .border(.separator)
             .scrollContentBackground(.hidden)
-            .background(.fill.quaternary)
+            .background {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(.fill.quaternary)
+                    .stroke(.separator, lineWidth: 1)
+            }
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
             
