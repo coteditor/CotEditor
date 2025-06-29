@@ -498,7 +498,7 @@ extension Document: EditorSource {
         //     2. Open the save panel once and cancel it.
         //     3. Quit the application.
         //     4. Then, the application hangs up.
-        super.save(to: url, ofType: typeName, for: saveOperation) { error in
+        super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self] error in
             defer {
                 completionHandler(error)
             }

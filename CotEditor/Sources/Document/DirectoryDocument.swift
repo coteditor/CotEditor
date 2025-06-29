@@ -563,9 +563,9 @@ final class DirectoryDocument: NSDocument {
             document.showWindows()
             
         } else {
-            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (_, _, error) in
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { [unowned self] (_, _, error) in
                 if let error {
-                    return self.presentErrorAsSheet(error)
+                    self.presentError(error)
                 }
             }
         }
