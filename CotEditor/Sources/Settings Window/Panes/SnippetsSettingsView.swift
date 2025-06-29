@@ -341,7 +341,8 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
                                 menuItem.representedObject = variable.token
                                 NSApp.sendAction(#selector(NSTextView.insertVariable), to: nil, from: menuItem)
                             } label: {
-                                Text(variable.token + "\n") + Text(variable.localizedDescription).foregroundColor(.secondary)
+                                Text(variable.token)
+                                Text(variable.localizedDescription)
                             }
                         } else {
                             Divider()
