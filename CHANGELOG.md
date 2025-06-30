@@ -1,5 +1,14 @@
 # Change Log
 
+5.2.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the cached settings remain unchanged after executing the “Reload All Theme,” “Reload All Syntax,” or “Reload All Definitions” commands.
+
+
+
 5.2.0-rc (723)
 --------------------------
 

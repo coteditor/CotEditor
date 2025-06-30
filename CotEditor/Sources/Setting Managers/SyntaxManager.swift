@@ -88,6 +88,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         
         // cache user syntaxes
         self.loadUserSettings()
+        self.updateMappingTable()
     }
     
     
@@ -279,35 +280,48 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     /// Loads settings in the user domain.
     func loadUserSettings() {
         
-        // load mapping definitions from syntax files in user domain
+        let userSettingNames = self.userSettingFileURLs
+            .map { Self.settingName(from: $0) }
+        
+        let settingNames = Set(self.bundledSettingNames + userSettingNames)
+            .sorted(using: .localizedStandard)
+        
+        // reset user defaults if not found
+        if !settingNames.contains(UserDefaults.standard[.syntax]) {
+            UserDefaults.standard.restore(key: .syntax)
+        }
+        UserDefaults.standard[.recentSyntaxNames].removeAll { !settingNames.contains($0) }
+        
+        self.cachedSettings.removeAll()
+        self.settingNames = settingNames
+    }
+    
+    
+    /// Updates the file mapping table.
+    private func updateMappingTable() {
+        
+        // postpone bundled syntaxes
+        let sortedSettingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames
+        
+        // load mapping definitions from syntax files in the user domain
         let userMaps = try! SyntaxMap.loadMaps(at: self.userSettingFileURLs, ignoresInvalidData: true)
         let maps = self.bundledMaps.merging(userMaps) { (_, new) in new }
         
-        // sort syntaxes alphabetically
-        let settingNames = maps.keys.sorted(using: .localizedStandard)
-        // remove syntaxes not exist
-        UserDefaults.standard[.recentSyntaxNames].removeAll { !settingNames.contains($0) }
-        
-        // update file mapping tables
-        let sortedSettingNames = settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled syntaxes
-        let mappingTable = self.mappingTable.keys.reduce(into: [:]) { (tables, keyPath) in
+        // update file mapping table
+        self.mappingTable = self.mappingTable.keys.reduce(into: [:]) { (tables, keyPath) in
             tables[keyPath] = sortedSettingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
                 for item in maps[settingName]?[keyPath: keyPath] ?? [] {
                     table[item, default: []].append(settingName)
                 }
             }
         }
-        
-        self.settingNames = settingNames
-        self.mappingTable = mappingTable
     }
     
     
     /// Tells that a setting did update.
     func didUpdateSetting(change: SettingChange) {
         
-        // update also .mappingTable
-        self.loadUserSettings()
+        self.updateMappingTable()
     }
     
     

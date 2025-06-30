@@ -112,15 +112,15 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    /// Loads the settings in the user domain.
+    /// Loads settings in the user domain.
     func loadUserSettings() {
         
-        // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs
             .filter { (try? self.loadSetting(at: $0)) != nil }  // just try loading but not store
             .map { Self.settingName(from: $0) }
             .sorted(using: .localizedStandard)
         
+        self.cachedSettings.removeAll()
         self.settingNames = userSettingNames
     }
 }

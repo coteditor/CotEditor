@@ -199,21 +199,21 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    /// Loads the settings in the user domain.
+    /// Loads settings in the user domain.
     func loadUserSettings() {
         
-        // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs
             .map { Self.settingName(from: $0) }
         
-        let settingNames = (self.bundledSettingNames + userSettingNames).uniqued
+        let settingNames = Set(self.bundledSettingNames + userSettingNames)
             .sorted(using: .localizedStandard)
         
-        // reset user default if not found
+        // reset user defaults if not found
         if !settingNames.contains(UserDefaults.standard[.theme]) {
             UserDefaults.standard.restore(key: .theme)
         }
         
+        self.cachedSettings.removeAll()
         self.settingNames = settingNames
     }
 }
