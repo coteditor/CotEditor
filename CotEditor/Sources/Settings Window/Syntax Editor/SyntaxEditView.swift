@@ -30,6 +30,22 @@ struct SyntaxEditView: View {
     
     typealias SaveAction = (_ syntax: Syntax, _ name: String) throws -> Void
     
+    enum Mode: Identifiable {
+        
+        case new
+        case edit(SettingState)
+        
+        
+        var id: String? {
+            
+            switch self {
+                case .new: nil
+                case .edit(let state): state.name
+            }
+        }
+    }
+    
+    
     fileprivate enum Pane {
         
         case keywords
@@ -62,16 +78,15 @@ struct SyntaxEditView: View {
     var isBundled: Bool = false
     var saveAction: SaveAction
     
-    weak var parent: NSHostingController<Self>?
-    
     
     private static var viewSize = CGSize(width: 680, height: 525)
-    private var manager: SyntaxManager = .shared
+    private var manager: SyntaxManager
     
+    @Environment(\.dismiss) private var dismiss
+
     @State private var name: String = ""
     @State private var message: String?
     
-    @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var pane: Pane = .keywords
     @State private var errors: [SyntaxObject.Error] = []
     @State private var error: (any Error)?
@@ -79,18 +94,24 @@ struct SyntaxEditView: View {
     @FocusState private var isNameFieldFocused: Bool
     
     
-    init(syntax: Syntax? = nil, originalName: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction) {
+    init(mode: Mode, syntax: Syntax? = nil, manager: SyntaxManager, saveAction: @escaping SaveAction) {
         
+        switch mode {
+            case .new:
+                break
+            case .edit(let state):
+                self.originalName = state.name
+                self.isBundled = state.isBundled
+        }
         self.syntax = SyntaxObject(value: syntax)
-        self.originalName = originalName
-        self.isBundled = isBundled
+        self.manager = manager
         self.saveAction = saveAction
     }
     
     
     var body: some View {
         
-        NavigationSplitView(columnVisibility: $columnVisibility) {
+        NavigationSplitView(columnVisibility: .constant(.all)) {
             List(selection: $pane) {
                 Section(String(localized: "Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
                     ForEach(Pane.highlights, id: \.self) { pane in
@@ -112,16 +133,6 @@ struct SyntaxEditView: View {
         } detail: {
             VStack(spacing: 16) {
                 HStack(alignment: .firstTextBaseline) {
-                    if self.columnVisibility == .detailOnly {
-                        Button(String(localized: "Show Sidebar", table: "SyntaxEditor"), systemImage: "sidebar.leading") {
-                            withAnimation {
-                                self.columnVisibility = .all
-                            }
-                        }
-                        .labelStyle(.iconOnly)
-                        .buttonStyle(.borderless)
-                    }
-                    
                     if self.isBundled {
                         Text(self.name)
                             .fontWeight(.medium)
@@ -167,7 +178,7 @@ struct SyntaxEditView: View {
                     }
                     Spacer()
                     SubmitButtonGroup(action: self.submit) {
-                        self.parent?.dismiss(nil)
+                        self.dismiss()
                     }
                 }.scenePadding(.horizontal)
             }.scenePadding(.vertical)
@@ -248,7 +259,7 @@ struct SyntaxEditView: View {
             return
         }
         
-        self.parent?.dismiss(nil)
+        self.dismiss()
     }
     
     
@@ -407,5 +418,5 @@ extension PartialKeyPath<SyntaxObject> {
 // MARK: - Preview
 
 #Preview {
-    SyntaxEditView(originalName: "Dogs") { _, _ in }
+    SyntaxEditView(mode: .new, manager: .shared) { _, _ in }
 }

@@ -31,13 +31,19 @@ import URLUtils
 typealias SettingChange = ItemChange<String>
 
 
-struct SettingState: Equatable {
+struct SettingState: Equatable, Hashable {
     
     var name: String
     var isBundled: Bool
     var isCustomized: Bool
     
     var isRestorable: Bool  { self.isBundled && self.isCustomized }
+}
+
+
+extension SettingState: Identifiable {
+    
+    var id: String { self.name }
 }
 
 
@@ -197,6 +203,15 @@ extension SettingFileManaging {
     }
     
     
+    /// Returns a setting file URL in the user's Application Support domain or nil if not exists.
+    func dataForUserSetting(name: String) -> Data? {
+        
+        guard let url = self.urlForUserSetting(name: name) else { return nil }
+        
+        return try? Data(contentsOf: url)
+    }
+    
+    
     /// Returns a setting file URL in the user's Application Support domain (don't care if it exists).
     nonisolated func preparedURLForUserSetting(name: String) -> URL {
         
@@ -334,12 +349,14 @@ extension SettingFileManaging {
     
     
     /// Exports setting file to passed-in URL.
-    func exportSetting(name: String, to fileURL: URL, hidesExtension: Bool) throws {
+    func exportSetting(name: String, to fileURL: URL, hidesExtension: Bool? = nil) throws {
         
         let sourceURL = self.preparedURLForUserSetting(name: name)
         
         var resourceValues = URLResourceValues()
-        resourceValues.hasHiddenExtension = hidesExtension
+        if let hidesExtension {
+            resourceValues.hasHiddenExtension = hidesExtension
+        }
         
         var coordinationError: NSError?
         var writingError: (any Error)?
@@ -363,6 +380,47 @@ extension SettingFileManaging {
         if let error = writingError ?? coordinationError {
             throw error
         }
+    }
+    
+    
+    /// Imports the setting.
+    ///
+    /// - Parameters:
+    ///   - data: The data to import.
+    ///   - name: The name of the setting to import.
+    ///   - overwrite: Whether overwrites the existing setting if exists.
+    /// - Throws: `SettingImportError` (only when the `overwrite` flag is `true`), or `any Error`
+    func importSetting(data: Data, name: String, overwrite: Bool) throws {
+        
+        // check duplication
+        if !overwrite {
+            for existingName in self.settingNames {
+                guard existingName.caseInsensitiveCompare(name) == .orderedSame else { continue }
+                
+                guard self.urlForUserSetting(name: existingName) == nil else {  // duplicated
+                    throw SettingImportError(name: existingName, data: data)
+                }
+            }
+        }
+        
+        // test if the setting file can be read correctly
+        let setting = try self.loadSetting(from: data)
+        
+        // write file
+        let destURL = self.preparedURLForUserSetting(name: name)
+        do {
+            try FileManager.default.createIntermediateDirectories(to: destURL)
+            try data.write(to: destURL)
+        } catch {
+            throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
+        }
+        
+        self.cachedSettings[name] = setting
+        
+        let change: SettingChange = self.settingNames.contains(name)
+            ? .updated(from: name, to: name)
+            : .added(name)
+        self.updateSettingList(change: change)
     }
     
     
@@ -591,6 +649,29 @@ struct SettingFileError: LocalizedError {
             default:
                 self.underlyingError?.localizedRecoverySuggestion
         }
+    }
+}
+
+
+struct SettingImportError: LocalizedError {
+    
+    var name: String
+    var data: Data
+    
+    
+    var errorDescription: String {
+        
+        String(localized: "ImportDuplicationError.description",
+               defaultValue: "“\(self.name)” already exists. Do you want to replace it?",
+               comment: "%@ is a name of a setting. Refer the same expression by Apple.")
+    }
+    
+    
+    var recoverySuggestion: String {
+        
+        String(localized: "ImportDuplicationError.recoverySuggestion",
+               defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
+               comment: "Refer similar expressions by Apple.")
     }
 }
 
