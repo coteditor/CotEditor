@@ -79,7 +79,6 @@ struct SyntaxEditView: View {
     var saveAction: SaveAction
     
     
-    private static var viewSize = CGSize(width: 680, height: 525)
     private var manager: SyntaxManager
     
     @Environment(\.dismiss) private var dismiss
@@ -190,8 +189,8 @@ struct SyntaxEditView: View {
             self.errors = self.syntax.validate()
         }
         .alert(error: $error)
-        .onGeometryChange(for: CGSize.self, of: \.size) { Self.viewSize = $0 }
-        .frame(idealWidth: Self.viewSize.width, minHeight: 525, idealHeight: Self.viewSize.height)
+        .frame(minWidth: 400, idealWidth: 680, minHeight: 525, idealHeight: 525)
+        .presentationSizing(.fitted)
     }
     
     
