@@ -442,8 +442,8 @@ extension FileNode.Kind {
         
         switch self {
             case .folder: "folder"
-            case .general: "doc"
-            case .archive: if #available(macOS 15, *) { "zipper.page" } else { "doc.zipper" }
+            case .general: "document"
+            case .archive: "zipper.page"
             case .image: "photo"
             case .movie: "film"
             case .audio: "music.note"

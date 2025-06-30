@@ -112,7 +112,9 @@ struct SyntaxFileMappingEditView: View {
                 .listStyle(.bordered)
                 .border(Color(nsColor: .gridColor))
                 
-                AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
+                AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                    self.focusedField = item.id
+                }
             }.accessibilityElement(children: .contain)
         }
     }

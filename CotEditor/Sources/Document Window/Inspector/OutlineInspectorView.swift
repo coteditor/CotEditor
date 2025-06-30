@@ -203,8 +203,8 @@ struct OutlineInspectorView: View {
             }
             .contextMenu {
                 Menu(String(localized: "Text Size", table: "MainMenu")) {
-                    Button(String(localized: "Bigger", table: "MainMenu"), action: self.biggerFont)
-                    Button(String(localized: "Smaller", table: "MainMenu"), action: self.smallerFont)
+                    Button(String(localized: "Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
+                    Button(String(localized: "Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
                     Button(String(localized: "Reset to Default", table: "MainMenu"), action: self.resetFont)
                 }
             }

@@ -102,7 +102,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
 
 // MARK: QLPreviewItem Protocol
 
-extension PreviewDocument: @preconcurrency QLPreviewItem {
+extension PreviewDocument: @MainActor QLPreviewItem {
     
     var previewItemURL: URL! {
         

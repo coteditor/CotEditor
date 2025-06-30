@@ -27,7 +27,6 @@ import AppKit
 import SwiftUI
 import VisionKit
 
-extension NSImage: @retroactive @unchecked Sendable { }
 extension ImageAnalysis: @retroactive @unchecked Sendable { }
 
 

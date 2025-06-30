@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.8" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.8"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,13 +13,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView verticalCompressionResistancePriority="250" borderType="none" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y58-tD-Rpf">
+                            <scrollView verticalCompressionResistancePriority="250" borderType="none" autohidesScrollers="YES" horizontalLineScroll="28" horizontalPageScroll="10" verticalLineScroll="28" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y58-tD-Rpf">
                                 <rect key="frame" x="0.0" y="25" width="180" height="275"/>
                                 <clipView key="contentView" drawsBackground="NO" id="DBx-IS-GJK">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="275"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="8Qe-gz-jhC" viewBased="YES" id="9m8-2c-pi4">
+                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" headerView="8Qe-gz-jhC" viewBased="YES" id="9m8-2c-pi4">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="247"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="4"/>
@@ -123,51 +122,51 @@
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="myv-Ba-A0L">
                                 <rect key="frame" x="137" y="1" width="41" height="23"/>
-                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="JZx-Ko-uzc" id="4Ff-dd-gqt">
+                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="4Ff-dd-gqt">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
                                     <menu key="menu" id="D6P-Zc-OIp">
                                         <items>
-                                            <menuItem state="on" image="NSActionTemplate" hidden="YES" id="JZx-Ko-uzc"/>
-                                            <menuItem title="Rename" id="8h0-Xi-AHB">
+                                            <menuItem image="NSActionTemplate" hidden="YES" id="JZx-Ko-uzc"/>
+                                            <menuItem title="Rename" secondaryImage="pencil" catalog="system" id="8h0-Xi-AHB">
                                                 <connections>
                                                     <action selector="renameTheme:" target="WBM-EY-ENr" id="ClW-Ct-R4n"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Duplicate" id="5Eu-k1-cjE">
+                                            <menuItem title="Duplicate" secondaryImage="plus.square.on.square" catalog="system" id="5Eu-k1-cjE">
                                                 <connections>
                                                     <action selector="duplicateTheme:" target="WBM-EY-ENr" id="ERl-Q0-MvY"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Restore" id="kFt-8v-8ZZ">
+                                            <menuItem title="Restore" secondaryImage="arrow.uturn.backward" catalog="system" id="kFt-8v-8ZZ">
                                                 <connections>
                                                     <action selector="restoreTheme:" target="WBM-EY-ENr" id="rQ5-Ky-UGz"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Export…" id="4B4-mq-8Fs">
+                                            <menuItem title="Export…" secondaryImage="square.and.arrow.up" catalog="system" id="4B4-mq-8Fs">
                                                 <connections>
                                                     <action selector="exportTheme:" target="WBM-EY-ENr" id="kjO-6u-zFq"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Share…" id="w4F-0P-Rgk">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="shareTheme:" target="WBM-EY-ENr" id="QHb-wc-ETH"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="Reveal in Finder" alternate="YES" id="Qmf-WU-xe8">
+                                            <menuItem title="Reveal in Finder" secondaryImage="finder" catalog="system" alternate="YES" id="Qmf-WU-xe8">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="revealThemeInFinder:" target="WBM-EY-ENr" id="bOa-mA-wHJ"/>
                                                 </connections>
                                             </menuItem>
+                                            <menuItem title="Share…" secondaryImage="square.and.arrow.up" catalog="system" id="w4F-0P-Rgk">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="shareTheme:" target="WBM-EY-ENr" id="QHb-wc-ETH"/>
+                                                </connections>
+                                            </menuItem>
                                             <menuItem isSeparatorItem="YES" id="ZV6-PV-G4a"/>
-                                            <menuItem title="Import…" id="gcs-B8-kPL">
+                                            <menuItem title="Import…" secondaryImage="square.and.arrow.down" catalog="system" id="gcs-B8-kPL">
                                                 <connections>
                                                     <action selector="importTheme:" target="WBM-EY-ENr" id="FL1-Xz-qdf"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Reload All Themes" alternate="YES" id="7Yp-bg-3l6">
+                                            <menuItem title="Reload All Themes" secondaryImage="arrow.clockwise" catalog="system" alternate="YES" id="7Yp-bg-3l6">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="reloadAllThemes:" target="WBM-EY-ENr" id="juh-Z9-4gf"/>
@@ -210,55 +209,55 @@
                 <customObject id="6Aq-a8-hQi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="M4k-Ev-Myg" userLabel="Theme Table Menu">
                     <items>
-                        <menuItem title="New Theme" id="sJb-7g-2FN">
+                        <menuItem title="New Theme" secondaryImage="plus.square" catalog="system" id="sJb-7g-2FN">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="addTheme:" target="WBM-EY-ENr" id="KTG-fY-DA7"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Duplicate" id="9LW-xw-HBP">
+                        <menuItem title="Duplicate" secondaryImage="plus.square.on.square" catalog="system" id="9LW-xw-HBP">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="duplicateTheme:" target="WBM-EY-ENr" id="F3J-BN-cRO"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Restore" id="vTP-Fc-iBF">
+                        <menuItem title="Restore" secondaryImage="arrow.uturn.backward" catalog="system" id="vTP-Fc-iBF">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="restoreTheme:" target="WBM-EY-ENr" id="ZUB-ys-apg"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Rename" id="nWy-OL-CGi">
+                        <menuItem title="Rename" secondaryImage="pencil" catalog="system" id="nWy-OL-CGi">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="renameTheme:" target="WBM-EY-ENr" id="f9E-2Q-JFg"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Delete" id="WNG-Ai-RdG">
+                        <menuItem title="Delete" secondaryImage="trash" catalog="system" id="WNG-Ai-RdG">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="deleteTheme:" target="WBM-EY-ENr" id="nAN-Hv-S4c"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Export…" id="ueG-D7-DSV">
+                        <menuItem title="Export…" secondaryImage="square.and.arrow.up" catalog="system" id="ueG-D7-DSV">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="exportTheme:" target="WBM-EY-ENr" id="Ioz-ZQ-bfh"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Share…" id="pTV-O2-2db">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="shareTheme:" target="WBM-EY-ENr" id="Ijb-ce-jZ5"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Reveal in Finder" alternate="YES" id="UMs-gY-YHE">
+                        <menuItem title="Reveal in Finder" secondaryImage="finder" catalog="system" alternate="YES" id="UMs-gY-YHE">
                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                             <connections>
                                 <action selector="revealThemeInFinder:" target="WBM-EY-ENr" id="a7f-62-vFK"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Import…" id="52n-xG-4ZL">
+                        <menuItem title="Share…" secondaryImage="square.and.arrow.up" catalog="system" id="pTV-O2-2db">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="shareTheme:" target="WBM-EY-ENr" id="Ijb-ce-jZ5"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Import…" secondaryImage="square.and.arrow.down" catalog="system" id="52n-xG-4ZL">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="importTheme:" target="WBM-EY-ENr" id="prC-cV-bH1"/>
@@ -274,5 +273,14 @@
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="NSAddTemplate" width="18" height="17"/>
         <image name="NSRemoveTemplate" width="18" height="5"/>
+        <image name="arrow.clockwise" catalog="system" width="14" height="16"/>
+        <image name="arrow.uturn.backward" catalog="system" width="15" height="14"/>
+        <image name="finder" catalog="system" width="16" height="15"/>
+        <image name="pencil" catalog="system" width="14" height="13"/>
+        <image name="plus.square" catalog="system" width="15" height="14"/>
+        <image name="plus.square.on.square" catalog="system" width="17" height="16"/>
+        <image name="square.and.arrow.down" catalog="system" width="15" height="17"/>
+        <image name="square.and.arrow.up" catalog="system" width="15" height="18"/>
+        <image name="trash" catalog="system" width="15" height="17"/>
     </resources>
 </document>

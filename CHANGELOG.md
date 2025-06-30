@@ -1,5 +1,29 @@
 # Change Log
 
+6.0.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Support __macOS 26 Tahoe__.
+
+
+### Improvements
+
+- Change the system requirement to __macOS 15 Sequoia and later__.
+- Update the user interface on macOS 26 to the Liquid Glass style.
+- Update the application icon to the Liquid Glass style.
+- [trivial] Improve the behavior of Add/Remove buttons.
+- [dev] Update the build environment to Xcode 26.0 Beta 2 (Swift 6.2, macOS 26 SDK).
+
+
+### Known Issues
+
+- The layout of the print panel accessory is broken.
+- The Quick Action bar doesn't update its size after typing.
+
+
+
 5.2.0 (724)
 --------------------------
 

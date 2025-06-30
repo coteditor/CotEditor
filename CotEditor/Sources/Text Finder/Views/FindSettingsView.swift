@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@ struct FindSettingsView: View {
                 .accessibilityHeading(.h1)
                 .padding(.bottom, 6)
             
-            VStack(alignment: .leading, spacing: 14) {
-                VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: isLiquidGlass ? 16 : 14) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Section {
                         Toggle(String(localized: "FindSettings.findIsWrap.label",
                                       defaultValue: "Wrap search around",
@@ -105,7 +105,7 @@ struct FindTextualOptionsView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
             Section {
                 Toggle(String(localized: "FindSettings.matchesFullWord.label",
                               defaultValue: "Match only whole word",
@@ -157,7 +157,7 @@ struct FindRegularExpressionOptionsView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
             Section {
                 Toggle(String(localized: "FindSettings.isSingleLine.label",
                               defaultValue: "Dot matches line separators",

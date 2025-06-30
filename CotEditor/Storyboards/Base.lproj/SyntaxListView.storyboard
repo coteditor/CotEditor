@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.8" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.8"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,13 +13,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="258" height="135"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzJ-WA-1ao">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzJ-WA-1ao">
                                 <rect key="frame" x="0.0" y="25" width="258" height="110"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="C5l-vq-00a">
                                     <rect key="frame" x="0.0" y="0.0" width="258" height="110"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="BAM-wf-Klc">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" viewBased="YES" id="BAM-wf-Klc">
                                             <rect key="frame" x="0.0" y="0.0" width="258" height="108"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -78,9 +77,8 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="vqS-e3-gjG" secondAttribute="trailing" constant="2" id="8a2-cm-k59"/>
+                                                                <constraint firstItem="vqS-e3-gjG" firstAttribute="centerY" secondItem="GWs-bF-15e" secondAttribute="centerY" id="CLY-xG-4Pk"/>
                                                                 <constraint firstItem="7Wv-pO-nVZ" firstAttribute="leading" secondItem="GWs-bF-15e" secondAttribute="leading" id="T40-bI-nra"/>
-                                                                <constraint firstItem="vqS-e3-gjG" firstAttribute="top" secondItem="GWs-bF-15e" secondAttribute="top" id="XbC-XW-5bq"/>
-                                                                <constraint firstAttribute="bottom" secondItem="vqS-e3-gjG" secondAttribute="bottom" id="ZJx-kO-iZK"/>
                                                                 <constraint firstAttribute="bottom" secondItem="7Wv-pO-nVZ" secondAttribute="bottom" id="bdk-6d-GpV"/>
                                                                 <constraint firstItem="7Wv-pO-nVZ" firstAttribute="top" secondItem="GWs-bF-15e" secondAttribute="top" id="c0n-Ba-e1v"/>
                                                                 <constraint firstItem="vqS-e3-gjG" firstAttribute="leading" secondItem="7Wv-pO-nVZ" secondAttribute="trailing" id="pRy-Cx-yIx"/>
@@ -159,52 +157,52 @@
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ZbN-TL-KPB">
                                 <rect key="frame" x="216" y="0.0" width="40" height="24"/>
-                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="iox-c2-vjm" id="wPd-l2-y89">
+                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="mixed" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="iox-c2-vjm" id="wPd-l2-y89">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
                                     <menu key="menu" id="gYe-RZ-X2D">
                                         <items>
-                                            <menuItem state="on" image="NSActionTemplate" hidden="YES" id="iox-c2-vjm"/>
-                                            <menuItem title="Duplicate" id="i3A-oi-eAb">
+                                            <menuItem state="mixed" image="NSActionTemplate" hidden="YES" id="iox-c2-vjm"/>
+                                            <menuItem title="Duplicate" secondaryImage="plus.square.on.square" catalog="system" id="i3A-oi-eAb">
                                                 <connections>
                                                     <action selector="duplicateSetting:" target="Lgm-sL-YIF" id="4b4-za-rAZ"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Restore" tag="1" id="v3t-l4-IIK">
+                                            <menuItem title="Restore" secondaryImage="arrow.uturn.backward" catalog="system" tag="1" id="v3t-l4-IIK">
                                                 <connections>
                                                     <action selector="restoreSetting:" target="Lgm-sL-YIF" id="HIf-Jj-7eq"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Export…" id="F6k-ee-G8p">
+                                            <menuItem title="Export…" secondaryImage="square.and.arrow.up" catalog="system" id="F6k-ee-G8p">
                                                 <connections>
                                                     <action selector="exportSetting:" target="Lgm-sL-YIF" id="nrm-Ok-e0f"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Reveal in Finder" alternate="YES" id="u0I-WJ-45f">
+                                            <menuItem title="Reveal in Finder" secondaryImage="finder" catalog="system" alternate="YES" id="u0I-WJ-45f">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="revealSettingInFinder:" target="Lgm-sL-YIF" id="ZQX-3W-nGi"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Share…" id="Zi7-fT-M76">
+                                            <menuItem title="Share…" secondaryImage="square.and.arrow.up" catalog="system" id="Zi7-fT-M76">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="shareSetting:" target="Lgm-sL-YIF" id="SiP-GK-rhd"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Import…" id="0ad-gc-fsH">
+                                            <menuItem title="Import…" secondaryImage="square.and.arrow.down" catalog="system" id="0ad-gc-fsH">
                                                 <connections>
                                                     <action selector="importSetting:" target="Lgm-sL-YIF" id="MVa-Kh-iz9"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Reload All Syntaxes" alternate="YES" id="j3a-oN-Koz">
+                                            <menuItem title="Reload All Syntaxes" secondaryImage="arrow.clockwise" catalog="system" alternate="YES" id="j3a-oN-Koz">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="reloadAllSettings:" target="Lgm-sL-YIF" id="sF1-G7-gC5"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="EAw-ky-nu5"/>
-                                            <menuItem title="Show File Mapping Conflicts" id="UQZ-yo-FZy">
+                                            <menuItem title="Show File Mapping Conflicts" secondaryImage="exclamationmark.triangle" catalog="system" id="UQZ-yo-FZy">
                                                 <connections>
                                                     <action selector="openSyntaxMappingConflictSheet:" target="Lgm-sL-YIF" id="zgN-VK-9BT"/>
                                                 </connections>
@@ -250,38 +248,38 @@
                 <customObject id="vgQ-KV-Jhz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="enl-Xp-NM4">
                     <items>
-                        <menuItem title="Edit…" id="371-P0-KPK">
+                        <menuItem title="Edit…" image="square.and.pencil" catalog="system" id="371-P0-KPK">
                             <connections>
                                 <action selector="editSetting:" target="Lgm-sL-YIF" id="FqD-Sv-a2f"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Duplicate" id="5oN-VC-ot9">
+                        <menuItem title="Duplicate" secondaryImage="plus.square.on.square" catalog="system" id="5oN-VC-ot9">
                             <connections>
                                 <action selector="duplicateSetting:" target="Lgm-sL-YIF" id="dbW-ZP-BPP"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Restore" tag="1" id="Zox-Ve-mru">
+                        <menuItem title="Restore" secondaryImage="arrow.uturn.backward" catalog="system" tag="1" id="Zox-Ve-mru">
                             <connections>
                                 <action selector="restoreSetting:" target="Lgm-sL-YIF" id="k2j-7L-Qzc"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Delete" tag="1" id="NDE-r5-xAF">
+                        <menuItem title="Delete" secondaryImage="trash" catalog="system" tag="1" id="NDE-r5-xAF">
                             <connections>
                                 <action selector="deleteSetting:" target="Lgm-sL-YIF" id="vDg-s0-Uj5"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Export…" id="Qwp-u8-Urf">
+                        <menuItem title="Export…" secondaryImage="square.and.arrow.up" catalog="system" id="Qwp-u8-Urf">
                             <connections>
                                 <action selector="exportSetting:" target="Lgm-sL-YIF" id="N1U-mF-hKx"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Reveal in Finder" alternate="YES" id="AkE-0P-0FC">
+                        <menuItem title="Reveal in Finder" secondaryImage="finder" catalog="system" alternate="YES" id="AkE-0P-0FC">
                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                             <connections>
                                 <action selector="revealSettingInFinder:" target="Lgm-sL-YIF" id="ac1-sz-N7o"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Share…" id="Rh3-kc-Gte">
+                        <menuItem title="Share…" secondaryImage="square.and.arrow.up" catalog="system" id="Rh3-kc-Gte">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="shareSetting:" target="Lgm-sL-YIF" id="ocS-Rm-Duj"/>
@@ -297,6 +295,15 @@
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="NSAddTemplate" width="18" height="17"/>
         <image name="NSRemoveTemplate" width="18" height="5"/>
+        <image name="arrow.clockwise" catalog="system" width="14" height="16"/>
+        <image name="arrow.uturn.backward" catalog="system" width="15" height="14"/>
+        <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
+        <image name="finder" catalog="system" width="16" height="15"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
+        <image name="plus.square.on.square" catalog="system" width="17" height="16"/>
+        <image name="square.and.arrow.down" catalog="system" width="15" height="17"/>
+        <image name="square.and.arrow.up" catalog="system" width="15" height="18"/>
+        <image name="square.and.pencil" catalog="system" width="17" height="16"/>
+        <image name="trash" catalog="system" width="15" height="17"/>
     </resources>
 </document>

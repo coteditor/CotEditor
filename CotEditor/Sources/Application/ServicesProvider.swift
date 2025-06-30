@@ -30,29 +30,28 @@ import AppKit
     // MARK: Public Methods
     
     /// Opens new document with string via Services
-    @objc func openSelection(_ pboard: NSPasteboard, userData: String, error errorPointer: AutoreleasingUnsafeMutablePointer<NSString?>) {
+    @objc func openSelection(_ pboard: NSPasteboard, userData: String, error errorPointer: NSErrorPointer) {
         
         guard let selection = pboard.string(forType: .string) else { return assertionFailure() }
         
         do {
             try (NSDocumentController.shared as! DocumentController).openUntitledDocument(contents: selection, display: true)
         } catch {
-            errorPointer.pointee = error.localizedDescription as NSString
+            errorPointer?.pointee = error as NSError
             NSApp.presentError(error)
-            return
         }
     }
     
     
     /// Opens files via Services
-    @objc func openFile(_ pboard: NSPasteboard, userData: String, error errorPointer: AutoreleasingUnsafeMutablePointer<NSString?>) {
+    @objc func openFile(_ pboard: NSPasteboard, userData: String, error errorPointer: NSErrorPointer) {
         
         guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }
         
         for fileURL in fileURLs {
             NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (_, _, error) in
                 if let error {
-                    errorPointer.pointee = error.localizedDescription as NSString
+                    errorPointer?.pointee = error as NSError
                     NSApp.presentError(error)
                 }
             }

@@ -186,10 +186,10 @@ private struct ModeOptionsView: View {
             }
             .pickerStyle(.radioGroup)
             .horizontalRadioGroupLayout()
-            .padding(.bottom, 8)
+            .padding(.bottom, isLiquidGlass ? 12 : 8)
             
             LabeledContent(String(localized: "Substitution:", table: "ModeSettings")) {
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Smart copy/paste", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.smartInsertDelete)
                     Toggle(String(localized: "Smart quotes", table: "ModeSettings", comment: "use localization provided by Apple"),
@@ -204,10 +204,10 @@ private struct ModeOptionsView: View {
                            isOn: $options.automaticSymbolBalancing)
                 }
             }
-            .padding(.bottom, 8)
+            .padding(.bottom, isLiquidGlass ? 12 : 8)
             
             LabeledContent(String(localized: "Spelling:", table: "ModeSettings")) {
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Check spelling while typing", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.continuousSpellChecking)
                     Toggle(String(localized: "Check grammar with spelling", table: "ModeSettings", comment: "use localization provided by Apple"),
@@ -216,10 +216,10 @@ private struct ModeOptionsView: View {
                            isOn: $options.automaticSpellingCorrection)
                 }
             }
-            .padding(.bottom, 8)
+            .padding(.bottom, isLiquidGlass ? 12 : 8)
             
             LabeledContent(String(localized: "Completion:", table: "ModeSettings")) {
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Text("Completion list includes:", tableName: "ModeSettings")
                         .foregroundStyle(self.isEnabled ? .primary : .tertiary)
                     Group {

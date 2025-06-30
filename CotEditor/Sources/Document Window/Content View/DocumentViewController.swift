@@ -166,9 +166,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             // observe editable change
             self.document.$isEditable
                 .sink { [weak self] isEditable in
-                    self?.editorViewControllers
-                        .compactMap(\.textView)
-                        .forEach { $0.isEditable = isEditable }
+                    self?.textViews.forEach { $0.isEditable = isEditable }
                 },
             
             // observe appearance change for theme toggle
@@ -336,6 +334,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.title = self.showsInvisibles
                     ? String(localized: "Hide Invisibles", table: "MainMenu")
                     : String(localized: "Show Invisibles", table: "MainMenu")
+                if #available(macOS 26, *) {
+                    (item as? NSMenuItem)?.image = self.showsInvisibles
+                        ? NSImage(resource: .paragraphsignSlash)
+                        : NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: nil)
+                }
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
@@ -414,6 +417,18 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.title = self.splitView.isVertical
                     ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
                     : String(localized: "Stack Editors Vertically", table: "MainMenu")
+                if #available(macOS 26, *) {
+                    (item as? NSMenuItem)?.image = self.splitView.isVertical
+                        ? NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
+                        : NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
+                }
+                
+            case #selector(openSplitTextView):
+                if #available(macOS 26, *) {
+                    (item as? NSMenuItem)?.image = self.splitView.isVertical
+                    ? NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
+                    : NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
+                }
                 
             case #selector(closeSplitTextView):
                 return self.splitViewItems.count > 1
@@ -466,7 +481,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// The text view currently focused on.
     var focusedTextView: EditorTextView? {
         
-        self.focusedChild?.textView ?? self.editorViewControllers.first?.textView
+        self.focusedChild?.textView ?? self.textViews.first
     }
     
     
@@ -499,7 +514,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var wrapsLines = true {
         
         didSet {
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.textViews {
                 textView.wrapsLines = wrapsLines
             }
         }
@@ -510,7 +525,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var showsPageGuide = false {
         
         didSet {
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.textViews {
                 textView.showsPageGuide = showsPageGuide
             }
         }
@@ -521,7 +536,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var showsIndentGuides = false {
         
         didSet {
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.textViews {
                 textView.showsIndentGuides = showsIndentGuides
             }
         }
@@ -532,7 +547,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var showsInvisibles = false {
         
         didSet {
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.textViews {
                 textView.showsInvisibles = showsInvisibles
             }
         }
@@ -547,7 +562,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             
             let orientation: NSLayoutManager.TextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
             
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.textViews {
                 textView.setLayoutOrientation(orientation)
             }
         }
@@ -558,7 +573,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var writingDirection: NSWritingDirection = .leftToRight {
         
         didSet {
-            for textView in self.editorViewControllers.compactMap(\.textView) where textView.baseWritingDirection != writingDirection {
+            for textView in self.textViews where textView.baseWritingDirection != writingDirection {
                 textView.baseWritingDirection = writingDirection
             }
         }
@@ -573,7 +588,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         }
         
         set {
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.textViews {
                 textView.tabWidth = newValue
             }
         }
@@ -588,7 +603,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         }
         
         set {
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.textViews {
                 textView.isAutomaticTabExpansionEnabled = newValue
             }
         }
@@ -664,7 +679,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Toggles if antialias text in the text views.
     @IBAction func toggleAntialias(_ sender: Any?) {
         
-        for textView in self.editorViewControllers.compactMap(\.textView) {
+        for textView in self.textViews {
             textView.usesAntialias.toggle()
         }
     }
@@ -673,7 +688,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Toggles the ligature mode in the text views.
     @IBAction func toggleLigatures(_ sender: Any?) {
         
-        for textView in self.editorViewControllers.compactMap(\.textView) {
+        for textView in self.textViews {
             textView.ligature = (textView.ligature == .none) ? .standard : .none
         }
     }
@@ -709,7 +724,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Changes the font to the user's standard font.
     @IBAction func makeFontStandard(_ sender: Any?) {
         
-        for textView in self.editorViewControllers.compactMap(\.textView) {
+        for textView in self.textViews {
             textView.setFont(type: .standard)
         }
     }
@@ -718,7 +733,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Changes the font to the user's monospaced font.
     @IBAction func makeFontMonospaced(_ sender: Any?) {
         
-        for textView in self.editorViewControllers.compactMap(\.textView) {
+        for textView in self.textViews {
             textView.setFont(type: .monospaced)
         }
     }
@@ -877,6 +892,13 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
+    /// The array of all child text views.
+    private var textViews: [EditorTextView] {
+        
+        self.editorViewControllers.compactMap(\.textView)
+    }
+    
+    
     /// Creates a new split editor.
     ///
     /// - Parameter otherViewController: The view controller of the reference editor located above the editor to add.
@@ -978,7 +1000,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         self.document.syntaxParser.theme = theme
         
-        for textView in self.editorViewControllers.compactMap(\.textView) {
+        for textView in self.textViews {
             textView.theme = theme
             textView.layoutManager?.invalidateHighlight(theme: theme)
         }

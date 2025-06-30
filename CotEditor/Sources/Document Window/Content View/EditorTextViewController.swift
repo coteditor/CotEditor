@@ -121,7 +121,19 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         super.viewWillAppear()
         
+        self.textView.lineEnding = self.document.lineEnding
+        self.textView.mode = ModeManager.shared.setting(for: self.document.mode)
+        self.applySyntax()
+        
         self.observers = [
+            self.document.didChangeSyntax
+                .sink { [weak self] _ in self?.applySyntax() },
+            self.document.$lineEnding
+                .sink { [weak self] in self?.textView.lineEnding = $0 },
+            self.document.$mode
+                .removeDuplicates()
+                .sink { [weak self] in self?.textView.mode = ModeManager.shared.setting(for: $0) },
+            
             // observe text orientation for line number view
             self.textView.publisher(for: \.layoutOrientation, options: .initial)
                 .sink { [weak self] orientation in
@@ -241,7 +253,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    @available(macOS 15, *)
     func textViewWritingToolsDidEnd(_ textView: NSTextView) {
         
         guard
@@ -258,9 +269,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         // add "Inspect Character" menu item if single character is selected
         if self.textView.selectsSingleCharacter == true {
-            menu.insertItem(withTitle: String(localized: "Inspect Character", table: "MainMenu"),
-                            action: #selector(showSelectionInfo),
-                            keyEquivalent: "",
+            menu.insertItem(.init(title: String(localized: "Inspect Character", table: "MainMenu"),
+                                  systemImage: "character.bubble",
+                                  action: #selector(showSelectionInfo)),
                             at: 1)
         }
         
@@ -373,6 +384,16 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     // MARK: Private Methods
+    
+    /// Applies syntax to the inner text view.
+    private func applySyntax() {
+        
+        let parser = self.document.syntaxParser
+        self.textView.syntaxName = parser.name
+        self.textView.commentDelimiters = parser.syntax.commentDelimiters
+        self.textView.syntaxCompletionWords = parser.syntax.completionWords
+    }
+    
     
     /// Shows a popover indicating the given image and live text detection.
     ///

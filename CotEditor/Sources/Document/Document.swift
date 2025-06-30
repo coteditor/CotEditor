@@ -457,7 +457,7 @@ extension Document: EditorSource {
     }
     
     
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping @Sendable ((any Error)?) -> Void) {
         
         // check if the contents can be saved with the current text encoding
         guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
@@ -492,13 +492,13 @@ extension Document: EditorSource {
         self.lastAdditionalFileAttributes = self.additionalFileAttributes(for: saveOperation)
         
         // workaround the issue that invoking the async version super blocks the save process
-        // with macOS 12-15 + Xcode 13-16 (2022 FB11203469).
+        // with macOS 12-26 + Xcode 13-26 (2022 FB11203469).
         // To reproduce the issue:
         //     1. Make a document unsaved ("Edited" status in the window subtitle).
         //     2. Open the save panel once and cancel it.
         //     3. Quit the application.
         //     4. Then, the application hangs up.
-        super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self] error in
+        super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self, url] error in
             defer {
                 completionHandler(error)
             }
@@ -886,6 +886,11 @@ extension Document: EditorSource {
                     item.title = self.isEditable
                         ? String(localized: "Prevent Editing", table: "MainMenu")
                         : String(localized: "Allow Editing", table: "MainMenu")
+                    if #available(macOS 26, *) {
+                        item.image = self.isEditable
+                            ? NSImage(systemSymbolName: "pencil.slash", accessibilityDescription: nil)
+                            : NSImage(systemSymbolName: "pencil", accessibilityDescription: nil)
+                    }
                     
                 } else if let item = item as? StatableToolbarItem {
                     item.toolTip = self.isEditable
@@ -1383,7 +1388,8 @@ extension Document: EditorSource {
             alert.showsHelp = true
             alert.helpAnchor = "inconsistent_line_endings"
             
-            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
                 if alert.suppressionButton?.state == .on {
                     self.suppressesInconsistentLineEndingAlert = true
                     self.invalidateRestorableState()
@@ -1449,7 +1455,8 @@ extension Document: EditorSource {
                 alert.alertStyle = .critical
             }
             
-            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
                 if returnCode == .alertSecondButtonReturn {  // == Revert
                     self.revert()
                 }

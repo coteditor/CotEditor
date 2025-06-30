@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -100,8 +100,8 @@ enum SettingsPane: String, ControlUI.SettingsPane {
             case .window: "uiwindow.split.2x1"
             case .edit: "square.and.pencil"
             case .mode: "switch.2"
-            case .format: "doc.text"
-            case .snippets: "note.text"
+            case .format: "text.document"
+            case .snippets: "text.viewfinder"
             case .keyBindings: "keyboard"
             case .donation: "mug"
         }

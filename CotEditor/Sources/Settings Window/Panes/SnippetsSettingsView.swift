@@ -35,12 +35,19 @@ struct SnippetsSettingsView: View {
         
         VStack {
             TabView {
-                CommandSnippetsView()
-                    .padding(self.insets)
-                    .tabItem { Text("Command", tableName: "SnippetsSettings", comment: "tab label") }
-                FileDropView()
-                    .padding(self.insets)
-                    .tabItem { Text("File Drop", tableName: "SnippetsSettings", comment: "tab label") }
+                Tab {
+                    CommandSnippetsView()
+                        .padding(self.insets)
+                } label: {
+                    Text("Command", tableName: "SnippetsSettings", comment: "tab label")
+                }
+                
+                Tab {
+                    FileDropView()
+                        .padding(self.insets)
+                } label: {
+                    Text("File Drop", tableName: "SnippetsSettings", comment: "tab label")
+                }
             }
             
             HStack {
@@ -131,9 +138,7 @@ private struct CommandSnippetsView: View {
             .border(Color(nsColor: .gridColor))
             
             HStack(alignment: .firstTextBaseline) {
-                AddRemoveButton($items, selection: $selection) {
-                    self.manager.createUntitledSetting()
-                }
+                AddRemoveButton($items, selection: $selection, newItem: self.manager.createUntitledSetting())
                 Spacer()
                 if let error {
                     Text(error.localizedDescription)
@@ -227,7 +232,7 @@ private struct FileDropView: View {
             .border(Color(nsColor: .gridColor))
             
             HStack(alignment: .firstTextBaseline) {
-                AddRemoveButton($items, selection: $selection, newItem: Item.init)
+                AddRemoveButton($items, selection: $selection, newItem: Item())
                 Spacer()
                 Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.restore)
                     .disabled(!self.canRestore)
@@ -336,7 +341,8 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
                                 menuItem.representedObject = variable.token
                                 NSApp.sendAction(#selector(NSTextView.insertVariable), to: nil, from: menuItem)
                             } label: {
-                                Text(variable.token + "\n") + Text(variable.localizedDescription).foregroundColor(.secondary)
+                                Text(variable.token)
+                                Text(variable.localizedDescription)
                             }
                         } else {
                             Divider()

@@ -146,7 +146,7 @@ struct RegularExpressionReferenceView: View {
                     .foregroundStyle(.secondary)
                     .accessibilityAddTraits(.isHeader)
                 
-                Grid(alignment: .leading, verticalSpacing: 1) {
+                Grid(alignment: .leading, verticalSpacing: isLiquidGlass ? 3 : 1) {
                     ForEach(self.definitions) { definition in
                         GridRow {
                             Text(definition.term)

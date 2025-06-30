@@ -121,11 +121,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .compactMap(\.windowControllers.first?.window)
             .first(where: \.isVisible)
         {
-            let referenceFrame: NSRect = if #available(macOS 15, *) {
-                lastWindow.cascadingReferenceFrame
-            } else {
-                lastWindow.frame
-            }
+            let referenceFrame = lastWindow.cascadingReferenceFrame
             let cascadingPoint = window.cascadeTopLeft(from: referenceFrame.topLeft)
             window.cascadeTopLeft(from: cascadingPoint)
         }
@@ -891,7 +887,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                     .separator(),
                     NSMenuItem(title: String(localized: "Toolbar.fonts.menu.showFonts.label",
                                              defaultValue: "Show Fonts", table: "Document"),
-                               action: #selector(NSFontManager.orderFrontFontPanel), keyEquivalent: ""),
+                               systemImage: "textformat",
+                               action: #selector(NSFontManager.orderFrontFontPanel)),
                 ]
                 return item
                 

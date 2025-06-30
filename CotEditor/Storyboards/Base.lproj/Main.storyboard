@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.7"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -14,14 +13,14 @@
                             <menuItem title="CotEditor" id="56">
                                 <menu key="submenu" title="CotEditor" systemMenu="apple" id="57">
                                     <items>
-                                        <menuItem title="About CotEditor" id="58">
+                                        <menuItem title="About CotEditor" secondaryImage="info.circle" catalog="system" id="58">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showAboutPanel:" target="Ady-hI-5gd" id="u8D-Wn-gmq"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="202"/>
-                                        <menuItem title="Settings…" keyEquivalent="," id="129">
+                                        <menuItem title="Settings…" secondaryImage="gear" catalog="system" keyEquivalent="," id="129">
                                             <connections>
                                                 <action selector="showSettingsWindow:" target="Ady-hI-5gd" id="B5S-pE-Q9J"/>
                                             </connections>
@@ -66,12 +65,12 @@
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="82J-OW-zaP"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="New Window" keyEquivalent="N" id="cTV-Rh-597">
+                                        <menuItem title="New Window" secondaryImage="macwindow.badge.plus" catalog="system" keyEquivalent="N" id="cTV-Rh-597">
                                             <connections>
                                                 <action selector="newDocumentAsWindow:" target="Ady-hI-5gd" id="O1V-BQ-IdO"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="New Tab" keyEquivalent="t" id="WCp-4v-OPR">
+                                        <menuItem title="New Tab" secondaryImage="plus.square.on.square" catalog="system" keyEquivalent="t" id="WCp-4v-OPR">
                                             <connections>
                                                 <action selector="newDocumentAsTab:" target="Ady-hI-5gd" id="S8W-T4-6Jr"/>
                                             </connections>
@@ -118,19 +117,19 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="lTX-kr-xO1"/>
-                                        <menuItem title="Show in Finder" id="qOo-dc-1LZ">
+                                        <menuItem title="Show in Finder" secondaryImage="finder" catalog="system" id="qOo-dc-1LZ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showInFinder:" target="Ady-hI-5gd" id="c7U-Ai-EpC"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Copy File Path" alternate="YES" id="9sv-l5-xwG">
+                                        <menuItem title="Copy File Path" secondaryImage="document.on.document" catalog="system" alternate="YES" id="9sv-l5-xwG">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                             <connections>
                                                 <action selector="copyPath:" target="Ady-hI-5gd" id="32y-EP-V8T"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Share…" id="TNF-pL-CAZ">
+                                        <menuItem title="Share…" secondaryImage="square.and.arrow.up" catalog="system" id="TNF-pL-CAZ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="shareDocument:" target="Ady-hI-5gd" id="UEX-s7-POt"/>
@@ -184,7 +183,7 @@
                                                 <action selector="paste:" target="Ady-hI-5gd" id="kbL-4C-ha8"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Paste Exactly" alternate="YES" keyEquivalent="v" id="MTm-Qg-WjY">
+                                        <menuItem title="Paste Exactly" secondaryImage="document.on.clipboard" catalog="system" alternate="YES" keyEquivalent="v" id="MTm-Qg-WjY">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="pasteAsIs:" target="Ady-hI-5gd" id="57J-qE-dkT"/>
@@ -196,7 +195,7 @@
                                                 <action selector="delete:" target="Ady-hI-5gd" id="Ftk-bU-BQH"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Select" id="6fK-Zl-wdN">
+                                        <menuItem title="Select" secondaryImage="character.textbox" catalog="system" id="6fK-Zl-wdN">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Select" id="Bm6-Jh-1mk">
                                                 <items>
@@ -236,7 +235,7 @@
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="5PI-LC-fl2"/>
-                                                    <menuItem title="Split Selection by Lines" keyEquivalent="L" id="jkL-Tg-nug">
+                                                    <menuItem title="Split Selection by Lines" secondaryImage="line.3.horizontal" catalog="system" keyEquivalent="L" id="jkL-Tg-nug">
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                                         <connections>
                                                             <action selector="splitSelectionByLines:" target="Ady-hI-5gd" id="Wj0-pS-FPH"/>
@@ -256,7 +255,7 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="ngg-iN-BYh"/>
-                                        <menuItem title="Input Backslash" keyEquivalent="¥" id="631">
+                                        <menuItem title="Input Backslash" secondaryImage="character.cursor.ibeam" catalog="system" keyEquivalent="¥" id="631">
                                             <connections>
                                                 <action selector="inputBackSlash:" target="Ady-hI-5gd" id="PpN-Zj-7Zc"/>
                                             </connections>
@@ -400,11 +399,11 @@ Gw
                             <menuItem title="Format" id="247">
                                 <menu key="submenu" title="Format" id="246">
                                     <items>
-                                        <menuItem title="Line Endings" id="294">
+                                        <menuItem title="Line Endings" secondaryImage="return" catalog="system" id="294">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="ControlUI"/>
                                         </menuItem>
-                                        <menuItem title="Text Encoding" id="299">
+                                        <menuItem title="Text Encoding" secondaryImage="arrow.2.squarepath" catalog="system" id="299">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Text Encoding" id="300">
                                                 <connections>
@@ -412,7 +411,7 @@ Gw
                                                 </connections>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Syntax" id="302">
+                                        <menuItem title="Syntax" secondaryImage="curlybraces" catalog="system" id="302">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Syntax" id="304">
                                                 <items>
@@ -427,7 +426,7 @@ Gw
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="453"/>
-                                        <menuItem title="Font" id="410">
+                                        <menuItem title="Font" secondaryImage="textformat" catalog="system" id="410">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Font" systemMenu="font" id="418">
                                                 <items>
@@ -454,17 +453,17 @@ Gw
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="398"/>
-                                                    <menuItem title="Bigger" keyEquivalent="+" id="405">
+                                                    <menuItem title="Bigger" secondaryImage="textformat.size.larger" catalog="system" keyEquivalent="+" id="405">
                                                         <connections>
                                                             <action selector="biggerFont:" target="Ady-hI-5gd" id="VXR-9f-nOU"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Smaller" keyEquivalent="-" id="404">
+                                                    <menuItem title="Smaller" secondaryImage="textformat.size.smaller" catalog="system" keyEquivalent="-" id="404">
                                                         <connections>
                                                             <action selector="smallerFont:" target="Ady-hI-5gd" id="Uds-lf-yjO"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Reset to Default" keyEquivalent="0" id="574">
+                                                    <menuItem title="Reset to Default" secondaryImage="textformat.size" catalog="system" keyEquivalent="0" id="574">
                                                         <connections>
                                                             <action selector="resetFont:" target="Ady-hI-5gd" id="NPb-Jj-Ev0"/>
                                                         </connections>
@@ -485,12 +484,12 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Theme" id="8z7-Jc-agP">
+                                        <menuItem title="Theme" secondaryImage="paintbrush" catalog="system" id="8z7-Jc-agP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Theme" id="165-HJ-Xty"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="9GY-M7-uHl"/>
-                                        <menuItem title="Tab Width" id="djM-fI-MkN">
+                                        <menuItem title="Tab Width" secondaryImage="tab.forward" id="djM-fI-MkN">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Tab Width" id="xAm-b4-9CY">
                                                 <items>
@@ -528,13 +527,13 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Show Invisibles" id="788">
+                                        <menuItem title="Show Invisibles" secondaryImage="paragraphsign" catalog="system" id="788">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleInvisibleChars:" target="Ady-hI-5gd" id="HlM-Aw-tfM"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Indent Guides" id="Qqu-pI-Xz6">
+                                        <menuItem title="Show Indent Guides" secondaryImage="text.indentguides" id="Qqu-pI-Xz6">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleIndentGuides:" target="Ady-hI-5gd" id="Sbg-ca-Seo"/>
@@ -547,20 +546,20 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="397"/>
-                                        <menuItem title="Writing Direction" id="mEh-BD-ZlV">
+                                        <menuItem title="Writing Direction" secondaryImage="text.alignleft" catalog="system" id="mEh-BD-ZlV">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Writing Direction" id="hxr-2A-KYT">
                                                 <items>
                                                     <menuItem title="Orientation" enabled="NO" id="6eV-nI-heo" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Horizontal" state="on" id="jQ7-hG-AjA">
+                                                    <menuItem title="Horizontal" state="on" secondaryImage="text.alignleft" catalog="system" id="jQ7-hG-AjA">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeLayoutOrientationHorizontal:" target="Ady-hI-5gd" id="WVo-ax-oWO"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Vertical" id="bTd-nG-jjc">
+                                                    <menuItem title="Vertical" secondaryImage="text.vertical" id="bTd-nG-jjc">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeLayoutOrientationVertical:" target="Ady-hI-5gd" id="540-j1-Xm4"/>
@@ -570,13 +569,13 @@ Gw
                                                     <menuItem title="Direction" enabled="NO" id="ICu-yD-nVi" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Left to Right" state="on" id="7pw-5S-ekC">
+                                                    <menuItem title="Left to Right" state="on" secondaryImage="text.alignleft" catalog="system" id="7pw-5S-ekC">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="fgd-0N-MoV"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Right to Left" id="clG-Ph-Iyz">
+                                                    <menuItem title="Right to Left" secondaryImage="text.alignright" catalog="system" id="clG-Ph-Iyz">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeWritingDirectionRightToLeft:" target="Ady-hI-5gd" id="a1M-Oj-Kf6"/>
@@ -585,14 +584,14 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Wrap Lines" id="286">
+                                        <menuItem title="Wrap Lines" secondaryImage="text.append" catalog="system" id="286">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleLineWrap:" target="Ady-hI-5gd" id="6Yy-Bp-Aq9"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="V3B-22-vTe"/>
-                                        <menuItem title="Prevent Editing" id="EzX-9S-WvS">
+                                        <menuItem title="Prevent Editing" secondaryImage="pencil.slash" catalog="system" id="EzX-9S-WvS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleEditable:" target="Ady-hI-5gd" id="jii-oY-CPs"/>
@@ -615,24 +614,24 @@ Gw
                                                 <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="GPs-2m-wXS"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="613">
+                                        <menuItem title="Customize Toolbar…" secondaryImage="wrench.adjustable" catalog="system" id="613">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="WNT-nz-Qhz"/>
-                                        <menuItem title="Show Quick Actions…" keyEquivalent="k" id="7Su-OV-TgR">
+                                        <menuItem title="Show Quick Actions…" secondaryImage="filemenu.and.selection" catalog="system" keyEquivalent="k" id="7Su-OV-TgR">
                                             <connections>
                                                 <action selector="showQuickActions:" target="Ady-hI-5gd" id="6AA-OS-m64"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
-                                        <menuItem title="Sidebar" id="rQb-cr-Q3F">
+                                        <menuItem title="Sidebar" secondaryImage="sidebar.leading" catalog="system" id="rQb-cr-Q3F">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Sidebar" id="OgF-mf-7xU">
                                                 <items>
-                                                    <menuItem title="File Browser" keyEquivalent="1" id="VdN-vm-gXF">
+                                                    <menuItem title="File Browser" secondaryImage="folder" catalog="system" keyEquivalent="1" id="VdN-vm-gXF">
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="showFileBrowser:" target="Ady-hI-5gd" id="Wsz-tN-aQt"/>
@@ -648,30 +647,30 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Inspector" id="sYa-2o-iPk">
+                                        <menuItem title="Inspector" secondaryImage="sidebar.trailing" catalog="system" id="sYa-2o-iPk">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Inspector" id="10j-rd-fWr">
                                                 <items>
-                                                    <menuItem title="Document Inspector" id="564">
+                                                    <menuItem title="Document Inspector" secondaryImage="document" catalog="system" id="564">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="showDocumentInspector:" target="Ady-hI-5gd" id="Asb-Bw-W0C"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Outline" id="Gch-XD-tRl">
+                                                    <menuItem title="Outline" secondaryImage="list.bullet.indent" catalog="system" id="Gch-XD-tRl">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="showOutlineInspector:" target="Ady-hI-5gd" id="HtH-vV-miv"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Warnings" id="679">
+                                                    <menuItem title="Warnings" secondaryImage="exclamationmark.triangle" catalog="system" id="679">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="showWarningsInspector:" target="Ady-hI-5gd" id="tsP-25-icL"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="XF7-Qo-Y5g"/>
-                                                    <menuItem title="Show Inspector" keyEquivalent="i" id="I2p-KB-gxR">
+                                                    <menuItem title="Show Inspector" secondaryImage="sidebar.trailing" catalog="system" keyEquivalent="i" id="I2p-KB-gxR">
                                                         <connections>
                                                             <action selector="toggleInspector:" target="Ady-hI-5gd" id="Xmb-c9-cWL"/>
                                                         </connections>
@@ -680,57 +679,57 @@ Gw
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hFL-Ed-JMj"/>
-                                        <menuItem title="Show Navigation Bar" id="681">
+                                        <menuItem title="Show Navigation Bar" secondaryImage="inset.filled.topthird.rectangle" catalog="system" id="681">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Line Numbers" id="323">
+                                        <menuItem title="Show Line Numbers" secondaryImage="inset.filled.leadingthird.rectangle" catalog="system" id="323">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleLineNumber:" target="Ady-hI-5gd" id="0ux-pU-v0B"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Status Bar" id="325">
+                                        <menuItem title="Show Status Bar" secondaryImage="inset.filled.bottomthird.rectangle" catalog="system" id="325">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="366"/>
-                                        <menuItem title="Move Focus to Next Editor" keyEquivalent="`" id="794">
+                                        <menuItem title="Move Focus to Next Editor" secondaryImage="inset.filled.bottomhalf.tophalf.rectangle" catalog="system" keyEquivalent="`" id="794">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             <connections>
                                                 <action selector="focusNextEditor:" target="Ady-hI-5gd" id="dKM-na-6Sj"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Move Focus to Previous Editor" alternate="YES" keyEquivalent="`" id="795">
+                                        <menuItem title="Move Focus to Previous Editor" secondaryImage="inset.filled.tophalf.bottomhalf.rectangle" catalog="system" alternate="YES" keyEquivalent="`" id="795">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
                                             <connections>
                                                 <action selector="focusPreviousEditor:" target="Ady-hI-5gd" id="JvA-uY-8af"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Split Editor" id="793">
+                                        <menuItem title="Split Editor" secondaryImage="rectangle.split.1x2" catalog="system" id="793">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Close Split Editor" id="796">
+                                        <menuItem title="Close Split Editor" secondaryImage="rectangle" catalog="system" id="796">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
+                                        <menuItem title="Stack Editors Vertically" secondaryImage="rectangle.split.2x1" catalog="system" id="u46-te-4c4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kAE-Tf-I6P"/>
-                                        <menuItem title="Change Editor’s Opacity…" id="367">
+                                        <menuItem title="Change Editor’s Opacity…" secondaryImage="uiwindow.opacity" id="367">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showOpacitySlider:" target="Ady-hI-5gd" id="VEp-dh-l6T"/>
@@ -750,11 +749,11 @@ Gw
                                 <attributedString key="attributedTitle"/>
                                 <menu key="submenu" title="Text" id="578">
                                     <items>
-                                        <menuItem title="Insert Snippet" id="15m-xz-4oB">
+                                        <menuItem title="Insert Snippet" secondaryImage="text.viewfinder" catalog="system" id="15m-xz-4oB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Insert Snippet" id="dZy-7n-iCq">
                                                 <items>
-                                                    <menuItem title="Edit Snippets…" id="OmB-Ve-DEy">
+                                                    <menuItem title="Edit Snippets…" secondaryImage="square.and.pencil" catalog="system" id="OmB-Ve-DEy">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="showSnippetEditor:" target="Ady-hI-5gd" id="ZTz-YQ-KNQ"/>
@@ -763,17 +762,17 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Comment" id="yph-qH-qNE">
+                                        <menuItem title="Comment" secondaryImage="text.commentout" id="yph-qH-qNE">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Comment" id="EYa-d3-sUR">
                                                 <items>
-                                                    <menuItem title="Toggle Comment" keyEquivalent="/" id="LLy-Yx-tXI">
+                                                    <menuItem title="Toggle Comment" secondaryImage="text.commentout" keyEquivalent="/" id="LLy-Yx-tXI">
                                                         <connections>
                                                             <action selector="toggleComment:" target="Ady-hI-5gd" id="TYv-vE-OSD"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="WqH-at-5aR"/>
-                                                    <menuItem title="Inline Comment" id="F6P-7N-LSf">
+                                                    <menuItem title="Inline Comment" secondaryImage="text.commentout" id="F6P-7N-LSf">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="inlineCommentOut:" target="Ady-hI-5gd" id="cKe-O3-dvP"/>
@@ -794,28 +793,28 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Indentation" id="4h9-iu-ehP">
+                                        <menuItem title="Indentation" secondaryImage="increase.indent" catalog="system" id="4h9-iu-ehP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Indentation" id="YOd-Hk-eIa">
                                                 <items>
-                                                    <menuItem title="Shift Right" keyEquivalent="]" mirroring="NO" id="454">
+                                                    <menuItem title="Shift Right" secondaryImage="increase.indent" catalog="system" keyEquivalent="]" mirroring="NO" id="454">
                                                         <connections>
                                                             <action selector="shiftRight:" target="Ady-hI-5gd" id="0TU-LL-51E"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Shift Left" keyEquivalent="[" mirroring="NO" id="455">
+                                                    <menuItem title="Shift Left" secondaryImage="decrease.indent" catalog="system" keyEquivalent="[" mirroring="NO" id="455">
                                                         <connections>
                                                             <action selector="shiftLeft:" target="Ady-hI-5gd" id="5sc-L5-cQC"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="G27-U6-C9J"/>
-                                                    <menuItem title="Convert Indentation to Spaces" id="EOT-3u-f0a">
+                                                    <menuItem title="Convert Indentation to Spaces" secondaryImage="tab.forward.split" id="EOT-3u-f0a">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="convertIndentationToSpaces:" target="Ady-hI-5gd" id="YAf-jR-0e6"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Convert Indentation to Tabs" id="q32-Jm-eR3">
+                                                    <menuItem title="Convert Indentation to Tabs" secondaryImage="tab.forward" id="q32-Jm-eR3">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="convertIndentationToTabs:" target="Ady-hI-5gd" id="kdi-SI-izy"/>
@@ -824,7 +823,7 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Surround Selection With" id="9dv-Zb-W60">
+                                        <menuItem title="Surround Selection With" secondaryImage="ellipsis.curlybraces" catalog="system" id="9dv-Zb-W60">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Surround Selection With" id="AUq-CT-rPl">
                                                 <items>
@@ -873,31 +872,31 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Trim Trailing Whitespace" id="hBJ-Ge-278">
+                                        <menuItem title="Trim Trailing Whitespace" secondaryImage="eraser" catalog="system" id="hBJ-Ge-278">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="trimTrailingWhitespace:" target="Ady-hI-5gd" id="5DQ-Ed-A6I"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="174"/>
-                                        <menuItem title="Lines" id="Kb8-QD-tYZ">
+                                        <menuItem title="Lines" secondaryImage="line.3.horizontal" catalog="system" id="Kb8-QD-tYZ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Lines" id="BSD-be-CV9">
                                                 <items>
-                                                    <menuItem title="Move Up" keyEquivalent="" id="4t7-IA-1r3">
+                                                    <menuItem title="Move Up" secondaryImage="arrow.up.to.line" catalog="system" keyEquivalent="" id="4t7-IA-1r3">
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="moveLineUp:" target="Ady-hI-5gd" id="Mrs-c7-Xw5"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Move Down" keyEquivalent="" id="J59-OR-kzC">
+                                                    <menuItem title="Move Down" secondaryImage="arrow.down.to.line" catalog="system" keyEquivalent="" id="J59-OR-kzC">
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="moveLineDown:" target="Ady-hI-5gd" id="But-Oc-YKE"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
-                                                    <menuItem title="Sort" id="OQl-Uo-yfn">
+                                                    <menuItem title="Sort" secondaryImage="arrow.up.arrow.down" catalog="system" id="OQl-Uo-yfn">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="sortLinesAscending:" target="Ady-hI-5gd" id="TIS-6k-Eco"/>
@@ -921,19 +920,19 @@ Gw
                                                             <action selector="shuffleLines:" target="Ady-hI-5gd" id="osd-nP-5fS"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Delete Duplicates" id="bjv-m0-tZq">
+                                                    <menuItem title="Delete Duplicates" secondaryImage="eraser" catalog="system" id="bjv-m0-tZq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="deleteDuplicateLine:" target="Ady-hI-5gd" id="TYg-rf-Z8w"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
-                                                    <menuItem title="Duplicate Line" keyEquivalent="D" id="m48-5E-yia">
+                                                    <menuItem title="Duplicate Line" secondaryImage="plus.square.on.square" catalog="system" keyEquivalent="D" id="m48-5E-yia">
                                                         <connections>
                                                             <action selector="duplicateLine:" target="Ady-hI-5gd" id="LDu-DF-GdX"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Delete Line" id="sFn-3j-pY5">
+                                                    <menuItem title="Delete Line" secondaryImage="eraser" catalog="system" id="sFn-3j-pY5">
                                                         <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
@@ -942,7 +941,7 @@ CA
                                                             <action selector="deleteLine:" target="Ady-hI-5gd" id="vej-dU-Adx"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Join Lines" keyEquivalent="J" id="te2-4F-YwD">
+                                                    <menuItem title="Join Lines" secondaryImage="plus.square.dashed" catalog="system" keyEquivalent="J" id="te2-4F-YwD">
                                                         <connections>
                                                             <action selector="joinLines:" target="Ady-hI-5gd" id="EVv-9z-tX9"/>
                                                         </connections>
@@ -951,7 +950,7 @@ CA
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="591"/>
-                                        <menuItem title="Transformations" id="GXo-ds-ygp" userLabel="Transformations">
+                                        <menuItem title="Transformations" secondaryImage="textformat.characters" catalog="system" id="GXo-ds-ygp" userLabel="Transformations">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Transformations" id="b36-nH-7po">
                                                 <items>
@@ -974,7 +973,7 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
-                                                    <menuItem title="Make Snake Case" id="F0I-F4-srF">
+                                                    <menuItem title="Make Snake Case" secondaryImage="characters.lowercase" catalog="system" id="F0I-F4-srF">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="snakecaseWord:" target="Ady-hI-5gd" id="sZO-xn-Orq"/>
@@ -993,7 +992,7 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="kwE-D3-DED"/>
-                                                    <menuItem title="URL Encode" id="xxp-UD-STx">
+                                                    <menuItem title="URL Encode" secondaryImage="percent" catalog="system" id="xxp-UD-STx">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="encodeURL:" target="Ady-hI-5gd" id="Q1o-ui-gfY"/>
@@ -1006,7 +1005,7 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="5h2-9z-aol"/>
-                                                    <menuItem title="Half-width to Full-width" id="dVK-1s-xJq">
+                                                    <menuItem title="Half-width to Full-width" image="textformat.characters.arrow.left.and.right" catalog="system" id="dVK-1s-xJq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidth:" target="Ady-hI-5gd" id="Kzj-vP-XAT"/>
@@ -1036,7 +1035,7 @@ CA
                                                     <menuItem title="Japanese Text" enabled="NO" id="XWV-by-mnw" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Hiragana to Katakana" id="592">
+                                                    <menuItem title="Hiragana to Katakana" secondaryImage="textformat.characters.ja" catalog="system" id="592">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeKatakana:" target="Ady-hI-5gd" id="pfD-db-6kI"/>
@@ -1051,23 +1050,23 @@ CA
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Unicode Normalizations" id="599">
+                                        <menuItem title="Unicode Normalizations" secondaryImage="arrow.2.squarepath" catalog="system" id="599">
                                             <menu key="submenu" title="Unicode Normalizations" id="600"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="597"/>
-                                        <menuItem title="Inspect Character" keyEquivalent="i" id="ToR-yH-ahH">
+                                        <menuItem title="Inspect Character" secondaryImage="character.bubble" catalog="system" keyEquivalent="i" id="ToR-yH-ahH">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="showSelectionInfo:" target="Ady-hI-5gd" id="yjs-tN-DkF"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Advanced Character Count…" id="SPF-Mw-eZP">
+                                        <menuItem title="Advanced Character Count…" secondaryImage="numbers.rectangle" catalog="system" id="SPF-Mw-eZP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleAdvancedCounter:" target="Ady-hI-5gd" id="dbe-Aq-zCr"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Edit Color Code…" keyEquivalent="h" id="641">
+                                        <menuItem title="Edit Color Code…" secondaryImage="eyedropper.halffull" catalog="system" keyEquivalent="h" id="641">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="editColorCode:" target="Ady-hI-5gd" id="O86-F7-Ehg"/>
@@ -1079,7 +1078,7 @@ CA
                             <menuItem title="Find" id="538">
                                 <menu key="submenu" title="Find" id="kGA-vM-cdL">
                                     <items>
-                                        <menuItem title="Find…" tag="1" keyEquivalent="f" id="eP6-ss-sUG">
+                                        <menuItem title="Find…" secondaryImage="text.page.badge.magnifyingglass" catalog="system" tag="1" keyEquivalent="f" id="eP6-ss-sUG">
                                             <connections>
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hZQ-VJ-TKb"/>
                                             </connections>
@@ -1106,7 +1105,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="K3C-uf-Ew4"/>
-                                        <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="hTx-ef-3T2">
+                                        <menuItem title="Use Selection for Find" secondaryImage="text.page.badge.magnifyingglass" catalog="system" tag="7" keyEquivalent="e" id="hTx-ef-3T2">
                                             <connections>
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="PUK-3s-EWW"/>
                                             </connections>
@@ -1122,7 +1121,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="RmP-uk-9Kf"/>
-                                        <menuItem title="Replace" tag="5" id="bnD-BP-sPi">
+                                        <menuItem title="Replace" secondaryImage="text.page.badge.magnifyingglass" catalog="system" tag="5" id="bnD-BP-sPi">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="7jV-Uv-tUj"/>
@@ -1155,7 +1154,7 @@ CA
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vue-8R-4Kg"/>
-                                        <menuItem title="Highlight All" tag="103" keyEquivalent="H" id="JAO-3o-fRo">
+                                        <menuItem title="Highlight All" secondaryImage="highlighter" catalog="system" tag="103" keyEquivalent="H" id="JAO-3o-fRo">
                                             <connections>
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="dTZ-B1-rbb"/>
                                             </connections>
@@ -1167,13 +1166,13 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Z9B-Wz-WiE"/>
-                                        <menuItem title="Open Outline Menu" id="PmT-ho-UU7">
+                                        <menuItem title="Open Outline Menu" secondaryImage="filemenu.and.selection" catalog="system" id="PmT-ho-UU7">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openOutlineMenu:" target="Ady-hI-5gd" id="oKV-sL-8gF"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Select Previous Outline Item" keyEquivalent="" id="9Lf-39-x5S">
+                                        <menuItem title="Select Previous Outline Item" secondaryImage="text.line.magnify" catalog="system" keyEquivalent="" id="9Lf-39-x5S">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="selectPrevItemOfOutlineMenu:" target="Ady-hI-5gd" id="Gpf-2R-OQq"/>
@@ -1186,7 +1185,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4p1-Xh-XxQ"/>
-                                        <menuItem title="Go to Line…" keyEquivalent="l" id="eIc-Sj-2mO">
+                                        <menuItem title="Go to Line…" secondaryImage="number" catalog="system" keyEquivalent="l" id="eIc-Sj-2mO">
                                             <connections>
                                                 <action selector="gotoLocation:" target="Ady-hI-5gd" id="Oq7-s2-rmJ"/>
                                             </connections>
@@ -1208,7 +1207,7 @@ CA
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="uUW-DZ-rJM"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Keep on Top" id="caZ-qh-5JE">
+                                        <menuItem title="Keep on Top" secondaryImage="pin" catalog="system" id="caZ-qh-5JE">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleKeepOnTop:" target="Ady-hI-5gd" id="jT9-SB-I5W"/>
@@ -1222,7 +1221,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="622"/>
-                                        <menuItem title="Console" id="653">
+                                        <menuItem title="Console" secondaryImage="apple.terminal" catalog="system" id="653">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showConsolePanel:" target="Ady-hI-5gd" id="80V-8S-iOQ"/>
@@ -1237,7 +1236,7 @@ CA
                             <menuItem title="Help" id="103">
                                 <menu key="submenu" title="Help" id="106">
                                     <items>
-                                        <menuItem title="CotEditor Help" keyEquivalent="?" id="111">
+                                        <menuItem title="CotEditor Help" secondaryImage="book.pages" catalog="system" keyEquivalent="?" id="111">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="gQQ-iI-cNI"/>
                                             </connections>
@@ -1246,13 +1245,13 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="CotEditor Scripting Guide" id="OLa-Mb-rXS">
                                                 <items>
-                                                    <menuItem title="About Scripting" identifier="script_overview" id="u2o-8v-WPL">
+                                                    <menuItem title="About Scripting" secondaryImage="book.pages" catalog="system" identifier="script_overview" id="u2o-8v-WPL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="openHelpAnchor:" target="Ady-hI-5gd" id="Qcq-Px-CFy"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="AppleScript Dictionary" id="620">
+                                                    <menuItem title="AppleScript Dictionary" secondaryImage="character.book.closed" catalog="system" id="620">
                                                         <connections>
                                                             <action selector="openAppleScriptDictionary:" target="Ady-hI-5gd" id="xaR-YS-wby"/>
                                                         </connections>
@@ -1261,7 +1260,7 @@ CA
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="619"/>
-                                        <menuItem title="What’s New in CotEditor" identifier="whats_new" id="DCW-Ij-540">
+                                        <menuItem title="What’s New in CotEditor" secondaryImage="sparkles" catalog="system" identifier="whats_new" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showWhatsNew:" target="Ady-hI-5gd" id="BdY-Zk-DOK"/>
@@ -1274,19 +1273,19 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                                        <menuItem title="Create Issue Report" id="iHn-Ed-A8u">
+                                        <menuItem title="Create Issue Report" secondaryImage="paperplane" catalog="system" id="iHn-Ed-A8u">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="createBugReport:" target="Ady-hI-5gd" id="kRm-pF-zKl"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Report Issue" alternate="YES" id="Bk3-xx-uft">
+                                        <menuItem title="Report Issue" secondaryImage="paperplane" catalog="system" alternate="YES" id="Bk3-xx-uft">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                             <connections>
                                                 <action selector="reportBug:" target="Ady-hI-5gd" id="cDG-26-UaZ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="CotEditor Website" id="g34-YV-E6o">
+                                        <menuItem title="CotEditor Website" secondaryImage="arrow.forward.circle" catalog="system" id="g34-YV-E6o">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openWebSite:" target="Ady-hI-5gd" id="EVb-Xf-aoz"/>
@@ -1331,6 +1330,81 @@ CA
         </scene>
     </scenes>
     <resources>
+        <image name="apple.terminal" catalog="system" width="18" height="14"/>
         <image name="applescript.fill" catalog="system" width="14" height="18"/>
+        <image name="arrow.2.squarepath" catalog="system" width="19" height="14"/>
+        <image name="arrow.down.to.line" catalog="system" width="13" height="16"/>
+        <image name="arrow.forward.circle" catalog="system" width="15" height="15"/>
+        <image name="arrow.up.arrow.down" catalog="system" width="18" height="15"/>
+        <image name="arrow.up.to.line" catalog="system" width="13" height="16"/>
+        <image name="book.pages" catalog="system" width="15" height="18"/>
+        <image name="character.book.closed" catalog="system" width="14" height="16"/>
+        <image name="character.bubble" catalog="system" width="17" height="16"/>
+        <image name="character.cursor.ibeam" catalog="system" width="16" height="16"/>
+        <image name="character.textbox" catalog="system" width="19" height="14"/>
+        <image name="characters.lowercase" catalog="system" width="23" height="12"/>
+        <image name="curlybraces" catalog="system" width="15" height="16"/>
+        <image name="decrease.indent" catalog="system" width="18" height="13"/>
+        <image name="document" catalog="system" width="14" height="16"/>
+        <image name="document.on.clipboard" catalog="system" width="16" height="18"/>
+        <image name="document.on.document" catalog="system" width="16" height="18"/>
+        <image name="ellipsis.curlybraces" catalog="system" width="19" height="16"/>
+        <image name="eraser" catalog="system" width="16" height="16"/>
+        <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
+        <image name="eyedropper.halffull" catalog="system" width="17" height="16"/>
+        <image name="filemenu.and.selection" catalog="system" width="18" height="14"/>
+        <image name="finder" catalog="system" width="16" height="15"/>
+        <image name="folder" catalog="system" width="18" height="14"/>
+        <image name="gear" catalog="system" width="17" height="16"/>
+        <image name="highlighter" catalog="system" width="17" height="16"/>
+        <image name="increase.indent" catalog="system" width="18" height="13"/>
+        <image name="info.circle" catalog="system" width="15" height="15"/>
+        <image name="inset.filled.bottomhalf.tophalf.rectangle" catalog="system" width="18" height="14"/>
+        <image name="inset.filled.bottomthird.rectangle" catalog="system" width="18" height="14"/>
+        <image name="inset.filled.leadingthird.rectangle" catalog="system" width="18" height="14"/>
+        <image name="inset.filled.tophalf.bottomhalf.rectangle" catalog="system" width="18" height="14"/>
+        <image name="inset.filled.topthird.rectangle" catalog="system" width="18" height="14"/>
+        <image name="line.3.horizontal" catalog="system" width="16" height="9"/>
+        <image name="list.bullet.indent" catalog="system" width="19" height="12"/>
+        <image name="macwindow.badge.plus" catalog="system" width="21" height="16"/>
+        <image name="number" catalog="system" width="15" height="15"/>
+        <image name="numbers.rectangle" catalog="system" width="18" height="14"/>
+        <image name="paintbrush" catalog="system" width="17" height="18"/>
+        <image name="paperplane" catalog="system" width="16" height="16"/>
+        <image name="paragraphsign" catalog="system" width="13" height="14"/>
+        <image name="pencil.slash" catalog="system" width="13" height="13"/>
+        <image name="percent" catalog="system" width="15" height="15"/>
+        <image name="pin" catalog="system" width="15" height="17"/>
+        <image name="plus.square.dashed" catalog="system" width="15" height="14"/>
+        <image name="plus.square.on.square" catalog="system" width="17" height="16"/>
+        <image name="rectangle" catalog="system" width="18" height="14"/>
+        <image name="rectangle.split.1x2" catalog="system" width="18" height="14"/>
+        <image name="rectangle.split.2x1" catalog="system" width="18" height="14"/>
+        <image name="return" catalog="system" width="17" height="14"/>
+        <image name="sidebar.leading" catalog="system" width="18" height="14"/>
+        <image name="sidebar.trailing" catalog="system" width="18" height="14"/>
+        <image name="sparkles" catalog="system" width="15" height="17"/>
+        <image name="square.and.arrow.up" catalog="system" width="15" height="18"/>
+        <image name="square.and.pencil" catalog="system" width="17" height="16"/>
+        <image name="tab.forward" width="12" height="10"/>
+        <image name="tab.forward.split" width="12" height="10"/>
+        <image name="text.alignleft" catalog="system" width="16" height="13"/>
+        <image name="text.alignright" catalog="system" width="16" height="13"/>
+        <image name="text.append" catalog="system" width="16" height="13"/>
+        <image name="text.commentout" width="12" height="11"/>
+        <image name="text.indentguides" width="12" height="10"/>
+        <image name="text.line.magnify" catalog="system" width="16" height="14"/>
+        <image name="text.page.badge.magnifyingglass" catalog="system" width="15" height="18"/>
+        <image name="text.vertical" width="9" height="11"/>
+        <image name="text.viewfinder" catalog="system" width="16" height="15"/>
+        <image name="textformat" catalog="system" width="18" height="12"/>
+        <image name="textformat.characters" catalog="system" width="25" height="12"/>
+        <image name="textformat.characters.arrow.left.and.right" catalog="system" width="25" height="17"/>
+        <image name="textformat.characters.ja" catalog="system" width="29" height="12"/>
+        <image name="textformat.size" catalog="system" width="18" height="12"/>
+        <image name="textformat.size.larger" catalog="system" width="11" height="12"/>
+        <image name="textformat.size.smaller" catalog="system" width="9" height="9"/>
+        <image name="uiwindow.opacity" width="12" height="10"/>
+        <image name="wrench.adjustable" catalog="system" width="18" height="18"/>
     </resources>
 </document>

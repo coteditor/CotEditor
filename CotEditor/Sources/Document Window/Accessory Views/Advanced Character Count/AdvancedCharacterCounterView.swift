@@ -82,15 +82,13 @@ struct AdvancedCharacterCounterView: View {
                 }.padding()
             }
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(.regularMaterial)
-        .clipShape(.rect(cornerRadius: 8))
-        .shadow(radius: 4, y: 2)
+        .modifier(ViewStyleModifier())
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
             if let count = self.counter.count {
-                Button(String(localized: "Copy", table: "AdvancedCharacterCount", comment: "menu item")) {
+                Button(String(localized: "Copy", table: "AdvancedCharacterCount", comment: "menu item"), systemImage: "document.on.document") {
                     NSPasteboard.general.clearContents()
                     NSPasteboard.general.setString(String(count), forType: .string)
                 }
@@ -98,10 +96,28 @@ struct AdvancedCharacterCounterView: View {
             }
             Button(String(localized: "Stop Count", table: "AdvancedCharacterCount",
                           comment: "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)"),
+                   systemImage: "numbers.rectangle",
                    action: self.dismissAction)
         }
         .onDisappear {
             self.counter.stopObservation()
+        }
+    }
+}
+
+
+private struct ViewStyleModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        
+        if #available(macOS 26, *) {
+            content
+                .glassEffect(in: .capsule)
+        } else {
+            content
+                .background(.regularMaterial)
+                .clipShape(.capsule)
+                .shadow(radius: 4, y: 2)
         }
     }
 }

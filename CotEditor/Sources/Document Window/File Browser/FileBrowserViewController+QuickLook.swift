@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -87,7 +87,7 @@ extension FileBrowserViewController {
 
 // MARK: Preview Panel Data Source
 
-extension FileBrowserViewController: @preconcurrency QLPreviewPanelDataSource {
+extension FileBrowserViewController: @MainActor QLPreviewPanelDataSource {
     
     func numberOfPreviewItems(in panel: QLPreviewPanel!) -> Int {
         
@@ -108,11 +108,7 @@ extension FileBrowserViewController: @preconcurrency QLPreviewPanelDataSource {
 
 // MARK: Preview Panel Delegate
 
-// redundant declaration of NSWindowDelegate to suppress the wrong no-effect @preconcurrency attribute warning for QLPreviewPanelDelegate
-extension FileBrowserViewController: NSWindowDelegate { }
-
-
-extension FileBrowserViewController: @preconcurrency QLPreviewPanelDelegate {
+extension FileBrowserViewController: @MainActor QLPreviewPanelDelegate {
     
     func previewPanel(_ panel: QLPreviewPanel!, handle event: NSEvent!) -> Bool {
         

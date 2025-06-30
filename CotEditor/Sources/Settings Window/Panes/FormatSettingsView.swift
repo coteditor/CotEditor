@@ -157,7 +157,7 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .frame(maxWidth: 260)
+                .frame(maxWidth: 260, alignment: .leading)
                 .accessibilityLabeledPair(role: .content, id: "syntax", in: self.accessibility)
             }
             
