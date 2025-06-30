@@ -265,11 +265,10 @@ private struct DocumentStatusBar: View {
                     .padding(.vertical, 4)
                 
                 LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
-                                 selection: $lineEnding)
-                .disabled(!self.document.isEditable)
-                .onChange(of: self.lineEnding) { (_, newValue) in
-                    self.document.changeLineEnding(to: newValue)
+                                 selection: $lineEnding) { lineEnding in
+                    self.document.changeLineEnding(to: lineEnding)
                 }
+                .disabled(!self.document.isEditable)
                 .help(String(localized: "Line Endings", table: "Document"))
                 .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
                 .frame(width: 48)
@@ -364,12 +363,14 @@ private struct LineEndingPicker: NSViewRepresentable {
     
     var label: String
     @Binding var selection: LineEnding
+    var onSelect: (LineEnding) -> Void
     
     
-    init(_ label: String, selection: Binding<LineEnding>) {
+    init(_ label: String, selection: Binding<LineEnding>, onSelect: @escaping (LineEnding) -> Void) {
         
         self.label = label
         self._selection = selection
+        self.onSelect = onSelect
     }
     
     
@@ -410,24 +411,27 @@ private struct LineEndingPicker: NSViewRepresentable {
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(selection: $selection)
+        Coordinator(selection: $selection, onSelect: self.onSelect)
     }
     
     
     final class Coordinator: NSObject {
         
         @Binding private var selection: LineEnding
+        private var onSelect: (LineEnding) -> Void
         
         
-        init(selection: Binding<LineEnding>) {
+        init(selection: Binding<LineEnding>, onSelect: @escaping (LineEnding) -> Void) {
             
             self._selection = selection
+            self.onSelect = onSelect
         }
         
         
         @objc func didSelectItem(_ sender: NSMenuItem) {
             
             self.selection = sender.representedObject as! LineEnding
+            self.onSelect(self.selection)
         }
     }
 }
