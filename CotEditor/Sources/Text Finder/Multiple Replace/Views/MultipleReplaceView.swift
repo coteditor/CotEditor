@@ -1,5 +1,5 @@
 //
-//  MultipleReplaceViewController.swift
+//  MultipleReplaceView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,19 +24,38 @@
 //
 
 import AppKit
-import Combine
 import SwiftUI
 import Defaults
 import TextFind
 
+struct MultipleReplaceView: NSViewControllerRepresentable {
+    
+    typealias NSViewControllerType = MultipleReplaceViewController
+    
+    @Binding var setting: MultipleReplace
+    var updateHandler: (MultipleReplace) -> Void
+    
+    
+    func makeNSViewController(context: Context) -> MultipleReplaceViewController {
+        
+        NSStoryboard(name: "MultipleReplaceView", bundle: nil).instantiateInitialController { coder in
+            MultipleReplaceViewController(coder: coder, updateHandler: self.updateHandler)
+        }!
+    }
+    
+    
+    func updateNSViewController(_ nsViewController: MultipleReplaceViewController, context: Context) {
+        
+        nsViewController.change(setting: self.setting)
+    }
+}
+
+
 final class MultipleReplaceViewController: NSViewController, NSUserInterfaceValidations {
     
-    // MARK: Public Properties
-    
-    let didSettingUpdate: PassthroughSubject<MultipleReplace, Never> = .init()
-    
-    
     // MARK: Private Properties
+    
+    private let updateHandler: (MultipleReplace) -> Void
     
     private var definition = MultipleReplace()
     private lazy var updateNotificationDebouncer = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
@@ -46,6 +65,22 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
+    
+    
+    // MARK: Lifecycle
+    
+    required init?(coder: NSCoder, updateHandler: @escaping (MultipleReplace) -> Void) {
+        
+        self.updateHandler = updateHandler
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     // MARK: View Controller Methods
@@ -240,7 +275,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     /// Notifies the update to delegate.
     private func notifyUpdate() {
         
-        self.didSettingUpdate.send(self.definition)
+        self.updateHandler(self.definition)
     }
     
     
