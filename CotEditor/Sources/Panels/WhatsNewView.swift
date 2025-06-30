@@ -69,7 +69,8 @@ struct WhatsNewView: View {
                                 .accessibilityHeading(.h2)
                             
                             Text(feature.description)
-                                .font(.body.leading(.tight))
+                                .font(.body)
+                                .lineSpacing(1.2)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .foregroundStyle(.secondary)
                             
