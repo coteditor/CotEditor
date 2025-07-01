@@ -985,8 +985,7 @@ extension Document: EditorSource {
         
         // register undo
         if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding,
-                                                          shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
+            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
                 target.fileEncoding = currentFileEncoding
                 target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
                 target.allowsLossySaving = false
@@ -1023,8 +1022,7 @@ extension Document: EditorSource {
         // register undo
         if let undoManager = self.undoManager {
             let selectedRanges = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection).map(\.selectedRange)
-            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding,
-                                                          string = self.textStorage.string] target in
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
                 target.textStorage.replaceContent(with: string)
                 target.lineEnding = currentLineEnding
                 for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
