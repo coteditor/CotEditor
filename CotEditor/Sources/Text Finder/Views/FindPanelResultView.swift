@@ -66,7 +66,7 @@ struct FindPanelResultView: View {
     }
     
     
-    @State var model: Model
+    var model: Model
     
     @State private var documentName: String?
     @State private var selection: Set<Match.ID> = []

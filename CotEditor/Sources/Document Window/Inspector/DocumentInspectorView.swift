@@ -170,7 +170,7 @@ struct DocumentInspectorView: View {
     }
     
     
-    @State var model: any ModelProtocol
+    var model: any ModelProtocol
     
     
     var body: some View {
@@ -446,7 +446,7 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 
 
 #Preview(traits: .fixedLayout(width: 240, height: 520)) {
-    @Previewable @State var model = MockedModel(
+    let model = MockedModel(
         attributes: .init(
             creationDate: .now,
             modificationDate: .now,
@@ -464,7 +464,6 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
             mode: .kind(.general)
         ),
         countResult: .init())
-    
     model.countResult?.characters = .init(entire: 1024, selected: 4)
     model.countResult?.lines = .init(entire: 10, selected: 1)
     model.countResult?.character = "🐈‍⬛"

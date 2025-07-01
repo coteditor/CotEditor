@@ -29,7 +29,7 @@ import Syntax
 struct NavigationBar: View {
     
     @State var outlineNavigator: OutlineNavigator
-    @State var splitState: SplitState
+    var splitState: SplitState
     
     
     var body: some View {

@@ -70,13 +70,13 @@ struct SyntaxMappingConflictView: View {
                 .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
-                ConflictTable(String(localized: "Extension", table: "SyntaxMappingConflict", comment: "heading"), conflicts: self.extensionConflicts)
+                ConflictTable(String(localized: "Extension", table: "SyntaxMappingConflict", comment: "heading"), items: self.extensionConflicts)
             }
             if !self.filenameConflicts.isEmpty {
-                ConflictTable(String(localized: "Filename", table: "SyntaxMappingConflict", comment: "heading"), conflicts: self.filenameConflicts)
+                ConflictTable(String(localized: "Filename", table: "SyntaxMappingConflict", comment: "heading"), items: self.filenameConflicts)
             }
             if !self.interpreterConflicts.isEmpty {
-                ConflictTable(String(localized: "Interpreter", table: "SyntaxMappingConflict", comment: "heading"), conflicts: self.interpreterConflicts)
+                ConflictTable(String(localized: "Interpreter", table: "SyntaxMappingConflict", comment: "heading"), items: self.interpreterConflicts)
             }
             
             HStack {
@@ -101,23 +101,23 @@ private struct ConflictTable: View {
     typealias Item = FileMappingConflict
     
     var name: String
-    @State var conflicts: [Item] = []
+    @State var items: [Item]
     
     @State private var selection: Item.ID?
     @State private var sortOrder = [KeyPathComparator(\Item.name)]
     
     
-    init(_ name: String, conflicts: [Item]) {
+    init(_ name: String, items: [Item]) {
         
         self.name = name
-        self.conflicts = conflicts
+        self.items = items
     }
     
     
     var body: some View {
         
         Section {
-            Table(self.conflicts, selection: $selection, sortOrder: $sortOrder) {
+            Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(self.name, value: \.name)
                 TableColumn(String(localized: "Used syntax", table: "SyntaxMappingConflict", comment: "table column header"), value: \.primarySyntax) {
                     Text($0.primarySyntax).fontWeight(.semibold)
@@ -127,7 +127,7 @@ private struct ConflictTable: View {
                 }
             }
             .onChange(of: self.sortOrder) { (_, newValue) in
-                self.conflicts.sort(using: newValue)
+                self.items.sort(using: newValue)
             }
             .tableStyle(.bordered)
             

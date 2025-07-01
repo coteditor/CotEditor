@@ -28,7 +28,7 @@ import QuickLookUI
 
 struct FilePreviewView: View {
     
-    @State var item: PreviewDocument
+    var item: PreviewDocument
     
     
     var body: some View {

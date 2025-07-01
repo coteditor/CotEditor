@@ -127,8 +127,8 @@ struct RegularExpressionReferenceView: View {
     
     private struct DefinitionList: View {
         
-        @State private var title: String
-        @State private var definitions: [Definition]
+        private var title: String
+        private var definitions: [Definition]
         
         
         init(_ definitions: [Definition], title: String) {
