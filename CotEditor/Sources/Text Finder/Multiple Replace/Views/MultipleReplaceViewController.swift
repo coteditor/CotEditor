@@ -274,9 +274,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { target in
-                MainActor.assumeIsolated {
-                    target.removeReplacements(at: rowIndexes)
-                }
+                target.removeReplacements(at: rowIndexes)
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Insert Rule", table: "MultipleReplace", comment: "action name"))
@@ -304,9 +302,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-                MainActor.assumeIsolated {
-                    target.insertReplacements(replacements, at: rowIndexes)
-                }
+                target.insertReplacements(replacements, at: rowIndexes)
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Delete Rules", table: "MultipleReplace", comment: "action name"))
@@ -338,9 +334,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-                MainActor.assumeIsolated {
-                    target.updateReplacements(replacements, at: rowIndexes)
-                }
+                target.updateReplacements(replacements, at: rowIndexes)
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Edit Rule", table: "MultipleReplace", comment: "action name"))
@@ -375,9 +369,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { target in
-                MainActor.assumeIsolated {
-                    target.moveReplacements(from: destinationRows, to: sourceRows)
-                }
+                target.moveReplacements(from: destinationRows, to: sourceRows)
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Move Rules", table: "MultipleReplace", comment: "action name"))

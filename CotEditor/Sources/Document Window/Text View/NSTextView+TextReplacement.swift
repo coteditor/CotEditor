@@ -123,15 +123,12 @@ extension NSTextView {
         {
             self.selectedRanges = set.selectedRanges
             self.insertionLocations = set.insertionLocations
-            
         } else {
             self.selectedRanges = ranges as [NSValue]
         }
         
         self.undoManager?.registerUndo(withTarget: self) { target in
-            MainActor.assumeIsolated {
-                target.setSelectedRangesWithUndo(ranges)
-            }
+            target.setSelectedRangesWithUndo(ranges)
         }
     }
     

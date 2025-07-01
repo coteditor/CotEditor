@@ -985,18 +985,15 @@ extension Document: EditorSource {
         
         // register undo
         if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
-                MainActor.assumeIsolated {
-                    target.fileEncoding = currentFileEncoding
-                    target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
-                    target.allowsLossySaving = false
-                    
-                    // register redo
-                    target.undoManager?.registerUndo(withTarget: target) { target in
-                        MainActor.assumeIsolated {
-                            target.changeEncoding(to: fileEncoding)
-                        }
-                    }
+            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding,
+                                                          shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
+                target.fileEncoding = currentFileEncoding
+                target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
+                target.allowsLossySaving = false
+                
+                // register redo
+                target.undoManager?.registerUndo(withTarget: target) { target in
+                    target.changeEncoding(to: fileEncoding)
                 }
             }
             undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”",
@@ -1026,20 +1023,17 @@ extension Document: EditorSource {
         // register undo
         if let undoManager = self.undoManager {
             let selectedRanges = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection).map(\.selectedRange)
-            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
-                MainActor.assumeIsolated {
-                    target.textStorage.replaceContent(with: string)
-                    target.lineEnding = currentLineEnding
-                    for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
-                        textView.selectedRange = range
-                    }
-                    
-                    // register redo
-                    target.undoManager?.registerUndo(withTarget: target) { target in
-                        MainActor.assumeIsolated {
-                            target.changeLineEnding(to: lineEnding)
-                        }
-                    }
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding,
+                                                          string = self.textStorage.string] target in
+                target.textStorage.replaceContent(with: string)
+                target.lineEnding = currentLineEnding
+                for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
+                    textView.selectedRange = range
+                }
+                
+                // register redo
+                target.undoManager?.registerUndo(withTarget: target) { target in
+                    target.changeLineEnding(to: lineEnding)
                 }
             }
             undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.label)",

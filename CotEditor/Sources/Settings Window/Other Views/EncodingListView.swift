@@ -332,9 +332,7 @@ private extension EncodingListView.Model {
     private func registerUndo() {
         
         self.undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
-            MainActor.assumeIsolated {
-                target.update(items: items)
-            }
+            target.update(items: items)
         }
     }
     
@@ -346,9 +344,7 @@ private extension EncodingListView.Model {
     private func update(items: [Item]) {
         
         self.undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
-            MainActor.assumeIsolated {
-                target.update(items: items)
-            }
+            target.update(items: items)
         }
         
         self.items = items
