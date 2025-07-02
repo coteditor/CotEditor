@@ -102,6 +102,7 @@ struct WindowSettingsView: View {
                                 .accessibilityLabeledPair(role: .content, id: "windowWidth", in: self.accessibility)
                             Text("Width", tableName: "WindowSettings")
                                 .controlSize(.small)
+                                .accessibilitySortPriority(1)
                                 .accessibilityLabeledPair(role: .label, id: "windowWidth", in: self.accessibility)
                         }
                         Text("px", tableName: "WindowSettings", comment: "length unit following an input field")
@@ -118,6 +119,7 @@ struct WindowSettingsView: View {
                                 .accessibilityLabeledPair(role: .label, id: "windowHeight", in: self.accessibility)
                             Text("Height", tableName: "WindowSettings")
                                 .controlSize(.small)
+                                .accessibilitySortPriority(1)
                                 .accessibilityLabeledPair(role: .content, id: "windowHeight", in: self.accessibility)
                         }
                         Text("px", tableName: "WindowSettings", comment: "length unit following an input field")

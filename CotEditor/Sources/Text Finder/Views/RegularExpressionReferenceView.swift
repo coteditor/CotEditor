@@ -151,6 +151,9 @@ struct RegularExpressionReferenceView: View {
                         GridRow {
                             Text(definition.term)
                                 .fontWeight(.medium)
+                                .speechAlwaysIncludesPunctuation()
+                                .speechSpellsOutCharacters()
+                                .accessibilityTextContentType(.sourceCode)
                             Text(definition.description)
                         }
                     }

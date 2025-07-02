@@ -49,6 +49,8 @@ struct ModeSettingsView: View {
                             self.manager.save(setting: newValue, mode: self.selection)
                         }
                         .frame(maxWidth: .infinity)
+                        .accessibilityElement(children: .contain)
+                        .accessibilityLabel(self.selection.label)
                 }
             }
             
@@ -114,6 +116,7 @@ private struct ModeListView: View {
                     }
                 }
             }
+            .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
             
             Divider()
                 .padding(.horizontal, 6)
