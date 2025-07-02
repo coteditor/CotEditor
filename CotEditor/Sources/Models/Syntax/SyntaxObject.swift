@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,14 +24,20 @@
 //
 
 import Foundation
-import Observation
 import Syntax
 
 @Observable final class SyntaxObject {
     
-    typealias Highlight = SyntaxObjectHighlight
-    typealias Outline = SyntaxObjectOutline
-    typealias KeyString = SyntaxObjectKeyString
+    struct Item<Value: Sendable & Equatable>: Identifiable {
+        
+        let id = UUID()
+        var value: Value
+    }
+    
+    
+    typealias Highlight = Item<Syntax.Highlight>
+    typealias Outline = Item<Syntax.Outline>
+    typealias KeyString = Item<String>
     typealias Comment = Syntax.Comment
     typealias Metadata = Syntax.Metadata
     
@@ -60,7 +66,7 @@ import Syntax
     var metadata: Metadata = Metadata()
     
     
-    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<SyntaxObject, [Highlight]> {
+    static func highlightKeyPath(for type: SyntaxType) -> KeyPath<SyntaxObject, [Highlight]> {
         
         switch type {
             case .keywords: \.keywords
@@ -78,45 +84,12 @@ import Syntax
 }
 
 
-struct SyntaxObjectHighlight: Identifiable {
-    
-    let id = UUID()
-    
-    var begin: String = ""
-    var end: String?
-    var isRegularExpression: Bool = false
-    var ignoreCase: Bool = false
-    var description: String?
-}
-
-
-struct SyntaxObjectOutline: Identifiable {
-    
-    let id = UUID()
-    
-    var pattern: String = ""
-    var template: String = ""
-    var ignoreCase: Bool = false
-    var bold: Bool = false
-    var italic: Bool = false
-    var underline: Bool = false
-    var description: String?
-}
-
-
-struct SyntaxObjectKeyString: Identifiable {
-    
-    let id = UUID()
-    
-    var string: String = ""
-}
-
-
 // MARK: Definition Conversion
 
 extension SyntaxObject {
     
     typealias Value = Syntax
+    
     
     convenience init(value: Value? = nil) {
         
@@ -182,84 +155,28 @@ extension SyntaxObject {
 }
 
 
-extension SyntaxObjectHighlight {
+extension SyntaxObject.Item<Syntax.Highlight> {
     
-    typealias Value = Syntax.Highlight
-    
-    init(value: Value) {
+    init() {
         
-        self.begin = value.begin
-        self.end = value.end
-        self.isRegularExpression = value.isRegularExpression
-        self.ignoreCase = value.ignoreCase
-        self.description = value.description
-    }
-    
-    
-    var value: Value {
-        
-        Value(begin: self.begin,
-              end: self.end,
-              isRegularExpression: self.isRegularExpression,
-              ignoreCase: self.ignoreCase,
-              description: self.description)
+        self.value = .init()
     }
 }
 
 
-extension SyntaxObjectOutline {
+extension SyntaxObject.Item<Syntax.Outline> {
     
-    typealias Value = Syntax.Outline
-    
-    init(value: Value) {
+    init() {
         
-        self.pattern = value.pattern
-        self.template = value.template
-        self.ignoreCase = value.ignoreCase
-        self.bold = value.bold
-        self.italic = value.italic
-        self.underline = value.underline
-        self.description = value.description
-    }
-    
-    
-    var value: Value {
-        
-        Value(pattern: self.pattern,
-              template: self.template,
-              ignoreCase: self.ignoreCase,
-              bold: self.bold,
-              italic: self.italic,
-              underline: self.underline,
-              description: self.description)
+        self.value = .init()
     }
 }
 
 
-extension SyntaxObjectKeyString {
+extension SyntaxObject.Item<String> {
     
-    typealias Value = String
-    
-    init(value: Value) {
+    init() {
         
-        self.string = value
-    }
-    
-    
-    var value: Value {
-        
-        self.string
-    }
-}
-
-
-extension SyntaxObjectHighlight: Equatable {
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        
-        lhs.begin == rhs.begin &&
-        lhs.end == rhs.end &&
-        lhs.isRegularExpression == rhs.isRegularExpression &&
-        lhs.ignoreCase == rhs.ignoreCase
+        self.value = .init()
     }
 }

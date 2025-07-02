@@ -46,58 +46,58 @@ struct SyntaxHighlightEditView: View {
             // create a table with wrapped values and then find the editable item again in each column
             // to avoid taking time when leaving a pane with a large number of items. (2024-02-25 macOS 14)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.isRegularExpression) { wrappedItem in
+                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        Toggle(isOn: item.isRegularExpression, label: EmptyView.init)
+                        Toggle(isOn: item.value.isRegularExpression, label: EmptyView.init)
                             .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
-                            .onChange(of: item.isRegularExpression.wrappedValue) { (_, newValue) in
+                            .onChange(of: item.value.isRegularExpression.wrappedValue) { (_, newValue) in
                                 guard self.selection.contains(item.id) else { return }
                                 $items
                                     .filter(with: self.selection)
                                     .filter { $0.id != item.id }
-                                    .forEach { $0.isRegularExpression.wrappedValue = newValue }
+                                    .forEach { $0.value.isRegularExpression.wrappedValue = newValue }
                             }
                     }
                 }
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.ignoreCase) { wrappedItem in
+                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.value.ignoreCase) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        Toggle(isOn: item.ignoreCase, label: EmptyView.init)
+                        Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
                             .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                            .onChange(of: item.ignoreCase.wrappedValue) { (_, newValue) in
+                            .onChange(of: item.value.ignoreCase.wrappedValue) { (_, newValue) in
                                 guard self.selection.contains(item.id) else { return }
                                 $items
                                     .filter(with: self.selection)
                                     .filter { $0.id != item.id }
-                                    .forEach { $0.ignoreCase.wrappedValue = newValue }
+                                    .forEach { $0.value.ignoreCase.wrappedValue = newValue }
                             }
                     }
                 }
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.begin) { wrappedItem in
+                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.value.begin) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        RegexTextField(text: item.begin, showsError: true)
-                            .regexHighlighted(item.isRegularExpression.wrappedValue)
+                        RegexTextField(text: item.value.begin, showsError: true)
+                            .regexHighlighted(item.value.isRegularExpression.wrappedValue)
                             .style(.table)
                             .focused($focusedField, equals: item.id)
                     }
                 }
                 
-                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.end)) { wrappedItem in
+                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.end)) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        RegexTextField(text: item.end ?? "", showsError: true)
-                            .regexHighlighted(item.isRegularExpression.wrappedValue)
+                        RegexTextField(text: item.value.end ?? "", showsError: true)
+                            .regexHighlighted(item.value.isRegularExpression.wrappedValue)
                             .style(.table)
                     }
                 }
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.description)) { wrappedItem in
+                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.description)) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        TextField(text: item.description ?? "", label: EmptyView.init)
+                        TextField(text: item.value.description ?? "", label: EmptyView.init)
                     }
                 }
             }
@@ -123,9 +123,9 @@ struct SyntaxHighlightEditView: View {
 
 #Preview {
     @Previewable @State var items: [SyntaxObject.Highlight] = [
-        .init(begin: "(inu)", end: "(dog)"),
-        .init(begin: "[Cc]at", end: "$0", isRegularExpression: true, description: "note"),
-        .init(begin: "[]", isRegularExpression: true, ignoreCase: true),
+        .init(value: .init(begin: "(inu)", end: "(dog)")),
+        .init(value: .init(begin: "[Cc]at", end: "$0", isRegularExpression: true, description: "note")),
+        .init(value: .init(begin: "[]", isRegularExpression: true, ignoreCase: true)),
     ]
     
     SyntaxHighlightEditView(items: $items)

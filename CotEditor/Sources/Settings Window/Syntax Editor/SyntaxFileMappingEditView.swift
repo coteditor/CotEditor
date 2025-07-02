@@ -99,7 +99,7 @@ struct SyntaxFileMappingEditView: View {
                 
                 List(selection: $selection) {
                     ForEach($items) {
-                        TextField(text: $0.string, label: EmptyView.init)
+                        TextField(text: $0.value, label: EmptyView.init)
                             .focused($focusedField, equals: $0.id)
                     }
                     .onMove { (indexes, index) in
@@ -124,7 +124,7 @@ struct SyntaxFileMappingEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var extensions: [SyntaxObject.KeyString] = [.init(string: "abc")]
+    @Previewable @State var extensions: [SyntaxObject.KeyString] = [.init(value: "abc")]
     @Previewable @State var filenames: [SyntaxObject.KeyString] = []
     @Previewable @State var interpreters: [SyntaxObject.KeyString] = []
     

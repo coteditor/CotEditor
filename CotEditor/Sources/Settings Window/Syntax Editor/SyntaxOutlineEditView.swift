@@ -45,20 +45,20 @@ struct SyntaxOutlineEditView: View {
             
             Table($items, selection: $selection) {
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
-                    Toggle(isOn: item.ignoreCase, label: EmptyView.init)
+                    Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
                         .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                 }
                 .width(24)
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in
-                    RegexTextField(text: item.pattern, showsError: true)
+                    RegexTextField(text: item.value.pattern, showsError: true)
                         .style(.table)
                         .focused($focusedField, equals: item.id)
                 }
                 
                 TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.description ?? "", label: EmptyView.init)
+                    TextField(text: item.value.description ?? "", label: EmptyView.init)
                 }
             }
             .tableStyle(.bordered)
@@ -104,15 +104,15 @@ struct SyntaxOutlineEditView: View {
                         .foregroundStyle(.secondary)
                 }
                 
-                RegexTextField(text: $outline.template, mode: .replacement(unescapes: false), prompt: self.prompt)
+                RegexTextField(text: $outline.value.template, mode: .replacement(unescapes: false), prompt: self.prompt)
                     .accessibilityLabeledPair(role: .content, id: "titlePattern", in: self.accessibility)
                 
                 HStack(alignment: .firstTextBaseline) {
-                    Toggle(String(localized: "Bold", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.bold)
+                    Toggle(String(localized: "Bold", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.value.bold)
                         .bold()
-                    Toggle(String(localized: "Italic", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.italic)
+                    Toggle(String(localized: "Italic", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.value.italic)
                         .italic()
-                    Toggle(String(localized: "Underline", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.underline)
+                    Toggle(String(localized: "Underline", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.value.underline)
                         .underline()
                 }.controlSize(.small)
             }.disabled(self.error != nil)
@@ -148,8 +148,8 @@ enum SelectionError: Error {
 
 #Preview {
     @Previewable @State var items: [SyntaxObject.Outline] = [
-        .init(pattern: "abc"),
-        .init(pattern: "def", ignoreCase: true, italic: true),
+        .init(value: .init(pattern: "abc")),
+        .init(value: .init(pattern: "def", ignoreCase: true, italic: true)),
     ]
     
     SyntaxOutlineEditView(items: $items)

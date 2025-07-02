@@ -62,11 +62,12 @@ extension SyntaxObject {
         
         for keyPath in SyntaxType.allCases.map(Self.highlightKeyPath(for:)) {
             let highlights = self[keyPath: keyPath]
+                .map(\.value)
                 .sorted(using: [KeyPathComparator(\.begin),
                                 KeyPathComparator(\.end)])  // sort for duplication check
             
             // allow appearing the same highlights in different kinds
-            var lastHighlight: Highlight?
+            var lastHighlight: Syntax.Highlight?
             
             for highlight in highlights {
                 defer {
@@ -96,7 +97,7 @@ extension SyntaxObject {
             }
         }
         
-        for outline in self.outlines {
+        for outline in self.outlines.map(\.value) {
             do {
                 _ = try NSRegularExpression(pattern: outline.pattern)
             } catch {
