@@ -113,7 +113,7 @@ extension EditorTextView: TextSizeChanging {
     /// Resets scale and font to default.
     @IBAction func resetFont(_ sender: Any?) {
         
-        self.font = UserDefaults.standard.font(for: self.mode.fontType)
+        self.setFont(type: self.defaultFontType)
         self.setScaleKeepingVisibleArea(1.0)
     }
 }

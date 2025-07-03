@@ -68,17 +68,22 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     // MARK: Public Properties
     
     var lineEnding: LineEnding = .lf
+    var defaultFontType: FontType = .standard
     
     var syntaxName: String = SyntaxName.none
-    var mode: ModeOptions = ModeOptions()  { didSet { if mode != oldValue { self.applyMode() } } }
     
     var theme: Theme?  { didSet { self.applyTheme() } }
     
+    var isAutomaticSymbolBalancingEnabled = false
+    var isAutomaticCompletionEnabled = false
+    var isAutomaticIndentEnabled = false
+    var isAutomaticPeriodSubstitutionEnabled = false  { didSet { self.invalidateAutomaticPeriodSubstitution() } }
     var isAutomaticTabExpansionEnabled = false
     var isApprovedTextChange = false
     
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
     var syntaxCompletionWords: [String] = []
+    var completionWordTypes: CompletionWordTypes = []
     
     var needsUpdateLineHighlight = true {
         
@@ -117,11 +122,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var textHighlightColor: NSColor = .accent
     private var instanceHighlightTask: Task<Void, any Error>?
-    
-    private var isAutomaticPeriodSubstitutionEnabled = false  { didSet { self.invalidateAutomaticPeriodSubstitution() } }
-    private var isAutomaticSymbolBalancingEnabled = false
-    private var isAutomaticCompletionEnabled = false
-    private var isAutomaticIndentEnabled = false
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
@@ -181,8 +181,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
         textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
         
-        // setup mode related values
-        self.applyMode()
+        // initialize font settings
+        self.setFont(type: self.defaultFontType)
         
         // observe changes in defaults
         self.defaultsObservers = [
@@ -1323,11 +1323,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     
     /// Sets the font (font, antialias, and ligature) to the given font type.
-    ///
-    /// - Parameter type: The font type to change.
-    func setFont(type: FontType) {
+    /// 
+    /// - Parameters:
+    ///   - type: The font type to change.
+    ///   - defaults: The user defaults to refer settings.
+    func setFont(type: FontType, defaults: UserDefaults = .standard) {
         
-        let defaults = UserDefaults.standard
         self.font = defaults.font(for: type)
         self.ligature = defaults[.ligature(for: type)] ? .standard : .none
         self.usesAntialias = defaults[.antialias(for: type)]
@@ -1438,28 +1439,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-    }
-    
-    
-    /// Updates the settings for the current mode.
-    private func applyMode() {
-        
-        let mode = self.mode
-        
-        self.setFont(type: mode.fontType)
-        
-        self.smartInsertDeleteEnabled = mode.smartInsertDelete
-        self.isAutomaticDashSubstitutionEnabled = mode.automaticDashSubstitution
-        self.isAutomaticQuoteSubstitutionEnabled = mode.automaticQuoteSubstitution
-        self.isAutomaticTextReplacementEnabled = mode.automaticTextReplacement
-        self.isAutomaticPeriodSubstitutionEnabled = mode.automaticPeriodSubstitution
-        self.isAutomaticSymbolBalancingEnabled = mode.automaticSymbolBalancing
-        
-        self.isContinuousSpellCheckingEnabled = mode.continuousSpellChecking
-        self.isGrammarCheckingEnabled = mode.grammarChecking
-        self.isAutomaticSpellingCorrectionEnabled = mode.automaticSpellingCorrection
-        
-        self.isAutomaticCompletionEnabled = mode.automaticCompletion && !mode.completionWordTypes.isEmpty
     }
     
     
@@ -1694,7 +1673,7 @@ extension EditorTextView {
         let partialWord = (self.string as NSString).substring(with: charRange)
         
         // add words in document
-        if self.mode.completionWordTypes.contains(.document) {
+        if self.completionWordTypes.contains(.document) {
             let documentWords: [String] = {
                 // do nothing if the particle word is a symbol
                 guard charRange.length > 1 || CharacterSet.alphanumerics.contains(partialWord.unicodeScalars.first!) else { return [] }
@@ -1708,13 +1687,13 @@ extension EditorTextView {
         }
         
         // add words defined in syntax
-        if self.mode.completionWordTypes.contains(.syntax) {
+        if self.completionWordTypes.contains(.syntax) {
             let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: partialWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.append(contentsOf: syntaxWords)
         }
         
         // add the standard words from default completion words
-        if self.mode.completionWordTypes.contains(.standard) {
+        if self.completionWordTypes.contains(.standard) {
             let words = super.completions(forPartialWordRange: charRange, indexOfSelectedItem: index) ?? []
             candidateWords.append(contentsOf: words)
         }

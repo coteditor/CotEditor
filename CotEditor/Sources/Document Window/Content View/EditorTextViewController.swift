@@ -122,7 +122,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         super.viewWillAppear()
         
         self.textView.lineEnding = self.document.lineEnding
-        self.textView.mode = ModeManager.shared.setting(for: self.document.mode)
+        self.textView.applyMode(ModeManager.shared.setting(for: self.document.mode))
         self.applySyntax()
         
         self.observers = [
@@ -132,7 +132,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 .sink { [weak self] in self?.textView.lineEnding = $0 },
             self.document.$mode
                 .removeDuplicates()
-                .sink { [weak self] in self?.textView.mode = ModeManager.shared.setting(for: $0) },
+                .map(ModeManager.shared.setting(for:))
+                .sink { [weak self] in self?.textView.applyMode($0) },
             
             // observe text orientation for line number view
             self.textView.publisher(for: \.layoutOrientation, options: .initial)
@@ -540,6 +541,35 @@ extension EditorTextViewController: NSFontChanging {
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
         [.collection, .face, .size]
+    }
+}
+
+
+// MARK: Extensions
+
+private extension EditorTextView {
+    
+    /// Updates the settings for the given mode.
+    ///
+    /// - Parameter mode: The mode options to apply.
+    func applyMode(_ mode: ModeOptions) {
+        
+        self.defaultFontType = mode.fontType
+        self.setFont(type: mode.fontType)
+        
+        self.smartInsertDeleteEnabled = mode.smartInsertDelete
+        self.isAutomaticDashSubstitutionEnabled = mode.automaticDashSubstitution
+        self.isAutomaticQuoteSubstitutionEnabled = mode.automaticQuoteSubstitution
+        self.isAutomaticTextReplacementEnabled = mode.automaticTextReplacement
+        self.isAutomaticPeriodSubstitutionEnabled = mode.automaticPeriodSubstitution
+        self.isAutomaticSymbolBalancingEnabled = mode.automaticSymbolBalancing
+        
+        self.isContinuousSpellCheckingEnabled = mode.continuousSpellChecking
+        self.isGrammarCheckingEnabled = mode.grammarChecking
+        self.isAutomaticSpellingCorrectionEnabled = mode.automaticSpellingCorrection
+        
+        self.completionWordTypes = mode.completionWordTypes
+        self.isAutomaticCompletionEnabled = mode.automaticCompletion && !mode.completionWordTypes.isEmpty
     }
 }
 
