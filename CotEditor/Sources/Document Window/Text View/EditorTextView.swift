@@ -80,11 +80,22 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var isAutomaticPeriodSubstitutionEnabled = false  { didSet { self.invalidateAutomaticPeriodSubstitution() } }
     var isAutomaticTabExpansionEnabled = false
     var isApprovedTextChange = false
+    var indentsWithTabKey = false
     
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
     var syntaxCompletionWords: [String] = []
     var completionWordTypes: CompletionWordTypes = []
     
+    var showsPageGuide = false  { didSet { self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) } }
+    var pageGuideColumn: Int = 80  { didSet { self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)} }
+    var overscrollRate: Double = 0  { didSet { self.invalidateOverscrollRate() } }
+    
+    var highlightsBraces = false
+    var highlightsLtGt = false
+    var highlightsSelectionInstance = false  { didSet { self.invalidateInstanceHighlights() } }
+    var selectionInstanceHighlightDelay: Double = 0.5  // seconds
+    
+    var highlightsCurrentLines = false  { didSet { self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) } }
     var needsUpdateLineHighlight = true {
         
         didSet {
@@ -176,10 +187,21 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // setup behaviors
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
+        self.indentsWithTabKey = defaults[.indentWithTabKey]
         
         layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
         textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
+        
+        // setup drawing options
+        self.pageGuideColumn = defaults[.pageGuideColumn]
+        self.overscrollRate = defaults[.overscrollRate]
+        self.highlightsCurrentLines = defaults[.highlightCurrentLine]
+        
+        self.highlightsBraces = defaults[.highlightBraces]
+        self.highlightsLtGt = defaults[.highlightLtGt]
+        self.highlightsSelectionInstance = defaults[.highlightSelectionInstance]
+        self.selectionInstanceHighlightDelay = defaults[.selectionInstanceHighlightDelay]
         
         // initialize font settings
         self.setFont(type: self.defaultFontType)
@@ -195,6 +217,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
             defaults.publisher(for: .autoIndent)
                 .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
+            defaults.publisher(for: .indentWithTabKey)
+                .sink { [unowned self] in self.indentsWithTabKey = $0 },
             
             defaults.publisher(for: .showIndentGuides)
                 .sink { [unowned self] in self.showsIndentGuides = $0 },
@@ -210,14 +234,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 },
             
             defaults.publisher(for: .pageGuideColumn)
-                .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
+                .sink { [unowned self] in self.pageGuideColumn = $0 },
             defaults.publisher(for: .overscrollRate)
-                .sink { [unowned self] _ in self.invalidateOverscrollRate() },
+                .sink { [unowned self] in self.overscrollRate = $0.clamped(to: 0...1.0) },
             defaults.publisher(for: .highlightCurrentLine)
-                .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
+                .sink { [unowned self] in self.highlightsCurrentLines = $0 },
+            defaults.publisher(for: .highlightBraces)
+                .sink { [unowned self] in self.highlightsBraces = $0 },
+            defaults.publisher(for: .highlightLtGt)
+                .sink { [unowned self] in self.highlightsLtGt = $0 },
             defaults.publisher(for: .highlightSelectionInstance)
-                .filter { !$0 }
-                .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range) },
+                .sink { [unowned self] in self.highlightsSelectionInstance = $0 },
+            defaults.publisher(for: .selectionInstanceHighlightDelay)
+                .sink { [unowned self] in self.selectionInstanceHighlightDelay = $0 },
         ]
     }
     
@@ -586,7 +615,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     override func insertTab(_ sender: Any?) {
         
         // indent with tab key
-        if UserDefaults.standard[.indentWithTabKey], !self.rangeForUserTextChange.isEmpty {
+        if self.indentsWithTabKey, !self.rangeForUserTextChange.isEmpty {
             self.indent()
             return
         }
@@ -609,7 +638,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     override func insertBacktab(_ sender: Any?) {
         
         // outdent with tab key
-        if UserDefaults.standard[.indentWithTabKey] {
+        if self.indentsWithTabKey {
             self.outdent()
             return
         }
@@ -788,7 +817,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.needsUpdateLineHighlight = true
         
         // invalidate current instances highlight
-        if UserDefaults.standard[.highlightSelectionInstance] {
+        if self.highlightsSelectionInstance {
             self.instanceHighlightTask?.cancel()
             if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
                 layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range)
@@ -797,14 +826,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
-            if UserDefaults.standard[.highlightBraces] {
-                let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+            if self.highlightsBraces {
+                let bracePairs = BracePair.braces + (self.highlightsLtGt ? [.ltgt] : [])
                 self.highlightMatchingBrace(candidates: bracePairs, in: self.visibleRect)
             }
             
             // update instances highlight
-            if UserDefaults.standard[.highlightSelectionInstance] {
-                self.highlightInstances(after: .seconds(UserDefaults.standard[.selectionInstanceHighlightDelay]))
+            if self.highlightsSelectionInstance {
+                self.highlightInstances(after: .seconds(self.selectionInstanceHighlightDelay))
             }
         }
         
@@ -961,8 +990,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         guard let range = self.range(for: rect) else { return }
         
-        // draw current line highlight
-        if UserDefaults.standard[.highlightCurrentLine] {
+        if self.highlightsCurrentLines {
             self.drawCurrentLine(range: range, in: rect)
         }
         
@@ -978,7 +1006,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if self.showsPageGuide,
            let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
+            let column = CGFloat(self.pageGuideColumn)
             let inset = self.textContainerInset.width
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
             let x = spaceWidth * column + inset + linePadding + 2  // +2 px for an esthetic adjustment
@@ -1256,7 +1284,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     
     /// The line height multiple.
-    var lineHeight: CGFloat = 1.2 {
+    var lineHeight: Double = 1.2 {
         
         didSet {
             lineHeight = max(lineHeight, 0)
@@ -1266,15 +1294,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             self.invalidateDefaultParagraphStyle()
             self.needsUpdateLineHighlight = true
             self.needsUpdateInsertionIndicators = true
-        }
-    }
-    
-    
-    /// Whether draws the page guide.
-    var showsPageGuide = false {
-        
-        didSet {
-            self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
         }
     }
     
@@ -1499,8 +1518,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         guard let layoutManager = self.layoutManager as? LayoutManager else { return }
         
         let visibleRect = self.visibleRect
-        let rate = UserDefaults.standard[.overscrollRate].clamped(to: 0...1.0)
-        let inset = rate * (visibleRect.height - layoutManager.lineHeight)
+        let inset = self.overscrollRate * (visibleRect.height - layoutManager.lineHeight)
         
         // halve inset since the input value will be added to both top and bottom
         let height = max((inset / 2).rounded(.down), Self.textContainerInset.height)
@@ -1589,6 +1607,15 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                     }
                 }
             }
+        }
+    }
+    
+    
+    /// Updates the selection instance highlighting state.
+    private func invalidateInstanceHighlights() {
+        
+        if !self.highlightsSelectionInstance {
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range)
         }
     }
 }
