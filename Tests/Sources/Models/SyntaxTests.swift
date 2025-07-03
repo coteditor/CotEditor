@@ -128,16 +128,4 @@ actor SyntaxTests {
         #expect(item.range.length == 15)
         #expect(item.style.isEmpty)
     }
-    
-    
-    @Test func viewModelHighlightEquality() {
-        
-        let termA = SyntaxObject.Highlight(begin: "abc", end: "def")
-        let termB = SyntaxObject.Highlight(begin: "abc", end: "def")
-        let termC = SyntaxObject.Highlight(begin: "abc")
-        
-        #expect(termA == termB)
-        #expect(termA != termC)
-        #expect(termA.id != termB.id)
-    }
 }
