@@ -241,6 +241,8 @@ private struct SyntaxListView: View {
             } primaryAction: { selections in
                 self.editingMode = selections.first.map { .edit($0) }
             }
+            .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
+                                entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
             .listStyle(.bordered)
             .border(.white)
             .environment(\.defaultMinListRowHeight, self.rowHeight)

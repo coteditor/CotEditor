@@ -89,6 +89,46 @@
         }
       }
     },
+    "Customized Syntaxes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifizierte Syntaxen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customized Syntaxes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sintaxis personalizadas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Syntaxes personnalisées"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カスタマイズされたシンタックス"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aangepaste syntaxen"
+          }
+        }
+      }
+    },
     "Default encoding:" : {
       "localizations" : {
         "cs" : {
