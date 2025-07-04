@@ -79,7 +79,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var isAutomaticIndentEnabled = false
     var isAutomaticPeriodSubstitutionEnabled = false  { didSet { self.invalidateAutomaticPeriodSubstitution() } }
     var isAutomaticTabExpansionEnabled = false
+    var isAutomaticWhitespaceTrimmingEnabled = false
     var isApprovedTextChange = false
+    var trimsWhitespaceOnlyLines = true
     var indentsWithTabKey = false
     
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
@@ -139,7 +141,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private var partialCompletionWord: String?
     private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
     
-    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoringEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
+    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(keepingEditingPoint: true) }
     
     private var defaultsObservers: Set<AnyCancellable> = []
     private var fontObservers: Set<AnyCancellable> = []
@@ -187,6 +189,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // setup behaviors
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
+        self.isAutomaticWhitespaceTrimmingEnabled = defaults[.autoIndent]
+        self.trimsWhitespaceOnlyLines = defaults[.trimsWhitespaceOnlyLines]
         self.indentsWithTabKey = defaults[.indentWithTabKey]
         
         layoutManager.showsIndentGuides = defaults[.showIndentGuides]
@@ -217,8 +221,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
             defaults.publisher(for: .autoIndent)
                 .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
+            defaults.publisher(for: .trimsWhitespaceOnlyLines)
+                .sink { [unowned self] in self.trimsWhitespaceOnlyLines = $0 },
             defaults.publisher(for: .indentWithTabKey)
                 .sink { [unowned self] in self.indentsWithTabKey = $0 },
+            defaults.publisher(for: .autoTrimsTrailingWhitespace)
+                .sink { [unowned self] in self.isAutomaticWhitespaceTrimmingEnabled = $0 },
             
             defaults.publisher(for: .showIndentGuides)
                 .sink { [unowned self] in self.showsIndentGuides = $0 },
@@ -511,8 +519,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.instanceHighlightTask?.cancel()
         
-        // trim trailing whitespace if needed
-        if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
+        if self.isAutomaticWhitespaceTrimmingEnabled {
             self.trimTrailingWhitespaceTask.schedule(delay: .seconds(3))
         }
         
@@ -1162,7 +1169,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                  #selector(duplicateLine),
                  #selector(deleteLine),
                  #selector(joinLines),
-                 #selector(trimTrailingWhitespace),
+                 #selector(trimTrailingWhitespace(_:)),
                  #selector(patternSort),
                  #selector(insertSnippet),
                  #selector(surroundSelectionWithSingleQuotes),

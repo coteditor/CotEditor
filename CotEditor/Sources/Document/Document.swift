@@ -472,8 +472,8 @@ extension Document: EditorSource {
         }
         
         // trim trailing whitespace if needed
-        if self.isEditable, !saveOperation.isAutosave, UserDefaults.standard[.autoTrimsTrailingWhitespace] {
-            textViews.first?.trimTrailingWhitespace(ignoringEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
+        if self.isEditable, !saveOperation.isAutosave, let textView = textViews.first as? EditorTextView, textView.isAutomaticWhitespaceTrimmingEnabled {
+            textView.trimTrailingWhitespace()
         }
         
         // apply save panel options

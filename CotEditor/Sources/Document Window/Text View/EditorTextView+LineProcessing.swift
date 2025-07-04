@@ -148,9 +148,7 @@ extension EditorTextView {
     /// Trims all trailing whitespace.
     @IBAction func trimTrailingWhitespace(_ sender: Any?) {
         
-        let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
-        
-        self.trimTrailingWhitespace(ignoringEmptyLines: !trimsWhitespaceOnlyLines)
+        self.trimTrailingWhitespace()
     }
     
     
@@ -202,11 +200,14 @@ extension EditorTextView {
 }
 
 
-extension NSTextView {
+extension EditorTextView {
     
-    /// Trims all trailing whitespace with/without keeping editing point.
-    final func trimTrailingWhitespace(ignoringEmptyLines: Bool, keepingEditingPoint: Bool = false) {
+    /// Trims trailing whitespace in the text.
+    ///
+    /// - Parameter keepingEditingPoint: Whether keeping whitespace in the lines where insertion points are present.
+    final func trimTrailingWhitespace(keepingEditingPoint: Bool = false) {
         
+        let ignoringEmptyLines = !self.trimsWhitespaceOnlyLines
         let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
         guard let context = self.string.trimTrailingWhitespace(ignoringEmptyLines: ignoringEmptyLines, keepingEditingPoint: keepingEditingPoint, in: editingRanges) else { return }
