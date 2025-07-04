@@ -148,7 +148,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(keepingEditingPoint: true) }
     
-    private var defaultsObservers: Set<AnyCancellable> = []
     private var fontObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: AnyCancellable?
     private var keyStateObservers: [any NSObjectProtocol] = []
@@ -184,83 +183,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.linkTextAttributes?.removeValue(forKey: .foregroundColor)
         
-        let defaults = UserDefaults.standard
-        
-        // set paragraph style values
-        self.lineHeight = defaults[.lineHeight]
-        self.tabWidth = defaults[.tabWidth]
-        layoutManager.tabWidth = self.tabWidth
-        
-        // setup behaviors
-        self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
-        self.isAutomaticIndentEnabled = defaults[.autoIndent]
-        self.isAutomaticWhitespaceTrimmingEnabled = defaults[.autoIndent]
-        self.trimsWhitespaceOnlyLines = defaults[.trimsWhitespaceOnlyLines]
-        self.indentsWithTabKey = defaults[.indentWithTabKey]
-        
-        // setup layout-related options
-        self.shownInvisibles = defaults.shownInvisible
-        self.showsIndentGuides = defaults[.showIndentGuides]
-        self.isHangingIndentEnabled = defaults[.enablesHangingIndent]
-        self.hangingIndentWidth = defaults[.hangingIndentWidth]
-        
-        // setup drawing options
-        self.pageGuideColumn = defaults[.pageGuideColumn]
-        self.overscrollRate = defaults[.overscrollRate]
-        self.highlightsCurrentLines = defaults[.highlightCurrentLine]
-        
-        self.highlightsBraces = defaults[.highlightBraces]
-        self.highlightsLtGt = defaults[.highlightLtGt]
-        self.highlightsSelectionInstance = defaults[.highlightSelectionInstance]
-        self.selectionInstanceHighlightDelay = defaults[.selectionInstanceHighlightDelay]
-        
         // initialize font settings
         self.setFont(type: self.defaultFontType)
-        
-        // observe changes in defaults
-        let invisiblePublishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
-            .map { defaults.publisher(for: $0) }
-        self.defaultsObservers = [
-            defaults.publisher(for: .lineHeight)
-                .sink { [unowned self] in self.lineHeight = $0 },
-            defaults.publisher(for: .tabWidth)
-                .sink { [unowned self] in self.tabWidth = $0 },
-            
-            defaults.publisher(for: .autoExpandTab)
-                .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
-            defaults.publisher(for: .autoIndent)
-                .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
-            defaults.publisher(for: .trimsWhitespaceOnlyLines)
-                .sink { [unowned self] in self.trimsWhitespaceOnlyLines = $0 },
-            defaults.publisher(for: .indentWithTabKey)
-                .sink { [unowned self] in self.indentsWithTabKey = $0 },
-            defaults.publisher(for: .autoTrimsTrailingWhitespace)
-                .sink { [unowned self] in self.isAutomaticWhitespaceTrimmingEnabled = $0 },
-            
-            Publishers.MergeMany(invisiblePublishers)
-                .sink { [unowned self] _ in self.shownInvisibles = defaults.shownInvisible },
-            defaults.publisher(for: .showIndentGuides)
-                .sink { [unowned self] in self.showsIndentGuides = $0 },
-            defaults.publisher(for: .enablesHangingIndent)
-                .sink { [unowned self] in self.isHangingIndentEnabled = $0 },
-            defaults.publisher(for: .hangingIndentWidth)
-                .sink { [unowned self] in self.hangingIndentWidth = $0 },
-            
-            defaults.publisher(for: .pageGuideColumn)
-                .sink { [unowned self] in self.pageGuideColumn = $0 },
-            defaults.publisher(for: .overscrollRate)
-                .sink { [unowned self] in self.overscrollRate = $0.clamped(to: 0...1.0) },
-            defaults.publisher(for: .highlightCurrentLine)
-                .sink { [unowned self] in self.highlightsCurrentLines = $0 },
-            defaults.publisher(for: .highlightBraces)
-                .sink { [unowned self] in self.highlightsBraces = $0 },
-            defaults.publisher(for: .highlightLtGt)
-                .sink { [unowned self] in self.highlightsLtGt = $0 },
-            defaults.publisher(for: .highlightSelectionInstance)
-                .sink { [unowned self] in self.highlightsSelectionInstance = $0 },
-            defaults.publisher(for: .selectionInstanceHighlightDelay)
-                .sink { [unowned self] in self.selectionInstanceHighlightDelay = $0 },
-        ]
     }
     
     

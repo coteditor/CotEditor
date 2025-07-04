@@ -31,6 +31,7 @@ import ControlUI
 import CharacterInfo
 import Defaults
 import FuzzyRange
+import Invisible
 import StringUtils
 import TextClipping
 
@@ -125,11 +126,56 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         self.textView.applyMode(ModeManager.shared.setting(for: self.document.mode))
         self.applySyntax()
         
+        let defaults = UserDefaults.standard
         self.observers = [
+            // apply user settings to the text view
+            defaults.publisher(for: .lineHeight, initial: true)
+                .assign(to: \.lineHeight, on: self.textView),
+            defaults.publisher(for: .tabWidth, initial: true)
+                .assign(to: \.tabWidth, on: self.textView),
+            
+            defaults.publisher(for: .autoExpandTab, initial: true)
+                .assign(to: \.isAutomaticTabExpansionEnabled, on: self.textView),
+            defaults.publisher(for: .autoIndent, initial: true)
+                .assign(to: \.isAutomaticIndentEnabled, on: self.textView),
+            defaults.publisher(for: .trimsWhitespaceOnlyLines, initial: true)
+                .assign(to: \.trimsWhitespaceOnlyLines, on: self.textView),
+            defaults.publisher(for: .indentWithTabKey, initial: true)
+                .assign(to: \.indentsWithTabKey, on: self.textView),
+            defaults.publisher(for: .autoTrimsTrailingWhitespace, initial: true)
+                .assign(to: \.isAutomaticWhitespaceTrimmingEnabled, on: self.textView),
+            
+            Publishers.MergeMany(Invisible.allCases.map(\.visibilityDefaultKey).uniqued.map { defaults.publisher(for: $0) })
+                .merge(with: Just(true))  // initial setting
+                .map { _ in defaults.shownInvisible }
+                .assign(to: \.shownInvisibles, on: self.textView),
+            defaults.publisher(for: .showIndentGuides, initial: true)
+                .assign(to: \.showsIndentGuides, on: self.textView),
+            defaults.publisher(for: .enablesHangingIndent, initial: true)
+                .assign(to: \.isHangingIndentEnabled, on: self.textView),
+            defaults.publisher(for: .hangingIndentWidth, initial: true)
+                .assign(to: \.hangingIndentWidth, on: self.textView),
+            
+            defaults.publisher(for: .pageGuideColumn, initial: true)
+                .assign(to: \.pageGuideColumn, on: self.textView),
+            defaults.publisher(for: .overscrollRate, initial: true)
+                .assign(to: \.overscrollRate, on: self.textView),
+            defaults.publisher(for: .highlightCurrentLine, initial: true)
+                .assign(to: \.highlightsCurrentLines, on: self.textView),
+            defaults.publisher(for: .highlightBraces, initial: true)
+                .assign(to: \.highlightsBraces, on: self.textView),
+            defaults.publisher(for: .highlightLtGt, initial: true)
+                .assign(to: \.highlightsLtGt, on: self.textView),
+            defaults.publisher(for: .highlightSelectionInstance, initial: true)
+                .assign(to: \.highlightsSelectionInstance, on: self.textView),
+            defaults.publisher(for: .selectionInstanceHighlightDelay, initial: true)
+                .assign(to: \.selectionInstanceHighlightDelay, on: self.textView),
+            
+            // observe document setting changes
             self.document.didChangeSyntax
                 .sink { [weak self] _ in self?.applySyntax() },
             self.document.$lineEnding
-                .sink { [weak self] in self?.textView.lineEnding = $0 },
+                .assign(to: \.lineEnding, on: self.textView),
             self.document.$mode
                 .removeDuplicates()
                 .map(ModeManager.shared.setting(for:))
