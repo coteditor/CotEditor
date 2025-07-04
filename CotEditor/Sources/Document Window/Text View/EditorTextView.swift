@@ -149,7 +149,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(keepingEditingPoint: true) }
     
     private var fontObservers: Set<AnyCancellable> = []
-    private var windowOpacityObserver: AnyCancellable?
+    private var windowOpacityObserver: NSKeyValueObservation?
     private var keyStateObservers: [any NSObjectProtocol] = []
     
     
@@ -297,15 +297,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             window.contentBackgroundColor = theme.background.color
         }
         
-        // apply window opacity
-        self.windowOpacityObserver = self.window?.publisher(for: \.isOpaque, options: .initial)
-            .sink { [weak self] in
-                self?.drawsBackground = $0
-                self?.enclosingScrollView?.drawsBackground = $0
-            }
-        
-        // observe key window state for insertion points drawing and automatic period substitution
         if let window {
+            // apply window opacity
+            self.windowOpacityObserver = window.observe(\.isOpaque, options: [.initial, .new]) { [unowned self] (_, change) in
+                guard let new = change.newValue else { return }
+                MainActor.assumeIsolated {
+                    self.drawsBackground = new
+                    self.enclosingScrollView?.drawsBackground = new
+                }
+            }
+            
+            // observe key window state for insertion points drawing and automatic period substitution
             self.keyStateObservers = [
                 NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [unowned self] _ in
                     MainActor.assumeIsolated {
@@ -325,6 +327,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 NotificationCenter.default.removeObserver(observer)
             }
             self.keyStateObservers.removeAll()
+            self.windowOpacityObserver = nil
             self.instanceHighlightTask?.cancel()
             self.instanceHighlightTask = nil
         }
