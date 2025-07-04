@@ -198,10 +198,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.trimsWhitespaceOnlyLines = defaults[.trimsWhitespaceOnlyLines]
         self.indentsWithTabKey = defaults[.indentWithTabKey]
         
+        // setup layout-related options
         self.shownInvisibles = defaults.shownInvisible
         self.showsIndentGuides = defaults[.showIndentGuides]
-        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
-        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
+        self.isHangingIndentEnabled = defaults[.enablesHangingIndent]
+        self.hangingIndentWidth = defaults[.hangingIndentWidth]
         
         // setup drawing options
         self.pageGuideColumn = defaults[.pageGuideColumn]
@@ -241,15 +242,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             defaults.publisher(for: .showIndentGuides)
                 .sink { [unowned self] in self.showsIndentGuides = $0 },
             defaults.publisher(for: .enablesHangingIndent)
-                .sink { [unowned self] in
-                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = $0
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-                },
+                .sink { [unowned self] in self.isHangingIndentEnabled = $0 },
             defaults.publisher(for: .hangingIndentWidth)
-                .sink { [unowned self] in
-                    (self.textContainer as? TextContainer)?.hangingIndentWidth = $0
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-                },
+                .sink { [unowned self] in self.hangingIndentWidth = $0 },
             
             defaults.publisher(for: .pageGuideColumn)
                 .sink { [unowned self] in self.pageGuideColumn = $0 },
@@ -1328,6 +1323,36 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         get { (self.layoutManager as? LayoutManager)?.showsIndentGuides ?? false }
         set { (self.layoutManager as? LayoutManager)?.showsIndentGuides = newValue }
+    }
+    
+    
+    /// Whether enables the hanging indent.
+    var isHangingIndentEnabled: Bool {
+        
+        get {
+            (self.textContainer as? TextContainer)?.isHangingIndentEnabled ?? false
+        }
+        
+        set {
+            guard newValue != isHangingIndentEnabled else { return }
+            (self.textContainer as? TextContainer)?.isHangingIndentEnabled = newValue
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
+    }
+    
+    
+    /// The number of characters for hanging indent.
+    var hangingIndentWidth: Int {
+        
+        get {
+            (self.textContainer as? TextContainer)?.hangingIndentWidth ?? 0
+        }
+        
+        set {
+            guard newValue != hangingIndentWidth else { return }
+            (self.textContainer as? TextContainer)?.hangingIndentWidth = newValue
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
     }
     
     
