@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import Defaults
+import Invisible
 import LineEnding
 import Shortcut
 import Syntax
@@ -197,7 +198,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.trimsWhitespaceOnlyLines = defaults[.trimsWhitespaceOnlyLines]
         self.indentsWithTabKey = defaults[.indentWithTabKey]
         
-        layoutManager.showsIndentGuides = defaults[.showIndentGuides]
+        self.shownInvisibles = defaults.shownInvisible
+        self.showsIndentGuides = defaults[.showIndentGuides]
         textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
         textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
         
@@ -215,6 +217,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.setFont(type: self.defaultFontType)
         
         // observe changes in defaults
+        let invisiblePublishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
+            .map { defaults.publisher(for: $0) }
         self.defaultsObservers = [
             defaults.publisher(for: .lineHeight)
                 .sink { [unowned self] in self.lineHeight = $0 },
@@ -232,6 +236,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             defaults.publisher(for: .autoTrimsTrailingWhitespace)
                 .sink { [unowned self] in self.isAutomaticWhitespaceTrimmingEnabled = $0 },
             
+            Publishers.MergeMany(invisiblePublishers)
+                .sink { [unowned self] _ in self.shownInvisibles = defaults.shownInvisible },
             defaults.publisher(for: .showIndentGuides)
                 .sink { [unowned self] in self.showsIndentGuides = $0 },
             defaults.publisher(for: .enablesHangingIndent)
@@ -1309,17 +1315,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
+    /// The shown invisible characters.
+    var shownInvisibles: Set<Invisible> {
+        
+        get { (self.layoutManager as? LayoutManager)?.shownInvisibles ?? [] }
+        set { (self.layoutManager as? LayoutManager)?.shownInvisibles = newValue }
+    }
+    
+    
     /// Whether draws indent guides.
     var showsIndentGuides: Bool {
         
-        get {
-            (self.layoutManager as? LayoutManager)?.showsIndentGuides ?? true
-        }
-        
-        set {
-            (self.layoutManager as? LayoutManager)?.showsIndentGuides = newValue
-            self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
-        }
+        get { (self.layoutManager as? LayoutManager)?.showsIndentGuides ?? false }
+        set { (self.layoutManager as? LayoutManager)?.showsIndentGuides = newValue }
     }
     
     
@@ -1365,7 +1373,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.fontObservers = [
             defaults.publisher(for: .fontKey(for: type))
-                .sink { [unowned self] _ in self.font = UserDefaults.standard.font(for: type) },
+                .sink { [unowned self] _ in self.font = defaults.font(for: type) },
             defaults.publisher(for: .ligature(for: type))
                 .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
             defaults.publisher(for: .antialias(for: type))

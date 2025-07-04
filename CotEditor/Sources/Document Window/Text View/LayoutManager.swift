@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,8 +25,6 @@
 //
 
 import AppKit
-import Combine
-import Defaults
 import Invisible
 
 class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
@@ -35,7 +33,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     
     // InvisibleDrawing
     var showsControls = false
-    var shownInvisibles: Set<Invisible>  { UserDefaults.standard.showsInvisible }
+    var shownInvisibles: Set<Invisible> = []  { didSet { self.invalidateInvisibleDisplay() } }
     
     // ValidationIgnorable
     var ignoresDisplayValidation = false
@@ -73,7 +71,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     var invisiblesColor: NSColor = .disabledControlTextColor
     var unemphasizedSelectedContentBackgroundColor: NSColor?
     
-    var showsIndentGuides = false
+    var showsIndentGuides = false  { didSet { self.invalidateDisplay(forCharacterRange: self.attributedString().range) } }
     var tabWidth = 0
     
     private(set) var spaceWidth: CGFloat = 0
@@ -85,9 +83,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     private var defaultBaselineOffset: CGFloat = 0
     private var boundingBoxForControlGlyph: NSRect = .zero
     
-    private var indentGuideObserver: AnyCancellable?
-    private var invisiblesDefaultsObserver: AnyCancellable?
-    
     
     // MARK: Lifecycle
     
@@ -98,19 +93,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         super.init()
         
         self.delegate = self
-        
         self.allowsNonContiguousLayout = true
-        
-        self.indentGuideObserver = UserDefaults.standard.publisher(for: .showIndentGuides)
-            .sink { [weak self] _ in
-                guard let self, self.showsInvisibles else { return }
-                self.invalidateDisplay(forCharacterRange: self.attributedString().range)
-            }
-        
-        let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
-            .map { UserDefaults.standard.publisher(for: $0) }
-        self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
-            .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }
     }
     
     
