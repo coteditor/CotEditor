@@ -176,12 +176,9 @@ struct DefaultSettings {
             .findResultViewFontSize: NSFont.smallSystemFontSize,
             
             // hidden settings
-            .autoCompletionDelay: 0.25,
-            .minimumAutomaticCompletionLength: 3,
             .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB
             .savesTextOrientation: true,
             .maximumRecentSyntaxCount: 6,
-            .minimumLengthForNonContiguousLayout: 5_000_000,
         ]
     }
     

@@ -121,7 +121,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     // MARK: Private Properties
     
-    private nonisolated static let textContainerInset = NSSize(width: 4, height: 6)
+    private static let textContainerInset = NSSize(width: 4, height: 6)
+    
+    private let minimumNonContiguousLayoutLength = 5_000_000
+    private let automaticCompletionDelay = 0.25
+    private let minimumAutomaticCompletionLength = 3
     
     private let textFinder = TextFinder()
     
@@ -609,8 +613,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // auto completion
         if self.isAutomaticCompletionEnabled {
-            if self.rangeForUserCompletion.length >= UserDefaults.standard[.minimumAutomaticCompletionLength] {
-                let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
+            if self.rangeForUserCompletion.length >= self.minimumAutomaticCompletionLength {
+                let delay: TimeInterval = self.automaticCompletionDelay
                 self.completionDebouncer.schedule(delay: .seconds(delay))
             } else {
                 self.completionDebouncer.cancel()
@@ -1473,10 +1477,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     /// Workaround for that the view-specific API to customize this behavior is currently not available (macOS 15, 2024-11, FB13669125).
     private func invalidateAutomaticPeriodSubstitution() {
         
+        let key = "NSAutomaticPeriodSubstitutionEnabled"
         if self.window?.firstResponder == self {
-            UserDefaults.standard[.automaticPeriodSubstitutionEnabled] = self.isAutomaticPeriodSubstitutionEnabled
+            UserDefaults.standard.set(self.isAutomaticPeriodSubstitutionEnabled, forKey: key)
         } else {
-            UserDefaults.standard.restore(key: .automaticPeriodSubstitutionEnabled)
+            UserDefaults.standard.removeObject(forKey: key)
         }
     }
     
@@ -1561,7 +1566,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             // -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
             false
         } else {
-            self.string.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
+            self.string.length > self.minimumNonContiguousLayoutLength
         }
     }
     

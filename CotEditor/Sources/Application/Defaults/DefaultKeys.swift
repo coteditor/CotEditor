@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,10 +28,6 @@ import Defaults
 import StringUtils
 
 extension DefaultKeys {
-    
-    // system keys
-    static let automaticPeriodSubstitutionEnabled = DefaultKey<Bool>("NSAutomaticPeriodSubstitutionEnabled")
-    
     
     // General
     static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
@@ -177,12 +173,9 @@ extension DefaultKeys {
     static let regexPatternSortHistory = DefaultKey<[String]>("regexPatternSortHistory")
     
     // hidden settings
-    static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
-    static let minimumAutomaticCompletionLength = DefaultKey<Int>("minimumAutomaticCompletionLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
     static let maximumRecentSyntaxCount = DefaultKey<Int>("maximumRecentSyntaxCount")
-    static let minimumLengthForNonContiguousLayout = DefaultKey<Int>("minimumLengthForNonContiguousLayout")
     
     static let lastVersion = DefaultKey<String?>("lastVersion")
 }
