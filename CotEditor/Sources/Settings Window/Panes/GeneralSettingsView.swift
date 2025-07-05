@@ -203,9 +203,9 @@ struct GeneralSettingsView: View {
             self.commandLineToolStatus = manager.validateSymlink()
             self.commandLineToolURL = manager.linkURL
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
-        .frame(minWidth: 600, idealWidth: 600)
+        .fixedSize(horizontal: false, vertical: true)
+        .scenePadding()
+        .frame(width: 600)
     }
 }
 

@@ -49,15 +49,15 @@ struct SnippetsSettingsView: View {
                     Text("File Drop", tableName: "SnippetsSettings", comment: "tab label")
                 }
             }
+            .frame(height: 380)
             
             HStack {
                 Spacer()
                 HelpLink(anchor: "settings_snippets")
             }
         }
-        .padding(.top, 12)
-        .scenePadding([.horizontal, .bottom])
-        .frame(width: 600, height: 450)
+        .scenePadding()
+        .frame(width: 600)
     }
 }
 

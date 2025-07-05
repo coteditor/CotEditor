@@ -121,9 +121,9 @@ struct EditSettingsView: View {
                 HelpLink(anchor: "settings_edit")
             }
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
-        .frame(minWidth: 600)
+        .fixedSize(horizontal: false, vertical: true)
+        .scenePadding()
+        .frame(width: 600)
     }
 }
 

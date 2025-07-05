@@ -42,6 +42,7 @@ struct KeyBindingsSettingsView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             KeyBindingTreeView(model: $model)
+                .frame(height: 260)
             
             HStack(alignment: .firstTextBaseline) {
                 Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.model.restore)
@@ -61,9 +62,8 @@ struct KeyBindingsSettingsView: View {
         .onAppear {
             self.model.load()
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
-        .frame(width: 600, height: 360)
+        .scenePadding()
+        .frame(width: 600)
     }
 }
 

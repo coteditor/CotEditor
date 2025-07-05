@@ -65,9 +65,8 @@ struct ModeSettingsView: View {
         .onChange(of: self.selection, initial: true) { (_, newValue) in
             self.options = self.manager.setting(for: newValue)
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
-        .frame(minWidth: 600, idealWidth: 600)
+        .scenePadding()
+        .frame(width: 600)
     }
 }
 

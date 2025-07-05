@@ -125,6 +125,7 @@ struct FormatSettingsView: View {
                         .sheet(isPresented: $isEncodingListPresented, content: EncodingListView.init)
                         
                         Toggle(String(localized: "Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 .accessibilityLabeledPair(role: .content, id: "encodingPriority", in: self.accessibility)
@@ -184,8 +185,7 @@ struct FormatSettingsView: View {
         .onCommand(#selector((any EncodingsListHolder).showEncodingsListView)) {
             self.isEncodingListPresented = true
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
+        .scenePadding()
         .frame(width: 600)
     }
 }

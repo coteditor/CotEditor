@@ -202,9 +202,8 @@ struct DonationSettingsView: View {
                 HelpLink(anchor: "settings_donation")
             }
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
-        .frame(minWidth: 600, idealWidth: 600)
+        .scenePadding()
+        .frame(width: 600)
     }
     
     

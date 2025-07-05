@@ -253,8 +253,7 @@ struct WindowSettingsView: View {
                 HelpLink(anchor: "settings_window")
             }.padding(.top, -8)
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
+        .scenePadding()
         .frame(minWidth: 600)
     }
 }

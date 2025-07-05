@@ -157,9 +157,8 @@ struct AppearanceSettingsView: View {
                 HelpLink(anchor: "settings_appearance")
             }
         }
-        .padding(.top, 14)
-        .scenePadding([.horizontal, .bottom])
-        .frame(minWidth: 600)
+        .scenePadding()
+        .frame(width: 600)
     }
 }
 
