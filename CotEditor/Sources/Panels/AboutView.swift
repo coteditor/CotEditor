@@ -71,6 +71,7 @@ struct AboutView: View {
             }
             .multilineTextAlignment(.center)
             .fixedSize()
+            .accessibilitySortPriority(1)
             .scenePadding([.leading, .vertical])
             .padding(.trailing)
             .frame(minWidth: 200)
