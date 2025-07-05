@@ -29,7 +29,6 @@ import Combine
 import Defaults
 import Invisible
 import LineEnding
-import Shortcut
 import Syntax
 import StringUtils
 
@@ -406,20 +405,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         self.isPerformingRectangularSelection = false
-    }
-    
-    
-    override func keyDown(with event: NSEvent) {
-        
-        // perform snippet insertion if not in the middle of Japanese input
-        if !self.hasMarkedText(),
-           let shortcut = Shortcut(keyDownEvent: event),
-           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: self.syntaxName)
-        {
-            return self.insert(snippet: snippet)
-        }
-        
-        super.keyDown(with: event)
     }
     
     
