@@ -170,7 +170,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.textFinder.client = self
         
         // set layout values (wraps lines)
-        self.minSize = self.frame.size
         self.maxSize = .infinite
         self.isHorizontallyResizable = false
         self.isVerticallyResizable = true
@@ -182,9 +181,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.isRichText = false
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.linkTextAttributes?.removeValue(forKey: .foregroundColor)
-        
-        // initialize font settings
-        self.setFont(type: self.defaultFontType)
     }
     
     
@@ -1319,16 +1315,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     ///   - defaults: The user defaults to refer settings.
     func setFont(type: FontType, defaults: UserDefaults = .standard) {
         
-        self.font = defaults.font(for: type)
-        self.ligature = defaults[.ligature(for: type)] ? .standard : .none
-        self.usesAntialias = defaults[.antialias(for: type)]
-        
         self.fontObservers = [
-            defaults.publisher(for: .fontKey(for: type))
+            defaults.publisher(for: .fontKey(for: type), initial: true)
                 .sink { [unowned self] _ in self.font = defaults.font(for: type) },
-            defaults.publisher(for: .ligature(for: type))
+            defaults.publisher(for: .ligature(for: type), initial: true)
                 .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
-            defaults.publisher(for: .antialias(for: type))
+            defaults.publisher(for: .antialias(for: type), initial: true)
                 .sink { [unowned self] in self.usesAntialias = $0 },
         ]
     }

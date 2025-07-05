@@ -122,8 +122,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         super.viewWillAppear()
         
-        self.textView.lineEnding = self.document.lineEnding
-        self.textView.applyMode(ModeManager.shared.setting(for: self.document.mode))
         self.applySyntax()
         
         let defaults = UserDefaults.standard
