@@ -30,134 +30,148 @@ import Foundation
 
 extension EditorTextView {
     
-    /// Notification posted when wiki links are detected or updated
-    static let wikiLinksDidUpdateNotification = Notification.Name("EditorTextViewWikiLinksDidUpdate")
+    // MARK: - Wiki Link Navigation
     
-    /// User info key for the updated wiki links array
-    static let wikiLinksKey = "wikiLinks"
-    
-    /// User info key for the affected range
-    static let affectedRangeKey = "affectedRange"
-    
-    // MARK: - Wiki Link Detection
-    
-    /// Detects wiki links in the vicinity of a text change and updates syntax highlighting
-    /// - Parameter range: The range of text that was modified
-    func detectWikiLinksAfterTextChange(in range: NSRange) {
-        // Expand the search range to include potential partial links
-        let expandedRange = expandedRangeForWikiLinkDetection(around: range)
-        
-        // Find wiki links in the expanded range
-        let text = self.string
-        let wikiLinks = WikiLinkParser.findWikiLinks(in: text, range: expandedRange)
-        
-        // Update syntax highlighting for the detected links
-        updateWikiLinkHighlighting(for: wikiLinks, in: expandedRange)
-        
-        // Post notification about the wiki link updates
-        NotificationCenter.default.post(
-            name: Self.wikiLinksDidUpdateNotification,
-            object: self,
-            userInfo: [
-                Self.wikiLinksKey: wikiLinks,
-                Self.affectedRangeKey: NSValue(range: expandedRange)
-            ]
-        )
-    }
-    
-    /// Expands a range to include complete lines and potential partial wiki links
-    /// - Parameter range: The original range
-    /// - Returns: Expanded range that ensures complete wiki link detection
-    private func expandedRangeForWikiLinkDetection(around range: NSRange) -> NSRange {
-        let text = self.string as NSString
-        
-        // Start from the beginning of the line containing the range start
-        let startLineRange = text.lineRange(for: NSRange(location: range.location, length: 0))
-        
-        // End at the end of the line containing the range end
-        let endLocation = min(range.upperBound, text.length)
-        let endLineRange = text.lineRange(for: NSRange(location: endLocation, length: 0))
-        
-        // Create the expanded range
-        let expandedRange = NSRange(
-            location: startLineRange.location,
-            length: endLineRange.upperBound - startLineRange.location
-        )
-        
-        // Further expand to catch potential partial links at boundaries
-        let buffer = 10 // characters to look beyond line boundaries
-        let finalStart = max(0, expandedRange.location - buffer)
-        let finalEnd = min(text.length, expandedRange.upperBound + buffer)
-        
-        return NSRange(location: finalStart, length: finalEnd - finalStart)
-    }
-    
-    /// Updates syntax highlighting for wiki links in the specified range
-    /// - Parameters:
-    ///   - wikiLinks: The wiki links to highlight
-    ///   - range: The range to update highlighting in
-    private func updateWikiLinkHighlighting(for wikiLinks: [WikiLink], in range: NSRange) {
-        guard let textStorage = self.textStorage else { return }
-        
-        // Remove existing wiki link attributes in the range
-        textStorage.removeAttribute(.wikiLink, range: range)
-        textStorage.removeAttribute(.wikiLinkTitle, range: range)
-        
-        // Apply wiki link attributes
-        for wikiLink in wikiLinks {
-            // Highlight the complete link with brackets
-            textStorage.addAttribute(.wikiLink, value: wikiLink, range: wikiLink.range)
-            
-            // Highlight just the title portion differently
-            textStorage.addAttribute(.wikiLinkTitle, value: wikiLink.title, range: wikiLink.titleRange)
-        }
-        
-        // Request display update for the affected range
-        self.layoutManager?.invalidateDisplay(forCharacterRange: range)
-    }
-    
-    // MARK: - Wiki Link Interaction
-    
-    /// Handles mouse clicks on wiki links
-    /// - Parameter event: The mouse event
-    /// - Returns: True if the click was handled as a wiki link navigation
-    @discardableResult
-    func handleWikiLinkClick(with event: NSEvent) -> Bool {
-        let point = self.convert(event.locationInWindow, from: nil)
-        let clickedIndex = self.characterIndexForInsertion(at: point)
-        
-        guard clickedIndex < self.string.count else { return false }
-        
-        // Check if click is on a wiki link
-        if let wikiLink = WikiLinkParser.wikiLink(at: clickedIndex, in: self.string) {
-            // Handle modifier keys
-            if event.modifierFlags.contains(.command) {
-                // Command+click: Follow link
-                openWikiLink(wikiLink)
-                return true
-            } else if event.modifierFlags.contains(.option) {
-                // Option+click: Show link preview or info
-                showWikiLinkInfo(wikiLink)
-                return true
-            }
-        }
-        
-        return false
-    }
     
     /// Follows a wiki link by attempting to open the referenced note
     /// - Parameter wikiLink: The wiki link to follow
     private func openWikiLink(_ wikiLink: WikiLink) {
-        // Post notification that a wiki link should be followed
-        // The document controller or window controller will handle the actual navigation
-        NotificationCenter.default.post(
-            name: .followWikiLink,
-            object: self,
-            userInfo: [
-                "wikiLink": wikiLink,
-                "noteTitle": wikiLink.title
-            ]
-        )
+        print("📖 Opening wiki link: '\(wikiLink.title)'")
+        
+        // Get the current document's directory
+        guard let window = self.window,
+              let windowController = window.windowController,
+              let currentDocument = windowController.document as? Document else {
+            print("❌ No current document available")
+            showWikiLinkError("Cannot determine current document")
+            return
+        }
+        
+        guard let currentFileURL = currentDocument.fileURL else {
+            print("❌ Document has no file URL - document needs to be saved first")
+            showWikiLinkError("Please save the current document first before creating wiki links")
+            return
+        }
+        
+        let currentDirectory = currentFileURL.deletingLastPathComponent()
+        let targetFileName = "\(wikiLink.title).md"
+        let targetFileURL = currentDirectory.appendingPathComponent(targetFileName)
+        
+        // Check if we have write access to the directory
+        let fileManager = FileManager.default
+        if !fileManager.isWritableFile(atPath: currentDirectory.path) {
+            print("❌ No write permission to directory: \(currentDirectory.path)")
+            showWikiLinkError("No permission to create files in '\(currentDirectory.lastPathComponent)'. Try saving the current document first.")
+            return
+        }
+        
+        print("📁 Target file: \(targetFileURL.path)")
+        
+        // Check if target file exists
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: targetFileURL.path) {
+            print("✅ File exists, opening: \(targetFileURL.path)")
+            openExistingFile(at: targetFileURL)
+        } else {
+            print("📝 File doesn't exist, creating: \(targetFileURL.path)")
+            createAndOpenNewFile(at: targetFileURL, title: wikiLink.title)
+        }
+    }
+    
+    /// Opens an existing file in a new document window
+    /// - Parameter fileURL: The file to open
+    private func openExistingFile(at fileURL: URL) {
+        DispatchQueue.main.async {
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { document, wasAlreadyOpen, error in
+                if let error = error {
+                    print("❌ Error opening file: \(error)")
+                    self.showWikiLinkError("Failed to open '\(fileURL.lastPathComponent)': \(error.localizedDescription)")
+                } else if let document = document {
+                    print("✅ Successfully opened: \(fileURL.lastPathComponent)")
+                } else {
+                    print("⚠️ Document opened but no document object returned")
+                }
+            }
+        }
+    }
+    
+    /// Creates a new note file and opens it
+    /// - Parameters:
+    ///   - fileURL: The location to create the file
+    ///   - title: The title of the note
+    private func createAndOpenNewFile(at fileURL: URL, title: String) {
+        // Create basic note content
+        let noteContent = "# \(title)\n\n"
+        
+        // Use NSDocument's creation method which handles sandboxing properly
+        DispatchQueue.main.async {
+            do {
+                // Try to create the document through the document controller
+                let documentController = NSDocumentController.shared
+                let document = try documentController.makeUntitledDocument(ofType: "public.plain-text")
+                
+                // Set the content
+                if let textDocument = document as? Document {
+                    textDocument.textStorage.replaceCharacters(in: NSRange(location: 0, length: textDocument.textStorage.length), with: noteContent)
+                    
+                    // Save to the target location
+                    textDocument.save(to: fileURL, ofType: "public.plain-text", for: .saveAsOperation) { error in
+                        if let error = error {
+                            print("❌ Error saving new document: \(error)")
+                            self.showWikiLinkError("Failed to create '\(title).md': \(error.localizedDescription)")
+                        } else {
+                            print("✅ Created new note file: \(fileURL.path)")
+                            // Document is automatically displayed after save
+                        }
+                    }
+                } else {
+                    self.fallbackCreateFile(at: fileURL, content: noteContent, title: title)
+                }
+                
+            } catch {
+                print("❌ Error creating document: \(error)")
+                // Fallback to direct file creation
+                self.fallbackCreateFile(at: fileURL, content: noteContent, title: title)
+            }
+        }
+    }
+    
+    /// Fallback method for direct file creation
+    /// - Parameters:
+    ///   - fileURL: The location to create the file
+    ///   - content: The content to write
+    ///   - title: The title for error messages
+    private func fallbackCreateFile(at fileURL: URL, content: String, title: String) {
+        do {
+            // Write the file directly
+            try content.write(to: fileURL, atomically: true, encoding: .utf8)
+            print("✅ Created new note file (fallback): \(fileURL.path)")
+            
+            // Open the newly created file
+            openExistingFile(at: fileURL)
+            
+        } catch {
+            print("❌ Error creating file (fallback): \(error)")
+            showWikiLinkError("Failed to create '\(title).md': \(error.localizedDescription)")
+        }
+    }
+    
+    /// Shows an error message for wiki link operations
+    /// - Parameter message: The error message to display
+    private func showWikiLinkError(_ message: String) {
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.messageText = "Wiki Link Error"
+            alert.informativeText = message
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            
+            if let window = self.window {
+                alert.beginSheetModal(for: window)
+            } else {
+                alert.runModal()
+            }
+        }
     }
     
     /// Shows information about a wiki link
@@ -222,26 +236,4 @@ extension EditorTextView {
                 return super.validateMenuItem(menuItem)
         }
     }
-}
-
-// MARK: - NSAttributedString.Key Extensions
-
-extension NSAttributedString.Key {
-    
-    /// Attribute key for marking complete wiki links (including brackets)
-    static let wikiLink = NSAttributedString.Key("wikiLink")
-    
-    /// Attribute key for marking wiki link titles (excluding brackets)
-    static let wikiLinkTitle = NSAttributedString.Key("wikiLinkTitle")
-}
-
-// MARK: - Notification Names
-
-extension Notification.Name {
-    
-    /// Posted when a wiki link should be followed
-    static let followWikiLink = Notification.Name("followWikiLink")
-    
-    /// Posted when wiki link info should be shown
-    static let showWikiLinkInfo = Notification.Name("showWikiLinkInfo")
 }

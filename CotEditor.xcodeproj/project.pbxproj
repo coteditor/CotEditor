@@ -370,6 +370,7 @@
 				"cd Scripts",
 				"./updateHelpindex.sh",
 				"",
+				"",
 			);
 		};
 		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
@@ -384,6 +385,7 @@
 			shellPath = /bin/sh;
 			shellScript = (
 				"\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"",
+				"",
 				"",
 			);
 		};

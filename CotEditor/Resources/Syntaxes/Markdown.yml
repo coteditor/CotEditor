@@ -149,6 +149,9 @@ values:
 - beginString: (?<!(^[ ]{0,3}|\\))\[\^[a-zA-Z0-9]+\]
   description: '[extra] a footnote'
   regularExpression: true
+- beginString: (?<!\\)\[\[[^\[\]]+\]\]
+  description: '[wiki] link'
+  regularExpression: true
 - beginString: (?<!\\)\[[^\[\]]*?(?!<\\)\](?=\()
   description: a
   regularExpression: true

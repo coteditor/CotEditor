@@ -27,7 +27,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Use default code signing for application release.
-#include "CodeSigning-Default.xcconfig"
+//#include "CodeSigning-Default.xcconfig"
 
 // Use AdHoc code signing instead for ad-hoc local development.
-//#include "CodeSigning-AdHoc.xcconfig"
+#include "CodeSigning-AdHoc.xcconfig"

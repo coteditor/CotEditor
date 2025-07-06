@@ -87,8 +87,12 @@ final class WikiLinkParser {
             let fullRange = match.range(at: 0) // Complete [[title]] range
             let titleRange = match.range(at: 1) // Just the title part
             
+            let fullText = nsString.substring(with: fullRange)
             let title = nsString.substring(with: titleRange)
                 .trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // Debug: Check what we're actually matching
+            print("🔍 WikiLink regex matched: '\(fullText)' -> title: '\(title)' at range \(fullRange)")
             
             // Validate title is not empty
             guard !title.isEmpty else { return nil }

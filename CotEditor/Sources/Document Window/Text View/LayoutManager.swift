@@ -137,8 +137,8 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
         
-        // Draw wiki link decorations
-        self.drawWikiLinkDecorationsIfNeeded(forGlyphRange: glyphsToShow, at: origin)
+        // Note: Wiki link highlighting is now handled via temporary attributes
+        // Custom drawing is disabled to avoid conflicts with the attribute-based approach
         
         NSGraphicsContext.restoreGraphicsState()
     }

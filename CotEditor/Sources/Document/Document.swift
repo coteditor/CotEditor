@@ -105,6 +105,7 @@ extension Document: EditorSource {
     private nonisolated(unsafe) var lastAdditionalFileAttributes: [String: any Sendable] = [:]
     
     private var urlDetector: URLDetector?
+    private var wikiLinkDetector: WikiLinkDetector?
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
@@ -151,6 +152,9 @@ extension Document: EditorSource {
                 .sink { [unowned self] enabled in
                     self.urlDetector?.cancel()
                     self.urlDetector = enabled ? URLDetector(textStorage: self.textStorage) : nil
+                    
+                    self.wikiLinkDetector?.cancel()
+                    self.wikiLinkDetector = enabled ? WikiLinkDetector(textStorage: self.textStorage) : nil
                 },
             UserDefaults.standard.publisher(for: .modes, initial: true)
                 .sink { [weak self] _ in self?.invalidateMode() },
@@ -665,6 +669,7 @@ extension Document: EditorSource {
         self.counter.cancel()
         self.syntaxParser.cancel()
         self.urlDetector?.cancel()
+        self.wikiLinkDetector?.cancel()
         self.lineEndingScanner.cancel()
     }
     

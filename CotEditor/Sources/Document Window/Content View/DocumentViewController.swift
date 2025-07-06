@@ -464,6 +464,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             // -> Perform in the next run loop to give layoutManagers time to update their values.
             DispatchQueue.main.async { [weak self] in
                 self?.document.syntaxParser.highlightIfNeeded()
+                
+                // Wiki link detection is now handled automatically by WikiLinkDetector
             }
         }
     }

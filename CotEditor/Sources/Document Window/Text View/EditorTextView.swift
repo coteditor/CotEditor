@@ -40,7 +40,7 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEditing {
+final class EditorTextView: NSTextView, NSTextViewDelegate, CurrentLineHighlighting, MultiCursorEditing {
     
     @MainActor protocol Delegate: AnyObject {
         
@@ -287,6 +287,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         super.viewDidMoveToWindow()
         
+        // Set self as delegate to handle link clicks
+        self.delegate = self
+        
         // apply theme to window when attached
         if let window = self.window as? DocumentWindow, let theme = self.theme {
             window.contentBackgroundColor = theme.background.color
@@ -301,6 +304,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                     self.enclosingScrollView?.drawsBackground = new
                 }
             }
+            
+            // Wiki link detection is now handled automatically by WikiLinkDetector
             
             // observe key window state for insertion points drawing and automatic period substitution
             self.keyStateObservers = [
@@ -520,8 +525,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         super.insertText(plainString, replacementRange: replacementRange)
         
-        // wiki link detection - detect links after text insertion
-        self.detectWikiLinksAfterTextChange(in: replacementRange)
+        // Wiki link detection is now handled automatically by WikiLinkDetector
         
         // auto completion
         if self.isAutomaticCompletionEnabled {
@@ -1835,5 +1839,46 @@ extension EditorTextView {
         
         // treat `.` and `:` as word delimiter
         return (self.string as NSString).rangeOfCharacter(until: CharacterSet(charactersIn: ".:"), at: location, range: proposedWordRange)
+    }
+}
+
+
+// MARK: - NSTextViewDelegate
+
+extension EditorTextView {
+    
+    /// Handles link clicks, particularly for wiki:// scheme URLs.
+    func textView(_ textView: NSTextView, clickedOnLink link: Any, at charIndex: Int) -> Bool {
+        
+        guard let url = link as? URL else { return false }
+        
+        print("🔗 Link clicked: \(url)")
+        
+        // Handle wiki:// scheme URLs for note navigation
+        if url.scheme == "wiki" {
+            print("📖 Wiki link detected: \(url)")
+            
+            // Extract note title from wiki:// URL
+            let noteTitle = url.host ?? url.path.replacingOccurrences(of: "/", with: "")
+                .replacingOccurrences(of: "_", with: " ")
+                .removingPercentEncoding ?? "untitled"
+            
+            print("📝 Navigating to note: '\(noteTitle)'")
+            
+            // Create a WikiLink object and use existing navigation logic
+            let wikiLink = WikiLink(
+                title: noteTitle,
+                range: NSRange(location: charIndex, length: 0),
+                titleRange: NSRange(location: charIndex, length: 0)
+            )
+            
+            // Use existing wiki link navigation from our implementation
+            openWikiLink(wikiLink)
+            
+            return true // We handled this link
+        }
+        
+        // Let NSTextView handle other links (http, https, etc.)
+        return false
     }
 }
