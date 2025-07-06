@@ -149,10 +149,29 @@ extension NSTextStorage {
         guard !links.isEmpty || self.hasAttribute(.link) else { return }
         
         self.beginEditing()
+        
+        // First, collect existing wiki links to preserve them
+        var existingWikiLinks: [ValueRange<URL>] = []
+        self.enumerateAttribute(.link, in: range) { value, attrRange, _ in
+            if let url = value as? URL,
+               url.scheme == "wiki" || (url.scheme == "https" && url.host == "wiki.local") {
+                existingWikiLinks.append(ValueRange(value: url, range: attrRange))
+            }
+        }
+        
+        // Remove all existing .link attributes in the range
         self.removeAttribute(.link, range: range)
+        
+        // Add back the detected URL links
         for link in links {
             self.addAttribute(.link, value: link.value, range: link.range)
         }
+        
+        // Restore preserved wiki links
+        for wikiLink in existingWikiLinks {
+            self.addAttribute(.link, value: wikiLink.value, range: wikiLink.range)
+        }
+        
         self.endEditing()
     }
 }

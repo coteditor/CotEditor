@@ -57,23 +57,12 @@ extension EditorTextView {
         let targetFileName = "\(wikiLink.title).md"
         let targetFileURL = currentDirectory.appendingPathComponent(targetFileName)
         
-        // Check if we have write access to the directory
+        // Check if target file exists first
         let fileManager = FileManager.default
-        if !fileManager.isWritableFile(atPath: currentDirectory.path) {
-            print("❌ No write permission to directory: \(currentDirectory.path)")
-            showWikiLinkError("No permission to create files in '\(currentDirectory.lastPathComponent)'. Try saving the current document first.")
-            return
-        }
-        
-        print("📁 Target file: \(targetFileURL.path)")
-        
-        // Check if target file exists
         if fileManager.fileExists(atPath: targetFileURL.path) {
-            print("✅ File exists, opening: \(targetFileURL.path)")
             openExistingFile(at: targetFileURL)
         } else {
-            print("📝 File doesn't exist, creating: \(targetFileURL.path)")
-            createAndOpenNewFile(at: targetFileURL, title: wikiLink.title)
+            createWikiLinkWithSavePanel(wikiLink)
         }
     }
     
@@ -83,13 +72,29 @@ extension EditorTextView {
         DispatchQueue.main.async {
             NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { document, wasAlreadyOpen, error in
                 if let error = error {
-                    print("❌ Error opening file: \(error)")
-                    self.showWikiLinkError("Failed to open '\(fileURL.lastPathComponent)': \(error.localizedDescription)")
-                } else if let document = document {
-                    print("✅ Successfully opened: \(fileURL.lastPathComponent)")
-                } else {
-                    print("⚠️ Document opened but no document object returned")
+                    // If we can't open due to permissions, show an open panel instead
+                    // This gives the user a chance to explicitly grant permission to the file
+                    let openPanel = NSOpenPanel()
+                    openPanel.title = "Open Wiki Link File"
+                    openPanel.message = "Please select '\(fileURL.lastPathComponent)' to open it"
+                    openPanel.directoryURL = fileURL.deletingLastPathComponent()
+                    openPanel.allowedContentTypes = [.plainText, .text]
+                    openPanel.canChooseFiles = true
+                    openPanel.canChooseDirectories = false
+                    openPanel.allowsMultipleSelection = false
+                    
+                    if let window = self.window {
+                        openPanel.beginSheetModal(for: window) { response in
+                            if response == .OK, let selectedURL = openPanel.url {
+                                // Try to open the user-selected file
+                                NSDocumentController.shared.openDocument(withContentsOf: selectedURL, display: true) { _, _, _ in
+                                    // Success or failure will be handled by the document controller
+                                }
+                            }
+                        }
+                    }
                 }
+                // If successful, document will open automatically
             }
         }
     }
@@ -105,32 +110,50 @@ extension EditorTextView {
         // Use NSDocument's creation method which handles sandboxing properly
         DispatchQueue.main.async {
             do {
-                // Try to create the document through the document controller
+                // Create the document through the document controller
                 let documentController = NSDocumentController.shared
                 let document = try documentController.makeUntitledDocument(ofType: "public.plain-text")
                 
-                // Set the content
+                // Set the content first
                 if let textDocument = document as? Document {
                     textDocument.textStorage.replaceCharacters(in: NSRange(location: 0, length: textDocument.textStorage.length), with: noteContent)
                     
-                    // Save to the target location
-                    textDocument.save(to: fileURL, ofType: "public.plain-text", for: .saveAsOperation) { error in
-                        if let error = error {
-                            print("❌ Error saving new document: \(error)")
-                            self.showWikiLinkError("Failed to create '\(title).md': \(error.localizedDescription)")
-                        } else {
-                            print("✅ Created new note file: \(fileURL.path)")
-                            // Document is automatically displayed after save
+                    // Show the document first (this is required for proper saving)
+                    documentController.addDocument(textDocument)
+                    textDocument.makeWindowControllers()
+                    textDocument.showWindows()
+                    
+                    // Try to save automatically using a save panel to get user permission
+                    let savePanel = NSSavePanel()
+                    savePanel.directoryURL = fileURL.deletingLastPathComponent()
+                    savePanel.nameFieldStringValue = fileURL.lastPathComponent
+                    savePanel.allowedContentTypes = [.plainText, .text]
+                    
+                    // Run the save panel
+                    if let window = textDocument.windowControllers.first?.window {
+                        savePanel.beginSheetModal(for: window) { response in
+                            if response == .OK, let saveURL = savePanel.url {
+                                textDocument.save(to: saveURL, ofType: "public.plain-text", for: .saveAsOperation) { error in
+                                    if let error = error {
+                                        print("❌ Error saving new document: \(error)")
+                                        self.showWikiLinkError("Failed to create '\(title).md': \(error.localizedDescription)")
+                                    } else {
+                                        print("✅ Created new note file: \(saveURL.path)")
+                                    }
+                                }
+                            } else {
+                                // User cancelled - close the untitled document
+                                textDocument.close()
+                            }
                         }
                     }
                 } else {
-                    self.fallbackCreateFile(at: fileURL, content: noteContent, title: title)
+                    self.createWikiLinkWithSavePanel(WikiLink(title: title, range: NSRange(), titleRange: NSRange()))
                 }
                 
             } catch {
                 print("❌ Error creating document: \(error)")
-                // Fallback to direct file creation
-                self.fallbackCreateFile(at: fileURL, content: noteContent, title: title)
+                self.createWikiLinkWithSavePanel(WikiLink(title: title, range: NSRange(), titleRange: NSRange()))
             }
         }
     }
@@ -169,6 +192,53 @@ extension EditorTextView {
                 alert.beginSheetModal(for: window)
             } else {
                 alert.runModal()
+            }
+        }
+    }
+    
+    /// Creates a wiki link note using a save panel for location selection
+    /// - Parameter wikiLink: The wiki link to create
+    private func createWikiLinkWithSavePanel(_ wikiLink: WikiLink) {
+        let savePanel = NSSavePanel()
+        savePanel.title = "Create Wiki Link Note"
+        savePanel.message = "Choose where to save '\(wikiLink.title).md'"
+        savePanel.nameFieldStringValue = "\(wikiLink.title).md"
+        savePanel.allowedContentTypes = [.plainText]
+        
+        if let window = self.window {
+            savePanel.beginSheetModal(for: window) { response in
+                if response == .OK, let saveURL = savePanel.url {
+                    // Create the document content
+                    let noteContent = "# \(wikiLink.title)\n\n"
+                    
+                    // Create new document directly
+                    DispatchQueue.main.async {
+                        do {
+                            let documentController = NSDocumentController.shared
+                            let document = try documentController.makeUntitledDocument(ofType: "public.plain-text")
+                            
+                            if let textDocument = document as? Document {
+                                // Set content
+                                textDocument.textStorage.replaceCharacters(in: NSRange(location: 0, length: textDocument.textStorage.length), with: noteContent)
+                                
+                                // Save directly to the chosen location
+                                textDocument.save(to: saveURL, ofType: "public.plain-text", for: .saveAsOperation) { error in
+                                    if let error = error {
+                                        print("❌ Error saving document: \(error)")
+                                    } else {
+                                        print("✅ Created new note file: \(saveURL.path)")
+                                        // Show the document
+                                        documentController.addDocument(textDocument)
+                                        textDocument.makeWindowControllers()
+                                        textDocument.showWindows()
+                                    }
+                                }
+                            }
+                        } catch {
+                            print("❌ Error creating document: \(error)")
+                        }
+                    }
+                }
             }
         }
     }

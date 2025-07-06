@@ -70,7 +70,7 @@ import ValueRange
         // Remove wiki link attributes from text storage
         self.textStorage.removeAttribute(.link, range: self.textStorage.range, predicate: { value in
             guard let url = value as? URL else { return false }
-            return url.scheme == "wiki"
+            return url.scheme == "wiki" || (url.scheme == "https" && url.host == "wiki.local")
         })
     }
     
@@ -152,7 +152,8 @@ extension NSTextStorage {
                     .replacingOccurrences(of: " ", with: "_")
                     .addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "untitled"
                 
-                guard let url = URL(string: "wiki://\(safeTitle)") else { return nil }
+                // Use https scheme with special domain to avoid URL validation issues
+                guard let url = URL(string: "https://wiki.local/\(safeTitle)") else { return nil }
                 return ValueRange(value: url, range: wikiLink.range)
             }
         }.value
@@ -164,7 +165,7 @@ extension NSTextStorage {
         // Remove existing wiki links in the range
         self.removeAttribute(.link, range: range) { value in
             guard let url = value as? URL else { return false }
-            return url.scheme == "wiki"
+            return url.scheme == "wiki" || (url.scheme == "https" && url.host == "wiki.local")
         }
         
         // Add new wiki links if any found
@@ -172,7 +173,6 @@ extension NSTextStorage {
         
         self.beginEditing()
         for wikiLink in wikiLinks {
-            print("🔗 Adding .link attribute: \(wikiLink.value) at range \(wikiLink.range)")
             self.addAttribute(.link, value: wikiLink.value, range: wikiLink.range)
         }
         self.endEditing()
