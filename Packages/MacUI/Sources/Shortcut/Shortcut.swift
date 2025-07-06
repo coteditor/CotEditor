@@ -28,6 +28,7 @@
 import Foundation
 import AppKit.NSEvent
 
+// SpecialKey would be just a simple struct (2024-01, FB13703826).
 extension NSEvent.SpecialKey: @retroactive @unchecked Sendable { }
 
 
