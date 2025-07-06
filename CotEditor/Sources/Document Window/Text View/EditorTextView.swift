@@ -1860,26 +1860,27 @@ extension EditorTextView {
         print("🎯 handleWikiLinkMouseDown at point: \(point), charIndex: \(clickedIndex)")
         
         guard clickedIndex < self.string.count,
-              let layoutManager = self.layoutManager else {
-            print("❌ Invalid click index or no layout manager")
+              let layoutManager = self.layoutManager,
+              let textStorage = self.textStorage else {
+            print("❌ Invalid click index, no layout manager, or no text storage")
             return false
         }
         
         // Check both temporary and permanent attributes at the clicked location
         let temporaryAttributes = layoutManager.temporaryAttributes(atCharacterIndex: clickedIndex, effectiveRange: nil)
-        let permanentAttributes = self.textStorage.attributes(at: clickedIndex, effectiveRange: nil)
+        let permanentAttributes = textStorage.attributes(at: clickedIndex, effectiveRange: nil)
         
         print("🔍 Temporary attributes: \(temporaryAttributes.keys)")
         print("🔍 Permanent attributes: \(permanentAttributes.keys)")
         
         // Check temporary attributes first
-        if let linkAttribute = temporaryAttributes[.link] as? URL {
+        if let linkAttribute = temporaryAttributes[NSAttributedString.Key.link] as? URL {
             print("🔗 Found .link in temporary attributes: \(linkAttribute)")
             return handleWikiLinkURL(linkAttribute, at: clickedIndex)
         }
         
         // Check permanent attributes
-        if let linkAttribute = permanentAttributes[.link] as? URL {
+        if let linkAttribute = permanentAttributes[NSAttributedString.Key.link] as? URL {
             print("🔗 Found .link in permanent attributes: \(linkAttribute)")
             return handleWikiLinkURL(linkAttribute, at: clickedIndex)
         }
