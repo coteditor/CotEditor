@@ -539,7 +539,7 @@ Gw
                                                 <action selector="toggleIndentGuides:" target="Ady-hI-5gd" id="Sbg-ca-Seo"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Page Guide" id="749">
+                                        <menuItem title="Show Page Guide" secondaryImage="text.pageguide" id="749">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
@@ -1395,6 +1395,7 @@ CA
         <image name="text.indentguides" width="12" height="10"/>
         <image name="text.line.magnify" catalog="system" width="16" height="14"/>
         <image name="text.page.badge.magnifyingglass" catalog="system" width="15" height="18"/>
+        <image name="text.pageguide" width="12" height="10"/>
         <image name="text.vertical" width="9" height="11"/>
         <image name="text.viewfinder" catalog="system" width="16" height="15"/>
         <image name="textformat" catalog="system" width="18" height="12"/>
