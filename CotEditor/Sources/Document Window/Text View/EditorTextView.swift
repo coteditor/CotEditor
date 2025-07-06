@@ -1865,42 +1865,59 @@ extension EditorTextView {
             return false
         }
         
-        // Check if there's a .link attribute at the clicked location
-        let attributes = layoutManager.temporaryAttributes(atCharacterIndex: clickedIndex, effectiveRange: nil)
+        // Check both temporary and permanent attributes at the clicked location
+        let temporaryAttributes = layoutManager.temporaryAttributes(atCharacterIndex: clickedIndex, effectiveRange: nil)
+        let permanentAttributes = self.textStorage.attributes(at: clickedIndex, effectiveRange: nil)
         
-        if let linkAttribute = attributes[.link] as? URL {
-            print("🔗 Found .link attribute: \(linkAttribute)")
-            
-            // Handle wiki:// scheme URLs for note navigation
-            if linkAttribute.scheme == "wiki" {
-                print("📖 Wiki link detected: \(linkAttribute)")
-                
-                // Extract note title from wiki:// URL
-                let noteTitle = linkAttribute.host ?? linkAttribute.path.replacingOccurrences(of: "/", with: "")
-                    .replacingOccurrences(of: "_", with: " ")
-                    .removingPercentEncoding ?? "untitled"
-                
-                print("📝 Navigating to note: '\(noteTitle)'")
-                
-                // Create a WikiLink object and use existing navigation logic
-                let wikiLink = WikiLink(
-                    title: noteTitle,
-                    range: NSRange(location: clickedIndex, length: 0),
-                    titleRange: NSRange(location: clickedIndex, length: 0)
-                )
-                
-                // Use existing wiki link navigation from our implementation
-                openWikiLink(wikiLink)
-                
-                return true // We handled this click
-            } else {
-                print("🌐 Non-wiki link detected: \(linkAttribute.scheme ?? "unknown")")
-            }
-        } else {
-            print("❌ No .link attribute found at click location")
+        print("🔍 Temporary attributes: \(temporaryAttributes.keys)")
+        print("🔍 Permanent attributes: \(permanentAttributes.keys)")
+        
+        // Check temporary attributes first
+        if let linkAttribute = temporaryAttributes[.link] as? URL {
+            print("🔗 Found .link in temporary attributes: \(linkAttribute)")
+            return handleWikiLinkURL(linkAttribute, at: clickedIndex)
         }
         
+        // Check permanent attributes
+        if let linkAttribute = permanentAttributes[.link] as? URL {
+            print("🔗 Found .link in permanent attributes: \(linkAttribute)")
+            return handleWikiLinkURL(linkAttribute, at: clickedIndex)
+        }
+        
+        print("❌ No .link attribute found in either temporary or permanent attributes")
+        
         return false // We didn't handle this click
+    }
+    
+    /// Helper method to handle wiki link URL clicks
+    private func handleWikiLinkURL(_ linkAttribute: URL, at clickedIndex: Int) -> Bool {
+        
+        // Handle wiki:// scheme URLs for note navigation
+        if linkAttribute.scheme == "wiki" {
+            print("📖 Wiki link detected: \(linkAttribute)")
+            
+            // Extract note title from wiki:// URL
+            let noteTitle = linkAttribute.host ?? linkAttribute.path.replacingOccurrences(of: "/", with: "")
+                .replacingOccurrences(of: "_", with: " ")
+                .removingPercentEncoding ?? "untitled"
+            
+            print("📝 Navigating to note: '\(noteTitle)'")
+            
+            // Create a WikiLink object and use existing navigation logic
+            let wikiLink = WikiLink(
+                title: noteTitle,
+                range: NSRange(location: clickedIndex, length: 0),
+                titleRange: NSRange(location: clickedIndex, length: 0)
+            )
+            
+            // Use existing wiki link navigation from our implementation
+            openWikiLink(wikiLink)
+            
+            return true // We handled this click
+        } else {
+            print("🌐 Non-wiki link detected: \(linkAttribute.scheme ?? "unknown")")
+            return false
+        }
     }
     
     /// Override NSTextView's link click handling to support wiki:// URLs (fallback)
