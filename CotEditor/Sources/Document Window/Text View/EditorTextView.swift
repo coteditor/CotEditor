@@ -1846,13 +1846,14 @@ extension EditorTextView {
     // MARK: - Link Click Handling
     
     /// Override NSTextView's link click handling to support wiki:// URLs
-    override func clickedOnLink(_ link: Any, at charIndex: Int) -> Bool {
+    override func clickedOnLink(_ link: Any, atIndex charIndex: Int) {
         
         print("🎯 clickedOnLink called! Link: \(link), charIndex: \(charIndex)")
         
         guard let url = link as? URL else { 
             print("❌ Link is not a URL: \(type(of: link))")
-            return super.clickedOnLink(link, at: charIndex)
+            super.clickedOnLink(link, atIndex: charIndex)
+            return
         }
         
         print("🔗 Link clicked: \(url)")
@@ -1878,10 +1879,10 @@ extension EditorTextView {
             // Use existing wiki link navigation from our implementation
             openWikiLink(wikiLink)
             
-            return true // We handled this link
+            return // We handled this link
         }
         
         // Let NSTextView handle other links (http, https, etc.)
-        return super.clickedOnLink(link, at: charIndex)
+        super.clickedOnLink(link, atIndex: charIndex)
     }
 }
