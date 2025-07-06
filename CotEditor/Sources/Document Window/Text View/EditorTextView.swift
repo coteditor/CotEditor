@@ -40,7 +40,7 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-final class EditorTextView: NSTextView, NSTextViewDelegate, CurrentLineHighlighting, MultiCursorEditing {
+final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEditing {
     
     @MainActor protocol Delegate: AnyObject {
         
@@ -287,11 +287,9 @@ final class EditorTextView: NSTextView, NSTextViewDelegate, CurrentLineHighlight
         
         super.viewDidMoveToWindow()
         
-        // Set self as delegate to handle link clicks
-        print("🎯 Setting EditorTextView as its own delegate")
-        print("🎯 Current delegate before: \(String(describing: self.delegate))")
-        self.delegate = self
-        print("🎯 Current delegate after: \(String(describing: self.delegate))")
+        // Don't override the delegate - CotEditor needs it for other functionality
+        // We'll handle wiki links via clickedOnLink method override instead
+        print("🎯 Keeping existing delegate: \(String(describing: self.delegate))")
         
         // apply theme to window when attached
         if let window = self.window as? DocumentWindow, let theme = self.theme {
@@ -1843,21 +1841,18 @@ extension EditorTextView {
         // treat `.` and `:` as word delimiter
         return (self.string as NSString).rangeOfCharacter(until: CharacterSet(charactersIn: ".:"), at: location, range: proposedWordRange)
     }
-}
-
-
-// MARK: - NSTextViewDelegate
-
-extension EditorTextView {
     
-    /// Handles link clicks, particularly for wiki:// scheme URLs.
-    func textView(_ textView: NSTextView, clickedOnLink link: Any, at charIndex: Int) -> Bool {
+    
+    // MARK: - Link Click Handling
+    
+    /// Override NSTextView's link click handling to support wiki:// URLs
+    override func clickedOnLink(_ link: Any, at charIndex: Int) -> Bool {
         
-        print("🎯 textView:clickedOnLink called! Link: \(link), charIndex: \(charIndex)")
+        print("🎯 clickedOnLink called! Link: \(link), charIndex: \(charIndex)")
         
         guard let url = link as? URL else { 
             print("❌ Link is not a URL: \(type(of: link))")
-            return false 
+            return super.clickedOnLink(link, at: charIndex)
         }
         
         print("🔗 Link clicked: \(url)")
@@ -1887,6 +1882,6 @@ extension EditorTextView {
         }
         
         // Let NSTextView handle other links (http, https, etc.)
-        return false
+        return super.clickedOnLink(link, at: charIndex)
     }
 }
