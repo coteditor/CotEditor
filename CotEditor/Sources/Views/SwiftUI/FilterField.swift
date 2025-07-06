@@ -104,16 +104,17 @@ private final class InnerFilterField: NSSearchField {
         super.init(frame: .zero)
         
         if let searchButtonCell {
-            searchButtonCell.image = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle", accessibilityDescription: nil)?
-                .tinted(with: .secondaryLabelColor)
+            searchButtonCell.image = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle", accessibilityDescription: nil)
             searchButtonCell.alternateImage = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle.fill", accessibilityDescription: nil)?
                 .tinted(with: .controlAccentColor)
             searchButtonCell.setAccessibilityLabel(String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"))
         }
         
-        // workaround the cancel button color is .labelColor (2022-09, macOS 13)
-        if let cancelButtonCell {
-            cancelButtonCell.image = cancelButtonCell.image?
+        // workaround the button color is .labelColor (2022-09, macOS 13-15, fixed in macOS 26)
+        if #unavailable(macOS 26) {
+            self.searchButtonCell?.image = self.searchButtonCell?.image?
+                .tinted(with: .secondaryLabelColor)
+            self.cancelButtonCell?.image = self.cancelButtonCell?.image?
                 .tinted(with: .secondaryLabelColor)
         }
         
@@ -189,6 +190,7 @@ private extension NSSearchField {
     
     
     /// The button cell used to display the cancel button image.
+    @available(macOS, deprecated: 26.0, message: "The cancelButtonCell will no longer be used in the code.")
     var cancelButtonCell: NSButtonCell? {
         
         (self.cell as? NSSearchFieldCell)?.cancelButtonCell
