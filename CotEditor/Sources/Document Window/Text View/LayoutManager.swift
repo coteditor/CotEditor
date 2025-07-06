@@ -137,6 +137,9 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
         
+        // Draw wiki link decorations
+        self.drawWikiLinkDecorationsIfNeeded(forGlyphRange: glyphsToShow, at: origin)
+        
         NSGraphicsContext.restoreGraphicsState()
     }
     

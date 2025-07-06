@@ -520,6 +520,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         super.insertText(plainString, replacementRange: replacementRange)
         
+        // wiki link detection - detect links after text insertion
+        self.detectWikiLinksAfterTextChange(in: replacementRange)
+        
         // auto completion
         if self.isAutomaticCompletionEnabled {
             if self.rangeForUserCompletion.length >= self.minimumAutomaticCompletionLength {
