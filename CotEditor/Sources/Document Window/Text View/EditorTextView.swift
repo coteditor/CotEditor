@@ -383,6 +383,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         let selectedRange = self.selectedRange.isEmpty ? self.selectedRange : nil
         
+        // Check for wiki link clicks before normal processing
+        if handleWikiLinkMouseDown(with: event) {
+            print("🎯 Wiki link click handled, skipping normal mouseDown")
+            return
+        }
+        
         super.mouseDown(with: event)
         
         // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
@@ -1845,7 +1851,59 @@ extension EditorTextView {
     
     // MARK: - Link Click Handling
     
-    /// Override NSTextView's link click handling to support wiki:// URLs
+    /// Handles mouse clicks to detect wiki links with .link attributes
+    private func handleWikiLinkMouseDown(with event: NSEvent) -> Bool {
+        
+        let point = self.convert(event.locationInWindow, from: nil)
+        let clickedIndex = self.characterIndexForInsertion(at: point)
+        
+        print("🎯 handleWikiLinkMouseDown at point: \(point), charIndex: \(clickedIndex)")
+        
+        guard clickedIndex < self.string.count,
+              let layoutManager = self.layoutManager else {
+            print("❌ Invalid click index or no layout manager")
+            return false
+        }
+        
+        // Check if there's a .link attribute at the clicked location
+        let attributes = layoutManager.temporaryAttributes(atCharacterIndex: clickedIndex, effectiveRange: nil)
+        
+        if let linkAttribute = attributes[.link] as? URL {
+            print("🔗 Found .link attribute: \(linkAttribute)")
+            
+            // Handle wiki:// scheme URLs for note navigation
+            if linkAttribute.scheme == "wiki" {
+                print("📖 Wiki link detected: \(linkAttribute)")
+                
+                // Extract note title from wiki:// URL
+                let noteTitle = linkAttribute.host ?? linkAttribute.path.replacingOccurrences(of: "/", with: "")
+                    .replacingOccurrences(of: "_", with: " ")
+                    .removingPercentEncoding ?? "untitled"
+                
+                print("📝 Navigating to note: '\(noteTitle)'")
+                
+                // Create a WikiLink object and use existing navigation logic
+                let wikiLink = WikiLink(
+                    title: noteTitle,
+                    range: NSRange(location: clickedIndex, length: 0),
+                    titleRange: NSRange(location: clickedIndex, length: 0)
+                )
+                
+                // Use existing wiki link navigation from our implementation
+                openWikiLink(wikiLink)
+                
+                return true // We handled this click
+            } else {
+                print("🌐 Non-wiki link detected: \(linkAttribute.scheme ?? "unknown")")
+            }
+        } else {
+            print("❌ No .link attribute found at click location")
+        }
+        
+        return false // We didn't handle this click
+    }
+    
+    /// Override NSTextView's link click handling to support wiki:// URLs (fallback)
     override func clicked(onLink link: Any, at charIndex: Int) {
         
         print("🎯 clicked(onLink:at:) called! Link: \(link), charIndex: \(charIndex)")
@@ -1860,7 +1918,7 @@ extension EditorTextView {
         
         // Handle wiki:// scheme URLs for note navigation
         if url.scheme == "wiki" {
-            print("📖 Wiki link detected: \(url)")
+            print("📖 Wiki link detected via clicked(onLink:at:): \(url)")
             
             // Extract note title from wiki:// URL
             let noteTitle = url.host ?? url.path.replacingOccurrences(of: "/", with: "")
