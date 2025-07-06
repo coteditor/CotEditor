@@ -172,6 +172,7 @@ extension NSTextStorage {
         
         self.beginEditing()
         for wikiLink in wikiLinks {
+            print("🔗 Adding .link attribute: \(wikiLink.value) at range \(wikiLink.range)")
             self.addAttribute(.link, value: wikiLink.value, range: wikiLink.range)
         }
         self.endEditing()

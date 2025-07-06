@@ -288,7 +288,10 @@ final class EditorTextView: NSTextView, NSTextViewDelegate, CurrentLineHighlight
         super.viewDidMoveToWindow()
         
         // Set self as delegate to handle link clicks
+        print("🎯 Setting EditorTextView as its own delegate")
+        print("🎯 Current delegate before: \(String(describing: self.delegate))")
         self.delegate = self
+        print("🎯 Current delegate after: \(String(describing: self.delegate))")
         
         // apply theme to window when attached
         if let window = self.window as? DocumentWindow, let theme = self.theme {
@@ -1850,7 +1853,12 @@ extension EditorTextView {
     /// Handles link clicks, particularly for wiki:// scheme URLs.
     func textView(_ textView: NSTextView, clickedOnLink link: Any, at charIndex: Int) -> Bool {
         
-        guard let url = link as? URL else { return false }
+        print("🎯 textView:clickedOnLink called! Link: \(link), charIndex: \(charIndex)")
+        
+        guard let url = link as? URL else { 
+            print("❌ Link is not a URL: \(type(of: link))")
+            return false 
+        }
         
         print("🔗 Link clicked: \(url)")
         
