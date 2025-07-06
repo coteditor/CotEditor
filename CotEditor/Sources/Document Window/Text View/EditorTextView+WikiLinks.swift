@@ -35,7 +35,7 @@ extension EditorTextView {
     
     /// Follows a wiki link by attempting to open the referenced note
     /// - Parameter wikiLink: The wiki link to follow
-    private func openWikiLink(_ wikiLink: WikiLink) {
+    func openWikiLink(_ wikiLink: WikiLink) {
         print("📖 Opening wiki link: '\(wikiLink.title)'")
         
         // Get the current document's directory
@@ -68,7 +68,6 @@ extension EditorTextView {
         print("📁 Target file: \(targetFileURL.path)")
         
         // Check if target file exists
-        let fileManager = FileManager.default
         if fileManager.fileExists(atPath: targetFileURL.path) {
             print("✅ File exists, opening: \(targetFileURL.path)")
             openExistingFile(at: targetFileURL)
@@ -177,22 +176,22 @@ extension EditorTextView {
     /// Shows information about a wiki link
     /// - Parameter wikiLink: The wiki link to show info for
     private func showWikiLinkInfo(_ wikiLink: WikiLink) {
-        // For now, just show a simple tooltip
+        // For now, just show a simple message
         // This could be enhanced with a proper popover in the future
-        let message = "Wiki Link: \(wikiLink.title)"
-        let rect = self.boundingRect(for: NSRange(location: wikiLink.range.location, length: wikiLink.range.length)) ?? .zero
+        print("ℹ️ Wiki Link Info: '\(wikiLink.title)'")
         
-        // You could show a tooltip or popover here
-        // For now, we'll just post a notification
-        NotificationCenter.default.post(
-            name: .showWikiLinkInfo,
-            object: self,
-            userInfo: [
-                "wikiLink": wikiLink,
-                "noteTitle": wikiLink.title,
-                "rect": NSValue(rect: rect)
-            ]
-        )
+        // Could implement tooltip or popover here in the future
+        let alert = NSAlert()
+        alert.messageText = "Wiki Link"
+        alert.informativeText = "Link to: \(wikiLink.title)"
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        
+        if let window = self.window {
+            alert.beginSheetModal(for: window)
+        } else {
+            alert.runModal()
+        }
     }
     
     // MARK: - Menu Actions
