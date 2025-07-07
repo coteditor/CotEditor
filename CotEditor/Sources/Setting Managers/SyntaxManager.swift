@@ -243,7 +243,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
             return Syntax.none
         }
         
-        let setting: Setting = try {
+        return try {
             if let setting = self.cachedSettings[name] {
                 return setting
             }
@@ -262,12 +262,10 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
             
             return setting
         }()
-        
-        return setting
     }
     
     
-    /// Loads setting from the file at the given URL.
+    /// Loads the setting from the file at the given URL.
     nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
         
         let data = try Data(contentsOf: fileURL)

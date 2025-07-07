@@ -4542,6 +4542,102 @@
         }
       }
     },
+    "ImportDuplicationError.description" : {
+      "comment" : "%@ is a name of a setting. Refer the same expression by Apple.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ již existuje. Chcete soubor nahradit?"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ existiert bereits. Möchtest du das Objekt ersetzen?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "“%@” already exists. Do you want to replace it?"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” already exists. Do you want to replace it?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” ya existe. ¿Quieres reemplazarlo?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« %@ » existe déjà. Souhaitez-vous le remplacer ?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” esiste già. Vuoi sostituirlo?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”はすでに存在します。置き換えますか?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’ 파일이 이미 존재합니다. 대치하겠습니까?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je '%@' vervangen?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” już istnieje. Czy chcesz zastąpić?"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” já existe. Deseja substituí-lo?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” zaten var. Onu değiştirmek istiyor musunuz?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”已存在。你要替换它吗？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」已存在。要取代嗎？"
+          }
+        }
+      }
+    },
     "ImportDuplicationError.recoveryOption.replace" : {
       "comment" : "button label",
       "extractionState" : "extracted_with_value",
@@ -4638,572 +4734,50 @@
         }
       }
     },
-    "ImportDuplicationError.replacement.description" : {
+    "ImportDuplicationError.recoverySuggestion" : {
+      "comment" : "Refer similar expressions by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bude nainstalována nová náhradní definice s názvem „%@“, ale definice se stejným názvem již existuje."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine neue Ersatzdefinition mit dem Namen „%@“ wird installiert, doch eine Definition mit dem selben Namen existiert bereits."
+            "value" : "Es existiert bereits eine eigene Einstellung mit demselben Namen. Beim Ersetzen wird der Inhalt überschrieben."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "A new replacement definition named “%@” will be installed, but a definition with the same name already exists."
+            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current contents."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A new replacement definition named “%@” will be installed, but a definition with the same name already exists."
+            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current contents."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una nueva definición de reemplazo llamada “%@” se instalará, pero ya existe una definición con el mismo nombre."
+            "state" : "needs_review",
+            "value" : "Ya existe un ajuste personalizado con este nombre. Si lo reemplazas, se borrará el contenido actual."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Une nouvelle liste de remplacements nommée « %@ » va être installée, mais une liste avec le même nom existe déjà."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verrà installata una nuova definizione per la sostituzione chiamata “%@”, ma esiste già una definizione con lo stesso nome."
+            "state" : "needs_review",
+            "value" : "Un réglage personnalisé du même nom se trouve déjà. Si vous le remplacez, le contenu d’origine sera perdu."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "새 대치 정의 ‘%@’를 설치하는 중에, 같은 이름을 사용 중인 정의를 발견했습니다."
+            "value" : "同じ名前のカスタム設定がすでに存在しています。これを置き換えると現在の内容が上書きされます。"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Een nieuwe vervangende definitie met de naam '%@' wordt geïnstalleerd, maar een definitie met dezelfde naam bestaat al."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zostanie zainstalowana nowa definicja zastąpienia o nazwie „%@”, jednakże definicja o tej samej nazwie już istnieje."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma nova definição de substituição chamada %@ será instalada, mas uma definição com o mesmo nome já existe."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "“%@” adında yeni bir değişim tanımı yüklenecek; ancak aynı adlı başka bir tanım halihazırda mevcut."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "名称为“%@”的新替换定义将被安装，但是已经存在相同名称的定义。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "名稱為「%@」的新取代定義將被安裝，但是已經存在相同名稱的定義。"
-          }
-        }
-      }
-    },
-    "ImportDuplicationError.replacement.recoverySuggestion" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chcete ji nahradit?\nNahrazenou definici nelze obnovit."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Möchtest du sie ersetzen?\nErsetzte Definition kann nicht wiederhergestellt werden."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Do you want to replace it?\nReplaced definition can’t be restored."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you want to replace it?\nReplaced definition can’t be restored."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Quieres reemplazarla?\nLa definición reemplazada no se puede restaurar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voulez-vous la remplacer ?\nLa liste de remplacements d’origine ne pourra pas être restaurée."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Si desidera sovrascriverla?\nLa definizione soprascritta non può essere ripristinata."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "定義を置き換えますか?\n削除した定義は元に戻せません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "해당 항목을 대치하시겠습니까? 대치된 정의는 복원할 수 없습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wil je het vervangen?\nEen vervangen definitie kan niet worden hersteld."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czy chcesz ją zastąpić?\nZastąpionej definicji nie można przywrócić."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deseja confirmar alteração?\nDefinições substituídas não podem ser restauradas."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Değiştirmek istiyor musunuz?\nDeğiştirilen tanım geri yüklenemez."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你想要替换该定义吗？\n被替换的定义无法恢复。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你想要取代該定義嗎？\n被取代的定義無法恢復。"
-          }
-        }
-      }
-    },
-    "ImportDuplicationError.syntax.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bude nainstalována nová syntaxe s názvem „%@“, ale vlastní syntaxe se stejným názvem již existuje."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eine neue Syntax mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierte Syntax mit demselben Namen existiert bereits."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una nueva sintaxis llamada “%@” se instalará, pero ya existe una sintaxis personalizada con el mismo nombre."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Une nouvelle syntaxe nommée « %@ » va être installée, mais une autre syntaxe personnalisée du même nom existe déjà."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verrà installata una nuova sintassi col nome “%@”, ma esiste già una sintassi personalizzata con lo stesso nome."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新しいシンタックス“%@”のインストールを試みましたが、同名のカスタムシンタックスがすでに存在しています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "새 구문 ‘%@’를 설치하는 중에, 같은 이름을 사용 중인 구문을 발견했습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Een nieuwe syntaxis met de naam '%@' wordt geïnstalleerd, maar een aangepaste syntaxis met dezelfde naam bestaat al."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zostanie zainstalowana nowa składnia o nazwie „%@”, jednakże własna składnia o tej samej nazwie już istnieje."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma nova sintaxe chamada “%@” será instalada, porém uma sintaxe customizada com mesmo nome já existe."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "“%@” adlı yeni bir sözdizim yüklenecek; ancak aynı adlı başka bir sözdizim halihazırda var."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "将要安装名为“%@”的新语法，但是已经存在同名的自定义语法。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "即將安裝新的文法定義「%@」，但目前已經有另一筆同名文法定義登記在庫。"
-          }
-        }
-      }
-    },
-    "ImportDuplicationError.syntax.recoverySuggestion" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chcete ji nahradit?\nNahrazenou syntaxi nelze obnovit."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Möchtest du sie ersetzen?\nErsetzte Syntax kann nicht wiederhergestellt werden."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Do you want to replace it?\nReplaced syntax can’t be restored."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you want to replace it?\nReplaced syntax can’t be restored."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Quieres reemplazarlo?\nLa sintaxis reemplazada no se puede restaurar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voulez-vous la remplacer?\nLa syntaxe remplacée ne pourra pas être restaurée."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Desideri sostituirla?\nUna sintassi sostituita non potrà essere ripristinata."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "シンタックスを置き換えますか?\n置き換えたシンタックスは元に戻せません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "해당 항목을 대치하시겠습니까? 대치된 구문은 복원할 수 없습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wil je het vervangen?\nVervangen syntaxis kan niet worden hersteld."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czy chcesz ją zastąpić?\nZastąpionej składni nie można przywrócić."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você deseja alterar?\nUma sintaxe alterada não pode ser restaurada."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yeni sözdizimle değiştirmek istiyor musunuz?\nDeğiştirilen sözdizim geri yüklenemez."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "要替换语法吗？\n被替换的语法将无法恢复。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "真的要取而代之嗎？\n被取代的文法定義將會永遠丟失、無法找回。"
-          }
-        }
-      }
-    },
-    "ImportDuplicationError.theme.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bude nainstalován nový motiv s názvem „%@“, ale vlastní motiv se stejným názvem již existuje."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefiniertes Thema mit dem selben Namen existiert bereits."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "A new theme named “%@” will be installed, but a custom theme with the same name already exists."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A new theme named “%@” will be installed, but a custom theme with the same name already exists."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un nuevo tema llamado “%@” se instalará, pero ya existe un tema personalizado con el mismo nombre."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un nouveau thème nommé « %@ » va être installé, mais un thème personnalisé avec le même nom existe déjà."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un nuovo tema dal nome “%@” sarà installato, ma esiste già un tema personalizzato con lo stesso nome."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "새 테마 ‘%@’를 설치하는 중에, 같은 이름을 사용 중인 테마를 발견했습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Er wordt een nieuw thema met de naam '%@' geïnstalleerd, maar er bestaat al een aangepast thema met dezelfde naam."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zostanie zainstalowany nowy motyw o nazwie „%@”, jednakże własny motyw o tej samej nazwie już istnieje."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um novo tema chamado “%@” será instalado, mas já existe um tema personalizado com o mesmo nome."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "“%@” adlı yeni bir tema yüklenecek; ancak aynı adlı başka bir tema halihazırda var."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "將要安裝名為「%@」的新主題，但是已經存在同名的自訂主題。"
-          }
-        }
-      }
-    },
-    "ImportDuplicationError.theme.recoverySuggestion" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chcete ho nahradit?\nNahrazený motiv nelze obnovit."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Möchtest du es ersetzen?\nErsetztes Thema kann nicht wiederhergestellt werden."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Do you want to replace it?\nReplaced theme can’t be restored."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you want to replace it?\nReplaced theme can’t be restored."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Quieres reemplazarlo?\nEl tema reemplazado no se puede restaurar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voulez-vous le remplacer ?\nLe thème d’origine ne pourra pas être restauré."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Si desidera sostituirlo?\nI temi sostituiti non possono essere recuperati."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "テーマを置き換えますか?\n削除したテーマは元に戻せません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "해당 항목을 대치하시겠습니까? 대치된 테마는 복원할 수 없습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wil je het vervangen?\nEen vervangen thema kan niet worden hersteld."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czy chcesz go zastąpić?\nZastąpionego motywu nie można przywrócić."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deseja substituí-lo?\nOs temas substituídos não podem ser restaurados."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yeni temayla değiştirmek istiyor musunuz?\nDeğiştirilen tema geri yüklenemez."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "要覆盖原主题吗？\n主题删除后将无法还原。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "要覆蓋原主題嗎？\n主題刪除後將無法還原。"
+            "state" : "needs_review",
+            "value" : "Er bestaat al een aangepaste instelling met dezelfde naam. Als je het bestand of de map vervangt, wordt de inhoud ervan overschreven."
           }
         }
       }

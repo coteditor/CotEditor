@@ -92,7 +92,7 @@ protocol SettingFileManaging: AnyObject, Sendable {
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
     func setting(name: String) throws(SettingFileError) -> Setting
     
-    /// Loads setting from the file at the given URL.
+    /// Loads the setting from the file at the given URL.
     nonisolated func loadSetting(at fileURL: URL) throws -> Setting
     
     /// Loads settings in the user domain.
@@ -377,8 +377,8 @@ extension SettingFileManaging {
         for name in self.settingNames {
             guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
             
-            guard self.urlForUserSetting(name: name) == nil else {  // duplicated
-                throw ImportDuplicationError(name: name, type: Self.fileType, continuationHandler: { [unowned self] in
+            guard self.state(of: name)?.isCustomized != true else {  // duplicated
+                throw ImportDuplicationError(name: name, continuationHandler: { [unowned self] in
                     try self.forciblyImportSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
                 })
             }
@@ -583,43 +583,22 @@ struct SettingFileError: LocalizedError {
 struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var name: String
-    var type: UTType
     var continuationHandler: (@Sendable () throws -> Void)
     
     
     var errorDescription: String? {
         
-        switch self.type {
-            case .yaml:
-                String(localized: "ImportDuplicationError.syntax.description",
-                       defaultValue: "A new syntax named “\(self.name)” will be installed, but a custom syntax with the same name already exists.")
-            case .cotTheme:
-                String(localized: "ImportDuplicationError.theme.description",
-                       defaultValue: "A new theme named “\(self.name)” will be installed, but a custom theme with the same name already exists.")
-            case .cotReplacement:
-                String(localized: "ImportDuplicationError.replacement.description",
-                       defaultValue: "A new replacement definition named “\(self.name)” will be installed, but a definition with the same name already exists.")
-            default:
-                fatalError()
-        }
+        String(localized: "ImportDuplicationError.description",
+               defaultValue: "“\(self.name)” already exists. Do you want to replace it?",
+               comment: "%@ is a name of a setting. Refer the same expression by Apple.")
     }
     
     
     var recoverySuggestion: String? {
         
-        switch self.type {
-            case .yaml:
-                String(localized: "ImportDuplicationError.syntax.recoverySuggestion",
-                       defaultValue: "Do you want to replace it?\nReplaced syntax can’t be restored.")
-            case .cotTheme:
-                String(localized: "ImportDuplicationError.theme.recoverySuggestion",
-                       defaultValue: "Do you want to replace it?\nReplaced theme can’t be restored.")
-            case .cotReplacement:
-                String(localized: "ImportDuplicationError.replacement.recoverySuggestion",
-                       defaultValue: "Do you want to replace it?\nReplaced definition can’t be restored.")
-            default:
-                fatalError()
-        }
+        String(localized: "ImportDuplicationError.recoverySuggestion",
+               defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
+               comment: "Refer similar expressions by Apple.")
     }
     
     
