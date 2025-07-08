@@ -135,15 +135,15 @@ extension ModeOptions {
     /// The dictionary contains key-value pairs only different from default values.
     var dictionary: [String: AnyHashable] {
         
-        let defaults = ModeOptions()._dictionary
+        let defaults = ModeOptions().keyedDictionary
         
-        return self._dictionary
+        return self.keyedDictionary
             .filter { $0.value != defaults[$0.key] }
             .mapKeys(\.stringValue)
     }
     
     
-    private var _dictionary: [ModeOptions.CodingKeys: AnyHashable] {
+    private var keyedDictionary: [ModeOptions.CodingKeys: AnyHashable] {
         
         [CodingKeys
          .fontType: self.fontType.rawValue,
