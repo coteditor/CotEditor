@@ -49,7 +49,7 @@ extension NSFont {
     }
     
     
-    /// Core Graphics font object corresponding to the font
+    /// The Core Graphics font object corresponding to the font.
     final var cgFont: CGFont {
         
         CTFontCopyGraphicsFont(self, nil)

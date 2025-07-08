@@ -73,7 +73,7 @@ protocol SettingFileManaging: AnyObject, Sendable {
     /// Directory name in both Application Support and bundled Resources.
     nonisolated static var directoryName: String { get }
     
-    /// UTType of user setting file
+    /// UTType of user setting file.
     nonisolated static var fileType: UTType { get }
     
     /// List of names that cannot be used for user setting names.

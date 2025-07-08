@@ -457,7 +457,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Workarounds the issue that indicators display even the editor is inactive (2023-08 macOS 14, FB12964703 and FB12968177)
+    /// Workarounds the issue that indicators display even the editor is inactive. (2023-08 macOS 14, FB12964703 and FB12968177)
     ///
     /// This method should be Invoked when changing the state whether the receiver is the key editor receiving text input in the system.
     func invalidateInsertionIndicatorDisplayMode() {

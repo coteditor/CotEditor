@@ -554,7 +554,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    /// The Shift + Tab keys are pressed
+    /// The Shift + Tab keys are pressed.
     override func insertBacktab(_ sender: Any?) {
         
         // outdent with tab key

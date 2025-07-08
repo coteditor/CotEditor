@@ -29,7 +29,7 @@ final class DetachablePopoverViewController: NSViewController, NSPopoverDelegate
     
     // MARK: Popover Delegate
     
-    /// Makes popover detachable
+    /// Makes popover detachable.
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
         
         true

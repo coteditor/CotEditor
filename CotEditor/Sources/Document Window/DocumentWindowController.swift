@@ -329,7 +329,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    /// Updates `uniqueDirectory`,
+    /// Updates `uniqueDirectory`.
     private func invalidateUniqueDirectory() {
         
         // apply unique folder name to the window title

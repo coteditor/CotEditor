@@ -190,7 +190,7 @@ private protocol ScriptToken {
 
 private extension ScriptToken where Self: RawRepresentable, Self.RawValue == String {
     
-    /// Reads type from script
+    /// Reads the type from script.
     init?(scanning script: String) {
         
         let regex = try! Regex("%%%\\{\(Self.token)=(?<value>.+)\\}%%%", as: (Substring, value: Substring).self)

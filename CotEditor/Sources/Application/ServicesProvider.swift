@@ -29,7 +29,7 @@ import AppKit
     
     // MARK: Public Methods
     
-    /// Opens new document with string via Services
+    /// Opens new document with string via Services.
     @objc func openSelection(_ pboard: NSPasteboard, userData: String, error errorPointer: NSErrorPointer) {
         
         guard let selection = pboard.string(forType: .string) else { return assertionFailure() }
@@ -43,7 +43,7 @@ import AppKit
     }
     
     
-    /// Opens files via Services
+    /// Opens files via Services.
     @objc func openFile(_ pboard: NSPasteboard, userData: String, error errorPointer: NSErrorPointer) {
         
         guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }

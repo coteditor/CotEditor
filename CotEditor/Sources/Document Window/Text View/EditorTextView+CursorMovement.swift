@@ -122,7 +122,7 @@ extension EditorTextView {
     }
     
     
-    /// Moves cursor down to the lower visual line (↓ / ^N)
+    /// Moves cursor down to the lower visual line (↓ / ^N).
     override func moveDown(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -150,7 +150,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Option+Arrow
     
-    /// Moves cursor to the beginning of the word continuously (opt←)
+    /// Moves cursor to the beginning of the word continuously (opt←).
     override func moveWordLeft(_ sender: Any?) {
         
         // find word boundary myself
@@ -176,7 +176,7 @@ extension EditorTextView {
     }
     
     
-    /// Moves cursor to the end of the word continuously (opt→)
+    /// Moves cursor to the end of the word continuously (opt→).
     override func moveWordRight(_ sender: Any?) {
         
         // find word boundary myself (cf. moveWordLeft(_:))
@@ -295,7 +295,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Command+Arrow
     
-    /// Moves cursor to the beginning of the current visual line (⌘←)
+    /// Moves cursor to the beginning of the current visual line (⌘←).
     override func moveToBeginningOfLine(_ sender: Any?) {
         
         self.moveCursors(affinity: .downstream) {
@@ -326,7 +326,7 @@ extension EditorTextView {
     }
     
     
-    /// Moves cursor to the end of the current visual line (⌘→)
+    /// Moves cursor to the end of the current visual line (⌘→).
     override func moveToEndOfLine(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -466,7 +466,7 @@ extension EditorTextView {
     }
     
     
-    /// Moves cursor to the beginning of the word (^⌥B)
+    /// Moves cursor to the beginning of the word (^⌥B).
     override func moveWordBackward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -492,7 +492,7 @@ extension EditorTextView {
     }
     
     
-    /// Moves cursor to the end of the word (^⌥F)
+    /// Moves cursor to the end of the word (^⌥F).
     override func moveWordForward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {

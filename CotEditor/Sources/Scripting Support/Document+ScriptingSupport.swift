@@ -70,7 +70,7 @@ extension Document {
     
     // MARK: AppleScript Accessors
     
-    /// Whole document string (text (NSTextStorage).)
+    /// Whole document string (text (NSTextStorage)).
     @objc var scriptTextStorage: Any {
         
         get {
