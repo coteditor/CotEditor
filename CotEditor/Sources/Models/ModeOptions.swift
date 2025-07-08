@@ -108,12 +108,11 @@ extension ModeOptions {
         
         let dictionary = dictionary.compactMapKeys(CodingKeys.init(stringValue:))
         
-        guard
-            let fontRawValue = dictionary[.fontType] as? String,
-            let fontType = FontType(rawValue: fontRawValue) else
-        { return nil }
-        
-        self.fontType = fontType
+        if let fontRawValue = dictionary[.fontType] as? String,
+           let fontType = FontType(rawValue: fontRawValue)
+        {
+            self.fontType = fontType
+        }
         
         self.smartInsertDelete = dictionary[.smartInsertDelete] as? Bool ?? false
         self.automaticQuoteSubstitution = dictionary[.automaticQuoteSubstitution] as? Bool ?? false
@@ -131,8 +130,20 @@ extension ModeOptions {
     }
     
     
-    /// Dictionary representation to serialize
+    /// The dictionary representation to serialize.
+    ///
+    /// The dictionary contains key-value pairs only different from default values.
     var dictionary: [String: AnyHashable] {
+        
+        let defaults = ModeOptions()._dictionary
+        
+        return self._dictionary
+            .filter { $0.value != defaults[$0.key] }
+            .mapKeys(\.stringValue)
+    }
+    
+    
+    private var _dictionary: [ModeOptions.CodingKeys: AnyHashable] {
         
         [CodingKeys
          .fontType: self.fontType.rawValue,
@@ -151,8 +162,5 @@ extension ModeOptions {
          .completionWordTypes: self.completionWordTypes.rawValue,
          .automaticCompletion: self.automaticCompletion,
         ]
-        .filter { ($0.value as? Int) != 0 }
-        .filter { ($0.value as? Bool) != false }
-        .mapKeys(\.stringValue)
     }
 }
