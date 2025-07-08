@@ -87,17 +87,19 @@ struct CharacterCountOptionsView: View {
                         EmptyView()
                     }
                     .fixedSize()
+                    .labelsHidden()
                     .accessibilityLabeledPair(role: .content, id: "unit", in: self.accessibility)
-
+                    
                     Text(self.unit.description)
                         .foregroundStyle(.secondary)
                         .controlSize(.small)
+                        .fixedSize(horizontal: false, vertical: true)
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                     
                     if self.unit == .byte {
                         Picker(String(localized: "Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: self.$encoding) {
-                            ForEach(String.sortedAvailableStringEncodings.indices, id: \.self) { index in
-                                if let encoding = String.sortedAvailableStringEncodings[index] {
+                            ForEach(Array(String.sortedAvailableStringEncodings.enumerated()), id: \.offset) { (_, encoding) in
+                                if let encoding {
                                     Text(String.localizedName(of: encoding))
                                         .tag(Int(encoding.rawValue))
                                 } else {
@@ -135,7 +137,6 @@ struct CharacterCountOptionsView: View {
             }
             .accessibilityElement(children: .contain)
         }
-        .animation(.default, value: self.unit)
     }
 }
 
