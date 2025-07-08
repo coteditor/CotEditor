@@ -24,6 +24,15 @@
 
 
 
+5.2.1 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the state of the Text Replacement option in modes are not saved.
+
+
+
 5.2.0 (724)
 --------------------------
 
