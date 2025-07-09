@@ -1,6 +1,9 @@
 {
   "fill" : {
-    "automatic-gradient" : "extended-gray:0.97500,1.00000"
+    "linear-gradient" : [
+      "extended-gray:0.97500,1.00000",
+      "gray:0.92000,1.00000"
+    ]
   },
   "groups" : [
     {
@@ -245,6 +248,13 @@
           "value" : 0.5
         }
       ],
+      "position" : {
+        "scale" : 1.02,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
       "shadow" : {
         "kind" : "none",
         "opacity" : 0.5
