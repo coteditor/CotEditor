@@ -14,7 +14,7 @@
 - Update the user interface on macOS 26 to the Liquid Glass style.
 - Update the application icon to the Liquid Glass style.
 - [trivial] Improve the behavior of Add/Remove buttons.
-- [dev] Update the build environment to Xcode 26.0 Beta 2 (Swift 6.2, macOS 26 SDK).
+- [dev] Update the build environment to Xcode 26.0 Beta 3 (Swift 6.2, macOS 26 SDK).
 
 
 ### Known Issues
