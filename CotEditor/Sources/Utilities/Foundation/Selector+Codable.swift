@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation.NSObjCRuntime
 
-extension Selector: Codable {
+extension Selector: @retroactive Codable {
     
     public init(from decoder: any Decoder) throws {
         
