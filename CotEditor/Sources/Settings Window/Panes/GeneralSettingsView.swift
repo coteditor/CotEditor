@@ -102,7 +102,7 @@ struct GeneralSettingsView: View {
                             Button(String(localized: "Later", table: "GeneralSettings", comment: "button label")) {
                                 // do nothing
                             }
-                            Button("Cancel", role: .cancel) {
+                            Button(.cancel, role: .cancel) {
                                 self.enablesAutosaveInPlace.toggle()
                             }
                         } message: {
@@ -260,7 +260,7 @@ private struct WarningsSettingView: View {
             HStack {
                 HelpLink(anchor: "howto_manage_warnings")
                 Spacer()
-                Button(String(localized: "Done", table: "GeneralSettings", comment: "button label")) {
+                Button(.done) {
                     self.dismiss()
                 }.keyboardShortcut(.defaultAction)
             }.padding(.top)

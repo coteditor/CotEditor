@@ -604,7 +604,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        [String(localized: "Cancel"),
+        [String(localized: .cancel),
          String(localized: "ImportDuplicationError.recoveryOption.replace",
                 defaultValue: "Replace", comment: "button label")]
     }

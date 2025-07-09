@@ -628,7 +628,7 @@ extension Document: EditorSource {
                 localized: "DocumentClosingAlert.button.dontSave",
                 defaultValue: "Don’t Save",
                 comment: "Refer the same sentence in AppKit.framework by Apple."))
-            alert.addButton(withTitle: String(localized: "Cancel"))
+            alert.addButton(withTitle: String(localized: .cancel))
             alert.buttons[1].hasDestructiveAction = true
             
             Task {
@@ -1278,7 +1278,7 @@ extension Document: EditorSource {
                                               defaultValue: "Convert"))
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.reinterpret",
                                               defaultValue: "Reinterpret"))
-            alert.addButton(withTitle: String(localized: "Cancel"))
+            alert.addButton(withTitle: String(localized: .cancel))
             
             let documentWindow = self.windowForSheet!
             Task {
@@ -1307,7 +1307,7 @@ extension Document: EditorSource {
                                                        defaultValue: "The document has unsaved changes.")
                             alert.informativeText = String(localized: "UnsavedReinterpretationAlert.informativeText",
                                                            defaultValue: "Are you sure you want to discard your changes and reopen the document using “\(fileEncoding.localizedName)”?", comment: "%@ is an encoding name")
-                            alert.addButton(withTitle: String(localized: "Cancel"))
+                            alert.addButton(withTitle: String(localized: .cancel))
                             alert.addButton(withTitle: String(localized: "UnsavedReinterpretationAlert.button.discard",
                                                               defaultValue: "Discard Changes"))
                             alert.buttons.last?.hasDestructiveAction = true
@@ -1568,7 +1568,7 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
     var recoveryOptions: [String] {
         
         [String(localized: "LossyEncodingError.recoveryOption.change", defaultValue: "Change Encoding", comment: "button label"),
-         String(localized: "Cancel")]
+         String(localized: .cancel)]
     }
     
     
@@ -1632,7 +1632,7 @@ private struct DocumentSavingError: LocalizedError, CustomNSError {
                         defaultValue: "Save Available Text", comment: "button label"),
                  String(localized: "DocumentSavingError.lossyEncoding.recoveryOption.review",
                         defaultValue: "Review Incompatible Characters", comment: "button label"),
-                 String(localized: "Cancel")]
+                 String(localized: .cancel)]
         }
     }
     

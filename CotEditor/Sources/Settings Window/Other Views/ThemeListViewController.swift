@@ -519,7 +519,7 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
                                    defaultValue: "Are you sure you want to delete “\(name)”?")
         alert.informativeText = String(localized: "DeletionConfirmationAlert.informativeText",
                                        defaultValue: "This action cannot be undone.")
-        alert.addButton(withTitle: String(localized: "Cancel"))
+        alert.addButton(withTitle: String(localized: .cancel))
         alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete",
                                           defaultValue: "Delete"))
         alert.buttons.last?.hasDestructiveAction = true

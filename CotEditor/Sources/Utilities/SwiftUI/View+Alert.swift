@@ -37,7 +37,7 @@ extension View {
         let localizedError = LocalizedAlertError(error.wrappedValue)
         
         return self.alert(isPresented: .constant(localizedError != nil), error: localizedError) { _ in
-            Button(buttonTitle ?? String(localized: "OK")) {
+            Button(buttonTitle ?? String(localized: .ok)) {
                 error.wrappedValue = nil
             }
         } message: { error in

@@ -42,7 +42,7 @@ struct SubmitButtonGroup: View {
     ///   - cancelAction: The action invoked when the cancel button was pressed.
     init(_ submitLabel: String? = nil, action: @escaping () -> Void, cancelAction: @escaping () -> Void) {
         
-        self.submitLabel = submitLabel ?? String(localized: "OK")
+        self.submitLabel = submitLabel ?? String(localized: .ok)
         self.submitAction = action
         self.cancelAction = cancelAction
     }
@@ -52,7 +52,7 @@ struct SubmitButtonGroup: View {
         
         EqualWidthHStack {
             Button(role: .cancel, action: self.cancelAction) {
-                Text("Cancel")
+                Text(.cancel)
                     .frame(maxWidth: .infinity)
             }
             .keyboardShortcut(.cancelAction)
