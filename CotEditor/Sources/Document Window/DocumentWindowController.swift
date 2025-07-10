@@ -494,7 +494,6 @@ private extension NSToolbarItem.Identifier {
     
     static let keepOnTop = Self(Self.prefix + "keepOnTop")
     static let editable = Self(Self.prefix + "editable")
-    static let opacity = Self(Self.prefix + "opacity")
     static let spellCheck = Self(Self.prefix + "spellCheck")
     static let emojiAndSymbols = Self(Self.prefix + "emojiAndSymbols")
     static let fonts = Self(Self.prefix + "fonts")
@@ -552,7 +551,6 @@ extension DocumentWindowController: NSToolbarDelegate {
             .indentGuides,
             .keepOnTop,
             .editable,
-            .opacity,
             .spellCheck,
             .emojiAndSymbols,
             .fonts,
@@ -831,17 +829,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.action = #selector(Document.toggleEditable)
                 return item
                 
-            case .opacity:
-                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
-                item.label = String(localized: "Toolbar.opacity.label",
-                                    defaultValue: "Opacity", table: "Document")
-                item.toolTip = String(localized: "Toolbar.opacity.tooltip",
-                                      defaultValue: "Change editor’s opacity", table: "Document")
-                item.image = NSImage(resource: .uiwindowOpacity)
-                item.action = #selector(DocumentViewController.showOpacitySlider)
-                return item
-                
             case .spellCheck:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
@@ -925,20 +912,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             default:
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
-        }
-    }
-}
-
-
-extension DocumentWindowController: NSToolbarItemValidation {
-    
-    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
-        
-        switch item.itemIdentifier {
-            case .opacity:
-                return self.window?.styleMask.contains(.fullScreen) == false
-            default:
-                return item.action == nil
         }
     }
 }

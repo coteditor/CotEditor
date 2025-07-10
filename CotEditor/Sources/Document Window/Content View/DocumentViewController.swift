@@ -405,9 +405,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             case #selector(changeOrientation):
                 (item as? NSToolbarItemGroup)?.selectedIndex = self.verticalLayoutOrientation ? 1 : 0
                 
-            case #selector(showOpacitySlider):
-                return !self.view.isInFullScreenMode
-                
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
                     item.state = (self.theme?.name == item.title) ? .on : .off
@@ -779,26 +776,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @IBAction func changeOrientation(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
-    }
-    
-    
-    /// Shows the editor opacity slider as popover.
-    @IBAction func showOpacitySlider(_ sender: Any?) {
-        
-        let opacityView = EditorOpacityView(window: self.view.window as? DocumentWindow)
-        let viewController = NSHostingController(rootView: opacityView)
-        
-        if let toolbarItem = sender as? NSToolbarItem {
-            let popover = NSPopover()
-            popover.behavior = .semitransient
-            popover.contentViewController = viewController
-            popover.show(relativeTo: toolbarItem)
-            
-        } else {
-            viewController.sizingOptions = .preferredContentSize
-            self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
-                         preferredEdge: .maxY, behavior: .transient)
-        }
     }
     
     

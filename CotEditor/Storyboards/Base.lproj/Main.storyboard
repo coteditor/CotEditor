@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.8" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.9" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.8"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.9"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -728,13 +728,6 @@ Gw
                                                 <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="kAE-Tf-I6P"/>
-                                        <menuItem title="Change Editor’s Opacity…" secondaryImage="uiwindow.opacity" id="367">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOpacitySlider:" target="Ady-hI-5gd" id="VEp-dh-l6T"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="611"/>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="2da-fK-Nkg">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
@@ -1405,7 +1398,6 @@ CA
         <image name="textformat.size" catalog="system" width="18" height="12"/>
         <image name="textformat.size.larger" catalog="system" width="11" height="12"/>
         <image name="textformat.size.smaller" catalog="system" width="9" height="9"/>
-        <image name="uiwindow.opacity" width="12" height="10"/>
         <image name="wrench.adjustable" catalog="system" width="18" height="18"/>
     </resources>
 </document>
