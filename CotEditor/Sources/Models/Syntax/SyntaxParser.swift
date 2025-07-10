@@ -233,6 +233,8 @@ extension SyntaxParser {
             return highlightRange
         }()
         
+        guard !highlightRange.isEmpty else { return }
+        
         // make sure the string is immutable
         // -> `string` of NSTextStorage is actually a mutable object
         //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
