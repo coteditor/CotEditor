@@ -123,7 +123,7 @@ struct IncompatibleCharactersView: View {
             self.model.updateDocument(newValue)
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Incompatible Characters", tableName: "Document"))
+        .accessibilityLabel(String(localized: "Incompatible Characters", table: "Document"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, minHeight: self.model.items.isEmpty ? 60 : 120, alignment: .topLeading)
     }

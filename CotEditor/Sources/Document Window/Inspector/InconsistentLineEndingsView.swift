@@ -92,7 +92,7 @@ struct InconsistentLineEndingsView: View {
             self.lineEnding = newValue ?? .lf
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Inconsistent Line Endings", tableName: "Document"))
+        .accessibilityLabel(String(localized: "Inconsistent Line Endings", table: "Document"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
