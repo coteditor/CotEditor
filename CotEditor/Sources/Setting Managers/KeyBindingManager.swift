@@ -237,6 +237,9 @@ import URLUtils
                  #selector(NSApplication.showHelp):
                 return false
                 
+            case #selector(NSTextView.performTextFinderAction):
+                return menuItem.tag != TextFinder.Action.multipleReplace.rawValue
+                
             default: break
         }
         
