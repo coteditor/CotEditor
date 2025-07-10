@@ -13,6 +13,7 @@
 - Change the system requirement to __macOS 15 Sequoia and later__.
 - Update the user interface on macOS 26 to the Liquid Glass style.
 - Update the application icon to the Liquid Glass style.
+- The options to highlight matching braces has been removed and they are now always highlighted.
 - Remove the feature to change the editor opacity per window.
 - [trivial] Improve the behavior of Add/Remove buttons.
 - [dev] Update the build environment to Xcode 26.0 Beta 3 (Swift 6.2, macOS 26 SDK).

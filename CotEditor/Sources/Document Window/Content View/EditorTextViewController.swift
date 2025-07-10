@@ -160,10 +160,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 .assign(to: \.overscrollRate, on: self.textView),
             defaults.publisher(for: .highlightCurrentLine, initial: true)
                 .assign(to: \.highlightsCurrentLines, on: self.textView),
-            defaults.publisher(for: .highlightBraces, initial: true)
-                .assign(to: \.highlightsBraces, on: self.textView),
-            defaults.publisher(for: .highlightLtGt, initial: true)
-                .assign(to: \.highlightsLtGt, on: self.textView),
             defaults.publisher(for: .highlightSelectionInstance, initial: true)
                 .assign(to: \.highlightsSelectionInstance, on: self.textView),
             defaults.publisher(for: .selectionInstanceHighlightDelay, initial: true)

@@ -87,8 +87,6 @@ struct DefaultSettings {
             .indentWithTabKey: false,
             .autoLinkDetection: false,
             .checkSpellingAsType: false,
-            .highlightBraces: true,
-            .highlightLtGt: false,
             .highlightSelectionInstance: true,
             .selectionInstanceHighlightDelay: 0.5,
             
