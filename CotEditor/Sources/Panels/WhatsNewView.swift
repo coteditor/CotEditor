@@ -58,8 +58,16 @@ struct WhatsNewView: View {
                 ForEach(NewFeature.allCases, id: \.self) { feature in
                     HStack {
                         feature.image
-                            .font(.system(size: 36, weight: .thin))
+                            .font(.system(size: 36, weight: .light))
                             .foregroundStyle(.tint)
+                            .modifier { content in
+                                if #available(macOS 26, *) {
+                                    content
+                                        .symbolColorRenderingMode(.gradient)
+                                } else {
+                                    content
+                                }
+                            }
                             .frame(width: 60, alignment: .center)
                             .accessibilityHidden(true)
                         
