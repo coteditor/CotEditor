@@ -40,7 +40,7 @@ import Sparkle
     private nonisolated static let feedURLString = "https://coteditor.com/appcast.xml"
     
     private lazy var controller = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
-    private let menuItem: NSMenuItem?
+    private var menuItem: NSMenuItem?
     
     
     // MARK: Lifecycle
