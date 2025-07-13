@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -109,6 +109,31 @@ struct TextFindAllResult {
 
 @MainActor final class TextFinder {
     
+    // MARK: Notification Messages
+    
+    struct DidFindMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = TextFinder
+        
+        static let name = Notification.Name("TextFinderDidFind")
+        
+        var result: TextFindResult
+    }
+    
+    
+    struct DidFindAllMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = TextFinder
+        
+        static let name = Notification.Name("TextFinderDidFindAll")
+        
+        var result: TextFindAllResult
+        var client: NSTextView
+    }
+    
+    
+    // MARK: Enums
+    
     enum Action: Int {
         
         // NSTextFinder.Action
@@ -138,14 +163,7 @@ struct TextFindAllResult {
     
     // MARK: Public Properties
     
-    nonisolated static let didFindNotification = Notification.Name("didFindNotification")
-    nonisolated static let didFindAllNotification = Notification.Name("didFindAllNotification")
-    
-    
     weak var client: NSTextView!
-    
-    private(set) var findResult: TextFindResult?
-    private(set) var findAllResult: TextFindAllResult?
     
     
     // MARK: Private Properties
@@ -608,8 +626,8 @@ struct TextFindAllResult {
         self.notify(result: .found(matches.map(\.range)))
         
         if showsList {
-            self.findAllResult = TextFindAllResult(findString: textFind.findString, matches: matches)
-            NotificationCenter.default.post(name: TextFinder.didFindAllNotification, object: self)
+            let result = TextFindAllResult(findString: textFind.findString, matches: matches)
+            NotificationCenter.default.post(name: DidFindAllMessage.name, object: self, userInfo: ["result": result, "client": client])
         }
         
         TextFinderSettings.shared.noteFindHistory()
@@ -674,8 +692,7 @@ struct TextFindAllResult {
     ///   - result: The result of the process.
     private func notify(result: TextFindResult) {
         
-        self.findResult = result
-        NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
+        NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["result": result])
         
         AccessibilityNotification.Announcement(result.message).post()
     }

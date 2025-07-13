@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,10 +85,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // observe find result notifications from TextFinder and its expiration
         self.resultObservers = [
-            NotificationCenter.default.publisher(for: TextFinder.didFindNotification)
-                .map { $0.object as! TextFinder }
-                .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.update(result: $0.findResult) },
+            NotificationCenter.default.publisher(for: TextFinder.DidFindMessage.name)
+                .map { $0.userInfo?["result"] as! TextFindResult }
+                .sink { [weak self] in self?.update(result: $0) },
             NotificationCenter.default.publisher(for: NSWindow.didResignMainNotification)
                 .sink { [weak self] _ in self?.update(result: nil) },
         ]

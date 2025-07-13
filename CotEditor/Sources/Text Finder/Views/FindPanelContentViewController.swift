@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,8 +81,12 @@ final class FindPanelContentViewController: NSSplitViewController {
         self.splitViewItems = [fieldViewItem, resultViewItem, buttonViewItem]
         
         self.resultObservationTask = Task { [weak self] in
-            for await textFinder in NotificationCenter.default.notifications(named: TextFinder.didFindAllNotification).map({ $0.object as! TextFinder }) {
-                self?.didFinishFindAll(in: textFinder)
+            for await userInfo in NotificationCenter.default.notifications(named: TextFinder.DidFindAllMessage.name).compactMap({ $0.userInfo }) {
+                guard
+                    let result = userInfo["result"] as? TextFindAllResult,
+                    let client = userInfo["client"] as? NSTextView
+                else { continue }
+                self?.didFinishFindAll(result, in: client)
             }
         }
     }
@@ -148,12 +152,12 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     /// Notifies the completion of the Find All command.
     ///
-    /// - Parameter textFinder: The TextFinder that did Find All.
-    private func didFinishFindAll(in textFinder: TextFinder) {
+    /// - Parameters:
+    ///   - result: The find all result.
+    ///   - client: The text view where searched.
+    private func didFinishFindAll(_ result: TextFindAllResult, in client: NSTextView) {
         
-        guard let result = textFinder.findAllResult else { return }
-        
-        self.resultViewController?.setResult(result, for: textFinder.client)
+        self.resultViewController?.setResult(result, for: client)
         
         guard !result.matches.isEmpty else { return }
         
