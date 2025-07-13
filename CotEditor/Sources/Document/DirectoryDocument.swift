@@ -63,7 +63,9 @@ final class DirectoryDocument: NSDocument {
     override nonisolated var fileURL: URL? {
         
         didSet {
-            NotificationCenter.default.post(name: NSDocument.didChangeFileURLNotification, object: self)
+            Task { @MainActor in
+                NotificationCenter.default.post(name: NSDocument.DidChangeFileURLMessage.name, object: self)
+            }
         }
     }
     
@@ -109,11 +111,11 @@ final class DirectoryDocument: NSDocument {
         
         self.addWindowController(DocumentWindowController(directoryDocument: self))
         
-        NotificationCenter.default.post(name: NSDocument.didMakeWindowNotification, object: self)
+        NotificationCenter.default.post(name: DidMakeWindowMessage.name, object: self)
         
         // observe document updates for the edited marker in the close button
         if self.documentObserver == nil {
-            self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didUpdateChange, object: nil, queue: .main) { [unowned self] _ in
+            self.documentObserver = NotificationCenter.default.addObserver(forName: Document.DidUpdateChangeMessage.name, object: nil, queue: .main) { [unowned self] _ in
                 MainActor.assumeIsolated {
                     let hasEditedDocuments = self.documents.contains { $0.isDocumentEdited }
                     self.windowController?.setDocumentEdited(hasEditedDocuments)
@@ -185,7 +187,7 @@ final class DirectoryDocument: NSDocument {
         }
         
         if let documentObserver {
-            NotificationCenter.default.removeObserver(documentObserver, name: Document.didUpdateChange, object: nil)
+            NotificationCenter.default.removeObserver(documentObserver, name: Document.DidUpdateChangeMessage.name, object: nil)
             self.documentObserver = nil
         }
     }

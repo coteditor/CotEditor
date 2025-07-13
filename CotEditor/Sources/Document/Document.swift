@@ -47,7 +47,15 @@ extension Document: EditorSource {
 
 @Observable final class Document: DataDocument, AdditionalDocumentPreparing, EncodingChanging {
     
-    nonisolated static let didUpdateChange = Notification.Name("didUpdateChange")
+    // MARK: Notification Messages
+    
+    struct DidUpdateChangeMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = Document
+        
+        static let name = Notification.Name("DocumentDidUpdateChange")
+    }
+    
     
     // MARK: Enums
     
@@ -242,7 +250,9 @@ extension Document: EditorSource {
     @ObservationIgnored override nonisolated var fileURL: URL? {
         
         didSet {
-            NotificationCenter.default.post(name: NSDocument.didChangeFileURLNotification, object: self)
+            Task { @MainActor in
+                NotificationCenter.default.post(name: NSDocument.DidChangeFileURLMessage.name, object: self)
+            }
         }
     }
     
@@ -267,7 +277,7 @@ extension Document: EditorSource {
                     .assign(to: \.isWhitePaper, on: windowController)
             }
             
-            NotificationCenter.default.post(name: NSDocument.didMakeWindowNotification, object: self)
+            NotificationCenter.default.post(name: DidMakeWindowMessage.name, object: self)
         }
         
         self.applyContentToWindow()
@@ -748,7 +758,7 @@ extension Document: EditorSource {
         
         super.updateChangeCount(change)
         
-        NotificationCenter.default.post(name: Document.didUpdateChange, object: self)
+        NotificationCenter.default.post(name: DidUpdateChangeMessage.name, object: self)
     }
     
     
@@ -757,7 +767,7 @@ extension Document: EditorSource {
         // This method updates the values in the .isDocumentEdited and .hasUnautosavedChanges properties.
         super.updateChangeCount(withToken: changeCountToken, for: saveOperation)
         
-        NotificationCenter.default.post(name: Document.didUpdateChange, object: self)
+        NotificationCenter.default.post(name: DidUpdateChangeMessage.name, object: self)
     }
     
     

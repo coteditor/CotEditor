@@ -475,7 +475,7 @@ extension Document {
         }
         
         Task.detached { [weak self] in
-            for await _ in NotificationCenter.default.notifications(named: EditorTextView.didBecomeFirstResponderNotification).map(\.name) {
+            for await _ in NotificationCenter.default.notifications(named: EditorTextView.DidBecomeFirstResponderMessage.name).map(\.name) {
                 guard let viewController = await self?.viewController else { return }
                 
                 await MainActor.run {

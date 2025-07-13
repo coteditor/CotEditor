@@ -358,7 +358,7 @@ final class LineNumberView: NSView {
                         }
                 },
             
-            NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
+            NotificationCenter.default.publisher(for: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
                 .sink { [weak self] _ in self?.needsDisplay = true },
             
             NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)

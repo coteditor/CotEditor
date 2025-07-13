@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ import StringUtils
         self.observers = [
             NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
                 .sink { [unowned self] _ in self.countEntire() },
-            NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
+            NotificationCenter.default.publisher(for: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
                 .sink { [unowned self] _ in self.countSelection() },
             Publishers.Merge7(UserDefaults.standard.publisher(for: .countUnit).eraseToVoid(),
                               UserDefaults.standard.publisher(for: .countNormalizationForm).eraseToVoid(),

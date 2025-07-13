@@ -102,7 +102,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: EditorTextView.didLiveChangeSelectionNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: nil)
     }
     
     
@@ -185,7 +185,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 },
             
             // observe focus change
-            NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
+            NotificationCenter.default.publisher(for: EditorTextView.DidBecomeFirstResponderMessage.name)
                 .map { $0.object as! EditorTextView }
                 .compactMap { [weak self] textView in self?.editorViewControllers.first { $0.textView == textView } }
                 .sink { [weak self] in self?.focusedChild = $0 },
@@ -838,7 +838,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         else { return }
         
         if let textView = currentEditorViewController.textView {
-            NotificationCenter.default.removeObserver(self, name: EditorTextView.didLiveChangeSelectionNotification, object: textView)
+            NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
         }
         
         // end current editing
@@ -894,7 +894,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // observe cursor
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
-                                               name: EditorTextView.didLiveChangeSelectionNotification,
+                                               name: EditorTextView.DidLiveChangeSelectionMessage.name,
                                                object: viewController.textView)
         
         // setup textView

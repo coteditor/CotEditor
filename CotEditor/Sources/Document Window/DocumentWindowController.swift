@@ -167,8 +167,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // observe documents to update window title
         self.documentsObserver = Publishers.Merge(
-            NotificationCenter.default.publisher(for: NSDocument.didChangeFileURLNotification, object: nil),
-            NotificationCenter.default.publisher(for: NSDocument.didMakeWindowNotification, object: nil)
+            NotificationCenter.default.publisher(for: NSDocument.DidChangeFileURLMessage.name, object: nil),
+            NotificationCenter.default.publisher(for: NSDocument.DidMakeWindowMessage.name, object: nil)
         )
         .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
         .sink { [weak self] _ in self?.invalidateUniqueDirectory() }

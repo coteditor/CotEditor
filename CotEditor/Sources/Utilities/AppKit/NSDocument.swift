@@ -25,12 +25,27 @@
 
 import AppKit.NSDocument
 
+// MARK: Notification Messages
+
 extension NSDocument {
     
-    nonisolated static let didChangeFileURLNotification = Notification.Name("DocumentDidChangeFileURLNotification")
-    nonisolated static let didMakeWindowNotification = Notification.Name("DocumentDidMakeWindowNotification")
+    struct DidChangeFileURLMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = NSDocument
+        
+        static let name = Notification.Name("DocumentDidChangeFileURL")
+    }
+    
+    
+    struct DidMakeWindowMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = NSDocument
+        
+        static let name = Notification.Name("DocumentDidMakeWindow")
+    }
 }
 
+// MARK: Extensions
 
 extension NSDocument.SaveOperationType {
     

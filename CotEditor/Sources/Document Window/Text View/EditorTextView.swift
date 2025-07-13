@@ -48,10 +48,22 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    // MARK: Notification Names
+    // MARK: Notification Messages
     
-    nonisolated static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
-    nonisolated static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
+    struct DidBecomeFirstResponderMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = EditorTextView
+        
+        static let name = Notification.Name("TextViewDidBecomeFirstResponder")
+    }
+    
+    
+    struct DidLiveChangeSelectionMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = EditorTextView
+        
+        static let name = Notification.Name("TextViewDidLiveChangeSelection")
+    }
     
     
     // MARK: Enums
@@ -259,7 +271,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         guard super.becomeFirstResponder() else { return false }
         
         // post notification about becoming the first responder
-        NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
+        NotificationCenter.default.post(name: DidBecomeFirstResponderMessage.name, object: self)
         
         defer {
             self.invalidateInsertionIndicatorDisplayMode()
@@ -761,7 +773,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // -> `self.selectedRange` may not be updated yet at this timing.
         DispatchQueue.main.async { [weak self] in
             guard self?.rangesForUserTextChange ?? self?.selectedRanges != currentRanges else { return }
-            NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
+            NotificationCenter.default.post(name: DidLiveChangeSelectionMessage.name, object: self)
         }
     }
     
