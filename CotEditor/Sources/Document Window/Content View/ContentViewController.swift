@@ -45,6 +45,10 @@ final class ContentViewController: NSSplitViewController {
         self.document = document
         
         super.init(nibName: nil, bundle: nil)
+        
+        self.splitViewItems = [
+            NSSplitViewItem(viewController: self.createDocumentViewController()),
+        ]
     }
     
     
@@ -59,10 +63,6 @@ final class ContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         self.splitView.isVertical = false
-        
-        self.splitViewItems = [
-            NSSplitViewItem(viewController: self.createDocumentViewController()),
-        ]
     }
     
     
