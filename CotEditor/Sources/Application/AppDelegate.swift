@@ -106,6 +106,7 @@ private enum BundleIdentifier {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
+    private lazy var settingsWindowController = SettingsWindowController<SettingsPane>()
     private weak var aboutPanel: NSPanel?
     private weak var whatsNewPanel: NSPanel?
     
@@ -391,7 +392,7 @@ private enum BundleIdentifier {
     /// Shows the Settings window.
     @IBAction func showSettingsWindow(_ sender: Any?) {
         
-        SettingsWindowController.shared.showWindow(sender)
+        self.settingsWindowController.showWindow(sender)
     }
     
     
@@ -409,14 +410,14 @@ private enum BundleIdentifier {
     /// Shows Snippet pane in the Settings window.
     @IBAction func showSnippetEditor(_ sender: Any?) {
         
-        SettingsWindowController.shared.openPane(.snippets)
+        self.settingsWindowController.openPane(.snippets)
     }
     
     
     /// Shows the Encoding List to customize encodings list.
     @IBAction func showEncodingsListEditor(_ sender: Any?) {
         
-        SettingsWindowController.shared.openPane(.format)
+        self.settingsWindowController.openPane(.format)
         Task {
             try await Task.sleep(for: .seconds(0.3))
             NSApp.sendAction(#selector((any EncodingsListHolder).showEncodingsListView), to: nil, from: nil)

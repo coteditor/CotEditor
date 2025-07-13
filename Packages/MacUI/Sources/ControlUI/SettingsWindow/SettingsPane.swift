@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import SwiftUI
 public protocol SettingsPane: RawRepresentable<String>, Sendable, CaseIterable {
     
     var label: String { get }
-    var image: NSImage { get }
+    var systemSymbolName: String { get }
     @MainActor var view: any View { get }
 }
 
@@ -43,7 +43,7 @@ extension SettingsPane {
         viewController.sizingOptions = .preferredContentSize
         let tabViewItem = NSTabViewItem(viewController: viewController)
         tabViewItem.label = self.label
-        tabViewItem.image = self.image
+        tabViewItem.image = NSImage(systemSymbolName: self.systemSymbolName, accessibilityDescription: self.label)!
         tabViewItem.identifier = self.rawValue
         
         return tabViewItem

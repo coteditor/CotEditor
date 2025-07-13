@@ -158,7 +158,6 @@ extension DefaultKeys {
     
     // settings that are not in the Settings window
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
-    static let lastSettingsPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let sidebarWidth = DefaultKey<Double>("sidebarWidth")
     static let recentSyntaxNames = DefaultKey<[String]>("recentStyleNames")

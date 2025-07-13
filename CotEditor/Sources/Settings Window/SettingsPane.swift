@@ -24,15 +24,7 @@
 //
 
 import SwiftUI
-import AppKit.NSImage
 import ControlUI
-import Defaults
-
-extension SettingsWindowController<SettingsPane> {
-    
-    static let shared = SettingsWindowController<SettingsPane>(lastPaneIdentifier: DefaultKeys.lastSettingsPaneIdentifier.rawValue)
-}
-
 
 enum SettingsPane: String, ControlUI.SettingsPane {
     
@@ -91,10 +83,10 @@ enum SettingsPane: String, ControlUI.SettingsPane {
     }
     
     
-    /// The image for tab item.
-    var image: NSImage {
+    /// The symbol image for tab item.
+    var systemSymbolName: String {
         
-        let symbolName = switch self {
+        switch self {
             case .general: "gearshape"
             case .appearance: "eyeglasses"
             case .window: "uiwindow.split.2x1"
@@ -105,8 +97,6 @@ enum SettingsPane: String, ControlUI.SettingsPane {
             case .keyBindings: "keyboard"
             case .donation: "mug"
         }
-        
-        return NSImage(systemSymbolName: symbolName, accessibilityDescription: self.label)!
     }
     
     

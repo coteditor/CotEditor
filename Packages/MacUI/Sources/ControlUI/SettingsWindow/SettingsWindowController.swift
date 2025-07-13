@@ -34,9 +34,9 @@ public final class SettingsWindowController<Pane: SettingsPane>: NSWindowControl
     /// Instantiates a SettingsWindowController.
     ///
     /// - Parameter lastPaneIdentifier: The user default key to store the last opened pane.
-    public init(lastPaneIdentifier: String) {
+    public init() {
         
-        let viewController = SettingsTabViewController(lastPaneIdentifier: lastPaneIdentifier)
+        let viewController = SettingsTabViewController()
         viewController.tabStyle = .toolbar
         viewController.canPropagateSelectedChildViewControllerTitle = false
         viewController.tabViewItems = Pane.allCases.map(\.tabViewItem)

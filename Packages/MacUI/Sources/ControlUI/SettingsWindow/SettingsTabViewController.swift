@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,26 +30,8 @@ final class SettingsTabViewController: NSTabViewController {
     
     // MARK: Private properties
     
-    private let lastPaneIdentifier: String
-    
-    
-    // MARK: Lifecycle
-    
-    /// Instantiates a SettingsTabViewController.
-    ///
-    /// - Parameter lastPaneIdentifier: The user default key to store the last opened pane.
-    init(lastPaneIdentifier: String) {
-        
-        self.lastPaneIdentifier = lastPaneIdentifier
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
+    /// The user default key to store the last opened pane.
+    private let lastPaneIdentifier: String = "lastPreferencesPaneIdentifier"
     
     
     // MARK: Tab View Controller Methods
