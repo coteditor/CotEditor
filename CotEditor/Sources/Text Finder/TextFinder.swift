@@ -41,67 +41,14 @@ extension NSAttributedString: @retroactive @unchecked Sendable { }
 }
 
 
-enum TextFindResult {
+struct FindAllMatch: Identifiable {
     
-    case found(_ matches: [NSRange])
-    case replaced(_ count: Int)
+    let id = UUID()
     
-    
-    /// The number of processed.
-    var count: Int {
-        
-        switch self {
-            case .found(let ranges):
-                ranges.count
-            case .replaced(let count):
-                count
-        }
-    }
-    
-    
-    /// Short result message for the user.
-    var message: String {
-        
-        switch self {
-            case .found:
-                switch self.count {
-                    case ...0:
-                        String(localized: "Not found", table: "TextFind",
-                               comment: "short result message for Find All")
-                    default:
-                        String(localized: "\(self.count) found", table: "TextFind",
-                               comment: "short result message for Find All (%lld is number of found)")
-                }
-                
-            case .replaced:
-                switch self.count {
-                    case ...0:
-                        String(localized: "Not replaced", table: "TextFind",
-                               comment: "short result message for Replace All")
-                    default:
-                        String(localized: "\(self.count) replaced", table: "TextFind",
-                               comment: "short result message for Replace All (%lld is number of replaced)")
-                }
-        }
-    }
-}
-
-
-struct TextFindAllResult {
-    
-    struct Match: Identifiable {
-        
-        let id = UUID()
-        
-        var range: NSRange
-        var lineNumber: Int
-        var inlineLocation: Int
-        var attributedLineString: NSAttributedString
-    }
-    
-    
-    var findString: String = ""
-    var matches: [Match] = []
+    var range: NSRange
+    var lineNumber: Int
+    var inlineLocation: Int
+    var attributedLineString: NSAttributedString
 }
 
 
@@ -117,7 +64,8 @@ struct TextFindAllResult {
         
         static let name = Notification.Name("TextFinderDidFind")
         
-        var result: TextFindResult
+        var action: TextFind.Action
+        var count: Int
     }
     
     
@@ -127,8 +75,9 @@ struct TextFindAllResult {
         
         static let name = Notification.Name("TextFinderDidFindAll")
         
-        var result: TextFindAllResult
-        var client: NSTextView
+        var findString: String = ""
+        var matches: [FindAllMatch] = []
+        weak var client: NSTextView?
     }
     
     
@@ -317,7 +266,7 @@ struct TextFindAllResult {
         
         self.client.selectedRanges = matchedRanges as [NSValue]
         
-        self.notify(result: .found(matchedRanges))
+        self.notify(.find, count: matchedRanges.count)
         TextFinderSettings.shared.noteFindHistory()
     }
     
@@ -510,7 +459,7 @@ struct TextFindAllResult {
             NSSound.beep()
         }
         
-        self.notify(result: .found(matches))
+        self.notify(.find, count: matches.count)
         if !isIncremental {
             TextFinderSettings.shared.noteFindHistory()
         }
@@ -554,7 +503,7 @@ struct TextFindAllResult {
             let lineCounter = LineCounter(string: textFind.string)
             
             var highlights: [ValueRange<NSColor>] = []
-            var resultMatches: [TextFindAllResult.Match] = []  // not used if showsList is false
+            var resultMatches: [FindAllMatch] = []  // not used if showsList is false
             
             textFind.findAll { (matches: [NSRange], stop) in
                 guard progress.state != .cancelled else {
@@ -567,7 +516,7 @@ struct TextFindAllResult {
                     .filter { !$0.element.isEmpty }
                     .map { ValueRange(value: highlightColors[$0.offset], range: $0.element) }
                 
-                // build TextFindResult for table
+                // build find result for table
                 if showsList {
                     let matchedRange = matches[0]
                     
@@ -594,7 +543,7 @@ struct TextFindAllResult {
         }
         
         // setup progress sheet
-        let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
+        let indicatorView = FindProgressView(actionName, progress: progress, action: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         client.viewControllerForSheet?.presentAsSheet(indicator)
@@ -623,11 +572,11 @@ struct TextFindAllResult {
         
         progress.finish()
         
-        self.notify(result: .found(matches.map(\.range)))
+        self.notify(.find, count: matches.count)
         
         if showsList {
-            let result = TextFindAllResult(findString: textFind.findString, matches: matches)
-            NotificationCenter.default.post(name: DidFindAllMessage.name, object: self, userInfo: ["result": result, "client": client])
+            let info: [AnyHashable: Any] = ["findString": textFind.findString, "matches": matches, "client": client]
+            NotificationCenter.default.post(name: DidFindAllMessage.name, object: self, userInfo: info)
         }
         
         TextFinderSettings.shared.noteFindHistory()
@@ -659,7 +608,7 @@ struct TextFindAllResult {
         }
         
         // setup progress sheet
-        let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, unit: .replacement)
+        let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         client.viewControllerForSheet?.presentAsSheet(indicator)
@@ -681,20 +630,52 @@ struct TextFindAllResult {
         
         progress.finish()
         
-        self.notify(result: .replaced(progress.count))
+        self.notify(.replace, count: progress.count)
         TextFinderSettings.shared.noteReplaceHistory()
     }
     
     
     /// Notifies the find/replacement result to the user.
-    ///
+    /// 
     /// - Parameters:
-    ///   - result: The result of the process.
-    private func notify(result: TextFindResult) {
+    ///   - action: The find action type.
+    ///   - count: The number o the items proceeded.
+    private func notify(_ action: TextFind.Action, count: Int) {
         
-        NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["result": result])
+        NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["action": action, "count": count])
         
-        AccessibilityNotification.Announcement(result.message).post()
+        AccessibilityNotification.Announcement(action.resultMessage(count: count)).post()
+    }
+}
+
+
+extension TextFind.Action {
+    
+    /// The short result message for the user interface.
+    ///
+    /// - Parameter count: The number of proceeded items.
+    /// - Returns: The message text.
+    func resultMessage(count: Int) -> String {
+        
+        switch self {
+            case .find:
+                if count == 0 {
+                    String(localized: "Not found", table: "TextFind",
+                           comment: "short result message for Find All")
+                } else {
+                    String(localized: "\(count) found", table: "TextFind",
+                           comment: "short result message for Find All (%lld is number of found)")
+                }
+                
+            case .replace:
+                if count == 0 {
+                    String(localized: "Not replaced", table: "TextFind",
+                           comment: "short result message for Replace All")
+                } else {
+                    String(localized: "\(count) replaced", table: "TextFind",
+                           comment: "short result message for Replace All (%lld is number of replaced)")
+                }
+        }
     }
 }
 

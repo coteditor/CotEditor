@@ -28,17 +28,10 @@ import TextFind
 
 struct FindProgressView: View {
     
-    enum Unit {
-        
-        case find
-        case replacement
-    }
-    
-    
     weak var parent: NSHostingController<Self>?
     
     @State private var progress: FindProgress
-    private var unit: Unit
+    private var action: TextFind.Action
     private var label: String
     
     private let timer = Timer.publish(every: 0.1, tolerance: 0.1, on: .main, in: .common).autoconnect()
@@ -52,13 +45,13 @@ struct FindProgressView: View {
     /// - Parameters:
     ///   - label: The text to display as the label of the indicator.
     ///   - progress: The progress instance to indicate.
-    ///   - unit: The unit to count results in the description.
-    init(_ label: String, progress: FindProgress, unit: Unit) {
+    ///   - action: The find action type for count results in the description.
+    init(_ label: String, progress: FindProgress, action: TextFind.Action) {
         
         assert(!progress.state.isTerminated)
         
         self.progress = progress
-        self.unit = unit
+        self.action = action
         self.label = label
     }
     
@@ -106,18 +99,18 @@ struct FindProgressView: View {
     /// Updates the current value label.
     private func updateDescription() {
         
-        self.description = self.unit.resultMessage(self.progress.count)
+        self.description = self.action.processMessage(self.progress.count)
     }
 }
 
 
-private extension FindProgressView.Unit {
+private extension TextFind.Action {
     
     /// The formatted result message.
     ///
     /// - Parameter count: The number of processed items.
     /// - Returns: The formatted string.
-    func resultMessage(_ count: Int) -> String {
+    func processMessage(_ count: Int) -> String {
         
         switch self {
             case _ where count == 0:
@@ -125,7 +118,7 @@ private extension FindProgressView.Unit {
             case .find:
                 String(localized: "\(count) strings found.", table: "TextFind",
                        comment: "progress report in find progress dialog")
-            case .replacement:
+            case .replace:
                 String(localized: "\(count) strings replaced.", table: "TextFind",
                        comment: "progress report in find progress dialog")
         }
@@ -139,5 +132,5 @@ private extension FindProgressView.Unit {
     let progress = FindProgress(scope: 0..<100)
     progress.updateCompletedUnit(to: 30)
     
-    return FindProgressView("Label", progress: progress, unit: .find)
+    return FindProgressView("Label", progress: progress, action: .find)
 }

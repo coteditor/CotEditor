@@ -83,10 +83,12 @@ final class FindPanelContentViewController: NSSplitViewController {
         self.resultObservationTask = Task { [weak self] in
             for await userInfo in NotificationCenter.default.notifications(named: TextFinder.DidFindAllMessage.name).compactMap({ $0.userInfo }) {
                 guard
-                    let result = userInfo["result"] as? TextFindAllResult,
-                    let client = userInfo["client"] as? NSTextView
+                    let matches = userInfo["matches"] as? [FindAllMatch],
+                    let findString = userInfo["findString"] as? String
                 else { continue }
-                self?.didFinishFindAll(result, in: client)
+                
+                let client = userInfo["client"] as? NSTextView
+                self?.didFinishFindAll(matches, for: findString, in: client)
             }
         }
     }
@@ -153,13 +155,14 @@ final class FindPanelContentViewController: NSSplitViewController {
     /// Notifies the completion of the Find All command.
     ///
     /// - Parameters:
-    ///   - result: The find all result.
+    ///   - result: The all found matches.
+    ///   - findString: The find string.
     ///   - client: The text view where searched.
-    private func didFinishFindAll(_ result: TextFindAllResult, in client: NSTextView) {
+    private func didFinishFindAll(_ matches: [FindAllMatch], for findString: String, in client: NSTextView?) {
         
-        self.resultViewController?.setResult(result, for: client)
+        self.resultViewController?.setResult(matches, for: findString, in: client)
         
-        guard !result.matches.isEmpty else { return }
+        guard !matches.isEmpty else { return }
         
         self.setResultShown(true)
         self.splitView.window?.windowController?.showWindow(self)

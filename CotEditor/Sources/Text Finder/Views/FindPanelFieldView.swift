@@ -27,6 +27,7 @@ import AppKit
 import Combine
 import SwiftUI
 import Defaults
+import TextFind
 
 struct FindPanelMainView: View {
     
@@ -86,10 +87,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         // observe find result notifications from TextFinder and its expiration
         self.resultObservers = [
             NotificationCenter.default.publisher(for: TextFinder.DidFindMessage.name)
-                .map { $0.userInfo?["result"] as! TextFindResult }
-                .sink { [weak self] in self?.update(result: $0) },
+                .compactMap(\.userInfo)
+                .sink { [weak self] in self?.updateMessages(for: $0["action"] as! TextFind.Action, count: $0["count"] as! Int) },
             NotificationCenter.default.publisher(for: NSWindow.didResignMainNotification)
-                .sink { [weak self] _ in self?.update(result: nil) },
+                .sink { [weak self] _ in self?.clearMessages() },
         ]
         
         self.findTextView?.action = #selector(performFind)
@@ -147,8 +148,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         switch textView {
             case self.findTextView!:
-                self.updateFoundMessage(nil)
-                self.updateReplacedMessage(nil)
+                self.clearMessages()
                 
                 // perform incremental search
                 guard
@@ -232,21 +232,30 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Methods
     
-    /// Updates the result count in the input fields.
-    ///
-    /// - Parameter result: The find/replace result or `nil` to clear.
-    private func update(result: TextFindResult?) {
+    /// Clears result messages.
+    private func clearMessages() {
         
-        switch result {
-            case .found:
-                self.updateFoundMessage(result?.message)
+        self.updateFoundMessage(nil)
+        self.updateReplacedMessage(nil)
+    }
+    
+    
+    /// Updates the result count in the input fields.
+    /// 
+    /// - Parameters:
+    ///   - action: The find action type.
+    ///   - count: The number of the items proceeded.   
+    private func updateMessages(for action: TextFind.Action, count: Int) {
+        
+        let message = action.resultMessage(count: count)
+        
+        switch action {
+            case .find:
+                self.updateFoundMessage(message)
                 self.updateReplacedMessage(nil)
-            case .replaced:
+            case .replace:
                 self.updateFoundMessage(nil)
-                self.updateReplacedMessage(result?.message)
-            case nil:
-                self.updateFoundMessage(nil)
-                self.updateReplacedMessage(nil)
+                self.updateReplacedMessage(message)
         }
     }
     

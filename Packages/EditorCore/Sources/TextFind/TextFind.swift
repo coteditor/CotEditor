@@ -32,6 +32,13 @@ public struct TextFind: Equatable, Sendable {
     public typealias ReplacementItem = ValueRange<String>
     
     
+    public enum Action {
+        
+        case find
+        case replace
+    }
+    
+    
     public enum Mode: Equatable, Sendable {
         
         case textual(options: String.CompareOptions, fullWord: Bool)  // don't include .backwards to options

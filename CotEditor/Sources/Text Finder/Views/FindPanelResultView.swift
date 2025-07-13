@@ -45,10 +45,10 @@ final class FindPanelResultViewController: NSHostingController<FindPanelResultVi
     
     
     /// Sets new find matches.
-    func setResult(_ result: TextFindAllResult, for client: NSTextView) {
+    func setResult(_ matches: [FindAllMatch], for findString: String, in client: NSTextView?) {
         
-        self.model.matches = result.matches
-        self.model.findString = result.findString
+        self.model.matches = matches
+        self.model.findString = findString
         self.model.target = client
     }
 }
@@ -56,7 +56,7 @@ final class FindPanelResultViewController: NSHostingController<FindPanelResultVi
 
 struct FindPanelResultView: View {
     
-    typealias Match = TextFindAllResult.Match
+    typealias Match = FindAllMatch
     
     @MainActor @Observable final class Model {
         
@@ -217,7 +217,7 @@ private extension NSTextView {
 }
 
 
-private extension TextFindAllResult.Match {
+private extension FindAllMatch {
     
     /// Returns the attributed string truncated from the head.
     ///
