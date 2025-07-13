@@ -393,6 +393,8 @@ extension SettingFileManaging {
     /// - Parameter change: The change.
     func updateSettingList(change: SettingChange) {
         
+        assert(Thread.isMainThread)
+        
         defer {
             self.didUpdateSetting(change: change)
             NotificationCenter.default.post(name: .didUpdateSettingNotification, object: self, userInfo: ["change": change])
