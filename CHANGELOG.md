@@ -16,6 +16,7 @@
 - Remove the feature to change the editor opacity per window.
 - [trivial] Improve the behavior of Add/Remove buttons.
 - [dev] Update the build environment to Xcode 26.0 Beta 3 (Swift 6.2, macOS 26 SDK).
+- [non-AppStore ver.] Add an update badge to the “Check for Update” menu item if an update is available.
 
 
 ### Known Issues

@@ -40,6 +40,7 @@ import Sparkle
     private nonisolated static let feedURLString = "https://coteditor.com/appcast.xml"
     
     private lazy var controller = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
+    private let menuItem: NSMenuItem?
     
     
     // MARK: Lifecycle
@@ -74,6 +75,7 @@ import Sparkle
         menuItem.target = self.controller.updater
         
         applicationMenu.insertItem(menuItem, at: 1)
+        self.menuItem = menuItem
     }
     
     
@@ -90,6 +92,12 @@ import Sparkle
         let checksBeta = (Bundle.main.version!.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
         
         return checksBeta ? ["prerelease"] : []
+    }
+    
+    
+    func updater(_ updater: SPUUpdater, didFindValidUpdate item: SUAppcastItem) {
+        
+        self.menuItem?.badge = .updates(count: 1)
     }
 }
 #endif
