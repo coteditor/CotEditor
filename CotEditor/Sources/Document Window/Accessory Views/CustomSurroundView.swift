@@ -69,7 +69,7 @@ struct CustomSurroundView: View {
                     TextField(text: $pair.begin, label: EmptyView.init)
                         .frame(width: 48)
                 }
-                .prefersDefaultFocus(in: namespace)
+                .prefersDefaultFocus(in: self.namespace)
                 .padding(.trailing)
                 
                 LabeledContent(String(localized: "End:", table: "CustomSurround")) {
