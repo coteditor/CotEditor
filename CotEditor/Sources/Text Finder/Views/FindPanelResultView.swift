@@ -159,7 +159,7 @@ struct FindPanelResultView: View {
     
     private var message: String {
         
-        let documentName = self.documentName ?? "Unknown"  // This should never be nil.
+        let documentName = self.documentName ?? String(localized: .unknown)  // This should never be nil.
         
         return self.model.matches.isEmpty
             ? String(localized: "No strings found in “\(documentName).”", table: "TextFind",

@@ -64,7 +64,7 @@ struct FilePreviewView: View {
                     if let type = self.item.fileType, let typeName = UTType(type)?.localizedDescription {
                         Text(typeName)
                     } else {
-                        Text("Unknown")
+                        Text(.unknown)
                             .italic()
                             .foregroundStyle(.secondary)
                             .textSelection(.disabled)

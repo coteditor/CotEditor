@@ -10961,6 +10961,8 @@
       }
     },
     "Unknown" : {
+      "comment" : "Generic label for items whose label couldn’t be determined somehow.",
+      "extractionState" : "manual",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -10972,6 +10974,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unbekannt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
           }
         },
         "en-GB" : {
