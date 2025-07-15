@@ -112,6 +112,8 @@ struct FindAllMatch: Identifiable {
     
     // MARK: Public Properties
     
+    let settings: TextFinderSettings = .shared
+    
     weak var client: NSTextView!
     
     
@@ -267,7 +269,7 @@ struct FindAllMatch: Identifiable {
         self.client.selectedRanges = matchedRanges as [NSValue]
         
         self.notify(.find, count: matchedRanges.count)
-        TextFinderSettings.shared.noteFindHistory()
+        self.settings.noteFindHistory()
     }
     
     
@@ -305,7 +307,7 @@ struct FindAllMatch: Identifiable {
             NSSound.beep()
         }
         
-        TextFinderSettings.shared.noteReplaceHistory()
+        self.settings.noteReplaceHistory()
     }
     
     
@@ -319,7 +321,7 @@ struct FindAllMatch: Identifiable {
             try await self.find(forward: true)
         }
         
-        TextFinderSettings.shared.noteReplaceHistory()
+        self.settings.noteReplaceHistory()
     }
     
     
@@ -340,7 +342,7 @@ struct FindAllMatch: Identifiable {
         guard let definition = try? ReplacementManager.shared.setting(name: name) else { return assertionFailure() }
         
         Task {
-            try await self.client.replaceAll(definition, inSelection: TextFinderSettings.shared.inSelection)
+            try await self.client.replaceAll(definition, inSelection: self.settings.inSelection)
         }
     }
     
@@ -348,15 +350,15 @@ struct FindAllMatch: Identifiable {
     /// Sets the selected string to find field.
     private func setSearchString() {
         
-        TextFinderSettings.shared.findString = self.client.selectedString
-        TextFinderSettings.shared.usesRegularExpression = false  // auto-disable regex
+        self.settings.findString = self.client.selectedString
+        self.settings.usesRegularExpression = false  // auto-disable regex
     }
     
     
     /// Sets the selected string to replace field.
     private func setReplaceString() {
         
-        TextFinderSettings.shared.replacementString = self.client.selectedString
+        self.settings.replacementString = self.client.selectedString
     }
     
     
@@ -375,12 +377,12 @@ struct FindAllMatch: Identifiable {
         
         // apply the client's line ending to the find string
         let lineEnding = (client as? EditorTextView)?.lineEnding ?? .lf
-        let findString = TextFinderSettings.shared.findString
+        let findString = self.settings.findString
             .replacingLineEndings(with: lineEnding)
         
         let string = client.string.immutable
-        let mode = TextFinderSettings.shared.mode
-        let inSelection = TextFinderSettings.shared.inSelection
+        let mode = self.settings.mode
+        let inSelection = self.settings.inSelection
         let selectedRanges = client.selectedRanges.map(\.rangeValue)
         
         do {
@@ -416,7 +418,7 @@ struct FindAllMatch: Identifiable {
         guard let textFind = self.prepareTextFind(presentsError: !isIncremental) else { return }
         
         let client = self.client!
-        let wraps = TextFinderSettings.shared.isWrap
+        let wraps = self.settings.isWrap
         
         // find in background thread
         let task = Task.detached(priority: .userInitiated) {
@@ -461,7 +463,7 @@ struct FindAllMatch: Identifiable {
         
         self.notify(.find, count: matches.count)
         if !isIncremental {
-            TextFinderSettings.shared.noteFindHistory()
+            self.settings.noteFindHistory()
         }
     }
     
@@ -472,7 +474,7 @@ struct FindAllMatch: Identifiable {
         
         guard let textFind = self.prepareTextFind() else { return false }
         
-        let replacementString = TextFinderSettings.shared.replacementString
+        let replacementString = self.settings.replacementString
         
         guard let result = textFind.replace(with: replacementString) else { return false }
         
@@ -579,7 +581,7 @@ struct FindAllMatch: Identifiable {
             NotificationCenter.default.post(name: DidFindAllMessage.name, object: self, userInfo: info)
         }
         
-        TextFinderSettings.shared.noteFindHistory()
+        self.settings.noteFindHistory()
     }
     
     
@@ -592,7 +594,7 @@ struct FindAllMatch: Identifiable {
         client.isEditable = false
         defer { client.isEditable = true }
         
-        let replacementString = TextFinderSettings.shared.replacementString
+        let replacementString = self.settings.replacementString
         
         let progress = FindProgress(scope: textFind.scopeRange)
         let task = Task.detached(priority: .userInitiated) {
@@ -631,7 +633,7 @@ struct FindAllMatch: Identifiable {
         progress.finish()
         
         self.notify(.replace, count: progress.count)
-        TextFinderSettings.shared.noteReplaceHistory()
+        self.settings.noteReplaceHistory()
     }
     
     

@@ -61,7 +61,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    @objc private dynamic let settings = TextFinderSettings.shared
+    @objc private dynamic let settings: TextFinderSettings = .shared
     
     private var scrollerStyleObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
