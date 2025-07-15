@@ -97,7 +97,7 @@ struct LiveTextInsertionView: View {
                 case .success:
                     Text("No text detected", tableName: "LiveTextInsertion")
                         .padding(.horizontal, 4)
-                        .hudStyle()
+                        .modifier(HUDStyle())
                     
                 case .failure(let error):
                     VStack(spacing: 4) {
@@ -108,22 +108,22 @@ struct LiveTextInsertionView: View {
                             .controlSize(.small)
                     }
                     .padding(.horizontal, 4)
-                    .hudStyle()
+                    .modifier(HUDStyle())
                     
                 case nil:
                     ProgressView()
-                        .hudStyle()
+                        .modifier(HUDStyle())
             }
         }
     }
 }
 
 
-private extension View {
+private struct HUDStyle: ViewModifier {
     
-    func hudStyle() -> some View {
+    func body(content: Content) -> some View {
         
-        self
+        content
             .padding(6)
             .background(.ultraThinMaterial, in: .rect(cornerRadius: 8))
             .padding(8)
