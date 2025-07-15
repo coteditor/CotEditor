@@ -122,15 +122,15 @@ struct PatternSortView: View {
                     
                     VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                         Toggle(String(localized: "Ignore case", table: "PatternSort"),
-                               isOn: self.$options.ignoresCase)
+                               isOn: $options.ignoresCase)
                         Toggle(String(localized: "Respect language rules", table: "PatternSort"),
-                               isOn: self.$options.isLocalized)
+                               isOn: $options.isLocalized)
                         Toggle(String(localized: "Treat numbers as numeric value", table: "PatternSort"),
-                               isOn: self.$options.numeric)
+                               isOn: $options.numeric)
                         Toggle(String(localized: "Keep the first line at the top", table: "PatternSort"),
-                               isOn: self.$options.keepsFirstLine)
+                               isOn: $options.keepsFirstLine)
                         Toggle(String(localized: "In descending order", table: "PatternSort"),
-                               isOn: self.$options.descending)
+                               isOn: $options.descending)
                     }
                 }
                 .fixedSize()

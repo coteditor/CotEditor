@@ -217,7 +217,7 @@ private struct ThemeEditorView: View {
                 }
                 .symbolVariant(.circle)
                 .labelStyle(.iconOnly)
-                .popover(isPresented: self.$isMetadataPresenting, arrowEdge: .trailing) {
+                .popover(isPresented: $isMetadataPresenting, arrowEdge: .trailing) {
                     ThemeMetadataView(metadata: $theme.metadata ?? .init(), isEditable: !self.isBundled)
                 }
                 .buttonStyle(.borderless)

@@ -97,7 +97,7 @@ struct CharacterCountOptionsView: View {
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                     
                     if self.unit == .byte {
-                        Picker(String(localized: "Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: self.$encoding) {
+                        Picker(String(localized: "Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: $encoding) {
                             ForEach(Array(String.sortedAvailableStringEncodings.enumerated()), id: \.offset) { (_, encoding) in
                                 if let encoding {
                                     Text(String.localizedName(of: encoding))
