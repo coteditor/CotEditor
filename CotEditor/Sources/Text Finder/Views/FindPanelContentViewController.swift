@@ -119,8 +119,9 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         // collapse result view if closed
         let item = self.resultSplitViewItem
-        if item.viewController.isViewShown,
-           item.viewController.view.frame.height < 1
+        
+        if let view = item.viewController.viewIfLoaded,
+           view.frame.height < 1
         {
             item.isCollapsed = true
         }

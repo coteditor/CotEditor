@@ -440,7 +440,8 @@ private extension NSViewController {
     /// on de-miniaturization when the window was initially miniaturized (2024-10, macOS 15, FB15331763).
     func performOnAppearProcedure() {
         
-        guard self.isViewShown else { return }
+        // proceed only when the view is shown
+        guard self.viewIfLoaded?.isHiddenOrHasHiddenAncestor == false else { return }
         
         self.viewWillAppear()
         self.viewDidAppear()

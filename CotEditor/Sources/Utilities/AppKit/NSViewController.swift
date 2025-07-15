@@ -27,20 +27,10 @@ import AppKit
 
 extension NSViewController {
     
-    /// A Boolean value indicating whether the view is hidden.
-    ///
-    /// This computed property avoid unwanted view loading when the view is not yet loaded.
-    /// However, it does not check whether the view is actually visible. For that, see the discussion part of `isHiddenOrHasHiddenAncestor`.
-    final var isViewShown: Bool {
-        
-        self.viewIfLoaded?.isHiddenOrHasHiddenAncestor == false
-    }
-    
-    
-    /// Presents an error alert as a window modal sheet.
+    /// Presents an error alert to the user  as a window-modal sheet.
     final func presentErrorAsSheet(_ error: some Error) {
         
-        if self.isViewLoaded, let window = self.view.window {
+        if let window = self.viewIfLoaded?.window {
             self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
         } else {
             self.presentError(error)
