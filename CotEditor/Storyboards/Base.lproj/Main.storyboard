@@ -998,7 +998,7 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="5h2-9z-aol"/>
-                                                    <menuItem title="Half-width to Full-width" image="textformat.characters.arrow.left.and.right" catalog="system" id="dVK-1s-xJq">
+                                                    <menuItem title="Half-width to Full-width" secondaryImage="textformat.characters.arrow.left.and.right" catalog="system" id="dVK-1s-xJq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidth:" target="Ady-hI-5gd" id="Kzj-vP-XAT"/>
