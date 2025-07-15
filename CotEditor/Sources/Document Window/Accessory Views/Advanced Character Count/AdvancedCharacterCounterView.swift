@@ -66,21 +66,19 @@ struct AdvancedCharacterCounterView: View {
             
             Spacer()
             
-            Button(String(localized: "Show options", table: "AdvancedCharacterCount"), systemImage: "gearshape") {
-                self.isSettingPresented.toggle()
-            }
-            .symbolVariant(.fill)
-            .buttonStyle(.plain)
-            .foregroundStyle(.secondary)
-            .labelStyle(.iconOnly)
-            .help(String(localized: "Show options", table: "AdvancedCharacterCount", comment: "tooltip"))
-            .popover(isPresented: self.$isSettingPresented) {
-                VStack {
-                    CharacterCountOptionsView()
-                    HelpLink(anchor: "howto_count_characters")
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }.padding()
-            }
+            Toggle(String(localized: "Show options", table: "AdvancedCharacterCount"), systemImage: "gearshape", isOn: $isSettingPresented)
+                .symbolVariant(.fill)
+                .toggleStyle(.button)
+                .buttonStyle(.borderless)
+                .labelStyle(.iconOnly)
+                .help(String(localized: "Show options", table: "AdvancedCharacterCount", comment: "tooltip"))
+                .popover(isPresented: self.$isSettingPresented) {
+                    VStack {
+                        CharacterCountOptionsView()
+                        HelpLink(anchor: "howto_count_characters")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }.scenePadding()
+                }
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
