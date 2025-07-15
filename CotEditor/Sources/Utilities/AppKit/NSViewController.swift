@@ -44,8 +44,6 @@ extension NSViewController {
     @discardableResult
     final func endEditing() -> Bool {
         
-        guard let window = self.viewIfLoaded?.window else { return true }
-        
-        return window.makeFirstResponder(nil)
+        self.viewIfLoaded?.window?.makeFirstResponder(nil) != false
     }
 }
