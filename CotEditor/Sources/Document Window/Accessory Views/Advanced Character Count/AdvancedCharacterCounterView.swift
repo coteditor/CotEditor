@@ -72,7 +72,7 @@ struct AdvancedCharacterCounterView: View {
                 .buttonStyle(.borderless)
                 .labelStyle(.iconOnly)
                 .help(String(localized: "Show options", table: "AdvancedCharacterCount", comment: "tooltip"))
-                .popover(isPresented: self.$isSettingPresented) {
+                .popover(isPresented: $isSettingPresented) {
                     VStack {
                         CharacterCountOptionsView()
                         HelpLink(anchor: "howto_count_characters")
