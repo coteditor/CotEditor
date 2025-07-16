@@ -275,7 +275,7 @@ final class PrintTextView: NSTextView {
         let themeName: String? = printInfo[.theme]
         let theme = themeName.flatMap { try? ThemeManager.shared.setting(name: $0) }  // nil for Black and White
         
-        guard self.theme?.name != theme?.name else { return }
+        guard self.theme != theme else { return }
         
         // set theme
         self.theme = theme
