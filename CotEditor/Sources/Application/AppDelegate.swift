@@ -27,7 +27,6 @@
 import AppKit
 import SwiftUI
 import Combine
-import UniformTypeIdentifiers
 import OSLog
 import ControlUI
 import Defaults
@@ -306,20 +305,12 @@ private enum BundleIdentifier {
         
         assert(Thread.isMainThread)
         
-        let documentURLs = filenames
-            .map { URL(filePath: $0) }
-            .filter {
-                // ask installation if the file is CotEditor theme
-                $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(at: $0) : true
-            }
-        
-        guard !documentURLs.isEmpty else { return NSApp.reply(toOpenOrPrint: .success) }
+        let urls = filenames.map { URL(filePath: $0) }
+        let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (urls.count > 1)
         
         Task {
-            let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (documentURLs.count > 1)
-            
             let reply: NSApplication.DelegateReply = await withThrowingTaskGroup { group in
-                for url in documentURLs {
+                for url in urls {
                     group.addTask { try await NSDocumentController.shared.openDocument(withContentsOf: url, display: true) }
                 }
                 
@@ -486,48 +477,6 @@ private enum BundleIdentifier {
         } catch {
             NSApp.presentError(error)
         }
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Asks user whether install the file as a CotEditor theme, or process as a text file.
-    ///
-    /// - Parameter fileURL: The file URL to a theme file.
-    /// - Returns: Whether the given file was handled as a theme file.
-    private func askThemeInstallation(at fileURL: URL) -> Bool {
-        
-        assert(fileURL.conforms(to: .cotTheme))
-        
-        // ask whether theme file should be opened as a text file
-        let alert = NSAlert()
-        alert.messageText = String(localized: "ThemeImportAlert.message", defaultValue: "“\(fileURL.lastPathComponent)” is a CotEditor theme file.")
-        alert.informativeText = String(localized: "ThemeImportAlert.informativeText", defaultValue: "Do you want to install this theme?")
-        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.install", defaultValue: "Install"))
-        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.openAsText", defaultValue: "Open as Text File"))
-        
-        let returnCode = alert.runModal()
-        
-        guard returnCode == .alertFirstButtonReturn else { return false }  // = Open as Text File
-        
-        // import theme
-        do {
-            try ThemeManager.shared.importSetting(at: fileURL)
-        } catch {
-            // ask whether the old theme should be replaced with new one if the same name theme is already exists
-            guard NSApp.presentError(error) else { return true }  // cancelled
-        }
-        
-        // feedback for success
-        let themeName = ThemeManager.settingName(from: fileURL)
-        let feedbackAlert = NSAlert()
-        feedbackAlert.messageText = String(localized: "ThemeImportAlert.success",
-                                           defaultValue: "A new theme named “\(themeName)” has been successfully installed.")
-        
-        NSSound.glass?.play()
-        feedbackAlert.runModal()
-        
-        return true
     }
 }
 

@@ -15,6 +15,7 @@
 - Update the application icon to the Liquid Glass style.
 - The options to highlight matching braces has been removed and they are now always highlighted.
 - Deprecate the feature to change the editor opacity per window.
+- Deprecate the feature of installing a custom theme by simply opening the file in CotEditor.
 - [trivial] Improve the behavior of Add/Remove buttons.
 - [dev] Migrate the theme list and syntax list in the Settings to SwiftUI.
 - [dev] Update the build environment to Xcode 26.0 Beta 3 (Swift 6.2, macOS 26 SDK).
