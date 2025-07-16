@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,6 @@ actor ThemeTests {
         let themeName = "Dendrobates"
         let theme = try self.loadThemeWithName(themeName)
         
-        #expect(theme.name == themeName)
         #expect(theme.text.color == NSColor.black.usingColorSpace(.genericRGB))
         #expect(theme.insertionPoint.color == NSColor.black.usingColorSpace(.genericRGB))
         #expect(theme.invisibles.color.brightnessComponent.isApproximatelyEqual(to: 0.725, relativeTolerance: 0.01))
@@ -73,7 +72,6 @@ actor ThemeTests {
         let themeName = "Anura (Dark)"
         let theme = try self.loadThemeWithName(themeName)
         
-        #expect(theme.name == themeName)
         #expect(theme.isDarkTheme)
     }
     
@@ -82,13 +80,15 @@ actor ThemeTests {
     @Test func bundledThemes() throws {
         
         let themeDirectoryURL = try #require(Bundle.main.url(forResource: self.themeDirectoryName, withExtension: nil))
-        let urls = try FileManager.default.contentsOfDirectory(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
+        let datas = try FileManager.default.contentsOfDirectory(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
             .filter { UTType.cotTheme.preferredFilenameExtension == $0.pathExtension }
+            .map { try Data(contentsOf: $0) }
         
-        #expect(!urls.isEmpty)
+        #expect(!datas.isEmpty)
         
-        for url in urls {
-            #expect(throws: Never.self) { try Theme(contentsOf: url) }
+        let decoder = JSONDecoder()
+        for data in datas {
+            #expect(throws: Never.self) { try decoder.decode(Theme.self, from: data) }
         }
     }
 }
@@ -102,6 +102,8 @@ private extension ThemeTests {
             let url = Bundle.main.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: self.themeDirectoryName)
         else { throw CocoaError(.fileNoSuchFile) }
         
-        return try Theme(contentsOf: url)
+        let data = try Data(contentsOf: url)
+        
+        return try JSONDecoder().decode(Theme.self, from: data)
     }
 }

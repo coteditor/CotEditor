@@ -66,6 +66,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     private weak var focusedChild: EditorViewController?
     
+    private var themeName: String?
+    private var theme: Theme?  { self.focusedTextView?.theme }
+    
     private var observers: Set<AnyCancellable> = []
     private var defaultsObservers: Set<AnyCancellable> = []
     
@@ -158,7 +161,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 .sink { [weak self] in self?.setTheme(name: $0) },
             NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: ThemeManager.shared)
                 .map { $0.userInfo!["change"] as! SettingChange }
-                .filter { [weak self] in $0.old == self?.theme?.name }
+                .filter { [weak self] in $0.old == self?.themeName }
                 .compactMap(\.new)
                 .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
                 .sink { [weak self] in self?.setTheme(name: $0) },
@@ -175,8 +178,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     guard
                         let self,
                         !UserDefaults.standard[.pinsThemeAppearance],
-                        self.view.window != nil,
-                        let currentThemeName = self.theme?.name,
+                        self.viewIfLoaded?.window != nil,
+                        let currentThemeName = self.themeName,
                         let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: appearance.isDark),
                         currentThemeName != themeName
                     else { return }
@@ -262,7 +265,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
-        if let themeName = self.theme?.name {
+        if let themeName = self.themeName {
             coder.encode(themeName, forKey: SerializationKey.theme)
         }
     }
@@ -277,7 +280,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 ? storedThemeName
                 : ThemeManager.shared.equivalentSettingName(to: storedThemeName, forDark: self.view.effectiveAppearance.isDark) ?? storedThemeName
             
-            if themeName != self.theme?.name {
+            if themeName != self.themeName {
                 self.setTheme(name: themeName)
             }
         }
@@ -407,7 +410,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
-                    item.state = (self.theme?.name == item.title) ? .on : .off
+                    item.state = (self.themeName == item.title) ? .on : .off
                 }
                 
             case #selector(toggleSplitOrientation):
@@ -479,13 +482,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     var focusedTextView: EditorTextView? {
         
         self.focusedChild?.textView ?? self.textViews.first
-    }
-    
-    
-    /// The coloring theme.
-    var theme: Theme? {
-        
-        self.focusedTextView?.theme
     }
     
     
@@ -975,6 +971,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             return self.presentErrorAsSheet(error)
         }
         
+        self.themeName = name
         self.document.syntaxParser.theme = theme
         
         for textView in self.textViews {

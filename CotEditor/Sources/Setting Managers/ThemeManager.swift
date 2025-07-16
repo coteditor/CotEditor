@@ -195,7 +195,10 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     /// Loads the setting from the file at the given URL.
     nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
         
-        try Theme(contentsOf: fileURL)
+        let data = try Data(contentsOf: fileURL)
+        let decoder = JSONDecoder()
+        
+        return try decoder.decode(Setting.self, from: data)
     }
     
     

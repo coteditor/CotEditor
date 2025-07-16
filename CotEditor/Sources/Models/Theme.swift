@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,10 +62,6 @@ struct Theme: Equatable {
     
     // MARK: Public Properties
     
-    /// Name of the theme
-    var name: String?
-    
-    // basic colors
     var text: Style
     var background: Style
     var invisibles: Style
@@ -90,9 +86,7 @@ struct Theme: Equatable {
     
     // MARK: Lifecycle
     
-    init(name: String? = nil) {
-        
-        self.name = name
+    init() {
         
         self.text = Style(color: .textColor)
         self.background = Style(color: .textBackgroundColor)
@@ -112,16 +106,6 @@ struct Theme: Equatable {
         self.strings = Style(color: .gray)
         self.characters = Style(color: .gray)
         self.comments = Style(color: .gray)
-    }
-    
-    
-    init(contentsOf fileURL: URL) throws {
-        
-        let data = try Data(contentsOf: fileURL)
-        let decoder = JSONDecoder()
-        
-        self = try decoder.decode(Theme.self, from: data)
-        self.name = fileURL.deletingPathExtension().lastPathComponent
     }
     
     
@@ -200,8 +184,6 @@ extension Theme: Codable {
     init(from decoder: any Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
         
         self.text = try container.decodeIfPresent(Style.self, forKey: .text) ?? .invalid
         self.background = try container.decodeIfPresent(Style.self, forKey: .background) ?? .invalid
