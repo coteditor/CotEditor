@@ -354,7 +354,7 @@ extension SettingFileManaging {
     ///   - data: The data to import.
     ///   - name: The name of the setting to import.
     ///   - overwrite: Whether overwrites the existing setting if exists.
-    /// - Throws: `SettingImportError` (only when the `overwrite` flag is `true`), or `any Error`
+    /// - Throws: `ImportDuplicationError` (only when the `overwrite` flag is `true`), or `any Error`
     func importSetting(data: Data, name: String, overwrite: Bool) throws {
         
         // check duplication
@@ -363,7 +363,7 @@ extension SettingFileManaging {
                 guard existingName.caseInsensitiveCompare(name) == .orderedSame else { continue }
                 
                 guard self.urlForUserSetting(name: existingName) == nil else {  // duplicated
-                    throw SettingImportError(name: existingName, data: data)
+                    throw ImportDuplicationError(name: existingName, data: data)
                 }
             }
         }
@@ -547,7 +547,7 @@ struct SettingFileError: LocalizedError {
 }
 
 
-struct SettingImportError: LocalizedError {
+struct ImportDuplicationError: LocalizedError {
     
     var name: String
     var data: Data

@@ -207,7 +207,7 @@ private struct SyntaxListView: View {
     @State private var isDeleteConfirmationPresented = false
     @State private var isImportConfirmationPresented = false
     @State private var isFileMappingConflictPresented = false
-    @State private var importingError: SettingImportError?
+    @State private var importingError: ImportDuplicationError?
     @State private var error: (any Error)?
     
     
@@ -329,7 +329,7 @@ private struct SyntaxListView: View {
                         do {
                             let data = try Data(contentsOf: url)
                             try self.manager.importSetting(data: data, name: name, overwrite: false)
-                        } catch let error as SettingImportError {
+                        } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
                         } catch {

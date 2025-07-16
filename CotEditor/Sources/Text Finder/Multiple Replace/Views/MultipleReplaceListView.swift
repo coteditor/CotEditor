@@ -40,7 +40,7 @@ struct MultipleReplaceListView: View {
     @State private var isImporterPresented = false
     @State private var isDeleteConfirmationPresented = false
     @State private var isImportConfirmationPresented = false
-    @State private var importingError: SettingImportError?
+    @State private var importingError: ImportDuplicationError?
     @State private var error: (any Error)?
     
     
@@ -151,7 +151,7 @@ struct MultipleReplaceListView: View {
                         do {
                             let data = try Data(contentsOf: url)
                             try self.manager.importSetting(data: data, name: name, overwrite: false)
-                        } catch let error as SettingImportError {
+                        } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
                         } catch {
