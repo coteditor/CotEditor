@@ -265,13 +265,10 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    /// Loads the setting from the file at the given URL.
-    nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
+    /// Loads the setting from the data.
+    nonisolated func loadSetting(from data: Data) throws -> sending Setting {
         
-        let data = try Data(contentsOf: fileURL)
-        let decoder = YAMLDecoder()
-        
-        return try decoder.decode(Setting.self, from: data)
+        try YAMLDecoder().decode(Setting.self, from: data)
     }
     
     

@@ -102,13 +102,10 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     
     // MARK: Setting File Managing
     
-    /// Loads the setting from the file at the given URL.
-    nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
+    /// Loads the setting from the data.
+    nonisolated func loadSetting(from data: Data) throws -> sending Setting {
         
-        let data = try Data(contentsOf: fileURL)
-        let decoder = JSONDecoder()
-        
-        return try decoder.decode(Setting.self, from: data)
+        try JSONDecoder().decode(Setting.self, from: data)
     }
     
     
