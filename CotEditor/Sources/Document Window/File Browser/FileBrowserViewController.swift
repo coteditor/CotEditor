@@ -262,6 +262,27 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    // MARK: Responder Methods
+    
+    override func keyDown(with event: NSEvent) {
+        
+        let hasNoModifier = event.modifierFlags.isDisjoint(with: .deviceIndependentFlagsMask)
+        
+        if hasNoModifier, event.charactersIgnoringModifiers == " " {
+            // open the Quick Look panel by pressing the Space key
+            self.quickLook(with: event)
+            
+        } else if hasNoModifier, event.specialKey == .delete, !self.outlineView.selectedRowIndexes.isEmpty
+        {
+            // delete selected items by pressing the Delete key
+            self.delete(self)
+            
+        } else {
+            super.keyDown(with: event)
+        }
+    }
+    
+    
     // MARK: Public Methods
     
     /// Selects the current document in the outline view.
@@ -308,6 +329,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         switch menuItem.action {
             case #selector(copy(_:)):
                 return !self.targetRows(for: menuItem).isEmpty
+                
+            case #selector(delete):
+                return !self.outlineView.selectedRowIndexes.isEmpty
                 
             case #selector(showInFinder):
                 menuItem.isHidden = self.targetRows(for: menuItem).isEmpty
@@ -357,6 +381,37 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         NSPasteboard.general.clearContents()
         NSPasteboard.general.writeObjects(fileURLs as [NSURL])
+    }
+    
+    
+    @IBAction func delete(_ sender: Any?) {
+        
+        let filenames = self.targetNodes(for: sender).map(\.fileURL.lastPathComponent)
+        
+        guard !filenames.isEmpty else { return }
+        
+        let alert = NSAlert()
+        alert.messageText = (filenames.count == 1)
+            ? String(localized: "MoveToTrashComfirmation.title",
+                     defaultValue: "Do you want to move “\(filenames[0])” to the Trash?",
+                     table: "Document")
+            : String(localized: "MoveToTrashComfirmation.title.many",
+                     defaultValue: "Do you want to move \(filenames.count) selected items to the Trash?",
+                     table: "Document")
+        alert.informativeText = String(localized: "MoveToTrashComfirmation.message",
+                                       defaultValue: "This operation cannot be undone.",
+                                       table: "Document",
+                                       comment: "Refer the same expression by Apple.")
+        alert.addButton(withTitle: String(localized: "Move to Trash", table: "Document", comment: "menu item label"))
+        alert.addButton(withTitle: String(localized: .cancel))
+        alert.buttons.first?.keyEquivalent = ""
+        
+        Task {
+            let returnCode = await alert.beginSheetModal(for: self.document.windowForSheet!)
+            if returnCode == .alertFirstButtonReturn {  // == Move to Trash
+                self.moveToTrash(nil)
+            }
+        }
     }
     
     

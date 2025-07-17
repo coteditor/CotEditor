@@ -14,6 +14,7 @@
 - Update the user interface on macOS 26 to the Liquid Glass style.
 - Update the application icon to the Liquid Glass style.
 - The options to highlight matching braces has been removed and they are now always highlighted.
+- Move selected items to the Trash by the Delete action in the file browser.
 - Deprecate the feature to change the editor opacity per window.
 - Deprecate the feature of installing a custom theme by simply opening the file in CotEditor.
 - [trivial] Improve the behavior of Add/Remove buttons.

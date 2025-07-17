@@ -190,7 +190,9 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Delete" id="164">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                                             <connections>
                                                 <action selector="delete:" target="Ady-hI-5gd" id="Ftk-bU-BQH"/>
                                             </connections>
