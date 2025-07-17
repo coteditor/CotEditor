@@ -106,7 +106,7 @@ struct MultipleReplaceListView: View {
                 } label: {
                     Image(systemName: "ellipsis")
                         .symbolVariant(.circle)
-                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions", comment: "label for action menu button"))
+                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
                 }
             }
             .buttonStyle(.borderless)
@@ -166,7 +166,7 @@ struct MultipleReplaceListView: View {
                                    defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
                                    comment: "%@ is a name of a setting. Refer the same expression by Apple."),
                             isPresented: $isImportConfirmationPresented, presenting: self.importingError) { item in
-            Button(String(localized: "Button.replace.label", defaultValue: "Replace")) {
+            Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
                     try self.manager.importSetting(data: item.data, name: item.name, overwrite: true)
@@ -182,11 +182,11 @@ struct MultipleReplaceListView: View {
                         defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
                         comment: "Refer similar expressions by Apple."))
         }
-        .confirmationDialog(String(localized: "DeletionConfirmationAlert.message",
+        .confirmationDialog(String(localized: "DeletionConfirmation.title",
                                    defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
                             isPresented: $isDeleteConfirmationPresented, presenting: self.deletingItem)
         { name in
-            Button(String(localized: "DeletionConfirmationAlert.button.delete", defaultValue: "Delete"), role: .destructive) {
+            Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
                 self.deletingItem = nil
                 do {
                     try self.manager.removeSetting(name: name)
@@ -200,7 +200,7 @@ struct MultipleReplaceListView: View {
                 self.deletingItem = nil
             }
         } message: { _ in
-            Text(String(localized: "DeletionConfirmationAlert.informativeText",
+            Text(String(localized: "DeletionConfirmation.message",
                         defaultValue: "This action cannot be undone."))
         }
         .alert(error: $error)
