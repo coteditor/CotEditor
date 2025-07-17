@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ public struct MultipleReplace: Equatable, Sendable, Codable {
         public var ignoresCase: Bool
         public var description: String?
         public var isEnabled: Bool
+        
+        public var isEmpty: Bool  { self.findString.isEmpty && self.replacementString.isEmpty && self.description == nil }
         
         
         public init(findString: String = "", replacementString: String = "", usesRegularExpression: Bool = false, ignoresCase: Bool = false, description: String? = nil, isEnabled: Bool = true) {
@@ -69,6 +71,8 @@ public struct MultipleReplace: Equatable, Sendable, Codable {
     
     public var replacements: [Replacement]
     public var settings: Settings
+    
+    public var isEmpty: Bool  { !self.replacements.contains { !$0.isEmpty } }
     
     
     public init(replacements: [Replacement] = [], settings: Settings = .init()) {
