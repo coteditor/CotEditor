@@ -65,7 +65,7 @@ struct AddRemoveButton<Item: Identifiable & Sendable>: View {
             }
             .help(String(localized: "Button.add.tooltip", defaultValue: "Add new item", table: "Control"))
             
-            Button(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus") {
+            Button(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"), systemImage: "minus") {
                 withAnimation {
                     self.items.removeAll {
                         self.selection.contains($0.id)
@@ -73,7 +73,7 @@ struct AddRemoveButton<Item: Identifiable & Sendable>: View {
                     self.selection.removeAll()
                 }
             }
-            .help(String(localized: "Button.remove.tooltip", defaultValue: "Remove selected items", table: "Control"))
+            .help(String(localized: "Button.remove.tooltip", defaultValue: "Delete selected items", table: "Control"))
             .disabled(self.selection.isEmpty)
         }
         .frame(width: 52)

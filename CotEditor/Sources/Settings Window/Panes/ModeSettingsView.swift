@@ -151,7 +151,7 @@ private struct ModeListView: View {
                         self.selection = .kind(.general)
                     }
                 } label: {
-                    Label(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus")
+                    Label(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"), systemImage: "minus")
                         .frame(width: 14, height: 14)
                         .fontWeight(.medium)
                 }

@@ -133,7 +133,7 @@ struct EncodingListView: View {
                     }
                     
                     let removalError = self.model.canRemove(ids: self.selection)
-                    Button(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus") {
+                    Button(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"), systemImage: "minus") {
                         self.model.remove(ids: self.selection)
                     }
                     .disabled(removalError != nil)

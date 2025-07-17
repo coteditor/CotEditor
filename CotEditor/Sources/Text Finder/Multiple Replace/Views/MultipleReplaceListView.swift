@@ -90,7 +90,7 @@ struct MultipleReplaceListView: View {
                     self.deletingItem = self.selection
                     self.isDeleteConfirmationPresented = true
                 } label: {
-                    Label(String(localized: "Button.remove.label", defaultValue: "Remove", table: "Control"), systemImage: "minus")
+                    Label(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"), systemImage: "minus")
                         .padding(2)
                 }
                 .frame(width: 16)
