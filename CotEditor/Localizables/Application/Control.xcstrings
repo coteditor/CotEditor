@@ -191,31 +191,31 @@
         }
       }
     },
-    "Button.remove.label" : {
+    "Button.delete.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odstranit"
+            "value" : "Smazat"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entfernen"
+            "value" : "Löschen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Remove"
+            "value" : "Delete"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remove"
+            "value" : "Delete"
           }
         },
         "es" : {
@@ -233,7 +233,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rimuovi"
+            "value" : "Elimina"
           }
         },
         "ja" : {
@@ -245,7 +245,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "제거"
+            "value" : "삭제"
           }
         },
         "nl" : {
@@ -263,7 +263,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remover"
+            "value" : "Apagar"
           }
         },
         "tr" : {
@@ -275,13 +275,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移除"
+            "value" : "删除"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移除"
+            "value" : "刪除"
           }
         }
       }
@@ -292,25 +292,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odstranit vybraných položek"
+            "value" : "Smazání vybraných položek"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ausgewählte Objekte entfernen"
+            "value" : "Ausgewählte Objekte löschen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Remove selected items"
+            "value" : "Delete selected items"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remove selected items"
+            "value" : "Delete selected items"
           }
         },
         "es" : {
@@ -328,7 +328,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rimuovi elementi selezionati"
+            "value" : "Eliminar elementi selezionati"
           }
         },
         "ja" : {
@@ -340,7 +340,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택한 아이템을 제거합니다"
+            "value" : "선택한 아이템을 삭제"
           }
         },
         "nl" : {
@@ -358,7 +358,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remover Items Selecionados"
+            "value" : "Apagar Items Selecionados"
           }
         },
         "tr" : {
@@ -370,13 +370,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移除所选项目"
+            "value" : "删除所选项目"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移除所選項目"
+            "value" : "刪除所選項目"
           }
         }
       }

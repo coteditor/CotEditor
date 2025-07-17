@@ -117,18 +117,6 @@ public extension URL {
 
 // MARK: User Domain
 
-public extension URL {
-    
-    /// A temporary URL in the user domain for file replacement.
-    static var itemReplacementDirectory: URL {
-        
-        get throws {
-            try URL(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: .userDirectory, create: true)
-        }
-    }
-}
-
-
 public extension FileManager {
     
     /// Creates intermediate directories to the given URL if not available.
