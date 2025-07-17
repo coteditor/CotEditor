@@ -1137,7 +1137,7 @@ CA
                                             <menu key="submenu" title="Multiple Replace" id="OaT-5c-bMY">
                                                 <items>
                                                     <menuItem isSeparatorItem="YES" id="95O-Ht-HSc"/>
-                                                    <menuItem title="Manage Multiple Replace…" tag="105" id="o7K-sI-KJA">
+                                                    <menuItem title="Manage Multiple Replace…" secondaryImage="square.and.pencil" catalog="system" tag="105" id="o7K-sI-KJA">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hfZ-b9-U43"/>

@@ -481,95 +481,89 @@
         }
       }
     },
-    "Edit selected syntax" : {
+    "Edit selected item" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Upravit vybranou syntaxi"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ausgewählte Syntax bearbeiten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Edit selected syntax"
+            "value" : "Ausgewähltes Objekt bearbeiten"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edit selected syntax"
+            "value" : "Edit selected item"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Editar la sintaxis seleccionada"
+            "state" : "needs_review",
+            "value" : "Editar el elemento seleccionado"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Éditer la syntaxe sélectionnée"
+            "state" : "needs_review",
+            "value" : "Éditer les éléments sélectionnés"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Modifica la sintassi selezionata"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選択したシンタックスを編集"
+            "value" : "選択した項目を編集"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "선택한 구문 편집"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bewerk geselecteerde syntaxis"
+            "state" : "needs_review",
+            "value" : "Bewerk geselecteerd item"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Edytuj wybraną składnię"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Editar sintaxe selecionada"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Seçili sözdizimi düzenle"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "编辑选中语法"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "編輯選中的文法定義"
           }
         }

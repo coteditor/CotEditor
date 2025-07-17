@@ -81,33 +81,34 @@ struct MultipleReplaceListView: View {
                 Button {
                     self.createUntitledSetting()
                 } label: {
-                    Label(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"), systemImage: "plus")
+                    Image(systemName: "plus")
+                        .accessibilityLabel(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"))
                         .padding(2)
                 }
+                .help(String(localized: "Button.add.tooltip", defaultValue: "Add new item", table: "Control"))
                 .frame(width: 16)
                 
                 Button {
                     self.deletingItem = self.selection
                     self.isDeleteConfirmationPresented = true
                 } label: {
-                    Label(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"), systemImage: "minus")
+                    Image(systemName: "minus")
+                        .accessibilityLabel(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"))
                         .padding(2)
                 }
+                .help(String(localized: "Button.remove.tooltip", defaultValue: "Delete selected items", table: "Control"))
                 .frame(width: 16)
                 
                 Spacer()
                 
-                Menu(String(localized: "Button.actions.label", defaultValue: "Actions", comment: "label for action menu button"), systemImage: "ellipsis") {
-                    if #unavailable(macOS 26) {
-                        self.menu(for: self.selection)
-                            .labelStyle(.titleOnly)
-                    } else {
-                        self.menu(for: self.selection)
-                    }
+                Menu {
+                    self.menu(for: self.selection)
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .symbolVariant(.circle)
+                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions", comment: "label for action menu button"))
                 }
-                .symbolVariant(.circle)
             }
-            .labelStyle(.iconOnly)
             .buttonStyle(.borderless)
             .padding(6)
         }
@@ -142,9 +143,7 @@ struct MultipleReplaceListView: View {
                     for url in urls {
                         let accessing = url.startAccessingSecurityScopedResource()
                         defer {
-                            if accessing {
-                                url.stopAccessingSecurityScopedResource()
-                            }
+                            if accessing { url.stopAccessingSecurityScopedResource() }
                         }
                         
                         let name = url.deletingPathExtension().lastPathComponent
@@ -175,7 +174,7 @@ struct MultipleReplaceListView: View {
                     self.error = error
                 }
             }
-            Button("Cancel", role: .cancel) {
+            Button(.cancel, role: .cancel) {
                 self.importingError = nil
             }
         } message: { _ in
@@ -197,7 +196,7 @@ struct MultipleReplaceListView: View {
                 }
                 self.selection = self.settingNames.first
             }
-            Button(String(localized: "Cancel"), role: .cancel) {
+            Button(.cancel, role: .cancel) {
                 self.deletingItem = nil
             }
         } message: { _ in
