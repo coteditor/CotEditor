@@ -346,63 +346,56 @@ private struct EditorCountView: View {
     
     var body: some View {
         
-        Text(self.attributedString)
-            .monospacedDigit()
-            .accessibilityAddTraits(.updatesFrequently)
-    }
-    
-    
-    private var attributedString: AttributedString {
-        
-        var strings: [AttributedString] = []
-        
-        if self.showsLines {
-            strings.append(.init(String(localized: "Lines: ", table: "Document", comment: "label in status bar"),
-                                 value: self.result.lines.formatted))
-        }
-        if self.showsCharacters {
-            strings.append(.init(String(localized: "Characters: ", table: "Document", comment: "label in status bar"),
-                                 value: self.result.characters.formatted))
-        }
-        if self.showsWords {
-            strings.append(.init(String(localized: "Words: ", table: "Document", comment: "label in status bar"),
-                                 value: self.result.words.formatted))
-        }
-        if self.showsLocation {
-            strings.append(.init(String(localized: "Location: ", table: "Document", comment: "label in status bar"),
-                                 value: self.result.location?.formatted()))
-        }
-        if self.showsLine {
-            strings.append(.init(String(localized: "Line: ", table: "Document", comment: "label in status bar"),
-                                 value: self.result.line?.formatted()))
-        }
-        if self.showsColumn {
-            strings.append(.init(String(localized: "Column: ", table: "Document", comment: "label in status bar"),
-                                 value: self.result.column?.formatted()))
-        }
-        
-        return strings.reduce(into: AttributedString()) { (string, item) in
-            if !string.runs.isEmpty {
-                string.append(AttributedString("  "))
+        TruncatingHStack {
+            if self.showsLines {
+                Text(String(localized: "CountType.lines.label", defaultValue: "Lines", table: "Document"),
+                     value: self.result.lines.formatted)
             }
-            string.append(item)
+            if self.showsCharacters {
+                Text(String(localized: "CountType.characters.label", defaultValue: "Characters", table: "Document"),
+                     value: self.result.characters.formatted)
+            }
+            if self.showsWords {
+                Text(String(localized: "CountType.words.label", defaultValue: "Words", table: "Document"),
+                     value: self.result.words.formatted)
+            }
+            if self.showsLocation {
+                Text(String(localized: "CountType.location.label", defaultValue: "Location", table: "Document"),
+                     value: self.result.location?.formatted())
+            }
+            if self.showsLine {
+                Text(String(localized: "CountType.line.label", defaultValue: "Line", table: "Document"),
+                     value: self.result.line?.formatted())
+            }
+            if self.showsColumn {
+                Text(String(localized: "CountType.column.label", defaultValue: "Column", table: "Document"),
+                     value: self.result.column?.formatted())
+            }
         }
+        .foregroundStyle(.secondary)
+        .monospacedDigit()
+        .lineLimit(1)
+        .accessibilityAddTraits(.updatesFrequently)
     }
 }
 
 
-private extension AttributedString {
+private extension Text {
     
-    /// Returns formatted label for status bar.
+    /// Instantiates the labeled value for status bar.
     ///
     /// - Parameters:
     ///   - label: Localized label.
     ///   - state: The content string.
-    /// - Returns: An attributed string.
     init(_ label: String, value: String?) {
         
-        self = Self(label, attributes: AttributeContainer.foregroundColor(.secondary))
-        + Self(value ?? "–", attributes: AttributeContainer.foregroundColor((value == nil) ? .tertiaryLabelColor : .labelColor))
+        let valueText = if let value {
+            Text(value).foregroundStyle(.primary)
+        } else {
+            Text(verbatim: "–").foregroundStyle(.tertiary)
+        }
+        
+        self = Text("\(label): \(valueText)", comment: "set of label and value")
     }
 }
 
