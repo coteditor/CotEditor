@@ -645,6 +645,16 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
 }
 
 
+private extension NSViewController {
+    
+    /// Safely ends the current editing.
+    final func endEditing() {
+        
+        self.viewIfLoaded?.window?.makeFirstResponder(nil)
+    }
+}
+
+
 private extension NSPasteboard {
     
     var rows: IndexSet? {

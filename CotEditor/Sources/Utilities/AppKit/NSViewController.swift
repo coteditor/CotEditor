@@ -36,14 +36,4 @@ extension NSViewController {
             self.presentError(error)
         }
     }
-    
-    
-    /// Safely ends the current editing.
-    ///
-    /// - Returns: `true` when the operation is successful; otherwise, `false`.
-    @discardableResult
-    final func endEditing() -> Bool {
-        
-        self.viewIfLoaded?.window?.makeFirstResponder(nil) != false
-    }
 }
