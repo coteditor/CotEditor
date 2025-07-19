@@ -417,12 +417,13 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             
         } else {
             // insert item by adding Deleted item section
-            menu.insertItem(NSMenuItem(title: syntaxName, action: nil, keyEquivalent: ""), at: 1)
+            menu.insertItem(.init(title: syntaxName, action: nil, keyEquivalent: ""), at: 1)
             menu.item(at: 1)?.tag = deletedTag
             popUpButton.selectItem(at: 1)
             
-            menu.insertItem(.sectionHeader(title: String(localized: "Toolbar.syntax.menu.deleted.label",
-                                                         defaultValue: "Deleted", table: "Document", comment: "menu item header")), at: 1)
+            let title = String(localized: "Toolbar.syntax.menu.deleted.label",
+                               defaultValue: "Deleted", table: "Document", comment: "menu item header")
+            menu.insertItem(.sectionHeader(title: title), at: 1)
             menu.item(at: 1)?.tag = deletedTag
             
             menu.insertItem(.separator(), at: 1)
