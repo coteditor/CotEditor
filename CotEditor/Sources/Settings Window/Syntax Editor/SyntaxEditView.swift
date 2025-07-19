@@ -236,6 +236,9 @@ struct SyntaxEditView: View {
     /// Submits the syntax if it is valid.
     private func submit() {
         
+        // end editing
+        self.isNameFieldFocused = false
+        
         // syntax name validation
         self.name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard self.validate(name: self.name) else {

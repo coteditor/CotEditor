@@ -30,6 +30,8 @@ struct CustomSurroundView: View {
     
     weak var parent: NSHostingController<Self>?
     
+    @Environment(\.resetFocus) private var resetFocus
+    
     @AppStorage("beginCustomSurroundString") private var defaultBeginString: String?
     @AppStorage("endCustomSurroundString") private var defaultEndString: String?
     
@@ -100,11 +102,10 @@ struct CustomSurroundView: View {
     /// Submits the current input.
     private func submit() {
         
-        guard
-            self.parent?.endEditing() == true,
-            !self.pair.begin.isEmpty
-        else { return NSSound.beep() }
+        self.resetFocus(in: self.namespace)
         
+        guard !self.pair.begin.isEmpty else { return NSSound.beep() }
+            
         // use beginString also for end delimiter if endString is empty
         let endString = self.pair.end.isEmpty ? self.pair.begin : self.pair.end
         

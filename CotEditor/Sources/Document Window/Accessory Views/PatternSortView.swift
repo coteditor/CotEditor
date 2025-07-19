@@ -39,6 +39,10 @@ struct PatternSortView: View {
     
     weak var parent: NSHostingController<Self>?
     
+    @Environment(\.resetFocus) private var resetFocus
+    
+    @Namespace private var namespace
+    
     private var sampleLine: String
     private var sampleFontName: String?
     private var completionHandler: (_ pattern: any SortPattern, _ options: SortOptions) -> Void
@@ -173,9 +177,7 @@ struct PatternSortView: View {
     /// Submits the current input.
     private func submit() {
         
-        guard
-            self.parent?.endEditing() == true
-        else { return NSSound.beep() }
+        self.resetFocus(in: self.namespace)
         
         let pattern = self.sortPattern
         
