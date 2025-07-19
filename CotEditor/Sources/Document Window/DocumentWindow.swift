@@ -160,13 +160,13 @@ extension DocumentWindow {
             let shortcut = Shortcut(keyDownEvent: event),
             shortcut.modifiers == [.command],
             let number = Int(shortcut.keyEquivalent), number > 0,
-            let windows = self.tabbedWindows,
-            let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
+            let group = self.tabGroup,
+            let window = (number == 9) ? group.windows.last : group.windows[safe: number - 1]  // 1-based to 0-based
         {
             // prefer existing shortcut that user might define
             guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
             
-            window.tabGroup?.selectedWindow = window
+            group.selectedWindow = window
             return true
         }
         
