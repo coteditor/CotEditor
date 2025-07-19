@@ -87,11 +87,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         super.viewDidLoad()
         
-        // -> Need to set *both* identifier and autosaveName to make autosaving work.
-        let autosaveName = (self.directoryDocument == nil) ? "WindowContentSplitView" : "DirectoryWindowContentSplitView"
-        self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
-        self.splitView.autosaveName = autosaveName
-        
         if let directoryDocument {
             let viewController = FileBrowserViewController(document: directoryDocument)
             let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: viewController)
@@ -126,12 +121,19 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.inspectorViewItem.titlebarSeparatorStyle = .none
         self.addSplitViewItem(self.inspectorViewItem)
         
-        // adopt the visibility of the inspector from the last change
+        // adopt the layout state of split views from the last change
+        // -> Set the `autosaveName` first after the view is placed in the window.
+        //    Otherwise, the last state won’t be applied (2025-07, macOS 26).
         self.windowObserver = self.view.observe(\.window, options: .new) { [weak self] (_, change) in
             MainActor.assumeIsolated {
-                if let window = change.newValue, window != nil {
-                    self?.restoreAutosavingState()
-                }
+                guard let self, let window = change.newValue, window != nil else { return }
+                
+                // -> Need to set *both* identifier and autosaveName to make autosaving work.
+                let autosaveName = (self.directoryDocument == nil) ? "WindowContentSplitView" : "DirectoryWindowContentSplitView"
+                self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
+                self.splitView.autosaveName = autosaveName
+                
+                self.windowObserver?.invalidate()
             }
         }
     }

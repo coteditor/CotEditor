@@ -96,12 +96,6 @@ final class InspectorViewController: NSTabViewController {
         // select last used pane
         self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
         
-        // restore thickness first when the view is loaded
-        let width = UserDefaults.standard[.sidebarWidth]
-        if width > 0 {
-            self.view.frame.size.width = width
-        }
-        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
@@ -118,16 +112,6 @@ final class InspectorViewController: NSTabViewController {
             guard oldValue != -1 else { return }
             
             UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
-        }
-    }
-    
-    
-    override func viewDidLayout() {
-        
-        super.viewDidLayout()
-        
-        if !self.view.inLiveResize, self.view.frame.width > 0 {
-            UserDefaults.standard[.sidebarWidth] = self.view.frame.width
         }
     }
     
