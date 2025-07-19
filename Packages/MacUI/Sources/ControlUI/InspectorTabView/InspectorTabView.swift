@@ -56,7 +56,7 @@ public final class InspectorTabView: NSTabView {
         if #available(macOS 26, *) {
             self.segmentedControl = NSSegmentedControl()
             self.segmentedControl.controlSize = .large
-            self.segmentedControl.segmentDistribution = .fillEqually
+            self.segmentedControl.selectedSegment = 1
         } else {
             self.segmentedControl = InspectorTabSegmentedControl()
             self.segmentedControl.cell?.isBordered = false
