@@ -32,11 +32,11 @@ extension ImageAnalysis: @retroactive @unchecked Sendable { }
 
 struct LiveTextInsertionView: View {
     
-    weak var parent: NSHostingController<Self>?
-    
     var image: NSImage
     var length: Double = 500
     var actionHandler: (String) -> Void
+    
+    var dismiss: () -> Void = { }
     
     private static let analyzer = ImageAnalyzer()
     
@@ -62,11 +62,11 @@ struct LiveTextInsertionView: View {
                 if case .success(let analysis) = self.result, !analysis.transcript.isEmpty {
                     Button(String(localized: "Insert", table: "LiveTextInsertion", comment: "button label")) {
                         self.actionHandler(analysis.transcript)
-                        self.parent?.dismiss(nil)
+                        self.dismiss()
                     }.keyboardShortcut(.defaultAction)
                 } else {
                     Button(String(localized: "Close", table: "LiveTextInsertion", comment: "button label")) {
-                        self.parent?.dismiss(nil)
+                        self.dismiss()
                     }
                 }
             }

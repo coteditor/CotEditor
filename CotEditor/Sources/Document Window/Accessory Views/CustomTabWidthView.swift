@@ -27,8 +27,7 @@ import SwiftUI
 
 struct CustomTabWidthView: View {
     
-    weak var parent: NSHostingController<Self>?
-    
+    var dismiss: () -> Void = { }
     
     @Namespace private var namespace
     
@@ -66,7 +65,7 @@ struct CustomTabWidthView: View {
                 SubmitButtonGroup {
                     self.submit()
                 } cancelAction: {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }
             }
             .padding(.top, 8)
@@ -82,7 +81,7 @@ struct CustomTabWidthView: View {
     private func submit() {
         
         self.completionHandler(self.value)
-        self.parent?.dismiss(nil)
+        self.dismiss()
     }
 }
 

@@ -37,7 +37,7 @@ struct PatternSortView: View {
     }
     
     
-    weak var parent: NSHostingController<Self>?
+    var dismiss: () -> Void = { }
     
     @Environment(\.resetFocus) private var resetFocus
     
@@ -147,7 +147,7 @@ struct PatternSortView: View {
                 SubmitButtonGroup(String(localized: "Sort", table: "PatternSort", comment: "button label")) {
                     self.submit()
                 } cancelAction: {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }.disabled(self.error != nil)
             }
             .padding(.top, 8)
@@ -186,7 +186,7 @@ struct PatternSortView: View {
         }
         
         self.completionHandler(pattern, self.options)
-        self.parent?.dismiss(nil)
+        self.dismiss()
     }
     
     

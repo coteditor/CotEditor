@@ -52,7 +52,7 @@ extension NSTextView {
         // setup progress sheet
         let indicatorView = FindProgressView(String(localized: "Highlight All", table: "TextFind"), progress: progress, action: .find)
         let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.parent = indicator
+        indicator.rootView.dismiss = { indicator.dismiss(nil) }
         self.viewControllerForSheet?.presentAsSheet(indicator)
         
         // perform
@@ -110,7 +110,7 @@ extension NSTextView {
         // setup progress sheet
         let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
         let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.parent = indicator
+        indicator.rootView.dismiss = { indicator.dismiss(nil) }
         self.viewControllerForSheet?.presentAsSheet(indicator)
         
         // perform

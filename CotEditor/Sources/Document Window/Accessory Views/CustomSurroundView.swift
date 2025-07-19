@@ -28,7 +28,7 @@ import StringUtils
 
 struct CustomSurroundView: View {
     
-    weak var parent: NSHostingController<Self>?
+    var dismiss: () -> Void = { }
     
     @Environment(\.resetFocus) private var resetFocus
     
@@ -87,7 +87,7 @@ struct CustomSurroundView: View {
                 SubmitButtonGroup {
                     self.submit()
                 } cancelAction: {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }
             }
             .padding(.top, 8)
@@ -115,7 +115,7 @@ struct CustomSurroundView: View {
         self.defaultBeginString = self.pair.begin
         self.defaultEndString = self.pair.end
         
-        self.parent?.dismiss(nil)
+        self.dismiss()
     }
 }
 

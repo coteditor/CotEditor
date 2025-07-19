@@ -28,7 +28,7 @@ import TextFind
 
 struct FindProgressView: View {
     
-    weak var parent: NSHostingController<Self>?
+    var dismiss: () -> Void = { }
     
     @State private var progress: FindProgress
     private var action: TextFind.Action
@@ -84,9 +84,9 @@ struct FindProgressView: View {
                     break
                 case .finished:
                     self.updateDescription()
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 case .cancelled:
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
             }
         }
         .scenePadding()

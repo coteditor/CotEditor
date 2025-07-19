@@ -28,14 +28,14 @@ import FuzzyRange
 
 struct GoToLineView: View {
     
-    weak var parent: NSHostingController<Self>?
-    
     /// The current line range.
     @State var lineRange: FuzzyRange
     
     /// The callback method to perform when the command was accepted.
     var completionHandler: (_ lineRange: FuzzyRange) -> Bool
     
+    
+    var dismiss: () -> Void = { }
     
     @Namespace private var namespace
     
@@ -62,7 +62,7 @@ struct GoToLineView: View {
                 SubmitButtonGroup(String(localized: "Go", table: "GoToLine", comment: "button label")) {
                     self.submit()
                 } cancelAction: {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }
             }
             .padding(.top, 8)
@@ -81,7 +81,7 @@ struct GoToLineView: View {
             self.completionHandler(self.lineRange)
         else { return NSSound.beep() }
         
-        self.parent?.dismiss(nil)
+        self.dismiss()
     }
 }
 

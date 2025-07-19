@@ -45,7 +45,7 @@ private struct FileMappingConflict: Identifiable {
 
 struct SyntaxMappingConflictView: View {
     
-    weak var parent: NSHostingController<Self>?
+    var dismiss: () -> Void = { }
     
     private var extensionConflicts: [FileMappingConflict]
     private var filenameConflicts: [FileMappingConflict]
@@ -83,12 +83,12 @@ struct SyntaxMappingConflictView: View {
                 HelpLink(anchor: "syntax_file_mapping")
                 Spacer()
                 Button(.ok) {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }.keyboardShortcut(.defaultAction)
             }
         }
         .onExitCommand {
-            self.parent?.dismiss(nil)
+            self.dismiss()
         }
         .scenePadding()
         .frame(width: 400, height: 500)

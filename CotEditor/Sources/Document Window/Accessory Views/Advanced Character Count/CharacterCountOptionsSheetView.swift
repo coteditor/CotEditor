@@ -27,9 +27,9 @@ import SwiftUI
 
 struct CharacterCountOptionsSheetView: View {
     
-    weak var parent: NSHostingController<Self>?
-    
     var completionHandler: () -> Void
+    
+    var dismiss: () -> Void = { }
     
     
     // MARK: View
@@ -46,9 +46,9 @@ struct CharacterCountOptionsSheetView: View {
                 
                 SubmitButtonGroup(String(localized: "Start", table: "AdvancedCharacterCount", comment: "button label")) {
                     self.completionHandler()
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 } cancelAction: {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }
             }
         }
