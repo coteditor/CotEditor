@@ -122,8 +122,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         super.viewWillAppear()
         
-        self.applySyntax()
-        
         let defaults = UserDefaults.standard
         self.observers = [
             // apply user settings to the text view
@@ -166,7 +164,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 .assign(to: \.selectionInstanceHighlightDelay, on: self.textView),
             
             // observe document setting changes
-            self.document.didChangeSyntax
+            self.document.$syntaxName
                 .sink { [weak self] _ in self?.applySyntax() },
             self.document.$lineEnding
                 .assign(to: \.lineEnding, on: self.textView),

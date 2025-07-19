@@ -85,12 +85,11 @@ extension Document: EditorSource {
     let syntaxParser: SyntaxParser
     @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
+    @ObservationIgnored @Published private(set) var syntaxName: String
     @ObservationIgnored @Published private(set) var mode: Mode
     
     let lineEndingScanner: LineEndingScanner
     let counter: EditorCounter
-    
-    let didChangeSyntax = PassthroughSubject<String, Never>()
     
     
     // MARK: Private Properties
@@ -137,6 +136,7 @@ extension Document: EditorSource {
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
         self.syntaxFileExtension = syntax?.extensions.first
+        self.syntaxName = syntaxName
         
         // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
@@ -1088,7 +1088,7 @@ extension Document: EditorSource {
         // to avoid redundant highlight parse due to async notification.
         guard !isInitial else { return }
         
-        self.didChangeSyntax.send(name)
+        self.syntaxName = name
         self.invalidateRestorableState()
     }
     

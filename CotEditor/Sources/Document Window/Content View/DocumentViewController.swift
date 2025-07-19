@@ -139,10 +139,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             }
         }
         
-        // start parsing syntax for highlighting and outlines
-        self.outlineParseDebouncer.perform()
-        self.document.syntaxParser.highlightAll()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
                                                object: self.document.textStorage)
@@ -150,7 +146,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         // observe
         self.observers = [
             // observe syntax change
-            self.document.didChangeSyntax
+            self.document.$syntaxName
                 .sink { [weak self] _ in
                     self?.outlineParseDebouncer.perform()
                     self?.document.syntaxParser.highlightAll()

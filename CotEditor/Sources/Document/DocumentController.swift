@@ -74,8 +74,7 @@ final class DocumentController: NSDocumentController {
             .map { $0?.windowController as? DocumentWindowController }
             .map { $0?.fileDocument as? Document }
             .sink { [unowned self] in
-                self.currentSyntaxName = $0?.syntaxParser.name
-                self.syntaxObserver = $0?.didChangeSyntax
+                self.syntaxObserver = $0?.$syntaxName
                     .sink { self.currentSyntaxName = $0 }
             }
     }

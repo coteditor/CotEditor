@@ -107,8 +107,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     private func invalidateObservation() {
         
         if let document, self.isPresented {
-            self.documentObserver = document.didChangeSyntax
-                .merge(with: Just(""))  // initial
+            self.documentObserver = document.$syntaxName
                 .sink { [weak self] _ in
                     self?.syntaxObserver = self?.document?.syntaxParser.$outlineItems
                         .compactMap(\.self)

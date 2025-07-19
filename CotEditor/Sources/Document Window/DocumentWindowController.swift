@@ -302,12 +302,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.syntaxPopUpButton?.isEnabled = (document is Document)
         
         // observe document's syntax change for toolbar
-        self.documentSyntaxObserver = nil
-        if let document = document as? Document {
-            self.documentSyntaxObserver = document.didChangeSyntax
-                .merge(with: Just(document.syntaxParser.name))
-                .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
-        }
+        self.documentSyntaxObserver = (document as? Document)?.$syntaxName
+            .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
     }
     
     
