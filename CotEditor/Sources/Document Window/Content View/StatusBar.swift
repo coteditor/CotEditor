@@ -392,7 +392,7 @@ private extension Text {
         let valueText = if let value {
             Text(value).foregroundStyle(.primary)
         } else {
-            Text(verbatim: "–").foregroundStyle(.tertiary)
+            Text.none
         }
         
         self = Text("\(label): \(valueText)", comment: "set of label and value")
