@@ -47,7 +47,7 @@ final class ContentViewController: NSSplitViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.splitViewItems = [
-            NSSplitViewItem(viewController: self.createDocumentViewController()),
+            NSSplitViewItem(viewController: .viewController(document: document)),
         ]
     }
     
@@ -82,14 +82,20 @@ final class ContentViewController: NSSplitViewController {
         
         guard oldDocument != self.document else { return }
         
-        self.splitViewItems[0] = NSSplitViewItem(viewController: self.createDocumentViewController())
+        self.splitViewItems[0] = NSSplitViewItem(viewController: .viewController(document: self.document))
     }
+}
+
+
+private extension NSViewController {
     
-    
-    /// Creates a new view controller with the current document.
-    private func createDocumentViewController() -> sending NSViewController {
+    /// Creates a new view controller with the passed-in document.
+    ///
+    /// - Parameter document: The represented document.
+    /// - Returns: A view controller.
+    static func viewController(document: DataDocument?) -> sending NSViewController {
         
-        switch self.document {
+        switch document {
             case let document as Document:
                 DocumentViewController(document: document)
             case let document as PreviewDocument:
