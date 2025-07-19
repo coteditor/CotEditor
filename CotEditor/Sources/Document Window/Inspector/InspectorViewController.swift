@@ -24,7 +24,6 @@
 //
 
 import AppKit
-import SwiftUI
 import Defaults
 import ControlUI
 
@@ -41,7 +40,7 @@ final class InspectorViewController: NSTabViewController {
     // MARK: Public Properties
     
     var document: DataDocument?  { didSet { self.updateDocument() } }
-    var selectedPane: InspectorPane { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
+    var selectedPane: InspectorPane  { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
     
     
     // MARK: Lifecycle

@@ -46,7 +46,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     @ViewLoading private var contentViewItem: NSSplitViewItem
     @ViewLoading private var inspectorViewItem: NSSplitViewItem
     
-    private var windowObserver: NSKeyValueObservation?
     private var versionBrowserEnterObservationTask: Task<Void, Never>?
     private var versionBrowserExitObservationTask: Task<Void, Never>?
     
@@ -120,28 +119,19 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.inspectorViewItem.isCollapsed = true
         self.inspectorViewItem.titlebarSeparatorStyle = .none
         self.addSplitViewItem(self.inspectorViewItem)
-        
-        // adopt the layout state of split views from the last change
-        // -> Set the `autosaveName` first after the view is placed in the window.
-        //    Otherwise, the last state won’t be applied (2025-07, macOS 26).
-        self.windowObserver = self.view.observe(\.window, options: .new) { [weak self] (_, change) in
-            MainActor.assumeIsolated {
-                guard let self, let window = change.newValue, window != nil else { return }
-                
-                // -> Need to set *both* identifier and autosaveName to make autosaving work.
-                let autosaveName = (self.directoryDocument == nil) ? "WindowContentSplitView" : "DirectoryWindowContentSplitView"
-                self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
-                self.splitView.autosaveName = autosaveName
-                
-                self.windowObserver?.invalidate()
-            }
-        }
     }
     
     
     override func viewWillAppear() {
         
         super.viewWillAppear()
+        
+        // -> Set the `autosaveName` first after the view is placed in the window.
+        //    Otherwise, the last state won’t be applied (2025-07, macOS 26).
+        // -> Need to set *both* identifier and autosaveName to make autosaving work.
+        let autosaveName = (self.directoryDocument == nil) ? "WindowContentSplitView" : "DirectoryWindowContentSplitView"
+        self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
+        self.splitView.autosaveName = autosaveName
         
         // forcibly collapse sidebar while version browse
         if let sidebarViewItem, let window = self.view.window {
