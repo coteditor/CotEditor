@@ -27,13 +27,6 @@ import Foundation
 import Observation
 import StringUtils
 
-@MainActor protocol EditorSource: AnyObject {
-    
-    var string: String? { get }
-    var selectedRanges: [NSRange] { get }
-}
-
-
 struct EditorCount: Equatable {
     
     var entire: Int?
@@ -90,11 +83,18 @@ struct EditorCount: Equatable {
     }
     
     
+    @MainActor protocol Source: AnyObject {
+        
+        var string: String { get }
+        var selectedRanges: [NSValue] { get }
+    }
+    
+    
     // MARK: Public Properties
     
     let result: Result = .init()
     
-    weak var source: (any EditorSource)?  // weak to avoid cycle retain
+    var source: () -> (any Source)? = { nil }
     
     var updatesAll = false  { didSet { self.updateTypes() } }
     var statusBarRequirements: Types = []  { didSet { self.updateTypes() } }
@@ -130,7 +130,9 @@ struct EditorCount: Equatable {
         self.contentTask = Task {
             try await Task.sleep(for: .milliseconds(20), tolerance: .milliseconds(20))  // debounce
             
-            guard let string = self.source?.string?.immutable else { return }
+            guard let source = self.source() else { return }
+            
+            let string = source.string.immutable
             
             if self.types.contains(.characters) {
                 try Task.checkCancellation()
@@ -160,11 +162,10 @@ struct EditorCount: Equatable {
         self.selectionTask = Task {
             try await Task.sleep(for: .milliseconds(200), tolerance: .milliseconds(40))  // debounce
             
-            guard
-                let string = self.source?.string?.immutable,
-                let selectedRanges = self.source?.selectedRanges.compactMap({ Range($0, in: string) })
-            else { return }
+            guard let source = self.source() else { return }
             
+            let string = source.string.immutable
+            let selectedRanges = source.selectedRanges.map(\.rangeValue).compactMap({ Range($0, in: string) })
             let selectedStrings = selectedRanges.map { string[$0] }
             let location = selectedRanges.first?.lowerBound ?? string.startIndex
             
@@ -216,14 +217,20 @@ struct EditorCount: Equatable {
         
         self.types = self.updatesAll ? .all : self.statusBarRequirements
         
+        guard self.types != oldValue else { return }
+        
         if self.types.isEmpty {
             self.cancel()
             return
         }
         
-        if self.types.subtracting(oldValue).contains(.count) {
+        let added = self.types.subtracting(oldValue)
+        
+        if added.contains(.count) {
             self.invalidateContent()
         }
-        self.invalidateSelection()
+        if !added.isEmpty {
+            self.invalidateSelection()
+        }
     }
 }

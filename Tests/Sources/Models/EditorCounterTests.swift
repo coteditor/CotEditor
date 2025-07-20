@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,16 +29,16 @@ import Testing
 
 @MainActor final class EditorCounterTests {
     
-    @MainActor final class Source: EditorSource {
+    final class Source: EditorCounter.Source {
         
-        var string: String?
-        var selectedRanges: [NSRange]
+        var string: String
+        var selectedRanges: [NSValue]
         
         
         init(string: String, selectedRange: NSRange) {
             
             self.string = string
-            self.selectedRanges = [selectedRange]
+            self.selectedRanges = [selectedRange] as [NSValue]
         }
     }
     
@@ -54,7 +54,7 @@ import Testing
         let source = Source(string: self.testString, selectedRange: NSRange(0..<3))
         
         let counter = EditorCounter()
-        counter.source = source
+        counter.source = { source }
         counter.invalidateContent()
         counter.invalidateSelection()
         
@@ -72,7 +72,7 @@ import Testing
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
         let counter = EditorCounter()
-        counter.source = source
+        counter.source = { source }
         counter.updatesAll = true
         counter.invalidateContent()
         counter.invalidateSelection()
@@ -104,7 +104,7 @@ import Testing
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
         let counter = EditorCounter()
-        counter.source = source
+        counter.source = { source }
         counter.updatesAll = true
         counter.invalidateSelection()
         
@@ -135,7 +135,7 @@ import Testing
         let source = Source(string: "a\r\nb", selectedRange: NSRange(1..<4))
         
         let counter = EditorCounter()
-        counter.source = source
+        counter.source = { source }
         counter.updatesAll = true
         counter.invalidateContent()
         counter.invalidateSelection()

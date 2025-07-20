@@ -395,7 +395,7 @@ private extension Text {
             Text.none
         }
         
-        self = Text("\(label): \(valueText)", comment: "set of label and value")
+        self = Text("\(label): \(valueText)")
     }
 }
 

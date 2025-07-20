@@ -38,11 +38,7 @@ import LineEnding
 import Syntax
 import URLUtils
 
-extension Document: EditorSource {
-    
-    var string: String? { self.textView?.string }
-    var selectedRanges: [NSRange] { self.textView?.selectedRanges.map(\.rangeValue) ?? [] }
-}
+extension NSTextView: EditorCounter.Source { }
 
 
 @Observable final class Document: DataDocument, AdditionalDocumentPreparing, EncodingChanging {
@@ -151,7 +147,7 @@ extension Document: EditorSource {
         
         super.init()
         
-        self.counter.source = self
+        self.counter.source = { [weak self] in self?.textView }
         
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
