@@ -1026,22 +1026,6 @@ CA
                                                             <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="evb-xT-L0u"/>
-                                                    <menuItem title="Japanese Text" enabled="NO" id="XWV-by-mnw" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Hiragana to Katakana" secondaryImage="textformat.characters.ja" catalog="system" id="592">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="exchangeKatakana:" target="Ady-hI-5gd" id="pfD-db-6kI"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Katakana to Hiragana" id="594">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="exchangeHiragana:" target="Ady-hI-5gd" id="cKm-Ib-McK"/>
-                                                        </connections>
-                                                    </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>
@@ -1396,7 +1380,6 @@ CA
         <image name="textformat" catalog="system" width="18" height="12"/>
         <image name="textformat.characters" catalog="system" width="25" height="12"/>
         <image name="textformat.characters.arrow.left.and.right" catalog="system" width="25" height="17"/>
-        <image name="textformat.characters.ja" catalog="system" width="29" height="12"/>
         <image name="textformat.size" catalog="system" width="18" height="12"/>
         <image name="textformat.size.larger" catalog="system" width="11" height="12"/>
         <image name="textformat.size.smaller" catalog="system" width="9" height="9"/>

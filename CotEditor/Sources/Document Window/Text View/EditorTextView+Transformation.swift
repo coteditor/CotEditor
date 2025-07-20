@@ -133,24 +133,6 @@ extension EditorTextView {
     }
     
     
-    /// Transforms Hiragana in the selections to Katakana.
-    @IBAction func exchangeKatakana(_ sender: Any?) {
-        
-        self.transformSelection {
-            $0.applyingTransform(.hiraganaToKatakana, reverse: false) ?? $0
-        }
-    }
-    
-    
-    /// Transforms Katakana in the selections to Hiragana.
-    @IBAction func exchangeHiragana(_ sender: Any?) {
-        
-        self.transformSelection {
-            $0.applyingTransform(.hiraganaToKatakana, reverse: true) ?? $0
-        }
-    }
-    
-    
     // MARK: Action Messages (Unicode Normalization)
     
     /// Normalizes Unicode in the selections.
