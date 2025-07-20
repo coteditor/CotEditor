@@ -77,9 +77,7 @@ extension NSTextView {
         
         progress.finish()
         
-        let message = (progress.count == 0)
-            ? String(localized: "Not found", table: "TextFind")
-            : String(localized: "\(progress.count) found", table: "TextFind")
+        let message = FindResult(action: .find, count: progress.count).message
         
         AccessibilityNotification.Announcement(message).post()
         
@@ -127,9 +125,7 @@ extension NSTextView {
         
         progress.finish()
         
-        let message = (progress.count == 0)
-            ? String(localized: "Not replaced", table: "TextFind")
-            : String(localized: "\(progress.count) replaced", table: "TextFind")
+        let message = FindResult(action: .replace, count: progress.count).message
         
         AccessibilityNotification.Announcement(message).post()
         

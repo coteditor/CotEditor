@@ -149,8 +149,7 @@ struct SyntaxEditView: View {
                     
                     if let message {
                         Label(message, systemImage: "arrow.backward")
-                            .symbolVariant(.circle)
-                            .symbolVariant(.fill)
+                            .symbolVariant(.circle.fill)
                             .foregroundStyle(.secondary)
                             .controlSize(.small)
                     }

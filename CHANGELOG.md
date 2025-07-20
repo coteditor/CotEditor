@@ -17,6 +17,8 @@
 - Move selected items to the Trash by the Delete action in the file browser.
 - Deprecate the feature to change the editor opacity per window.
 - Deprecate the feature of installing a custom theme by simply opening the file in CotEditor.
+- Deprecate the “Hiragana to Katakana” and “Katakana to Hiragana” commands in the Text > Transformations menu.
+- Deprecate the “Draw separator” option for the line number view on macOS 26.
 - [trivial] Improve the behavior of Add/Remove buttons.
 - [dev] Migrate the theme list and syntax list in the Settings to SwiftUI.
 - [dev] Update the build environment to Xcode 26.0 Beta 3 (Swift 6.2, macOS 26 SDK).

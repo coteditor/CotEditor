@@ -1107,8 +1107,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                  #selector(exchangeHalfwidth),
                  #selector(exchangeFullwidthRoman),
                  #selector(exchangeHalfwidthRoman),
-                 #selector(exchangeKatakana),
-                 #selector(exchangeHiragana),
                  #selector(normalizeUnicode(_:)),
                  #selector(inputBackSlash),
                  #selector(inputYenMark):

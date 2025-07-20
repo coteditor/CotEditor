@@ -139,9 +139,11 @@ struct WindowSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Line numbers", table: "WindowSettings"), isOn: $showLineNumbers)
-                    Toggle(String(localized: "Draw separator", table: "WindowSettings"), isOn: $showLineNumberSeparator)
-                        .disabled(!self.showLineNumbers)
-                        .padding(.leading, 20)
+                    if #unavailable(macOS 26) {
+                        Toggle(String(localized: "Draw separator", table: "WindowSettings"), isOn: $showLineNumberSeparator)
+                            .disabled(!self.showLineNumbers)
+                            .padding(.leading, 20)
+                    }
                     
                     Toggle(String(localized: "Invisible characters", table: "WindowSettings"), isOn: $showInvisibles)
                     Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: isLiquidGlass ? nil : 6) {

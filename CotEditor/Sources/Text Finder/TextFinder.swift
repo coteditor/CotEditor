@@ -41,6 +41,13 @@ extension NSAttributedString: @retroactive @unchecked Sendable { }
 }
 
 
+struct FindResult {
+    
+    var action: TextFind.Action
+    var count: Int
+}
+
+
 struct FindAllMatch: Identifiable {
     
     let id = UUID()
@@ -64,8 +71,7 @@ struct FindAllMatch: Identifiable {
         
         static let name = Notification.Name("TextFinderDidFind")
         
-        var action: TextFind.Action
-        var count: Int
+        var result: FindResult
     }
     
     
@@ -644,37 +650,35 @@ struct FindAllMatch: Identifiable {
     ///   - count: The number o the items proceeded.
     private func notify(_ action: TextFind.Action, count: Int) {
         
-        NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["action": action, "count": count])
+        let result = FindResult(action: action, count: count)
         
-        AccessibilityNotification.Announcement(action.resultMessage(count: count)).post()
+        NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["result": result])
+        AccessibilityNotification.Announcement(result.message).post()
     }
 }
 
 
-extension TextFind.Action {
+extension FindResult {
     
     /// The short result message for the user interface.
-    ///
-    /// - Parameter count: The number of proceeded items.
-    /// - Returns: The message text.
-    func resultMessage(count: Int) -> String {
+    var message: String {
         
-        switch self {
+        switch self.action {
             case .find:
-                if count == 0 {
-                    String(localized: "Not found", table: "TextFind",
+                if self.count == 0 {
+                    String(localized: "FindResult.find.notFound", defaultValue: "Not found", table: "TextFind",
                            comment: "short result message for Find All")
                 } else {
-                    String(localized: "\(count) found", table: "TextFind",
+                    String(localized: "FindResult.find.found", defaultValue: "\(self.count) found", table: "TextFind",
                            comment: "short result message for Find All (%lld is number of found)")
                 }
                 
             case .replace:
-                if count == 0 {
-                    String(localized: "Not replaced", table: "TextFind",
+                if self.count == 0 {
+                    String(localized: "FindResult.replace.notFound", defaultValue: "Not replaced", table: "TextFind",
                            comment: "short result message for Replace All")
                 } else {
-                    String(localized: "\(count) replaced", table: "TextFind",
+                    String(localized: "FindResult.replace.found", defaultValue: "\(self.count) replaced", table: "TextFind",
                            comment: "short result message for Replace All (%lld is number of replaced)")
                 }
         }

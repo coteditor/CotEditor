@@ -43,13 +43,6 @@ private enum OSAWidthType: FourCharCode {
 }
 
 
-private enum OSAKanaType: FourCharCode {
-    
-    case hiragana = "cHgn"
-    case katakana = "cKkn"
-}
-
-
 private enum OSAUnicodeNormalizationType: FourCharCode {
     
     case nfc = "cNfc"
@@ -295,26 +288,6 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
                 self.textView?.exchangeHalfwidthRoman(command)
             case .full:
                 self.textView?.exchangeFullwidthRoman(command)
-        }
-    }
-    
-    
-    /// Converts Japanese Hiragana in the selection to Katakana or vice versa.
-    @objc func handleChangeKana(_ command: NSScriptCommand) {
-        
-        guard
-            let argument = command.evaluatedArguments?["kanaType"] as? UInt32,
-            let type = OSAKanaType(rawValue: argument)
-        else {
-            command.scriptErrorNumber = OSAParameterMismatch
-            return
-        }
-        
-        switch type {
-            case .hiragana:
-                self.textView?.exchangeHiragana(command)
-            case .katakana:
-                self.textView?.exchangeKatakana(command)
         }
     }
     

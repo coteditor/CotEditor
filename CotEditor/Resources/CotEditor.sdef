@@ -26,11 +26,6 @@
             <enumerator name="upper" code="cCup"/>
         </enumeration>
         
-        <enumeration name="kana type" code="cKtp">
-            <enumerator name="hiragana" code="cHgn"/>
-            <enumerator name="katakana" code="cKkn"/>
-        </enumeration>
-        
         <enumeration name="UNF type" code="uNtp">
             <enumerator name="NFC" code="cNfc"/>
             <enumerator name="NFD" code="cNfd"/>
@@ -123,9 +118,6 @@
             <responds-to command="change case">
                 <cocoa method="handleChangeCase:"/>
             </responds-to>
-            <responds-to command="change kana">
-                <cocoa method="handleChangeKana:"/>
-            </responds-to>
             <responds-to command="change roman width">
                 <cocoa method="handleChangeWidthRoman:"/>
             </responds-to>
@@ -188,14 +180,6 @@
             <direct-parameter type="text selection" description="The selection to change case."/>
             <parameter name="to" code="cStp" type="case type" description="The case type to change.">
                 <cocoa key="caseType"/>
-            </parameter>
-        </command>
-        
-        <command name="change kana" code="cEd1CKth" description="Change Japanese “Kana” mode of the selection.">
-            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <direct-parameter type="text selection" description="the selection to change Japanese character mode"/>
-            <parameter name="to" code="cHrg" type="kana type" description="The Japanese character mode to change.">
-                <cocoa key="kanaType"/>
             </parameter>
         </command>
         

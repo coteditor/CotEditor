@@ -87,8 +87,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         // observe find result notifications from TextFinder and its expiration
         self.resultObservers = [
             NotificationCenter.default.publisher(for: TextFinder.DidFindMessage.name)
-                .compactMap(\.userInfo)
-                .sink { [weak self] in self?.updateMessages(for: $0["action"] as! TextFind.Action, count: $0["count"] as! Int) },
+                .compactMap { $0.userInfo?["result"] as? FindResult }
+                .sink { [weak self] in self?.updateMessages(for: $0) },
             NotificationCenter.default.publisher(for: NSWindow.didResignMainNotification)
                 .sink { [weak self] _ in self?.clearMessages() },
         ]
@@ -243,19 +243,16 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// Updates the result count in the input fields.
     /// 
     /// - Parameters:
-    ///   - action: The find action type.
-    ///   - count: The number of the items proceeded.   
-    private func updateMessages(for action: TextFind.Action, count: Int) {
+    ///   - result: The find action result.
+    private func updateMessages(for result: FindResult) {
         
-        let message = action.resultMessage(count: count)
-        
-        switch action {
+        switch result.action {
             case .find:
-                self.updateFoundMessage(message)
+                self.updateFoundMessage(result.message)
                 self.updateReplacedMessage(nil)
             case .replace:
                 self.updateFoundMessage(nil)
-                self.updateReplacedMessage(message)
+                self.updateReplacedMessage(result.message)
         }
     }
     
