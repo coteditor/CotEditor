@@ -32,7 +32,7 @@ public struct TextFind: Equatable, Sendable {
     public typealias ReplacementItem = ValueRange<String>
     
     
-    public enum Action {
+    public enum Action: Sendable {
         
         case find
         case replace
