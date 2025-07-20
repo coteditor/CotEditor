@@ -87,8 +87,8 @@ final class InspectorViewController: NSTabViewController {
         
         self.tabViewItems = InspectorPane.allCases.map { pane in
             let item = NSTabViewItem(viewController: pane.viewController(document: self.document))
-            item.image = NSImage(systemSymbolName: pane.systemImage, accessibilityDescription: pane.name)
-            item.label = pane.name
+            item.image = NSImage(systemSymbolName: pane.systemImage, accessibilityDescription: pane.label)
+            item.label = pane.label
             return item
         }
         
@@ -138,7 +138,7 @@ final class InspectorViewController: NSTabViewController {
 
 private extension InspectorPane {
     
-    var name: String {
+    var label: String {
         
         switch self {
             case .document:
@@ -187,7 +187,7 @@ extension InspectorViewController: InspectorTabViewDelegate {
         
         guard let pane = InspectorPane(rawValue: index) else { return nil }
         
-        return NSImage(systemSymbolName: pane.selectedImageName, accessibilityDescription: pane.name)?
+        return NSImage(systemSymbolName: pane.selectedImageName, accessibilityDescription: pane.label)?
             .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
     }
 }
