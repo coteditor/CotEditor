@@ -36,8 +36,8 @@
 		<li>For example, .htaccess → Apache</li>
 		<li>For example, makefile → Makefile</li>
 	</ul></li>
-	<li>Shebang in the first line of the document<ul>
-		<li>When there is no corresponding syntax for the extension and the filename, and if the first line of the document contents are a shebang, then try determining syntax from the shebang. In this trial, the interpreter names which is defined in the syntaxes are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</li>
+	<li>The #! header of the document<ul>
+		<li>When there is no corresponding syntax for the extension and the filename, and if the first line of the document contents is the #! header, then try determining syntax from the 1# header. In this trial, the interpreter names which is defined in the syntaxes are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</li>
 		<li>For example, <code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</li>
 		<li>For example, <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</li>
 	</ul></li>
@@ -62,7 +62,7 @@
 
 <p>There are no conflicts among the bundled syntaxes. However, if you added custom syntaxes or modified the bundled syntaxes, the file mapping can conflict. You can see the existence of mapping conflicts from the Show File Mapping Conflict command in the Action pop-up menu for the available syntaxes list in the Format settings. If the menu item is dimmed, it means there is no conflict.</p>
 
-<p>You can just leave the file mapping conflicts as long as you can open files with your expected syntax. There is no side issue.</p>
+<p>You can just leave the file mapping conflicts as long as you can open documents with your expected syntax. There is no side issue.</p>
 
 
 

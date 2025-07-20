@@ -5812,7 +5812,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Do you want to move the selected item to the Trash?"
+                  "value" : "Do you want to move the selected item to the Bin?"
                 }
               },
               "other" : {
@@ -5866,7 +5866,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lldの選択された項目をゴミ箱に入れますか?"
+                  "value" : "選択した%lld項目をゴミ箱に入れますか?"
                 }
               }
             }

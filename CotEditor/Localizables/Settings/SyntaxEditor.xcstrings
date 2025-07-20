@@ -4202,90 +4202,90 @@
         }
       }
     },
-    "The interpreters are used to determine the syntax from the shebang in the document." : {
+    "The interpreters are used to determine the syntax from the #! header in the document." : {
       "comment" : "description",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Interprety se používají k určení syntaxe ze shebangu v dokumentu."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Interpreter werden benutzt, um die Syntax vom Shebang im Dokument zu bestimmen."
+            "value" : "Die Interpreter werden benutzt, um die Syntax vom #!-Header im Dokument zu bestimmen."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The interpreters are used to determine the syntax from the shebang in the document."
+            "value" : "The interpreters are used to determine the syntax from the #! header in the document."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del shebang en el documento."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir du Shebang du document."
+            "state" : "needs_review",
+            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir du en-tête #! du document."
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Gli interpreti vengono utilizzati per determinare lo stile della sintassi dalla struttura del documento."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "インタープリタは書類内のシェバンからシンタックスを特定するときに使用されます。"
+            "value" : "インタープリタは書類内の#!ヘッダからシンタックスを特定するときに使用されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "인터프리터는 문서의 shebang으로부터 구문을 결정하는 데에 사용됩니다."
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "De interpreters worden gebruikt om de syntaxis te bepalen uit de shebang in het document."
+            "state" : "needs_review",
+            "value" : "De interpreters worden gebruikt om de syntaxis te bepalen uit de #!-koptekst in het document."
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Interpretery są wykorzystywane do wykrycia składni na podstawie wiersza shebang w dokumencie."
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Os intérpretes são usados para determinar o estilo da sintaxe a partir do shebang do documento."
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Yorumlayıcılar, sözdizim biçemini belgedeki shebang’den algılamaya çalışır."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "解释器将根据文稿整体来决定语法高亮样式。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "直譯器將根據文件整體來決定文法高亮樣式。"
           }
         }

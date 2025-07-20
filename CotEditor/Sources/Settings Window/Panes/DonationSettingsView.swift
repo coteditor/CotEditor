@@ -74,7 +74,7 @@ struct DonationSettingsView: View {
                             .accessibilityAddTraits(.isHeader)
                         
                         ProductView(id: Donation.Product.continuous.id, prefersPromotionalIcon: true) {
-                            Label(String(localized: "donation.subscription.yearly.displayName", table: "InAppPurchase"), image: .bagCoffee)
+                            Label(.InAppPurchase.donationSubscriptionYearlyDisplayName, image: .bagCoffee)
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 40))
                                 .foregroundStyle(.secondary)
@@ -134,7 +134,7 @@ struct DonationSettingsView: View {
                             .accessibilityAddTraits(.isHeader)
                         
                         ProductView(id: Donation.Product.onetime.id, prefersPromotionalIcon: true) {
-                            Label(String(localized: "donation.onetime.displayName", table: "InAppPurchase"), image: .espresso)
+                            Label(.InAppPurchase.donationOnetimeDisplayName, image: .espresso)
                                 .labelStyle(.iconOnly)
                         }.productViewStyle(OnetimeProductViewStyle())
                     }
