@@ -612,6 +612,7 @@ keywords:
 - beginString: text-shadow
 - beginString: text-transform
 - beginString: text-underline-position
+- beginString: text-wrap
 - beginString: transform
 - beginString: transform-origin
 - beginString: transform-style
@@ -997,6 +998,7 @@ values:
 - beginString: pre-wrap
 - beginString: preserve
 - beginString: preserve-3d
+- beginString: pretty
 - beginString: progress
 - beginString: purple
 - beginString: recto
