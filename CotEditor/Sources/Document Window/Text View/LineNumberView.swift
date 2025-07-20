@@ -63,6 +63,8 @@ final class LineNumberView: NSView {
         case normal = 0.6
         case bold = 1.0
         case stroke = 0.4
+        
+        @available(macOS, deprecated: 26)
         case separator = 0.85
         
         static let highContrastCoefficient = 0.4
@@ -83,6 +85,8 @@ final class LineNumberView: NSView {
     }
     
     @Invalidating(.display) var layoutDirection: NSUserInterfaceLayoutDirection = .leftToRight
+    
+    @available(macOS, deprecated: 26)
     @Invalidating(.display) var drawsSeparator = false
     
     
@@ -159,7 +163,7 @@ final class LineNumberView: NSView {
         }
         
         // draw separator
-        if self.drawsSeparator {
+        if #unavailable(macOS 26), self.drawsSeparator {
             let lineRect: NSRect = switch (self.orientation, self.layoutDirection) {
                 case (.vertical, _):    NSRect(x: 0, y: 0, width: self.frame.width, height: 1)
                 case (_, .rightToLeft): NSRect(x: 0, y: 0, width: 1, height: self.frame.height)

@@ -193,11 +193,14 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                     (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
                     self?.lineNumberView.layoutDirection = direction
                 },
-            
+        ]
+        
+        if #unavailable(macOS 26) {
             // toggle visibility of the separator of the line number view
             UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
-                .assign(to: \.drawsSeparator, on: self.lineNumberView),
-        ]
+                .assign(to: \.drawsSeparator, on: self.lineNumberView)
+                .store(in: &observers)
+        }
     }
     
     
