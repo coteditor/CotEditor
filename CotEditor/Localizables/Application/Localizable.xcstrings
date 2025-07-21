@@ -6464,7 +6464,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remplissez le modèle suivant, et postez le sur %1$@ ou bien envoyez le à %2$@. \nVeuillez prendre note que le contenu du courriel envoyé sera partagé sur la page Issues. Merci de rédiger le contenu en anglais ou en japonais."
+            "value" : "Remplissez le modèle suivant, et postez le sur %1$@ ou bien envoyez le à %2$@.\nVeuillez prendre note que le contenu du courriel envoyé sera partagé sur la page Issues. Merci de rédiger le contenu en anglais ou en japonais."
           }
         },
         "it" : {

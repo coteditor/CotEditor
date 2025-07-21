@@ -904,7 +904,7 @@ extension Document: EditorSource {
     
     
     /// Opens an existing document file (alternative method for `init(contentsOf:ofType:)`).
-    /// 
+    ///
     /// - Parameter url: The URL of the opening file.
     nonisolated func didMakeDocumentForExistingFile(url: URL) {
         

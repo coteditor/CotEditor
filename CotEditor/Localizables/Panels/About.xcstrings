@@ -404,7 +404,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor는 오픈소스 프로그램이며, \nApache License, Version 2.0으로 보호됩니다."
+            "value" : "CotEditor는 오픈소스 프로그램이며,\nApache License, Version 2.0으로 보호됩니다."
           }
         },
         "nl" : {

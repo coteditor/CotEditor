@@ -511,7 +511,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     ///
     /// - Parameters:
     ///   - fileURL: The filename of the syntax.
-    ///   - byDeletingOriginal: `true` if removing the original file at the `fileURL`; otherwise, it is kept.   
+    ///   - byDeletingOriginal: `true` if removing the original file at the `fileURL`; otherwise, it is kept.
     private func importSetting(at fileURL: URL, byDeletingOriginal: Bool = false) {
         
         do {

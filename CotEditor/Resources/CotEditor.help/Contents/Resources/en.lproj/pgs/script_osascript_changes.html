@@ -212,13 +212,13 @@
 
 <section>
 	<h3>Discontinuation of <code>path</code> property</h3>
-	<p>The <code>path</code> property of ‘document’ object is discontinued on the modern AppleScript’s Standard Suite for a long time. Since CotEditor adopted it on version 2.0, this property is also deprecated on CotEditor.  Use new <code>file</code> property instead. While <code>path</code> property returns a text object, <code>file</code> property returns a file object.</p>
+	<p>The <code>path</code> property of ‘document’ object is discontinued on the modern AppleScript’s Standard Suite for a long time. Since CotEditor adopted it on version 2.0, this property is also deprecated on CotEditor. Use new <code>file</code> property instead. While <code>path</code> property returns a text object, <code>file</code> property returns a file object.</p>
 	<p>For backward compatibility, CotEditor 2.0 added a hidden <code>path</code> property to ‘document’ object uniquely; however, do not use it if you create new scripts and we also recommend migrating your previous scripts to use <code>file</code> property. Because this `path` property can be removed someday in the future without announcement.</p>
 </section>
 
 <section>
 	<h3>Update of internal code for <code>range</code> property</h3>
-	<p>The internal code for <code>range</code> property of the text selection object to identify itself has been changed on CotEditor 2.0.  The key for the range property is still <code>range</code>, so you don’t need to care about this if you write a new script. However, <strong>compiled</strong> AppleScripts (.scpt) which were written previously might need some updates for this change.</p>
+	<p>The internal code for <code>range</code> property of the text selection object to identify itself has been changed on CotEditor 2.0. The key for the range property is still <code>range</code>, so you don’t need to care about this if you write a new script. However, <strong>compiled</strong> AppleScripts (.scpt) which were written previously might need some updates for this change.</p>
 
 	<h4>How to fix:</h4>
 	<p>Open your .scpt files on AppleScript Editor (or Script Editor), the words that were <code>range</code> previously might be changed to <code>«class prng»</code> or something like that. Overwrite them with <code>range</code> again. And save them.<br/>
@@ -254,7 +254,7 @@ This issue doesn’t occur with plain-text AppleScript (.applescript).</p>
 <section>
 	<h3>Selection object directly under the application</h3>
 	<p>In version 0.6, the initial release of CotEditor, if you didn’t specify the ‘selection’ object, the frontmost window’s contents are selected. But it actually didn’t work correctly and therefore deprecated. This method was kept valid however to maintain backward compatibility.</p>
-	<p>On CotEditor 1.5, it is formally removed.  Specify the target like below, when you get the ‘selection’ object.</p>
+	<p>On CotEditor 1.5, it is formally removed. Specify the target like below, when you get the ‘selection’ object.</p>
 	
 <figure>
 <figcaption>example 1.</figcaption>
