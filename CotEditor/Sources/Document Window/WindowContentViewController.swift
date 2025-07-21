@@ -96,8 +96,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
         if #available(macOS 26, *) {
+            self.contentViewItem.automaticallyAdjustsSafeAreaInsets = true
             let statusBarController = StatusBarAccessoryViewController(model: self.statusBarModel)
-            statusBarController.isHidden = !UserDefaults.standard[.showStatusBar]
             self.contentViewItem.addBottomAlignedAccessoryViewController(statusBarController)
         } else {
             let statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
@@ -110,6 +110,13 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             contentViewController.view.setAccessibilityElement(true)
             contentViewController.view.setAccessibilityRole(.group)
             contentViewController.view.setAccessibilityLabel(self.document?.displayName ?? "")
+        }
+        
+        // setting .isHidden to true works only the split view item is added to the split view
+        // (2025-07, macOS 26.0 beta 3, FB18972484)
+        if #available(macOS 26, *) {
+            let statusBarController = self.contentViewItem.bottomAlignedAccessoryViewControllers.last
+            statusBarController?.isHidden = !UserDefaults.standard[.showStatusBar]
         }
         
         let inspectorViewController = InspectorViewController(document: self.document)
@@ -152,12 +159,10 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         // observe user defaults for status bar
         if #available(macOS 26, *) {
             let statusBarController = self.contentViewItem.bottomAlignedAccessoryViewControllers.last
-            statusBarController?.isHidden = !UserDefaults.standard[.showStatusBar]
             self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar)
                 .sink { statusBarController?.animator().isHidden = !$0 }
         } else {
             let statusBarItem = self.contentViewController.splitViewItems.last
-            statusBarItem?.isCollapsed = !UserDefaults.standard[.showStatusBar]
             self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar)
                 .sink { statusBarItem?.animator().isCollapsed = !$0 }
         }
