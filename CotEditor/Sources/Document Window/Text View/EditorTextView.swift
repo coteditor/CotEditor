@@ -188,6 +188,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // set NSTextView behaviors
         self.allowsUndo = true
         self.isRichText = false
+        self.allowedWritingToolsResultOptions = .plainText
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.linkTextAttributes?.removeValue(forKey: .foregroundColor)
     }
