@@ -548,7 +548,7 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="397"/>
-                                        <menuItem title="Writing Direction" secondaryImage="text.alignleft" catalog="system" id="mEh-BD-ZlV">
+                                        <menuItem title="Writing Direction" secondaryImage="arrow.left.arrow.right" catalog="system" id="mEh-BD-ZlV">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Writing Direction" id="hxr-2A-KYT">
                                                 <items>
@@ -1314,6 +1314,7 @@ CA
         <image name="arrow.2.squarepath" catalog="system" width="19" height="14"/>
         <image name="arrow.down.to.line" catalog="system" width="13" height="16"/>
         <image name="arrow.forward.circle" catalog="system" width="15" height="15"/>
+        <image name="arrow.left.arrow.right" catalog="system" width="16" height="17"/>
         <image name="arrow.up.arrow.down" catalog="system" width="18" height="15"/>
         <image name="arrow.up.to.line" catalog="system" width="13" height="16"/>
         <image name="book.pages" catalog="system" width="15" height="18"/>
