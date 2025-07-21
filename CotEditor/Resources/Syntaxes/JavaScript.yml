@@ -453,6 +453,9 @@ attributes:
 characters:
 - beginString: /\S+/[gimy]*\b
   regularExpression: true
+- beginString: \$\{[^\n`}]*\}
+  description: template literal
+  regularExpression: true
 commands:
 - beginString: \babord(?=\()
   regularExpression: true
@@ -1065,9 +1068,9 @@ kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2024-04-24'
+  lastModified: '2025-07-21'
   license: Same as CotEditor
-  version: 2.3.1
+  version: 2.4.0
 numbers:
 - beginString: \b0[bB][01][01_]*n?\b
   description: binary

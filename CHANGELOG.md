@@ -6,6 +6,7 @@
 ### Improvements
 
 - Update the CSS syntax to highlight more keywords (thanks to Karam!).
+- Update the JavaScript syntax to highlight placeholders in template literals.
 
 
 ### Fixes
