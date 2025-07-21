@@ -3,6 +3,11 @@
 5.2.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the CSS syntax to highlight more keywords (thanks to Karam!).
+
+
 ### Fixes
 
 - Fix an issue where the state of the Text Replacement option in modes are not saved.
