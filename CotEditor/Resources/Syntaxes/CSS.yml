@@ -272,7 +272,7 @@ keywords:
   regularExpression: true
 - beginString: \btop(?=\s*:)
   regularExpression: true
-- beginString: \s--[a-z_][a-z0-9_]+\s*(?=:)
+- beginString: \s--[a-z_-][a-z0-9_-]+\s*(?=:)
   ignoreCase: true
   regularExpression: true
 - beginString: accent-color
@@ -612,6 +612,7 @@ keywords:
 - beginString: text-shadow
 - beginString: text-transform
 - beginString: text-underline-position
+- beginString: text-wrap
 - beginString: transform
 - beginString: transform-origin
 - beginString: transform-style
@@ -658,7 +659,7 @@ numbers:
 - beginString: '#[0-9a-f]{6}\b'
   ignoreCase: true
   regularExpression: true
-- beginString: (?<![a-zA-Z0-9\._\-\+])\-?([0-9]+(\.[0-9]*)?|\.[0-9]+)(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx|ch|lh|rlh)?(?!\w)
+- beginString: (?<![a-zA-Z0-9\._\-\+])\-?([0-9]+(\.[0-9]*)?|\.[0-9]+)(?:%|ch|cm|deg|dpcm|dpi|dppx|em|ex|fr|grad|Hz|in|kHz|lh|mm|ms|pc|pt|px|rad|rem|rlh|s|vh|vmax|vmin|vw)?(?!\w)
   regularExpression: true
 outlineMenu:
 - beginString: \@(media|page)\b(.+?)(?=($|\{))
@@ -997,6 +998,7 @@ values:
 - beginString: pre-wrap
 - beginString: preserve
 - beginString: preserve-3d
+- beginString: pretty
 - beginString: progress
 - beginString: purple
 - beginString: recto
@@ -1052,6 +1054,7 @@ values:
 - beginString: small
 - beginString: small-caps
 - beginString: small-caption
+- beginString: smooth
 - beginString: snap
 - beginString: snow
 - beginString: soft
@@ -1071,6 +1074,7 @@ values:
 - beginString: steelblue
 - beginString: step-end
 - beginString: step-start
+- beginString: sticky
 - beginString: stretch
 - beginString: strict
 - beginString: strong
