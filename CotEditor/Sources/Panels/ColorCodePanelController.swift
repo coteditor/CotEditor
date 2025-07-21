@@ -42,8 +42,8 @@ import Defaults
     // MARK: Private Properties
     
     private let stylesheetColorList: NSColorList = KeywordColor.stylesheetColors
-        .reduce(into: NSColorList(name: String(localized: "Stylesheet Keywords", table: "ColorCode", comment: "color list name"))) {
-            $0.setColor(NSColor(hex: $1.value)!, forKey: $1.keyword)
+        .reduce(into: NSColorList(name: String(localized: "Stylesheet Keywords", table: "ColorCode", comment: "color list name"))) { list, color in
+            list.setColor(NSColor(hex: color.value)!, forKey: color.keyword)
         }
     
     

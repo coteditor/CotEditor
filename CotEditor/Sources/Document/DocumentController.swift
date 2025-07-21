@@ -73,8 +73,8 @@ final class DocumentController: NSDocumentController {
             .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
             .map { $0?.windowController as? DocumentWindowController }
             .map { $0?.fileDocument as? Document }
-            .sink { [unowned self] in
-                self.syntaxObserver = $0?.$syntaxName
+            .sink { [unowned self] document in
+                self.syntaxObserver = document?.$syntaxName
                     .sink { self.currentSyntaxName = $0 }
             }
     }

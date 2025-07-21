@@ -151,10 +151,10 @@ private enum BundleIdentifier {
             }
             
             SyntaxManager.shared.$settingNames
-                .map {
-                    $0.map {
-                        let item = NSMenuItem(title: $0, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
-                        item.representedObject = $0
+                .map { names in
+                    names.map { name in
+                        let item = NSMenuItem(title: name, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                        item.representedObject = name
                         return item
                     }
                 }
@@ -202,16 +202,16 @@ private enum BundleIdentifier {
             // build multiple replacement menu items
             ReplacementManager.shared.$settingNames
                 .receive(on: RunLoop.main)
-                .sink {
+                .sink { names in
                     guard let menu = self.multipleReplaceMenu else { return }
                     
                     let manageItem = menu.items.last
-                    menu.items = $0.map {
+                    menu.items = names.map { name in
                         let item = NSMenuItem()
-                        item.title = $0
+                        item.title = name
                         item.action = #selector(NSTextView.performTextFinderAction)
                         item.tag = TextFinder.Action.multipleReplace.rawValue
-                        item.representedObject = $0
+                        item.representedObject = name
                         return item
                     } + [
                         .separator(),
@@ -508,8 +508,8 @@ extension AppDelegate: NSMenuDelegate {
             fileEncodings.insert(contentsOf: [document.fileEncoding, nil], at: 0)
         }
         
-        menu.items = fileEncodings.map {
-            switch $0 {
+        menu.items = fileEncodings.map { fileEncoding in
+            switch fileEncoding {
                 case .some(let fileEncoding):
                     let item = NSMenuItem()
                     item.title = fileEncoding.localizedName

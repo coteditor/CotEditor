@@ -368,18 +368,18 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             menu.addItem(.sectionHeader(title: title))
             
             menu.items += recentSyntaxNames.reversed()
-                .map {
-                    let item = NSMenuItem(title: $0, action: action, keyEquivalent: "")
-                    item.representedObject = $0
+                .map { name in
+                    let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
+                    item.representedObject = name
                     return item
                 }
             menu.addItem(.separator())
         }
         
         menu.items += syntaxNames
-            .map {
-                let item = NSMenuItem(title: $0, action: action, keyEquivalent: "")
-                item.representedObject = $0
+            .map { name in
+                let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
+                item.representedObject = name
                 return item
             }
         

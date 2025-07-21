@@ -349,9 +349,9 @@ final class LineNumberView: NSView {
         self.textViewSubscriptions = [
             // observe contents change
             textView.layoutManager!.publisher(for: \.textStorage, options: .initial)
-                .sink { [weak self] in
+                .sink { [weak self] textStorage in
                     self?.invalidateThickness()
-                    self?.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: $0)
+                    self?.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
                         .map { $0.object as! NSTextStorage }
                         .filter { $0.editedMask.contains(.editedCharacters) }
                         .receive(on: RunLoop.main)  // touch textView on main thread

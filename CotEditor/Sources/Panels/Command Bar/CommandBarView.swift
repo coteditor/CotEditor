@@ -101,9 +101,9 @@ struct CommandBarView: View {
         }
         .onChange(of: self.input) { _, newValue in
             self.candidates = self.model.commands
-                .compactMap {
-                    guard let result = $0.match(command: newValue) else { return nil }
-                    return Candidate(command: $0, matches: result.result, score: result.score)
+                .compactMap { command in
+                    guard let result = command.match(command: newValue) else { return nil }
+                    return Candidate(command: command, matches: result.result, score: result.score)
                 }
                 .sorted(using: KeyPathComparator(\.score))
             self.selection = self.candidates.first?.id

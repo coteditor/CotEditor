@@ -41,11 +41,11 @@ extension EditorTextView {
             return super.moveLeft(sender)
         }
         
-        self.moveCursors(affinity: .downstream) {
-            if $0.isEmpty {
-                return self.layoutManager!.leftCharacterIndex(of: $0.location, baseWritingDirection: self.baseWritingDirection)
+        self.moveCursors(affinity: .downstream) { range in
+            if range.isEmpty {
+                return self.layoutManager!.leftCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                return self.layoutManager!.isRTL(at: $0.upperBound) ? $0.upperBound : $0.lowerBound
+                return self.layoutManager!.isRTL(at: range.upperBound) ? range.upperBound : range.lowerBound
             }
         }
     }
@@ -72,11 +72,11 @@ extension EditorTextView {
             return super.moveRight(sender)
         }
         
-        self.moveCursors(affinity: .upstream) {
-            if $0.isEmpty {
-                return self.layoutManager!.rightCharacterIndex(of: $0.location, baseWritingDirection: self.baseWritingDirection)
+        self.moveCursors(affinity: .upstream) { range in
+            if range.isEmpty {
+                return self.layoutManager!.rightCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                return self.layoutManager!.isRTL(at: $0.lowerBound) ? $0.lowerBound : $0.upperBound
+                return self.layoutManager!.isRTL(at: range.lowerBound) ? range.lowerBound : range.upperBound
             }
         }
     }
@@ -103,8 +103,8 @@ extension EditorTextView {
             return super.moveUp(sender)
         }
         
-        self.moveCursors(affinity: .downstream) {
-            self.upperInsertionLocation(of: $0.lowerBound)
+        self.moveCursors(affinity: .downstream) { range in
+            self.upperInsertionLocation(of: range.lowerBound)
         }
     }
     
@@ -129,8 +129,8 @@ extension EditorTextView {
             return super.moveDown(sender)
         }
         
-        self.moveCursors(affinity: .downstream) {
-            self.lowerInsertionLocation(of: $0.upperBound)
+        self.moveCursors(affinity: .downstream) { range in
+            self.lowerInsertionLocation(of: range.upperBound)
         }
     }
     
@@ -157,8 +157,8 @@ extension EditorTextView {
         // -> The super.moveWordLeft(_:) uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
         //    and it doesn't stop at punctuation marks, such as `.` and `:` (2019-06).
         
-        self.moveCursors(affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0.lowerBound, forward: self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .additionalWordSeparators)
+        self.moveCursors(affinity: .downstream) { range in
+            self.textStorage!.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRTL(at: range.upperBound), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -181,8 +181,8 @@ extension EditorTextView {
         
         // find word boundary myself (cf. moveWordLeft(_:))
         
-        self.moveCursors(affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0.upperBound, forward: !self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .additionalWordSeparators)
+        self.moveCursors(affinity: .upstream) { range in
+            self.textStorage!.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRTL(at: range.upperBound), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -298,8 +298,8 @@ extension EditorTextView {
     /// Moves cursor to the beginning of the current visual line (⌘←).
     override func moveToBeginningOfLine(_ sender: Any?) {
         
-        self.moveCursors(affinity: .downstream) {
-            self.locationOfBeginningOfLine(for: $0.location)
+        self.moveCursors(affinity: .downstream) { range in
+            self.locationOfBeginningOfLine(for: range.location)
         }
     }
     
@@ -334,8 +334,8 @@ extension EditorTextView {
         }
         
         let length = self.attributedString().length
-        self.moveCursors(affinity: .upstream) {
-            self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? length
+        self.moveCursors(affinity: .upstream) { range in
+            self.layoutManager?.lineFragmentRange(at: range.upperBound).upperBound ?? length
         }
     }
     
@@ -419,8 +419,8 @@ extension EditorTextView {
             return super.moveToBeginningOfParagraph(sender)
         }
         
-        self.moveCursors(affinity: .downstream) {
-            (self.string as NSString).lineStartIndex(at: $0.lowerBound)
+        self.moveCursors(affinity: .downstream) { range in
+            (self.string as NSString).lineStartIndex(at: range.lowerBound)
         }
     }
     
@@ -447,8 +447,8 @@ extension EditorTextView {
             return super.moveToEndOfParagraph(sender)
         }
         
-        self.moveCursors(affinity: .upstream) {
-            (self.string as NSString).lineContentsEndIndex(at: $0.upperBound)
+        self.moveCursors(affinity: .upstream) { range in
+            (self.string as NSString).lineContentsEndIndex(at: range.upperBound)
         }
     }
     
@@ -473,8 +473,8 @@ extension EditorTextView {
             return super.moveWordBackward(sender)
         }
         
-        self.moveCursors(affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0.lowerBound, forward: false, delimiters: .additionalWordSeparators)
+        self.moveCursors(affinity: .downstream) { range in
+            self.textStorage!.nextWord(from: range.lowerBound, forward: false, delimiters: .additionalWordSeparators)
         }
     }
     
@@ -499,8 +499,8 @@ extension EditorTextView {
             return super.moveWordForward(sender)
         }
         
-        self.moveCursors(affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0.upperBound, forward: true, delimiters: .additionalWordSeparators)
+        self.moveCursors(affinity: .upstream) { range in
+            self.textStorage!.nextWord(from: range.upperBound, forward: true, delimiters: .additionalWordSeparators)
         }
     }
     

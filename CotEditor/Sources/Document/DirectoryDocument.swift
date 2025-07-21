@@ -88,9 +88,9 @@ final class DirectoryDocument: NSDocument {
         // restore opened documents
         if let fileURL, let fileData = coder.decodeArrayOfObjects(ofClass: NSData.self, forKey: SerializationKey.documents) as? [Data] {
             let urls = fileData
-                .compactMap {
+                .compactMap { data in
                     var isStale = false
-                    return try? URL(resolvingBookmarkData: $0, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
+                    return try? URL(resolvingBookmarkData: data, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
                 }
                 .filter(fileURL.isAncestor(of:))
                 .filter(\.isReachable)

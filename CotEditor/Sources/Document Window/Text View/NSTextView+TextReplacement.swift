@@ -139,7 +139,7 @@ extension NSTextView {
     ///
     /// - Parameter block: The text transformation.
     /// - Returns: `true` if the text is processed.
-    @discardableResult final func transformSelection(to block: (String) -> String) -> Bool {
+    @discardableResult final func transformSelection(to block: (_ substring: String) -> String) -> Bool {
         
         guard self.isEditable else { return false }
         

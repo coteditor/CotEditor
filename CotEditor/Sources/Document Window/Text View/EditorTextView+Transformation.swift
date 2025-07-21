@@ -81,9 +81,9 @@ extension EditorTextView {
     @IBAction func encodeURL(_ sender: Any?) {
         
         let allowedCharacters = CharacterSet.alphanumerics.union(.init(charactersIn: "-._~"))
-        self.transformSelection {
-            $0.removingPercentEncoding?
-                .addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? $0
+        self.transformSelection { substring in
+            substring.removingPercentEncoding?
+                .addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? substring
         }
     }
     
@@ -91,8 +91,8 @@ extension EditorTextView {
     /// Decodes URL.
     @IBAction func decodeURL(_ sender: Any?) {
         
-        self.transformSelection {
-            $0.removingPercentEncoding ?? $0
+        self.transformSelection { substring in
+            substring.removingPercentEncoding ?? substring
         }
     }
     
@@ -100,8 +100,8 @@ extension EditorTextView {
     /// Transforms all full-width-available half-width characters in the selections to full-width.
     @IBAction func exchangeFullwidth(_ sender: Any?) {
         
-        self.transformSelection {
-            $0.applyingTransform(.fullwidthToHalfwidth, reverse: true) ?? $0
+        self.transformSelection { substring in
+            substring.applyingTransform(.fullwidthToHalfwidth, reverse: true) ?? substring
         }
     }
     
@@ -109,8 +109,8 @@ extension EditorTextView {
     /// Transforms all full-width characters in the selections to half-width.
     @IBAction func exchangeHalfwidth(_ sender: Any?) {
         
-        self.transformSelection {
-            $0.applyingTransform(.fullwidthToHalfwidth, reverse: false) ?? $0
+        self.transformSelection { substring in
+            substring.applyingTransform(.fullwidthToHalfwidth, reverse: false) ?? substring
         }
     }
     
@@ -118,8 +118,8 @@ extension EditorTextView {
     /// Transforms half-width roman characters in the selections to full-width.
     @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
-        self.transformSelection {
-            $0.fullwidthRoman()
+        self.transformSelection { substring in
+            substring.fullwidthRoman()
         }
     }
     
@@ -127,8 +127,8 @@ extension EditorTextView {
     /// Transforms full-width roman characters in the selections to half-width.
     @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
-        self.transformSelection {
-            $0.fullwidthRoman(reverse: true)
+        self.transformSelection { substring in
+            substring.fullwidthRoman(reverse: true)
         }
     }
     
@@ -151,8 +151,8 @@ extension EditorTextView {
     /// - Parameter form: The Unicode normalization form.
     func normalizeUnicode(form: UnicodeNormalizationForm) {
         
-        guard self.transformSelection(to: {
-            $0.normalizing(in: form)
+        guard self.transformSelection(to: { substring in
+            substring.normalizing(in: form)
         }) else { return }
         
         self.undoManager?.setActionName(form.localizedName)

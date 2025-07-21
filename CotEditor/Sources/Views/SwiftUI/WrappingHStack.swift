@@ -111,8 +111,8 @@ private struct WrappingHStackLayout: Layout {
 
 #Preview {
     WrappingHStack {
-        ForEach(["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do"], id: \.self) {
-            Text($0)
+        ForEach(["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do"], id: \.self) { word in
+            Text(word)
                 .monospacedDigit()
                 .padding(.horizontal, 2)
                 .background(.selection, in: .rect(cornerRadius: 3))
