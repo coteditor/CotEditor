@@ -127,7 +127,7 @@ extension FileDropItem {
         case imageWidth = "IMAGEWIDTH"
         case imageHeight = "IMAGEHEIGHT"
         
-        static let listCases: [Variable?] = Self.pathTokens + [nil] + Self.textTokens + [nil] + Self.imageTokens
+        static let listCases: [Self?] = Self.pathTokens + [nil] + Self.textTokens + [nil] + Self.imageTokens
         static let pathTokens: [Self] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
         static let textTokens: [Self] = [.fileContents]
         static let imageTokens: [Self] = [.imageWidth, .imageHeight]

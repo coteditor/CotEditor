@@ -78,8 +78,8 @@ public final class InspectorTabView: NSTabView {
         if #available(*, macOS 26) {
             NSLayoutConstraint.activate([
                 self.segmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-                self.segmentedControl.leadingAnchor.constraint(equalToSystemSpacingAfter: self.safeAreaLayoutGuide.leadingAnchor, multiplier: 1/2),
-                self.segmentedControl.trailingAnchor.constraint(equalToSystemSpacingAfter: self.safeAreaLayoutGuide.trailingAnchor, multiplier: -1/2),
+                self.segmentedControl.leadingAnchor.constraint(equalToSystemSpacingAfter: self.safeAreaLayoutGuide.leadingAnchor, multiplier: 1 / 2),
+                self.segmentedControl.trailingAnchor.constraint(equalToSystemSpacingAfter: self.safeAreaLayoutGuide.trailingAnchor, multiplier: -1 / 2),
             ])
         } else {
             NSLayoutConstraint.activate([

@@ -946,7 +946,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
               let focusIndex = children.firstIndex(of: focusedChild),
               let nextChild = reverse
                 ? children[safe: focusIndex - 1] ?? children.last
-                :children[safe: focusIndex + 1] ?? children.first
+                : children[safe: focusIndex + 1] ?? children.first
         else { return assertionFailure() }
         
         self.view.window?.makeFirstResponder(nextChild.textView)

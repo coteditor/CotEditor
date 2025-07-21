@@ -94,7 +94,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         // store own autosave name
         // -> `NSWindowController.windowFrameAutosaveName` doesn't work
         //    if multiple window instances have the same name (2024-10, macOS 15).
-        self.windowAutosaveName = self.isDirectoryDocument ? "DirectoryDocument": "Document"
+        self.windowAutosaveName = self.isDirectoryDocument ? "DirectoryDocument" : "Document"
         
         let viewController = WindowContentViewController(document: document, directoryDocument: directoryDocument)
         let window = DocumentWindow(contentViewController: viewController)

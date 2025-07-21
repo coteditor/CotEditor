@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -201,9 +201,7 @@ extension MultiCursorEditing {
             locations.append(self.string.length)
         }
         
-        guard locations.count > 0 else { return nil }
-        
-        return locations
+        return locations.isEmpty ? nil : locations
     }
     
     
@@ -221,7 +219,7 @@ extension MultiCursorEditing {
             .map(NSRange.init)
         var emptyRanges = ranges
             .filter { $0.isEmpty }
-            .filter { !selectionSet.contains(integersIn: ($0.location-1)..<$0.location) }  // -1 to check upper bound
+            .filter { !selectionSet.contains(integersIn: ($0.location - 1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
         //    either a single empty range, a single non-empty range, or multiple non-empty ranges. (macOS 10.14)

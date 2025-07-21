@@ -136,6 +136,7 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    @available(*, unavailable)
     override func data(ofType typeName: String) throws -> Data {
         
         fatalError("\(self.className) is readonly")

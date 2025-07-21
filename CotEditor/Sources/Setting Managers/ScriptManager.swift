@@ -353,7 +353,7 @@ private extension NSMenuItem {
 private enum ScriptMenuItem: Sendable {
     
     case script(_ name: String, _ script: any Script)
-    case folder(_ name: String, _ items: [ScriptMenuItem])
+    case folder(_ name: String, _ items: [Self])
     case separator
     
     

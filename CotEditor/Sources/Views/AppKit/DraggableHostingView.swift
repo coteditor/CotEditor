@@ -130,8 +130,8 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     private var preferredEdge: Edge? {
         
         self.superview.map { superview in
-            Edge(horizontal: superview.frame.width/2 < self.frame.midX ? .right : .left,
-                 vertical: superview.frame.height/2 < self.frame.midY ? .top : .bottom)
+            Edge(horizontal: superview.frame.width / 2 < self.frame.midX ? .right : .left,
+                 vertical: superview.frame.height / 2 < self.frame.midY ? .top : .bottom)
         }
     }
     
