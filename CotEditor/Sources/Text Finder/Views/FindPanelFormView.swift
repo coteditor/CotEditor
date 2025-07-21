@@ -1,5 +1,5 @@
 //
-//  FindPanelFieldView.swift
+//  FindPanelFormView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,13 +23,13 @@
 //  limitations under the License.
 //
 
+import SwiftUI
 import AppKit
 import Combine
-import SwiftUI
 import Defaults
 import TextFind
 
-struct FindPanelMainView: View {
+struct FindPanelFormView: View {
     
     var body: some View {
         
