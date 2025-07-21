@@ -40,13 +40,15 @@ extension NSTextView {
         
         guard
             !self.string.isEmpty,
-            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
+            let selectedRanges = self.rangesForUserTextChange
         else { return }
         
         let lastIndexes = selectedRanges
-            .filter { $0.isEmpty }
+            .map(\.rangeValue)
+            .filter(\.isEmpty)
             .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
-            .compactMap { self.string.index($0, offsetBy: -1, limitedBy: self.string.startIndex) }
+            .filter { $0 > self.string.startIndex }
+            .map(self.string.index(before:))
         
         guard !lastIndexes.isEmpty else { return }
         

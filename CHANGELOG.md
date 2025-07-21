@@ -38,14 +38,15 @@
 ### Improvements
 
 - Update the CSS syntax to highlight more keywords (thanks to Karam!).
+- Update the JavaScript syntax to highlight placeholders in template literals.
 
 
 ### Fixes
 
-- Fix an issue where the state of the Text Replacement option in modes are not saved.
+- Fix an issue where the state of the Text Replacement option in modes is not saved.
 - Fix an issue where shortcuts could be assigned in the Key Bindings settings to menu commands that perform multiple replacements, even though these shortcuts didn’t actually work.
 - Fix an issue where the font in the input fields of the Find window would occasionally be replaced by a fallback font.
-- Fix an issue where the options button in the advanced counter doesn’t work.
+- Fix an issue where the options button in the advanced character count doesn’t work.
 
 
 

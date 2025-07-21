@@ -58,7 +58,7 @@ public struct EditedRangeSet: Sendable {
     
     
     /// Clear the current ranges and replaces with the given range.
-    ///  
+    ///
     /// - Parameter editedRange: The new range.
     public mutating func update(editedRange: NSRange) {
         

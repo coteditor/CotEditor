@@ -257,7 +257,7 @@ private extension Mode {
     
     
     /// Whether the given mode is available in the current user environment.
-    /// 
+    ///
     /// - Parameter syntaxes: The available syntax names.
     /// - Returns: `true` if available.
     func available(within syntaxes: [String]) -> Bool {

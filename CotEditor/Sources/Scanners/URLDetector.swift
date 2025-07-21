@@ -72,7 +72,7 @@ import ValueRange
     // MARK: Private Methods
     
     /// Observes the changes of the given textStorage to detect URLs around the edited area.
-    /// 
+    ///
     /// - Parameter textStorage: The text storage to observe.
     /// - Returns: The notification observer.
     private func observeTextStorage(_ textStorage: NSTextStorage) -> any NSObjectProtocol {
