@@ -295,7 +295,7 @@ private struct DocumentStatusBar: View {
                             Text(self.fileEncoding.localizedName).tag(self.fileEncoding)
                             Divider()
                         }
-                        ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
+                        ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { _, fileEncoding in
                             if let fileEncoding {
                                 Text(fileEncoding.localizedName).tag(fileEncoding)
                             } else {
@@ -304,7 +304,7 @@ private struct DocumentStatusBar: View {
                         }
                     }
                 }
-                .onChange(of: self.fileEncoding) { (_, newValue) in
+                .onChange(of: self.fileEncoding) { _, newValue in
                     self.document.askChangingEncoding(to: newValue)
                 }
                 .help(String(localized: "Text Encoding", table: "Document"))

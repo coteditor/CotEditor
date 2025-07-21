@@ -49,7 +49,7 @@ struct MultipleReplaceSplitView: View {
                 self.saveSetting()
             }
         }
-        .onChange(of: self.selection) { (_, newValue) in
+        .onChange(of: self.selection) { _, newValue in
             guard let newValue else { return }
             self.changeSetting(to: newValue)
         }

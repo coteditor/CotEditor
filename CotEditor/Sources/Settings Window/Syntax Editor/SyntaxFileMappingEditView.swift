@@ -102,7 +102,7 @@ struct SyntaxFileMappingEditView: View {
                         TextField(text: $0.value, label: EmptyView.init)
                             .focused($focusedField, equals: $0.id)
                     }
-                    .onMove { (indexes, index) in
+                    .onMove { indexes, index in
                         withAnimation {
                             self.items.move(fromOffsets: indexes, toOffset: index)
                         }

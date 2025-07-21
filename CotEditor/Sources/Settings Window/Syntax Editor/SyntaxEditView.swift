@@ -142,7 +142,7 @@ struct SyntaxEditView: View {
                             .focused($isNameFieldFocused)
                             .fontWeight(.medium)
                             .frame(minWidth: 80, maxWidth: 160)
-                            .onChange(of: self.name) { (_, newValue) in
+                            .onChange(of: self.name) { _, newValue in
                                 self.validate(name: newValue)
                             }
                     }

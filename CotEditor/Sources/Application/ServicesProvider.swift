@@ -49,7 +49,7 @@ import AppKit
         guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }
         
         for fileURL in fileURLs {
-            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (_, _, error) in
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { _, _, error in
                 if let error {
                     errorPointer?.pointee = error as NSError
                     NSApp.presentError(error)

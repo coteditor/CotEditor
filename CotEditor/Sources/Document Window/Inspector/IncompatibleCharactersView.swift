@@ -104,10 +104,10 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                 }
-                .onChange(of: self.selection) { (_, newValue) in
+                .onChange(of: self.selection) { _, newValue in
                     self.model.selectItem(id: newValue)
                 }
-                .onChange(of: self.sortOrder) { (_, newValue) in
+                .onChange(of: self.sortOrder) { _, newValue in
                     withAnimation {
                         self.model.items.sort(using: newValue)
                     }
@@ -119,7 +119,7 @@ struct IncompatibleCharactersView: View {
         .onDisappear {
             self.model.task?.cancel()
         }
-        .onChange(of: self.document, initial: true) { (_, newValue) in
+        .onChange(of: self.document, initial: true) { _, newValue in
             self.model.updateDocument(newValue)
         }
         .accessibilityElement(children: .contain)

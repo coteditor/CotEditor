@@ -205,7 +205,7 @@ public extension NSString {
             let linesRange = self.lineRange(for: range)
             
             // store each line to process
-            self.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { (_, _, enclosingRange, _) in
+            self.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { _, _, enclosingRange, _ in
                 lineRanges.append(enclosingRange)
             }
         }
@@ -283,7 +283,7 @@ public extension NSString {
         
         let range = NSRange(..<min(index + 1, self.length))
         let options: EnumerationOptions = [.byComposedCharacterSequences, .substringNotRequired, .reverse]
-        self.enumerateSubstrings(in: range, options: options) { (_, range, _, stop) in
+        self.enumerateSubstrings(in: range, options: options) { _, range, _, stop in
             
             boundary = range.lowerBound
             remainingCount -= 1

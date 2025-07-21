@@ -59,7 +59,7 @@ struct SettingNameField: View {
         } else {
             TextField(text: $editingText, label: EmptyView.init)
                 .focused($isFocused)
-                .onChange(of: self.isFocused) { (_, isFocused) in
+                .onChange(of: self.isFocused) { _, isFocused in
                     guard
                         !isFocused,
                         self.editingText != self.text

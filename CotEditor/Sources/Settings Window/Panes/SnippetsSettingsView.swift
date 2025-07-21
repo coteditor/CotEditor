@@ -103,7 +103,7 @@ private struct CommandSnippetsView: View {
                     TableRow(item)
                         .draggable(item.id)
                 }
-                .dropDestination(for: UUID.self) { (index, ids)  in
+                .dropDestination(for: UUID.self) { index, ids in
                     // `dropDestination(for:)` shows a plus badge which should be avoided
                     // on just moving items in the identical table,
                     // but `onMove()` is not provided yet for DynamicTableRowContent.
@@ -115,14 +115,14 @@ private struct CommandSnippetsView: View {
                     }
                 }
             }
-            .onChange(of: self.selection, initial: true) { (_, newValue) in
+            .onChange(of: self.selection, initial: true) { _, newValue in
                 self.format = if newValue.count == 1, let id = newValue.first {
                     self.items[id: id]?.format
                 } else {
                     nil
                 }
             }
-            .onChange(of: self.format) { (_, newValue) in
+            .onChange(of: self.format) { _, newValue in
                 guard
                     let format = newValue,
                     let id = self.selection.first
@@ -153,7 +153,7 @@ private struct CommandSnippetsView: View {
             }
             self.syntaxes = SyntaxManager.shared.settingNames
         }
-        .onChange(of: self.items) { (_, newValue) in
+        .onChange(of: self.items) { _, newValue in
             self.manager.save(newValue)
         }
     }
@@ -197,7 +197,7 @@ private struct FileDropView: View {
                     TableRow(item)
                         .draggable(item.id)
                 }
-                .dropDestination(for: UUID.self) { (index, ids)  in
+                .dropDestination(for: UUID.self) { index, ids in
                     let indexes = ids.compactMap { uuid in self.items.firstIndex(where: { $0.id == uuid }) }
                     
                     withAnimation {
@@ -205,14 +205,14 @@ private struct FileDropView: View {
                     }
                 }
             }
-            .onChange(of: self.selection, initial: true) { (_, newValue) in
+            .onChange(of: self.selection, initial: true) { _, newValue in
                 self.format = if newValue.count == 1, let id = newValue.first {
                     self.items[id: id]?.format
                 } else {
                     nil
                 }
             }
-            .onChange(of: self.format) { (_, newValue) in
+            .onChange(of: self.format) { _, newValue in
                 guard
                     let format = newValue,
                     let id = self.selection.first
@@ -237,7 +237,7 @@ private struct FileDropView: View {
             self.load()
             self.syntaxes = SyntaxManager.shared.settingNames
         }
-        .onChange(of: self.items) { (_, newValue) in
+        .onChange(of: self.items) { _, newValue in
             self.save(items: newValue)
         }
     }
@@ -326,7 +326,7 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
                 Spacer()
                 Menu(String(localized: "Insert Variable", table: "SnippetsSettings", comment: "button label")) {
-                    ForEach(Array(Variable.listCases.enumerated()), id: \.offset) { (_, variable) in
+                    ForEach(Array(Variable.listCases.enumerated()), id: \.offset) { _, variable in
                         if let variable {
                             Button {
                                 let menuItem = NSMenuItem()

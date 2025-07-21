@@ -62,7 +62,7 @@ extension NSLayoutManager {
         let glyphRange = NSRange(location: glyphIndex, length: 1)
         let selectedGlyphRange = forSelection ? glyphRange : .notFound
         var enclosingRect: NSRect = .zero
-        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: selectedGlyphRange, in: textContainer) { (rect, _) in
+        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: selectedGlyphRange, in: textContainer) { rect, _ in
             enclosingRect = rect
         }
         
@@ -288,12 +288,12 @@ extension NSLayoutManager {
     ///   - offsetsHandler: The block returning the vertical offsets in the line fragment coordinate to draw additional guidelines.
     ///   - textContainer: The text container in which the glyphs are laid out.
     ///   - glyphRange: The range of glyphs laid out in the current line fragment.
-    final func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, offsetsHandler: @escaping (_ textContainer: NSTextContainer, _ glyphRange: NSRange) -> [CGFloat] = { (_, _) in [] }) {
+    final func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, offsetsHandler: @escaping (_ textContainer: NSTextContainer, _ glyphRange: NSRange) -> [CGFloat] = { _, _ in [] }) {
         
         NSGraphicsContext.saveGraphicsState()
         
         Self.guidelineColor.setStroke()
-        self.enumerateLineFragments(forGlyphRange: glyphsToShow) { (rect, _, textContainer, glyphRange, _) in
+        self.enumerateLineFragments(forGlyphRange: glyphsToShow) { rect, _, textContainer, glyphRange, _ in
             let rect = rect.offset(by: origin)
             
             NSBezierPath.defaultLineWidth = 0.5

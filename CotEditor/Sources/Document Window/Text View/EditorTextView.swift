@@ -304,7 +304,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         if let window {
             // apply window opacity
-            self.windowOpacityObserver = window.observe(\.isOpaque, options: [.initial, .new]) { [unowned self] (_, change) in
+            self.windowOpacityObserver = window.observe(\.isOpaque, options: [.initial, .new]) { [unowned self] _, change in
                 guard let new = change.newValue else { return }
                 MainActor.assumeIsolated {
                     self.drawsBackground = new
@@ -1032,7 +1032,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         {
             let lines = string.components(separatedBy: .newlines)
             let multipleTexts: [String] = groupCounts
-                .reduce(into: [Range<Int>]()) { (groupRanges, groupCount) in
+                .reduce(into: [Range<Int>]()) { groupRanges, groupCount in
                     if groupRanges.count >= ranges.count, let last = groupRanges.last {
                         groupRanges[groupRanges.endIndex - 1] = last.lowerBound..<(last.upperBound + groupCount)
                     } else {
@@ -1331,7 +1331,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
                 
                 // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
-                self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, type: NSColor.self, in: selectedRange) { (color, range, _) in
+                self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, type: NSColor.self, in: selectedRange) { color, range, _ in
                     let localRange = range.shifted(by: -selectedRange.location)
                     
                     styledText.addAttribute(.foregroundColor, value: color, range: localRange)

@@ -99,7 +99,7 @@ struct CommandBarView: View {
                 .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .onChange(of: self.input) { (_, newValue) in
+        .onChange(of: self.input) { _, newValue in
             self.candidates = self.model.commands
                 .compactMap {
                     guard let result = $0.match(command: newValue) else { return nil }
@@ -180,7 +180,7 @@ private struct ActionCommandView: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    ForEach(Array(self.matches.enumerated()), id: \.offset) { (offset, match) in
+                    ForEach(Array(self.matches.enumerated()), id: \.offset) { offset, match in
                         if offset > 0 {
                             Image(systemName: "chevron.compact.right")
                                 .foregroundStyle(.tertiary)
@@ -194,7 +194,7 @@ private struct ActionCommandView: View {
                 .foregroundStyle((self.isSelected && self.colorContrast == .standard) ? Color.selectedMenuItemText.opacity(0.8) : .primary)
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    ForEach(Array(self.command.paths.enumerated()), id: \.offset) { (offset, path) in
+                    ForEach(Array(self.command.paths.enumerated()), id: \.offset) { offset, path in
                         if offset > 0 {
                             Image(systemName: "chevron.compact.right")
                                 .foregroundStyle(.tertiary)
@@ -249,7 +249,7 @@ private struct ActionCommandView: View {
         
         return ranges
             .compactMap { Range($0, in: attributed) }
-            .reduce(into: attributed) { (string, range) in
+            .reduce(into: attributed) { string, range in
                 string[range].font = font.weight(.bold)
                 string[range].foregroundColor = self.isSelected ? Color.selectedMenuItemText : nil
             }

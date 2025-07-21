@@ -42,7 +42,7 @@ public extension String {
         let string = self as NSString
         let range = range ?? NSRange(..<string.length)
         
-        string.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, _) in
+        string.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _, substringRange, enclosingRange, _ in
             guard enclosingRange.length > 0 else { return }
             
             let lineEndingRange = NSRange(substringRange.upperBound..<enclosingRange.upperBound)

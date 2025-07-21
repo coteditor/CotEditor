@@ -332,7 +332,7 @@ private extension NSLayoutManager {
         
         // find indent indexes
         var indentIndexes: [(lineRange: NSRange, indexes: [Int])] = []
-        string.enumerateSubstrings(in: characterRange, options: [.byLines, .substringNotRequired]) { (_, range, _, _) in
+        string.enumerateSubstrings(in: characterRange, options: [.byLines, .substringNotRequired]) { _, range, _, _ in
             var indexes: [Int] = []
             var spaceCount = 0
             loop: for characterIndex in range.lowerBound..<range.upperBound {

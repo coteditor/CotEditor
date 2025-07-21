@@ -43,7 +43,7 @@ extension Highlight {
     static func highlights(dictionary: [SyntaxType: [NSRange]]) throws -> [Highlight] {
         
         try SyntaxType.allCases.reversed()
-            .reduce(into: [SyntaxType: IndexSet]()) { (dict, type) in
+            .reduce(into: [SyntaxType: IndexSet]()) { dict, type in
                 guard let ranges = dictionary[type] else { return }
                 
                 try Task.checkCancellation()
@@ -53,7 +53,7 @@ extension Highlight {
                 dict[type] = dict.values.reduce(into: indexes) { $0.subtract($1) }
             }
             .mapValues { $0.rangeView.map(NSRange.init) }
-            .flatMap { (type, ranges) in ranges.map { ValueRange(value: type, range: $0) } }
+            .flatMap { type, ranges in ranges.map { ValueRange(value: type, range: $0) } }
             .sorted(using: KeyPathComparator(\.range.location))
     }
 }

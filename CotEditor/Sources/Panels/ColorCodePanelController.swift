@@ -143,7 +143,7 @@ private struct ColorCodePanelAccessory: View {
                 } label: {
                     EmptyView()
                 }
-                .onChange(of: self.type) { (_, newValue) in
+                .onChange(of: self.type) { _, newValue in
                     self.apply(type: newValue)
                 }
                 .labelsHidden()

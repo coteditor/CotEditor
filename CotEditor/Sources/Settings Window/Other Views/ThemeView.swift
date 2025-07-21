@@ -51,7 +51,7 @@ struct ThemeView: View {
             
             ThemeEditorView(theme: $theme, isBundled: self.isBundled)
                 .frame(width: 360)
-                .onChange(of: self.theme) { (_, newValue) in
+                .onChange(of: self.theme) { _, newValue in
                     do {
                         try self.manager.save(setting: newValue, name: self.themeName)
                     } catch {
@@ -62,7 +62,7 @@ struct ThemeView: View {
         .onChange(of: self.documentAppearance, initial: true) {
             self.themeName = self.manager.userDefaultSettingName
         }
-        .onChange(of: self.themeName, initial: true) { (_, newValue) in
+        .onChange(of: self.themeName, initial: true) { _, newValue in
             self.setTheme(name: newValue)
         }
         .task {
@@ -159,7 +159,7 @@ private struct ThemeListView: View {
                 }
                 .listRowSeparator(.hidden)
             }
-            .dropDestination(for: TransferableTheme.self) { (items, _) in
+            .dropDestination(for: TransferableTheme.self) { items, _ in
                 var succeed = false
                 for item in items {
                     guard let data = item.data() else { continue }

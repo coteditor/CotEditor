@@ -76,7 +76,7 @@ struct EncodingDetectionTests {
         // Implicit NSString cast is fixed.
         // -> However, still crashes when `string.immutable.enumerateSubstrings(in:)`
         let middleIndex = string.index(string.startIndex, offsetBy: 2)
-        string.enumerateSubstrings(in: middleIndex..<string.endIndex, options: .byLines) { (_, _, _, _) in }
+        string.enumerateSubstrings(in: middleIndex..<string.endIndex, options: .byLines) { _, _, _, _ in }
     }
     
     

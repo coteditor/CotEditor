@@ -167,11 +167,11 @@ extension MultiCursorEditing {
         let lineStartRange = (self.string as NSString).lineStartIndex(at: range.location)
         
         var locations: [Int] = []
-        (self.string as NSString).enumerateSubstrings(in: NSRange(lineStartRange..<range.upperBound), options: [.byLines, .substringNotRequired]) { [unowned self] (_, lineRange, _, _) in
+        (self.string as NSString).enumerateSubstrings(in: NSRange(lineStartRange..<range.upperBound), options: [.byLines, .substringNotRequired]) { [unowned self] _, lineRange, _, _ in
             let glyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             
             var count = 0
-            layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, lineGlyphRange, stop) in
+            layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] _, usedRect, _, lineGlyphRange, stop in
                 guard count == numberOfRows else {
                     count += 1
                     return
@@ -565,7 +565,7 @@ private extension NSLayoutManager {
         let lineGlyphRange = self.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
         
         var count = 0
-        self.enumerateLineFragments(forGlyphRange: lineGlyphRange) { (_, _, _, glyphRange, stop) in
+        self.enumerateLineFragments(forGlyphRange: lineGlyphRange) { _, _, _, glyphRange, stop in
             guard glyphIndex > glyphRange.upperBound ||
                     (glyphIndex == glyphRange.upperBound && affinity == .downstream)
             else {
@@ -596,7 +596,7 @@ private extension NSLayoutManager {
         
         var count = 0
         var lineFragmentRect: NSRect = .null
-        self.enumerateLineFragments(forGlyphRange: lineGlyphRange) { (rect, _, _, _, stop) in
+        self.enumerateLineFragments(forGlyphRange: lineGlyphRange) { rect, _, _, _, stop in
             lineFragmentRect = rect
             if count >= wrappedRow {
                 stop.pointee = true
@@ -639,7 +639,7 @@ private extension NSLayoutManager {
         
         for glyphRange in glyphRanges {
             if !glyphRange.isEmpty {
-                self.enumerateLineFragments(forGlyphRange: glyphRange) { (_, usedRect, _, _, _) in
+                self.enumerateLineFragments(forGlyphRange: glyphRange) { _, usedRect, _, _, _ in
                     rects.append(usedRect)
                 }
                 

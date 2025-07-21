@@ -54,7 +54,7 @@ struct SyntaxCompletionEditView: View {
                     }
                 }
             }
-            .onChange(of: self.sortOrder) { (_, newValue) in
+            .onChange(of: self.sortOrder) { _, newValue in
                 self.items.sort(using: newValue)
             }
             .tableStyle(.bordered)

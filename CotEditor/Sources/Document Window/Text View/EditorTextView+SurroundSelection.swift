@@ -92,7 +92,7 @@ extension NSTextView {
         let string = self.string as NSString
         
         let replacementStrings = selectedRanges.map { begin + string.substring(with: $0) + end }
-        let newSelectedRanges = selectedRanges.enumerated().map { (offset, range) in
+        let newSelectedRanges = selectedRanges.enumerated().map { offset, range in
             range.shifted(by: (offset + 1) * begin.length + offset * end.length)
         }
         

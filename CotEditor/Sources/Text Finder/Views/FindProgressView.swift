@@ -78,7 +78,7 @@ struct FindProgressView: View {
         .onReceive(self.timer) { _ in
             self.updateDescription()
         }
-        .onChange(of: self.progress.state) { (_, newValue) in
+        .onChange(of: self.progress.state) { _, newValue in
             switch newValue {
                 case .ready, .processing:
                     break

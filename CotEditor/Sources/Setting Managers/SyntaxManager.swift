@@ -300,11 +300,11 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         
         // load mapping definitions from syntax files in the user domain
         let userMaps = try! SyntaxMap.loadMaps(at: self.userSettingFileURLs, ignoresInvalidData: true)
-        let maps = self.bundledMaps.merging(userMaps) { (_, new) in new }
+        let maps = self.bundledMaps.merging(userMaps) { _, new in new }
         
         // update file mapping table
-        self.mappingTable = self.mappingTable.keys.reduce(into: [:]) { (tables, keyPath) in
-            tables[keyPath] = sortedSettingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
+        self.mappingTable = self.mappingTable.keys.reduce(into: [:]) { tables, keyPath in
+            tables[keyPath] = sortedSettingNames.reduce(into: [String: [SettingName]]()) { table, settingName in
                 for item in maps[settingName]?[keyPath: keyPath] ?? [] {
                     table[item, default: []].append(settingName)
                 }

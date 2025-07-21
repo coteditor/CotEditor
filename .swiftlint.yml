@@ -47,6 +47,7 @@ opt_in_rules:
   - single_test_class
   - sorted_first_last
   - toggle_bool
+  - unneeded_parentheses_in_closure_argument
   - vertical_parameter_alignment_on_call
   - xct_specific_matcher
   - yoda_condition

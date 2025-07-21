@@ -41,7 +41,7 @@ public extension String {
         
         self.ranges(pattern: #"(?<=\w)(?=\p{uppercase})"#)
             .reversed()
-            .reduce(into: self.lowercased()) { (string, range) in
+            .reduce(into: self.lowercased()) { string, range in
                 string.replaceSubrange(range, with: "_")
             }
     }
@@ -52,7 +52,7 @@ public extension String {
         
         self.ranges(pattern: #"(?<=\w)(?:\p{uppercase}|_\w)"#)
             .reversed()
-            .reduce(into: self.lowercased()) { (string, range) in
+            .reduce(into: self.lowercased()) { string, range in
                 string.replaceSubrange(range, with: string[range].last!.uppercased())
             }
     }
@@ -63,7 +63,7 @@ public extension String {
         
         self.ranges(pattern: #"(?:\b|(?<=\w)_)\w"#)
             .reversed()
-            .reduce(into: self) { (string, range) in
+            .reduce(into: self) { string, range in
                 string.replaceSubrange(range, with: string[range].last!.uppercased())
             }
     }

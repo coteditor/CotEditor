@@ -444,7 +444,7 @@ final class DirectoryDocument: NSDocument {
         
         var coordinationError: NSError?
         var copyingError: (any Error)?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { newSourceURL, newDestinationURL in
             do {
                 try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
             } catch {
@@ -470,10 +470,10 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: The file node created.
     func duplicateItem(at node: FileNode) throws -> FileNode {
         
-        let format = NumberingFormat { (base) in
+        let format = NumberingFormat { base in
             String(localized: "FileCopyFormat.single", defaultValue: "\(base) copy",
                    comment: "duplicated form of filename")
-        } numbered: { (base, count) in
+        } numbered: { base, count in
             String(localized: "FileCopyFormat.numbered", defaultValue: "\(base) copy \(count)",
                    comment: "duplicated form of filename with number")
         }
@@ -481,7 +481,7 @@ final class DirectoryDocument: NSDocument {
         
         var coordinationError: NSError?
         var copyError: (any Error)?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: node.fileURL, options: .withoutChanges, writingItemAt: duplicatedURL, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: node.fileURL, options: .withoutChanges, writingItemAt: duplicatedURL, error: &coordinationError) { newSourceURL, newDestinationURL in
             do {
                 try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
             } catch {
@@ -565,7 +565,7 @@ final class DirectoryDocument: NSDocument {
             document.showWindows()
             
         } else {
-            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { [unowned self] (_, _, error) in
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { [unowned self] _, _, error in
                 if let error {
                     self.presentError(error)
                 }
@@ -666,7 +666,7 @@ final class DirectoryDocument: NSDocument {
         
         var coordinationError: NSError?
         var movingError: (any Error)?
-        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { newSourceURL, newDestinationURL in
             do {
                 try FileManager.default.moveItem(at: newSourceURL, to: newDestinationURL)
             } catch {

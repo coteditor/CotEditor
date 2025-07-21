@@ -513,7 +513,7 @@ struct FindAllMatch: Identifiable {
             var highlights: [ValueRange<NSColor>] = []
             var resultMatches: [FindAllMatch] = []  // not used if showsList is false
             
-            textFind.findAll { (matches: [NSRange], stop) in
+            textFind.findAll { matches, stop in
                 guard progress.state != .cancelled else {
                     stop = true
                     return
@@ -604,7 +604,7 @@ struct FindAllMatch: Identifiable {
         
         let progress = FindProgress(scope: textFind.scopeRange)
         let task = Task.detached(priority: .userInitiated) {
-            textFind.replaceAll(with: replacementString) { (range, count, stop) in
+            textFind.replaceAll(with: replacementString) { range, count, stop in
                 guard progress.state != .cancelled else {
                     stop = true
                     return

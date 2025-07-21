@@ -241,7 +241,7 @@ private final class ConsoleViewController: NSViewController, TextSizeChanging {
         guard let storage = self.textView.textStorage else { return }
         
         storage.beginEditing()
-        storage.enumerateAttribute(.font, type: NSFont.self, in: storage.range) { (font, range, _) in
+        storage.enumerateAttribute(.font, type: NSFont.self, in: storage.range) { font, range, _ in
             storage.addAttribute(.font, value: font.withSize(fontSize), range: range)
         }
         storage.endEditing()

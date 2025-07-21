@@ -230,7 +230,7 @@ final class PrintTextView: NSTextView {
                 NSGraphicsContext.current?.cgContext.rotate(by: -.pi / 2)
             }
             
-            self.enumerateLineFragments(in: range, options: .bySkippingExtraLine) { (lineRect, lineNumber, _) in
+            self.enumerateLineFragments(in: range, options: .bySkippingExtraLine) { lineRect, lineNumber, _ in
                 // draw number only every 5 times
                 let numberString = (!isVerticalText || lineNumber == 1 || lineNumber.isMultiple(of: 5)) ? String(lineNumber) : "·"
                 

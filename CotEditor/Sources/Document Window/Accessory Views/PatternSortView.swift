@@ -363,5 +363,5 @@ extension SortPatternError: @retroactive LocalizedError {
 // MARK: - Preview
 
 #Preview {
-    PatternSortView(sampleLine: "Dog, 🐕, 1", sampleFontName: "Menlo") { (_, _) in }
+    PatternSortView(sampleLine: "Dog, 🐕, 1", sampleFontName: "Menlo") { _, _ in }
 }

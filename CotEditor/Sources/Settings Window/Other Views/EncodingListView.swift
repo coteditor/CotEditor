@@ -85,7 +85,7 @@ struct EncodingListView: View {
                             EncodingView(encoding: item.encoding)
                         }
                     }.listRowSeparator(.hidden)
-                }.onMove { (indexes, index) in
+                }.onMove { indexes, index in
                     self.model.move(from: indexes, to: index)
                 }
             }

@@ -86,7 +86,7 @@ struct GeneralSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 0) {
                     Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
-                        .onChange(of: self.enablesAutosaveInPlace) { (_, newValue) in
+                        .onChange(of: self.enablesAutosaveInPlace) { _, newValue in
                             if newValue != self.initialEnablesAutosaveInPlace {
                                 self.isAutosaveChangeConfirmationPresented = true
                             }

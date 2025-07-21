@@ -73,10 +73,10 @@ struct InconsistentLineEndingsView: View {
                         Text($0.value.label)
                     }
                 }
-                .onChange(of: self.selection) { (_, newValue) in
+                .onChange(of: self.selection) { _, newValue in
                     self.selectItem(id: newValue)
                 }
-                .onChange(of: self.sortOrder) { (_, newValue) in
+                .onChange(of: self.sortOrder) { _, newValue in
                     withAnimation {
                         self.items.sort(using: newValue)
                     }
@@ -85,10 +85,10 @@ struct InconsistentLineEndingsView: View {
                 .border(Color(nsColor: .gridColor))
             }
         }
-        .onChange(of: self.document?.lineEndingScanner.inconsistentLineEndings, initial: true) { (_, newValue) in
+        .onChange(of: self.document?.lineEndingScanner.inconsistentLineEndings, initial: true) { _, newValue in
             self.items = (newValue ?? []).sorted(using: self.sortOrder)
         }
-        .onChange(of: self.document?.lineEndingScanner.baseLineEnding, initial: true) { (_, newValue) in
+        .onChange(of: self.document?.lineEndingScanner.baseLineEnding, initial: true) { _, newValue in
             self.lineEnding = newValue ?? .lf
         }
         .accessibilityElement(children: .contain)

@@ -561,7 +561,7 @@ extension NSTextView: EditorCounter.Source { }
     override nonisolated func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
         try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
-            .merging(self.lastAdditionalFileAttributes) { (_, new) in new }
+            .merging(self.lastAdditionalFileAttributes) { _, new in new }
     }
     
     

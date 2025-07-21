@@ -97,7 +97,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: self.fileEncoding) {
-                    ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, encoding) in
+                    ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { _, encoding in
                         if let encoding {
                             Text(encoding.localizedName)
                                 .tag(encoding)
@@ -300,7 +300,7 @@ private struct SyntaxListView: View {
         .background(.background)
         .border(.separator)
         .frame(width: 260, height: 140)
-        .onChange(of: self.settingNames, initial: true) { (_, settingNames) in
+        .onChange(of: self.settingNames, initial: true) { _, settingNames in
             self.settingStates = settingNames.compactMap(self.manager.state(of:))
         }
         .onReceive(NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: self.manager)) { _ in
@@ -383,7 +383,7 @@ private struct SyntaxListView: View {
             let state: SettingState? = if case .edit(let state) = mode { state } else { nil }
             let syntax = state.flatMap { try? self.manager.setting(name: $0.name) }
             
-            SyntaxEditView(mode: mode, syntax: syntax, manager: self.manager) { (syntax, name) in
+            SyntaxEditView(mode: mode, syntax: syntax, manager: self.manager) { syntax, name in
                 try self.manager.save(setting: syntax, name: name, oldName: state?.name)
             }
         }

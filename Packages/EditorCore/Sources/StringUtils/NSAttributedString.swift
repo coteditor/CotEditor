@@ -75,7 +75,7 @@ public extension NSAttributedString {
     ///   - stop: A reference to a Boolean value, which you can set to true within the closure to stop further processing of the attribute enumeration.
     final func enumerateAttribute<T>(_ attrName: NSAttributedString.Key, type: T.Type, in enumerationRange: NSRange, options: EnumerationOptions = [], using block: (_ value: T, _ range: NSRange, _ stop: UnsafeMutablePointer<ObjCBool>) -> Void) {
         
-        self.enumerateAttribute(attrName, in: enumerationRange, options: options) { (value, range, stop) in
+        self.enumerateAttribute(attrName, in: enumerationRange, options: options) { value, range, stop in
             guard let value = value as? T else { return }
             block(value, range, stop)
         }

@@ -93,7 +93,7 @@ final class Tokenizer: Sendable {
     ///   - keywordRange: Range of keyword.
     func tokenize(_ string: String, range: NSRange? = nil, block: (_ token: String, _ range: NSRange, _ keywordRange: NSRange) -> Void) {
         
-        self.regex.enumerateMatches(in: string, range: range ?? string.nsRange) { (match, _, _) in
+        self.regex.enumerateMatches(in: string, range: range ?? string.nsRange) { match, _, _ in
             
             guard let match else { return }
             

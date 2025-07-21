@@ -31,7 +31,7 @@ public extension Sequence where Element: Equatable {
     /// An array consists of unique elements of receiver by keeping ordering.
     var uniqued: [Element] {
         
-        self.reduce(into: []) { (unique, element) in
+        self.reduce(into: []) { unique, element in
             guard !unique.contains(element) else { return }
             
             unique.append(element)

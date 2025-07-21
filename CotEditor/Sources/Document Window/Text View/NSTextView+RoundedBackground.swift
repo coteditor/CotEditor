@@ -47,7 +47,7 @@ extension NSTextView {
         guard let layoutManager = self.layoutManager else { return }
         
         var coloredPaths: [NSColor: [NSBezierPath]] = [:]
-        layoutManager.enumerateTemporaryAttribute(.roundedBackgroundColor, type: NSColor.self, in: dirtyRange) { (color, range, _) in
+        layoutManager.enumerateTemporaryAttribute(.roundedBackgroundColor, type: NSColor.self, in: dirtyRange) { color, range, _ in
             let paths = self.roundedRectPaths(for: range)
                 .filter { $0.bounds.intersects(dirtyRect) }
             

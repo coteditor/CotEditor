@@ -39,7 +39,7 @@ public extension NSRegularExpression {
     final func cancellableMatches(in string: String, options: MatchingOptions = [], range: NSRange) throws -> [NSTextCheckingResult] {
         
         var matches: [NSTextCheckingResult] = []
-        self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
+        self.enumerateMatches(in: string, options: options, range: range) { match, _, stopPointer in
             if Task.isCancelled {
                 stopPointer.pointee = ObjCBool(true)
                 return

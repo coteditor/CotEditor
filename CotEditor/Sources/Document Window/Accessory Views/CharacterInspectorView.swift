@@ -68,7 +68,7 @@ private struct CharacterDetailView: View {
             
             if self.info.character.unicodeScalars.count > 1 {
                 VStack(spacing: 0) {
-                    ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
+                    ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { _, scalar in
                         DisclosureGroup {
                             HStack(alignment: .top) {
                                 Text(String(scalar))

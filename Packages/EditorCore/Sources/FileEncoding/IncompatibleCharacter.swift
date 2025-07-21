@@ -54,7 +54,7 @@ public extension String {
         guard !self.canBeConverted(to: encoding) else { return [] }
         
         return try zip(self.indices, self).lazy
-            .compactMap { (index, character) in
+            .compactMap { index, character in
                 try Task.checkCancellation()
                 
                 let string = String(character)

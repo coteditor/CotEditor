@@ -79,7 +79,7 @@ public struct EditedRangeSet: Sendable {
         let effectRange = NSRange(location: editedRange.location, length: editedRange.length - changeInLength)
         
         var added = false
-        self.ranges = self.ranges.reduce(into: []) { (ranges, range) in
+        self.ranges = self.ranges.reduce(into: []) { ranges, range in
             if range.upperBound < editedRange.lowerBound {
                 ranges.append(range)
                 

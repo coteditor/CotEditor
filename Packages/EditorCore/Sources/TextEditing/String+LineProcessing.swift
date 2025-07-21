@@ -169,7 +169,7 @@ public extension String {
         
         // group the ranges sharing the same lines
         let rangeGroups: [[NSRange]] = ranges.sorted()
-            .reduce(into: []) { (groups, range) in
+            .reduce(into: []) { groups, range in
                 if let last = groups.last?.last,
                    string.lineRange(for: last).intersects(string.lineRange(for: range))
                 {

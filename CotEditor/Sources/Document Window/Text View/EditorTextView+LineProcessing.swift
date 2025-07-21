@@ -165,7 +165,7 @@ extension EditorTextView {
         let sampleLine = String(self.string[lineRange])
         let fontName = self.font?.fontName
         
-        let view = PatternSortView(sampleLine: sampleLine, sampleFontName: fontName) { [weak self] (pattern, options) in
+        let view = PatternSortView(sampleLine: sampleLine, sampleFontName: fontName) { [weak self] pattern, options in
             self?.sortLines(pattern: pattern, options: options)
         }
         let viewController = NSHostingController(rootView: view)

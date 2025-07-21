@@ -108,7 +108,7 @@ public struct HighlightParser: Sendable {
     /// - Throws: CancellationError.
     private func extractNestables(string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
         
-        let positions: [NestableItem] = try self.nestables.flatMap { (token, type) -> [NestableItem] in
+        let positions: [NestableItem] = try self.nestables.flatMap { token, type -> [NestableItem] in
             try Task.checkCancellation()
             
             switch token {

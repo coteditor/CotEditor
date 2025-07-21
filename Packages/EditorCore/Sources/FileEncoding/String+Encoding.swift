@@ -62,7 +62,7 @@ public extension String {
         .sorted {
             String.localizedName(of: $0).localizedCaseInsensitiveCompare(String.localizedName(of: $1)) == .orderedAscending
         }
-        .reduce(into: []) { (encodings, encoding) in
+        .reduce(into: []) { encodings, encoding in
             if let last = encodings.last as? String.Encoding,
                let lastName = String.localizedName(of: last).prefixMatch(of: /\w+/),
                let name = String.localizedName(of: encoding).prefixMatch(of: /\w+/),

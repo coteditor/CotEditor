@@ -42,7 +42,7 @@ actor SyntaxTests {
         
         // load syntaxes
         let decoder = YAMLDecoder()
-        self.syntaxes = try urls.reduce(into: [:]) { (dict, url) in
+        self.syntaxes = try urls.reduce(into: [:]) { dict, url in
             let data = try Data(contentsOf: url)
             let name = url.deletingPathExtension().lastPathComponent
             

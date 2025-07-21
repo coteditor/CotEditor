@@ -32,7 +32,7 @@ public extension StringProtocol {
     var numberOfWords: Int {
         
         var count = 0
-        self.enumerateSubstrings(in: self.startIndex..<self.endIndex, options: [.byWords, .localized, .substringNotRequired]) { (_, _, _, _) in
+        self.enumerateSubstrings(in: self.startIndex..<self.endIndex, options: [.byWords, .localized, .substringNotRequired]) { _, _, _, _ in
             count += 1
         }
         
@@ -72,7 +72,7 @@ public extension StringProtocol {
         if self.isEmpty || range.isEmpty { return 0 }
         
         var count = 0
-        self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
+        self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _, _, _, _ in
             count += 1
         }
         
@@ -105,7 +105,7 @@ public extension StringProtocol {
         var lineRanges: [Range<String.Index>] = []
         for range in ranges {
             let lineRange = self.lineRange(for: range)
-            self.enumerateSubstrings(in: lineRange, options: [.byLines, .substringNotRequired]) { (_, substringRange, _, _) in
+            self.enumerateSubstrings(in: lineRange, options: [.byLines, .substringNotRequired]) { _, substringRange, _, _ in
                 lineRanges.append(substringRange)
             }
             
@@ -158,7 +158,7 @@ public extension String {
         if self.isEmpty || range.isEmpty { return 0 }
         
         var count = 0
-        (self as NSString).enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
+        (self as NSString).enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _, _, _, _ in
             count += 1
         }
         

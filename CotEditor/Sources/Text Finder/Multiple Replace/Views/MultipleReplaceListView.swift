@@ -124,7 +124,7 @@ struct MultipleReplaceListView: View {
                 self.createUntitledSetting()
             }
         }
-        .onChange(of: self.settingNames.isEmpty) { (_, newValue) in
+        .onChange(of: self.settingNames.isEmpty) { _, newValue in
             if newValue {
                 self.createUntitledSetting()
             }

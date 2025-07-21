@@ -100,7 +100,7 @@ public extension URL {
             .reversed()
             .enumerated()
             .dropFirst()  // last path component is already checked
-            .first { (index, component) in
+            .first { index, component in
                 !components
                     .filter { $0.indices.contains(index) }
                     .compactMap { $0[index] }
@@ -110,7 +110,7 @@ public extension URL {
         
         guard let offset else { return nil }
         
-        return (0..<offset).reduce(into: self) { (url, _) in url.deleteLastPathComponent() }
+        return (0..<offset).reduce(into: self) { url, _ in url.deleteLastPathComponent() }
     }
 }
 

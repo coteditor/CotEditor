@@ -45,7 +45,7 @@ struct ModeSettingsView: View {
                 GroupBox {
                     ModeOptionsView(options: $options)
                         .disabled(!self.selection.available(within: self.syntaxes))
-                        .onChange(of: self.options) { (_, newValue) in
+                        .onChange(of: self.options) { _, newValue in
                             self.manager.save(setting: newValue, mode: self.selection)
                         }
                         .frame(maxWidth: .infinity)
@@ -62,7 +62,7 @@ struct ModeSettingsView: View {
         .onAppear {
             self.syntaxes = SyntaxManager.shared.settingNames
         }
-        .onChange(of: self.selection, initial: true) { (_, newValue) in
+        .onChange(of: self.selection, initial: true) { _, newValue in
             self.options = self.manager.setting(for: newValue)
         }
         .scenePadding()

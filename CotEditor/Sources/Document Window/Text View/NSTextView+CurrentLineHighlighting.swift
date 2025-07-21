@@ -93,7 +93,7 @@ extension CurrentLineHighlighting {
         return editingRanges
             .map(\.rangeValue)
             .map { (self.string as NSString).lineRange(for: $0) }
-            .reduce(into: [NSRange]()) { (ranges, range) in
+            .reduce(into: [NSRange]()) { ranges, range in
                 if range.isEmpty && range.location == self.string.length {
                     ranges.append(range)
                 } else if ranges.last?.touches(range) == true {

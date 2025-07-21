@@ -281,10 +281,10 @@ public struct Syntax: Equatable, Sendable {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = SyntaxType.allCases
-            .reduce(into: [:]) { (dict, type) in
+            .reduce(into: [:]) { dict, type in
                 dict[type] = self[keyPath: Syntax.highlightKeyPath(for: type)]
             }
-            .reduce(into: [SyntaxType: [Syntax.Highlight]]()) { (dict, item) in
+            .reduce(into: [SyntaxType: [Syntax.Highlight]]()) { dict, item in
                 var highlights: [Syntax.Highlight] = []
                 var words: [String] = []
                 var caseInsensitiveWords: [String] = []

@@ -141,7 +141,7 @@ public struct TextFind: Equatable, Sendable {
         get throws {
             var ranges: [NSRange] = []
             for range in self.scopeRanges {
-                self.enumerateMatches(in: range) { (matchedRange, _, stop) in
+                self.enumerateMatches(in: range) { matchedRange, _, stop in
                     if Task.isCancelled {
                         stop = true
                         return
@@ -234,7 +234,7 @@ public struct TextFind: Equatable, Sendable {
     public func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
         for range in self.scopeRanges {
-            self.enumerateMatches(in: range) { (matchedRange, match, stop) in
+            self.enumerateMatches(in: range) { matchedRange, match, stop in
                 let matches: [NSRange] = if let match {
                     (0..<match.numberOfRanges).map(match.range(at:))
                 } else {
@@ -276,7 +276,7 @@ public struct TextFind: Equatable, Sendable {
                     
                 default:
                     var offset = 0
-                    self.enumerateMatches(in: scopeRange) { (matchedRange, match, stop) in
+                    self.enumerateMatches(in: scopeRange) { matchedRange, match, stop in
                         let replacedString: String = if let match, let regex = match.regularExpression {
                             regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
                         } else {
@@ -403,7 +403,7 @@ public struct TextFind: Equatable, Sendable {
         let string = self.string
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
         
-        self.regex!.enumerateMatches(in: string, options: options, range: range) { (result, _, stop) in
+        self.regex!.enumerateMatches(in: string, options: options, range: range) { result, _, stop in
             guard let result else { return }
             
             var ioStop = false

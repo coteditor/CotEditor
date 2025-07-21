@@ -161,7 +161,7 @@ public extension String {
         var tabCount = 0
         var spaceCount = 0
         var lineCount = 0
-        self.enumerateLines { (line, stop) in
+        self.enumerateLines { line, stop in
             // check first character
             switch line.first {
                 case "\t":

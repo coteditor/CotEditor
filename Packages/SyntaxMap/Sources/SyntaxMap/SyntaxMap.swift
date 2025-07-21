@@ -49,7 +49,7 @@ public struct SyntaxMap: Equatable, Sendable, Codable {
         
         let decoder = YAMLDecoder()
         
-        return try urls.reduce(into: [:]) { (map, url) in
+        return try urls.reduce(into: [:]) { map, url in
             let syntax: Syntax
             do {
                 let data = try Data(contentsOf: url)

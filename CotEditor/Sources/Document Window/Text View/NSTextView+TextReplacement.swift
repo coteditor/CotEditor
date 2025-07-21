@@ -87,7 +87,7 @@ extension NSTextView {
             else { return nil }
             
             var offset = 0
-            return zip(ranges, strings).map { (range, string) in
+            return zip(ranges, strings).map { range, string in
                 let length = string.length
                 let location = range.lowerBound + offset + length
                 offset += length - range.length

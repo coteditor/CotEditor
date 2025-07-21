@@ -172,7 +172,7 @@ private extension Tokenizer {
             textStorage.removeAttribute(.token, range: textStorage.range)
             textStorage.addAttribute(.foregroundColor, value: NSColor.labelColor, range: textStorage.range)
             
-            self.tokenize(textStorage.string) { (_, range, keywordRange) in
+            self.tokenize(textStorage.string) { _, range, keywordRange in
                 textStorage.addAttribute(.token, value: UUID(), range: range)
                 textStorage.addAttribute(.foregroundColor, value: NSColor.tokenBracketColor, range: range)
                 textStorage.addAttribute(.foregroundColor, value: NSColor.tokenTextColor, range: keywordRange)
@@ -197,7 +197,7 @@ private final class TokenLayoutFragment: NSTextLayoutFragment {
         context.saveGState()
         
         for lineFragment in self.textLineFragments {
-            lineFragment.attributedString.enumerateAttribute(.token, type: UUID.self, in: lineFragment.characterRange) { (_, range, _) in
+            lineFragment.attributedString.enumerateAttribute(.token, type: UUID.self, in: lineFragment.characterRange) { _, range, _ in
                 let lineBounds = lineFragment.typographicBounds
                 let lowerBound = lineFragment.locationForCharacter(at: range.lowerBound).x
                 let upperBound = lineFragment.locationForCharacter(at: range.upperBound).x

@@ -71,7 +71,7 @@ struct OpenPanelAccessory: View {
                         .tag(String.Encoding?.none)
                     Divider()
                     
-                    ForEach(Array(self.model.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
+                    ForEach(Array(self.model.fileEncodings.enumerated()), id: \.offset) { _, fileEncoding in
                         if let fileEncoding {
                             Text(fileEncoding.localizedName)
                                 .tag(String.Encoding?.some(fileEncoding.encoding))
@@ -84,7 +84,7 @@ struct OpenPanelAccessory: View {
                 
                 Toggle(String(localized: "Open as read-only", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $model.options.isReadOnly)
                     .disabled(self.model.isDirectory)
-                    .onChange(of: self.model.isDirectory) { (_, newValue) in
+                    .onChange(of: self.model.isDirectory) { _, newValue in
                         if newValue {
                             self.model.options.isReadOnly = false
                         }
@@ -92,7 +92,7 @@ struct OpenPanelAccessory: View {
                     .padding(.bottom, isLiquidGlass ? 0 : -4)  // negative padding to keep 6 px margin in Form
                 
                 Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
-                    .onChange(of: self.showsHiddenFiles) { (_, newValue) in
+                    .onChange(of: self.showsHiddenFiles) { _, newValue in
                         guard let openPanel = self.openPanel else { return }
                         
                         openPanel.showsHiddenFiles = newValue
