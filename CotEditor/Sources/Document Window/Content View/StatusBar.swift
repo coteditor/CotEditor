@@ -219,7 +219,7 @@ struct StatusBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .padding(isLiquidGlass ? .horizontal : .leading)
-        .frame(height: isLiquidGlass ? 30 : 23)
+        .frame(height: isLiquidGlass ? 32 : 23)
         .background(.windowBackground)
     }
 }
