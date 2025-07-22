@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,9 +48,7 @@ final class FindPanelTextView: RegexTextView {
         
         // avoid a bug that caused fallback font, Last Resort, to be used as the typing font
         // cf. [#1435](https://github.com/coteditor/CotEditor/issues/1435)
-        self.typingAttributes = [
-            .font: NSFont.systemFont(ofSize: 0)
-        ]
+        self.typingAttributes[.font] = NSFont.systemFont(ofSize: 0)
         
         // set inset a bit like NSTextField (horizontal inset is added in FindPanelTextClipView)
         self.textContainerInset = NSSize(width: 0.0, height: 2.0)

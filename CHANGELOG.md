@@ -3,6 +3,10 @@
 5.2.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in CotEditor 5.2.1 where the text color in the text fields within the Find window appears black in the dark mode.
+
 
 
 5.2.1 (726)
