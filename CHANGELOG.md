@@ -21,7 +21,7 @@
 - Deprecate the “Draw separator” option for the line number view on macOS 26.
 - [trivial] Improve the behavior of Add/Remove buttons.
 - [dev] Migrate the theme list and syntax list in the Settings to SwiftUI.
-- [dev] Update the build environment to Xcode 26.0 Beta 3 (Swift 6.2, macOS 26 SDK).
+- [dev] Update the build environment to Xcode 26.0 Beta 4 (Swift 6.2, macOS 26 SDK).
 - [non-AppStore ver.] Add an update badge to the “Check for Update” menu item if an update is available.
 
 
