@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.9" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24112" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24112"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -13,7 +13,7 @@
                             <menuItem title="CotEditor" id="56">
                                 <menu key="submenu" title="CotEditor" systemMenu="apple" id="57">
                                     <items>
-                                        <menuItem title="About CotEditor" secondaryImage="info.circle" catalog="system" id="58">
+                                        <menuItem title="About CotEditor" id="58">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showAboutPanel:" target="Ady-hI-5gd" id="u8D-Wn-gmq"/>
@@ -1338,7 +1338,6 @@ CA
         <image name="gear" catalog="system" width="17" height="16"/>
         <image name="highlighter" catalog="system" width="17" height="16"/>
         <image name="increase.indent" catalog="system" width="18" height="13"/>
-        <image name="info.circle" catalog="system" width="15" height="15"/>
         <image name="inset.filled.bottomhalf.tophalf.rectangle" catalog="system" width="18" height="14"/>
         <image name="inset.filled.bottomthird.rectangle" catalog="system" width="18" height="14"/>
         <image name="inset.filled.leadingthird.rectangle" catalog="system" width="18" height="14"/>
