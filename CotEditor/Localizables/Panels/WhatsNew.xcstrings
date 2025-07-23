@@ -311,31 +311,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neuer „Liquid Glass“-Look"
+            "value" : "„Liquid Glass“-Look"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "New Liquid Glass Look"
+            "value" : "Liquid Glass Look"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New Liquid Glass Look"
+            "value" : "Liquid Glass Look"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Nouveau style Liquid Glass"
+            "value" : "Style Liquid Glass"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新しいLiquid Glassのよそおい"
+            "value" : "Liquid Glassのよそおい"
           }
         }
       }

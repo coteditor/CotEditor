@@ -164,7 +164,7 @@ private extension NewFeature {
         switch self {
             case .liquidGlass:
                 String(localized: "NewFeature.liquidGlass.label",
-                       defaultValue: "New Liquid Glass Look", table: "WhatsNew")
+                       defaultValue: "Liquid Glass Look", table: "WhatsNew")
         }
     }
     
