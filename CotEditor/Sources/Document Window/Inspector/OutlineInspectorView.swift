@@ -191,7 +191,6 @@ struct OutlineInspectorView: View {
             List(items, selection: $model.selection) { item in
                 OutlineRowView(item: item, fontSize: self.fontSize)
                     .listRowSeparator(.hidden)
-                    .frame(height: self.fontSize)
             }
             .overlay {
                 if !self.filterString.isEmpty, items.isEmpty {
@@ -269,6 +268,7 @@ private struct OutlineRowView: View {
                     .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
                 .mergingAttributes(self.item.value.attributes(fontSize: fontSize), mergePolicy: .keepCurrent)
             )
+            .lineLimit(1)
         }
     }
 }
