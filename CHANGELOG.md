@@ -28,8 +28,8 @@
 
 ### Known Issues
 
-- The layout of the print panel accessory is broken.
-- The Quick Action bar doesn't update its size after typing.
+- The pop-up buttons in she print dialog accessory are not drawn correctly on macOS 26 (FB19045772).
+- The Quick Action bar doesn't update its size after typing on macOS 26.
 
 
 
