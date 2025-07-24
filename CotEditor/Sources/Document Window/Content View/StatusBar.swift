@@ -218,7 +218,15 @@ struct StatusBar: View {
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
         .buttonStyle(.borderless)
         .controlSize(.small)
-        .padding(isLiquidGlass ? .horizontal : .leading)
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .containerCornerOffset(.horizontal, sizeToFit: true)
+            } else {
+                content
+            }
+        }
+        .padding(.leading)
         .frame(height: isLiquidGlass ? 32 : 23)
         .background(.windowBackground)
     }
