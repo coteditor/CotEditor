@@ -192,5 +192,9 @@ public final class InspectorTabView: NSTabView {
             }
             self.segmentedControl.setToolTip(item.label, forSegment: segment)
         }
+        
+        if let item = self.selectedTabViewItem, let index = self.tabViewItems.firstIndex(of: item) {
+            self.segmentedControl.selectedSegment = index
+        }
     }
 }
