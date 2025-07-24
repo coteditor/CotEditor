@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import Observation
 import Combine
 import AppKit.NSTextStorage
 import FileEncoding

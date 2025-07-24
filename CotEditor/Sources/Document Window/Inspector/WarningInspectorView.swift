@@ -24,66 +24,19 @@
 //
 
 import SwiftUI
-import Observation
 
-final class WarningInspectorViewController: NSHostingController<WarningInspectorView> {
+struct WarningInspectorView: View, HostedPaneView {
     
-    // MARK: Public Properties
-    
-    let model = WarningInspectorView.Model()
-    
-    
-    // MARK: Lifecycle
-    
-    required init(document: Document?) {
-        
-        self.model.document = document
-        
-        super.init(rootView: WarningInspectorView(model: self.model))
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.isPresented = true
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.isPresented = false
-    }
-}
-
-
-struct WarningInspectorView: View {
-    
-    @MainActor @Observable final class Model {
-        
-        fileprivate(set) var isPresented = false
-        var document: Document?
-    }
-    
-    
-    @State var model: Model
+    var document: DataDocument?
+    var isPresented = false
     
     
     var body: some View {
         
         VSplitView {
-            IncompatibleCharactersView(document: self.model.isPresented ? self.model.document : nil)
+            IncompatibleCharactersView(document: self.isPresented ? self.document as? Document : nil)
                 .padding(.bottom, 12)
-            InconsistentLineEndingsView(document: self.model.isPresented ? self.model.document : nil)
+            InconsistentLineEndingsView(document: self.isPresented ? self.document as? Document : nil)
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
@@ -96,5 +49,5 @@ struct WarningInspectorView: View {
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
-    WarningInspectorView(model: .init())
+    WarningInspectorView(isPresented: true)
 }

@@ -24,59 +24,18 @@
 //
 
 import SwiftUI
-import Observation
 import Combine
 import Defaults
 import Syntax
 import StringUtils
 
-final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView> {
-    
-    // MARK: Public Properties
-    
-    let model = OutlineInspectorViewModel()
-    
-    
-    // MARK: Lifecycle
-    
-    required init(document: Document?) {
-        
-        self.model.document = document
-        
-        super.init(rootView: OutlineInspectorView(model: self.model))
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.isPresented = true
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.isPresented = false
-    }
-}
-
-
-@MainActor @Observable final class OutlineInspectorViewModel: OutlineInspectorView.ModelProtocol {
-    
-    var items: [Item] = []
-    var selection: Item.ID?  { didSet { self.selectItem(id: selection) } }
+@MainActor @Observable private final class OutlineInspectorViewModel: OutlineInspectorView.ModelProtocol {
     
     var isPresented = false  { didSet { self.invalidateObservation() } }
     var document: Document?  { didSet { self.invalidateObservation() } }
+    
+    var items: [Item] = []
+    var selection: Item.ID?  { didSet { self.selectItem(id: selection) } }
     
     private var isOwnSelectionChange = false
     private var documentObserver: AnyCancellable?
@@ -157,18 +116,24 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
 
 // MARK: - View
 
-struct OutlineInspectorView: View {
+struct OutlineInspectorView: View, HostedPaneView {
     
     @MainActor protocol ModelProtocol {
         
         typealias Item = OutlineItem
+        
+        var document: Document? { get set }
+        var isPresented: Bool { get set }
         
         var items: [Item] { get }
         var selection: Item.ID? { get set }
     }
     
     
-    @State var model: any ModelProtocol
+    var document: DataDocument?
+    var isPresented: Bool = false
+    
+    @State var model: any ModelProtocol = OutlineInspectorViewModel()
     
     @AppStorage(.outlineViewFontSize) private var fontSize: Double
     
@@ -216,6 +181,12 @@ struct OutlineInspectorView: View {
                 .autosaveName("OutlineSearch")
                 .accessibilityAddTraits(.isSearchField)
                 .controlSize(.regular)
+        }
+        .onChange(of: self.document, initial: true) { _, newValue in
+            self.model.document = newValue as? Document
+        }
+        .onChange(of: self.isPresented, initial: true) { _, newValue in
+            self.model.isPresented = newValue
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "InspectorPane.outline.label",
@@ -266,7 +237,7 @@ private struct OutlineRowView: View {
                                      with: AttributeContainer
                     .backgroundColor(.findHighlightColor)
                     .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
-                .mergingAttributes(self.item.value.attributes(fontSize: fontSize), mergePolicy: .keepCurrent)
+                .mergingAttributes(self.item.value.attributes(fontSize: self.fontSize), mergePolicy: .keepCurrent)
             )
             .lineLimit(1)
         }
@@ -280,6 +251,9 @@ private struct OutlineRowView: View {
     
     @MainActor struct MockedModel: OutlineInspectorView.ModelProtocol {
         
+        var document: Document?
+        var isPresented: Bool = true
+        
         var items: [Item] = []
         var selection: Item.ID?
     }
@@ -291,5 +265,5 @@ private struct OutlineRowView: View {
         OutlineItem(title: "Hund", range: .notFound, style: [.underline]),
     ])
     
-    return OutlineInspectorView(model: model)
+    return OutlineInspectorView(isPresented: true, model: model)
 }

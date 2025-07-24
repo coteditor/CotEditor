@@ -122,12 +122,12 @@ final class InspectorViewController: NSTabViewController {
         
         for item in self.tabViewItems {
             switch item.viewController {
-                case let viewController as DocumentInspectorViewController:
-                    viewController.model.document = self.document
-                case let viewController as OutlineInspectorViewController:
-                    viewController.model.document = self.document as? Document
-                case let viewController as WarningInspectorViewController:
-                    viewController.model.document = self.document as? Document
+                case let viewController as InspectorPaneHostingController<DocumentInspectorView>:
+                    viewController.rootView.document = self.document
+                case let viewController as InspectorPaneHostingController<OutlineInspectorView>:
+                    viewController.rootView.document = self.document
+                case let viewController as InspectorPaneHostingController<WarningInspectorView>:
+                    viewController.rootView.document = self.document
                 default:
                     preconditionFailure()
             }
@@ -168,11 +168,11 @@ private extension InspectorPane {
         
         switch self {
             case .document:
-                DocumentInspectorViewController(document: document)
+                InspectorPaneHostingController(rootView: DocumentInspectorView(document: document))
             case .outline:
-                OutlineInspectorViewController(document: document as? Document)
+                InspectorPaneHostingController(rootView: OutlineInspectorView(document: document))
             case .warnings:
-                WarningInspectorViewController(document: document as? Document)
+                InspectorPaneHostingController(rootView: WarningInspectorView(document: document))
         }
     }
 }

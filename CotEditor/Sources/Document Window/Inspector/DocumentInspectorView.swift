@@ -24,63 +24,23 @@
 //
 
 import SwiftUI
-import Observation
 import Combine
 import FileEncoding
 import FilePermissions
 import LineEnding
 import Syntax
 
-final class DocumentInspectorViewController: NSHostingController<DocumentInspectorView> {
+@MainActor @Observable private final class DocumentInspectorViewModel: DocumentInspectorView.ModelProtocol {
     
-    // MARK: Public Properties
-    
-    let model = DocumentInspectorViewModel()
-    
-    
-    // MARK: Lifecycle
-    
-    required init(document: DataDocument?) {
-        
-        self.model.document = document
-        
-        super.init(rootView: DocumentInspectorView(model: self.model))
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.isPresented = true
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.isPresented = false
-    }
-}
-
-
-@MainActor @Observable final class DocumentInspectorViewModel: DocumentInspectorView.ModelProtocol {
+    var isPresented = false  { didSet { self.invalidateObservation() } }
+    var document: DataDocument?  { willSet { self.cancelObservation() } didSet { self.didUpdateDocument() } }
     
     var attributes: FileAttributes?  { self.document?.fileAttributes }
     var fileURL: URL?
     var textSettings: TextSettings?
     var countResult: EditorCounter.Result?  { (self.document as? Document)?.counter.result }
     
-    fileprivate var isPresented = false  { didSet { self.invalidateObservation() } }
-    var document: DataDocument?  { willSet { self.cancelObservation() } didSet { self.didUpdateDocument() } }
-    
+    private var urlObserver: AnyCancellable?
     private var observers: Set<AnyCancellable> = []
     
     
@@ -115,26 +75,20 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     /// Starts observations on the document.
     private func startObservation() {
         
+        (document as? Document)?.counter.updatesAll = true
+        
+        self.urlObserver = document?.publisher(for: \.fileURL, options: .initial)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.fileURL = $0 }
+        
         if let document = document as? Document {
-            document.counter.updatesAll = true
-            
             self.observers = [
-                document.publisher(for: \.fileURL, options: .initial)
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.fileURL = $0 },
                 document.$fileEncoding
                     .sink { [weak self] in self?.textSettings?.encoding = $0 },
                 document.$lineEnding
                     .sink { [weak self] in self?.textSettings?.lineEnding = $0 },
                 document.$mode
                     .sink { [weak self] in self?.textSettings?.mode = $0 },
-            ]
-            
-        } else if let document {
-            self.observers = [
-                document.publisher(for: \.fileURL, options: .initial)
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.fileURL = $0 },
             ]
         }
     }
@@ -144,6 +98,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     private func cancelObservation() {
         
         (self.document as? Document)?.counter.updatesAll = false
+        self.urlObserver = nil
         self.observers.removeAll()
     }
 }
@@ -159,9 +114,12 @@ struct TextSettings {
 }
 
 
-struct DocumentInspectorView: View {
+struct DocumentInspectorView: View, HostedPaneView {
     
     @MainActor protocol ModelProtocol {
+        
+        var document: DataDocument? { get set }
+        var isPresented: Bool { get set }
         
         var attributes: FileAttributes? { get }
         var fileURL: URL? { get }
@@ -170,7 +128,10 @@ struct DocumentInspectorView: View {
     }
     
     
-    var model: any ModelProtocol
+    var document: DataDocument?
+    var isPresented: Bool = false
+    
+    @State var model: any ModelProtocol = DocumentInspectorViewModel()
     
     
     var body: some View {
@@ -195,6 +156,12 @@ struct DocumentInspectorView: View {
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
+        }
+        .onChange(of: self.document, initial: true) { _, newValue in
+            self.model.document = newValue
+        }
+        .onChange(of: self.isPresented, initial: true) { _, newValue in
+            self.model.isPresented = newValue
         }
         .accessibilityLabel(String(localized: "InspectorPane.document.label",
                                    defaultValue: "Document Inspector", table: "Document"))
@@ -430,12 +397,13 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 
 @MainActor private struct MockedModel: DocumentInspectorView.ModelProtocol {
     
+    var document: DataDocument?
+    var isPresented: Bool = true
+    
     var attributes: FileAttributes?
     var fileURL: URL?
     var textSettings: TextSettings?
     var countResult: EditorCounter.Result?
-    
-    var document: DataDocument?
 }
 
 
@@ -467,5 +435,5 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 
 
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 520)) {
-    DocumentInspectorView(model: MockedModel())
+    DocumentInspectorView(isPresented: true, model: MockedModel())
 }
