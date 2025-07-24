@@ -274,16 +274,16 @@ private struct DocumentStatusBar: View {
                     .labelStyle(.iconOnly)
             }
             EditorCountView(result: self.document.counter.result)
+                .layoutPriority(-1)
             
             Spacer()
             
-            if let fileSize = self.document.fileAttributes?.size {
-                Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
-                    .monospacedDigit()
-                    .help(String(localized: "File size", table: "Document", comment: "tooltip"))
-            } else {
-                Text.none
-            }
+            LabeledContent(String(localized: "File size", table: "Document"),
+                           optional: self.document.fileAttributes?.size.formatted(.byteCount(style: .file, spellsOutZero: false)))
+            .monospacedDigit()
+            .labelsHidden()
+            .help(String(localized: "File size", table: "Document", comment: "tooltip"))
+            .fixedSize()
             
             HStack(spacing: 4) {
                 Divider()
