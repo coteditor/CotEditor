@@ -1000,26 +1000,26 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="5h2-9z-aol"/>
-                                                    <menuItem title="Half-width to Full-width" secondaryImage="textformat.characters.arrow.left.and.right" catalog="system" id="dVK-1s-xJq">
+                                                    <menuItem title="Convert to Full Width" secondaryImage="textformat.characters.arrow.left.and.right" catalog="system" id="dVK-1s-xJq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidth:" target="Ady-hI-5gd" id="Kzj-vP-XAT"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Full-width to Half-width" id="Skr-vI-7VN">
+                                                    <menuItem title="Convert to Half Width" id="Skr-vI-7VN">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeHalfwidth:" target="Ady-hI-5gd" id="gsG-iw-ufU"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="ASCII to Full-width ASCII" id="586">
+                                                    <menuItem title="Convert Alphanumeric Text to Full Width" id="586">
                                                         <attributedString key="attributedTitle"/>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidthRoman:" target="Ady-hI-5gd" id="0zm-yg-bCm"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Full-width ASCII to ASCII" id="588">
+                                                    <menuItem title="Convert Alphanumeric Text to Half Width" id="588">
                                                         <attributedString key="attributedTitle"/>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

@@ -9218,192 +9218,192 @@
       }
     },
     "586.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"ASCII to Full-width ASCII\"; ObjectID = \"586\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Convert Alphanumeric Text to Full Width\"; ObjectID = \"586\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII do Full-width ASCII"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ASCII zu Vollbreiten-ASCII"
+            "value" : "Alphanumerischen Text in volle Breite konvertieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "ASCII to Full-width ASCII"
+            "value" : "Convert Alphanumeric Text to Full Width"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ASCII to Full-width ASCII"
+            "value" : "Convert Alphanumeric to Full Width"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ASCII a ASCII de ancho completo"
+            "value" : "Convertir texto alfanumérico al ancho máximo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ASCII vers ASCII pleine chasse"
+            "value" : "Convertir le texte alphanumérique en pleine largeur"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Da ASCII ad ASCII a tutta larghezza"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全角英数にする"
+            "value" : "英数を全角に変換"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII를 전각 ASCII로"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ASCII naar volledige breedte ASCII"
+            "value" : "Zet alfanumerieke tekst om naar volledige breedte"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII do ASCII o pełnej szerokości"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII para ASCII de Largura Completa"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII’den Tam Genişlik ASCII’ye"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII到全宽ASCII"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII到全形ASCII"
           }
         }
       }
     },
     "588.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Full-width ASCII to ASCII\"; ObjectID = \"588\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Convert Alphanumeric Text to Half Width\"; ObjectID = \"588\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Full-width ASCII do ASCII"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vollbreiten-ASCII zu ASCII"
+            "value" : "Alphanumerischen Text in halbe Breite konvertieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Full-width ASCII to ASCII"
+            "value" : "Convert Alphanumeric Text to Half Width"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full-width ASCII to ASCII"
+            "value" : "Convert Alphanumeric to Half Width"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ASCII de ancho completo a ASCII"
+            "value" : "Convertir texto alfanumérico al ancho medio"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ASCII pleine chasse vers ASCII"
+            "value" : "Convertir le texte alphanumérique en demi-largeur"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Da ASCII a tutta larghezza ad ASCII"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "半角英数にする"
+            "value" : "英数を半角に変換"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "전각 ASCII를 ASCII로"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volledige breedte ASCII naar ASCII"
+            "value" : "Zet alfanumerieke tekst om naar halve breedte"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII o pełnej szerokości do ASCII"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ASCII de Largura Completa para ASCII"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tam Genişlik ASCII’den ASCII’ye"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "全宽ASCII到ASCII"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "全形ASCII到ASCII"
           }
         }
@@ -13058,97 +13058,97 @@
       }
     },
     "dVK-1s-xJq.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Half-width to Full-width\"; ObjectID = \"dVK-1s-xJq\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Convert to Full Width\"; ObjectID = \"dVK-1s-xJq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Half-width do Full-width"
+            "value" : "Převést na plnou šířku"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Halbbreiten zu Vollbreiten"
+            "value" : "Text in volle Breite konvertieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Half-width to Full-width"
+            "value" : "Convert to Full Width"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Half-width to Full-width"
+            "value" : "Convert to Full Width"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Medio ancho a Ancho completo"
+            "value" : "Convertir al ancho máximo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pleine chasse vers Demi-chasse"
+            "value" : "Convertir le texte en pleine largeur"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Da mezza ampiezza a tutta ampiezza"
+            "value" : "Converti in larghezza intera"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全角にする"
+            "value" : "全角に変換"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "반각을 전각으로"
+            "value" : "텍스트를 전각으로 변환"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Halve breedte naar volledige breedte"
+            "value" : "Zet tekst om naar volledige breedte"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Szerokość połówkowa do pełnej szerokości"
+            "value" : "Konwertuj tekst na pełną szerokość"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meia Largura para Largura Completa"
+            "value" : "Converter para Largura Total"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yarım Genişlikten Tam Genişliğe"
+            "value" : "Tam Genişliğe Dönüştür"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "半宽到全宽"
+            "value" : "转换为全角"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "半形到全形"
+            "value" : "轉換成全寬文字"
           }
         }
       }
@@ -20444,97 +20444,97 @@
       }
     },
     "Skr-vI-7VN.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Full-width to Half-width\"; ObjectID = \"Skr-vI-7VN\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Convert to Half Width\"; ObjectID = \"Skr-vI-7VN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full-width do Half-width"
+            "value" : "Převést na poloviční šířku"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vollbreiten zu Halbbreiten"
+            "value" : "Text in halbe Breite konvertieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Full-width to Half-width"
+            "value" : "Convert to Half Width"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full-width to Half-width"
+            "value" : "Convert to Half Width"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ancho completo a Medio Ancho"
+            "value" : "Convertir al ancho medio"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Demi-chasse vers pleine chasse"
+            "value" : "Convertir le texte en demi-largeur"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Da tutta ampiezza a mezza ampiezza"
+            "value" : "Converti in mezza larghezza"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "半角にする"
+            "value" : "半角に変換"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "전각을 반각으로"
+            "value" : "텍스트를 반각으로 변환"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volledige breedte naar halve breedte"
+            "value" : "Zet tekst om naar halve breedte"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pełna szerokość do szerokości połówkowej"
+            "value" : "Konwertuj tekst na pół szerokości"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Largura Completa para Meia Largura"
+            "value" : "Converter para Metade da Largura"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tam Genişlikten Yarım Genişliğe"
+            "value" : "Yarım Genişliğe Dönüştür"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全宽到半宽"
+            "value" : "转换为半角"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全形到半形"
+            "value" : "轉換成半寬文字"
           }
         }
       }
