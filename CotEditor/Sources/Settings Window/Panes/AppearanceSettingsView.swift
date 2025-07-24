@@ -132,19 +132,28 @@ struct AppearanceSettingsView: View {
                 .labelsHidden()
             }
             
-            GridRow(alignment: .center) {
+            GridRow(alignment: .firstTextBaseline) {
                 Text("Editor opacity:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "windowAlpha", in: self.accessibility)
                 
                 HStack {
-                    OpacitySlider(value: $windowAlpha)
-                        .frame(width: 240)
+                    Slider(value: $windowAlpha, in: 0.2...1) {
+                        EmptyView()
+                    } minimumValueLabel: {
+                        OpacitySample(opacity: 0.2)
+                            .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
+                    } maximumValueLabel: {
+                        OpacitySample(opacity: 1)
+                            .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
+                    }
+                    .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
+                    .frame(width: 240)
                     
                     TextField(value: $windowAlpha, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
-                        .frame(width: 48)
+                        .frame(width: isLiquidGlass ? 64 : 48)
                 }
                 .accessibilityLabeledPair(role: .content, id: "windowAlpha", in: self.accessibility)
             }

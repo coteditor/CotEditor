@@ -1,5 +1,5 @@
 //
-//  OpacitySlider.swift
+//  OpacitySample.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,29 +25,7 @@
 
 import SwiftUI
 
-struct OpacitySlider: View {
-    
-    @Binding var value: Double
-    
-    var bounds: ClosedRange<Double> = 0.2...1
-    
-    
-    var body: some View {
-        
-        Slider(value: $value, in: self.bounds) {
-            EmptyView()
-        } minimumValueLabel: {
-            OpacitySample(opacity: self.bounds.lowerBound)
-                .help(String(localized: "OpacitySlider.minimumValue.tooltip", defaultValue: "Transparent", table: "Control"))
-        } maximumValueLabel: {
-            OpacitySample(opacity: self.bounds.upperBound)
-                .help(String(localized: "OpacitySlider.maximumValue.tooltip", defaultValue: "Opaque", table: "Control"))
-        }
-    }
-}
-
-
-private struct OpacitySample: View {
+struct OpacitySample: View {
     
     var opacity: Double
     
@@ -64,11 +42,13 @@ private struct OpacitySample: View {
                     .fill(.background)
                     .strokeBorder(.tertiary)
                 
-                Triangle()
-                    .fill(.primary)
-                    .opacity(1 - self.opacity)
-                    .clipShape(.rect(cornerRadius: radius, style: .continuous)
-                        .inset(by: self.inset))
+                if self.opacity < 1 {
+                    Triangle()
+                        .fill(.primary)
+                        .opacity(1 - self.opacity)
+                        .clipShape(.rect(cornerRadius: radius, style: .continuous)
+                            .inset(by: self.inset))
+                }
             }
         }
         .aspectRatio(1, contentMode: .fit)
@@ -97,14 +77,7 @@ private struct OpacitySample: View {
 
 // MARK: - Preview
 
-#Preview(traits: .fixedLayout(width: 200, height: 50)) {
-    @Previewable @State var value = 0.6
-    
-    OpacitySlider(value: $value)
-        .padding()
-}
-
-#Preview("OpacitySample") {
+#Preview {
     OpacitySample(opacity: 0.5)
         .frame(width: 16, height: 16)
         .padding()
