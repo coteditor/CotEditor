@@ -25,7 +25,6 @@
 
 import SwiftUI
 import AppKit
-import Observation
 import OSLog
 import Shortcut
 

@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import Observation
 import AppKit.NSOpenPanel
 import FileEncoding
 
