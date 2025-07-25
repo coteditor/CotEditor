@@ -120,7 +120,7 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
         }
         
         // draw chevron
-        let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow", bundle: .module))
+        let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow", bundle: .packageResources))
         chevron.tinted(with: labelColor)
             .draw(in: rect.insetBy(dx: (rect.width - chevron.size.width) / 2,
                                    dy: (rect.height - chevron.size.height) / 2))
