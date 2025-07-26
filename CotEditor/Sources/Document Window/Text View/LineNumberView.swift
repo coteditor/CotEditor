@@ -128,9 +128,14 @@ final class LineNumberView: NSView {
     override var intrinsicContentSize: NSSize {
         
         switch self.orientation {
-            case .horizontal: NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
-            case .vertical:   NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
-            @unknown default: fatalError()
+            case .horizontal:
+                NSSize(width: self.thickness + self.safeAreaInsets.left + self.safeAreaInsets.right,
+                       height: NSView.noIntrinsicMetric)
+            case .vertical:
+                NSSize(width: NSView.noIntrinsicMetric,
+                       height: self.thickness)
+            @unknown default:
+                fatalError()
         }
     }
     
@@ -244,7 +249,7 @@ final class LineNumberView: NSView {
         let lineOffset = scale * layoutManager.baselineOffset(for: textView.layoutOrientation)
         switch textView.layoutOrientation {
             case .horizontal:
-                context.translateBy(x: self.thickness, y: relativePoint.y - originOffset)
+                context.translateBy(x: self.safeAreaRect.maxX, y: relativePoint.y - originOffset)
             case .vertical:
                 context.translateBy(x: relativePoint.x - originOffset, y: 0)
             @unknown default: fatalError()
