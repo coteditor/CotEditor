@@ -30,7 +30,6 @@ import Defaults
 import FileEncoding
 import LineEnding
 
-@available(macOS, deprecated: 26, message: "Use StatusBarAccessoryViewController")
 final class StatusBarController: NSHostingController<StatusBar> {
     
     let model: StatusBar.Model
@@ -47,54 +46,6 @@ final class StatusBarController: NSHostingController<StatusBar> {
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.onAppear()
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.onDisappear()
-    }
-}
-
-
-@available(macOS 26, *)
-final class StatusBarAccessoryViewController: NSSplitViewItemAccessoryViewController {
-    
-    let model: StatusBar.Model
-    
-    
-    required init(model: StatusBar.Model) {
-        
-        self.model = model
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        self.automaticallyAppliesContentInsets = false
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func loadView() {
-        
-        self.view = NSHostingView(rootView: VStack(spacing: 0) {
-            Divider()
-            StatusBar(model: self.model)
-        })
     }
     
     
