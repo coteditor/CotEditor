@@ -136,7 +136,7 @@ private extension StatusBar.Model {
         let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
         self.defaultsObserver = Publishers.MergeMany(publishers)
             .map { _ in UserDefaults.standard.statusBarEditorInfo }
-            .sink { [weak self] in self?.document?.counter.statusBarRequirements = $0 }
+            .sink { [weak self] in (self?.document as? Document)?.counter.statusBarRequirements = $0 }
     }
     
     
@@ -146,16 +146,16 @@ private extension StatusBar.Model {
         self.isActive = false
         
         self.defaultsObserver = nil
-        self.document?.counter.statusBarRequirements = []
+        (self.document as? Document)?.counter.statusBarRequirements = []
     }
     
     
     /// Updates observations.
-    private func invalidateObservation(document: Document?) {
+    private func invalidateObservation(document: DataDocument?) {
         
-        self.document?.counter.statusBarRequirements = []
+        (self.document as? Document)?.counter.statusBarRequirements = []
         
-        if let document, self.isActive {
+        if let document = document as? Document, self.isActive {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
         }
     }
@@ -168,13 +168,13 @@ struct StatusBar: View {
     
     @MainActor @Observable final class Model {
         
-        private(set) var document: Document?
+        private(set) var document: DataDocument?
         
         private var isActive: Bool = false
         private var defaultsObserver: AnyCancellable?
         
         
-        init(document: Document? = nil) {
+        init(document: DataDocument? = nil) {
             
             self.document = document
         }
@@ -183,7 +183,7 @@ struct StatusBar: View {
         /// Updates the represented document.
         ///
         /// - Parameter document: The new document, or `nil`.
-        func updateDocument(to document: Document?) {
+        func updateDocument(to document: DataDocument?) {
             
             self.invalidateObservation(document: document)
             self.document = document
@@ -205,7 +205,7 @@ struct StatusBar: View {
                 CoffeeBadge(type: self.badgeType)
             }
             
-            if let document = self.model.document {
+            if let document = self.model.document as? Document {
                 NotEditableBadge(document: document)
                 EditorCountView(result: document.counter.result)
                     .layoutPriority(-1)
@@ -215,6 +215,9 @@ struct StatusBar: View {
             
             if let document = self.model.document {
                 FileSizeView(size: document.fileAttributes?.size)
+            }
+            
+            if let document = self.model.document as? Document {
                 DocumentStatusBar(document: document)
             }
         }

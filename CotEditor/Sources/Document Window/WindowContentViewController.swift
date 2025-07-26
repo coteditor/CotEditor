@@ -381,6 +381,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             self.contentViewController.view.setAccessibilityLabel(self.document?.displayName ?? "")
         }
         
-        self.statusBarModel.updateDocument(to: self.document as? Document)
+        self.statusBarModel.updateDocument(to: self.document)
     }
 }

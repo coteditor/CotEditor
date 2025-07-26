@@ -15,6 +15,7 @@
 - Update the application icon to the Liquid Glass style.
 - The options to highlight matching braces has been removed and they are now always highlighted.
 - Move selected items to the Trash by the Delete action in the file browser.
+- Show also the file size of the previewed document in the status bar.
 - Deprecate the feature to change the editor opacity per window.
 - Deprecate the feature of installing a custom theme by simply opening the file in CotEditor.
 - Deprecate the “Hiragana to Katakana” and “Katakana to Hiragana” commands in the Text > Transformations menu.
