@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ final class BidiScroller: NSScroller {
         
         set {
             var newValue = newValue
-            if self.scrollView?.isInconsistentScrollerDirection == true {
+            if self.scrollView?.isInconsistentContentDirection == true {
                 newValue.origin.x = self.originX
             }
             super.frame = newValue
@@ -67,7 +67,7 @@ final class BidiScroller: NSScroller {
         
         // workaround that the vertical scroller is cropped when .knobSlot is not shown (macOS 12)
         if self.isVertical,
-           self.scrollView?.isInconsistentScrollerDirection == true,
+           self.scrollView?.isInconsistentContentDirection == true,
            self.scrollerStyle == .overlay,
            part == .knob,
            partRect.width != 0,
@@ -102,11 +102,11 @@ final class BidiScroller: NSScroller {
         
         guard let scrollView = self.scrollView else { return 0 }
         
-        assert(scrollView.isInconsistentScrollerDirection)
+        assert(scrollView.isInconsistentContentDirection)
         
         let inset = scrollView.contentInsets.left + scrollView.scrollerInsets.left
         
-        switch (scrollView.scrollerDirection, self.isVertical) {
+        switch (scrollView.contentDirection, self.isVertical) {
             case (.leftToRight, true):
                 // move vertical scroller to the right side
                 return scrollView.frame.width - self.thickness
@@ -143,7 +143,7 @@ final class BidiScroller: NSScroller {
         
         guard
             self.isVertical,
-            self.scrollView?.isInconsistentScrollerDirection == true
+            self.scrollView?.isInconsistentContentDirection == true
         else { return }
         
         let flip = NSAffineTransform()

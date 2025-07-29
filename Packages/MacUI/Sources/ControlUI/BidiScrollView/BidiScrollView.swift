@@ -33,12 +33,12 @@ public final class BidiScrollView: NSScrollView {
     
     // MARK: Public Properties
     
-    public var scrollerDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
+    public var contentDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
     
     
-    // MARK: internal Properties
+    // MARK: Internal Properties
     
-    var isInconsistentScrollerDirection: Bool { self.scrollerDirection != self.userInterfaceLayoutDirection }
+    var isInconsistentContentDirection: Bool { self.contentDirection != self.userInterfaceLayoutDirection }
     
     
     // MARK: View Methods
@@ -62,32 +62,71 @@ public final class BidiScrollView: NSScrollView {
         
         super.tile()
         
-        // add a space for the vertical scroller to the left edge if the style is legacy
+        guard self.isInconsistentContentDirection else { return }
+        
+        self.adjustContentInsets()
+        self.tileRulerView()
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Adjusts the content insets by taking the preserved scroller area for the legacy scroll style into the account.
+    ///
+    /// - Note: The `legacy` scroller style is used when the user sets System Settings > Appearances > Show scroll bars to “Always.” (macOS 15, 2025-07)
+    private func adjustContentInsets() {
+        
+        assert(self.isInconsistentContentDirection)
+        
         guard
-            self.isInconsistentScrollerDirection,
             self.scrollerStyle == .legacy,
             self.hasVerticalScroller,
             let scroller = self.verticalScroller,
             !scroller.isHidden
         else { return }
         
-        let scrollerThickness = scroller.thickness
+        let thickness = scroller.thickness
         
-        switch self.scrollerDirection {
+        switch self.contentDirection {
             case .leftToRight:
                 if self.contentInsets.left != 0 {
-                    self.contentView.contentInsets.left -= scrollerThickness
-                    self.contentView.contentInsets.right += scrollerThickness
+                    self.contentView.contentInsets.left -= thickness
+                    self.contentView.contentInsets.right += thickness
                 } else {
                     self.contentView.frame.origin.x = 0
                 }
             case .rightToLeft:
                 if self.contentInsets.right != 0 {
-                    self.contentView.contentInsets.left += scrollerThickness
-                    self.contentView.contentInsets.right -= scrollerThickness
+                    self.contentView.contentInsets.left += thickness
+                    self.contentView.contentInsets.right -= thickness
                 } else {
-                    self.contentView.frame.origin.x = scrollerThickness
+                    self.contentView.frame.origin.x = thickness
                 }
+            @unknown default:
+                assertionFailure()
+        }
+    }
+    
+    
+    /// Lays out the vertical ruler view by taking the content layout direction into the account.
+    private func tileRulerView() {
+        
+        assert(self.isInconsistentContentDirection)
+        
+        guard
+            self.hasVerticalRuler,
+            self.rulersVisible,
+            let rulerView = self.verticalRulerView,
+            !rulerView.isHidden
+        else { return }
+        
+        switch self.contentDirection {
+            case .leftToRight:
+                rulerView.frame.origin.x = 0
+                self.contentView.contentInsets.right = 0
+            case .rightToLeft:
+                rulerView.frame.origin.x = self.frame.maxX - rulerView.requiredThickness
+                self.contentView.contentInsets.left = 0
             @unknown default:
                 assertionFailure()
         }
