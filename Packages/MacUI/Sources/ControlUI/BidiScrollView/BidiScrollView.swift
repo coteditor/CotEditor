@@ -33,12 +33,12 @@ public final class BidiScrollView: NSScrollView {
     
     // MARK: Public Properties
     
-    public var scrollerDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
+    public var contentDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
     
     
-    // MARK: internal Properties
+    // MARK: Internal Properties
     
-    var isInconsistentScrollerDirection: Bool { self.scrollerDirection != self.userInterfaceLayoutDirection }
+    var isInconsistentContentDirection: Bool { self.contentDirection != self.userInterfaceLayoutDirection }
     
     
     // MARK: View Methods
@@ -62,9 +62,20 @@ public final class BidiScrollView: NSScrollView {
         
         super.tile()
         
-        // add a space for the vertical scroller to the left edge if the style is legacy
+        guard self.isInconsistentContentDirection else { return }
+        
+        self.adjustContentInsets()
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Adjusts the content insets by taking the preserved scroller area for the legacy scroll style into the account.
+    ///
+    /// - Note: The `legacy` scroller style is used when the user sets System Settings > Appearances > Show scroll bars to “Always.” (macOS 15, 2025-07)
+    private func adjustContentInsets() {
+        
         guard
-            self.isInconsistentScrollerDirection,
             self.scrollerStyle == .legacy,
             self.hasVerticalScroller,
             let scroller = self.verticalScroller,
@@ -73,7 +84,7 @@ public final class BidiScrollView: NSScrollView {
         
         let scrollerThickness = scroller.thickness
         
-        switch self.scrollerDirection {
+        switch self.contentDirection {
             case .leftToRight:
                 if self.contentInsets.left != 0 {
                     self.contentView.contentInsets.left -= scrollerThickness

@@ -190,7 +190,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
                 .sink { [weak self] direction in
                     self?.stackView?.userInterfaceLayoutDirection = direction
-                    (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
+                    (self?.textView.enclosingScrollView as? BidiScrollView)?.contentDirection = direction
                     self?.lineNumberView.layoutDirection = direction
                 },
         ]
