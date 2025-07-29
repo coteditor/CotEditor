@@ -54,9 +54,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     private let document: Document
     
-    private var stackView: NSStackView?  { self.view as? NSStackView }
     @ViewLoading private var lineNumberView: LineNumberView
-    
     private weak var advancedCounterView: NSView?
     
     private var observers: Set<AnyCancellable> = []
@@ -105,8 +103,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         scrollView.documentView = textView
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
-        let lineNumberView = LineNumberView()
-        lineNumberView.textView = textView
+        let lineNumberView = LineNumberView(textView: textView)
         
         let stackView = NSStackView(views: [lineNumberView, scrollView])
         stackView.spacing = 0
@@ -176,7 +173,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             // observe text orientation for line number view
             self.textView.publisher(for: \.layoutOrientation, options: .initial)
                 .sink { [weak self] orientation in
-                    self?.stackView?.orientation = switch orientation {
+                    (self?.view as? NSStackView)?.orientation = switch orientation {
                         case .horizontal: .horizontal
                         case .vertical: .vertical
                         @unknown default: fatalError()
@@ -184,12 +181,12 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                     self?.lineNumberView.orientation = orientation
                 },
             
-            // let line number view position follow writing direction
+            // let accessory views' position follow the writing direction
             self.textView.publisher(for: \.baseWritingDirection, options: .initial)
                 .removeDuplicates()
                 .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
                 .sink { [weak self] direction in
-                    self?.stackView?.userInterfaceLayoutDirection = direction
+                    self?.view.userInterfaceLayoutDirection = direction
                     (self?.textView.enclosingScrollView as? BidiScrollView)?.contentDirection = direction
                     self?.lineNumberView.layoutDirection = direction
                 },

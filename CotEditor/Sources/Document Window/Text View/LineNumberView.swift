@@ -35,25 +35,18 @@ final class LineNumberView: NSView {
         var fontSize: CGFloat
         var charWidth: CGFloat
         var digitGlyphs: [CGGlyph]
-        var padding: CGFloat
         var tickLength: CGFloat
         
         
         init(font: CGFont, fontSize: CGFloat, scale: CGFloat) {
             
-            // calculate font size for number
             self.fontSize = scale * fontSize
             
-            // prepare glyphs
             let ctFont = CTFontCreateWithGraphicsFont(font, self.fontSize, nil, nil)
             self.digitGlyphs = (0...9).map { ctFont.glyph(for: Character(String($0))) }
-            
-            // calculate character width by assuming the font is monospace
             self.charWidth = ctFont.advance(for: self.digitGlyphs[8]).width  // use '8' to get width
             
-            // calculate margins
-            self.padding = self.charWidth
-            self.tickLength = scale * fontSize / 3
+            self.tickLength = self.fontSize / 3
         }
     }
     
@@ -72,8 +65,6 @@ final class LineNumberView: NSView {
     
     
     // MARK: Public Properties
-    
-    weak var textView: NSTextView?  { didSet { self.updateTextView(textView) } }
     
     var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
         
@@ -98,17 +89,36 @@ final class LineNumberView: NSView {
     
     private let minimumNumberOfDigits = 3
     
+    private weak var textView: NSTextView?
+    
     private var drawingInfo: DrawingInfo?
     @Invalidating(.display, .intrinsicContentSize) private var thickness: Double = 32
     
     @Invalidating(.display) private var textColor: NSColor = .textColor
     @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
     
-    private var opacityObserver: AnyCancellable?
-    private var textStorageObserver: AnyCancellable?
-    private var textViewSubscriptions: Set<AnyCancellable> = []
+    private var textViewObservers: Set<AnyCancellable> = []
     
     private var draggingInfo: DraggingInfo?
+    
+    
+    // MARK: Lifecycle
+    
+    init(textView: NSTextView) {
+        
+        super.init(frame: .zero)
+        
+        self.textView = textView
+        self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textView.font!.pointSize, scale: textView.scale)
+        
+        self.observeTextView(textView)
+    }
+    
+    
+    required init(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     // MARK: View Methods
@@ -129,29 +139,12 @@ final class LineNumberView: NSView {
         
         switch self.orientation {
             case .horizontal:
-                NSSize(width: self.thickness + self.safeAreaInsets.left + self.safeAreaInsets.right,
-                       height: NSView.noIntrinsicMetric)
+                NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
             case .vertical:
-                NSSize(width: NSView.noIntrinsicMetric,
-                       height: self.thickness)
+                NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
             @unknown default:
                 fatalError()
         }
-    }
-    
-    
-    override func viewWillMove(toWindow newWindow: NSWindow?) {
-        
-        super.viewWillMove(toWindow: newWindow)
-        
-        // remove observations before all observed objects are deallocated
-        if newWindow == nil {
-            self.updateTextView(nil)
-        }
-        
-        // redraw on window opacity change
-        self.opacityObserver = newWindow?.publisher(for: \.isOpaque)
-            .sink { [weak self] _ in self?.needsDisplay = true }
     }
     
     
@@ -159,12 +152,10 @@ final class LineNumberView: NSView {
         
         NSGraphicsContext.saveGraphicsState()
         
-        let fillView = dirtyRect.intersection(self.bounds)
-        
         // fill background
         if self.isOpaque {
             self.backgroundColor.setFill()
-            fillView.fill()
+            dirtyRect.intersection(self.bounds).fill()
         }
         
         // draw separator
@@ -177,7 +168,7 @@ final class LineNumberView: NSView {
             
             self.foregroundColor(.separator).set()
             self.backingAlignedRect(lineRect, options: .alignAllEdgesOutward)
-                .intersection(fillView)
+                .intersection(dirtyRect)
                 .fill()
         }
         
@@ -195,19 +186,6 @@ final class LineNumberView: NSView {
         guard let textView = self.textView else { return 0 }
         
         return textView.lineNumber(at: textView.string.length)
-    }
-    
-    
-    /// Returns foreground color by considering the current accessibility setting.
-    private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
-        
-        let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-            ? strength.rawValue + ColorStrength.highContrastCoefficient
-            : strength.rawValue
-        
-        return fraction < 1
-            ? self.textColor.withAlphaComponent(1 - fraction)
-            : self.textColor
     }
     
     
@@ -274,8 +252,8 @@ final class LineNumberView: NSView {
             
             // calculate base position
             let basePosition = isVerticalText
-                ? CGPoint(x: y + drawingInfo.charWidth * Double(digits.count) / 2, y: 3 * drawingInfo.tickLength)
-                : CGPoint(x: -drawingInfo.padding, y: y)
+                ? CGPoint(x: y + drawingInfo.charWidth * Double(digits.count) / 2, y: drawingInfo.fontSize)
+                : CGPoint(x: -drawingInfo.charWidth, y: y)
             
             // get glyphs and positions
             let positions: [CGPoint] = digits.indices
@@ -297,15 +275,28 @@ final class LineNumberView: NSView {
     }
     
     
+    /// Returns foreground color by considering the current accessibility setting.
+    private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
+        
+        let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            ? strength.rawValue + ColorStrength.highContrastCoefficient
+            : strength.rawValue
+        
+        return fraction < 1
+            ? self.textColor.withAlphaComponent(1 - fraction)
+            : self.textColor
+    }
+    
+    
     /// Updates parameters related to drawing and layout based on textView's status.
     private func invalidateDrawingInfo() {
         
         guard
             let textView = self.textView,
-            let textFont = textView.font
+            let editorFont = textView.font
         else { return assertionFailure() }
         
-        let drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textFont.pointSize, scale: textView.scale)
+        let drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: editorFont.pointSize, scale: textView.scale)
         
         guard self.drawingInfo != drawingInfo else { return }
         
@@ -323,48 +314,37 @@ final class LineNumberView: NSView {
         if let drawingInfo = self.drawingInfo {
             switch self.orientation {
                 case .horizontal:
-                    let requiredNumberOfDigits = max(self.numberOfLines.digits.count, self.minimumNumberOfDigits)
-                    thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
+                    let numberOfDigits = max(self.numberOfLines.digits.count, self.minimumNumberOfDigits)
+                    thickness = max(Double(numberOfDigits + 2) * drawingInfo.charWidth, 32)
                     
                 case .vertical:
-                    thickness = drawingInfo.fontSize + 4 * drawingInfo.tickLength
+                    thickness = max(2 * drawingInfo.fontSize + drawingInfo.tickLength, 20)
                     
-                @unknown default: break
+                @unknown default:
+                    fatalError()
             }
         }
         
-        let minimumThickness: Double = (self.orientation == .vertical) ? 20 : 32
-        self.thickness = max(thickness.rounded(.up), minimumThickness)
+        self.thickness = thickness.rounded(.up)
     }
     
     
     /// Observes textView's update to update line number drawing.
-    private func updateTextView(_ textView: NSTextView?) {
-        
-        guard let textView else {
-            self.textStorageObserver?.cancel()
-            self.textViewSubscriptions.removeAll()
-            return
-        }
+    private func observeTextView(_ textView: NSTextView) {
         
         assert(textView.enclosingScrollView?.contentView != nil)
         
-        self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textView.font!.pointSize, scale: textView.scale)
-        
-        self.textViewSubscriptions = [
-            // observe contents change
-            textView.layoutManager!.publisher(for: \.textStorage, options: .initial)
-                .sink { [weak self] textStorage in
-                    self?.invalidateThickness()
-                    self?.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
-                        .map { $0.object as! NSTextStorage }
-                        .filter { $0.editedMask.contains(.editedCharacters) }
-                        .receive(on: RunLoop.main)  // touch textView on main thread
-                        .sink { [weak self] _ in
-                            // -> The digit of the line numbers affect thickness.
-                            self?.invalidateThickness()
-                            self?.needsDisplay = true
-                        }
+        self.textViewObservers = [
+            NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage)
+                .map { $0.object as! NSTextStorage }
+                .filter { $0.editedMask.contains(.editedCharacters) }
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in
+                    // -> The digit of the line numbers affect thickness.
+                    if self?.orientation == .horizontal {
+                        self?.invalidateThickness()
+                    }
+                    self?.needsDisplay = true
                 },
             
             NotificationCenter.default.publisher(for: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
@@ -400,7 +380,7 @@ final class LineNumberView: NSView {
 
 extension LineNumberView {
     
-    fileprivate struct DraggingInfo {
+    private struct DraggingInfo {
         
         var index: Int
         var selectedRanges: [NSRange]
