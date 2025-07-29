@@ -65,6 +65,7 @@ public final class BidiScrollView: NSScrollView {
         guard self.isInconsistentContentDirection else { return }
         
         self.adjustContentInsets()
+        self.tileRulerView()
     }
     
     
@@ -75,6 +76,8 @@ public final class BidiScrollView: NSScrollView {
     /// - Note: The `legacy` scroller style is used when the user sets System Settings > Appearances > Show scroll bars to “Always.” (macOS 15, 2025-07)
     private func adjustContentInsets() {
         
+        assert(self.isInconsistentContentDirection)
+        
         guard
             self.scrollerStyle == .legacy,
             self.hasVerticalScroller,
@@ -82,23 +85,48 @@ public final class BidiScrollView: NSScrollView {
             !scroller.isHidden
         else { return }
         
-        let scrollerThickness = scroller.thickness
+        let thickness = scroller.thickness
         
         switch self.contentDirection {
             case .leftToRight:
                 if self.contentInsets.left != 0 {
-                    self.contentView.contentInsets.left -= scrollerThickness
-                    self.contentView.contentInsets.right += scrollerThickness
+                    self.contentView.contentInsets.left -= thickness
+                    self.contentView.contentInsets.right += thickness
                 } else {
                     self.contentView.frame.origin.x = 0
                 }
             case .rightToLeft:
                 if self.contentInsets.right != 0 {
-                    self.contentView.contentInsets.left += scrollerThickness
-                    self.contentView.contentInsets.right -= scrollerThickness
+                    self.contentView.contentInsets.left += thickness
+                    self.contentView.contentInsets.right -= thickness
                 } else {
-                    self.contentView.frame.origin.x = scrollerThickness
+                    self.contentView.frame.origin.x = thickness
                 }
+            @unknown default:
+                assertionFailure()
+        }
+    }
+    
+    
+    /// Lays out the vertical ruler view by taking the content layout direction into the account.
+    private func tileRulerView() {
+        
+        assert(self.isInconsistentContentDirection)
+        
+        guard
+            self.hasVerticalRuler,
+            self.rulersVisible,
+            let rulerView = self.verticalRulerView,
+            !rulerView.isHidden
+        else { return }
+        
+        switch self.contentDirection {
+            case .leftToRight:
+                rulerView.frame.origin.x = 0
+                self.contentView.contentInsets.right = 0
+            case .rightToLeft:
+                rulerView.frame.origin.x = self.frame.maxX - rulerView.requiredThickness
+                self.contentView.contentInsets.left = 0
             @unknown default:
                 assertionFailure()
         }
