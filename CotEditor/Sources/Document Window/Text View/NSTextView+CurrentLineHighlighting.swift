@@ -70,7 +70,7 @@ extension CurrentLineHighlighting {
         else { return }
         
         let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
-        let radius = fontSize / 4
+        let radius = fontSize / 3
         
         NSGraphicsContext.saveGraphicsState()
         color.setFill()
