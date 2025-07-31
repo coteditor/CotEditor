@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,18 +35,17 @@ final class PaddingTextFieldCell: NSTextFieldCell {
     
     // MARK: Cell Methods
     
-    /// Adds padding to area to draw text.
     override func drawingRect(forBounds rect: NSRect) -> NSRect {
         
         assert(self.leadingPadding >= 0)
         assert(self.trailingPadding >= 0)
         
+        let drawingRect = super.drawingRect(forBounds: rect)
         let xPadding = (self.userInterfaceLayoutDirection == .leftToRight) ? self.leadingPadding : self.trailingPadding
-        let newRect = NSRect(x: rect.origin.x + xPadding,
-                             y: rect.origin.y,
-                             width: rect.width - self.leadingPadding - self.trailingPadding,
-                             height: rect.height)
         
-        return super.drawingRect(forBounds: newRect)
+        return NSRect(x: drawingRect.origin.x + xPadding,
+                      y: drawingRect.origin.y,
+                      width: drawingRect.width - self.leadingPadding - self.trailingPadding,
+                      height: drawingRect.height)
     }
 }
