@@ -115,9 +115,7 @@ private struct OutlineNavigationView: View {
                         }
                     }
                     
-                    // Use AppKit-based picker (2024-05, macOS 14):
-                    //   - To trim whitespaces of button display.
-                    //   - To open programmatically.
+                    // Use AppKit-based picker to open programmatically (2024-05, macOS 14).
                     OutlinePicker(items: items, selection: $navigator.selection, isPresented: $navigator.isOutlinePickerPresented) {
                         self.navigator.textView?.select(range: $0.range)
                     }

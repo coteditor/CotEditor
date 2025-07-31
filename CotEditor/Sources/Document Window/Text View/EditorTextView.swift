@@ -876,8 +876,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             self.needsUpdateInsertionIndicators = true
             
             // set to the super after updating textStorage attributes in `.invalidateDefaultParagraphStyle()`
-            // to avoid the strange issue that letters change into undefined
-            // after specific characters.
+            // to avoid the strange issue that letters change into undefined after specific characters.
             // Change the font in characters.md to reproduce this issue (macOS 12 2022-05-30)
             super.font = font
         }
