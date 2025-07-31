@@ -208,8 +208,7 @@ final class LineNumberView: NSView {
         else { return }
         
         guard
-            // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
-            let range = textView.range(for: textView.visibleRect),
+            let range = textView.range(for: textView.visibleRect, withoutAdditionalLayout: true),
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
         
