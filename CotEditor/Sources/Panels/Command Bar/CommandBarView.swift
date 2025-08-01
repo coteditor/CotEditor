@@ -40,7 +40,7 @@ struct CommandBarView: View {
         var command: ActionCommand
         var matches: [ActionCommand.MatchedPath]
         var score: Int
-        var id: UUID  { self.command.id }
+        var id: ActionCommand.ID  { self.command.id }
     }
     
     
@@ -52,6 +52,7 @@ struct CommandBarView: View {
     @State private var input: String = ""
     @State var candidates: [Candidate] = []
     
+    @State private var position = ScrollPosition(edge: .top)
     @State private var selection: ActionCommand.ID?
     @FocusState private var focus: ActionCommand.ID?
     @AccessibilityFocusState private var accessibilityFocus: ActionCommand.ID?
@@ -93,7 +94,7 @@ struct CommandBarView: View {
                     }
                     .padding(.horizontal, 10)  // workaround for FB16141979
                 }
-                .scrollPosition(id: $selection)
+                .scrollPosition($position)
                 .contentMargins(.vertical, 10, for: .scrollContent)
                 .frame(maxHeight: 300)
                 .fixedSize(horizontal: false, vertical: true)
@@ -112,6 +113,9 @@ struct CommandBarView: View {
             let announcement = String(localized: "\(self.candidates.count) commands found", table: "CommandBar",
                                       comment: "VoiceOver announcement for when incrementally updating the command search result.")
             AccessibilityNotification.Announcement(announcement).post()
+        }
+        .onChange(of: self.selection) { _, newValue in
+            self.position.scrollTo(id: newValue)
         }
         .onKeyPress(.upArrow) {
             self.move(down: false) ? .handled : .ignored
