@@ -35,7 +35,7 @@ public extension NSMutableAttributedString {
     final func replaceLineEndings(with lineEnding: LineEnding) {
         
         // -> Intentionally avoid replacing characters in the mutableString directly,
-        //    because it pots a quantity of small edited notifications,
+        //    because it posts a quantity of small edited notifications,
         //    which costs high. (2023-11, macOS 14)
         self.replaceCharacters(in: NSRange(..<self.length), with: self.string.replacingLineEndings(with: lineEnding))
     }
