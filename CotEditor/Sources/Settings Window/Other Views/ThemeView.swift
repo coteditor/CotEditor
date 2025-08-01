@@ -379,19 +379,10 @@ private struct ThemeListView: View {
             }
             .disabled(!selection.isCustomized)
             
+            // -> ShareLink in menu can't find the appropriate popover origin. (2025-08, macOS 26, FB19287270)
             if let url = self.manager.urlForUserSetting(name: selection.name) {
-                // -> ShareLink doesn't work for context menu. (macOS 26, 2025-06)
-                if !isContext {
-                    if #available(macOS 26, *) {
-                        ShareLink(item: url)
-                            .disabled(!selection.isCustomized)
-                    } else {
-                        ShareLink(item: url) {
-                            Text(String(localized: "Action.share.label", defaultValue: "Share…"))
-                        }
-                        .disabled(!selection.isCustomized)
-                    }
-                }
+                ShareLink(item: url)
+                    .disabled(!selection.isCustomized)
             }
         }
         
