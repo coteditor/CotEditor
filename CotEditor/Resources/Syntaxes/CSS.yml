@@ -279,7 +279,9 @@ keywords:
 - beginString: align-content
 - beginString: align-items
 - beginString: align-self
+- beginString: all
 - beginString: animation
+- beginString: animation-composition
 - beginString: animation-delay
 - beginString: animation-direction
 - beginString: animation-duration
@@ -374,6 +376,7 @@ keywords:
 - beginString: clear
 - beginString: clip-path
 - beginString: color
+- beginString: color-scheme
 - beginString: column-count
 - beginString: column-fill
 - beginString: column-gap
@@ -384,10 +387,14 @@ keywords:
 - beginString: column-span
 - beginString: column-width
 - beginString: columns
+- beginString: container
+- beginString: container-name
+- beginString: container-type
 - beginString: content
 - beginString: content-visibility
 - beginString: counter-increment
 - beginString: counter-reset
+- beginString: counter-set
 - beginString: cue
 - beginString: cue-after
 - beginString: cue-before
@@ -611,8 +618,12 @@ keywords:
 - beginString: text-rendering
 - beginString: text-shadow
 - beginString: text-transform
+- beginString: text-underline-offset
 - beginString: text-underline-position
 - beginString: text-wrap
+- beginString: text-wrap-mode
+- beginString: text-wrap-style
+- beginString: touch-action
 - beginString: transform
 - beginString: transform-origin
 - beginString: transform-style
@@ -686,6 +697,8 @@ values:
 - beginString: (?<=\W)-apple-system(-[-a-z]+)?
   regularExpression: true
 - beginString: absolute
+- beginString: accumulate
+- beginString: add
 - beginString: aliceblue
 - beginString: all
 - beginString: all-petite-caps
@@ -756,6 +769,7 @@ values:
 - beginString: crosshair
 - beginString: cursive
 - beginString: cyan
+- beginString: dark
 - beginString: darkblue
 - beginString: darkcyan
 - beginString: darken
@@ -881,6 +895,7 @@ values:
 - beginString: leftwards
 - beginString: lemonchiffon
 - beginString: lightblue
+- beginString: light
 - beginString: lightcoral
 - beginString: lightcyan
 - beginString: lighten
@@ -918,6 +933,7 @@ values:
 - beginString: luminosity
 - beginString: magenta
 - beginString: manual
+- beginString: manipulation
 - beginString: maroon
 - beginString: marquee-block
 - beginString: marquee-line
@@ -963,6 +979,7 @@ values:
 - beginString: oldlace
 - beginString: olive
 - beginString: olivedrab
+- beginString: only
 - beginString: open
 - beginString: open-quote
 - beginString: optimizeLegibility
@@ -983,11 +1000,18 @@ values:
 - beginString: palegreen
 - beginString: paleturquise
 - beginString: palevioletred
+- beginString: pan-down
+- beginString: pan-left
+- beginString: pan-right
+- beginString: pan-up
+- beginString: pan-x
+- beginString: pan-y
 - beginString: papayawhip
 - beginString: paused
 - beginString: peachpuff
 - beginString: peru
 - beginString: petite-caps
+- beginString: pinch-zoom
 - beginString: pink
 - beginString: plaintext
 - beginString: plum
@@ -1009,7 +1033,10 @@ values:
 - beginString: repeat
 - beginString: repeat-x
 - beginString: repeat-y
+- beginString: replace
 - beginString: reverse
+- beginString: revert
+- beginString: revert-layer
 - beginString: ridge
 - beginString: rightwards
 - beginString: rosybrown
@@ -1068,6 +1095,7 @@ values:
 - beginString: springgreen
 - beginString: square
 - beginString: sRGB
+- beginString: stable
 - beginString: start
 - beginString: static
 - beginString: status-bar
