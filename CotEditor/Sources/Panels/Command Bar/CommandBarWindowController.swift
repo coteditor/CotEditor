@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,6 +57,11 @@ final class CommandBarWindowController: NSWindowController {
         panel.standardWindowButton(.closeButton)?.isHidden = true
         panel.standardWindowButton(.zoomButton)?.isHidden = true
         panel.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        
+        if #available(macOS 26, *) {
+            // make window background clear to have glass effect background
+            panel.backgroundColor = .clear
+        }
         
         panel.setContentSize(hostingView.intrinsicContentSize)
         panel.center()

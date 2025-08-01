@@ -62,6 +62,7 @@ struct CommandBarView: View {
         VStack(spacing: 0) {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: "magnifyingglass")
+                    .foregroundStyle(.secondary)
                 WindowDraggableTextField(String(localized: "Quick Actions", table: "CommandBar"), text: $input)
                     .onSubmit(self.perform)
                     .fontWeight(.light)
@@ -119,6 +120,14 @@ struct CommandBarView: View {
             self.move(down: true) ? .handled : .ignored
         }
         .frame(width: 500)
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .glassEffect(in: .rect)
+            } else {
+                content
+            }
+        }
     }
     
     
