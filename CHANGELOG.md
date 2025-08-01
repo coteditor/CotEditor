@@ -30,7 +30,6 @@
 ### Known Issues
 
 - [Tahoe] The pop-up buttons in the print dialog accessory are not drawn correctly (FB19045772).
-- [Tahoe] The Quick Action bar doesn't update its size after typing.
 
 
 

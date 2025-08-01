@@ -151,12 +151,10 @@ private final class DraggableTextFieldCell: NSTextFieldCell {
             let fieldEditor = DraggableFieldEditor()
             fieldEditor.isFieldEditor = true
             fieldEditor.placeholderString = self.placeholderString
+            fieldEditor.parentField = self.controlView
             
             self.fieldEditor = fieldEditor
         }
-        
-        // update field width to follow field editor size
-        controlView.layoutSubtreeIfNeeded()
         
         return self.fieldEditor
     }
@@ -165,6 +163,7 @@ private final class DraggableTextFieldCell: NSTextFieldCell {
 
 private final class DraggableFieldEditor: NSTextView {
     
+    weak var parentField: NSView?
     var placeholderString: String?
     
     
@@ -196,5 +195,7 @@ private final class DraggableFieldEditor: NSTextView {
         let padding = self.textContainer?.lineFragmentPadding ?? 0
         
         self.frame.size.width = ceil(textWidth) + 2 * padding
+        
+        self.parentField?.frame.size.width = self.frame.width
     }
 }
