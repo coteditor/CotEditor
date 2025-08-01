@@ -108,7 +108,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         let inspectorViewController = InspectorViewController(document: self.document)
         self.inspectorViewItem = NSSplitViewItem(inspectorWithViewController: inspectorViewController)
-        self.inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
+        self.inspectorViewItem.minimumThickness = 200
         self.inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
         self.inspectorViewItem.isCollapsed = true
         self.inspectorViewItem.titlebarSeparatorStyle = .none
