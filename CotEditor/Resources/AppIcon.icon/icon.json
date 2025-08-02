@@ -154,27 +154,13 @@
           "value" : 0.3
         }
       ],
-      "position-specializations" : [
-        {
-          "value" : {
-            "scale" : 1.06,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "idiom" : "square",
-          "value" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        }
-      ],
+      "position" : {
+        "scale" : 1,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
       "shadow" : {
         "kind" : "none",
         "opacity" : 0.1
@@ -204,7 +190,7 @@
               "value" : {
                 "linear-gradient" : [
                   "display-p3:0.36448,0.63165,0.19594,1.00000",
-                  "display-p3:0.64064,0.77000,0.21560,1.00000"
+                  "display-p3:0.62259,0.74000,0.23680,1.00000"
                 ]
               }
             },
@@ -243,7 +229,7 @@
       "name" : "Green",
       "opacity-specializations" : [
         {
-          "value" : 0.9
+          "value" : 0.92
         },
         {
           "appearance" : "dark",
@@ -254,27 +240,13 @@
           "value" : 0.5
         }
       ],
-      "position-specializations" : [
-        {
-          "value" : {
-            "scale" : 1.06,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "idiom" : "square",
-          "value" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        }
-      ],
+      "position" : {
+        "scale" : 1,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
       "shadow" : {
         "kind" : "layer-color",
         "opacity" : 0.1
