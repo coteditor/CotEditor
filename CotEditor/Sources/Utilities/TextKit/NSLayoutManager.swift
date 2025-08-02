@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -225,19 +225,18 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - characterIndex: The character index.
-    ///   - alternate: If `true`, the secondary insertion point rect for split cursor will be returned.
     /// - Returns: An one-pixel-width rect to draw the insertion point in the layout manager coordinate, or `nil` if no alternate insertion point is provided.
-    final func insertionPointRect(at characterIndex: Int, alternate: Bool = false) -> NSRect? {
+    final func insertionPointRect(at characterIndex: Int) -> NSRect? {
         
         assert(characterIndex >= 0)
         
-        let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: alternate, inDisplayOrder: true, positions: nil, characterIndexes: nil)
+        let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: nil)
         
         guard count > 0 else { return nil }
         
         var positions = [CGFloat](repeating: 0, count: count)
         var characterIndexes = [Int](repeating: 0, count: count)
-        self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: alternate, inDisplayOrder: true, positions: &positions, characterIndexes: &characterIndexes)
+        self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: &positions, characterIndexes: &characterIndexes)
         
         guard let index = characterIndexes.firstIndex(of: characterIndex) else { return nil }
         

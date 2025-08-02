@@ -435,7 +435,7 @@ extension MultiCursorEditing {
         let shouldDraw = self.shouldDrawInsertionPoints
         
         self.insertionIndicators = insertionLocations
-            .compactMap { layoutManager.insertionPointRect(at: $0) }  // ignore split cursors
+            .compactMap(layoutManager.insertionPointRect(at:))
             .map { $0.offset(by: self.textContainerOrigin) }
             .map { rect in
                 if let indicator = indicators.popFirst() {
