@@ -35,7 +35,7 @@ struct StepperNumberField: View {
     private var step: Int.Stride
     private var promptText: String?
     
-    private var fieldWidth: CGFloat? = 32
+    private var fieldWidth: CGFloat? = isLiquidGlass ? 48 : 32
     
     
     /// Creates a text field editing numeric value with a stepper.
