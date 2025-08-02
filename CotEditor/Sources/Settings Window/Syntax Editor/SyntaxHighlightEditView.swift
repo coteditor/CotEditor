@@ -43,7 +43,7 @@ struct SyntaxHighlightEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07-19 macOS 26)
+            // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {

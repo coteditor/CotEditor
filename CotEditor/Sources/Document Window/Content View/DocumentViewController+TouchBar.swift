@@ -125,7 +125,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     
     /// Updates UI manually.
     ///
-    /// Workaround for the issue where UI doesn't update on a touch bar event. (2017-01 macOS 10.12.2 SDK)
+    /// Workaround for the issue where UI doesn't update on a touch bar event. (2017-01, macOS 10.12.2)
     private func validateUserInterfaceForTouchBarEvent() {
         
         self.view.window?.toolbar?.validateVisibleItems()

@@ -104,7 +104,7 @@ public final class InspectorTabView: NSTabView {
         
         // draw titlebar separator by myself
         // instead of setting `.separator` to split view item's `titlebarSeparatorStyle` property
-        // to avoid the separator being aligned to the bottom of the tab bar (macOS 15 2025-04, FB17317262)
+        // to avoid the separator being aligned to the bottom of the tab bar (2025-04, macOS 15, FB17317262)
         let titlebarSeparator = NSBox()
         titlebarSeparator.boxType = .separator
         titlebarSeparator.translatesAutoresizingMaskIntoConstraints = false

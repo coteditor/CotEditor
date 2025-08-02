@@ -30,7 +30,7 @@ public final class AccessibleStepper: NSStepper {
     public override func accessibilityValue() -> Any? {
         
         // workaround the issue that the value is read in percent in VoiceOver
-        // (macOS 11, 2021)
+        // (2021, macOS 11)
         self.stringValue
     }
 }

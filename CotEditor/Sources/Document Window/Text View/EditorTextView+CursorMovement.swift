@@ -54,7 +54,7 @@ extension EditorTextView {
     /// Moves cursor backward and modifies selection (⇧←).
     override func moveLeftAndModifySelection(_ sender: Any?) {
         
-        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
             return super.moveLeftAndModifySelection(sender)
         }
@@ -85,7 +85,7 @@ extension EditorTextView {
     /// Moves cursor forward and modifies selection (⇧→).
     override func moveRightAndModifySelection(_ sender: Any?) {
         
-        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
             return super.moveRightAndModifySelection(sender)
         }
@@ -313,7 +313,7 @@ extension EditorTextView {
             // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
             // instead of setting `selectedRange` directly.
             // -> To avoid an issue that changing selection by shortcut ⇧→ just after this command
-            //    expands the selection to the wrong direction. (2018-11 macOS 10.14 #863)
+            //    expands the selection to the wrong direction. (2018-11, macOS 10.14, #863)
             while self.selectedRange.location > location {
                 self.moveBackwardAndModifySelection(self)
             }
@@ -374,7 +374,7 @@ extension EditorTextView {
     /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
     override func moveBackwardAndModifySelection(_ sender: Any?) {
         
-        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
             return super.moveBackwardAndModifySelection(sender)
         }
@@ -401,7 +401,7 @@ extension EditorTextView {
     /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
     override func moveForwardAndModifySelection(_ sender: Any?) {
         
-        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
             return super.moveForwardAndModifySelection(sender)
         }
@@ -518,7 +518,7 @@ extension EditorTextView {
     }
     
     // The following actions are also a part of NSStandardKeyBindingResponding but not implemented
-    // since they seem just to bridge to `moveTo{Beginning|End}OfLine*` series. (2019-01 macOS 10.14)
+    // since they seem just to bridge to `moveTo{Beginning|End}OfLine*` series. (2019-01, macOS 10.14)
     
     // moveToLeftEndOfLine(_ sender: Any?)
     // moveToLeftEndOfLineAndModifySelection(_ sender: Any?)

@@ -76,7 +76,7 @@ import AppKit
         
         guard let contentView = self.contentViewController?.view else { return assertionFailure() }
         
-        // -> Get titlebar view to mimic the behavior in iWork apps... (macOS 14 on 2023-12)
+        // -> Get titlebar view to mimic the behavior in iWork apps... (2023-12, macOS 14)
         let view = contentView.window?.standardWindowButton(.closeButton)?.superview ?? contentView
         
         NSSharingServicePicker(items: [self])

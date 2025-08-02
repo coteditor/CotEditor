@@ -173,7 +173,7 @@ struct EncodingDetectionTests {
         
         #expect("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128) == .utf8)
         
-        // Swift.Regex with non-simple word boundaries never returns when the given string contains a specific pattern of letters (2023-12 on Swift 5.9).
+        // Swift.Regex with non-simple word boundaries never returns when the given string contains a specific pattern of letters (2023-12, Swift 5.9).
         #expect("ﾀﾏｺﾞ,1,".scanEncodingDeclaration(upTo: 128) == nil)
         #expect(try /\ba/.wordBoundaryKind(.simple).firstMatch(in: "ﾀﾏｺﾞ,1,") == nil)
     }

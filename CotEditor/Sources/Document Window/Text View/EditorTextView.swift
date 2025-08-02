@@ -375,7 +375,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
         // -> This workaround must be applicable to EditorTextView because this method
-        //    seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14, FB7399413)
+        //    seems updating only RichText-related Touch Bar items. (2019-06, macOS 10.14, FB7399413)
 //        super.updateTextTouchBarItems()
     }
     
@@ -391,7 +391,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         super.mouseDown(with: event)
         
         // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
-        //    which doesn't work in NSTextView subclasses. (2019-01 macOS 10.14)
+        //    which doesn't work in NSTextView subclasses. (2019-01, macOS 10.14)
         
         guard let window = self.window else { return assertionFailure() }
         
@@ -877,7 +877,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             
             // set to the super after updating textStorage attributes in `.invalidateDefaultParagraphStyle()`
             // to avoid the strange issue that letters change into undefined after specific characters.
-            // Change the font in characters.md to reproduce this issue (macOS 12 2022-05-30)
+            // Change the font in characters.md to reproduce this issue (2022-05, macOS 12)
             super.font = font
         }
     }
@@ -962,7 +962,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // scroll line by line if an arrow key is pressed
         // -> Perform only when the scroll target is nearby the visible area.
         //    Otherwise, the scroll doesn't reach the bottom with command+down arrow
-        //    in the noncontiguous layout mode. (2018-12 macOS 10.14)
+        //    in the noncontiguous layout mode. (2018-12, macOS 10.14)
         guard NSEvent.modifierFlags.contains(.numericPad),
               range.upperBound < (self.layoutManager?.firstUnlaidCharacterIndex() ?? 0),
               let rect = self.boundingRect(for: range)
@@ -976,7 +976,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         let didChange = orientation != self.layoutOrientation
         
-        // -> Need to send KVO notification manually on Swift. (2016-09-12 on macOS 10.12 SDK)
+        // -> Need to send KVO notification manually on Swift. (2016-09, macOS 10.12)
         self.willChangeValue(for: \.layoutOrientation)
         super.setLayoutOrientation(orientation)
         self.didChangeValue(for: \.layoutOrientation)
@@ -1416,7 +1416,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     /// Updates the app-wide automatic period substation behavior based on the receiver's `mode`.
     ///
-    /// Workaround for that the view-specific API to customize this behavior is currently not available (macOS 15, 2024-11, FB13669125).
+    /// Workaround for that the view-specific API to customize this behavior is currently not available (2024-11, macOS 15, FB13669125).
     private func invalidateAutomaticPeriodSubstitution() {
         
         let key = "NSAutomaticPeriodSubstitutionEnabled"
@@ -1504,7 +1504,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private func invalidateNonContiguousLayout() {
         
         self.layoutManager?.allowsNonContiguousLayout = if self.layoutOrientation == .vertical {
-            // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 15)
+            // disable non-contiguous layout on vertical layout (2016-06, OS X 10.11 - macOS 15)
             // -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
             false
         } else {

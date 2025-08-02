@@ -53,7 +53,7 @@ final class TextContainer: NSTextContainer {
         //    from the top until the index where to draw.
         //    However, by the hanging indent, line fragments can be calculated only from the logical line
         //    where they belong to and thus are not affected by the previous context.
-        //    (2020-03 macOS 10.15)
+        //    (2020-03, macOS 10.15)
         return true
     }
     

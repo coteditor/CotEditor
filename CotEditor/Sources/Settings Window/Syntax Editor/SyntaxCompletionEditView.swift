@@ -45,7 +45,7 @@ struct SyntaxCompletionEditView: View {
             Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
                 .controlSize(.small)
             
-            // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07-19 macOS 26)
+            // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header"), value: \.value) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {

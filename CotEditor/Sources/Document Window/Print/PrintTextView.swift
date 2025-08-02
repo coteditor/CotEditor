@@ -183,7 +183,7 @@ final class PrintTextView: NSTextView {
     override func draw(_ dirtyRect: NSRect) {
         
         // store graphics state to keep line number area drawable
-        // -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
+        // -> Otherwise, line numbers can be cropped. (2016-03)
         NSGraphicsContext.saveGraphicsState()
         
         super.draw(dirtyRect)

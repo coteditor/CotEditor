@@ -40,7 +40,7 @@ extension NSLayoutManager {
     /// otherwise, just run `work` block and no optimization is performed.
     ///
     /// See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
-    /// (2018-12 macOS 10.14)
+    /// (2018-12, macOS 10.14)
     ///
     /// - Note:
     ///     According to the implementation of `NSLayoutManager` in GNUstep,

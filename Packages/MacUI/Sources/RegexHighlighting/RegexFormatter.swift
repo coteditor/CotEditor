@@ -94,7 +94,7 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
                             attributedString.insert(alert, at: 0)
                             
                             // add ZERO WIDTH SPACE to avoid losing the paragraph style determining trailing truncation
-                            // due to adding an image attachment at the beginning (macOS 14, 2024-04)
+                            // due to adding an image attachment at the beginning (2024-04, macOS 14)
                             let zeroWidthSpace = NSAttributedString(string: "\u{200B}", attributes: attrs)
                             attributedString.insert(zeroWidthSpace, at: 0)
                         }

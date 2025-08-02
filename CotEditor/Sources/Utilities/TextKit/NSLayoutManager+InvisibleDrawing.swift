@@ -63,7 +63,7 @@ extension InvisibleDrawing {
         let string = self.attributedString().string as NSString
         let textView = textContainer.textView
         let isRTL = MainActor.assumeIsolated { textView?.baseWritingDirection == .rightToLeft }
-        // -> Some fonts, such as Raanana in the system, can return a negative value for `.capHeight` (macOS 12, 2022-06).
+        // -> Some fonts, such as Raanana in the system, can return a negative value for `.capHeight` (2022-06, macOS 12).
         let glyphHeight = (self.textFont.capHeight > 0) ? self.textFont.capHeight : self.textFont.ascender
         let lineWidth = self.textFont.pointSize * (1 + self.textFont.weight.rawValue) / 12
         let cacheableInvisibles: Set<Invisible> = [.newLine, .fullwidthSpace, .otherControl]

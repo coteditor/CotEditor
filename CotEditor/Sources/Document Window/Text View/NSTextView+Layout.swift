@@ -236,7 +236,7 @@ extension NSTextView {
     /// Returns the infinite size for textContainer considering writing orientation state.
     final var infiniteSize: CGSize {
         
-        // infinite size doesn't work with RTL (2018-01 macOS 10.13).
+        // infinite size doesn't work with RTL (2018-01, macOS 10.13).
         (self.baseWritingDirection == .rightToLeft)
             ? CGSize(width: 9_999_999, height: CGSize.infinite.height)
             : .infinite

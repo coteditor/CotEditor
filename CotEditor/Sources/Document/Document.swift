@@ -494,11 +494,11 @@ extension NSTextView: EditorCounter.Source { }
             url = Self.autosaveElsewhereURL(for: url)
         }
         
-        // obtain the additional file attributes to save while the saving process remains on the main thread (macOS 15, 2025-04)
+        // obtain the additional file attributes to save while the saving process remains on the main thread (2025-04, macOS 15)
         self.lastAdditionalFileAttributes = self.additionalFileAttributes(for: saveOperation)
         
         // workaround the issue that invoking the async version super blocks the save process
-        // with macOS 12-26 + Xcode 13-26 (2022 FB11203469).
+        // (2022, macOS 12-26 + Xcode 13-26, FB11203469).
         // To reproduce the issue:
         //     1. Make a document unsaved ("Edited" status in the window subtitle).
         //     2. Open the save panel once and cancel it.
@@ -573,7 +573,7 @@ extension NSTextView: EditorCounter.Source { }
             .flatMap { UTType(filenameExtension: $0) }
             .map { [$0] } ?? []
         
-        // avoid the Hide Extension option removes actual filename extension (macOS 14, 2024-05)
+        // avoid the Hide Extension option removes actual filename extension (2024-05, macOS 14)
         savePanel.canSelectHiddenExtension = false
         savePanel.isExtensionHidden = false
         
@@ -587,7 +587,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // let save panel accept any file extension
         // -> Otherwise, the file extension for `.allowedContentTypes` is automatically added
-        //    even when the user specifies another one (macOS 14, 2023-09).
+        //    even when the user specifies another one (2023-09, macOS 14).
         DispatchQueue.main.async { [weak savePanel] in
             savePanel?.allowedContentTypes = []
         }
@@ -706,7 +706,7 @@ extension NSTextView: EditorCounter.Source { }
             printView.layoutManager?.apply(highlights: highlights, theme: nil, in: printView.string.range)
         }
         
-        // detect URLs manually (2019-05 macOS 10.14).
+        // detect URLs manually (2019-05, macOS 10.14).
         // -> TextView links all URLs in the printed PDF, even if the auto URL detection is disabled,
         //    but then, multiline URLs over a page break would be broken. (cf. #958)
         Task { try? await textStorage.linkURLs() }
@@ -848,7 +848,7 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         guard didChange else {
-            // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
+            // update the document's fileModificationDate for a workaround (2014-03)
             // -> Otherwise, an alert shows up when the user saves the file.
             if let modificationDate, self.fileModificationDate?.compare(modificationDate) == .orderedAscending {
                 self.fileModificationDate = modificationDate
@@ -920,7 +920,7 @@ extension NSTextView: EditorCounter.Source { }
     nonisolated func didMakeDocumentForExistingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
-        // -> This method won't be invoked on Resume. (2015-01-26)
+        // -> This method won't be invoked on Resume. (2015-01)
         
         Task {
             await ScriptManager.shared.dispatch(event: .documentOpened, document: self.objectSpecifier)
@@ -1182,7 +1182,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // save document state to the extended file attributes
         // -> Save FileExtendedAttributeName.verticalText at `super.writeSafely(to:ofType:for:)`
-        //     since the xattr already set to the file cannot remove at this point. (2024-06-12)
+        //     since the xattr already set to the file cannot remove at this point. (2024-06)
         var xattrs: [String: Data] = [:]
         if self.shouldSaveEncodingXattr {
             xattrs[FileExtendedAttributeName.encoding] = self.fileEncoding.encoding.xattrEncodingData

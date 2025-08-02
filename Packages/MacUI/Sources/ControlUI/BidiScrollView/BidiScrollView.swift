@@ -73,7 +73,7 @@ public final class BidiScrollView: NSScrollView {
     
     /// Adjusts the content insets by taking the preserved scroller area for the legacy scroll style into the account.
     ///
-    /// - Note: The `legacy` scroller style is used when the user sets System Settings > Appearances > Show scroll bars to “Always.” (macOS 15, 2025-07)
+    /// - Note: The `legacy` scroller style is used when the user sets System Settings > Appearances > Show scroll bars to “Always.” (2025-07, macOS 15)
     private func adjustContentInsets() {
         
         assert(self.isInconsistentContentDirection)

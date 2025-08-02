@@ -279,7 +279,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
         
         // manually pass toolbar items to `validateUserInterfaceItem(_:)`,
-        // because they actually doesn't use it for validation (2020-08 on macOS 10.15)
+        // because they actually doesn't use it for validation (2020-08, macOS 10.15)
         self.validateUserInterfaceItem(item)
     }
     
