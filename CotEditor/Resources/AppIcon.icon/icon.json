@@ -7,12 +7,6 @@
   },
   "groups" : [
     {
-      "blend-mode-specializations" : [
-        {
-          "appearance" : "tinted",
-          "value" : "normal"
-        }
-      ],
       "blur-material" : 1,
       "hidden" : false,
       "layers" : [
@@ -23,6 +17,7 @@
           "hidden" : false,
           "image-name" : "Pen.png",
           "name" : "Pen",
+          "opacity" : 1,
           "position" : {
             "scale" : 1,
             "translation-in-points" : [
@@ -33,7 +28,15 @@
         },
         {
           "glass" : false,
-          "hidden" : false,
+          "hidden-specializations" : [
+            {
+              "value" : false
+            },
+            {
+              "appearance" : "dark",
+              "value" : true
+            }
+          ],
           "image-name" : "Shadow.png",
           "name" : "Shadow",
           "opacity-specializations" : [
@@ -79,7 +82,7 @@
             {
               "appearance" : "dark",
               "value" : {
-                "solid" : "srgb:0.00000,0.00000,0.00000,1.00000"
+                "solid" : "srgb:1.00000,1.00000,1.00000,1.00000"
               }
             }
           ],
@@ -143,7 +146,7 @@
       "name" : "Gears",
       "opacity-specializations" : [
         {
-          "value" : 0.6
+          "value" : 0.5
         },
         {
           "appearance" : "dark",
@@ -151,11 +154,11 @@
         },
         {
           "appearance" : "tinted",
-          "value" : 0.3
+          "value" : 0.25
         }
       ],
       "position" : {
-        "scale" : 1,
+        "scale" : 0.98,
         "translation-in-points" : [
           0,
           0
@@ -172,7 +175,7 @@
       }
     },
     {
-      "blur-material" : null,
+      "blur-material" : 0.5,
       "hidden" : false,
       "layers" : [
         {
@@ -185,25 +188,12 @@
               "value" : "normal"
             }
           ],
-          "fill-specializations" : [
-            {
-              "value" : {
-                "linear-gradient" : [
-                  "display-p3:0.36448,0.63165,0.19594,1.00000",
-                  "display-p3:0.62259,0.74000,0.23680,1.00000"
-                ]
-              }
-            },
-            {
-              "appearance" : "dark",
-              "value" : {
-                "linear-gradient" : [
-                  "display-p3:0.33725,0.61961,0.13725,1.00000",
-                  "display-p3:0.60336,0.74707,0.13118,1.00000"
-                ]
-              }
-            }
-          ],
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:0.28884,0.55000,0.12650,1.00000",
+              "display-p3:0.60577,0.72000,0.23040,1.00000"
+            ]
+          },
           "hidden" : false,
           "image-name" : "Outline.svg",
           "name" : "Outline",
@@ -237,11 +227,11 @@
         },
         {
           "appearance" : "tinted",
-          "value" : 0.5
+          "value" : 0.6
         }
       ],
       "position" : {
-        "scale" : 1,
+        "scale" : 0.98,
         "translation-in-points" : [
           0,
           0
@@ -251,11 +241,22 @@
         "kind" : "layer-color",
         "opacity" : 0.1
       },
-      "specular" : false,
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.2
-      }
+      "specular" : true,
+      "translucency-specializations" : [
+        {
+          "value" : {
+            "enabled" : true,
+            "value" : 0.25
+          }
+        },
+        {
+          "appearance" : "tinted",
+          "value" : {
+            "enabled" : true,
+            "value" : 0.6
+          }
+        }
+      ]
     }
   ],
   "supported-platforms" : {
