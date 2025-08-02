@@ -122,8 +122,11 @@ final class RegularExpressionTextField: NSTextField {
     /// Syntax highlights the field editor.
     private func invalidateFieldEditor() {
         
-        guard let editor = self.currentEditor() as? NSTextView else { return }
+        guard
+            let editor = self.currentEditor() as? NSTextView,
+            let textStorage = editor.textStorage
+        else { return }
         
-        editor.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.regexFormatter.theme, enabled: self.parsesRegularExpression)
+        textStorage.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.regexFormatter.theme, enabled: self.parsesRegularExpression)
     }
 }
