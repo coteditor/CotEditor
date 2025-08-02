@@ -229,14 +229,6 @@ private struct ThemeListView: View {
         .onReceive(self.manager.$settingNames.receive(on: RunLoop.main)) { settingNames in
             self.settingNames = settingNames
         }
-        .fileExporter(isPresented: $isExporterPresented, item: self.exportingItem, contentTypes: [.cotTheme], defaultFilename: self.exportingItem?.name) { result in
-            switch result {
-                case .success:
-                    break
-                case .failure(let error):
-                    self.error = error
-            }
-        }
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotTheme], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
@@ -281,6 +273,15 @@ private struct ThemeListView: View {
             Text(String(localized: "ImportDuplicationError.recoverySuggestion",
                         defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
                         comment: "Refer similar expressions by Apple."))
+        }
+        // place fileExporter after `fileDialogConfirmationLabel(_:)` for the import action to use the deafult label for the export.
+        .fileExporter(isPresented: $isExporterPresented, item: self.exportingItem, contentTypes: [.cotTheme], defaultFilename: self.exportingItem?.name) { result in
+            switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    self.error = error
+            }
         }
         .confirmationDialog(String(localized: "DeletionConfirmation.title",
                                    defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
