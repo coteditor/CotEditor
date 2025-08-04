@@ -75,24 +75,6 @@ extension NSLayoutManager {
 
 extension NSLayoutManager {
     
-    /// Returns range of given attribute if the location is in it, otherwise nil.
-    ///
-    /// - Parameters:
-    ///   - attrName: The name of a temporary attribute.
-    ///   - location: The index for which to check attributes. This value must not exceed the bounds of the receiver.
-    ///   - range: The range over which to search for continuous presence of attrName. This value must not exceed the bounds of the receiver.
-    /// - Returns: A range contains the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
-    final func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
-        
-        let range = range ?? self.attributedString().range
-        var effectiveRange = NSRange.notFound
-        
-        guard self.temporaryAttribute(attrName, atCharacterIndex: location, longestEffectiveRange: &effectiveRange, in: range) != nil else { return nil }
-        
-        return effectiveRange
-    }
-    
-    
     /// Enumerates range and value of the given temporary attribute key.
     ///
     /// - Parameters:
