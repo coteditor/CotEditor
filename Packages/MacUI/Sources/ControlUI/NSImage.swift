@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,9 +34,9 @@ extension NSImage {
     /// - Returns: A tinted image.
     final func tinted(with color: NSColor) -> Self {
         
-        assert(self.isTemplate, "An image to tint should be a template image.")
+        assert(self.isTemplate, "The image to tint should be a template image.")
         
-        let image = Self(size: self.size, flipped: false) { [image = self.copy() as! Self] dstRect -> Bool in
+        let image = Self(size: self.size, flipped: false) { [image = self.copy() as! Self] dstRect in
             
             image.draw(in: dstRect)
             
