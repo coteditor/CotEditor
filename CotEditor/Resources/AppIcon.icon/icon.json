@@ -146,7 +146,7 @@
       "name" : "Gears",
       "opacity-specializations" : [
         {
-          "value" : 0.5
+          "value" : 0.6
         },
         {
           "appearance" : "dark",
@@ -190,8 +190,8 @@
           ],
           "fill" : {
             "linear-gradient" : [
-              "display-p3:0.28884,0.55000,0.12650,1.00000",
-              "display-p3:0.60577,0.72000,0.23040,1.00000"
+              "display-p3:0.27866,0.55000,0.11000,1.00000",
+              "display-p3:0.60240,0.72000,0.21600,1.00000"
             ]
           },
           "hidden" : false,
