@@ -47,6 +47,18 @@ public extension Pair where T == Character {
 }
 
 
+public extension Pair.PairIndex {
+    
+    /// The representing string index.
+    var index: String.Index {
+        
+        switch self {
+            case .begin(let index), .end(let index): index
+        }
+    }
+}
+
+
 public extension StringProtocol {
     
     /// Finds the range enclosed by one of given brace pairs.

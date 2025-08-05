@@ -757,7 +757,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
-            self.highlightMatchingBrace(candidates: BracePair.braces, in: self.visibleRect)
+            self.highlightMatchingBrace(candidates: BracePair.braces, inVisibleArea: true)
             
             // update instances highlight
             if self.highlightsSelectionInstance {

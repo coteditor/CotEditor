@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,13 +30,13 @@ extension NSTextView {
     
     /// Finds the matching braces for the character before the cursors and highlights them.
     ///
-    /// - Note: This API requires TextKit 1 if `rect` is not `nil`.
+    /// - Note: This API requires TextKit 1 if `inVisibleArea` is `true`.
     ///
     /// - Parameters:
     ///   - candidates: Brace pairs to find.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
-    ///   - rect: The rect in the text view to find in.
-    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, in rect: NSRect? = nil) {
+    ///   - inVisibleArea: If `true`, search the matching brace only in the visible area.
+    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, inVisibleArea: Bool = false) {
         
         guard
             !self.string.isEmpty,
@@ -52,18 +52,12 @@ extension NSTextView {
         
         guard !lastIndexes.isEmpty else { return }
         
-        let range: Range<String.Index>? = rect
-            .flatMap { self.range(for: $0, withoutAdditionalLayout: true) }
-            .flatMap { Range($0, in: self.string) }
+        let range = inVisibleArea ? self.visibleRange.flatMap { Range($0, in: self.string) } : nil
         
         lastIndexes
             .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore) }
-            .compactMap { pairIndex in
-                switch pairIndex {
-                    case .begin(let index), .end(let index): index...index
-                }
-            }
-            .map { NSRange($0, in: self.string) }
+            .compactMap(\.index)
+            .map { NSRange($0...$0, in: self.string) }
             .forEach { self.showFindIndicator(for: $0) }
     }
 }
