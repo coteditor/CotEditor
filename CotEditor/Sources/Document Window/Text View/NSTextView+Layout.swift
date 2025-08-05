@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,11 +30,16 @@ import AppKit
 extension NSTextView {
     
     /// The range of visible characters.
-    ///
-    /// - Note: This API requires TextKit 1.
     final var visibleRange: NSRange? {
         
-        self.range(for: self.visibleRect, withoutAdditionalLayout: true)
+        // fallback to TextKit 1
+        guard let textLayoutManager else {
+            return self.range(for: self.visibleRect, withoutAdditionalLayout: true)
+        }
+        
+        guard let visibleTextRange = textLayoutManager.textViewportLayoutController.viewportRange else { return nil }
+        
+        return self.textContentStorage?.range(for: visibleTextRange)
     }
     
     

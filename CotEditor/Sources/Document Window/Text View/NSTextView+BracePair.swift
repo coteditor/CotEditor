@@ -28,15 +28,12 @@ import StringUtils
 
 extension NSTextView {
     
-    /// Finds the matching braces for the character before the cursors and highlights them.
-    ///
-    /// - Note: This API requires TextKit 1 if `inVisibleArea` is `true`.
+    /// Finds the matching braces for the character before the cursors in the visible area and highlights them.
     ///
     /// - Parameters:
     ///   - candidates: Brace pairs to find.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
-    ///   - inVisibleArea: If `true`, search the matching brace only in the visible area.
-    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, inVisibleArea: Bool = false) {
+    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
         
         guard
             !self.string.isEmpty,
@@ -50,9 +47,9 @@ extension NSTextView {
             .filter { $0 > self.string.startIndex }
             .map(self.string.index(before:))
         
-        guard !lastIndexes.isEmpty else { return }
+        guard !lastIndexes.isEmpty, let visibleRange else { return }
         
-        let range = inVisibleArea ? self.visibleRange.flatMap { Range($0, in: self.string) } : nil
+        let range = Range(visibleRange, in: self.string)
         
         lastIndexes
             .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore) }
