@@ -68,10 +68,12 @@ extension NSTextView {
     /// - Note: This API requires TextKit 1.
     final func locationOfBeginningOfLine(for location: Int) -> Int {
         
+        guard location > 0 else { return 0 }
+        
         let string = self.string as NSString
         let lineRange = string.lineRange(at: location)
         
-        if let layoutManager = self.layoutManager, location > 0 {
+        if let layoutManager {
             // beginning of current visual line
             let visualLineLocation = layoutManager.lineFragmentRange(at: location - 1).location
             
