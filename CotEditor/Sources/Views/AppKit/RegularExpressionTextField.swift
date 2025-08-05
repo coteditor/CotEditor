@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ final class RegularExpressionTextField: NSTextField {
     
     // MARK: Public Properties
     
-    @objc dynamic var parsesRegularExpression = true {
+    @objc dynamic var isRegexHighlighted = true {
         
         didSet {
-            self.regexFormatter.parsesRegularExpression = parsesRegularExpression
+            self.regexFormatter.parsesRegularExpression = isRegexHighlighted
             self.invalidateFieldEditor()
             self.needsDisplay = true
         }
@@ -82,7 +82,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// The Receiver was focused to edit the contents.
+    /// Invoked when the receiver was focused to edit the contents.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
@@ -93,7 +93,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// Invoked when the text in the field editor was just changed.
+    /// Invoked when the text (in the field editor) was just changed.
     override func textDidChange(_ notification: Notification) {
         
         super.textDidChange(notification)
@@ -119,7 +119,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// Syntax highlights the field editor.
+    /// Updates the syntax highlight in the field editor.
     private func invalidateFieldEditor() {
         
         guard
@@ -127,6 +127,6 @@ final class RegularExpressionTextField: NSTextField {
             let textStorage = editor.textStorage
         else { return }
         
-        textStorage.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.regexFormatter.theme, enabled: self.parsesRegularExpression)
+        textStorage.highlightAsRegularExpressionPattern(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
     }
 }

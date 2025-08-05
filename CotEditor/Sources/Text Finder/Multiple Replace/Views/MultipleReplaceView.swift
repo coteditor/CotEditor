@@ -487,7 +487,7 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
         
         // update regex field
         if let field = cellView.textField as? RegularExpressionTextField {
-            field.parsesRegularExpression = replacement.isEnabled && replacement.usesRegularExpression
+            field.isRegexHighlighted = replacement.isEnabled && replacement.usesRegularExpression
             field.unescapesReplacement = self.definition.settings.unescapesReplacementString
         }
         
