@@ -139,6 +139,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private let textFinder = TextFinder()
     
+    private var spaceWidth: Double = 0
+    
     private let matchingBracketPairs: [BracePair] = BracePair.braces + BracePair.quotes
     private var isTypingPairedQuotes = false
     
@@ -857,6 +859,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 self.didChangeValue(for: \.font)
             }
             
+            self.spaceWidth = font.width(of: " ")
+            (self.textContainer as? TextContainer)?.spaceWidth = self.spaceWidth
+            
             if font.isFixedPitch {
                 self.typingAttributes[.kern] = 0
                 self.textStorage?.addAttribute(.kern, value: 0, range: self.string.range)
@@ -930,13 +935,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         super.draw(dirtyRect)
         
         // draw page guide
-        if self.showsPageGuide,
-           let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
-        {
+        if self.showsPageGuide {
             let column = CGFloat(self.pageGuideColumn)
             let inset = self.textContainerInset.width
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
-            let x = spaceWidth * column + inset + linePadding + 2  // +2 px for an esthetic adjustment
+            let x = self.spaceWidth * column + inset + linePadding + 2  // +2 px for an esthetic adjustment
             let isRTL = (self.baseWritingDirection == .rightToLeft)
             
             let guideRect = NSRect(x: isRTL ? self.bounds.width - x : x,

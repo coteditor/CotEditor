@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2024 1024jp
+//  © 2019-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Public Properties
     
+    var spaceWidth: Double = 0  { didSet { self.invalidateLayout() } }
     var isHangingIndentEnabled = false  { didSet { self.invalidateLayout() } }
     var hangingIndentWidth = 0  { didSet { self.invalidateLayout() } }
     
@@ -88,11 +89,11 @@ final class TextContainer: NSTextContainer {
         }
         
         // calculate hanging indent
-        let hangingIndent = CGFloat(self.hangingIndentWidth) * layoutManager.spaceWidth
+        let hangingIndent = CGFloat(self.hangingIndentWidth) * self.spaceWidth
         let indent = baseIndent + hangingIndent
         
         // intentionally give up overflown hanging indent
-        guard indent + 2 * layoutManager.spaceWidth < rect.width else { return rect }
+        guard indent + 2 * self.spaceWidth < rect.width else { return rect }
         
         // remove hanging indent space from rect
         rect.size.width -= indent

@@ -139,10 +139,14 @@ final class PrintTextView: NSTextView {
         didSet {
             guard let font else { return }
             
+            let spaceWidth = font.width(of: " ")
+            
+            (self.textContainer as? TextContainer)?.spaceWidth = spaceWidth
+            
             // setup paragraph style
             let paragraphStyle = (self.defaultParagraphStyle ?? .default).mutable
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * spaceWidth
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             self.typingAttributes[.paragraphStyle] = paragraphStyle

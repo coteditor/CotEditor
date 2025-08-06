@@ -55,7 +55,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
             self.defaultLineHeight = self.defaultLineHeight(for: textFont)
             self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
             self.boundingBoxForControlGlyph = self.boundingBoxForControlGlyph(for: textFont)
-            self.spaceWidth = textFont.width(of: " ")
         }
     }
     
@@ -73,8 +72,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     
     var showsIndentGuides = false  { didSet { self.invalidateDisplay(forCharacterRange: self.attributedString().range) } }
     var tabWidth = 0
-    
-    private(set) var spaceWidth: CGFloat = 0
     
     
     // MARK: Private Properties
