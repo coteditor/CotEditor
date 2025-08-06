@@ -463,7 +463,7 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping @Sendable ((any Error)?) -> Void) {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
         
         // check if the contents can be saved with the current text encoding
         guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
