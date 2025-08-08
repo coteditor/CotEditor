@@ -200,13 +200,7 @@ extension SyntaxParser {
                 return wholeRange
             }
             
-            // highlight whole visible area if edited point is visible
-            var highlightRange = self.textStorage.layoutManagers
-                .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
-                .filter { $0.intersects(invalidRange) }
-                .reduce(into: invalidRange) { $0.formUnion($1) }
-            
-            highlightRange = (self.textStorage.string as NSString).lineRange(for: highlightRange)
+            var highlightRange = (self.textStorage.string as NSString).lineRange(for: invalidRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same syntax type
             if let layoutManager = self.textStorage.layoutManagers.first {
