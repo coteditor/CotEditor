@@ -211,7 +211,7 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         if let string = coder.decodeObject(of: NSString.self, forKey: SerializationKey.originalContentString) as? String {
-            self.textStorage.replaceContent(with: string)
+            self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         }
         if coder.containsValue(forKey: SerializationKey.encoding) {
             let rawValue = coder.decodeInteger(forKey: SerializationKey.encoding)
@@ -415,7 +415,7 @@ extension NSTextView: EditorCounter.Source { }
             
             self.allowsLossySaving = false
             
-            self.textStorage.replaceContent(with: string)
+            self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
             
             self.fileEncoding = fileEncoding
             self.lineEnding = self.lineEndingScanner.lineEndings.majorValue() ?? self.lineEnding  // keep default if no line endings are found
@@ -1029,7 +1029,7 @@ extension NSTextView: EditorCounter.Source { }
         if let undoManager = self.undoManager {
             let selectedRanges = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection).map(\.selectedRange)
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
-                target.textStorage.replaceContent(with: string)
+                target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
                 target.lineEnding = currentLineEnding
                 for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
                     textView.selectedRange = range
@@ -1050,7 +1050,7 @@ extension NSTextView: EditorCounter.Source { }
         // update line endings in text storage
         let selection = self.textStorage.editorSelection
         let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
-        self.textStorage.replaceContent(with: string)
+        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         self.textStorage.restoreEditorSelection(selection)
     }
     

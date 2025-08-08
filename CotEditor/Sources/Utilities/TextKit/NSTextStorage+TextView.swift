@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import AppKit.NSTextStorage
+import AppKit
 
 extension NSTextStorage {
     
@@ -51,25 +51,6 @@ extension NSTextStorage {
                 .map(\.rangeValue)
                 .map { NSRange(min($0.lowerBound, self.length)..<min($0.upperBound, self.length)) }
                 .uniqued as [NSValue]
-        }
-    }
-    
-    
-    /// Replaces whole contents with the given `string` and move the insertion point to the beginning of the contents.
-    ///
-    /// - Parameters:
-    ///   - string: The content string to replace with.
-    @MainActor final func replaceContent(with string: String) {
-        
-        guard string != self.string else { return }
-        
-        self.replaceCharacters(in: self.range, with: string)
-        
-        guard !string.isEmpty else { return }
-        
-        // otherwise, the insertion point moves to the end of the contents
-        for textView in self.layoutManagers.compactMap(\.firstTextView) {
-            textView.selectedRange = NSRange(0..<0)
         }
     }
 }

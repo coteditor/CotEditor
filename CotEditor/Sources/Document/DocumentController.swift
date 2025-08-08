@@ -282,7 +282,7 @@ final class DocumentController: NSDocumentController {
         let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
         
         if !contents.isEmpty {
-            document.textStorage.replaceContent(with: contents)
+            document.textStorage.replaceCharacters(in: document.textStorage.range, with: contents)
             document.updateChangeCount(.changeDone)
         }
         
