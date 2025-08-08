@@ -147,7 +147,7 @@ extension SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Updates the ranges to update the syntax highlight..
+    /// Updates the ranges to update the syntax highlight.
     ///
     /// - Parameters:
     ///   - editedRange: The edited range.

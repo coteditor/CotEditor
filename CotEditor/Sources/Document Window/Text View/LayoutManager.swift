@@ -177,7 +177,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     override func invalidateDisplay(forCharacterRange charRange: NSRange) {
         
         // ignore display validation during applying temporary attributes continuously
-        // -> See `SyntaxParser.apply(highlights:range:)` for the usage of this option. (2018-12)
+        // -> See `NSLayoutManager.groupTemporaryAttributesUpdate(in:work:)` for the usage of this option.
         if self.ignoresDisplayValidation { return }
         
         super.invalidateDisplay(forCharacterRange: charRange)

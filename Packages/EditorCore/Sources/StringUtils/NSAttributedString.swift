@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,10 +62,10 @@ public extension NSAttributedString {
     }
     
     
-    /// Enumerates range and value of the given temporary attribute key.
+    /// Enumerates range and value of the given attribute key.
     ///
     /// - Parameters:
-    ///   - attrName: The name of the temporary attribute to enumerate.
+    ///   - attrName: The name of the attribute to enumerate.
     ///   - Type:The type of the value.
     ///   - enumerationRange: The range over which the attribute values are enumerated.
     ///   - options: The options used by the enumeration. For possible values, see NSAttributedString.EnumerationOptions.

@@ -31,6 +31,8 @@ extension NSTextView {
     
     /// Highlights all matches in the textView.
     ///
+    /// - Note: This API requires TextKit 1.
+    /// 
     /// - Parameters:
     ///   - definition: The text view where highlighting text.
     ///   - inSelection: Whether find string only in selectedRanges.
