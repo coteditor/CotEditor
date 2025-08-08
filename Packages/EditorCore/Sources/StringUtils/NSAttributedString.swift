@@ -82,6 +82,22 @@ public extension NSAttributedString {
     }
     
     
+    /// Returns the full range over which the value of the passed-in attribute name is the same as that at index.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of an attribute.
+    ///   - index: The index at which to test for `attributeName`. This value must not exceed the bounds of the receiver.
+    /// - Returns: A range contains the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
+    func longestEffectiveRange(of attrName: NSAttributedString.Key, at index: Int) -> NSRange? {
+        
+        var effectiveRange = NSRange.notFound
+        
+        guard self.attribute(attrName, at: index, longestEffectiveRange: &effectiveRange, in: self.range) != nil else { return nil }
+        
+        return effectiveRange
+    }
+    
+    
     /// Checks if at least one attribute for the given attribute key exists.
     ///
     /// - Parameters:

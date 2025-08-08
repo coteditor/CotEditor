@@ -25,6 +25,7 @@
 
 import SwiftUI
 import AppKit
+import StringUtils
 
 extension NSTextView {
     
@@ -234,24 +235,6 @@ private extension NSColor {
     
     static let tokenBackgroundColor = NSColor(name: "tokenBackgroundColor") { appearance in
         NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
-    }
-}
-
-
-private extension NSAttributedString {
-    
-    /// Returns the full range over which the value of the named attribute is the same as that at index.
-    ///
-    /// - Parameters:
-    ///   - attrName: The name of an attribute.
-    ///   - index: The index at which to test for `attributeName`.
-    /// - Returns: The character range of the attribute, or `nil`if the attribute was not specified.
-    func longestEffectiveRange(of attrName: NSAttributedString.Key, at index: Int) -> NSRange? {
-        
-        var range = NSRange.notFound
-        guard self.attribute(attrName, at: index, longestEffectiveRange: &range, in: self.range) != nil else { return nil }
-        
-        return range
     }
 }
 
