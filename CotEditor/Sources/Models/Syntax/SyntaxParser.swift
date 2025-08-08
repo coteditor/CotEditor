@@ -51,7 +51,7 @@ extension NSAttributedString.Key {
     
     // MARK: Private Properties
     
-    private static let bufferLength = 5_000
+    private let minimumParseLength = 5_000
     
     private let textStorage: NSTextStorage
     
@@ -192,14 +192,11 @@ extension SyntaxParser {
         
         // in case that wholeRange length becomes shorter than invalidRange
         guard invalidRange.upperBound <= wholeRange.upperBound else {
-            return Logger.app.debug("Invalid range \(invalidRange.description) for \(self.textStorage.length) length textStorage is passed in to \(#function)")
+            return Logger.app.debug("Invalid range \(invalidRange.description) for \(wholeRange.upperBound) length textStorage is passed in to \(#function)")
         }
         
         let highlightRange: NSRange = {
-            guard invalidRange != wholeRange else { return wholeRange }
-            
-            // highlight whole if string is enough short
-            if wholeRange.length <= Self.bufferLength {
+            if invalidRange == wholeRange || wholeRange.length <= self.minimumParseLength {
                 return wholeRange
             }
             
@@ -226,11 +223,11 @@ extension SyntaxParser {
                 }
             }
             
-            if highlightRange.upperBound < Self.bufferLength {
-                return NSRange(location: 0, length: highlightRange.upperBound)
+            return if highlightRange.upperBound < self.minimumParseLength {
+                NSRange(0..<highlightRange.upperBound)
+            } else {
+                highlightRange
             }
-            
-            return highlightRange
         }()
         
         guard !highlightRange.isEmpty else { return }
@@ -241,29 +238,12 @@ extension SyntaxParser {
         //    (2016-11, macOS 10.12.1)
         let string = self.textStorage.string.immutable
         
-        self.parse(string: string, range: highlightRange)
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Parses the given string and performs highlighting.
-    ///
-    /// - Parameters:
-    ///   - string: The string to parse.
-    ///   - range: The character range where updates highlights.
-    private func parse(string: String, range: NSRange) {
-        
-        assert(!(string as NSString).className.contains("Mutable"))
-        assert(!range.isEmpty)
-        assert(!self.highlightParser.isEmpty)
-        
+        // parse in background
         self.highlightParseTask?.cancel()
         self.highlightParseTask = Task {
-            let parser = self.highlightParser
-            let highlights = try await parser.parse(string: string, range: range)
+            let highlights = try await self.highlightParser.parse(string: string, range: highlightRange)
             
-            self.apply(highlights: highlights, in: range)
+            self.apply(highlights: highlights, in: highlightRange)
             self.invalidRanges.clear()
         }
     }
