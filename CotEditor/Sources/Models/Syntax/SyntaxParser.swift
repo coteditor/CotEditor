@@ -202,7 +202,7 @@ extension SyntaxParser {
             
             var highlightRange = (self.textStorage.string as NSString).lineRange(for: invalidRange)
             
-            // expand highlight area if the character just before/after the highlighting area is the same syntax type
+            // expand highlight range if the characters just before/after it is the same syntax type
             if let layoutManager = self.textStorage.layoutManagers.first {
                 if highlightRange.lowerBound > 0,
                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
@@ -242,6 +242,8 @@ extension SyntaxParser {
         }
     }
     
+    
+    // MARK: Private Methods
     
     /// Applies highlights to all the layout managers.
     ///
