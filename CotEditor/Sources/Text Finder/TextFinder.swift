@@ -692,6 +692,11 @@ extension NSTextView {
     
     @IBAction final func unhighlight(_ sender: Any?) {
         
-        self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
+        if let textLayoutManager {
+            textLayoutManager.removeRenderingAttribute(.backgroundColor, for: textLayoutManager.documentRange)
+            
+        } else if let layoutManager, layoutManager.hasTemporaryAttribute(.backgroundColor) {
+            layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
+        }
     }
 }
