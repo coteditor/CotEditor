@@ -1324,11 +1324,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     /// Copies the selections with syntax highlight and font style.
     @IBAction func copyWithStyle(_ sender: Any?) {
         
-        guard !self.selectedRange.isEmpty else { return NSSound.beep() }
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
+        
+        guard !selectedRanges.allSatisfy(\.isEmpty) else { return NSSound.beep() }
         
         // substring all selected attributed strings
-        let selections: [NSAttributedString] = self.selectedRanges
-            .map(\.rangeValue)
+        let selections: [NSAttributedString] = selectedRanges
             .map { selectedRange in
                 let plainText = (self.string as NSString).substring(with: selectedRange)
                 let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
