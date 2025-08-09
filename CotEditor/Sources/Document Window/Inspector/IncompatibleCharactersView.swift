@@ -249,29 +249,21 @@ private extension NSTextStorage {
     
     /// Changes the background color of passed-in ranges.
     ///
+    /// - Note: This API requires TextKit 1.
+    ///
     /// - Parameter ranges: The ranges to markup.
     @MainActor func markup(ranges: [NSRange]) {
         
-        self.clearAllMarkup()
+        let color = NSColor.unemphasizedSelectedTextBackgroundColor
         
-        guard !ranges.isEmpty else { return }
-        
-        for manager in self.layoutManagers {
-            guard let color = manager.firstTextView?.textColor?.withAlphaComponent(0.2) else { continue }
-            
-            for range in ranges {
-                manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
+        // perform only when really needed to avoid unnecessary layout updates
+        for manager in self.layoutManagers where manager.hasTemporaryAttribute(.backgroundColor) || !ranges.isEmpty {
+            manager.groupTemporaryAttributesUpdate(in: self.string.range) {
+                manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
+                for range in ranges {
+                    manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
+                }
             }
-        }
-    }
-    
-    
-    /// Clears all background highlight (including text finder's highlights).
-    @MainActor func clearAllMarkup() {
-        
-        // perform clear only when really needed to avoid unwanted layout update
-        for manager in self.layoutManagers where manager.hasTemporaryAttribute(.backgroundColor) {
-            manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
         }
     }
 }
