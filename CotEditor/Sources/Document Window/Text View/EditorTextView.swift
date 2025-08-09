@@ -947,7 +947,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                                    width: 1.0,
                                    height: dirtyRect.height)
             
-            if guideRect.intersects(dirtyRect), let textColor = self.textColor {
+            if guideRect.intersects(dirtyRect), let textColor = self.theme?.text.color {
                 let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
                 let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
                 

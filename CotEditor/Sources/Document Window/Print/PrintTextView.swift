@@ -213,8 +213,10 @@ final class PrintTextView: NSTextView {
             // prepare text attributes for line numbers
             let numberFontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
             let numberFont = NSFont.lineNumberFont(ofSize: numberFontSize)
-            let attrs: [NSAttributedString.Key: Any] = [.font: numberFont,
-                                                        .foregroundColor: self.textColor ?? .textColor]
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: numberFont,
+                .foregroundColor: self.theme?.text.color ?? .textColor
+            ]
             
             // calculate character width using `8` as the representative character
             let numberSize = NSAttributedString(string: "8", attributes: attrs).size()
