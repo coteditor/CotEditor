@@ -330,14 +330,11 @@ extension NSTextView: EditorCounter.Source { }
         // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
         self.windowForSheet?.sheets.forEach { $0.close() }
         
-        let selection = self.textStorage.editorSelection
+        let selection = self.editorSelection
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
-        // do nothing if already no textView exists
-        guard !selection.isEmpty else { return }
-        
-        self.textStorage.restoreEditorSelection(selection)
+        self.restoreEditorSelection(selection)
     }
     
     
@@ -472,13 +469,12 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         // break undo grouping
-        let textViews = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection)
-        for textView in textViews {
+        for textView in self.textViews {
             textView.breakUndoCoalescing()
         }
         
         // trim trailing whitespace if needed
-        if self.isEditable, !saveOperation.isAutosave, let textView = textViews.first as? EditorTextView, textView.isAutomaticWhitespaceTrimmingEnabled {
+        if self.isEditable, !saveOperation.isAutosave, let textView = self.textView as? EditorTextView, textView.isAutomaticWhitespaceTrimmingEnabled {
             textView.trimTrailingWhitespace()
         }
         
@@ -937,6 +933,13 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    /// All editor text views in the window.
+    var textViews: [NSTextView] {
+        
+        self.viewController?.textViews ?? []
+    }
+    
+    
     /// Checks if the contents can be converted in the given encoding without loss of information.
     ///
     /// - Parameter fileEncoding: The text encoding to test, or `nil` to test with the current file encoding.
@@ -1020,12 +1023,16 @@ extension NSTextView: EditorCounter.Source { }
         
         // register undo
         if let undoManager = self.undoManager {
-            let selectedRanges = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection).map(\.selectedRange)
+            let selectedRanges = self.textViews.map(\.selectedRange)
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
                 target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
                 target.lineEnding = currentLineEnding
-                for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
-                    textView.selectedRange = range
+                
+                // -> Undo can be performed after the number of split editors was changed.
+                if selectedRanges.count == target.textViews.count {
+                    for (textView, range) in zip(target.textViews, selectedRanges) {
+                        textView.selectedRange = range
+                    }
                 }
                 
                 // register redo
@@ -1041,10 +1048,10 @@ extension NSTextView: EditorCounter.Source { }
         self.lineEnding = lineEnding
         
         // update line endings in text storage
-        let selection = self.textStorage.editorSelection
+        let selection = self.editorSelection
         let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
         self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
-        self.textStorage.restoreEditorSelection(selection)
+        self.restoreEditorSelection(selection)
     }
     
     
@@ -1470,6 +1477,43 @@ extension NSTextView: EditorCounter.Source { }
     private func showWarningInspector() {
         
         (self.windowController?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
+    }
+}
+
+
+// MARK: Editor Selection
+
+private extension Document {
+    
+    typealias EditorSelection = [[NSValue]]
+    
+    
+    /// The current selection in the text views, or `nil` if no text view exists.
+    var editorSelection: EditorSelection {
+        
+        self.textViews.map(\.selectedRanges)
+    }
+    
+    
+    /// Applies the previous selection to the text views by taking diff into account.
+    ///
+    /// - Parameter state: The selection state to apply.
+    func restoreEditorSelection(_ state: EditorSelection) {
+        
+        guard
+            !state.isEmpty,
+            state.count == self.textViews.count,
+            self.textStorage.length > 0
+        else { return }
+        
+        let length = self.textStorage.length
+        
+        for (textView, selectedRanges) in zip(self.textViews, state) where !selectedRanges.isEmpty {
+            textView.selectedRanges = selectedRanges
+                .map(\.rangeValue)
+                .map { NSRange(min($0.lowerBound, length)..<min($0.upperBound, length)) }
+                .uniqued as [NSValue]
+        }
     }
 }
 
