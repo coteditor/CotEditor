@@ -138,17 +138,37 @@ struct AppearanceSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "windowAlpha", in: self.accessibility)
                 
                 HStack {
-                    Slider(value: $windowAlpha, in: 0.2...1) {
-                        EmptyView()
-                    } minimumValueLabel: {
-                        OpacitySample(opacity: 0.2)
-                            .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
-                    } maximumValueLabel: {
-                        OpacitySample(opacity: 1)
-                            .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
+                    if #available(macOS 26, *) {
+                        Slider(value: $windowAlpha, in: 0.2...1) {
+                            EmptyView()
+                        } currentValueLabel: {
+                            Text(self.windowAlpha, format: .percent)
+                        } minimumValueLabel: {
+                            OpacitySample(opacity: 0.2)
+                                .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
+                        } maximumValueLabel: {
+                            OpacitySample(opacity: 1)
+                                .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
+                        } ticks: {
+                            SliderTickContentForEach(Array(stride(from: 0.2, through: 1, by: 0.1)), id: \.self) { value in
+                                SliderTick(value)
+                            }
+                        }
+                        .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
+                        .frame(width: 240)
+                    } else {
+                        Slider(value: $windowAlpha, in: 0.2...1) {
+                            EmptyView()
+                        } minimumValueLabel: {
+                            OpacitySample(opacity: 0.2)
+                                .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
+                        } maximumValueLabel: {
+                            OpacitySample(opacity: 1)
+                                .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
+                        }
+                        .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
+                        .frame(width: 240)
                     }
-                    .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
-                    .frame(width: 240)
                     
                     TextField(value: $windowAlpha, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
                         .monospacedDigit()
