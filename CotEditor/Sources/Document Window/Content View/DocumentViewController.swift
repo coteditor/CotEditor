@@ -949,13 +949,13 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             return self.presentErrorAsSheet(error)
         }
         
-        self.themeName = name
-        self.document.syntaxParser.theme = theme
-        self.document.textStorage.invalidateHighlight(theme: theme)
-        
         for textView in self.textViews {
             textView.theme = theme
         }
+        
+        self.themeName = name
+        self.document.syntaxParser.theme = theme
+        self.document.textStorage.invalidateHighlight(theme: theme)
         
         self.invalidateRestorableState()
     }
