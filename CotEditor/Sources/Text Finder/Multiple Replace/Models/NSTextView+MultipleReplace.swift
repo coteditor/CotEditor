@@ -64,8 +64,8 @@ extension NSTextView {
         
         if progress.count > 0 {
             // apply to the text view
-            if let layoutManager = self.layoutManager {
-                let color = NSColor.textHighlighterColor
+            let color = NSColor.textHighlighterColor
+            for layoutManager in self.textStorage?.layoutManagers ?? [] {
                 layoutManager.groupTemporaryAttributesUpdate(in: string.nsRange) {
                     layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
                     for range in ranges {

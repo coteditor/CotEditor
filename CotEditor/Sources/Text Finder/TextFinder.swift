@@ -435,11 +435,14 @@ struct FindAllMatch: Identifiable {
         let (matches, result) = try await task.value
         
         // mark all matches
-        if isIncremental, let layoutManager = client.layoutManager {
-            layoutManager.groupTemporaryAttributesUpdate(in: client.string.range) {
-                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: client.string.range)
-                for range in matches {
-                    layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
+        if isIncremental {
+            let color = NSColor.unemphasizedSelectedTextBackgroundColor
+            for layoutManager in client.textStorage?.layoutManagers ?? [] {
+                layoutManager.groupTemporaryAttributesUpdate(in: client.string.range) {
+                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: client.string.range)
+                    for range in matches {
+                        layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
+                    }
                 }
             }
             
@@ -564,8 +567,8 @@ struct FindAllMatch: Identifiable {
         guard progress.state != .cancelled else { return }
         
         // highlight in client
-        if let layoutManager = client.layoutManager {
-            let wholeRange = textFind.string.nsRange
+        let wholeRange = textFind.string.nsRange
+        for layoutManager in client.textStorage?.layoutManagers ?? [] {
             layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
                 for highlight in highlights {
@@ -690,13 +693,15 @@ extension FindResult {
 
 extension NSTextView {
     
+    /// Removes temporal background color highlights in the receiver.
+    ///
+    /// - Note: This API requires TextKit 1.
     @IBAction final func unhighlight(_ sender: Any?) {
         
-        if let textLayoutManager {
-            textLayoutManager.removeRenderingAttribute(.backgroundColor, for: textLayoutManager.documentRange)
-            
-        } else if let layoutManager, layoutManager.hasTemporaryAttribute(.backgroundColor) {
-            layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
+        guard let textStorage else { return }
+        
+        for layoutManager in textStorage.layoutManagers where layoutManager.hasTemporaryAttribute(.backgroundColor) {
+            layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textStorage.range)
         }
     }
 }
