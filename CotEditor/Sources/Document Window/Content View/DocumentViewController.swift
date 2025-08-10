@@ -461,6 +461,12 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Public Methods
     
+    /// The array of all child text views.
+    var textViews: [EditorTextView] {
+        
+        self.editorViewControllers.compactMap(\.textView)
+    }
+    
     /// The text view currently focused on.
     var focusedTextView: EditorTextView? {
         
@@ -845,13 +851,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var editorViewControllers: [EditorViewController] {
         
         self.children.compactMap { $0 as? EditorViewController }
-    }
-    
-    
-    /// The array of all child text views.
-    private var textViews: [EditorTextView] {
-        
-        self.editorViewControllers.compactMap(\.textView)
     }
     
     
