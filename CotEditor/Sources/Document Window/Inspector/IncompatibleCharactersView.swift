@@ -202,7 +202,7 @@ private extension IncompatibleCharactersView.Model {
     }
     
     
-    /// Update incompatible characters.
+    /// Updates incompatible characters.
     private func invalidateIncompatibleCharacters() {
         
         self.task?.cancel()
@@ -240,29 +240,35 @@ private extension IncompatibleCharactersView.Model {
     /// Updates markup in the editors.
     private func updateMarkup() {
         
-        self.document?.textStorage.markup(ranges: self.items.map(\.range))
+        let ranges = self.items.map(\.range)
+        for textView in self.document?.textViews ?? [] {
+            textView.setBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: ranges)
+        }
     }
 }
 
 
-private extension NSTextStorage {
+private extension NSTextView {
     
     /// Changes the background color of passed-in ranges.
     ///
     /// - Note: This API requires TextKit 1.
     ///
-    /// - Parameter ranges: The ranges to markup.
-    @MainActor func markup(ranges: [NSRange]) {
+    /// - Parameters:
+    ///   - color: The background color.
+    ///   - ranges: The ranges to markup.
+    @MainActor func setBackgroundColor(_ color: NSColor, ranges: [NSRange]) {
         
-        let color = NSColor.unemphasizedSelectedTextBackgroundColor
+        guard
+            let manager = self.layoutManager,
+            // perform only when really needed to avoid unnecessary layout updates
+            manager.hasTemporaryAttribute(.backgroundColor) || !ranges.isEmpty
+        else { return }
         
-        // perform only when really needed to avoid unnecessary layout updates
-        for manager in self.layoutManagers where manager.hasTemporaryAttribute(.backgroundColor) || !ranges.isEmpty {
-            manager.groupTemporaryAttributesUpdate(in: self.string.range) {
-                manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
-                for range in ranges {
-                    manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
-                }
+        manager.groupTemporaryAttributesUpdate(in: self.string.range) {
+            manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
+            for range in ranges {
+                manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
             }
         }
     }
