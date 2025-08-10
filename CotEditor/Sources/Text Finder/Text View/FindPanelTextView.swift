@@ -24,6 +24,9 @@
 //
 
 import AppKit
+import Combine
+import Defaults
+import Invisible
 
 /// Text view that behaves like an NSTextField.
 final class FindPanelTextView: RegexTextView {
@@ -35,6 +38,8 @@ final class FindPanelTextView: RegexTextView {
     // MARK: Private Properties
     
     @objc private dynamic var isEmpty: Bool = true
+    
+    private var defaultObservers: Set<AnyCancellable> = []
     
     
     // MARK: Lifecycle
@@ -74,6 +79,18 @@ final class FindPanelTextView: RegexTextView {
         // set subclassed layout manager for invisible characters
         let layoutManager = FindPanelLayoutManager()
         self.textContainer?.replaceLayoutManager(layoutManager)
+        
+        // observe user defaults
+        let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
+            .map { UserDefaults.standard.publisher(for: $0) }
+        self.defaultObservers = [
+            Publishers.MergeMany(publishers)
+                .merge(with: Just(true))
+                .map { _ in UserDefaults.standard.shownInvisible }
+                .assign(to: \.shownInvisibles, on: layoutManager),
+            UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
+                .assign(to: \.showsInvisibles, on: layoutManager),
+        ]
     }
     
     

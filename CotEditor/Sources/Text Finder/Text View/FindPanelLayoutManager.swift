@@ -24,8 +24,6 @@
 //
 
 import AppKit
-import Combine
-import Defaults
 import Invisible
 
 final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, InvisibleDrawing {
@@ -34,9 +32,9 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     
     let invisiblesColor: NSColor = .disabledControlTextColor
     let textFont: NSFont = .systemFont(ofSize: 0)
-    private(set) var showsInvisibles: Bool = false  { didSet { self.invalidateInvisibleDisplay() } }
+    var showsInvisibles: Bool = false  { didSet { self.invalidateInvisibleDisplay() } }
+    var shownInvisibles: Set<Invisible> = []  { didSet { self.invalidateInvisibleDisplay() } }
     var showsControls: Bool = false
-    var shownInvisibles: Set<Invisible>  { UserDefaults.standard.shownInvisible }
     
     
     // MARK: Private Properties
@@ -44,8 +42,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     private lazy var lineHeight = self.defaultLineHeight(for: self.textFont)
     private lazy var baselineOffset = self.defaultBaselineOffset(for: self.textFont)
     private lazy var boundingBoxForControlGlyph = self.boundingBoxForControlGlyph(for: self.textFont)
-    private var invisibleVisibilityObserver: AnyCancellable?
-    private var invisiblesDefaultsObserver: AnyCancellable?
     
     
     // MARK: Lifecycle
@@ -55,14 +51,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         super.init()
         
         self.delegate = self
-        
-        self.invisibleVisibilityObserver = UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
-            .sink { [weak self] in self?.showsInvisibles = $0 }
-        
-        let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
-            .map { UserDefaults.standard.publisher(for: $0) }
-        self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
-            .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }
     }
     
     
