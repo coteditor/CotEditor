@@ -30,8 +30,6 @@ import TextFind
 extension NSTextView {
     
     /// Highlights all matches in the textView.
-    ///
-    /// - Note: This API requires TextKit 1.
     /// 
     /// - Parameters:
     ///   - definition: The text view where highlighting text.
@@ -64,15 +62,7 @@ extension NSTextView {
         
         if progress.count > 0 {
             // apply to the text view
-            let color = NSColor.textHighlighterColor
-            for layoutManager in self.textStorage?.layoutManagers ?? [] {
-                layoutManager.groupTemporaryAttributesUpdate(in: string.nsRange) {
-                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
-                    for range in ranges {
-                        layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
-                    }
-                }
-            }
+            self.updateBackgroundColor(.textHighlighterColor, ranges: ranges)
         } else {
             NSSound.beep()
         }
