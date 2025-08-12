@@ -9,13 +9,24 @@ commands:
 - beginString: complex
 - beginString: copy
 - beginString: delete
+- beginString: Errorf
+- beginString: Fatalf
+- beginString: Fprint
+- beginString: Fprintf
+- beginString: Fprintln
+- beginString: FScan
+- beginString: FScanf
+- beginString: FScanln
 - beginString: imag
 - beginString: len
 - beginString: make
 - beginString: new
 - beginString: panic
 - beginString: Print
+- beginString: Printf
 - beginString: Println
+- beginString: Sprintf
+- beginString: Sprintln
 - beginString: real
 - beginString: recover
 commentDelimiters:
