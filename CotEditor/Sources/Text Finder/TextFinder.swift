@@ -436,15 +436,7 @@ struct FindAllMatch: Identifiable {
         
         // mark all matches
         if isIncremental {
-            let color = NSColor.unemphasizedSelectedTextBackgroundColor
-            for layoutManager in client.textStorage?.layoutManagers ?? [] {
-                layoutManager.groupTemporaryAttributesUpdate(in: client.string.range) {
-                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: client.string.range)
-                    for range in matches {
-                        layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
-                    }
-                }
-            }
+            client.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: matches)
             
             // unmark either when the client view resigned the key window or when the Find panel closed
             self.highlightObservationTask?.cancel()
@@ -566,16 +558,7 @@ struct FindAllMatch: Identifiable {
         
         guard progress.state != .cancelled else { return }
         
-        // highlight in client
-        let wholeRange = textFind.string.nsRange
-        for layoutManager in client.textStorage?.layoutManagers ?? [] {
-            layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
-                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
-                for highlight in highlights {
-                    layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.value, forCharacterRange: highlight.range)
-                }
-            }
-        }
+        client.updateBackgroundColors(highlights)
         
         if highlights.isEmpty {
             NSSound.beep()
@@ -684,24 +667,6 @@ extension FindResult {
                     String(localized: "FindResult.replace.found", defaultValue: "\(self.count) replaced", table: "TextFind",
                            comment: "short result message for Replace All (%lld is number of replaced)")
                 }
-        }
-    }
-}
-
-
-// MARK: -
-
-extension NSTextView {
-    
-    /// Removes temporal background color highlights in the receiver.
-    ///
-    /// - Note: This API requires TextKit 1.
-    @IBAction final func unhighlight(_ sender: Any?) {
-        
-        guard let textStorage else { return }
-        
-        for layoutManager in textStorage.layoutManagers where layoutManager.hasTemporaryAttribute(.backgroundColor) {
-            layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textStorage.range)
         }
     }
 }

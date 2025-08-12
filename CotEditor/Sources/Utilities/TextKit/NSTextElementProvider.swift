@@ -1,5 +1,5 @@
 //
-//  NSTextContentStorage.swift
+//  NSTextElementProvider.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import AppKit
 
-extension NSTextContentManager {
+extension NSTextElementProvider {
     
     /// Converts the given text location to a character index.
     ///
@@ -34,7 +34,7 @@ extension NSTextContentManager {
     /// - Returns: A character position.
     func location(for textLocation: some NSTextLocation) -> Int {
         
-        self.offset(from: self.documentRange.location, to: textLocation)
+        self.offset?(from: self.documentRange.location, to: textLocation) ?? NSNotFound
     }
     
     
@@ -45,7 +45,7 @@ extension NSTextContentManager {
     /// - Returns: A text location.
     func textLocation(for location: Int) -> (any NSTextLocation)? {
         
-        self.location(self.documentRange.location, offsetBy: location)
+        self.location?(self.documentRange.location, offsetBy: location)
     }
     
     
@@ -56,8 +56,12 @@ extension NSTextContentManager {
     /// - Returns: A character range.
     func range(for textRange: NSTextRange) -> NSRange {
         
-        NSRange(location: self.offset(from: self.documentRange.location, to: textRange.location),
-                length: self.offset(from: textRange.location, to: textRange.endLocation))
+        guard
+            let location = self.offset?(from: self.documentRange.location, to: textRange.location),
+            let length = self.offset?(from: textRange.location, to: textRange.endLocation)
+        else { return NSRange(location: NSNotFound, length: 0) }
+        
+        return NSRange(location: location, length: length)
     }
     
     
@@ -69,8 +73,8 @@ extension NSTextContentManager {
     func textRange(for range: NSRange) -> NSTextRange? {
         
         guard
-            let start = self.location(self.documentRange.location, offsetBy: range.location),
-            let end = self.location(start, offsetBy: range.length)
+            let start = self.location?(self.documentRange.location, offsetBy: range.location),
+            let end = self.location?(start, offsetBy: range.length)
         else { return nil }
         
         return NSTextRange(location: start, end: end)

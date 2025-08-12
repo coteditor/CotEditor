@@ -207,8 +207,9 @@ private extension IncompatibleCharactersView.Model {
         
         self.task?.cancel()
         self.task = Task {
-            self.items = try await self.scan()
-            self.updateMarkup()
+            let items = try await self.scan()
+            self.items = items
+            self.document?.textView?.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: items.map(\.range))
         }
     }
     
@@ -234,43 +235,6 @@ private extension IncompatibleCharactersView.Model {
         return try await Task.detached { [string = string.immutable] in
             try string.charactersIncompatible(with: encoding)
         }.value
-    }
-    
-    
-    /// Updates markup in the editors.
-    private func updateMarkup() {
-        
-        let ranges = self.items.map(\.range)
-        for textView in self.document?.textViews ?? [] {
-            textView.setBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: ranges)
-        }
-    }
-}
-
-
-private extension NSTextView {
-    
-    /// Changes the background color of passed-in ranges.
-    ///
-    /// - Note: This API requires TextKit 1.
-    ///
-    /// - Parameters:
-    ///   - color: The background color.
-    ///   - ranges: The ranges to markup.
-    @MainActor func setBackgroundColor(_ color: NSColor, ranges: [NSRange]) {
-        
-        guard
-            let manager = self.layoutManager,
-            // perform only when really needed to avoid unnecessary layout updates
-            manager.hasTemporaryAttribute(.backgroundColor) || !ranges.isEmpty
-        else { return }
-        
-        manager.groupTemporaryAttributesUpdate(in: self.string.range) {
-            manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.range)
-            for range in ranges {
-                manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
-            }
-        }
     }
 }
 
