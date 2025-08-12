@@ -69,7 +69,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     override func loadView() {
         
-        let footerHeight: CGFloat = isLiquidGlass ? 28 : 23
+        let footerHeight: CGFloat = isLiquidGlass ? 32 : 23
         
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
@@ -100,7 +100,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 6),
+            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 8 : 6),
         ])
         
         self.view = NSView()
