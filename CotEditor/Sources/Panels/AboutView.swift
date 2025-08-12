@@ -74,7 +74,8 @@ struct AboutView: View {
             .accessibilitySortPriority(1)
             .scenePadding([.leading, .vertical])
             .padding(.trailing)
-            .frame(minWidth: 200)
+            .frame(minWidth: 200, maxHeight: .infinity)
+            .background(.fill.quaternary)
             
             Divider()
             
@@ -109,7 +110,14 @@ struct AboutView: View {
                     }
                 }
             }
-            .background()
+            .modifier { content in
+                if #available(macOS 26, *) {
+                    content
+                } else {
+                    content
+                        .background()
+                }
+            }
         }
         .controlSize(.small)
         .frame(width: 540, height: 320)
@@ -141,11 +149,12 @@ private struct TabPickerButtonView: View {
         Button(self.title, action: self.action)
             .buttonStyle(.borderless)
             .brightness(-0.2)
-            .padding(.vertical, 1)
-            .padding(.horizontal, 4)
-            .background(.fill.opacity(self.backgroundOpacity), in: .rect(cornerRadius: 3))
+            .padding(.vertical, isLiquidGlass ? 2 : 1)
+            .padding(.horizontal, isLiquidGlass ? 6 : 4)
+            .background(.fill.opacity(self.backgroundOpacity),
+                        in: .rect(cornerRadius: isLiquidGlass ? 5 : 3, style: .continuous))
             .overlay(self.contrast == .increased
-                     ? RoundedRectangle(cornerRadius: 3).stroke(.tertiary)
+                     ? RoundedRectangle(cornerRadius: isLiquidGlass ? 5 : 3).stroke(.tertiary)
                      : nil)
             .onHover { self.isHovered = $0 }
             .accessibilityAddTraits(self.isSelected ? .isSelected : [])
@@ -158,7 +167,7 @@ private struct TabPickerButtonView: View {
         if self.isHovered {
             1
         } else if self.isSelected {
-            0.5
+            0.6
         } else {
             0
         }
