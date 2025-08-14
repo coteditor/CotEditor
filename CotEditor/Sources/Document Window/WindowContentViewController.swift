@@ -60,7 +60,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         self.document = document
         self.directoryDocument = directoryDocument
-        self.statusBarModel = .init(document: document as? Document)
+        self.statusBarModel = .init(document: document)
         
         super.init(nibName: nil, bundle: nil)
     }
