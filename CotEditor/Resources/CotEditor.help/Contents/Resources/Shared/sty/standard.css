@@ -68,8 +68,7 @@ body > h1 {
 }
 body > h1::before {
 	content: '';
-	background-image: image-set(url(../gfx/icon_32x32.png) 1x,
-	                            url(../gfx/icon_32x32@2x.png) 2x);
+	background-image: image-set(url(../gfx/icon_32x32@2x.png) 2x);
 	background-size: contain;
 	display: inline-block;
 	width: 32px;

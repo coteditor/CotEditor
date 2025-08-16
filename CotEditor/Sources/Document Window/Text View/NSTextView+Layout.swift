@@ -226,13 +226,8 @@ extension NSTextView {
                 textContainer.size = self.infiniteSize
             }
             
-            if let visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
-                if self.baseWritingDirection == .rightToLeft {
-                    visibleRect.origin.x = self.frame.width
-                }
-                visibleRect.size.width = 0
-                visibleRect = visibleRect.inset(by: -self.textContainerInset)
-                self.scrollToVisible(visibleRect)
+            if let visibleRange {
+                self.scrollRangeToVisible(visibleRange)
             }
         }
     }

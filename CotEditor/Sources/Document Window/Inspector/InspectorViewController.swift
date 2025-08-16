@@ -45,17 +45,11 @@ final class InspectorViewController: NSTabViewController {
     
     // MARK: Lifecycle
     
-    init(document: DataDocument? = nil) {
+    convenience init(document: DataDocument?) {
+        
+        self.init(nibName: nil, bundle: nil)
         
         self.document = document
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
     }
     
     

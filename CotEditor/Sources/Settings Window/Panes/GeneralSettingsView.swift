@@ -156,7 +156,7 @@ struct GeneralSettingsView: View {
             }
             
             Divider()
-                .padding(.vertical, 6)
+                .padding(.vertical, isLiquidGlass ? 0 : 6)
             
             GridRow {
                 Text("Command-line tool:", tableName: "GeneralSettings")
@@ -189,7 +189,7 @@ struct GeneralSettingsView: View {
             
             if self.showsUpdaterSettings {
                 Divider()
-                    .padding(.vertical, 6)
+                    .padding(.vertical, isLiquidGlass ? 0 : 6)
                 UpdaterView()
             }
             
