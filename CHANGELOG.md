@@ -6,6 +6,7 @@
 ### Improvements
 
 - Update the Go syntax to highlight more keywords (thanks to Karam!).
+- [dev] Update Yams from 6.0.2 to 6.1.0.
 
 
 
