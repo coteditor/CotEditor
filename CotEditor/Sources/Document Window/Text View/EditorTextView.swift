@@ -862,13 +862,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             self.spaceWidth = font.width(of: " ")
             (self.textContainer as? TextContainer)?.spaceWidth = self.spaceWidth
             
-            if font.isFixedPitch {
-                self.typingAttributes[.kern] = 0
-                self.textStorage?.addAttribute(.kern, value: 0, range: self.string.range)
-            } else {
-                self.typingAttributes[.kern] = nil
-                self.textStorage?.removeAttribute(.kern, range: self.string.range)
+            if let textStorage {
+                if font.isFixedPitch {
+                    textStorage.addAttribute(.kern, value: 0, range: textStorage.range)
+                } else {
+                    textStorage.removeAttribute(.kern, range: textStorage.range)
+                }
             }
+            self.typingAttributes[.kern] = font.isFixedPitch ? 0 : nil
             
             // let LayoutManager keep the set font to avoid an inconsistent line height
             // -> Because NSTextView's .font returns the font used for the first character of .string when it exists,
