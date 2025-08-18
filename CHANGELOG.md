@@ -3,6 +3,10 @@
 5.2.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the Go syntax to highlight more keywords (thanks to Karam!).
+
 
 
 5.2.2 (728)
