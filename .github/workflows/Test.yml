@@ -11,6 +11,7 @@ jobs:
     steps:
     - name: Show environments
       run: |
+        sw_vers
         xcodebuild -version
         swift --version
     - name: Checkout
@@ -26,4 +27,4 @@ jobs:
         swift test --package-path Packages/SyntaxMap
     - name: Unit Test for CotEditor
       run: |
-        xcodebuild test -project CotEditor.xcodeproj -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
+        xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
