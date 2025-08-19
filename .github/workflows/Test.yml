@@ -14,7 +14,7 @@ jobs:
         xcodebuild -version
         swift --version
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
     - name: Unit Test for EditorCore
       run: |
         swift test --package-path Packages/EditorCore
