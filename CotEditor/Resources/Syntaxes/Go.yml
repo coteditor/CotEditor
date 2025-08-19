@@ -25,10 +25,10 @@ commands:
 - beginString: Print
 - beginString: Printf
 - beginString: Println
-- beginString: Sprintf
-- beginString: Sprintln
 - beginString: real
 - beginString: recover
+- beginString: Sprintf
+- beginString: Sprintln
 commentDelimiters:
   beginDelimiter: /*
   endDelimiter: '*/'
