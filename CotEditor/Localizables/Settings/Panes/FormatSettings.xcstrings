@@ -91,6 +91,12 @@
     },
     "Customized Syntaxes" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravené syntaxe"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,8 +515,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Upravit vybranou syntaxi"
+            "state" : "translated",
+            "value" : "Upravit vybranou položku"
           }
         },
         "de" : {

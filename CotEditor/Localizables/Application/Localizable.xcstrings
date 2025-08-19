@@ -5612,6 +5612,12 @@
       "comment" : "Refer similar expressions by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vlastní nastavení se stejným názvem již existuje. Jeho nahrazením dojde k přepsání aktuálního obsahu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

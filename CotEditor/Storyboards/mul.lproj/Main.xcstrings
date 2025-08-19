@@ -9223,8 +9223,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ASCII do Full-width ASCII"
+            "state" : "translated",
+            "value" : "Převést alfanumerický text na plnou šířku"
           }
         },
         "de" : {
@@ -9319,8 +9319,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Full-width ASCII do ASCII"
+            "state" : "translated",
+            "value" : "Převést alfanumerický text na poloviční šířku"
           }
         },
         "de" : {

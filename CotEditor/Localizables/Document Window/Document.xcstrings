@@ -5724,6 +5724,12 @@
     "MoveToTrashComfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chcete přesunout „%@“ do koše?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5799,20 +5805,20 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "Chcete přesunout %lld vybrané položky do koše?"
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "Chcete přesunout %lld vybraných položek do koše?"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "Chcete přesunout %lld vybraných položek do koše?"
                 }
               }
             }

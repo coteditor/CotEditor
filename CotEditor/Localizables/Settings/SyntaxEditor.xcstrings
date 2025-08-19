@@ -2772,7 +2772,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interprety:"
+            "value" : "Interpretery:"
           }
         },
         "de" : {
@@ -4207,8 +4207,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Interprety se používají k určení syntaxe ze shebangu v dokumentu."
+            "state" : "translated",
+            "value" : "Interpretery se používají k určení syntaxe z hlavičky #! v dokumentu."
           }
         },
         "de" : {
