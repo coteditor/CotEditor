@@ -5665,6 +5665,12 @@
             "state" : "translated",
             "value" : "已存在同名自定设置。替换后将会覆盖当前内容。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已存在同名的自訂設定。取代它將覆寫其當前內容。"
+          }
         }
       }
     },

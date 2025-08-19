@@ -9307,8 +9307,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ASCII到全形ASCII"
+            "state" : "translated",
+            "value" : "將字母數字文字轉換為全形"
           }
         }
       }
@@ -9403,8 +9403,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "全形ASCII到ASCII"
+            "state" : "translated",
+            "value" : "將字母數字文字轉換為半形"
           }
         }
       }

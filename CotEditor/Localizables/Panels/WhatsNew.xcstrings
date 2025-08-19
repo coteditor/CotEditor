@@ -312,6 +312,12 @@
             "state" : "translated",
             "value" : "在macOS 26 Tahoe中体验全新液态玻璃风格带来的焕新界面。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "體驗macOS 26 Tahoe中全新的液態玻璃介面風格。"
+          }
         }
       }
     },
@@ -360,6 +366,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "液态玻璃外观"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "液態玻璃外觀"
           }
         }
       }

@@ -4285,8 +4285,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "直譯器將根據文件整體來決定文法高亮樣式。"
+            "state" : "translated",
+            "value" : "解譯器用於根據文件中#!標頭確定文法。"
           }
         }
       }

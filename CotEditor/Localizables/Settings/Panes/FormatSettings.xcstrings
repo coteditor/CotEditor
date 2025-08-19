@@ -138,6 +138,12 @@
             "state" : "translated",
             "value" : "自定义语法"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自訂文法"
+          }
         }
       }
     },
@@ -575,8 +581,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "編輯選中的文法定義"
+            "state" : "translated",
+            "value" : "編輯選定項目"
           }
         }
       }
