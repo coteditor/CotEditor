@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdE-8e-ywb">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24118.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdE-8e-ywb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.7"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24118.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -98,7 +98,7 @@
                                 </scroller>
                             </scrollView>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-bg-rl5" userLabel="Recent Searches">
-                                <rect key="frame" x="-3" y="100" width="40" height="15"/>
+                                <rect key="frame" x="-1" y="98" width="40" height="15"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" refusesFirstResponder="YES" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vE8-oK-xlC" id="Jj5-Gl-NDD" userLabel="Recent Searches">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
@@ -122,7 +122,7 @@
                                 <accessibility description="Recent Searches"/>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Hw7-zz-RG8" userLabel="Recent Replacements">
-                                <rect key="frame" x="-3" y="36" width="40" height="15"/>
+                                <rect key="frame" x="-1" y="34" width="40" height="15"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" refusesFirstResponder="YES" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="5v5-WE-Zk4" userLabel="Recent Replacements">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
@@ -146,7 +146,7 @@
                                 <accessibility description="Recent Replacements"/>
                             </popUpButton>
                             <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
-                                <rect key="frame" x="390" y="99" width="47" height="14"/>
+                                <rect key="frame" x="387" y="97" width="47" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DUMMY" drawsBackground="YES" usesSingleLineMode="YES" id="Ghf-cy-qgo">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -154,7 +154,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SSP-y6-YxI">
-                                <rect key="frame" x="390" y="35" width="47" height="14"/>
+                                <rect key="frame" x="387" y="34" width="47" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DUMMY" drawsBackground="YES" usesSingleLineMode="YES" id="2sg-74-GwO">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -162,15 +162,11 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ObJ-nS-x0g">
-                                <rect key="frame" x="441" y="96" width="14" height="20"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="jxx-at-moE">
+                                <rect key="frame" x="438" y="97" width="15" height="15"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark.circle.fill" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="jxx-at-moE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="9ek-RA-xWp"/>
-                                    <constraint firstAttribute="width" secondItem="ObJ-nS-x0g" secondAttribute="height" multiplier="1:1" id="T9W-SF-Lok"/>
-                                </constraints>
                                 <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="hxw-DS-gxQ" id="ioP-wf-gEs"/>
@@ -178,16 +174,11 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Y5M-CG-n0V">
-                                <rect key="frame" x="441" y="32" width="14" height="20"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="zCK-87-9kX">
+                                <rect key="frame" x="438" y="34" width="15" height="15"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark.circle.fill" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="zCK-87-9kX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Y5M-CG-n0V" secondAttribute="height" multiplier="1:1" id="Snu-wu-u8U"/>
-                                    <constraint firstAttribute="width" secondItem="Y5M-CG-n0V" secondAttribute="height" multiplier="1:1" id="YC9-gF-7eS"/>
-                                    <constraint firstAttribute="height" constant="14" id="e2p-u6-YCM"/>
-                                </constraints>
                                 <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="qiQ-tb-XCa" id="iuI-2d-soX"/>
@@ -199,27 +190,27 @@
                             <constraint firstItem="Hw7-zz-RG8" firstAttribute="width" secondItem="3ZH-bg-rl5" secondAttribute="width" id="3F7-ll-Mbq"/>
                             <constraint firstItem="AIf-o5-KHg" firstAttribute="top" secondItem="8gM-hc-HhV" secondAttribute="bottom" constant="10" id="Bvu-tF-8zA"/>
                             <constraint firstItem="AIf-o5-KHg" firstAttribute="height" secondItem="8gM-hc-HhV" secondAttribute="height" id="Gro-HA-umC"/>
-                            <constraint firstItem="ObJ-nS-x0g" firstAttribute="trailing" secondItem="8gM-hc-HhV" secondAttribute="trailing" constant="-5" id="He6-bE-vXU"/>
-                            <constraint firstItem="3ZH-bg-rl5" firstAttribute="leading" secondItem="8gM-hc-HhV" secondAttribute="leading" constant="2" id="L5a-x0-VYK"/>
+                            <constraint firstItem="ObJ-nS-x0g" firstAttribute="trailing" secondItem="8gM-hc-HhV" secondAttribute="trailing" constant="-7" id="He6-bE-vXU"/>
+                            <constraint firstItem="3ZH-bg-rl5" firstAttribute="leading" secondItem="8gM-hc-HhV" secondAttribute="leading" constant="4" id="L5a-x0-VYK"/>
+                            <constraint firstItem="ObJ-nS-x0g" firstAttribute="firstBaseline" secondItem="Kkq-6q-C63" secondAttribute="firstBaseline" id="Ld9-Ga-1S2"/>
                             <constraint firstItem="AIf-o5-KHg" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" id="MYl-DK-DG4"/>
                             <constraint firstItem="SSP-y6-YxI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hw7-zz-RG8" secondAttribute="trailing" constant="8" symbolic="YES" id="RjK-9l-DGD"/>
-                            <constraint firstItem="Kkq-6q-C63" firstAttribute="top" secondItem="8gM-hc-HhV" secondAttribute="top" constant="5" id="S0M-8m-gfu"/>
                             <constraint firstItem="Y5M-CG-n0V" firstAttribute="leading" secondItem="SSP-y6-YxI" secondAttribute="trailing" constant="4" id="VMH-bk-5b1"/>
                             <constraint firstItem="Hw7-zz-RG8" firstAttribute="height" secondItem="3ZH-bg-rl5" secondAttribute="height" id="XXG-jG-4mZ"/>
+                            <constraint firstItem="Y5M-CG-n0V" firstAttribute="firstBaseline" secondItem="SSP-y6-YxI" secondAttribute="firstBaseline" id="atz-2M-MFo"/>
                             <constraint firstItem="Kkq-6q-C63" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3ZH-bg-rl5" secondAttribute="trailing" constant="8" symbolic="YES" id="f6c-m6-D1S"/>
-                            <constraint firstItem="SSP-y6-YxI" firstAttribute="top" secondItem="AIf-o5-KHg" secondAttribute="top" constant="5" id="fXY-zD-DrT"/>
-                            <constraint firstItem="Y5M-CG-n0V" firstAttribute="trailing" secondItem="AIf-o5-KHg" secondAttribute="trailing" constant="-5" id="gKz-iT-g2a"/>
+                            <constraint firstItem="Y5M-CG-n0V" firstAttribute="trailing" secondItem="AIf-o5-KHg" secondAttribute="trailing" constant="-7" id="gKz-iT-g2a"/>
                             <constraint firstItem="8gM-hc-HhV" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" id="gQn-Hn-4no"/>
-                            <constraint firstItem="ObJ-nS-x0g" firstAttribute="top" secondItem="8gM-hc-HhV" secondAttribute="top" constant="5" id="hYB-mi-CAq"/>
-                            <constraint firstItem="AIf-o5-KHg" firstAttribute="top" secondItem="Hw7-zz-RG8" secondAttribute="top" constant="-3" id="nB9-aQ-qq0"/>
-                            <constraint firstItem="AIf-o5-KHg" firstAttribute="leading" secondItem="Hw7-zz-RG8" secondAttribute="leading" constant="-2" id="r87-HM-Zhd"/>
+                            <constraint firstItem="Y5M-CG-n0V" firstAttribute="firstBaseline" secondItem="Hw7-zz-RG8" secondAttribute="firstBaseline" id="kYR-3d-WeE"/>
+                            <constraint firstItem="Hw7-zz-RG8" firstAttribute="top" secondItem="AIf-o5-KHg" secondAttribute="top" constant="5" id="nB9-aQ-qq0"/>
+                            <constraint firstItem="ObJ-nS-x0g" firstAttribute="firstBaseline" secondItem="3ZH-bg-rl5" secondAttribute="firstBaseline" id="oyt-Nr-EKw"/>
+                            <constraint firstItem="Hw7-zz-RG8" firstAttribute="leading" secondItem="8gM-hc-HhV" secondAttribute="leading" constant="4" id="r87-HM-Zhd"/>
                             <constraint firstItem="ObJ-nS-x0g" firstAttribute="leading" secondItem="Kkq-6q-C63" secondAttribute="trailing" constant="4" id="rDK-cZ-RuR"/>
                             <constraint firstAttribute="trailing" secondItem="AIf-o5-KHg" secondAttribute="trailing" id="roH-xE-9hA"/>
                             <constraint firstAttribute="bottom" secondItem="AIf-o5-KHg" secondAttribute="bottom" id="t2P-F6-erp"/>
                             <constraint firstItem="8gM-hc-HhV" firstAttribute="top" secondItem="D8F-V7-fpC" secondAttribute="top" id="vif-YG-Nqa"/>
-                            <constraint firstItem="3ZH-bg-rl5" firstAttribute="top" secondItem="8gM-hc-HhV" secondAttribute="top" constant="3" id="ytl-V4-cU8"/>
+                            <constraint firstItem="3ZH-bg-rl5" firstAttribute="top" secondItem="8gM-hc-HhV" secondAttribute="top" constant="5" id="ytl-V4-cU8"/>
                             <constraint firstAttribute="trailing" secondItem="8gM-hc-HhV" secondAttribute="trailing" id="yyi-u6-WQd"/>
-                            <constraint firstItem="Y5M-CG-n0V" firstAttribute="top" secondItem="AIf-o5-KHg" secondAttribute="top" constant="5" id="zNC-3P-nd5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -238,9 +229,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
         <image name="trash" catalog="system" width="15" height="17"/>
+        <image name="xmark.circle.fill" catalog="system" width="15" height="15"/>
     </resources>
 </document>

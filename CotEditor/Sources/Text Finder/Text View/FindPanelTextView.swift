@@ -48,6 +48,10 @@ final class FindPanelTextView: RegexTextView {
         
         super.init(coder: coder)
         
+        // set subclassed layout manager for invisible characters
+        let layoutManager = FindPanelLayoutManager()
+        self.textContainer?.replaceLayoutManager(layoutManager)
+        
         // set system font (standard NSTextField behavior)
         self.font = .systemFont(ofSize: 0)
         
@@ -56,7 +60,7 @@ final class FindPanelTextView: RegexTextView {
         self.typingAttributes[.font] = self.font
         
         // set inset a bit like NSTextField (horizontal inset is added in FindPanelTextClipView)
-        self.textContainerInset = NSSize(width: 0.0, height: 2.0)
+        self.textContainerInset = NSSize(width: 0, height: 4)
         
         // set writing direction to RTL when UI is RTL
         self.baseWritingDirection = (self.userInterfaceLayoutDirection == .rightToLeft) ? .rightToLeft : .natural
@@ -76,10 +80,6 @@ final class FindPanelTextView: RegexTextView {
         self.isAutomaticSpellingCorrectionEnabled = false
         self.smartInsertDeleteEnabled = false
         
-        // set subclassed layout manager for invisible characters
-        let layoutManager = FindPanelLayoutManager()
-        self.textContainer?.replaceLayoutManager(layoutManager)
-        
         // observe user defaults
         let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
             .map { UserDefaults.standard.publisher(for: $0) }
@@ -94,7 +94,7 @@ final class FindPanelTextView: RegexTextView {
     }
     
     
-    // MARK: TextView Methods
+    // MARK: Text View Methods
     
     /// The view is on focus.
     override func becomeFirstResponder() -> Bool {

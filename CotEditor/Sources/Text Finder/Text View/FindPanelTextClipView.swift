@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ final class FindPanelTextClipView: NSClipView {
     
     // MARK: Private Properties
     
-    private let leadingPadding: CGFloat = 30  // for history button
-    private let trailingPadding: CGFloat = 22  // for clear button
+    private let leadingPadding: CGFloat = 32  // for history button
+    private let trailingPadding: CGFloat = 24  // for clear button
     
     
     // MARK: View Methods
