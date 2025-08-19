@@ -127,6 +127,12 @@
             "value" : "Aangepaste syntaxen"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Özelleştirilmiş sözdizimler"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -557,8 +563,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Seçili sözdizimi düzenle"
+            "state" : "translated",
+            "value" : "Seçili öğeyi düzenle"
           }
         },
         "zh-Hans" : {

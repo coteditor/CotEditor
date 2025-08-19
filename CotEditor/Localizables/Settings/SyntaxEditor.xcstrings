@@ -4273,8 +4273,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Yorumlayıcılar, sözdizim biçemini belgedeki shebang’den algılamaya çalışır."
+            "state" : "translated",
+            "value" : "Yorumlayıcılar, belgedeki #! üstbilgisinden sözdizimi belirlemek için kullanılır."
           }
         },
         "zh-Hans" : {

@@ -9295,8 +9295,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ASCII’den Tam Genişlik ASCII’ye"
+            "state" : "translated",
+            "value" : "Alfasayısal Metni Tam Genişlikli Metne Dönüştür"
           }
         },
         "zh-Hans" : {
@@ -9391,8 +9391,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tam Genişlik ASCII’den ASCII’ye"
+            "state" : "translated",
+            "value" : "Alfasayısal Metni Yarım Genişlikli Metne Dönüştür"
           }
         },
         "zh-Hans" : {

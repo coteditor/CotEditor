@@ -5766,6 +5766,12 @@
             "value" : "Wil je “%@” naar de prullenmand verplaatsen?"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” öğesini Çöp Sepeti’ne göndermek istediğinizden emin misiniz?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5937,8 +5943,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "%lld seçili öğeyi Çöp Sepeti’ne göndermek istediğinizden emin misiniz?"
                 }
               }
             }

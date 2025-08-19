@@ -5654,6 +5654,12 @@
             "value" : "Er bestaat al een aangepaste instelling met dezelfde naam. Als je het bestand of de map vervangt, wordt de inhoud ervan overschreven."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aynı adlı bir özelleştirilmiş ayar halihazırda var. Onu değiştirmek geçerli içeriğin üzerine yazacaktır."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
