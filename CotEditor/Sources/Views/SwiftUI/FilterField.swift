@@ -43,8 +43,7 @@ struct FilterField: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSSearchField {
         
-        let searchField = InnerFilterField()
-        searchField.usesSingleLineMode = true
+        let searchField = if #available(macOS 26, *) { InnerFilterField() } else { LegacyInnerFilterField() }
         searchField.target = context.coordinator
         searchField.action = #selector(Coordinator.didChangeSearchString)
         searchField.recentsAutosaveName = self.autosaveName
@@ -95,13 +94,15 @@ struct FilterField: NSViewRepresentable {
 }
 
 
-private final class InnerFilterField: NSSearchField {
+private class InnerFilterField: NSSearchField {
     
     // MARK: Lifecycle
     
     required init() {
         
         super.init(frame: .zero)
+        
+        self.sendsSearchStringImmediately = true
         
         if let searchButtonCell {
             searchButtonCell.image = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle", accessibilityDescription: nil)
@@ -110,18 +111,6 @@ private final class InnerFilterField: NSSearchField {
             searchButtonCell.setAccessibilityLabel(String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"))
         }
         
-        // workaround the button color is .labelColor (2022-09, macOS 13-15, fixed in macOS 26)
-        if #unavailable(macOS 26) {
-            self.searchButtonCell?.image = self.searchButtonCell?.image?
-                .tinted(with: .secondaryLabelColor)
-            self.cancelButtonCell?.image = self.cancelButtonCell?.image?
-                .tinted(with: .secondaryLabelColor)
-        }
-        
-        self.sendsSearchStringImmediately = true
-        
-        self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
-        self.alignment = .natural
         self.placeholderString = String(localized: "FilterField.placeholder", defaultValue: "Filter", table: "Control")
     }
     
@@ -147,13 +136,6 @@ private final class InnerFilterField: NSSearchField {
         didSet {
             self.invalidateSearchMenu()
         }
-    }
-    
-    
-    override func draw(_ dirtyRect: NSRect) {
-        
-        // workaround to update icon while typing
-        super.draw(dirtyRect)
     }
     
     
@@ -187,11 +169,42 @@ private extension NSSearchField {
         
         (self.cell as? NSSearchFieldCell)?.searchButtonCell
     }
+}
+
+
+@available(macOS, deprecated: 26, message: "Remember adding `final` to InnerFilterField when removing this subclass.")
+private class LegacyInnerFilterField: InnerFilterField {
+    
+    required init() {
+        
+        super.init()
+        
+        self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+        self.alignment = .natural
+        
+        // workaround the button color is .labelColor (2022-09, macOS 13-15, fixed in macOS 26)
+        self.searchButtonCell?.image = self.searchButtonCell?.image?
+            .tinted(with: .secondaryLabelColor)
+        self.cancelButtonCell?.image = self.cancelButtonCell?.image?
+            .tinted(with: .secondaryLabelColor)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func draw(_ dirtyRect: NSRect) {
+        
+        // workaround to update icon while typing on macOS 15
+        super.draw(dirtyRect)
+    }
     
     
     /// The button cell used to display the cancel button image.
-    @available(macOS, deprecated: 26.0, message: "The cancelButtonCell will no longer be used in the code.")
-    var cancelButtonCell: NSButtonCell? {
+    private var cancelButtonCell: NSButtonCell? {
         
         (self.cell as? NSSearchFieldCell)?.cancelButtonCell
     }
