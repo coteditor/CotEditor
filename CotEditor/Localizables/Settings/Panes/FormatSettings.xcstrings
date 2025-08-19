@@ -115,6 +115,12 @@
             "value" : "Syntaxes personnalisées"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintassi personalizzate"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -533,8 +539,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Modifica la sintassi selezionata"
+            "state" : "translated",
+            "value" : "Modifica l'elemento selezionato"
           }
         },
         "ja" : {

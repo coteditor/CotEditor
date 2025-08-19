@@ -9259,8 +9259,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Da ASCII ad ASCII a tutta larghezza"
+            "state" : "translated",
+            "value" : "Converti testo alfanumerico in larghezza intera"
           }
         },
         "ja" : {
@@ -9355,8 +9355,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Da ASCII a tutta larghezza ad ASCII"
+            "state" : "translated",
+            "value" : "Converti testo alfanumerico in mezza larghezza"
           }
         },
         "ja" : {
@@ -17799,6 +17799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher la barre d’onglets"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra barra dei pannelli"
           }
         },
         "ja" : {

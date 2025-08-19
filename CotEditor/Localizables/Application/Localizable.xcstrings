@@ -5642,6 +5642,12 @@
             "value" : "Un réglage personnalisé du même nom se trouve déjà. Si vous le remplacez, le contenu d’origine sera perdu."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esiste già un'opzione con lo stesso nome. Sostituendola, il suo contenuto verrà sovrascritto."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

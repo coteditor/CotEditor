@@ -4237,8 +4237,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Gli interpreti vengono utilizzati per determinare lo stile della sintassi dalla struttura del documento."
+            "state" : "translated",
+            "value" : "Gli interpreti sono usati per determinare la sintassi in base all'intestazione #! header del documento."
           }
         },
         "ja" : {

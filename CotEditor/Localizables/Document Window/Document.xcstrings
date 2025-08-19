@@ -5754,6 +5754,12 @@
             "value" : "Voulez-vous placer « %@ » dans la corbeille ?"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si desidera spostare “%@” nel Cestino?"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5877,8 +5883,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "Si desidera spostare gli %lld elementi selezionati nel Cestino?"
                 }
               }
             }
