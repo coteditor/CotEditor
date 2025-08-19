@@ -5653,6 +5653,12 @@
             "state" : "needs_review",
             "value" : "Er bestaat al een aangepaste instelling met dezelfde naam. Als je het bestand of de map vervangt, wordt de inhoud ervan overschreven."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已存在同名自定设置。替换后将会覆盖当前内容。"
+          }
         }
       }
     },

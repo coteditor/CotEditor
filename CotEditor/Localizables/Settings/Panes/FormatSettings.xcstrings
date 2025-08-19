@@ -126,6 +126,12 @@
             "state" : "needs_review",
             "value" : "Aangepaste syntaxen"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定义语法"
+          }
         }
       }
     },
@@ -557,8 +563,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "编辑选中语法"
+            "state" : "translated",
+            "value" : "编辑所选项目"
           }
         },
         "zh-Hant" : {

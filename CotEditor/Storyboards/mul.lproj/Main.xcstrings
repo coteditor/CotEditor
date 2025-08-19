@@ -9301,8 +9301,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ASCII到全宽ASCII"
+            "state" : "translated",
+            "value" : "将字母数字转换为全角"
           }
         },
         "zh-Hant" : {
@@ -9397,8 +9397,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "全宽ASCII到ASCII"
+            "state" : "translated",
+            "value" : "将字母数字转换为半角"
           }
         },
         "zh-Hant" : {

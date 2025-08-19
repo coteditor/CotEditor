@@ -5765,6 +5765,12 @@
             "state" : "needs_review",
             "value" : "Wil je “%@” naar de prullenmand verplaatsen?"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您确定要将“%@”移到废纸篓吗？"
+          }
         }
       }
     },
@@ -5933,6 +5939,18 @@
                 "stringUnit" : {
                   "state" : "new",
                   "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "您确定要将这%lld个所选项目移到废纸篓吗？"
                 }
               }
             }

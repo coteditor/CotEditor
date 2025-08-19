@@ -4279,8 +4279,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "解释器将根据文稿整体来决定语法高亮样式。"
+            "state" : "translated",
+            "value" : "解释器被用于根据文档中的“#!”标头判断语法。"
           }
         },
         "zh-Hant" : {
