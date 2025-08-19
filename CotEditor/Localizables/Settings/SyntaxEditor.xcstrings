@@ -4226,7 +4226,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del shebang en el documento."
+            "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del encabezado #! en el documento."
           }
         },
         "fr" : {
