@@ -45,7 +45,7 @@ public final class FormPopUpButton: NSPopUpButton {
         let dx: Double = if #available(macOS 26, *) { 44 } else { 32 }
         
         return NSSize(width: ceil(self.attributedTitle.size().width) + dx,
-               height: super.intrinsicContentSize.height)
+                      height: super.intrinsicContentSize.height)
     }
     
     

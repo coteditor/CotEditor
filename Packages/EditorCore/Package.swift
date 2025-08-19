@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.2
 
 import PackageDescription
 
@@ -47,7 +47,7 @@ let package = Package(
         .library(name: "TextFind", targets: ["TextFind"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 57, 0)),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),

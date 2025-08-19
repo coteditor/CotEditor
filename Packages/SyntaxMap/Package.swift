@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.2
 
 import PackageDescription
 
@@ -12,8 +12,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 3, 0)),
-        .package(url: "https://github.com/jpsim/Yams", from: Version(6, 0, 0)),
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 57, 0)),
+        .package(url: "https://github.com/jpsim/Yams", from: Version(6, 1, 0)),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
     ],
     targets: [
         .executableTarget(
@@ -34,7 +34,7 @@ let package = Package(
 
 for target in package.targets {
     target.plugins = [
-//        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
+        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
     ]
     target.swiftSettings = [
         .enableUpcomingFeature("ExistentialAny"),
