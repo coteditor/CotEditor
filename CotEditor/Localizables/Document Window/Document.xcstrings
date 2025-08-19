@@ -5770,15 +5770,33 @@
     },
     "MoveToTrashComfirmation.title.many" : {
       "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Möchtest du das ausgewählte Objekt in den Papierkorb bewegen?"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -5791,12 +5809,6 @@
         "en" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Do you want to move the selected item to the Trash?"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
@@ -5809,12 +5821,6 @@
         "en-GB" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Do you want to move the selected item to the Bin?"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -5827,12 +5833,6 @@
         "es" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "¿ Quieres trasladar el elemento seleccionado a la papelera?"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
@@ -5845,16 +5845,22 @@
         "fr" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Voulez-vous placer l'élément sélectionné à la corbeille ?"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Voulez-vous placer %lld éléments sélectionnés à la corbeille ?"
+                }
+              }
+            }
+          }
+        },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
                 }
               }
             }
@@ -5875,16 +5881,58 @@
         "nl" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Wil je het geselecteerde item naar de prullenmand verplaatsen?"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Wil je %lld geselecteerde items naar de prullenmand verplaatsen?"
+                }
+              }
+            }
+          }
+        },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              }
+            }
+          }
+        },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Do you want to move %lld selected items to the Trash?"
                 }
               }
             }
