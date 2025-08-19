@@ -41,7 +41,7 @@
           "name" : "Shadow",
           "opacity-specializations" : [
             {
-              "value" : 0.2
+              "value" : 0.1
             },
             {
               "appearance" : "tinted",
