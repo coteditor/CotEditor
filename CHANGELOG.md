@@ -24,7 +24,7 @@
 - [trivial] Rename the “Half-width to Full-width” and “Full-width to Half-width” commands to “Convert to Full Width” and “Convert to Half Width”, respectively.
 - [trivial] Improve the behavior of Add/Remove buttons.
 - [dev] Migrate the theme list and syntax list in the Settings to SwiftUI.
-- [dev] Update the build environment to Xcode 26.0 Beta 5 (Swift 6.2, macOS 26 SDK).
+- [dev] Update the build environment to Xcode 26.0 Beta 6 (Swift 6.2, macOS 26 SDK).
 - [non-AppStore ver.] Add an update badge to the “Check for Update” menu item if an update is available.
 
 
