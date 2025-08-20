@@ -133,6 +133,12 @@
             "value" : "カスタマイズされたシンタックス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자화 구문"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -563,8 +569,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "선택한 구문 편집"
+            "state" : "translated",
+            "value" : "선택된 아이템 편집"
           }
         },
         "nl" : {

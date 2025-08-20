@@ -4249,8 +4249,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "인터프리터는 문서의 shebang으로부터 구문을 결정하는 데에 사용됩니다."
+            "state" : "translated",
+            "value" : "인터프리터는 문서의 #! 헤더에서 구문을 판별하는 데 사용됩니다."
           }
         },
         "nl" : {

@@ -319,6 +319,12 @@
             "value" : "macOS Tahoe 26の新しいLiquid Glassスタイルで、刷新されたインターフェイスを体験できます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS Tahoe 26에서 새로워진 Liquid Glass 스타일로 한층 세련된 인터페이스를 경험하세요."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -396,6 +402,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Liquid Glassのよそおい"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liquid Glass 룩"
           }
         },
         "pl" : {

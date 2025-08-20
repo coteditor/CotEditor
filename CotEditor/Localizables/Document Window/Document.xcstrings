@@ -5772,6 +5772,12 @@
             "value" : "“%@”をゴミ箱に入れますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”을(를) 휴지통으로 이동하겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5909,6 +5915,18 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "選択した%lld項目をゴミ箱に入れますか?"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld개의 선택된 항목을 휴지통으로 이동하겠습니까?"
                 }
               }
             }

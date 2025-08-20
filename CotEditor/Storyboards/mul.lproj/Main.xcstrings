@@ -9271,8 +9271,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ASCII를 전각 ASCII로"
+            "state" : "translated",
+            "value" : "알파벳 숫자 텍스트를 전각으로 변환"
           }
         },
         "nl" : {
@@ -9367,8 +9367,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "전각 ASCII를 ASCII로"
+            "state" : "translated",
+            "value" : "알파벳 숫자 텍스트를 반각으로 변환"
           }
         },
         "nl" : {

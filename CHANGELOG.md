@@ -30,7 +30,7 @@
 
 ### Known Issues
 
-- Some texts are not yet localized in Korean, and Portuguese.
+- Some texts are not yet localized in Portuguese.
 
 
 
