@@ -97,7 +97,7 @@ extension NSTextView: EditorCounter.Source { }
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
     private nonisolated(unsafe) var syntaxFileExtension: String?
-    private nonisolated(unsafe) var isExternalUpdateAlertShown = false
+    private var isExternalUpdateAlertShown = false
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
     private var isInitialized = false
@@ -827,7 +827,7 @@ extension NSTextView: EditorCounter.Source { }
         
         let strategy = UserDefaults.standard[.documentConflictOption]
         
-        guard strategy != .ignore, !self.isExternalUpdateAlertShown else { return }  // don't check twice if already notified
+        guard strategy != .ignore else { return }  // don't check twice if already notified
         
         // check if the file contents were changed from the stored file data
         let didChange: Bool
