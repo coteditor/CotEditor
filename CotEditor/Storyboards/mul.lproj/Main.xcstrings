@@ -9283,8 +9283,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ASCII do ASCII o pełnej szerokości"
+            "state" : "translated",
+            "value" : "Konwertuj tekst alfanumeryczny na pełną szerokość"
           }
         },
         "pt" : {
@@ -9379,8 +9379,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ASCII o pełnej szerokości do ASCII"
+            "state" : "translated",
+            "value" : "Konwertuj tekst alfanumeryczny na pół szerokości"
           }
         },
         "pt" : {

@@ -139,6 +139,12 @@
             "value" : "Aangepaste syntaxen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dostosowane składnie"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -569,8 +575,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Edytuj wybraną składnię"
+            "state" : "translated",
+            "value" : "Edytuj zaznaczoną rzecz"
           }
         },
         "pt" : {

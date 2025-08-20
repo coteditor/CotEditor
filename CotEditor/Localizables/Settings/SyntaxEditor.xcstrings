@@ -4261,8 +4261,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Interpretery są wykorzystywane do wykrycia składni na podstawie wiersza shebang w dokumencie."
+            "state" : "translated",
+            "value" : "Interpretery są wykorzystywane do wykrycia składni na podstawie nagłówka #! w dokumencie."
           }
         },
         "pt" : {

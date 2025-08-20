@@ -5778,6 +5778,12 @@
             "value" : "Wil je “%@” naar de prullenmand verplaatsen?"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz przenieść „%@” do Kosza?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5925,20 +5931,20 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "Czy chcesz przenieść %lld zaznaczone rzeczy do Kosza?"
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "Czy chcesz przenieść %lld zaznaczonych rzeczy do Kosza?"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "translated",
+                  "value" : "Czy chcesz przenieść %lld zaznaczonej rzeczy do Kosza?"
                 }
               }
             }
