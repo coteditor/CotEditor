@@ -203,7 +203,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Returns a rect to draw insertion point for the given character index.
+    /// Returns a rect to draw an insertion point for the given character index.
     ///
     /// - Parameters:
     ///   - characterIndex: The character index.
