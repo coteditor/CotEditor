@@ -72,7 +72,7 @@ extension NSTextView: EditorCounter.Source { }
     
     @ObservationIgnored @Published @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }  // @objc for AppleScript support
     var isTransient = false  // untitled & empty document that was created automatically
-    nonisolated(unsafe) var isVerticalText = false
+    @ObservationIgnored nonisolated(unsafe) var isVerticalText = false
     
     
     // MARK: Readonly Properties
@@ -92,11 +92,11 @@ extension NSTextView: EditorCounter.Source { }
     
     @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
     
-    private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
-    private nonisolated(unsafe) var fileData: Data?
+    @ObservationIgnored private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
+    @ObservationIgnored private nonisolated(unsafe) var fileData: Data?
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
-    private nonisolated(unsafe) var syntaxFileExtension: String?
+    @ObservationIgnored private nonisolated(unsafe) var syntaxFileExtension: String?
     private var isExternalUpdateAlertShown = false
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
@@ -105,7 +105,7 @@ extension NSTextView: EditorCounter.Source { }
     
     // temporal data used only within saving process
     private var lastSavedData: Data?
-    private nonisolated(unsafe) var lastAdditionalFileAttributes: [String: any Sendable] = [:]
+    @ObservationIgnored private nonisolated(unsafe) var lastAdditionalFileAttributes: [String: any Sendable] = [:]
     
     private var urlDetector: URLDetector?
     
