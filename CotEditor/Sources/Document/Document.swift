@@ -690,13 +690,20 @@ extension NSTextView: EditorCounter.Source { }
             lastModifiedDate: lastModifiedDate,
             syntaxName: self.syntaxParser.name
         )
-        let textStorage = NSTextStorage(attributedString: self.textStorage)
+        let textStorage = NSTextStorage(string: self.textStorage.string)
         let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info)
         if let selectedRanges = self.textView?.selectedRanges {
             printView.selectedRanges = selectedRanges
         }
+        
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
+        printView.baseWritingDirection = viewController.writingDirection
+        printView.ligature = self.textView?.ligature ?? .standard
         printView.font = viewController.font?.withSize(UserDefaults.standard[.printFontSize])
+        
+        if let highlights = self.textStorage.layoutManagers.first?.syntaxHighlights(), !highlights.isEmpty {
+            printView.layoutManager?.apply(highlights: highlights, theme: nil, in: printView.string.range)
+        }
         
         // detect URLs manually (2019-05, macOS 10.14).
         // -> TextView links all URLs in the printed PDF, even if the auto URL detection is disabled,

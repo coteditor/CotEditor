@@ -1331,7 +1331,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // substring all selected attributed strings
         let selections: [NSAttributedString] = selectedRanges
-            .compactMap { self.attributedSubstring(forProposedRange: $0, actualRange: nil) }
+            .map { selectedRange in
+                let plainText = (self.string as NSString).substring(with: selectedRange)
+                let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
+                
+                // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
+                self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, type: NSColor.self, in: selectedRange) { color, range, _ in
+                    let localRange = range.shifted(by: -selectedRange.location)
+                    
+                    styledText.addAttribute(.foregroundColor, value: color, range: localRange)
+                }
+                
+                return styledText
+            }
         
         // prepare objects for rectangular selection
         let pasteboardString = selections.joined(separator: self.lineEnding.string)
@@ -1794,7 +1806,7 @@ extension EditorTextView {
         
         // select (syntax-highlighted) quoted text
         if ["\"", "'", "`"].contains(clickedCharacter),
-           let highlightRange = self.textStorage?.longestEffectiveRange(of: .syntaxType, at: range.location)
+           let highlightRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: range.location)
         {
             let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound

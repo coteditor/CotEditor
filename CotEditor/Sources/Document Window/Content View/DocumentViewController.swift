@@ -429,7 +429,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Notifications
     
-    /// Invoked when the text was edited.
+    /// Invoked when the text was edited (invoked right **before** notifying layout managers).
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
         assert(Thread.isMainThread)
@@ -446,8 +446,12 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             guard self.focusedTextView?.hasMarkedText() != true else { return }
             
             self.document.counter.invalidateContent()
-            self.document.syntaxParser.highlightIfNeeded()
             self.outlineParseDebouncer.schedule()
+            
+            // -> Perform in the next run loop to give layoutManagers time to update their values.
+            DispatchQueue.main.async { [weak self] in
+                self?.document.syntaxParser.highlightIfNeeded()
+            }
         }
     }
     
@@ -894,6 +898,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
+            
+            // copy parsed syntax highlight
+            if let highlights = baseTextView.layoutManager?.syntaxHighlights(), !highlights.isEmpty {
+                textView.layoutManager?.apply(highlights: highlights, theme: self.theme, in: textView.string.range)
+            }
         }
         
         return viewController
@@ -948,13 +957,13 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             return self.presentErrorAsSheet(error)
         }
         
-        for textView in self.textViews {
-            textView.theme = theme
-        }
-        
         self.themeName = name
         self.document.syntaxParser.theme = theme
-        self.document.textStorage.invalidateHighlight(theme: theme)
+        
+        for textView in self.textViews {
+            textView.theme = theme
+            textView.layoutManager?.invalidateHighlight(theme: theme)
+        }
         
         self.invalidateRestorableState()
     }

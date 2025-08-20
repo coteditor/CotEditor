@@ -184,7 +184,7 @@ extension SyntaxParser {
         // just clear current highlight and return if no coloring required
         guard !self.highlightParser.isEmpty else {
             self.invalidRanges.clear()
-            self.textStorage.apply(highlights: [], theme: self.theme, in: self.textStorage.range)
+            self.apply(highlights: [], in: self.textStorage.range)
             return
         }
         
@@ -203,15 +203,18 @@ extension SyntaxParser {
             var highlightRange = (self.textStorage.string as NSString).lineRange(for: invalidRange)
             
             // expand highlight range if the characters just before/after it is the same syntax type
-            if highlightRange.lowerBound > 0,
-               let effectiveRange = self.textStorage.longestEffectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
-            {
-                highlightRange = NSRange(effectiveRange.lowerBound..<highlightRange.upperBound)
-            }
-            if highlightRange.upperBound < wholeRange.upperBound,
-               let effectiveRange = self.textStorage.longestEffectiveRange(of: .syntaxType, at: highlightRange.upperBound)
-            {
-                highlightRange = NSRange(highlightRange.lowerBound..<effectiveRange.upperBound)
+            if let layoutManager = self.textStorage.layoutManagers.first {
+                if highlightRange.lowerBound > 0,
+                   let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
+                {
+                    highlightRange = NSRange(effectiveRange.lowerBound..<highlightRange.upperBound)
+                }
+                
+                if highlightRange.upperBound < wholeRange.upperBound,
+                   let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
+                {
+                    highlightRange = NSRange(highlightRange.lowerBound..<effectiveRange.upperBound)
+                }
             }
             
             return if highlightRange.upperBound < self.minimumParseLength {
@@ -234,8 +237,23 @@ extension SyntaxParser {
         self.highlightParseTask = Task {
             let highlights = try await self.highlightParser.parse(string: string, range: highlightRange)
             
-            self.textStorage.apply(highlights: highlights, theme: self.theme, in: highlightRange)
+            self.apply(highlights: highlights, in: highlightRange)
             self.invalidRanges.clear()
+        }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Applies highlights to all the layout managers.
+    ///
+    /// - Parameters:
+    ///   - highlights: The syntax highlights to apply.
+    ///   - range: The character range where updates highlights.
+    private func apply(highlights: [Highlight], in range: NSRange) {
+        
+        for layoutManager in self.textStorage.layoutManagers {
+            layoutManager.apply(highlights: highlights, theme: self.theme, in: range)
         }
     }
 }

@@ -208,7 +208,7 @@ final class LineNumberView: NSView {
         else { return }
         
         guard
-            let range = textView.range(for: textView.visibleRect),
+            let range = textView.range(for: textView.visibleRect, withoutAdditionalLayout: true),
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
         

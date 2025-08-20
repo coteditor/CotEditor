@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -281,7 +281,7 @@ final class PrintTextView: NSTextView {
         let themeName: String? = printInfo[.theme]
         let theme = themeName.flatMap { try? ThemeManager.shared.setting(name: $0) }  // nil for Black and White
         
-        guard self.theme != theme, let textStorage else { return }
+        guard self.theme != theme else { return }
         
         // set theme
         self.theme = theme
@@ -290,9 +290,9 @@ final class PrintTextView: NSTextView {
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         
         if let theme {
-            textStorage.invalidateHighlight(theme: theme)
+            layoutManager.invalidateHighlight(theme: theme)
         } else {
-            textStorage.removeAttribute(.foregroundColor, range: textStorage.range)
+            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.range)
         }
     }
     

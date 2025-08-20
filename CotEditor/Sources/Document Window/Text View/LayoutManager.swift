@@ -296,6 +296,13 @@ extension LayoutManager: NSLayoutManagerDelegate {
         
         return true
     }
+    
+    
+    /// Applies syntax highlighting on printing also.
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
+        
+        attrs
+    }
 }
 
 
