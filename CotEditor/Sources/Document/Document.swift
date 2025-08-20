@@ -104,7 +104,7 @@ extension NSTextView: EditorCounter.Source { }
     private var saveOptions: SaveOptions?
     
     // temporal data used only within saving process
-    private nonisolated(unsafe) var lastSavedData: Data?
+    private var lastSavedData: Data?
     private nonisolated(unsafe) var lastAdditionalFileAttributes: [String: any Sendable] = [:]
     
     private var urlDetector: URLDetector?
@@ -506,6 +506,13 @@ extension NSTextView: EditorCounter.Source { }
             }
             if error != nil { return }
             
+            // store file data in order to check the file contents identity in `presentedItemDidChange()`
+            if saveOperation != .autosaveElsewhereOperation {
+                assert(self.lastSavedData != nil)
+                self.fileData = self.lastSavedData
+            }
+            self.lastSavedData = nil
+            
             // apply syntax that is inferred from the filename or the shebang
             if saveOperation == .saveAsOperation,
                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, contents: self.textStorage.string)
@@ -530,9 +537,10 @@ extension NSTextView: EditorCounter.Source { }
         
         if saveOperation != .autosaveElsewhereOperation {
             // set/remove flag for vertical text orientation
+            // -> Need to set it directly to the file instead of providing it in `additionalFileAttributes(for:)`
+            //    to remove the existing attribute.
             if UserDefaults.standard[.savesTextOrientation] {
-                let isVerticalText = self.isVerticalText
-                try? url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
+                try? url.setExtendedAttribute(data: self.isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
             }
             
             // get the latest file attributes
@@ -545,12 +553,7 @@ extension NSTextView: EditorCounter.Source { }
             } catch {
                 Logger.app.error("Failed reading attributes of the saved file: \(error)")
             }
-            
-            // store file data in order to check the file contents identity in `presentedItemDidChange()`
-            assert(self.lastSavedData != nil)
-            self.fileData = self.lastSavedData
         }
-        self.lastSavedData = nil
     }
     
     
@@ -1191,7 +1194,7 @@ extension NSTextView: EditorCounter.Source { }
             xattrs[FileExtendedAttributeName.allowLineEndingInconsistency] = Data([1])
         }
         if !xattrs.isEmpty {
-            attributes[FileAttributeKey.extendedAttributes.rawValue] = xattrs
+            attributes[FileAttributeKey.extendedAttributes] = xattrs
         }
         
         return attributes
