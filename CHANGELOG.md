@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Support __macOS 26 Tahoe__.
+- Support __macOS Tahoe 26__.
 
 
 ### Improvements

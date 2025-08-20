@@ -174,7 +174,7 @@ private extension NewFeature {
         switch self {
             case .liquidGlass:
                 String(localized: "NewFeature.liquidGlass.description",
-                       defaultValue: "Experience the refreshed interface with the new Liquid Glass style in macOS 26 Tahoe.", table: "WhatsNew")
+                       defaultValue: "Experience the refreshed interface with the new Liquid Glass style in macOS Tahoe 26.", table: "WhatsNew")
         }
     }
     
