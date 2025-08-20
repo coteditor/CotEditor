@@ -78,20 +78,19 @@ final class SettingsTabViewController: NSTabViewController {
     /// - Parameter tabViewItem: The tab view item to switch.
     private func switchPane(to tabViewItem: NSTabViewItem) {
         
+        guard let window = self.view.window else { return }
+        
         guard let contentSize = tabViewItem.view?.frame.size else { return assertionFailure() }
         
-        // initialize tabView's frame size
-        guard let window = self.view.window else {
-            self.view.frame.size = contentSize
-            return
-        }
-        
         let label = tabViewItem.label
+        let frame = window.frameRect(forContentSize: contentSize)
         let animates = !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
         if animates {
-            NSAnimationContext.runAnimationGroup { _ in
-                self.view.isHidden = true
-                window.animator().setFrame(for: contentSize)
+            self.view.isHidden = true
+            NSAnimationContext.runAnimationGroup { context in
+                context.allowsImplicitAnimation = true
+                context.duration = window.animationResizeTime(frame)
+                window.setFrame(frame, display: true)
                 
             } completionHandler: { [weak self] in
                 Task { @MainActor in
@@ -100,7 +99,7 @@ final class SettingsTabViewController: NSTabViewController {
                 }
             }
         } else {
-            window.setFrame(for: contentSize)
+            window.setFrame(frame, display: true)
             self.title = label
         }
     }
@@ -109,17 +108,15 @@ final class SettingsTabViewController: NSTabViewController {
 
 private extension NSWindow {
     
-    /// Updates window frame for the given contentSize.
+    /// Calculates window frame for the given contentSize by keeping the top left position.
     ///
     /// - Parameters:
     ///   - contentSize: The frame rectangle for the window content view.
-    ///   - flag: Specifies whether the window redraws the views that need to be displayed.
-    func setFrame(for contentSize: NSSize, display flag: Bool = false) {
+    func frameRect(forContentSize contentSize: NSSize) -> NSRect {
         
         let frameSize = self.frameRect(forContentRect: NSRect(origin: .zero, size: contentSize)).size
-        let frame = NSRect(origin: self.frame.origin, size: frameSize)
-            .offsetBy(dx: 0, dy: self.frame.height - frameSize.height)
         
-        self.setFrame(frame, display: flag)
+        return NSRect(origin: self.frame.origin, size: frameSize)
+            .offsetBy(dx: 0, dy: self.frame.height - frameSize.height)
     }
 }

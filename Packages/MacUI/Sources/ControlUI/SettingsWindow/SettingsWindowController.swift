@@ -38,7 +38,6 @@ public final class SettingsWindowController<Pane: SettingsPane>: NSWindowControl
         
         let viewController = SettingsTabViewController()
         viewController.tabStyle = .toolbar
-        viewController.canPropagateSelectedChildViewControllerTitle = false
         viewController.tabViewItems = Pane.allCases.map(\.tabViewItem)
         
         let window = SettingsWindow(contentViewController: viewController)
