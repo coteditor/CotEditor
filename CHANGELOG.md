@@ -13,7 +13,7 @@
 - Change the system requirement to __macOS 15 Sequoia and later__.
 - Update the user interface on macOS 26 to the Liquid Glass style.
 - Update the application icon to the Liquid Glass style.
-- The options to highlight matching braces has been removed and they are now always highlighted.
+- The options to highlight matching braces have been removed and they are now always highlighted.
 - Apply the text find highlighting to all split editors.
 - Move selected items to the Trash by the Delete action in the file browser.
 - Show also the file size of the previewed document in the status bar.
