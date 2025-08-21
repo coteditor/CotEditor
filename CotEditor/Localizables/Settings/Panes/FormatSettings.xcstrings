@@ -151,6 +151,12 @@
             "value" : "Dostosowane składnie"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sintaxes customizadas"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -588,7 +594,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Editar sintaxe selecionada"
+            "value" : "Editar item selecionado"
           }
         },
         "tr" : {

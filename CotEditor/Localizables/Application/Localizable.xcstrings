@@ -5678,6 +5678,12 @@
             "value" : "Ustawienie własne o tej samej nazwie już istnieje. Zastąpienie go spowoduje nadpisanie jego obecnej zawartości."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A configuração customizada com o mesmo nome já existe. A substituição sobrescreverá o conteúdo atual."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

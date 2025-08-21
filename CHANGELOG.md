@@ -28,11 +28,6 @@
 - [non-AppStore ver.] Add an update badge to the “Check for Update” menu item if an update is available.
 
 
-### Known Issues
-
-- Some texts are not yet localized in Portuguese.
-
-
 
 5.2.3 (unreleased)
 --------------------------

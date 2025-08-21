@@ -5790,6 +5790,12 @@
             "value" : "Czy chcesz przenieść „%@” do Kosza?"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deseja mover “%@” para o Lixo?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5973,8 +5979,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Do you want to move %lld selected items to the Trash?"
+                  "state" : "needs_review",
+                  "value" : "Deseja mover os %lld itens selecionados para a Lixo?"
                 }
               }
             }

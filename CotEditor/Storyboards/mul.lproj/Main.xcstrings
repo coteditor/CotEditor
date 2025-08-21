@@ -9290,7 +9290,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "ASCII para ASCII de Largura Completa"
+            "value" : "Converter Texto Alfanumérico para Largura Total"
           }
         },
         "tr" : {
@@ -9386,7 +9386,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "ASCII de Largura Completa para ASCII"
+            "value" : "Converter Texto Alfanumérico para Metade da Largura"
           }
         },
         "tr" : {
