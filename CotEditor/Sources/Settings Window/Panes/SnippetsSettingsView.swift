@@ -49,6 +49,7 @@ struct SnippetsSettingsView: View {
                     Text("File Drop", tableName: "SnippetsSettings", comment: "tab label")
                 }
             }
+            .tabViewStyle(.tabBarOnly)
             .frame(height: 380)
             
             HStack {
