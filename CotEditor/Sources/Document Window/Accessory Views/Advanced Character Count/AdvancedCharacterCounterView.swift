@@ -41,17 +41,17 @@ struct AdvancedCharacterCounterView: View {
         
         HStack(alignment: .firstTextBaseline) {
             if let count = self.counter.count {
-                let markdown: AttributedString = switch self.unit {
-                    case .byte: .init(localized: "*\(count)* byte(s)", table: "AdvancedCharacterCount", locale: .current,
-                                      comment: "counter for advanced character count")
-                    default: .init(localized: "*\(count)* character(s)", table: "AdvancedCharacterCount", locale: .current,
-                                   comment: "counter for advanced character count")
-                }
-                let attributes = AttributeContainer
+                let valueAttributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
                     .foregroundColor(.primary)
-                let attributedCount = markdown
-                    .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: attributes)
+                let attributedCount: AttributedString = switch self.unit {
+                    case .byte:
+                        count.formatted(.byteCount(style: .binary, allowedUnits: .bytes, spellsOutZero: false).attributed)
+                            .replacingAttributes(AttributeContainer.byteCount(.value), with: valueAttributes)
+                    default:
+                        AttributedString(localized: "*\(count)* character(s)", table: "AdvancedCharacterCount", locale: .current, comment: "counter for advanced character count")
+                            .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: valueAttributes)
+                }
                 
                 Text(attributedCount)
                     .foregroundStyle(.secondary)
