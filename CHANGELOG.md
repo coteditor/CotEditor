@@ -20,7 +20,7 @@
 
 ### Improvements
 
-- Change the system requirement to __macOS 15 Sequoia and later__.
+- Change the system requirement to __macOS Sequoia 15 and later__.
 - Update the user interface on macOS 26 to the Liquid Glass style.
 - Update the application icon to the Liquid Glass style.
 - The options to highlight matching braces have been removed and they are now always highlighted.
@@ -666,7 +666,7 @@
 
 ### New Features
 
-- Support __macOS 15 Sequoia__.
+- Support __macOS Sequoia 15__.
 - Folder Navigation: Open folders in CotEditor and browse their contents from the new sidebar to switch documents.
 - [AppStore ver.] Now, the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
@@ -681,7 +681,7 @@
 
 ### Improvements
 
-- Change the system requirement to __macOS 14 Sonoma and later__.
+- Change the system requirement to __macOS Sonoma 14 and later__.
 - Add “Select Column Up/Down“ commands to the Edit > Select menu.
 - Change the unit of character ranges handled in CotEditor Scripting for AppleScript from UTF-16 based to the Unicode grapheme cluster-based (This is to follow the specification change in AppleScript 2.0 introduced in Mac OS X 10.5).
 - Improve VoiceOver support in the Quick Action bar.
@@ -1298,7 +1298,7 @@
 
 ### New Features
 
-- Support __macOS 14 Sonoma__.
+- Support __macOS Sonoma 14__.
 - Add the “Kind” option to syntax definitions to set the syntax is for “general” or “code.”
 - Add feature to set the editor font depending of the syntax kind.
 - Add the monospaced font setting to the Appearance settings pane.
@@ -1309,7 +1309,7 @@
 
 ### Improvements
 
-- Change the system requirement to __macOS 13 Ventura and later__.
+- Change the system requirement to __macOS Ventura 13 and later__.
 - Update the behavior and look of the inspector pane.
 - Add “Use system color” option to the cursor color in the theme setting view.
 - Update the character inspector to add labels for each item and show the Unicode version.
@@ -1697,7 +1697,7 @@
 
 ### Improvements
 
-- Improve the Find All button only on macOS 13 Ventura (and later) to enable performing additional commands.
+- Improve the Find All button only on macOS Ventura 13 (and later) to enable performing additional commands.
 - [non-AppStore ver.] Update Sparkle from 2.2.2 to 2.3.0.
 - [trivial] Optimize the script menu update.
 - [dev] Update the build environment to Xcode 14.1.
@@ -1773,8 +1773,8 @@
 
 ### Improvements
 
-- Support __macOS 13 Ventura__.
-- Change the system requirement to __macOS 12 Monterey and later__.
+- Support __macOS Ventura 13__.
+- Change the system requirement to __macOS Monterey 12 and later__.
 - Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.
     - [for advanced users] Now you can also disable the feature entirely within the application by running the following command in Terminal: `defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES`, though it is not recommended.
 - Deprecate the `length` property in AppleScript (Use `number of characters of contents` instead).
@@ -2242,7 +2242,7 @@
 
 ### Improvements
 
-- Change the system requirement to __macOS 11 Big Sur and later__.
+- Change the system requirement to __macOS Big Sur 11 and later__.
 - Update the window size setting to use the document last window size if the width/height setting in the preferences > Window is left blank (= auto).
 - Allow the menu key bindings to assign a shortcut without the Command key.
 - Display code points instead of left blank in the incompatible character table for control characters.
@@ -2271,7 +2271,7 @@
 ### Fixes
 
 - Fix an issue that the current line number becomes 0 when the cursor is placed at the beginning of the document (thanks to Alex Newson!).
-- Fix an issue on macOS 12 Monterey that the user custom color did not apply to the i-beam cursor for the vertical layout.
+- Fix an issue on macOS Monterey 12 that the user custom color did not apply to the i-beam cursor for the vertical layout.
 - Fix an issue in the document inspector that the character info section wrongly indicated the code point as `U+000A` for any kind of line endings, even for CR (`U+000D`) and CRLF.
 - Fix an issue that the dialog urging duplication to edit locked files displayed repeatedly under specific conditions.
 - Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.
@@ -2576,7 +2576,7 @@
 
 ### New Features
 
-- Brand-new user interface designed to fit macOS 11 Big Sur.
+- Brand-new user interface designed to fit macOS Big Sur 11.
     - Update the application icon.
     - Redesign the document window.
 - Support Apple Silicon.
@@ -2585,7 +2585,7 @@
 
 ### Improvements
 
-- Change the system requirement to __macOS 10.15 Catalina and later__.
+- Change the system requirement to __macOS Catalina 10.15 and later__.
 - Move line endings/file encoding menus from the toolbar to the status bar.
 - Change default settings of items to display in the toolbar/status bar.
 - Change the default theme from Dendrobates to Anura.
@@ -2721,7 +2721,7 @@
 - Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
 - Fix the feedback animation when dragging and dropping items in a table.
 - [trivial] Fix an issue that the menus in toolbar expended unwontedly after customizing toolbar.
-- [trivial] Fix some layout corruptions under macOS 11 Big Sur (beta).
+- [trivial] Fix some layout corruptions under macOS Big Sur 11 (beta).
 
 
 
@@ -3109,7 +3109,7 @@
 
 ### Fixes
 
-- Fix area to draw text on printing, especially for macOS 10.15 Catalina.
+- Fix area to draw text on printing, especially for macOS Catalina 10.15.
 - Fix an issue on macOS 10.13-14 where spaces at the end of the document could not be deleted by delete key.
 - Fix an issue on macOS 10.13-14 where performing return key just after an open bracket at the end of the document made the application freeze.
 - Fix an issue where the editor theme for newly opened windows did not match to the window appearance when the system appearance was changed after the application launch.
@@ -3164,7 +3164,7 @@ no change.
 
 ### Improvements
 
-- Change the system requirement to __macOS 10.13 High Sierra and later__.
+- Change the system requirement to __macOS High Sierra 10.13 and later__.
 - Improve the theme switching algorithm between light and dark appearances.
 - Keep multiple cursors after pasting multiple lines.
 - Update the result table of “Find All” even when no substring was found.
@@ -3795,7 +3795,7 @@ no change.
 
 ### Improvements
 
-- [AppStore ver.] Enable the enhanced runtime protection on macOS 10.14 Mojave also by the MAS version.
+- [AppStore ver.] Enable the enhanced runtime protection on macOS Mojave 10.14 also by the MAS version.
 - Make the i-beam cursor more legible in a dark background theme.
 - Sync sidebar width among tabbed windows.
 
@@ -3817,7 +3817,7 @@ no change.
 - Fix an issue where theme was not applied to document print when the print theme setting is “Same as Document's Setting.”
 - Fix an issue where “Copy as Rich Text” command lost the style information when paste to some specific applications, such as Pages.
 - [beta] Fix an issue where theme color was not applied to document print.
-- [beta] Fix an issue where the editable area in editors are occasionally set wrong after zooming on macOS 10.14 Mojave.
+- [beta] Fix an issue where the editable area in editors are occasionally set wrong after zooming on macOS Mojave 10.14.
 
 
 
@@ -3868,7 +3868,7 @@ no change.
 
 ### New Features
 
-- Support Dark Mode in macOS 10.14 Mojave.
+- Support Dark Mode in macOS Mojave 10.14.
 - Add a new theme “Dendrobates (Dark).”
 - Add new commands to transform selections to snake case, camel case, or pascal case.
 - Add “Emoji & Symbols” toolbar item.
@@ -4381,7 +4381,7 @@ no change.
 
 ### Improvements
 
-- Change the system requirement to __OS X 10.11 El Capitan and later__.
+- Change the system requirement to __OS X El Capitan 10.11 and later__.
 - Add clear button to the input fields in the find panel.
 - Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.
 - Scroll console view after getting a new message to make it visible.
@@ -4488,7 +4488,7 @@ no change.
 
 ### Fixes
 
-- [High Sierra] Workaround a system issue where editor views could occasionally not scroll to the end of the document under specific environments on macOS 10.13 High Sierra.
+- [High Sierra] Workaround a system issue where editor views could occasionally not scroll to the end of the document under specific environments on macOS High Sierra 10.13.
     - [for advanced users] This workaround may affect rendering performance by large size documents, because the workaround disables non-contiguous layout on High Sierra (The non-contiguous layout are still used on lower versions). The workaround will be removed in the future when the bug origin is resolved. You can forcibly enable non-contiguous layout support on High Sierra by setting the hidden default key `enableNonContiguousLayoutOnHighSierra` to `YES` in Terminal, although this key is actually for debug-use.
 - Fix an issue where “Reset to Default” action in Font menu was ignored.
 - Fix an issue where matching brace was highlighted unwontedly also by text finding.
@@ -4542,7 +4542,7 @@ no change.
 
 ### Fixes
 
-- Fix an issue where the Key Binding setting tables were empty on macOS 10.13 High Sierra.
+- Fix an issue where the Key Binding setting tables were empty on macOS High Sierra 10.13.
 - Fix an issue where current line highlight was occasionally too wide when line height is 1.0.
 - Fix an issue where text selection highlight could remain between lines.
 - Fix an issue where the theme customization was not applied immediately.
@@ -5080,7 +5080,7 @@ no change.
 
 ### Improvements
 
-- Support __macOS Sierra__ and drop support for __OS X Mountain Lion__ and __Mavericks__.
+- Support __macOS Sierra 10.12__ and drop support for __OS X Mountain Lion__ and __Mavericks__.
 - Migrate all source code from Objective-C to Swift.
 - Update application icon.
 - Update find panel search algorithm:
@@ -5934,7 +5934,7 @@ no change.
     - Faster launch.
     - Make sure to launch CotEditor that invoked cot command includes.
 - Optimize saving process.
-- Improve compatibility with OS X 10.11 El Capitan.
+- Improve compatibility with OS X El Capitan 10.11.
 - Change source code license from the GNU General Public License version 2 to the Apache License version 2.0.
 - [non-AppStore ver.] Add option to check pre-release versions.
 
