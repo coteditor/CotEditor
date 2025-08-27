@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24112" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24112"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24123.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,30 +10,30 @@
             <objects>
                 <viewController id="bU7-R8-ocO" customClass="PrintPanelAccessoryController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="abc-de-fgh">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="344"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="355"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view translatesAutoresizingMaskIntoConstraints="NO" id="tOy-S4-hL0">
-                                <rect key="frame" x="12" y="0.0" width="416" height="344"/>
+                                <rect key="frame" x="12" y="0.0" width="416" height="355"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-De-52u">
-                                        <rect key="frame" x="-2" y="288" width="37" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-De-52u">
+                                        <rect key="frame" x="-2" y="296" width="37" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Color" id="yQ7-YE-ZK9">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-zv-wrQ">
-                                        <rect key="frame" x="18" y="251" width="116" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-zv-wrQ">
+                                        <rect key="frame" x="18" y="259" width="116" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Backgrounds" id="5eL-Aw-LdI">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-OF-r7g">
-                                        <rect key="frame" x="-2" y="214" width="120" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-OF-r7g">
+                                        <rect key="frame" x="-2" y="222" width="120" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Line Numbers" id="L7u-ng-jC7">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -41,7 +41,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin" customClass="FormPopUpButton" customModule="ControlUI">
-                                        <rect key="frame" x="286" y="281" width="133" height="25"/>
+                                        <rect key="frame" x="272" y="292" width="143" height="24"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="Black and White" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
@@ -57,26 +57,26 @@
                                         </connections>
                                     </popUpButton>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dK7-a2-oXG">
-                                        <rect key="frame" x="0.0" y="238" width="416" height="5"/>
+                                        <rect key="frame" x="0.0" y="246" width="416" height="5"/>
                                     </box>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-Se-Vox">
-                                        <rect key="frame" x="-2" y="177" width="92" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-Se-Vox">
+                                        <rect key="frame" x="-2" y="185" width="92" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Invisibles" id="M5e-Tg-MlQ">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKu-nK-alH">
-                                        <rect key="frame" x="-2" y="140" width="163" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKu-nK-alH">
+                                        <rect key="frame" x="-2" y="148" width="163" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Headers and Footers" id="l4b-D2-DDX">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qbD-t6-6u6">
-                                        <rect key="frame" x="18" y="105" width="49" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qbD-t6-6u6">
+                                        <rect key="frame" x="18" y="111" width="49" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Header" id="JlJ-Fc-tes">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -84,37 +84,37 @@
                                         </textFieldCell>
                                     </textField>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="BB8-10-llF">
-                                        <rect key="frame" x="0.0" y="164" width="416" height="5"/>
+                                        <rect key="frame" x="0.0" y="172" width="416" height="5"/>
                                     </box>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="NmH-od-2G4">
-                                        <rect key="frame" x="20" y="58" width="396" height="5"/>
+                                        <rect key="frame" x="20" y="62" width="396" height="5"/>
                                     </box>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dpB-O3-zLC">
-                                        <rect key="frame" x="0.0" y="201" width="416" height="5"/>
+                                        <rect key="frame" x="0.0" y="209" width="416" height="5"/>
                                     </box>
                                     <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" controlSize="mini" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="NX9-Wy-k9a">
-                                        <rect key="frame" x="388" y="214" width="28" height="16"/>
+                                        <rect key="frame" x="379" y="222" width="36" height="16"/>
                                         <connections>
                                             <accessibilityConnection property="title" destination="Yho-OF-r7g" id="VRX-qX-u5L"/>
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="printsLineNumbers" id="8GX-wv-uP9"/>
                                         </connections>
                                     </switch>
                                     <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" controlSize="mini" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="xyB-Z8-pVB">
-                                        <rect key="frame" x="388" y="251" width="28" height="16"/>
+                                        <rect key="frame" x="379" y="259" width="36" height="16"/>
                                         <connections>
                                             <accessibilityConnection property="title" destination="kYV-zv-wrQ" id="uVD-6X-fzE"/>
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="printsBackground" id="iWY-x1-Ymp"/>
                                         </connections>
                                     </switch>
                                     <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" controlSize="mini" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="SdK-De-aPG">
-                                        <rect key="frame" x="388" y="177" width="28" height="16"/>
+                                        <rect key="frame" x="379" y="185" width="36" height="16"/>
                                         <connections>
                                             <accessibilityConnection property="title" destination="wT3-Se-Vox" id="1IQ-2P-vMS"/>
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="printsInvisibles" id="0wL-g6-9Og"/>
                                         </connections>
                                     </switch>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha" customClass="FormPopUpButton" customModule="ControlUI">
-                                        <rect key="frame" x="251" y="98" width="85" height="25"/>
+                                        <rect key="frame" x="231" y="107" width="95" height="24"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
@@ -130,13 +130,13 @@
                                         </connections>
                                     </popUpButton>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y6C-KD-Qlx">
-                                        <rect key="frame" x="338" y="100" width="80" height="24"/>
+                                        <rect key="frame" x="334" y="107" width="82" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="wZK-fo-Sky">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                                <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                                <segment image="arrow.backward.to.line" catalog="system"/>
+                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" selected="YES" tag="1"/>
+                                                <segment image="arrow.forward.to.line" catalog="system" tag="2">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -156,13 +156,13 @@
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zau-Af-OBf">
-                                        <rect key="frame" x="338" y="70" width="80" height="24"/>
+                                        <rect key="frame" x="334" y="75" width="82" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="phR-yp-SWP">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                                <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                                <segment image="arrow.backward.to.line" catalog="system"/>
+                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" selected="YES" tag="1"/>
+                                                <segment image="arrow.forward.to.line" catalog="system" tag="2">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -182,7 +182,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW" customClass="FormPopUpButton" customModule="ControlUI">
-                                        <rect key="frame" x="251" y="68" width="85" height="25"/>
+                                        <rect key="frame" x="231" y="75" width="95" height="24"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
@@ -198,13 +198,13 @@
                                         </connections>
                                     </popUpButton>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qqp-Os-uMO">
-                                        <rect key="frame" x="338" y="29" width="80" height="24"/>
+                                        <rect key="frame" x="334" y="32" width="82" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Qh8-SW-Qcm">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                                <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                                <segment image="arrow.backward.to.line" catalog="system"/>
+                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" selected="YES" tag="1"/>
+                                                <segment image="arrow.forward.to.line" catalog="system" tag="2">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -224,7 +224,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM" customClass="FormPopUpButton" customModule="ControlUI">
-                                        <rect key="frame" x="251" y="27" width="85" height="25"/>
+                                        <rect key="frame" x="231" y="32" width="95" height="24"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
@@ -240,7 +240,7 @@
                                         </connections>
                                     </popUpButton>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O" customClass="FormPopUpButton" customModule="ControlUI">
-                                        <rect key="frame" x="251" y="-3" width="85" height="25"/>
+                                        <rect key="frame" x="231" y="0.0" width="95" height="24"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="VyN-kq-VID" id="mh2-B1-LxR" customClass="FormPopUpButtonCell" customModule="ControlUI">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="message"/>
@@ -256,13 +256,13 @@
                                         </connections>
                                     </popUpButton>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t3D-7C-ObH">
-                                        <rect key="frame" x="338" y="-1" width="80" height="24"/>
+                                        <rect key="frame" x="334" y="0.0" width="82" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="2gN-eY-bmu">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                                <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                                <segment image="arrow.backward.to.line" catalog="system"/>
+                                                <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" selected="YES" tag="1"/>
+                                                <segment image="arrow.forward.to.line" catalog="system" tag="2">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -282,17 +282,17 @@
                                         </connections>
                                     </segmentedControl>
                                     <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" controlSize="mini" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="5oG-pS-6uI">
-                                        <rect key="frame" x="388" y="140" width="28" height="16"/>
+                                        <rect key="frame" x="379" y="148" width="36" height="16"/>
                                         <connections>
                                             <accessibilityConnection property="title" destination="QKu-nK-alH" id="0iv-CH-Pqt"/>
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="printsHeaderAndFooter" id="my2-d7-noX"/>
                                         </connections>
                                     </switch>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="27f-Ln-A2D">
-                                        <rect key="frame" x="0.0" y="275" width="416" height="5"/>
+                                        <rect key="frame" x="0.0" y="283" width="416" height="5"/>
                                     </box>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pEn-Qn-GtM" customClass="NumberTextField" customModule="ControlUI">
-                                        <rect key="frame" x="332" y="323" width="48" height="21"/>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pEn-Qn-GtM" customClass="NumberTextField" customModule="ControlUI">
+                                        <rect key="frame" x="325" y="331" width="48" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="pfn-ZI-xFt"/>
                                         </constraints>
@@ -309,8 +309,8 @@
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="fontSize" id="eG0-pg-3e7"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-1R-Fyr">
-                                        <rect key="frame" x="401" y="326" width="17" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-1R-Fyr">
+                                        <rect key="frame" x="401" y="335" width="17" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="pt" id="U13-G4-pKV">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -318,7 +318,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qUW-qA-jm5" customClass="AccessibleStepper" customModule="ControlUI">
-                                        <rect key="frame" x="381" y="320" width="19" height="28"/>
+                                        <rect key="frame" x="377" y="330" width="20" height="26"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="4" maxValue="100" doubleValue="4" id="JEm-ad-tne"/>
                                         <connections>
                                             <accessibilityConnection property="title" destination="dCk-qa-Upw" id="WOb-g6-1iM"/>
@@ -326,10 +326,10 @@
                                         </connections>
                                     </stepper>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="vig-41-Y5L">
-                                        <rect key="frame" x="0.0" y="312" width="416" height="5"/>
+                                        <rect key="frame" x="0.0" y="320" width="416" height="5"/>
                                     </box>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCk-qa-Upw">
-                                        <rect key="frame" x="-2" y="326" width="61" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCk-qa-Upw">
+                                        <rect key="frame" x="-2" y="335" width="61" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Font Size" id="fSa-V2-D11">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -337,10 +337,10 @@
                                         </textFieldCell>
                                     </textField>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cut-IH-GkZ">
-                                        <rect key="frame" x="0.0" y="129" width="416" height="5"/>
+                                        <rect key="frame" x="0.0" y="137" width="416" height="5"/>
                                     </box>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Af-55-FYV">
-                                        <rect key="frame" x="18" y="34" width="44" height="16"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Af-55-FYV">
+                                        <rect key="frame" x="18" y="36" width="44" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Footer" id="mY6-Zh-2Uc">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
