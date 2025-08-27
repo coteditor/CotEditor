@@ -99,7 +99,10 @@ struct AboutView: View {
                     }
                 }
                 .padding(.vertical, 6)
-                Divider()
+                
+                if #unavailable(macOS 26) {
+                    Divider()
+                }
                 
                 ScrollView(.vertical) {
                     switch self.pane {
