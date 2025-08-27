@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,11 +48,6 @@ private struct Edge {
 
 
 final class DraggableHostingView<Content>: NSHostingView<Content> where Content: View {
-    
-    // MARK: Public Properties
-    
-    let margin: CGFloat = 10
-    
     
     // MARK: Private Properties
     
@@ -139,16 +134,22 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     /// Keeps position to be inside of the parent frame.
     private func adjustPosition() {
         
-        guard let superFrame = self.superview?.frame else { return assertionFailure() }
+        guard let superview else { return assertionFailure() }
         
-        let maxX = superFrame.width - self.frame.width - self.margin
-        if self.margin < maxX {
-            self.frame.origin.x.clamp(to: self.margin...maxX)
+        let insets = if #available(macOS 26, *) {
+            superview.edgeInsets(for: .margins())
+        } else {
+            NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
         
-        let maxY = superFrame.height - self.frame.height - self.margin
-        if self.margin < maxY {
-            self.frame.origin.y.clamp(to: self.margin...maxY)
+        let maxX = superview.frame.width - self.frame.width - insets.right
+        if insets.left < maxX {
+            self.frame.origin.x.clamp(to: insets.left...maxX)
+        }
+        
+        let maxY = superview.frame.height - self.frame.height - insets.bottom
+        if insets.bottom < maxY {
+            self.frame.origin.y.clamp(to: insets.top...maxY)
         }
     }
 }
