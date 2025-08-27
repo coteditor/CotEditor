@@ -87,11 +87,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let addButton = NSPopUpButton()
         (addButton.cell as! NSPopUpButtonCell).arrowPosition = .noArrow
         addButton.pullsDown = true
+        addButton.autoenablesItems = false
         addButton.isBordered = false
         addButton.addItem(withTitle: "")
-        addButton.item(at: 0)!.image = NSImage(systemSymbolName: "plus",
-                                               accessibilityDescription: String(localized: "Add", table: "Document"))
-        addButton.setAccessibilityLabel(String(localized: "Add", table: "Document"))
+        addButton.item(at: 0)!.image = NSImage(
+            systemSymbolName: "plus",
+            accessibilityDescription: String(localized: "Button.add.label", defaultValue: "Add", table: "Control")
+        )
+        addButton.setAccessibilityLabel(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"))
         
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
         (footerView as? NSVisualEffectView)?.material = .sidebar
@@ -100,7 +103,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 8 : 6),
+            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 10 : 6),
         ])
         
         self.view = NSView()
@@ -1110,6 +1113,8 @@ private final class FileBrowserTableCellView: NSTableCellView {
         
         self.tagsView?.rootView = TagsView(tags: self.tags, isSelected: self.isSelected)
         self.tagsLayoutConstraint?.isActive = !self.tags.isEmpty
+        
+        guard #available(macOS 26, *) else { return }
         
         self.imageView?.contentTintColor = self.tags.last?.color.color
     }

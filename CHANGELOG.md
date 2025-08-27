@@ -3,6 +3,11 @@
 6.0.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Adjsut the user interface.
+- [beta] Avoid tinging folder with tags in the file browser on macOS 15.
+
 
 
 6.0.0-beta (731)

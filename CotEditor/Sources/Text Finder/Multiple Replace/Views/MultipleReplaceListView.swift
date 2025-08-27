@@ -110,7 +110,7 @@ struct MultipleReplaceListView: View {
                 }
             }
             .buttonStyle(.borderless)
-            .padding(6)
+            .padding(isLiquidGlass ? 8 : 6)
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Sidebar", table: "MultipleReplace", comment: "accessibility label"))
