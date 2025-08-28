@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- [beta] Adjsut the user interface.
+- [beta] Adjust the user interface.
 - [beta] Avoid tinging folder with tags in the file browser on macOS 15.
 
 

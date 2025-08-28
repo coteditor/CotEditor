@@ -413,8 +413,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             case #selector(openSplitTextView):
                 if #available(macOS 26, *) {
                     (item as? NSMenuItem)?.image = self.splitView.isVertical
-                    ? NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
-                    : NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
+                        ? NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
+                        : NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
                 }
                 
             case #selector(closeSplitTextView):
