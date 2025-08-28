@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation.NSObjCRuntime
+public import Foundation
 
 extension Selector: @retroactive Codable {
     

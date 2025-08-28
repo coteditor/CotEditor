@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import Foundation
-import TextFind
+public import Foundation
+public import TextFind
 
 extension TextFind.Error: @retroactive LocalizedError {
     

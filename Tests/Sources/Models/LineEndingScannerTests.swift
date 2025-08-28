@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import AppKit.NSTextStorage
+public import AppKit.NSTextStorage
 import Testing
 import LineEnding
 import ValueRange

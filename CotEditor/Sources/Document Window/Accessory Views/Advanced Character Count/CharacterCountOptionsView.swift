@@ -23,10 +23,10 @@
 //  limitations under the License.
 //
 
+public import Defaults
+public import StringUtils
 import SwiftUI
-import Defaults
 import FileEncoding
-import StringUtils
 
 extension UnicodeNormalizationForm: @retroactive DefaultInitializable {
 

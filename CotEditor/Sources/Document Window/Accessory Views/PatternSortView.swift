@@ -23,9 +23,10 @@
 //  limitations under the License.
 //
 
+public import Foundation
+public import LineSort
 import SwiftUI
 import Defaults
-import LineSort
 
 struct PatternSortView: View {
     
