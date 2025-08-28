@@ -32,7 +32,11 @@ final class SettingsWindow: NSWindow {
     
     override var canBecomeMain: Bool  {
         
-        true  // FIXME: workaround ShareLink issue (2025-08, macOS 26, FB19287270)
+        if #available(macOS 26, *) {
+            true  // FIXME: workaround ShareLink issue (2025-08, macOS 26, FB19287270)
+        } else {
+            false
+        }
     }
     
     
