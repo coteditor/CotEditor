@@ -46,8 +46,14 @@ struct FilePreviewView: View {
                         NSWorkspace.shared.activateFileViewerSelecting([self.item.previewItemURL])
                     }
                 } else {
-                    Button(String(localized: "Open with External Editor", table: "Document")) {
-                        NSWorkspace.shared.open(self.item.previewItemURL)
+                    if #available(macOS 26, *) {
+                        Link(String(localized: "Open with External Editor", table: "Document"), destination: self.item.previewItemURL)
+                            .onOpenURL(prefersInApp: true)
+                            .buttonStyle(.bordered)
+                    } else {
+                        Button(String(localized: "Open with External Editor", table: "Document")) {
+                            NSWorkspace.shared.open(self.item.previewItemURL)
+                        }
                     }
                 }
                 
