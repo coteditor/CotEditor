@@ -227,7 +227,7 @@ private struct FileDropView: View {
             HStack(alignment: .firstTextBaseline) {
                 AddRemoveButton($items, selection: $selection, newItem: Item())
                 Spacer()
-                Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.restore)
+                Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.restore)
                     .disabled(!self.canRestore)
             }
             .padding(.bottom)

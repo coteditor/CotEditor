@@ -195,10 +195,10 @@ private struct ThemeListView: View {
                     }
                 } label: {
                     Image(systemName: "plus")
-                        .accessibilityLabel(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"))
+                        .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
                         .padding(2)
                 }
-                .help(String(localized: "Button.add.tooltip", defaultValue: "Add new item", table: "Control"))
+                .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
                 .frame(width: 16)
                 
                 Button {
@@ -206,10 +206,10 @@ private struct ThemeListView: View {
                     self.isDeleteConfirmationPresented = true
                 } label: {
                     Image(systemName: "minus")
-                        .accessibilityLabel(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"))
+                        .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
                         .padding(2)
                 }
-                .help(String(localized: "Button.remove.tooltip", defaultValue: "Delete selected items", table: "Control"))
+                .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
                 .frame(width: 16)
                 .disabled(self.manager.state(of: self.selection)?.isBundled != false)
                 
@@ -253,7 +253,7 @@ private struct ThemeListView: View {
                     self.error = error
             }
         }
-        .fileDialogConfirmationLabel(String(localized: "Button.import.label", defaultValue: "Import"))
+        .fileDialogConfirmationLabel(String(localized: "Action.import.label", defaultValue: "Import"))
         .confirmationDialog(String(localized: "ImportDuplicationError.description",
                                    defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
                                    comment: "%@ is a name of a setting. Refer the same expression by Apple."),
@@ -269,12 +269,10 @@ private struct ThemeListView: View {
             Button(.cancel, role: .cancel) {
                 self.importingError = nil
             }
-        } message: { _ in
-            Text(String(localized: "ImportDuplicationError.recoverySuggestion",
-                        defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
-                        comment: "Refer similar expressions by Apple."))
+        } message: { error in
+            Text(error.recoverySuggestion)
         }
-        // place fileExporter after `fileDialogConfirmationLabel(_:)` for the import action to use the deafult label for the export.
+        // place fileExporter after `fileDialogConfirmationLabel(_:)` for the import action to use the default label for the export.
         .fileExporter(isPresented: $isExporterPresented, item: self.exportingItem, contentTypes: [.cotTheme], defaultFilename: self.exportingItem?.name) { result in
             switch result {
                 case .success:
@@ -390,7 +388,7 @@ private struct ThemeListView: View {
         if !isContext {
             Divider()
             
-            Button(String(localized: "Action.import.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
+            Button(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
                 self.isImporterPresented = true
             }
             .modifierKeyAlternate(.option) {

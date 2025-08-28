@@ -640,95 +640,6 @@
         }
       }
     },
-    "Do you want to use it for the monospaced font?" : {
-      "comment" : "“it” is the selected font.",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chcete ho použít pro neproporcionální písmo?"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Möchtest du sie für die nichtproportionale Schrift verwenden?"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you want to use it for the monospaced font?"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Quieres usarlo para la fuente monoespaciada?"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voulez-vous l’utiliser comme police monochasse ?"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La vuoi usare come font a spaziatura fissa?"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選択したフォントを等幅フォントとして使用しますか?"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "선택한 서체를 고정폭 서체로 사용하시겠습니까?"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wil je het gebruiken voor het niet-proportionele lettertype?"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czy chcesz jej użyć jako czcionki o stałej szerokości?"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você deseja usar a fonte selecionada como fonte monoespaçada?"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sabit genişlikli font olarak kullanmak istiyor musunuz?"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "确定将其选定为等宽字体？"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您真的要將這個字體作為等寬字體來使用嗎？"
-          }
-        }
-      }
-    },
     "Editor opacity:" : {
       "localizations" : {
         "cs" : {
@@ -1169,6 +1080,197 @@
         }
       }
     },
+    "MonospacedFontAlert.message" : {
+      "comment" : "“it” is the selected font in the title.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chcete ho použít pro neproporcionální písmo?"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du sie für die nichtproportionale Schrift verwenden?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Do you want to use it for the monospaced font?"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to use it for the monospaced font?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Quieres usarlo para la fuente monoespaciada?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voulez-vous l’utiliser comme police monochasse ?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La vuoi usare come font a spaziatura fissa?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択したフォントを等幅フォントとして使用しますか?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 서체를 고정폭 서체로 사용하시겠습니까?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je het gebruiken voor het niet-proportionele lettertype?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz jej użyć jako czcionki o stałej szerokości?"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você deseja usar a fonte selecionada como fonte monoespaçada?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sabit genişlikli font olarak kullanmak istiyor musunuz?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "确定将其选定为等宽字体？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您真的要將這個字體作為等寬字體來使用嗎？"
+          }
+        }
+      }
+    },
+    "MonospacedFontAlert.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdá se, že vybrané písmo není neproporcionální."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die ausgewählte Schrift scheint proportional."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The selected font doesn’t seem to be monospaced."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The selected font doesn’t seem to be monospaced."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La fuente seleccionada no parece ser monoespaciada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La police sélectionnée ne semble pas être monochasse."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La font selezionata non sembra a spaziatura fissa."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択したフォントは等幅フォントではないようです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 서체가 고정폭 서체가 아닌 것 같습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het geselecteerde lettertype lijkt niet monospaced te zijn."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybrana czcionka nie wydaje się mieć stałej szerokości."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A fonte selecionada não parace ser monoespaçada."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili font, sabit genişlikli değil gibi görünüyor."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所选字体似乎不是等宽字体。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當前選中的字體似乎並非等寬字體。"
+          }
+        }
+      }
+    },
     "OpacitySlider.maximumValue.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -1532,94 +1634,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準字體："
-          }
-        }
-      }
-    },
-    "The selected font doesn’t seem to be monospaced." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zdá se, že vybrané písmo není neproporcionální."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die ausgewählte Schrift scheint proportional."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The selected font doesn’t seem to be monospaced."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La fuente seleccionada no parece ser monoespaciada."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La police sélectionnée ne semble pas être monochasse."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La font selezionata non sembra a spaziatura fissa."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選択したフォントは等幅フォントではないようです。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "선택한 서체가 고정폭 서체가 아닌 것 같습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Het geselecteerde lettertype lijkt niet monospaced te zijn."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wybrana czcionka nie wydaje się mieć stałej szerokości."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A fonte selecionada não parace ser monoespaçada."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seçili font, sabit genişlikli değil gibi görünüyor."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "所选字体似乎不是等宽字体。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "當前選中的字體似乎並非等寬字體。"
           }
         }
       }

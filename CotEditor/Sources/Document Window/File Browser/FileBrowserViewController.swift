@@ -92,9 +92,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.addItem(withTitle: "")
         addButton.item(at: 0)!.image = NSImage(
             systemSymbolName: "plus",
-            accessibilityDescription: String(localized: "Button.add.label", defaultValue: "Add", table: "Control")
+            accessibilityDescription: String(localized: "Action.add.label", defaultValue: "Add")
         )
-        addButton.setAccessibilityLabel(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"))
+        addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
         (footerView as? NSVisualEffectView)?.material = .sidebar

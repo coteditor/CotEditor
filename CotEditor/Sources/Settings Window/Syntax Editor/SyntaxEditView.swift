@@ -171,7 +171,7 @@ struct SyntaxEditView: View {
                 
                 HStack {
                     if self.isBundled {
-                        Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.restore)
+                        Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.restore)
                             .fixedSize()
                     }
                     Spacer()

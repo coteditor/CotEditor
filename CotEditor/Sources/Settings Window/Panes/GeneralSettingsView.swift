@@ -94,7 +94,7 @@ struct GeneralSettingsView: View {
                         .onAppear {
                             self.initialEnablesAutosaveInPlace = self.enablesAutosaveInPlace
                         }
-                        .confirmationDialog(String(localized: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
+                        .confirmationDialog(String(localized: "NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
                             Button(String(localized: "Restart Now", table: "GeneralSettings", comment: "button label")) {
                                 (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
                                 NSApp.terminate(self)
@@ -106,7 +106,7 @@ struct GeneralSettingsView: View {
                                 self.enablesAutosaveInPlace.toggle()
                             }
                         } message: {
-                            Text("Do you want to restart CotEditor now?", tableName: "GeneralSettings")
+                            Text(String(localized: "NextSessionApplicationConfirmation.message", defaultValue: "Do you want to restart CotEditor now?", table: "GeneralSettings"))
                         }
                     
                     Text("A system feature that automatically overwrites your files while editing. Even if turned off, CotEditor covertly creates a backup in case it unexpectedly quits.", tableName: "GeneralSettings")

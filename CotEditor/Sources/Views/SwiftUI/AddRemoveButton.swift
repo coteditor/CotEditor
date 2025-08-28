@@ -52,7 +52,7 @@ struct AddRemoveButton<Item: Identifiable & Sendable>: View {
     var body: some View {
         
         ControlGroup {
-            Button(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"), systemImage: "plus") {
+            Button(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
                 let item = self.newItem()
                 let index = self.items.lastIndex { self.selection.contains($0.id) } ?? self.items.endIndex - 1
                 
@@ -63,9 +63,9 @@ struct AddRemoveButton<Item: Identifiable & Sendable>: View {
                     self.completion(item)
                 }
             }
-            .help(String(localized: "Button.add.tooltip", defaultValue: "Add new item", table: "Control"))
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
             
-            Button(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"), systemImage: "minus") {
+            Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus") {
                 withAnimation {
                     self.items.removeAll {
                         self.selection.contains($0.id)
@@ -73,7 +73,7 @@ struct AddRemoveButton<Item: Identifiable & Sendable>: View {
                     self.selection.removeAll()
                 }
             }
-            .help(String(localized: "Button.remove.tooltip", defaultValue: "Delete selected items", table: "Control"))
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
             .disabled(self.selection.isEmpty)
         }
         .modifier { content in

@@ -108,10 +108,10 @@ private class InnerFilterField: NSSearchField {
             searchButtonCell.image = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle", accessibilityDescription: nil)
             searchButtonCell.alternateImage = NSImage(systemSymbolName: "line.3.horizontal.decrease.circle.fill", accessibilityDescription: nil)?
                 .tinted(with: .controlAccentColor)
-            searchButtonCell.setAccessibilityLabel(String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"))
+            searchButtonCell.setAccessibilityLabel(String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters"))
         }
         
-        self.placeholderString = String(localized: "FilterField.placeholder", defaultValue: "Filter", table: "Control")
+        self.placeholderString = String(localized: "FilterField.placeholder", defaultValue: "Filter")
     }
     
     
@@ -144,16 +144,16 @@ private class InnerFilterField: NSSearchField {
     /// Sets up the search menu.
     private func invalidateSearchMenu() {
         
-        let searchMenu = NSMenu(title: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"))
-        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters", table: "Control"), action: nil, keyEquivalent: "")
+        let searchMenu = NSMenu(title: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters"))
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
         searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
         searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.clear.label", defaultValue: "Clear Recent Filters", table: "Control"),
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.clear.label", defaultValue: "Clear Recent Filters"),
                            action: nil, keyEquivalent: "")
             .tag = NSSearchField.clearRecentsMenuItemTag
-        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.noItem.label", defaultValue: "No Recent Filter", table: "Control"),
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.noItem.label", defaultValue: "No Recent Filter"),
                            action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
         

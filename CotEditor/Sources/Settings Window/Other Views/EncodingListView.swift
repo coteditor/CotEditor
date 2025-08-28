@@ -113,13 +113,13 @@ struct EncodingListView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             HStack {
-                Button(String(localized: "Button.restoreDefaults.label", defaultValue: "Restore Defaults", table: "Control"), action: self.model.restore)
+                Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
                     .disabled(!self.model.canRestore)
                 
                 Spacer()
                 
                 ControlGroup {
-                    Menu(String(localized: "Button.add.label", defaultValue: "Add", table: "Control"), systemImage: "plus") {
+                    Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
                         let listedEncodings = self.model.items.compactMap(\.encoding)
                         let encodings = String.availableStringEncodings
                             .filter { !listedEncodings.contains($0.cfEncoding) }
@@ -141,7 +141,7 @@ struct EncodingListView: View {
                     }
                     
                     let removalError = self.model.canRemove(ids: self.selection)
-                    Button(String(localized: "Button.delete.label", defaultValue: "Delete", table: "Control"), systemImage: "minus") {
+                    Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus") {
                         self.model.remove(ids: self.selection)
                     }
                     .disabled(removalError != nil)
