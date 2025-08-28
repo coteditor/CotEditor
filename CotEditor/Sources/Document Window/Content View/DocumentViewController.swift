@@ -27,9 +27,11 @@
 import AppKit
 import Combine
 import SwiftUI
-import Defaults
-import Syntax
 import ControlUI
+import Defaults
+import StringUtils
+import Syntax
+import TextEditing
 
 @Observable final class SplitState {
     

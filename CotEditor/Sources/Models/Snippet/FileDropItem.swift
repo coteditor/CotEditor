@@ -25,6 +25,7 @@
 
 import Foundation
 import AppKit.NSImageRep
+import URLUtils
 
 struct FileDropItem: Equatable, Identifiable {
     

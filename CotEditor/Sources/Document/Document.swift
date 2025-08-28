@@ -35,6 +35,7 @@ import Defaults
 import FileEncoding
 import FilePermissions
 import LineEnding
+import StringUtils
 import Syntax
 import URLUtils
 

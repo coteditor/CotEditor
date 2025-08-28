@@ -26,6 +26,7 @@
 
 import AppKit
 import Invisible
+import StringUtils
 
 class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     

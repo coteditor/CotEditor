@@ -24,6 +24,8 @@
 //  limitations under the License.
 //
 
+import Foundation
+
 public extension UnicodeNormalizationForm {
     
     /// The localized name.

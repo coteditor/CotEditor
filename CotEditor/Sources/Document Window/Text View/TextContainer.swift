@@ -24,6 +24,8 @@
 //
 
 import AppKit
+import LineEnding
+import StringUtils
 
 final class TextContainer: NSTextContainer {
     

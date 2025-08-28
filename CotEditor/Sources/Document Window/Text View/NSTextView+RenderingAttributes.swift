@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import StringUtils
 import ValueRange
 
 extension NSTextView {

@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import Combine
 import AppKit.NSMenuItem
 import Defaults
 import Shortcut

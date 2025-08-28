@@ -31,6 +31,7 @@ import Invisible
 import LineEnding
 import Syntax
 import StringUtils
+import TextEditing
 
 private extension NSAttributedString.Key {
     

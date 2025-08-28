@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 import Defaults
 import ControlUI
 

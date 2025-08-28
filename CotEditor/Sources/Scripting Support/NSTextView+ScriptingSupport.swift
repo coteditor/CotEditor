@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import StringUtils
 
 enum InsertionLocation {
     

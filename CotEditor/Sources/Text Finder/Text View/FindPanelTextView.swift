@@ -27,6 +27,7 @@ import AppKit
 import Combine
 import Defaults
 import Invisible
+import StringUtils
 
 /// Text view that behaves like an NSTextField.
 final class FindPanelTextView: RegexTextView {

@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import CharacterInfo
 import Defaults
 
 struct UnicodeInputView: View {

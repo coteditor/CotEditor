@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import StringUtils
 
 @MainActor protocol CurrentLineHighlighting: NSTextView {
     

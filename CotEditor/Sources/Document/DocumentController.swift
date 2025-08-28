@@ -29,6 +29,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 import Defaults
+import StringUtils
 
 protocol AdditionalDocumentPreparing: NSDocument {
     

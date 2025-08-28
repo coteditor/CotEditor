@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 import Defaults
 import FileEncoding
 import LineEnding

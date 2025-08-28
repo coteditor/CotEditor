@@ -24,6 +24,8 @@
 //  limitations under the License.
 //
 
+import Foundation
+
 public extension Unicode.Scalar {
     
     /// The code point string in format like `U+000F`.

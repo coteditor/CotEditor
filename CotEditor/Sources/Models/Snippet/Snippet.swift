@@ -25,6 +25,7 @@
 
 import Foundation.NSString
 import Shortcut
+import StringUtils
 import TextEditing
 
 struct Snippet: Equatable, Identifiable {

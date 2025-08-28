@@ -27,6 +27,7 @@
 import AppKit
 import FuzzyRange
 import StringUtils
+import TextEditing
 
 private enum OSACaseType: FourCharCode {
     

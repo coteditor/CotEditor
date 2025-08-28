@@ -25,6 +25,7 @@
 
 import AppKit
 import LineEnding
+import StringUtils
 
 extension EditorTextView {
     

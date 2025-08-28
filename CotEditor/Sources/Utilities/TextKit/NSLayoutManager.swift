@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import StringUtils
 
 extension NSLayoutManager {
     

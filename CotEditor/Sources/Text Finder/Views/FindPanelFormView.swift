@@ -27,6 +27,8 @@ import SwiftUI
 import AppKit
 import Combine
 import Defaults
+import RegexHighlighting
+import StringUtils
 import TextFind
 
 struct FindPanelFormView: View {

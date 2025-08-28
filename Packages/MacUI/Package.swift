@@ -40,5 +40,6 @@ for target in package.targets {
     ]
     target.swiftSettings = [
         .enableUpcomingFeature("ExistentialAny"),
+        .enableUpcomingFeature("MemberImportVisibility"),
     ]
 }

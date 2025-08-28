@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import Combine
 import AppKit.NSTextStorage
 import OSLog
 import EditedRangeSet

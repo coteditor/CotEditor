@@ -26,6 +26,7 @@
 import AppKit
 import SwiftUI
 import Combine
+import Defaults
 
 final class WindowContentViewController: NSSplitViewController, NSToolbarItemValidation {
     

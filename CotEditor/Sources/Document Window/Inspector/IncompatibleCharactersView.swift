@@ -26,7 +26,10 @@
 import SwiftUI
 import Combine
 import AppKit.NSTextStorage
+import CharacterInfo
 import FileEncoding
+import LineEnding
+import StringUtils
 import ValueRange
 
 struct IncompatibleCharactersView: View {

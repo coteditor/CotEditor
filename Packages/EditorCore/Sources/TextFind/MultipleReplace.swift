@@ -24,6 +24,8 @@
 //
 
 import Foundation
+import StringUtils
+import ValueRange
 
 public struct MultipleReplace: Equatable, Sendable, Codable {
     

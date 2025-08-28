@@ -24,6 +24,8 @@
 //
 
 import SwiftUI
+import RegexHighlighting
+import Syntax
 
 struct SyntaxOutlineEditView: View {
     

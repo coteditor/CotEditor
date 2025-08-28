@@ -23,6 +23,8 @@
 //  limitations under the License.
 //
 
+import Foundation
+
 enum Donation {
     
     static let groupID = "21481959"

@@ -24,6 +24,8 @@
 //
 
 import AppKit
+import StringUtils
+import TextEditing
 
 @MainActor protocol MultiCursorEditing: NSTextView {
     

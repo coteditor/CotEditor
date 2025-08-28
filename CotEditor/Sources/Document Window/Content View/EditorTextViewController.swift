@@ -32,7 +32,9 @@ import CharacterInfo
 import Defaults
 import FuzzyRange
 import Invisible
+import LineEnding
 import StringUtils
+import Syntax
 import TextClipping
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {

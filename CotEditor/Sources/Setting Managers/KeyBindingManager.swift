@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import UniformTypeIdentifiers
 import Shortcut
 import URLUtils
 

@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import CoreText.CTFont
+import StringUtils
 
 final class LineNumberView: NSView {
     

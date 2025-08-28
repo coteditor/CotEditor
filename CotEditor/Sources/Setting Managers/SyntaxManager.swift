@@ -29,6 +29,7 @@ import Combine
 import UniformTypeIdentifiers
 import Yams
 import Defaults
+import StringUtils
 import Syntax
 import SyntaxMap
 import URLUtils

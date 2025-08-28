@@ -25,7 +25,9 @@
 
 import Foundation
 import AppKit.NSLayoutManager
+import StringUtils
 import Syntax
+import ValueRange
 
 extension NSLayoutManager {
     

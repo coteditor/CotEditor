@@ -26,6 +26,7 @@
 import AppKit
 import SwiftUI
 import LineEnding
+import StringUtils
 import TextFind
 import ValueRange
 

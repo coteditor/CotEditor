@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
+
+import Foundation
 
 public extension Unicode.UTF32.CodeUnit {
     
