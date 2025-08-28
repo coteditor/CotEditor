@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+public import AppKit
 
 @available(macOS, deprecated: 26, message: "Use normal NSSegmentedControl.")
 public protocol InspectorTabViewDelegate: NSTabViewDelegate {

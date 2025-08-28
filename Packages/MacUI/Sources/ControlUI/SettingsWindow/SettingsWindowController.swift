@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+public import AppKit
 import SwiftUI
 
 public final class SettingsWindowController<Pane: SettingsPane>: NSWindowController {

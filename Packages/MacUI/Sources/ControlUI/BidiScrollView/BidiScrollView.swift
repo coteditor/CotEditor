@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+public import AppKit
 
 /// A scroll view that allows switching the vertical scroller position regardless of the user interface layout direction.
 ///

@@ -25,9 +25,9 @@
 //  limitations under the License.
 //
 
-import Foundation
-import StringUtils
-import ValueRange
+public import Foundation
+public import StringUtils
+public import ValueRange
 
 
 public enum NestableToken: Equatable, Hashable, Sendable {

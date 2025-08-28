@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
-import Foundation
-import StringUtils
+public import Foundation
 import ValueRange
+import StringUtils
 
 public struct MultipleReplace: Equatable, Sendable, Codable {
     

@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
 import StringUtils
 
 public extension String {

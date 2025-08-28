@@ -25,8 +25,8 @@
 //  limitations under the License.
 //
 
+public import StringUtils
 import Foundation
-import StringUtils
 
 public enum SyntaxType: String, Sendable, CaseIterable {
     

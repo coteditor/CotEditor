@@ -24,8 +24,8 @@
 //  limitations under the License.
 //
 
+public import SwiftUI
 import AppKit.NSImage
-import SwiftUI
 
 public protocol SettingsPane: RawRepresentable<String>, Sendable, CaseIterable {
     

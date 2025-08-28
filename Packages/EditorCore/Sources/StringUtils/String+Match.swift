@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
 
 public struct FilteredItem<Value: Identifiable & Sendable>: Identifiable, Sendable {
     

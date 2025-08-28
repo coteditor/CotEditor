@@ -25,7 +25,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+public import AppKit
 import URLUtils
 
 /// Text field that keeps the standard text color while editing.

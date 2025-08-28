@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+public import AppKit
 
 public extension NSTextStorage {
     

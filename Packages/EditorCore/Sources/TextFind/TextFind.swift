@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
+public import ValueRange
 import StringUtils
-import ValueRange
 
 public struct TextFind: Equatable, Sendable {
     

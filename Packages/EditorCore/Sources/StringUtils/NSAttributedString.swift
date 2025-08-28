@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Foundation.NSAttributedString
+public import Foundation.NSAttributedString
 
 public extension NSAttributedString {
     
