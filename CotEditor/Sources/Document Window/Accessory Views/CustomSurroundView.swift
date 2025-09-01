@@ -54,8 +54,8 @@ struct CustomSurroundView: View {
         
         if let pair {
             self.pair = pair
-        } else if let begin = self.defaultBeginString, let end = self.defaultEndString {
-            self.pair = Pair(begin, end)
+        } else if let begin = self.defaultBeginString {
+            self.pair = Pair(begin, self.defaultEndString ?? "")
         }
     }
     
