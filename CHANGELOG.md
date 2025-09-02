@@ -7,6 +7,7 @@
 
 - [beta] Adjust the user interface.
 - [beta] Avoid tinging folder with tags in the file browser on macOS 15.
+- [beta] Tweak the application icon.
 
 
 
