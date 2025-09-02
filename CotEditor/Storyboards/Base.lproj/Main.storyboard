@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24112" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24112"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24123.1"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -967,6 +967,32 @@ CA
                                                             <action selector="capitalizeWord:" target="Ady-hI-5gd" id="xxx-C9-kVj"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Convert to Full Width" secondaryImage="textformat.characters.arrow.left.and.right" catalog="system" id="dVK-1s-xJq">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeFullwidth:" target="Ady-hI-5gd" id="Kzj-vP-XAT"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Convert to Half Width" id="Skr-vI-7VN">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeHalfwidth:" target="Ady-hI-5gd" id="gsG-iw-ufU"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Convert Alphanumeric Text to Full Width" id="586">
+                                                        <attributedString key="attributedTitle"/>
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeFullwidthRoman:" target="Ady-hI-5gd" id="0zm-yg-bCm"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Convert Alphanumeric Text to Half Width" id="588">
+                                                        <attributedString key="attributedTitle"/>
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
                                                     <menuItem title="Make Snake Case" secondaryImage="characters.lowercase" catalog="system" id="F0I-F4-srF">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -997,33 +1023,6 @@ CA
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="decodeURL:" target="Ady-hI-5gd" id="sFe-3p-LOb"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="5h2-9z-aol"/>
-                                                    <menuItem title="Convert to Full Width" secondaryImage="textformat.characters.arrow.left.and.right" catalog="system" id="dVK-1s-xJq">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="exchangeFullwidth:" target="Ady-hI-5gd" id="Kzj-vP-XAT"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Convert to Half Width" id="Skr-vI-7VN">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="exchangeHalfwidth:" target="Ady-hI-5gd" id="gsG-iw-ufU"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Convert Alphanumeric Text to Full Width" id="586">
-                                                        <attributedString key="attributedTitle"/>
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="exchangeFullwidthRoman:" target="Ady-hI-5gd" id="0zm-yg-bCm"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Convert Alphanumeric Text to Half Width" id="588">
-                                                        <attributedString key="attributedTitle"/>
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
