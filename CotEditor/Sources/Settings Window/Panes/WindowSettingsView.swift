@@ -72,8 +72,11 @@ struct WindowSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "windowTabbing", in: self.accessibility)
                 
                 Picker(selection: $windowTabbing) {
-                    (Text("Respect System Setting", tableName: "WindowSettings") +
-                     Text(" (\(NSWindow.userTabbingPreference.label))").foregroundStyle(.secondary)).tag(-1)
+                    Text(
+                        AttributedString(localized: "Respect System Setting", table: "WindowSettings") +
+                        AttributedString(" (\(NSWindow.userTabbingPreference.label))",
+                                         attributes: .init().foregroundColor(.secondary))
+                    ).tag(-1)
                     
                     Divider()
                     
