@@ -26,15 +26,6 @@
 
 public import Foundation
 
-extension NSRange: @retroactive Comparable {
-    
-    public static func < (lhs: _NSRange, rhs: _NSRange) -> Bool {
-        
-        lhs.location < rhs.location
-    }
-}
-
-
 public extension NSRange {
     
     static let notFound = NSRange(location: NSNotFound, length: 0)

@@ -47,7 +47,8 @@ extension NSTextView {
         
         let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
         let task = Task.detached(priority: .userInitiated) {
-            try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress).sorted()
+            try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
+                .sorted(using: KeyPathComparator(\.location))
         }
         
         // setup progress sheet

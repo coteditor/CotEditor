@@ -68,7 +68,7 @@ public extension String {
                 }
             }
         }
-        selectedRanges = selectedRanges.uniqued.sorted()
+        selectedRanges = selectedRanges.uniqued.sorted(using: KeyPathComparator(\.location))
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -121,7 +121,7 @@ public extension String {
                 }
             }
         }
-        selectedRanges = selectedRanges.uniqued.sorted()
+        selectedRanges = selectedRanges.uniqued.sorted(using: KeyPathComparator(\.location))
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -137,7 +137,7 @@ public extension String {
             .map { string.lineRange(for: $0) }
             .flatMap { self.lineContentsRanges(for: $0) }
             .uniqued
-            .sorted()
+            .sorted(using: KeyPathComparator(\.location))
         
         var replacementRanges: [NSRange] = []
         var uniqueLines: [String] = []
@@ -168,7 +168,7 @@ public extension String {
         var selectedRanges: [NSRange] = []
         
         // group the ranges sharing the same lines
-        let rangeGroups: [[NSRange]] = ranges.sorted()
+        let rangeGroups: [[NSRange]] = ranges.sorted(using: KeyPathComparator(\.location))
             .reduce(into: []) { groups, range in
                 if let last = groups.last?.last,
                    string.lineRange(for: last).intersects(string.lineRange(for: range))
@@ -218,7 +218,7 @@ public extension String {
             selectedRanges.append(NSRange(location: range.location + offset, length: 0))
             offset -= range.length
         }
-        selectedRanges = selectedRanges.uniqued.sorted()
+        selectedRanges = selectedRanges.uniqued.sorted(using: KeyPathComparator(\.location))
         
         return EditingContext(strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }
