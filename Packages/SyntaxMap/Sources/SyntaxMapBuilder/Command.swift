@@ -23,17 +23,17 @@
 //  limitations under the License.
 //
 
-public import Foundation
-public import ArgumentParser
+import Foundation
+import ArgumentParser
 import SyntaxMap
 
 @main
 struct Command: ParsableCommand {
     
-    @Argument(help: "A path to the Syntaxes directory.")
+    @Argument(help: "A path to the Syntaxes directory.", transform: { URL(filePath: $0) })
     var input: URL
     
-    @Argument(help: "The path to the result JSON file.")
+    @Argument(help: "The path to the result JSON file.", transform: { URL(filePath: $0) })
     var output: URL
     
     
@@ -48,14 +48,5 @@ struct Command: ParsableCommand {
         
         let data = try encoder.encode(syntaxMap)
         try data.write(to: self.output)
-    }
-}
-
-
-extension URL: @retroactive ExpressibleByArgument {
-    
-    public init?(argument: String) {
-        
-        self.init(filePath: argument)
     }
 }
