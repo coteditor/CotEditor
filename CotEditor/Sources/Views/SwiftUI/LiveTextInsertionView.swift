@@ -27,9 +27,6 @@ import AppKit
 import SwiftUI
 import VisionKit
 
-extension ImageAnalysis: @retroactive @unchecked Sendable { }
-
-
 struct LiveTextInsertionView: View {
     
     var image: NSImage
@@ -59,9 +56,9 @@ struct LiveTextInsertionView: View {
                 HelpLink(anchor: "howto_insert_camera_text")
                 Spacer()
                 
-                if case .success(let analysis) = self.result, !analysis.transcript.isEmpty {
+                if let transcript = try? self.result?.get().transcript, !transcript.isEmpty {
                     Button(String(localized: "Insert", table: "LiveTextInsertion", comment: "button label")) {
-                        self.actionHandler(analysis.transcript)
+                        self.actionHandler(transcript)
                         self.dismiss()
                     }.keyboardShortcut(.defaultAction)
                 } else {
@@ -80,9 +77,11 @@ struct LiveTextInsertionView: View {
             .scenePadding([.horizontal, .bottom])
         }
         .task {
-            self.result = await Task {
-                try await Self.analyzer.analyze(self.image, orientation: .up, configuration: .init([.text]))
-            }.result
+            do {
+                self.result = .success(try await Self.analyzer.analyze(self.image, orientation: .up, configuration: .init([.text])))
+            } catch {
+                self.result = .failure(error)
+            }
         }
         .controlSize(.small)
         .fixedSize()
