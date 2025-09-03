@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import Foundation
 import UniformTypeIdentifiers
 public import CoreTransferable
 
