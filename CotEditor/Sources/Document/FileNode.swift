@@ -142,7 +142,7 @@ final class FileNode {
     
     /// The sort order for display.
     private nonisolated static let sortOrder: [KeyPathComparator<FileNode>] = [
-        KeyPathComparator(\.isFolder),
+        KeyPathComparator(\.isFolder, comparator: BoolComparator()),
         KeyPathComparator(\.name, comparator: .localizedStandard)
     ]
     

@@ -1,14 +1,14 @@
 //
-//  Comparable.swift
+//  BoolComparator.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-06-25.
+//  Created by 1024jp on 2025-09-03.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,23 +23,28 @@
 //  limitations under the License.
 //
 
-extension Comparable {
+import Foundation
+
+struct BoolComparator: SortComparator {
     
-    /// Returns clamped value to min/max values.
-    ///
-    /// - Parameter range: Condition which receiver should be in between.
-    /// - Returns: Processed value.
-    func clamped(to range: ClosedRange<Self>) -> Self {
+    var order: SortOrder = .forward
+    
+    
+    func compare(_ lhs: Bool, _ rhs: Bool) -> ComparisonResult {
         
-        max(range.lowerBound, min(self, range.upperBound))
+        switch self.order {
+            case .forward: self.result(lhs, rhs)
+            case .reverse: self.result(rhs, lhs)
+        }
     }
     
     
-    /// Clamps self to min/max values.
-    ///
-    /// - Parameter range: Condition which receiver should be in between.
-    mutating func clamp(to range: ClosedRange<Self>) {
+    private func result(_ lhs: Bool, _ rhs: Bool) -> ComparisonResult {
         
-        self = self.clamped(to: range)
+        switch (lhs, rhs) {
+            case (true, false): .orderedAscending
+            case (false, true): .orderedDescending
+            case (true, true), (false, false): .orderedSame
+        }
     }
 }

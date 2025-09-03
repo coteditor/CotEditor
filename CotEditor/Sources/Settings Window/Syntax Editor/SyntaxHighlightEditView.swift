@@ -46,7 +46,7 @@ struct SyntaxHighlightEditView: View {
         VStack(alignment: .leading) {
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression) { wrappedItem in
+                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression, comparator: BoolComparator()) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.value.isRegularExpression, label: EmptyView.init)
                             .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
@@ -62,7 +62,7 @@ struct SyntaxHighlightEditView: View {
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.value.ignoreCase) { wrappedItem in
+                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.value.ignoreCase, comparator: BoolComparator()) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
                             .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
