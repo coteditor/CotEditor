@@ -23,15 +23,31 @@
 //  limitations under the License.
 //
 
-public import typealias Darwin.FourCharCode
+import Foundation
 
-extension FourCharCode: @retroactive ExpressibleByStringLiteral {
+extension FourCharCode {
     
-    public init(stringLiteral value: StringLiteralType) {
+    /// Initializes from a string form of a four char code.
+    init(code: any StringProtocol) {
         
-        assert(value.utf16.count == 4, "FourCharCode must be made from 4 ASCII characters.")
-        assert(value.utf16.allSatisfy { $0 <= 0xFF }, "FourCharCode must contain only ASCII characters.")
+        assert(code.utf16.count == 4, "FourCharCode must be made from 4 ASCII characters.")
+        assert(code.utf16.allSatisfy { $0 <= 0xFF }, "FourCharCode must contain only ASCII characters.")
         
-        self = value.utf16.reduce(0) { code, character in (code << 8) + FourCharCode(character) }
+        self = code.utf16.reduce(0) { code, character in (code << 8) + FourCharCode(character) }
+    }
+}
+
+
+extension String {
+    
+    /// Initializes the string form four char code from the value.
+    init(fourCharCode code: FourCharCode) {
+        
+        let utf16 = [24, 16, 8, 0]
+            .map { UInt16((code >> $0) & 0xFF) }
+        
+        self.init(utf16CodeUnits: utf16, count: 4)
+        
+        assert(self.count == 4)
     }
 }

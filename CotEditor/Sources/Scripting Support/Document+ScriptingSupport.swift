@@ -30,7 +30,7 @@ import FuzzyRange
 import LineEnding
 import StringUtils
 
-private enum OSALineEnding: FourCharCode {
+private enum OSALineEnding: String {
     
     case lf = "leLF"
     case cr = "leCR"
@@ -129,13 +129,13 @@ extension Document {
     @objc var lineEndingChar: FourCharCode {
         
         get {
-            (OSALineEnding(lineEnding: self.lineEnding) ?? .lf).rawValue
+            FourCharCode(code: (OSALineEnding(lineEnding: self.lineEnding) ?? .lf).rawValue)
         }
         
         set {
             guard self.isEditable else { return }
             
-            let lineEnding = OSALineEnding(rawValue: newValue)?.lineEnding
+            let lineEnding = OSALineEnding(rawValue: String(fourCharCode: newValue))?.lineEnding
             
             self.changeLineEnding(to: lineEnding ?? .lf)
         }

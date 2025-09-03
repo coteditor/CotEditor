@@ -126,7 +126,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         guard let scripts = await self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
         
-        let event = NSAppleEventDescriptor(eventClass: "cEd1",
+        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"),
                                            eventID: eventType.eventID,
                                            targetDescriptor: .currentProcess(),
                                            returnID: AEReturnID(kAutoGenerateReturnID),

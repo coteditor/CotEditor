@@ -29,7 +29,7 @@ import FuzzyRange
 import StringUtils
 import TextEditing
 
-private enum OSACaseType: FourCharCode {
+private enum OSACaseType: String {
     
     case lowercase = "cClw"
     case uppercase = "cCup"
@@ -37,14 +37,14 @@ private enum OSACaseType: FourCharCode {
 }
 
 
-private enum OSAWidthType: FourCharCode {
+private enum OSAWidthType: String {
     
     case full = "rWfl"
     case half = "rWhf"
 }
 
 
-private enum OSAUnicodeNormalizationType: FourCharCode {
+private enum OSAUnicodeNormalizationType: String {
     
     case nfc = "cNfc"
     case nfd = "cNfd"
@@ -255,8 +255,8 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     @objc func handleChangeCase(_ command: NSScriptCommand) {
         
         guard
-            let argument = command.evaluatedArguments?["caseType"] as? UInt32,
-            let type = OSACaseType(rawValue: argument)
+            let argument = command.evaluatedArguments?["caseType"] as? FourCharCode,
+            let type = OSACaseType(rawValue: String(fourCharCode: argument))
         else {
             command.scriptErrorNumber = OSAParameterMismatch
             return
@@ -277,8 +277,8 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     @objc func handleChangeWidthRoman(_ command: NSScriptCommand) {
         
         guard
-            let argument = command.evaluatedArguments?["widthType"] as? UInt32,
-            let type = OSAWidthType(rawValue: argument)
+            let argument = command.evaluatedArguments?["widthType"] as? FourCharCode,
+            let type = OSAWidthType(rawValue: String(fourCharCode: argument))
         else {
             command.scriptErrorNumber = OSAParameterMismatch
             return
@@ -318,8 +318,8 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     @objc func handleNormalizeUnicode(_ command: NSScriptCommand) {
         
         guard
-            let argument = command.evaluatedArguments?["unfType"] as? UInt32,
-            let type = OSAUnicodeNormalizationType(rawValue: argument)
+            let argument = command.evaluatedArguments?["unfType"] as? FourCharCode,
+            let type = OSAUnicodeNormalizationType(rawValue: String(fourCharCode: argument))
         else {
             command.scriptErrorNumber = OSAParameterMismatch
             return
