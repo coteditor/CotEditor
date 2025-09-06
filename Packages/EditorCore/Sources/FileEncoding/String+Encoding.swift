@@ -190,7 +190,13 @@ extension String {
     /// Decodes data and remove UTF-8 BOM if exists.
     ///
     /// cf. <https://bugs.swift.org/browse/SR-10173>
+    @available(macOS, deprecated: 26, message: "The issue has been resolved since macOS 26.")
     init?(bomCapableData data: Data, encoding: String.Encoding) {
+        
+        guard #unavailable(macOS 26) else {
+            self.init(data: data, encoding: encoding)
+            return
+        }
         
         let bom = Unicode.BOM.utf8.sequence
         let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: bom))
