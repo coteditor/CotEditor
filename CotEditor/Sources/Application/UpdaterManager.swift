@@ -27,6 +27,8 @@ import AppKit
 
 #if SPARKLE
 import Sparkle
+import Defaults
+import SemanticVersioning
 
 @MainActor final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
