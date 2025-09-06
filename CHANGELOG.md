@@ -1,6 +1,6 @@
 # Change Log
 
-6.0.0-beta.2 (unreleased)
+6.0.0-beta.2 (733)
 --------------------------
 
 ### Improvements
@@ -8,6 +8,7 @@
 - [beta] Adjust the user interface.
 - [beta] Avoid tinging folder with tags in the file browser on macOS 15.
 - [beta] Tweak the application icon.
+- [beta][dev] Update the build environment to Xcode 26.0 Beta 7.
 
 
 
