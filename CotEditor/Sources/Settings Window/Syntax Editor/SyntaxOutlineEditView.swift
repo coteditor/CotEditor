@@ -66,8 +66,15 @@ struct SyntaxOutlineEditView: View {
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
             
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
+            HStack {
+                AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                    self.focusedField = item.id
+                }
+                Text("\(self.items.count) items", tableName: "SyntaxEditor")
+                    .monospacedDigit()
+                    .foregroundStyle(.secondary)
+                    .controlSize(.small)
+                Spacer()
             }
             .padding(.bottom, 8)
             

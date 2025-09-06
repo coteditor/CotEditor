@@ -3,6 +3,10 @@
 6.0.0-beta.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Display the numbers of registered items below the lists in the syntax editor.
+
 
 
 6.0.0-beta.2 (733)
