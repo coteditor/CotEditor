@@ -93,6 +93,7 @@ extension NSTextView: EditorCounter.Source { }
     
     @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
     
+    @ObservationIgnored private nonisolated(unsafe) var isInitialized = false
     @ObservationIgnored private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
     @ObservationIgnored private nonisolated(unsafe) var fileData: Data?
     private var shouldSaveEncodingXattr = true
@@ -101,7 +102,6 @@ extension NSTextView: EditorCounter.Source { }
     private var isExternalUpdateAlertShown = false
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
-    private var isInitialized = false
     private var saveOptions: SaveOptions?
     
     // temporal data used only within saving process
@@ -367,8 +367,7 @@ extension NSTextView: EditorCounter.Source { }
             }
             
             var encodingCandidates = EncodingManager.shared.fileEncodings.compactMap(\.self?.encoding)
-            let isInitialOpen = (self.fileData == nil) && (self.textStorage.length == 0)
-            if !isInitialOpen {  // prioritize the current encoding
+            if self.isInitialized {  // prioritize the current encoding
                 let currentEncoding = DispatchQueue.syncOnMain { self.fileEncoding.encoding }
                 encodingCandidates.insert(currentEncoding, at: 0)
             }

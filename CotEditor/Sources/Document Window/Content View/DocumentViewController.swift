@@ -440,10 +440,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         guard textStorage.editedMask.contains(.editedCharacters) else { return }
         
-        MainActor.assumeIsolated {
+        MainActor.assumeIsolated { [range = textStorage.editedRange, length = textStorage.changeInLength] in
             // tell the parser that text was changed
-            self.document.syntaxParser.invalidateHighlight(in: textStorage.editedRange,
-                                                           changeInLength: textStorage.changeInLength)
+            self.document.syntaxParser.invalidateHighlight(in: range, changeInLength: length)
             
             guard self.focusedTextView?.hasMarkedText() != true else { return }
             

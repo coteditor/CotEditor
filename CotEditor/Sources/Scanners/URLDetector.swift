@@ -82,8 +82,8 @@ import ValueRange
             
             guard textStorage.editedMask.contains(.editedCharacters) else { return }
             
-            MainActor.assumeIsolated {
-                self?.invalidate(in: textStorage.editedRange, changeInLength: textStorage.changeInLength)
+            MainActor.assumeIsolated { [range = textStorage.editedRange, length = textStorage.changeInLength] in
+                self?.invalidate(in: range, changeInLength: length)
             }
         }
     }
