@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ class RegexTextView: NSTextView {
     var parseMode: RegexParseMode = .search  { didSet { self.invalidateRegularExpression() } }
     var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
     
-    private(set) var isValid = true
+    private var isValid = true
     
     private let theme: RegexTheme<NSColor> = .default
     

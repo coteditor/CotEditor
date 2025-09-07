@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,14 +28,14 @@ import AppKit.NSPasteboard
 import Defaults
 import TextFind
 
-@MainActor final class TextFinderSettings: NSObject {
+@MainActor @Observable final class TextFinderSettings {
     
     // MARK: Public Properties
     
     static let shared = TextFinderSettings()
     
-    @objc dynamic var findString: String  { didSet { self.shareFindString() } }
-    @objc dynamic var replacementString: String
+    var findString: String  { didSet { self.shareFindString() } }
+    var replacementString: String
     
     
     // MARK: Private Properties
@@ -53,8 +53,6 @@ import TextFind
         self.findString = NSPasteboard(name: .find).string(forType: .string) ?? ""
         self.replacementString = ""
         self.defaults = defaults
-        
-        super.init()
         
         // observe application activation to sync find string with other apps
         self.applicationActivationObservationTask = Task {

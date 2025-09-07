@@ -70,7 +70,7 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        let fieldViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelFormView()))
+        let fieldViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelFieldView()))
         self.fieldSplitViewItem = fieldViewItem
         
         let resultViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelResultView(model: self.resultModel)))

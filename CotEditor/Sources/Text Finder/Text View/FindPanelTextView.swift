@@ -32,26 +32,27 @@ import StringUtils
 /// Text view that behaves like an NSTextField.
 final class FindPanelTextView: RegexTextView {
     
-    var action: Selector?
-    var target: AnyObject?
+    // MARK: Public Properties
+    
+    var action: (() -> Void)?
     
     
     // MARK: Private Properties
-    
-    @objc private dynamic var isEmpty: Bool = true
     
     private var defaultObservers: Set<AnyCancellable> = []
     
     
     // MARK: Lifecycle
     
-    required init?(coder: NSCoder) {
+    required init() {
         
-        super.init(coder: coder)
-        
-        // set subclassed layout manager for invisible characters
         let layoutManager = FindPanelLayoutManager()
-        self.textContainer?.replaceLayoutManager(layoutManager)
+        let textStorage = NSTextStorage()
+        textStorage.addLayoutManager(layoutManager)
+        let textContainer = NSTextContainer()
+        layoutManager.addTextContainer(textContainer)
+        
+        super.init(frame: .zero, textContainer: textContainer)
         
         // set system font (standard NSTextField behavior)
         self.font = .systemFont(ofSize: 0)
@@ -67,8 +68,10 @@ final class FindPanelTextView: RegexTextView {
         self.baseWritingDirection = (self.userInterfaceLayoutDirection == .rightToLeft) ? .rightToLeft : .natural
         
         // avoid wrapping
-        self.textContainer?.widthTracksTextView = false
-        self.textContainer?.size = self.infiniteSize
+        self.isHorizontallyResizable = true
+        self.isVerticallyResizable = true
+        self.textContainer!.widthTracksTextView = false
+        self.textContainer!.size = self.infiniteSize
         self.isHorizontallyResizable = true
         
         // behave as field editor for Tab, Shift-Tab, and Return keys
@@ -95,7 +98,13 @@ final class FindPanelTextView: RegexTextView {
     }
     
     
-    // MARK: Text View Methods
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: TextView Methods
     
     /// The view is on focus.
     override func becomeFirstResponder() -> Bool {
@@ -117,30 +126,10 @@ final class FindPanelTextView: RegexTextView {
     }
     
     
-    /// The content string did update.
-    override func didChangeText() {
-        
-        super.didChangeText()
-        
-        self.isEmpty = self.string.isEmpty
-    }
-    
-    
-    /// The string did update via binding.
-    override var string: String {
-        
-        didSet {
-            self.isEmpty = string.isEmpty
-        }
-    }
-    
-    
     override func insertNewline(_ sender: Any?) {
         
         // perform the action with return (standard NSTextField behavior)
-        if let action {
-            NSApp.sendAction(action, to: self.target, from: self)
-        }
+        self.action?()
     }
     
     
@@ -152,19 +141,5 @@ final class FindPanelTextView: RegexTextView {
         }
         
         return super.responds(to: aSelector)
-    }
-    
-    
-    // MARK: Actions
-    
-    /// Clears the current text.
-    @IBAction func clear(_ sender: Any?) {
-        
-        guard self.shouldChangeText(in: self.string.range, replacementString: "") else { return }
-        
-        self.window?.makeFirstResponder(self)
-        self.string = ""
-        
-        self.didChangeText()
     }
 }
