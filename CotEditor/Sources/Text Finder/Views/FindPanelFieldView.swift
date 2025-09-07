@@ -1,5 +1,5 @@
 //
-//  FindPanelFormView.swift
+//  FindPanelFieldView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -29,12 +29,13 @@ import Defaults
 import RegexHighlighting
 import TextFind
 
-struct FindPanelFormView: View {
+struct FindPanelFieldView: View {
     
     // -> Not used in code but need to reset focus
     @Environment(\.appearsActive) private var appearsActive
     
     @AppStorage(.findUsesRegularExpression) private var usesRegularExpression: Bool
+    @AppStorage(.findIgnoresCase) private var ignoresCase: Bool
     @AppStorage(.findInSelection) private var inSelection: Bool
     @AppStorage(.findRegexUnescapesReplacementString) private var unescapesReplacementString: Bool
     @AppStorage(.findSearchesIncrementally) private var searchesIncrementally: Bool
@@ -43,6 +44,8 @@ struct FindPanelFormView: View {
     @State private var result: FindResult?
     @State private var isFindStringValid = true
     @State private var isPressingShift = false
+    @State private var isRegexReferencePresented = false
+    @State private var isSettingsPresented = false
     
     @State private var scrollerThickness: Double = 0
     @State private var findMessageWidth: Double = 0
@@ -101,7 +104,40 @@ struct FindPanelFormView: View {
             .help(String(localized: "Type the text to replace the found text.", table: "TextFind", comment: "tooltip"))
             .frame(minHeight: 44)
             
-            FindPanelOptionView()
+            HStack(spacing: 12) {
+                HStack(spacing: 4) {
+                    Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
+                        .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
+                        .fixedSize()
+                    HelpLink {
+                        self.isRegexReferencePresented.toggle()
+                    }
+                    .help(String(localized: "Show quick reference for regular expression syntax.", table: "TextFind", comment: "tooltip"))
+                    .detachablePopover(isPresented: $isRegexReferencePresented, arrowEdge: .bottom) {
+                        RegularExpressionReferenceView()
+                    }
+                    .controlSize(.mini)
+                }
+                Toggle(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
+                    .help(String(localized: "Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
+                    .fixedSize()
+                Toggle(String(localized: "In Selection", table: "TextFind", comment: "toggle button label"), isOn: $inSelection)
+                    .help(String(localized: "Select to search text only from selection.", table: "TextFind", comment: "tooltip"))
+                    .fixedSize()
+                
+                Spacer()
+                
+                Button(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis") {
+                    self.isSettingsPresented.toggle()
+                }
+                .popover(isPresented: $isSettingsPresented, arrowEdge: .trailing) {
+                    FindSettingsView()
+                }
+                .symbolVariant(.circle)
+                .labelStyle(.iconOnly)
+                .help(String(localized: "Show advanced options", table: "TextFind", comment: "tooltip"))
+            }
+            .controlSize(.small)
         }
         .onAppear {
             self.invalidateScrollerThickness()
@@ -337,5 +373,5 @@ private struct FindTextField: NSViewRepresentable {
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 400, height: 200)) {
-    FindPanelFormView()
+    FindPanelFieldView()
 }
