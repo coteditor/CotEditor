@@ -191,7 +191,7 @@ extension String {
     ///
     /// cf. <https://bugs.swift.org/browse/SR-10173>
     @available(macOS, deprecated: 26, message: "The issue has been resolved since macOS 26.")
-    private init?(bomCapableData data: Data, encoding: String.Encoding) {
+    init?(bomCapableData data: Data, encoding: String.Encoding) {
         
         guard #unavailable(macOS 26) else {
             self.init(data: data, encoding: encoding)
