@@ -30,7 +30,7 @@ import Sparkle
 import Defaults
 import SemanticVersioning
 
-@MainActor final class UpdaterManager: NSObject, SPUUpdaterDelegate {
+@MainActor final class UpdaterManager: NSObject, @preconcurrency SPUUpdaterDelegate {
     
     // MARK: Public Properties
     
