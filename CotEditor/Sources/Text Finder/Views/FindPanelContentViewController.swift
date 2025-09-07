@@ -54,9 +54,10 @@ final class FindPanelContentViewController: NSSplitViewController {
         self.splitView.dividerStyle = .thin
         
         self.view = NSView()
-        self.view.addSubview(self.splitView)
         
         self.splitView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.splitView)
+        
         NSLayoutConstraint.activate([
             self.view.topAnchor.constraint(equalTo: self.splitView.topAnchor),
             self.view.bottomAnchor.constraint(equalTo: self.splitView.bottomAnchor),

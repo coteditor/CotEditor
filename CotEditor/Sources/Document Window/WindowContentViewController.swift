@@ -77,9 +77,9 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         self.view = HoleContentView()
         self.view.frame.size = NSSize(width: 640, height: 720)
-        self.view.addSubview(self.splitView)
         
         self.splitView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.splitView)
     }
     
     

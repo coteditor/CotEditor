@@ -58,9 +58,10 @@ final class InspectorViewController: NSTabViewController {
         
         let tabView = InspectorTabView()
         let view = NSView()
-        view.addSubview(tabView)
         
         tabView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tabView)
+        
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: tabView.topAnchor),
             view.bottomAnchor.constraint(equalTo: tabView.bottomAnchor),

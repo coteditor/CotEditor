@@ -98,22 +98,23 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
         (footerView as? NSVisualEffectView)?.material = .sidebar
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         footerView.addSubview(addButton)
         
-        addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
             addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 10 : 6),
         ])
         
         self.view = NSView()
-        self.view.addSubview(scrollView)
-        self.view.addSubview(bottomSeparator)
-        self.view.addSubview(footerView)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
         footerView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(scrollView)
+        self.view.addSubview(bottomSeparator)
+        self.view.addSubview(footerView)
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -1072,6 +1073,10 @@ private final class FileBrowserTableCellView: NSTableCellView {
         let tagsView = NSHostingView(rootView: TagsView(tags: self.tags))
         tagsView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        aliasArrowView.translatesAutoresizingMaskIntoConstraints = false
+        tagsView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(textField)
         self.addSubview(imageView)
         self.addSubview(aliasArrowView)
@@ -1080,11 +1085,6 @@ private final class FileBrowserTableCellView: NSTableCellView {
         self.imageView = imageView
         self.aliasArrowView = aliasArrowView
         self.tagsView = tagsView
-        
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        aliasArrowView.translatesAutoresizingMaskIntoConstraints = false
-        tagsView.translatesAutoresizingMaskIntoConstraints = false
         
         let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2)
         textFieldTrailingAnchor.priority = .defaultLow

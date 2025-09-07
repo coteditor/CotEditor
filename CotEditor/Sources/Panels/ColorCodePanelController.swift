@@ -75,10 +75,10 @@ import Defaults
         
         let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel)
         let view = NSHostingView(rootView: accessory)
+        view.translatesAutoresizingMaskIntoConstraints = false
         panel.accessoryView = view
         
         // make position of accessory view center
-        view.translatesAutoresizingMaskIntoConstraints = false
         if let superview = view.superview {
             NSLayoutConstraint.activate([
                 superview.topAnchor.constraint(equalTo: view.topAnchor),

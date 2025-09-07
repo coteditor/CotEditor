@@ -36,16 +36,19 @@ extension NSView {
         
         let hudView = NSHostingView(rootView: HUDView(symbol: symbol))
         hudView.rootView.parent = hudView
-        hudView.translatesAutoresizingMaskIntoConstraints = false
         
         // remove previous HUD if any
         for subview in self.subviews where subview is NSHostingView<HUDView> {
             subview.removeFromSuperview()
         }
         
+        hudView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(hudView)
-        hudView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        hudView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            hudView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            hudView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+        ])
         hudView.layout()
     }
 }
