@@ -32,6 +32,8 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     private static let defaultResultViewHeight: Double = 200
     
+    private let resultModel = FindPanelResultView.Model()
+    
     @ViewLoading private var fieldSplitViewItem: NSSplitViewItem
     @ViewLoading private var resultSplitViewItem: NSSplitViewItem
     
@@ -71,7 +73,7 @@ final class FindPanelContentViewController: NSSplitViewController {
         let fieldViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelFormView()))
         self.fieldSplitViewItem = fieldViewItem
         
-        let resultViewItem = NSSplitViewItem(viewController: FindPanelResultViewController())
+        let resultViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelResultView(model: self.resultModel)))
         resultViewItem.isCollapsed = true
         resultViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         self.resultSplitViewItem = resultViewItem
@@ -146,13 +148,6 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
-    /// The view controller for the result view.
-    private var resultViewController: FindPanelResultViewController? {
-        
-        self.resultSplitViewItem.viewController as? FindPanelResultViewController
-    }
-    
-    
     /// Notifies the completion of the Find All command.
     ///
     /// - Parameters:
@@ -161,7 +156,9 @@ final class FindPanelContentViewController: NSSplitViewController {
     ///   - client: The text view where searched.
     private func didFinishFindAll(_ matches: [FindAllMatch], for findString: String, in client: NSTextView?) {
         
-        self.resultViewController?.setResult(matches, for: findString, in: client)
+        self.resultModel.matches = matches
+        self.resultModel.findString = findString
+        self.resultModel.target = client
         
         guard !matches.isEmpty else { return }
         

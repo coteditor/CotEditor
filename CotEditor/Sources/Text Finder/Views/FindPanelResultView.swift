@@ -23,37 +23,10 @@
 //  limitations under the License.
 //
 
-import AppKit
 import SwiftUI
+import AppKit
 import Defaults
 import StringUtils
-
-final class FindPanelResultViewController: NSHostingController<FindPanelResultView> {
-    
-    private let model = FindPanelResultView.Model()
-    
-    
-    init() {
-        
-        super.init(rootView: FindPanelResultView(model: self.model))
-    }
-    
-    
-    required dynamic init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    /// Sets new find matches.
-    func setResult(_ matches: [FindAllMatch], for findString: String, in client: NSTextView?) {
-        
-        self.model.matches = matches
-        self.model.findString = findString
-        self.model.target = client
-    }
-}
-
 
 struct FindPanelResultView: View {
     
