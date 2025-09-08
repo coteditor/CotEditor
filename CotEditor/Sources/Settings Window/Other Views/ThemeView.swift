@@ -182,7 +182,7 @@ private struct ThemeListView: View {
                 }
             }
             .listStyle(.bordered)
-            .border(.white)
+            .border(.background)
             
             Divider()
                 .padding(.horizontal, 4)

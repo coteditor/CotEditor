@@ -10,6 +10,11 @@
 - [dev] Migrate the input fields in the Find window to SwiftUI.
 
 
+### Fixes
+
+- [beta] Fix the border color of setting lists in the settings window in the dark mode.
+
+
 
 6.0.0-beta.2 (733)
 --------------------------

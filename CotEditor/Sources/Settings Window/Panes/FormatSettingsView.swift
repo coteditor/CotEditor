@@ -245,7 +245,7 @@ private struct SyntaxListView: View {
             .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
                                 entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
             .listStyle(.bordered)
-            .border(.white)
+            .border(.background)
             .environment(\.defaultMinListRowHeight, self.rowHeight)
             
             Divider()
