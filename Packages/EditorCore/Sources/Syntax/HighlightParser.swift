@@ -47,7 +47,7 @@ private struct NestableItem {
     
     struct Role: OptionSet {
         
-        let rawValue: Int
+        var rawValue: Int
         
         static let begin = Self(rawValue: 1 << 0)
         static let end   = Self(rawValue: 1 << 1)

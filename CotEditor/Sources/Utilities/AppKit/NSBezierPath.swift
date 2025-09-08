@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import AppKit.NSBezierPath
 
 struct RectCorner: OptionSet {
     
-    let rawValue: Int
+    var rawValue: Int
     
     static let topLeft     = Self(rawValue: 1 << 0)
     static let bottomLeft  = Self(rawValue: 1 << 1)

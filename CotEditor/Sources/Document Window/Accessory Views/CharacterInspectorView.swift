@@ -103,7 +103,7 @@ private struct ScalarDetailView: View {
     
     struct Items: OptionSet {
         
-        let rawValue: Int
+        var rawValue: Int
         
         static let codePoint = Self(rawValue: 1 << 0)
         static let block     = Self(rawValue: 1 << 1)

@@ -48,7 +48,7 @@ struct ModeOptions: Equatable, Codable {
 
 struct CompletionWordTypes: OptionSet, Codable {
     
-    let rawValue: Int
+    var rawValue: Int
     
     static let standard = Self(rawValue: 1 << 0)
     static let document = Self(rawValue: 1 << 1)

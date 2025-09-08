@@ -68,7 +68,7 @@ struct EditorCount: Equatable {
     
     struct Types: OptionSet {
         
-        let rawValue: Int
+        var rawValue: Int
         
         static let characters = Self(rawValue: 1 << 0)
         static let lines      = Self(rawValue: 1 << 1)

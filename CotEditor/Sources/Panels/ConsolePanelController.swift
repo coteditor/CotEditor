@@ -41,7 +41,7 @@ struct Console {
     
     struct DisplayOptions: OptionSet {
         
-        let rawValue: Int
+        var rawValue: Int
         
         static let title     = Self(rawValue: 1 << 0)
         static let timestamp = Self(rawValue: 1 << 1)

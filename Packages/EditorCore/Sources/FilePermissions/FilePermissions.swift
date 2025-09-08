@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ public struct FilePermissions: Equatable, Sendable {
     
     public struct Permission: OptionSet, Sendable {
         
-        public let rawValue: Int16
+        public var rawValue: Int16
         
         public static let read    = Self(rawValue: 0b100)
         public static let write   = Self(rawValue: 0b010)

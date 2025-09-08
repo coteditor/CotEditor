@@ -30,7 +30,7 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     
     public struct Style: OptionSet, Hashable, Sendable {
         
-        public let rawValue: Int
+        public var rawValue: Int
         
         public static let bold      = Self(rawValue: 1 << 0)
         public static let italic    = Self(rawValue: 1 << 1)

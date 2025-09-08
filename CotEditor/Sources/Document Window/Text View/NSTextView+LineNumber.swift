@@ -31,7 +31,7 @@ extension NSTextView {
     
     struct LineEnumerationOptions: OptionSet {
         
-        let rawValue: Int
+        var rawValue: Int
         
         static let bySkippingExtraLine = Self(rawValue: 1 << 0)
         static let onlySelectionBoundary = Self(rawValue: 1 << 1)

@@ -30,7 +30,7 @@ import StringUtils
 
 public struct CommentTypes: OptionSet, Sendable {
     
-    public let rawValue: Int
+    public var rawValue: Int
     
     public static let inline = Self(rawValue: 1 << 0)
     public static let block = Self(rawValue: 1 << 1)
