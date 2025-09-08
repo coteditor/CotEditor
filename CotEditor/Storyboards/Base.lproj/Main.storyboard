@@ -945,7 +945,7 @@ CA
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="591"/>
-                                        <menuItem title="Transformations" secondaryImage="textformat.characters" catalog="system" id="GXo-ds-ygp" userLabel="Transformations">
+                                        <menuItem title="Transformations" secondaryImage="textformat.characters" catalog="system" id="GXo-ds-ygp">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Transformations" id="b36-nH-7po">
                                                 <items>
