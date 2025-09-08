@@ -95,6 +95,6 @@ class RegexTextView: NSTextView {
     /// Highlights the content string as a regular expression pattern.
     private func invalidateRegularExpression() {
         
-        self.isValid = self.textStorage?.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.theme, enabled: self.isRegularExpressionMode) ?? false
+        self.isValid = self.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.theme, enabled: self.isRegularExpressionMode)
     }
 }

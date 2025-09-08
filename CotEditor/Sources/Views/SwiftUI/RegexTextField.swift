@@ -264,12 +264,9 @@ private final class RegexNSTextField: NSTextField {
     /// Updates the syntax highlight in the field editor.
     private func invalidateFieldEditor() {
         
-        guard
-            let editor = self.currentEditor() as? NSTextView,
-            let textStorage = editor.textStorage
-        else { return }
+        guard let editor = self.currentEditor() as? NSTextView else { return }
         
-        textStorage.highlightAsRegularExpressionPattern(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
+        editor.highlightAsRegularExpressionPattern(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
     }
 }
 
