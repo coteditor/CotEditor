@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,10 +28,11 @@ import AppKit
 
 extension NSTextSelectionDataSource {
     
-    /// Converts NSRange to NSTextRange.
+    /// Converts the given character range to a text range.
     ///
-    /// - Parameter range: The NSRange to convert.
-    /// - Returns: A text range or nil if the given range is invalid.
+    /// - Parameters:
+    ///   - range: The character range to convert.
+    /// - Returns: A text range, or `nil` if the given range is invalid for the content text.
     func textRange(for range: NSRange) -> NSTextRange? {
         
         guard

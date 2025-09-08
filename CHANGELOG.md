@@ -12,6 +12,7 @@
 
 ### Fixes
 
+- [beta] Fix an issue where the text color in the text fields within the Find window appears black in the dark mode.
 - [beta] Fix the border color of setting lists in the settings window in the dark mode.
 
 
