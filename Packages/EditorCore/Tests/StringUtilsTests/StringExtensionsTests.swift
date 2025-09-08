@@ -74,26 +74,6 @@ struct StringExtensionsTests {
         #expect("I am a ‘dog.’".straighteningQuotes == "I am a 'dog.'")
         #expect("type `echo`".straighteningQuotes == "type `echo`")
     }
-                
-    
-    @Test func codingCases() {
-        
-        #expect("AbcDefg Hij".snakecased == "abc_defg hij")
-        #expect("abcDefg Hij".snakecased == "abc_defg hij")
-        #expect("_abcDefg Hij".snakecased == "_abc_defg hij")
-        #expect("AA\u{0308}".snakecased == "a_a\u{0308}")
-        #expect("abÄb".snakecased == "ab_äb")
-        
-        #expect("abc_defg Hij".camelcased == "abcDefg hij")
-        #expect("AbcDefg Hij".camelcased == "abcDefg hij")
-        #expect("_abcDefg Hij".camelcased == "_abcDefg hij")
-        #expect("a_a\u{0308}".camelcased == "aA\u{0308}")
-        
-        #expect("abc_defg Hij".pascalcased == "AbcDefg Hij")
-        #expect("abcDefg Hij".pascalcased == "AbcDefg Hij")
-        #expect("_abcDefg Hij".pascalcased == "_abcDefg Hij")
-        #expect("a_a\u{0308}".pascalcased == "AA\u{0308}")
-    }
     
     
     @Test func abbreviatedMatch() throws {

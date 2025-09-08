@@ -54,27 +54,6 @@ extension EditorTextView {
     }
     
     
-    /// Transforms the selections to snake case.
-    @IBAction func snakecaseWord(_ sender: Any?) {
-        
-        self.transformSelection(to: \.snakecased)
-    }
-    
-    
-    /// Transforms the selections to camel case.
-    @IBAction func camelcaseWord(_ sender: Any?) {
-        
-        self.transformSelection(to: \.camelcased)
-    }
-    
-    
-    /// Transforms the selections to pascal case.
-    @IBAction func pascalcaseWord(_ sender: Any?) {
-        
-        self.transformSelection(to: \.pascalcased)
-    }
-    
-    
     // MARK: Action Messages (Transformations)
     
     /// Encodes URL.

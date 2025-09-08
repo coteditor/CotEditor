@@ -993,25 +993,6 @@ CA
                                                             <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
-                                                    <menuItem title="Make Snake Case" secondaryImage="characters.lowercase" catalog="system" id="F0I-F4-srF">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="snakecaseWord:" target="Ady-hI-5gd" id="sZO-xn-Orq"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Make Camel Case" id="nlp-Gj-W9G">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="camelcaseWord:" target="Ady-hI-5gd" id="6b5-Gh-Jmr"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Make Pascal Case" id="x1F-KX-2de">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="pascalcaseWord:" target="Ady-hI-5gd" id="CmK-JI-9Jm"/>
-                                                        </connections>
-                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="kwE-D3-DED"/>
                                                     <menuItem title="URL Encode" secondaryImage="percent" catalog="system" id="xxp-UD-STx">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -1321,7 +1302,6 @@ CA
         <image name="character.bubble" catalog="system" width="17" height="16"/>
         <image name="character.cursor.ibeam" catalog="system" width="16" height="16"/>
         <image name="character.textbox" catalog="system" width="19" height="14"/>
-        <image name="characters.lowercase" catalog="system" width="23" height="12"/>
         <image name="curlybraces" catalog="system" width="15" height="16"/>
         <image name="decrease.indent" catalog="system" width="18" height="13"/>
         <image name="document" catalog="system" width="14" height="16"/>

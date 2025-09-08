@@ -6,6 +6,7 @@
 ### Improvements
 
 - Display the numbers of registered items below the lists in the syntax editor.
+- Deprecate the “Make Snake Case,” “Make Camel Case,” and “Make Pascal Case” commands in the Text > Transformations menu.
 - [dev] Migrate the input fields in the Find window to SwiftUI.
 
 
