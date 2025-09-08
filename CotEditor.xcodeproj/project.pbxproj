@@ -370,7 +370,6 @@
 				"cd Scripts",
 				"./updateHelpindex.sh",
 				"",
-				"",
 			);
 		};
 		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
@@ -385,7 +384,6 @@
 			shellPath = /bin/sh;
 			shellScript = (
 				"\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"",
-				"",
 				"",
 			);
 		};
@@ -1028,7 +1026,7 @@
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.6.0;
+				minimumVersion = "2.8.0-beta.2";
 			};
 		};
 		2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
