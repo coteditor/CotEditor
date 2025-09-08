@@ -158,3 +158,20 @@ public extension IndexSet {
         }
     }
 }
+
+
+extension Sequence<NSRange> {
+    
+    /// The range that contains all ranges.
+    var union: NSRange? {
+        
+        let ranges = self.filter { !$0.isNotFound }
+        
+        guard
+            let lowerBound = ranges.map(\.lowerBound).min(),
+            let upperBound = ranges.map(\.upperBound).max()
+        else { return nil }
+        
+        return NSRange(lowerBound..<upperBound)
+    }
+}

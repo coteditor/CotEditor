@@ -24,7 +24,6 @@
 //
 
 import AppKit.NSTextStorage
-import EditedRangeSet
 import StringUtils
 import ValueRange
 

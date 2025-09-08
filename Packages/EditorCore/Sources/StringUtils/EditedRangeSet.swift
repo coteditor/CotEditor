@@ -1,6 +1,6 @@
 //
 //  EditedRangeSet.swift
-//  EditedRangeSet
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,6 @@
 //
 
 public import Foundation
-import StringUtils
 
 /// Edited range storage to postpone validations.
 ///

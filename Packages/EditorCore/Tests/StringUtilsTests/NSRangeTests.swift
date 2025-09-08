@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,5 +85,21 @@ struct NSRangeTests {
         
         #expect(NSRange(1..<10).removed(ranges: [NSRange(2..<4), NSRange(3..<5)]) == NSRange(1..<7))
         #expect(NSRange(1..<10).removed(ranges: [NSRange(0..<2), NSRange(3..<5), NSRange(9..<20)]) == NSRange(0..<5))
+    }
+    
+    
+    @Test func union() throws {
+        
+        #expect([NSRange]().union == nil)
+        #expect([NSRange(location: NSNotFound, length: 0)].union == nil)
+        #expect([NSRange(0..<0)].union == NSRange(0..<0))
+        #expect([NSRange(1..<1)].union == NSRange(1..<1))
+        #expect([NSRange(1..<3)].union == NSRange(1..<3))
+        
+        #expect([NSRange(1..<3), NSRange(2..<4)].union == NSRange(1..<4))
+        #expect([NSRange(1..<3), NSRange(5..<9)].union == NSRange(1..<9))
+        #expect([NSRange(5..<9), NSRange(1..<3)].union == NSRange(1..<9))
+        #expect([NSRange(5..<100), NSRange(1..<3), NSRange(2..<3)].union == NSRange(1..<100))
+        #expect([NSRange(5..<9), NSRange(location: NSNotFound, length: 0), NSRange(1..<3)].union == NSRange(1..<9))
     }
 }
