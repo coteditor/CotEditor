@@ -181,3 +181,21 @@ final class FindPanelContentViewController: NSSplitViewController {
         item.animator().isCollapsed = !shown
     }
 }
+
+
+private final class FindPanelSplitView: NSSplitView {
+    
+    // MARK: Split View Methods
+    
+    override func drawDivider(in rect: NSRect) {
+        
+        // hide divider completely when the second view (Find All result) is collapsed
+        guard
+            let subview = self.subviews[safe: 1],
+            !self.isSubviewCollapsed(subview),
+            subview.frame.height > 1
+        else { return }
+        
+        super.drawDivider(in: rect)
+    }
+}
