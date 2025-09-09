@@ -142,7 +142,7 @@ struct WhatsNewView: View {
 enum NewFeature: CaseIterable {
     
     static let version = Version(6, 0, 0)
-    static let buildNumber = 733
+    static let buildNumber = 737
     
     case liquidGlass
 }
