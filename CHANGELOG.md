@@ -1,6 +1,6 @@
 # Change Log
 
-6.0.0-beta.3 (unreleased)
+6.0.0-rc (736)
 --------------------------
 
 ### Improvements
