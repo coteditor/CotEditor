@@ -28,18 +28,18 @@ import Defaults
 
 struct FindSettingsView: View {
     
-    @AppStorage(.findIsWrap) var findIsWrap: Bool
-    @AppStorage(.findSearchesIncrementally) var findSearchesIncrementally: Bool
+    @AppStorage(.findIsWrap) private var findIsWrap: Bool
+    @AppStorage(.findSearchesIncrementally) private var findSearchesIncrementally: Bool
     
-    @AppStorage(.findMatchesFullWord) var findMatchesFullWord: Bool
-    @AppStorage(.findTextIsLiteralSearch) var findTextIsLiteralSearch: Bool
-    @AppStorage(.findTextIgnoresDiacriticMarks) var findTextIgnoresDiacriticMarks: Bool
-    @AppStorage(.findTextIgnoresWidth) var findTextIgnoresWidth: Bool
+    @AppStorage(.findMatchesFullWord) private var findMatchesFullWord: Bool
+    @AppStorage(.findTextIsLiteralSearch) private var findTextIsLiteralSearch: Bool
+    @AppStorage(.findTextIgnoresDiacriticMarks) private var findTextIgnoresDiacriticMarks: Bool
+    @AppStorage(.findTextIgnoresWidth) private var findTextIgnoresWidth: Bool
     
-    @AppStorage(.findRegexIsSingleline) var findRegexIsSingleline: Bool
-    @AppStorage(.findRegexIsMultiline) var findRegexIsMultiline: Bool
-    @AppStorage(.findRegexUsesUnicodeBoundaries) var findRegexUsesUnicodeBoundaries: Bool
-    @AppStorage(.findRegexUnescapesReplacementString) var findRegexUnescapesReplacementString: Bool
+    @AppStorage(.findRegexIsSingleline) private var findRegexIsSingleline: Bool
+    @AppStorage(.findRegexIsMultiline) private var findRegexIsMultiline: Bool
+    @AppStorage(.findRegexUsesUnicodeBoundaries) private var findRegexUsesUnicodeBoundaries: Bool
+    @AppStorage(.findRegexUnescapesReplacementString) private var findRegexUnescapesReplacementString: Bool
     
     
     var body: some View {
