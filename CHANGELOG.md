@@ -3,6 +3,11 @@
 6.0.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- [rc] Update screenshots in the User Guide.
+
+
 ### Fixes
 
 - [rc] Fix an issue where the cursor in the input fields within the Find window can move unexpectedly.
