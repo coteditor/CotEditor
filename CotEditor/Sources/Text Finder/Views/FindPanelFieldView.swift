@@ -325,7 +325,10 @@ private struct FindTextField: NSViewRepresentable {
     func updateNSView(_ nsView: NSScrollView, context: Context) {
         
         let textView = nsView.documentView as! TextView
-        textView.string = self.text
+        if textView.string != self.text {
+            // set the string only when needed to avoid unexpected cursor move
+            textView.string = self.text
+        }
         textView.parseMode = self.mode
         textView.isRegularExpressionMode = self.isRegularExpression
         

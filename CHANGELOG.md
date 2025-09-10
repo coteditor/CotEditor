@@ -3,6 +3,10 @@
 6.0.0 (unreleased)
 --------------------------
 
+### Fixes
+
+- [rc] Fix an issue where the cursor in the input fields within the Find window can move unexpectedly.
+
 
 
 6.0.0-rc (737)
