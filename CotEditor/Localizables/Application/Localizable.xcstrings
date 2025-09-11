@@ -6440,8 +6440,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "A configuração customizada com o mesmo nome já existe. A substituição sobrescreverá o conteúdo atual."
+            "state" : "translated",
+            "value" : "Uma configuração personalizada com o mesmo nome já existe. Substituí-la irá sobrescrever seu conteúdo atual."
           }
         },
         "tr" : {

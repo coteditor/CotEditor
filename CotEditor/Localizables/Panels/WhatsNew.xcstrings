@@ -339,7 +339,7 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Experimente a interface renovada com o novo estilo Liquid Glass no macOS Tahoe 26."
           }
         },
@@ -436,7 +436,7 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Aparência Liquid Glass"
           }
         },

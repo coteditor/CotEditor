@@ -4543,8 +4543,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Os intérpretes são usados para determinar o estilo da sintaxe a partir do cabeçalho #! do documento."
+            "state" : "translated",
+            "value" : "Os interpretadores são usados para determinar o estilo da sintaxe a partir do cabeçalho #! do documento."
           }
         },
         "tr" : {

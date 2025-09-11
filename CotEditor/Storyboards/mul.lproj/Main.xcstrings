@@ -9290,7 +9290,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Converter Texto Alfanumérico para Largura Total"
+            "value" : "Converter texto alfanumérico para largura total"
           }
         },
         "tr" : {
@@ -9385,8 +9385,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Converter Texto Alfanumérico para Metade da Largura"
+            "state" : "translated",
+            "value" : "Converter texto alfanumérico para metade da largura"
           }
         },
         "tr" : {

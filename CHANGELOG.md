@@ -6,6 +6,7 @@
 ### Improvements
 
 - [rc] Update screenshots in the User Guide.
+- [rc] Update the Portuguese localization.
 
 
 ### Fixes

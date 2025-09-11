@@ -5704,8 +5704,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deseja mover “%@” para o Lixo?"
+            "state" : "translated",
+            "value" : "Deseja mover “%@” para a lixeira?"
           }
         },
         "tr" : {
@@ -5891,8 +5891,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Deseja mover os %lld itens selecionados para a Lixo?"
+                  "state" : "translated",
+                  "value" : "Deseja mover os %lld itens selecionados para a lixeira?"
                 }
               }
             }
