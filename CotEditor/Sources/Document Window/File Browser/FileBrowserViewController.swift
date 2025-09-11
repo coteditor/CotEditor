@@ -80,6 +80,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
+        // -> Workaround the issue where the scroll edge effect is not automatically applied (2025-09, macOS 26, FB20125027)
+        if #available(macOS 26, *) {
+            scrollView.hasVerticalScroller = true
+        }
         
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator

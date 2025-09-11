@@ -1,5 +1,14 @@
 # Change Log
 
+6.0.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- [rc.2] Fix an issue where the scroll edge effect is not applied to the file browser.
+
+
+
 6.0.0-rc.2 (739)
 --------------------------
 
