@@ -252,10 +252,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         self.undoManager?.removeAllActions(withTarget: self)
         self.tableView?.reloadData()
         
-        if setting.replacements.isEmpty {
-            self.add(self)
-        }
-        
         self.invalidateRemoveButton()
     }
     

@@ -12,6 +12,7 @@
 ### Fixes
 
 - [rc] Fix an issue where the cursor in the input fields within the Find window can move unexpectedly.
+- [beta] Fix an issue where the first multiple replace definition could be cleared when the setting window appears.
 
 
 
