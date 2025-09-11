@@ -132,11 +132,11 @@ struct SyntaxOutlineEditView: View {
             
             switch self.error {
                 case .noSelection:
-                    String(localized: "No item selected", table: "SyntaxEditor",
-                           comment: "message for uneditable condition")
+                    String(localized: "ItemSelection.zero.message",
+                           defaultValue: "No item selected")
                 case .multipleSelection:
-                    String(localized: "Multiple items selected", table: "SyntaxEditor",
-                           comment: "message for uneditable condition")
+                    String(localized: "ItemSelection.multiple.message",
+                           defaultValue: "Multiple items selected")
                 case .none:
                     String(localized: "Entire match", table: "SyntaxEditor",
                            comment: "placeholder for outline item table")

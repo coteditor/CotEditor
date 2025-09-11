@@ -362,9 +362,9 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
     private var prompt: String? {
         
         switch self.count {
-            case 0: String(localized: "No item selected", table: "SnippetsSettings", comment: "placeholder")
+            case 0: String(localized: "ItemSelection.zero.message", defaultValue: "No item selected")
             case 1: nil
-            default: String(localized: "Multiple items selected", table: "SnippetsSettings", comment: "placeholder")
+            default: String(localized: "ItemSelection.multiple.message", defaultValue: "Multiple items selected")
         }
     }
 }
