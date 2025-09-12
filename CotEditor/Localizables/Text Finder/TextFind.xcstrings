@@ -2215,7 +2215,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "gevonden"
+                  "value" : "%lld gevonden"
                 }
               }
             }
