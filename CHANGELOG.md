@@ -3,6 +3,11 @@
 6.0.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Update the layout of the “What’s New” window.
+
+
 ### Fixes
 
 - Fix an issue where the “Convert Indentation” commands don’t convert indentation to the indent style that’s not the default.

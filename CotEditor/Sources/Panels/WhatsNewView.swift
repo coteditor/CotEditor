@@ -37,24 +37,24 @@ struct WhatsNewView: View {
     
     var body: some View {
         
-        VStack(spacing: 20) {
-            HStack(alignment: .firstTextBaseline) {
-                Text("What’s New in CotEditor \(self.versionString)", tableName: "WhatsNew", comment: "%@ is version number")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .accessibilityHeading(.h1)
-                
-                if self.isPrerelease {
-                    Text("Beta", tableName: "WhatsNew", comment: "label for when the app is a prerelease version")
-                        .font(.system(size: 20, weight: .regular, design: .rounded))
-                        .kerning(0.5)
-                        .padding(.horizontal, 5)
-                        .overlay(RoundedRectangle(cornerRadius: 5).stroke())
-                        .foregroundStyle(.tint)
-                }
-            }
-            
+        VStack {
             VStack(alignment: .leading, spacing: 20) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("What’s New in CotEditor \(self.versionString)", tableName: "WhatsNew", comment: "%@ is version number")
+                        .fontWeight(.semibold)
+                        .accessibilityHeading(.h1)
+                    
+                    if self.isPrerelease {
+                        Text("Beta", tableName: "WhatsNew", comment: "label for when the app is a prerelease version")
+                            .fontDesign(.rounded)
+                            .kerning(0.5)
+                            .padding(.horizontal, 4)
+                            .overlay(RoundedRectangle(cornerRadius: 5).stroke())
+                            .foregroundStyle(.tint)
+                    }
+                }
+                .font(.system(size: 18))
+                
                 ForEach(NewFeature.allCases, id: \.self) { feature in
                     HStack {
                         feature.image
@@ -71,7 +71,7 @@ struct WhatsNewView: View {
                             .frame(width: 60, alignment: .center)
                             .accessibilityHidden(true)
                         
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 2) {
                             Text(feature.label)
                                 .font(.system(size: 14, weight: .semibold))
                                 .accessibilityHeading(.h2)
@@ -96,37 +96,35 @@ struct WhatsNewView: View {
                     }
                 }
             }
+            .padding()
+            .padding(.vertical)
             
-            Button {
-                NSHelpManager.shared.openHelpAnchor("releasenotes", inBook: Bundle.main.helpBookName)
-            } label: {
-                HStack(alignment: .firstTextBaseline, spacing: 3) {
-                    Text("Complete release notes", tableName: "WhatsNew")
-                    Image(systemName: "chevron.forward")
-                        .imageScale(.small)
+            HStack {
+                Button {
+                    NSHelpManager.shared.openHelpAnchor("releasenotes", inBook: Bundle.main.helpBookName)
+                } label: {
+                    Text("Release Notes", tableName: "WhatsNew")
+                        .frame(minWidth: 120)
                 }
-            }
-            .buttonStyle(.link)
-            .foregroundStyle(.tint)
-            
-            Button {
-                self.dismiss()
-            } label: {
-                Text("Continue", tableName: "WhatsNew")
-                    .frame(minWidth: 120)
+                Spacer()
+                Button {
+                    self.dismiss()
+                } label: {
+                    Text("Continue", tableName: "WhatsNew")
+                        .frame(minWidth: 120)
+                }
+                .keyboardShortcut(.cancelAction)
+                .buttonStyle(.borderedProminent)
             }
             .controlSize(.large)
-            .keyboardShortcut(.cancelAction)
-            .buttonStyle(.borderedProminent)
         }
         .onAppear {
             if let version = Bundle.main.version, version < NewFeature.version {
                 self.isPrerelease = true
             }
         }
-        .padding()
         .scenePadding()
-        .frame(width: 580)
+        .frame(width: 480)
         .background {
             Image(systemName: "gearshape.2")
                 .font(.system(size: 750, weight: .ultraLight))
@@ -142,7 +140,7 @@ struct WhatsNewView: View {
 enum NewFeature: CaseIterable {
     
     static let version = Version(6, 0, 0)
-    static let buildNumber = 737
+    static let buildNumber = 742
     
     case liquidGlass
 }
