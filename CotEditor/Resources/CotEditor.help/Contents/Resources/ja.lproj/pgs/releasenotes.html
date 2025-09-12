@@ -62,6 +62,7 @@
 		<h2>修正</h2>
 
 		<ul>
+			<li>「インデントを変換」コマンドがデフォルトではないインデントスタイルには変換しない不具合を修正</li>
 			<li>複数置換ウインドウのサイズが保存されなかった不具合を修正</li>
 		</ul>
 	</section>
@@ -159,7 +160,7 @@
 			<li>CSSシンタックスを更新してハイライトするキーワードを追加（Karamさんに感謝!）</li>
 			<li>HTMLシンタックスを更新してハイライトするキーワードを追加（Karamさんに感謝!）</li>
 			<li><span class="trivial">trivial</span>: 複数置換定義エディタのレイアウトを調整</li>
-            <li><span class="label">非AppStore版</span>: Sparkleを2.7.1から2.7.1に更新</li>
+			<li><span class="label">非AppStore版</span>: Sparkleを2.7.1から2.7.1に更新</li>
 			<li><span class="trivial">開発</span>: Yamsを6.0.1から6.0.2に更新</li>
 		</ul>
 	</section>
@@ -457,7 +458,7 @@
 			<li>VoiceOverサポートを改善</li>
 			<li>安定性を向上</li>
 			<li><span class="trivial">実験的実装</span>: インラインコメントのシンタックスハイライトアルゴリズムを改良</li>
-            <li><span class="label">非AppStore版</span>: Sparkleを2.6.4から2.7.0に更新</li>
+			<li><span class="label">非AppStore版</span>: Sparkleを2.6.4から2.7.0に更新</li>
 			<li><span class="trivial">開発</span>: Yamsを5.1.3から5.3.1に更新</li>
 		</ul>
 	</section>
@@ -2073,7 +2074,7 @@
 			<li>改行コードの不一致アラートの「この書類では次回から確認しない」オプションの状態を書類に記憶し、将来の同書類オープンでも設定を反映するように改良<ul>
 				<li>[上級者向け] 下記のコマンドを実行することでこのアラート機能をアプリケーションレベルで完全に無効化できます（ただし推奨しません）: <br/>
 					<code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
-    		</ul></li>
+			</ul></li>
 			<li>AppleScriptの<code>length</code>プロパティを廃止（代わりに <code>number of characters of contents</code>を使用してください）</li>
 			<li>マルチカーソル編集で双方向テキストの分割カーソルをサポート</li>
 			<li>プリントパネルのCotEditor設定表示を更新</li>
@@ -3242,7 +3243,7 @@
 	<li>カスタムされたバンドルされているテーマを元に戻したときに、テーマ編集画面の値が変更されなかったテーマ編集の不具合を修正</li>
 	<li>条件で行を並び替えるダイアログでカラムを並び替えキーにしたときにサンプル行のキー選択範囲が壊れることがあった不具合を修正</li>
 	<li>テーブルに項目をドラッグ&amp;ドロップした際のフィードバックアニメーションを修正</li>
-    <li><span class="trivial">trivial</span>: ツールバーをカスタマイズするとツールバーにあるメニューの幅が広がってしまった不具合を修正</li>
+	<li><span class="trivial">trivial</span>: ツールバーをカスタマイズするとツールバーにあるメニューの幅が広がってしまった不具合を修正</li>
 	<li><span class="trivial">trivial</span>: macOS Big Sur 11 (beta)でのレイアウト崩れを修正</li>
 </ul>
 </section>
@@ -3346,7 +3347,7 @@
 	<li>テキスト入力中にアウトラインメニューが1つずれた項目を現在の項目として選択することがあった不具合を修正</li>
 	<li>縦書きでプリントしたときに行番号表示位置がずれることがあった不具合を修正</li>
 	<li>複数の選択範囲がある状態で重複した行を削除したときに改行コードだけが残ることがあった不具合を修正</li>
-    <li>スクロールで対象文字が隠れていると文字インスペクタが表示されなかった不具合を修正</li>
+	<li>スクロールで対象文字が隠れていると文字インスペクタが表示されなかった不具合を修正</li>
 	<li>特定の条件下で現在行の行番号が太字にならなかった行番号ビューの不具合を修正</li>
 	<li><code>string in ...</code>コマンドを実行するとアプリケーションがクラッシュしたAppleScript/JXAの不具合を修正</li>
 	<li>スクリプト経由で開いた書類の内容がまれに既に開いているウインドウに反映されてしまったAppleScript/JXAの不具合を修正</li>

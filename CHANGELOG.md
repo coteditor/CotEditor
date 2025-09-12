@@ -5,6 +5,7 @@
 
 ### Fixes
 
+- Fix an issue where the “Convert Indentation” commands don’t convert indentation to the indent style that’s not the default.
 - [rc.2] Fix an issue where the scroll edge effect is not applied to the file browser.
 - [rc.2] Fix an issue where a input field in the print dialog is compressed.
 

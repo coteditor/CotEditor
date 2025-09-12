@@ -125,6 +125,8 @@ public extension String {
     /// Standardizes indentation of given ranges.
     func convertIndentation(to style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
         
+        assert(indentWidth > 0)
+        
         guard !self.isEmpty else { return nil }
         
         let string = self as NSString
