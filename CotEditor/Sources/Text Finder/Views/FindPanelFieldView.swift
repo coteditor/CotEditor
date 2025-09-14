@@ -155,7 +155,9 @@ struct FindPanelFieldView: View {
             }
         }
         .onChange(of: self.settings.replacementString) {
-            self.result = nil
+            if self.result?.action == .replace {
+                self.result = nil
+            }
         }
         .task {
             for await notification in NotificationCenter.default.notifications(named: TextFinder.DidFindMessage.name) {

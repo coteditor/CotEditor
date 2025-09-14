@@ -13,6 +13,7 @@
 - Fix an issue where the “Convert Indentation” commands don’t convert indentation to the indent style that’s not the default.
 - Fix an issue where the Syntax toolbar menu is disabled when the toolbar is shown afterward.
 - Fix an issue in the Dutch localization where the number of found items isn’t displayed in the Find window.
+- [beta] Keep the number of found in the Find window when typing the replacement text.
 - [rc.2] Fix an issue where the scroll edge effect is not applied to the file browser.
 - [rc.2] Fix an issue where a input field in the print dialog is compressed.
 
