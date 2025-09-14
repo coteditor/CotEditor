@@ -69,8 +69,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     override func loadView() {
         
-        let footerHeight: CGFloat = isLiquidGlass ? 32 : 23
-        
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
         outlineView.addTableColumn(NSTableColumn())
@@ -80,10 +78,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
-        // -> Workaround the issue where the scroll edge effect is not automatically applied (2025-09, macOS 26, FB20125027)
-        if #available(macOS 26, *) {
-            scrollView.hasVerticalScroller = true
-        }
+        scrollView.hasVerticalScroller = true
         
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator
@@ -119,13 +114,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.view.addSubview(bottomSeparator)
         self.view.addSubview(footerView)
         
+        let footerHeight: CGFloat = isLiquidGlass ? 32 : 23
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            bottomSeparator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -footerHeight),
+            bottomSeparator.bottomAnchor.constraint(equalTo: footerView.topAnchor),
             footerView.heightAnchor.constraint(equalToConstant: footerHeight),
             footerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
