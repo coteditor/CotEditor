@@ -36,6 +36,7 @@ extension NSView {
         
         let hudView = NSHostingView(rootView: HUDView(symbol: symbol))
         hudView.rootView.parent = hudView
+        hudView.sizingOptions = .preferredContentSize
         
         // remove previous HUD if any
         for subview in self.subviews where subview is NSHostingView<HUDView> {
@@ -49,7 +50,6 @@ extension NSView {
             hudView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             hudView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
-        hudView.layout()
     }
 }
 
