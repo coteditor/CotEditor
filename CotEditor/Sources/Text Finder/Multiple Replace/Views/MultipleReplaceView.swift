@@ -207,7 +207,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     @IBAction func highlight(_ sender: Any?) {
         
         self.endEditing()
-        self.validateObject()
+        self.hasInvalidSetting = !self.definition.validate()
         self.resultMessage = nil
         
         guard let textView = self.client else { return NSSound.beep() }
@@ -224,7 +224,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     @IBAction func batchReplaceAll(_ sender: Any?) {
         
         self.endEditing()
-        self.validateObject()
+        self.hasInvalidSetting = !self.definition.validate()
         self.resultMessage = nil
         
         guard
@@ -285,16 +285,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         
         let canRemove = self.tableView?.selectedRowIndexes.isEmpty == false
         self.addRemoveButton?.setEnabled(canRemove, forSegment: 1)
-    }
-    
-    
-    /// Validates the current setting.
-    private func validateObject() {
-        
-        self.hasInvalidSetting = self.definition.replacements.contains {
-            do { try $0.validate() } catch { return true }
-            return false
-        }
     }
     
     

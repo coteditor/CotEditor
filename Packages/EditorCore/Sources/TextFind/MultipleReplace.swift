@@ -218,6 +218,25 @@ private extension MultipleReplace.Replacement {
 
 // MARK: - Validation
 
+extension MultipleReplace {
+    
+    /// Validates all replacement definitions.
+    ///
+    /// - Returns: `true` if all definitions are valid.
+    public func validate() -> Bool {
+        
+        for replacement in self.replacements {
+            do {
+                try replacement.validate(regexOptions: self.settings.regexOptions)
+            } catch {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+
 extension MultipleReplace.Replacement {
     
     /// Checks if replacement rule is valid.
