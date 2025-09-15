@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24127"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,18 +11,18 @@
         <scene sceneID="7ic-e2-LjN">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="MultipleReplaceViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="8CD-v6-nsP">
+                    <view key="view" misplaced="YES" id="8CD-v6-nsP">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="307"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
-                                <rect key="frame" x="20" y="105" width="420" height="100"/>
+                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
+                                <rect key="frame" x="20" y="96" width="420" height="109"/>
                                 <clipView key="contentView" id="It6-1v-E9G">
-                                    <rect key="frame" x="1" y="1" width="418" height="98"/>
+                                    <rect key="frame" x="1" y="1" width="418" height="107"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" alternatingRowBackgroundColors="YES" columnReordering="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" headerView="PHz-PV-X13" viewBased="YES" id="gnf-Yi-u37">
-                                            <rect key="frame" x="0.0" y="0.0" width="418" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="418" height="84"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -90,7 +89,7 @@
                                                                         <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
                                                                     </imageCell>
                                                                 </imageView>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="104" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
@@ -133,7 +132,7 @@
                                                             <rect key="frame" x="136" y="1" width="104" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="104" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="DD9-M3-I3n">
                                                                         <font key="font" metaFont="system"/>
@@ -246,7 +245,7 @@
                                                             <rect key="frame" x="305" y="1" width="72" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
                                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="gsY-y4-MMs">
                                                                         <font key="font" metaFont="system"/>
@@ -295,7 +294,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button toolTip="Show advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i8z-Xa-PxI">
-                                <rect key="frame" x="401" y="73" width="39" height="24"/>
+                                <rect key="frame" x="402" y="64" width="39" height="24"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HTi-4p-qxi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -306,7 +305,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Replace all matches according to the replacement rules." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-za-4Ad">
-                                <rect key="frame" x="349" y="20" width="91" height="24"/>
+                                <rect key="frame" x="350" y="20" width="91" height="24"/>
                                 <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LI2-Hh-D6g">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -316,7 +315,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Select to replace text only in selection." translatesAutoresizingMaskIntoConstraints="NO" id="pfM-xk-MrN">
-                                <rect key="frame" x="152" y="24" width="80" height="14"/>
+                                <rect key="frame" x="153" y="24" width="80" height="14"/>
                                 <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="4lm-Fu-Fcf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="menu" size="11"/>
@@ -325,9 +324,6 @@
                                     <binding destination="JZj-f6-1IH" name="value" keyPath="values.findInSelection" id="c8X-YI-cKO"/>
                                 </connections>
                             </button>
-                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gG4-IL-p7b">
-                                <rect key="frame" x="0.0" y="54" width="460" height="5"/>
-                            </box>
                             <button identifier="howto_multiple_replace" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-Fc-QBG">
                                 <rect key="frame" x="20" y="20" width="24" height="24"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XZH-Sq-MEz">
@@ -339,7 +335,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
-                                <rect key="frame" x="244" y="78" width="151" height="14"/>
+                                <rect key="frame" x="245" y="69" width="151" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invalid rules will be skipped." id="gRf-KM-GZo">
                                     <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -354,7 +350,7 @@
                                 </connections>
                             </textField>
                             <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6DU-wH-q4e">
-                                <rect key="frame" x="226" y="75.5" width="16.5" height="22"/>
+                                <rect key="frame" x="227" y="66.5" width="16.5" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="2MS-D3-JNa"/>
                                     <constraint firstAttribute="width" secondItem="6DU-wH-q4e" secondAttribute="height" multiplier="1:1" id="qiO-b0-Yjf"/>
@@ -371,7 +367,7 @@
                                 </connections>
                             </imageView>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
-                                <rect key="frame" x="75" y="24" width="71" height="14"/>
+                                <rect key="frame" x="76" y="24" width="71" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 REPLACED" id="HU0-YI-OIX">
                                     <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -382,7 +378,7 @@
                                 </connections>
                             </textField>
                             <button toolTip="Highlight all matches of the replacement rules." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="99C-Bz-ySi">
-                                <rect key="frame" x="240" y="20" width="97" height="24"/>
+                                <rect key="frame" x="241" y="20" width="97" height="24"/>
                                 <buttonCell key="cell" type="push" title="Highlight All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kdu-Ni-M64">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -392,7 +388,7 @@
                                 </connections>
                             </button>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
-                                <rect key="frame" x="18" y="213" width="424" height="32"/>
+                                <rect key="frame" x="18" y="213" width="425" height="32"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Perform replacement using these rules in succession from the top down:" id="5Ey-vx-5Sm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -400,7 +396,7 @@
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ipw-p6-L9Z">
-                                <rect key="frame" x="20" y="73" width="65" height="24"/>
+                                <rect key="frame" x="20" y="64" width="49" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="HY7-ji-LGa">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -415,17 +411,14 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ipw-p6-L9Z" firstAttribute="top" secondItem="4Jd-Pz-IbU" secondAttribute="bottom" constant="8" symbolic="YES" id="2hj-oG-Ukd"/>
-                            <constraint firstItem="gG4-IL-p7b" firstAttribute="leading" secondItem="dQR-5E-rIT" secondAttribute="leading" id="5Ei-Es-dKQ"/>
                             <constraint firstItem="dhM-uH-4uq" firstAttribute="leading" secondItem="6DU-wH-q4e" secondAttribute="trailing" constant="4" id="5cg-Rm-27o"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="baseline" secondItem="pfM-xk-MrN" secondAttribute="baseline" id="8kF-cK-yp4"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="Ipw-p6-L9Z" secondAttribute="centerY" id="9ec-vr-SjY"/>
                             <constraint firstItem="4Jd-Pz-IbU" firstAttribute="top" secondItem="XGd-UY-MQC" secondAttribute="bottom" constant="8" symbolic="YES" id="BKV-rQ-5gb"/>
-                            <constraint firstItem="dQR-5E-rIT" firstAttribute="trailing" secondItem="gG4-IL-p7b" secondAttribute="trailing" id="BPc-bU-6Wd"/>
-                            <constraint firstItem="Nth-za-4Ad" firstAttribute="top" secondItem="gG4-IL-p7b" secondAttribute="bottom" constant="12" id="CGp-TQ-Zx0"/>
                             <constraint firstItem="dQR-5E-rIT" firstAttribute="trailing" secondItem="4Jd-Pz-IbU" secondAttribute="trailing" constant="20" symbolic="YES" id="DVc-ev-msh"/>
                             <constraint firstItem="dQR-5E-rIT" firstAttribute="bottom" secondItem="Nth-za-4Ad" secondAttribute="bottom" constant="20" symbolic="YES" id="J3G-NA-A0t"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="baseline" secondItem="8Tz-Kb-8Ck" secondAttribute="baseline" id="Ksn-wJ-ooQ"/>
-                            <constraint firstItem="gG4-IL-p7b" firstAttribute="top" secondItem="i8z-Xa-PxI" secondAttribute="bottom" constant="16" id="PEK-lx-dKG"/>
+                            <constraint firstItem="Nth-za-4Ad" firstAttribute="top" secondItem="i8z-Xa-PxI" secondAttribute="bottom" constant="20" id="PEK-lx-dKG"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="leading" secondItem="dhM-uH-4uq" secondAttribute="trailing" constant="8" symbolic="YES" id="QxA-b3-G2c"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="dhM-uH-4uq" secondAttribute="centerY" id="R9B-jR-XRA"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="Ipw-p6-L9Z" secondAttribute="centerY" id="RnP-LS-DBl"/>
