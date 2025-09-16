@@ -8,6 +8,11 @@
 - [dev] Update the build environment to Xcode 26.0.
 
 
+### Fixes
+
+- [trivial] Fix an issue where the default encoding pop-up button in the Format settings pane is positioned incorrectly.
+
+
 
 6.0.0 (744)
 --------------------------

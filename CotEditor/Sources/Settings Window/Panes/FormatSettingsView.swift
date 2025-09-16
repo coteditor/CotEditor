@@ -109,6 +109,14 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
+                .modifier { content in
+                    if #available(macOS 26, *) {
+                        content
+                            .buttonSizing(.flexible)
+                    } else {
+                        content
+                    }
+                }
                 .frame(maxWidth: 260)
                 .accessibilityLabeledPair(role: .content, id: "fileEncoding", in: self.accessibility)
             }
