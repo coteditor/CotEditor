@@ -3,6 +3,10 @@
 6.0.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 26.0.
+
 
 
 6.0.0 (744)
