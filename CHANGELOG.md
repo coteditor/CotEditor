@@ -6,6 +6,7 @@
 ### Improvements
 
 - [dev] Update the build environment to Xcode 26.0.
+- [non-AppStore ver.] Update Sparkle from 2.8.0-beta.3 to 2.8.0.
 
 
 ### Fixes
