@@ -10,6 +10,7 @@
 
 ### Fixes
 
+- Fix an issue where the “Convert Indentation” commands don’t convert if no characters are selected.
 - [trivial] Fix an issue where the default encoding pop-up button in the Format settings pane is positioned incorrectly.
 
 

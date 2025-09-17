@@ -43,7 +43,12 @@ private enum DetectionLines {
 
 public extension String {
     
-    /// Increases indent level in.
+    /// Increases the indent level.
+    ///
+    /// - Parameters:
+    ///   - style: The indent style to covert to.
+    ///   - indentWidth: The number of characters for the indentation.
+    ///   - selectedRanges: The selection in the editor.
     func indent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext {
         
         assert(indentWidth > 0)
@@ -76,7 +81,12 @@ public extension String {
     }
     
     
-    /// Decreases indent level.
+    /// Decreases the indent level.
+    ///
+    /// - Parameters:
+    ///   - style: The indent style to covert to.
+    ///   - indentWidth: The number of characters for the indentation.
+    ///   - selectedRanges: The selection in the editor.
     func outdent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
         
         assert(indentWidth > 0)
@@ -123,6 +133,11 @@ public extension String {
     
     
     /// Standardizes indentation of given ranges.
+    ///
+    /// - Parameters:
+    ///   - style: The indent style to covert to.
+    ///   - indentWidth: The number of characters for the indentation.
+    ///   - selectedRanges: The selection in the editor.
     func convertIndentation(to style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
         
         assert(indentWidth > 0)
@@ -132,7 +147,7 @@ public extension String {
         let string = self as NSString
         
         // process whole document if no text selected
-        let ranges = selectedRanges.contains(where: { !$0.isEmpty }) ? [string.range] : selectedRanges
+        let ranges = selectedRanges.contains(where: { !$0.isEmpty }) ? selectedRanges : [string.range]
         
         var replacementRanges: [NSRange] = []
         var replacementStrings: [String] = []
