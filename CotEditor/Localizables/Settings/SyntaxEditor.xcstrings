@@ -1,90 +1,90 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "(Blank matches the whole string.)" : {
+    "(Blank uses the entire match.)" : {
       "comment" : "label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(Prázdné odpovídá celému řetězci.)"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Leer entspricht der gesamten Zeichenkette.)"
+            "value" : "(Blank verwendet den gesamten Treffer.)"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(blank matches the whole string.)"
+            "value" : "(Blank uses the entire match.)"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(En blanco coincide con toda la cadena.)"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "(laisser vide utilisera la chaîne extraite en entier.)"
+            "state" : "needs_review",
+            "value" : "(Blank utilise toute la capture.)"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(Per corrispondenza con l’intera stringa: lasciare in bianco.)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "（空欄は一致した全文字列）"
+            "value" : "（空欄は一致したテキスト全体を使用）"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(빈 칸은 전체 문자열을 일치합니다.)"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Leeg komt overeen met de hele tekenreeks)."
+            "state" : "needs_review",
+            "value" : "(Blank gebruikt het volledige resultaat.)"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(pusty odpowiada całemu łańcuchowi dopasowania)"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(Se em branco, corresponde à string inteira.)"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(boş, tüm diziyle eşleşir.)"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "（留空匹配整个字符串）"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "（留空匹配整個字串）"
           }
         }
@@ -2105,7 +2105,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一致した全文字列"
+            "value" : "一致したテキスト全体"
           }
         },
         "ko" : {

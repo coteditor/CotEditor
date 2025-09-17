@@ -37,7 +37,7 @@ extension TextFind.Error: @retroactive LocalizedError {
                        table: "TextFind")
             case .emptyFindString:
                 String(localized: "TextFind.Error.emptyFindString.errorDescription",
-                       defaultValue: "Empty find string",
+                       defaultValue: "Empty find text",
                        table: "TextFind")
             case .emptyInSelectionSearch:
                 String(localized: "TextFind.Error.emptyInSelectionSearch.errorDescription",

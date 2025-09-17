@@ -652,22 +652,11 @@ extension FindResult {
         
         switch self.action {
             case .find:
-                if self.count == 0 {
-                    String(localized: "FindResult.find.notFound", defaultValue: "Not found", table: "TextFind",
-                           comment: "short result message for Find All")
-                } else {
-                    String(localized: "FindResult.find.found", defaultValue: "\(self.count) found", table: "TextFind",
-                           comment: "short result message for Find All (%lld is number of found)")
-                }
-                
+                String(localized: "FindResult.find.message", defaultValue: "\(self.count) matches", table: "TextFind",
+                       comment: "short result message for Find All (%lld is number of found)")
             case .replace:
-                if self.count == 0 {
-                    String(localized: "FindResult.replace.notFound", defaultValue: "Not replaced", table: "TextFind",
-                           comment: "short result message for Replace All")
-                } else {
-                    String(localized: "FindResult.replace.found", defaultValue: "\(self.count) replaced", table: "TextFind",
-                           comment: "short result message for Replace All (%lld is number of replaced)")
-                }
+                String(localized: "FindResult.replace.message", defaultValue: "\(self.count) replaced", table: "TextFind",
+                       comment: "short result message for Replace All (%lld is number of replaced)")
         }
     }
 }

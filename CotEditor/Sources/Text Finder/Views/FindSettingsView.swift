@@ -184,11 +184,11 @@ struct FindRegularExpressionOptionsView: View {
                              table: "TextFind", comment: "tooltip"))
                 
                 Toggle(String(localized: "FindSettings.unescapesReplacementString.label",
-                              defaultValue: "Unescape replacement string",
+                              defaultValue: "Unescape replacement text",
                               table: "TextFind", comment: "toggle button label"),
                        isOn: $unescapesReplacementString)
                 .help(String(localized: "FindSettings.unescapesReplacementString.description",
-                             defaultValue: "Unescape meta characters with backslash in replacement string.",
+                             defaultValue: "Unescape meta characters with backslash in replacement text.",
                              table: "TextFind", comment: "tooltip"))
             } header: {
                 Text("Regular Expression Search", tableName: "TextFind", comment: "heading")

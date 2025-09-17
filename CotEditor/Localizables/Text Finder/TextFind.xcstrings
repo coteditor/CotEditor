@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld strings found." : {
+    "%lld matches found." : {
       "comment" : "progress report in find progress dialog",
       "localizations" : {
         "cs" : {
@@ -9,25 +9,25 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězce nalezeny."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězce nalezeno."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězec nalezen."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězců nalezeno."
                 }
               }
@@ -40,13 +40,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Zeichenkette gefunden."
+                  "value" : "%lld Treffer gefunden."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Zeichenketten gefunden."
+                  "value" : "%lld Treffer gefunden."
                 }
               }
             }
@@ -58,13 +58,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld string found."
+                  "value" : "%lld match found."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld strings found."
+                  "value" : "%lld matches found."
                 }
               }
             }
@@ -76,13 +76,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld string found."
+                  "value" : "%lld match found."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld strings found."
+                  "value" : "%lld matches found."
                 }
               }
             }
@@ -93,13 +93,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Cadena %lld encontrada."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Cadenas %lld encontradas."
                 }
               }
@@ -117,7 +117,7 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld éléments trouvés."
                 }
               }
@@ -129,13 +129,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld stringa trovata."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld stringhe trovate."
                 }
               }
@@ -159,7 +159,7 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld개 문자열 발견됨."
                 }
               }
@@ -172,13 +172,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld tekenreeks gevonden."
+                  "value" : "%lld overeenkomst gevonden."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld tekenreeksen gevonden."
+                  "value" : "%lld overeenkomsten gevonden."
                 }
               }
             }
@@ -189,25 +189,25 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "znaleziono %lld łańcuchy."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "znaleziono %lld łańcuchów."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "znaleziono %lld łańcuch."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "znaleziono %lld łańcucha."
                 }
               }
@@ -219,13 +219,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld string encontrada."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld strings encontradas."
                 }
               }
@@ -237,13 +237,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld dizi bulundu."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld dizi bulundu."
                 }
               }
@@ -255,7 +255,7 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "找到%lld个匹配"
                 }
               }
@@ -267,7 +267,7 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "找到%lld個匹配"
                 }
               }
@@ -276,7 +276,7 @@
         }
       }
     },
-    "%lld strings replaced." : {
+    "%lld matches replaced." : {
       "comment" : "progress report in find progress dialog",
       "localizations" : {
         "cs" : {
@@ -284,25 +284,25 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězce nahrazeny."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězce nahrazeno."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězec nahrazen."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld řetězců nahrazeno."
                 }
               }
@@ -315,13 +315,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Zeichenkette ersetzt."
+                  "value" : "%lld Treffer ersetzt."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Zeichenketten ersetzt."
+                  "value" : "%lld Treffer ersetzt."
                 }
               }
             }
@@ -333,13 +333,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld string replaced."
+                  "value" : "%lld match replaced."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld strings replaced."
+                  "value" : "%lld matches replaced."
                 }
               }
             }
@@ -351,13 +351,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld string replaced."
+                  "value" : "%lld match replaced."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld strings replaced."
+                  "value" : "%lld matches replaced."
                 }
               }
             }
@@ -368,13 +368,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Cadena %lld reemplazada."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Cadenas %lld reemplazadas."
                 }
               }
@@ -386,13 +386,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld élément remplacé."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld éléments remplacés."
                 }
               }
@@ -404,13 +404,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld stringa sostituita."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld stringhe sostituite."
                 }
               }
@@ -434,7 +434,7 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld 문자열 대치됨."
                 }
               }
@@ -447,13 +447,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld tekenreeks vervangen."
+                  "value" : "%lld overeenkomst vervangen."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld tekenreeksen vervangen."
+                  "value" : "%lld overeenkomsten vervangen."
                 }
               }
             }
@@ -464,25 +464,25 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "zastąpiono %lld łańcuchy."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "zastąpiono %lld łańcuchów."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "zastąpiono %lld łańcuch."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "zastąpiono %lld łańcucha."
                 }
               }
@@ -494,13 +494,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld string substituída."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld strings substituídas."
                 }
               }
@@ -512,13 +512,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld dizi değiştirildi."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld dizi değiştirildi."
                 }
               }
@@ -530,7 +530,7 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "已替换%lld个匹配"
                 }
               }
@@ -542,7 +542,7 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "已取代%lld個匹配"
                 }
               }
@@ -1974,12 +1974,12 @@
         }
       }
     },
-    "Find string: %@" : {
+    "Find text: %@" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hledaný řetězec: %@"
+            "value" : "Hledat text: %@"
           }
         },
         "de" : {
@@ -1991,78 +1991,78 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Find string: %@"
+            "value" : "Find text: %@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar cadena: %@"
+            "value" : "Buscar texto: %@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chaîne recherchée : %@"
+            "value" : "Rechercher du texte : %@"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trova stringa: %@"
+            "value" : "Cerca testo: %@"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "検索文字列: %@"
+            "value" : "検索テキスト: %@"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문자열 찾기: %@"
+            "value" : "텍스트 검색: %@"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoek tekenreeks: %@"
+            "value" : "Zoek tekst: %@"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Szukany łańcuch: %@"
+            "value" : "Szukaj tekstu: %@"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar string: %@"
+            "value" : "Buscar Texto: %@"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diziyi bul: %@"
+            "value" : "Metni Ara: %@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查找字符串：%@"
+            "value" : "搜索文本：%@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "尋找字串：%@"
+            "value" : "搜尋文字：%@"
           }
         }
       }
     },
-    "FindResult.find.found" : {
+    "FindResult.find.message" : {
       "comment" : "short result message for Find All (%lld is number of found)",
       "localizations" : {
         "cs" : {
@@ -2071,25 +2071,31 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Nalezeny: %lld"
+                  "value" : "%lld výsledky"
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Nalezeno: %lld"
+                  "value" : "%lld výsledku"
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Nalezen: %lld"
+                  "value" : "%lld výsledek"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Nalezeno: %lld"
+                  "value" : "%lld výsledků"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nenalezeno"
                 }
               }
             }
@@ -2098,10 +2104,22 @@
         "de" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Treffer"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld gefunden"
+                  "value" : "%lld Treffer"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nicht gefunden"
                 }
               }
             }
@@ -2110,10 +2128,22 @@
         "en" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld match"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld found"
+                  "value" : "%lld matches"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Not found"
                 }
               }
             }
@@ -2122,10 +2152,22 @@
         "en-GB" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld match"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld found"
+                  "value" : "%lld matches"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Not found"
                 }
               }
             }
@@ -2137,13 +2179,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld encontrado"
+                  "value" : "%lld resultado"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld encontrados"
+                  "value" : "%lld resultados"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "No encontrado"
                 }
               }
             }
@@ -2155,13 +2203,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld trouvé"
+                  "value" : "%lld résultat"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld trouvés"
+                  "value" : "%lld résultats"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Introuvable"
                 }
               }
             }
@@ -2170,10 +2224,22 @@
         "it" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld risultato"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld trovati"
+                  "value" : "%lld risultati"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Non trovato"
                 }
               }
             }
@@ -2185,7 +2251,13 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld件見つかりました"
+                  "value" : "%lld件一致"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "見つかりません"
                 }
               }
             }
@@ -2197,7 +2269,13 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld개 발견됨"
+                  "value" : "%lld개 일치"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "발견되지 않음"
                 }
               }
             }
@@ -2216,6 +2294,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld gevonden"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Niet gevonden"
                 }
               }
             }
@@ -2227,25 +2311,31 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld znalezione"
+                  "value" : "%lld dopasowania"
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld znalezionych"
+                  "value" : "%lld dopasowań"
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld znaleziony"
+                  "value" : "%lld dopasowanie"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld znalezionego"
+                  "value" : "%lld dopasowania"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Brak dopasowań"
                 }
               }
             }
@@ -2257,13 +2347,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld encontrado"
+                  "value" : "%lld ocorrência"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld encontrados"
+                  "value" : "%lld ocorrências"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Não encontrado"
                 }
               }
             }
@@ -2275,13 +2371,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld bulundu"
+                  "value" : "%lld eşleşen"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld bulundu"
+                  "value" : "%lld eşleşen"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Bulunamadı"
                 }
               }
             }
@@ -2293,7 +2395,13 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "找到%lld项"
+                  "value" : "%lld个匹配项"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "未找到"
                 }
               }
             }
@@ -2305,7 +2413,13 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "找到%lld項"
+                  "value" : "%lld個符合項目"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "找不到"
                 }
               }
             }
@@ -2313,103 +2427,7 @@
         }
       }
     },
-    "FindResult.find.notFound" : {
-      "comment" : "short result message for Find All",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenalezeno"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht gefunden"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Not found"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not found"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No encontrado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Introuvable"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non trovato"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "見つかりません"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "발견되지 않음"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niet gevonden"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie znaleziono"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Não encontrado"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulunamadı"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未找到"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未找到"
-          }
-        }
-      }
-    },
-    "FindResult.replace.found" : {
+    "FindResult.replace.message" : {
       "comment" : "short result message for Replace All (%lld is number of replaced)",
       "localizations" : {
         "cs" : {
@@ -2438,6 +2456,12 @@
                   "state" : "translated",
                   "value" : "Nahrazeno: %lld"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nenahrazeno"
+                }
               }
             }
           }
@@ -2449,6 +2473,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld ersetzt"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nicht ersetzt"
                 }
               }
             }
@@ -2462,6 +2492,12 @@
                   "state" : "translated",
                   "value" : "%lld replaced"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Not replaced"
+                }
               }
             }
           }
@@ -2474,6 +2510,12 @@
                   "state" : "translated",
                   "value" : "%lld replaced"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Not replaced"
+                }
               }
             }
           }
@@ -2484,13 +2526,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld reemplazado"
+                  "value" : "%lld reemplazo"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld reemplazados"
+                  "value" : "%lld reemplazos"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "No reemplazo"
                 }
               }
             }
@@ -2510,6 +2558,12 @@
                   "state" : "translated",
                   "value" : "%lld remplacés"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Non remplacé"
+                }
               }
             }
           }
@@ -2517,10 +2571,22 @@
         "it" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sostituito"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld sostituzioni"
+                  "value" : "%lld sostituiti"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Non sostituiti"
                 }
               }
             }
@@ -2532,7 +2598,13 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld件置換しました"
+                  "value" : "%lld件置換"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "見つかりません"
                 }
               }
             }
@@ -2545,6 +2617,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld개 대치됨"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "대치되지 않음"
                 }
               }
             }
@@ -2563,6 +2641,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld vervangen"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Niet vervangen"
                 }
               }
             }
@@ -2594,6 +2678,12 @@
                   "state" : "translated",
                   "value" : "%lld zastąpionego"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nie zamieniono"
+                }
               }
             }
           }
@@ -2612,6 +2702,12 @@
                   "state" : "translated",
                   "value" : "%lld substituídos"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Não substituído"
+                }
               }
             }
           }
@@ -2630,6 +2726,12 @@
                   "state" : "translated",
                   "value" : "%lld değiştirildi"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Değiştirilmedi"
+                }
               }
             }
           }
@@ -2641,6 +2743,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld处被替换"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "没有进行替换"
                 }
               }
             }
@@ -2654,104 +2762,14 @@
                   "state" : "translated",
                   "value" : "%lld處被取代"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "沒有進行取代"
+                }
               }
             }
-          }
-        }
-      }
-    },
-    "FindResult.replace.notFound" : {
-      "comment" : "short result message for Replace All",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenahrazeno"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht ersetzt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Not replaced"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not replaced"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No reemplazado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non remplacé"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non sostituiti"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "見つかりません"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "대치되지 않음"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niet vervangen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie zamieniono"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Não substituído"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Değiştirilmedi"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "没有进行替换"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "沒有進行取代"
           }
         }
       }
@@ -4106,7 +4124,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Unescapovat meta znaky se zpětným lomítkem v nahrazovacím řetězci."
           }
         },
@@ -4119,18 +4137,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unescape meta characters with backslash in replacement string."
+            "value" : "Unescape meta characters with backslash in replacement text."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unescape meta characters with backslash in replacement string."
+            "value" : "Unescape meta characters with backslash in replacement tekst."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Desvíe los meta caracteres con barra invertida en la cadena de reemplazo."
           }
         },
@@ -4142,56 +4160,56 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Metacaratteri Unescape con backslash nella stringa di sostituzione."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "置換文字列のバックスラッシュをエスケープ文字として解釈"
+            "value" : "置換テキストのバックスラッシュをエスケープ文字として解釈"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "대치 문자열에서 메타 문자가 이스케이프하지 않도록 역 슬래시를 붙입니다."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unescape meta-tekens met backslash in vervangende tekenreeks."
+            "value" : "Unescape meta-tekens met backslash in vervangende tekst."
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Konwertuj sekwencje ucieczki metaznaków z ukośnikiem wstecznym w łańcuchu zastępującym."
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Remove o escape de barra invertida dos metacaracteres da string de substituição."
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Değişim dizisinde meta karakterlerini ters eğik çizgi ile kaçırma."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用反斜杠元字符解码替换字符串"
+            "value" : "使用反斜杠元字符解码替换文本"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用反斜槓元字元解碼取代字串"
+            "state" : "needs_review",
+            "value" : "使用反斜槓元字元解碼取代文字"
           }
         }
       }
@@ -4202,7 +4220,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Unescapovat nahrazovací řetězec"
           }
         },
@@ -4215,18 +4233,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unescape replacement string"
+            "value" : "Unescape replacement text"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unescape replacement string"
+            "value" : "Unescape replacement tekst"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Cadena de reemplazo de Unescape"
           }
         },
@@ -4238,56 +4256,56 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Stringa di sostituzione Unescape"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "置換文字列のエスケープ文字を解釈"
+            "value" : "置換テキストのエスケープ文字を解釈"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "대치 문자열 이스케이프하지 않기"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unescape vervangende tekenreeks"
+            "value" : "Unescape vervangende tekst"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Konwertuj sekwencje ucieczki w łańcuchu zastępującym"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Remover escape da string de substituição"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Değişim dizisini kaçırma"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解码替换字符串"
+            "value" : "解码替换文本"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "解碼取代字串"
+            "state" : "needs_review",
+            "value" : "解碼取代文字"
           }
         }
       }
@@ -4484,22 +4502,28 @@
         }
       }
     },
-    "Found %lld strings in “%@.”" : {
-      "comment" : "message in the Find All result view (“%@” is filename)",
+    "Found %lld matches in “%@.”" : {
+      "comment" : "message in the Find All result view (“%2$@” is filename)",
       "localizations" : {
         "cs" : {
           "variations" : {
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "V souboru „%2$@“ byl nalezen jeden řetězec."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Počet nalezených řetězců: %1$lld, v souboru: %2$@."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "V souboru „%2$@“ nebyl nalezen žádný řetězec."
                 }
               }
             }
@@ -4511,13 +4535,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Eine Zeichenkette in „%2$@“ gefunden."
+                  "value" : "Einen Treffer in „%2$@“ gefunden."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld Zeichenketten „%2$@” in gefunden."
+                  "value" : "%1$lld Treffer „%2$@” in gefunden."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Keine Treffer in „%2$@“ gefunden."
                 }
               }
             }
@@ -4529,13 +4559,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found one string in “%2$@.”"
+                  "value" : "Found one match in “%2$@.”"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found %1$lld strings in “%2$@.”"
+                  "value" : "Found %1$lld matches in “%2$@.”"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Found no matches in “%2$@.”"
                 }
               }
             }
@@ -4547,13 +4583,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found one string in “%2$@”."
+                  "value" : "Found one match in “%2$@.”"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found %1$lld strings in “%2$@”."
+                  "value" : "Found %1$lld matches in “%2$@.”"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Found no matches in “%2$@.”"
                 }
               }
             }
@@ -4564,14 +4606,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Encontré una cadena en “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Encontré %1$lld cadenas en “%2$@”."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "No se encuentran cadenas en “%2$@”."
                 }
               }
             }
@@ -4582,14 +4630,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Une chaîne trouvée dans « %2$@ »."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%1$lld chaînes trouvées dans « %2$@ »."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Aucune chaîne trouvée dans « %2$@ »."
                 }
               }
             }
@@ -4600,14 +4654,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Trovata una stringa in “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Trovate %1$lld stringhe in %2$@”."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Nessuna stringa trovata in “%2$@”."
                 }
               }
             }
@@ -4621,6 +4681,12 @@
                   "state" : "translated",
                   "value" : "“%2$@”内に%1$lld件見つかりました。"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "“%2$@”内に見つかりませんでした。"
+                }
               }
             }
           }
@@ -4630,8 +4696,14 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "‘%2$@’에서 %1$lld개 문자열 발견됨."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "‘%2$@’에서 발견된 문자열 없음."
                 }
               }
             }
@@ -4643,13 +4715,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Een tekenreeks gevonden in \"%2$@.\""
+                  "value" : "Een gevonden in \"%2$@.\""
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld tekenreeksen gevonden in “%2$@.”"
+                  "value" : "%1$lld gevonden in “%2$@.”"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Niet gevonden in ‘%2$@‘."
                 }
               }
             }
@@ -4660,26 +4738,32 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Znaleziono %1$lld łańcuchy w „%2$@”."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Znaleziono %1$lld łańcuchów w „%2$@”."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Znaleziono jeden łańcuch w „%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Znaleziono %1$lld łańcucha w „%2$@”."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Nie znaleziono żadnych łańcuchów w „%2$@”."
                 }
               }
             }
@@ -4690,14 +4774,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "Uma string encontrada em “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%1$lld strings encontradas em “%2$@”."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Nenhuma string encontrada em “%2$@”."
                 }
               }
             }
@@ -4708,15 +4798,21 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%2$@ içinde bir dizi bulundu."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%2$@ içinde %1$lld dizi bulundu."
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%2$@ içinde dizi bulunamadı."
+                }
               }
             }
           }
@@ -4726,9 +4822,15 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%1$lld个字符串在“%2$@”中被找到。"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "在“%2$@”中没有找到字符串。"
+                }
               }
             }
           }
@@ -4738,100 +4840,17 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%%1lld個字元串在「%2$@」中被找到。"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "在「%2$@」中沒有找到字元串。"
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "Found String" : {
-      "comment" : "table column header",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nalezené řetězce"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gefundener Suchbegriff"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Found String"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cadena encontrada"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chaîne trouvée"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stringa trovata"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文字列"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "찾은 문자열"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tekenreeks gevonden"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Znaleziony łańcuch"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "String Encontrada"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dizi Bulundu"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "找到字符串"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "找到字串"
           }
         }
       }
@@ -5192,91 +5211,91 @@
         }
       }
     },
-    "No strings found in “%@.”" : {
-      "comment" : "message in the Find All result view (“%@” is filename)",
+    "Matched Text" : {
+      "comment" : "table column header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "V souboru „%@“ nebyl nalezen žádný řetězec."
+            "state" : "needs_review",
+            "value" : "Nalezené řetězce"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Zeichenketten in „%@“ gefunden."
+            "value" : "Gefundener Text"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No strings found in “%@”."
+            "value" : "Matched Text"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se encuentran cadenas en “%@”."
+            "state" : "needs_review",
+            "value" : "Cadena encontrada"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aucune chaîne trouvée dans « %@ »."
+            "state" : "needs_review",
+            "value" : "Chaîne trouvée"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nessuna stringa trovata in “%@”."
+            "state" : "needs_review",
+            "value" : "Stringa trovata"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”内に見つかりませんでした。"
+            "value" : "一致したテキスト"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "‘%@’에서 발견된 문자열 없음."
+            "state" : "needs_review",
+            "value" : "찾은 문자열"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geen tekenreeksen gevonden in '%@'."
+            "state" : "needs_review",
+            "value" : "Tekenreeks gevonden"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie znaleziono żadnych łańcuchów w „%@”."
+            "state" : "needs_review",
+            "value" : "Znaleziony łańcuch"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenhuma string encontrada em “%@”."
+            "state" : "needs_review",
+            "value" : "String Encontrada"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ içinde dizi bulunamadı."
+            "state" : "needs_review",
+            "value" : "Dizi Bulundu"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "在“%@”中没有找到字符串。"
+            "state" : "needs_review",
+            "value" : "找到字符串"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "在「%@」中沒有找到字元串。"
+            "state" : "needs_review",
+            "value" : "找到字串"
           }
         }
       }
@@ -6798,7 +6817,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Prázdný řetězec hledání"
           }
         },
@@ -6811,79 +6830,79 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Empty find string"
+            "value" : "Empty find text"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Empty find string"
+            "value" : "Empty find text"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Cadena de búsqueda vacía"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Châine de recherche vide"
+            "value" : "Texte de recherche vide"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stringa di ricerca vuota"
+            "state" : "needs_review",
+            "value" : "Cerca testo vuoto"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "検索文字列が空です。"
+            "value" : "検索テキストが空です。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "빈 찾기 문자열"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lege zoekreeks"
+            "value" : "Leeg zoektekst"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Szukany łańcuch jest pusty"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "String de busca vazia"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bulunacak dizi boş"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "空的搜索字符串"
+            "value" : "空的搜索文本"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "空的搜索字元串"
+            "value" : "空的搜尋文字"
           }
         }
       }

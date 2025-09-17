@@ -108,7 +108,7 @@ struct SyntaxOutlineEditView: View {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text("Title pattern:", tableName: "SyntaxEditor", comment: "label")
                         .accessibilityLabeledPair(role: .label, id: "titlePattern", in: self.accessibility)
-                    Text("(Blank matches the whole string.)", tableName: "SyntaxEditor", comment: "label")
+                    Text("(Blank uses the entire match.)", tableName: "SyntaxEditor", comment: "label")
                         .controlSize(.small)
                         .foregroundStyle(.secondary)
                 }

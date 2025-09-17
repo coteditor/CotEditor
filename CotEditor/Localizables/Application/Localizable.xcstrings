@@ -4031,7 +4031,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salva le stringhe disponibili"
+            "value" : "Salva testo disponibili"
           }
         },
         "ja" : {
@@ -4061,7 +4061,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salvar Strings Disponíveis"
+            "value" : "Salvar Texto Disponíveis"
           }
         },
         "tr" : {

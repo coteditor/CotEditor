@@ -63,11 +63,12 @@ struct FindPanelResultView: View {
                 .labelStyle(.iconOnly)
                 .help(String(localized: "Close find result.", table: "TextFind", comment: "tooltip"))
                 
-                Text(self.message)
-                    .fontWeight(.bold)
+                Text("Found \(self.model.matches.count) matches in “\(self.documentName ?? String(localized: .unknown)).”",
+                     tableName: "TextFind", comment: "message in the Find All result view (“%2$@” is filename)")
+                .fontWeight(.bold)
             }.scenePadding(.horizontal)
             
-            Text("Find string: \(self.model.findString)", tableName: "TextFind")
+            Text("Find text: \(self.model.findString)", tableName: "TextFind")
                 .scenePadding(.horizontal)
             
             Table(self.model.matches, selection: $selection, sortOrder: $sortOrder) {
@@ -79,7 +80,7 @@ struct FindPanelResultView: View {
                 .width(ideal: 30, max: 64)
                 .alignment(.trailing)
                 
-                TableColumn(String(localized: "Found String", table: "TextFind", comment: "table column header")) {
+                TableColumn(String(localized: "Matched Text", table: "TextFind", comment: "table column header")) {
                     Text(AttributedString($0.attributedLineString(offset: 16)))
                         .truncationMode(.tail)
                         .padding(.vertical, -2)
@@ -130,18 +131,6 @@ struct FindPanelResultView: View {
     
     
     // MARK: Private Methods
-    
-    private var message: String {
-        
-        let documentName = self.documentName ?? String(localized: .unknown)  // This should never be nil.
-        
-        return self.model.matches.isEmpty
-            ? String(localized: "No strings found in “\(documentName).”", table: "TextFind",
-                     comment: "message in the Find All result view (“%@” is filename)")
-            : String(localized: "Found \(self.model.matches.count) strings in “\(documentName).”", table: "TextFind",
-                     comment: "message in the Find All result view (“%@” is filename)")
-    }
-    
     
     /// Selects the match in the target text view.
     ///

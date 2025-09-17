@@ -117,10 +117,10 @@ private extension TextFind.Action {
             case _ where count == 0:
                 String(localized: "Searching in text…", table: "TextFind")
             case .find:
-                String(localized: "\(count) strings found.", table: "TextFind",
+                String(localized: "\(count) matches found.", table: "TextFind",
                        comment: "progress report in find progress dialog")
             case .replace:
-                String(localized: "\(count) strings replaced.", table: "TextFind",
+                String(localized: "\(count) matches replaced.", table: "TextFind",
                        comment: "progress report in find progress dialog")
         }
     }
