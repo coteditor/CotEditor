@@ -54,6 +54,8 @@ final class FindPanelTextView: RegexTextView {
         
         super.init(frame: .zero, textContainer: textContainer)
         
+        self.isRichText = false
+        
         // set system font (standard NSTextField behavior)
         self.font = .systemFont(ofSize: 0)
         

@@ -12,6 +12,7 @@
 ### Fixes
 
 - Fix an issue where the “Convert Indentation” commands don’t convert if no characters are selected.
+- Fix an issue where the input fields in the Find window accept rich text.
 - [trivial] Fix an issue where the default encoding pop-up button in the Format settings pane is positioned incorrectly.
 
 
