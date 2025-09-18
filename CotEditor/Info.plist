@@ -1465,5 +1465,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>LSFileQuarantineEnabled</key>
+	<false/>
 </dict>
 </plist>
