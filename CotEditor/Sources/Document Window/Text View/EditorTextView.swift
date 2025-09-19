@@ -167,7 +167,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     // MARK: Lifecycle
     
-    required init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner) {
+    required init(frame frameRect: NSRect = .zero, textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner) {
         
         let textContainer = TextContainer()
         textContainer.widthTracksTextView = true
@@ -175,7 +175,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
         
-        super.init(frame: .zero, textContainer: textContainer)
+        super.init(frame: frameRect, textContainer: textContainer)
         
         self.identifier = NSUserInterfaceItemIdentifier("EditorTextView")
         
