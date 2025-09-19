@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -65,8 +65,11 @@ extension Shortcut {
     /// - Parameter menu: The menu tree for duplication check.
     @MainActor func checkCustomizationAvailability(for menu: NSMenu?) throws(Shortcut.CustomizationError) {
         
-        // Tab or Backtab
-        if self.keyEquivalent == "\u{9}" || self.keyEquivalent == "\u{19}" {
+        // throw unsupported combinations
+        if self.keyEquivalent == "\u{9}" ||  // Tab
+            self.keyEquivalent == "\u{19}" ||  // Backtab
+            self == Shortcut(.newline, modifiers: .shift)  // Shift+Return
+        {
             throw .unsupported(self)
         }
         
