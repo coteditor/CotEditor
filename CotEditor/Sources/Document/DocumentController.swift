@@ -92,7 +92,7 @@ final class DocumentController: NSDocumentController {
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // do nothing for DirectoryDocument
-        if url.hasDirectoryPath {
+        if try url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory ?? false {
             return try await super.openDocument(withContentsOf: url, display: displayDocument)
         }
         
