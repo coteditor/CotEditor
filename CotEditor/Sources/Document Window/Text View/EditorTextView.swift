@@ -1062,12 +1062,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         didSet {
+            self.didChangeValue(for: \.baseWritingDirection)
+            
+            guard baseWritingDirection != oldValue else { return }
+            
             // update textContainer size (see comment in NSTextView.infiniteSize)
             if !self.wrapsLines {
                 self.textContainer?.size = self.infiniteSize
             }
-            
-            self.didChangeValue(for: \.baseWritingDirection)
             
             self.needsUpdateInsertionIndicators = true
         }
