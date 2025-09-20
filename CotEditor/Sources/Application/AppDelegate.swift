@@ -140,6 +140,8 @@ private enum BundleIdentifier {
         MainActor.assumeIsolated {
             self.menuUpdateObservers.removeAll()
             
+            self.updateEncodingMenu(self.encodingsMenu!)
+            
             self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
                 let item = NSMenuItem()
                 item.title = "\(lineEnding.description) (\(lineEnding.label))"
@@ -488,7 +490,7 @@ extension AppDelegate: NSMenuDelegate {
         
         switch menu {
             case self.encodingsMenu:
-                self.updateEncodingMenu(menu)
+                self.updateEncodingMenu(menu, checksDocument: true)
             default:
                 break
         }
@@ -498,12 +500,13 @@ extension AppDelegate: NSMenuDelegate {
     /// Updates the Text Encoding menu.
     ///
     /// - Parameter menu: The menu to update.
-    private func updateEncodingMenu(_ menu: NSMenu) {
+    private func updateEncodingMenu(_ menu: NSMenu, checksDocument: Bool = false) {
         
         let action = #selector((any EncodingChanging).changeEncoding)
         var fileEncodings = EncodingManager.shared.fileEncodings
         
-        if let document = NSApp.target(forAction: action) as? Document,
+        if checksDocument,
+           let document = NSApp.target(forAction: action) as? Document,
            !fileEncodings.contains(document.fileEncoding)
         {
             fileEncodings.insert(contentsOf: [document.fileEncoding, nil], at: 0)
