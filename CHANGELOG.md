@@ -21,6 +21,13 @@
 - [trivial] Fix an issue where the default encoding pop-up button in the Format settings pane is positioned incorrectly.
 
 
+### Known Issues
+
+- The scroller slots of the editor are drawn in a different style from the standard scrollers in macOS 26 (FB20310722).
+- The application crashes by opening the Donation settings pane when a system theme color other than Multicolor is selected in the System Settings > Appearance (FB20281734).
+- The file browser doesn't show the entire filenames when scroller is shown (FB20309978).
+
+
 
 6.0.0 (744)
 --------------------------
