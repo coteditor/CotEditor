@@ -13,6 +13,7 @@
 
 ### Fixes
 
+- Fix an issue where the file browser doesn't show the entire filenames when the scroller slot is shown.
 - Fix an issue where the “Convert Indentation” commands don’t convert if no characters are selected.
 - Fix an issue where the input fields in the Find window accept rich text.
 - Address a potential crash on macOS 26 that occurs when performing a keyboard shortcut.
