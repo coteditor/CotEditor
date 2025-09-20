@@ -5537,7 +5537,7 @@
         }
       }
     },
-    "MoveToTrashComfirmation.message" : {
+    "MoveToTrashConfirmation.message" : {
       "comment" : "Refer the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -5633,7 +5633,7 @@
         }
       }
     },
-    "MoveToTrashComfirmation.title" : {
+    "MoveToTrashConfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5728,7 +5728,7 @@
         }
       }
     },
-    "MoveToTrashComfirmation.title.many" : {
+    "MoveToTrashConfirmation.title.many" : {
       "localizations" : {
         "cs" : {
           "variations" : {

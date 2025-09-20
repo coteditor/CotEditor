@@ -396,13 +396,13 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let alert = NSAlert()
         alert.messageText = (filenames.count == 1)
-            ? String(localized: "MoveToTrashComfirmation.title",
+            ? String(localized: "MoveToTrashConfirmation.title",
                      defaultValue: "Do you want to move “\(filenames[0])” to the Trash?",
                      table: "Document")
-            : String(localized: "MoveToTrashComfirmation.title.many",
+            : String(localized: "MoveToTrashConfirmation.title.many",
                      defaultValue: "Do you want to move \(filenames.count) selected items to the Trash?",
                      table: "Document")
-        alert.informativeText = String(localized: "MoveToTrashComfirmation.message",
+        alert.informativeText = String(localized: "MoveToTrashConfirmation.message",
                                        defaultValue: "This operation cannot be undone.",
                                        table: "Document",
                                        comment: "Refer the same expression by Apple.")
