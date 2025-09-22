@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-/// Object invoking the registered block when a specific time interval is passed after the last call.
+/// The object invokes the registered action after a specific time interval elapses since the last call.
 @MainActor final class Debouncer {
     
     // MARK: Private Properties
@@ -39,7 +39,7 @@
     /// Returns a new `Debouncer` initialized with given values.
     ///
     /// - Parameters:
-    ///   - delay: The default time to wait since last call.
+    ///   - delay: The default time to wait since the last call.
     ///   - action: The action to debounce.
     init(delay: ContinuousClock.Duration = .seconds(0), action: @MainActor @Sendable @escaping () -> Void) {
         
@@ -50,20 +50,20 @@
     
     // MARK: Public Methods
     
-    /// Invokes the action after when `delay` time have passed since last call.
+    /// Invokes the action after when the `delay` time has passed since the last call.
     ///
     /// - Parameters:
-    ///   - delay: The time to wait for fire. If nil, receiver's default delay is used.
+    ///   - delay: The time to wait for fire. If nil, the receiver's default delay is used.
     func schedule(delay: ContinuousClock.Duration? = nil) {
         
         let delay = delay ?? self.defaultDelay
         
         self.task?.cancel()
-        self.task = Task {
+        self.task = Task { [weak self] in
             try await Task.sleep(for: delay)
             
-            self.action()
-            self.task = nil
+            self?.action()
+            self?.task = nil
         }
     }
     
