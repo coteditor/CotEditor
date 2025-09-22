@@ -60,7 +60,7 @@ struct SyntaxFileMappingEditView: View {
                 VStack {
                     Text("The interpreters are used to determine the syntax from the #! header in the document.", tableName: "SyntaxEditor", comment: "description")
                         .controlSize(.small)
-                        .padding(.top, 18)
+                        .padding(.top, 20)
                     Spacer()
                     HStack {
                         Spacer()

@@ -36,8 +36,9 @@ struct SyntaxCommentEditView: View {
     
     var body: some View {
         
-        VStack(spacing: 20) {
+        VStack {
             CommentDelimitersEditView(comment: $comment)
+                .padding(.bottom)
             SyntaxHighlightEditView(items: $highlights, helpAnchor: "syntax_comment_settings")
         }
     }

@@ -36,7 +36,7 @@ struct CharacterCountOptionsSheetView: View {
     
     var body: some View {
         
-        VStack(spacing: 20) {
+        VStack {
             CharacterCountOptionsView()
             
             HStack {
@@ -51,6 +51,7 @@ struct CharacterCountOptionsSheetView: View {
                     self.dismiss()
                 }
             }
+            .padding(.top)
         }
         .fixedSize()
         .scenePadding()
