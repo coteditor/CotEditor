@@ -6422,7 +6422,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書類未選択"
+            "value" : "書類が選択されていません"
           }
         },
         "ko" : {
