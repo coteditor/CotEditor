@@ -3,6 +3,10 @@
 6.0.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the default editor font size to 13 pt.
+
 
 
 6.0.2 (749)

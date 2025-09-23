@@ -37,7 +37,7 @@ enum FontType: String, CaseIterable, Codable {
     ///
     /// - Parameter size: The size of the font.
     /// - Returns: An NSFont.
-    func systemFont(size: Double = 0) -> sending NSFont {
+    func systemFont(size: Double = 13) -> sending NSFont {
         
         switch self {
             case .standard:
