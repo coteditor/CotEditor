@@ -441,94 +441,6 @@
         }
       }
     },
-    "Highlight “<>”" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zvýraznit <>"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„<>“ markieren"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Highlight “<>”"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Resaltar “<>”"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Surligner “<>”"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Evidenzia “<>”"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "“<>”をハイライト"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "‘<>’ 강조"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Markeer '<>'"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wyróżniaj nawiasy <>"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Destacar “<>”"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "“<>” ayraçlarını vurgula"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高亮“<>”"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高亮「<>」"
-          }
-        }
-      }
-    },
     "Highlight instances of selected text" : {
       "localizations" : {
         "cs" : {
@@ -617,42 +529,42 @@
         }
       }
     },
-    "Highlight matching braces “()” “[]” “{}”" : {
+    "Highlight matching braces" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zvýraznit odpovídající závorky (), [], {}"
+            "value" : "Zvýraznit odpovídající závorky"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Passende Klammern „()“ „[]“ „{}“ markieren"
+            "value" : "Passende Klammern markieren"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Highlight matching braces “()” “[]” “{}”"
+            "value" : "Highlight matching braces"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resaltar “()” “[]” “{}”"
+            "value" : "Resaltar los corchetes coincidentes"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Surligner les “()” “[]” “{}” associés"
+            "value" : "Surligner les accolades associés"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Evidenzia le parentesi “()” “[]” “{}” accoppiate"
+            "value" : "Evidenzia le parentesi accoppiate"
           }
         },
         "ja" : {
@@ -664,43 +576,43 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "일치하는 괄호 ‘()’ ‘[]’ ‘{}’ 강조"
+            "value" : "일치하는 괄호강조"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Markeer overeenkomende accolades '()' '[]' '{}'"
+            "value" : "Markeer overeenkomende accolades"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyróżniaj pasujące nawiasy (), [], {}"
+            "value" : "Wyróżniaj pasujące nawiasy"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Destacar pares de chaves “()” “[]” “{}”"
+            "value" : "Destacar pares de chaves"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eşleşen “()” “[]” “{}” ayraçlarını vurgula"
+            "value" : "Eşleşen ayraçlarını vurgula"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮配对括号“()” “[]” “{}”"
+            "value" : "高亮配对括号"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮配對括弧「()」「[]」「{}」"
+            "value" : "高亮配對括弧"
           }
         }
       }

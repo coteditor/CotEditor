@@ -91,7 +91,7 @@ struct EditSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Link URLs in document", table: "EditSettings"), isOn: $autoLinkDetection)
-                    Toggle(String(localized: "Highlight matching braces “()” “[]” “{}”", table: "EditSettings"), isOn: $highlightBraces)
+                    Toggle(String(localized: "Highlight matching braces", table: "EditSettings"), isOn: $highlightBraces)
                     Toggle(String(localized: "Highlight instances of selected text", table: "EditSettings"), isOn: $highlightSelectionInstance)
                     HStack(alignment: .firstTextBaseline) {
                         Text("Delay:", tableName: "EditSettings")
