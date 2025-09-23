@@ -3,6 +3,9 @@
 6.0.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where the indentation style detection doesn’t work.
 
 
 6.0.1 (747)

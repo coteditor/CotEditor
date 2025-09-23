@@ -117,9 +117,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    override func viewWillAppear() {
+    override func viewDidLoad() {
         
-        super.viewWillAppear()
+        super.viewDidLoad()
         
         let defaults = UserDefaults.standard
         self.observers = [
@@ -200,14 +200,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 .assign(to: \.drawsSeparator, on: self.lineNumberView)
                 .store(in: &observers)
         }
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.observers.removeAll()
     }
     
     
