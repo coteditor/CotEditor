@@ -140,6 +140,7 @@ struct DonationSettingsView: View {
                     }
                     .accessibilityElement(children: .contain)
                 }
+                .tint(.accentColor)
                 .disabled(self.storeKitError != nil)
                 .opacity((self.storeKitError == nil) ? 1 : 0.5)
                 .overlay(alignment: .top) {

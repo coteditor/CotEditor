@@ -5,7 +5,9 @@
 
 ### Fixes
 
+- Fix an issue on macOS 26 where the application crashes when the application crashes by opening the Donation settings pane when a system theme color other than Multicolor is selected in the System Settings > Appearance.
 - Fix an issue where the indentation style detection doesn’t work.
+
 
 
 6.0.1 (747)
