@@ -165,7 +165,9 @@ struct EditorCount: Equatable {
             guard let source = self.source() else { return }
             
             let string = source.string.immutable
-            let selectedRanges = source.selectedRanges.map(\.rangeValue).compactMap({ Range($0, in: string) })
+            let selectedRanges = source.selectedRanges
+                .map(\.rangeValue)
+                .compactMap { Range($0, in: string) }
             let selectedStrings = selectedRanges.map { string[$0] }
             let location = selectedRanges.first?.lowerBound ?? string.startIndex
             
