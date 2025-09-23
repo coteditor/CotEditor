@@ -88,6 +88,7 @@ extension DefaultKeys {
     static let indentWithTabKey = DefaultKey<Bool>("indentWithTabKey")
     static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
+    static let highlightBraces = DefaultKey<Bool>("highlightBraces")
     static let highlightSelectionInstance = DefaultKey<Bool>("highlightSelectionInstance")
     static let selectionInstanceHighlightDelay = DefaultKey<Double>("selectionInstanceHighlightDelay")
     

@@ -42,6 +42,7 @@ struct EditSettingsView: View {
     @AppStorage(.trimsWhitespaceOnlyLines) private var trimsWhitespaceOnlyLines
     
     @AppStorage(.autoLinkDetection) private var autoLinkDetection
+    @AppStorage(.highlightBraces) private var highlightBraces
     @AppStorage(.highlightSelectionInstance) private var highlightSelectionInstance
     @AppStorage(.selectionInstanceHighlightDelay) private var selectionInstanceHighlightDelay
     
@@ -90,6 +91,7 @@ struct EditSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Link URLs in document", table: "EditSettings"), isOn: $autoLinkDetection)
+                    Toggle(String(localized: "Highlight matching braces “()” “[]” “{}”", table: "EditSettings"), isOn: $highlightBraces)
                     Toggle(String(localized: "Highlight instances of selected text", table: "EditSettings"), isOn: $highlightSelectionInstance)
                     HStack(alignment: .firstTextBaseline) {
                         Text("Delay:", tableName: "EditSettings")

@@ -105,6 +105,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var pageGuideColumn: Int = 80  { didSet { self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)} }
     var overscrollRate: Double = 0  { didSet { self.invalidateOverscrollRate() } }
     
+    var highlightsBraces = false
     var highlightsSelectionInstance = false  { didSet { self.invalidateInstanceHighlights() } }
     var selectionInstanceHighlightDelay: Double = 0.5  // seconds
     
@@ -760,7 +761,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
-            self.highlightMatchingBrace(candidates: BracePair.braces)
+            if self.highlightsBraces {
+                self.highlightMatchingBrace(candidates: BracePair.braces)
+            }
             
             // update instances highlight
             if self.highlightsSelectionInstance {
