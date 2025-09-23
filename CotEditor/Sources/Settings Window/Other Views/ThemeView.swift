@@ -37,6 +37,7 @@ struct ThemeView: View {
     @AppStorage(.pinsThemeAppearance) private var pinsThemeAppearance
     @AppStorage(.documentAppearance) private var documentAppearance
     
+    @State private var selection: String = ""
     @State private var theme: Theme = .init()
     @State private var isBundled: Bool = false
     
@@ -46,7 +47,7 @@ struct ThemeView: View {
     var body: some View {
         
         HStack(spacing: 0) {
-            ThemeListView(manager: self.manager, selection: $themeName)
+            ThemeListView(manager: self.manager, selection: $selection)
             
             Divider()
             
@@ -54,16 +55,19 @@ struct ThemeView: View {
                 .frame(width: 360)
                 .onChange(of: self.theme) { _, newValue in
                     do {
-                        try self.manager.save(setting: newValue, name: self.themeName)
+                        try self.manager.save(setting: newValue, name: self.selection)
                     } catch {
                         self.error = error
                     }
                 }
         }
-        .onChange(of: self.documentAppearance, initial: true) {
+        .onAppear {
+            self.selection = self.themeName
+        }
+        .onChange(of: self.documentAppearance) {
             self.themeName = self.manager.userDefaultSettingName
         }
-        .onChange(of: self.themeName, initial: true) { _, newValue in
+        .onChange(of: self.selection) { _, newValue in
             self.setTheme(name: newValue)
         }
         .task {
