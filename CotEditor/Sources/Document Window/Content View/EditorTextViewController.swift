@@ -96,8 +96,11 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     override func loadView() {
         
-        let textView = EditorTextView(textStorage: self.document.textStorage,
-                                      lineEndingScanner: self.document.lineEndingScanner)
+        let textView = EditorTextView(
+            frame: NSRect(x: 0, y: 0, width: 100, height: 60),
+            textStorage: self.document.textStorage,
+            lineEndingScanner: self.document.lineEndingScanner
+        )
         textView.delegate = self
         
         let scrollView = BidiScrollView()
