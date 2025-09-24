@@ -357,12 +357,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.needsUpdateInsertionIndicators = true
         self.needsUpdateLineHighlight = true
-        
-        // set initial scroll position
-        // -> Otherwise, it would shift by the top inset (2024-12, macOS 15).
-        if oldSize.width == 0, newSize.width > 0 {
-            self.scroll(.zero)
-        }
     }
     
     
