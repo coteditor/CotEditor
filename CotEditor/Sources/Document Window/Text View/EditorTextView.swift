@@ -193,7 +193,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.allowsUndo = true
         self.isRichText = false
         self.allowedWritingToolsResultOptions = .plainText
-        self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.linkTextAttributes?.removeValue(forKey: .foregroundColor)
     }
     
@@ -1441,7 +1440,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         assert(Thread.isMainThread)
         
-        guard let paragraphStyle = self.defaultParagraphStyle?.mutable else { return assertionFailure() }
+        let paragraphStyle = (self.defaultParagraphStyle ?? .default).mutable
         
         // set line height
         // -> The actual line height will be calculated in LayoutManager based on this line height multiplier.

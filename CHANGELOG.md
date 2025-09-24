@@ -11,6 +11,7 @@
 ### Fixes
 
 - Fix an issue on macOS 15 where the horizontal scroller appears in editors even when setting lines to wrap.
+- Address a potential crash on macOS 26 that can occur when opening a document.
 
 
 

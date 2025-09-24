@@ -72,9 +72,8 @@ final class FindPanelTextView: RegexTextView {
         // avoid wrapping
         self.isHorizontallyResizable = true
         self.isVerticallyResizable = true
-        self.textContainer!.widthTracksTextView = false
-        self.textContainer!.size = self.infiniteSize
-        self.isHorizontallyResizable = true
+        textContainer.widthTracksTextView = false
+        textContainer.size = self.infiniteSize
         
         // behave as field editor for Tab, Shift-Tab, and Return keys
         self.isFieldEditor = true
