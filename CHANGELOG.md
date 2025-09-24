@@ -8,6 +8,11 @@
 - Change the default editor font size to 13 pt.
 
 
+### Fixes
+
+- Fix an issue on macOS 15 where the horizontal scroller appears in editors even when setting lines to wrap.
+
+
 
 6.0.2 (749)
 --------------------------
