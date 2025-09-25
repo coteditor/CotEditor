@@ -90,6 +90,12 @@
             "value" : "Menu"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -184,6 +190,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comando"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команда"
           }
         },
         "tr" : {
@@ -293,6 +305,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Teclas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
           }
         },
         "tr" : {

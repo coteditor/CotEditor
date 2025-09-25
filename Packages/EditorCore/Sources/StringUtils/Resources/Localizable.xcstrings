@@ -77,6 +77,12 @@
             "value" : "Forma de normalização não oficial baseada em NFC que corresponde a NFD Modificado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неофициальная форма нормализации на основе NFC, соответствующая Модифицированному NFD"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -266,6 +272,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Forma de normalização não oficial baseada em NFD usada em HFS+"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неофициальная форма нормализации на основе NFD, используемая в HFS+"
           }
         },
         "tr" : {
@@ -459,6 +471,12 @@
             "value" : "Decomposição Canônica, seguida de Composição Canônica"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каноническая декомпозиция, за которой следует каноническая композиция"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -648,6 +666,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Decomposição Canônica"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каноническая декомпозиция"
           }
         },
         "tr" : {
@@ -841,6 +865,12 @@
             "value" : "Decomposição de Compatibilidade, seguida de Composição Canônica"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совместимая декомпозиция, за которой следует каноническая композиция"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1032,6 +1062,12 @@
             "value" : "Aplicando NFKC, case-folding e remoção de pontos de código ignorados por padrão"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Применение NFKC, сворачивание регистров и удаление кодовых точек, которые можно игнорировать по умолчанию"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1221,6 +1257,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Decomposição de Compatibilidade"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совместимая декомпозиция"
           }
         },
         "tr" : {

@@ -77,6 +77,12 @@
             "value" : "Imprimir Fundos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напечатать фон"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -171,6 +177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tamanho da Fonte"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер шрифта"
           }
         },
         "tr" : {
@@ -269,6 +281,12 @@
             "value" : "Cabeçalho"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -363,6 +381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Imprimir Cabeçalhos e Rodapés"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печатать заголовки и колонтитулы"
           }
         },
         "tr" : {
@@ -461,6 +485,12 @@
             "value" : "Imprimir Números de Linha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печатать номера строк"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -555,6 +585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Imprimir Invisíveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печатать невидимые символы"
           }
         },
         "tr" : {
@@ -666,6 +702,12 @@
             "value" : "Rodapé"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нижний колонтитул"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -760,6 +802,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Preto e Branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чернобелое"
           }
         },
         "tr" : {
@@ -869,6 +917,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "pt"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "точек"
           }
         },
         "tr" : {
@@ -991,6 +1045,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвет"
           }
         },
         "tr" : {

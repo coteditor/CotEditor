@@ -77,6 +77,12 @@
             "value" : "Na Seleção"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В выбранном"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -171,6 +177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usar estas regras consecutivamente para substituir:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выполните замену, используя эти правила последовательно сверху вниз:"
           }
         },
         "tr" : {
@@ -269,6 +281,12 @@
             "value" : "Destaque todas as ocorrências das regras de substituição."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделите все совпадения правил замены."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -363,6 +381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IM"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
           }
         },
         "tr" : {
@@ -461,6 +485,12 @@
             "value" : "Ignorar Maiúsculas/Minúsculas (sem distinção)"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать регистр символов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -555,6 +585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Regras inválidas serão ignoradas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недействительные правила будут пропущены."
           }
         },
         "tr" : {
@@ -666,6 +702,12 @@
             "value" : "Opções avançadas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные настройки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -760,6 +802,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar opções avançadas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать дополнительные настройки"
           }
         },
         "tr" : {
@@ -858,6 +906,12 @@
             "value" : "Selecione para ignorar maiúsculas/minúsculas ao buscar."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите чтобы игнорировать регистр символов при поиске"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -952,6 +1006,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Destacar Tudo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделить все"
           }
         },
         "tr" : {
@@ -1050,6 +1110,12 @@
             "value" : "Ative"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1144,6 +1210,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substituir Tudo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить все"
           }
         },
         "tr" : {
@@ -1242,6 +1314,12 @@
             "value" : "Selecione para buscar com expressão regular."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите чтобы использовать поиск по регулярному выражению."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1336,6 +1414,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substituir por"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить на"
           }
         },
         "tr" : {
@@ -1434,6 +1518,12 @@
             "value" : "Substitua todas as ocorrências conforme as regras de substituição."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замените все совпадения в соответствии с правилами замены."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1528,6 +1618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecione para buscar apenas no texto da seleção."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите, чтобы заменить текст только в выделенном."
           }
         },
         "tr" : {
@@ -1626,6 +1722,12 @@
             "value" : "Selecione esta regra na para usar na substituição"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите, чтобы использовать это правило замены."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1720,6 +1822,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Descrição"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
           }
         },
         "tr" : {
@@ -1818,6 +1926,12 @@
             "value" : "ER"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1914,6 +2028,12 @@
             "value" : "Expressão Regular"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярное выражение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2008,6 +2128,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск"
           }
         },
         "tr" : {

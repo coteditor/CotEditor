@@ -77,6 +77,12 @@
             "value" : "Código"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Код"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -171,6 +177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "General"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основная"
           }
         },
         "tr" : {
@@ -268,6 +280,12 @@
             "value" : "Atributos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аттрибуты"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -361,6 +379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Caracteres"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы"
           }
         },
         "tr" : {
@@ -458,6 +482,12 @@
             "value" : "Comandos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команды"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -551,6 +581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comentários"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комментарии"
           }
         },
         "tr" : {
@@ -648,6 +684,12 @@
             "value" : "Palavras-chave"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключевые слова"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -741,6 +783,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Números"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номера"
           }
         },
         "tr" : {
@@ -838,6 +886,12 @@
             "value" : "Strings"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Строки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -931,6 +985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Типы"
           }
         },
         "tr" : {
@@ -1028,6 +1088,12 @@
             "value" : "Valores"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значения"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1121,6 +1187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Variáveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переменные"
           }
         },
         "tr" : {
