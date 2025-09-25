@@ -69,6 +69,12 @@
             "value" : "0 ou mais vezes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 раз"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
             "value" : "1 ou 0 vez"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 или 0 раз"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 ou mais vezes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 и больше раз"
           }
         },
         "tr" : {
@@ -334,6 +352,12 @@
             "value" : "Âncoras"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Якорь"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -420,6 +444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "qualquer caractere"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "любой символ"
           }
         },
         "tr" : {
@@ -510,6 +540,12 @@
             "value" : "qualquer caractere entre A e Z"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "любой символ от А до Я"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -596,6 +632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "qualquer caractere fora de A a Z"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "любой символ кроме от А до Я"
           }
         },
         "tr" : {
@@ -686,6 +728,12 @@
             "value" : "ao menos 0, mas não mais que n vezes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "больше 0 но не больше N раз"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -774,6 +822,12 @@
             "value" : "ao menos n, mas não mais que m vezes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "больше N но не больше M раз"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -860,6 +914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ao menos n vezes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "больше N раз"
           }
         },
         "tr" : {
@@ -951,6 +1011,12 @@
             "value" : "Referência Inversa"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обратно к описанию"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1040,6 +1106,12 @@
             "value" : "Sintaxe Básica de Expressões Regulares"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Базовый синтаксис"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1126,6 +1198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "início da linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "начало строки"
           }
         },
         "tr" : {
@@ -1217,6 +1295,12 @@
             "value" : "Caracteres"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1305,6 +1389,12 @@
             "value" : "número decimal"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "числовое значение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1391,6 +1481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "final da linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "конец строки"
           }
         },
         "tr" : {
@@ -1482,6 +1578,12 @@
             "value" : "Grupos Ampliados"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Группа"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1568,6 +1670,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "primeira ocorrência"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "первое совпадение"
           }
         },
         "tr" : {
@@ -1658,6 +1766,12 @@
             "value" : "ICU Regular Expressions"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICU регулярное выражение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1744,6 +1858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "lookahead"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "вокруг"
           }
         },
         "tr" : {
@@ -1834,6 +1954,12 @@
             "value" : "lookbehind"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "за"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1920,6 +2046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n vezes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N раз"
           }
         },
         "tr" : {
@@ -2010,6 +2142,12 @@
             "value" : "caractere de nova linha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ новой строки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2096,6 +2234,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "caractere de espaço não em branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ «без пробела»"
           }
         },
         "tr" : {
@@ -2187,6 +2331,12 @@
             "value" : "Quantificadores"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Квантификаторы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2273,6 +2423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "caractere de tabulação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ  TAB"
           }
         },
         "tr" : {
@@ -2364,6 +2520,12 @@
             "value" : "A sintaxe está em conformidade com as especificações %@."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фортам соответсвует %@ спецификации."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2450,6 +2612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "caractere de espaço em branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пробел"
           }
         },
         "tr" : {
@@ -2540,6 +2708,12 @@
             "value" : "limite da palavra"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "слово целиком"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2626,6 +2800,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "caractere de palavra"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "часть слова"
           }
         },
         "tr" : {

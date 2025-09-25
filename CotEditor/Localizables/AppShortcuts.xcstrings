@@ -102,6 +102,14 @@
             ]
           }
         },
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Создать документ в ${applicationName}"
+            ]
+          }
+        },
         "tr" : {
           "stringSet" : {
             "state" : "translated",

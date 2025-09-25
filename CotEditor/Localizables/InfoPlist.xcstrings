@@ -69,6 +69,12 @@
             "value" : "Script AWK"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AWK"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -155,6 +161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bibliografia BibTeX"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BibTeX"
           }
         },
         "tr" : {
@@ -245,6 +257,12 @@
             "value" : "Cabeçalho C"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок C"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,6 +349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonte C"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исходник C"
           }
         },
         "tr" : {
@@ -421,6 +445,12 @@
             "value" : "Fonte C#"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исходник C#"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cabeçalho C++"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок C++"
           }
         },
         "tr" : {
@@ -597,6 +633,12 @@
             "value" : "Fonte C++"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исходник C++"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -680,6 +722,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS"
@@ -781,6 +829,12 @@
             "value" : "CotEditor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -877,6 +931,12 @@
             "value" : "Cot editor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cot editor"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -963,6 +1023,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configuração"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфигурация"
           }
         },
         "tr" : {
@@ -1053,6 +1119,12 @@
             "value" : "Substituição de definição do CotEditor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл замен CotEditor"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1139,6 +1211,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tema do CotEditor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема CotEditor"
           }
         },
         "tr" : {
@@ -1229,6 +1307,12 @@
             "value" : "Fonte D"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исходник D"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1317,6 +1401,12 @@
             "value" : "Script Dart"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dart"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1400,6 +1490,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diff"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diff"
@@ -1493,6 +1589,12 @@
             "value" : "Fonte Fortran"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortran"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1579,6 +1681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script Go"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GO"
           }
         },
         "tr" : {
@@ -1669,6 +1777,12 @@
             "value" : "Script Haskell"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haskell"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1757,6 +1871,12 @@
             "value" : "Documento HTML"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTML"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1840,6 +1960,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "INI"
@@ -1933,6 +2059,12 @@
             "value" : "Fonte Java"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Java"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2016,6 +2148,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "JavaScript"
@@ -2109,6 +2247,12 @@
             "value" : "Documento JSON"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2195,6 +2339,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script Julia"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Julia"
           }
         },
         "tr" : {
@@ -2285,6 +2435,12 @@
             "value" : "Script Kotlin"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kotlin"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2371,6 +2527,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script Lisp"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LISP"
           }
         },
         "tr" : {
@@ -2461,6 +2623,12 @@
             "value" : "Script Lua"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LUA"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2549,6 +2717,12 @@
             "value" : "Documento Markdown"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markdown"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2635,6 +2809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script Mojo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mojo"
           }
         },
         "tr" : {
@@ -2731,6 +2911,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O CotEditor precisa de aprovação do usuário para controlar outros aplicativos via AppleScript."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor необходимо разрешение на использование AppleScript."
           }
         },
         "tr" : {
@@ -2834,6 +3020,12 @@
             "value" : "Script Perl"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perl"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2920,6 +3112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script PHP"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PHP"
           }
         },
         "tr" : {
@@ -3010,6 +3208,12 @@
             "value" : "Documento de texto simples"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстовой документ"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3096,6 +3300,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script Python"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python"
           }
         },
         "tr" : {
@@ -3186,6 +3396,12 @@
             "value" : "Documento reStructuredText"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст в формате reStructured"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3272,6 +3488,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script Ruby"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruby"
           }
         },
         "tr" : {
@@ -3362,6 +3584,12 @@
             "value" : "Script Rust"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3450,6 +3678,12 @@
             "value" : "Fonte Scala"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scala"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3533,6 +3767,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SVG"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SVG"
@@ -3626,6 +3866,12 @@
             "value" : "Script Scheme"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scheme"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3712,6 +3958,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script de Shell"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell"
           }
         },
         "tr" : {
@@ -3802,6 +4054,12 @@
             "value" : "Fonte SQL"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SQL"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3888,6 +4146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonte Swift"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swift"
           }
         },
         "tr" : {
@@ -3978,6 +4242,12 @@
             "value" : "Documento TeX"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TeX"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4064,6 +4334,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Documento Textile"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textile"
           }
         },
         "tr" : {
@@ -4154,6 +4430,12 @@
             "value" : "Documento TOML"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOML"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4237,6 +4519,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UUID"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "UUID"
@@ -4330,6 +4618,12 @@
             "value" : "Fonte Verilog"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verilog"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4416,6 +4710,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonte VHDL"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VHDL"
           }
         },
         "tr" : {
@@ -4506,6 +4806,12 @@
             "value" : "Documento XML"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XML"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4592,6 +4898,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Documento YAML"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YAML"
           }
         },
         "tr" : {

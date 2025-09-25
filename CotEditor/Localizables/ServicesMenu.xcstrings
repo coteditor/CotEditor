@@ -71,6 +71,12 @@
             "value" : "Nova Janela do CotEditor Contendo Seleção"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новое окно CotEditor, которое содержит выделенное"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -158,6 +164,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir no CotEditor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть в CotEditor"
           }
         },
         "tr" : {
