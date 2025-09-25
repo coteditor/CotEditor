@@ -2792,6 +2792,12 @@
             "value" : "Tem certeza de que deseja apagar “%@”?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы действительно хотите удалить “%@”?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2885,6 +2891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O arquivo “%@” já está aberto em outra janela."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл “%@” уже открыт в другом окне."
           }
         },
         "tr" : {
@@ -2983,6 +2995,12 @@
             "value" : "Para abrir esta janela, feche a atual primeiro."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для его открытия необходимо закрыть существующее окно."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3077,6 +3095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não Salvar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не сохранять"
           }
         },
         "tr" : {
@@ -3175,6 +3199,12 @@
             "value" : "As alterações serão perdidas se você não salvá-las. Caracteres incompatíveis são substituídos ou excluídos ao salvar."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши изменения будут потеряны, если вы их не сохраните. Несовместимые символы будут заменены, либо потеряны при сохранении."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3269,6 +3299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deseja salvar as alterações realizadas no documento “%@”?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить изменения в документе“%@”?"
           }
         },
         "tr" : {
@@ -3366,6 +3402,12 @@
             "value" : "O documento não é editável."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ только для чтения."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3461,6 +3503,12 @@
             "value" : "Para fazer alterações no conteúdo do documento, primeiro permita a edição."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ только для чтения, необходимо сначала разрешить его редактирование."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3554,6 +3602,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O arquivo “%@” não parece ser de dados de texto."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В файле “%@” не совместимых текстовых данных."
           }
         },
         "tr" : {
@@ -3652,6 +3706,12 @@
             "value" : "O arquivo aparenta ser %@.\n\nDeseja realmente abrir o arquivo?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл, по-видимому %@.\n\nВы действительно хотите его открыть?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3746,6 +3806,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "um tipo desconhecido"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "не известный тип"
           }
         },
         "tr" : {
@@ -3844,6 +3910,12 @@
             "value" : "Abrir"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3939,6 +4011,12 @@
             "value" : "O arquivo “%1$@” tem %2$@ de tamanho."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл “%1$@” имеет размер %2$@."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4032,6 +4110,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A abertura de um arquivo tão grande pode deixar o aplicativo lento ou sem responder.\n\nDeseja realmente abrir o arquivo?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открытие такого большого файла может сделать приложение медленным или оно может зависнуть.\n\nВы действительно хотите попытаться открыть файл?"
           }
         },
         "tr" : {
@@ -4130,6 +4214,12 @@
             "value" : "Revisão de Caracteres Incompatíveis"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотреть не поддерживаемые символы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4224,6 +4314,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salvar Texto Disponíveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить доступный текст"
           }
         },
         "tr" : {
@@ -4322,6 +4418,12 @@
             "value" : "Caracteres incompatíveis são substituídos ou excluídos ao salvar. Quer salvar mesmo assim?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несовместимые символы либо заменяются, либо удялятся при сохранении. Вы все равно хотите сохранить?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4415,6 +4517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
           }
         },
         "tr" : {
@@ -4512,6 +4620,12 @@
             "value" : "Converter"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразовать"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4605,6 +4719,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reinterpretar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интерпретировать по-новому"
           }
         },
         "tr" : {
@@ -4702,6 +4822,12 @@
             "value" : "Deseja usar “%@” para converter ou reinterpretar este documento?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы хотите преобразовать или интерпретировать этот документ используя “%@”?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4795,6 +4921,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alteração de codificação de texto"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировка текста изменилась"
           }
         },
         "tr" : {
@@ -4893,6 +5025,12 @@
             "value" : "%1$@ - cópia %2$lld"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ копия %2$lld"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4987,6 +5125,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ - cópia"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ копий"
           }
         },
         "tr" : {
@@ -5084,6 +5228,12 @@
             "value" : "O caminho absoluto do arquivo solto."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Абсолютный путь к удаленному файлу."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5177,6 +5327,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O nome do diretório superior do arquivo solto."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя родительского каталога удаленного файла."
           }
         },
         "tr" : {
@@ -5274,6 +5430,12 @@
             "value" : "Conteúdo do arquivo (se o arquivo solto for um arquivo de texto)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Если удаленный файл является текстовым файлом) содержимое файла."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5367,6 +5529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A extensão do arquivo solto."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение удаленного файла."
           }
         },
         "tr" : {
@@ -5464,6 +5632,12 @@
             "value" : "A extensão do arquivo solto (convertida em minúsculas)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение удаленного файла (преобразуется в строчные буквы)."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5557,6 +5731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A extensão do arquivo solto (convertida em maiúsculas)."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение удаленного файла (преобразуется в заглавную буквы)."
           }
         },
         "tr" : {
@@ -5654,6 +5834,12 @@
             "value" : "O nome do arquivo solto, incluindo a extensão (se houver)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя удаленного файла, включая расширение (если существует)."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5747,6 +5933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O nome do arquivo solto, sem a extensão."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя удаленного файла без расширения."
           }
         },
         "tr" : {
@@ -5844,6 +6036,12 @@
             "value" : "Altura da imagem (se o arquivo solto for uma imagem)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Если удаленный файл является изображением) высота изображения."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5937,6 +6135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Largura da imagem (se o arquivo solto for uma imagem)."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Если удаленный файл является изображением) ширина изображения."
           }
         },
         "tr" : {
@@ -6034,6 +6238,12 @@
             "value" : "O caminho relativo entre o arquivo solto e o documento."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относительный путь между удаленным файлом и документом."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6127,6 +6337,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фильтр"
           }
         },
         "tr" : {
@@ -6224,6 +6440,12 @@
             "value" : "Limpar Recentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбросить фильры"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6319,6 +6541,12 @@
             "value" : "Filtros Recentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использованные фильтры"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6412,6 +6640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum filtro recente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет использованных фильтров"
           }
         },
         "tr" : {
@@ -6510,6 +6744,12 @@
             "value" : "“%@” já existe. Deseja substituí-lo?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” уже существует. Заменить?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6604,6 +6844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uma configuração personalizada com o mesmo nome já existe. Substituí-la irá sobrescrever seu conteúdo atual."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательский параметр с таким именем уже существует. Замена его перезапишет его текущее содержимое."
           }
         },
         "tr" : {
@@ -6701,6 +6947,12 @@
             "value" : "Converter"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразовать"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6794,6 +7046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать"
           }
         },
         "tr" : {
@@ -6891,6 +7149,12 @@
             "value" : "Revisar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотреть"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6984,6 +7248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Você quer converter todos os finais de linha para %@, o final de linha mais comum neste documento?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы хотите преобразовать все окончания строк в %@, самое распространенное окончание строк в этом документе?"
           }
         },
         "tr" : {
@@ -7081,6 +7351,12 @@
             "value" : "O final de linha mais comum neste documento é %@."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наиболее распространенное окончание строк этом документе, это %@."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7174,6 +7450,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O documento contém finais de linha inconsistentes."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В документе есть непоследовательные окончания строк."
           }
         },
         "tr" : {
@@ -7272,6 +7554,12 @@
             "value" : "Não pergunte novamente para este arquivo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не спрашивать про этот документ снова"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7367,6 +7655,12 @@
             "value" : "O nome “%@” já está sendo usado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя “%@” уже выбрано."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7460,6 +7754,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nome não pode estar vazio."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя не может быть пустым."
           }
         },
         "tr" : {
@@ -7558,6 +7858,12 @@
             "value" : "Nome não pode conter “%@”."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя не может содержать “%@”."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7651,6 +7957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O nome não pode conter novas linhas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя должно быть в одну строку."
           }
         },
         "tr" : {
@@ -7748,6 +8060,12 @@
             "value" : "Escolha outro nome."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите другое имя."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7841,6 +8159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O nome “%@” é reservado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя “%@” является зарезервированным."
           }
         },
         "tr" : {
@@ -7938,6 +8262,12 @@
             "value" : "Nome não pode começar com “.”."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя не может начинаться с точки."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8031,6 +8361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O nome é muito longo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя слишком длинное."
           }
         },
         "tr" : {
@@ -8129,6 +8465,12 @@
             "value" : "Preencha o modelo a seguir e publique-o em %1$@ ou envie-o para o e-mail %2$@. Note que o conteúdo do e-mail enviado pode ser compartilhado na página de problemas do GitHub. Escreva seus comentários em inglês ou japonês."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заполните следующий шаблон и разместите его на %1$@ или отправьте на %2$@. Обратите внимание, что содержимое отправленного электронного письма будет размещено на странице проблемы. Пожалуйста, напишите содержимое на английском или японском языках."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8222,6 +8564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ambiente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Окружение"
           }
         },
         "tr" : {
@@ -8319,6 +8667,12 @@
             "value" : "Resultado Esperado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ожидаемый результат"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8414,6 +8768,12 @@
             "value" : "Descrição Curta"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Короткое описание"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8507,6 +8867,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passos para Reproduzir o Problema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаги воспроизведения проблемы"
           }
         },
         "tr" : {
@@ -8605,6 +8971,12 @@
             "value" : "Relatório de Problema"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчет о ошибке"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8698,6 +9070,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Múltiplos itens selecionados"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несколько элементов выбрано"
           }
         },
         "tr" : {
@@ -8795,6 +9173,12 @@
             "value" : "Nenhum item selecionado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не выбрано элементов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8882,6 +9266,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Última modificação em %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последнее изменение в %@"
           }
         },
         "tr" : {
@@ -8980,6 +9370,12 @@
             "value" : "Visite o URL"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти по URL"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9073,6 +9469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O documento contém caracteres incompatíveis com “%@”."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ содержит символы которые не совместимы с “%@.”"
           }
         },
         "tr" : {
@@ -9171,6 +9573,12 @@
             "value" : "Alterar Codificação"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить кодировку"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9264,6 +9672,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Caracteres incompatíveis são substituídos ou excluídos ao salvar. Você deseja alterar a codificação de texto e revisar as incompatibilidades de caracteres?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несовместимые символы либо заменятся, либо удалятся при сохранении. Вы хотите изменить кодировку текста и просмотреть несовместимые символы?"
           }
         },
         "tr" : {
@@ -9361,6 +9775,12 @@
             "value" : "Nenhum"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9451,6 +9871,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CMYK"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CMYK"
@@ -9552,6 +9978,12 @@
             "value" : "Nome do Dispositivo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceN"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9645,6 +10077,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cinza"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gray"
           }
         },
         "tr" : {
@@ -9743,6 +10181,12 @@
             "value" : "Indexado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indexed"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9833,6 +10277,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lab"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lab"
@@ -9934,6 +10384,12 @@
             "value" : "Padrão"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pattern"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10024,6 +10480,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RGB"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RGB"
@@ -10124,6 +10586,12 @@
             "value" : "OK"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10211,6 +10679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impresso em %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напечатано на %@"
           }
         },
         "tr" : {
@@ -10308,6 +10782,12 @@
             "value" : "O documento não tem um arquivo para reinterpretar."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В документе нет файла для переинтерпретирования."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10401,6 +10881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A codificação de texto “%@” não pôde ser usada para reinterpretar o documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ не может быть переинтерпретирован с использованием текстовой кодировки %@.”"
           }
         },
         "tr" : {
@@ -10498,6 +10984,12 @@
             "value" : "O documento pode ter sido salvo com outra codificação de texto ou não ser um arquivo de texto."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возможно, документ был сохранен с использованием другой кодировки текста, или он не текстовый файл."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10591,6 +11083,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum documento para obter a entrada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет документа для ввода."
           }
         },
         "tr" : {
@@ -10688,6 +11186,12 @@
             "value" : "Nenhum documento para colocar a saída."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет документа для вывода."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10781,6 +11285,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O documento não é editável."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ только для чтения."
           }
         },
         "tr" : {
@@ -10878,6 +11388,12 @@
             "value" : "O script “%@” não existe."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт “%@” не существует."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10971,6 +11487,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O arquivo de script “%@” não pôde ser aberto."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт “%@” невозможно открыть."
           }
         },
         "tr" : {
@@ -11068,6 +11590,12 @@
             "value" : "O script “%@” não pode ser executado porque você não tem permissão de execução."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт “%@” не может быть выполнен, так как не хватает прав."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11161,6 +11689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verifique as permissões do arquivo de script."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверьте права выполнения скрипта."
           }
         },
         "tr" : {
@@ -11258,6 +11792,12 @@
             "value" : "O script “%@” não pôde ser lido."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт “%@” не возможно прочитать."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11351,6 +11891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verifique o arquivo de script."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверьте файл скрипта."
           }
         },
         "tr" : {
@@ -11448,6 +11994,12 @@
             "value" : "“%@” não pôde ser apagado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” не может быть удален."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11541,6 +12093,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” não pôde ser importado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” не может быть импортирован."
           }
         },
         "tr" : {
@@ -11638,6 +12196,12 @@
             "value" : "“%@” não pôde ser carregado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” не может быть загружен."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11731,6 +12295,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erro de decodificação: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка декодирования %@"
           }
         },
         "tr" : {
@@ -11828,6 +12398,12 @@
             "value" : "O arquivo original de “%@” não foi encontrado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет оригинального файла для “%@”."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11921,6 +12497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” já está sendo usado pelo comando “%@”."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%1$@” уже используется “%2$@” командой."
           }
         },
         "tr" : {
@@ -12018,6 +12600,12 @@
             "value" : "A tecla Shift só pode ser usada em conjunto com outra tecla de modificação."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавишу Shift можно использовать только с другой клавишей-модификатором."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12111,6 +12699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não é possível usar uma única tecla como atalho."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Одиночный тип недопустим для ярлыка."
           }
         },
         "tr" : {
@@ -12208,6 +12802,12 @@
             "value" : "A combinação “%@” não é suportada pela customização de combinações de teclas."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбинация “%@” не может быть переопределена."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12301,6 +12901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A posição do cursor depois de inserir o fragmento."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точка после вставки фрагмента."
           }
         },
         "tr" : {
@@ -12398,6 +13004,12 @@
             "value" : "O texto selecionado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный текст."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12491,6 +13103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет"
           }
         },
         "tr" : {
@@ -12589,6 +13207,12 @@
             "value" : "Desconhecido"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестно"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12682,6 +13306,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Descartar Alterações"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отменить изменения"
           }
         },
         "tr" : {
@@ -12780,6 +13410,12 @@
             "value" : "Você realmente deseja descartar suas alterações e reabrir o documento usando “%@”?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите отменить свои изменения и повторно открыть документ с помощью“%@”?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12875,6 +13511,12 @@
             "value" : "O documento tem alterações não salvas."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В документе есть не сохраненные изменения."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12964,6 +13606,12 @@
             "value" : "Sem Título"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13051,6 +13699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "pasta sem título"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый документ"
           }
         },
         "tr" : {
@@ -13148,6 +13802,12 @@
             "value" : "Manter Edição do CotEditor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить CotEditor’s редакцию"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13241,6 +13901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atualizar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновить"
           }
         },
         "tr" : {
@@ -13338,6 +14004,12 @@
             "value" : "Deseja manter a edição do CotEditor ou atualizar para a edição modificada?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы хотите сохранить редакцию CotEditor, или обновить до модифицированной версии?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13433,6 +14105,12 @@
             "value" : "O arquivo foi alterado por outro aplicativo."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл был изменен другим приложением."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13526,6 +14204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O arquivo foi alterado por outro aplicativo. Também há alterações não salvas no CotEditor."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл был изменен другим приложением. Есть также не сохраненные изменения в CotEditor."
           }
         },
         "tr" : {

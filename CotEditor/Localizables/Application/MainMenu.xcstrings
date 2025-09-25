@@ -69,6 +69,12 @@
             "value" : "Permitir Edição"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить изменение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
             "value" : "Maior"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Больше"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -250,6 +262,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar Atualizações…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверить обновление…"
           }
         },
         "tr" : {
@@ -340,6 +358,12 @@
             "value" : "Adicionar Comentário"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комментировать"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -426,6 +450,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Converter Recuo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразовать отступ"
           }
         },
         "tr" : {
@@ -516,6 +546,12 @@
             "value" : "Copiar como Texto com Formatação"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копировать с форматированием"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -602,6 +638,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Personalizar Lista de Codificações…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить список кодировок…"
           }
         },
         "tr" : {
@@ -692,6 +734,12 @@
             "value" : "Apagar Linhas Duplicadas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить дубликаты строк"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -780,6 +828,12 @@
             "value" : "Apagar Linha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить строку"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -866,6 +920,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Duplicar Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублировать строку"
           }
         },
         "tr" : {
@@ -957,6 +1017,12 @@
             "value" : "Codificação para “%@”"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировать в “%@”"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1043,6 +1109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ocultar Guias de Recuo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть направляющие отступа"
           }
         },
         "tr" : {
@@ -1133,6 +1205,12 @@
             "value" : "Ocultar Inspetor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть инспектор"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1219,6 +1297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ocultar Invisíveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть невидимые символы"
           }
         },
         "tr" : {
@@ -1309,6 +1393,12 @@
             "value" : "Ocultar Números das Linhas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть номера строк"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1395,6 +1485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ocultar Barra de Navegação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть панель навигации"
           }
         },
         "tr" : {
@@ -1485,6 +1581,12 @@
             "value" : "Ocultar Guia da Página"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть руководство"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1571,6 +1673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ocultar Barra Lateral"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть боковую панель"
           }
         },
         "tr" : {
@@ -1661,6 +1769,12 @@
             "value" : "Ocultar Barra de Estado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть строку состояния"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1747,6 +1861,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inserir Código de Cor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить код Цвета"
           }
         },
         "tr" : {
@@ -1837,6 +1957,12 @@
             "value" : "Inserir Fragmento"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить фрагмент"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1923,6 +2049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inserir Texto"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить текст"
           }
         },
         "tr" : {
@@ -2013,6 +2145,12 @@
             "value" : "Inspecionar Caractere"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверить символ"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2099,6 +2237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Juntar Linhas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объединить строки"
           }
         },
         "tr" : {
@@ -2190,6 +2334,12 @@
             "value" : "Finais de Linha para %@"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактирование строки %@"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2278,6 +2428,12 @@
             "value" : "Mover Linha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подвинуть строку"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2364,6 +2520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir Pasta de Scripts"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть папку скриптов"
           }
         },
         "tr" : {
@@ -2455,6 +2617,12 @@
             "value" : "Opção-clique para abrir o script no editor."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Option + клик правой кнопкой мыши, чтобы открыть редактор скриптов."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2541,6 +2709,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impedir Edição"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запретить редактирование"
           }
         },
         "tr" : {
@@ -2637,6 +2811,12 @@
             "value" : "Restaurar Padrão"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбросить до поумлочанию"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2723,6 +2903,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inverter Linhas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инвертировать строки"
           }
         },
         "tr" : {
@@ -2813,6 +2999,12 @@
             "value" : "Selecionar Tudo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать все"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2899,6 +3091,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecionar Coluna Abaixo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать столбец вниз"
           }
         },
         "tr" : {
@@ -2990,6 +3188,12 @@
             "value" : "Selecionar Coluna a Esquerda"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать столбец влево"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3077,6 +3281,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecionar Coluna a Direita"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать столбец вправо"
           }
         },
         "tr" : {
@@ -3167,6 +3377,12 @@
             "value" : "Selecionar Coluna Acima"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать столбец вверх"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3253,6 +3469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deslocar à Esquerda"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сдвинуть влево"
           }
         },
         "tr" : {
@@ -3343,6 +3565,12 @@
             "value" : "Deslocar à Direita"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сдвинуть вправо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3429,6 +3657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar Guias de Recuo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать направляющие отступа"
           }
         },
         "tr" : {
@@ -3519,6 +3753,12 @@
             "value" : "Mostrar Inspetor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать инспектор"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3605,6 +3845,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar Invisíveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать скрытые символы"
           }
         },
         "tr" : {
@@ -3695,6 +3941,12 @@
             "value" : "Mostrar Números das Linhas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать номера строк"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3781,6 +4033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar Barra de Navegação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать панель навигации"
           }
         },
         "tr" : {
@@ -3871,6 +4129,12 @@
             "value" : "Mostrar Guia da Página"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать руководство"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3957,6 +4221,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar Barra Lateral"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать боковую панель"
           }
         },
         "tr" : {
@@ -4047,6 +4317,12 @@
             "value" : "Mostrar Barra de Estado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать строку состояния"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4133,6 +4409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Linhas Aleatórias"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перемешать строки"
           }
         },
         "tr" : {
@@ -4229,6 +4511,12 @@
             "value" : "Menor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меньше"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4315,6 +4603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordenar Linhas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировать строки"
           }
         },
         "tr" : {
@@ -4405,6 +4699,12 @@
             "value" : "Posicionar Editores Horizontalmente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Горизонтальное расположение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4491,6 +4791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Posicionar Editores Verticalmente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикальное расположение"
           }
         },
         "tr" : {
@@ -4581,6 +4887,12 @@
             "value" : "Straighten Quotes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выпрямить цитаты"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4667,6 +4979,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tamanho do Texto"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер текста"
           }
         },
         "tr" : {
@@ -4758,6 +5076,12 @@
             "value" : "A barra lateral está disponível apenas quando uma pasta é aberta como um documento."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боковая панель доступна только при открытии папки в виде документа."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4845,6 +5169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Para exibir caracteres invisíveis, configure-os na janela de Configurações"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы показать невидимые символы, настройте их в свойствах окна"
           }
         },
         "tr" : {
@@ -4935,6 +5265,12 @@
             "value" : "Aparar Espaço em Branco à Direita"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обрезать пробелы в начале строки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5021,6 +5357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remover Comentário"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Убрать комментарий"
           }
         },
         "tr" : {
@@ -5111,6 +5453,12 @@
             "value" : "Desajustar Linhas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить перенос строк"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5197,6 +5545,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajustar Linhas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выключить перенос строк"
           }
         },
         "tr" : {
