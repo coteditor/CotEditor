@@ -30,21 +30,8 @@ final class BidiScroller: NSScroller {
     
     // MARK: Scroller methods
     
+    // -> A subclass is not compatible by default while NSScroller itself returns `true` (2025-09, macOS 26)
     override static var isCompatibleWithOverlayScrollers: Bool  { true }
-    
-    
-    override var frame: NSRect {
-        
-        get { super.frame }
-        
-        set {
-            var newValue = newValue
-            if self.scrollView?.isInconsistentContentDirection == true {
-                newValue.origin.x = self.originX
-            }
-            super.frame = newValue
-        }
-    }
     
     
     override func drawKnob() {
@@ -65,9 +52,9 @@ final class BidiScroller: NSScroller {
         
         var partRect = super.rect(for: part)
         
-        // workaround that the vertical scroller is cropped when .knobSlot is not shown (macOS 12)
+        // workaround that the vertical scroller is cropped when .knobSlot is not shown (macOS 12-15)
         if self.isVertical,
-           self.scrollView?.isInconsistentContentDirection == true,
+           self.isInconsistentContentDirection,
            self.scrollerStyle == .overlay,
            part == .knob,
            partRect.width != 0,
@@ -84,9 +71,9 @@ final class BidiScroller: NSScroller {
     // MARK: Private Methods
     
     /// The scroller view where the receiver participates.
-    private var scrollView: BidiScrollView? {
+    private var scrollView: NSScrollView? {
         
-        self.superview as? BidiScrollView
+        self.superview as? NSScrollView
     }
     
     
@@ -97,42 +84,10 @@ final class BidiScroller: NSScroller {
     }
     
     
-    /// X-origin of the scroller considering the border and the visibility of another scrollers.
-    private var originX: CGFloat {
+    /// Whether the parent scroll view's content direction is inconsistent with user interface layout direction.
+    private var isInconsistentContentDirection: Bool {
         
-        guard let scrollView = self.scrollView else { return 0 }
-        
-        assert(scrollView.isInconsistentContentDirection)
-        
-        let inset = scrollView.contentInsets.left + scrollView.scrollerInsets.left
-        
-        switch (scrollView.contentDirection, self.isVertical) {
-            case (.leftToRight, true):
-                // move vertical scroller to the right side
-                return scrollView.frame.width - self.thickness
-                
-            case (.leftToRight, false):
-                return inset
-                
-            case (.rightToLeft, true):
-                return inset
-                
-            case (.rightToLeft, false):
-                // give a space for the vertical scroller
-                if self.scrollerStyle == .legacy,
-                   scrollView.hasVerticalScroller,
-                   let scroller = scrollView.verticalScroller,
-                   !scroller.isHidden
-                {
-                    return inset + scroller.thickness
-                } else {
-                    return inset
-                }
-                
-            @unknown default:
-                assertionFailure()
-                return inset
-        }
+        (self.superview as? BidiScrollView)?.isInconsistentContentDirection == true
     }
     
     
@@ -143,7 +98,7 @@ final class BidiScroller: NSScroller {
         
         guard
             self.isVertical,
-            self.scrollView?.isInconsistentContentDirection == true
+            self.isInconsistentContentDirection
         else { return }
         
         let flip = NSAffineTransform()

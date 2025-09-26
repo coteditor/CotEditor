@@ -64,6 +64,7 @@ public final class BidiScrollView: NSScrollView {
         
         guard self.isInconsistentContentDirection else { return }
         
+        self.tileScrollers()
         self.adjustContentInsets()
         self.tileRulerView()
     }
@@ -103,7 +104,7 @@ public final class BidiScrollView: NSScrollView {
                     self.contentView.frame.origin.x = thickness
                 }
             @unknown default:
-                assertionFailure()
+                break
         }
     }
     
@@ -129,6 +130,37 @@ public final class BidiScrollView: NSScrollView {
                 self.contentView.contentInsets.left = 0
             @unknown default:
                 assertionFailure()
+        }
+    }
+    
+    
+    /// Horizontally lays out the scrollers by taking the content layout direction into the account.
+    private func tileScrollers() {
+        
+        assert(self.isInconsistentContentDirection)
+        
+        guard let verticalScroller else { return }
+        
+        let inset = self.contentInsets.left + self.scrollerInsets.left
+        
+        verticalScroller.frame.origin.x = if self.contentDirection == .leftToRight {
+            // move vertical scroller to the right side
+            self.frame.width - verticalScroller.thickness
+        } else {
+            inset
+        }
+        
+        guard let horizontalScroller else { return }
+        
+        horizontalScroller.frame.origin.x = if self.contentDirection == .rightToLeft,
+                                               self.scrollerStyle == .legacy,
+                                               self.hasVerticalScroller,
+                                               !verticalScroller.isHidden
+        {
+            // give a space for the vertical scroller
+            inset + verticalScroller.thickness
+        } else {
+            inset
         }
     }
 }
