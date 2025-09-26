@@ -3,6 +3,10 @@
 6.0.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- [trivial] Fix an issue where the editor is initially scrolled a bit.
+
 
 
 6.0.3 (751)
