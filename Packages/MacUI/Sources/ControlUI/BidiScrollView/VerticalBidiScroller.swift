@@ -1,5 +1,5 @@
 //
-//  BidiScroller.swift
+//  VerticalBidiScroller.swift
 //  BidiScrollView
 //
 //  CotEditor
@@ -26,7 +26,8 @@
 
 import AppKit
 
-final class BidiScroller: NSScroller {
+@available(macOS, deprecated: 26)
+final class VerticalBidiScroller: NSScroller {
     
     // MARK: Scroller methods
     
@@ -41,20 +42,12 @@ final class BidiScroller: NSScroller {
     }
     
     
-    override func drawKnobSlot(in slotRect: NSRect, highlight flag: Bool) {
-        
-        self.flipHorizontalCoordinateIfNeeded(for: .knobSlot)
-        super.drawKnobSlot(in: slotRect, highlight: flag)
-    }
-    
-    
     override func rect(for part: NSScroller.Part) -> NSRect {
         
         var partRect = super.rect(for: part)
         
         // workaround that the vertical scroller is cropped when .knobSlot is not shown (macOS 12-15)
-        if self.isVertical,
-           self.isInconsistentContentDirection,
+        if self.isInconsistentContentDirection,
            self.scrollerStyle == .overlay,
            part == .knob,
            partRect.width != 0,
@@ -70,20 +63,6 @@ final class BidiScroller: NSScroller {
     
     // MARK: Private Methods
     
-    /// The scroller view where the receiver participates.
-    private var scrollView: NSScrollView? {
-        
-        self.superview as? NSScrollView
-    }
-    
-    
-    /// Whether the receiver is a vertical scroller.
-    private var isVertical: Bool {
-        
-        self.scrollView?.verticalScroller == self
-    }
-    
-    
     /// Whether the parent scroll view's content direction is inconsistent with user interface layout direction.
     private var isInconsistentContentDirection: Bool {
         
@@ -96,10 +75,7 @@ final class BidiScroller: NSScroller {
     /// - Parameter part: The scroller part drawing in.
     private func flipHorizontalCoordinateIfNeeded(for part: NSScroller.Part) {
         
-        guard
-            self.isVertical,
-            self.isInconsistentContentDirection
-        else { return }
+        guard self.isInconsistentContentDirection else { return }
         
         let flip = NSAffineTransform()
         flip.translateX(by: self.rect(for: part).width, yBy: 0)

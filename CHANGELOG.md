@@ -3,6 +3,10 @@
 6.0.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Workaround the issue on macOS 26 where the editor’s scroller tracks are drawn in a different style from the standard scrollers.
+
 
 
 6.0.3 (751)

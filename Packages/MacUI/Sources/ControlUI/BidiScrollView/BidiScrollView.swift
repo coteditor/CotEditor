@@ -47,8 +47,9 @@ public final class BidiScrollView: NSScrollView {
         
         super.init(frame: frameRect)
         
-        self.verticalScroller = BidiScroller()
-        self.horizontalScroller = BidiScroller()
+        if #unavailable(macOS 26) {
+            self.verticalScroller = VerticalBidiScroller()
+        }
     }
     
     
