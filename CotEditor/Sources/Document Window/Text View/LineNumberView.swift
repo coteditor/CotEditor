@@ -142,7 +142,7 @@ final class LineNumberView: NSView {
             case .horizontal:
                 NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
             case .vertical:
-                NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
+                NSSize(width: NSView.noIntrinsicMetric, height: self.thickness + self.safeAreaInsets.top)
             @unknown default:
                 fatalError()
         }
@@ -335,6 +335,11 @@ final class LineNumberView: NSView {
         assert(textView.enclosingScrollView?.contentView != nil)
         
         self.textViewObservers = [
+            // workaround the issue where the view is trucked under the titlebar area (2025-09, macOS 26)
+            self.publisher(for: \.safeAreaInsets)
+                .filter { [weak self] _ in self?.orientation == .vertical }
+                .sink { [weak self] _ in self?.invalidateIntrinsicContentSize() },
+            
             NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage)
                 .map { $0.object as! NSTextStorage }
                 .filter { $0.editedMask.contains(.editedCharacters) }
