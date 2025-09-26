@@ -133,7 +133,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     // MARK: Private Properties
     
-    private static let textContainerInset: NSSize = .zero
+    private static let textContainerInset = NSSize(width: 4, height: 6)
     
     private let minimumNonContiguousLayoutLength = 5_000_000
     private let automaticCompletionDelay = 0.25

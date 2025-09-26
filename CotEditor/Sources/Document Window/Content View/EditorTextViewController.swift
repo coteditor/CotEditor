@@ -105,8 +105,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         let scrollView = BidiScrollView()
         scrollView.hasVerticalScroller = true
         scrollView.documentView = textView
-        scrollView.contentView.automaticallyAdjustsContentInsets = false
-        scrollView.contentView.contentInsets = NSEdgeInsets(top: 6, left: 4, bottom: 6, right: 4)
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
         let lineNumberView = LineNumberView(textView: textView)
