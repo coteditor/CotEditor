@@ -123,6 +123,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             bottomSeparator.bottomAnchor.constraint(equalTo: footerView.topAnchor),
@@ -131,14 +132,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
-        
-        if #available(macOS 26, *) {
-            scrollView.bottomAnchor.constraint(equalTo: bottomSeparator.topAnchor).isActive = true
-        } else {
-            scrollView.contentView.automaticallyAdjustsContentInsets = false
-            scrollView.contentView.contentInsets.bottom = footerHeight
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        }
+        scrollView.additionalSafeAreaInsets.bottom = footerHeight
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
