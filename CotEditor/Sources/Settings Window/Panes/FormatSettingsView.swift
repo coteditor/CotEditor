@@ -245,6 +245,20 @@ private struct SyntaxListView: View {
                     }
                 }
             }
+            .modifier { content in
+                if #available(macOS 26, *) {
+                    content
+                        .safeAreaBar(edge: .bottom) {
+                            VStack(spacing: 0) {
+                                Divider()
+                                self.bottomAccessoryView
+                            }
+                        }
+                        .scrollEdgeEffectStyle(.hard, for: .bottom)
+                } else {
+                    content
+                }
+            }
             .contextMenu(forSelectionType: SettingState.self) { selections in
                 self.menu(for: selections.first, isContext: true)
             } primaryAction: { selections in
@@ -256,55 +270,11 @@ private struct SyntaxListView: View {
             .border(.background)
             .environment(\.defaultMinListRowHeight, self.rowHeight)
             
-            Divider()
-                .padding(.horizontal, 4)
-            
-            HStack {
-                Button {
-                    self.editingMode = .new
-                } label: {
-                    Image(systemName: "plus")
-                        .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
-                .frame(width: 16)
-                
-                Button {
-                    self.deletingItem = self.selection?.name
-                    self.isDeleteConfirmationPresented = true
-                } label: {
-                    Image(systemName: "minus")
-                        .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
-                .frame(width: 16)
-                .disabled(self.selection?.isBundled != false)
-                
-                Button {
-                    self.editingMode = .edit(self.selection!)
-                } label: {
-                    Image(systemName: "pencil")
-                        .accessibilityLabel(String(localized: "Action.edit.label", defaultValue: "Edit"))
-                        .padding(2)
-                }
-                .help(String(localized: "Edit selected item", table: "FormatSettings"))
-                .frame(width: 16)
-                .disabled(self.selection == nil)
-                
-                Spacer()
-                
-                Menu {
-                    self.menu(for: self.selection)
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .symbolVariant(.circle)
-                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
-                }
+            if #unavailable(macOS 26) {
+                Divider()
+                    .padding(.horizontal, 4)
+                self.bottomAccessoryView
             }
-            .buttonStyle(.borderless)
-            .padding(6)
         }
         .background(.background)
         .border(.separator)
@@ -399,6 +369,58 @@ private struct SyntaxListView: View {
             SyntaxMappingConflictView(table: self.manager.mappingConflicts)
         }
         .alert(error: $error)
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ViewBuilder private var bottomAccessoryView: some View {
+        
+        HStack {
+            Button {
+                self.editingMode = .new
+            } label: {
+                Image(systemName: "plus")
+                    .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .frame(width: 16)
+            
+            Button {
+                self.deletingItem = self.selection?.name
+                self.isDeleteConfirmationPresented = true
+            } label: {
+                Image(systemName: "minus")
+                    .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .frame(width: 16)
+            .disabled(self.selection?.isBundled != false)
+            
+            Button {
+                self.editingMode = .edit(self.selection!)
+            } label: {
+                Image(systemName: "pencil")
+                    .accessibilityLabel(String(localized: "Action.edit.label", defaultValue: "Edit"))
+                    .padding(2)
+            }
+            .help(String(localized: "Edit selected item", table: "FormatSettings"))
+            .frame(width: 16)
+            .disabled(self.selection == nil)
+            
+            Spacer()
+            
+            Menu {
+                self.menu(for: self.selection)
+            } label: {
+                Image(systemName: "ellipsis")
+                    .symbolVariant(.circle)
+                    .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
+            }
+        }
+        .buttonStyle(.borderless)
+        .padding(6)
     }
     
     

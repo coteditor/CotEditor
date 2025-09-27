@@ -164,6 +164,20 @@ private struct ThemeListView: View {
                 }
                 .listRowSeparator(.hidden)
             }
+            .modifier { content in
+                if #available(macOS 26, *) {
+                    content
+                        .safeAreaBar(edge: .bottom) {
+                            VStack(spacing: 0) {
+                                Divider()
+                                self.bottomAccessoryView
+                            }
+                        }
+                        .scrollEdgeEffectStyle(.hard, for: .bottom)
+                } else {
+                    content
+                }
+            }
             .dropDestination(for: TransferableTheme.self) { items, _ in
                 var succeed = false
                 for item in items {
@@ -188,48 +202,12 @@ private struct ThemeListView: View {
             .listStyle(.bordered)
             .border(.background)
             
-            Divider()
-                .padding(.horizontal, 4)
-            
-            HStack {
-                Button {
-                    do {
-                        self.selection = try self.manager.createUntitledSetting()
-                    } catch {
-                        self.error = error
-                    }
-                } label: {
-                    Image(systemName: "plus")
-                        .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
-                .frame(width: 16)
+            if #unavailable(macOS 26) {
+                Divider()
+                    .padding(.horizontal, 4)
                 
-                Button {
-                    self.deletingItem = self.selection
-                    self.isDeleteConfirmationPresented = true
-                } label: {
-                    Image(systemName: "minus")
-                        .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
-                .frame(width: 16)
-                .disabled(self.manager.state(of: self.selection)?.isBundled != false)
-                
-                Spacer()
-                
-                Menu {
-                    self.menu(for: self.selection)
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .symbolVariant(.circle)
-                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
-                }
+                self.bottomAccessoryView
             }
-            .buttonStyle(.borderless)
-            .padding(6)
         }
         .onReceive(self.manager.$settingNames.receive(on: RunLoop.main)) { settingNames in
             self.settingNames = settingNames
@@ -308,6 +286,51 @@ private struct ThemeListView: View {
                         defaultValue: "This action cannot be undone."))
         }
         .alert(error: $error)
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ViewBuilder private var bottomAccessoryView: some View {
+        
+        HStack {
+            Button {
+                do {
+                    self.selection = try self.manager.createUntitledSetting()
+                } catch {
+                    self.error = error
+                }
+            } label: {
+                Image(systemName: "plus")
+                    .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .frame(width: 16)
+            
+            Button {
+                self.deletingItem = self.selection
+                self.isDeleteConfirmationPresented = true
+            } label: {
+                Image(systemName: "minus")
+                    .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .frame(width: 16)
+            .disabled(self.manager.state(of: self.selection)?.isBundled != false)
+            
+            Spacer()
+            
+            Menu {
+                self.menu(for: self.selection)
+            } label: {
+                Image(systemName: "ellipsis")
+                    .symbolVariant(.circle)
+                    .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
+            }
+        }
+        .buttonStyle(.borderless)
+        .padding(6)
     }
     
     

@@ -3,6 +3,11 @@
 6.0.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve UI details on macOS 26.
+
+
 ### Fixes
 
 - Workaround the issue on macOS 26 where the editor’s scroller tracks are drawn in a different style from the standard scrollers.
