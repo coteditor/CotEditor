@@ -270,8 +270,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             // open the Quick Look panel by pressing the Space key
             self.quickLook(with: event)
             
-        } else if hasNoModifier, event.specialKey == .delete, !self.outlineView.selectedRowIndexes.isEmpty
-        {
+        } else if hasNoModifier, event.specialKey == .delete, !self.outlineView.selectedRowIndexes.isEmpty {
             // delete selected items by pressing the Delete key
             self.delete(self)
             
