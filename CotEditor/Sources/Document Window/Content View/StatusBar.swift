@@ -31,6 +31,53 @@ import Defaults
 import FileEncoding
 import LineEnding
 
+@available(macOS 26, *)
+final class StatusBarAccessoryController: NSSplitViewItemAccessoryViewController {
+    
+    let model: StatusBar.Model
+    
+    
+    required init(model: StatusBar.Model) {
+        
+        self.model = model
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func loadView() {
+    
+        self.view = NSHostingView(rootView: VStack(spacing: 0) {
+            Divider()
+            StatusBar(model: self.model)
+        })
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.model.onAppear()
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.model.onDisappear()
+    }
+}
+
+
+@available(macOS, deprecated: 26)
 final class StatusBarController: NSHostingController<StatusBar> {
     
     let model: StatusBar.Model
@@ -181,17 +228,18 @@ struct StatusBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .lineLimit(1)
+        .padding(.leading)
         .modifier { content in
             if #available(macOS 26, *) {
                 content
+                    .frame(height: 32)
                     .containerCornerOffset(.horizontal, sizeToFit: true)
             } else {
                 content
+                    .frame(height: 23)
+                    .background(.windowBackground)
             }
         }
-        .padding(.leading)
-        .frame(height: isLiquidGlass ? 32 : 23)
-        .background(.windowBackground)
     }
 }
 
