@@ -38,7 +38,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
-    @ViewLoading private var addButton: NSPopUpButton
     
     private var showsHiddenFiles: Bool
     
@@ -92,11 +91,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.pullsDown = true
         addButton.autoenablesItems = false
         addButton.isBordered = false
-        addButton.addItem(withTitle: "")
-        addButton.item(at: 0)!.image = NSImage(
-            systemSymbolName: "plus",
-            accessibilityDescription: String(localized: "Action.add.label", defaultValue: "Add")
-        )
+        addButton.menu!.items = [
+            NSMenuItem(title: "", systemImage: "plus"),
+            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
+                       systemImage: "document.badge.plus",
+                       action: #selector(addFile), target: self),
+            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
+                       systemImage: "folder.badge.plus",
+                       action: #selector(addFolder), target: self),
+        ]
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
@@ -142,7 +145,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
-        self.addButton = addButton
     }
     
     
@@ -203,18 +205,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             item.target = self
         }
         self.outlineView.menu = contextMenu
-        
-        self.addButton.menu!.items += [
-            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
-                       systemImage: "document.badge.plus",
-                       action: #selector(addFile)),
-            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
-                       systemImage: "folder.badge.plus",
-                       action: #selector(addFolder)),
-        ]
-        for item in self.addButton.menu!.items where !item.isSeparatorItem {
-            item.target = self
-        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
