@@ -97,7 +97,11 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
         if #available(macOS 26, *) {
-            let controller = StatusBarAccessoryController(model: self.statusBarModel)
+            let controller = NSSplitViewItemAccessoryViewController()
+            controller.view = NSHostingView(rootView: VStack(spacing: 0) {
+                Divider()
+                StatusBar(model: self.statusBarModel)
+            })
             controller.automaticallyAppliesContentInsets = false
             self.contentViewItem.addBottomAlignedAccessoryViewController(controller)
             
@@ -106,7 +110,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             controller.isHidden = !UserDefaults.standard[.showStatusBar]
             
         } else {
-            let statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
+            let controller = NSHostingController(rootView: StatusBar(model: self.statusBarModel))
+            let statusBarItem = NSSplitViewItem(viewController: controller)
             statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
             self.contentViewController.splitViewItems.append(statusBarItem)
             
@@ -381,6 +386,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             self.contentViewController.view.setAccessibilityLabel(self.document?.displayName ?? "")
         }
         
-        self.statusBarModel.updateDocument(to: self.document)
+        self.statusBarModel.document = self.document
     }
 }

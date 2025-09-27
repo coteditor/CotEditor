@@ -31,89 +31,6 @@ import Defaults
 import FileEncoding
 import LineEnding
 
-@available(macOS 26, *)
-final class StatusBarAccessoryController: NSSplitViewItemAccessoryViewController {
-    
-    let model: StatusBar.Model
-    
-    
-    required init(model: StatusBar.Model) {
-        
-        self.model = model
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func loadView() {
-    
-        self.view = NSHostingView(rootView: VStack(spacing: 0) {
-            Divider()
-            StatusBar(model: self.model)
-        })
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.onAppear()
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.onDisappear()
-    }
-}
-
-
-@available(macOS, deprecated: 26)
-final class StatusBarController: NSHostingController<StatusBar> {
-    
-    let model: StatusBar.Model
-    
-    
-    required init(model: StatusBar.Model) {
-        
-        self.model = model
-        
-        super.init(rootView: StatusBar(model: self.model))
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.onAppear()
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.onDisappear()
-    }
-}
-
-
 private extension StatusBar.Model {
     
     /// Called when the view is fully transitioned onto the screen.
@@ -167,7 +84,7 @@ struct StatusBar: View {
     
     @MainActor @Observable final class Model {
         
-        private(set) var document: DataDocument?
+        var document: DataDocument?  { willSet { self.invalidateObservation(document: newValue) } }
         
         private var isActive: Bool = false
         private var defaultsObserver: AnyCancellable?
@@ -177,21 +94,12 @@ struct StatusBar: View {
             
             self.document = document
         }
-        
-        
-        /// Updates the represented document.
-        ///
-        /// - Parameter document: The new document, or `nil`.
-        func updateDocument(to document: DataDocument?) {
-            
-            self.invalidateObservation(document: document)
-            self.document = document
-        }
     }
     
     
     @State var model: Model
     
+    @AppStorage(.showStatusBar) private var showsStatusBar
     @AppStorage(.donationBadgeType) private var badgeType
     
     @State private var hasDonated: Bool = false
@@ -218,6 +126,19 @@ struct StatusBar: View {
             
             if let document = self.model.document as? Document {
                 DocumentStatusBar(document: document)
+            }
+        }
+        .onAppear {
+            self.model.onAppear()
+        }
+        .onDisappear {
+            self.model.onDisappear()
+        }
+        .onChange(of: self.showsStatusBar) { _, newValue in
+            if newValue {
+                self.model.onAppear()
+            } else {
+                self.model.onDisappear()
             }
         }
         .subscriptionStatusTask(for: Donation.groupID) { taskState in
