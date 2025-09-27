@@ -31,55 +31,6 @@ import Defaults
 import FileEncoding
 import LineEnding
 
-private extension StatusBar.Model {
-    
-    /// Called when the view is fully transitioned onto the screen.
-    func onAppear() {
-        
-        self.isActive = true
-        
-        self.invalidateObservation(document: self.document)
-        
-        // observe changes in defaults
-        let editorDefaultKeys: [DefaultKey<Bool>] = [
-            .showStatusBarLines,
-            .showStatusBarChars,
-            .showStatusBarWords,
-            .showStatusBarLocation,
-            .showStatusBarLine,
-            .showStatusBarColumn,
-        ]
-        let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
-        self.defaultsObserver = Publishers.MergeMany(publishers)
-            .map { _ in UserDefaults.standard.statusBarEditorInfo }
-            .sink { [weak self] in (self?.document as? Document)?.counter.statusBarRequirements = $0 }
-    }
-    
-    
-    /// Called after the view is removed from the view hierarchy in a window.
-    func onDisappear() {
-        
-        self.isActive = false
-        
-        self.defaultsObserver = nil
-        (self.document as? Document)?.counter.statusBarRequirements = []
-    }
-    
-    
-    /// Updates observations.
-    private func invalidateObservation(document: DataDocument?) {
-        
-        (self.document as? Document)?.counter.statusBarRequirements = []
-        
-        if let document = document as? Document, self.isActive {
-            document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
-        }
-    }
-}
-
-
-// MARK: -
-
 struct StatusBar: View {
     
     @MainActor @Observable final class Model {
@@ -160,6 +111,55 @@ struct StatusBar: View {
                     .frame(height: 23)
                     .background(.windowBackground)
             }
+        }
+    }
+}
+
+
+// MARK: Private APIs
+
+private extension StatusBar.Model {
+    
+    /// Called when the view is fully transitioned onto the screen.
+    func onAppear() {
+        
+        self.isActive = true
+        
+        self.invalidateObservation(document: self.document)
+        
+        // observe changes in defaults
+        let editorDefaultKeys: [DefaultKey<Bool>] = [
+            .showStatusBarLines,
+            .showStatusBarChars,
+            .showStatusBarWords,
+            .showStatusBarLocation,
+            .showStatusBarLine,
+            .showStatusBarColumn,
+        ]
+        let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
+        self.defaultsObserver = Publishers.MergeMany(publishers)
+            .map { _ in UserDefaults.standard.statusBarEditorInfo }
+            .sink { [weak self] in (self?.document as? Document)?.counter.statusBarRequirements = $0 }
+    }
+    
+    
+    /// Called after the view is removed from the view hierarchy in a window.
+    func onDisappear() {
+        
+        self.isActive = false
+        
+        self.defaultsObserver = nil
+        (self.document as? Document)?.counter.statusBarRequirements = []
+    }
+    
+    
+    /// Updates observations.
+    private func invalidateObservation(document: DataDocument?) {
+        
+        (self.document as? Document)?.counter.statusBarRequirements = []
+        
+        if let document = document as? Document, self.isActive {
+            document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
         }
     }
 }
