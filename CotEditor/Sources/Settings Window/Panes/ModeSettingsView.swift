@@ -84,59 +84,59 @@ private struct ModeListView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 0) {
-            List(selection: $selection) {
-                Section(String(localized: "Mode", table: "ModeSettings")) {
-                    ForEach(Syntax.Kind.allCases, id: \.self) { kind in
-                        Text(kind.label)
-                            .tag(Mode.kind(kind))
-                            .listRowSeparator(.hidden)
-                    }
-                }
-                
-                if !self.syntaxModes.isEmpty {
-                    Section(String(localized: "Syntax", table: "ModeSettings")) {
-                        ForEach(self.syntaxModes, id: \.self) { mode in
-                            let available = mode.available(within: self.syntaxes)
-                            HStack {
-                                Text(mode.label)
-                                if !available {
-                                    Spacer()
-                                    Label(String(localized: "Not found", table: "ModeSettings", comment: "accessibility label"), systemImage: "exclamationmark.triangle")
-                                        .labelStyle(.iconOnly)
-                                }
-                            }
-                            .tag(mode)
-                            .foregroundStyle(available ? .primary : .secondary)
-                            .lineLimit(1)
-                            .help(available ? "" : String(localized: "This syntax does not exist", table: "ModeSettings", comment: "tooltip"))
-                            .listRowSeparator(.hidden)
-                        }
-                    }
+        List(selection: $selection) {
+            Section(String(localized: "Mode", table: "ModeSettings")) {
+                ForEach(Syntax.Kind.allCases, id: \.self) { kind in
+                    Text(kind.label)
+                        .tag(Mode.kind(kind))
+                        .listRowSeparator(.hidden)
                 }
             }
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .safeAreaBar(edge: .bottom) {
-                            VStack(spacing: 0) {
-                                Divider()
-                                self.bottomAccessoryView
-                            }
-                        }
-                        .scrollEdgeEffectStyle(.hard, for: .bottom)
-                } else {
-                    content
-                }
-            }
-            .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
             
-            if #unavailable(macOS 26) {
-                Divider()
-                    .padding(.horizontal, 6)
-                self.bottomAccessoryView
+            if !self.syntaxModes.isEmpty {
+                Section(String(localized: "Syntax", table: "ModeSettings")) {
+                    ForEach(self.syntaxModes, id: \.self) { mode in
+                        let available = mode.available(within: self.syntaxes)
+                        HStack {
+                            Text(mode.label)
+                            if !available {
+                                Spacer()
+                                Label(String(localized: "Not found", table: "ModeSettings", comment: "accessibility label"), systemImage: "exclamationmark.triangle")
+                                    .labelStyle(.iconOnly)
+                            }
+                        }
+                        .tag(mode)
+                        .foregroundStyle(available ? .primary : .secondary)
+                        .lineLimit(1)
+                        .help(available ? "" : String(localized: "This syntax does not exist", table: "ModeSettings", comment: "tooltip"))
+                        .listRowSeparator(.hidden)
+                    }
+                }
             }
         }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                            self.bottomAccessoryView
+                        }
+                    }
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                                .padding(.horizontal, 4)
+                            self.bottomAccessoryView
+                        }
+                    }
+                    .background()
+            }
+        }
+        .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
         .onAppear {
             self.syntaxModes = self.manager.syntaxModes
         }

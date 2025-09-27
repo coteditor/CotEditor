@@ -222,60 +222,60 @@ private struct SyntaxListView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            List(self.settingStates, selection: $selection) { state in
-                HStack(spacing: 0) {
-                    Circle()
-                        .frame(width: 4, height: 4)
-                        .foregroundStyle(.tertiary)
-                        .padding(6)
-                        .help(String(localized: "This syntax is customized.", table: "FormatSettings"))
-                        .opacity(state.isCustomized ? 1 : 0)
-                        .accessibilityHidden(!state.isCustomized)
+        List(self.settingStates, selection: $selection) { state in
+            HStack(spacing: 0) {
+                Circle()
+                    .frame(width: 4, height: 4)
+                    .foregroundStyle(.tertiary)
+                    .padding(6)
+                    .help(String(localized: "This syntax is customized.", table: "FormatSettings"))
+                    .opacity(state.isCustomized ? 1 : 0)
+                    .accessibilityHidden(!state.isCustomized)
+                Text(state.name)
+            }
+            .tag(state)
+            .frame(height: self.rowHeight)
+            .listRowSeparator(.hidden)
+            .draggable(TransferableSyntax(name: state.name, canExport: !state.isBundled, data: self.manager.dataForUserSetting(name: state.name))) {
+                Label {
                     Text(state.name)
+                } icon: {
+                    Image(nsImage: NSWorkspace.shared.icon(for: .yaml))
                 }
-                .tag(state)
-                .frame(height: self.rowHeight)
-                .listRowSeparator(.hidden)
-                .draggable(TransferableSyntax(name: state.name, canExport: !state.isBundled, data: self.manager.dataForUserSetting(name: state.name))) {
-                    Label {
-                        Text(state.name)
-                    } icon: {
-                        Image(nsImage: NSWorkspace.shared.icon(for: .yaml))
-                    }
-                }
-            }
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .safeAreaBar(edge: .bottom) {
-                            VStack(spacing: 0) {
-                                Divider()
-                                self.bottomAccessoryView
-                            }
-                        }
-                        .scrollEdgeEffectStyle(.hard, for: .bottom)
-                } else {
-                    content
-                }
-            }
-            .contextMenu(forSelectionType: SettingState.self) { selections in
-                self.menu(for: selections.first, isContext: true)
-            } primaryAction: { selections in
-                self.editingMode = selections.first.map { .edit($0) }
-            }
-            .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
-                                entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
-            .listStyle(.bordered)
-            .border(.background)
-            .environment(\.defaultMinListRowHeight, self.rowHeight)
-            
-            if #unavailable(macOS 26) {
-                Divider()
-                    .padding(.horizontal, 4)
-                self.bottomAccessoryView
             }
         }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                            self.bottomAccessoryView
+                        }
+                    }
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                                .padding(.horizontal, 4)
+                            self.bottomAccessoryView
+                        }
+                        .background()
+                    }
+            }
+        }
+        .contextMenu(forSelectionType: SettingState.self) { selections in
+            self.menu(for: selections.first, isContext: true)
+        } primaryAction: { selections in
+            self.editingMode = selections.first.map { .edit($0) }
+        }
+        .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
+                            entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
+        .listStyle(.bordered)
+        .border(.background)
+        .environment(\.defaultMinListRowHeight, self.rowHeight)
         .background(.background)
         .border(.separator)
         .frame(width: 260, height: 140)

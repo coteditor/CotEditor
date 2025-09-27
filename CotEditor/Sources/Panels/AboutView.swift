@@ -79,38 +79,12 @@ struct AboutView: View {
             
             Divider()
             
-            VStack(spacing: 0) {
-                if #unavailable(macOS 26) {
-                    HStack {
-                        ForEach(Pane.allCases, id: \.self) { pane in
-                            TabPickerButtonView(pane.label, isSelected: self.pane == pane) {
-                                withAnimation {
-                                    self.pane = pane
-                                }
-                            }
-                        }
-                    }
-                    .accessibilityRepresentation {
-                        Picker(selection: $pane) {
-                            ForEach(Pane.allCases, id: \.self) {
-                                Text($0.label)
-                            }
-                        } label: {
-                            EmptyView()
-                        }
-                    }
-                    .padding(.vertical, 6)
-                    
-                    Divider()
-                }
-                
-                ScrollView(.vertical) {
-                    switch self.pane {
-                        case .credits:
-                            CreditsView()
-                        case .license:
-                            LicenseView()
-                    }
+            ScrollView(.vertical) {
+                switch self.pane {
+                    case .credits:
+                        CreditsView()
+                    case .license:
+                        LicenseView()
                 }
             }
             .modifier { content in
@@ -133,6 +107,32 @@ struct AboutView: View {
                 } else {
                     content
                         .background()
+                        .safeAreaInset(edge: .top, spacing: 0) {
+                            VStack(spacing: 0) {
+                                HStack {
+                                    ForEach(Pane.allCases, id: \.self) { pane in
+                                        TabPickerButtonView(pane.label, isSelected: self.pane == pane) {
+                                            withAnimation {
+                                                self.pane = pane
+                                            }
+                                        }
+                                    }
+                                }
+                                .accessibilityRepresentation {
+                                    Picker(selection: $pane) {
+                                        ForEach(Pane.allCases, id: \.self) {
+                                            Text($0.label)
+                                        }
+                                    } label: {
+                                        EmptyView()
+                                    }
+                                }
+                                .padding(.vertical, 6)
+                                
+                                Divider()
+                            }
+                            .background()
+                        }
                 }
             }
         }

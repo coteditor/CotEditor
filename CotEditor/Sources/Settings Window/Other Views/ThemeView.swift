@@ -135,80 +135,79 @@ private struct ThemeListView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            List(selection: $selection) {
-                Section(String(localized: "Theme", table: "ThemeEditor")) {
-                    ForEach(self.settingNames, id: \.self) { name in
-                        let state = self.manager.state(of: name)
-                        
-                        SettingNameField(text: name) { newName in
-                            do {
-                                try self.manager.renameSetting(name: name, to: newName)
-                            } catch {
-                                self.error = error
-                                return false
-                            }
-                            self.selection = newName
-                            return true
+        List(selection: $selection) {
+            Section(String(localized: "Theme", table: "ThemeEditor")) {
+                ForEach(self.settingNames, id: \.self) { name in
+                    let state = self.manager.state(of: name)
+                    
+                    SettingNameField(text: name) { newName in
+                        do {
+                            try self.manager.renameSetting(name: name, to: newName)
+                        } catch {
+                            self.error = error
+                            return false
                         }
-                        .editDisabled(state?.isBundled == true)
-                        .focused($editingItem, equals: name)
-                        .draggable(TransferableTheme(name: name, canExport: state?.isCustomized == true, data: self.manager.dataForUserSetting(name: name))) {
-                            Label {
-                                Text(name)
-                            } icon: {
-                                Image(nsImage: NSWorkspace.shared.icon(for: .cotTheme))
-                            }
+                        self.selection = newName
+                        return true
+                    }
+                    .editDisabled(state?.isBundled == true)
+                    .focused($editingItem, equals: name)
+                    .draggable(TransferableTheme(name: name, canExport: state?.isCustomized == true, data: self.manager.dataForUserSetting(name: name))) {
+                        Label {
+                            Text(name)
+                        } icon: {
+                            Image(nsImage: NSWorkspace.shared.icon(for: .cotTheme))
                         }
                     }
                 }
-                .listRowSeparator(.hidden)
             }
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .safeAreaBar(edge: .bottom) {
-                            VStack(spacing: 0) {
-                                Divider()
-                                self.bottomAccessoryView
-                            }
+            .listRowSeparator(.hidden)
+        }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                            self.bottomAccessoryView
                         }
-                        .scrollEdgeEffectStyle(.hard, for: .bottom)
-                } else {
-                    content
-                }
-            }
-            .dropDestination(for: TransferableTheme.self) { items, _ in
-                var succeed = false
-                for item in items {
-                    guard let data = item.data() else { continue }
-                    do {
-                        try self.manager.importSetting(data: data, name: item.name, overwrite: false)
-                        succeed = true
-                    } catch let error as ImportDuplicationError {
-                        self.importingError = error
-                        self.isImportConfirmationPresented = true
-                    } catch {
-                        self.error = error
                     }
-                }
-                return succeed
-            }
-            .contextMenu(forSelectionType: String.self) { selections in
-                if let selection = selections.first {
-                    self.menu(for: selection, isContext: true)
-                }
-            }
-            .listStyle(.bordered)
-            .border(.background)
-            
-            if #unavailable(macOS 26) {
-                Divider()
-                    .padding(.horizontal, 4)
-                
-                self.bottomAccessoryView
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                                .padding(.horizontal, 4)
+                            self.bottomAccessoryView
+                        }
+                        .background()
+                    }
             }
         }
+        .dropDestination(for: TransferableTheme.self) { items, _ in
+            var succeed = false
+            for item in items {
+                guard let data = item.data() else { continue }
+                do {
+                    try self.manager.importSetting(data: data, name: item.name, overwrite: false)
+                    succeed = true
+                } catch let error as ImportDuplicationError {
+                    self.importingError = error
+                    self.isImportConfirmationPresented = true
+                } catch {
+                    self.error = error
+                }
+            }
+            return succeed
+        }
+        .contextMenu(forSelectionType: String.self) { selections in
+            if let selection = selections.first {
+                self.menu(for: selection, isContext: true)
+            }
+        }
+        .listStyle(.bordered)
+        .border(.background)
         .onReceive(self.manager.$settingNames.receive(on: RunLoop.main)) { settingNames in
             self.settingNames = settingNames
         }

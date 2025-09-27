@@ -46,50 +46,46 @@ struct MultipleReplaceListView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            List(selection: $selection) {
-                ForEach(self.settingNames, id: \.self) { name in
-                    SettingNameField(text: name) { newName in
-                        do {
-                            try self.manager.renameSetting(name: name, to: newName)
-                        } catch {
-                            self.error = error
-                            return false
-                        }
-                        self.selection = newName
-                        return true
+        List(selection: $selection) {
+            ForEach(self.settingNames, id: \.self) { name in
+                SettingNameField(text: name) { newName in
+                    do {
+                        try self.manager.renameSetting(name: name, to: newName)
+                    } catch {
+                        self.error = error
+                        return false
                     }
-                    .focused($editingItem, equals: name)
-                    .draggable(TransferableReplacement(name: name, data: self.manager.dataForUserSetting(name: name))) {
-                        Label {
-                            Text(name)
-                        } icon: {
-                            Image(nsImage: NSWorkspace.shared.icon(for: .cotReplacement))
-                        }
+                    self.selection = newName
+                    return true
+                }
+                .focused($editingItem, equals: name)
+                .draggable(TransferableReplacement(name: name, data: self.manager.dataForUserSetting(name: name))) {
+                    Label {
+                        Text(name)
+                    } icon: {
+                        Image(nsImage: NSWorkspace.shared.icon(for: .cotReplacement))
                     }
                 }
-                .listRowSeparator(.hidden)
             }
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .safeAreaBar(edge: .bottom) {
-                            self.bottomAccessoryView
-                        }
-                        .scrollEdgeEffectStyle(.hard, for: .bottom)
-                } else {
-                    content
-                }
+            .listRowSeparator(.hidden)
+        }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        self.bottomAccessoryView
+                    }
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom, spacing: 0) {
+                        self.bottomAccessoryView
+                    }
             }
-            .contextMenu(forSelectionType: String.self) { selections in
-                if let selection = selections.first {
-                    self.menu(for: selection, isContext: true)
-                }
-            }
-            .listStyle(.sidebar)
-            
-            if #unavailable(macOS 26) {
-                self.bottomAccessoryView
+        }
+        .contextMenu(forSelectionType: String.self) { selections in
+            if let selection = selections.first {
+                self.menu(for: selection, isContext: true)
             }
         }
         .accessibilityElement(children: .contain)
