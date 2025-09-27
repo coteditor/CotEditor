@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve UI details on macOS 26.
+- Always open the sidebar when opening a folder document.
 
 
 ### Fixes

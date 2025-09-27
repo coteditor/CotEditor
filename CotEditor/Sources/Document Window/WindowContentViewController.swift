@@ -145,6 +145,9 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
         self.splitView.autosaveName = autosaveName
         
+        // keep open sidebar at the beginning
+        self.sidebarViewItem?.isCollapsed = false
+        
         // forcibly collapse sidebar while version browse
         if let sidebarViewItem, let window = self.view.window {
             self.versionBrowserEnterObservationTask = Task {
