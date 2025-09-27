@@ -68,12 +68,12 @@ struct UnicodeInputView: View {
                                 Button {
                                     self.codePoint = scalar.codePoint
                                 } label: {
-                                    Text(scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
-                                        .monospacedDigit() +
-                                    Text(scalar.name ?? "–")
-                                        .textScale(.secondary)
-                                        .foregroundStyle(.secondary)
-                                        .accessibilityLabel(scalar.name ?? String(localized: "None", comment: "accessibility label for “–”"))
+                                    Text(AttributedString(scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0)) +
+                                         AttributedString(scalar.name ?? "–", attributes: .init()
+                                            .foregroundColor(.secondary)
+                                            .font(.footnote)
+                                         ))
+                                    .monospacedDigit()
                                 }
                             }
                         }
