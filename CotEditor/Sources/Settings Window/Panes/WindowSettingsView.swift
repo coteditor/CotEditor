@@ -37,6 +37,7 @@ struct WindowSettingsView: View {
     @AppStorage(.windowHeight) private var windowHeight
     
     @AppStorage(.showLineNumbers) private var showLineNumbers
+    @available(macOS, deprecated: 26)
     @AppStorage(.showLineNumberSeparator) private var showLineNumberSeparator
     @AppStorage(.showInvisibles) private var showInvisibles
     @AppStorage(.showInvisibleNewLine) private var showInvisibleNewLine
