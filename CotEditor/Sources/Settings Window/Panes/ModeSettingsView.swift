@@ -115,58 +115,82 @@ private struct ModeListView: View {
                     }
                 }
             }
+            .modifier { content in
+                if #available(macOS 26, *) {
+                    content
+                        .safeAreaBar(edge: .bottom) {
+                            VStack(spacing: 0) {
+                                Divider()
+                                self.bottomAccessoryView
+                            }
+                        }
+                        .scrollEdgeEffectStyle(.hard, for: .bottom)
+                } else {
+                    content
+                }
+            }
             .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
             
-            Divider()
-                .padding(.horizontal, 6)
-            
-            HStack(spacing: 0) {
-                Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
-                    Section(String(localized: "Syntax", table: "ModeSettings")) {
-                        ForEach(self.syntaxes, id: \.self) { syntaxName in
-                            Button(syntaxName) {
-                                do {
-                                    try self.manager.addSetting(for: syntaxName)
-                                } catch {
-                                    self.error = error
-                                }
-                                let syntaxModes = self.manager.syntaxModes
-                                withAnimation {
-                                    self.syntaxModes = syntaxModes
-                                    self.selection = .syntax(syntaxName)
-                                }
-                            }.disabled(self.syntaxModes.compactMap(\.syntaxName).contains(syntaxName))
-                        }
-                    }
-                }
-                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                .menuIndicator(.hidden)
-                .alert(error: $error)
-                
-                Button {
-                    self.manager.removeSetting(for: self.selection)
-                    let syntaxModes = self.manager.syntaxModes
-                    withAnimation {
-                        self.syntaxModes = syntaxModes
-                        self.selection = .kind(.general)
-                    }
-                } label: {
-                    Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
-                        .frame(width: 14, height: 14)
-                        .fontWeight(.medium)
-                }
-                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                .disabled(self.selection.syntaxName == nil)
+            if #unavailable(macOS 26) {
+                Divider()
+                    .padding(.horizontal, 6)
+                self.bottomAccessoryView
             }
-            .padding(2)
-            .labelStyle(.iconOnly)
-            .buttonStyle(.borderless)
         }
         .onAppear {
             self.syntaxModes = self.manager.syntaxModes
         }
         .border(.separator)
         .background()
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ViewBuilder private var bottomAccessoryView: some View {
+        
+        HStack(spacing: 0) {
+            Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
+                Section(String(localized: "Syntax", table: "ModeSettings")) {
+                    ForEach(self.syntaxes, id: \.self) { syntaxName in
+                        Button(syntaxName) {
+                            do {
+                                try self.manager.addSetting(for: syntaxName)
+                            } catch {
+                                self.error = error
+                            }
+                            let syntaxModes = self.manager.syntaxModes
+                            withAnimation {
+                                self.syntaxModes = syntaxModes
+                                self.selection = .syntax(syntaxName)
+                            }
+                        }.disabled(self.syntaxModes.compactMap(\.syntaxName).contains(syntaxName))
+                    }
+                }
+            }
+            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
+            .menuIndicator(.hidden)
+            .alert(error: $error)
+            
+            Button {
+                self.manager.removeSetting(for: self.selection)
+                let syntaxModes = self.manager.syntaxModes
+                withAnimation {
+                    self.syntaxModes = syntaxModes
+                    self.selection = .kind(.general)
+                }
+            } label: {
+                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                    .frame(width: 14, height: 14)
+                    .fontWeight(.medium)
+            }
+            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
+            .disabled(self.selection.syntaxName == nil)
+            
+            Spacer()
+        }
+        .padding(2)
+        .labelStyle(.iconOnly)
+        .buttonStyle(.borderless)
     }
 }
 
