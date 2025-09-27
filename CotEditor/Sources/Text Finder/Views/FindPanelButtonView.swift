@@ -31,10 +31,10 @@ struct FindPanelButtonView: View {
         
         HStack(alignment: .bottom) {
             Menu(String(localized: "Find All", table: "TextFind", comment: "button label")) {
-                Button(String(localized: "Highlight All", table: "TextFind", comment: "button label")) {
+                Button(String(localized: "Highlight All", table: "TextFind", comment: "button label"), systemImage: "highlighter") {
                     self.performAction(.highlight)
                 }
-                Button(String(localized: "Select All", table: "TextFind", comment: "button label")) {
+                Button(String(localized: "Select All", table: "TextFind", comment: "button label"), systemImage: "character.textbox") {
                     self.performAction(.selectAll)
                 }
             } primaryAction: {
