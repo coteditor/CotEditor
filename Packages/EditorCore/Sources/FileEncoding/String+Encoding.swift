@@ -89,7 +89,7 @@ public extension String {
             case .automatic(let options):
                 (content, encoding) = try String.string(data: data, options: options)
             case .specific(let readingEncoding):
-                guard let string = String(bomCapableData: data, encoding: readingEncoding) else {
+                guard let string = String(data: data, encoding: readingEncoding) else {
                     throw CocoaError(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: readingEncoding.rawValue])
                 }
                 content = string
@@ -129,7 +129,7 @@ extension String {
         for bom in Unicode.BOM.allCases {
             if options.candidates.contains(where: bom.candidateEncodings.contains),
                data.starts(with: bom.sequence),
-               let string = String(bomCapableData: data, encoding: bom.encoding)
+               let string = String(data: data, encoding: bom.encoding)
             {
                 return (string, bom.encoding)
             }
@@ -138,7 +138,7 @@ extension String {
         // try interpreting with xattr encoding
         if let xattrEncoding = options.xattrEncoding {
             // just trust xattr encoding if the content is empty
-            if let string = data.isEmpty ? "" : String(bomCapableData: data, encoding: xattrEncoding) {
+            if let string = data.isEmpty ? "" : String(data: data, encoding: xattrEncoding) {
                 return (string, xattrEncoding)
             }
         }
@@ -147,7 +147,7 @@ extension String {
         if options.considersDeclaration,
            let encoding = data.scanEncodingDeclaration(),
            options.candidates.contains(encoding),
-           let string = String(bomCapableData: data, encoding: encoding)
+           let string = String(data: data, encoding: encoding)
         {
             return (string, encoding)
         }
@@ -160,25 +160,6 @@ extension String {
         }
         
         throw CocoaError(.fileReadUnknownStringEncoding)
-    }
-    
-    
-    /// Decodes data and remove UTF-8 BOM if exists.
-    ///
-    /// cf. <https://bugs.swift.org/browse/SR-10173>
-    @available(macOS, deprecated: 26, message: "The issue has been resolved since macOS 26.")
-    init?(bomCapableData data: Data, encoding: String.Encoding) {
-        
-        guard #unavailable(macOS 26) else {
-            self.init(data: data, encoding: encoding)
-            return
-        }
-        
-        let bom = Unicode.BOM.utf8.sequence
-        let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: bom))
-        let bomFreeData = hasUTF8WithBOM ? data[bom.count...] : data
-        
-        self.init(data: bomFreeData, encoding: encoding)
     }
 }
 
