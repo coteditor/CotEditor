@@ -42,10 +42,8 @@ public final class FormPopUpButton: NSPopUpButton {
     
     public override var intrinsicContentSize: NSSize {
         
-        let dx: Double = if #available(macOS 26, *) { 44 } else { 32 }
-        
-        return NSSize(width: ceil(self.attributedTitle.size().width) + dx,
-                      height: super.intrinsicContentSize.height)
+        NSSize(width: ceil(self.attributedTitle.size().width) + 44,
+               height: super.intrinsicContentSize.height)
     }
     
     
@@ -96,10 +94,6 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
             return super.drawBezel(withFrame: cellFrame, in: controlView)
         }
         
-        guard #available(macOS 26, *) else {
-            return self.drawLegacyBezel(withFrame: cellFrame, in: controlView)
-        }
-        
         let width = cellFrame.height - 6
         let x = (self.userInterfaceLayoutDirection == .rightToLeft)
                 ? cellFrame.minX + 5
@@ -122,60 +116,6 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
         // draw chevron
         let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow", bundle: .module))
         chevron.tinted(with: labelColor)
-            .draw(in: rect.insetBy(dx: (rect.width - chevron.size.width) / 2,
-                                   dy: (rect.height - chevron.size.height) / 2))
-    }
-    
-    
-    @available(macOS, deprecated: 26)
-    private func drawLegacyBezel(withFrame cellFrame: NSRect, in controlView: NSView) {
-        
-        let width: Double = 16
-        let x = (self.userInterfaceLayoutDirection == .rightToLeft)
-            ? cellFrame.minX + 6
-            : cellFrame.maxX - width - 6
-        let rect = NSRect(x: x, y: cellFrame.minY + 3,
-                          width: width, height: cellFrame.height - 9)
-        let isDark = controlView.effectiveAppearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
-        let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-        
-        // draw capsule
-        let fillPath = NSBezierPath(roundedRect: rect, xRadius: 4, yRadius: 4)
-        if self.isEnabled, !isDark, isHighContrast {
-            NSGradient(starting: .init(white: 0.4, alpha: 1), ending: .init(white: 0.3, alpha: 1))!
-                .draw(in: fillPath, angle: 90)
-        } else {
-            let fillColor: NSColor = switch (isHighContrast, isDark, self.isEnabled) {
-                case (false, false, true): .quaternarySystemFill
-                case (false, false, false): .quinarySystemFill
-                case (false, true, true): .tertiarySystemFill
-                case (false, true, false): .quaternarySystemFill
-                case (true, false, true): preconditionFailure()  // gradient
-                case (true, false, false): .windowBackgroundColor  // not exactly same
-                case (true, true, true): .labelColor
-                case (true, true, false): .tertiarySystemFill  // not exactly same
-            }
-            
-            fillColor.setFill()
-            fillPath.fill()
-        }
-        
-        if isHighContrast {
-            let strokeColor: NSColor = self.isEnabled ? .labelColor : .quaternaryLabelColor
-            
-            strokeColor.setStroke()
-            NSBezierPath(roundedRect: rect.insetBy(dx: -0.5, dy: -0.5), xRadius: 4.5, yRadius: 4.5).stroke()
-        }
-        
-        // draw chevron
-        let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow.legacy", bundle: .module))
-        let chevronColor: NSColor = switch (isHighContrast, self.isEnabled) {
-            case (false, true): .controlTextColor
-            case (false, false): .disabledControlTextColor
-            case (true, true): isDark ? .black : .selectedMenuItemTextColor
-            case (true, false): .tertiaryLabelColor
-        }
-        chevron.tinted(with: chevronColor)
             .draw(in: rect.insetBy(dx: (rect.width - chevron.size.width) / 2,
                                    dy: (rect.height - chevron.size.height) / 2))
     }
