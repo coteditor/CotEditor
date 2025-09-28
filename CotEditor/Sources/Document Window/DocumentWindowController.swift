@@ -588,7 +588,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             .flexibleSpace,
         ]
         
-        if #available(macOS 15.2, *), NSWritingToolsCoordinator.isWritingToolsAvailable {
+        if NSWritingToolsCoordinator.isWritingToolsAvailable {
             identifiers.insert(.writingToolsItemIdentifier, at: identifiers.count - 3)
         }
         
