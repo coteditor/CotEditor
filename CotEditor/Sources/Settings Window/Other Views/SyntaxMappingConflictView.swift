@@ -45,7 +45,7 @@ private struct FileMappingConflict: Identifiable {
 
 struct SyntaxMappingConflictView: View {
     
-    var dismiss: () -> Void = { }
+    @Environment(\.dismiss) private var dismiss
     
     private var extensionConflicts: [FileMappingConflict]
     private var filenameConflicts: [FileMappingConflict]
