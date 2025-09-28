@@ -37,8 +37,6 @@ struct WindowSettingsView: View {
     @AppStorage(.windowHeight) private var windowHeight
     
     @AppStorage(.showLineNumbers) private var showLineNumbers
-    @available(macOS, deprecated: 26)
-    @AppStorage(.showLineNumberSeparator) private var showLineNumberSeparator
     @AppStorage(.showInvisibles) private var showInvisibles
     @AppStorage(.showInvisibleNewLine) private var showInvisibleNewLine
     @AppStorage(.showInvisibleTab) private var showInvisibleTab
@@ -143,11 +141,6 @@ struct WindowSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Line numbers", table: "WindowSettings"), isOn: $showLineNumbers)
-                    if #unavailable(macOS 26) {
-                        Toggle(String(localized: "Draw separator", table: "WindowSettings"), isOn: $showLineNumberSeparator)
-                            .disabled(!self.showLineNumbers)
-                            .padding(.leading, 20)
-                    }
                     
                     Toggle(String(localized: "Invisible characters", table: "WindowSettings"), isOn: $showInvisibles)
                     Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: isLiquidGlass ? nil : 6) {

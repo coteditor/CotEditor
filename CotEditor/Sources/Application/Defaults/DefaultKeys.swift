@@ -55,8 +55,6 @@ extension DefaultKeys {
     static let windowWidth = DefaultKey<Double?>("windowWidth")
     static let windowHeight = DefaultKey<Double?>("windowHeight")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
-    @available(macOS, deprecated: 26)
-    static let showLineNumberSeparator = DefaultKey<Bool>("showLineNumberSeparator")
     static let showInvisibles = DefaultKey<Bool>("showInvisibles")
     static let showInvisibleNewLine = DefaultKey<Bool>("showInvisibleNewLine")
     static let showInvisibleTab = DefaultKey<Bool>("showInvisibleTab")

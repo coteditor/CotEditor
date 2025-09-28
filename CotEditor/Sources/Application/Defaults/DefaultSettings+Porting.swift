@@ -51,7 +51,6 @@ extension DefaultSettings {
         // Window
         .windowTabbing,  // = Respect System Setting
         .showLineNumbers,
-        .showLineNumberSeparator,
         .showInvisibles,
         .showInvisibleNewLine,
         .showInvisibleTab,

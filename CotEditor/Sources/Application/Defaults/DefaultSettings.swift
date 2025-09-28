@@ -57,7 +57,6 @@ struct DefaultSettings {
             // Window
             .windowTabbing: -1,  // = Respect System Setting
             .showLineNumbers: true,
-            .showLineNumberSeparator: false,
             .showInvisibles: false,
             .showInvisibleNewLine: true,
             .showInvisibleTab: true,
