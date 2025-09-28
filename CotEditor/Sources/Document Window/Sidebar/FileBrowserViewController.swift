@@ -123,7 +123,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
-        let filterField = if #available(macOS 26, *) { FilterSearchField() } else { LegacyFilterSearchField() }
+        let filterField = FilterSearchField()
         filterField.focusRingType = .none
         filterField.target = self
         filterField.action = #selector(filterTextDidChange)

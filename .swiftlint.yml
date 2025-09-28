@@ -66,7 +66,6 @@ disabled_rules:
   - force_try
   - opening_brace
   - trailing_comma
-  - unneeded_override
 
 trailing_whitespace:
   ignores_empty_lines: true
