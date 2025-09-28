@@ -100,6 +100,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        systemImage: "folder.badge.plus",
                        action: #selector(addFolder), target: self),
         ]
+        if #unavailable(macOS 26) {
+            addButton.menu!.items[0].image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
+        }
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
@@ -138,8 +141,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         if #available(macOS 26, *) {
             scrollView.bottomAnchor.constraint(equalTo: bottomSeparator.topAnchor).isActive = true
         } else {
-            scrollView.contentView.automaticallyAdjustsContentInsets = false
-            scrollView.contentView.contentInsets.bottom = footerHeight
+            scrollView.additionalSafeAreaInsets.bottom = footerHeight
             scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         }
         
