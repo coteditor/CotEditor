@@ -31,41 +31,92 @@ import Defaults
 import FileEncoding
 import LineEnding
 
-final class StatusBarController: NSHostingController<StatusBar> {
+struct StatusBar: View {
     
-    let model: StatusBar.Model
-    
-    
-    required init(model: StatusBar.Model) {
+    @MainActor @Observable final class Model {
         
-        self.model = model
+        var document: DataDocument?  { willSet { self.invalidateObservation(document: newValue) } }
         
-        super.init(rootView: StatusBar(model: self.model))
+        private var isActive: Bool = false
+        private var defaultsObserver: AnyCancellable?
+        
+        
+        init(document: DataDocument? = nil) {
+            
+            self.document = document
+        }
     }
     
     
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
+    @State var model: Model
+    
+    @AppStorage(.showStatusBar) private var showsStatusBar
+    @AppStorage(.donationBadgeType) private var badgeType
+    
+    @State private var hasDonated: Bool = false
     
     
-    override func viewWillAppear() {
+    var body: some View {
         
-        super.viewWillAppear()
-        
-        self.model.onAppear()
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.onDisappear()
+        HStack {
+            if self.hasDonated, self.badgeType != .invisible {
+                CoffeeBadge(type: self.badgeType)
+            }
+            
+            if let document = self.model.document as? Document {
+                NotEditableBadge(document: document)
+                EditorCountView(result: document.counter.result)
+                    .layoutPriority(-1)
+            }
+            
+            Spacer()
+            
+            if let document = self.model.document {
+                FileSizeView(size: document.fileAttributes?.size)
+            }
+            
+            if let document = self.model.document as? Document {
+                DocumentStatusBar(document: document)
+            }
+        }
+        .onAppear {
+            self.model.onAppear()
+        }
+        .onDisappear {
+            self.model.onDisappear()
+        }
+        .onChange(of: self.showsStatusBar) { _, newValue in
+            if newValue {
+                self.model.onAppear()
+            } else {
+                self.model.onDisappear()
+            }
+        }
+        .subscriptionStatusTask(for: Donation.groupID) { taskState in
+            self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
+        .buttonStyle(.borderless)
+        .controlSize(.small)
+        .lineLimit(1)
+        .padding(.leading)
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .frame(height: 32)
+                    .containerCornerOffset(.horizontal, sizeToFit: true)
+            } else {
+                content
+                    .frame(height: 23)
+                    .background(.windowBackground)
+            }
+        }
     }
 }
 
+
+// MARK: Private APIs
 
 private extension StatusBar.Model {
     
@@ -110,88 +161,6 @@ private extension StatusBar.Model {
         if let document = document as? Document, self.isActive {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
         }
-    }
-}
-
-
-// MARK: -
-
-struct StatusBar: View {
-    
-    @MainActor @Observable final class Model {
-        
-        private(set) var document: DataDocument?
-        
-        private var isActive: Bool = false
-        private var defaultsObserver: AnyCancellable?
-        
-        
-        init(document: DataDocument? = nil) {
-            
-            self.document = document
-        }
-        
-        
-        /// Updates the represented document.
-        ///
-        /// - Parameter document: The new document, or `nil`.
-        func updateDocument(to document: DataDocument?) {
-            
-            self.invalidateObservation(document: document)
-            self.document = document
-        }
-    }
-    
-    
-    @State var model: Model
-    
-    @AppStorage(.donationBadgeType) private var badgeType
-    
-    @State private var hasDonated: Bool = false
-    
-    
-    var body: some View {
-        
-        HStack {
-            if self.hasDonated, self.badgeType != .invisible {
-                CoffeeBadge(type: self.badgeType)
-            }
-            
-            if let document = self.model.document as? Document {
-                NotEditableBadge(document: document)
-                EditorCountView(result: document.counter.result)
-                    .layoutPriority(-1)
-            }
-            
-            Spacer()
-            
-            if let document = self.model.document {
-                FileSizeView(size: document.fileAttributes?.size)
-            }
-            
-            if let document = self.model.document as? Document {
-                DocumentStatusBar(document: document)
-            }
-        }
-        .subscriptionStatusTask(for: Donation.groupID) { taskState in
-            self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
-        }
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
-        .buttonStyle(.borderless)
-        .controlSize(.small)
-        .lineLimit(1)
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .containerCornerOffset(.horizontal, sizeToFit: true)
-            } else {
-                content
-            }
-        }
-        .padding(.leading)
-        .frame(height: isLiquidGlass ? 32 : 23)
-        .background(.windowBackground)
     }
 }
 

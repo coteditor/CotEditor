@@ -1,5 +1,23 @@
 # Change Log
 
+6.0.4 (unreleased)
+--------------------------
+
+### Improvements
+
+- Improve UI details on macOS 26.
+- Always open the sidebar when opening a folder document.
+
+
+### Fixes
+
+- Workaround the issue on macOS 26 where the editor’s scroller tracks are drawn in a different style from the standard scrollers.
+- Fix an issue where the counts in the status bar are rarely not available when the document is opened.
+- Fix an issue on the vertical text orientation where the line number view is tucked beneath the titlebar when the navigation bar is hidden.
+- Fix an issue where the syntax mapping conflict view cannot be closed.
+
+
+
 6.0.3 (751)
 --------------------------
 

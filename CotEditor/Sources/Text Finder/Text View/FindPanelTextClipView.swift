@@ -42,7 +42,7 @@ final class FindPanelTextClipView: NSClipView {
             // -> Just setting .contentInsets doesn't work with the pinch-zoom (2023-11, macOS 14).
             let leftPadding = self.userInterfaceLayoutDirection == .leftToRight ? self.leadingPadding : self.trailingPadding
             
-            guard frame.minX < leftPadding else { return }  // avoid infinity loop
+            guard frame.minX < leftPadding, frame.origin.x >= 0 else { return }  // avoid infinity loop
             
             frame.origin.x += leftPadding
             frame.size.width -= self.leadingPadding + self.trailingPadding

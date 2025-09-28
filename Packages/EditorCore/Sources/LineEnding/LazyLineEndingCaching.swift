@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import StringUtils
 import ValueRange
 
 protocol LazyLineEndingCaching: AnyObject, LineRangeCalculating {
@@ -56,7 +55,7 @@ extension LazyLineEndingCaching {
     /// The UTF16-based length of the contents string (implementation of `LineRangeCalculating`).
     public var length: Int {
         
-        self.string.length
+        self.string.utf16.count
     }
     
     
@@ -67,7 +66,7 @@ extension LazyLineEndingCaching {
     ///   - needsNextEnd: Whether needs the next line ending to ensure the line range for the given `characterIndex`.
     func ensureLineEndings(upTo characterIndex: Int, needsNextEnd: Bool = false) {
         
-        assert(characterIndex <= self.string.length)
+        assert(characterIndex <= self.string.utf16.count)
         
         guard characterIndex >= self.cache.firstUnparsedIndex else { return }
         
@@ -79,7 +78,7 @@ extension LazyLineEndingCaching {
             : characterIndex
         let parseRange = NSRange(lowerParseBound..<upperParseBound)
         
-        var parsedRange: NSRange = .notFound
+        var parsedRange = NSRange(location: NSNotFound, length: 0)
         var lineEndings = self.string.lineEndingRanges(in: parseRange, effectiveRange: &parsedRange)
         
         if needsNextEnd {

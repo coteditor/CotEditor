@@ -84,89 +84,113 @@ private struct ModeListView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 0) {
-            List(selection: $selection) {
-                Section(String(localized: "Mode", table: "ModeSettings")) {
-                    ForEach(Syntax.Kind.allCases, id: \.self) { kind in
-                        Text(kind.label)
-                            .tag(Mode.kind(kind))
-                            .listRowSeparator(.hidden)
-                    }
+        List(selection: $selection) {
+            Section(String(localized: "Mode", table: "ModeSettings")) {
+                ForEach(Syntax.Kind.allCases, id: \.self) { kind in
+                    Text(kind.label)
+                        .tag(Mode.kind(kind))
+                        .listRowSeparator(.hidden)
                 }
-                
-                if !self.syntaxModes.isEmpty {
-                    Section(String(localized: "Syntax", table: "ModeSettings")) {
-                        ForEach(self.syntaxModes, id: \.self) { mode in
-                            let available = mode.available(within: self.syntaxes)
-                            HStack {
-                                Text(mode.label)
-                                if !available {
-                                    Spacer()
-                                    Label(String(localized: "Not found", table: "ModeSettings", comment: "accessibility label"), systemImage: "exclamationmark.triangle")
-                                        .labelStyle(.iconOnly)
-                                }
+            }
+            
+            if !self.syntaxModes.isEmpty {
+                Section(String(localized: "Syntax", table: "ModeSettings")) {
+                    ForEach(self.syntaxModes, id: \.self) { mode in
+                        let available = mode.available(within: self.syntaxes)
+                        HStack {
+                            Text(mode.label)
+                            if !available {
+                                Spacer()
+                                Label(String(localized: "Not found", table: "ModeSettings", comment: "accessibility label"), systemImage: "exclamationmark.triangle")
+                                    .labelStyle(.iconOnly)
                             }
-                            .tag(mode)
-                            .foregroundStyle(available ? .primary : .secondary)
-                            .lineLimit(1)
-                            .help(available ? "" : String(localized: "This syntax does not exist", table: "ModeSettings", comment: "tooltip"))
-                            .listRowSeparator(.hidden)
                         }
+                        .tag(mode)
+                        .foregroundStyle(available ? .primary : .secondary)
+                        .lineLimit(1)
+                        .help(available ? "" : String(localized: "This syntax does not exist", table: "ModeSettings", comment: "tooltip"))
+                        .listRowSeparator(.hidden)
                     }
                 }
             }
-            .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
-            
-            Divider()
-                .padding(.horizontal, 6)
-            
-            HStack(spacing: 0) {
-                Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
-                    Section(String(localized: "Syntax", table: "ModeSettings")) {
-                        ForEach(self.syntaxes, id: \.self) { syntaxName in
-                            Button(syntaxName) {
-                                do {
-                                    try self.manager.addSetting(for: syntaxName)
-                                } catch {
-                                    self.error = error
-                                }
-                                let syntaxModes = self.manager.syntaxModes
-                                withAnimation {
-                                    self.syntaxModes = syntaxModes
-                                    self.selection = .syntax(syntaxName)
-                                }
-                            }.disabled(self.syntaxModes.compactMap(\.syntaxName).contains(syntaxName))
-                        }
-                    }
-                }
-                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                .menuIndicator(.hidden)
-                .alert(error: $error)
-                
-                Button {
-                    self.manager.removeSetting(for: self.selection)
-                    let syntaxModes = self.manager.syntaxModes
-                    withAnimation {
-                        self.syntaxModes = syntaxModes
-                        self.selection = .kind(.general)
-                    }
-                } label: {
-                    Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
-                        .frame(width: 14, height: 14)
-                        .fontWeight(.medium)
-                }
-                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                .disabled(self.selection.syntaxName == nil)
-            }
-            .padding(2)
-            .labelStyle(.iconOnly)
-            .buttonStyle(.borderless)
         }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                            self.bottomAccessoryView
+                        }
+                    }
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                                .padding(.horizontal, 4)
+                            self.bottomAccessoryView
+                        }
+                    }
+                    .background()
+            }
+        }
+        .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
         .onAppear {
             self.syntaxModes = self.manager.syntaxModes
         }
         .border(.separator)
         .background()
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ViewBuilder private var bottomAccessoryView: some View {
+        
+        HStack(spacing: 0) {
+            Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
+                Section(String(localized: "Syntax", table: "ModeSettings")) {
+                    ForEach(self.syntaxes, id: \.self) { syntaxName in
+                        Button(syntaxName) {
+                            do {
+                                try self.manager.addSetting(for: syntaxName)
+                            } catch {
+                                self.error = error
+                            }
+                            let syntaxModes = self.manager.syntaxModes
+                            withAnimation {
+                                self.syntaxModes = syntaxModes
+                                self.selection = .syntax(syntaxName)
+                            }
+                        }.disabled(self.syntaxModes.compactMap(\.syntaxName).contains(syntaxName))
+                    }
+                }
+            }
+            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
+            .menuIndicator(.hidden)
+            .alert(error: $error)
+            
+            Button {
+                self.manager.removeSetting(for: self.selection)
+                let syntaxModes = self.manager.syntaxModes
+                withAnimation {
+                    self.syntaxModes = syntaxModes
+                    self.selection = .kind(.general)
+                }
+            } label: {
+                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                    .frame(width: 14, height: 14)
+                    .fontWeight(.medium)
+            }
+            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
+            .disabled(self.selection.syntaxName == nil)
+            
+            Spacer()
+        }
+        .padding(2)
+        .labelStyle(.iconOnly)
+        .buttonStyle(.borderless)
     }
 }
 

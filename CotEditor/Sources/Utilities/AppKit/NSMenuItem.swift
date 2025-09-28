@@ -27,9 +27,11 @@ import AppKit
 
 extension NSMenuItem {
     
-    convenience init(title: String, systemImage: String, action: Selector?) {
+    convenience init(title: String, systemImage: String, action: Selector? = nil, target: AnyObject? = nil) {
         
         self.init(title: title, action: action, keyEquivalent: "")
+        
+        self.target = target
         
         if #available(macOS 26, *) {
             self.image = NSImage(systemSymbolName: systemImage, accessibilityDescription: nil)

@@ -222,90 +222,60 @@ private struct SyntaxListView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            List(self.settingStates, selection: $selection) { state in
-                HStack(spacing: 0) {
-                    Circle()
-                        .frame(width: 4, height: 4)
-                        .foregroundStyle(.tertiary)
-                        .padding(6)
-                        .help(String(localized: "This syntax is customized.", table: "FormatSettings"))
-                        .opacity(state.isCustomized ? 1 : 0)
-                        .accessibilityHidden(!state.isCustomized)
+        List(self.settingStates, selection: $selection) { state in
+            HStack(spacing: 0) {
+                Circle()
+                    .frame(width: 4, height: 4)
+                    .foregroundStyle(.tertiary)
+                    .padding(6)
+                    .help(String(localized: "This syntax is customized.", table: "FormatSettings"))
+                    .opacity(state.isCustomized ? 1 : 0)
+                    .accessibilityHidden(!state.isCustomized)
+                Text(state.name)
+            }
+            .tag(state)
+            .frame(height: self.rowHeight)
+            .listRowSeparator(.hidden)
+            .draggable(TransferableSyntax(name: state.name, canExport: !state.isBundled, data: self.manager.dataForUserSetting(name: state.name))) {
+                Label {
                     Text(state.name)
-                }
-                .tag(state)
-                .frame(height: self.rowHeight)
-                .listRowSeparator(.hidden)
-                .draggable(TransferableSyntax(name: state.name, canExport: !state.isBundled, data: self.manager.dataForUserSetting(name: state.name))) {
-                    Label {
-                        Text(state.name)
-                    } icon: {
-                        Image(nsImage: NSWorkspace.shared.icon(for: .yaml))
-                    }
+                } icon: {
+                    Image(nsImage: NSWorkspace.shared.icon(for: .yaml))
                 }
             }
-            .contextMenu(forSelectionType: SettingState.self) { selections in
-                self.menu(for: selections.first, isContext: true)
-            } primaryAction: { selections in
-                self.editingMode = selections.first.map { .edit($0) }
-            }
-            .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
-                                entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
-            .listStyle(.bordered)
-            .border(.background)
-            .environment(\.defaultMinListRowHeight, self.rowHeight)
-            
-            Divider()
-                .padding(.horizontal, 4)
-            
-            HStack {
-                Button {
-                    self.editingMode = .new
-                } label: {
-                    Image(systemName: "plus")
-                        .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
-                .frame(width: 16)
-                
-                Button {
-                    self.deletingItem = self.selection?.name
-                    self.isDeleteConfirmationPresented = true
-                } label: {
-                    Image(systemName: "minus")
-                        .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
-                .frame(width: 16)
-                .disabled(self.selection?.isBundled != false)
-                
-                Button {
-                    self.editingMode = .edit(self.selection!)
-                } label: {
-                    Image(systemName: "pencil")
-                        .accessibilityLabel(String(localized: "Action.edit.label", defaultValue: "Edit"))
-                        .padding(2)
-                }
-                .help(String(localized: "Edit selected item", table: "FormatSettings"))
-                .frame(width: 16)
-                .disabled(self.selection == nil)
-                
-                Spacer()
-                
-                Menu {
-                    self.menu(for: self.selection)
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .symbolVariant(.circle)
-                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
-                }
-            }
-            .buttonStyle(.borderless)
-            .padding(6)
         }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                            self.bottomAccessoryView
+                        }
+                    }
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                                .padding(.horizontal, 4)
+                            self.bottomAccessoryView
+                        }
+                        .background()
+                    }
+            }
+        }
+        .contextMenu(forSelectionType: SettingState.self) { selections in
+            self.menu(for: selections.first, isContext: true)
+        } primaryAction: { selections in
+            self.editingMode = selections.first.map { .edit($0) }
+        }
+        .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
+                            entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
+        .listStyle(.bordered)
+        .border(.background)
+        .environment(\.defaultMinListRowHeight, self.rowHeight)
         .background(.background)
         .border(.separator)
         .frame(width: 260, height: 140)
@@ -399,6 +369,58 @@ private struct SyntaxListView: View {
             SyntaxMappingConflictView(table: self.manager.mappingConflicts)
         }
         .alert(error: $error)
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ViewBuilder private var bottomAccessoryView: some View {
+        
+        HStack {
+            Button {
+                self.editingMode = .new
+            } label: {
+                Image(systemName: "plus")
+                    .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .frame(width: 16)
+            
+            Button {
+                self.deletingItem = self.selection?.name
+                self.isDeleteConfirmationPresented = true
+            } label: {
+                Image(systemName: "minus")
+                    .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .frame(width: 16)
+            .disabled(self.selection?.isBundled != false)
+            
+            Button {
+                self.editingMode = .edit(self.selection!)
+            } label: {
+                Image(systemName: "pencil")
+                    .accessibilityLabel(String(localized: "Action.edit.label", defaultValue: "Edit"))
+                    .padding(2)
+            }
+            .help(String(localized: "Edit selected item", table: "FormatSettings"))
+            .frame(width: 16)
+            .disabled(self.selection == nil)
+            
+            Spacer()
+            
+            Menu {
+                self.menu(for: self.selection)
+            } label: {
+                Image(systemName: "ellipsis")
+                    .symbolVariant(.circle)
+                    .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
+            }
+        }
+        .buttonStyle(.borderless)
+        .padding(6)
     }
     
     

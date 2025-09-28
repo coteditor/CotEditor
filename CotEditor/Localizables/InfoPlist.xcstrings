@@ -757,18 +757,6 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor"
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -849,11 +837,12 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "CotEditor"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "CFBundleSpokenName" : {
       "comment" : "Accessibility Bundle Name",

@@ -46,71 +46,47 @@ struct MultipleReplaceListView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            List(selection: $selection) {
-                ForEach(self.settingNames, id: \.self) { name in
-                    SettingNameField(text: name) { newName in
-                        do {
-                            try self.manager.renameSetting(name: name, to: newName)
-                        } catch {
-                            self.error = error
-                            return false
-                        }
-                        self.selection = newName
-                        return true
+        List(selection: $selection) {
+            ForEach(self.settingNames, id: \.self) { name in
+                SettingNameField(text: name) { newName in
+                    do {
+                        try self.manager.renameSetting(name: name, to: newName)
+                    } catch {
+                        self.error = error
+                        return false
                     }
-                    .focused($editingItem, equals: name)
-                    .draggable(TransferableReplacement(name: name, data: self.manager.dataForUserSetting(name: name))) {
-                        Label {
-                            Text(name)
-                        } icon: {
-                            Image(nsImage: NSWorkspace.shared.icon(for: .cotReplacement))
-                        }
+                    self.selection = newName
+                    return true
+                }
+                .focused($editingItem, equals: name)
+                .draggable(TransferableReplacement(name: name, data: self.manager.dataForUserSetting(name: name))) {
+                    Label {
+                        Text(name)
+                    } icon: {
+                        Image(nsImage: NSWorkspace.shared.icon(for: .cotReplacement))
                     }
                 }
-                .listRowSeparator(.hidden)
             }
-            .contextMenu(forSelectionType: String.self) { selections in
-                if let selection = selections.first {
-                    self.menu(for: selection, isContext: true)
-                }
+            .listRowSeparator(.hidden)
+        }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        self.bottomAccessoryView
+                    }
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom, spacing: 0) {
+                        self.bottomAccessoryView
+                    }
             }
-            .listStyle(.sidebar)
-            
-            HStack {
-                Button {
-                    self.createUntitledSetting()
-                } label: {
-                    Image(systemName: "plus")
-                        .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
-                .frame(width: 16)
-                
-                Button {
-                    self.deletingItem = self.selection
-                    self.isDeleteConfirmationPresented = true
-                } label: {
-                    Image(systemName: "minus")
-                        .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
-                .frame(width: 16)
-                
-                Spacer()
-                
-                Menu {
-                    self.menu(for: self.selection)
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .symbolVariant(.circle)
-                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
-                }
+        }
+        .contextMenu(forSelectionType: String.self) { selections in
+            if let selection = selections.first {
+                self.menu(for: selection, isContext: true)
             }
-            .buttonStyle(.borderless)
-            .padding(isLiquidGlass ? 8 : 6)
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Sidebar", table: "MultipleReplace", comment: "accessibility label"))
@@ -203,6 +179,46 @@ struct MultipleReplaceListView: View {
                         defaultValue: "This action cannot be undone."))
         }
         .alert(error: $error)
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ViewBuilder private var bottomAccessoryView: some View {
+        
+        HStack {
+            Button {
+                self.createUntitledSetting()
+            } label: {
+                Image(systemName: "plus")
+                    .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .frame(width: 16)
+            
+            Button {
+                self.deletingItem = self.selection
+                self.isDeleteConfirmationPresented = true
+            } label: {
+                Image(systemName: "minus")
+                    .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .frame(width: 16)
+            
+            Spacer()
+            
+            Menu {
+                self.menu(for: self.selection)
+            } label: {
+                Image(systemName: "ellipsis")
+                    .symbolVariant(.circle)
+                    .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
+            }
+        }
+        .buttonStyle(.borderless)
+        .padding(6)
     }
     
     
@@ -329,7 +345,7 @@ private struct TransferableReplacement: Transferable {
 
 // MARK: - Preview
 
-#Preview {
+#Preview(traits: .fixedLayout(width: 140, height: 300)) {
     @Previewable @State var selection: String?
     
     MultipleReplaceListView(selection: $selection, manager: .shared)

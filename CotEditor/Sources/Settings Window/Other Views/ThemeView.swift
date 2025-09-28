@@ -135,102 +135,79 @@ private struct ThemeListView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            List(selection: $selection) {
-                Section(String(localized: "Theme", table: "ThemeEditor")) {
-                    ForEach(self.settingNames, id: \.self) { name in
-                        let state = self.manager.state(of: name)
-                        
-                        SettingNameField(text: name) { newName in
-                            do {
-                                try self.manager.renameSetting(name: name, to: newName)
-                            } catch {
-                                self.error = error
-                                return false
-                            }
-                            self.selection = newName
-                            return true
+        List(selection: $selection) {
+            Section(String(localized: "Theme", table: "ThemeEditor")) {
+                ForEach(self.settingNames, id: \.self) { name in
+                    let state = self.manager.state(of: name)
+                    
+                    SettingNameField(text: name) { newName in
+                        do {
+                            try self.manager.renameSetting(name: name, to: newName)
+                        } catch {
+                            self.error = error
+                            return false
                         }
-                        .editDisabled(state?.isBundled == true)
-                        .focused($editingItem, equals: name)
-                        .draggable(TransferableTheme(name: name, canExport: state?.isCustomized == true, data: self.manager.dataForUserSetting(name: name))) {
-                            Label {
-                                Text(name)
-                            } icon: {
-                                Image(nsImage: NSWorkspace.shared.icon(for: .cotTheme))
-                            }
+                        self.selection = newName
+                        return true
+                    }
+                    .editDisabled(state?.isBundled == true)
+                    .focused($editingItem, equals: name)
+                    .draggable(TransferableTheme(name: name, canExport: state?.isCustomized == true, data: self.manager.dataForUserSetting(name: name))) {
+                        Label {
+                            Text(name)
+                        } icon: {
+                            Image(nsImage: NSWorkspace.shared.icon(for: .cotTheme))
                         }
                     }
                 }
-                .listRowSeparator(.hidden)
             }
-            .dropDestination(for: TransferableTheme.self) { items, _ in
-                var succeed = false
-                for item in items {
-                    guard let data = item.data() else { continue }
-                    do {
-                        try self.manager.importSetting(data: data, name: item.name, overwrite: false)
-                        succeed = true
-                    } catch let error as ImportDuplicationError {
-                        self.importingError = error
-                        self.isImportConfirmationPresented = true
-                    } catch {
-                        self.error = error
-                    }
-                }
-                return succeed
-            }
-            .contextMenu(forSelectionType: String.self) { selections in
-                if let selection = selections.first {
-                    self.menu(for: selection, isContext: true)
-                }
-            }
-            .listStyle(.bordered)
-            .border(.background)
-            
-            Divider()
-                .padding(.horizontal, 4)
-            
-            HStack {
-                Button {
-                    do {
-                        self.selection = try self.manager.createUntitledSetting()
-                    } catch {
-                        self.error = error
-                    }
-                } label: {
-                    Image(systemName: "plus")
-                        .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
-                .frame(width: 16)
-                
-                Button {
-                    self.deletingItem = self.selection
-                    self.isDeleteConfirmationPresented = true
-                } label: {
-                    Image(systemName: "minus")
-                        .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
-                        .padding(2)
-                }
-                .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
-                .frame(width: 16)
-                .disabled(self.manager.state(of: self.selection)?.isBundled != false)
-                
-                Spacer()
-                
-                Menu {
-                    self.menu(for: self.selection)
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .symbolVariant(.circle)
-                        .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
-                }
-            }
-            .buttonStyle(.borderless)
-            .padding(6)
+            .listRowSeparator(.hidden)
         }
+        .modifier { content in
+            if #available(macOS 26, *) {
+                content
+                    .safeAreaBar(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                            self.bottomAccessoryView
+                        }
+                    }
+                    .scrollEdgeEffectStyle(.hard, for: .bottom)
+            } else {
+                content
+                    .safeAreaInset(edge: .bottom) {
+                        VStack(spacing: 0) {
+                            Divider()
+                                .padding(.horizontal, 4)
+                            self.bottomAccessoryView
+                        }
+                        .background()
+                    }
+            }
+        }
+        .dropDestination(for: TransferableTheme.self) { items, _ in
+            var succeed = false
+            for item in items {
+                guard let data = item.data() else { continue }
+                do {
+                    try self.manager.importSetting(data: data, name: item.name, overwrite: false)
+                    succeed = true
+                } catch let error as ImportDuplicationError {
+                    self.importingError = error
+                    self.isImportConfirmationPresented = true
+                } catch {
+                    self.error = error
+                }
+            }
+            return succeed
+        }
+        .contextMenu(forSelectionType: String.self) { selections in
+            if let selection = selections.first {
+                self.menu(for: selection, isContext: true)
+            }
+        }
+        .listStyle(.bordered)
+        .border(.background)
         .onReceive(self.manager.$settingNames.receive(on: RunLoop.main)) { settingNames in
             self.settingNames = settingNames
         }
@@ -308,6 +285,51 @@ private struct ThemeListView: View {
                         defaultValue: "This action cannot be undone."))
         }
         .alert(error: $error)
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ViewBuilder private var bottomAccessoryView: some View {
+        
+        HStack {
+            Button {
+                do {
+                    self.selection = try self.manager.createUntitledSetting()
+                } catch {
+                    self.error = error
+                }
+            } label: {
+                Image(systemName: "plus")
+                    .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .frame(width: 16)
+            
+            Button {
+                self.deletingItem = self.selection
+                self.isDeleteConfirmationPresented = true
+            } label: {
+                Image(systemName: "minus")
+                    .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
+                    .padding(2)
+            }
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .frame(width: 16)
+            .disabled(self.manager.state(of: self.selection)?.isBundled != false)
+            
+            Spacer()
+            
+            Menu {
+                self.menu(for: self.selection)
+            } label: {
+                Image(systemName: "ellipsis")
+                    .symbolVariant(.circle)
+                    .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
+            }
+        }
+        .buttonStyle(.borderless)
+        .padding(6)
     }
     
     

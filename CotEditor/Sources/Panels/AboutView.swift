@@ -79,46 +79,60 @@ struct AboutView: View {
             
             Divider()
             
-            VStack(spacing: 0) {
-                HStack {
-                    ForEach(Pane.allCases, id: \.self) { pane in
-                        TabPickerButtonView(pane.label, isSelected: self.pane == pane) {
-                            withAnimation {
-                                self.pane = pane
-                            }
-                        }
-                    }
-                }
-                .accessibilityRepresentation {
-                    Picker(selection: $pane) {
-                        ForEach(Pane.allCases, id: \.self) {
-                            Text($0.label)
-                        }
-                    } label: {
-                        EmptyView()
-                    }
-                }
-                .padding(.vertical, 6)
-                
-                if #unavailable(macOS 26) {
-                    Divider()
-                }
-                
-                ScrollView(.vertical) {
-                    switch self.pane {
-                        case .credits:
-                            CreditsView()
-                        case .license:
-                            LicenseView()
-                    }
+            ScrollView(.vertical) {
+                switch self.pane {
+                    case .credits:
+                        CreditsView()
+                    case .license:
+                        LicenseView()
                 }
             }
             .modifier { content in
                 if #available(macOS 26, *) {
                     content
+                        .safeAreaBar(edge: .top) {
+                            Picker(selection: $pane) {
+                                ForEach(Pane.allCases, id: \.self) {
+                                    Text($0.label)
+                                }
+                            } label: {
+                                EmptyView()
+                            }
+                            .pickerStyle(.segmented)
+                            .buttonBorderShape(.capsule)
+                            .tint(.secondary.opacity(0.5))
+                            .glassEffect()
+                            .padding(10)
+                        }
                 } else {
                     content
                         .background()
+                        .safeAreaInset(edge: .top, spacing: 0) {
+                            VStack(spacing: 0) {
+                                HStack {
+                                    ForEach(Pane.allCases, id: \.self) { pane in
+                                        TabPickerButtonView(pane.label, isSelected: self.pane == pane) {
+                                            withAnimation {
+                                                self.pane = pane
+                                            }
+                                        }
+                                    }
+                                }
+                                .accessibilityRepresentation {
+                                    Picker(selection: $pane) {
+                                        ForEach(Pane.allCases, id: \.self) {
+                                            Text($0.label)
+                                        }
+                                    } label: {
+                                        EmptyView()
+                                    }
+                                }
+                                .padding(.vertical, 6)
+                                
+                                Divider()
+                            }
+                            .background()
+                        }
                 }
             }
         }
@@ -128,6 +142,7 @@ struct AboutView: View {
 }
 
 
+@available(macOS, deprecated: 26)
 private struct TabPickerButtonView: View {
     
     var title: String
@@ -152,16 +167,19 @@ private struct TabPickerButtonView: View {
         Button(self.title, action: self.action)
             .buttonStyle(.borderless)
             .brightness(-0.2)
-            .padding(.vertical, isLiquidGlass ? 2 : 1)
-            .padding(.horizontal, isLiquidGlass ? 6 : 4)
-            .background(.fill.opacity(self.backgroundOpacity),
-                        in: .rect(cornerRadius: isLiquidGlass ? 5 : 3, style: .continuous))
-            .overlay(self.contrast == .increased
-                     ? RoundedRectangle(cornerRadius: isLiquidGlass ? 5 : 3).stroke(.tertiary)
-                     : nil)
+            .padding(.vertical, 1)
+            .padding(.horizontal, 4)
+            .background(.fill.opacity(self.backgroundOpacity), in: self.shape)
+            .overlay(self.contrast == .increased ? self.shape.stroke(.tertiary) : nil)
             .onHover { self.isHovered = $0 }
             .accessibilityAddTraits(self.isSelected ? .isSelected : [])
             .accessibilityRemoveTraits(self.isSelected ? [] : .isSelected)
+    }
+    
+    
+    private var shape: some Shape {
+        
+        RoundedRectangle(cornerRadius: 3, style: .continuous)
     }
     
     

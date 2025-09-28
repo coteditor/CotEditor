@@ -38,7 +38,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
-    @ViewLoading private var addButton: NSPopUpButton
     
     private var showsHiddenFiles: Bool
     
@@ -92,11 +91,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.pullsDown = true
         addButton.autoenablesItems = false
         addButton.isBordered = false
-        addButton.addItem(withTitle: "")
-        addButton.item(at: 0)!.image = NSImage(
-            systemSymbolName: "plus",
-            accessibilityDescription: String(localized: "Action.add.label", defaultValue: "Add")
-        )
+        addButton.menu!.items = [
+            NSMenuItem(title: "", systemImage: "plus"),
+            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
+                       systemImage: "document.badge.plus",
+                       action: #selector(addFile), target: self),
+            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
+                       systemImage: "folder.badge.plus",
+                       action: #selector(addFolder), target: self),
+        ]
+        if #unavailable(macOS 26) {
+            addButton.menu!.items[0].image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
+        }
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
@@ -135,14 +141,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         if #available(macOS 26, *) {
             scrollView.bottomAnchor.constraint(equalTo: bottomSeparator.topAnchor).isActive = true
         } else {
-            scrollView.contentView.automaticallyAdjustsContentInsets = false
-            scrollView.contentView.contentInsets.bottom = footerHeight
+            scrollView.additionalSafeAreaInsets.bottom = footerHeight
             scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         }
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
-        self.addButton = addButton
     }
     
     
@@ -203,18 +207,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             item.target = self
         }
         self.outlineView.menu = contextMenu
-        
-        self.addButton.menu!.items += [
-            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
-                       systemImage: "document.badge.plus",
-                       action: #selector(addFile)),
-            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
-                       systemImage: "folder.badge.plus",
-                       action: #selector(addFolder)),
-        ]
-        for item in self.addButton.menu!.items where !item.isSeparatorItem {
-            item.target = self
-        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -280,8 +272,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             // open the Quick Look panel by pressing the Space key
             self.quickLook(with: event)
             
-        } else if hasNoModifier, event.specialKey == .delete, !self.outlineView.selectedRowIndexes.isEmpty
-        {
+        } else if hasNoModifier, event.specialKey == .delete, !self.outlineView.selectedRowIndexes.isEmpty {
             // delete selected items by pressing the Delete key
             self.delete(self)
             
@@ -677,10 +668,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let clipView = self.outlineView.enclosingScrollView?.contentView else { return assertionFailure() }
         
-        let visibleRect = clipView.documentVisibleRect
-        let inset = clipView.contentInsets.bottom
+        let showsSeparator = (clipView.documentVisibleRect.maxY < clipView.documentRect.maxY)
         
-        self.bottomSeparator.animator().alphaValue = (visibleRect.maxY < clipView.documentRect.maxY + inset) ? 1 : 0
+        self.bottomSeparator.animator().alphaValue = showsSeparator ? 1 : 0
     }
 }
 
