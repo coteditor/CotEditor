@@ -1,5 +1,14 @@
 # Change Log
 
+7.1.0 (unreleased)
+--------------------------
+
+### Compatibility Changes
+
+- Change the system requirement to __macOS Tahoe 26 and later__.
+
+
+
 7.0.4 (unreleased)
 --------------------------
 

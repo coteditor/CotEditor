@@ -6,7 +6,7 @@ let package = Package(
     name: "MacUI",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v15),
+        .macOS(.v26),
     ],
     products: [
         .library(name: "MacUI", targets: [

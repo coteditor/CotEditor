@@ -6,7 +6,7 @@ let package = Package(
     name: "EditorCore",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v15),
+        .macOS(.v26),
     ],
     products: [
         .library(name: "EditorCore", targets: [
