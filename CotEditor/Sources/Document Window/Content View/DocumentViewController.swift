@@ -690,13 +690,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Changes the tab width to desired number through a sheet.
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
-            self?.tabWidth = tabWidth
+        self.view.window?.beginSheet {
+            CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
+                self?.tabWidth = tabWidth
+            }
         }
-        let viewController = NSHostingController(rootView: view)
-        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
-        
-        self.presentAsSheet(viewController)
     }
     
     

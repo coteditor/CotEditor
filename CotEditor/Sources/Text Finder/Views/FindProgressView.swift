@@ -29,7 +29,7 @@ import TextFind
 
 struct FindProgressView: View {
     
-    var dismiss: () -> Void = { }
+    @Environment(\.dismiss) private var dismiss
     
     @State private var progress: FindProgress
     private var action: TextFind.Action

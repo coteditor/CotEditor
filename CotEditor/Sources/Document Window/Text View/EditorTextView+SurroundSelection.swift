@@ -70,14 +70,12 @@ extension EditorTextView {
     /// Shows the custom surround sheet.
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let view = CustomSurroundView(pair: self.customSurroundPair) { [weak self] pair in
-            self?.surroundSelections(begin: pair.begin, end: pair.end)
-            self?.customSurroundPair = pair
+        self.window?.beginSheet {
+            CustomSurroundView(pair: self.customSurroundPair) { [weak self] pair in
+                self?.surroundSelections(begin: pair.begin, end: pair.end)
+                self?.customSurroundPair = pair
+            }
         }
-        let viewController = NSHostingController(rootView: view)
-        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
-        
-        self.viewControllerForSheet?.presentAsSheet(viewController)
     }
 }
 

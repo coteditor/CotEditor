@@ -329,17 +329,15 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
         let lineRange = FuzzyRange(location: lineNumber, length: lineCount)
         
-        let view = GoToLineView(lineRange: lineRange) { lineRange in
-            guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
-            
-            textView.select(range: range)
-            
-            return true
+        self.view.window?.beginSheet {
+            GoToLineView(lineRange: lineRange) { lineRange in
+                guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
+                
+                textView.select(range: range)
+                
+                return true
+            }
         }
-        let viewController = NSHostingController(rootView: view)
-        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
-        
-        self.presentAsSheet(viewController)
     }
     
     
@@ -373,14 +371,12 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             return self.dismissAdvancedCharacterCounter()
         }
         
-        // show counter
-        let sheetView = CharacterCountOptionsSheetView { [weak self] in
-            self?.showAdvancedCharacterCounter()
+        // present option sheet
+        self.view.window?.beginSheet {
+            CharacterCountOptionsSheetView { [weak self] in
+                self?.showAdvancedCharacterCounter()
+            }
         }
-        let optionViewController = NSHostingController(rootView: sheetView)
-        optionViewController.rootView.dismiss = { [weak optionViewController] in optionViewController?.dismiss(nil) }
-        
-        self.presentAsSheet(optionViewController)
     }
     
     

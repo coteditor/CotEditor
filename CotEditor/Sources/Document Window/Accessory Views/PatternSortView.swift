@@ -38,8 +38,7 @@ struct PatternSortView: View {
     }
     
     
-    var dismiss: () -> Void = { }
-    
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.resetFocus) private var resetFocus
     
     @Namespace private var namespace

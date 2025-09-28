@@ -52,11 +52,10 @@ extension NSTextView {
                 .sorted(using: KeyPathComparator(\.location))
         }
         
-        // setup progress sheet
-        let indicatorView = FindProgressView(String(localized: "Highlight All", table: "TextFind"), progress: progress, action: .find)
-        let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.dismiss = { [weak indicator] in indicator?.dismiss(nil) }
-        self.viewControllerForSheet?.presentAsSheet(indicator)
+        // present progress view
+        self.window?.beginSheet {
+            FindProgressView(String(localized: "Highlight All", table: "TextFind"), progress: progress, action: .find)
+        }
         
         // perform
         let ranges = try await withTaskCancellationHandler {
@@ -105,11 +104,10 @@ extension NSTextView {
             try definition.replace(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
         }
         
-        // setup progress sheet
-        let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
-        let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.dismiss = { [weak indicator] in indicator?.dismiss(nil) }
-        self.viewControllerForSheet?.presentAsSheet(indicator)
+        // present progress view
+        self.window?.beginSheet {
+            FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
+        }
         
         // perform
         let result = try await withTaskCancellationHandler {

@@ -29,7 +29,7 @@ struct CharacterCountOptionsSheetView: View {
     
     var completionHandler: () -> Void
     
-    var dismiss: () -> Void = { }
+    @Environment(\.dismiss) private var dismiss
     
     
     // MARK: View
