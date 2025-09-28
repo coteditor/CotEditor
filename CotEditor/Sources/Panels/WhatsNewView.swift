@@ -271,15 +271,7 @@ private struct MigrationReportView: View {
             Image(systemName: "checkmark")
                 .symbolRenderingMode(.hierarchical)
                 .symbolVariant(.circle)
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .symbolEffect(.drawOn, isActive: !self.isVisible)
-                    } else {
-                        content
-                            .symbolEffect(.bounce, value: self.isVisible)
-                    }
-                }
+                .symbolEffect(.drawOn, isActive: !self.isVisible)
                 .imageScale(.large)
                 .foregroundStyle(.accent)
         }
