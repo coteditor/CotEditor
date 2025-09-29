@@ -62,14 +62,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var needsManualOnAppear = false
     private var uniqueDirectory: String?
     
-    private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
-        .fill(.tertiary)
-        .frame(width: 4, height: 4)
-        .padding(8)
-        .help(String(localized: "Document has unsaved changes",
-                     table: "Document",
-                     comment: "tooltip for the “edited” indicator in the window tab"))
-    )
+    private lazy var editedIndicator: NSView = NSHostingView(rootView: EditedIndicator())
     
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
@@ -924,3 +917,22 @@ extension DocumentWindowController: NSSharingServicePickerToolbarItemDelegate {
         return [document]
     }
 }
+
+
+// MARK: - Views
+
+private struct EditedIndicator: View {
+    
+    var body: some View {
+        
+        Circle()
+            .fill(.tertiary)
+            .frame(width: 4, height: 4)
+            .padding(8)
+            .help(String(localized: "Document has unsaved changes",
+                         table: "Document",
+                         comment: "tooltip for the “edited” indicator in the window tab"))
+    }
+}
+
+
