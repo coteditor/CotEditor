@@ -366,7 +366,7 @@ private enum BundleIdentifier {
     /// Shows the about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
+        let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "%@ is app name"))
         panel.makeKeyAndOrderFront(sender)
         
         self.aboutPanel = panel

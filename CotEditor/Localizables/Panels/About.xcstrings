@@ -102,7 +102,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Über %@"
+            "value" : "Über „%@“"
           }
         },
         "en-GB" : {
