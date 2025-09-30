@@ -934,5 +934,3 @@ private struct EditedIndicator: View {
                          comment: "tooltip for the “edited” indicator in the window tab"))
     }
 }
-
-
