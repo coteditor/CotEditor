@@ -91,7 +91,7 @@
       }
     },
     "About %@" : {
-      "comment" : "accessibility label (%@ is app name)",
+      "comment" : "%@ is app name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
