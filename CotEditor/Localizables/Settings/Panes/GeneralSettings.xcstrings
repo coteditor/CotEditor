@@ -1540,6 +1540,47 @@
         }
       }
     },
+    "NextSessionApplicationConfirmation.nextAfterNext.message" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Verhalten der App ändert sich ab dem nächsten Start nach diesem."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The app’s behavior will change from the next launch after that one."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app’s behaviour will change from the next launch after that one."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El comportamiento de la aplicación cambiará a partir del siguiente reinicio."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le comportement de l'application changera dès le prochain lancement suivant celui-ci."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリの挙動が変わるのは、そのさらに次の起動からです。"
+          }
+        }
+      }
+    },
     "NextSessionApplicationConfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

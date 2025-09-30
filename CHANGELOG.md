@@ -7,6 +7,7 @@
 
 - Improve UI details on macOS 26.
 - Always open the sidebar when opening a folder document.
+- [trivial] Show the confirmation dialog after changing the “Reopen windows from last session” option in the General settings pane.
 
 
 ### Fixes
