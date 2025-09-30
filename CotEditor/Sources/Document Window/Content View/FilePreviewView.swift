@@ -46,15 +46,8 @@ struct FilePreviewView: View {
                         NSWorkspace.shared.activateFileViewerSelecting([self.item.previewItemURL])
                     }
                 } else {
-                    if #available(macOS 26, *) {
-                        Link(String(localized: "Open with External Editor", table: "Document"), destination: self.item.previewItemURL)
-                            .onOpenURL(prefersInApp: true)
-                            .buttonStyle(.bordered)
-                    } else {
-                        Button(String(localized: "Open with External Editor", table: "Document")) {
-                            NSWorkspace.shared.open(self.item.previewItemURL)
-                        }
-                    }
+                    OpenWithExternalEditorButton(url: self.item.previewItemURL)
+                        .fixedSize()
                 }
                 
                 Button(String(localized: "Open as Plain Text", table: "Document")) {
@@ -185,6 +178,116 @@ struct AudioAttributesView: View {
     }
 }
 
+
+// MARK: - Open with External Editor Button
+
+private struct OpenWithExternalEditorButton: View {
+    
+    var url: URL
+    
+    
+    @Environment(\.openURL) private var openURL
+    
+    @State private var isFileBrowserPresented = false
+    @State private var error: (any Error)?
+    
+    
+    var body: some View {
+        
+        Menu(String(localized: "Open with External Editor", table: "Document")) {
+            if let appURL = NSWorkspace.shared.urlForApplication(toOpen: self.url) {
+                let editor = ExternalEditor(url: appURL)
+                Button {
+                    self.open(in: editor.url)
+                } label: {
+                    Label {
+                        Text(AttributedString(editor.displayName) +
+                             AttributedString(String(localized: " (default)", table: "Document"),
+                                              attributes: .init().foregroundColor(.secondary)))
+                    } icon: {
+                        Image(nsImage: editor.icon)
+                    }
+                }
+                Divider()
+            }
+            
+            ForEach(NSWorkspace.shared.externalEditors(toOpen: self.url), id: \.url) { editor in
+                Button {
+                    self.open(in: editor.url)
+                } label: {
+                    Label {
+                        Text(editor.displayName)
+                    } icon: {
+                        Image(nsImage: editor.icon)
+                    }
+                }
+            }
+            Divider()
+            Button(String(localized: "Action.select.label", defaultValue: "Select…")) {
+                self.isFileBrowserPresented = true
+            }
+        } primaryAction: {
+            self.open()
+        }
+        .fileImporter(isPresented: $isFileBrowserPresented, allowedContentTypes: [.application]) { result in
+            switch result {
+                case .success(let url):
+                    self.open(in: url)
+                case .failure(let error):
+                    self.error = error
+            }
+        }
+        .fileDialogDefaultDirectory(.applicationDirectory)
+        .alert(error: $error)
+    }
+    
+    
+    private func open(in applicationURL: URL? = nil) {
+        
+        if let applicationURL {
+            NSWorkspace.shared.open([self.url], withApplicationAt: applicationURL, configuration: NSWorkspace.OpenConfiguration())
+        } else {
+            NSWorkspace.shared.open(self.url)
+        }
+    }
+}
+
+
+private struct ExternalEditor {
+    
+    var url: URL
+    var displayName: String
+    var icon: NSImage
+    
+    
+    init(url: URL) {
+        
+        self.url = url
+        self.displayName = FileManager.default.displayName(atPath: url.path)
+        self.icon = NSWorkspace.shared.icon(forFile: url.path)
+        self.icon.size = NSSize(width: 15, height: 15)
+    }
+}
+
+
+private extension NSWorkspace {
+    
+    /// Returns `ExternalEditor`s that may be able to open the given file URL.
+    ///
+    /// - Parameter fileURL: The URL of a file to open.
+    /// - Returns: An array of `ExternalEditor`s.
+    func externalEditors(toOpen fileURL: URL) -> [ExternalEditor] {
+        
+        self.urlsForApplications(toOpen: fileURL)
+            .map(ExternalEditor.init(url:))
+            .dropFirst()  // omit default
+            .sorted(using: KeyPathComparator(\.displayName, comparator: .localizedStandard))
+            .filter { $0.url != Bundle.main.bundleURL }  // omit self
+    }
+}
+
+
+// MARK: - Extensions
 
 private extension CGSize {
     
