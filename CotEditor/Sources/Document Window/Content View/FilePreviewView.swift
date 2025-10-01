@@ -233,7 +233,7 @@ private struct OpenWithExternalEditorMenu: View {
             }
             
             Divider()
-            Button(String(localized: "Action.select.label", defaultValue: "Select…")) {
+            Button(String(localized: "Other…", table: "Document")) {
                 self.isFileBrowserPresented = true
             }
             
