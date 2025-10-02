@@ -245,6 +245,8 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     /// - Parameter setting: The setting to replace.
     func change(setting: MultipleReplace) {
         
+        guard setting != self.definition else { return }
+        
         self.definition = setting
         self.hasInvalidSetting = false
         self.resultMessage = nil
