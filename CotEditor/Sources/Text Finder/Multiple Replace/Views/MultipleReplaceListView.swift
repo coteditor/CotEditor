@@ -67,7 +67,6 @@ struct MultipleReplaceListView: View {
                     }
                 }
             }
-            .listRowSeparator(.hidden)
         }
         .modifier { content in
             if #available(macOS 26, *) {

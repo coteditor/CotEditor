@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24408" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24127"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24408"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,8 +11,8 @@
         <scene sceneID="7ic-e2-LjN">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="MultipleReplaceViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="8CD-v6-nsP">
-                        <rect key="frame" x="0.0" y="0.0" width="460" height="307"/>
+                    <view key="view" id="8CD-v6-nsP">
+                        <rect key="frame" x="0.0" y="0.0" width="461" height="307"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
@@ -229,7 +229,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="description" width="68" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
+                                                <tableColumn identifier="description" width="107" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -242,11 +242,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="rOM-3j-LP8">
-                                                            <rect key="frame" x="305" y="1" width="72" height="16"/>
+                                                            <rect key="frame" x="305" y="1" width="111" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="111" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="gsY-y4-MMs">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -334,7 +334,7 @@
                                     <action selector="openHelpAnchor:" target="4B0-TX-5FP" id="Rt0-s9-mJn"/>
                                 </connections>
                             </button>
-                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
                                 <rect key="frame" x="245" y="69" width="151" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invalid rules will be skipped." id="gRf-KM-GZo">
                                     <font key="font" metaFont="menu" size="11"/>
@@ -366,9 +366,12 @@
                                     </binding>
                                 </connections>
                             </imageView>
-                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
-                                <rect key="frame" x="76" y="24" width="71" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 REPLACED" id="HU0-YI-OIX">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
+                                <rect key="frame" x="71" y="24" width="76" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="uWQ-HH-gRU"/>
+                                </constraints>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="5 REPLACED" id="HU0-YI-OIX">
                                     <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -413,7 +416,6 @@
                             <constraint firstItem="Ipw-p6-L9Z" firstAttribute="top" secondItem="4Jd-Pz-IbU" secondAttribute="bottom" constant="8" symbolic="YES" id="2hj-oG-Ukd"/>
                             <constraint firstItem="dhM-uH-4uq" firstAttribute="leading" secondItem="6DU-wH-q4e" secondAttribute="trailing" constant="4" id="5cg-Rm-27o"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="baseline" secondItem="pfM-xk-MrN" secondAttribute="baseline" id="8kF-cK-yp4"/>
-                            <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="Ipw-p6-L9Z" secondAttribute="centerY" id="9ec-vr-SjY"/>
                             <constraint firstItem="4Jd-Pz-IbU" firstAttribute="top" secondItem="XGd-UY-MQC" secondAttribute="bottom" constant="8" symbolic="YES" id="BKV-rQ-5gb"/>
                             <constraint firstItem="dQR-5E-rIT" firstAttribute="trailing" secondItem="4Jd-Pz-IbU" secondAttribute="trailing" constant="20" symbolic="YES" id="DVc-ev-msh"/>
                             <constraint firstItem="dQR-5E-rIT" firstAttribute="bottom" secondItem="Nth-za-4Ad" secondAttribute="bottom" constant="20" symbolic="YES" id="J3G-NA-A0t"/>
@@ -450,7 +452,7 @@
                 <customObject id="4B0-TX-5FP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="JZj-f6-1IH"/>
             </objects>
-            <point key="canvasLocation" x="279" y="-0.5"/>
+            <point key="canvasLocation" x="278.5" y="-0.5"/>
         </scene>
     </scenes>
     <resources>

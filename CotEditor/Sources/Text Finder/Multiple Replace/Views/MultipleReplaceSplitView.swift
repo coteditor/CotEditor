@@ -39,7 +39,7 @@ struct MultipleReplaceSplitView: View {
     
     var body: some View {
         
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: .constant(.all)) {
             MultipleReplaceListView(selection: $selection, manager: self.manager)
                 .environment(\.sidebarRowSize, .medium)
                 .navigationSplitViewColumnWidth(min: 80, ideal: 200)
