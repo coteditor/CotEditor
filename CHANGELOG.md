@@ -19,6 +19,11 @@
 - Fix an issue where the syntax mapping conflict view cannot be closed.
 
 
+### TODO
+
+- New text is not localized in Czech, Dutch, Italian, Polish, and Portuguese.
+
+
 
 6.0.3 (751)
 --------------------------

@@ -1578,6 +1578,30 @@
             "state" : "translated",
             "value" : "アプリの挙動が変わるのは、そのさらに次の起動からです。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그다음부터 앱의 동작이 변경됩니다."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamanın davranışı bundan sonraki başlangıçta değişecektir."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用的行为将从之后再下一次启动时生效。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App的行為將在之後的下一次啟動時生效。"
+          }
         }
       }
     },

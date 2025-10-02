@@ -48,8 +48,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(빈 칸은 전체 문자열을 일치합니다.)"
+            "state" : "translated",
+            "value" : "(비워 두면 전체 일치를 사용합니다.)"
           }
         },
         "nl" : {
@@ -72,20 +72,20 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(boş, tüm diziyle eşleşir.)"
+            "state" : "translated",
+            "value" : "(Boş bırakmak tam eşleşmeyi kullanır.)"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "（留空匹配整个字符串）"
+            "state" : "translated",
+            "value" : "（留空则使用整个匹配。）"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "（留空匹配整個字串）"
+            "state" : "translated",
+            "value" : "（留空則使用完整字詞符合配對）"
           }
         }
       }
