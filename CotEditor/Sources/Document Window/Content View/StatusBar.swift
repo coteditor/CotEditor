@@ -109,9 +109,9 @@ struct StatusBar: View {
             } else {
                 content
                     .frame(height: 23)
-                    .background(.windowBackground)
             }
         }
+        .background(.windowBackground)
     }
 }
 
