@@ -104,6 +104,7 @@ struct AboutView: View {
                             .glassEffect()
                             .padding(10)
                         }
+                        .scrollEdgeEffectStyle(.soft, for: .top)
                 } else {
                     content
                         .background()
