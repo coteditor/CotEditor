@@ -1440,7 +1440,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suchen und alle Übereinstimmungen auflisten."
+            "value" : "Suchen und alle Treffer auflisten."
           }
         },
         "en-GB" : {
@@ -1618,7 +1618,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nächste Übereinstimmung suchen."
+            "value" : "Nächsten Treffer suchen."
           }
         },
         "en-GB" : {
@@ -1796,7 +1796,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorherige Übereinstimmung suchen."
+            "value" : "Vorherigen Treffer suchen."
           }
         },
         "en-GB" : {
@@ -5828,7 +5828,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Übereinstimmungen durch den Ersetzungstext ersetzen."
+            "value" : "Alle Treffer durch den Ersetzungstext ersetzen."
           }
         },
         "en-GB" : {
@@ -5917,7 +5917,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen."
+            "value" : "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann den nächsten Treffer suchen."
           }
         },
         "en-GB" : {
