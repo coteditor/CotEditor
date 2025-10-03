@@ -81,16 +81,14 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    deinit {
-        MainActor.assumeIsolated {
-            // detach layoutManager safely
-            guard
-                let textStorage = self.textView.textStorage,
-                let layoutManager = self.textView.layoutManager
-            else { return assertionFailure() }
-            
-            textStorage.removeLayoutManager(layoutManager)
-        }
+    isolated deinit {
+        // detach layoutManager safely
+        guard
+            let textStorage = self.textView.textStorage,
+            let layoutManager = self.textView.layoutManager
+        else { return assertionFailure() }
+        
+        textStorage.removeLayoutManager(layoutManager)
     }
     
     

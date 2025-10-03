@@ -42,7 +42,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Lifecycle
     
-    deinit {
+    isolated deinit {
         self.resultObservationTask?.cancel()
     }
     
