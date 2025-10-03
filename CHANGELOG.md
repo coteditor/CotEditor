@@ -5,17 +5,17 @@
 
 ### Improvements
 
-- Improve UI details on macOS 26.
-- Always open the sidebar when opening a folder document.
-- Improve the “Open with External Editor” button in file preview views to enable specifying the application to open.
-- [trivial] Show the confirmation dialog after changing the “Reopen windows from last session” option in the General settings pane.
+- Improve the user interface details on macOS 26.
+- Ensure that the sidebar is always displayed when opening a folder document.
+- Improve the “Open with External Editor” button in file preview views to allow specifying the application to open.
+- [trivial] Display a confirmation dialog after changing the “Reopen windows from last session” option in the General settings pane.
 
 
 ### Fixes
 
-- Workaround the issue on macOS 26 where the editor’s scroller tracks are drawn in a different style from the standard scrollers.
-- Fix an issue where the counts in the status bar are rarely not available when the document is opened.
-- Fix an issue on the vertical text orientation where the line number view is tucked beneath the titlebar when the navigation bar is hidden.
+- Workaround an issue on macOS 26 where the editor’s scroller tracks have a different style compared to standard scrollers.
+- Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.
+- Fix an issue in the vertical text orientation where the line number view is tucked beneath the titlebar when the navigation bar is hidden.
 - Fix an issue in the multiple replacement window where the text selection is unexpectedly canceled.
 - Fix an issue in the multiple replacement window where the sidebar can be collapsed.
 - Fix an issue where the syntax mapping conflict view cannot be closed.
