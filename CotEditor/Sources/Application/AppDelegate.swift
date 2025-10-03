@@ -44,18 +44,6 @@ extension Logger {
 }
 
 
-private extension NSSound {
-    
-    @MainActor static let glass = NSSound(named: "Glass")
-}
-
-
-private enum BundleIdentifier {
-    
-    static let scriptEditor = "com.apple.ScriptEditor2"
-}
-
-
 @MainActor @objc protocol EncodingChanging: AnyObject {
     
     func changeEncoding(_ sender: NSMenuItem)
@@ -94,6 +82,12 @@ private enum BundleIdentifier {
         case issueTracker = "https://github.com/coteditor/CotEditor/issues"
         
         var url: URL  { URL(string: self.rawValue)! }
+    }
+    
+    
+    private enum BundleIdentifier {
+        
+        static let scriptEditor = "com.apple.ScriptEditor2"
     }
     
     
@@ -528,6 +522,14 @@ extension AppDelegate: NSMenuDelegate {
             NSMenuItem(title: String(localized: "Customize Encodings List…", table: "MainMenu"), action: #selector(showEncodingsListEditor), keyEquivalent: ""),
         ]
     }
+}
+
+
+// MARK: - Private Extensions
+
+private extension NSSound {
+    
+    @MainActor static let glass = NSSound(named: "Glass")
 }
 
 
