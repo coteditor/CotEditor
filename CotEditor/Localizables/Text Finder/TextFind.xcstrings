@@ -129,14 +129,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringa trovata."
+                  "state" : "translated",
+                  "value" : "%lld risultato trovato."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringhe trovate."
+                  "state" : "translated",
+                  "value" : "%lld risultati trovati."
                 }
               }
             }
@@ -398,14 +398,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringa sostituita."
+                  "state" : "translated",
+                  "value" : "%lld risultato sostituito."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringhe sostituite."
+                  "state" : "translated",
+                  "value" : "%lld risultati sostituiti."
                 }
               }
             }
@@ -4148,8 +4148,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Metacaratteri Unescape con backslash nella stringa di sostituzione."
+            "state" : "translated",
+            "value" : "Nel testo sostitutivo, decodifica i meta-caratteri con la barra inversa."
           }
         },
         "ja" : {
@@ -4244,8 +4244,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stringa di sostituzione Unescape"
+            "state" : "translated",
+            "value" : "Testo di sostituzione Unescape"
           }
         },
         "ja" : {
@@ -4642,20 +4642,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Trovata una stringa in “%2$@”."
+                  "state" : "translated",
+                  "value" : "Trovato un risultato in “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Trovate %1$lld stringhe in %2$@”."
+                  "state" : "translated",
+                  "value" : "Trovati %1$lld risultati in %2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Nessuna stringa trovata in “%2$@”."
+                  "state" : "translated",
+                  "value" : "Nessun risultato trovato in “%2$@”."
                 }
               }
             }
@@ -5228,8 +5228,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stringa trovata"
+            "state" : "translated",
+            "value" : "Testo corrispondente"
           }
         },
         "ja" : {
@@ -6835,8 +6835,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cerca testo vuoto"
+            "state" : "translated",
+            "value" : "Nessun testo trovato"
           }
         },
         "ja" : {

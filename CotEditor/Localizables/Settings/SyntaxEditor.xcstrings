@@ -36,8 +36,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(Per corrispondenza con l’intera stringa: lasciare in bianco.)"
+            "state" : "translated",
+            "value" : "(Lasciare vuoto per una corrispondenza integrale.)"
           }
         },
         "ja" : {

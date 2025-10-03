@@ -1573,6 +1573,12 @@
             "value" : "Le comportement de l'application changera dès le prochain lancement suivant celui-ci."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il comportamento dell'app verrà modificato alla prima esecuzione dopo la prossima."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
