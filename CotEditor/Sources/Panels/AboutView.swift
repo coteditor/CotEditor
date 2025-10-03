@@ -59,16 +59,15 @@ struct AboutView: View {
                 Text("Version \(Bundle.main.shortVersion) (\(Bundle.main.bundleVersion))",
                      tableName: "About",
                      comment: "%1$@ is version number and %2$@ is build number")
-                .textSelection(.enabled)
                 
-                Link(String("coteditor.com"),
-                     destination: URL(string: "https://coteditor.com")!)
-                .foregroundStyle(.tint)
+                Link(String("coteditor.com"), destination: URL(string: "https://coteditor.com")!)
+                    .foregroundStyle(.tint)
                 
                 Text(Bundle.main.copyright)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
+            .textSelection(.enabled)
             .multilineTextAlignment(.center)
             .fixedSize()
             .accessibilitySortPriority(1)
@@ -411,6 +410,7 @@ private struct LicenseView: View {
                     .environment(\.layoutDirection, .leftToRight)
             }
             .onAppear {
+                guard self.content.isEmpty else { return }
                 guard
                     let url = Bundle.main.url(forResource: self.name, withExtension: "txt", subdirectory: "Licenses"),
                     let string = try? String(contentsOf: url, encoding: .utf8)
