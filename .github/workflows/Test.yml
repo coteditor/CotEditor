@@ -27,4 +27,4 @@ jobs:
         swift test --package-path Packages/SyntaxMap
     - name: Unit Test for CotEditor
       run: |
-        xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
+        xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation ARCHS=arm64
