@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve the user interface details on macOS 26.
+- Enable the enhanced security.
 - Ensure that the sidebar is always displayed when opening a folder document.
 - Improve the “Open with External Editor” button in file preview views to allow specifying the application to open.
 - [trivial] Display a confirmation dialog after changing the “Reopen windows from last session” option in the General settings pane.
