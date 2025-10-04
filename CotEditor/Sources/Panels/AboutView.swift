@@ -90,7 +90,7 @@ struct AboutView: View {
                 if #available(macOS 26, *) {
                     content
                         .safeAreaBar(edge: .top) {
-                            Picker(selection: $pane) {
+                            Picker(selection: $pane.animation()) {
                                 ForEach(Pane.allCases, id: \.self) {
                                     Text($0.label)
                                 }
@@ -100,7 +100,6 @@ struct AboutView: View {
                             .pickerStyle(.segmented)
                             .buttonBorderShape(.capsule)
                             .tint(.secondary.opacity(0.5))
-                            .glassEffect()
                             .padding(10)
                         }
                         .scrollEdgeEffectStyle(.soft, for: .top)
