@@ -5181,7 +5181,7 @@
       }
     },
     "Line Endings" : {
-      "comment" : "label in document inspector\nmenu item header",
+      "comment" : "label in document inspector",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
