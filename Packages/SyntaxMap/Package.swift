@@ -37,6 +37,9 @@ for target in package.targets {
         .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
     ]
     target.swiftSettings = [
+        .swiftLanguageMode(.v6),
+        .strictMemorySafety(),
+        
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
