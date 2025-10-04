@@ -34,7 +34,7 @@ final class ContentViewController: NSSplitViewController {
     
     var documentViewController: DocumentViewController? {
         
-        self.splitViewItems.first?.viewController as? DocumentViewController
+        self.children.first as? DocumentViewController
     }
     
     
@@ -55,23 +55,6 @@ final class ContentViewController: NSSplitViewController {
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.splitView.isVertical = false
-    }
-    
-    
-    // MARK: Split View Controller Methods
-    
-    override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
-        
-        // avoid showing draggable cursor for the status bar boundary
-        .zero
     }
     
     

@@ -110,17 +110,9 @@ struct StatusBar: View {
         .controlSize(.small)
         .lineLimit(1)
         .padding(.leading)
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .frame(height: 16)
-                    .padding(.vertical, 8)
-                    .containerCornerOffset(.horizontal, sizeToFit: true)
-            } else {
-                content
-                    .frame(height: 23)
-            }
-        }
+        .frame(height: 16)
+        .padding(.vertical, 8)
+        .containerCornerOffset(.horizontal, sizeToFit: true)
         .background(.windowBackground)
     }
 }
@@ -263,7 +255,6 @@ private struct DocumentStatusBar: View {
         
         HStack(spacing: 4) {
             Divider()
-                .padding(.vertical, isLiquidGlass ? 0 : 4)
             
             Picker(String(localized: "Text Encoding", table: "Document"), selection: $fileEncoding) {
                 Section(String(localized: "Text Encoding", table: "Document")) {
@@ -287,7 +278,6 @@ private struct DocumentStatusBar: View {
             .labelsHidden()
             
             Divider()
-                .padding(.vertical, isLiquidGlass ? 0 : 4)
             
             LineEndingPicker(String(localized: "Line Endings", table: "Document"), selection: $lineEnding) { lineEnding in
                 self.document.changeLineEnding(to: lineEnding)

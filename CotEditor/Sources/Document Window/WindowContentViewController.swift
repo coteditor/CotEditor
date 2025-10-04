@@ -100,33 +100,15 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
-        if #available(macOS 26, *) {
-            let controller = NSSplitViewItemAccessoryViewController()
-            controller.view = NSHostingView(rootView: VStack(spacing: 0) {
-                Divider()
-                StatusBar(model: self.statusBarModel)
-            })
-            if #available(macOS 26.1, *) {  // FB18972484
-                controller.isHidden = !UserDefaults.standard[.showStatusBar]
-            }
-            controller.automaticallyAppliesContentInsets = false
-            self.contentViewItem.addBottomAlignedAccessoryViewController(controller)
-            
-            self.addSplitViewItem(self.contentViewItem)
-            
-            // need to set `isHidden` after setting view item (2025-09, macOS 26, fixed in macOS 26.1, FB18972484)
-            if #unavailable(macOS 26.1) {
-                controller.isHidden = !UserDefaults.standard[.showStatusBar]
-            }
-            
-        } else {
-            let controller = NSHostingController(rootView: StatusBar(model: self.statusBarModel))
-            let statusBarItem = NSSplitViewItem(viewController: controller)
-            statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
-            self.contentViewController.splitViewItems.append(statusBarItem)
-            
-            self.addSplitViewItem(self.contentViewItem)
-        }
+        let statusBarController = NSSplitViewItemAccessoryViewController()
+        statusBarController.view = NSHostingView(rootView: VStack(spacing: 0) {
+            Divider()
+            StatusBar(model: self.statusBarModel)
+        })
+        statusBarController.isHidden = !UserDefaults.standard[.showStatusBar]
+        statusBarController.automaticallyAppliesContentInsets = false
+        self.contentViewItem.addBottomAlignedAccessoryViewController(statusBarController)
+        self.addSplitViewItem(self.contentViewItem)
         
         if self.directoryDocument != nil {
             contentViewController.view.setAccessibilityElement(true)
@@ -196,15 +178,9 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.focusEditor()
         
         // observe user defaults for status bar
-        if #available(macOS 26, *) {
-            let statusBarController = self.contentViewItem.bottomAlignedAccessoryViewControllers.first
-            self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar)
-                .sink { statusBarController?.animator().isHidden = !$0 }
-        } else {
-            let statusBarItem = self.contentViewController.splitViewItems.last
-            self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar)
-                .sink { statusBarItem?.animator().isCollapsed = !$0 }
-        }
+        let statusBarController = self.contentViewItem.bottomAlignedAccessoryViewControllers.first
+        self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar)
+            .sink { statusBarController?.animator().isHidden = !$0 }
     }
     
     
