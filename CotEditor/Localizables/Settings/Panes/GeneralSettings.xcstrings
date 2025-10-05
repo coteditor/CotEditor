@@ -1591,6 +1591,12 @@
             "value" : "그다음부터 앱의 동작이 변경됩니다."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowanie aplikacji zmieni się od następnego uruchomienia."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1677,7 +1683,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zmiana zostanie zastosowana jako pierwsza przy następnym uruchomieniu."
+            "value" : "Zmiana zostanie zastosowana przy następnym uruchomieniu."
           }
         },
         "pt" : {
