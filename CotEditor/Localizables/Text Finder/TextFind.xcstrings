@@ -9,26 +9,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nalezeny."
+                  "state" : "translated",
+                  "value" : "Nalezeny %lld shody."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nalezeno."
+                  "state" : "translated",
+                  "value" : "Nalezeno %lld shod."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězec nalezen."
+                  "state" : "translated",
+                  "value" : "Nalezena %lld shoda."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězců nalezeno."
+                  "state" : "translated",
+                  "value" : "Nalezeno %lld shod."
                 }
               }
             }
@@ -278,26 +278,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nahrazeny."
+                  "state" : "translated",
+                  "value" : "Nahrazeny %lld shody."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nahrazeno."
+                  "state" : "translated",
+                  "value" : "Nahrazeno %lld shod."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězec nahrazen."
+                  "state" : "translated",
+                  "value" : "Nahrazena %lld shoda."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězců nahrazeno."
+                  "state" : "translated",
+                  "value" : "Nahrazeno %lld shod."
                 }
               }
             }
@@ -4112,8 +4112,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unescapovat meta znaky se zpětným lomítkem v nahrazovacím řetězci."
+            "state" : "translated",
+            "value" : "Odstranit zpětná lomítka před metaznaky v nahrazovacím textu."
           }
         },
         "de" : {
@@ -4208,8 +4208,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unescapovat nahrazovací řetězec"
+            "state" : "translated",
+            "value" : "Odescapovat nahrazovací text"
           }
         },
         "de" : {
@@ -4496,22 +4496,28 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nalezeny %1$lld shody."
+                }
+              },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "V souboru „%2$@“ byl nalezen jeden řetězec."
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nalezena jedna shoda."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Počet nalezených řetězců: %1$lld, v souboru: %2$@."
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nalezeno %1$lld shod."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "V souboru „%2$@“ nebyl nalezen žádný řetězec."
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nenalezeny žádné shody."
                 }
               }
             }
@@ -5198,8 +5204,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nalezené řetězce"
+            "state" : "translated",
+            "value" : "Nalezený text"
           }
         },
         "de" : {
@@ -6799,8 +6805,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prázdný řetězec hledání"
+            "state" : "translated",
+            "value" : "Prázdný hledaný text"
           }
         },
         "de" : {

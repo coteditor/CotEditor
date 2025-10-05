@@ -6,8 +6,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(Prázdné odpovídá celému řetězci.)"
+            "state" : "translated",
+            "value" : "(Nechte prázdné, pokud chcete použít celou shodu.)"
           }
         },
         "de" : {

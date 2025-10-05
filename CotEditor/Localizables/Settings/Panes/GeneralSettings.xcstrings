@@ -1543,6 +1543,12 @@
     "NextSessionApplicationConfirmation.nextAfterNext.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chování aplikace se změní při příštím spuštění po tomto spuštění."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
