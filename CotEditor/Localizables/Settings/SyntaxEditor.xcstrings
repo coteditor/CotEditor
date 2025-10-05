@@ -60,8 +60,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(pusty odpowiada całemu łańcuchowi dopasowania)"
+            "state" : "translated",
+            "value" : "(pusty odpowiada całemu dopasowaniu)"
           }
         },
         "pt" : {
@@ -2123,7 +2123,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pełne dopasowanie"
+            "value" : "Całe dopasowanie"
           }
         },
         "pt" : {

@@ -189,26 +189,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcuchy."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowania."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcuchów."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowań."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcuch."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowanie."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcucha."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowania."
                 }
               }
             }
@@ -458,26 +458,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcuchy."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowania."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcuchów."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowań."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcuch."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowanie."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcucha."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowania."
                 }
               }
             }
@@ -4172,8 +4172,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Konwertuj sekwencje ucieczki metaznaków z ukośnikiem wstecznym w łańcuchu zastępującym."
+            "state" : "translated",
+            "value" : "Konwertuj sekwencje ucieczki metaznaków z ukośnikiem wstecznym w tekście zastępującym."
           }
         },
         "pt" : {
@@ -4268,8 +4268,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Konwertuj sekwencje ucieczki w łańcuchu zastępującym"
+            "state" : "translated",
+            "value" : "Dekoduj sekwencje ucieczki w tekście zastępującym"
           }
         },
         "pt" : {
@@ -4726,32 +4726,32 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono %1$lld łańcuchy w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono %1$lld dopasowania w „%2$@”."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono %1$lld łańcuchów w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono %1$lld dopasowań w „%2$@”."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono jeden łańcuch w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono jedno dopasowanie w „%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono %1$lld łańcucha w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono %1$lld dopasowania w „%2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Nie znaleziono żadnych łańcuchów w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Nie znaleziono żadnych dopasowań w „%2$@”."
                 }
               }
             }
@@ -5252,8 +5252,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Znaleziony łańcuch"
+            "state" : "translated",
+            "value" : "Pasujący tekst"
           }
         },
         "pt" : {
@@ -6859,8 +6859,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Szukany łańcuch jest pusty"
+            "state" : "translated",
+            "value" : "Szukany tekst jest pusty"
           }
         },
         "pt" : {
