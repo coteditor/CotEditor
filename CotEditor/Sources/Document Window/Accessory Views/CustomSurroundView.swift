@@ -43,11 +43,11 @@ struct CustomSurroundView: View {
     
     // MARK: View
     
-    /// Initializes view from a storyboard with given values.
+    /// Initializes view with given values.
     ///
     /// - Parameters:
-    ///   - pair: A pair of strings to fill as default value.
-    ///   - completionHandler: The callback method to perform when the command was accepted.
+    ///   - pair: A pair of strings to fill as default values.
+    ///   - completionHandler: The callback method to perform when the command is accepted.
     init(pair: Pair<String>?, completionHandler: @escaping (_ pair: Pair<String>) -> Void) {
         
         self.completionHandler = completionHandler
