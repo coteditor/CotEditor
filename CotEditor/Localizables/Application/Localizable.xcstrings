@@ -6369,7 +6369,7 @@
       }
     },
     "ImportDuplicationError.recoverySuggestion" : {
-      "comment" : "Refer similar expressions by Apple.",
+      "comment" : "Refer to similar expressions by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
