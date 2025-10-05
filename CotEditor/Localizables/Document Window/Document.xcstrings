@@ -5626,7 +5626,7 @@
       }
     },
     "MoveToTrashConfirmation.message" : {
-      "comment" : "Refer the same expression by Apple.",
+      "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

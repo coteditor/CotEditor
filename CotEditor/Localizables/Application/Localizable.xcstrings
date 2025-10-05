@@ -2461,6 +2461,7 @@
       }
     },
     "DeletionConfirmation.message" : {
+      "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2567,7 +2568,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Soll „%@“ wirklich gelöscht werden?"
+            "value" : "Möchtest du „%@“ wirklich löschen?"
           }
         },
         "en" : {
@@ -6273,7 +6274,7 @@
       }
     },
     "ImportDuplicationError.description" : {
-      "comment" : "%@ is a name of a setting. Refer the same expression by Apple.",
+      "comment" : "%@ is a name of a setting. Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

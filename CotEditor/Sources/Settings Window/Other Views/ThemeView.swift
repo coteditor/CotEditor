@@ -238,7 +238,7 @@ private struct ThemeListView: View {
         .fileDialogConfirmationLabel(String(localized: "Action.import.label", defaultValue: "Import"))
         .confirmationDialog(String(localized: "ImportDuplicationError.description",
                                    defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
-                                   comment: "%@ is a name of a setting. Refer the same expression by Apple."),
+                                   comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
                             isPresented: $isImportConfirmationPresented, presenting: self.importingError) { item in
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
