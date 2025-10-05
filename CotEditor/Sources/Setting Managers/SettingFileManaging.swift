@@ -343,7 +343,7 @@ extension SettingFileManaging {
         self.cachedSettings[name] = nil
         self.cachedSettings[newName] = nil
         
-        let change: SettingChange = .updated(from: name, to: newName)
+        let change: SettingChange = .updated(from: name, to: sanitizedNewName)
         self.updateSettingList(change: change)
     }
     
