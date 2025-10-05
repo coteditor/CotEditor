@@ -30,7 +30,8 @@ let package = Package(
         
         .target(name: "Shortcut", resources: [.process("Resources")]),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
 
 
@@ -39,8 +40,6 @@ for target in package.targets {
         .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
     ]
     target.swiftSettings = [
-        .swiftLanguageMode(.v6),
-        
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
