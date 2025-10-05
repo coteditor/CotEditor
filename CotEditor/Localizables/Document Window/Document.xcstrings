@@ -11426,91 +11426,91 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit informace o dokumentu"
+            "value" : "Zobrazit inspektor"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokumentinformationen einblenden"
+            "value" : "Infofenster einblenden"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Show document information"
+            "value" : "Show inspector"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show document information"
+            "value" : "Show inspector"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar información del documento"
+            "value" : "Mostrar inspector"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Afficher les informations de document"
+            "value" : "Afficher l’inspecteur"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra informazioni sul documento"
+            "value" : "Mostra inspector"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書類情報を表示"
+            "value" : "インスペクタを表示"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서 정보 보기"
+            "value" : "인스펙터 보기"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon documentinformatie"
+            "value" : "Toon infovenster"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokaż informacje o dokumencie"
+            "value" : "Pokaż inspektora"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostre informações do documento"
+            "value" : "Mostrar inspetor"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belge bilgisini göster"
+            "value" : "Denetçiyi göster"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "显示文稿信息"
+            "value" : "显示检查器"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示文件資訊"
+            "value" : "顯示檢閱器"
           }
         }
       }

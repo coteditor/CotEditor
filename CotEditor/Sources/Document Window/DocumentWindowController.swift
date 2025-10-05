@@ -596,7 +596,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = String(localized: "Toolbar.inspector.label",
                                     defaultValue: "Inspector", table: "Document")
                 item.toolTip = String(localized: "Toolbar.inspector.tooltip",
-                                      defaultValue: "Show document information", table: "Document")
+                                      defaultValue: "Show inspector", table: "Document")
                 item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
                 item.action = #selector(NSSplitViewController.toggleInspector)
                 item.visibilityPriority = .high
