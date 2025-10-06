@@ -199,8 +199,8 @@ extension Logger {
             // build multiple replacement menu items
             ReplacementManager.shared.$settingNames
                 .receive(on: RunLoop.main)
-                .sink { names in
-                    guard let menu = self.multipleReplaceMenu else { return }
+                .sink { [weak self] names in
+                    guard let menu = self?.multipleReplaceMenu else { return }
                     
                     let manageItem = menu.items.last
                     menu.items = names.map { name in
