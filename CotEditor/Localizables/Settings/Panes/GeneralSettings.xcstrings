@@ -1540,6 +1540,89 @@
         }
       }
     },
+    "NextSessionApplicationConfirmation.nextAfterNext.message" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chování aplikace se změní při příštím spuštění po tomto spuštění."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Verhalten der App ändert sich ab dem nächsten Start nach diesem."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The app’s behavior will change from the next launch after that one."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app’s behaviour will change from the next launch after that one."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El comportamiento de la aplicación cambiará a partir del siguiente reinicio."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le comportement de l'application changera dès le prochain lancement suivant celui-ci."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il comportamento dell'app verrà modificato alla prima esecuzione dopo la prossima."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリの挙動が変わるのは、そのさらに次の起動からです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그다음부터 앱의 동작이 변경됩니다."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowanie aplikacji zmieni się od następnego uruchomienia."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamanın davranışı bundan sonraki başlangıçta değişecektir."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用的行为将从之后再下一次启动时生效。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App的行為將在之後的下一次啟動時生效。"
+          }
+        }
+      }
+    },
     "NextSessionApplicationConfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -1606,7 +1689,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zmiana zostanie zastosowana jako pierwsza przy następnym uruchomieniu."
+            "value" : "Zmiana zostanie zastosowana przy następnym uruchomieniu."
           }
         },
         "pt" : {

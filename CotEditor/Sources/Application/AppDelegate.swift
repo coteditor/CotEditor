@@ -44,18 +44,6 @@ extension Logger {
 }
 
 
-private extension NSSound {
-    
-    @MainActor static let glass = NSSound(named: "Glass")
-}
-
-
-private enum BundleIdentifier {
-    
-    static let scriptEditor = "com.apple.ScriptEditor2"
-}
-
-
 @MainActor @objc protocol EncodingChanging: AnyObject {
     
     func changeEncoding(_ sender: NSMenuItem)
@@ -94,6 +82,12 @@ private enum BundleIdentifier {
         case issueTracker = "https://github.com/coteditor/CotEditor/issues"
         
         var url: URL  { URL(string: self.rawValue)! }
+    }
+    
+    
+    private enum BundleIdentifier {
+        
+        static let scriptEditor = "com.apple.ScriptEditor2"
     }
     
     
@@ -205,8 +199,8 @@ private enum BundleIdentifier {
             // build multiple replacement menu items
             ReplacementManager.shared.$settingNames
                 .receive(on: RunLoop.main)
-                .sink { names in
-                    guard let menu = self.multipleReplaceMenu else { return }
+                .sink { [weak self] names in
+                    guard let menu = self?.multipleReplaceMenu else { return }
                     
                     let manageItem = menu.items.last
                     menu.items = names.map { name in
@@ -366,7 +360,7 @@ private enum BundleIdentifier {
     /// Shows the about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
+        let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "%@ is app name"))
         panel.makeKeyAndOrderFront(sender)
         
         self.aboutPanel = panel
@@ -528,6 +522,14 @@ extension AppDelegate: NSMenuDelegate {
             NSMenuItem(title: String(localized: "Customize Encodings List…", table: "MainMenu"), action: #selector(showEncodingsListEditor), keyEquivalent: ""),
         ]
     }
+}
+
+
+// MARK: - Private Extensions
+
+private extension NSSound {
+    
+    @MainActor static let glass = NSSound(named: "Glass")
 }
 
 

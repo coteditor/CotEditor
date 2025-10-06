@@ -9,26 +9,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nalezeny."
+                  "state" : "translated",
+                  "value" : "Nalezeny %lld shody."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nalezeno."
+                  "state" : "translated",
+                  "value" : "Nalezeno %lld shod."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězec nalezen."
+                  "state" : "translated",
+                  "value" : "Nalezena %lld shoda."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězců nalezeno."
+                  "state" : "translated",
+                  "value" : "Nalezeno %lld shod."
                 }
               }
             }
@@ -129,14 +129,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringa trovata."
+                  "state" : "translated",
+                  "value" : "%lld risultato trovato."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringhe trovate."
+                  "state" : "translated",
+                  "value" : "%lld risultati trovati."
                 }
               }
             }
@@ -159,8 +159,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld개 문자열 발견됨."
+                  "state" : "translated",
+                  "value" : "%lld개 일치 항목 찾음."
                 }
               }
             }
@@ -189,26 +189,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcuchy."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowania."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcuchów."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowań."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcuch."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowanie."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "znaleziono %lld łańcucha."
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld dopasowania."
                 }
               }
             }
@@ -265,16 +265,10 @@
         "tr" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld dizi bulundu."
-                }
-              },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld dizi bulundu."
+                  "state" : "translated",
+                  "value" : "%lld eşleşme bulundu."
                 }
               }
             }
@@ -285,8 +279,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "找到%lld个匹配"
+                  "state" : "translated",
+                  "value" : "找到%lld个匹配项"
                 }
               }
             }
@@ -297,8 +291,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "找到%lld個匹配"
+                  "state" : "translated",
+                  "value" : "找到%lld個符合項"
                 }
               }
             }
@@ -314,26 +308,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nahrazeny."
+                  "state" : "translated",
+                  "value" : "Nahrazeny %lld shody."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězce nahrazeno."
+                  "state" : "translated",
+                  "value" : "Nahrazeno %lld shod."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězec nahrazen."
+                  "state" : "translated",
+                  "value" : "Nahrazena %lld shoda."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld řetězců nahrazeno."
+                  "state" : "translated",
+                  "value" : "Nahrazeno %lld shod."
                 }
               }
             }
@@ -434,14 +428,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringa sostituita."
+                  "state" : "translated",
+                  "value" : "%lld risultato sostituito."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld stringhe sostituite."
+                  "state" : "translated",
+                  "value" : "%lld risultati sostituiti."
                 }
               }
             }
@@ -464,8 +458,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld 문자열 대치됨."
+                  "state" : "translated",
+                  "value" : "%lld개 일치 항목 대치."
                 }
               }
             }
@@ -494,26 +488,26 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcuchy."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowania."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcuchów."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowań."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcuch."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowanie."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "zastąpiono %lld łańcucha."
+                  "state" : "translated",
+                  "value" : "Zastąpiono %lld dopasowania."
                 }
               }
             }
@@ -570,16 +564,10 @@
         "tr" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld dizi değiştirildi."
-                }
-              },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld dizi değiştirildi."
+                  "state" : "translated",
+                  "value" : "%lld eşleşme değiştirildi."
                 }
               }
             }
@@ -590,8 +578,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "已替换%lld个匹配"
+                  "state" : "translated",
+                  "value" : "已替换%lld个匹配项"
                 }
               }
             }
@@ -602,8 +590,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "已取代%lld個匹配"
+                  "state" : "translated",
+                  "value" : "已取代%lld個符合項"
                 }
               }
             }
@@ -1572,7 +1560,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suchen und alle Übereinstimmungen auflisten."
+            "value" : "Suchen und alle Treffer auflisten."
           }
         },
         "en-GB" : {
@@ -1762,7 +1750,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nächste Übereinstimmung suchen."
+            "value" : "Nächsten Treffer suchen."
           }
         },
         "en-GB" : {
@@ -1952,7 +1940,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorherige Übereinstimmung suchen."
+            "value" : "Vorherigen Treffer suchen."
           }
         },
         "en-GB" : {
@@ -4442,8 +4430,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unescapovat meta znaky se zpětným lomítkem v nahrazovacím řetězci."
+            "state" : "translated",
+            "value" : "Odstranit zpětná lomítka před metaznaky v nahrazovacím textu."
           }
         },
         "de" : {
@@ -4478,8 +4466,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Metacaratteri Unescape con backslash nella stringa di sostituzione."
+            "state" : "translated",
+            "value" : "Nel testo sostitutivo, decodifica i meta-caratteri con la barra inversa."
           }
         },
         "ja" : {
@@ -4490,8 +4478,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "대치 문자열에서 메타 문자가 이스케이프하지 않도록 역 슬래시를 붙입니다."
+            "state" : "translated",
+            "value" : "대치 텍스트에서 메타 문자를 백슬래시로 이스케이프 해제합니다."
           }
         },
         "nl" : {
@@ -4502,8 +4490,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Konwertuj sekwencje ucieczki metaznaków z ukośnikiem wstecznym w łańcuchu zastępującym."
+            "state" : "translated",
+            "value" : "Konwertuj sekwencje ucieczki metaznaków z ukośnikiem wstecznym w tekście zastępującym."
           }
         },
         "pt" : {
@@ -4520,20 +4508,20 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Değişim dizisinde meta karakterlerini ters eğik çizgi ile kaçırma."
+            "state" : "translated",
+            "value" : "İkâme metinde meta karakterlerin kaçırılmasını ters eğik çizgi ile kaldırın."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用反斜杠元字符解码替换文本"
+            "value" : "取消在替换文本中带有反斜杠元字符的转义。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "使用反斜槓元字元解碼取代文字"
+            "state" : "translated",
+            "value" : "取消取代字串中反斜線中繼字元（\\\\）的跳脫。"
           }
         }
       }
@@ -4544,8 +4532,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unescapovat nahrazovací řetězec"
+            "state" : "translated",
+            "value" : "Odescapovat nahrazovací text"
           }
         },
         "de" : {
@@ -4580,8 +4568,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stringa di sostituzione Unescape"
+            "state" : "translated",
+            "value" : "Testo di sostituzione Unescape"
           }
         },
         "ja" : {
@@ -4592,8 +4580,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "대치 문자열 이스케이프하지 않기"
+            "state" : "translated",
+            "value" : "대치 텍스트 이스케이프 해제"
           }
         },
         "nl" : {
@@ -4604,8 +4592,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Konwertuj sekwencje ucieczki w łańcuchu zastępującym"
+            "state" : "translated",
+            "value" : "Dekoduj sekwencje ucieczki w tekście zastępującym"
           }
         },
         "pt" : {
@@ -4622,20 +4610,20 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Değişim dizisini kaçırma"
+            "state" : "translated",
+            "value" : "İkâme metnin kaçırılmasını kaldır"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解码替换文本"
+            "value" : "取消替换文本转义"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "解碼取代文字"
+            "state" : "translated",
+            "value" : "取消取代字串跳脫字元"
           }
         }
       }
@@ -4850,22 +4838,28 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nalezeny %1$lld shody."
+                }
+              },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "V souboru „%2$@“ byl nalezen jeden řetězec."
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nalezena jedna shoda."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Počet nalezených řetězců: %1$lld, v souboru: %2$@."
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nalezeno %1$lld shod."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "V souboru „%2$@“ nebyl nalezen žádný řetězec."
+                  "state" : "translated",
+                  "value" : "V „%2$@“ nenalezeny žádné shody."
                 }
               }
             }
@@ -4996,20 +4990,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Trovata una stringa in “%2$@”."
+                  "state" : "translated",
+                  "value" : "Trovato un risultato in “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Trovate %1$lld stringhe in %2$@”."
+                  "state" : "translated",
+                  "value" : "Trovati %1$lld risultati in %2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Nessuna stringa trovata in “%2$@”."
+                  "state" : "translated",
+                  "value" : "Nessun risultato trovato in “%2$@”."
                 }
               }
             }
@@ -5038,14 +5032,14 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "‘%2$@’에서 %1$lld개 문자열 발견됨."
+                  "state" : "translated",
+                  "value" : "‘%2$@’에서 %1$lld개 일치 항목을 찾았습니다."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "‘%2$@’에서 발견된 문자열 없음."
+                  "state" : "translated",
+                  "value" : "‘%2$@’에서 일치 항목을 찾지 못했습니다."
                 }
               }
             }
@@ -5080,32 +5074,32 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono %1$lld łańcuchy w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono %1$lld dopasowania w „%2$@”."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono %1$lld łańcuchów w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono %1$lld dopasowań w „%2$@”."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono jeden łańcuch w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono jedno dopasowanie w „%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Znaleziono %1$lld łańcucha w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Znaleziono %1$lld dopasowania w „%2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Nie znaleziono żadnych łańcuchów w „%2$@”."
+                  "state" : "translated",
+                  "value" : "Nie znaleziono żadnych dopasowań w „%2$@”."
                 }
               }
             }
@@ -5174,22 +5168,16 @@
         "tr" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%2$@ içinde bir dizi bulundu."
-                }
-              },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%2$@ içinde %1$lld dizi bulundu."
+                  "state" : "translated",
+                  "value" : "“%2$@” içinde %1$lld eşleşme bulundu."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%2$@ içinde dizi bulunamadı."
+                  "state" : "translated",
+                  "value" : "“%2$@” içinde hiçbir eşleşme bulunamadı."
                 }
               }
             }
@@ -5200,14 +5188,14 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%1$lld个字符串在“%2$@”中被找到。"
+                  "state" : "translated",
+                  "value" : "在“%2$@”中找到%1$lld个匹配项。"
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "在“%2$@”中没有找到字符串。"
+                  "state" : "translated",
+                  "value" : "在“%2$@”中未找到匹配项。"
                 }
               }
             }
@@ -5218,14 +5206,14 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%%1lld個字元串在「%2$@」中被找到。"
+                  "state" : "translated",
+                  "value" : "在「%2$@」中找到%1$lld個符合項。"
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "在「%2$@」中沒有找到字元串。"
+                  "state" : "translated",
+                  "value" : "在「%2$@」中未找到符合項。"
                 }
               }
             }
@@ -5618,8 +5606,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nalezené řetězce"
+            "state" : "translated",
+            "value" : "Nalezený text"
           }
         },
         "de" : {
@@ -5648,8 +5636,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stringa trovata"
+            "state" : "translated",
+            "value" : "Testo corrispondente"
           }
         },
         "ja" : {
@@ -5660,8 +5648,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "찾은 문자열"
+            "state" : "translated",
+            "value" : "일치한 텍스트"
           }
         },
         "nl" : {
@@ -5672,8 +5660,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Znaleziony łańcuch"
+            "state" : "translated",
+            "value" : "Pasujący tekst"
           }
         },
         "pt" : {
@@ -5690,20 +5678,20 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Dizi Bulundu"
+            "state" : "translated",
+            "value" : "Eşleşen Metin"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "找到字符串"
+            "state" : "translated",
+            "value" : "匹配文本"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "找到字串"
+            "state" : "translated",
+            "value" : "符合的文字"
           }
         }
       }
@@ -6290,7 +6278,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Übereinstimmungen durch den Ersetzungstext ersetzen."
+            "value" : "Alle Treffer durch den Ersetzungstext ersetzen."
           }
         },
         "en-GB" : {
@@ -6385,7 +6373,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen."
+            "value" : "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann den nächsten Treffer suchen."
           }
         },
         "en-GB" : {
@@ -7327,8 +7315,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prázdný řetězec hledání"
+            "state" : "translated",
+            "value" : "Prázdný hledaný text"
           }
         },
         "de" : {
@@ -7363,8 +7351,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cerca testo vuoto"
+            "state" : "translated",
+            "value" : "Nessun testo trovato"
           }
         },
         "ja" : {
@@ -7375,8 +7363,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "빈 찾기 문자열"
+            "state" : "translated",
+            "value" : "찾을 텍스트가 비어 있습니다."
           }
         },
         "nl" : {
@@ -7387,8 +7375,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Szukany łańcuch jest pusty"
+            "state" : "translated",
+            "value" : "Szukany tekst jest pusty"
           }
         },
         "pt" : {
@@ -7405,20 +7393,20 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bulunacak dizi boş"
+            "state" : "translated",
+            "value" : "Bulunacak metin boş"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "空的搜索文本"
+            "value" : "查找内容为空"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "空的搜尋文字"
+            "value" : "尋找內容為空"
           }
         }
       }

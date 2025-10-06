@@ -46,15 +46,16 @@ struct FilePreviewView: View {
                         NSWorkspace.shared.activateFileViewerSelecting([self.item.previewItemURL])
                     }
                 } else {
-                    if #available(macOS 26, *) {
-                        Link(String(localized: "Open with External Editor", table: "Document"), destination: self.item.previewItemURL)
-                            .onOpenURL(prefersInApp: true)
-                            .buttonStyle(.bordered)
-                    } else {
-                        Button(String(localized: "Open with External Editor", table: "Document")) {
-                            NSWorkspace.shared.open(self.item.previewItemURL)
+                    OpenWithExternalEditorMenu(url: self.item.previewItemURL)
+                        .modifier { content in
+                            if #available(macOS 26, *) {
+                                content
+                            } else {
+                                content
+                                    .fixedSize()
+                                    .labelStyle(.titleAndIcon)
+                            }
                         }
-                    }
                 }
                 
                 Button(String(localized: "Open as Plain Text", table: "Document")) {
@@ -185,6 +186,101 @@ struct AudioAttributesView: View {
     }
 }
 
+
+private struct OpenWithExternalEditorMenu: View {
+    
+    var url: URL
+    
+    @State private var isFileBrowserPresented = false
+    @State private var error: (any Error)?
+    
+    
+    var body: some View {
+        
+        Menu(String(localized: "Open with External Editor", table: "Document")) {
+            let editors = NSWorkspace.shared.urlsForApplications(toOpen: self.url)
+                .map(Editor.init(url:))
+            
+            if let editor = editors.first, editor.url != Bundle.main.bundleURL {
+                Button {
+                    self.openURL(with: editor.url)
+                } label: {
+                    Label {
+                        Text(AttributedString(editor.displayName) +
+                             AttributedString(String(localized: " (default)", table: "Document"),
+                                              attributes: .init().foregroundColor(.secondary)))
+                    } icon: {
+                        Image(nsImage: editor.icon)
+                    }
+                }
+                Divider()
+            }
+            
+            let remainingEditors = editors
+                .dropFirst()  // omit default
+                .filter { $0.url != Bundle.main.bundleURL }  // omit self
+                .sorted(using: KeyPathComparator(\.displayName, comparator: .localizedStandard))
+            ForEach(remainingEditors, id: \.url) { editor in
+                Button {
+                    self.openURL(with: editor.url)
+                } label: {
+                    Label {
+                        Text(editor.displayName)
+                    } icon: {
+                        Image(nsImage: editor.icon)
+                    }
+                }
+            }
+            
+            Divider()
+            Button(String(localized: "Other…", table: "Document")) {
+                self.isFileBrowserPresented = true
+            }
+            
+        } primaryAction: {
+            NSWorkspace.shared.open(self.url)
+        }
+        .fileImporter(isPresented: $isFileBrowserPresented, allowedContentTypes: [.application]) { result in
+            switch result {
+                case .success(let url):
+                    self.openURL(with: url)
+                case .failure(let error):
+                    self.error = error
+            }
+        }
+        .fileDialogDefaultDirectory(.applicationDirectory)
+        .alert(error: $error)
+    }
+    
+    
+    private struct Editor {
+        
+        var url: URL
+        var displayName: String
+        var icon: NSImage
+        
+        
+        init(url: URL) {
+            
+            self.url = url
+            self.displayName = FileManager.default.displayName(atPath: url.path)
+            self.icon = NSWorkspace.shared.icon(forFile: url.path)
+            self.icon.size = NSSize(width: isLiquidGlass ? 16 : 15, height: isLiquidGlass ? 16 : 15)
+        }
+    }
+    
+    
+    /// Opens the file with the application at the given URL.
+    ///
+    /// - Parameter applicationURL: The URL of the application to open with.
+    private func openURL(with applicationURL: URL) {
+        
+        NSWorkspace.shared.open([self.url], withApplicationAt: applicationURL, configuration: NSWorkspace.OpenConfiguration())
+    }
+}
+
+
+// MARK: - Extensions
 
 private extension CGSize {
     

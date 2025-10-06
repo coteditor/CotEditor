@@ -70,6 +70,29 @@ final class UITests: XCTestCase {
     }
     
     
+    @MainActor func testSettingsWindow() {
+        
+        let app = XCUIApplication()
+        app.launch()
+        
+        // open the Settings window
+        let menuBarsQuery = app.menuBars
+        menuBarsQuery.menuBarItems["CotEditor"].click()
+        menuBarsQuery.menuItems["Settings…"].click()
+        
+        // open all panes
+        app.buttons["General"].firstMatch.click()
+        app.buttons["Appearance"].firstMatch.click()
+        app.buttons["Window"].firstMatch.click()
+        app.buttons["Edit"].firstMatch.click()
+        app.buttons["Mode"].firstMatch.click()
+        app.buttons["Format"].firstMatch.click()
+        app.buttons["Snippets"].firstMatch.click()
+        app.buttons["Key Bindings"].firstMatch.click()
+        app.buttons["Donation"].firstMatch.click()
+    }
+    
+    
     @MainActor func testLaunchPerformance() throws {
         
         // This measures how long it takes to launch your application.

@@ -62,14 +62,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var needsManualOnAppear = false
     private var uniqueDirectory: String?
     
-    private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
-        .fill(.tertiary)
-        .frame(width: 4, height: 4)
-        .padding(8)
-        .help(String(localized: "Document has unsaved changes",
-                     table: "Document",
-                     comment: "tooltip for the “edited” indicator in the window tab"))
-    )
+    private lazy var editedIndicator: NSView = NSHostingView(rootView: EditedIndicator())
     
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
@@ -603,7 +596,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = String(localized: "Toolbar.inspector.label",
                                     defaultValue: "Inspector", table: "Document")
                 item.toolTip = String(localized: "Toolbar.inspector.tooltip",
-                                      defaultValue: "Show document information", table: "Document")
+                                      defaultValue: "Show inspector", table: "Document")
                 item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
                 item.action = #selector(NSSplitViewController.toggleInspector)
                 item.visibilityPriority = .high
@@ -922,5 +915,22 @@ extension DocumentWindowController: NSSharingServicePickerToolbarItemDelegate {
         guard let document = self.fileDocument else { return [] }
         
         return [document]
+    }
+}
+
+
+// MARK: - Views
+
+private struct EditedIndicator: View {
+    
+    var body: some View {
+        
+        Circle()
+            .fill(.tertiary)
+            .frame(width: 4, height: 4)
+            .padding(8)
+            .help(String(localized: "Document has unsaved changes",
+                         table: "Document",
+                         comment: "tooltip for the “edited” indicator in the window tab"))
     }
 }

@@ -71,7 +71,7 @@ struct IssueReport {
         """
         - CotEditor: \(Bundle.main.shortVersion) (\(Bundle.main.bundleVersion))
         - System: macOS \(ProcessInfo.processInfo.operatingSystemVersionString)
-        - Language: \(self.appLanguage ?? "–")
+        - Language: \(self.appLanguage, default: "–")
         """
     }
     

@@ -28,7 +28,8 @@ let package = Package(
             name: "SyntaxMapTests",
             dependencies: ["SyntaxMap"],
             resources: [.copy("Syntaxes")]),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
 
 
@@ -37,6 +38,8 @@ for target in package.targets {
         .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
     ]
     target.swiftSettings = [
+        .strictMemorySafety(),
+        
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),

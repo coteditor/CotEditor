@@ -479,7 +479,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
                 {
-                    // raise frag to manipulate the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
+                    // raise flag to manipulate the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
                     if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
                         self.isTypingPairedQuotes = true
                     }
@@ -1302,7 +1302,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     /// 
     /// - Parameters:
     ///   - type: The font type to change.
-    ///   - defaults: The user defaults to refer settings.
+    ///   - defaults: The user defaults to refer to settings.
     func setFont(type: FontType, defaults: UserDefaults = .standard) {
         
         self.fontObservers = [

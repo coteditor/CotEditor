@@ -400,7 +400,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         alert.informativeText = String(localized: "MoveToTrashConfirmation.message",
                                        defaultValue: "This operation cannot be undone.",
                                        table: "Document",
-                                       comment: "Refer the same expression by Apple.")
+                                       comment: "Refer to the same expression by Apple.")
         alert.addButton(withTitle: String(localized: "Move to Trash", table: "Document", comment: "menu item label"))
         alert.addButton(withTitle: String(localized: .cancel))
         alert.buttons.first?.keyEquivalent = ""

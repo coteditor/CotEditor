@@ -104,14 +104,15 @@ struct StatusBar: View {
         .modifier { content in
             if #available(macOS 26, *) {
                 content
-                    .frame(height: 32)
+                    .frame(height: 16)
+                    .padding(.vertical, 8)
                     .containerCornerOffset(.horizontal, sizeToFit: true)
             } else {
                 content
                     .frame(height: 23)
-                    .background(.windowBackground)
             }
         }
+        .background(.windowBackground)
     }
 }
 
@@ -251,7 +252,7 @@ private struct DocumentStatusBar: View {
         
         HStack(spacing: 4) {
             Divider()
-                .padding(.vertical, isLiquidGlass ? 8 : 4)
+                .padding(.vertical, isLiquidGlass ? 0 : 4)
             
             Picker(String(localized: "Text Encoding", table: "Document"), selection: $fileEncoding) {
                 Section(String(localized: "Text Encoding", table: "Document")) {
@@ -275,14 +276,14 @@ private struct DocumentStatusBar: View {
             .labelsHidden()
             
             Divider()
-                .padding(.vertical, isLiquidGlass ? 8 : 4)
+                .padding(.vertical, isLiquidGlass ? 0 : 4)
             
             LineEndingPicker(String(localized: "Line Endings", table: "Document"), selection: $lineEnding) { lineEnding in
                 self.document.changeLineEnding(to: lineEnding)
             }
             .disabled(!self.isEditable)
             .help(String(localized: "Line Endings", table: "Document"))
-            .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
+            .accessibilityLabel(String(localized: "Line Endings", table: "Document"))
             .frame(width: 48)
         }
         .onReceive(self.document.$isEditable) { self.isEditable = $0 }

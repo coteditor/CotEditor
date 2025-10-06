@@ -1,5 +1,5 @@
 {
-  "originHash" : "965f4e17f60c3022a4d865319409fc820e9f839e5fc44d95b5f3f61774c9ec62",
+  "originHash" : "fb21edff5cfcb16fb4ac0768498482e0bf4abd89746de30fca545e3ff969cc79",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-numerics.git",
       "state" : {
-        "revision" : "bbadd4b853a33fd78c4ae977d17bb2af15eb3f2a",
-        "version" : "1.1.0"
+        "revision" : "0c0290ff6b24942dadb83a929ffaaa1481df04a2",
+        "version" : "1.1.1"
       }
     },
     {

@@ -200,8 +200,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         // reel responders from the ideal first responder in the content view
         // for when the actual first responder is on the sidebar/inspector
-        let endResponder = self.documentViewController?.focusedTextView ?? self.contentViewController
-        if let responder = sequence(first: endResponder, next: \.nextResponder).first(where: { $0.responds(to: action) }) {
+        if let endResponder = self.documentViewController?.focusedTextView,
+           let responder = sequence(first: endResponder, next: \.nextResponder).first(where: { $0.responds(to: action) }) {
             return responder
         } else {
             return super.supplementalTarget(forAction: action, sender: sender)

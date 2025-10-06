@@ -30,7 +30,8 @@ let package = Package(
         
         .target(name: "Shortcut", resources: [.process("Resources")]),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
 
 

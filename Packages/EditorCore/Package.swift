@@ -93,7 +93,8 @@ let package = Package(
         .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
         
         .target(name: "ValueRange"),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
 
 

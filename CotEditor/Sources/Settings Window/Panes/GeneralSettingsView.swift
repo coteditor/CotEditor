@@ -46,6 +46,8 @@ struct GeneralSettingsView: View {
     @State private var initialEnablesAutosaveInPlace: Bool = false
     
     @State private var isAutosaveChangeConfirmationPresented = false
+    @State private var suppressesQuitAlwaysKeepsWindowsChangeConfirmation = false
+    @State private var isQuitAlwaysKeepsWindowsChangeConfirmationPresented = false
     @State private var isWarningsSettingPresented = false
     
     @State private var commandLineToolStatus: CommandLineToolManager.Status = .none
@@ -63,6 +65,16 @@ struct GeneralSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
+                        .onChange(of: self.quitAlwaysKeepsWindows) {
+                            guard !self.suppressesQuitAlwaysKeepsWindowsChangeConfirmation else { return }
+                            
+                            self.isQuitAlwaysKeepsWindowsChangeConfirmationPresented = true
+                            self.suppressesQuitAlwaysKeepsWindowsChangeConfirmation = true
+                        }
+                        .confirmationDialog(String(localized: "NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isQuitAlwaysKeepsWindowsChangeConfirmationPresented) {
+                        } message: {
+                            Text(String(localized: "NextSessionApplicationConfirmation.nextAfterNext.message", defaultValue: "The app’s behavior will change from the next launch after that one.", table: "GeneralSettings"))
+                        }
                     
                     Text("When nothing else is open:", tableName: "GeneralSettings")
                         .accessibilityLabeledPair(role: .label, id: "noDocumentOnLaunchOption", in: self.accessibility)

@@ -49,16 +49,16 @@ extension SettingState: Identifiable {
 
 extension NSNotification.Name {
     
-    /// Notification when a setting file is updated with new/previous setting names.
+    /// Notification posted when a setting file is updated with new or previous setting names.
     static let didUpdateSettingNotification = Notification.Name("SettingFileManaging.didUpdateSettingNotification")
 }
 
 
 extension URL {
     
-    /// Returns the URL for the given subdirectory in the application support directory in the user domain.
+    /// Returns the URL for a given subdirectory in the user's Application Support directory.
     ///
-    /// - Parameter subDirectory: The name of the subdirectory in the application support.
+    /// - Parameter subDirectory: The name of the subdirectory in the Application Support.
     /// - Returns: A directory URL.
     static func applicationSupportDirectory(component subDirectory: String) -> URL {
         
@@ -76,19 +76,19 @@ protocol SettingFileManaging: AnyObject, Sendable {
     associatedtype Setting
     
     
-    /// Directory name in both Application Support and bundled Resources.
+    /// The directory name in both Application Support and bundled Resources.
     nonisolated static var directoryName: String { get }
     
-    /// UTType of user setting file.
+    /// The UTType of user setting files.
     nonisolated static var fileType: UTType { get }
     
-    /// List of names that cannot be used for user setting names.
+    /// The list of names reserved and cannot be used for user setting names.
     nonisolated var reservedNames: [String] { get }
     
-    /// List of names of setting filename which are bundled (without extension).
+    /// The list of bundled setting names (without extensions).
     nonisolated var bundledSettingNames: [String] { get }
     
-    /// List of names of setting filename (without extension).
+    /// The list of available setting names (without extensions).
     var settingNames: [String] { get set }
     
     /// Stored settings to avoid loading frequently-used setting files multiple times.
@@ -101,7 +101,7 @@ protocol SettingFileManaging: AnyObject, Sendable {
     /// Loads the setting from the data.
     nonisolated func loadSetting(from data: Data) throws -> sending Setting
     
-    /// Loads settings in the user domain.
+    /// Loads settings from the user domain.
     func loadUserSettings()
     
     /// Tells that a setting did update.
@@ -140,10 +140,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns the bundled version of the setting, or `nil` if not exists.
+    /// Returns the bundled version of the setting if it exists.
     ///
-    /// - Parameter name: The setting name.
-    /// - Returns: A setting, or `nil` if not exists.
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// Returns: The setting or `nil` if not found.
     func bundledSetting(name: String) -> Setting? {
         
         guard let url = self.urlForBundledSetting(name: name) else { return nil }
@@ -152,16 +153,19 @@ extension SettingFileManaging {
     }
     
     
-    /// Tells that a setting did update.
+    /// Notifies that a setting was updated.
+    ///
+    /// - Parameters:
+    ///   - change: The change to notify.
     func didUpdateSetting(change: SettingChange) {
         
-        // do nothing
+        // do nothing by default
     }
     
     
     // MARK: Public Methods
     
-    /// File urls for user settings.
+    /// The file URLs for user settings.
     nonisolated var userSettingFileURLs: [URL] {
         
         (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
@@ -171,28 +175,44 @@ extension SettingFileManaging {
     }
     
     
-    /// Creates the setting name from a URL (don't care if it exists).
+    /// Creates a setting name from a file URL (exists or not).
+    ///
+    /// - Parameters
+    ///   - fileURL: The file URL.
+    /// - Returns: The setting name.
     nonisolated static func settingName(from fileURL: URL) -> String {
         
         fileURL.deletingPathExtension().lastPathComponent
     }
     
     
-    /// Returns a valid setting file URL for the setting name or nil if not exists.
+    /// Returns a valid file URL for a setting name if it exists.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: The URL for the setting file.
     func urlForUsedSetting(name: String) -> URL? {
         
         self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
     }
     
     
-    /// Returns a setting file URL in the application's Resources domain or nil if not exists.
+    /// Returns a setting file URL in the application's Resources domain if it exists.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: The bundled setting URL, or `nil` if not found.
     nonisolated func urlForBundledSetting(name: String) -> URL? {
         
         Bundle.main.url(forResource: name, withExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
     }
     
     
-    /// Returns a setting file URL in the user's Application Support domain or nil if not exists.
+    /// Returns a setting file URL in the user's Application Support domain if it exists.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: The user setting URL, or `nil` if not found.
     func urlForUserSetting(name: String) -> URL? {
         
         guard self.settingNames.contains(name) else { return nil }
@@ -203,7 +223,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns a setting file URL in the user's Application Support domain or nil if not exists.
+    /// Returns a setting file URL in the user's Application Support domain if it exists.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: The data, or `nil` if the file not found or failed to load the data.
     func dataForUserSetting(name: String) -> Data? {
         
         guard let url = self.urlForUserSetting(name: name) else { return nil }
@@ -212,14 +236,22 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns a setting file URL in the user's Application Support domain (don't care if it exists).
+    /// Returns the user setting file URL for the given name (exists or not).
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: A file URL.
     nonisolated func preparedURLForUserSetting(name: String) -> URL {
         
         self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: Self.fileType)
     }
     
     
-    /// Returns whether the setting name is one of the bundled settings.
+    /// Returns the state of a setting.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: The setting state, or `nil` if not found.
     func state(of name: String) -> SettingState? {
         
         SettingState(name: name,
@@ -233,9 +265,10 @@ extension SettingFileManaging {
     /// - Parameters:
     ///   - settingName: The setting name to validate.
     ///   - originalName: The original name of the setting file if it was renamed.
+    /// - Throws: `InvalidNameError` if the name is invalid.
     func validate(settingName: String, originalName: String?) throws(InvalidNameError) {
         
-        // just case difference is OK
+        // just case difference is allowed
         if originalName?.caseInsensitiveCompare(settingName) == .orderedSame {
             return
         }
@@ -274,7 +307,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Deletes user's setting file for the setting name.
+    /// Deletes the user setting file for the given name.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Throws: `SettingFileError` if deletion fails.
     func removeSetting(name: String) throws(SettingFileError) {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
@@ -292,7 +329,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Restores the setting with name.
+    /// Restores a bundled setting by removing a customized version.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Throws: An error if the file deletion fails.
     func restoreSetting(name: String) throws {
         
         guard self.state(of: name)?.isRestorable == true else { return }  // only bundled setting can be restored
@@ -308,7 +349,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Duplicates the setting with name.
+    /// Duplicates the setting with a unique name.
+    ///
+    /// - Parameters:
+    ///   - name: The original setting name.
+    /// - Returns: The name of the created setting.
     @discardableResult
     func duplicateSetting(name: String) throws -> String {
         
@@ -330,7 +375,12 @@ extension SettingFileManaging {
     }
     
     
-    /// Renames the setting with name.
+    /// Renames a setting.
+    ///
+    /// - Parameters:
+    ///   - name: The current setting name.
+    ///   - newName: The new setting name.
+    /// - Throws: An `InvalidNameError` or file operation error.
     func renameSetting(name: String, to newName: String) throws {
         
         let sanitizedNewName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -343,7 +393,7 @@ extension SettingFileManaging {
         self.cachedSettings[name] = nil
         self.cachedSettings[newName] = nil
         
-        let change: SettingChange = .updated(from: name, to: newName)
+        let change: SettingChange = .updated(from: name, to: sanitizedNewName)
         self.updateSettingList(change: change)
     }
     
@@ -391,7 +441,7 @@ extension SettingFileManaging {
     
     /// Updates the managed setting list by applying the given change.
     ///
-    /// - Parameter change: The change.
+    /// - Parameter change: The change to apply.
     func updateSettingList(change: SettingChange) {
         
         assert(Thread.isMainThread)
@@ -557,7 +607,7 @@ struct ImportDuplicationError: LocalizedError {
         
         String(localized: "ImportDuplicationError.description",
                defaultValue: "“\(self.name)” already exists. Do you want to replace it?",
-               comment: "%@ is a name of a setting. Refer the same expression by Apple.")
+               comment: "%@ is a name of a setting. Refer to the same expression by Apple.")
     }
     
     
@@ -565,6 +615,6 @@ struct ImportDuplicationError: LocalizedError {
         
         String(localized: "ImportDuplicationError.recoverySuggestion",
                defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
-               comment: "Refer similar expressions by Apple.")
+               comment: "Refer to similar expressions by Apple.")
     }
 }
