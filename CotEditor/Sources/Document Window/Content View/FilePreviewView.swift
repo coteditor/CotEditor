@@ -265,7 +265,7 @@ private struct OpenWithExternalEditorMenu: View {
             self.url = url
             self.displayName = FileManager.default.displayName(atPath: url.path)
             self.icon = NSWorkspace.shared.icon(forFile: url.path)
-            self.icon.size = NSSize(width: 15, height: 15)
+            self.icon.size = NSSize(width: isLiquidGlass ? 16 : 15, height: isLiquidGlass ? 16 : 15)
         }
     }
     
