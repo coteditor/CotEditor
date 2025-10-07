@@ -29,7 +29,7 @@ import SemanticVersioning
 
 struct WhatsNewView: View {
     
-    @Environment(\.dismissWindow) private var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     private var versionString: String = "\(NewFeature.version.major).\(NewFeature.version.minor)"
     @State private var isPrerelease: Bool = false
