@@ -25,12 +25,12 @@
 
 import SwiftUI
 
-struct AddRemoveButton<Item: Identifiable & Sendable>: View {
+struct AddRemoveButton<Item: Identifiable>: View {
     
     @Binding private var items: [Item]
     @Binding private var selection: Set<Item.ID>
     private var newItem: () -> Item
-    private var completion: (Item) -> Void
+    private var completion: @MainActor (Item) -> Void
     
     
     /// Creates a segmented add/remove control.
@@ -40,7 +40,7 @@ struct AddRemoveButton<Item: Identifiable & Sendable>: View {
     ///   - selection: A binding to a set that identifies selected items' IDs.
     ///   - newItem: A closure to return an item for when adding a new item from the button.
     ///   - completion: A closure to perform after an item is added.
-    init(_ items: Binding<[Item]>, selection: Binding<Set<Item.ID>>, newItem: @autoclosure @escaping () -> Item, completion: @escaping (Item) -> Void = { _ in }) {
+    init(_ items: Binding<[Item]>, selection: Binding<Set<Item.ID>>, newItem: @autoclosure @escaping () -> Item, completion: @escaping @MainActor (Item) -> Void = { _ in }) {
         
         self._items = items
         self._selection = selection
