@@ -66,8 +66,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(Se em branco, corresponde à string inteira.)"
+            "state" : "translated",
+            "value" : "(Vazio usa a correspondência inteira.)"
           }
         },
         "tr" : {

@@ -25,7 +25,7 @@
 
 ### TODO
 
-- New text is not localized in Dutch and Portuguese.
+- New text is not localized in Dutch.
 
 
 

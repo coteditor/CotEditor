@@ -1603,6 +1603,12 @@
             "value" : "Zachowanie aplikacji zmieni się od następnego uruchomienia."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O comportamento do aplicativo mudará a partir da próxima inicialização após esta."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
