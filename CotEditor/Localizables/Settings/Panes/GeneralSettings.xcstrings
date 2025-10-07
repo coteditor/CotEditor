@@ -1597,6 +1597,12 @@
             "value" : "그다음부터 앱의 동작이 변경됩니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Het gedrag van de app verandert vanaf de volgende start daarna."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",

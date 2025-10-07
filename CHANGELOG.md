@@ -23,11 +23,6 @@
 - Fix an issue where the syntax mapping conflict view cannot be closed.
 
 
-### TODO
-
-- New text is not localized in Dutch.
-
-
 
 6.0.3 (751)
 --------------------------
