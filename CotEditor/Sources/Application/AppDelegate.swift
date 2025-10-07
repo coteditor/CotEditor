@@ -127,99 +127,6 @@ extension Logger {
     }
     
     
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        MainActor.assumeIsolated {
-            self.menuUpdateObservers.removeAll()
-            
-            self.updateEncodingMenu(self.encodingsMenu!)
-            
-            self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
-                let item = NSMenuItem()
-                item.title = "\(lineEnding.description) (\(lineEnding.label))"
-                item.tag = lineEnding.index
-                item.action = #selector(Document.changeLineEnding(_:))
-                item.isHidden = !lineEnding.isBasic
-                item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]
-                
-                return item
-            }
-            
-            SyntaxManager.shared.$settingNames
-                .map { names in
-                    names.map { name in
-                        let item = NSMenuItem(title: name, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
-                        item.representedObject = name
-                        return item
-                    }
-                }
-                .receive(on: RunLoop.main)
-                .sink { [weak self] items in
-                    guard let menu = self?.syntaxesMenu else { return }
-                    
-                    let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
-                    let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
-                    noneItem.representedObject = SyntaxName.none
-                    
-                    menu.removeAllItems()
-                    menu.addItem(noneItem)
-                    menu.addItem(.separator())
-                    menu.items += items
-                    menu.addItem(.separator())
-                    menu.addItem(recolorItem!)
-                }
-                .store(in: &self.menuUpdateObservers)
-            
-            ThemeManager.shared.$settingNames
-                .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") } }
-                .receive(on: RunLoop.main)
-                .assign(to: \.items, on: self.themesMenu!)
-                .store(in: &self.menuUpdateObservers)
-            
-            SnippetManager.shared.menu = self.snippetMenu!
-            ScriptManager.shared.menu = self.scriptMenu!
-            
-            // build Unicode normalization menu items
-            self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
-                                             UnicodeNormalizationForm.modifiedForms)
-            .map { form in
-                guard let form else { return .separator() }
-                
-                let item = NSMenuItem()
-                item.title = form.localizedName
-                item.action = #selector(EditorTextView.normalizeUnicode(_:))
-                item.representedObject = form
-                item.tag = form.tag  // for the shortcut customization
-                item.toolTip = form.localizedDescription
-                return item
-            }
-            
-            // build multiple replacement menu items
-            ReplacementManager.shared.$settingNames
-                .receive(on: RunLoop.main)
-                .sink { [weak self] names in
-                    guard let menu = self?.multipleReplaceMenu else { return }
-                    
-                    let manageItem = menu.items.last
-                    menu.items = names.map { name in
-                        let item = NSMenuItem()
-                        item.title = name
-                        item.action = #selector(NSTextView.performTextFinderAction)
-                        item.tag = TextFinder.Action.multipleReplace.rawValue
-                        item.representedObject = name
-                        return item
-                    } + [
-                        .separator(),
-                        manageItem!,
-                    ]
-                }
-                .store(in: &self.menuUpdateObservers)
-        }
-    }
-    
-    
     // MARK: Application Delegate
     
     func applicationWillFinishLaunching(_ notification: Notification) {
@@ -232,6 +139,8 @@ extension Logger {
         }
         
         _ = DocumentController.shared
+        
+        self.prepareMainMenu()
         
         #if SPARKLE
         UpdaterManager.shared.setup()
@@ -474,6 +383,100 @@ extension Logger {
         } catch {
             NSApp.presentError(error)
         }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Prepares the main menu.
+    private func prepareMainMenu() {
+        
+        assert(NSApp.mainMenu != nil)
+        
+        guard self.menuUpdateObservers.isEmpty else { return assertionFailure() }
+        
+        self.updateEncodingMenu(self.encodingsMenu!)
+        
+        self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
+            let item = NSMenuItem()
+            item.title = "\(lineEnding.description) (\(lineEnding.label))"
+            item.tag = lineEnding.index
+            item.action = #selector(Document.changeLineEnding(_:))
+            item.isHidden = !lineEnding.isBasic
+            item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]
+            
+            return item
+        }
+        
+        SyntaxManager.shared.$settingNames
+            .map { names in
+                names.map { name in
+                    let item = NSMenuItem(title: name, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                    item.representedObject = name
+                    return item
+                }
+            }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] items in
+                guard let menu = self?.syntaxesMenu else { return }
+                
+                let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
+                let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                noneItem.representedObject = SyntaxName.none
+                
+                menu.removeAllItems()
+                menu.addItem(noneItem)
+                menu.addItem(.separator())
+                menu.items += items
+                menu.addItem(.separator())
+                menu.addItem(recolorItem!)
+            }
+            .store(in: &self.menuUpdateObservers)
+        
+        ThemeManager.shared.$settingNames
+            .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") } }
+            .receive(on: RunLoop.main)
+            .assign(to: \.items, on: self.themesMenu!)
+            .store(in: &self.menuUpdateObservers)
+        
+        SnippetManager.shared.menu = self.snippetMenu!
+        ScriptManager.shared.menu = self.scriptMenu!
+        
+        // build Unicode normalization menu items
+        self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
+                                         UnicodeNormalizationForm.modifiedForms)
+        .map { form in
+            guard let form else { return .separator() }
+            
+            let item = NSMenuItem()
+            item.title = form.localizedName
+            item.action = #selector(EditorTextView.normalizeUnicode(_:))
+            item.representedObject = form
+            item.tag = form.tag  // for the shortcut customization
+            item.toolTip = form.localizedDescription
+            return item
+        }
+        
+        // build multiple replacement menu items
+        ReplacementManager.shared.$settingNames
+            .receive(on: RunLoop.main)
+            .sink { [weak self] names in
+                guard let menu = self?.multipleReplaceMenu else { return }
+                
+                let manageItem = menu.items.last
+                menu.items = names.map { name in
+                    let item = NSMenuItem()
+                    item.title = name
+                    item.action = #selector(NSTextView.performTextFinderAction)
+                    item.tag = TextFinder.Action.multipleReplace.rawValue
+                    item.representedObject = name
+                    return item
+                } + [
+                    .separator(),
+                    manageItem!,
+                ]
+            }
+            .store(in: &self.menuUpdateObservers)
     }
 }
 
