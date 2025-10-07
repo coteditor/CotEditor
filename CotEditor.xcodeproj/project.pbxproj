@@ -218,8 +218,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2AC25E3A2C9321BD000EE905 /* PBXTargetDependency */,
-				2AC25E382C9321AC000EE905 /* PBXTargetDependency */,
 				2AB756B12C25BBB9005E04C3 /* PBXTargetDependency */,
 				2A53326326799B08000DE73D /* PBXTargetDependency */,
 			);
@@ -370,7 +368,6 @@
 				"cd Scripts",
 				"./updateHelpindex.sh",
 				"",
-				"",
 			);
 		};
 		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
@@ -385,7 +382,6 @@
 			shellPath = /bin/sh;
 			shellScript = (
 				"\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"",
-				"",
 				"",
 			);
 		};
@@ -435,14 +431,6 @@
 		2ABB27CB2C3823AB00AFCD0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 2ABB27CA2C3823AB00AFCD0B /* SwiftLintBuildToolPlugin */;
-		};
-		2AC25E382C9321AC000EE905 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2AC25E372C9321AC000EE905 /* MacUI */;
-		};
-		2AC25E3A2C9321BD000EE905 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2AC25E392C9321BD000EE905 /* EditorCore */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1114,14 +1102,6 @@
 		2ABB27D52C382AD400AFCD0B /* MacUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MacUI;
-		};
-		2AC25E372C9321AC000EE905 /* MacUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MacUI;
-		};
-		2AC25E392C9321BD000EE905 /* EditorCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = EditorCore;
 		};
 		2ACAAC1B2B85E74C0041B095 /* SyntaxMap */ = {
 			isa = XCSwiftPackageProductDependency;
