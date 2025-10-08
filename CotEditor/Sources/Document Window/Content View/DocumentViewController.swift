@@ -189,9 +189,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         super.viewWillAppear()
         
-        // focus text view
-        self.view.window?.makeFirstResponder(self.focusedTextView)
-        
         // observe user defaults
         self.defaultsObservers = [
             UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
@@ -205,6 +202,15 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             UserDefaults.standard.publisher(for: .showIndentGuides, initial: true)
                 .sink { [weak self] in self?.showsIndentGuides = $0 },
         ]
+    }
+    
+    
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        // focus text view
+        self.view.window!.makeFirstResponder(self.focusedTextView)
     }
     
     

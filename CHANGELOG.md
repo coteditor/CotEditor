@@ -19,6 +19,7 @@
 - Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.
 - Fix an issue in the vertical text orientation where the line number view is tucked beneath the titlebar when the navigation bar is hidden.
 - Fix an issue in the multiple replacement window where the text selection is unexpectedly canceled.
+- Fix an issue where the editor in a document opened by replacing with a blank document doesn’t initially have focus.
 - Fix an issue in the multiple replacement window where the sidebar can be collapsed.
 - Fix an issue where the syntax mapping conflict view cannot be closed.
 
