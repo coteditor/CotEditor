@@ -48,7 +48,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     weak var fileDocument: DataDocument? {
         
         didSet {
-            self.updateDocument(fileDocument)
+            if fileDocument != oldValue {
+                self.updateDocument(fileDocument)
+            }
         }
     }
     
@@ -181,7 +183,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         didSet {
             self.documentSyntaxObserver = nil
             if let document = document as? DataDocument {
-                self.updateDocument(document)
+                self.fileDocument = document
             }
         }
     }
