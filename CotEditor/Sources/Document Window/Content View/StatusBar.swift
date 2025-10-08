@@ -409,6 +409,7 @@ private struct LineEndingPicker: NSViewRepresentable {
         
         let index = nsView.indexOfItem(withRepresentedObject: self.selection)
         nsView.selectItem(at: index)
+        context.coordinator.onSelect = self.onSelect
     }
     
     
@@ -421,7 +422,7 @@ private struct LineEndingPicker: NSViewRepresentable {
     final class Coordinator: NSObject {
         
         @Binding private var selection: LineEnding
-        private var onSelect: (LineEnding) -> Void
+        var onSelect: (LineEnding) -> Void
         
         
         init(selection: Binding<LineEnding>, onSelect: @escaping (LineEnding) -> Void) {

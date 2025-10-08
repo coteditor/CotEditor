@@ -21,6 +21,7 @@
 - Fix an issue in the multiple replacement window where the text selection is unexpectedly canceled.
 - Fix an issue where the editor in a document opened by replacing with a blank document doesn’t initially have focus.
 - Fix an issue where the find result view doesn’t display the correct document title when the target document was created by replacing with a blank document.
+- Fix an issue where the line endings pop-up button doesn’t work when the document was opened in a blank document.
 - Fix an issue in the multiple replacement window where the sidebar can be collapsed.
 - Fix an issue where the syntax mapping conflict view cannot be closed.
 
