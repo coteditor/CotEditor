@@ -11,6 +11,8 @@
 - Improve the “Open with External Editor” button in file preview views to allow specifying the application to open.
 - [trivial] Display a confirmation dialog after changing the “Reopen windows from last session” option in the General settings pane.
 - [trivial] Make text in the information part of the About window selectable.
+- [dev] Update Yams from 6.1.0 to 6.2.0.
+- [dev] Update the build environment to Xcode 26.0.1.
 
 
 ### Fixes
