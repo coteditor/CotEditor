@@ -118,7 +118,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: self.fileEncoding) {
-                    ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { _, encoding in
+                    ForEach(self.encodingManager.fileEncodings.enumerated(), id: \.offset) { _, encoding in
                         if let encoding {
                             Text(encoding.localizedName)
                                 .tag(encoding)

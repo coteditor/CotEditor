@@ -198,7 +198,7 @@ private struct ActionCommandView: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    ForEach(Array(self.matches.enumerated()), id: \.offset) { offset, match in
+                    ForEach(self.matches.enumerated(), id: \.offset) { offset, match in
                         if offset > 0 {
                             Image(systemName: "chevron.compact.right")
                                 .foregroundStyle(.tertiary)
@@ -212,7 +212,7 @@ private struct ActionCommandView: View {
                 .foregroundStyle((self.isSelected && self.colorContrast == .standard) ? Color.selectedMenuItemText.opacity(0.8) : .primary)
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    ForEach(Array(self.command.paths.enumerated()), id: \.offset) { offset, path in
+                    ForEach(self.command.paths.enumerated(), id: \.offset) { offset, path in
                         if offset > 0 {
                             Image(systemName: "chevron.compact.right")
                                 .foregroundStyle(.tertiary)

@@ -262,7 +262,7 @@ private struct DocumentStatusBar: View {
                         Text(self.fileEncoding.localizedName).tag(self.fileEncoding)
                         Divider()
                     }
-                    ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { _, fileEncoding in
+                    ForEach(self.encodingManager.fileEncodings.enumerated(), id: \.offset) { _, fileEncoding in
                         if let fileEncoding {
                             Text(fileEncoding.localizedName).tag(fileEncoding)
                         } else {

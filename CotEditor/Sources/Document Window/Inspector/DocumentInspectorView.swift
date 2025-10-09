@@ -205,7 +205,7 @@ private struct DocumentFileView: View {
                 LabeledContent(String(localized: "Tags", table: "Document", comment: "label in document inspector")) {
                     if let tags = self.attributes?.tags, !tags.isEmpty {
                         WrappingHStack(alignment: isLiquidGlass ? .trailing : .leading, horizontalSpacing: 7) {
-                            ForEach(Array(tags.enumerated()), id: \.offset) { _, tag in
+                            ForEach(tags.enumerated(), id: \.offset) { _, tag in
                                 HStack(spacing: 4) {
                                     TagColorView(color: tag.color)
                                         .frame(height: 9)
@@ -338,7 +338,7 @@ private struct CharacterPaneView: View {
                         : String(localized: "Code Points", table: "Document", comment: "label in document inspector")
                     LabeledContent(label) {
                         WrappingHStack(alignment: isLiquidGlass ? .trailing : .leading) {
-                            ForEach(Array(scalars.enumerated()), id: \.offset) { _, scalar in
+                            ForEach(Array(scalars).enumerated(), id: \.offset) { _, scalar in
                                 Text(scalar.codePoint)
                                     .monospacedDigit()
                                     .textSelection(.enabled)
