@@ -32,29 +32,29 @@ extension FuzzyRange {
     ///
     /// - Parameter style: The fuzzy range format style.
     /// - Returns: A formatted string.
-    public func formatted(_ style: FuzzyRangeFormatStyle = .init()) -> FuzzyRangeFormatStyle.FormatOutput {
+    public func formatted(_ style: FormatStyle = .init()) -> FormatStyle.FormatOutput {
         
         style.format(self)
     }
 }
 
 
-public extension FormatStyle where Self == FuzzyRange.FuzzyRangeFormatStyle {
+public extension FormatStyle where Self == FuzzyRange.FormatStyle {
     
-    static var fuzzyRange: FuzzyRange.FuzzyRangeFormatStyle {
+    static var fuzzyRange: FuzzyRange.FormatStyle {
         
-        FuzzyRange.FuzzyRangeFormatStyle()
+        FuzzyRange.FormatStyle()
     }
 }
 
 
 extension FuzzyRange {
     
-    public struct FuzzyRangeFormatStyle: ParseableFormatStyle {
+    public struct FormatStyle: ParseableFormatStyle {
         
-        public var parseStrategy: FuzzyRangeParseStrategy {
+        public var parseStrategy: ParseStrategy {
             
-            FuzzyRangeParseStrategy()
+            ParseStrategy()
         }
         
         
@@ -71,28 +71,31 @@ extension FuzzyRange {
 }
 
 
-public struct FuzzyRangeParseStrategy: ParseStrategy {
+extension FuzzyRange {
     
-    public enum ParseError: Error {
+    public struct ParseStrategy: Foundation.ParseStrategy {
         
-        case invalidValue
-    }
-    
-    
-    /// Creates an instance of the `ParseOutput` type from `value`.
-    ///
-    /// - Parameter value: The string representation of `FuzzyRange` instance.
-    /// - Returns: A `FuzzyRange` instance.
-    public func parse(_ value: String) throws(ParseError) -> FuzzyRange {
+        public enum ParseError: Error {
+            
+            case invalidValue
+        }
         
-        let components = value.split(separator: ":").map(String.init).map(Int.init)
         
-        guard
-            (1...2).contains(components.count),
-            let location = components[0],
-            let length = (components.count > 1) ? components[1] : 0
-        else { throw .invalidValue }
-        
-        return FuzzyRange(location: location, length: length)
+        /// Creates an instance of the `ParseOutput` type from `value`.
+        ///
+        /// - Parameter value: The string representation of `FuzzyRange` instance.
+        /// - Returns: A `FuzzyRange` instance.
+        public func parse(_ value: String) throws(ParseError) -> FuzzyRange {
+            
+            let components = value.split(separator: ":").map(String.init).map(Int.init)
+            
+            guard
+                (1...2).contains(components.count),
+                let location = components[0],
+                let length = (components.count > 1) ? components[1] : 0
+            else { throw .invalidValue }
+            
+            return FuzzyRange(location: location, length: length)
+        }
     }
 }
