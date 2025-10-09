@@ -77,6 +77,9 @@ struct StatusBar: View {
             
             if let document = self.model.document as? Document {
                 DocumentStatusBar(document: document)
+            } else {
+                // for spacer in case only file size is displayed
+                Color.clear.frame(width: 0)
             }
         }
         .onAppear {
