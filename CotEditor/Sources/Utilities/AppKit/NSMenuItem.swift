@@ -33,8 +33,8 @@ extension NSMenuItem {
         
         self.target = target
         
-        if #available(macOS 26, *) {
-            self.image = NSImage(systemSymbolName: systemImage, accessibilityDescription: nil)
-        }
+        guard #available(macOS 26, *) else { return }
+        
+        self.image = NSImage(systemSymbolName: systemImage, accessibilityDescription: nil)
     }
 }

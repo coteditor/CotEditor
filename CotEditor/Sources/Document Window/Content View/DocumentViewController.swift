@@ -332,10 +332,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.title = self.showsInvisibles
                     ? String(localized: "Hide Invisibles", table: "MainMenu")
                     : String(localized: "Show Invisibles", table: "MainMenu")
-                if #available(macOS 26, *) {
-                    (item as? NSMenuItem)?.image = self.showsInvisibles
-                        ? NSImage(resource: .paragraphsignSlash)
-                        : NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: nil)
+                (item as? NSMenuItem)?.image = self.showsInvisibles
+                    ? NSImage(resource: .paragraphsignSlash)
+                    : NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: nil)
+                if #unavailable(macOS 26) {
+                    (item as? NSMenuItem)?.image = nil
                 }
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
@@ -412,17 +413,19 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.title = self.splitView.isVertical
                     ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
                     : String(localized: "Stack Editors Vertically", table: "MainMenu")
-                if #available(macOS 26, *) {
-                    (item as? NSMenuItem)?.image = self.splitView.isVertical
-                        ? NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
-                        : NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
+                (item as? NSMenuItem)?.image = self.splitView.isVertical
+                    ? NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
+                    : NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
+                if #unavailable(macOS 26) {
+                    (item as? NSMenuItem)?.image = nil
                 }
                 
             case #selector(openSplitTextView):
-                if #available(macOS 26, *) {
-                    (item as? NSMenuItem)?.image = self.splitView.isVertical
-                        ? NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
-                        : NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
+                (item as? NSMenuItem)?.image = self.splitView.isVertical
+                    ? NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
+                    : NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
+                if #unavailable(macOS 26) {
+                    (item as? NSMenuItem)?.image = nil
                 }
                 
             case #selector(closeSplitTextView):
