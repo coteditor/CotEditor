@@ -38,7 +38,7 @@ public extension String.Encoding {
             let ianaCharSetName = CFStringConvertEncodingToIANACharSetName(cfEncoding)
         else { return nil }
         
-        let string = String(format: "%@;%u", ianaCharSetName as String, cfEncoding)
+        let string = "\(ianaCharSetName);\(cfEncoding)"
         
         return string.data(using: .ascii)
     }
