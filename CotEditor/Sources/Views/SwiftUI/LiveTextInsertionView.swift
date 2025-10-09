@@ -62,14 +62,8 @@ struct LiveTextInsertionView: View {
                         self.dismiss()
                     }.keyboardShortcut(.defaultAction)
                 } else {
-                    if #available(macOS 26, *) {
-                        Button(role: .close) {
-                            self.dismiss()
-                        }
-                    } else {
-                        Button(String(localized: "Close", table: "LiveTextInsertion", comment: "button label")) {
-                            self.dismiss()
-                        }
+                    Button(role: .close) {
+                        self.dismiss()
                     }
                 }
             }
