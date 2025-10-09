@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import CharacterInfo
 import SwiftUI
+import CharacterInfo
 
 struct CharacterInspectorView: View {
     
