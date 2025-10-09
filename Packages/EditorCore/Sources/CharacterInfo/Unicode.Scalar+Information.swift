@@ -24,14 +24,12 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 public extension Unicode.Scalar {
     
     /// The code point string in format like `U+000F`.
     var codePoint: String {
         
-        String(format: "U+%04tX", self.value)
+        "U+\(self.value.codePoint)"
     }
     
     
@@ -40,8 +38,8 @@ public extension Unicode.Scalar {
         
         guard self.isSurrogatePair else { return nil }
         
-        return (String(format: "U+%04X", UTF16.leadSurrogate(self)),
-                String(format: "U+%04X", UTF16.trailSurrogate(self)))
+        return (lead: "U+\(UTF16.leadSurrogate(self).codePoint)",
+                trail: "U+\(UTF16.trailSurrogate(self).codePoint)")
     }
     
     
