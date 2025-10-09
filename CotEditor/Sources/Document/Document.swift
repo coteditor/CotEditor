@@ -1089,13 +1089,9 @@ extension NSTextView: EditorCounter.Source { }
         // update
         self.syntaxFileExtension = syntax.extensions.first
         self.syntaxParser.update(syntax: syntax, name: name)
-        self.invalidateMode()
-        
-        // skip notification when initial syntax was set on file open
-        // to avoid redundant highlight parse due to async notification.
-        guard !isInitial else { return }
-        
         self.syntaxName = name
+        
+        self.invalidateMode()
         self.invalidateRestorableState()
     }
     
