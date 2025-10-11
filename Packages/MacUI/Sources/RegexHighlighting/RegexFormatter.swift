@@ -40,7 +40,6 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
     // MARK: Private Properties
     
     private let invisibles: [Invisible] = [.newLine, .tab, .fullwidthSpace]
-    private let showsError: Bool
     
     
     // MARK: Lifecycle
@@ -49,11 +48,9 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
     ///
     /// - Parameters:
     ///   - theme: The coloring theme.
-    ///   - showsError: Whether shows the alert symbol when the string to format is invalid as a regular expression pattern.
-    public init(theme: RegexTheme<Color>, showsError: Bool = false) {
+    public init(theme: RegexTheme<Color>) {
         
         self.theme = theme
-        self.showsError = showsError
         
         super.init()
     }
@@ -90,15 +87,6 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
                     do {
                         _ = try NSRegularExpression(pattern: string)
                     } catch {
-                        if self.showsError {
-                            let alert = NSAttributedString(systemSymbolName: "exclamationmark.triangle.fill", configuration: .preferringMulticolor())
-                            attributedString.insert(alert, at: 0)
-                            
-                            // add ZERO WIDTH SPACE to avoid losing the paragraph style determining trailing truncation
-                            // due to adding an image attachment at the beginning (2024-04, macOS 14)
-                            let zeroWidthSpace = NSAttributedString(string: "\u{200B}", attributes: attrs)
-                            attributedString.insert(zeroWidthSpace, at: 0)
-                        }
                         return attributedString
                     }
                 case .replacement: break

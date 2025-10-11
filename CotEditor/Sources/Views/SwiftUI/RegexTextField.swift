@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import AppKit
 import SwiftUI
+import AppKit
 import RegexHighlighting
 
 struct RegexTextField: NSViewRepresentable {
@@ -38,25 +38,19 @@ struct RegexTextField: NSViewRepresentable {
     }
     
     @Binding private var text: String
-    private var isHighlighted: Bool = true
     private var mode: RegexParseMode
-    private var showsError: Bool
-    
     private var prompt: String?
-    private var onSubmit: () -> Void
     
+    private var isHighlighted: Bool = true
     private var leadingInset: Double = 0
     private var style: Style = .automatic
     
     
-    init(text: Binding<String>, mode: RegexParseMode = .search, showsError: Bool = false, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
+    init(text: Binding<String>, mode: RegexParseMode = .search, prompt: String? = nil) {
         
         self._text = text
-        self.prompt = prompt
-        self.onSubmit = onSubmit
-        
         self.mode = mode
-        self.showsError = showsError
+        self.prompt = prompt
     }
     
     
@@ -110,7 +104,7 @@ struct RegexTextField: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSTextField {
         
-        let textField = RegexNSTextField(string: self.text, showsError: self.showsError)
+        let textField = RegularExpressionTextField(string: self.text)
         textField.delegate = context.coordinator
         textField.placeholderString = self.prompt
         textField.isEditable = true
@@ -131,27 +125,25 @@ struct RegexTextField: NSViewRepresentable {
     func updateNSView(_ nsView: NSTextField, context: Context) {
         
         nsView.stringValue = self.text
-        (nsView as! RegexNSTextField).isRegexHighlighted = self.isHighlighted
-        (nsView as! RegexNSTextField).mode = self.mode
+        (nsView as! RegularExpressionTextField).isRegexHighlighted = self.isHighlighted
+        (nsView as! RegularExpressionTextField).mode = self.mode
     }
     
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(text: $text, onSubmit: self.onSubmit)
+        Coordinator(text: $text)
     }
     
     
     final class Coordinator: NSObject, NSTextFieldDelegate {
         
         @Binding private var text: String
-        private var onSubmit: () -> Void
         
         
-        init(text: Binding<String>, onSubmit: @escaping () -> Void) {
+        init(text: Binding<String>) {
             
             self._text = text
-            self.onSubmit = onSubmit
         }
         
         
@@ -161,25 +153,15 @@ struct RegexTextField: NSViewRepresentable {
             
             self.text = textField.stringValue
         }
-        
-        
-        func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
-            
-            if commandSelector == #selector(NSTextView.insertNewline) {
-                self.onSubmit()
-            }
-            
-            return false
-        }
     }
 }
 
 
-private final class RegexNSTextField: NSTextField {
+final class RegularExpressionTextField: NSTextField {
     
     // MARK: Public Properties
     
-    var isRegexHighlighted = true {
+    @objc dynamic var isRegexHighlighted = true {
         
         didSet {
             self.regexFormatter.parsesRegularExpression = isRegexHighlighted
@@ -197,10 +179,13 @@ private final class RegexNSTextField: NSTextField {
         }
     }
     
+    var unescapesReplacement: Bool = false  { didSet { self.invalidateMode() } }
+    @IBInspectable var isReplacement: Bool = false  { didSet { self.invalidateMode() } }
+    
     
     // MARK: Private Properties
     
-    private let regexFormatter: RegexFormatter<NSColor>
+    private let regexFormatter = RegexFormatter(theme: .default)
     
     
     // MARK: Text Field Methods
@@ -212,21 +197,19 @@ private final class RegexNSTextField: NSTextField {
     }
     
     
-    init(string: String = "", showsError: Bool) {
+    override init(frame frameRect: NSRect) {
         
-        let formatter = RegexFormatter(theme: .default, showsError: showsError)
-        self.regexFormatter = formatter
+        super.init(frame: frameRect)
         
-        super.init(frame: .zero)
-        
-        self.formatter = formatter
-        self.stringValue = string
+        self.formatter = self.regexFormatter
     }
     
     
     required init?(coder: NSCoder) {
         
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        
+        self.formatter = self.regexFormatter
     }
     
     
@@ -250,7 +233,7 @@ private final class RegexNSTextField: NSTextField {
     }
     
     
-    /// Invoked when the string value was directly changed.
+    /// The string value was directly changed.
     override var objectValue: Any? {
         
         didSet {
@@ -260,6 +243,12 @@ private final class RegexNSTextField: NSTextField {
     
     
     // MARK: Private Methods
+    
+    private func invalidateMode() {
+        
+        self.regexFormatter.mode = self.isReplacement ? .replacement(unescapes: self.unescapesReplacement) : .search
+    }
+    
     
     /// Updates the syntax highlight in the field editor.
     private func invalidateFieldEditor() {
@@ -279,5 +268,5 @@ private final class RegexNSTextField: NSTextField {
 }
 
 #Preview("Error") {
-    RegexTextField(text: .constant("[]def"), showsError: true)
+    RegexTextField(text: .constant("[]def"))
 }

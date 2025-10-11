@@ -108,7 +108,7 @@ struct SyntaxValidationView: View {
 }
 
 
-private extension SyntaxObject.Error {
+extension SyntaxObject.Error {
     
     var localizedDescription: String {
         
@@ -117,7 +117,7 @@ private extension SyntaxObject.Error {
 }
 
 
-private extension SyntaxObject.Error.Code {
+extension SyntaxObject.Error.Code {
     
     var localizedDescription: String {
         

@@ -80,18 +80,34 @@ struct SyntaxHighlightEditView: View {
                 
                 TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.value.begin) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        RegexTextField(text: item.value.begin, showsError: true)
-                            .regexHighlighted(item.value.isRegularExpression.wrappedValue)
-                            .style(.table)
-                            .focused($focusedField, equals: item.id)
+                        HStack {
+                            RegexTextField(text: item.value.begin)
+                                .regexHighlighted(item.value.isRegularExpression.wrappedValue)
+                                .style(.table)
+                                .focused($focusedField, equals: item.id)
+                            
+                            if wrappedItem.value.isRegularExpression, (try? NSRegularExpression(pattern: wrappedItem.value.begin)) == nil {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .symbolRenderingMode(.multicolor)
+                                    .help(SyntaxObject.Error.Code.regularExpression.localizedDescription)
+                            }
+                        }
                     }
                 }
                 
                 TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.end)) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        RegexTextField(text: item.value.end ?? "", showsError: true)
-                            .regexHighlighted(item.value.isRegularExpression.wrappedValue)
-                            .style(.table)
+                        HStack {
+                            RegexTextField(text: item.value.end ?? "")
+                                .regexHighlighted(item.value.isRegularExpression.wrappedValue)
+                                .style(.table)
+                            
+                            if let end = wrappedItem.value.end, wrappedItem.value.isRegularExpression, (try? NSRegularExpression(pattern: end)) == nil {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .symbolRenderingMode(.multicolor)
+                                    .help(SyntaxObject.Error.Code.regularExpression.localizedDescription)
+                            }
+                        }
                     }
                 }
                 
