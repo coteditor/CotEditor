@@ -1,6 +1,6 @@
 //
 //  FuzzyRange+FormatStyle.swift
-//  FuzzyRange
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com

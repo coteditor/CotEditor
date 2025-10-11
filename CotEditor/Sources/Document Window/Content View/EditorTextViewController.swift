@@ -30,7 +30,6 @@ import SwiftUI
 import ControlUI
 import CharacterInfo
 import Defaults
-import FuzzyRange
 import Invisible
 import LineEnding
 import StringUtils

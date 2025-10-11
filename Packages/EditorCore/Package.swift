@@ -15,7 +15,6 @@ let package = Package(
             "FileEncoding",
             "FilePermissions",
             "URLUtils",
-            "FuzzyRange",
             "Invisible",
             "LineEnding",
             "LineSort",
@@ -33,7 +32,6 @@ let package = Package(
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
         .library(name: "URLUtils", targets: ["URLUtils"]),
-        .library(name: "FuzzyRange", targets: ["FuzzyRange"]),
         .library(name: "Invisible", targets: ["Invisible"]),
         .library(name: "LineEnding", targets: ["LineEnding"]),
         .library(name: "LineSort", targets: ["LineSort"]),
@@ -62,9 +60,6 @@ let package = Package(
         
         .target(name: "URLUtils"),
         .testTarget(name: "URLUtilsTests", dependencies: ["URLUtils"]),
-        
-        .target(name: "FuzzyRange"),
-        .testTarget(name: "FuzzyRangeTests", dependencies: ["FuzzyRange"]),
         
         .target(name: "Invisible"),
         

@@ -1,6 +1,6 @@
 //
 //  FuzzyRangeTests.swift
-//  FuzzyRangeTests
+//  StringUtilsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import FuzzyRange
+@testable import StringUtils
 
 struct FuzzyRangeTests {
     

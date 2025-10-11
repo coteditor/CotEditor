@@ -25,7 +25,6 @@
 //
 
 import AppKit
-import FuzzyRange
 import StringUtils
 import TextEditing
 
