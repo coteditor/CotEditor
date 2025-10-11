@@ -206,8 +206,6 @@ private struct ThemeListView: View {
                 self.menu(for: selection, isContext: true)
             }
         }
-        .listStyle(.bordered)
-        .border(.background)
         .onReceive(self.manager.$settingNames.receive(on: RunLoop.main)) { settingNames in
             self.settingNames = settingNames
         }

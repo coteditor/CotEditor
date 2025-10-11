@@ -177,7 +177,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 SyntaxListView(settingNames: self.syntaxNames, manager: self.syntaxManager)
-                    .frame(width: 260)
+                    .frame(width: 260, height: 140)
                     .accessibilityLabeledPair(role: .content, id: "availableSyntaxes", in: self.accessibility)
             }
             
@@ -273,12 +273,9 @@ private struct SyntaxListView: View {
         }
         .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
                             entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
-        .listStyle(.bordered)
-        .border(.background)
         .environment(\.defaultMinListRowHeight, self.rowHeight)
-        .background(.background)
+        .listStyle(.plain)
         .border(.separator)
-        .frame(width: 260, height: 140)
         .onChange(of: self.settingNames, initial: true) { _, settingNames in
             self.settingStates = settingNames.compactMap(self.manager.state(of:))
         }
