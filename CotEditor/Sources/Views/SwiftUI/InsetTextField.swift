@@ -35,7 +35,7 @@ struct InsetTextField: NSViewRepresentable {
     
     private var insets: EdgeInsets = .init()
     private var usesMonospacedDigit = false
-    private var onSubmit: () -> Void = {}
+    private var onSubmit: (() -> Void)?
     
     
     init(text: Binding<String>, prompt: String? = nil) {
@@ -78,10 +78,10 @@ struct InsetTextField: NSViewRepresentable {
     final class Coordinator: NSObject, NSTextFieldDelegate {
         
         @Binding private var text: String
-        private var onSubmit: () -> Void
+        private var onSubmit: (() -> Void)?
         
         
-        init(text: Binding<String>, onSubmit: @escaping () -> Void) {
+        init(text: Binding<String>, onSubmit: (() -> Void)? = nil) {
             
             self._text = text
             self.onSubmit = onSubmit
@@ -98,8 +98,9 @@ struct InsetTextField: NSViewRepresentable {
         
         func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
             
-            if commandSelector == #selector(NSTextView.insertNewline) {
-                self.onSubmit()
+            if let onSubmit, commandSelector == #selector(NSTextView.insertNewline) {
+                onSubmit()
+                return true
             }
             
             return false
