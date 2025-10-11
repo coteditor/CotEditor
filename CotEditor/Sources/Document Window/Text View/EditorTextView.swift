@@ -1780,38 +1780,33 @@ extension EditorTextView {
     
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
-        var range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
-        
-        guard granularity == .selectByWord else { return range }
+        guard granularity == .selectByWord else {
+            return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
+        }
         
         // treat additional specific characters as separator (see `wordRange(at:)` for details)
-        if !range.isEmpty {
-            range = self.wordRange(at: proposedCharRange.location)
-            if proposedCharRange.length > 1 {
-                range.formUnion(self.wordRange(at: proposedCharRange.upperBound - 1))
-            }
-        }
+        let wordRange = self.wordRange(at: proposedCharRange.location)
         
         guard
             proposedCharRange.isEmpty,  // not on expanding selection
-            range.length == 1  // clicked character can be a brace
-        else { return range }
+            wordRange.length == 1  // clicked character can be a brace
+        else { return wordRange }
         
-        let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
+        let characterIndex = String.Index(utf16Offset: wordRange.lowerBound, in: self.string)
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text
         if ["\"", "'", "`"].contains(clickedCharacter),
-           let highlightRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: range.location)
+           let syntaxRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: wordRange.location)
         {
-            let highlightCharacterRange = Range(highlightRange, in: self.string)!
-            let firstHighlightIndex = highlightCharacterRange.lowerBound
-            let lastHighlightIndex = self.string.index(before: highlightCharacterRange.upperBound)
+            let syntaxCharacterRange = Range(syntaxRange, in: self.string)!
+            let firstSyntaxIndex = syntaxCharacterRange.lowerBound
+            let lastSyntaxIndex = self.string.index(before: syntaxCharacterRange.upperBound)
             
-            if (firstHighlightIndex == characterIndex && self.string[firstHighlightIndex] == clickedCharacter) ||  // begin quote
-                (lastHighlightIndex == characterIndex && self.string[lastHighlightIndex] == clickedCharacter)  // end quote
+            if (firstSyntaxIndex == characterIndex && self.string[firstSyntaxIndex] == clickedCharacter) ||  // begin quote
+                (lastSyntaxIndex == characterIndex && self.string[lastSyntaxIndex] == clickedCharacter)  // end quote
             {
-                return highlightRange
+                return syntaxRange
             }
         }
         
@@ -1820,7 +1815,7 @@ extension EditorTextView {
             return NSRange(pairRange, in: self.string)
         }
         
-        return range
+        return wordRange
     }
     
     
@@ -1837,6 +1832,6 @@ extension EditorTextView {
         guard proposedWordRange.contains(location) else { return proposedWordRange }
         
         // treat `.` and `:` as word delimiter
-        return (self.string as NSString).rangeOfCharacter(until: CharacterSet(charactersIn: ".:"), at: location, range: proposedWordRange)
+        return (self.string as NSString).rangeOfCharacter(until: Self.additionalWordSeparators, at: location, range: proposedWordRange)
     }
 }

@@ -44,9 +44,9 @@ extension EditorTextView {
         
         self.moveCursors(affinity: .downstream) { range in
             if range.isEmpty {
-                return self.layoutManager!.leftCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
+                self.layoutManager!.leftCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                return self.layoutManager!.isRTL(at: range.upperBound) ? range.upperBound : range.lowerBound
+                self.layoutManager!.isRTL(at: range.upperBound) ? range.upperBound : range.lowerBound
             }
         }
     }
@@ -75,9 +75,9 @@ extension EditorTextView {
         
         self.moveCursors(affinity: .upstream) { range in
             if range.isEmpty {
-                return self.layoutManager!.rightCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
+                self.layoutManager!.rightCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                return self.layoutManager!.isRTL(at: range.lowerBound) ? range.lowerBound : range.upperBound
+                self.layoutManager!.isRTL(at: range.lowerBound) ? range.lowerBound : range.upperBound
             }
         }
     }
@@ -154,12 +154,12 @@ extension EditorTextView {
     /// Moves cursor to the beginning of the word continuously (opt←).
     override func moveWordLeft(_ sender: Any?) {
         
-        // find word boundary myself
+        // find word boundary by myself
         // -> The super.moveWordLeft(_:) uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
         //    and it doesn't stop at punctuation marks, such as `.` and `:` (2019-06).
         
         self.moveCursors(affinity: .downstream) { range in
-            self.textStorage!.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRTL(at: range.upperBound), delimiters: .additionalWordSeparators)
+            self.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRTL(at: range.upperBound))
         }
     }
     
@@ -172,7 +172,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
-            self.textStorage!.nextWord(from: cursor, forward: self.layoutManager!.isRTL(at: cursor), delimiters: .additionalWordSeparators)
+            self.nextWord(from: cursor, forward: self.layoutManager!.isRTL(at: cursor))
         }
     }
     
@@ -183,7 +183,7 @@ extension EditorTextView {
         // find word boundary myself (cf. moveWordLeft(_:))
         
         self.moveCursors(affinity: .upstream) { range in
-            self.textStorage!.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRTL(at: range.upperBound), delimiters: .additionalWordSeparators)
+            self.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRTL(at: range.upperBound))
         }
     }
     
@@ -196,7 +196,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
-            self.textStorage!.nextWord(from: cursor, forward: !self.layoutManager!.isRTL(at: cursor), delimiters: .additionalWordSeparators)
+            self.nextWord(from: cursor, forward: !self.layoutManager!.isRTL(at: cursor))
         }
     }
     
@@ -267,7 +267,7 @@ extension EditorTextView {
         guard !self.layoutManager!.isRTL(at: cursor) else { return }
         
         // calculate original selected range by taking additional word separators into consideration
-        let newCursor = self.textStorage!.nextWord(from: cursor, forward: !isLeft, delimiters: .additionalWordSeparators)
+        let newCursor = self.nextWord(from: cursor, forward: !isLeft)
         let newRange: NSRange = if (newCursor < origin && origin < cursor) || (cursor < origin && origin < newCursor) {
             NSRange(origin..<origin)
         } else if origin < newCursor {
@@ -279,7 +279,7 @@ extension EditorTextView {
         // manipulate only when the difference stemmed from the additional word boundaries
         let superCursor = isLowerOrigin ? superRange.upperBound : superRange.lowerBound
         let diffRange = (superCursor < newCursor) ? NSRange(superCursor..<newCursor) : NSRange(newCursor..<superCursor)
-        guard !(self.string as NSString).rangeOfCharacter(from: .additionalWordSeparators, range: diffRange).isNotFound else { return }
+        guard !(self.string as NSString).rangeOfCharacter(from: Self.additionalWordSeparators, range: diffRange).isNotFound else { return }
         
         // adjust selection range character by character
         while self.selectedRange != newRange {
@@ -475,7 +475,7 @@ extension EditorTextView {
         }
         
         self.moveCursors(affinity: .downstream) { range in
-            self.textStorage!.nextWord(from: range.lowerBound, forward: false, delimiters: .additionalWordSeparators)
+            self.nextWord(from: range.lowerBound, forward: false)
         }
     }
     
@@ -488,7 +488,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
-            self.textStorage!.nextWord(from: cursor, forward: false, delimiters: .additionalWordSeparators)
+            self.nextWord(from: cursor, forward: false)
         }
     }
     
@@ -501,7 +501,7 @@ extension EditorTextView {
         }
         
         self.moveCursors(affinity: .upstream) { range in
-            self.textStorage!.nextWord(from: range.upperBound, forward: true, delimiters: .additionalWordSeparators)
+            self.nextWord(from: range.upperBound, forward: true)
         }
     }
     
@@ -514,7 +514,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
-            self.textStorage!.nextWord(from: cursor, forward: true, delimiters: .additionalWordSeparators)
+            self.nextWord(from: cursor, forward: true)
         }
     }
     
@@ -536,7 +536,8 @@ extension EditorTextView {
             return super.selectParagraph(sender)
         }
         
-        let ranges = self.insertionRanges.map { (self.string as NSString).lineRange(for: $0) }
+        let ranges = self.insertionRanges
+            .map { self.selectionRange(forProposedRange: $0, granularity: .selectByParagraph) }
         
         self.selectedRanges = ranges as [NSValue]
         
@@ -705,9 +706,21 @@ extension EditorTextView {
 }
 
 
-private extension CharacterSet {
+extension EditorTextView {
     
     static let additionalWordSeparators = CharacterSet(charactersIn: ".;")
+    
+    
+    /// Returns the index of the first character of the word after or before the given index by taking custom additional word delimiters into consideration.
+    ///
+    /// - Parameters:
+    ///   - location: The index in the attribute string.
+    ///   - isForward: `true` if the search should be forward, otherwise false.
+    /// - Returns: The index of the first character of the word after the given index if `isForward` is `true`; otherwise, after the given index.
+    func nextWord(from location: Int, forward isForward: Bool) -> Int {
+        
+        self.textStorage!.nextWord(from: location, forward: isForward, delimiters: Self.additionalWordSeparators)
+    }
 }
 
 
@@ -728,6 +741,9 @@ private extension NSAttributedString {
         guard (isForward && location < self.length) || (!isForward && location > 0) else { return location }
         
         let rawNextIndex = self.nextWord(from: location, forward: isForward)
+        
+        guard !delimiters.isEmpty else { return rawNextIndex }
+        
         let lastCharacterIndex = isForward ? max(rawNextIndex - 1, 0) : rawNextIndex
         let characterRange = (self.string as NSString).rangeOfComposedCharacterSequence(at: lastCharacterIndex)
         let nextIndex = isForward ? characterRange.upperBound : characterRange.lowerBound
