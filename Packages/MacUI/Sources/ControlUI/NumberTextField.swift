@@ -28,13 +28,11 @@ public import AppKit
 
 public final class NumberTextField: NSTextField {
     
-    public override func awakeFromNib() {
+    public override func viewWillMove(toWindow newWindow: NSWindow?) {
         
-        super.awakeFromNib()
+        super.viewWillMove(toWindow: newWindow)
         
-        MainActor.assumeIsolated {
-            let size = self.font?.pointSize ?? NSFont.systemFontSize(for: self.controlSize)
-            self.font = .monospacedDigitSystemFont(ofSize: size, weight: .regular)
-        }
+        let size = self.font?.pointSize ?? NSFont.systemFontSize(for: self.controlSize)
+        self.font = .monospacedDigitSystemFont(ofSize: size, weight: .regular)
     }
 }
