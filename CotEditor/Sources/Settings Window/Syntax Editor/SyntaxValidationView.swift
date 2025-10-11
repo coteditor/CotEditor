@@ -112,15 +112,27 @@ private extension SyntaxObject.Error {
     
     var localizedDescription: String {
         
-        switch self.code {
+        self.code.localizedDescription
+    }
+}
+
+
+private extension SyntaxObject.Error.Code {
+    
+    var localizedDescription: String {
+        
+        switch self {
             case .duplicated:
-                String(localized: "The same word is registered multiple times.",
+                String(localized: "SyntaxObject.Error.Code.duplicated",
+                       defaultValue: "The same word is registered multiple times.",
                        table: "SyntaxEditor")
             case .regularExpression:
-                String(localized: "Invalid regular expression.",
+                String(localized: "SyntaxObject.Error.Code.regularExpression",
+                       defaultValue: "Invalid regular expression.",
                        table: "SyntaxEditor")
             case .blockComment:
-                String(localized: "Block comment needs both begin and end delimiters.",
+                String(localized: "SyntaxObject.Error.Code.blockComment",
+                       defaultValue: "Block comment needs both begin and end delimiters.",
                        table: "SyntaxEditor")
         }
     }
