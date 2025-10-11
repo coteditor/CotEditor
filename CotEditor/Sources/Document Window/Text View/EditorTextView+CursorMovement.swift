@@ -708,7 +708,22 @@ extension EditorTextView {
 
 extension EditorTextView {
     
-    static let additionalWordSeparators = CharacterSet(charactersIn: ".;")
+    private static let additionalWordSeparators = CharacterSet(charactersIn: ".;")
+    
+    
+    /// Returns the word range that includes the given location.
+    ///
+    /// - Parameter location: The character index to find the word range.
+    /// - Returns: The range of a word.
+    func wordRange(at location: Int) -> NSRange {
+        
+        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
+        
+        guard proposedWordRange.contains(location) else { return proposedWordRange }
+        
+        // treat `.` and `:` as word delimiter
+        return (self.string as NSString).rangeOfCharacter(until: Self.additionalWordSeparators, at: location, range: proposedWordRange)
+    }
     
     
     /// Returns the index of the first character of the word after or before the given index by taking custom additional word delimiters into consideration.
@@ -717,7 +732,7 @@ extension EditorTextView {
     ///   - location: The index in the attribute string.
     ///   - isForward: `true` if the search should be forward, otherwise false.
     /// - Returns: The index of the first character of the word after the given index if `isForward` is `true`; otherwise, after the given index.
-    func nextWord(from location: Int, forward isForward: Bool) -> Int {
+    private func nextWord(from location: Int, forward isForward: Bool) -> Int {
         
         self.textStorage!.nextWord(from: location, forward: isForward, delimiters: Self.additionalWordSeparators)
     }

@@ -782,6 +782,47 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
+    override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
+        
+        guard granularity == .selectByWord else {
+            return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
+        }
+        
+        // treat additional specific characters as separator (see `wordRange(at:)` for details)
+        let wordRange = self.wordRange(at: proposedCharRange.location)
+        
+        guard
+            proposedCharRange.isEmpty,  // not on expanding selection
+            wordRange.length == 1  // clicked character can be a brace
+        else { return wordRange }
+        
+        let characterIndex = String.Index(utf16Offset: wordRange.lowerBound, in: self.string)
+        let clickedCharacter = self.string[characterIndex]
+        
+        // select (syntax-highlighted) quoted text
+        if ["\"", "'", "`"].contains(clickedCharacter),
+           let syntaxRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: wordRange.location)
+        {
+            let syntaxCharacterRange = Range(syntaxRange, in: self.string)!
+            let firstSyntaxIndex = syntaxCharacterRange.lowerBound
+            let lastSyntaxIndex = self.string.index(before: syntaxCharacterRange.upperBound)
+            
+            if (firstSyntaxIndex == characterIndex && self.string[firstSyntaxIndex] == clickedCharacter) ||  // begin quote
+                (lastSyntaxIndex == characterIndex && self.string[lastSyntaxIndex] == clickedCharacter)  // end quote
+            {
+                return syntaxRange
+            }
+        }
+        
+        // select inside of brackets
+        if let pairRange = self.string.rangeOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
+            return NSRange(pairRange, in: self.string)
+        }
+        
+        return wordRange
+    }
+    
+    
     override func menu(for event: NSEvent) -> NSMenu? {
         
         guard let menu = super.menu(for: event) else { return nil }
@@ -1768,70 +1809,5 @@ extension EditorTextView {
         if let nextCharacter = self.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // cursor is (probably) at the middle of a word
         
         self.complete(self)
-    }
-}
-
-
-// MARK: - Word Selection
-
-extension EditorTextView {
-    
-    // MARK: Text View Methods
-    
-    override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
-        
-        guard granularity == .selectByWord else {
-            return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
-        }
-        
-        // treat additional specific characters as separator (see `wordRange(at:)` for details)
-        let wordRange = self.wordRange(at: proposedCharRange.location)
-        
-        guard
-            proposedCharRange.isEmpty,  // not on expanding selection
-            wordRange.length == 1  // clicked character can be a brace
-        else { return wordRange }
-        
-        let characterIndex = String.Index(utf16Offset: wordRange.lowerBound, in: self.string)
-        let clickedCharacter = self.string[characterIndex]
-        
-        // select (syntax-highlighted) quoted text
-        if ["\"", "'", "`"].contains(clickedCharacter),
-           let syntaxRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: wordRange.location)
-        {
-            let syntaxCharacterRange = Range(syntaxRange, in: self.string)!
-            let firstSyntaxIndex = syntaxCharacterRange.lowerBound
-            let lastSyntaxIndex = self.string.index(before: syntaxCharacterRange.upperBound)
-            
-            if (firstSyntaxIndex == characterIndex && self.string[firstSyntaxIndex] == clickedCharacter) ||  // begin quote
-                (lastSyntaxIndex == characterIndex && self.string[lastSyntaxIndex] == clickedCharacter)  // end quote
-            {
-                return syntaxRange
-            }
-        }
-        
-        // select inside of brackets
-        if let pairRange = self.string.rangeOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
-            return NSRange(pairRange, in: self.string)
-        }
-        
-        return wordRange
-    }
-    
-    
-    // MARK: Public Methods
-    
-    /// Returns the word range that includes the given location.
-    ///
-    /// - Parameter location: The character index to find the word range.
-    /// - Returns: The range of a word.
-    func wordRange(at location: Int) -> NSRange {
-        
-        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
-        
-        guard proposedWordRange.contains(location) else { return proposedWordRange }
-        
-        // treat `.` and `:` as word delimiter
-        return (self.string as NSString).rangeOfCharacter(until: Self.additionalWordSeparators, at: location, range: proposedWordRange)
     }
 }
