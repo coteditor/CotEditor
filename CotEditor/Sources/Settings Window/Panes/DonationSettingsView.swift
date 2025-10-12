@@ -187,7 +187,7 @@ struct DonationSettingsView: View {
                     Text("The In-App donation feature is available only in CotEditor distributed in the App Store.", tableName: "DonationSettings")
                         .foregroundStyle(.secondary)
                     
-                    if let url = URL(string: "itms-apps://itunes.apple.com/app/id1024640650") {
+                    if let url = URL(string: "itms-apps://apps.apple.com/app/id1024640650") {
                         Link(String(localized: "Open in App Store", table: "DonationSettings"), destination: url)
                     }
                     if let url = URL(string: "https://github.com/sponsors/1024jp/") {
