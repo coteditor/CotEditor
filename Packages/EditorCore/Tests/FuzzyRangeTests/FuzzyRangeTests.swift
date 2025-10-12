@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -89,7 +89,7 @@ struct FuzzyRangeTests {
     
     @Test func parseFuzzyRange() throws {
         
-        let parser = FuzzyRangeParseStrategy()
+        let parser = FuzzyRange.ParseStrategy()
         
         #expect(try parser.parse("0") == FuzzyRange(location: 0, length: 0))
         #expect(try parser.parse("1") == FuzzyRange(location: 1, length: 0))
@@ -97,10 +97,10 @@ struct FuzzyRangeTests {
         #expect(try parser.parse("-1") == FuzzyRange(location: -1, length: 0))
         #expect(try parser.parse("-1:-1") == FuzzyRange(location: -1, length: -1))
         
-        #expect(throws: FuzzyRangeParseStrategy.ParseError.invalidValue) { try parser.parse("") }
-        #expect(throws: FuzzyRangeParseStrategy.ParseError.invalidValue) { try parser.parse("abc") }
-        #expect(throws: FuzzyRangeParseStrategy.ParseError.invalidValue) { try parser.parse("1:a") }
-        #expect(throws: FuzzyRangeParseStrategy.ParseError.invalidValue) { try parser.parse("1:1:1") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("abc") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:a") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:1:1") }
     }
     
     

@@ -56,7 +56,7 @@ final class DirectoryDocument: NSDocument {
     
     // MARK: Document Methods
     
-    override static var autosavesInPlace: Bool {
+    override nonisolated static var autosavesInPlace: Bool {
         
         true  // for moving location from the proxy icon
     }

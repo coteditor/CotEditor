@@ -77,6 +77,9 @@ struct StatusBar: View {
             
             if let document = self.model.document as? Document {
                 DocumentStatusBar(document: document)
+            } else {
+                // for spacer in case only file size is displayed
+                Color.clear.frame(width: 0)
             }
         }
         .onAppear {
@@ -409,6 +412,7 @@ private struct LineEndingPicker: NSViewRepresentable {
         
         let index = nsView.indexOfItem(withRepresentedObject: self.selection)
         nsView.selectItem(at: index)
+        context.coordinator.onSelect = self.onSelect
     }
     
     
@@ -421,7 +425,7 @@ private struct LineEndingPicker: NSViewRepresentable {
     final class Coordinator: NSObject {
         
         @Binding private var selection: LineEnding
-        private var onSelect: (LineEnding) -> Void
+        var onSelect: (LineEnding) -> Void
         
         
         init(selection: Binding<LineEnding>, onSelect: @escaping (LineEnding) -> Void) {

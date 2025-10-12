@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,10 +40,10 @@ extension FormatStyle where Self == CSVFormatStyle {
     /// - Parameters:
     ///   - separator: The separator of CSV.
     ///   - omittingEmptyItems: If `true`, empty items are removed from the list.
-    /// - Returns: A RangedIntegerFormatStyle.
+    /// - Returns: A `CSVFormatStyle`.
     static func csv(separator: String = ",", omittingEmptyItems: Bool = false) -> CSVFormatStyle {
         
-        return CSVFormatStyle(separator: separator, omittingEmptyItems: omittingEmptyItems)
+        CSVFormatStyle(separator: separator, omittingEmptyItems: omittingEmptyItems)
     }
 }
 

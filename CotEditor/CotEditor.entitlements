@@ -22,6 +22,10 @@
 	<true/>
 	<key>com.apple.security.hardened-process</key>
 	<true/>
+	<key>com.apple.security.hardened-process.checked-allocations</key>
+	<true/>
+	<key>com.apple.security.hardened-process.checked-allocations.no-tagged-receive</key>
+	<true/>
 	<key>com.apple.security.hardened-process.dyld-ro</key>
 	<true/>
 	<key>com.apple.security.hardened-process.enhanced-security-version</key>

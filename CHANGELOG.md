@@ -11,6 +11,8 @@
 - Improve the “Open with External Editor” button in file preview views to allow specifying the application to open.
 - [trivial] Display a confirmation dialog after changing the “Reopen windows from last session” option in the General settings pane.
 - [trivial] Make text in the information part of the About window selectable.
+- [dev] Update Yams from 6.1.0 to 6.2.0.
+- [dev] Update the build environment to Xcode 26.0.1.
 
 
 ### Fixes
@@ -19,13 +21,11 @@
 - Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.
 - Fix an issue in the vertical text orientation where the line number view is tucked beneath the titlebar when the navigation bar is hidden.
 - Fix an issue in the multiple replacement window where the text selection is unexpectedly canceled.
+- Fix an issue where the editor in a document opened by replacing with a blank document doesn’t initially have focus.
+- Fix an issue in the Find All command where the result view doesn’t display the correct document title when the target document was created by replacing with a blank document.
+- Fix an issue where the line endings pop-up button doesn’t work when the document was opened in a blank document.
 - Fix an issue in the multiple replacement window where the sidebar can be collapsed.
 - Fix an issue where the syntax mapping conflict view cannot be closed.
-
-
-### TODO
-
-- New text is not localized in Dutch and Portuguese.
 
 
 

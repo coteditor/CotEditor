@@ -1597,10 +1597,22 @@
             "value" : "그다음부터 앱의 동작이 변경됩니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Het gedrag van de app verandert vanaf de volgende start daarna."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zachowanie aplikacji zmieni się od następnego uruchomienia."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O comportamento do aplicativo mudará a partir da próxima inicialização após esta."
           }
         },
         "tr" : {

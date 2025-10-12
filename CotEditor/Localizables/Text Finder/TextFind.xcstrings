@@ -219,14 +219,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld string encontrada."
+                  "state" : "translated",
+                  "value" : "%lld correspondência encontrada."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld strings encontradas."
+                  "state" : "translated",
+                  "value" : "%lld correspondências encontradas."
                 }
               }
             }
@@ -518,14 +518,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld string substituída."
+                  "state" : "translated",
+                  "value" : "%lld correspondência substituída."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld strings substituídas."
+                  "state" : "translated",
+                  "value" : "%lld correspondências substituídas."
                 }
               }
             }
@@ -4496,8 +4496,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Remove o escape de barra invertida dos metacaracteres da string de substituição."
+            "state" : "translated",
+            "value" : "Desescapar metacaracteres com barra invertida no texto de substituição."
           }
         },
         "ru" : {
@@ -4598,8 +4598,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Remover escape da string de substituição"
+            "state" : "translated",
+            "value" : "Texto de substituição sem caractere de escape"
           }
         },
         "ru" : {
@@ -5110,20 +5110,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Uma string encontrada em “%2$@”."
+                  "state" : "translated",
+                  "value" : "Encontrada uma correspondência em “%2$@.”"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%1$lld strings encontradas em “%2$@”."
+                  "state" : "translated",
+                  "value" : "Encontradas %1$lld correspondências em “%2$@.”"
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Nenhuma string encontrada em “%2$@”."
+                  "state" : "translated",
+                  "value" : "Nenhuma correspondência encontrada em “%2$@.”"
                 }
               }
             }
@@ -5666,8 +5666,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "String Encontrada"
+            "state" : "translated",
+            "value" : "Texto Correspondente"
           }
         },
         "ru" : {
@@ -7381,8 +7381,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "String de busca vazia"
+            "state" : "translated",
+            "value" : "Texto de busca vazio"
           }
         },
         "ru" : {

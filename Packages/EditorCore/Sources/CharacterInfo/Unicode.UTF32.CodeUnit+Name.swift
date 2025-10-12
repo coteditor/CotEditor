@@ -24,8 +24,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 public extension Unicode.UTF32.CodeUnit {
     
     /// Returns Unicode name.
@@ -40,10 +38,10 @@ public extension Unicode.UTF32.CodeUnit {
         
         if let codeUnit = UTF16.CodeUnit(exactly: self) {
             if UTF16.isLeadSurrogate(codeUnit) {
-                return "<lead surrogate-" + String(format: "%04X", self) + ">"
+                return "<lead surrogate-\(codeUnit.codePoint)>"
             }
             if UTF16.isTrailSurrogate(codeUnit) {
-                return "<tail surrogate-" + String(format: "%04X", self) + ">"
+                return "<tail surrogate-\(codeUnit.codePoint)>"
             }
         }
         

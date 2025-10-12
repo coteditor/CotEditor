@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,13 +27,13 @@ import SwiftUI
 
 // MARK: OptionSet
 
-extension Binding where Self: Sendable, Value: OptionSet, Value.Element: Sendable {
+extension Binding where Value: OptionSet & Sendable, Value == Value.Element {
     
     /// Enables binding to an option using Bool.
     ///
     /// - Parameter options: The option to bind.
     /// - Returns: A `Binding<Bool>` struct.
-    func bind(_ options: Value.Element) -> Binding<Bool> {
+    func bind(_ options: Value) -> Binding<Bool> {
         
         .init(
             get: {

@@ -1,10 +1,11 @@
 //
-//  NSMenuItem.swift
+//  CodeUnit.swift
+//  EditorCore
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2025-06-12.
+//  Created by 1024jp on 2025-10-09.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -23,18 +24,34 @@
 //  limitations under the License.
 //
 
-import AppKit
-
-extension NSMenuItem {
+extension UTF32.CodeUnit {
     
-    convenience init(title: String, systemImage: String, action: Selector? = nil, target: AnyObject? = nil) {
+    var codePoint: String {
         
-        self.init(title: title, action: action, keyEquivalent: "")
+        String(self, radix: 16, uppercase: true)
+            .leftPadding(toLength: 4, withPad: "0")
+    }
+}
+
+
+extension UTF16.CodeUnit {
+    
+    var codePoint: String {
         
-        self.target = target
+        String(self, radix: 16, uppercase: true)
+            .leftPadding(toLength: 4, withPad: "0")
+    }
+}
+
+
+private extension String {
+    
+    func leftPadding(toLength length: Int, withPad character: Character) -> String {
         
-        guard #available(macOS 26, *) else { return }
-        
-        self.image = NSImage(systemSymbolName: systemImage, accessibilityDescription: nil)
+        if self.count < length {
+            String(repeating: character, count: length - self.count) + self
+        } else {
+            self
+        }
     }
 }

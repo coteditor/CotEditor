@@ -48,7 +48,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     weak var fileDocument: DataDocument? {
         
         didSet {
-            self.updateDocument(fileDocument)
+            if fileDocument != oldValue {
+                self.updateDocument(fileDocument)
+            }
         }
     }
     
@@ -181,7 +183,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         didSet {
             self.documentSyntaxObserver = nil
             if let document = document as? DataDocument {
-                self.updateDocument(document)
+                self.fileDocument = document
             }
         }
     }
@@ -571,7 +573,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .syntax:
                 let popUpButton = NSPopUpButton()
                 popUpButton.bezelStyle = .toolbar
-                popUpButton.isEnabled = (self.document is Document)
+                popUpButton.isEnabled = (self.fileDocument is Document)
                 self.syntaxPopUpButton = popUpButton
                 self.buildSyntaxPopUpButton()
                 

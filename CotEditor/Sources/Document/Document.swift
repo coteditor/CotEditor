@@ -223,7 +223,7 @@ extension NSTextView: EditorCounter.Source { }
     
     // MARK: Document Methods
     
-    nonisolated override static var autosavesInPlace: Bool {
+    override nonisolated static var autosavesInPlace: Bool {
         
         // avoid changing the value while the application is running
         struct InitialValue { static let autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace] }
@@ -891,10 +891,11 @@ extension NSTextView: EditorCounter.Source { }
                     item.title = self.isEditable
                         ? String(localized: "Prevent Editing", table: "MainMenu")
                         : String(localized: "Allow Editing", table: "MainMenu")
-                    if #available(macOS 26, *) {
-                        item.image = self.isEditable
-                            ? NSImage(systemSymbolName: "pencil.slash", accessibilityDescription: nil)
-                            : NSImage(systemSymbolName: "pencil", accessibilityDescription: nil)
+                    item.image = self.isEditable
+                        ? NSImage(systemSymbolName: "pencil.slash", accessibilityDescription: nil)
+                        : NSImage(systemSymbolName: "pencil", accessibilityDescription: nil)
+                    if #unavailable(macOS 26) {
+                        item.image = nil
                     }
                     
                 } else if let item = item as? StatableToolbarItem {
@@ -1088,13 +1089,9 @@ extension NSTextView: EditorCounter.Source { }
         // update
         self.syntaxFileExtension = syntax.extensions.first
         self.syntaxParser.update(syntax: syntax, name: name)
-        self.invalidateMode()
-        
-        // skip notification when initial syntax was set on file open
-        // to avoid redundant highlight parse due to async notification.
-        guard !isInitial else { return }
-        
         self.syntaxName = name
+        
+        self.invalidateMode()
         self.invalidateRestorableState()
     }
     
