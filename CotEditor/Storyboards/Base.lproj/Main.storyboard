@@ -1244,7 +1244,7 @@ CA
                                                 <action selector="reportBug:" target="Ady-hI-5gd" id="cDG-26-UaZ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="CotEditor Website" secondaryImage="arrow.forward.circle" catalog="system" id="g34-YV-E6o">
+                                        <menuItem title="CotEditor Web Site" secondaryImage="arrow.forward.circle" catalog="system" id="g34-YV-E6o">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openWebSite:" target="Ady-hI-5gd" id="EVb-Xf-aoz"/>
