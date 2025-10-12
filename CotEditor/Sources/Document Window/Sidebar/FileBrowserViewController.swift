@@ -372,6 +372,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Copies the target file URLs to the pasteboard.
     @IBAction func copy(_ sender: Any?) {
         
         let fileURLs = self.targetNodes(for: sender).map(\.fileURL)
@@ -383,6 +384,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Prompts for confirmation and deletes the target items.
     @IBAction func delete(_ sender: Any?) {
         
         let filenames = self.targetNodes(for: sender).map(\.fileURL.lastPathComponent)
@@ -414,6 +416,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Reveals the target items in the Finder.
     @IBAction func showInFinder(_ sender: Any?) {
         
         let fileURLs = self.targetNodes(for: sender).map(\.fileURL)
@@ -424,6 +427,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Opens the target items with an external editor app.
     @IBAction func openWithExternalEditor(_ sender: Any?) {
         
         let nodes = self.targetNodes(for: sender)
@@ -445,6 +449,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Opens the selected items in new CotEditor windows.
     @IBAction func openInNewWindow(_ sender: Any?) {
         
         let nodes = self.targetNodes(for: sender)
@@ -455,6 +460,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Creates a new file under the target folder.
     @IBAction func addFile(_ sender: NSMenuItem) {
         
         guard let folderNode = self.targetFolderNode(for: sender) else { return }
@@ -475,6 +481,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Creates a new folder under the target folder.
     @IBAction func addFolder(_ sender: NSMenuItem) {
         
         guard let folderNode = self.targetFolderNode(for: sender) else { return }
@@ -495,6 +502,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Duplicates the target item.
     @IBAction func duplicate(_ sender: Any?) {
         
         let nodes = self.targetNodes(for: sender)
@@ -518,6 +526,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Moves the target items to the Trash.
     @IBAction func moveToTrash(_ sender: Any?) {
         
         let nodes = self.targetNodes(for: sender)
@@ -526,6 +535,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Presents the system share sheet for the target items.
     @IBAction func share(_ menuItem: NSMenuItem) {
         
         let fileURLs = self.targetNodes(for: menuItem).map(\.fileURL)
@@ -540,6 +550,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Toggles the visibility of hidden files in the file browser.
     @IBAction func toggleHiddenFileVisibility(_ sender: Any?) {
         
         UserDefaults.standard[.fileBrowserShowsHiddenFiles].toggle()

@@ -255,7 +255,7 @@ private final class BracePairScanner {
     
     /// Finds the nearest range enclosed by one of the candidate brace pairs.
     ///
-    /// - Returns: The range of characters
+    /// - Returns: The range of characters.
     func scan() -> Range<String.Index>? {
         
         while !self.finished {

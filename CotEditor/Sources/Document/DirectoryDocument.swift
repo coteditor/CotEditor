@@ -227,6 +227,7 @@ final class DirectoryDocument: NSDocument {
     
     // MARK: Action Messages
     
+    /// Opens the selected file as plain text, bypassing type detection.
     @IBAction func openDocumentAsPlainText(_ sender: NSMenuItem) {
         
         guard let fileURL = sender.representedObject as? URL else { return }

@@ -1222,7 +1222,7 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    /// Checks if the file contents did change since the last read.
+    /// Checks whether the on-disk file content has changed since last read.
     ///
     /// - Returns: A boolean whether the file did change and the content modification date if available.
     private nonisolated func checkFileContentsDidChange() throws -> (Bool, Date?) {
@@ -1257,7 +1257,7 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    /// Changes the text encoding by asking options to the user.
+    /// Interactively changes the document's text encoding.
     ///
     /// - Parameter fileEncoding: The text encoding to change.
     func askChangingEncoding(to fileEncoding: FileEncoding) {
@@ -1480,7 +1480,7 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    /// Shows the warning inspector in the document window.
+    /// Opens the Warnings inspector pane in the document window.
     private func showWarningInspector() {
         
         (self.windowController?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
@@ -1504,7 +1504,7 @@ private extension Document {
     
     /// Applies the previous selection to the text views by taking diff into account.
     ///
-    /// - Parameter state: The selection state to apply.
+    /// - Parameter state: The selection snapshot to apply.
     func restoreEditorSelection(_ state: EditorSelection) {
         
         guard

@@ -58,6 +58,11 @@ private extension Unicode.Scalar {
     private static let widthShifter: UTF32.CodeUnit = 0xFEE0
     
     
+    /// Converts this scalar between half-width and full-width roman forms when applicable.
+    ///
+    /// - Parameters:
+    ///   - reverse: Pass `true` to convert from full-width to half-width.
+    /// - Returns: The converted scalar if the conversion was applied, otherwise `nil`.
     func convertedToFullwidthRoman(reverse: Bool = false) -> Self? {
         
         let fullwidthValue = reverse ? self.value : self.value + Self.widthShifter

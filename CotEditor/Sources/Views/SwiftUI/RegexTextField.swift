@@ -244,6 +244,7 @@ final class RegularExpressionTextField: NSTextField {
     
     // MARK: Private Methods
     
+    /// Updates the formatter's mode.
     private func invalidateMode() {
         
         self.regexFormatter.mode = self.isReplacement ? .replacement(unescapes: self.unescapesReplacement) : .search

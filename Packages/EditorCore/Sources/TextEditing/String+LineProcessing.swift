@@ -332,6 +332,11 @@ public extension String {
     
 extension String {
     
+    /// Returns the ranges of trailing whitespace at the end of lines.
+    ///
+    /// - Parameters:
+    ///   - ignoringEmptyLines: Pass `true` to ignore lines that are only whitespace.
+    /// - Returns: An array of `NSRange` values representing trailing whitespace segments in the string.
     func rangesOfTrailingWhitespace(ignoringEmptyLines: Bool) -> [NSRange] {
         
         let pattern = ignoringEmptyLines ? "(?<!^|[ \t])[ \t]++$" : "[ \t]++$"
