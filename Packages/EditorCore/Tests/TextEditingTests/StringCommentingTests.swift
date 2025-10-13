@@ -45,6 +45,22 @@ struct StringCommentingTests {
     }
     
     
+    @Test func inlineCommentOutAfterIndent() {
+        
+        let text = """
+          aaaa
+            aaa
+          aaaa
+        """
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<16)], afterIndent: true, tabWidth: 2) ==
+                [
+                    .init(string: "//", location: 2, forward: true),
+                    .init(string: "//", location: 9, forward: true),
+                    .init(string: "//", location: 17, forward: true),
+                ])
+    }
+    
+    
     @Test func blockCommentOut() {
         
         #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: []).isEmpty)

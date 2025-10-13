@@ -159,16 +159,19 @@ extension String {
     ///
     /// - Parameters:
     ///   - delimiter: The inline comment delimiter to insert.
-    ///   - ranges: The ranges where to comment out.
+    ///   - ranges: The ranges whose lines should be commented out.
+    ///   - afterIndent: When `true`, inserts the delimiter after the common minimal visual indentation across the targeted lines. Otherwise, inserts at each line start.
+    ///   - tabWidth: The visual width used when counting a tab character in indentation.
     /// - Returns: Items that contain editing information to insert comment delimiters.
-    func inlineCommentOut(delimiter: String, ranges: [NSRange]) -> [NSRange.InsertionItem] {
+    func inlineCommentOut(delimiter: String, ranges: [NSRange], afterIndent: Bool = false, tabWidth: Int = 4) -> [NSRange.InsertionItem] {
         
-        let regex = try! NSRegularExpression(pattern: "^", options: [.anchorsMatchLines])
+        let locations = if afterIndent {
+            self.minimumCommonIndentationLocations(for: ranges, tabWidth: tabWidth)
+        } else {
+            ranges.flatMap(self.lineContentsRanges(for:)).map(\.location).uniqued
+        }
         
-        return ranges.flatMap { regex.matches(in: self, range: $0) }
-            .map(\.range.location)
-            .uniqued
-            .map { NSRange.InsertionItem(string: delimiter, location: $0, forward: true) }
+        return locations.map { NSRange.InsertionItem(string: delimiter, location: $0, forward: true) }
     }
     
     
@@ -236,5 +239,63 @@ extension String {
             .flatMap { [$0.range(at: 1), $0.range(at: 2)] }
         
         return delimiterRanges.isEmpty ? nil : delimiterRanges
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Computes insertion locations at the minimal common visual indentation for the given ranges.
+    ///
+    /// - Parameters:
+    ///   - ranges: The ranges whose corresponding line starts are evaluated.
+    ///   - tabWidth: The visual width to treat a tab character as when computing indentation.
+    /// - Returns: The UTF16-based character indexes.
+    private func minimumCommonIndentationLocations(for ranges: [NSRange], tabWidth: Int) -> [Int] {
+        
+        let lines = (self as NSString).lineRanges(for: ranges, includingLastEmptyLine: true)
+            .map { (string: (self as NSString).substring(with: $0), range: $0) }
+        
+        // find minimal visual indentation among non-empty lines
+        let minVisualOffset = lines
+            .map(\.string)
+            .compactMap { line in
+                var visualOffset = 0
+                for character in line {
+                    switch character {
+                        case "\t":
+                            visualOffset += tabWidth
+                        case " ":
+                            visualOffset += 1
+                        case "\n", "\r", "\u{0085}", "\u{2028}", "\u{2029}":  // line breaks
+                            return nil
+                        default:
+                            return visualOffset
+                    }
+                }
+                return  nil
+            }
+            .min() ?? 0
+        
+        return lines
+            .map { line in
+                // find the character index where visual width reaches target visual indent
+                var charOffset = 0
+                var visualOffset = 0
+                scan: for character in line.string {
+                    switch character {
+                        case "\t":
+                            visualOffset += tabWidth
+                        case " ":
+                            visualOffset += 1
+                        default:
+                            break scan
+                    }
+                    if visualOffset > minVisualOffset { break scan }
+                    
+                    charOffset += 1
+                }
+                
+                return min(line.range.location + charOffset, line.range.upperBound)
+            }
     }
 }
