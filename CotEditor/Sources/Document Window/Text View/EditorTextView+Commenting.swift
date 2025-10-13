@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ extension EditorTextView: Commenting {
         if self.canUncomment(partly: false) {
             self.uncomment()
         } else {
-            self.commentOut(types: .both, fromLineHead: true)
+            self.commentOut(types: .both, at: self.commentsOutAfterIndent ? .afterIndent(tabWidth: self.tabWidth) : .line)
         }
     }
     
@@ -45,21 +45,21 @@ extension EditorTextView: Commenting {
     /// Comments out the selections by appending comment delimiters.
     @IBAction func commentOut(_ sender: Any?) {
         
-        self.commentOut(types: .both, fromLineHead: false)
+        self.commentOut(types: .both, at: .selection)
     }
     
     
     /// Comments out the selections by appending block comment delimiters.
     @IBAction func blockCommentOut(_ sender: Any?) {
         
-        self.commentOut(types: .block, fromLineHead: false)
+        self.commentOut(types: .block, at: .selection)
     }
     
     
     /// Comments out the selections by appending inline comment delimiters.
     @IBAction func inlineCommentOut(_ sender: Any?) {
         
-        self.commentOut(types: .inline, fromLineHead: false)
+        self.commentOut(types: .inline, at: .selection)
     }
     
     
@@ -85,12 +85,12 @@ extension Commenting {
     ///
     /// - Parameters:
     ///   - types: The type of commenting-out. When, `.both`, inline-style takes priority over block-style.
-    ///   - fromLineHead: When `true`, the receiver comments out from the beginning of the line.
-    func commentOut(types: CommentTypes, fromLineHead: Bool) {
+    ///   - location: The location type to insert comment delimiters.
+    func commentOut(types: CommentTypes, at location: CommentOutLocation) {
         
         guard
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
-            let context = self.string.commentOut(types: types, delimiters: self.commentDelimiters, fromLineHead: fromLineHead, in: selectedRanges)
+            let context = self.string.commentOut(types: types, delimiters: self.commentDelimiters, in: selectedRanges, at: location)
         else { return }
         
         self.edit(with: context, actionName: String(localized: "Comment Out", table: "MainMenu"))

@@ -36,11 +36,11 @@ struct StringCommentingTests {
     
     @Test func inlineCommentOut() {
         
-        #expect("foo".inlineCommentOut(delimiter: "//", ranges: []).isEmpty)
+        #expect("foo".inlineCommentOut(delimiter: "//", ranges: [], at: .selection).isEmpty)
         
-        #expect("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(0..<0)]) ==
+        #expect("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(0..<0)], at: .selection) ==
                 [.init(string: "//", location: 0, forward: true)])
-        #expect("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<2)]) ==
+        #expect("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<2)], at: .selection) ==
                 [.init(string: "//", location: 1, forward: true)])
     }
     
@@ -52,7 +52,7 @@ struct StringCommentingTests {
             aaa
           aaaa
         """
-        #expect(text.inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<16)], afterIndent: true, tabWidth: 2) ==
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<16)], at: .afterIndent(tabWidth: 4)) ==
                 [
                     .init(string: "//", location: 2, forward: true),
                     .init(string: "//", location: 9, forward: true),
@@ -63,9 +63,9 @@ struct StringCommentingTests {
     
     @Test func blockCommentOut() {
         
-        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: []).isEmpty)
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: [], at: .selection).isEmpty)
         
-        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: [NSRange(0..<0)]) ==
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: [NSRange(0..<0)], at: .selection) ==
                 [.init(string: "<-", location: 0, forward: true), .init(string: "->", location: 0, forward: false)])
     }
     
@@ -106,7 +106,7 @@ struct StringCommentingTests {
         
         var editor = Editor(string: "foo\nbar", selectedRanges: [NSRange(0..<3), NSRange(4..<7)])
         
-        editor.commentOut(types: .inline, fromLineHead: true)
+        editor.commentOut(types: .inline, at: .line)
         #expect(editor.string == "//foo\n//bar")
         #expect(editor.selectedRanges == [NSRange(0..<5), NSRange(6..<11)])
         #expect(editor.canUncomment(partly: false))
@@ -115,7 +115,7 @@ struct StringCommentingTests {
         #expect(editor.selectedRanges == [NSRange(0..<3), NSRange(4..<7)])
         
         editor.selectedRanges = [NSRange(1..<1), NSRange(5..<5)]
-        editor.commentOut(types: .inline, fromLineHead: true)
+        editor.commentOut(types: .inline, at: .line)
         #expect(editor.string == "//foo\n//bar")
         #expect(editor.selectedRanges == [NSRange(3..<3), NSRange(9..<9)])
         #expect(editor.canUncomment(partly: false))
@@ -129,7 +129,7 @@ struct StringCommentingTests {
         
         var editor = Editor(string: "foo\nbar", selectedRanges: [NSRange(0..<3), NSRange(4..<7)])
         
-        editor.commentOut(types: .block, fromLineHead: true)
+        editor.commentOut(types: .block, at: .line)
         #expect(editor.string == "<-foo->\n<-bar->")
         #expect(editor.selectedRanges == [NSRange(0..<7), NSRange(8..<15)])
         #expect(editor.canUncomment(partly: false))
@@ -138,7 +138,7 @@ struct StringCommentingTests {
         #expect(editor.selectedRanges == [NSRange(0..<3), NSRange(4..<7)])
         
         editor.selectedRanges = [NSRange(1..<1), NSRange(5..<5)]
-        editor.commentOut(types: .block, fromLineHead: true)
+        editor.commentOut(types: .block, at: .line)
         #expect(editor.string == "<-foo->\n<-bar->")
         #expect(editor.selectedRanges == [NSRange(3..<3), NSRange(11..<11)])
         #expect(editor.canUncomment(partly: false))
@@ -186,9 +186,9 @@ private struct Editor {
     var selectedRanges: [NSRange] = []
     
     
-    mutating func commentOut(types: CommentTypes, fromLineHead: Bool) {
+    mutating func commentOut(types: CommentTypes, at location: CommentOutLocation) {
         
-        guard let contents = self.string.commentOut(types: types, delimiters: self.delimiters, fromLineHead: true, in: self.selectedRanges) else { return }
+        guard let contents = self.string.commentOut(types: types, delimiters: self.delimiters, in: self.selectedRanges, at: location) else { return }
         
         self.edit(with: contents)
     }

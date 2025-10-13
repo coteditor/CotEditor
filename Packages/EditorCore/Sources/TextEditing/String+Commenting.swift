@@ -45,6 +45,19 @@ public struct CommentTypes: OptionSet, Sendable {
 }
 
 
+public enum CommentOutLocation: Sendable {
+    
+    /// Inserts delimiters for the selections.
+    case selection
+    
+    /// Inserts delimiters at the beginning of lines.
+    case line
+    
+    /// Inserts the delimiter after the common minimal visual indentation across the targeted lines.
+    case afterIndent(tabWidth: Int)
+}
+
+
 public extension String {
     
     /// Comments out the selections by appending comment delimiters.
@@ -52,22 +65,18 @@ public extension String {
     /// - Parameters:
     ///   - types: The commenting style to apply. If `.both` is specified, inline comments take precedence over block comments.
     ///   - delimiters: The comment delimiters to apply.
-    ///   - fromLineHead: If `true`, comment out from the start of each affected line.
     ///   - selectedRanges: The current selected ranges in the editor.
-    func commentOut(types: CommentTypes, delimiters: Syntax.Comment, fromLineHead: Bool, in selectedRanges: [NSRange]) -> EditingContext? {
+    ///   - location: The location type to insert comment delimiters.
+    func commentOut(types: CommentTypes, delimiters: Syntax.Comment, in selectedRanges: [NSRange], at location: CommentOutLocation) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
         
         let items: [NSRange.InsertionItem] = {
-            let targetRanges = selectedRanges
-                .map { fromLineHead ? self.lineContentsRange(for: $0) : $0 }
-                .merged
-            
             if types.contains(.inline), let delimiter = delimiters.inline {
-                return self.inlineCommentOut(delimiter: delimiter, ranges: targetRanges)
+                return self.inlineCommentOut(delimiter: delimiter, ranges: selectedRanges, at: location)
             }
             if types.contains(.block), let delimiters = delimiters.block {
-                return self.blockCommentOut(delimiters: delimiters, ranges: targetRanges)
+                return self.blockCommentOut(delimiters: delimiters, ranges: selectedRanges, at: location)
             }
             return []
         }()
@@ -160,15 +169,23 @@ extension String {
     /// - Parameters:
     ///   - delimiter: The inline comment delimiter to insert.
     ///   - ranges: The ranges whose lines should be commented out.
-    ///   - afterIndent: When `true`, inserts the delimiter after the common minimal visual indentation across the targeted lines. Otherwise, inserts at each line start.
-    ///   - tabWidth: The visual width used when counting a tab character in indentation.
+    ///   - location: The location type to insert comment delimiters.
     /// - Returns: Items that contain editing information to insert comment delimiters.
-    func inlineCommentOut(delimiter: String, ranges: [NSRange], afterIndent: Bool = false, tabWidth: Int = 4) -> [NSRange.InsertionItem] {
+    func inlineCommentOut(delimiter: String, ranges: [NSRange], at location: CommentOutLocation) -> [NSRange.InsertionItem] {
         
-        let locations = if afterIndent {
-            self.minimumCommonIndentationLocations(for: ranges, tabWidth: tabWidth)
-        } else {
-            ranges.flatMap(self.lineContentsRanges(for:)).map(\.location).uniqued
+        let locations = switch location {
+            case .selection:
+                ranges
+                    .flatMap(self.lineContentsRanges(for:))
+                    .map(\.location)
+            case .line:
+                ranges
+                    .map { (self as NSString).lineRange(for: $0) }
+                    .flatMap(self.lineContentsRanges(for:))
+                    .map(\.location)
+                    .uniqued
+            case .afterIndent(let tabWidth):
+                self.minimumCommonIndentationLocations(for: ranges, tabWidth: tabWidth)
         }
         
         return locations.map { NSRange.InsertionItem(string: delimiter, location: $0, forward: true) }
@@ -180,10 +197,28 @@ extension String {
     /// - Parameters:
     ///   - delimiters: The pair of block comment delimiters to insert.
     ///   - ranges: The ranges where to comment out.
+    ///   - location: The location type to insert comment delimiters.
     /// - Returns: Items that contain editing information to insert comment delimiters.
-    func blockCommentOut(delimiters: Pair<String>, ranges: [NSRange]) -> [NSRange.InsertionItem] {
+    func blockCommentOut(delimiters: Pair<String>, ranges: [NSRange], at location: CommentOutLocation) -> [NSRange.InsertionItem] {
         
-        ranges.flatMap {
+        let targetRanges = switch location {
+            case .selection:
+                ranges
+            case .line:
+                ranges
+                    .map(self.lineContentsRange(for:))
+                    .merged
+            case .afterIndent:
+                ranges
+                    .map(self.lineContentsRange(for:))
+                    .map {
+                        let range = (self as NSString).range(of: "[ \\t]*", options: [.regularExpression, .anchored], range: $0)
+                        return range.isNotFound ? range : NSRange(range.upperBound..<$0.upperBound)
+                    }
+                    .merged
+        }
+        
+        return targetRanges.flatMap {
             [NSRange.InsertionItem(string: delimiters.begin, location: $0.lowerBound, forward: true),
              NSRange.InsertionItem(string: delimiters.end, location: $0.upperBound, forward: false)]
         }
