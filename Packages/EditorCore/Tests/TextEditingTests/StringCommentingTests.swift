@@ -50,17 +50,50 @@ struct StringCommentingTests {
     
     @Test func inlineCommentOutAfterIndent() {
         
-        let text = """
+        #expect("".inlineCommentOut(delimiter: "//", ranges: [NSRange(0..<0)], at: .afterIndent(tabWidth: 2)) ==
+                [.init(string: "//", location: 0, forward: true)])
+        
+        // inset at level 1
+        let text1 = """
           aaaa
             aaa
           aaaa
         """
-        #expect(text.inlineCommentOut(delimiter: "//", spacer: "", ranges: [NSRange(1..<16)], at: .afterIndent(tabWidth: 4)) ==
-                [
-                    .init(string: "//", location: 2, forward: true),
-                    .init(string: "//", location: 9, forward: true),
-                    .init(string: "//", location: 17, forward: true),
-                ])
+        #expect(text1.inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<16)], at: .afterIndent(tabWidth: 2)) == [
+            .init(string: "//", location: 2, forward: true),
+            .init(string: "//", location: 9, forward: true),
+            .init(string: "//", location: 17, forward: true),
+        ])
+        
+        let text2 = """
+        a
+          bb
+            ccc
+        """
+        #expect(text2.inlineCommentOut(delimiter: "//", ranges: [text2.nsRange], at: .afterIndent(tabWidth: 2)).map(\.location) ==
+                [0, 2, 7])
+        #expect(text2.inlineCommentOut(delimiter: "//", ranges: [NSRange(3..<(text2.count - 2))], at: .afterIndent(tabWidth: 2)).map(\.location) ==
+                [4, 9])
+        
+        // inset at level 1 with spacer
+        let text3 = """
+          a
+          b
+        """
+        #expect(text3.inlineCommentOut(delimiter: "//", spacer: " ", ranges: [text3.nsRange], at: .afterIndent(tabWidth: 2)) == [
+            .init(string: "// ", location: 2, forward: true),
+            .init(string: "// ", location: 6, forward: true),
+        ])
+        
+        // inset at level 1 with tab
+        let text4 = """
+              a
+        \t  b
+        """
+        #expect(text4.inlineCommentOut(delimiter: "//", spacer: " ", ranges: [text4.nsRange], at: .afterIndent(tabWidth: 2)) == [
+            .init(string: "// ", location: 4, forward: true),
+            .init(string: "// ", location: 11, forward: true),
+        ])
     }
     
     
@@ -75,6 +108,48 @@ struct StringCommentingTests {
                        [.init(string: "<- ", location: 0, forward: true), .init(string: " ->", location: 3, forward: false)])
         #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), spacer: " ", ranges: [NSRange(1..<2)], at: .selection) ==
                        [.init(string: "<- ", location: 1, forward: true), .init(string: " ->", location: 2, forward: false)])
+    }
+    
+    
+    @Test func blockCommentOutAfterIndent() {
+        
+        #expect("".blockCommentOut(delimiters: Pair("<-", "->"), ranges: [NSRange(0..<0)], at: .afterIndent(tabWidth: 2)) ==
+                [.init(string: "<-", location: 0, forward: true), .init(string: "->", location: 0, forward: false)])
+        
+        // inset at level 1
+        let text1 = """
+          aaaa
+            aaa
+          aaaa
+        """
+        #expect(text1.blockCommentOut(delimiters: Pair("<-", "->"), ranges: [NSRange(1..<16)], at: .afterIndent(tabWidth: 2)) ==
+                [.init(string: "<-", location: 2, forward: true), .init(string: "->", location: 21, forward: false)])
+        
+        let text2 = """
+        a
+          bb
+            ccc
+        """
+        #expect(text2.blockCommentOut(delimiters: Pair("<-", "->"), ranges: [text2.nsRange], at: .afterIndent(tabWidth: 2)) ==
+                [.init(string: "<-", location: 0, forward: true), .init(string: "->", location: 14, forward: false)])
+        #expect(text2.blockCommentOut(delimiters: Pair("<-", "->"), ranges: [NSRange(3..<(text2.count - 2))], at: .afterIndent(tabWidth: 2)) ==
+                [.init(string: "<-", location: 4, forward: true), .init(string: "->", location: 14, forward: false)])
+        
+        // inset at level 1 with spacer
+        let text3 = """
+          a
+          b
+        """
+        #expect(text3.blockCommentOut(delimiters: Pair("<-", "->"), spacer: " ", ranges: [text3.nsRange], at: .afterIndent(tabWidth: 2)) ==
+                [.init(string: "<- ", location: 2, forward: true), .init(string: " ->", location: 7, forward: false)])
+        
+        // inset at level 1 with tab
+        let text4 = """
+              a
+        \t  b
+        """
+        #expect(text4.blockCommentOut(delimiters: Pair("<-", "->"), spacer: " ", ranges: [text4.nsRange], at: .afterIndent(tabWidth: 2)) ==
+                [.init(string: "<- ", location: 6, forward: true), .init(string: " ->", location: 12, forward: false)])
     }
     
     
