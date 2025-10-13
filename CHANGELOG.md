@@ -6,6 +6,7 @@
 ### New Features
 
 - Add the “Insert comment delimiters after indent” option to the Edit settings pane.
+- Revert the "Append a space to comment delimiter" option to the Edit settings pane.
 
 
 ### Improvements

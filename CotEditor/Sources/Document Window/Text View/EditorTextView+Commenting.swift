@@ -76,6 +76,7 @@ extension EditorTextView: Commenting {
 @MainActor protocol Commenting: NSTextView {
     
     var commentDelimiters: Syntax.Comment { get }
+    var commentSpacer: String { get }
 }
 
 
@@ -90,7 +91,7 @@ extension Commenting {
         
         guard
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
-            let context = self.string.commentOut(types: types, delimiters: self.commentDelimiters, in: selectedRanges, at: location)
+            let context = self.string.commentOut(types: types, delimiters: self.commentDelimiters, spacer: self.commentSpacer, in: selectedRanges, at: location)
         else { return }
         
         self.edit(with: context, actionName: String(localized: "Comment Out", table: "MainMenu"))
@@ -102,7 +103,7 @@ extension Commenting {
         
         guard
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
-            let context = self.string.uncomment(delimiters: self.commentDelimiters, in: selectedRanges)
+            let context = self.string.uncomment(delimiters: self.commentDelimiters, spacer: self.commentSpacer, in: selectedRanges)
         else { return }
         
         self.edit(with: context, actionName: String(localized: "Uncomment", table: "MainMenu"))

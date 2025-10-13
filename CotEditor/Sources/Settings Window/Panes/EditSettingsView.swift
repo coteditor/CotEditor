@@ -42,6 +42,7 @@ struct EditSettingsView: View {
     @AppStorage(.trimsWhitespaceOnlyLines) private var trimsWhitespaceOnlyLines
     
     @AppStorage(.insertsCommentDelimitersAfterIndent) private var insertsCommentDelimitersAfterIndent
+    @AppStorage(.appendsCommentSpacer) private var appendsCommentSpacer
     
     @AppStorage(.autoLinkDetection) private var autoLinkDetection
     @AppStorage(.highlightBraces) private var highlightBraces
@@ -93,6 +94,7 @@ struct EditSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
                     Toggle(String(localized: "Insert comment delimiters after indent", table: "EditSettings"), isOn: $insertsCommentDelimitersAfterIndent)
+                    Toggle(String(localized: "Append a space to comment delimiter", table: "EditSettings"), isOn: $appendsCommentSpacer)
                 }
             }
             

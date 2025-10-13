@@ -152,6 +152,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             
             defaults.publisher(for: .insertsCommentDelimitersAfterIndent, initial: true)
                 .assign(to: \.commentsOutAfterIndent, on: self.textView),
+            defaults.publisher(for: .appendsCommentSpacer, initial: true)
+                .sink { [weak self] in self?.textView.commentSpacer = $0 ? " " : "" },
             
             defaults.publisher(for: .pageGuideColumn, initial: true)
                 .assign(to: \.pageGuideColumn, on: self.textView),

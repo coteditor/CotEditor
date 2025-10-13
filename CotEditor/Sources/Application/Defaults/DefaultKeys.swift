@@ -88,6 +88,7 @@ extension DefaultKeys {
     static let autoExpandTab = DefaultKey<Bool>("autoExpandTab")
     static let indentWithTabKey = DefaultKey<Bool>("indentWithTabKey")
     static let insertsCommentDelimitersAfterIndent = DefaultKey<Bool>("insertsCommentDelimitersAfterIndent")
+    static let appendsCommentSpacer = DefaultKey<Bool>("appendsCommentSpacer")
     static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
     static let highlightBraces = DefaultKey<Bool>("highlightBraces")
