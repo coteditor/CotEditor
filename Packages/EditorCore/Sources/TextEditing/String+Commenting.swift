@@ -93,7 +93,7 @@ public extension String {
                 }
             }
             if let delimiter = delimiters.inline {
-                let targetRanges = selectedRanges.map { self.lineContentsRange(for: $0) }.uniqued
+                let targetRanges = selectedRanges.map(self.lineContentsRange(for:)).uniqued
                 if let ranges = self.rangesOfInlineDelimiter(delimiter, ranges: targetRanges) {
                     return ranges
                 }
@@ -135,7 +135,7 @@ public extension String {
         if let delimiter = delimiters.inline,
            let ranges = self.rangesOfInlineDelimiter(delimiter, ranges: targetRanges)
         {
-            let lineRanges = targetRanges.flatMap { self.lineContentsRanges(for: $0) }.uniqued
+            let lineRanges = targetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
             return partly ? true : (ranges.count == lineRanges.count)
         }
         

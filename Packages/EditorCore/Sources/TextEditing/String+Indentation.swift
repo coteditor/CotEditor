@@ -70,7 +70,7 @@ public extension String {
         // calculate new selection range
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
             let shift = lineRanges.prefix(while: { $0.location <= selectedRange.location }).count
-            let lineCount = lineRanges.prefix(while: { selectedRange.intersects($0) }).count
+            let lineCount = lineRanges.prefix(while: selectedRange.intersects).count
             let lengthDiff = max(lineCount - 1, 0) * indentLength
             
             return NSRange(location: selectedRange.location + shift * indentLength,
