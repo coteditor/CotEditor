@@ -28,21 +28,21 @@ public import Foundation.NSAttributedString
 
 public extension NSAttributedString {
     
-    /// Whole range.
+    /// The whole range.
     final var range: NSRange {
         
         NSRange(location: 0, length: self.length)
     }
     
     
-    /// The mutable object of the receiver.
+    /// A mutable copy of the receiver.
     final var mutable: NSMutableAttributedString {
      
         self.mutableCopy() as! NSMutableAttributedString
     }
     
     
-    /// Concatenates attributed strings.
+    /// Concatenates two attributed strings.
     static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -52,7 +52,7 @@ public extension NSAttributedString {
     }
     
     
-    /// Appends another attributed string.
+    /// Appends another attributed string to the left-hand value.
     static func += (lhs: inout NSAttributedString, rhs: NSAttributedString) {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -62,17 +62,17 @@ public extension NSAttributedString {
     }
     
     
-    /// Enumerates range and value of the given attribute key.
+    /// Enumerates the ranges and values for the given attribute key.
     ///
     /// - Parameters:
     ///   - attrName: The name of the attribute to enumerate.
-    ///   - Type:The type of the value.
-    ///   - enumerationRange: The range over which the attribute values are enumerated.
-    ///   - options: The options used by the enumeration. For possible values, see NSAttributedString.EnumerationOptions.
-    ///   - block: A closure to apply to ranges of the specified attribute in the receiver.
+    ///   - type: The expected value type.
+    ///   - enumerationRange: The range over which to enumerate attribute values.
+    ///   - options: The options used during enumeration. For possible values, see NSAttributedString.EnumerationOptions.
+    ///   - block: A closure applied to each range of the specified attribute.
     ///   - value: The value for the specified attribute.
     ///   - range: The range of the attribute value in the receiver.
-    ///   - stop: A reference to a Boolean value, which you can set to true within the closure to stop further processing of the attribute enumeration.
+    ///   - stop: A reference to a Boolean value that you can set to true within the closure to stop further processing.
     final func enumerateAttribute<T>(_ attrName: NSAttributedString.Key, type: T.Type, in enumerationRange: NSRange, options: EnumerationOptions = [], using block: (_ value: T, _ range: NSRange, _ stop: UnsafeMutablePointer<ObjCBool>) -> Void) {
         
         self.enumerateAttribute(attrName, in: enumerationRange, options: options) { value, range, stop in
@@ -82,12 +82,12 @@ public extension NSAttributedString {
     }
     
     
-    /// Returns the full range over which the value of the passed-in attribute name is the same as that at index.
+    /// Returns the full range over which the value of the specified attribute name is the same as at the given index.
     ///
     /// - Parameters:
     ///   - attrName: The name of an attribute.
-    ///   - index: The index at which to test for `attributeName`. This value must not exceed the bounds of the receiver.
-    /// - Returns: A range contains the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
+    ///   - index: The index at which to test for `attrName`. This value must not exceed the bounds of the receiver.
+    /// - Returns: The maximum range over which the attribute’s value applies, clipped to the receiver’s bounds; or `nil` if no value exists at `index`.
     func longestEffectiveRange(of attrName: NSAttributedString.Key, at index: Int) -> NSRange? {
         
         var effectiveRange = NSRange.notFound
@@ -98,12 +98,12 @@ public extension NSAttributedString {
     }
     
     
-    /// Checks if at least one attribute for the given attribute key exists.
+    /// Checks whether at least one attribute exists for the given attribute key.
     ///
     /// - Parameters:
-    ///   - attrName: The name of the attribute key to check.
-    ///   - range: The range where to check. When `nil`, search the entire range.
-    /// - Returns: Whether the attribute for the given attribute key exists.
+    ///   - attrName: The attribute key to check.
+    ///   - range: The range where to check. When `nil`, searches the entire range.
+    /// - Returns: `true` if an attribute with the given key exists; otherwise, `false`.
     final func hasAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
         guard self.length > 0 else { return false }
@@ -119,11 +119,11 @@ public extension NSAttributedString {
     }
     
     
-    /// Truncates head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
+    /// Truncates the head with an ellipsis until the specified `location` if the length before `location` exceeds `offset`.
     ///
     /// - Parameters:
-    ///   - location: The character index to start truncation.
-    ///   - offset: The maximum number of composed characters to leave on the left of the `location`.
+    ///   - location: The character index at which truncation should start.
+    ///   - offset: The maximum number of composed characters to leave to the left of `location`.
     final func truncatedHead(until location: Int, offset: Int) -> NSAttributedString {
         
         let mutable = self.mutable
@@ -136,18 +136,18 @@ public extension NSAttributedString {
 
 public extension NSMutableAttributedString {
     
-    /// Appends another attributed string.
+    /// Appends another attributed string to the left-hand value.
     static func += (lhs: inout NSMutableAttributedString, rhs: NSAttributedString) {
         
         lhs.append(rhs)
     }
     
     
-    /// Truncates head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
+    /// Truncates the head with an ellipsis until the specified `location` if the length before `location` exceeds `offset`.
     ///
     /// - Parameters:
-    ///   - location: The character index to start truncation.
-    ///   - offset: The maximum number of composed characters to leave on the left of the `location`.
+    ///   - location: The character index at which truncation should start.
+    ///   - offset: The maximum number of composed characters to leave to the left of `location`.
     final func truncateHead(until location: Int, offset: Int) {
         
         assert(location >= 0)
@@ -167,9 +167,9 @@ public extension NSMutableAttributedString {
 
 public extension Sequence<NSAttributedString> {
     
-    /// Returns a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
+    /// Returns a new attributed string by concatenating the elements of the sequence, inserting the given separator between each element.
     ///
-    /// - Parameter separator: An attributed string to insert between each of the elements in this sequence.
+    /// - Parameter separator: An attributed string to insert between each element of the sequence.
     /// - Returns: A single, concatenated attributed string.
     func joined(separator: Element? = nil) -> Element {
         
@@ -191,9 +191,9 @@ public extension Sequence<NSAttributedString> {
     }
     
     
-    /// Returns a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
+    /// Returns a new attributed string by concatenating the elements of the sequence, inserting the given separator between each element.
     ///
-    /// - Parameter separator: A string to insert between each of the elements in this sequence.
+    /// - Parameter separator: A string to insert between each element of the sequence.
     /// - Returns: A single, concatenated attributed string.
     func joined(separator: String) -> Element {
         

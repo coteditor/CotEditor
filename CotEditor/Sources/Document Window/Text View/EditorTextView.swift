@@ -475,11 +475,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                     return
                 }
                 
-                // insert bracket pair if insertion point is not in a word
+                // insert a bracket pair if the insertion point is not in a word
                 if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
                 {
-                    // raise flag to manipulate the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
+                    // raise a flag to adjust the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
                     if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
                         self.isTypingPairedQuotes = true
                     }
@@ -542,13 +542,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     override func insertTab(_ sender: Any?) {
         
-        // indent with tab key
+        // indent with the Tab key
         if self.indentsWithTabKey, !self.rangeForUserTextChange.isEmpty {
             self.indent()
             return
         }
         
-        // insert soft tab
+        // insert a soft tab
         if self.isAutomaticTabExpansionEnabled {
             let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
             let softTabs = insertionRanges
@@ -565,7 +565,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     /// The Shift + Tab keys are pressed.
     override func insertBacktab(_ sender: Any?) {
         
-        // outdent with tab key
+        // outdent with the Tab key
         if self.indentsWithTabKey {
             self.outdent()
             return
@@ -687,7 +687,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         super.handleTextCheckingResults(results, forRange: range, types: checkingTypes, options: options, orthography: orthography, wordCount: wordCount)
         
-        // move the cursor back into the middle of quotes if the paired close quote was automatically inserted
+        // move the cursor back into the middle of quotes if the paired closing quote was automatically inserted,
         // because the cursor is automatically moved after the close quote by this method (#1384)
         if self.isTypingPairedQuotes,
            self.isAutomaticQuoteSubstitutionEnabled,
@@ -703,8 +703,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     override var selectedRanges: [NSValue] {
         
         willSet {
-            // keep only empty ranges that super may discard for following multi-cursor editing
-            // -> The ranges that `setSelectedRanges(_:affinity:stillSelecting:)` receives are sanitized already in NSTextView manner.
+            // keep only empty ranges that super may discard for subsequent multi-cursor editing
+            // -> The ranges received by `setSelectedRanges(_:affinity:stillSelecting:)` are already sanitized in the NSTextView manner.
             self.insertionLocations = newValue
                 .map(\.rangeValue)
                 .filter(\.isEmpty)
@@ -744,7 +744,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.needsUpdateLineHighlight = true
         
-        // invalidate current instances highlight
+        // invalidate current instance highlights
         if self.highlightsSelectionInstance {
             self.instanceHighlightTask?.cancel()
             if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
@@ -758,13 +758,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 self.highlightMatchingBrace(candidates: BracePair.braces)
             }
             
-            // update instances highlight
+            // update instance highlights
             if self.highlightsSelectionInstance {
                 self.highlightInstances(after: .seconds(self.selectionInstanceHighlightDelay))
             }
         }
         
-        // Sent notification on the next run loop
+        // send notification on the next run loop
         // -> `self.selectedRange` may not be updated yet at this timing.
         DispatchQueue.main.async { [weak self] in
             guard self?.rangesForUserTextChange ?? self?.selectedRanges != currentRanges else { return }
@@ -937,7 +937,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         let font = fontManager.convert(currentFont)
         
-        // apply to all text views sharing textStorage
+        // apply to all text views sharing the same textStorage
         for textView in textStorage.layoutManagers.compactMap(\.firstTextView) {
             textView.font = font
         }
@@ -1339,7 +1339,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    /// Sets the font (font, antialias, and ligature) to the given font type.
+    /// Sets the font (font, antialiasing, and ligature) to the given font type.
     /// 
     /// - Parameters:
     ///   - type: The font type to change.
@@ -1422,7 +1422,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     // MARK: Private Methods
     
-    /// Updates coloring settings with the current theme.
+    /// Updates colors and related appearance settings with the current theme.
     private func applyTheme() {
         
         assert(Thread.isMainThread)
@@ -1456,9 +1456,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    /// Updates the app-wide automatic period substation behavior based on the receiver's `mode`.
+    /// Updates the app-wide automatic period substitution behavior based on the receiver's `mode`.
     ///
-    /// Workaround for that the view-specific API to customize this behavior is currently not available (2024-11, macOS 15, FB13669125).
+    /// Workaround for that the view-specific API to customize this behavior is currently unavailable (2024-11, macOS 15, FB13669125).
     private func invalidateAutomaticPeriodSubstitution() {
         
         let key = "NSAutomaticPeriodSubstitutionEnabled"
@@ -1508,7 +1508,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    /// Calculates overscrolling amount and apply it.
+    /// Calculates the overscroll amount and applies it.
     private func invalidateOverscrollRate() {
         
         guard let layoutManager = self.layoutManager as? LayoutManager else { return }
@@ -1557,7 +1557,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     /// Highlights all instances of the selection.
     ///
-    /// - Parameter delay: The delay time to start highlighting instance.
+    /// - Parameter delay: The delay before starting instance highlighting.
     private func highlightInstances(after delay: Duration) {
         
         self.instanceHighlightTask?.cancel()
@@ -1621,14 +1621,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
 
 extension EditorTextView: TextFinderClient {
     
-    /// Delivers the Cocoa standard text find action messages to the TextFinder instance.
+    /// Delivers standard Cocoa text find action messages to the TextFinder instance.
     override func performTextFinderAction(_ sender: Any?) {
         
         self.performEditorTextFinderAction(sender)
     }
     
     
-    /// Delivers text find actions for EditorTextView to the TextFinder instance.
+    /// Delivers EditorTextView-specific text find actions to the TextFinder instance.
     @IBAction func performEditorTextFinderAction(_ sender: Any?) {
         
         guard
@@ -1689,7 +1689,7 @@ extension EditorTextView {
     
     override func completions(forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>) -> [String]? {
         
-        // do nothing if completion is not suggested from the typed characters
+        // do nothing if completion is not suggested by the typed characters
         guard !charRange.isEmpty else { return nil }
         
         var candidateWords: [String] = []
@@ -1745,7 +1745,7 @@ extension EditorTextView {
             self.partialCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
-        // raise flag to proceed word completion again, if a normal key input is performed during displaying the completion list
+        // raise a flag to proceed word completion again if a normal key input occurs while the completion list is shown.
         // -> The flag will be used in `didChangeText()`.
         var movement = movement
         if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),

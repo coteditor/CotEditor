@@ -29,7 +29,10 @@ import StringUtils
 
 public extension String {
     
-    /// Moves selected line up.
+    /// Moves the lines intersecting the given ranges up.
+    ///
+    /// - Parameter ranges: The selection ranges whose intersecting lines should be moved.
+    /// - Returns: An `EditingContext`, or `nil` if no move is possible.
     func moveLineUp(in ranges: [NSRange]) -> EditingContext? {
         
         // get line ranges to process
@@ -76,7 +79,10 @@ public extension String {
     }
     
     
-    /// Moves selected line down.
+    /// Moves the lines intersecting the given ranges down.
+    ///
+    /// - Parameter ranges: The selection ranges whose intersecting lines should be moved.
+    /// - Returns: An `EditingContext`, or `nil` if no move is possible.
     func moveLineDown(in ranges: [NSRange]) -> EditingContext? {
         
         // get line ranges to process
@@ -129,7 +135,10 @@ public extension String {
     }
     
     
-    /// Deletes duplicate lines in selection.
+    /// Deletes duplicate lines within the selections, keeping the first occurrence.
+    ///
+    /// - Parameter ranges: The selection ranges in which to detect and remove duplicate lines.
+    /// - Returns: An `EditingContext`, or `nil` if there were no duplicates.
     func deleteDuplicateLine(in ranges: [NSRange]) -> EditingContext? {
         
         let string = self as NSString
@@ -159,7 +168,12 @@ public extension String {
     }
     
     
-    /// Duplicates selected lines below.
+    /// Duplicates the selected lines immediately below.
+    ///
+    /// - Parameters:
+    ///   - ranges: The selection ranges whose intersecting lines should be duplicated.
+    ///   - lineEnding: The line ending character to use when appending a missing newline.
+    /// - Returns: An `EditingContext`, or `nil` if nothing to duplicate.
     func duplicateLine(in ranges: [NSRange], lineEnding: Character) -> EditingContext? {
         
         let string = self as NSString
@@ -204,7 +218,10 @@ public extension String {
     }
     
     
-    /// Removes selected lines.
+    /// Removes the lines that intersect the given ranges.
+    ///
+    /// - Parameter ranges: The selection ranges whose intersecting lines should be removed.
+    /// - Returns: An `EditingContext`, or `nil` if no ranges were provided.
     func deleteLine(in ranges: [NSRange]) -> EditingContext? {
         
         guard !ranges.isEmpty else { return nil }
@@ -224,7 +241,10 @@ public extension String {
     }
     
     
-    /// Joins lines in the ranges by replacing continuous whitespaces with a space.
+    /// Joins lines within the given ranges by collapsing intervening whitespace to a single space.
+    ///
+    /// - Parameter ranges: The ranges of text whose internal line breaks should be collapsed.
+    /// - Returns: An `EditingContext`.
     func joinLines(in ranges: [NSRange]) -> EditingContext {
         
         let replacementStrings = ranges
@@ -241,7 +261,10 @@ public extension String {
     }
     
     
-    /// Joins each of lines containing the given ranges with the subsequent line by replacing continuous whitespaces with a space.
+    /// Joins each selected line with its subsequent line by collapsing the line break and surrounding whitespace to a single space.
+    ///
+    /// - Parameter ranges: The selection ranges whose lines should be joined with the following line.
+    /// - Returns: An `EditingContext`.
     func joinLines(after ranges: [NSRange]) -> EditingContext {
         
         let lineRanges = (self as NSString).lineRanges(for: ranges)
@@ -257,21 +280,30 @@ public extension String {
     
 public extension String {
     
-    /// Sorts selected lines ascending.
+    /// Sorts the lines in the given range in ascending order.
+    ///
+    /// - Parameter range: The range in which to sort lines.
+    /// - Returns: An `EditingContext`, or `nil` if only a single line is present.
     func sortLinesAscending(in range: NSRange) -> EditingContext? {
         
         self.sortLines(in: range) { $0.sorted(using: .localized) }
     }
     
     
-    /// Reverses selected lines.
+    /// Reverses the order of lines in the given range.
+    ///
+    /// - Parameter range: The range containing the lines to reverse.
+    /// - Returns: An `EditingContext`, or `nil` if only a single line is present.
     func reverseLines(in range: NSRange) -> EditingContext? {
         
         self.sortLines(in: range) { $0.reversed() }
     }
     
     
-    /// Shuffles selected lines.
+    /// Randomizes the order of lines in the given range.
+    ///
+    /// - Parameter range: The range containing the lines to shuffle.
+    /// - Returns: An `EditingContext`, or `nil` if only a single line is present.
     func shuffleLines(in range: NSRange) -> EditingContext? {
         
         self.sortLines(in: range) { $0.shuffled() }
@@ -283,9 +315,9 @@ public extension String {
     /// Sorts lines in the range using the given predicate.
     ///
     /// - Parameters:
-    ///   - range: The range where sort lines.
-    ///   - predicate: The way to sort lines.
-    /// - Returns: The editing info.
+    ///   - range: The range in which to sort lines.
+    ///   - predicate: The predicate used to sort lines.
+    /// - Returns: An `EditingContext`, or `nil` if no modification is required.
     private func sortLines(in range: NSRange, predicate: ([String]) -> [String]) -> EditingContext? {
         
         let string = self as NSString
@@ -309,7 +341,13 @@ public extension String {
 
 public extension String {
     
-    /// Trims all trailing whitespace with/without keeping editing point.
+    /// Trims all trailing whitespace at line ends, optionally ignoring empty lines.
+    ///
+    /// - Parameters:
+    ///   - ignoringEmptyLines: `true` to ignore lines that consist solely of whitespace.
+    ///   - keepingEditingPoint: `true` to avoid trimming at positions that would move the caret.
+    ///   - editingRanges: The current selection/caret ranges to consider when preserving editing points.
+    /// - Returns: An `EditingContext`, or `nil` if nothing needed trimming.
     func trimTrailingWhitespace(ignoringEmptyLines: Bool, keepingEditingPoint: Bool = false, in editingRanges: [NSRange]) -> EditingContext? {
         
         let whitespaceRanges = self.rangesOfTrailingWhitespace(ignoringEmptyLines: ignoringEmptyLines)
@@ -332,11 +370,10 @@ public extension String {
     
 extension String {
     
-    /// Returns the ranges of trailing whitespace at the end of lines.
+    /// Returns the ranges of trailing whitespace at the ends of lines.
     ///
-    /// - Parameters:
-    ///   - ignoringEmptyLines: Pass `true` to ignore lines that are only whitespace.
-    /// - Returns: An array of `NSRange` values representing trailing whitespace segments in the string.
+    /// - Parameter ignoringEmptyLines: Pass `true` to ignore lines that are only whitespace.
+    /// - Returns: An array of ranges representing trailing whitespace segments.
     func rangesOfTrailingWhitespace(ignoringEmptyLines: Bool) -> [NSRange] {
         
         let pattern = ignoringEmptyLines ? "(?<!^|[ \t])[ \t]++$" : "[ \t]++$"

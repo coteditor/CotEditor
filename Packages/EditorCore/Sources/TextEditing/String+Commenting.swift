@@ -50,8 +50,10 @@ public extension String {
     /// Comments out the selections by appending comment delimiters.
     ///
     /// - Parameters:
-    ///   - types: The type of commenting-out. When, `.both`, inline-style takes priority over block-style.
-    ///   - fromLineHead: When `true`, the receiver comments out from the beginning of the line.
+    ///   - types: The commenting style to apply. If `.both` is specified, inline comments take precedence over block comments.
+    ///   - delimiters: The comment delimiters to apply.
+    ///   - fromLineHead: If `true`, comment out from the start of each affected line.
+    ///   - selectedRanges: The current selected ranges in the editor.
     func commentOut(types: CommentTypes, delimiters: Syntax.Comment, fromLineHead: Bool, in selectedRanges: [NSRange]) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
@@ -81,6 +83,10 @@ public extension String {
     
     
     /// Uncomments the selections by removing comment delimiters.
+    ///
+    /// - Parameters:
+    ///   - delimiters: The comment delimiters to remove.
+    ///   - selectedRanges: The current selected ranges in the editor.
     func uncomment(delimiters: Syntax.Comment, in selectedRanges: [NSRange]) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
@@ -112,9 +118,12 @@ public extension String {
     
     /// Returns whether the selected ranges can be uncommented.
     ///
-    /// - Parameter partly: When `true`, the method returns `true` when a part of selections is commented-out,
-    ///                     otherwise only when the entire selections can be commented out.
-    /// - Returns: `true` when selection can be uncommented.
+    /// - Parameters:
+    ///   - partly: If `true`, returns `true` when any part of the selection can be uncommented.;
+    ///             otherwise, returns `true` only when the entire selection can be uncommented.
+    ///   - delimiters: The comment delimiters to detect.
+    ///   - selectedRanges: The current selected ranges in the editor.
+    /// - Returns: `true` if uncommenting is possible.
     func canUncomment(partly: Bool, delimiters: Syntax.Comment, in selectedRanges: [NSRange]) -> Bool {
         
         guard !delimiters.isEmpty else { return false }
