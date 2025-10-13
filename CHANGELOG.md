@@ -3,6 +3,11 @@
 6.1.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the “Insert comment delimiters after indent” option to the Edit settings pane.
+
+
 ### Improvements
 
 - Improve the algorithm to comment-out block comments.
