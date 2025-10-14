@@ -54,22 +54,37 @@ final class FileNode {
     private var cachedChildren: [FileNode]?
     
     
-    /// Initializes a file node instance.
-    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?, isWritable: Bool = true, isAlias: Bool = false, tags: [FinderTag] = []) {
+    /// Initializes a file node instance with basic information.
+    ///
+    /// This initializer creates a file node given a URL and directory flag, without reading from disk.
+    /// It is designed to add a new node by a user request.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The file URL for the node.
+    ///   - isDirectory: Whether the node represents a directory.
+    ///   - parent: The parent node in the tree.
+    init(at fileURL: URL, isDirectory: Bool, parent: FileNode) {
         
         self.isDirectory = isDirectory
         self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: isDirectory)
         self.isHidden = fileURL.lastPathComponent.starts(with: ".")
-        self.isWritable = isWritable
-        self.isAlias = isAlias
-        self.tags = tags
+        self.isWritable = true
+        self.isAlias = false
+        self.tags = []
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
     }
     
     
-    /// Initializes a file node instance by reading the information from the actual file.
+    /// Initializes a file node instance by reading metadata from the file system.
+    ///
+    /// This initializer loads and inspects the file or directory at the given URL, reading resource values and tags.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The file URL for the node.
+    ///   - parent: The parent node in the tree, or `nil` if this is a root node.
+    /// - Throws: An error if the file's resource values cannot be loaded.
     init(at fileURL: URL, parent: FileNode? = nil) throws {
         
         let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey])
