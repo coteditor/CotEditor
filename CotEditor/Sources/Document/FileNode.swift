@@ -28,7 +28,7 @@ import OSLog
 import UniformTypeIdentifiers
 import URLUtils
 
-final class FileNode {
+struct File: Equatable {
     
     enum Kind {
         
@@ -41,30 +41,27 @@ final class FileNode {
     }
     
     
+    var fileURL: URL
     let isDirectory: Bool
-    private(set) var name: String
-    private(set) var kind: Kind
-    private(set) var isHidden: Bool
-    private(set) var isWritable: Bool
-    private(set) var isAlias: Bool
-    private(set) var tags: [FinderTag]
-    private(set) var fileURL: URL
-    private(set) weak var parent: FileNode?
-    
-    private var cachedChildren: [FileNode]?
+    var name: String
+    var kind: Kind
+    var isHidden: Bool
+    var isWritable: Bool
+    var isAlias: Bool
+    var tags: [FinderTag]
     
     
-    /// Initializes a file node instance with basic information.
+    /// Initializes a file instance with basic information.
     ///
     /// This initializer creates a file node given a URL and directory flag, without reading from disk.
-    /// It is designed to add a new node by a user request.
+    /// It is designed to add a new node upon a user request.
     ///
     /// - Parameters:
     ///   - fileURL: The file URL for the node.
     ///   - isDirectory: Whether the node represents a directory.
-    ///   - parent: The parent node in the tree.
-    init(at fileURL: URL, isDirectory: Bool, parent: FileNode) {
+    init(at fileURL: URL, isDirectory: Bool) {
         
+        self.fileURL = fileURL.standardizedFileURL
         self.isDirectory = isDirectory
         self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: isDirectory)
@@ -72,64 +69,35 @@ final class FileNode {
         self.isWritable = true
         self.isAlias = false
         self.tags = []
-        self.fileURL = fileURL.standardizedFileURL
-        self.parent = parent
     }
     
     
-    /// Initializes a file node instance by reading metadata from the file system.
+    /// Initializes a file instance by reading metadata from disk.
     ///
     /// This initializer loads and inspects the file or directory at the given URL, reading resource values and tags.
     ///
     /// - Parameters:
     ///   - fileURL: The file URL for the node.
-    ///   - parent: The parent node in the tree, or `nil` if this is a root node.
     /// - Throws: An error if the file's resource values cannot be loaded.
-    init(at fileURL: URL, parent: FileNode? = nil) throws {
+    init(at fileURL: URL) throws {
         
         let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey])
         
+        self.fileURL = fileURL.standardizedFileURL
         self.isDirectory = resourceValues.isDirectory ?? false
         self.name = fileURL.lastPathComponent
         self.isHidden = resourceValues.isHidden ?? false
         self.isWritable = resourceValues.isWritable ?? true
         self.isAlias = resourceValues.isAliasFile ?? false
-        self.fileURL = fileURL.standardizedFileURL
-        self.parent = parent
-        
-        self.tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
-            .map(FinderTag.tags(data:)) ?? []
         
         self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
             .folder
         } else {
             Kind(filename: self.name, isDirectory: self.isDirectory)
         }
-    }
-    
-    
-    /// The children of the node by reading them lazily.
-    var children: [FileNode]? {
         
-        if self.cachedChildren == nil, self.isDirectory {
-            do {
-                self.cachedChildren = try self.readChildren()
-            } catch {
-                Logger.app.error("Failed reading folder contents: \(error)")
-            }
-        }
-        return self.cachedChildren
-    }
-    
-    
-    /// The chain of the parents to the root node from the nearest.
-    var parents: [FileNode] {
-        
-        if let parent {
-            Array(sequence(first: parent, next: \.parent))
-        } else {
-            []
-        }
+        self.tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
+            .map(FinderTag.tags(data:)) ?? []
     }
     
     
@@ -155,30 +123,8 @@ final class FileNode {
     }
     
     
-    /// The sort order for display.
-    private nonisolated static let sortOrder: [KeyPathComparator<FileNode>] = [
-        KeyPathComparator(\.isFolder, comparator: BoolComparator()),
-        KeyPathComparator(\.name, comparator: .localizedStandard)
-    ]
-    
-    
-    /// Reads the contents of the directory at the receiver's `fileURL`.
-    ///
-    /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
-    private func readChildren() throws -> [FileNode] {
-        
-        assert(self.isDirectory)
-        
-        return try FileManager.default
-            .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
-            .filter { $0.lastPathComponent != ".DS_Store" }
-            .map { try FileNode(at: $0, parent: self) }
-            .sorted(using: Self.sortOrder)
-    }
-    
-    
     /// Updates `.kind` with current filename.
-    private func invalidateKind() {
+    mutating func invalidateKind() {
         
         guard !(self.isAlias && self.kind == .folder) else { return }
         
@@ -189,13 +135,13 @@ final class FileNode {
     /// Updates resource values by reading the file.
     ///
     /// - Returns: Whether the related file resources actually changed.
-    @discardableResult private func invalidateResources() throws -> Bool {
+    @discardableResult mutating func invalidateResources() throws -> Bool {
         
         let resourceValues = try self.fileURL.resourceValues(forKeys: [.isHiddenKey, .isAliasFileKey, .isWritableKey])
         
         let isHidden = resourceValues.isHidden ?? false
         let isWritable = resourceValues.isWritable ?? true
-        let tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
+        let tags = (try? self.fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
             .map(FinderTag.tags(data:)) ?? []
         
         var didChange = false
@@ -218,14 +164,85 @@ final class FileNode {
 }
 
 
+// MARK: FileNode
+
+final class FileNode {
+    
+    private(set) var file: File
+    private(set) weak var parent: FileNode?
+    
+    private var cachedChildren: [FileNode]?
+    
+    
+    /// Initializes a file node instance.
+    ///
+    /// - Parameters:
+    ///   - file: The file metadata.
+    ///   - parent: The parent node in the tree, or `nil` if this is a root node.
+    init(file: File, parent: FileNode? = nil) {
+        
+        self.file = file
+        self.parent = parent
+    }
+    
+    
+    /// The children of the node by reading them lazily.
+    var children: [FileNode]? {
+        
+        if self.file.isDirectory, self.cachedChildren == nil {
+            do {
+                self.cachedChildren = try self.readChildren()
+            } catch {
+                Logger.app.error("Failed reading folder contents: \(error)")
+            }
+        }
+        return self.cachedChildren
+    }
+    
+    
+    /// The chain of the parents to the root node from the nearest.
+    var parents: [FileNode] {
+        
+        if let parent {
+            Array(sequence(first: parent, next: \.parent))
+        } else {
+            []
+        }
+    }
+    
+    
+    /// The sort order for display.
+    private nonisolated static let sortOrder: [KeyPathComparator<FileNode>] = [
+        KeyPathComparator(\.file.isFolder, comparator: BoolComparator()),
+        KeyPathComparator(\.file.name, comparator: .localizedStandard)
+    ]
+    
+    
+    /// Reads the contents of the directory at the receiver's `fileURL`.
+    ///
+    /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
+    private func readChildren() throws -> [FileNode] {
+        
+        assert(self.file.isDirectory)
+        
+        return try FileManager.default
+            .contentsOfDirectory(at: self.file.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
+            .filter { $0.lastPathComponent != ".DS_Store" }
+            .map { try File(at: $0) }
+            .map { FileNode(file: $0, parent: self) }
+            .sorted(using: Self.sortOrder)
+    }
+}
+
+
 extension FileNode: Equatable {
     
     static func == (lhs: FileNode, rhs: FileNode) -> Bool {
         
-        lhs.isDirectory == rhs.isDirectory &&
-        lhs.name == rhs.name &&
-        lhs.parents.map(\.name) == rhs.parents.map(\.name) &&
-        lhs.isWritable == rhs.isWritable
+        lhs.file.isDirectory == rhs.file.isDirectory &&
+        lhs.file.name == rhs.file.name &&
+        lhs.parents.map(\.file.name) == rhs.parents.map(\.file.name) &&
+        lhs.file.isWritable == rhs.file.isWritable
     }
 }
 
@@ -234,7 +251,7 @@ extension FileNode: Hashable {
     
     func hash(into hasher: inout Hasher) {
         
-        hasher.combine(self.fileURL)
+        hasher.combine(self.file.fileURL)
     }
 }
 
@@ -243,7 +260,7 @@ extension FileNode: CustomDebugStringConvertible {
     
     var debugDescription: String {
         
-        "\(type(of: self))(name: \(self.name), isDirectory: \(self.isDirectory))"
+        "\(type(of: self))(name: \(self.file.name), isDirectory: \(self.file.isDirectory))"
     }
 }
 
@@ -262,57 +279,60 @@ extension FileNode {
         
         let fileURL = fileURL.standardizedFileURL
         
-        if fileURL == self.fileURL { return self }
+        if fileURL == self.file.fileURL { return self }
         
         guard
             let children = inCache ? self.cachedChildren : self.children,
-            self.fileURL.isAncestor(of: fileURL)
+            self.file.fileURL.isAncestor(of: fileURL)
         else { return nil }
         
-        if let node = children.first(where: { $0.fileURL == fileURL }) {
+        if let node = children.first(where: { $0.file.fileURL == fileURL }) {
             return node
         }
         
-        guard let child = children.first(where: { $0.fileURL.isAncestor(of: fileURL) }) else { return nil }
+        guard let child = children.first(where: { $0.file.fileURL.isAncestor(of: fileURL) }) else { return nil }
         
         return child.node(at: fileURL, inCache: inCache)
     }
     
     
-    /// Invalidates file node tree.
+    /// Synchronizes the file node tree with changes at a given file URL.
     ///
-    /// - Parameter fileURL: The URL of the file changed.
+    /// This method traverses the node tree recursively to locate the node corresponding to the specified `fileURL`,
+    /// updating the cached children as needed to reflect changes in the file system.
+    ///
+    /// - Parameter fileURL: The file URL where a change occurred.
     /// - Returns: The node updated, or `nil` if the tree did not change.
     func invalidateChildren(at fileURL: URL) -> FileNode? {
         
         guard
             fileURL.lastPathComponent != ".DS_Store",
-            self.isDirectory,
+            self.file.isDirectory,
             let children = self.cachedChildren
         else { return nil }
         
-        guard fileURL.deletingLastPathComponent() == self.fileURL else {
+        guard fileURL.deletingLastPathComponent() == self.file.fileURL else {
             return children
                 .compactMap { $0.invalidateChildren(at: fileURL) }
                 .first
         }
         
         if fileURL.isReachable {
-            if let child = children.first(where: { $0.fileURL == fileURL }) {
-                guard (try? child.invalidateResources()) == true else { return nil }
+            if let child = children.first(where: { $0.file.fileURL == fileURL }) {
+                guard (try? child.file.invalidateResources()) == true else { return nil }
                 return child
                 
             } else {
                 // -> The fileURL is added.
-                guard let node = try? FileNode(at: fileURL, parent: self) else {
+                guard let file = try? File(at: fileURL) else {
                     assertionFailure(); return self
                 }
-                self.addNode(node)
+                self.addNode(FileNode(file: file, parent: self))
                 return self
             }
             
         } else {
-            if let index = children.firstIndex(where: { $0.fileURL.lastPathComponent == fileURL.lastPathComponent }) {
+            if let index = children.firstIndex(where: { $0.file.fileURL.lastPathComponent == fileURL.lastPathComponent }) {
                 // -> The file is deleted.
                 self.cachedChildren?.remove(at: index)
                 return self
@@ -330,16 +350,16 @@ extension FileNode {
     /// - Parameter fileURL: The new file URL.
     func move(to fileURL: URL) {
         
-        let keepsHidden = self.isHidden && !self.name.starts(with: ".")
+        let keepsHidden = self.file.isHidden && !self.file.name.starts(with: ".")
         
-        self.name = fileURL.lastPathComponent
-        self.fileURL = fileURL.standardizedFileURL
-        self.invalidateKind()
+        self.file.name = fileURL.lastPathComponent
+        self.file.fileURL = fileURL.standardizedFileURL
+        self.file.invalidateKind()
         if !keepsHidden {
-            self.isHidden = self.name.starts(with: ".")
+            self.file.isHidden = self.file.name.starts(with: ".")
         }
         
-        self.moveChildren(to: self.fileURL)
+        self.moveChildren(to: self.file.fileURL)
     }
     
     
@@ -350,14 +370,14 @@ extension FileNode {
         
         assert(!newName.isEmpty)
         
-        let keepsHidden = self.isHidden && !self.name.starts(with: ".")
+        let keepsHidden = self.file.isHidden && !self.file.name.starts(with: ".")
         
-        self.name = newName
-        self.fileURL = self.fileURL.deletingLastPathComponent()
-            .appending(path: newName, directoryHint: self.isDirectory ? .isDirectory : .notDirectory)
-        self.invalidateKind()
+        self.file.name = newName
+        self.file.fileURL = self.file.fileURL.deletingLastPathComponent()
+            .appending(path: newName, directoryHint: self.file.isDirectory ? .isDirectory : .notDirectory)
+        self.file.invalidateKind()
         if !keepsHidden {
-            self.isHidden = newName.starts(with: ".")
+            self.file.isHidden = newName.starts(with: ".")
         }
         
         self.parent?.cachedChildren?.sort(using: Self.sortOrder)
@@ -370,16 +390,16 @@ extension FileNode {
     ///   - parent: The new parent node.
     func move(to parent: FileNode) {
         
-        assert(parent.isDirectory)
+        assert(parent.file.isDirectory)
         
         self.parent?.cachedChildren?.removeFirst(self)
         
         parent.addNode(self)
         self.parent = parent
         
-        self.fileURL = parent.fileURL.appending(component: self.name).standardizedFileURL
+        self.file.fileURL = parent.file.fileURL.appending(component: self.file.name).standardizedFileURL
         
-        self.moveChildren(to: self.fileURL)
+        self.moveChildren(to: self.file.fileURL)
     }
     
     
@@ -388,7 +408,7 @@ extension FileNode {
     /// - Parameter node: The file node to add.
     func addNode(_ node: FileNode) {
         
-        assert(self.isDirectory)
+        assert(self.file.isDirectory)
         
         self.cachedChildren?.append(node)
         self.cachedChildren?.sort(using: Self.sortOrder)
@@ -410,16 +430,16 @@ extension FileNode {
         guard let children = self.cachedChildren else { return }
         
         for child in children {
-            child.fileURL = fileURL.appending(component: child.name)
-            child.moveChildren(to: self.fileURL)
+            child.file.fileURL = fileURL.appending(component: child.file.name)
+            child.moveChildren(to: self.file.fileURL)
         }
     }
 }
 
 
-// MARK: FileNode.Kind
+// MARK: File.Kind
 
-extension FileNode.Kind {
+extension File.Kind {
     
     init(filename: String, isDirectory: Bool) {
         
@@ -466,28 +486,22 @@ extension FileNode.Kind {
     }
     
     
-    /// The label.
+    /// The localized label.
     var label: String {
         
         switch self {
             case .folder:
-                String(localized: "FileNode.Kind.folder.label", defaultValue: "Folder", table: "Document",
-                       comment: "accessibility description for icon in file browser")
+                String(localized: "File.Kind.folder.label", defaultValue: "Folder", table: "Document")
             case .general:
-                String(localized: "FileNode.Kind.general.label", defaultValue: "Document", table: "Document",
-                       comment: "accessibility description for icon in file browser")
+                String(localized: "File.Kind.general.label", defaultValue: "Document", table: "Document")
             case .archive:
-                String(localized: "FileNode.Kind.archive.label", defaultValue: "Archive", table: "Document",
-                       comment: "accessibility description for icon in file browser")
+                String(localized: "File.Kind.archive.label", defaultValue: "Archive", table: "Document")
             case .image:
-                String(localized: "FileNode.Kind.image.label", defaultValue: "Image", table: "Document",
-                       comment: "accessibility description for icon in file browser")
+                String(localized: "File.Kind.image.label", defaultValue: "Image", table: "Document")
             case .movie:
-                String(localized: "FileNode.Kind.movie.label", defaultValue: "Movie", table: "Document",
-                       comment: "accessibility description for icon in file browser")
+                String(localized: "File.Kind.movie.label", defaultValue: "Movie", table: "Document")
             case .audio:
-                String(localized: "FileNode.Kind.audio.label", defaultValue: "Audio", table: "Document",
-                       comment: "accessibility description for icon in file browser")
+                String(localized: "File.Kind.audio.label", defaultValue: "Audio", table: "Document")
         }
     }
 }
