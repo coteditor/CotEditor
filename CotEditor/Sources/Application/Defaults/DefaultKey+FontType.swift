@@ -111,7 +111,7 @@ extension DefaultKey<Data?> {
     /// Returns the user default key for the font name of the given font type.
     ///
     /// - Parameter type: The font type.
-    /// - Returns: An user default key.
+    /// - Returns: A user default key.
     static func fontKey(for type: FontType) -> sending DefaultKey<Data?> {
         
         switch type {
@@ -127,7 +127,7 @@ extension DefaultKey<Bool> {
     /// Returns the user default key for whether the antialiasing is enabled for the given font type.
     ///
     /// - Parameter type: The font type.
-    /// - Returns: An user default key.
+    /// - Returns: A user default key.
     static func antialias(for type: FontType) -> sending DefaultKey<Bool> {
         
         switch type {
@@ -140,7 +140,7 @@ extension DefaultKey<Bool> {
     /// Returns the user default key for whether the ligature is enabled for the given font type.
     ///
     /// - Parameter type: The font type.
-    /// - Returns: An user default key.
+    /// - Returns: A user default key.
     static func ligature(for type: FontType) -> sending DefaultKey<Bool> {
         
         switch type {
