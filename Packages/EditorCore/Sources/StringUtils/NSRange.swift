@@ -142,6 +142,25 @@ public extension NSRange {
 }
 
 
+public extension Sequence<NSRange> {
+    
+    /// The reduced ranges by merging all overlapping ranges.
+    var merged: [NSRange] {
+        
+        self
+            .sorted(using: [KeyPathComparator(\.location),
+                            KeyPathComparator(\.length)])
+            .reduce(into: []) { ranges, range in
+                if let last = ranges.last, last.touches(range) {
+                    ranges[ranges.count - 1] = last.union(range)
+                } else {
+                    ranges.append(range)
+                }
+            }
+    }
+}
+
+
 public extension IndexSet {
     
     /// Initializes an index set with multiple NSRanges.

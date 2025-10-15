@@ -1,7 +1,17 @@
 # Change Log
 
-6.0.5 (unreleased)
+6.1.0 (unreleased)
 --------------------------
+
+### New Features
+
+- Add the “Insert comment delimiters after indent” option to the Edit settings pane.
+- Revert the "Append a space to comment delimiter" option to the Edit settings pane.
+
+
+### Improvements
+
+- Improve the algorithm to comment-out block comments.
 
 
 

@@ -139,10 +139,10 @@ struct WhatsNewView: View {
 
 enum NewFeature: CaseIterable {
     
-    static let version = Version(6, 0, 0)
-    static let buildNumber = 742
+    static let version = Version(6, 1, 0)
+    static let buildNumber = 760
     
-    case liquidGlass
+    case commentOut
 }
     
 
@@ -151,8 +151,8 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
-            case .liquidGlass:
-                Image(systemName: "sparkles")
+            case .commentOut:
+                Image(.textCommentout)
         }
     }
     
@@ -160,9 +160,9 @@ private extension NewFeature {
     var label: String {
         
         switch self {
-            case .liquidGlass:
-                String(localized: "NewFeature.liquidGlass.label",
-                       defaultValue: "Liquid Glass Look", table: "WhatsNew")
+            case .commentOut:
+                String(localized: "NewFeature.commentOut.label",
+                       defaultValue: "More smart comment out", table: "WhatsNew")
         }
     }
     
@@ -170,9 +170,9 @@ private extension NewFeature {
     var description: String {
         
         switch self {
-            case .liquidGlass:
-                String(localized: "NewFeature.liquidGlass.description",
-                       defaultValue: "Experience the refreshed interface with the new Liquid Glass style in macOS Tahoe 26.", table: "WhatsNew")
+            case .commentOut:
+                String(localized: "NewFeature.commentOut.description",
+                       defaultValue: "The behavior of comments can now be customized, making the editor feel more natural to use.", table: "WhatsNew")
         }
     }
     
