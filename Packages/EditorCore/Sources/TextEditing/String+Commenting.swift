@@ -110,7 +110,7 @@ public extension String {
                 }
             }
             if let delimiter = delimiters.inline {
-                let targetRanges = selectedRanges.map (self.lineContentsRange(for:)).uniqued
+                let targetRanges = selectedRanges.map(self.lineContentsRange(for:)).uniqued
                 if let ranges = self.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges) {
                     return ranges
                 }
