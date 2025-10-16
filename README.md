@@ -3,9 +3,9 @@
 CotEditor is a lightweight plain-text editor designed for macOS. The project aims to provide a general plain-text editor for everyone with an intuitive macOS-native user interface.
 
 - __Requirement__: macOS Sequoia 15 or later
-- __Web site__: <https://coteditor.com>
+- __Web Site__: <https://coteditor.com>
 - __Mac App Store__: <https://apps.apple.com/app/coteditor/id1024640650>
-- __Languages__: English, Czech, Dutch, French, German, Italian, Japanese, Korean, Polish, Portuguese, Spanish, Simplified Chinese, Traditional Chinese, Turkish
+- __Languages__: English, Czech, Dutch, French, German, Italian, Japanese, Korean, Polish, Portuguese, Spanish, Simplified Chinese, Traditional Chinese, and Turkish
 
 ![screenshot](screenshot@2x.png)
 
