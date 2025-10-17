@@ -7,7 +7,7 @@ Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/i
 
 ### Issue reports
 
-Update CotEditor to the latest version and make sure that the issue you are having is also present in the latest version.
+The CotEditor project only supports issues on the latest version. Before submitting an issue, ensure that you have updated CotEditor to the latest version and that the issue you are experiencing is also present in the latest version.
 
 First, search for existing issues related to your problem. If you find a similar issue that has already been reported, post your case to that thread. If not, create a new issue by filling out the “Bug report” template. Feel free to post the same issue to the existing one, as long as there are fewer than 10 cases. Multiple instances of the same issue can be very helpful in finding the cause. In that case, please include your environment (versions of both CotEditor and macOS) in your post.
 
@@ -29,7 +29,7 @@ Please refrain from simply adding “+1” or similar comments to existing reque
 
 ### General Code Improvements
 
-Bug fixes and improvements are welcome. Before adding a new feature or making a significant change, please consult the team to ensure its acceptance.
+Bug fixes and improvements are always welcome. However, if you are considering adding a new feature or making a significant change, please consult the team beforehand to ensure its acceptance. Feature additions that do not align with the project's direction are likely to be rejected.
 
 When contributing code, please adhere to our coding style guide for consistency and maintainability.
 
