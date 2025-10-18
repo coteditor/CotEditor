@@ -937,22 +937,13 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     }
     
     
-    /// Returns the casted children of the given item.
+    /// Returns the casted children of the given item to display.
     ///
     /// - Parameter node: An item in the data source, or `nil` for the root.
     /// - Returns: An array of file nodes, or `nil` if no data source is provided yet.
     private func children(of node: FileNode?) -> [FileNode]? {
         
-        guard
-            let node = (node ?? self.document.fileNode),
-            let children = node.filteredChildren(includesHiddenNodes: self.showsHiddenFiles)
-        else { return nil }
-        
-        if node.filterState != nil, !node.isMatchedOrHasMatchedAncestor {
-            return children.filter { $0.isMatchedOrHasMatchedDescendant }
-        }
-        
-        return children
+        (node ?? self.document.fileNode)?.filteredChildren(includesHiddenNodes: self.showsHiddenFiles)
     }
 }
 

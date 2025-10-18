@@ -81,35 +81,29 @@ final class FileNode {
     }
     
     
-    /// Returns the receiver's children, optionally including hidden files.
+    /// Returns the receiver’s children filtered according to the current filter and hidden-file setting.
     ///
     /// - Parameters:
     ///   - includesHiddenNodes: If `false` hidden files and folders are excluded.
     /// - Returns: An array of `FileNode`, or `nil` if no children are available.
     func filteredChildren(includesHiddenNodes: Bool) -> [FileNode]? {
         
-        if includesHiddenNodes {
-            self.children
-        } else {
-            self.children?.filter { !$0.file.isHidden }
-        }
-    }
-    
-    
-    /// Whether the receiver matches the active filter or any of its ancestors does.
-    var isMatchedOrHasMatchedAncestor: Bool {
+        let children = includesHiddenNodes
+            ? self.children
+            : self.children?.filter { !$0.file.isHidden }
         
-        sequence(first: self, next: \.parent).lazy.contains { $0.filterState?.matchedRange != nil }
-    }
-    
-    
-    /// Whether the receiver matches the active filter or any of its descendants does.
-    var isMatchedOrHasMatchedDescendant: Bool {
+        guard
+            let children, !children.isEmpty,
+            self.filterState != nil,
+            !sequence(first: self, next: \.parent).lazy.contains(where: { $0.filterState?.matchedRange != nil })
+        else { return children }
         
-        if let state = self.filterState {
-            state.hasMatchedDescendant || state.matchedRange != nil
-        } else {
-            false
+        return children.filter { child in
+            if let state = child.filterState {
+                state.hasMatchedDescendant || state.matchedRange != nil
+            } else {
+                false
+            }
         }
     }
     
