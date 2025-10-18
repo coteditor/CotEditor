@@ -153,7 +153,7 @@ private extension NewFeature {
         
         switch self {
             case .fileBrowserFilter:
-                Image(systemName: "line.3.horizontal.decrease.circle")
+                Image(.folderBadgeMagnifyingglass)
             case .commentOut:
                 Image(.textCommentout)
         }
