@@ -142,6 +142,7 @@ enum NewFeature: CaseIterable {
     static let version = Version(6, 1, 0)
     static let buildNumber = 760
     
+    case fileBrowserFilter
     case commentOut
 }
     
@@ -151,6 +152,8 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
+            case .fileBrowserFilter:
+                Image(systemName: "line.3.horizontal.decrease.circle")
             case .commentOut:
                 Image(.textCommentout)
         }
@@ -160,6 +163,9 @@ private extension NewFeature {
     var label: String {
         
         switch self {
+            case .fileBrowserFilter:
+                String(localized: "NewFeature.fileBrowserFilter.label",
+                       defaultValue: "Find documents in the file browser", table: "WhatsNew")
             case .commentOut:
                 String(localized: "NewFeature.commentOut.label",
                        defaultValue: "More smart comment out", table: "WhatsNew")
@@ -170,6 +176,9 @@ private extension NewFeature {
     var description: String {
         
         switch self {
+            case .fileBrowserFilter:
+                String(localized: "NewFeature.fileBrowserFilter.description",
+                       defaultValue: "The file browser now allows filtering of items by filenames.", table: "WhatsNew")
             case .commentOut:
                 String(localized: "NewFeature.commentOut.description",
                        defaultValue: "The behavior of comments can now be customized, making the editor feel more natural to use.", table: "WhatsNew")
