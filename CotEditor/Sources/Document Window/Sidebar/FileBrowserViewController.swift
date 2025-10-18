@@ -136,10 +136,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 8 : 6),
+            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 7 : 6),
             filterField.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
             filterField.leadingAnchor.constraint(equalToSystemSpacingAfter: addButton.trailingAnchor, multiplier: 0.5),
-            filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -5),
+            filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: isLiquidGlass ? -7 : -5),
         ])
         
         self.view = NSView()
@@ -151,7 +151,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.view.addSubview(bottomSeparator)
         self.view.addSubview(footerView)
         
-        let footerHeight: CGFloat = isLiquidGlass ? 32 : 23
+        let footerHeight: CGFloat = isLiquidGlass ? 36 : 31
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
