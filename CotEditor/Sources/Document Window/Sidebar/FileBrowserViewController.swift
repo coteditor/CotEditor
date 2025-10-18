@@ -38,10 +38,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
-    @ViewLoading private var filterField: NSSearchField
     @ViewLoading private var messageField: NSTextField
     
     private var showsHiddenFiles: Bool
+    private var filterQuery: String = ""
     private var expandedItems: [Any]?
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
@@ -174,7 +174,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
-        self.filterField = filterField
         self.messageField = messageField
     }
     
@@ -604,7 +603,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @objc private func filterTextDidChange(_ sender: NSSearchField) {
         
-        self.filterDebouncer.schedule(delay: Duration.seconds(0.5))
+        self.filterQuery = sender.stringValue
+        self.filterDebouncer.schedule(delay: .seconds(0.5))
     }
     
     
@@ -613,7 +613,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     /// Whether the file browser is currently in the filtering mode.
     private var isFiltering: Bool {
         
-        !self.filterField.stringValue.isEmpty
+        !self.filterQuery.isEmpty
     }
     
     
@@ -622,10 +622,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
         
-        let filterString = self.filterField.stringValue
-        
         // store item expansion states
-        if !filterString.isEmpty, self.expandedItems == nil {
+        if self.isFiltering, self.expandedItems == nil {
             self.outlineView.autosaveExpandedItems = false
             self.expandedItems = (0..<self.outlineView.numberOfRows)
                 .compactMap(self.outlineView.item(atRow:))
@@ -633,8 +631,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // filter
-        if !filterString.isEmpty {
-            let matchedNodes = rootNode.filter(with: filterString, includesHiddenFiles: self.showsHiddenFiles)
+        if self.isFiltering {
+            let matchedNodes = rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
                 .filter { $0 != rootNode }
             self.outlineView.reloadData()
             for node in matchedNodes.flatMap(\.parents) {
@@ -649,7 +647,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // restore item expansion states
-        if filterString.isEmpty, let expandedItems {
+        if !self.isFiltering, let expandedItems {
             let selectedItems = self.outlineView.selectedRowIndexes
                 .compactMap(self.outlineView.item(atRow:))
             
