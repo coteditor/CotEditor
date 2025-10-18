@@ -923,12 +923,12 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         
         guard
             let node = notification.userInfo?["NSObject"] as? FileNode,
-            let children = node.children
+            let children = self.children(of: node)
         else { return }
         
         // cache filtered children to avoid taking time for expanding a folder with large number of items
         // cf. [#1711](https://github.com/coteditor/CotEditor/issues/1711)
-        self.expandingNodes[node] = self.filterNodes(children)
+        self.expandingNodes[node] = children
     }
     
     
