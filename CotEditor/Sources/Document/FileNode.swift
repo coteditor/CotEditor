@@ -25,12 +25,21 @@
 
 import Foundation
 import OSLog
+import StringUtils
 import URLUtils
 
 final class FileNode {
+
+    struct FilterState {
+        
+        var matchedRange: NSRange?
+        var hasMatchedDescendant: Bool
+    }
+    
     
     private(set) var file: File
     private(set) weak var parent: FileNode?
+    private(set) var filterState: FilterState?
     
     private var cachedChildren: [FileNode]?
     
@@ -83,6 +92,24 @@ final class FileNode {
             self.children
         } else {
             self.children?.filter { !$0.file.isHidden }
+        }
+    }
+    
+    
+    /// Whether the receiver matches the active filter or any of its ancestors does.
+    var isMatchedOrHasMatchedAncestor: Bool {
+        
+        sequence(first: self, next: \.parent).lazy.contains { $0.filterState?.matchedRange != nil }
+    }
+    
+    
+    /// Whether the receiver matches the active filter or any of its descendants does.
+    var isMatchedOrHasMatchedDescendant: Bool {
+        
+        if let state = self.filterState {
+            state.hasMatchedDescendant || state.matchedRange != nil
+        } else {
+            false
         }
     }
     
@@ -300,6 +327,41 @@ extension FileNode {
     func delete() {
         
         self.parent?.cachedChildren?.removeFirst(self)
+    }
+    
+    
+    /// Recursively searches the receiver and its descendants for names matching the given string.
+    ///
+    /// - Note: This method updates the `filterState` property of each visited node.
+    ///
+    /// - Parameters:
+    ///   - searchString: The search string.
+    ///   - includesHiddenFiles: If `true`, includes hidden files and folders in the search.
+    /// - Returns: An array of nodes that match the search string within this subtree.
+    @discardableResult func filter(with searchString: String, includesHiddenFiles: Bool) -> [FileNode] {
+        
+        assert(!searchString.isEmpty)
+        
+        let match = (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
+        let isMatched = !match.isNotFound
+        let matchedDescendants = self.children?
+            .filter { includesHiddenFiles || !$0.file.isHidden }
+            .flatMap { $0.filter(with: searchString, includesHiddenFiles: includesHiddenFiles) } ?? []
+        
+        self.filterState = FilterState(matchedRange: isMatched ? match : nil,
+                                       hasMatchedDescendant: !matchedDescendants.isEmpty)
+        
+        return isMatched ? ([self] + matchedDescendants) : matchedDescendants
+    }
+    
+    
+    /// Recursively sets `nil` to `filterState` of the receiver and its descendants.
+    func removeFilterStates() {
+        
+        self.filterState = nil
+        self.cachedChildren?.forEach {
+            $0.removeFilterStates()
+        }
     }
     
     

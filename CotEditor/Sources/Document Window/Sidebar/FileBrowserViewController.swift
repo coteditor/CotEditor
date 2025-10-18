@@ -42,6 +42,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @ViewLoading private var messageField: NSTextField
     
     private var showsHiddenFiles: Bool
+    private var expandedItems: [Any]?
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
     
@@ -254,7 +255,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles)
                 .sink { [unowned self] showsHiddenFiles in
                     self.showsHiddenFiles = showsHiddenFiles
-                    self.outlineView.reloadData()
+                    if self.isFiltering {
+                        self.updateFilter()
+                    } else {
+                        self.outlineView.reloadData()
+                    }
                 },
         ]
         
@@ -605,9 +610,57 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     // MARK: Private Methods
     
+    /// Whether the file browser is currently in the filtering mode.
+    private var isFiltering: Bool {
+        
+        !self.filterField.stringValue.isEmpty
+    }
+    
+    
     /// Filters nodes in the outline view.
     private func updateFilter() {
         
+        guard let rootNode = self.document.fileNode else { return assertionFailure() }
+        
+        let filterString = self.filterField.stringValue
+        
+        // store item expansion states
+        if !filterString.isEmpty, self.expandedItems == nil {
+            self.outlineView.autosaveExpandedItems = false
+            self.expandedItems = (0..<self.outlineView.numberOfRows)
+                .compactMap(self.outlineView.item(atRow:))
+                .filter(self.outlineView.isItemExpanded)
+        }
+        
+        // filter
+        if !filterString.isEmpty {
+            let matchedNodes = rootNode.filter(with: filterString, includesHiddenFiles: self.showsHiddenFiles)
+                .filter { $0 != rootNode }
+            self.outlineView.reloadData()
+            for node in matchedNodes.flatMap(\.parents) {
+                self.outlineView.expandItem(node)
+            }
+            self.messageField.isHidden = !matchedNodes.isEmpty
+            
+        } else {
+            rootNode.removeFilterStates()
+            self.outlineView.reloadData()
+            self.messageField.isHidden = true
+        }
+        
+        // restore item expansion states
+        if filterString.isEmpty, let expandedItems {
+            let selectedItems = self.outlineView.selectedRowIndexes
+                .compactMap(self.outlineView.item(atRow:))
+            
+            self.outlineView.collapseItem(nil, collapseChildren: true)
+            for item in expandedItems + selectedItems {
+                self.outlineView.expandItem(item)
+            }
+            
+            self.expandedItems = nil
+            self.outlineView.autosaveExpandedItems = true
+        }
     }
     
     
@@ -764,6 +817,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, validateDrop info: any NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
         
         guard
+            !self.isFiltering,
             index == NSOutlineViewDropOnItemIndex,
             let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
             let rootNode = self.document.fileNode
@@ -795,6 +849,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, acceptDrop info: any NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
         
         guard
+            !self.isFiltering,
             let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
             let destNode = item as? FileNode ?? self.document.fileNode
         else { return false }
@@ -890,7 +945,16 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     /// - Returns: An array of file nodes, or `nil` if no data source is provided yet.
     private func children(of node: FileNode?) -> [FileNode]? {
         
-        (node ?? self.document.fileNode)?.filteredChildren(includesHiddenNodes: self.showsHiddenFiles)
+        guard
+            let node = (node ?? self.document.fileNode),
+            let children = node.filteredChildren(includesHiddenNodes: self.showsHiddenFiles)
+        else { return nil }
+        
+        if node.filterState != nil, !node.isMatchedOrHasMatchedAncestor {
+            return children.filter { $0.isMatchedOrHasMatchedDescendant }
+        }
+        
+        return children
     }
 }
 
@@ -917,7 +981,20 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         cellView.tags = node.file.tags
         
         cellView.textField!.stringValue = node.file.name
-        cellView.textField!.textColor = node.file.isHidden ? .tertiaryLabelColor : .labelColor
+        cellView.textField!.textColor = if node.file.isHidden {
+            .tertiaryLabelColor
+        } else if node.filterState != nil {
+            .secondaryLabelColor
+        } else {
+            .labelColor
+        }
+        if let matchedRange = node.filterState?.matchedRange {
+            let attributedName = NSMutableAttributedString(string: node.file.name)
+            attributedName.addAttribute(.foregroundColor, value: NSColor.labelColor, range: matchedRange)
+            attributedName.applyFontTraits(.boldFontMask, range: matchedRange)
+            
+            cellView.textField!.attributedStringValue = attributedName
+        }
         
         return cellView
     }
