@@ -115,6 +115,16 @@ final class FileNode {
     ]
     
     
+    /// Determines whether a filename should be ignored.
+    ///
+    /// - Parameter filename: The name of the file to evaluate.
+    /// - Returns: `true` if the file should be skipped.
+    private nonisolated static func accepts(filename: String) -> Bool {
+        
+        ![".DS_Store", ".git"].contains(filename)
+    }
+    
+    
     /// Reads the contents of the directory at the receiver's `fileURL`.
     ///
     /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
@@ -124,7 +134,7 @@ final class FileNode {
         
         return try FileManager.default
             .contentsOfDirectory(at: self.file.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
-            .filter { $0.lastPathComponent != ".DS_Store" }
+            .filter { Self.accepts(filename: $0.lastPathComponent) }
             .map { try File(at: $0) }
             .map { FileNode(file: $0, parent: self) }
             .sorted(using: Self.sortOrder)
@@ -203,7 +213,7 @@ extension FileNode {
     func invalidateChildren(at fileURL: URL) -> FileNode? {
         
         guard
-            fileURL.lastPathComponent != ".DS_Store",
+            Self.accepts(filename: fileURL.lastPathComponent),
             self.file.isDirectory,
             let children = self.cachedChildren
         else { return nil }
