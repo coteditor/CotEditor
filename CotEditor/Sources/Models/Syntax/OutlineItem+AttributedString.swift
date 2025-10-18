@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,9 +50,7 @@ extension OutlineItem {
             attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
         
-        attributes[.font] = traits.isEmpty
-            ? baseFont
-            : NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits), size: baseFont.pointSize)
+        attributes[.font] = baseFont.withTraits(traits)
         
         return attributes
     }

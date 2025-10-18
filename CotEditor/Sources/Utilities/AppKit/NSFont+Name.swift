@@ -1,5 +1,5 @@
 //
-//  NSFont+SystemFont.swift
+//  NSFont+Name.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,6 +53,21 @@ extension NSFont {
     final var cgFont: CGFont {
         
         CTFontCopyGraphicsFont(self, nil)
+    }
+    
+    
+    /// Returns a variant of the receiver with the specified symbolic traits applied.
+    ///
+    /// - Parameters:
+    ///   - traits: The symbolic traits to apply to the font using `NSFontDescriptor.SymbolicTraits`.
+    /// - Returns: A new `NSFont` with the specified traits applied, or `self` if the traits could not be applied.
+    final func withTraits(_ traits: NSFontDescriptor.SymbolicTraits) -> NSFont {
+        
+        if traits.isEmpty {
+            self
+        } else {
+            NSFont(descriptor: self.fontDescriptor.withSymbolicTraits(traits), size: self.pointSize) ?? self
+        }
     }
 }
 
