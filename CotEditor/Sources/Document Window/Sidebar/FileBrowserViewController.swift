@@ -38,11 +38,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
+    @ViewLoading private var filterField: NSSearchField
+    @ViewLoading private var messageField: NSTextField
     
     private var showsHiddenFiles: Bool
+    private var expandedItems: [Any]?
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
     
+    private lazy var filterDebouncer = Debouncer { [weak self] in self?.updateFilter() }
     private var defaultObservers: Set<AnyCancellable> = []
     private var scrollObservers: [any NSObjectProtocol] = []
     
@@ -83,6 +87,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // when the scroller knob is shown (2025-09, macOS 26, FB20309978)
         outlineView.tableColumns.first?.width = scrollView.contentView.frame.width
         
+        let message = String(localized: "No Filter Results", table: "Document", comment: "filtering result message")
+        let messageField = NSTextField(labelWithString: message)
+        messageField.textColor = .secondaryLabelColor
+        messageField.isHidden = true
+        outlineView.addSubview(messageField)
+        
+        messageField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            messageField.centerXAnchor.constraint(equalTo: outlineView.centerXAnchor),
+            messageField.centerYAnchor.constraint(equalTo: outlineView.centerYAnchor),
+        ])
+        
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator
         
@@ -105,14 +121,25 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
+        let filterField = if #available(macOS 26, *) { FilterSearchField() } else { LegacyFilterSearchField() }
+        filterField.focusRingType = .none
+        filterField.target = self
+        filterField.action = #selector(filterTextDidChange)
+        filterField.recentsAutosaveName = "FileBrowserSearch"
+        
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
         (footerView as? NSVisualEffectView)?.material = .sidebar
         addButton.translatesAutoresizingMaskIntoConstraints = false
+        filterField.translatesAutoresizingMaskIntoConstraints = false
         footerView.addSubview(addButton)
+        footerView.addSubview(filterField)
         
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 10 : 6),
+            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 8 : 6),
+            filterField.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
+            filterField.leadingAnchor.constraint(equalToSystemSpacingAfter: addButton.trailingAnchor, multiplier: 0.5),
+            filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -5),
         ])
         
         self.view = NSView()
@@ -147,6 +174,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
+        self.filterField = filterField
+        self.messageField = messageField
     }
     
     
@@ -226,7 +255,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles)
                 .sink { [unowned self] showsHiddenFiles in
                     self.showsHiddenFiles = showsHiddenFiles
-                    self.outlineView.reloadData()
+                    if self.isFiltering {
+                        self.updateFilter()
+                    } else {
+                        self.outlineView.reloadData()
+                    }
                 },
         ]
         
@@ -569,7 +602,67 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    @objc private func filterTextDidChange(_ sender: NSSearchField) {
+        
+        self.filterDebouncer.schedule(delay: Duration.seconds(0.5))
+    }
+    
+    
     // MARK: Private Methods
+    
+    /// Whether the file browser is currently in the filtering mode.
+    private var isFiltering: Bool {
+        
+        !self.filterField.stringValue.isEmpty
+    }
+    
+    
+    /// Filters nodes in the outline view.
+    private func updateFilter() {
+        
+        guard let rootNode = self.document.fileNode else { return assertionFailure() }
+        
+        let filterString = self.filterField.stringValue
+        
+        // store item expansion states
+        if !filterString.isEmpty, self.expandedItems == nil {
+            self.outlineView.autosaveExpandedItems = false
+            self.expandedItems = (0..<self.outlineView.numberOfRows)
+                .compactMap(self.outlineView.item(atRow:))
+                .filter(self.outlineView.isItemExpanded)
+        }
+        
+        // filter
+        if !filterString.isEmpty {
+            let matchedNodes = rootNode.filter(with: filterString, includesHiddenFiles: self.showsHiddenFiles)
+                .filter { $0 != rootNode }
+            self.outlineView.reloadData()
+            for node in matchedNodes.flatMap(\.parents) {
+                self.outlineView.expandItem(node)
+            }
+            self.messageField.isHidden = !matchedNodes.isEmpty
+            
+        } else {
+            rootNode.removeFilterStates()
+            self.outlineView.reloadData()
+            self.messageField.isHidden = true
+        }
+        
+        // restore item expansion states
+        if filterString.isEmpty, let expandedItems {
+            let selectedItems = self.outlineView.selectedRowIndexes
+                .compactMap(self.outlineView.item(atRow:))
+            
+            self.outlineView.collapseItem(nil, collapseChildren: true)
+            for item in expandedItems + selectedItems {
+                self.outlineView.expandItem(item)
+            }
+            
+            self.expandedItems = nil
+            self.outlineView.autosaveExpandedItems = true
+        }
+    }
+    
     
     /// Returns the target outline rows for the menu action.
     ///
@@ -724,6 +817,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, validateDrop info: any NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
         
         guard
+            !self.isFiltering,
             index == NSOutlineViewDropOnItemIndex,
             let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
             let rootNode = self.document.fileNode
@@ -755,6 +849,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, acceptDrop info: any NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
         
         guard
+            !self.isFiltering,
             let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
             let destNode = item as? FileNode ?? self.document.fileNode
         else { return false }
@@ -850,7 +945,16 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     /// - Returns: An array of file nodes, or `nil` if no data source is provided yet.
     private func children(of node: FileNode?) -> [FileNode]? {
         
-        (node ?? self.document.fileNode)?.filteredChildren(includesHiddenNodes: self.showsHiddenFiles)
+        guard
+            let node = (node ?? self.document.fileNode),
+            let children = node.filteredChildren(includesHiddenNodes: self.showsHiddenFiles)
+        else { return nil }
+        
+        if node.filterState != nil, !node.isMatchedOrHasMatchedAncestor {
+            return children.filter { $0.isMatchedOrHasMatchedDescendant }
+        }
+        
+        return children
     }
 }
 
@@ -877,7 +981,20 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         cellView.tags = node.file.tags
         
         cellView.textField!.stringValue = node.file.name
-        cellView.textField!.textColor = node.file.isHidden ? .tertiaryLabelColor : .labelColor
+        cellView.textField!.textColor = if node.file.isHidden {
+            .tertiaryLabelColor
+        } else if node.filterState != nil {
+            .secondaryLabelColor
+        } else {
+            .labelColor
+        }
+        if let matchedRange = node.filterState?.matchedRange {
+            let attributedName = NSMutableAttributedString(string: node.file.name)
+            attributedName.addAttribute(.foregroundColor, value: NSColor.labelColor, range: matchedRange)
+            attributedName.applyFontTraits(.boldFontMask, range: matchedRange)
+            
+            cellView.textField!.attributedStringValue = attributedName
+        }
         
         return cellView
     }
