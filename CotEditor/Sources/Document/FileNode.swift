@@ -47,6 +47,17 @@ final class FileNode {
     }
     
     
+    /// The chain of the parents to the root node from the nearest.
+    var parents: [FileNode] {
+        
+        if let parent {
+            Array(sequence(first: parent, next: \.parent))
+        } else {
+            []
+        }
+    }
+    
+    
     /// The children of the node by reading them lazily.
     var children: [FileNode]? {
         
@@ -61,13 +72,17 @@ final class FileNode {
     }
     
     
-    /// The chain of the parents to the root node from the nearest.
-    var parents: [FileNode] {
+    /// Returns the receiver's children, optionally including hidden files.
+    ///
+    /// - Parameters:
+    ///   - includesHiddenNodes: If `false` hidden files and folders are excluded.
+    /// - Returns: An array of `FileNode`, or `nil` if no children are available.
+    func filteredChildren(includesHiddenNodes: Bool) -> [FileNode]? {
         
-        if let parent {
-            Array(sequence(first: parent, next: \.parent))
+        if includesHiddenNodes {
+            self.children
         } else {
-            []
+            self.children?.filter { !$0.file.isHidden }
         }
     }
     
