@@ -33,7 +33,6 @@ final class FileNode {
     private(set) weak var parent: FileNode?
     
     private var cachedChildren: [FileNode]?
-    private var matchedResult: String?
     
     
     /// Initializes a file node instance.
