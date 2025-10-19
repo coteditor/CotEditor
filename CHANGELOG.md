@@ -13,7 +13,7 @@
 ### Improvements
 
 - Improve the algorithm to comment out block comments.
-- Ignore the .git folder in the file browser.
+- Ignore .git folders in the file browser.
 
 
 
