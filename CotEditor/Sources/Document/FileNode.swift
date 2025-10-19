@@ -105,7 +105,7 @@ final class FileNode {
     /// The sort order for display.
     private nonisolated static let sortOrder: [KeyPathComparator<FileNode>] = [
         KeyPathComparator(\.file.isFolder, comparator: BoolComparator()),
-        KeyPathComparator(\.file.name, comparator: .localizedStandard)
+        KeyPathComparator(\.file.name, comparator: .localizedStandard),
     ]
     
     
@@ -127,7 +127,7 @@ final class FileNode {
         assert(self.file.isDirectory)
         
         return try FileManager.default
-            .contentsOfDirectory(at: self.file.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
+            .contentsOfDirectory(at: self.file.fileURL, includingPropertiesForKeys: Array(File.resourceValues))
             .filter { Self.accepts(filename: $0.lastPathComponent) }
             .map { try File(at: $0) }
             .map { FileNode(file: $0, parent: self) }

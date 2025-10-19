@@ -40,13 +40,15 @@ struct File: Equatable {
     }
     
     
+    nonisolated static let resourceValues: Set<URLResourceKey> = [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey, .contentTypeKey]
+    
+    var name: String
     var fileURL: URL
     let isDirectory: Bool
-    var name: String
-    var kind: Kind
     var isHidden: Bool
     var isWritable: Bool
     var isAlias: Bool
+    var kind: Kind
     var tags: [FinderTag]
     
     
@@ -60,13 +62,13 @@ struct File: Equatable {
     ///   - isDirectory: Whether the node represents a directory.
     init(at fileURL: URL, isDirectory: Bool) {
         
+        self.name = fileURL.lastPathComponent
         self.fileURL = fileURL.standardizedFileURL
         self.isDirectory = isDirectory
-        self.name = fileURL.lastPathComponent
-        self.kind = Kind(filename: self.name, isDirectory: isDirectory)
         self.isHidden = fileURL.lastPathComponent.starts(with: ".")
         self.isWritable = true
         self.isAlias = false
+        self.kind = Kind(pathExtension: fileURL.pathExtension, isDirectory: isDirectory)
         self.tags = []
     }
     
@@ -80,11 +82,11 @@ struct File: Equatable {
     /// - Throws: An error if the file's resource values cannot be loaded.
     init(at fileURL: URL) throws {
         
-        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey])
+        let resourceValues = try fileURL.resourceValues(forKeys: Self.resourceValues)
         
+        self.name = fileURL.lastPathComponent
         self.fileURL = fileURL.standardizedFileURL
         self.isDirectory = resourceValues.isDirectory ?? false
-        self.name = fileURL.lastPathComponent
         self.isHidden = resourceValues.isHidden ?? false
         self.isWritable = resourceValues.isWritable ?? true
         self.isAlias = resourceValues.isAliasFile ?? false
@@ -92,7 +94,7 @@ struct File: Equatable {
         self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
             .folder
         } else {
-            Kind(filename: self.name, isDirectory: self.isDirectory)
+            Kind(type: resourceValues.contentType, isDirectory: self.isDirectory)
         }
         
         self.tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
@@ -127,7 +129,7 @@ struct File: Equatable {
         
         guard !(self.isAlias && self.kind == .folder) else { return }
         
-        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
+        self.kind = Kind(pathExtension: self.fileURL.pathExtension, isDirectory: self.isDirectory)
     }
     
     
@@ -167,30 +169,38 @@ struct File: Equatable {
 
 extension File.Kind {
     
-    init(filename: String, isDirectory: Bool) {
+    init(pathExtension: String, isDirectory: Bool) {
         
         if isDirectory {
             self = .folder
             return
         }
         
-        guard
-            let filenameExtension = filename.pathExtension,
-            let uti = UTType(filenameExtension: filenameExtension)
-        else {
+        self.init(type: UTType(filenameExtension: pathExtension), isDirectory: isDirectory)
+    }
+    
+    
+    init(type: UTType?, isDirectory: Bool) {
+        
+        if isDirectory {
+            self = .folder
+            return
+        }
+        
+        guard let type else {
             self = .general
             return
         }
         
-        if uti.conforms(to: .plainText) || uti.conforms(to: .xml) {
+        if type.conforms(to: .plainText) || type.conforms(to: .xml) {
             self = .general
-        } else if uti.conforms(to: .image) {
+        } else if type.conforms(to: .image) {
             self = .image
-        } else if uti.conforms(to: .movie) {
+        } else if type.conforms(to: .movie) {
             self = .movie
-        } else if uti.conforms(to: .audio) {
+        } else if type.conforms(to: .audio) {
             self = .audio
-        } else if uti.conforms(to: .archive) {
+        } else if type.conforms(to: .archive) {
             self = .archive
         } else {
             self = .general
