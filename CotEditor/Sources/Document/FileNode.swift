@@ -98,13 +98,7 @@ final class FileNode {
             !sequence(first: self, next: \.parent).lazy.contains(where: { $0.filterState?.matchedRange != nil })
         else { return children }
         
-        return children.filter { child in
-            if let state = child.filterState {
-                state.hasMatchedDescendant || state.matchedRange != nil
-            } else {
-                false
-            }
-        }
+        return children.filter { $0.filterState.map { $0.hasMatchedDescendant || $0.matchedRange != nil } ?? false }
     }
     
     
@@ -339,7 +333,7 @@ extension FileNode {
     /// - Note: This method updates the `filterState` property of each visited node.
     ///
     /// - Parameters:
-    ///   - searchString: The search string.
+    ///   - searchString: The text to search for within the file name.
     ///   - includesHiddenFiles: If `true`, includes hidden files and folders in the search.
     /// - Returns: An array of nodes that match the search string within this subtree.
     @discardableResult func filter(with searchString: String, includesHiddenFiles: Bool) -> [FileNode] {
