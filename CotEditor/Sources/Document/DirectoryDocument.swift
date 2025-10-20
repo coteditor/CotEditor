@@ -131,8 +131,10 @@ final class DirectoryDocument: NSDocument {
         
         assert(url == self.fileURL)
         
-        try MainActor.assumeIsolated {
-            self.fileNode = try FileNode(at: url)
+        let file = try File(at: url)
+        
+        MainActor.assumeIsolated {
+            self.fileNode = FileNode(file: file)
             self.windowController?.synchronizeWindowTitleWithDocumentName()
         }
     }
@@ -227,6 +229,7 @@ final class DirectoryDocument: NSDocument {
     
     // MARK: Action Messages
     
+    /// Opens the selected file as plain text, bypassing type detection.
     @IBAction func openDocumentAsPlainText(_ sender: NSMenuItem) {
         
         guard let fileURL = sender.representedObject as? URL else { return }
@@ -245,7 +248,7 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: A Document if found.
     func openedDocument(at node: FileNode) -> DataDocument? {
         
-        self.documents.first { $0.fileURL == node.fileURL }
+        self.documents.first { $0.fileURL == node.file.fileURL }
     }
     
     
@@ -312,11 +315,11 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: The file node created.
     @discardableResult func addFile(at parentNode: FileNode) throws -> FileNode {
         
-        assert(parentNode.isDirectory)
+        assert(parentNode.file.isDirectory)
         
         let name = String(localized: "Untitled", comment: "default filename for new creation")
         let pathExtension = (try? SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]))?.extensions.first
-        let fileURL = parentNode.fileURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
+        let fileURL = parentNode.file.fileURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
         
         var coordinationError: NSError?
         var writingError: (any Error)?
@@ -332,7 +335,8 @@ final class DirectoryDocument: NSDocument {
             throw error
         }
         
-        let node = FileNode(at: fileURL, isDirectory: false, parent: parentNode)
+        let file = File(at: fileURL, isDirectory: false)
+        let node = FileNode(file: file, parent: parentNode)
         parentNode.addNode(node)
         
         return node
@@ -345,10 +349,10 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: The file node created.
     @discardableResult func addFolder(at parentNode: FileNode) throws -> FileNode {
         
-        assert(parentNode.isDirectory)
+        assert(parentNode.file.isDirectory)
         
         let name = String(localized: "untitled folder", comment: "default folder name for new creation")
-        let folderURL = parentNode.fileURL.appending(component: name).appendingUniqueNumber()
+        let folderURL = parentNode.file.fileURL.appending(component: name).appendingUniqueNumber()
         
         var coordinationError: NSError?
         var writingError: (any Error)?
@@ -364,7 +368,8 @@ final class DirectoryDocument: NSDocument {
             throw error
         }
         
-        let node = FileNode(at: folderURL, isDirectory: true, parent: parentNode)
+        let file = File(at: folderURL, isDirectory: true)
+        let node = FileNode(file: file, parent: parentNode)
         parentNode.addNode(node)
         
         return node
@@ -395,11 +400,11 @@ final class DirectoryDocument: NSDocument {
             throw InvalidNameError.newLine
         }
         
-        let isCurrentDocument = self.currentDocument?.fileURL == node.fileURL
-        let newURL = node.fileURL.deletingLastPathComponent().appending(component: name)
+        let isCurrentDocument = self.currentDocument?.fileURL == node.file.fileURL
+        let newURL = node.file.fileURL.deletingLastPathComponent().appending(component: name)
         
         do {
-            try self.moveFile(from: node.fileURL, to: newURL)
+            try self.moveFile(from: node.file.fileURL, to: newURL)
         } catch let error as CocoaError where error.errorCode == CocoaError.fileWriteFileExists.rawValue {
             throw InvalidNameError.duplicated(name: name)
         } catch {
@@ -422,11 +427,11 @@ final class DirectoryDocument: NSDocument {
     ///   - destinationNode: The new parent node.
     func moveItem(at node: FileNode, to destinationNode: FileNode) throws {
         
-        assert(destinationNode.isDirectory)
+        assert(destinationNode.file.isDirectory)
         
-        let destinationURL = destinationNode.fileURL.appending(component: node.name)
+        let destinationURL = destinationNode.file.fileURL.appending(component: node.file.name)
             .appendingUniqueNumber()
-        try self.moveFile(from: node.fileURL, to: destinationURL)
+        try self.moveFile(from: node.file.fileURL, to: destinationURL)
         
         node.move(to: destinationNode)
     }
@@ -440,9 +445,9 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: The file node created.
     func copyItem(at fileURL: URL, to destinationNode: FileNode) throws -> FileNode {
         
-        assert(destinationNode.isDirectory)
+        assert(destinationNode.file.isDirectory)
         
-        let destinationURL = destinationNode.fileURL.appending(component: fileURL.lastPathComponent)
+        let destinationURL = destinationNode.file.fileURL.appending(component: fileURL.lastPathComponent)
             .appendingUniqueNumber()
         
         var coordinationError: NSError?
@@ -459,7 +464,8 @@ final class DirectoryDocument: NSDocument {
             throw error
         }
         
-        let node = try FileNode(at: destinationURL, parent: destinationNode)
+        let file = try File(at: destinationURL)
+        let node = FileNode(file: file, parent: destinationNode)
         destinationNode.addNode(node)
         
         return node
@@ -480,11 +486,11 @@ final class DirectoryDocument: NSDocument {
             String(localized: "FileCopyFormat.numbered", defaultValue: "\(base) copy \(count)",
                    comment: "duplicated form of filename with number")
         }
-        let duplicatedURL = node.fileURL.appendingUniqueNumber(format: format)
+        let duplicatedURL = node.file.fileURL.appendingUniqueNumber(format: format)
         
         var coordinationError: NSError?
         var copyError: (any Error)?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: node.fileURL, options: .withoutChanges, writingItemAt: duplicatedURL, error: &coordinationError) { newSourceURL, newDestinationURL in
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: node.file.fileURL, options: .withoutChanges, writingItemAt: duplicatedURL, error: &coordinationError) { newSourceURL, newDestinationURL in
             do {
                 try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
             } catch {
@@ -496,7 +502,8 @@ final class DirectoryDocument: NSDocument {
             throw error
         }
         
-        let duplicatedNode = try FileNode(at: duplicatedURL, parent: node.parent)
+        let file = try File(at: duplicatedURL)
+        let duplicatedNode = FileNode(file: file, parent: node.parent)
         node.parent?.addNode(duplicatedNode)
         
         return duplicatedNode
@@ -510,7 +517,7 @@ final class DirectoryDocument: NSDocument {
     func trashItem(_ node: FileNode) throws {
         
         // close if the item to the Trash is opened as a document
-        if let document = self.documents.first(where: { $0.fileURL == node.fileURL }) {
+        if let document = self.documents.first(where: { $0.fileURL == node.file.fileURL }) {
             if document == self.currentDocument {
                 self.windowController?.fileDocument = nil
             }
@@ -522,7 +529,7 @@ final class DirectoryDocument: NSDocument {
         var trashedURL: NSURL?
         var coordinationError: NSError?
         var trashError: (any Error)?
-        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: node.fileURL, options: .forDeleting, error: &coordinationError) { newURL in
+        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: node.file.fileURL, options: .forDeleting, error: &coordinationError) { newURL in
             do {
                 try FileManager.default.trashItem(at: newURL, resultingItemURL: &trashedURL)
             } catch {
@@ -550,7 +557,7 @@ final class DirectoryDocument: NSDocument {
         
         let fileURL: URL
         do {
-            fileURL = try node.resolvedFileURL
+            fileURL = try node.file.resolvedFileURL
         } catch {
             self.presentError(error)
             return

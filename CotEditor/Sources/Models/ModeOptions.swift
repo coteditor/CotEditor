@@ -58,6 +58,7 @@ struct CompletionWordTypes: OptionSet, Codable {
 
 extension Syntax.Kind {
     
+    /// The default options.
     var defaultOptions: ModeOptions {
         
         switch self {
@@ -143,6 +144,7 @@ extension ModeOptions {
     }
     
     
+    /// A complete dictionary of all option values keyed by `CodingKeys`.
     private var keyedDictionary: [ModeOptions.CodingKeys: AnyHashable] {
         
         [CodingKeys

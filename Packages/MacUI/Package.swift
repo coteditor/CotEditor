@@ -23,7 +23,9 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
     ],
     targets: [
-        .target(name: "ControlUI", dependencies: ["EditorCore"]),
+        .target(name: "ControlUI", dependencies: ["EditorCore"], swiftSettings: [
+            .defaultIsolation(MainActor.self),
+        ]),
         
         .target(name: "RegexHighlighting", dependencies: ["EditorCore"]),
         .testTarget(name: "RegexHighlightingTests", dependencies: ["RegexHighlighting"]),
@@ -44,6 +46,7 @@ for target in package.targets {
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
 }

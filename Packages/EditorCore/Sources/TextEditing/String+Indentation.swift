@@ -43,12 +43,13 @@ private enum DetectionLines {
 
 public extension String {
     
-    /// Increases the indent level.
+    /// Increases the indentation level of each line that intersects the given selections.
     ///
     /// - Parameters:
     ///   - style: The indent style to covert to.
     ///   - indentWidth: The number of characters for the indentation.
     ///   - selectedRanges: The selection in the editor.
+    /// - Returns: An `EditingContext`.
     func indent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext {
         
         assert(indentWidth > 0)
@@ -70,7 +71,7 @@ public extension String {
         // calculate new selection range
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
             let shift = lineRanges.prefix(while: { $0.location <= selectedRange.location }).count
-            let lineCount = lineRanges.prefix(while: { selectedRange.intersects($0) }).count
+            let lineCount = lineRanges.prefix(while: selectedRange.intersects).count
             let lengthDiff = max(lineCount - 1, 0) * indentLength
             
             return NSRange(location: selectedRange.location + shift * indentLength,
@@ -81,12 +82,13 @@ public extension String {
     }
     
     
-    /// Decreases the indent level.
+    /// Decreases the indentation level of each line that intersects the given selections.
     ///
     /// - Parameters:
     ///   - style: The indent style to covert to.
     ///   - indentWidth: The number of characters for the indentation.
     ///   - selectedRanges: The selection in the editor.
+    /// - Returns: An `EditingContext`, or `nil` if no changes were necessary.
     func outdent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
         
         assert(indentWidth > 0)
@@ -132,12 +134,13 @@ public extension String {
     }
     
     
-    /// Standardizes indentation of given ranges.
+    /// Standardizes leading indentation to the specified style within the given selections.
     ///
     /// - Parameters:
-    ///   - style: The indent style to covert to.
+    ///   - style: The target indentation style.
     ///   - indentWidth: The number of characters for the indentation.
     ///   - selectedRanges: The selection in the editor.
+    /// - Returns: An `EditingContext`, or `nil` if no changes were necessary.
     func convertIndentation(to style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
         
         assert(indentWidth > 0)
@@ -169,7 +172,7 @@ public extension String {
     
 public extension String {
     
-    /// Detected indent style.
+    /// The predominant indentation style used in the string.
     var detectedIndentStyle: IndentStyle? {
         
         guard !self.isEmpty else { return nil }
@@ -210,7 +213,12 @@ public extension String {
     }
     
     
-    /// Standardizes indent style.
+    /// Converts leading indentation to the specified style.
+    ///
+    /// - Parameters:
+    ///   - indentStyle: The desired indentation style.
+    ///   - tabWidth: The number of spaces that represent one tab stop.
+    /// - Returns: A new string with standardized indentation.
     func standardizingIndent(to indentStyle: IndentStyle, tabWidth: Int) -> String {
         
         let spaces = String(repeating: " ", count: tabWidth)
@@ -226,7 +234,12 @@ public extension String {
     }
     
     
-    /// Detects indent level of line at the location.
+    /// Computes the visual indent level at the given index by expanding tabs.
+    ///
+    /// - Parameters:
+    ///   - index: A character index within the string.
+    ///   - tabWidth: The number of spaces that represent one tab stop.
+    /// - Returns: The number of indent levels.
     func indentLevel(at index: String.Index, tabWidth: Int) -> Int {
         
         assert(tabWidth > 0)
@@ -240,31 +253,37 @@ public extension String {
     }
     
     
-    /// Returns the range of indent characters in line at the location.
+    /// Returns the range of leading whitespace (spaces or tabs) for the line containing `location`.
+    ///
+    /// - Parameter location: A UTF-16 offset within the string.
+    /// - Returns: The `NSRange` covering the contiguous run of leading whitespace, or `nil` if the line does not start with whitespace.
     func rangeOfIndent(at location: Int) -> NSRange? {
         
         let lineRange = (self as NSString).lineRange(at: location)
         let range = (self as NSString).range(of: "^[ \\t]++", options: .regularExpression, range: lineRange)
         
-        guard range.location != NSNotFound else { return nil }
+        guard !range.isNotFound else { return nil }
         
         return range
     }
     
     
-    /// Returns the range of indent characters in line at the location.
+    /// Returns the range of leading whitespace (spaces or tabs) for the line containing `index`.
+    ///
+    /// - Parameter index: A character index within the string.
+    /// - Returns: The range covering the contiguous run of leading whitespace, or `nil` if the line does not start with whitespace.
     func rangeOfIndent(at index: String.Index) -> Range<String.Index>? {
         
         self[self.lineRange(at: index)].firstRange(of: /^[ \t]++/)
     }
     
     
-    /// Returns the range for deleting soft-tab or nil if the character to delete is not a space.
+    /// Returns the soft-tab deletion range when the insertion point is within leading spaces.
     ///
     /// - Parameters:
-    ///   - range: The range of selection.
-    ///   - tabWidth: The number of spaces for the soft tab.
-    /// - Returns: Range to delete or nil if the character to delete is not soft-tab.
+    ///   - range: The current selection.
+    ///   - tabWidth: The number of spaces that represent one tab stop.
+    /// - Returns: The range of spaces to delete, or `nil` if the character to delete is not a space.
     func rangeForSoftTabDeletion(in range: NSRange, tabWidth: Int) -> NSRange? {
         
         assert(tabWidth > 0)
@@ -290,12 +309,12 @@ public extension String {
     }
     
     
-    /// Returns the oft-tab string to add.
+    /// Returns the soft-tab string (spaces) needed to reach the next tab stop.
     ///
     /// - Parameters:
-    ///   - location: The location of insertion point.
-    ///   - tabWidth: The number of spaces for the soft tab.
-    /// - Returns: String to insert as the tab.
+    ///   - location: The base character index as a UTF-16 offset.
+    ///   - tabWidth: The number of spaces that represent one tab stop.
+    /// - Returns: A string of spaces.
     func softTab(at location: Int, tabWidth: Int) -> String {
         
         assert(tabWidth > 0)
@@ -310,7 +329,12 @@ public extension String {
     
     // MARK: Private Methods
     
-    /// Calculates column number at location in the line expanding tab (\t) character.
+    /// Calculates the visual column from the start of the line to `location` by expanding tab characters.
+    ///
+    /// - Parameters:
+    ///   - location: The base character index as a UTF-16 offset.
+    ///   - tabWidth: The number of spaces that represent one tab stop.
+    /// - Returns: The visual column count from the beginning of the line up to `location`.
     private func column(of location: Int, tabWidth: Int) -> Int {
         
         assert(tabWidth > 0)

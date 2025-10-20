@@ -26,7 +26,6 @@
 
 import AppKit
 import FileEncoding
-import FuzzyRange
 import LineEnding
 import StringUtils
 

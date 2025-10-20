@@ -43,7 +43,7 @@ struct FilterField: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSSearchField {
         
-        let searchField = if #available(macOS 26, *) { InnerFilterField() } else { LegacyInnerFilterField() }
+        let searchField = if #available(macOS 26, *) { FilterSearchField() } else { LegacyFilterSearchField() }
         searchField.target = context.coordinator
         searchField.action = #selector(Coordinator.didChangeSearchString)
         searchField.recentsAutosaveName = self.autosaveName
@@ -94,7 +94,7 @@ struct FilterField: NSViewRepresentable {
 }
 
 
-private class InnerFilterField: NSSearchField {
+class FilterSearchField: NSSearchField {
     
     // MARK: Lifecycle
     
@@ -172,8 +172,8 @@ private extension NSSearchField {
 }
 
 
-@available(macOS, deprecated: 26, message: "Remember adding `final` to InnerFilterField when removing this subclass.")
-private class LegacyInnerFilterField: InnerFilterField {
+@available(macOS, deprecated: 26, message: "Remember adding `final` to FilterSearchField when removing this subclass.")
+class LegacyFilterSearchField: FilterSearchField {
     
     required init() {
         

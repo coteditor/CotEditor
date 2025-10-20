@@ -4,7 +4,7 @@ CotEditor is a lightweight plain-text editor designed for macOS. The project aim
 
 - __Requirement__: macOS Sequoia 15 or later
 - __Web Site__: <https://coteditor.com>
-- __Mac App Store__: <https://itunes.apple.com/app/coteditor/id1024640650?ls=1>
+- __Mac App Store__: <https://apps.apple.com/app/coteditor/id1024640650>
 - __Languages__: English, Czech, Dutch, French, German, Italian, Japanese, Korean, Polish, Portuguese, Spanish, Simplified Chinese, Traditional Chinese, and Turkish
 
 ![screenshot](screenshot@2x.png)
@@ -13,7 +13,7 @@ CotEditor is a lightweight plain-text editor designed for macOS. The project aim
 
 ## Source Code
 
-CotEditor is a purely macOS native application written in Swift. It adheres to Cocoa's document-based application architecture and respects the power of `NSTextView`.
+CotEditor is a purely macOS native application written in Swift. It adheres to Cocoa's document-based application architecture and respects the power of `NSTextView` and related text system APIs.
 
 
 ### Development Environment
@@ -33,22 +33,22 @@ CotEditor has its own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTI
 
 ## How to Build
 
-### Build for Ad-hoc usage
+### Build for ad‑hoc usage
 
 For those people who just want to build and play with CotEditor locally.
 
 1. Open `CotEditor.xcodeproj` in Xcode.
-1. Change to ad-hoc build mode:
+1. Switch to ad-hoc build mode:
     1. Open `Configurations/CodeSigning.xcconfig`.
     1. Comment out `#include "CodeSigning-Default.xcconfig"`.
     1. Uncomment `#include "CodeSigning-AdHoc.xcconfig"`.
-1. Build “CotEditor” scheme.
+1. Build the “CotEditor” scheme.
 
 
 ### Build for distribution
 
 1. Open `CotEditor.xcodeproj` in Xcode.
-1. Build “CotEditor” scheme.
+1. Build the “CotEditor” scheme.
 
 
 
@@ -58,4 +58,4 @@ For those people who just want to build and play with CotEditor locally.
 © 2011, 2014 usami-k,
 © 2013-2025 1024jp.
 
-The source code is licensed under the terms of the __Apache License, Version 2.0__. The image resources are licensed under the terms of the [__Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License__](https://creativecommons.org/licenses/by-nc-nd/4.0/). See [LICENSE](LICENSE) for details.
+The source code is licensed under the terms of the __Apache License, Version 2.0__. Image resources are licensed under the [__Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License__](https://creativecommons.org/licenses/by-nc-nd/4.0/). See [LICENSE](LICENSE) for details.

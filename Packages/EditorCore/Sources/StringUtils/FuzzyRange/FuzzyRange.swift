@@ -1,15 +1,15 @@
 //
-//  NSAttributedString.swift
-//  RegexHighlighting
+//  FuzzyRange.swift
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2024-07-09.
+//  Created by 1024jp on 2015-12-25.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,16 +24,18 @@
 //  limitations under the License.
 //
 
-import AppKit
-
-extension NSAttributedString {
+/// A range representation that allows negative values.
+///
+/// When a negative value is set, it generally counts the elements from the end of the sequence.
+public struct FuzzyRange: Equatable, Sendable {
     
-    convenience init(systemSymbolName: String, configuration: NSImage.SymbolConfiguration? = nil, accessibilityDescription: String? = nil) {
+    public var location: Int
+    public var length: Int = 0
+    
+    
+    public init(location: Int, length: Int) {
         
-        let attachment = NSTextAttachment()
-        attachment.image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: accessibilityDescription)?
-            .withSymbolConfiguration(configuration ?? .init())
-        
-        self.init(attachment: attachment)
+        self.location = location
+        self.length = length
     }
 }

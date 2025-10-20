@@ -1,6 +1,23 @@
 # Change Log
 
-6.0.4 (unreleased)
+6.1.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Introduce the filter feature in the file browser.
+- Introduce the “Insert comment delimiters after indent” option to the Edit settings pane.
+- Revert the "Append a space to comment delimiter" option to the Edit settings pane.
+
+
+### Improvements
+
+- Improve the algorithm to comment out block comments.
+- Ignore .git folders in the file browser.
+
+
+
+6.0.4 (756)
 --------------------------
 
 ### Improvements

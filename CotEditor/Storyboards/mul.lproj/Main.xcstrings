@@ -14894,7 +14894,7 @@
       }
     },
     "g34-YV-E6o.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Website\"; ObjectID = \"g34-YV-E6o\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Web Site\"; ObjectID = \"g34-YV-E6o\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -14912,7 +14912,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "CotEditor Website"
+            "value" : "CotEditor Web Site"
           }
         },
         "en-GB" : {

@@ -52,7 +52,7 @@ import AppKit
     
     // MARK: Actions
     
-    /// Opens the document file in the Finder.
+    /// Reveals the document file in the Finder.
     @IBAction func showInFinder(_ sender: Any?) {
         
         guard let fileURL else { return }

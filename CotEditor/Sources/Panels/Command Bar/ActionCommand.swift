@@ -73,6 +73,12 @@ extension ActionCommand {
     }
     
     
+    /// Attempts to match the given command string against this action's searchable paths and title.
+    ///
+    /// - Parameters:
+    ///   - command: The user-typed query to match. Must be non-empty.
+    /// - Returns: A tuple containing an ordered list of `MatchedPath` (with their highlight ranges) and the total score,
+    ///   or `nil` if the command doesn't match.
     func match(command: String) -> (result: [MatchedPath], score: Int)? {
         
         guard !command.isEmpty else { return nil }

@@ -27,6 +27,7 @@ import AppKit
 
 extension EditorTextView: SnippetInsertable {
     
+    /// Inserts a snippet selected from a menu to the insertion points.
     @IBAction func insertSnippet(_ sender: NSMenuItem) {
         
         guard let snippet = sender.representedObject as? Snippet else { return assertionFailure() }

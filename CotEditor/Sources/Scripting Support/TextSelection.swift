@@ -25,7 +25,6 @@
 //
 
 import AppKit
-import FuzzyRange
 import StringUtils
 import TextEditing
 
@@ -240,7 +239,7 @@ private enum OSAUnicodeNormalizationType: String {
     /// Uncomments the selection.
     @objc func handleCommentOut(_ command: NSScriptCommand) {
         
-        self.textView?.commentOut(types: .both, fromLineHead: false)
+        self.textView?.commentOut(types: .both, at: .selection)
     }
     
     

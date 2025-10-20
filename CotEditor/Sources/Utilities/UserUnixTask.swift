@@ -25,9 +25,6 @@
 
 import Foundation
 
-extension NSUserUnixTask: @retroactive @unchecked Sendable { }
-
-
 actor UserUnixTask {
     
     // MARK: Private Properties
@@ -37,6 +34,7 @@ actor UserUnixTask {
     private let outputPipe = Pipe()
     private let errorPipe = Pipe()
     private var buffer: AsyncStream<Data>?
+    private var isExecuting = false
     
     
     // MARK: Public Methods
@@ -58,6 +56,11 @@ actor UserUnixTask {
     /// - Parameter arguments: An array of Strings containing the script arguments.
     func execute(arguments: [String] = []) async throws {
         
+        guard !self.isExecuting else { return assertionFailure() }
+        
+        self.isExecuting = true
+        defer { self.isExecuting = false }
+
         // read output asynchronously for safe with huge output
         self.buffer = self.outputPipe.readingStream
         
@@ -94,7 +97,10 @@ actor UserUnixTask {
     var output: String? {
         
         get async {
-            guard let buffer = self.buffer else { return nil }
+            guard let buffer else { return nil }
+            
+            // clear buffer so it is consumed only once
+            self.buffer = nil
             
             async let data = buffer.reduce(into: Data()) { $0 += $1 }
             

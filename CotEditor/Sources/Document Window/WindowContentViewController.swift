@@ -102,12 +102,18 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 Divider()
                 StatusBar(model: self.statusBarModel)
             })
+            if #available(macOS 26.1, *) {  // FB18972484
+                controller.isHidden = !UserDefaults.standard[.showStatusBar]
+            }
             controller.automaticallyAppliesContentInsets = false
             self.contentViewItem.addBottomAlignedAccessoryViewController(controller)
             
             self.addSplitViewItem(self.contentViewItem)
-            // need to set `isHidden` after setting view item (2025-09, macOS 26, FB18972484)
-            controller.isHidden = !UserDefaults.standard[.showStatusBar]
+            
+            // need to set `isHidden` after setting view item (2025-09, macOS 26, fixed in macOS 26.1, FB18972484)
+            if #unavailable(macOS 26.1) {
+                controller.isHidden = !UserDefaults.standard[.showStatusBar]
+            }
             
         } else {
             let controller = NSHostingController(rootView: StatusBar(model: self.statusBarModel))

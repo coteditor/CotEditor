@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -103,12 +103,24 @@ final class HoleContentView: NSView {
 
 private extension NSView {
     
+    /// Returns all descendant subviews of the receiver that match the given type.
+    ///
+    /// - Parameters:
+    ///   - type: The view type to filter descendants by.
+    /// - Returns: An array containing all matching descendant views in depth-first order.
     func descendants<View: NSView>(type: View.Type = NSView.self) -> [View] {
         
         NSView.descendants(of: self) as [View]
     }
     
     
+    /// Recursively collects descendant subviews of the provided parent view, filtered by type.
+    ///
+    /// - Note: This is a helper used by `descendants(type:)` to perform the recursive traversal.
+    ///
+    /// - Parameters:
+    ///   - parenView: The view whose subview hierarchy will be traversed.
+    /// - Returns: An array of descendant views that can be cast to `View`.
     private class func descendants<View: NSView>(of parenView: NSView) -> [View] {
         
         parenView.subviews.flatMap { subview in

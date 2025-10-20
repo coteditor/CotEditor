@@ -54,9 +54,16 @@ struct SyntaxOutlineEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in
-                    RegexTextField(text: item.value.pattern, showsError: true)
-                        .style(.table)
-                        .focused($focusedField, equals: item.id)
+                    HStack {
+                        RegexTextField(text: item.value.pattern)
+                            .style(.table)
+                            .focused($focusedField, equals: item.id)
+                        if (try? NSRegularExpression(pattern: item.wrappedValue.value.pattern)) == nil {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .symbolRenderingMode(.multicolor)
+                                .help(SyntaxObject.Error.Code.regularExpression.localizedDescription)
+                        }
+                    }
                 }
                 
                 TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { item in

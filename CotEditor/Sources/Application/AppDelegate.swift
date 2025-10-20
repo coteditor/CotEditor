@@ -496,7 +496,11 @@ extension AppDelegate: NSMenuDelegate {
     
     /// Updates the Text Encoding menu.
     ///
-    /// - Parameter menu: The menu to update.
+    /// By considering the document, if the document's file encoding isn't already in the list, it is inserted at the top of the list.
+    ///
+    /// - Parameters:
+    ///   - menu: The menu to update.
+    ///   - checksDocument: `true` to consider the currently targeted document.
     private func updateEncodingMenu(_ menu: NSMenu, checksDocument: Bool = false) {
         
         let action = #selector((any EncodingChanging).changeEncoding)

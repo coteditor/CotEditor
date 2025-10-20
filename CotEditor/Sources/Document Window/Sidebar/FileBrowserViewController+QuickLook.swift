@@ -87,7 +87,7 @@ extension FileBrowserViewController: @MainActor QLPreviewPanelDataSource {
         
         guard let node = self.outlineView.item(atRow: row) as? FileNode else { return nil }
         
-        return node.fileURL as NSURL
+        return node.file.fileURL as NSURL
     }
 }
 

@@ -101,6 +101,9 @@ extension SyntaxObject {
     }
     
     
+    /// Updates the content with the given value.
+    ///
+    /// - Parameter value: The new value.
     func update(with value: Value) {
         
         self.kind = value.kind
@@ -128,6 +131,7 @@ extension SyntaxObject {
     }
     
     
+    /// The value struct.
     var value: Value {
         
         Value(kind: self.kind,

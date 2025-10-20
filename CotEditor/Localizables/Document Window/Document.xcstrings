@@ -2789,8 +2789,7 @@
         }
       }
     },
-    "FileNode.Kind.archive.label" : {
-      "comment" : "accessibility description for icon in file browser",
+    "File.Kind.archive.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2885,8 +2884,7 @@
         }
       }
     },
-    "FileNode.Kind.audio.label" : {
-      "comment" : "accessibility description for icon in file browser",
+    "File.Kind.audio.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2981,8 +2979,7 @@
         }
       }
     },
-    "FileNode.Kind.folder.label" : {
-      "comment" : "accessibility description for icon in file browser",
+    "File.Kind.folder.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -3077,8 +3074,7 @@
         }
       }
     },
-    "FileNode.Kind.general.label" : {
-      "comment" : "accessibility description for icon in file browser",
+    "File.Kind.general.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -3173,8 +3169,7 @@
         }
       }
     },
-    "FileNode.Kind.image.label" : {
-      "comment" : "accessibility description for icon in file browser",
+    "File.Kind.image.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -3269,8 +3264,7 @@
         }
       }
     },
-    "FileNode.Kind.movie.label" : {
-      "comment" : "accessibility description for icon in file browser",
+    "File.Kind.movie.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

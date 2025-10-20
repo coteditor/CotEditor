@@ -102,4 +102,13 @@ struct NSRangeTests {
         #expect([NSRange(5..<100), NSRange(1..<3), NSRange(2..<3)].union == NSRange(1..<100))
         #expect([NSRange(5..<9), NSRange(location: NSNotFound, length: 0), NSRange(1..<3)].union == NSRange(1..<9))
     }
+    
+    
+    @Test func merge() {
+        
+        #expect([NSRange(1..<2), NSRange(2..<3)].merged == [NSRange(1..<3)])
+        #expect([NSRange(1..<3), NSRange(2..<3)].merged == [NSRange(1..<3)])
+        #expect([NSRange(1..<2), NSRange(3..<4)].merged == [NSRange(1..<2), NSRange(3..<4)])
+        #expect([NSRange(1..<2), NSRange(3..<4), NSRange(1..<3)].merged == [NSRange(1..<4)])
+    }
 }
