@@ -47,7 +47,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
     
-    private lazy var filterDebouncer = Debouncer { [weak self] in self?.updateFilter() }
+    private var filterTask: Task<Void, any Error>?
     private var defaultObservers: Set<AnyCancellable> = []
     private var scrollObservers: [any NSObjectProtocol] = []
     
@@ -605,7 +605,13 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @objc private func filterTextDidChange(_ sender: NSSearchField) {
         
         self.filterQuery = sender.stringValue
-        self.filterDebouncer.schedule(delay: .seconds(0.5))
+        
+        self.filterTask?.cancel()
+        self.filterTask = Task { [weak self] in
+            try await Task.sleep(for: .seconds(0.5))
+            
+            self?.updateFilter()
+        }
     }
     
     
