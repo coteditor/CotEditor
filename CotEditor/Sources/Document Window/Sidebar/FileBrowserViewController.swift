@@ -39,6 +39,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
     @ViewLoading private var messageField: NSTextField
+    @ViewLoading private var filterProgressView: NSView
     
     private var showsHiddenFiles: Bool
     private var filterQuery: String = ""
@@ -127,12 +128,21 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         filterField.action = #selector(filterTextDidChange)
         filterField.recentsAutosaveName = "FileBrowserSearch"
         
+        let filterProgressView = NSHostingView(
+            rootView: ProgressView(String(localized: "Searching in folder…", table: "Document"))
+                .labelsHidden()
+                .controlSize(.small)
+        )
+        filterProgressView.isHidden = true
+        
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
         (footerView as? NSVisualEffectView)?.material = .sidebar
         addButton.translatesAutoresizingMaskIntoConstraints = false
         filterField.translatesAutoresizingMaskIntoConstraints = false
+        filterProgressView.translatesAutoresizingMaskIntoConstraints = false
         footerView.addSubview(addButton)
         footerView.addSubview(filterField)
+        footerView.addSubview(filterProgressView)
         
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
@@ -140,6 +150,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             filterField.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
             filterField.leadingAnchor.constraint(equalToSystemSpacingAfter: addButton.trailingAnchor, multiplier: 0.5),
             filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: isLiquidGlass ? -7 : -5),
+            filterProgressView.centerYAnchor.constraint(equalTo: filterField.centerYAnchor),
+            filterProgressView.trailingAnchor.constraint(equalTo: filterField.trailingAnchor, constant: -24),
         ])
         
         self.view = NSView()
@@ -175,6 +187,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
         self.messageField = messageField
+        self.filterProgressView = filterProgressView
     }
     
     
@@ -628,6 +641,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         try Task.checkCancellation()
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
+        
+        self.filterProgressView.isHidden = false
+        defer { self.filterProgressView.isHidden = true }
         
         // store item expansion states
         if self.isFiltering, self.expandedItems == nil {
