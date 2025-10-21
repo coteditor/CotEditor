@@ -255,7 +255,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 .sink { [unowned self] showsHiddenFiles in
                     self.showsHiddenFiles = showsHiddenFiles
                     if self.isFiltering {
-                        self.updateFilter()
+                        Task { try await self.updateFilter() }
                     } else {
                         self.outlineView.reloadData()
                     }
@@ -608,8 +608,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.filterTask?.cancel()
         self.filterTask = Task { [weak self] in
             try await Task.sleep(for: .seconds(0.5))
-            
-            self?.updateFilter()
+            try await self?.updateFilter()
         }
     }
     
@@ -624,7 +623,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     
     /// Filters nodes in the outline view.
-    private func updateFilter() {
+    private func updateFilter() async throws {
+        
+        try Task.checkCancellation()
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
         
@@ -638,7 +639,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         // filter
         if self.isFiltering {
-            let matchedNodes = rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
+            let matchedNodes = try await rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
                 .filter { $0 != rootNode }
             let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
                 .sorted(using: KeyPathComparator(\.parents.count))
