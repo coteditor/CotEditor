@@ -30,7 +30,6 @@ import Combine
 import AudioToolbox
 import Defaults
 import ControlUI
-import StringUtils
 import URLUtils
 
 final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
@@ -641,8 +640,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         if self.isFiltering {
             let matchedNodes = rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
                 .filter { $0 != rootNode }
+            let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
+                .sorted(using: KeyPathComparator(\.parents.count))
+                .prefix(1_000)  // limit the number of items to avoid getting stuck
+            
             self.outlineView.reloadData()
-            for node in matchedNodes.flatMap({ $0.parents.reversed() }).uniqued {
+            for node in nodesToExpand {
                 self.outlineView.expandItem(node)
             }
             self.messageField.isHidden = !matchedNodes.isEmpty
