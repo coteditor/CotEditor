@@ -344,7 +344,7 @@ extension FileNode {
     ///   - searchString: The text to search for within the file name.
     ///   - includesHiddenFiles: If `true`, includes hidden files and folders in the search.
     /// - Returns: An array of nodes that match the search string within this subtree.
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError` or errors on file reading.
     @discardableResult func filter(with searchString: String, includesHiddenFiles: Bool) async throws -> [FileNode] {
         
         assert(!searchString.isEmpty)

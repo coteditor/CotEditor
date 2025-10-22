@@ -267,7 +267,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 .sink { [unowned self] showsHiddenFiles in
                     self.showsHiddenFiles = showsHiddenFiles
                     if self.isFiltering {
-                        Task { try await self.updateFilter() }
+                        Task { try await self.updateFilter(updatesExpansion: false) }
                     } else {
                         self.outlineView.reloadData()
                     }
@@ -635,7 +635,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     
     /// Filters nodes in the outline view.
-    private func updateFilter() async throws {
+    ///
+    /// - Parameters:
+    ///   - updatesExpansion: Whether to expand matched parent nodes after filtering.
+    /// - Throws: `CancellationError` or errors on file reading.
+    private func updateFilter(updatesExpansion: Bool = true) async throws {
         
         try Task.checkCancellation()
         
@@ -656,13 +660,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         if self.isFiltering {
             let matchedNodes = try await rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
                 .filter { $0 != rootNode }
-            let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
-                .sorted(using: KeyPathComparator(\.parents.count))
-                .prefix(1_000)  // limit the number of items to avoid getting stuck
-            
             self.outlineView.reloadData()
-            for node in nodesToExpand {
-                self.outlineView.expandItem(node)
+            
+            if updatesExpansion {
+                let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
+                    .sorted(using: KeyPathComparator(\.parents.count))
+                    .prefix(1_000)  // limit the number of items to avoid getting stuck
+                for node in nodesToExpand {
+                    self.outlineView.expandItem(node)
+                }
             }
             self.messageField.isHidden = !matchedNodes.isEmpty
             
