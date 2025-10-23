@@ -4669,7 +4669,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@  Kopie %2$lld"
+            "value" : "%1$@ Kopie %2$lld"
           }
         },
         "en" : {
@@ -4765,7 +4765,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@  Kopie"
+            "value" : "%@ Kopie"
           }
         },
         "en" : {
@@ -11444,7 +11444,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossibile caricare  “%@”."
+            "value" : "Impossibile caricare “%@”."
           }
         },
         "ja" : {
