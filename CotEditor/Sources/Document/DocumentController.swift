@@ -372,9 +372,6 @@ final class DocumentController: NSDocumentController {
         }
         transientDocument.close()
         
-        // notify accessibility clients about the value replacement of the transient document with opened document
-        document.textViews.forEach { NSAccessibility.post(element: $0, notification: .valueChanged) }
-        
         // move focus on editor
         document.windowControllers.first?.window?.makeFirstResponder(document.textView)
     }
