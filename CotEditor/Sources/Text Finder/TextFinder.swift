@@ -631,7 +631,7 @@ struct FindAllMatch: Identifiable {
     
     
     /// Notifies the find/replacement result to the user.
-    /// 
+    ///
     /// - Parameters:
     ///   - action: The find action type.
     ///   - count: The number o the items proceeded.

@@ -31,7 +31,7 @@ import TextFind
 extension NSTextView {
     
     /// Highlights all matches in the textView.
-    /// 
+    ///
     /// - Parameters:
     ///   - definition: The text view where highlighting text.
     ///   - inSelection: Whether find string only in selectedRanges.

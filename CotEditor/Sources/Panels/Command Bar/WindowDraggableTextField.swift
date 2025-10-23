@@ -129,7 +129,7 @@ private final class DraggableTextField: NSTextField {
     }
     
     
-    override var mouseDownCanMoveWindow: Bool  {
+    override var mouseDownCanMoveWindow: Bool {
         
         true
     }

@@ -30,7 +30,7 @@ final class SettingsWindow: NSWindow {
     
     // MARK: Window Methods
     
-    override var canBecomeMain: Bool  {
+    override var canBecomeMain: Bool {
         
         if #available(macOS 26, *) {
             true  // workaround ShareLink issue (2025-08, macOS 26, FB19287270)
