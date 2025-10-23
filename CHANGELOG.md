@@ -14,6 +14,7 @@
 
 - Improve the algorithm to comment out block comments.
 - Ignore .git folders in the file browser.
+- Prevent moving focus to the editor when selecting a document in the file browser.
 
 
 
