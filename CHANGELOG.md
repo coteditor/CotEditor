@@ -7,7 +7,7 @@
 
 - Introduce the filter feature in the file browser.
 - Introduce the “Insert comment delimiters after indent” option to the Edit settings pane.
-- Revert the "Append a space to comment delimiter" option to the Edit settings pane.
+- Revert the “Append a space to comment delimiter” option to the Edit settings pane.
 
 
 ### Improvements
@@ -15,6 +15,7 @@
 - Improve the algorithm to comment out block comments.
 - Ignore .git folders in the file browser.
 - Prevent moving focus to the editor when selecting a document in the file browser.
+- [dev] Update the build environment to Xcode 26.1 beta 3.
 
 
 
