@@ -1160,7 +1160,7 @@
 - When the file encoding is incompatible with the document contents, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.
 - Suppress displaying the dialog for saving in an incompatible encoding when the user once allowed it.
 - Update the C syntax to improve highlighting numbers.
--  Deprecate the future to interpret `Shift_JIS` as Shift JIS or Shift JIS X0213 according to the user's priority setting when referring to encoding declarations in documents in encoding detection.
+- Deprecate the future to interpret `Shift_JIS` as Shift JIS or Shift JIS X0213 according to the user's priority setting when referring to encoding declarations in documents in encoding detection.
 - Improve stability.
 - [trivial] Improve alert messages for incompatible text encodings.
 
@@ -3091,7 +3091,7 @@
 
 - Fix an issue where a document window zombie appeared when the window was closed while detached character info popovers remain.
 - Fix an issue where a blank progress dialog for a long syntax highlighting could rarely remain when the document is updated while parsing.
-- Fix an issue where the `\x{hhhh}`, `\0ooo`, and  `\$`  style character expressions in the regular expression pattern were not syntax-highlighted correctly.
+- Fix an issue where the `\x{hhhh}`, `\0ooo`, and `\$` style character expressions in the regular expression pattern were not syntax-highlighted correctly.
 - Fix an issue where the application could rarely crash when printing a document.
 - Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.
 
@@ -3395,7 +3395,7 @@
 - Add “Hide extension” option to the Save dialog.
 - Use the system appearance in the input candidate window even when the theme has a dark background color.
 - Give some feedback about the search result in VoiceOver.
-- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
+- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and `:`.
 - Hide unused items in the font panel toolbar.
 - Optimize the performance of finding the matching brace to highlight.
 - Optimize the performance of line number drawing.
@@ -4415,7 +4415,7 @@
 
 ### Improvements
 
-- Change the behavior of  `⌘←` so that the cursor moves first to the beginning of the visual lines, then to the column right after indentation, and finally to the beginning of the line.
+- Change the behavior of `⌘←` so that the cursor moves first to the beginning of the visual lines, then to the column right after indentation, and finally to the beginning of the line.
 - Remove “Open Hidden” command (Use “Show hidden files” option in the Open dialog instead).
 - Display the Open dialog on launch if so set even when iCloud storage is disabled.
 - Improve stability on text encoding change.
