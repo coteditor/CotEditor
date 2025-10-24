@@ -51,6 +51,12 @@
             "value" : "コメント記号にスペースを追加"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주석 구분자에 공백 추가"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -60,25 +66,25 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anexar espaço ao delimitador de comentários"
+            "value" : "Adicionar um espaço ao delimitador de comentário"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yorum sınırlayıcısına bir boşluk iliştir"
+            "value" : "Sınırlayıcıyı yorum yapmak için bir boşluk iliştir"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "在注释符号后追加空格"
+            "state" : "needs_review",
+            "value" : "在注释定界符后附加空格"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在註釋符號後追加空格"
+            "value" : "在註解定界符後附加空格"
           }
         }
       }
@@ -1165,16 +1171,52 @@
             "value" : "Insérer des délimiteurs de commentaire après l'indentation"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci delimitatore di commento dopo il rientro"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "インデントのあとにコメント記号を挿入"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "들여쓰기 뒤에 주석 구분자 삽입"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Voeg commentaarscheidingstekens in na inspringing"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserir delimitadores de comentário após a indentação"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Girinti sonrası yorum sınırlayıcıları gir"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "在缩进后插入注释定界符"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在縮排後插入註解定界符"
           }
         }
       }

@@ -7818,16 +7818,52 @@
             "value" : "Recherche dans le dossier…"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ricerca nella cartella…"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "フォルダ内を検索中…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폴더에서 검색 중…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoeken in map…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procurando na pasta…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasörde aranıyor…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "正在文件夹中搜索…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在資料夾中搜尋…"
           }
         }
       }

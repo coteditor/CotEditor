@@ -213,16 +213,52 @@
             "value" : "Le comportement des commentaires peut désormais être personnalisé, ce qui rend l'utilisation de l'éditeur plus naturelle."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E' possibile personalizzare il comportamento dei commenti, rendendo l'utilizzo dell'editor più naturale."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメントアウトの振る舞いが設定できるようになり、より手に馴染むエディタになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주석 동작을 사용자 설정할 수 있어 편집기를 더욱 자연스럽게 사용할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het gedrag van opmerkingen kan nu worden aangepast, waardoor de editor natuurlijker aanvoelt in het gebruik."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O comportamento dos comentários agora pode ser personalizado, fazendo o editor parecer mais natural de usar."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yorumların davranışı artık özelleştirilebiliyor; böylece düzenleyiciyi kullanmak daha doğal hissettiriyor."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "现在可以自定义注释的行为，让编辑器使用起来更自然。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在可以自訂註解的行為，讓編輯器使用起來更自然。"
           }
         }
       }
@@ -262,16 +298,52 @@
             "value" : "Plus de commentaires intelligents"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commenti migliorati"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "もっとスマートなコメントアウト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 스마트한 주석 처리"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Meer slimme opmerkingen uit"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comentário mais inteligente"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yoruma dönüştürmek artık daha akıllı"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "更智能的注释"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更智能的註解"
           }
         }
       }
@@ -309,16 +381,52 @@
             "value" : "Le navigateur de fichiers permet désormais de filtrer les éléments par nom de fichier."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adesso il browser dei file consente di filtrare gli elementi in base al nome del file."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルブラウザでファイル名による項目のフィルタリングができるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 브라우저에서 파일 이름으로 항목을 필터링할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De bestandskiezer maakt het nu mogelijk om items op bestandsnaam te filteren."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O navegador de arquivos agora permite filtrar itens por nomes de arquivos."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosya tarayıcısı artık öğeleri dosya adına göre süzmeyi destekliyor."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "文件浏览器现在可以根据文件名过滤项目。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案瀏覽器現在可以依檔案名稱篩選項目。"
           }
         }
       }
@@ -356,16 +464,52 @@
             "value" : "Rechercher des documents dans le navigateur de fichiers"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trova documenti nel browser dei file"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルブラウザで書類検索"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 브라우저에서 문서 찾기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoek documenten in de bestandskiezer"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encontre documentos no navegador de arquivos"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosya tarayıcısında belgeler bulun"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "在文件浏览器中查找文档"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在檔案瀏覽器中尋找文件"
           }
         }
       }
