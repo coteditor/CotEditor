@@ -228,7 +228,7 @@ struct EditorCount: Equatable {
         
         let added = self.types.subtracting(oldValue)
         
-        if added.contains(.count) {
+        if !added.isDisjoint(with: .count) {
             self.invalidateContent()
         }
         if !added.isEmpty {

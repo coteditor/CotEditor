@@ -3,6 +3,10 @@
 6.1.0.beta-2 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.
+
 
 
 6.1.0.beta (761)
@@ -42,7 +46,6 @@
 ### Fixes
 
 - Workaround an issue on macOS 26 where the editor’s scroller tracks have a different style compared to standard scrollers.
-- Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.
 - Fix an issue in the vertical text orientation where the line number view is tucked beneath the titlebar when the navigation bar is hidden.
 - Fix an issue in the multiple replacement window where the text selection is unexpectedly canceled.
 - Fix an issue where the editor in a document opened by replacing with a blank document doesn’t initially have focus.
