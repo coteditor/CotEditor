@@ -30,9 +30,6 @@ import StringUtils
 import TextFind
 import ValueRange
 
-extension NSAttributedString: @retroactive @unchecked Sendable { }
-
-
 @MainActor @objc protocol TextFinderClient: AnyObject {
     
     func performEditorTextFinderAction(_ sender: Any?)
@@ -56,7 +53,7 @@ struct FindAllMatch: Identifiable {
     var range: NSRange
     var lineNumber: Int
     var inlineLocation: Int
-    var attributedLineString: NSAttributedString
+    nonisolated(unsafe) var attributedLineString: NSAttributedString
 }
 
 
