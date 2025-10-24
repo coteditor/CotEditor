@@ -51,6 +51,12 @@
             "value" : "コメント記号にスペースを追加"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Voeg een spatie toe aan de commentaarscheidingstekens"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
