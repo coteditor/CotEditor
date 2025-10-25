@@ -3,6 +3,11 @@
 6.1.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Add missing localizations.
+
+
 ### Fixes
 
 - Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.
