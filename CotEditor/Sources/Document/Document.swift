@@ -270,7 +270,6 @@ extension NSTextView: EditorCounter.Source { }
                     .map { $0.object as! NSTextStorage }
                     .map(\.string.isEmpty)
                     .removeDuplicates()
-                    .receive(on: RunLoop.main)
                     .assign(to: \.isWhitePaper, on: windowController)
             }
             

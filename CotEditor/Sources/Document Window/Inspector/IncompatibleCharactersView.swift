@@ -184,17 +184,12 @@ private extension IncompatibleCharactersView.Model {
                 .map { $0.object as! NSTextStorage }
                 .filter { $0.editedMask.contains(.editedCharacters) }
                 .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
-                .receive(on: RunLoop.main)
-                .sink { [weak self] _ in
-                    self?.invalidateIncompatibleCharacters()
-                }
+                .sink { [weak self] _ in self?.invalidateIncompatibleCharacters() }
                 .store(in: &self.observers)
             document.$fileEncoding
                 .map(\.encoding)
                 .removeDuplicates()
-                .sink { [weak self] _ in
-                    self?.invalidateIncompatibleCharacters()
-                }
+                .sink { [weak self] _ in self?.invalidateIncompatibleCharacters() }
                 .store(in: &self.observers)
             
         } else {
