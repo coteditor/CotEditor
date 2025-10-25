@@ -7856,7 +7856,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "正在文件夹中搜索…"
           }
         },

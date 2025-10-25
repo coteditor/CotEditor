@@ -251,8 +251,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "现在可以自定义注释的行为，让编辑器使用起来更自然。"
+            "state" : "translated",
+            "value" : "现在可以自定义注释行为，让编辑器的使用更加自然。"
           }
         },
         "zh-Hant" : {
@@ -336,8 +336,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "更智能的注释"
+            "state" : "translated",
+            "value" : "更智能的注释功能"
           }
         },
         "zh-Hant" : {
@@ -419,7 +419,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "文件浏览器现在可以根据文件名过滤项目。"
           }
         },
@@ -502,7 +502,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "在文件浏览器中查找文档"
           }
         },

@@ -77,8 +77,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "在注释定界符后附加空格"
+            "state" : "translated",
+            "value" : "在注释符号后追加空格"
           }
         },
         "zh-Hant" : {
@@ -1209,8 +1209,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "在缩进后插入注释定界符"
+            "state" : "translated",
+            "value" : "在缩进后插入注释符号"
           }
         },
         "zh-Hant" : {
