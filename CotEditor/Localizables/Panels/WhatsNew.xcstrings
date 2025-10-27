@@ -243,6 +243,12 @@
             "value" : "Het gedrag van opmerkingen kan nu worden aangepast, waardoor de editor natuurlijker aanvoelt in het gebruik."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teraz możesz dostosować zachowanie komentarzy, dzięki czemu korzystanie z edytora stanie się bardziej naturalne."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +340,12 @@
             "value" : "Meer slimme opmerkingen uit"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bardziej sprytne komentowanie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -423,6 +435,12 @@
             "value" : "De bestandskiezer maakt het nu mogelijk om items op bestandsnaam te filteren."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przeglądarka plików umożliwia teraz filtrowanie pozycji według nazw plików."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -510,6 +528,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoek documenten in de bestandskiezer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź dokumenty w przeglądarce plików"
           }
         },
         "pt" : {
