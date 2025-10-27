@@ -57,7 +57,7 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
         
         // cache bundled setting names
         self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)!
-            .map { Self.settingName(from: $0) }
+            .map(Self.settingName(from:))
             .sorted(using: .localizedStandard)
         
         // cache user setting names
@@ -193,7 +193,7 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     // MARK: Setting File Managing
     
     /// Loads the setting from the data.
-    nonisolated func loadSetting(from data: Data) throws -> sending Setting {
+    nonisolated static func loadSetting(from data: Data) throws -> sending Setting {
         
         try JSONDecoder().decode(Setting.self, from: data)
     }
@@ -203,7 +203,7 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     func loadUserSettings() {
         
         let userSettingNames = self.userSettingFileURLs
-            .map { Self.settingName(from: $0) }
+            .map(Self.settingName(from:))
         
         let settingNames = Set(self.bundledSettingNames + userSettingNames)
             .sorted(using: .localizedStandard)

@@ -233,6 +233,13 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     
     // MARK: Setting File Managing
     
+    /// Loads the setting from the data.
+    nonisolated static func loadSetting(from data: Data) throws -> sending Setting {
+        
+        try YAMLDecoder().decode(Setting.self, from: data)
+    }
+    
+    
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
     ///
     /// - Parameter name: The setting name.
@@ -266,18 +273,11 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    /// Loads the setting from the data.
-    nonisolated func loadSetting(from data: Data) throws -> sending Setting {
-        
-        try YAMLDecoder().decode(Setting.self, from: data)
-    }
-    
-    
     /// Loads settings in the user domain.
     func loadUserSettings() {
         
         let userSettingNames = self.userSettingFileURLs
-            .map { Self.settingName(from: $0) }
+            .map(Self.settingName(from:))
         
         let settingNames = Set(self.bundledSettingNames + userSettingNames)
             .sorted(using: .localizedStandard)
