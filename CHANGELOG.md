@@ -13,11 +13,6 @@
 - Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.
 
 
-### Known Issues
-
-- Some text are not localized yet to Polish.
-
-
 
 6.1.0-beta (761)
 --------------------------
