@@ -70,6 +70,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var themeName: String?
     private var theme: Theme?  { self.focusedTextView?.theme }
     
+    private var editableObserver: Task<Void, Never>?
     private var observers: Set<AnyCancellable> = []
     private var defaultsObservers: Set<AnyCancellable> = []
     
@@ -105,6 +106,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     isolated deinit {
         NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: nil)
+        
+        self.editableObserver?.cancel()
     }
     
     
@@ -140,6 +143,13 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                                                name: NSTextStorage.didProcessEditingNotification,
                                                object: self.document.textStorage)
         
+        // observe editable change
+        self.editableObserver = Task { [weak self, document] in
+            for await isEditable in Observations({ document.isEditable }) {
+                self?.textViews.forEach { $0.isEditable = isEditable }
+            }
+        }
+        
         // observe
         self.observers = [
             // observe theme change
@@ -151,12 +161,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 .compactMap(\.new)
                 .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
                 .sink { [weak self] in self?.setTheme(name: $0) },
-            
-            // observe editable change
-            self.document.$isEditable
-                .sink { [weak self] isEditable in
-                    self?.textViews.forEach { $0.isEditable = isEditable }
-                },
             
             // observe appearance change for theme toggle
             self.view.publisher(for: \.effectiveAppearance)

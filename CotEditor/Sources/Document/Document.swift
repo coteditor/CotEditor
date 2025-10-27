@@ -71,7 +71,7 @@ extension NSTextView: EditorCounter.Source { }
     
     // MARK: Public Properties
     
-    @ObservationIgnored @Published @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }  // @objc for AppleScript support
+    @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }  // @objc for AppleScript support
     var isTransient = false  // untitled & empty document that was created automatically
     
     nonisolated var isVerticalText: Bool {

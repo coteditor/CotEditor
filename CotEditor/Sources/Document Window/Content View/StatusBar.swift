@@ -65,7 +65,7 @@ struct StatusBar: View {
             }
             
             if let document = self.model.document as? Document {
-                NotEditableBadge(document: document)
+                NotEditableBadge(isEditable: document.isEditable)
                 EditorCountView(result: document.counter.result)
                     .layoutPriority(-1)
             }
@@ -195,21 +195,18 @@ private struct CoffeeBadge: View {
 
 private struct NotEditableBadge: View {
     
-    var document: Document
-    
-    @State private var isEditable: Bool = true
+    var isEditable: Bool
     
     
     var body: some View {
         
         HStack {
-            if self.isEditable == false {
+            if !self.isEditable {
                 Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil.slash")
                     .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
                     .labelStyle(.iconOnly)
             }
         }
-        .onReceive(self.document.$isEditable) { self.isEditable = $0 }
         .animation(.default.speed(1.5), value: self.isEditable)
     }
 }
@@ -236,7 +233,6 @@ private struct DocumentStatusBar: View {
     
     private var document: Document
     
-    @State private var isEditable: Bool
     @State private var lineEnding: LineEnding
     @State private var fileEncoding: FileEncoding
     @State private var encodingManager: EncodingManager = .shared
@@ -245,7 +241,6 @@ private struct DocumentStatusBar: View {
     init(document: Document) {
         
         self.document = document
-        self.isEditable = document.isEditable
         self.lineEnding = document.lineEnding
         self.fileEncoding = document.fileEncoding
     }
@@ -282,12 +277,11 @@ private struct DocumentStatusBar: View {
             LineEndingPicker(String(localized: "Line Endings", table: "Document"), selection: $lineEnding) { lineEnding in
                 self.document.changeLineEnding(to: lineEnding)
             }
-            .disabled(!self.isEditable)
+            .disabled(!self.document.isEditable)
             .help(String(localized: "Line Endings", table: "Document"))
             .accessibilityLabel(String(localized: "Line Endings", table: "Document"))
             .frame(width: 48)
         }
-        .onReceive(self.document.$isEditable) { self.isEditable = $0 }
         .onReceive(self.document.$lineEnding) { self.lineEnding = $0 }
         .onReceive(self.document.$fileEncoding) { self.fileEncoding = $0 }
     }
