@@ -28,6 +28,9 @@ import AppKit
 import StringUtils
 import TextEditing
 
+extension NSScriptObjectSpecifier: @retroactive @unchecked Sendable { }
+
+
 private enum OSACaseType: String {
     
     case lowercase = "cClw"

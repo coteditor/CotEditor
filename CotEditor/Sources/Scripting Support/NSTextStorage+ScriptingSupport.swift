@@ -25,7 +25,10 @@
 
 import AppKit.NSTextStorage
 
-extension NSTextStorage: @retroactive @unchecked Sendable {
+extension NSTextStorage: @retroactive @unchecked Sendable { }
+
+
+extension NSTextStorage {
     
     /// Observes text storage update for in case when a part of the contents are directly edited from AppleScript.
     ///

@@ -33,7 +33,6 @@ import URLUtils
 // -> According to the documentation, NSAppleEventDescriptor is just a wrapper of AEDesc,
 //    so seems safe to conform to Sendable. (macOS 12, Xcode 14.0, FB12571431)
 extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
-extension NSScriptObjectSpecifier: @retroactive @unchecked Sendable { }
 
 
 @MainActor final class ScriptManager: NSObject, NSFilePresenter {
