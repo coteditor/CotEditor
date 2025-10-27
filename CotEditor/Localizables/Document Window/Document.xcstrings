@@ -7848,6 +7848,12 @@
             "value" : "Zoeken in map…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyszukiwanie w folderze…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

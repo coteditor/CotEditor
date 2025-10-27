@@ -435,7 +435,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj nowy element"
+            "value" : "Dodaj nową pozycję"
           }
         },
         "pt" : {
@@ -625,7 +625,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usuń wybrane elementy"
+            "value" : "Usuń zaznaczone pozycje"
           }
         },
         "pt" : {
@@ -8530,7 +8530,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybrano wiele elementów"
+            "value" : "Wybrano wiele pozycji"
           }
         },
         "pt" : {
@@ -8625,7 +8625,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie wybrano żadnego elementu"
+            "value" : "Nie wybrano żadnej pozycji"
           }
         },
         "pt" : {

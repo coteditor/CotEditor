@@ -63,6 +63,12 @@
             "value" : "Voeg een spatie toe aan de commentaarscheidingstekens"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj spację do ograniczników komentarza"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1199,6 +1205,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Voeg commentaarscheidingstekens in na inspringing"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstawiaj ograniczniki komentarzy po wcięciu"
           }
         },
         "pt" : {
