@@ -93,9 +93,9 @@ extension CurrentLineHighlighting {
         
         return editingRanges
             .map(\.rangeValue)
-            .map { (self.string as NSString).lineRange(for: $0) }
+            .map((self.string as NSString).lineRange(for:))
             .reduce(into: [NSRange]()) { ranges, range in
-                if range.isEmpty && range.location == self.string.length {
+                if range.isEmpty, range.location == self.string.length {
                     ranges.append(range)
                 } else if ranges.last?.touches(range) == true {
                     ranges[ranges.endIndex - 1].formUnion(range)
