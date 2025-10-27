@@ -15,7 +15,7 @@
 
 ### Known Issues
 
-- Some text are not localized yet to Czech and Polish.
+- Some text are not localized yet to Polish.
 
 
 
