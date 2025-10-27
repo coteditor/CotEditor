@@ -34,10 +34,6 @@ import FileEncoding
 import LineEnding
 import StringUtils
 
-@available(macOS, deprecated: 26)
-let isLiquidGlass = if #available(macOS 26, *) { true } else { false }
-
-
 extension Logger {
     
     static let app = Logger(subsystem: "com.coteditor.CotEditor", category: "application")

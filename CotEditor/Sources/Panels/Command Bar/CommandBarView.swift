@@ -130,14 +130,7 @@ struct CommandBarView: View {
             self.move(down: true) ? .handled : .ignored
         }
         .frame(width: 500)
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .glassEffect(in: .rect)
-            } else {
-                content
-            }
-        }
+        .glassEffect(in: .rect)
     }
     
     

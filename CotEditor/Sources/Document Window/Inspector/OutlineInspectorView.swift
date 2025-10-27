@@ -306,14 +306,7 @@ private struct OutlineRowView: View {
                             .padding(.trailing, 4)
                     }
                 }
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .labelIconToTitleSpacing(4)
-                    } else {
-                        content
-                    }
-                }
+                .labelIconToTitleSpacing(4)
             }
         }
     }

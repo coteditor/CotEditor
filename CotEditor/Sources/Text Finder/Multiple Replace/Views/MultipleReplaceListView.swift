@@ -68,20 +68,10 @@ struct MultipleReplaceListView: View {
                 }
             }
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .safeAreaBar(edge: .bottom) {
-                        self.bottomAccessoryView
-                    }
-                    .scrollEdgeEffectStyle(.hard, for: .bottom)
-            } else {
-                content
-                    .safeAreaInset(edge: .bottom, spacing: 0) {
-                        self.bottomAccessoryView
-                    }
-            }
+        .safeAreaBar(edge: .bottom) {
+            self.bottomAccessoryView
         }
+        .scrollEdgeEffectStyle(.hard, for: .bottom)
         .contextMenu(forSelectionType: String.self) { selections in
             if let selection = selections.first {
                 self.menu(for: selection, isContext: true)

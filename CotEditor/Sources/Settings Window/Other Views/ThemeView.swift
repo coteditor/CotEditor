@@ -187,28 +187,13 @@ private struct ThemeListView: View {
             }
             .listRowSeparator(.hidden)
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .safeAreaBar(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                            self.bottomAccessoryView
-                        }
-                    }
-                    .scrollEdgeEffectStyle(.hard, for: .bottom)
-            } else {
-                content
-                    .safeAreaInset(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                                .padding(.horizontal, 4)
-                            self.bottomAccessoryView
-                        }
-                        .background()
-                    }
+        .safeAreaBar(edge: .bottom) {
+            VStack(spacing: 0) {
+                Divider()
+                self.bottomAccessoryView
             }
         }
+        .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dropDestination(for: TransferableTheme.self) { items, _ in
             var succeed = false
             for item in items {

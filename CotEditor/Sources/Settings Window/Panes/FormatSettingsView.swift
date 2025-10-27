@@ -99,14 +99,6 @@ struct FormatSettingsView: View {
                     EmptyView()
                 }
                 .accessibilityLabeledPair(role: .content, id: "lineEnding", in: self.accessibility)
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                    } else {
-                        content
-                            .fixedSize()
-                    }
-                }
             }
             
             Divider()
@@ -129,14 +121,7 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .buttonSizing(.flexible)
-                    } else {
-                        content
-                    }
-                }
+                .buttonSizing(.flexible)
                 .frame(maxWidth: 260)
                 .accessibilityLabeledPair(role: .content, id: "fileEncoding", in: self.accessibility)
             }
@@ -189,14 +174,7 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .buttonSizing(.flexible)
-                    } else {
-                        content
-                    }
-                }
+                .buttonSizing(.flexible)
                 .frame(maxWidth: 260)
                 .accessibilityLabeledPair(role: .content, id: "syntax", in: self.accessibility)
             }
@@ -294,28 +272,13 @@ private struct SyntaxListView: View {
                 }
             }
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .safeAreaBar(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                            self.bottomAccessoryView
-                        }
-                    }
-                    .scrollEdgeEffectStyle(.hard, for: .bottom)
-            } else {
-                content
-                    .safeAreaInset(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                                .padding(.horizontal, 4)
-                            self.bottomAccessoryView
-                        }
-                        .background()
-                    }
+        .safeAreaBar(edge: .bottom) {
+            VStack(spacing: 0) {
+                Divider()
+                self.bottomAccessoryView
             }
         }
+        .scrollEdgeEffectStyle(.hard, for: .bottom)
         .contextMenu(forSelectionType: SettingState.self) { selections in
             self.menu(for: selections.first, isContext: true)
         } primaryAction: { selections in

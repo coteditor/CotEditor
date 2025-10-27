@@ -82,17 +82,7 @@ struct AdvancedCharacterCounterView: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .glassEffect(in: .capsule)
-            } else {
-                content
-                    .background(.regularMaterial)
-                    .clipShape(.capsule)
-                    .shadow(radius: 4, y: 2)
-            }
-        }
+        .glassEffect(in: .capsule)
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
             if let count = self.counter.count {

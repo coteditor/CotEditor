@@ -57,12 +57,12 @@ struct CharacterCountOptionsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: isLiquidGlass ? 18 : 14) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 18) {
             GridRow {
                 Text("Whitespace:", tableName: "AdvancedCharacterCount", comment: "label")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Ignore line endings", table: "AdvancedCharacterCount", comment: "setting option"),
                            isOn: $ignoresNewlines)
                     Toggle(String(localized: "Ignore whitespace", table: "AdvancedCharacterCount", comment: "setting option"),

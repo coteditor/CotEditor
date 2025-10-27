@@ -38,7 +38,7 @@ struct CharacterInspectorView: View {
                 .frame(minWidth: 64)
             CharacterDetailView(info: self.info)
         }
-        .padding(.all, isLiquidGlass ? 14 : 10)
+        .padding(14)
     }
 }
 

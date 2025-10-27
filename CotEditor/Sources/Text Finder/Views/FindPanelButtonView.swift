@@ -67,14 +67,7 @@ struct FindPanelButtonView: View {
                 }.help(String(localized: "Find next match.", table: "TextFind", comment: "tooltip"))
             }
             .labelStyle(.iconOnly)
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .buttonSizing(.flexible)
-                } else {
-                    content
-                }
-            }
+            .buttonSizing(.flexible)
             .frame(width: 70)
         }
         .padding(.top, 8)

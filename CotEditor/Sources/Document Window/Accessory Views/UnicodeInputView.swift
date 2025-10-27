@@ -92,7 +92,7 @@ struct UnicodeInputView: View {
                     .padding(.leading, 4)
                 }
         }
-        .padding(.all, isLiquidGlass ? nil : 10)
+        .padding()
         .frame(width: 200)
     }
     

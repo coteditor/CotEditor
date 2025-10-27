@@ -43,7 +43,7 @@ struct WhatsNewView: View {
             VStack(alignment: .leading, spacing: 20) {
                 HStack(alignment: .firstTextBaseline) {
                     Text("What’s New in CotEditor \(NewFeature.version, format: .version(part: .minor))", tableName: "WhatsNew", comment: "%@ is version number")
-                        .fontWeight(isLiquidGlass ? .bold : .semibold)
+                        .fontWeight(.bold)
                         .accessibilityHeading(.h1)
                     
                     if self.isPrerelease {
@@ -63,14 +63,7 @@ struct WhatsNewView: View {
                         feature.image
                             .font(.system(size: 28))
                             .foregroundStyle(.tint)
-                            .modifier { content in
-                                if #available(macOS 26, *) {
-                                    content
-                                        .symbolColorRenderingMode(.gradient)
-                                } else {
-                                    content
-                                }
-                            }
+                            .symbolColorRenderingMode(.gradient)
                             .frame(width: 40, alignment: .center)
                             .accessibilityHidden(true)
                         
@@ -107,14 +100,7 @@ struct WhatsNewView: View {
                     Text("Release Notes", tableName: "WhatsNew")
                         .frame(minWidth: 100)
                 }
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .glassEffect()
-                    } else {
-                        content
-                    }
-                }
+                .glassEffect()
                 
                 Spacer()
                 Button {
@@ -126,16 +112,9 @@ struct WhatsNewView: View {
                 .focused($isContinueButtonFocused)  // workaround: .prefersDefaultFocus(in:) doesn't work (2026-01, macOS 26).
                 .prefersDefaultFocus(true, in: self.namespace)
                 .keyboardShortcut(.defaultAction)
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .glassEffect()
-                    } else {
-                        content
-                    }
-                }
+                .glassEffect()
             }
-            .controlSize(isLiquidGlass ? .extraLarge : .large)
+            .controlSize(.extraLarge)
         }
         .onAppear {
             self.isContinueButtonFocused = true

@@ -52,7 +52,7 @@ struct AppearanceSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: isLiquidGlass ? 12 : 8) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 12) {
             GridRow {
                 Text("Standard font:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
@@ -145,42 +145,28 @@ struct AppearanceSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "windowAlpha", in: self.accessibility)
                 
                 HStack {
-                    if #available(macOS 26, *) {
-                        Slider(value: self.windowAlphaBinding, in: Self.windowAlphaRange) {
-                            EmptyView()
-                        } currentValueLabel: {
-                            Text(self.windowAlphaBinding.wrappedValue, format: .percent)
-                        } minimumValueLabel: {
-                            OpacitySample(opacity: 0.2)
-                                .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
-                        } maximumValueLabel: {
-                            OpacitySample(opacity: 1)
-                                .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
-                        } ticks: {
-                            SliderTickContentForEach(Array(stride(from: 0.2, through: 1, by: 0.1)), id: \.self) { value in
-                                SliderTick(value)
-                            }
+                    Slider(value: self.windowAlphaBinding, in: Self.windowAlphaRange) {
+                        EmptyView()
+                    } currentValueLabel: {
+                        Text(self.windowAlphaBinding.wrappedValue, format: .percent)
+                    } minimumValueLabel: {
+                        OpacitySample(opacity: 0.2)
+                            .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
+                    } maximumValueLabel: {
+                        OpacitySample(opacity: 1)
+                            .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
+                    } ticks: {
+                        SliderTickContentForEach(Array(stride(from: 0.2, through: 1, by: 0.1)), id: \.self) { value in
+                            SliderTick(value)
                         }
-                        .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
-                        .frame(width: 240)
-                    } else {
-                        Slider(value: self.windowAlphaBinding, in: Self.windowAlphaRange) {
-                            EmptyView()
-                        } minimumValueLabel: {
-                            OpacitySample(opacity: 0.2)
-                                .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
-                        } maximumValueLabel: {
-                            OpacitySample(opacity: 1)
-                                .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
-                        }
-                        .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
-                        .frame(width: 240)
                     }
+                    .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
+                    .frame(width: 240)
                     
                     TextField(value: self.windowAlphaBinding, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
-                        .frame(width: isLiquidGlass ? 64 : 48)
+                        .frame(width: 64)
                 }
                 .accessibilityLabeledPair(role: .content, id: "windowAlpha", in: self.accessibility)
             }
@@ -224,7 +210,7 @@ private struct FontSettingView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 5) {
+        VStack(alignment: .leading) {
             HStack {
                 AntialiasingText(self.font.wrappedValue.displayNameAndSize)
                     .antialiasDisabled(!self.antialias)
