@@ -167,6 +167,7 @@ private struct ModeListView: View {
                     }
                 }
             }
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
             .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
             .menuIndicator(.hidden)
             .alert(error: $error)
@@ -183,6 +184,7 @@ private struct ModeListView: View {
                     .frame(width: 14, height: 14)
                     .fontWeight(.medium)
             }
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
             .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
             .disabled(self.selection.syntaxName == nil)
             

@@ -92,6 +92,9 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         // register dragged type
         self.tableView?.registerForDraggedTypes([.row])
         self.tableView?.setDraggingSourceOperationMask([.delete], forLocal: false)
+        
+        self.addRemoveButton?.setToolTip(String(localized: "Action.add.tooltip", defaultValue: "Add new item"), forSegment: 0)
+        self.addRemoveButton?.setToolTip(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"), forSegment: 1)
     }
     
     
