@@ -38,11 +38,11 @@ protocol AdditionalDocumentPreparing: NSDocument {
 }
 
 
-final class DocumentController: NSDocumentController {
+@Observable final class DocumentController: NSDocumentController {
     
     // MARK: Public Properties
     
-    @Published private(set) var currentSyntaxName: String?
+    private(set) var currentSyntaxName: String?
     
     
     // MARK: Private Properties

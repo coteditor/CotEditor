@@ -25,7 +25,6 @@
 //
 
 import AppKit
-import Combine
 import Shortcut
 import URLUtils
 
@@ -54,6 +53,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
     private var isUpdatingMenu = false
+    private var scopeObserver: Task<Void, Never>?
     private var menuUpdateTask: Task<Void, any Error>?
     
     
@@ -73,13 +73,18 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
         
         NSFileCoordinator.addFilePresenter(self)
         
-        Task {
-            let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
+        self.scopeObserver = Task { [unowned self] in
+            let scopes = Observations { (DocumentController.shared as! DocumentController).currentSyntaxName }
             for await scope in scopes where scope != self.scope {
                 self.scope = scope
                 self.applyShortcuts()
             }
         }
+    }
+    
+    
+    isolated deinit {
+        self.scopeObserver?.cancel()
     }
     
     
