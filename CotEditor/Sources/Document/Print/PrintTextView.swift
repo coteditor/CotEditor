@@ -216,7 +216,7 @@ final class PrintTextView: NSTextView {
             let numberFont = NSFont.lineNumberFont(ofSize: numberFontSize)
             let attrs: [NSAttributedString.Key: Any] = [
                 .font: numberFont,
-                .foregroundColor: self.theme?.text.color ?? .textColor
+                .foregroundColor: self.theme?.text.color ?? .textColor,
             ]
             
             // calculate character width using `8` as the representative character
