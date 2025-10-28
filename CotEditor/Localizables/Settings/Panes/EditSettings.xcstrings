@@ -42,7 +42,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aggiungi uno spazio al delimitatore del commento"
+            "value" : "Aggiungi uno spazio ai delimitatori dei commenti"
           }
         },
         "ja" : {
@@ -72,7 +72,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicionar um espaço ao delimitador de comentário"
+            "value" : "Adicionar um espaço aos delimitadores de comentário"
           }
         },
         "tr" : {
