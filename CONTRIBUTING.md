@@ -77,18 +77,17 @@ Currently, we already have maintainers for:
 - Simplified Chinese
 - Traditional Chinese
 - Czech
-- Dutch
 - German
 - Italian
 - Japanese
 - Korean
 - Polish
 - Portuguese
-- Spanish
 - Turkish
 
 We are now looking for new maintainers for:
 
+- Dutch
 - French
 - Spanish
 
