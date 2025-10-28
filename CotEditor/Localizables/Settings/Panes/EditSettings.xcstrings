@@ -6,7 +6,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Připojit mezeru za oddělovač komentáře"
+            "value" : "Přidat mezeru za oddělovač komentáře"
           }
         },
         "de" : {
@@ -1156,7 +1156,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vložit oddělovače komentářů po odsazení"
+            "value" : "Vložit oddělovače komentářů za odsazení"
           }
         },
         "de" : {
