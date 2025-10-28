@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Append a space to comment delimiter" : {
+    "Add a space to comment delimiters" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -18,25 +18,25 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Append a space to comment delimiter"
+            "value" : "Add a space to comment delimiters"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Append a space to comment delimiter"
+            "value" : "Add a space to comment delimiters"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añadir un espacio en el delimitador de comentario"
+            "state" : "needs_review",
+            "value" : "Añadir un espacio a los delimitadores de comentarios"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajouter un espace après le symbole de commentaire"
+            "state" : "needs_review",
+            "value" : "Ajouter un espace aux symboles de commentaire"
           }
         },
         "it" : {
@@ -60,7 +60,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Voeg een spatie toe aan de commentaarscheidingstekens"
+            "value" : "Voeg een spatie toe aan commentaarscheidingstekens"
           }
         },
         "pl" : {
@@ -90,7 +90,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在註解定界符後附加空格"
+            "value" : "在註解分界符後附加空格"
           }
         }
       }
@@ -1234,7 +1234,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在縮排後插入註解定界符"
+            "value" : "在縮排後插入註解分界符"
           }
         }
       }
