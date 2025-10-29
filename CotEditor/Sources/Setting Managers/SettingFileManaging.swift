@@ -102,7 +102,7 @@ protocol SettingFileManaging: AnyObject, Sendable {
     func setting(name: String) throws(SettingFileError) -> Setting
     
     /// Loads settings from the user domain.
-    func loadUserSettings()
+    nonisolated func loadUserSettings() -> [String]
     
     /// Tells that a setting did update.
     func didUpdateSetting(change: SettingChange)
@@ -436,6 +436,16 @@ extension SettingFileManaging {
             ? .updated(from: name, to: name)
             : .added(name)
         self.updateSettingList(change: change)
+    }
+    
+    
+    /// Reloads settings in the user domain.
+    func invalidateUserSettings() async {
+        
+        self.cachedSettings.removeAll()
+        self.settingNames = await Task.detached {
+            self.loadUserSettings()
+        }.value
     }
     
     

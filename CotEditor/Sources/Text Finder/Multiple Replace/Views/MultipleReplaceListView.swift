@@ -291,8 +291,8 @@ struct MultipleReplaceListView: View {
             }
             .modifierKeyAlternate(.option) {
                 Button(String(localized: "Reload All Definitions", table: "MultipleReplace"), systemImage: "arrow.clockwise") {
-                    Task.detached(priority: .utility) {
-                        self.manager.loadUserSettings()
+                    Task {
+                        await self.manager.invalidateUserSettings()
                     }
                 }
             }

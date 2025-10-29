@@ -61,7 +61,7 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
             .sorted(using: .localizedStandard)
         
         // cache user setting names
-        self.loadUserSettings()
+        self.settingNames = self.loadUserSettings()
     }
     
     
@@ -199,8 +199,8 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    /// Loads settings in the user domain.
-    func loadUserSettings() {
+    /// Loads setting lineup in the user domain.
+    nonisolated func loadUserSettings() -> [String] {
         
         let userSettingNames = self.userSettingFileURLs
             .map(Self.settingName(from:))
@@ -213,7 +213,6 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
             UserDefaults.standard.restore(key: .theme)
         }
         
-        self.cachedSettings.removeAll()
-        self.settingNames = settingNames
+        return settingNames
     }
 }

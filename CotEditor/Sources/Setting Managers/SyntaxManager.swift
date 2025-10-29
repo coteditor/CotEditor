@@ -88,7 +88,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         try? self.sanitizeUserSettings()
         
         // cache user syntaxes
-        self.loadUserSettings()
+        self.settingNames = self.loadUserSettings()
         self.updateMappingTable()
     }
     
@@ -273,8 +273,8 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     }
     
     
-    /// Loads settings in the user domain.
-    func loadUserSettings() {
+    /// Loads setting lineup in the user domain.
+    nonisolated func loadUserSettings() -> [SettingName] {
         
         let userSettingNames = self.userSettingFileURLs
             .map(Self.settingName(from:))
@@ -288,8 +288,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         }
         UserDefaults.standard[.recentSyntaxNames].removeAll { !settingNames.contains($0) }
         
-        self.cachedSettings.removeAll()
-        self.settingNames = settingNames
+        return settingNames
     }
     
     

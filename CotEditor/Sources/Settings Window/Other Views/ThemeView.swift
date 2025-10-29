@@ -418,8 +418,8 @@ private struct ThemeListView: View {
             }
             .modifierKeyAlternate(.option) {
                 Button(String(localized: "Reload All Themes", table: "ThemeEditor"), systemImage: "arrow.clockwise") {
-                    Task.detached(priority: .utility) {
-                        self.manager.loadUserSettings()
+                    Task {
+                        await self.manager.invalidateUserSettings()
                     }
                 }
             }
