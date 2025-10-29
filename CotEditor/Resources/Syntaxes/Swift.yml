@@ -8,6 +8,7 @@ attributes:
 - beginString: '@backDeployed'
 - beginString: '@Bindable'
 - beginString: '@Binding'
+- beginString: '@concurrent'
 - beginString: '@convention'
 - beginString: '@derivative'
 - beginString: '@discardableResult'
