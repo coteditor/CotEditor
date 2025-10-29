@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Update the Verilog syntax to support SystemVerilog.
 - Update the Swift syntax.
 - [beta] Add missing localizations.
 - [beta][dev] Update the build environment to Xcode 26.1 RC.
