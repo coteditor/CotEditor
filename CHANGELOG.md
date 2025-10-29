@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Update the Swift syntax.
 - [beta] Add missing localizations.
 
 
