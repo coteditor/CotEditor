@@ -186,9 +186,7 @@ struct FormatSettingsView: View {
                 HelpLink(anchor: "settings_format")
             }
         }
-        .onReceive(self.syntaxManager.$settingNames) { settingNames in
-            self.syntaxNames = settingNames
-        }
+        .onReceive(self.syntaxManager.$settingNames) { self.syntaxNames = $0 }
         .onCommand(#selector((any EncodingsListHolder).showEncodingsListView)) {
             self.isEncodingListPresented = true
         }

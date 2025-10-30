@@ -416,7 +416,6 @@ extension Logger {
                     return item
                 }
             }
-            .receive(on: RunLoop.main)
             .sink { [weak self] items in
                 guard let menu = self?.syntaxesMenu else { return }
                 
@@ -435,7 +434,6 @@ extension Logger {
         
         ThemeManager.shared.$settingNames
             .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") } }
-            .receive(on: RunLoop.main)
             .assign(to: \.items, on: self.themesMenu!)
             .store(in: &self.menuUpdateObservers)
         
@@ -459,7 +457,6 @@ extension Logger {
         
         // build multiple replacement menu items
         ReplacementManager.shared.$settingNames
-            .receive(on: RunLoop.main)
             .sink { [weak self] names in
                 guard let menu = self?.multipleReplaceMenu else { return }
                 

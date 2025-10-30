@@ -206,9 +206,7 @@ private struct ThemeListView: View {
                 self.menu(for: selection, isContext: true)
             }
         }
-        .onReceive(self.manager.$settingNames.receive(on: RunLoop.main)) { settingNames in
-            self.settingNames = settingNames
-        }
+        .onReceive(self.manager.$settingNames) { self.settingNames = $0 }
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotTheme], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):

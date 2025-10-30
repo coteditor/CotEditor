@@ -157,7 +157,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         // observe for syntax line-up change
         self.syntaxListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
                                                    UserDefaults.standard.publisher(for: .recentSyntaxNames))
-            .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
         
         // observe documents to update window title
