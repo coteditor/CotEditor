@@ -8,6 +8,7 @@ attributes:
 - beginString: '@backDeployed'
 - beginString: '@Bindable'
 - beginString: '@Binding'
+- beginString: '@concurrent'
 - beginString: '@convention'
 - beginString: '@derivative'
 - beginString: '@discardableResult'
@@ -45,6 +46,7 @@ attributes:
 - beginString: '@required'
 - beginString: '@requires_stored_property_inits'
 - beginString: '@retroactive'
+- beginString: '@safe'
 - beginString: '@Sendable'
 - beginString: '@State'
 - beginString: '@StateObject'
@@ -55,6 +57,7 @@ attributes:
 - beginString: '@UIApplicationMain'
 - beginString: '@unchecked'
 - beginString: '@unknown'
+- beginString: '@unsafe'
 - beginString: '@usableFromInline'
 - beginString: '@ViewLoading'
 - beginString: '@warn_unqualified_access'
@@ -175,6 +178,7 @@ keywords:
 - beginString: inout
 - beginString: internal
 - beginString: is
+- beginString: isolated
 - beginString: lazy
 - beginString: left
 - beginString: let
@@ -224,11 +228,11 @@ keywords:
 kind: code
 metadata:
   author: 1024jp
-  description: Based on Swift 6.0
+  description: Based on Swift 6.2
   distributionURL: https://coteditor.com
-  lastModified: '2025-03-05'
+  lastModified: '2025-10-29'
   license: Same as CotEditor
-  version: 4.12.2
+  version: 4.13.0
 numbers:
 - beginString: (?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\b
   ignoreCase: true
@@ -268,6 +272,9 @@ outlineMenu:
   bold: true
   description: class
   keyString: $1class $2
+- beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*deinit\b
+  description: deinitializer
+  keyString: $1deinit
 - beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*enum[ \t]+(\w+)
   bold: true
   description: enum
@@ -276,10 +283,10 @@ outlineMenu:
   bold: true
   description: extension
   italic: true
-  keyString: $1extension $2
-- beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*init[\t ]*\((.*)\)
+  keyString: $
+- beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*init(\??)[\t ]*\((.*)\)
   description: initializer
-  keyString: $1init($2)
+  keyString: $1init$2($3)
 - beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*protocol[ \t]+(\w+)
   description: protocol
   italic: true
@@ -395,6 +402,7 @@ types:
 - beginString: EnumerateSequence
 - beginString: Equatable
 - beginString: ErrorType
+- beginString: Escapable
 - beginString: ExecutorJob
 - beginString: ExpressibleByDictionaryLiteral
 - beginString: FlattenCollection
@@ -417,6 +425,7 @@ types:
 - beginString: Hasher
 - beginString: ImplicitlyUnwrappedOptional
 - beginString: IndexingGenerator
+- beginString: InlineArray
 - beginString: Int
 - beginString: Int128
 - beginString: Int16

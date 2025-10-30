@@ -70,7 +70,6 @@ import StringUtils
                 .sink { [weak self] _ in
                     self?.syntaxObserver = self?.document?.syntaxParser.$outlineItems
                         .compactMap(\.self)
-                        .receive(on: DispatchQueue.main)
                         .sink { [weak self] in
                             self?.items = $0
                             self?.invalidateCurrentItem()

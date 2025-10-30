@@ -34,6 +34,7 @@ struct DefaultSettings {
     static var defaults: [DefaultKeys: Any?] {
         
         [
+            // General
             .quitAlwaysKeepsWindows: true,
             .noDocumentOnLaunchOption: NoDocumentOnLaunchOption.untitledDocument.rawValue,
             .enablesAutosaveInPlace: true,
@@ -41,6 +42,7 @@ struct DefaultSettings {
             .suppressesInconsistentLineEndingAlert: false,
             .checksUpdatesForBeta: false,
             
+            // Appearance
             .font: try? FontType.standard.systemFont().archivedData,
             .shouldAntialias: true,
             .ligature: true,
@@ -51,9 +53,10 @@ struct DefaultSettings {
             .documentAppearance: AppearanceMode.default.rawValue,
             .windowAlpha: 1.0,
             .theme: "Anura",
+            .pinsThemeAppearance: false,
             
+            // Window
             .windowTabbing: -1,  // = Respect System Setting
-            .showNavigationBar: true,
             .showLineNumbers: true,
             .showLineNumberSeparator: false,
             .showInvisibles: false,
@@ -78,23 +81,25 @@ struct DefaultSettings {
             .showStatusBarLine: true,
             .showStatusBarColumn: false,
             
-            .autoTrimsTrailingWhitespace: false,
-            .trimsWhitespaceOnlyLines: false,
+            // Edit
             .autoExpandTab: false,
             .tabWidth: 4,
             .detectsIndentStyle: true,
             .autoIndent: true,
             .indentWithTabKey: false,
+            .autoTrimsTrailingWhitespace: false,
+            .trimsWhitespaceOnlyLines: false,
             .insertsCommentDelimitersAfterIndent: true,
             .appendsCommentSpacer: true,
             .autoLinkDetection: false,
-            .checkSpellingAsType: false,
             .highlightBraces: true,
             .highlightSelectionInstance: true,
             .selectionInstanceHighlightDelay: 0.5,
             
+            // Mode
             .modes: [:],
             
+            // Format
             .lineEndCharCode: 0,
             .encodingList: DefaultSettings.encodings.map(UInt.init),
             .encoding: String.Encoding.utf8.rawValue,
@@ -102,6 +107,7 @@ struct DefaultSettings {
             .referToEncodingTag: true,
             .syntax: "Plain Text",
             
+            // Snippets
             .fileDropArray: [
                 FileDropItem(format: "![<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>)",
                              extensions: ["jpg", "jpeg", "gif", "png"],
@@ -121,8 +127,10 @@ struct DefaultSettings {
                              scope: "CSS"),
             ].map(\.dictionary),
             
+            // Donation
             .donationBadgeType: BadgeType.mug.rawValue,
-        
+            
+            // print
             .printFontSize: NSFont.systemFontSize,
             .printBackground: false,
             .printHeaderAndFooter: true,
@@ -165,11 +173,11 @@ struct DefaultSettings {
             .fileBrowserShowsHiddenFiles: false,
             
             // settings not in the Settings window
-            .pinsThemeAppearance: false,
+            .selectedInspectorPaneIndex: 0,
             .colorCodeType: 1,
             .recentSyntaxNames: [String](),
             .showStatusBar: true,
-            .selectedInspectorPaneIndex: 0,
+            .showNavigationBar: true,
             .splitViewVertical: false,
             .consoleFontSize: NSFont.smallSystemFontSize,
             .outlineViewFontSize: NSFont.smallSystemFontSize,

@@ -95,7 +95,6 @@ final class EditorViewController: NSSplitViewController {
         self.observers = [
             self.document.syntaxParser.$outlineItems
                 .removeDuplicates()
-                .receive(on: RunLoop.main)
                 .assign(to: \.items, on: self.outlineNavigator),
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },

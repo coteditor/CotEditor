@@ -1,12 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Append a space to comment delimiter" : {
+    "Add a space to comment delimiters" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přidat mezery do oddělovačů komentáře"
+            "value" : "Přidat mezeru za oddělovač komentáře"
           }
         },
         "de" : {
@@ -18,31 +18,31 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Append a space to comment delimiter"
+            "value" : "Add a space to comment delimiters"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Append a space to comment delimiter"
+            "value" : "Add a space to comment delimiters"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añadir un espacio en el delimitador de comentario"
+            "state" : "needs_review",
+            "value" : "Añadir un espacio a los delimitadores de comentarios"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajouter un espace après le symbole de commentaire"
+            "state" : "needs_review",
+            "value" : "Ajouter un espace aux symboles de commentaire"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aggiungi uno spazio al delimitatore del commento"
+            "value" : "Aggiungi uno spazio ai delimitatori dei commenti"
           }
         },
         "ja" : {
@@ -51,16 +51,34 @@
             "value" : "コメント記号にスペースを追加"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주석 구분자에 공백 추가"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Voeg een spatie toe aan commentaarscheidingstekens"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj spację do ograniczników komentarza"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anexar espaço ao delimitador de comentários"
+            "value" : "Adicionar um espaço aos delimitadores de comentário"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yorum sınırlayıcısına bir boşluk iliştir"
+            "value" : "Yorum sınırlayıcılarına bir boşluk ekle"
           }
         },
         "zh-Hans" : {
@@ -72,7 +90,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在註釋符號後追加空格"
+            "value" : "在註解分界符後附加空格"
           }
         }
       }
@@ -1135,6 +1153,12 @@
     },
     "Insert comment delimiters after indent" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vložit oddělovače komentářů za odsazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1159,16 +1183,58 @@
             "value" : "Insérer des délimiteurs de commentaire après l'indentation"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci delimitatore di commento dopo il rientro"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "インデントのあとにコメント記号を挿入"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "들여쓰기 뒤에 주석 구분자 삽입"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Voeg commentaarscheidingstekens in na inspringing"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstawiaj ograniczniki komentarzy po wcięciu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserir delimitadores de comentário após a indentação"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Girinti sonrası yorum sınırlayıcıları gir"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在缩进后插入注释符号"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在縮排後插入註解分界符"
           }
         }
       }

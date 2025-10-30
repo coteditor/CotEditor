@@ -33,26 +33,25 @@ import URLUtils
 // -> According to the documentation, NSAppleEventDescriptor is just a wrapper of AEDesc,
 //    so seems safe to conform to Sendable. (macOS 12, Xcode 14.0, FB12571431)
 extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
-extension NSScriptObjectSpecifier: @retroactive @unchecked Sendable { }
 
 
-final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
+@MainActor final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Properties
     
     static let shared = ScriptManager()
     
-    @MainActor var menu: NSMenu?  { didSet { Task { await self.updateMenu() } } }
-    @MainActor private(set) var currentScriptName: String?
+    var menu: NSMenu?  { didSet { Task { await self.updateMenu() } } }
+    private(set) var currentScriptName: String?
     
     
     // MARK: Private Properties
     
-    private static let separator = "-"
+    private nonisolated static let separator = "-"
     
     private let scriptsDirectoryURL: URL?
     private var scope: String?
-    @MainActor private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
+    private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
     private var menuUpdateTask: Task<Void, any Error>?
     
@@ -73,7 +72,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         NSFileCoordinator.addFilePresenter(self)
         
-        Task { @MainActor in
+        Task {
             let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
             for await scope in scopes where scope != self.scope {
                 self.scope = scope
@@ -83,33 +82,27 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     }
     
     
-    deinit {
-        if self.presentedItemURL != nil {
-            NSFileCoordinator.removeFilePresenter(self)
-        }
-    }
-    
-    
     // MARK: File Presenter Protocol
     
-    let presentedItemOperationQueue: OperationQueue = .init()
+    nonisolated let presentedItemOperationQueue: OperationQueue = .init()
     
-    var presentedItemURL: URL?  { self.scriptsDirectoryURL }
+    nonisolated var presentedItemURL: URL?  { self.scriptsDirectoryURL }
     
     
     /// Contents of the script folder did change.
     nonisolated func presentedItemDidChange() {
         
-        self.menuUpdateTask?.cancel()
-        self.menuUpdateTask = Task {
-            if await NSApp.isActive {
-                try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
-                await self.updateMenu()
-            } else {
-                for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
-                    await self.updateMenu()
-                    return
+        Task { @MainActor in
+            self.menuUpdateTask?.cancel()
+            self.menuUpdateTask = Task {
+                if NSApp.isActive {
+                    try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
+                } else {
+                    for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
+                        return
+                    }
                 }
+                await self.updateMenu()
             }
         }
     }
@@ -124,7 +117,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     ///   - documentSpecifier: The script object specifier of the target document.
     func dispatch(event eventType: ScriptingEventType, document documentSpecifier: NSScriptObjectSpecifier) async {
         
-        guard let scripts = await self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
+        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
         
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"),
                                            eventID: eventType.eventID,
@@ -187,7 +180,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     // MARK: Private Methods
     
     /// Builds the Script menu and scan script handlers.
-    @MainActor private func updateMenu() async {
+    private func updateMenu() async {
         
         self.menuUpdateTask?.cancel()
         self.menuUpdateTask = nil
@@ -195,8 +188,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        let scriptMenuItems = await Task.detached { Self.scriptMenuItems(at: directoryURL) }
-            .value
+        let scriptMenuItems = await Task.detached { Self.scriptMenuItems(at: directoryURL) }.value
         
         let eventScripts = scriptMenuItems.flatMap(\.scripts)
             .compactMap { $0 as? any EventScript }
@@ -221,7 +213,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// - Parameters:
     ///   - error: The error to present.
     ///   - scriptName: The name of script.
-    @MainActor private static func presentError(_ error: some Error, scriptName: String) {
+    private static func presentError(_ error: some Error, scriptName: String) {
         
         switch error {
             case is ScriptError:
@@ -260,7 +252,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// - Parameters:
     ///   - directoryURL: The directory where to find files recursively.
     /// - Returns: An array of `ScriptMenuItem` that represents scripts.
-    private static func scriptMenuItems(at directoryURL: URL) -> [ScriptMenuItem] {
+    private nonisolated static func scriptMenuItems(at directoryURL: URL) -> [ScriptMenuItem] {
         
         guard let urls = try? FileManager.default
             .contentsOfDirectory(at: directoryURL,
@@ -290,7 +282,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     
     /// Applies the keyboard shortcuts to the Script menu items.
-    @MainActor private func applyShortcuts() {
+    private func applyShortcuts() {
         
         guard let menu else { return assertionFailure() }
         

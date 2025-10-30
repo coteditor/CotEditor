@@ -19,6 +19,48 @@
 
 <article>
 	<header>
+		<h1>CotEditor 6.1.0</h1>
+		<p>release: <time>2025-11</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Introduce the filter feature in the file browser.</li>
+			<li>Introduce the “Insert comment delimiters after indent” option to the Edit settings pane.</li>
+			<li>Revert the “Append a space to comment delimiter” option to the Edit settings pane.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Improve the algorithm to comment out block comments.</li>
+			<li>Ignore .git folders in the file browser.</li>
+			<li>Prevent moving focus to the editor when selecting a document in the file browser.</li>
+			<li>Update the Verilog syntax to support SystemVerilog.</li>
+			<li>Update the Swift syntax.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 26.1.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 6.0.4</h1>
 		<p>release: <time>2025-10-16</time></p>
 	</header>
@@ -45,7 +87,6 @@
 
 		<ul>
 			<li>Workaround an issue on macOS 26 where the editor’s scroller tracks have a different style compared to standard scrollers.</li>
-			<li>Fix an issue where the counts in the status bar are occasionally unavailable when the document is opened.</li>
 			<li>Fix an issue in the vertical text orientation where the line number view is tucked beneath the titlebar when the navigation bar is hidden.</li>
 			<li>Fix an issue in the multiple replacement window where the text selection is unexpectedly canceled.</li>
 			<li>Fix an issue where the editor in a document opened by replacing with a blank document doesn’t initially have focus.</li>
@@ -3565,7 +3606,7 @@
 <ul>
 	<li>Fix an issue where a document window zombie appeared when the window was closed while detached character info popovers remain.</li>
 	<li>Fix an issue where a blank progress dialog for a long syntax highlighting could rarely remain when the document is updated while parsing.</li>
-	<li>Fix an issue where the <code>\x{hhhh}</code>, <code>\0ooo</code>, and  <code>\$</code> style character expressions in the regular expression pattern were not syntax-highlighted correctly.</li>
+	<li>Fix an issue where the <code>\x{hhhh}</code>, <code>\0ooo</code>, and <code>\$</code> style character expressions in the regular expression pattern were not syntax-highlighted correctly.</li>
 	<li>Fix an issue where the application could rarely crash when printing a document.</li>
 	<li>Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.</li>
 </ul>
@@ -3687,7 +3728,7 @@
 <ul>
 	<li>Fix an issue on macOS 10.15 where document windows had a glitch when a search is wrapped.</li>
 	<li>Fix an issue where the font size of the line number view was occasionally not updated even when text size is changed.</li>
-	<li>Fix an issue where <kbd>⌘⇧T</kbd> shortcut key assigned for “Show/Hide Tab Bar”  was ignored under specific conditions</li>
+	<li>Fix an issue where <kbd>⌘⇧T</kbd> shortcut key assigned for “Show/Hide Tab Bar” was ignored under specific conditions</li>
 	<li>Fix an issue where the width of the inspector was occasionally not properly set.</li>
 	<li>Fix an issue where the wrong warning message displayed in the multiple replacement panel even when there is no invalid condition.</li>
 	<li>Fix a possible crash when transforming the case of selection that includes specific character order.</li>
@@ -4026,7 +4067,7 @@
 	<li>Add “Hide extension” option to the Save dialog.</li>
 	<li>Use the system appearance in the input candidate window even when the theme has a dark background color.</li>
 	<li>Give some feedback about the search result in VoiceOver.</li>
-	<li>Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as <code>.</code> and  <code>:</code>.</li>
+	<li>Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as <code>.</code> and <code>:</code>.</li>
 	<li>Hide unused items in the font panel toolbar.</li>
 	<li>Optimize the performance of finding the matching brace to highlight.</li>
 	<li>Optimize the performance of line number drawing.</li>

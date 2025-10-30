@@ -72,7 +72,9 @@ final class FileNode {
         
         if self.file.isDirectory, self.cachedChildren == nil {
             do {
-                self.cachedChildren = try self.readChildren()
+                // read synchronously for the immediate return
+                self.cachedChildren = try Self.readChildFiles(at: self.file.fileURL)
+                    .map { FileNode(file: $0, parent: self) }
             } catch {
                 Logger.app.error("Failed reading folder contents: \(error)")
             }
@@ -108,6 +110,12 @@ final class FileNode {
         KeyPathComparator(\.file.name, comparator: .localizedStandard),
     ]
     
+    /// The sort order for display.
+    private nonisolated static let fileSortOrder: [KeyPathComparator<File>] = [
+        KeyPathComparator(\.isFolder, comparator: BoolComparator()),
+        KeyPathComparator(\.name, comparator: .localizedStandard),
+    ]
+    
     
     /// Determines whether a filename should be ignored.
     ///
@@ -119,19 +127,19 @@ final class FileNode {
     }
     
     
-    /// Reads the contents of the directory at the receiver's `fileURL`.
+    /// Reads and returns the immediate child files for the given directory URL.
     ///
-    /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
-    private func readChildren() throws -> [FileNode] {
+    /// - Parameters:
+    ///   - fileURL: The directory URL whose contents should be read.
+    /// - Returns: An array of `File` objects representing the accepted child items, sorted for display.
+    /// - Throws: An error if reading the directory contents or initializing `File` metadata fails.
+    private nonisolated static func readChildFiles(at fileURL: URL) throws -> [File] {
         
-        assert(self.file.isDirectory)
-        
-        return try FileManager.default
-            .contentsOfDirectory(at: self.file.fileURL, includingPropertiesForKeys: Array(File.resourceValues))
+        try FileManager.default
+            .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: Array(File.resourceValues))
             .filter { Self.accepts(filename: $0.lastPathComponent) }
             .map { try File(at: $0) }
-            .map { FileNode(file: $0, parent: self) }
-            .sorted(using: Self.sortOrder)
+            .sorted(using: Self.fileSortOrder)
     }
 }
 
@@ -336,15 +344,34 @@ extension FileNode {
     ///   - searchString: The text to search for within the file name.
     ///   - includesHiddenFiles: If `true`, includes hidden files and folders in the search.
     /// - Returns: An array of nodes that match the search string within this subtree.
-    @discardableResult func filter(with searchString: String, includesHiddenFiles: Bool) -> [FileNode] {
+    /// - Throws: `CancellationError` or errors on file reading.
+    @discardableResult func filter(with searchString: String, includesHiddenFiles: Bool) async throws -> [FileNode] {
         
         assert(!searchString.isEmpty)
         
+        try Task.checkCancellation()
+        
         let match = (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
         let isMatched = !match.isNotFound
-        let matchedDescendants = self.children?
-            .filter { includesHiddenFiles || !$0.file.isHidden }
-            .flatMap { $0.filter(with: searchString, includesHiddenFiles: includesHiddenFiles) } ?? []
+        
+        var matchedDescendants: [FileNode] = []
+        if self.file.isDirectory {
+            // async read files in background
+            if self.cachedChildren == nil {
+                let fileURL = self.file.fileURL
+                self.cachedChildren = try await Task.detached(priority: .userInitiated) { @Sendable in  // explicit @Sendable for a Swift-side bug (2025-10, Xcode 26.1, Swift 6.2.1)
+                    try Self.readChildFiles(at: fileURL)
+                }
+                .value
+                .map { FileNode(file: $0, parent: self) }
+            }
+            
+            if let children {
+                for child in children where includesHiddenFiles || !child.file.isHidden {
+                    matchedDescendants += try await child.filter(with: searchString, includesHiddenFiles: includesHiddenFiles)
+                }
+            }
+        }
         
         self.filterState = FilterState(matchedRange: isMatched ? match : nil,
                                        hasMatchedDescendant: !matchedDescendants.isEmpty)

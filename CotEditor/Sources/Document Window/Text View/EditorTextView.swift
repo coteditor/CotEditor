@@ -1342,7 +1342,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     
     /// Sets the font (font, antialiasing, and ligature) to the given font type.
-    /// 
+    ///
     /// - Parameters:
     ///   - type: The font type to change.
     ///   - defaults: The user defaults to refer to settings.

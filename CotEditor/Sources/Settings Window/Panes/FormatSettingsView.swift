@@ -505,8 +505,8 @@ private struct SyntaxListView: View {
             }
             .modifierKeyAlternate(.option) {
                 Button(String(localized: "Reload All Syntaxes", table: "FormatSettings"), systemImage: "arrow.clockwise") {
-                    Task.detached(priority: .utility) {
-                        self.manager.loadUserSettings()
+                    Task {
+                        await self.manager.invalidateUserSettings()
                     }
                 }
             }

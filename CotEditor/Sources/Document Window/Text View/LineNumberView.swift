@@ -343,7 +343,6 @@ final class LineNumberView: NSView {
             NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage)
                 .map { $0.object as! NSTextStorage }
                 .filter { $0.editedMask.contains(.editedCharacters) }
-                .receive(on: RunLoop.main)
                 .sink { [weak self] _ in
                     // -> The digit of the line numbers affect thickness.
                     if self?.orientation == .horizontal {

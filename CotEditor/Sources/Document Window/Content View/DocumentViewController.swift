@@ -205,15 +205,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    override func viewDidAppear() {
-        
-        super.viewDidAppear()
-        
-        // focus text view
-        self.view.window!.makeFirstResponder(self.focusedTextView)
-    }
-    
-    
     override func viewDidDisappear() {
         
         super.viewDidDisappear()

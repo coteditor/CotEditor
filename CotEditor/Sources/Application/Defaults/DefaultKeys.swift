@@ -48,12 +48,12 @@ extension DefaultKeys {
     static let documentAppearance = RawRepresentableDefaultKey<AppearanceMode>("appearance")
     static let windowAlpha = DefaultKey<Double>("windowAlpha")
     static let theme = DefaultKey<String>("defaultTheme")
+    static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     
     // Window
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let windowWidth = DefaultKey<Double?>("windowWidth")
     static let windowHeight = DefaultKey<Double?>("windowHeight")
-    static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
     @available(macOS, deprecated: 26)
     static let showLineNumberSeparator = DefaultKey<Bool>("showLineNumberSeparator")
@@ -80,17 +80,16 @@ extension DefaultKeys {
     static let showStatusBarColumn = DefaultKey<Bool>("showStatusBarColumn")
     
     // Edit
-    static let autoTrimsTrailingWhitespace = DefaultKey<Bool>("autoTrimsTrailingWhitespace")
-    static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
-    static let autoIndent = DefaultKey<Bool>("autoIndent")
+    static let autoExpandTab = DefaultKey<Bool>("autoExpandTab")
     static let tabWidth = DefaultKey<Int>("tabWidth")
     static let detectsIndentStyle = DefaultKey<Bool>("detectsIndentStyle")
-    static let autoExpandTab = DefaultKey<Bool>("autoExpandTab")
+    static let autoIndent = DefaultKey<Bool>("autoIndent")
     static let indentWithTabKey = DefaultKey<Bool>("indentWithTabKey")
+    static let autoTrimsTrailingWhitespace = DefaultKey<Bool>("autoTrimsTrailingWhitespace")
+    static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
     static let insertsCommentDelimitersAfterIndent = DefaultKey<Bool>("insertsCommentDelimitersAfterIndent")
     static let appendsCommentSpacer = DefaultKey<Bool>("appendsCommentSpacer")
     static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
-    static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
     static let highlightBraces = DefaultKey<Bool>("highlightBraces")
     static let highlightSelectionInstance = DefaultKey<Bool>("highlightSelectionInstance")
     static let selectionInstanceHighlightDelay = DefaultKey<Double>("selectionInstanceHighlightDelay")
@@ -113,7 +112,7 @@ extension DefaultKeys {
     // Donation
     static let donationBadgeType = RawRepresentableDefaultKey<BadgeType>("donationBadgeType")
     
-    // Print
+    // print
     static let printFontSize = DefaultKey<Double>("printFontSize")
     static let printTheme = DefaultKey<String?>("printTheme")
     static let printBackground = DefaultKey<Bool>("printBackground")
@@ -127,7 +126,6 @@ extension DefaultKeys {
     static let secondaryFooterContent = RawRepresentableDefaultKey<PrintInfoType>("footerTwoStringIndex")
     static let secondaryFooterAlignment = RawRepresentableDefaultKey<AlignmentType>("footerTwoAlignIndex")
     
-    
     // find panel
     static let findHistory = DefaultKey<[String]>("findHistory")
     static let replaceHistory = DefaultKey<[String]>("replaceHistory")
@@ -137,7 +135,6 @@ extension DefaultKeys {
     static let findIsWrap = DefaultKey<Bool>("findIsWrap")
     static let findMatchesFullWord = DefaultKey<Bool>("findMatchesFullWord")
     static let findSearchesIncrementally = DefaultKey<Bool>("findSearchesIncrementally")
-    
     static let findTextIsLiteralSearch = DefaultKey<Bool>("findTextIsLiteralSearch")
     static let findTextIgnoresDiacriticMarks = DefaultKey<Bool>("findTextIgnoresDiacriticMarks")
     static let findTextIgnoresWidth = DefaultKey<Bool>("findTextIgnoresWidth")
@@ -159,11 +156,11 @@ extension DefaultKeys {
     static let fileBrowserShowsHiddenFiles = DefaultKey<Bool>("fileBrowserShowsHiddenFiles")
     
     // settings that are not in the Settings window
-    static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
+    static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let recentSyntaxNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
-    static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
+    static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
     static let consoleFontSize = DefaultKey<Double>("consoleFontSize")
     static let outlineViewFontSize = DefaultKey<Double>("outlineViewFontSize")

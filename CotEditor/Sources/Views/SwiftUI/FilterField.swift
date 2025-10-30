@@ -123,14 +123,6 @@ class FilterSearchField: NSSearchField {
     
     // MARK: Text Field Methods
     
-    override var stringValue: String  {
-        
-        didSet {
-            self.searchButtonCell?.isHighlighted = !stringValue.isEmpty
-        }
-    }
-    
-    
     override var recentsAutosaveName: NSSearchField.RecentsAutosaveName? {
         
         didSet {
@@ -139,7 +131,30 @@ class FilterSearchField: NSSearchField {
     }
     
     
+    override var stringValue: String {
+        
+        didSet {
+            self.invalidateHighlight()
+        }
+    }
+    
+    
+    override func textDidChange(_ notification: Notification) {
+        
+        super.textDidChange(notification)
+        
+        self.invalidateHighlight()
+    }
+    
+    
     // MARK: Private Methods
+    
+    /// Updates the visual highlight state of the search button.
+    private func invalidateHighlight() {
+        
+        self.searchButtonCell?.isHighlighted = !self.stringValue.isEmpty
+    }
+    
     
     /// Sets up the search menu.
     private func invalidateSearchMenu() {

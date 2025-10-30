@@ -4208,7 +4208,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "块注释需要同时有起始符号和终止符号。"
+            "value" : "塊註釋需要同時有起始分界符和終止分界符。"
           }
         },
         "zh-Hant" : {

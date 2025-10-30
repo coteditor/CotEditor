@@ -792,7 +792,8 @@
   },
   "Verilog" : {
     "extensions" : [
-      "v"
+      "v",
+      "sv"
     ],
     "filenames" : [
 

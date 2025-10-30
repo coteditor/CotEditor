@@ -30,7 +30,6 @@ import Combine
 import AudioToolbox
 import Defaults
 import ControlUI
-import StringUtils
 import URLUtils
 
 final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
@@ -40,6 +39,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
     @ViewLoading private var messageField: NSTextField
+    @ViewLoading private var filterProgressIndicator: NSProgressIndicator
     
     private var showsHiddenFiles: Bool
     private var filterQuery: String = ""
@@ -47,7 +47,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
     
-    private lazy var filterDebouncer = Debouncer { [weak self] in self?.updateFilter() }
+    private var filterTask: Task<Void, any Error>?
     private var defaultObservers: Set<AnyCancellable> = []
     private var scrollObservers: [any NSObjectProtocol] = []
     
@@ -128,12 +128,20 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         filterField.action = #selector(filterTextDidChange)
         filterField.recentsAutosaveName = "FileBrowserSearch"
         
+        let filterProgressIndicator = NSProgressIndicator()
+        filterProgressIndicator.style = .spinning
+        filterProgressIndicator.isDisplayedWhenStopped = false
+        filterProgressIndicator.controlSize = .small
+        filterProgressIndicator.setAccessibilityLabel(String(localized: "Searching in folder…", table: "Document"))
+        
         let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
         (footerView as? NSVisualEffectView)?.material = .sidebar
         addButton.translatesAutoresizingMaskIntoConstraints = false
         filterField.translatesAutoresizingMaskIntoConstraints = false
+        filterProgressIndicator.translatesAutoresizingMaskIntoConstraints = false
         footerView.addSubview(addButton)
         footerView.addSubview(filterField)
+        footerView.addSubview(filterProgressIndicator)
         
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
@@ -141,6 +149,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             filterField.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
             filterField.leadingAnchor.constraint(equalToSystemSpacingAfter: addButton.trailingAnchor, multiplier: 0.5),
             filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: isLiquidGlass ? -7 : -5),
+            filterProgressIndicator.centerYAnchor.constraint(equalTo: filterField.centerYAnchor),
+            filterProgressIndicator.trailingAnchor.constraint(equalTo: filterField.trailingAnchor, constant: -24),
         ])
         
         self.view = NSView()
@@ -176,6 +186,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
         self.messageField = messageField
+        self.filterProgressIndicator = filterProgressIndicator
     }
     
     
@@ -256,7 +267,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 .sink { [unowned self] showsHiddenFiles in
                     self.showsHiddenFiles = showsHiddenFiles
                     if self.isFiltering {
-                        self.updateFilter()
+                        Task { try await self.updateFilter(updatesExpansion: false) }
                     } else {
                         self.outlineView.reloadData()
                     }
@@ -605,7 +616,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @objc private func filterTextDidChange(_ sender: NSSearchField) {
         
         self.filterQuery = sender.stringValue
-        self.filterDebouncer.schedule(delay: .seconds(0.5))
+        
+        self.filterTask?.cancel()
+        self.filterTask = Task { [weak self] in
+            try await Task.sleep(for: .seconds(0.5))
+            try await self?.updateFilter()
+        }
     }
     
     
@@ -619,9 +635,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     
     /// Filters nodes in the outline view.
-    private func updateFilter() {
+    ///
+    /// - Parameters:
+    ///   - updatesExpansion: Whether to expand matched parent nodes after filtering.
+    /// - Throws: `CancellationError` or errors on file reading.
+    private func updateFilter(updatesExpansion: Bool = true) async throws {
+        
+        try Task.checkCancellation()
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
+        
+        self.filterProgressIndicator.startAnimation(nil)
+        defer { self.filterProgressIndicator.stopAnimation(nil) }
         
         // store item expansion states
         if self.isFiltering, self.expandedItems == nil {
@@ -633,11 +658,17 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         // filter
         if self.isFiltering {
-            let matchedNodes = rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
+            let matchedNodes = try await rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
                 .filter { $0 != rootNode }
             self.outlineView.reloadData()
-            for node in matchedNodes.flatMap({ $0.parents.reversed() }).uniqued {
-                self.outlineView.expandItem(node)
+            
+            if updatesExpansion {
+                let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
+                    .sorted(using: KeyPathComparator(\.parents.count))
+                    .prefix(1_000)  // limit the number of items to avoid getting stuck
+                for node in nodesToExpand {
+                    self.outlineView.expandItem(node)
+                }
             }
             self.messageField.isHidden = !matchedNodes.isEmpty
             

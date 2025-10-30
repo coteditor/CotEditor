@@ -95,14 +95,14 @@ protocol SettingFileManaging: AnyObject, Sendable {
     var cachedSettings: [String: Setting] { get set }
     
     
+    /// Loads the setting from the data.
+    nonisolated static func loadSetting(from data: Data) throws -> sending Setting
+    
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
     func setting(name: String) throws(SettingFileError) -> Setting
     
-    /// Loads the setting from the data.
-    nonisolated func loadSetting(from data: Data) throws -> sending Setting
-    
     /// Loads settings from the user domain.
-    func loadUserSettings()
+    nonisolated func loadUserSettings() -> [String]
     
     /// Tells that a setting did update.
     func didUpdateSetting(change: SettingChange)
@@ -419,7 +419,7 @@ extension SettingFileManaging {
         }
         
         // test if the setting file can be read correctly
-        let setting = try self.loadSetting(from: data)
+        let setting = try Self.loadSetting(from: data)
         
         // write file
         let destURL = self.preparedURLForUserSetting(name: name)
@@ -436,6 +436,16 @@ extension SettingFileManaging {
             ? .updated(from: name, to: name)
             : .added(name)
         self.updateSettingList(change: change)
+    }
+    
+    
+    /// Reloads settings in the user domain.
+    func invalidateUserSettings() async {
+        
+        self.cachedSettings.removeAll()
+        self.settingNames = await Task.detached {
+            self.loadUserSettings()
+        }.value
     }
     
     
@@ -478,7 +488,7 @@ extension SettingFileManaging {
         
         let data = try Data(contentsOf: fileURL)
         
-        return try loadSetting(from: data)
+        return try Self.loadSetting(from: data)
     }
     
     

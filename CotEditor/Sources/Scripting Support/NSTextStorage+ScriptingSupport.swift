@@ -25,6 +25,11 @@
 
 import AppKit.NSTextStorage
 
+// declare Sendable to NSAttributedString instead of NSTextView to suppress the warning
+// when sending NSTextStorage as a notification object (2025-10, Xcode 26.1).
+extension NSAttributedString: @retroactive @unchecked Sendable { }
+
+
 extension NSTextStorage {
     
     /// Observes text storage update for in case when a part of the contents are directly edited from AppleScript.
