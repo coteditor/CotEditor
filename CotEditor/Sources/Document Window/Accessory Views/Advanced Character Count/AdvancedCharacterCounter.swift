@@ -115,10 +115,8 @@ import StringUtils
         
         Task.detached {
             let count: Int? = strings
-                .map { $0.count(options: options) }
-                .reduce(nil) { total, count in
-                    if let total, let count { total + count } else { total ?? count }
-                }
+                .compactMap { $0.count(options: options) }
+                .reduce(0, +)
             await MainActor.run {
                 self.selectionCount = count
             }
