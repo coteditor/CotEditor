@@ -331,12 +331,12 @@ private struct TransferableReplacement: Transferable {
             guard let data = item.data() else { throw CocoaError(.fileNoSuchFile) }
             return data
         }
-        .suggestedFileName { $0.name }
+        .suggestedFileName(\.name)
         
         FileRepresentation(importedContentType: .cotReplacement) { received in
             let name = received.file.deletingPathExtension().lastPathComponent
             let data = try Data(contentsOf: received.file)
-            return TransferableReplacement(name: name, data: data)
+            return Self(name: name, data: data)
         }
     }
 }
