@@ -1773,7 +1773,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пространств"
+            "value" : "Пробелы"
           }
         },
         "tr" : {
@@ -1868,7 +1868,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Табуляций"
+            "value" : "Табуляцию"
           }
         },
         "tr" : {

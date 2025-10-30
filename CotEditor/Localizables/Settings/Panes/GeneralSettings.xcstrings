@@ -852,7 +852,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Спросить, как решить"
+            "value" : "Спросить что сделать"
           }
         },
         "tr" : {
@@ -2023,7 +2023,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать окно Открытия"
+            "value" : "Открыть файл"
           }
         },
         "tr" : {

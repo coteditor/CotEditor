@@ -1809,7 +1809,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Расположение"
+            "value" : "Положение курсора"
           }
         },
         "tr" : {
@@ -2005,7 +2005,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Создано"
+            "value" : "Создан"
           }
         },
         "tr" : {
@@ -4452,7 +4452,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Некорректный Символ"
+            "value" : "Некорректные символы"
           }
         },
         "tr" : {

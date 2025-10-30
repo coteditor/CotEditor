@@ -2087,7 +2087,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать в проводнике"
+            "value" : "Показать в Finder"
           }
         },
         "tr" : {
@@ -2188,7 +2188,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать “%@” в проводнике"
+            "value" : "Показать “%@” в Finder"
           }
         },
         "tr" : {

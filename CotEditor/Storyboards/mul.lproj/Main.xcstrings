@@ -5486,7 +5486,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Услуги"
+            "value" : "Сервисы"
           }
         },
         "tr" : {
@@ -5588,7 +5588,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Услуги"
+            "value" : "Сервисы"
           }
         },
         "tr" : {
@@ -14564,7 +14564,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запретить редактирование"
+            "value" : "Запретить изменение"
           }
         },
         "tr" : {
@@ -16298,7 +16298,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поиск выделения"
+            "value" : "Поиск в выделенном"
           }
         },
         "tr" : {
@@ -20684,7 +20684,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать в проводнике"
+            "value" : "Показать в Finder"
           }
         },
         "tr" : {
