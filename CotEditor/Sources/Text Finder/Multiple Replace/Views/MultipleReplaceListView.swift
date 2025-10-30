@@ -318,7 +318,7 @@ private struct TransferableReplacement: Transferable {
     var data: @Sendable () -> Data?
     
     
-    init(name: String, data: @autoclosure @Sendable @escaping () -> Data?) {
+    init(name: String, data: @autoclosure @escaping @Sendable () -> Data?) {
         
         self.name = name
         self.data = data

@@ -529,7 +529,7 @@ private struct TransferableSyntax: Transferable {
     var canExport: Bool
     
     
-    init(name: String, canExport: Bool = true, data: @autoclosure @Sendable @escaping () -> Data?) {
+    init(name: String, canExport: Bool = true, data: @autoclosure @escaping @Sendable () -> Data?) {
         
         self.name = name
         self.data = data
