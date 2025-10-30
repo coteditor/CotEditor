@@ -69,6 +69,12 @@
             "value" : "Para alterar o atalho, clique na coluna Teclas, então entre com as novas teclas."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы изменить сочетание клавиш, щелкните столбец клавиш, а затем нажмите новые клавиши."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

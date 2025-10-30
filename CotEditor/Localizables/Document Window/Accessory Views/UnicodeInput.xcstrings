@@ -70,6 +70,12 @@
             "value" : "Limpar Recentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить недавние"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Codice non valido"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный код"
           }
         },
         "tr" : {
@@ -245,6 +257,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recentes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавние"
           }
         },
         "tr" : {

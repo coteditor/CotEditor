@@ -70,6 +70,12 @@
             "value" : "%@ ponto"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ точек"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ vezes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ раз"
           }
         },
         "tr" : {
@@ -247,6 +259,12 @@
             "value" : "Antisserrilhado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размытие"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aparência:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оформление:"
           }
         },
         "tr" : {
@@ -430,6 +454,12 @@
             "value" : "Mesma do sistema"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как в системе"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -523,6 +553,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Escura"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темная"
           }
         },
         "tr" : {
@@ -620,6 +656,12 @@
             "value" : "Clara"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -706,6 +748,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opacidade do editor:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозрачность редактора:"
           }
         },
         "tr" : {
@@ -796,6 +844,12 @@
             "value" : "Tamanho da fonte"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер шрифта"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -882,6 +936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligadures"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лигатуры"
           }
         },
         "tr" : {
@@ -972,6 +1032,12 @@
             "value" : "Altura da linha:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Высота строк:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1058,6 +1124,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonte monoespaçada:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моноширинный шрифт:"
           }
         },
         "tr" : {
@@ -1156,6 +1228,12 @@
             "value" : "Você deseja usar a fonte selecionada como fonte monoespaçada?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хотите использовать его для моноширинного шрифта?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1249,6 +1327,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A fonte selecionada não parace ser monoespaçada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный шрифт, похоже, не является моноширинным."
           }
         },
         "tr" : {
@@ -1346,6 +1430,12 @@
             "value" : "Opaco"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозрачный"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1441,6 +1531,12 @@
             "value" : "Transparente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозрачный"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1528,6 +1624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecionar…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать…"
           }
         },
         "tr" : {
@@ -1618,6 +1720,12 @@
             "value" : "Fonte padrão:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартный шрифт:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1705,6 +1813,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "vezes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "раз"
           }
         },
         "tr" : {

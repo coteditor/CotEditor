@@ -70,6 +70,12 @@
             "value" : "Beta"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тестовый"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continuar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить"
           }
         },
         "tr" : {
@@ -255,6 +267,12 @@
             "value" : "O comportamento dos comentários agora pode ser personalizado, fazendo o editor parecer mais natural de usar."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поведение комментариев теперь можно настраивать, что делает редактор более удобным в использовании."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,6 +370,12 @@
             "value" : "Comentário mais inteligente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Более умный комментарий"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -445,6 +469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O navegador de arquivos agora permite filtrar itens por nomes de arquivos."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файловый браузер теперь позволяет фильтровать элементы по именам файлов."
           }
         },
         "tr" : {
@@ -542,6 +572,12 @@
             "value" : "Encontre documentos no navegador de arquivos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти документы в файловом браузере"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -636,6 +672,12 @@
             "value" : "Notas da Versão"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примечания к выпуску"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -723,6 +765,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Novidades no CotEditor %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что нового в CotEditor %@"
           }
         },
         "tr" : {

@@ -232,6 +232,36 @@
             }
           }
         },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld чашек"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld чашек"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld чашка"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld чашек"
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -345,6 +375,12 @@
             "value" : "× %lld"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -432,6 +468,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "É necessária uma conexão com a internet para doar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Необходимо интернет соединение для поддержки."
           }
         },
         "tr" : {
@@ -522,6 +564,12 @@
             "value" : "Como prova do seu apoio, um emblema de café aparece na barra de status durante o apoio contínuo."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В качестве доказательства вашей поддержки на строке состояния будет отображаться значок кофе."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -608,6 +656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipo de emblema:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип значка:"
           }
         },
         "tr" : {
@@ -698,6 +752,12 @@
             "value" : "Apoio contínuo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Постоянная поддержка"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -784,6 +844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor fornece todos os recursos gratuitamente para todos. Você pode apoiar este projeto pagando um cafézinho."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor предоставляет все функции бесплатно всем желающим. Вы можете поддержать этот проект, купив кофе."
           }
         },
         "tr" : {
@@ -874,6 +940,12 @@
             "value" : "A doação não está disponível no momento."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В настоящее время покупка поддержки недоступна."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -962,6 +1034,12 @@
             "value" : "Gerenciar Assinaturas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление подписками"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1048,6 +1126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Doação única"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разовая поддержка"
           }
         },
         "tr" : {
@@ -1139,6 +1223,12 @@
             "value" : "Abrir GitHub Sponsors"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спонсоры Open GitHub"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1227,6 +1317,12 @@
             "value" : "Abrir na App Store"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть в App Store"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1313,6 +1409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Política de Privacidade"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика конфиденциальности"
           }
         },
         "tr" : {
@@ -1404,6 +1506,12 @@
             "value" : "Quantidade"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Количество"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1490,6 +1598,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restaurar Assinatura"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить подписку"
           }
         },
         "tr" : {
@@ -1580,6 +1694,12 @@
             "value" : "Termos do Serviço"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Условия обслуживания"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1666,6 +1786,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O recurso de doação Dentro do App está disponível apenas no CotEditor distribuído na App Store."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функция поддержки внутри приложения доступна только в CotEditor, распространяемом в App Store."
           }
         },
         "tr" : {

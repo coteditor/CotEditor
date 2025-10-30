@@ -15176,7 +15176,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Контур"
+            "value" : "Структура"
           }
         },
         "tr" : {
@@ -20072,7 +20072,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открыть меню элементов плана"
+            "value" : "Открыть меню структур"
           }
         },
         "tr" : {
@@ -20276,7 +20276,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Выбрать следующий элемент плана"
+            "value" : "Выбрать следующий элемент"
           }
         },
         "tr" : {

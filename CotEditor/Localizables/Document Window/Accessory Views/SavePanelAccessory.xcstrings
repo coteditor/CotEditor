@@ -70,6 +70,12 @@
             "value" : "Transforme em arquivo executável"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделать выполняемым"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

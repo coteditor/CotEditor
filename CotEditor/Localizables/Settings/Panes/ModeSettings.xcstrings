@@ -70,6 +70,12 @@
             "value" : "Adicionar ponto final com dois espaços"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить точку с двойным пробелом"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inserir chaves e aspas finais automaticamente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически вставлять закрывающие скобки и кавычки"
           }
         },
         "tr" : {
@@ -247,6 +259,12 @@
             "value" : "Verificar Gramática com Ortografia"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверять грамматику и орфографию"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verificar Ortografia Durante Digitação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверять орфографию при наборе текста"
           }
         },
         "tr" : {
@@ -424,6 +448,12 @@
             "value" : "Lista de preenchimento inclui:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список автодополнения включает в себя:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -510,6 +540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Preenchimento:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автодополнение:"
           }
         },
         "tr" : {
@@ -601,6 +637,12 @@
             "value" : "Corrigir Ortografia Automaticamente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверять грамматику и орфографию автоматически"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -687,6 +729,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonte:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифт:"
           }
         },
         "tr" : {
@@ -784,6 +832,12 @@
             "value" : "Monoespaçado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моноширинный"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,6 +933,12 @@
             "value" : "Padrão"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартный"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -965,6 +1025,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
           }
         },
         "tr" : {
@@ -1056,6 +1122,12 @@
             "value" : "Não Encontrado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не найдено"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1143,6 +1215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copiar/colar inteligente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Умное копирование/вставка"
           }
         },
         "tr" : {
@@ -1234,6 +1312,12 @@
             "value" : "Hifens Inteligentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Умные тире"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1321,6 +1405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aspas Inteligentes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Умные кавычки"
           }
         },
         "tr" : {
@@ -1411,6 +1501,12 @@
             "value" : "Ortografia:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правописание:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1497,6 +1593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Palavras padrão"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартные слова"
           }
         },
         "tr" : {
@@ -1587,6 +1689,12 @@
             "value" : "Substituição:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замены:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1675,6 +1783,12 @@
             "value" : "Sugerir preenchimento ao digitar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проводить автозамену при вводе текста"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1761,6 +1875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sintaxe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтакс"
           }
         },
         "tr" : {
@@ -1852,6 +1972,12 @@
             "value" : "Substituição de texto"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замена текста"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1939,6 +2065,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta sintaxe não existe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот синтаксис не существует"
           }
         },
         "tr" : {
@@ -2029,6 +2161,12 @@
             "value" : "Palavras definidas na sintaxe"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слова, определенные в синтаксисе"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2115,6 +2253,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Palavras no documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слова в документе"
           }
         },
         "tr" : {

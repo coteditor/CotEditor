@@ -70,6 +70,12 @@
             "value" : "Fechar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Falha na detecção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка распознования"
           }
         },
         "tr" : {
@@ -247,6 +259,12 @@
             "value" : "Inserir"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum texto detectado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст не распознан"
           }
         },
         "tr" : {

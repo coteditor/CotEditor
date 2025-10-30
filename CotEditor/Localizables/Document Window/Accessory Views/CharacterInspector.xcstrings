@@ -70,6 +70,12 @@
             "value" : "<uma letra que consiste em %lld caracteres>"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<буква, состоящая из %lld символов>"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bloco:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок:"
           }
         },
         "tr" : {
@@ -246,6 +258,12 @@
             "value" : "Categoria:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категория:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -332,6 +350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ponto de Código:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точка в коде:"
           }
         },
         "tr" : {
@@ -423,6 +447,12 @@
             "value" : "depreciado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "запрещен"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,6 +539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum Bloco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет блока"
           }
         },
         "tr" : {
@@ -599,6 +635,12 @@
             "value" : "Desconhecido"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестный"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -685,6 +727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versão:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия:"
           }
         },
         "tr" : {

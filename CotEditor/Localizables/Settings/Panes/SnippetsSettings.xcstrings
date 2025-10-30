@@ -69,6 +69,12 @@
             "value" : "Todas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comando"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команда"
           }
         },
         "tr" : {
@@ -247,6 +259,12 @@
             "value" : "Descrição"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensões"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение"
           }
         },
         "tr" : {
@@ -425,6 +449,12 @@
             "value" : "Arquivos Soltos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Передача файлов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -512,6 +542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensões de arquivo do arquivo solto (separadas por vírgulas)."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение переданного файла (разделенные запятыми)."
           }
         },
         "tr" : {
@@ -603,6 +639,12 @@
             "value" : "Inserir Variável"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить переменную"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -689,6 +731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formato da inserção:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Формат вставки:"
           }
         },
         "tr" : {
@@ -786,6 +834,12 @@
             "value" : "Teclas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -881,6 +935,12 @@
             "value" : "Nome"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -968,6 +1028,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sintaxe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
           }
         },
         "tr" : {
@@ -1059,6 +1125,12 @@
             "value" : "Sintaxe na qual essa configuração de soltar arquivo é usada."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис, в котором используется этот параметр перетаскивания файла."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1147,6 +1219,12 @@
             "value" : "Texto a ser inserido por um comando no menu ou por atalho no teclado:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, вставляемый командой в меню или сочетанием клавиш:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1233,6 +1311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Texto a ser inserido ao soltar arquivos no editor:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, который нужно вставить, перетащив файлы в редактор:"
           }
         },
         "tr" : {
