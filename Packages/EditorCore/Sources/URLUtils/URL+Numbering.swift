@@ -32,7 +32,7 @@ public struct NumberingFormat: Sendable {
     private var numberedFormat: @Sendable (String, Int) -> String
     
     
-    public init(_ format: @Sendable @escaping (_ base: String) -> String, numbered numberedFormat: @Sendable @escaping (_ base: String, _ count: Int) -> String) {
+    public init(_ format: @escaping @Sendable (_ base: String) -> String, numbered numberedFormat: @escaping @Sendable (_ base: String, _ count: Int) -> String) {
         
         self.format = format
         self.numberedFormat = numberedFormat

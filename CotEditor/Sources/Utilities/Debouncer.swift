@@ -41,7 +41,7 @@
     /// - Parameters:
     ///   - delay: The default time to wait since the last call.
     ///   - action: The action to debounce.
-    init(delay: ContinuousClock.Duration = .seconds(0), action: @MainActor @Sendable @escaping () -> Void) {
+    init(delay: ContinuousClock.Duration = .seconds(0), action: @MainActor @escaping @Sendable () -> Void) {
         
         self.action = action
         self.defaultDelay = delay
