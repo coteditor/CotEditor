@@ -96,6 +96,12 @@
                 "name" : "Rafał Kopicki",
                 "url" : "https://github.com/rkopicki"
             }
+        ],
+        "ru" : [
+            {
+                "name" : "Andrey",
+                "url" : "https://github.com/andrey-lysikov"
+            }
         ]
     },
     "contributors" : [

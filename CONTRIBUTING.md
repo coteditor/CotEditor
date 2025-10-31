@@ -83,6 +83,7 @@ Currently, we already have maintainers for:
 - Korean
 - Polish
 - Portuguese
+- Russian
 - Turkish
 
 We are now looking for new maintainers for:

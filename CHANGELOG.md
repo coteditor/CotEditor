@@ -3,6 +3,10 @@
 6.1.0-rc.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Russian localization (Thanks to Andrey!).
+
 
 
 6.1.0-rc (763)
