@@ -65,6 +65,9 @@ struct EditSettingsView: View {
                     .modifier { content in
                         if #available(macOS 26, *) {
                             content
+                        } else if Locale.current.language.languageCode == .russian {
+                            content
+                                .frame(maxWidth: 320)
                         } else {
                             content
                                 .fixedSize()

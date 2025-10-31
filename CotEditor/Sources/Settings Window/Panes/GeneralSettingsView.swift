@@ -90,6 +90,9 @@ struct GeneralSettingsView: View {
                     .modifier { content in
                         if #available(macOS 26, *) {
                             content
+                        } else if Locale.current.language.languageCode == .russian {
+                            content
+                                .frame(maxWidth: 200)
                         } else {
                             content
                                 .fixedSize()
