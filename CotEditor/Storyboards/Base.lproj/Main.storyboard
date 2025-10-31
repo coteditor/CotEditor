@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24128"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -616,7 +616,7 @@ Gw
                                                 <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="GPs-2m-wXS"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Customize Toolbar…" secondaryImage="wrench.adjustable" catalog="system" id="613">
+                                        <menuItem title="Customize Toolbar…" id="613">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
@@ -1456,6 +1456,5 @@ AAAAFBk
         <image name="textformat.size" catalog="system" width="18" height="12"/>
         <image name="textformat.size.larger" catalog="system" width="11" height="12"/>
         <image name="textformat.size.smaller" catalog="system" width="9" height="9"/>
-        <image name="wrench.adjustable" catalog="system" width="18" height="18"/>
     </resources>
 </document>
