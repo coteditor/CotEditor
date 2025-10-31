@@ -133,7 +133,7 @@ struct FindAllMatch: Identifiable {
     func incrementalSearch() {
         
         self.findTask?.cancel()
-        self.findTask = Task.detached(priority: .userInitiated) {
+        self.findTask = Task(priority: .userInitiated) {
             try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.05))  // debounce
             try await self.find(forward: true, isIncremental: true)
         }

@@ -97,11 +97,10 @@ import StringUtils
         
         let options = UserDefaults.standard.characterCountOptions
         
-        Task.detached {
-            let count = string.count(options: options)
-            await MainActor.run {
-                self.entireCount = count
-            }
+        Task {
+            self.entireCount = await Task.detached {
+                string.count(options: options)
+            }.value
         }
     }
     
@@ -113,15 +112,12 @@ import StringUtils
         
         let options = UserDefaults.standard.characterCountOptions
         
-        Task.detached {
-            let count: Int? = strings
-                .map { $0.count(options: options) }
-                .reduce(nil) { total, count in
-                    if let total, let count { total + count } else { total ?? count }
-                }
-            await MainActor.run {
-                self.selectionCount = count
-            }
+        Task {
+            self.selectionCount = await Task.detached {
+                strings
+                    .compactMap { $0.count(options: options) }
+                    .reduce(0, +)
+            }.value
         }
     }
 }

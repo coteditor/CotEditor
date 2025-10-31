@@ -186,9 +186,7 @@ struct FormatSettingsView: View {
                 HelpLink(anchor: "settings_format")
             }
         }
-        .onReceive(self.syntaxManager.$settingNames) { settingNames in
-            self.syntaxNames = settingNames
-        }
+        .onReceive(self.syntaxManager.$settingNames) { self.syntaxNames = $0 }
         .onCommand(#selector((any EncodingsListHolder).showEncodingsListView)) {
             self.isEncodingListPresented = true
         }
@@ -543,13 +541,13 @@ private struct TransferableSyntax: Transferable {
             guard let data = item.data() else { throw CocoaError(.fileNoSuchFile) }
             return data
         }
-        .suggestedFileName { $0.name }
-        .exportingCondition { $0.canExport }
+        .suggestedFileName(\.name)
+        .exportingCondition(\.canExport)
         
         FileRepresentation(importedContentType: .yaml) { received in
             let name = received.file.deletingPathExtension().lastPathComponent
             let data = try Data(contentsOf: received.file)
-            return TransferableSyntax(name: name, data: data)
+            return Self(name: name, data: data)
         }
     }
 }

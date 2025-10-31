@@ -762,7 +762,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             
             // update instance highlights
             if self.highlightsSelectionInstance {
-                self.highlightInstances(after: .seconds(self.selectionInstanceHighlightDelay))
+                let delay: Duration = .seconds(self.selectionInstanceHighlightDelay)
+                self.instanceHighlightTask?.cancel()
+                self.instanceHighlightTask = Task { [weak self] in
+                    try await Task.sleep(for: delay, tolerance: delay * 0.2)  // debounce
+                    try await self?.highlightInstances()
+                }
             }
         }
         
@@ -1558,52 +1563,43 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     
     /// Highlights all instances of the selection.
-    ///
-    /// - Parameter delay: The delay before starting instance highlighting.
-    private func highlightInstances(after delay: Duration) {
+    private func highlightInstances() async throws {
         
-        self.instanceHighlightTask?.cancel()
-        self.instanceHighlightTask = Task.detached {
-            try await Task.sleep(for: delay, tolerance: delay * 0.2)  // debounce
-            
-            let (string, selectedRange): (String, NSRange) = try await MainActor.run {
-                guard
-                    !self.string.isEmpty,  // important to avoid crash after closing editor
-                    !self.selectedRange.isEmpty,
-                    !self.hasMarkedText(),
-                    self.insertionLocations.isEmpty,
-                    self.selectedRanges.count == 1
-                else { throw CancellationError() }
-                
-                return (self.string.immutable, self.selectedRange)
-            }
-            
+        guard
+            !self.string.isEmpty,  // important to avoid crash after closing editor
+            !self.selectedRange.isEmpty,
+            !self.hasMarkedText(),
+            self.insertionLocations.isEmpty,
+            self.selectedRanges.count == 1
+        else { return }
+        
+        let string = self.string.immutable
+        let selectedRange = self.selectedRange
+        let ranges: [NSRange] = try await Task.detached {
             guard (try! NSRegularExpression(pattern: #"\A\b\w.*\w\b\z"#))
                 .firstMatch(in: string, options: [.withTransparentBounds], range: selectedRange) != nil
-            else { return }
+            else { return [] }
             
             let substring = (string as NSString).substring(with: selectedRange)
             let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
             let regex = try! NSRegularExpression(pattern: pattern)
-            let ranges = try regex.cancellableMatches(in: string, range: string.range)
+            
+            return try regex.cancellableMatches(in: string, range: string.range)
                 .map(\.range)
                 .filter { $0 != selectedRange }
-            
-            guard
-                !ranges.isEmpty,
-                let lower = ranges.first?.lowerBound,
-                let upper = ranges.last?.upperBound
-            else { return }
-            
-            await MainActor.run {
-                guard let layoutManager = self.layoutManager else { return }
-                
-                let color = self.textHighlightColor.withAlphaComponent(0.3)
-                layoutManager.groupTemporaryAttributesUpdate(in: NSRange(lower..<upper)) {
-                    for range in ranges {
-                        layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: color, forCharacterRange: range)
-                    }
-                }
+        }.value
+        
+        guard
+            let lower = ranges.first?.lowerBound,
+            let upper = ranges.last?.upperBound
+        else { return }
+        
+        guard let layoutManager = self.layoutManager else { return }
+        
+        let color = self.textHighlightColor.withAlphaComponent(0.3)
+        layoutManager.groupTemporaryAttributesUpdate(in: NSRange(lower..<upper)) {
+            for range in ranges {
+                layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: color, forCharacterRange: range)
             }
         }
     }

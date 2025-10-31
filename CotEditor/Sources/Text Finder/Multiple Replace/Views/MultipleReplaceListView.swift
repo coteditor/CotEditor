@@ -89,9 +89,7 @@ struct MultipleReplaceListView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Sidebar", table: "MultipleReplace", comment: "accessibility label"))
-        .onReceive(self.manager.$settingNames) { settingNames in
-            self.settingNames = settingNames
-        }
+        .onReceive(self.manager.$settingNames) { self.settingNames = $0 }
         .onAppear {
             // separate from `.onChange(of: self.settingNames.isEmpty)`
             // to avoid evaluating before initializing settingNames
@@ -331,12 +329,12 @@ private struct TransferableReplacement: Transferable {
             guard let data = item.data() else { throw CocoaError(.fileNoSuchFile) }
             return data
         }
-        .suggestedFileName { $0.name }
+        .suggestedFileName(\.name)
         
         FileRepresentation(importedContentType: .cotReplacement) { received in
             let name = received.file.deletingPathExtension().lastPathComponent
             let data = try Data(contentsOf: received.file)
-            return TransferableReplacement(name: name, data: data)
+            return Self(name: name, data: data)
         }
     }
 }
