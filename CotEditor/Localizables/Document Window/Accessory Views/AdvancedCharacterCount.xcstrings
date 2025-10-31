@@ -232,6 +232,36 @@
             }
           }
         },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символов"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символов"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символ"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символов"
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -345,6 +375,12 @@
             "value" : "Contagem avançada de caracteres…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продвинутый подсчет символов…"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -439,6 +475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contar bytes do texto codificado com a codificação especificada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсчет байт текста, закодированного с указанной кодировкой."
           }
         },
         "tr" : {
@@ -537,6 +579,12 @@
             "value" : "Byte"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байт"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,6 +679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conte da maneira intuitiva definida em Unicode. Um caractere que consiste em vários pontos de código Unicode, como emojis, é contado como um caractere."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсчет группы символов Unicode, представляющую один неделимый графический элемент, или глиф."
           }
         },
         "tr" : {
@@ -729,6 +783,12 @@
             "value" : "Agrupamentos de Grapheme"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графемный кластер"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -823,6 +883,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contar pontos de código Unicode. O mesmo que contar UTF-32."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсчёт кодовых точек Unicode. Аналогично подсчёту UTF-32."
           }
         },
         "tr" : {
@@ -921,6 +987,12 @@
             "value" : "Unicode escalar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скалярный Unicode"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1015,6 +1087,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conte os pontos de código Unicode, mas um par substituto como dois caracteres."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Считать кодовые точки Unicode, а суррогатную пару — как два символа."
           }
         },
         "tr" : {
@@ -1113,6 +1191,12 @@
             "value" : "UTF-16"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1200,6 +1284,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copiar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копировать"
           }
         },
         "tr" : {
@@ -1291,6 +1381,12 @@
             "value" : "Codificação:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировка:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1378,6 +1474,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "falhou"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ошибка"
           }
         },
         "tr" : {
@@ -1469,6 +1571,12 @@
             "value" : "Ignorar finais de linha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать окончание линий"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1556,6 +1664,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorar espaços em branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать пробелы"
           }
         },
         "tr" : {
@@ -1647,6 +1761,12 @@
             "value" : "Normalização:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормализация:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1734,6 +1854,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar opções"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать настройки"
           }
         },
         "tr" : {
@@ -1825,6 +1951,12 @@
             "value" : "Iniciar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1912,6 +2044,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Parar Contagem Avançada de Caracteres"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остановить продвинутый подсчет символов"
           }
         },
         "tr" : {
@@ -2003,6 +2141,12 @@
             "value" : "Parar Contagem"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остановить подсчет"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2090,6 +2234,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tratar espaços em branco consecutivos como um espaço"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рассматривать последовательные пробелы как один пробел"
           }
         },
         "tr" : {
@@ -2181,6 +2331,12 @@
             "value" : "Unidade:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Юнит:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2268,6 +2424,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espaços em branco:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробелы:"
           }
         },
         "tr" : {

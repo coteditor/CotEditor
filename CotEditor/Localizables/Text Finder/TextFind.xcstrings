@@ -232,6 +232,36 @@
             }
           }
         },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадений найдено."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадений найдено."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадение найдено."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадений найдено."
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -501,6 +531,36 @@
             }
           }
         },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замен произведено."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замен произведено."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замена произведена."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замен произведено."
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -607,6 +667,12 @@
             "value" : "Opções Avançadas de Busca"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные опции поиска"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -694,6 +760,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opções avançadas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные опции"
           }
         },
         "tr" : {
@@ -785,6 +857,12 @@
             "value" : "Limpar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -872,6 +950,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Limpar Substituições Recentes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить список недавних замен"
           }
         },
         "tr" : {
@@ -963,6 +1047,12 @@
             "value" : "Limpar Buscas Recentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить список недавних поисков"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1050,6 +1140,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fechar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
           }
         },
         "tr" : {
@@ -1141,6 +1237,12 @@
             "value" : "Feche os resultados da busca."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть результаты поиска."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1228,6 +1330,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск"
           }
         },
         "tr" : {
@@ -1319,6 +1427,12 @@
             "value" : "Buscar e Substituir"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск и замена"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1406,6 +1520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar Tudo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти все"
           }
         },
         "tr" : {
@@ -1497,6 +1617,12 @@
             "value" : "Liste todas as ocorrências."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти и показать все совпадения."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1584,6 +1710,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar Seguinte"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти следующий"
           }
         },
         "tr" : {
@@ -1675,6 +1807,12 @@
             "value" : "Busque a ocorrência seguinte."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти следующее совпадение."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1762,6 +1900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar Anterior"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти предыдущий"
           }
         },
         "tr" : {
@@ -1853,6 +1997,12 @@
             "value" : "Busque a ocorrência anterior."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти предыдущее совпадение."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1942,6 +2092,12 @@
             "value" : "Resultados da Busca"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты поиска"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2028,6 +2184,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar Texto: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск текста: %@"
           }
         },
         "tr" : {
@@ -2348,6 +2510,42 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Não encontrado"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадений"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадений"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадение"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld совпадений"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ничего не найдено"
                 }
               }
             }
@@ -2700,6 +2898,42 @@
             }
           }
         },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замен"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замен"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замена"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld замен"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ничего не заменено"
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -2838,6 +3072,12 @@
             "value" : "Voltar busca ao início"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обернуть поиск вокруг"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2932,6 +3172,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar incrementalmente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать по возрастанию"
           }
         },
         "tr" : {
@@ -3030,6 +3276,12 @@
             "value" : "A busca ignora sinais diacríticos (Ex.: ö = o)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск игнорирует диакритические знаки (ö = o)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3124,6 +3376,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorar sinais diacríticos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать диакритические знаки"
           }
         },
         "tr" : {
@@ -3222,6 +3480,12 @@
             "value" : "A busca ignora as diferenças de largura nas formas dos caracteres (Ex.: ａ = a)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск игрорирует различие форм знаков (ａ = a)."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3316,6 +3580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorar diferenças de largura"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать различие форм знаков"
           }
         },
         "tr" : {
@@ -3414,6 +3684,12 @@
             "value" : "Exige a equivalência exata, caractere por caractere."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск использует максимальное сравнение символов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3508,6 +3784,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Distinguir caracteres estritamente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Строгий поиск"
           }
         },
         "tr" : {
@@ -3606,6 +3888,12 @@
             "value" : "Permite que ^ e $ correspondam ao início e final de linhas (multilinha)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить символы строк (^ и $) для определения конца строки в мультстрочном поиске"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3700,6 +3988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Âncoras correspondem a linhas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить символы строк"
           }
         },
         "tr" : {
@@ -3798,6 +4092,12 @@
             "value" : "Permite que . corresponda a qualquer caractere, incluindo caracteres de nova linha (linha única)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить точке так-же соответствовать разделителю строки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3892,6 +4192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ponto corresponde a separadores de linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точка может соответствовать разделителю строки"
           }
         },
         "tr" : {
@@ -3990,6 +4296,12 @@
             "value" : "Restrinja os resultados da busca a palavras completas."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск ищет совпадения только целиком слова"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4084,6 +4396,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apenas ocorrências da palavra completa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать целиком слова"
           }
         },
         "tr" : {
@@ -4182,6 +4500,12 @@
             "value" : "Desescapar metacaracteres com barra invertida no texto de substituição."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск текста игнорирует символы экранирования спецсимволов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4276,6 +4600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Texto de substituição sem caractere de escape"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать знаки экранирования"
           }
         },
         "tr" : {
@@ -4374,6 +4704,12 @@
             "value" : "Usa o TR#29 do Unicode para especificar os limites de palavras"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать Unicode TR#29 для обозначения слов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4468,6 +4804,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usar limite de palavra Unicode"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте Unicode для слов"
           }
         },
         "tr" : {
@@ -4787,6 +5129,42 @@
             }
           }
         },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Найдено %1$lld совпадений в “%2$@.”"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Найдено %1$lld совпадений в “%2$@.”"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Найдено одно значение “%2$@.”"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Найдено %1$lld совпадений в “%2$@.”"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ничего не найдено по “%2$@.”"
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -4912,6 +5290,12 @@
             "value" : "Destacar Tudo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсветить все"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4999,6 +5383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorar Maiúsculas/Minúsculas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать регистр"
           }
         },
         "tr" : {
@@ -5090,6 +5480,12 @@
             "value" : "Na Seleção"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В выделенном"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5177,6 +5573,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Строка"
           }
         },
         "tr" : {
@@ -5268,6 +5670,12 @@
             "value" : "Texto Correspondente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совпавший текст"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5355,6 +5763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substituições Recentes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавние замены"
           }
         },
         "tr" : {
@@ -5446,6 +5860,12 @@
             "value" : "Buscas Recentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавние поиски"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5533,6 +5953,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Expressão Regular"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярное выражение"
           }
         },
         "tr" : {
@@ -5624,6 +6050,12 @@
             "value" : "Busca com Expressão Regular"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск с регулярным выражением"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5711,6 +6143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substituir"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить"
           }
         },
         "tr" : {
@@ -5802,6 +6240,12 @@
             "value" : "Substituir Tudo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить все"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5889,6 +6333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substitua todas as ocorrências pelo texto de substituição."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить все выделенным текстом"
           }
         },
         "tr" : {
@@ -5980,6 +6430,12 @@
             "value" : "Substitua a seleção atual pelo texto de substituição e busque a ocorrência seguinte."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить все выделенным текстом и продолжить поиск"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6067,6 +6523,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substituir"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить значением"
           }
         },
         "tr" : {
@@ -6158,6 +6620,12 @@
             "value" : "A busca voltou ao início."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать поиск с начала"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6244,6 +6712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscando no texto…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ищем"
           }
         },
         "tr" : {
@@ -6335,6 +6809,12 @@
             "value" : "Selecionar Tudo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделить все"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6422,6 +6902,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecione para ignorar maiúsculas/minúsculas ao buscar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите, чтобы игнорировать регистр символа при поиске."
           }
         },
         "tr" : {
@@ -6513,6 +6999,12 @@
             "value" : "Selecione para buscar apenas no texto da seleção."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите для поиска текста только из выделения."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6600,6 +7092,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecione para buscar com expressão regular."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите для поиска с регулярным выражением."
           }
         },
         "tr" : {
@@ -6691,6 +7189,12 @@
             "value" : "Mostrar opções avançadas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать дополнительные настройки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6778,6 +7282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostre a referência rápida da sintaxe de expressões regulares."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать краткую ссылку на синтаксис регулярных выражений."
           }
         },
         "tr" : {
@@ -6875,6 +7385,12 @@
             "value" : "Texto de busca vazio"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не указан текст для поиска"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6968,6 +7484,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Digite o texto a buscar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текст для поиска"
           }
         },
         "tr" : {
@@ -7065,6 +7587,12 @@
             "value" : "A opção “Na Seleção” está habilitada, porém nada está selecionado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опция поиска «в найденом тексте» выбрана, но ничего не выбрали в документе."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7158,6 +7686,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção”."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите область поиска в документе или выключите опцию поиска «в найденом тексте»."
           }
         },
         "tr" : {
@@ -7255,6 +7789,12 @@
             "value" : "Expressão regular inválida"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректное регулярное выражение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7342,6 +7882,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Busca Textual"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстовый поиск"
           }
         },
         "tr" : {
@@ -7433,6 +7979,12 @@
             "value" : "Digite o texto que substituirá o texto encontrado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текст которым хотите заменить найденое."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7520,6 +8072,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Digite o texto a buscar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текст для поиска."
           }
         },
         "tr" : {

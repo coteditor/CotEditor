@@ -70,6 +70,12 @@
             "value" : "código de Cor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвет кода"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "HSL CSS"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
           }
         },
         "tr" : {
@@ -260,6 +272,12 @@
             "value" : "HSLa CSS"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLa"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Palavra-chave CSS"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS ключи"
           }
         },
         "tr" : {
@@ -450,6 +474,12 @@
             "value" : "RGB CSS"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -543,6 +573,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RGBa CSS"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBa"
           }
         },
         "tr" : {
@@ -640,6 +676,12 @@
             "value" : "Hexa"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimal"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -733,6 +775,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hexa com Alfa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimal с альфоканалом"
           }
         },
         "tr" : {
@@ -830,6 +878,12 @@
             "value" : "Hexa (Curto)"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimal (сокращенное)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -919,6 +973,12 @@
             "value" : "Inserir"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1006,6 +1066,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Palavras-chave da Folha de Estilo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключевые слова таблицы стилей"
           }
         },
         "tr" : {

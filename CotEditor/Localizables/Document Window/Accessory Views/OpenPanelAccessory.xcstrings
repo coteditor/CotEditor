@@ -70,6 +70,12 @@
             "value" : "Automático"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir como somente leitura"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть только для чтения"
           }
         },
         "tr" : {
@@ -248,6 +260,12 @@
             "value" : "Mostrar arquivos ocultos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать скрытые файлы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Codificação do texto:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировка текста:"
           }
         },
         "tr" : {

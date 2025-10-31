@@ -70,6 +70,12 @@
             "value" : "(Vazio usa a correspondência inteira.)"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Использовать пустое совпадение.)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -159,6 +165,12 @@
             "value" : "(sem ponto)"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(без точек)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -242,6 +254,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@:"
@@ -493,6 +511,36 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld erros encontrados."
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld ошибок найдено."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld ошибок найдено."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Найдена ошибка."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld ошибок найдено."
                 }
               }
             }
@@ -774,6 +822,36 @@
             }
           }
         },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld штук"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld штук"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld штука"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld штук"
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -887,6 +965,12 @@
             "value" : "Autor:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -974,6 +1058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "String Inicial"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало строки"
           }
         },
         "tr" : {
@@ -1065,6 +1155,12 @@
             "value" : "Começa com:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начинается с:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1152,6 +1248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comentário em bloco:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок комментария:"
           }
         },
         "tr" : {
@@ -1243,6 +1345,12 @@
             "value" : "Negrito"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жирный"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1330,6 +1438,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não é possível renomear pacotes de sintaxe."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Связанные синтаксисы не могут быть переименованы."
           }
         },
         "tr" : {
@@ -1421,6 +1535,12 @@
             "value" : "Preenchimento"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1508,6 +1628,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arquivo de Definição"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл определения"
           }
         },
         "tr" : {
@@ -1599,6 +1725,12 @@
             "value" : "Descrição"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1686,6 +1818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Descrição:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
           }
         },
         "tr" : {
@@ -1777,6 +1915,12 @@
             "value" : "URL de distribuição:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL распространения:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1864,6 +2008,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "String Final"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конец строки"
           }
         },
         "tr" : {
@@ -1955,6 +2105,12 @@
             "value" : "Termina com:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заканчивается с:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2042,6 +2198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Correspondência Completa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совпадение"
           }
         },
         "tr" : {
@@ -2133,6 +2295,12 @@
             "value" : "Extensões:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширения:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2220,6 +2388,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recursos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функции"
           }
         },
         "tr" : {
@@ -2311,6 +2485,12 @@
             "value" : "Mapeamento de Arquivo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отображение файлов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2398,6 +2578,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nomes de arquivos:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имена файлов:"
           }
         },
         "tr" : {
@@ -2489,6 +2675,12 @@
             "value" : "Destaque"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2576,6 +2768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IM"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
           }
         },
         "tr" : {
@@ -2667,6 +2865,12 @@
             "value" : "Se não especificado, as palavras de conclusão de sintaxe são geradas com base nas configurações de destaque."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если не указано иное, слова для завершения синтаксиса генерируются на основе настроек подсветки."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2754,6 +2958,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorar Maiúsculas/Minúsculas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать регистр"
           }
         },
         "tr" : {
@@ -2845,6 +3055,12 @@
             "value" : "Informações"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2932,6 +3148,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comentário incorporado:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Встроенный комментарий:"
           }
         },
         "tr" : {
@@ -3023,6 +3245,12 @@
             "value" : "Intérpretes:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переводчики:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3112,6 +3340,12 @@
             "value" : "Itálico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсив"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3198,6 +3432,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kind:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип:"
           }
         },
         "tr" : {
@@ -3289,6 +3529,12 @@
             "value" : "Última modificação:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последнее изменение:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3376,6 +3622,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licença:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лицензия:"
           }
         },
         "tr" : {
@@ -3467,6 +3719,12 @@
             "value" : "Nenhum erro encontrado."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибок не найдено"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3554,6 +3812,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não definido"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не определено"
           }
         },
         "tr" : {
@@ -3645,6 +3909,12 @@
             "value" : "Regras de extração do esboço:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правила извлечения структур:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3732,6 +4002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ER"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
           }
         },
         "tr" : {
@@ -3823,6 +4099,12 @@
             "value" : "Expressão Regular"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярное значение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3910,6 +4192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Padrão de Expressão Regular"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон регулярного значения"
           }
         },
         "tr" : {
@@ -4008,6 +4296,12 @@
             "value" : "Conclusão"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнения"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4102,6 +4396,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plano"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура"
           }
         },
         "tr" : {
@@ -4199,6 +4499,12 @@
             "value" : "Comentários em bloco precisam ter delimitadores inicial e final."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок комментариев должен содержать как начальный, так и конечный разделители."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4292,6 +4598,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A mesma palavra está registrada várias vezes."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Одно и то же слово зарегистрировано несколько раз."
           }
         },
         "tr" : {
@@ -4389,6 +4701,12 @@
             "value" : "Expressão regular inválida."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверное регулярное выражение."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4476,6 +4794,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Os interpretadores são usados para determinar o estilo da sintaxe a partir do cabeçalho #! do documento."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интерпретаторы используются для определения синтаксиса из заголовка #! в документе."
           }
         },
         "tr" : {
@@ -4567,6 +4891,12 @@
             "value" : "Padrão do título:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя шаблона:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4654,6 +4984,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sublinhado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подчеркнуть"
           }
         },
         "tr" : {
@@ -4745,6 +5081,12 @@
             "value" : "Validação"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4832,6 +5174,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versão:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия:"
           }
         },
         "tr" : {

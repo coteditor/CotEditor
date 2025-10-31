@@ -69,6 +69,12 @@
             "value" : "Um recurso do sistema que salva os arquivos automaticamente durante a edição. Mesmo se inativo, o CotEditor cria um backup em segundo plano para o caso de falhas inesperadas."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системная функция, которая автоматически перезаписывает файлы во время редактирования. Даже если она отключена, CotEditor незаметно создаёт резервную копию на случай неожиданного завершения работы."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
             "value" : "Buscar atualizações automaticamente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверять обновление автоматически"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ferramenta da linha de comando:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инструмент командной строки:"
           }
         },
         "tr" : {
@@ -340,6 +358,12 @@
             "value" : "O destino do link simbólico ‘cot’ atual não é o CotEditor em execução."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая символическая ссылка `cot` не указывает на запущенный CotEditor."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -435,6 +459,12 @@
             "value" : "O destino do link simbólico ‘cot’ atual pode ser um caminho inválido."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая символическая ссылка `cot` может указывать на недопустимый путь."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -523,6 +553,12 @@
             "value" : "Diálogo de avisos:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предупреждения:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -609,6 +645,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salvamento de documentos:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранение документа:"
           }
         },
         "tr" : {
@@ -706,6 +748,12 @@
             "value" : "Manter edição do CotEditor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить редакцию CotEditor’s"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -799,6 +847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Solicitar resolução"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спросить что сделать"
           }
         },
         "tr" : {
@@ -896,6 +950,12 @@
             "value" : "Atualizar para edição modificada"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновить до отредактированной версии"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -982,6 +1042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ativar Salvamento Automático com Versões"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить системное автосохранение"
           }
         },
         "tr" : {
@@ -1072,6 +1138,12 @@
             "value" : "Fim de linha inconsistente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непоследовательные окончания строк"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1158,6 +1230,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "instalada em %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Установено в %@"
           }
         },
         "tr" : {
@@ -1249,6 +1327,12 @@
             "value" : "Mais Tarde"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позже"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1337,6 +1421,12 @@
             "value" : "Mais Informações"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Узнать больше…"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1423,6 +1513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gerenciar Alertas…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройка предупреждений…"
           }
         },
         "tr" : {
@@ -1520,6 +1616,12 @@
             "value" : "Deseja reabrir o CotEditor agora?"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Произвести перезапуск приложения?"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1613,6 +1715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O comportamento do aplicativo mudará a partir da próxima inicialização após esta."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поведение приложения изменится со следующего запуска."
           }
         },
         "tr" : {
@@ -1710,6 +1818,12 @@
             "value" : "A alteração será aplicada quando o aplicativo for reaberto."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменение будет применено при следующем запуске."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1803,6 +1917,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não Fazer Nada"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ничего"
           }
         },
         "tr" : {
@@ -1900,6 +2020,12 @@
             "value" : "Mostrar Diálogo de Abertura"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть файл"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1995,6 +2121,12 @@
             "value" : "Criar Novo Documento"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать новый документ"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2081,6 +2213,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Na inicialização:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "При запуске:"
           }
         },
         "tr" : {
@@ -2171,6 +2309,12 @@
             "value" : "Independentemente deste ajuste, pré-lançamentos novos sempre são incluídos ao usar uma versão de pré-lançamento."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Независимо от этой настройки новые предварительные версии всегда включены."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2257,6 +2401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reabrir as janelas da última sessão"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть документы из предыдущего сеанса"
           }
         },
         "tr" : {
@@ -2348,6 +2498,12 @@
             "value" : "Reabrir Agora"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезапустить приложение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2434,6 +2590,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atualização de software:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновление приложения:"
           }
         },
         "tr" : {
@@ -2524,6 +2686,12 @@
             "value" : "Omitir os seguintes avisos:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать предупреждения:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2610,6 +2778,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atualizar para pré-lançamentos quando disponíveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновляться до предварительной версии если она доступна"
           }
         },
         "tr" : {
@@ -2700,6 +2874,12 @@
             "value" : "Quando o documento for modificado por outro aplicativo:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когда документ изменен другим приложением:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2788,6 +2968,12 @@
             "value" : "Quando não houver nada aberto:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когда больше ничего не открыто:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2874,6 +3060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Com a ferramenta ‘cot’, você pode iniciar o CotEditor e abrir arquivos na linha de comando."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С помощью инструмента командной строки `cot` вы можете запустить CotEditor и позволить ему открывать файлы из командной строки."
           }
         },
         "tr" : {

@@ -70,6 +70,12 @@
             "value" : "Ir"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вперед"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -159,6 +165,12 @@
             "value" : "Número da Linha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер строки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -245,6 +257,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Linha:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Строка:"
           }
         },
         "tr" : {

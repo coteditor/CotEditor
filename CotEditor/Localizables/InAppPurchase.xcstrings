@@ -76,6 +76,12 @@
             "value" : "Uma saborosa xícara"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вкусная чашка"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -169,6 +175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espresso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Экспрессо"
           }
         },
         "tr" : {
@@ -266,6 +278,12 @@
             "value" : "Café para desenvolvimento diário"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кофе для ежедневной разработки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -359,6 +377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grãos de Café"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мешок кофе"
           }
         },
         "tr" : {

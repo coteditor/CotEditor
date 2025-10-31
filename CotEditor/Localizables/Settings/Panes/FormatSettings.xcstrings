@@ -69,6 +69,12 @@
             "value" : "Sintaxes disponíveis:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступные синтаксисы:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -155,6 +161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sintaxes customizadas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переопределенные синтаксисы:"
           }
         },
         "tr" : {
@@ -245,6 +257,12 @@
             "value" : "Codificação padrão:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировка по умолчанию:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,6 +349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finais de linha padrão:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Окончания строк по умолчанию:"
           }
         },
         "tr" : {
@@ -421,6 +445,12 @@
             "value" : "Sintaxe padrão:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис по умолчанию:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,6 +539,12 @@
             "value" : "Editar Lista…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить список…"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -595,6 +631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Editar item selecionado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить выделенный элемент"
           }
         },
         "tr" : {
@@ -691,6 +733,12 @@
             "value" : "Editar…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить…"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -779,6 +827,12 @@
             "value" : "Prioridade de codificações:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приоритет кодировок:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -865,6 +919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Consultar declaração da codificação no documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Учитывать описание кодировки в документе"
           }
         },
         "tr" : {
@@ -961,6 +1021,12 @@
             "value" : "Regarregar todas as sintaxes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезагрузить все синтаксисы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1055,6 +1121,12 @@
             "value" : "Mostrar Conflitos de Mapeamento de Arquivo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать конфликты сопоставления файлов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1142,6 +1214,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta sintaxe não existe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот синтаксис не найден"
           }
         },
         "tr" : {
@@ -1236,6 +1314,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta sintaxe é customizada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот синтаксис переопределен"
           }
         },
         "tr" : {

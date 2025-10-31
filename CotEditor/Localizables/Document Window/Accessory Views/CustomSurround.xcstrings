@@ -69,6 +69,12 @@
             "value" : "Início:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
             "value" : "Fim:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конец:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Colocar entre:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вокруг:"
           }
         },
         "tr" : {

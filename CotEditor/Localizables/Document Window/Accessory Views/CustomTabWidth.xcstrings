@@ -69,6 +69,12 @@
             "value" : "Largura da Tabulação:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина столбца:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

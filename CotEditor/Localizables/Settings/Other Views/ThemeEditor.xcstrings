@@ -69,6 +69,12 @@
             "value" : "Autor:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -155,6 +161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fundo:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фон:"
           }
         },
         "tr" : {
@@ -245,6 +257,12 @@
             "value" : "Linha Atual:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая строка:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,6 +349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cursor:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсор:"
           }
         },
         "tr" : {
@@ -421,6 +445,12 @@
             "value" : "Descrição:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +537,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Destaque:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделение:"
           }
         },
         "tr" : {
@@ -597,6 +633,12 @@
             "value" : "Invisíveis:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидимые:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -683,6 +725,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licença:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лицензия:"
           }
         },
         "tr" : {
@@ -774,6 +822,12 @@
             "value" : "Não definido"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не указано"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -860,6 +914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recarregar Todos os Temas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезагрузить все темы"
           }
         },
         "tr" : {
@@ -950,6 +1010,12 @@
             "value" : "Seleção:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрано:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1036,6 +1102,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostre o arquivo de informações do tema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать информации о теме"
           }
         },
         "tr" : {
@@ -1126,6 +1198,12 @@
             "value" : "Sintaxe"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтакс"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1212,6 +1290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Texto:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст:"
           }
         },
         "tr" : {
@@ -1308,6 +1392,12 @@
             "value" : "Tema"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1396,6 +1486,12 @@
             "value" : "Editor de Temas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор Тем"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1479,6 +1575,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL:"
@@ -1571,6 +1673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usar cor do sistema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать системый цвет"
           }
         },
         "tr" : {

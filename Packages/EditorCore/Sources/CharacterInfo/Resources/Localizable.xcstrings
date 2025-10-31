@@ -77,6 +77,12 @@
             "value" : "Estilo do Emoji"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стиль Emoji"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -171,6 +177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estilo do Texto"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стиль Текста"
           }
         },
         "tr" : {
@@ -269,6 +281,12 @@
             "value" : "Tom de Pele III"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон кожи 3"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -363,6 +381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tom de Pele IV"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон кожи 4"
           }
         },
         "tr" : {
@@ -461,6 +485,12 @@
             "value" : "Tom de Pele V"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон кожи 5"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -555,6 +585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tom de Pele VI"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон кожи 6"
           }
         },
         "tr" : {
@@ -653,6 +689,12 @@
             "value" : "Tom de Pele I-II"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон кожи 1 и 2"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -740,6 +782,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Variante"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Варианты"
           }
         },
         "tr" : {

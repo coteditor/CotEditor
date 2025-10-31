@@ -69,6 +69,12 @@
             "value" : "Arraste codificações para alterar a ordem:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетащите кодировки, чтобы изменить порядок:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -162,6 +168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O conjunto de codificação definido como padrão não pode ser removido."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировку, установленную по умолчанию, удалить невозможно."
           }
         },
         "tr" : {
@@ -260,6 +272,12 @@
             "value" : "%@ não pode ser removido."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ не может быть удалена."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -346,6 +364,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Separador"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделитель"
           }
         },
         "tr" : {
@@ -436,6 +460,12 @@
             "value" : "Codificação de Texto"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировка текста"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -522,6 +552,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Essa ordem é para o menu de codificação e a detecção de codificação. O processo de detecção considera apenas os itens listados aqui, com os itens mais ao topo sendo priorizados."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот порядок применяется к меню кодирования и обнаружению кодирования. Процесс обнаружения учитывает только перечисленные здесь элементы, при этом элементы с более высоким приоритетом имеют более высокие значения."
           }
         },
         "tr" : {

@@ -70,6 +70,12 @@
             "value" : "Sintaxes duplicadas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублирующий синтаксис"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensão"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение"
           }
         },
         "tr" : {
@@ -248,6 +260,12 @@
             "value" : "Nome do Arquivo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя файла"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -335,6 +353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Intérpretes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переводчик"
           }
         },
         "tr" : {
@@ -426,6 +450,12 @@
             "value" : "Conflitos no mapeamento de sintaxes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфликты сопоставления синтаксиса"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -512,6 +542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "As seguintes regras de mapeamento de arquivo estão registradas em várias sintaxes. O CotEditor utiliza automaticamente a primeira sintaxe. Para resolver os conflitos, edite cada definição de sintaxe."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следующие правила сопоставления файлов зарегистрированы в нескольких синтаксисах. CotEditor автоматически использует первый синтаксис. Для разрешения конфликтов отредактируйте каждое определение синтаксиса."
           }
         },
         "tr" : {
@@ -601,6 +637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sintaxe usada"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используемый синтаксис"
           }
         },
         "tr" : {

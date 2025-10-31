@@ -70,6 +70,12 @@
             "value" : "Ícone do %@"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sobre o %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О программе %@"
           }
         },
         "tr" : {
@@ -248,6 +260,12 @@
             "value" : "e todos que apoiam o CotEditor!"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "и все кто поддерживает CotEditor!"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -335,6 +353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contribuidores do Código"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авторы кода"
           }
         },
         "tr" : {
@@ -425,6 +449,12 @@
             "value" : "O CotEditor é um programa de código aberto\nlicenciado sob a Licença Apache, Versão 2.0."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor — программа с открытым исходным кодом,\nлицензированная Apache License, версия 2.0."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -511,6 +541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos àqueles que nos permitem usar seu valioso trabalho."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor использует следующие замечательные технологии. Мы безмерно благодарны всем, кто позволил нам использовать их ценные труды."
           }
         },
         "tr" : {
@@ -602,6 +638,12 @@
             "value" : "Créditos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авторы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -689,6 +731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licenças"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лицензии"
           }
         },
         "tr" : {
@@ -780,6 +828,12 @@
             "value" : "Localização"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авторы переводов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -869,6 +923,12 @@
             "value" : "apenas na versão fora da App Store"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "только в версии не из AppStore"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -955,6 +1015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "desenvolvedor original"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "начальный разработчик"
           }
         },
         "tr" : {
@@ -1046,6 +1112,12 @@
             "value" : "Agradecimentos Especiais"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отдельное спасибо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1133,6 +1205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Projeto CotEditor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основной автор"
           }
         },
         "tr" : {
@@ -1228,6 +1306,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versão %1$@ (%2$@)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %1$@ (%2$@)"
           }
         },
         "tr" : {

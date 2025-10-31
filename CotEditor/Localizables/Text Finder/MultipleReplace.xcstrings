@@ -70,6 +70,12 @@
             "value" : "Apagar Regras"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить правило"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Editar Regra"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить правило"
           }
         },
         "tr" : {
@@ -248,6 +260,12 @@
             "value" : "Inserir Regra"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить правило"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -337,6 +355,12 @@
             "value" : "Mover Regras"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переместить правило"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -424,6 +448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substituição Múltipla"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множественная замена"
           }
         },
         "tr" : {
@@ -520,6 +550,12 @@
             "value" : "Recarregar Todas as Definições"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезагрузить все определения"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -607,6 +643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Barra Lateral"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боковая панель"
           }
         },
         "tr" : {

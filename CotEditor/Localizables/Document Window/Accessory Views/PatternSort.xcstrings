@@ -69,6 +69,12 @@
             "value" : "Limpar Recentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить недавние"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -158,6 +164,12 @@
             "value" : "Coluna"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Столбец"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -244,6 +256,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delimitador:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделитель:"
           }
         },
         "tr" : {
@@ -335,6 +353,12 @@
             "value" : "Padrão vazio"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пустой шаблон"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -422,6 +446,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toda a linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вся строка"
           }
         },
         "tr" : {
@@ -512,6 +542,12 @@
             "value" : "Ignorar maiúsculas/minúsculas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать регистр"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -598,6 +634,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Em ordem decrescente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В порядке убывания"
           }
         },
         "tr" : {
@@ -689,6 +731,12 @@
             "value" : "Padrão inválido"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректный шаблон"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -775,6 +823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Manter primeira linha no topo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Первая строка всегда вверху"
           }
         },
         "tr" : {
@@ -865,6 +919,12 @@
             "value" : "Padrão:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -951,6 +1011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Posição:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиция:"
           }
         },
         "tr" : {
@@ -1042,6 +1108,12 @@
             "value" : "Recentes"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надавние"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1129,6 +1201,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Expressão regular"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярное выражение"
           }
         },
         "tr" : {
@@ -1220,6 +1298,12 @@
             "value" : "Expressão Regular"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярное Выражение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1306,6 +1390,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Respeitar regras do idioma"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соблюдайть правила языка"
           }
         },
         "tr" : {
@@ -1397,6 +1487,12 @@
             "value" : "Linha de amostra para verificar qual parte de uma linha será usada ao ordenar a comparação."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пример строки для проверки того, какая часть строки будет использоваться для сравнения сортировок."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1483,6 +1579,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Amostra:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Семпл:"
           }
         },
         "tr" : {
@@ -1574,6 +1676,12 @@
             "value" : "Ordenar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировка"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1660,6 +1768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordenar por:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ сортировки:"
           }
         },
         "tr" : {
@@ -1750,6 +1864,12 @@
             "value" : "Opções de ordenação:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Параметры сортировки:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1838,6 +1958,12 @@
             "value" : "Tratar números como valor numérico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обрабатывать числа как числовые значения"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1924,6 +2050,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usar grupo capturado:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать группу:"
           }
         },
         "tr" : {

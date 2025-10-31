@@ -76,6 +76,12 @@
             "value" : "Crie um novo documento com texto especificado no CotEditor."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать новый документа с выбранным текстом в CotEditor"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -169,6 +175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conteúdo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Содержимое"
           }
         },
         "tr" : {
@@ -266,6 +278,12 @@
             "value" : "Criar Documento"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать документ"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -359,6 +377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Criar Documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать документ"
           }
         },
         "tr" : {

@@ -75,6 +75,12 @@
             "value" : "Adicionar um espaço aos delimitadores de comentário"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить пробел в качестве разделителя комментариев"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -161,6 +167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indentar automaticamente ao escrever"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически делать отступ при наборе текста"
           }
         },
         "tr" : {
@@ -251,6 +263,12 @@
             "value" : "Apagar espaço em branco à direita automaticamente"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически обрезать пробелы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -337,6 +355,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comentário:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комментарий:"
           }
         },
         "tr" : {
@@ -427,6 +451,12 @@
             "value" : "Análise de conteúdo:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анализ содержимого:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -513,6 +543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atraso:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задержка:"
           }
         },
         "tr" : {
@@ -603,6 +639,12 @@
             "value" : "Detectar estilo de recuo ao abrir documentos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Определить стиль отступа при открытии документа"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -689,6 +731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Destacar instâncias do texto selecionado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделить фрагменты выбранного текста"
           }
         },
         "tr" : {
@@ -779,6 +827,12 @@
             "value" : "Destacar pares de chaves"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделите соответствующие скобки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -865,6 +919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Incluindo linhas somente com espaços em branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включая строки, состоящие только из пробелов"
           }
         },
         "tr" : {
@@ -955,6 +1015,12 @@
             "value" : "Recuar seleção com a tecla Tab"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отступ выделения с помощью клавиши Tab"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1041,6 +1107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Largura do recuo:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина отступа:"
           }
         },
         "tr" : {
@@ -1131,6 +1203,12 @@
             "value" : "Recuo:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отступ:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1217,6 +1295,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inserir delimitadores de comentário após a indentação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить разделители комментариев после отступа"
           }
         },
         "tr" : {
@@ -1307,6 +1391,12 @@
             "value" : "Criar links de URLs no documento"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Привязка URL ссылок в документе"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1393,6 +1483,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Preferir usando:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предпочтительно использовать"
           }
         },
         "tr" : {
@@ -1484,6 +1580,12 @@
             "value" : "segundos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "секунд"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1571,6 +1673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "espaços"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пространств"
           }
         },
         "tr" : {
@@ -1662,6 +1770,12 @@
             "value" : "Espaços"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробелы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1751,6 +1865,12 @@
             "value" : "Tabulações"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Табуляцию"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1837,6 +1957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espaço em Branco:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проблелов:"
           }
         },
         "tr" : {

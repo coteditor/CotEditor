@@ -70,6 +70,12 @@
             "value" : "%@ com BOM"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ с меткой порядка байтов (BOM)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

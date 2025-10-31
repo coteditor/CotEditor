@@ -70,6 +70,12 @@
             "value" : "%@ pt"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ точек"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Centralizar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Середина"
           }
         },
         "tr" : {
@@ -260,6 +272,12 @@
             "value" : "Alinhar à Esquerda"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выровнять с лева"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -355,6 +373,12 @@
             "value" : "Alinhar à Direita"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выровнять с права"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -442,6 +466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Preto e Branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Черно белое"
           }
         },
         "tr" : {
@@ -533,6 +563,12 @@
             "value" : "Cor"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвет"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -620,6 +656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tamanho da fonte"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер шрифта"
           }
         },
         "tr" : {
@@ -711,6 +753,12 @@
             "value" : "Rodapé"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нижний колонтитул"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -798,6 +846,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cabeçalho"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок"
           }
         },
         "tr" : {
@@ -889,6 +943,12 @@
             "value" : "Invisíveis"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидимые"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -976,6 +1036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Número da Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер строки"
           }
         },
         "tr" : {
@@ -1066,6 +1132,12 @@
             "value" : "Ativo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включено"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1153,6 +1225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Imprimir Fundos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печатать фон"
           }
         },
         "tr" : {
@@ -1250,6 +1328,12 @@
             "value" : "Nome do Documento"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя документа"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1343,6 +1427,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Caminho do Arquivo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Путь файла"
           }
         },
         "tr" : {
@@ -1440,6 +1530,12 @@
             "value" : "Data da Última Modificação"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата последнего изменения"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1533,6 +1629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ничего"
           }
         },
         "tr" : {
@@ -1630,6 +1732,12 @@
             "value" : "Número da Página"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер страницы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1723,6 +1831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data da Impressão"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напечатать дату"
           }
         },
         "tr" : {
@@ -1820,6 +1934,12 @@
             "value" : "Nome da Sintaxe"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название синтаксиса"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1907,6 +2027,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
           }
         },
         "tr" : {
