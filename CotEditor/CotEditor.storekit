@@ -20,6 +20,36 @@
       "internalID" : "6499507688",
       "localizations" : [
         {
+          "description" : "Lezzetli bir kupa",
+          "displayName" : "Espresso",
+          "locale" : "tr"
+        },
+        {
+          "description" : "Smaczna filiżanka",
+          "displayName" : "Espresso",
+          "locale" : "pl"
+        },
+        {
+          "description" : "一杯美味的咖啡",
+          "displayName" : "濃縮咖啡",
+          "locale" : "zh_Hant"
+        },
+        {
+          "description" : "커피 한 잔",
+          "displayName" : "에스프레소",
+          "locale" : "ko"
+        },
+        {
+          "description" : "Eine köstliche Tasse",
+          "displayName" : "Espresso",
+          "locale" : "de"
+        },
+        {
+          "description" : "おいしい1杯",
+          "displayName" : "エスプレッソ",
+          "locale" : "ja"
+        },
+        {
           "description" : "Una gustosa tazza",
           "displayName" : "Espresso",
           "locale" : "it"
@@ -30,14 +60,9 @@
           "locale" : "fr"
         },
         {
-          "description" : "一杯美味的咖啡",
-          "displayName" : "濃縮咖啡",
-          "locale" : "zh_Hant"
-        },
-        {
-          "description" : "Een lekker kopje",
+          "description" : "A tasty cup",
           "displayName" : "Espresso",
-          "locale" : "nl"
+          "locale" : "en_US"
         },
         {
           "description" : "Uma saborosa xícara",
@@ -45,44 +70,24 @@
           "locale" : "pt_BR"
         },
         {
-          "description" : "커피 한 잔",
-          "displayName" : "에스프레소",
-          "locale" : "ko"
-        },
-        {
-          "description" : "Lezzetli bir kupa",
-          "displayName" : "Espresso",
-          "locale" : "tr"
-        },
-        {
-          "description" : "一杯美味的咖啡",
-          "displayName" : "浓缩咖啡",
-          "locale" : "zh_Hans"
-        },
-        {
-          "description" : "おいしい1杯",
-          "displayName" : "エスプレッソ",
-          "locale" : "ja"
-        },
-        {
-          "description" : "Smaczna filiżanka",
-          "displayName" : "Espresso",
-          "locale" : "pl"
-        },
-        {
-          "description" : "Eine köstliche Tasse",
-          "displayName" : "Espresso",
-          "locale" : "de"
-        },
-        {
           "description" : "Chutný šálek",
           "displayName" : "Espresso",
           "locale" : "cs"
         },
         {
-          "description" : "A tasty cup",
+          "description" : "Вкусная чашка",
+          "displayName" : "Экспрессо",
+          "locale" : "ru"
+        },
+        {
+          "description" : "Een lekker kopje",
           "displayName" : "Espresso",
-          "locale" : "en_US"
+          "locale" : "nl"
+        },
+        {
+          "description" : "一杯美味的咖啡",
+          "displayName" : "浓缩咖啡",
+          "locale" : "zh_Hans"
         }
       ],
       "productID" : "com.coteditor.CotEditor.donation.onetime",
@@ -98,7 +103,7 @@
     "_developerTeamID" : "HT3Z3A72WZ",
     "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 772183917.51927102,
+    "_lastSynchronizedDate" : 783603380.077003,
     "_locale" : "en_US",
     "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "USA",
@@ -164,6 +169,11 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
+              "description" : "Кофе для ежедневной разработки",
+              "displayName" : "Мешок кофе",
+              "locale" : "ru"
+            },
+            {
               "description" : "Kawa dla codziennego rozwoju",
               "displayName" : "Kawa ziarnista",
               "locale" : "pl"
@@ -179,14 +189,9 @@
               "locale" : "tr"
             },
             {
-              "description" : "Kaffee für die tägliche Entwicklung",
-              "displayName" : "Kaffeebohnen",
-              "locale" : "de"
-            },
-            {
-              "description" : "Café pour le développement quotidien",
-              "displayName" : "Grains de café",
-              "locale" : "fr"
+              "description" : "Káva pro každodenní vývoj",
+              "displayName" : "Kávové boby",
+              "locale" : "cs"
             },
             {
               "description" : "Koffie voor dagelijkse ontwikkeling",
@@ -199,6 +204,11 @@
               "locale" : "pt_BR"
             },
             {
+              "description" : "Kaffee für die tägliche Entwicklung",
+              "displayName" : "Kaffeebohnen",
+              "locale" : "de"
+            },
+            {
               "description" : "以咖啡資助軟體研發",
               "displayName" : "咖啡豆",
               "locale" : "zh_Hant"
@@ -209,14 +219,14 @@
               "locale" : "ja"
             },
             {
-              "description" : "Káva pro každodenní vývoj",
-              "displayName" : "Kávové boby",
-              "locale" : "cs"
-            },
-            {
               "description" : "Caffà per lo sviluppo quotidiano",
               "displayName" : "Chicchi di caffè",
               "locale" : "it"
+            },
+            {
+              "description" : "Café pour le développement quotidien",
+              "displayName" : "Grains de café",
+              "locale" : "fr"
             },
             {
               "description" : "日常开发的咖啡",
