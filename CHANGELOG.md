@@ -10,13 +10,13 @@
 
 ### Improvements
 
-- [trivial] Adjust settings window.
+- [trivial] Adjust the layout of the Settings window.
 - [trivial] Update the Unicode block name list.
 
 
 ### Fixes
 
-- [rc] Fixed an issue where filenames were not properly truncated when filtering in the file browser.
+- [beta] Fixed an issue where filenames were not properly truncated when filtering in the file browser.
 
 
 
