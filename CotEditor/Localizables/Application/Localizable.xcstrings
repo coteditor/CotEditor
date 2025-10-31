@@ -13610,7 +13610,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новый"
+            "value" : "Без названия"
           }
         },
         "tr" : {
@@ -13705,7 +13705,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "новая папка"
+            "value" : "Новая папка"
           }
         },
         "tr" : {

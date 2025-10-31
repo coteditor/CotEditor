@@ -3564,7 +3564,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Направление текста:"
+            "value" : "Направление письма:"
           }
         },
         "tr" : {
@@ -3666,7 +3666,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "С Лева на Право"
+            "value" : "Слева направо"
           }
         },
         "tr" : {
@@ -3768,7 +3768,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "С Права на Лево"
+            "value" : "Справа налево"
           }
         },
         "tr" : {

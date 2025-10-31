@@ -8896,7 +8896,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Боковая панель"
+            "value" : "Боковое меню"
           }
         },
         "tr" : {
@@ -10357,7 +10357,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Эмоджи и символы"
+            "value" : "Эмодзи и символы"
           }
         },
         "tr" : {
@@ -10458,7 +10458,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать панель Эмоджи и символов"
+            "value" : "Показать панель Эмоджи и символы"
           }
         },
         "tr" : {
@@ -12984,7 +12984,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Печать"
+            "value" : "Напечатать"
           }
         },
         "tr" : {
@@ -13085,7 +13085,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Печать документа"
+            "value" : "Напечатать документ"
           }
         },
         "tr" : {
@@ -13389,7 +13389,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать проверку правописания и грамматики"
+            "value" : "Показать правописание и грамматику"
           }
         },
         "tr" : {
@@ -15211,7 +15211,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Больше"
+            "value" : "Увеличить"
           }
         },
         "tr" : {
@@ -15514,7 +15514,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Меньше"
+            "value" : "Уменьшить"
           }
         },
         "tr" : {
@@ -16120,7 +16120,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Направление текста"
+            "value" : "Направление письма"
           }
         },
         "tr" : {
@@ -16221,7 +16221,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "С Лева на Право"
+            "value" : "Слева направо"
           }
         },
         "tr" : {
@@ -16322,7 +16322,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "С лева на право"
+            "value" : "Слева направо"
           }
         },
         "tr" : {
@@ -16423,7 +16423,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "С Права на Лево"
+            "value" : "Справа налево"
           }
         },
         "tr" : {
@@ -16524,7 +16524,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "С права на лево"
+            "value" : "Справа налево"
           }
         },
         "tr" : {
@@ -16625,7 +16625,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Изменить направление текста"
+            "value" : "Изменить направление письма"
           }
         },
         "tr" : {

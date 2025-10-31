@@ -386,7 +386,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Печатать заголовки и колонтитулы"
+            "value" : "Напечатать колонтитулы"
           }
         },
         "tr" : {
@@ -807,7 +807,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Чернобелое"
+            "value" : "Черно-белый"
           }
         },
         "tr" : {

@@ -1715,7 +1715,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Найти следующий"
+            "value" : "Найти далее"
           }
         },
         "tr" : {
@@ -1905,7 +1905,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Найти предыдущий"
+            "value" : "Найти ранее"
           }
         },
         "tr" : {

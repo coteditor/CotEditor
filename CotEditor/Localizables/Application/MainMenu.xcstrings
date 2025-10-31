@@ -172,7 +172,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Больше"
+            "value" : "Увеличить"
           }
         },
         "tr" : {
@@ -4226,7 +4226,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать боковую панель"
+            "value" : "Скрыть боковое меню"
           }
         },
         "tr" : {
@@ -4514,7 +4514,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Меньше"
+            "value" : "Уменьшить"
           }
         },
         "tr" : {
