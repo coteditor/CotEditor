@@ -1,6 +1,6 @@
 # Change Log
 
-6.1.0-rc.2 (unreleased)
+6.1.0-rc.2 (765)
 --------------------------
 
 ### New Features
