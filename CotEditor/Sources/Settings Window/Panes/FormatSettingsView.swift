@@ -85,8 +85,15 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .fixedSize()
                 .accessibilityLabeledPair(role: .content, id: "lineEnding", in: self.accessibility)
+                .modifier { content in
+                    if #available(macOS 26, *) {
+                        content
+                    } else {
+                        content
+                            .fixedSize()
+                    }
+                }
             }
             
             Divider()
@@ -167,7 +174,15 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .frame(maxWidth: 260, alignment: .leading)
+                .modifier { content in
+                    if #available(macOS 26, *) {
+                        content
+                            .buttonSizing(.flexible)
+                    } else {
+                        content
+                    }
+                }
+                .frame(maxWidth: 260)
                 .accessibilityLabeledPair(role: .content, id: "syntax", in: self.accessibility)
             }
             
@@ -191,7 +206,7 @@ struct FormatSettingsView: View {
             self.isEncodingListPresented = true
         }
         .scenePadding()
-        .frame(width: 600)
+        .frame(width: 610)
     }
 }
 

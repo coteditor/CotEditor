@@ -260,7 +260,7 @@ struct WindowSettingsView: View {
             }.padding(.top, -8)
         }
         .scenePadding()
-        .frame(minWidth: 600)
+        .frame(minWidth: 610)
     }
 }
 

@@ -61,7 +61,15 @@ struct EditSettingsView: View {
                     Picker(String(localized: "Prefer using", table: "EditSettings"), selection: $autoExpandTab) {
                         Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
                         Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
-                    }.fixedSize()
+                    }
+                    .modifier { content in
+                        if #available(macOS 26, *) {
+                            content
+                        } else {
+                            content
+                                .fixedSize()
+                        }
+                    }
                     
                     HStack(alignment: .firstTextBaseline) {
                         Text("Indent width:", tableName: "EditSettings")
@@ -132,7 +140,7 @@ struct EditSettingsView: View {
         }
         .fixedSize(horizontal: false, vertical: true)
         .scenePadding()
-        .frame(width: 600)
+        .frame(width: 610)
     }
 }
 

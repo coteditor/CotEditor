@@ -52,7 +52,7 @@ struct ThemeView: View {
             Divider()
             
             ThemeEditorView(theme: $theme, isBundled: self.isBundled)
-                .frame(width: 360)
+                .frame(width: 400)
                 .onChange(of: self.theme) { _, newValue in
                     do {
                         try self.manager.save(setting: newValue, name: self.selection)
@@ -677,7 +677,7 @@ private struct TransferableTheme: Transferable {
     ThemeView()
 }
 
-#Preview("ThemeEditorView", traits: .fixedLayout(width: 360, height: 280)) {
+#Preview("ThemeEditorView", traits: .fixedLayout(width: 400, height: 280)) {
     @Previewable @State var theme = try! ThemeManager.shared.setting(name: "Anura")
     
     ThemeEditorView(theme: $theme, isBundled: false)

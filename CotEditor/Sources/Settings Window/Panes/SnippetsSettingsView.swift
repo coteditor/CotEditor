@@ -58,7 +58,7 @@ struct SnippetsSettingsView: View {
             }
         }
         .scenePadding()
-        .frame(width: 600)
+        .frame(width: 610)
     }
 }
 

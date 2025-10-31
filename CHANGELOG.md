@@ -10,6 +10,7 @@
 
 ### Improvements
 
+- [trivial] Adjust settings window.
 - [trivial] Update the Unicode block name list.
 
 

@@ -87,7 +87,14 @@ struct GeneralSettingsView: View {
                     }
                     .pickerStyle(.menu)
                     .labelsHidden()
-                    .fixedSize()
+                    .modifier { content in
+                        if #available(macOS 26, *) {
+                            content
+                        } else {
+                            content
+                                .fixedSize()
+                        }
+                    }
                     .accessibilityLabeledPair(role: .content, id: "noDocumentOnLaunchOption", in: self.accessibility)
                     .padding(.leading, 20)
                 }
@@ -218,7 +225,7 @@ struct GeneralSettingsView: View {
         }
         .fixedSize(horizontal: false, vertical: true)
         .scenePadding()
-        .frame(width: 600)
+        .frame(width: 610)
     }
 }
 

@@ -62,7 +62,7 @@ struct KeyBindingsSettingsView: View {
             self.model.load()
         }
         .scenePadding()
-        .frame(width: 600)
+        .frame(width: 610)
     }
 }
 
