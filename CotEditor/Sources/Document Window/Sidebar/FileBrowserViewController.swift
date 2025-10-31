@@ -1010,7 +1010,11 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
             .labelColor
         }
         if let matchedRange = node.filterState?.matchedRange {
-            let attributedName = NSMutableAttributedString(string: node.file.name)
+            let paragraphStyle = NSParagraphStyle.default.mutable
+            paragraphStyle.lineBreakMode = .byTruncatingMiddle
+            let attributedName = NSMutableAttributedString(string: node.file.name, attributes: [
+                .paragraphStyle: paragraphStyle,
+            ])
             attributedName.addAttribute(.foregroundColor, value: NSColor.labelColor, range: matchedRange)
             attributedName.applyFontTraits(.boldFontMask, range: matchedRange)
             

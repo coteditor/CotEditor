@@ -13,6 +13,11 @@
 - [trivial] Update the Unicode block name list.
 
 
+### Fixes
+
+- [rc] Fixed an issue where filenames were not properly truncated when filtering in the file browser.
+
+
 
 6.1.0-rc (763)
 --------------------------
