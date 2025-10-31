@@ -281,7 +281,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактирование"
+            "value" : "Правка"
           }
         },
         "tr" : {
@@ -584,7 +584,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Горячие клавиши"
+            "value" : "Привязки"
           }
         },
         "tr" : {

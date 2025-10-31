@@ -4670,7 +4670,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Помощь"
+            "value" : "Справка"
           }
         },
         "tr" : {
@@ -4772,7 +4772,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Помощь"
+            "value" : "Справка"
           }
         },
         "tr" : {
@@ -6404,7 +6404,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактировать"
+            "value" : "Правка"
           }
         },
         "tr" : {
@@ -6710,7 +6710,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактировать"
+            "value" : "Правка"
           }
         },
         "tr" : {
@@ -8138,7 +8138,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Просмотр"
+            "value" : "Вид"
           }
         },
         "tr" : {
@@ -8342,7 +8342,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Просмотр"
+            "value" : "Вид"
           }
         },
         "tr" : {
