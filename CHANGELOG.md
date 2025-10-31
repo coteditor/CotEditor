@@ -8,6 +8,11 @@
 - Add Russian localization (Thanks to Andrey!).
 
 
+### Improvements
+
+- [trivial] Update the Unicode block name list.
+
+
 
 6.1.0-rc (763)
 --------------------------

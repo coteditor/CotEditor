@@ -69,6 +69,12 @@
             "value" : "Adlam"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Адлам"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -155,6 +161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Números Egeus"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эгейские цифры"
           }
         },
         "tr" : {
@@ -245,6 +257,12 @@
             "value" : "Ahom"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ахомское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,6 +349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos Alquímicos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алхимические символы"
           }
         },
         "tr" : {
@@ -421,6 +445,12 @@
             "value" : "Formas de Apresentação Alfabética"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Декоративные варианты букв"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hieróglifos Anatolianos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лувийские иероглифы"
           }
         },
         "tr" : {
@@ -597,6 +633,12 @@
             "value" : "Notação Musical do Grego Antigo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древнегреческая нотная запись"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -683,6 +725,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Números em Grego Antigo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древнегреческие цифры"
           }
         },
         "tr" : {
@@ -773,6 +821,12 @@
             "value" : "Símbolos Antigos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древние символы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -859,6 +913,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Árabe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабское письмо"
           }
         },
         "tr" : {
@@ -949,6 +1009,12 @@
             "value" : "Árabe Estendido-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная арабица A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1035,6 +1101,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Árabe Estendido-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная арабица B"
           }
         },
         "tr" : {
@@ -1125,6 +1197,12 @@
             "value" : "Árabe Estendido-C"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная арабица C"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1211,6 +1289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos Alfabéticos Matemáticos do Árabe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабские математические буквенные символы"
           }
         },
         "tr" : {
@@ -1301,6 +1385,12 @@
             "value" : "Formas de Apresentação do Árabe-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабское декоративное письмо A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1387,6 +1477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formas de Apresentação do Árabe-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабское декоративное письмо B"
           }
         },
         "tr" : {
@@ -1477,6 +1573,12 @@
             "value" : "Suplemento Árabe"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабское письмо (дополнительно)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1563,6 +1665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Armênio"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Армянское письмо"
           }
         },
         "tr" : {
@@ -1653,6 +1761,12 @@
             "value" : "Setas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стрелки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1739,6 +1853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avéstico"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авестийский алфавит"
           }
         },
         "tr" : {
@@ -1829,6 +1949,12 @@
             "value" : "Balinês"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Балийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1915,6 +2041,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bamum"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бамум"
           }
         },
         "tr" : {
@@ -2005,6 +2137,12 @@
             "value" : "Suplemento Bamum"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнение бамум"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2091,6 +2229,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latino Básico"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основная латиница"
           }
         },
         "tr" : {
@@ -2181,6 +2325,12 @@
             "value" : "Bassa Vah"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Письмо басса"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2267,6 +2417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Batak"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Батакское письмо"
           }
         },
         "tr" : {
@@ -2357,6 +2513,12 @@
             "value" : "Bengali"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бенгальское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2443,6 +2605,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bhaiksuki"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бхайкшуки"
           }
         },
         "tr" : {
@@ -2533,6 +2701,12 @@
             "value" : "Elementos de Bloco"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Элементы блоков"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2619,6 +2793,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bopomofo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Китайское слоговое письмо"
           }
         },
         "tr" : {
@@ -2709,6 +2889,12 @@
             "value" : "Bopomofo Ampliado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Китайское расширенное слоговое письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2795,6 +2981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desenho de Caixa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы рамок"
           }
         },
         "tr" : {
@@ -2885,6 +3077,12 @@
             "value" : "Brahmi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брахми"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2971,6 +3169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Padrões de Braille"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифт Брайля"
           }
         },
         "tr" : {
@@ -3061,6 +3265,12 @@
             "value" : "Buginês"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бугийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3147,6 +3357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buhid"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бухид"
           }
         },
         "tr" : {
@@ -3237,6 +3453,12 @@
             "value" : "Símbolos Musicais Bizantinos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Византийские музыкальные символы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3323,6 +3545,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Carian"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Карийское письмо"
           }
         },
         "tr" : {
@@ -3413,6 +3641,12 @@
             "value" : "Albanês Caucasiano"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Агванское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3499,6 +3733,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chakma"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чакма"
           }
         },
         "tr" : {
@@ -3589,6 +3829,12 @@
             "value" : "Cham"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чамский алфавит"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3675,6 +3921,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cheroqui"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чероки письмо"
           }
         },
         "tr" : {
@@ -3765,6 +4017,12 @@
             "value" : "Suplemento Cherokee"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чероки (дополнение)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3851,6 +4109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos de Xadrez"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шахматные символы"
           }
         },
         "tr" : {
@@ -3941,6 +4205,12 @@
             "value" : "Corásmia"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хорезмийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4027,6 +4297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compatibilidade CJK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дальневосточные совместимые символы"
           }
         },
         "tr" : {
@@ -4117,6 +4393,12 @@
             "value" : "Formas de Compatibilidade CJK"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Декоративные дальневосточные формы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4203,6 +4485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ideogramas de Compatibilidade CJK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совместимые иероглифы"
           }
         },
         "tr" : {
@@ -4293,6 +4581,12 @@
             "value" : "Sup. de Ideogramas de Compatibilidade CJK."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные совместимые CJK-идеограммы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4379,6 +4673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suplemento de Radicais CJK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные ключи к иероглифам"
           }
         },
         "tr" : {
@@ -4469,6 +4769,12 @@
             "value" : "Batidas CJK"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Черты иероглифов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4555,6 +4861,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos e Pontuação CJK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дальневосточные символы и пунктуация"
           }
         },
         "tr" : {
@@ -4645,6 +4957,12 @@
             "value" : "Ideogramas Unificados CJK"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4731,6 +5049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ideogramas Unificados CJK Amp. A"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение A"
           }
         },
         "tr" : {
@@ -4821,6 +5145,12 @@
             "value" : "Ideogramas Unif. CJK Amp. B"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение B"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4907,6 +5237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ideogramas Unificados CJK Amp. C"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы CJK, расширение C"
           }
         },
         "tr" : {
@@ -4997,6 +5333,12 @@
             "value" : "Ideogramas Unificados CJK Amp. D"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение D"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5083,6 +5425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ideogramas Unificados CJK Amp. E"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы ККЯ (расширение E)"
           }
         },
         "tr" : {
@@ -5173,6 +5521,12 @@
             "value" : "Ideogramas Unificados CJK Amp. F"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение F"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5259,6 +5613,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ideogramas Unificados CJK Amp. G"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение G"
           }
         },
         "tr" : {
@@ -5349,6 +5709,12 @@
             "value" : "Ideogramas Unificados CJK Amp. H"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение H"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5435,6 +5801,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ideogramas Unificados CJK Amp. I"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение I"
           }
         },
         "tr" : {
@@ -5525,6 +5897,12 @@
             "value" : "Sinais Diacríticos de União"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Присоединяемые диакритические знаки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5611,6 +5989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Combinação de Extensão de Marcas Diacríticas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объединенные диакритические знаки"
           }
         },
         "tr" : {
@@ -5701,6 +6085,12 @@
             "value" : "Marcas Diacríticas de União para Símbolos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Присоединяемые диакритические знаки для символов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5787,6 +6177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Combinação de Suplemento de Marcas Diacríticas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные присоединяемые диакритические знаки"
           }
         },
         "tr" : {
@@ -5877,6 +6273,12 @@
             "value" : "Semissímbolos de União"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соединительные половинки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5963,6 +6365,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formas Numéricas Índicas Comuns"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основные формы индийских цифр"
           }
         },
         "tr" : {
@@ -6053,6 +6461,12 @@
             "value" : "Imagens de Controle"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значки кодов управления"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6139,6 +6553,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copta"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коптское письмо"
           }
         },
         "tr" : {
@@ -6229,6 +6649,12 @@
             "value" : "Números Copta do Epact"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коптские цифры"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6315,6 +6741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numeração de Varetas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обозначение чисел счетными палочками"
           }
         },
         "tr" : {
@@ -6405,6 +6837,12 @@
             "value" : "Cuneiforme"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клинопись"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6491,6 +6929,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Números e Pontuação Cuneiformes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клинописные цифры и пунктуация"
           }
         },
         "tr" : {
@@ -6581,6 +7025,12 @@
             "value" : "Símbolos de Moedas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы валют"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6667,6 +7117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Silabário Cipriota"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кипрское слоговое письмо"
           }
         },
         "tr" : {
@@ -6757,6 +7213,12 @@
             "value" : "Cipro-Minoico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кипро-минойское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6843,6 +7305,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cirílico"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кириллица"
           }
         },
         "tr" : {
@@ -6933,6 +7401,12 @@
             "value" : "Cirílico Ampliado-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная кириллица A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7019,6 +7493,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cirílico Ampliado-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная кириллица B"
           }
         },
         "tr" : {
@@ -7109,6 +7589,12 @@
             "value" : "Cirílico Ampliado-C"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная кириллица C"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7195,6 +7681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cirílico Ampliado-D"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная кириллица D"
           }
         },
         "tr" : {
@@ -7285,6 +7777,12 @@
             "value" : "Suplemento Cirílico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительная кириллица"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7371,6 +7869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deseret"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дезерет"
           }
         },
         "tr" : {
@@ -7461,6 +7965,12 @@
             "value" : "Devanágari"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Деванагари"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7547,6 +8057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Devanágari Ampliado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенный девангари"
           }
         },
         "tr" : {
@@ -7637,6 +8153,12 @@
             "value" : "Devanágari Ampliado-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенный девангари A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7723,6 +8245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dingbats"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графические метки"
           }
         },
         "tr" : {
@@ -7813,6 +8341,12 @@
             "value" : "Dives Akuru"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дивес акуру"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7899,6 +8433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dogra"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Догра"
           }
         },
         "tr" : {
@@ -7989,6 +8529,12 @@
             "value" : "Mosaicos de Dominó"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Костяшки домино"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8075,6 +8621,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Duployan"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стенография"
           }
         },
         "tr" : {
@@ -8165,6 +8717,12 @@
             "value" : "Cuneiforme da Época Tinita"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раннединастическая клинопись"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8251,6 +8809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controles de Formatação de Hieróglifos Egípcios"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Египетские иероглифы, символы форматирования"
           }
         },
         "tr" : {
@@ -8341,6 +8905,12 @@
             "value" : "Hieróglifos Egípcios"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Египетские иероглифы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8366,7 +8936,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Egyptské hieroglyfy rozšířená - A"
+            "value" : "Egyptské hieroglyfy rozšířené – A"
           }
         },
         "de" : {
@@ -8384,19 +8954,19 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jeroglíficos egipcios ampliado-A"
+            "value" : "Jeroglíficos egipcios ampliados-A"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hiéroglyphes égyptiens étendu-A"
+            "value" : "Hiéroglyphes égyptiens étendus-A"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geroglifici egiziani esteso-A"
+            "value" : "Geroglifici egiziani estesi-A"
           }
         },
         "ja" : {
@@ -8426,13 +8996,19 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hieróglifos Egípcios Estendido-A"
+            "value" : "Hieróglifos Egípcios Ampliados-A"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Египетские иероглифы, расширение A"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Genişletilmiş Mısır Hiyeroglifleri A"
+            "state" : "translated",
+            "value" : "Mısır Hiyeroglifleri Genişletilmiş A"
           }
         },
         "zh-Hans" : {
@@ -8515,6 +9091,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elbasani"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эльбасанское письмо"
           }
         },
         "tr" : {
@@ -8605,6 +9187,12 @@
             "value" : "Elimaico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Элимайское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8672,7 +9260,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이모티콘"
+            "value" : "이모지"
           }
         },
         "nl" : {
@@ -8691,6 +9279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Emoticons"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы эмоций"
           }
         },
         "tr" : {
@@ -8781,6 +9375,12 @@
             "value" : "Suplemento Alfanumérico Incluído"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные обведенные буквы и цифры"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8867,6 +9467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alfanuméricos Delimitados"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обведенные буквы и цифры"
           }
         },
         "tr" : {
@@ -8957,6 +9563,12 @@
             "value" : "Letras e Meses CJK Delimitados"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обведенные дальневосточные буквы и месяцы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9043,6 +9655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suplemento Ideográfico Incluído"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные обведенные идеограммы"
           }
         },
         "tr" : {
@@ -9133,6 +9751,12 @@
             "value" : "Etíope"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эфиопское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9219,6 +9843,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Etíope Estendido"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эфиопское расширенное письмо"
           }
         },
         "tr" : {
@@ -9309,6 +9939,12 @@
             "value" : "Etíope Ampliado-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эфиопское расширенное письмо-A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9395,6 +10031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Etíope Ampliado-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эфиопское расширенное письмо B"
           }
         },
         "tr" : {
@@ -9485,6 +10127,12 @@
             "value" : "Suplemento Etíope"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эфиопская дополнительная"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9506,7 +10154,98 @@
       }
     },
     "Garay" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ガライ文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가라이 문자"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алфавит Гарай"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加雷字母"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加雷字母"
+          }
+        }
+      }
     },
     "General Punctuation" : {
       "localizations" : {
@@ -9574,6 +10313,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pontuação Geral"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общая пунктуация"
           }
         },
         "tr" : {
@@ -9664,6 +10409,12 @@
             "value" : "Formas Geométricas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Геометрические фигуры"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9750,6 +10501,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formas Geométricas Extendidas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенные геометрические фигуры"
           }
         },
         "tr" : {
@@ -9840,6 +10597,12 @@
             "value" : "Georgiano"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грузинское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9926,6 +10689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Georgiano Ampliado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенное грузинское письмо"
           }
         },
         "tr" : {
@@ -10016,6 +10785,12 @@
             "value" : "Suplemento Georgiano"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грузинское дополнительное письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10102,6 +10877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Glagolítico"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глаголица"
           }
         },
         "tr" : {
@@ -10192,6 +10973,12 @@
             "value" : "Suplemento Glagolítico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глаголица (дополнение)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10278,6 +11065,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gótico"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готическое письмо"
           }
         },
         "tr" : {
@@ -10368,6 +11161,12 @@
             "value" : "Grantha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грантха"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10454,6 +11253,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grego e Copta"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Греческое и коптское письмо"
           }
         },
         "tr" : {
@@ -10544,6 +11349,12 @@
             "value" : "Grego Ampliado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Греческое расширенное письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10630,6 +11441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Guzerate"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гуджарати"
           }
         },
         "tr" : {
@@ -10720,6 +11537,12 @@
             "value" : "Gunjala Gondi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гунджала гонди"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10808,6 +11631,12 @@
             "value" : "Gurmukhi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гурмукхи"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10829,7 +11658,98 @@
       }
     },
     "Gurung Khema" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung khema"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung khema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung khema"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グルン・ケマ文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구룽 케마"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гурунг-кхема"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古隆凯玛文"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古隆凱瑪文"
+          }
+        }
+      }
     },
     "Halfwidth and Fullwidth Forms" : {
       "localizations" : {
@@ -10897,6 +11817,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formas de Meia Largura e de Largura Plena"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы полной и половинной ширины"
           }
         },
         "tr" : {
@@ -10987,6 +11913,12 @@
             "value" : "Jamo de Compatibilidade Hangul"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангыль совместимый"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11073,6 +12005,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jamo Hangul"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Корейское письмо"
           }
         },
         "tr" : {
@@ -11163,6 +12101,12 @@
             "value" : "Hangul Jamo Ampliado-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангыль расширенный A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11249,6 +12193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hangul Jamo Ampliado-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангыль расширенный B"
           }
         },
         "tr" : {
@@ -11339,6 +12289,12 @@
             "value" : "Sílabas Hangul"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангыль слоговый"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11425,6 +12381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hanifi Rohingya"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рохинджа ханифи"
           }
         },
         "tr" : {
@@ -11515,6 +12477,12 @@
             "value" : "Hanunoo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хануну"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11601,6 +12569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hatran"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хатранский арамейский алфавит"
           }
         },
         "tr" : {
@@ -11691,6 +12665,12 @@
             "value" : "Hebraico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иврит"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11777,6 +12757,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Substitutos de Uso Privado Altos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Суррогатная пара высокой зоны для частного использования"
           }
         },
         "tr" : {
@@ -11867,6 +12853,12 @@
             "value" : "Substitutos Altos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Суррогатная пара высокой зоны"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11953,6 +12945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiragana"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хирагана"
           }
         },
         "tr" : {
@@ -12043,6 +13041,12 @@
             "value" : "Caracteres Desc. Ideográficos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы описания иероглифов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12129,6 +13133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos e Pontuação Ideográficos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идеографические символы и пунктуация"
           }
         },
         "tr" : {
@@ -12219,6 +13229,12 @@
             "value" : "Aramaico Imperial"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имперский арамейский алфавит"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12305,6 +13321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Números Siyaq Índicos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Индийские числа сиак"
           }
         },
         "tr" : {
@@ -12395,6 +13417,12 @@
             "value" : "Pálavi Escrito"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эпиграфическое пехлевийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12481,6 +13509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Parthian Inscrito"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пехлевийское письмо для парфянского языка"
           }
         },
         "tr" : {
@@ -12571,6 +13605,12 @@
             "value" : "Extensões IPA"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширения IPA"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12657,6 +13697,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Javanês"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Яванское письмо"
           }
         },
         "tr" : {
@@ -12747,6 +13793,12 @@
             "value" : "Kaithi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кайтхи"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12833,6 +13885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numerais de Kaktovik"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кактовикские цифры"
           }
         },
         "tr" : {
@@ -12923,6 +13981,12 @@
             "value" : "Kana Ampliado-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная кана A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13009,6 +14073,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kana Ampliado-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная кана B"
           }
         },
         "tr" : {
@@ -13099,6 +14169,12 @@
             "value" : "Suplemento Kana"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнение Кана"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13185,6 +14261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kanbun"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Канбун"
           }
         },
         "tr" : {
@@ -13275,6 +14357,12 @@
             "value" : "Radicais Kangxi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кандзи (ключи к иероглифам)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13361,6 +14449,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Canará"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каннада"
           }
         },
         "tr" : {
@@ -13451,6 +14545,12 @@
             "value" : "Katakana"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Катакана"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13537,6 +14637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensões Fonéticas do Katakana"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фонетические расширения Катакана"
           }
         },
         "tr" : {
@@ -13627,6 +14733,12 @@
             "value" : "Kawi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы кави"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13713,6 +14825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kayah Li"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кая Ли"
           }
         },
         "tr" : {
@@ -13803,6 +14921,12 @@
             "value" : "Kharoshthi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхароштхи"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13889,6 +15013,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipografia Kitan Pequena"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малое киданьское письмо"
           }
         },
         "tr" : {
@@ -13979,6 +15109,12 @@
             "value" : "Khmer"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхмерское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14065,6 +15201,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos Khmer"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхмерское письмо (символы)"
           }
         },
         "tr" : {
@@ -14155,6 +15297,12 @@
             "value" : "Khojki"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Письменность ходжики"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14241,6 +15389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Khudawadi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Худавади"
           }
         },
         "tr" : {
@@ -14334,6 +15488,12 @@
             "value" : "Lao"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лаосское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14420,6 +15580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latim Ampliado Adicional"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавочные к расширенной латинице"
           }
         },
         "tr" : {
@@ -14510,6 +15676,12 @@
             "value" : "Latim Ampliado-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная латиница A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14596,6 +15768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latim Ampliado-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная латиница B"
           }
         },
         "tr" : {
@@ -14686,6 +15864,12 @@
             "value" : "Latim Estendido-C"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная латиница C"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14772,6 +15956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latim Estendido-D"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная латиница D"
           }
         },
         "tr" : {
@@ -14862,6 +16052,12 @@
             "value" : "Latim Estendido-E"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная латиница-E"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14948,6 +16144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latim Estendido-F"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная латиница F"
           }
         },
         "tr" : {
@@ -15038,6 +16240,12 @@
             "value" : "Latim Estendido-G"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенная латиница G"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15124,6 +16332,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latim-1 Suplemento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнение 1 к латинице"
           }
         },
         "tr" : {
@@ -15214,6 +16428,12 @@
             "value" : "Lepcha"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лепча"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15300,6 +16520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos ao Estilo de Letras"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Буквенные символы"
           }
         },
         "tr" : {
@@ -15390,6 +16616,12 @@
             "value" : "Limbu"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лимбу"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15476,6 +16708,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Linear A"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линейное письмо A"
           }
         },
         "tr" : {
@@ -15566,6 +16804,12 @@
             "value" : "Ideogramas Linear B"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иероглифы линейные B"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15652,6 +16896,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Silabário Linear B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слоговая азбука, линейные иероглифы B"
           }
         },
         "tr" : {
@@ -15742,6 +16992,12 @@
             "value" : "Lisu"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лису"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15828,6 +17084,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suplemento Lisu"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лису (дополнение)"
           }
         },
         "tr" : {
@@ -15918,6 +17180,12 @@
             "value" : "Substitutos Baixos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Суррогатная пара низкой зоны"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16004,6 +17272,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lício"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ликийский алфавит"
           }
         },
         "tr" : {
@@ -16094,6 +17368,12 @@
             "value" : "Lídio"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лидийский алфавит"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16180,6 +17460,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mahajani"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Махаджани"
           }
         },
         "tr" : {
@@ -16270,6 +17556,12 @@
             "value" : "Peças de Mahjong"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Костяшки маджонг"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16356,6 +17648,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Macáçar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Макассарское письмо"
           }
         },
         "tr" : {
@@ -16446,6 +17744,12 @@
             "value" : "Malaiala"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малаялам"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16532,6 +17836,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mandinga"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мандейский"
           }
         },
         "tr" : {
@@ -16622,6 +17932,12 @@
             "value" : "Manichaean"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Манихейское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16708,6 +18024,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marchen"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Марчхен"
           }
         },
         "tr" : {
@@ -16798,6 +18120,12 @@
             "value" : "Masaram Gondi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Масарам гонди"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16884,6 +18212,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símb. Alfanum. Matemáticos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Математические буквенно-цифровые символы"
           }
         },
         "tr" : {
@@ -16974,6 +18308,12 @@
             "value" : "Sinais Matemáticos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Математические операторы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17060,6 +18400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numerais Maias"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цифры майя"
           }
         },
         "tr" : {
@@ -17150,6 +18496,12 @@
             "value" : "Medefaidrin"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обэри-Окаимэ"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17236,6 +18588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meetei Mayek"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мейтей-маек"
           }
         },
         "tr" : {
@@ -17326,6 +18684,12 @@
             "value" : "Extensões Meetei Mayek"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширения мейтей‑майек"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17412,6 +18776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mende Kikakui"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кикакуи"
           }
         },
         "tr" : {
@@ -17502,6 +18872,12 @@
             "value" : "Cursivo Meroítico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мероитский курсив"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17588,6 +18964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hieróglifos Meroíticos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мероитские иероглифы"
           }
         },
         "tr" : {
@@ -17678,6 +19060,12 @@
             "value" : "Miao"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мяо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17764,6 +19152,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símb. Matemáticos Diversos-A"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Различные математические символы A"
           }
         },
         "tr" : {
@@ -17854,6 +19248,12 @@
             "value" : "Símb. Matemáticos Diversos-B"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Различные математические символы B"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17940,6 +19340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos Diversos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Различные символы"
           }
         },
         "tr" : {
@@ -18030,6 +19436,12 @@
             "value" : "Símbolos e Setas Diversos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Различные символы и стрелки"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18116,6 +19528,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos e Pictogramas Diversos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Различные символы и пиктограммы"
           }
         },
         "tr" : {
@@ -18206,6 +19624,12 @@
             "value" : "Técnicos Diversos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Различные технические символы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18292,6 +19716,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моди"
           }
         },
         "tr" : {
@@ -18382,6 +19812,12 @@
             "value" : "Letras de Tom de Modificador"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модифицирующие символы тона"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18468,6 +19904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mongol"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Монгольское письмо"
           }
         },
         "tr" : {
@@ -18558,6 +20000,12 @@
             "value" : "Suplemento Mongol"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Монгольское письмо (дополнение)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18644,6 +20092,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mro"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мро"
           }
         },
         "tr" : {
@@ -18734,6 +20188,12 @@
             "value" : "Multani"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мултани"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18820,6 +20280,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos Musicais"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Музыкальные символы"
           }
         },
         "tr" : {
@@ -18910,6 +20376,12 @@
             "value" : "Mianmar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бирманское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18996,6 +20468,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mianmar Ampliado-A"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бирманское письмо, расширение A"
           }
         },
         "tr" : {
@@ -19086,6 +20564,12 @@
             "value" : "Mianmar Ampliado-B"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенное бирманское письмо-B"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19111,7 +20595,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Myanmar rozšíření - C"
+            "value" : "Barmština rozšířená – C"
           }
         },
         "de" : {
@@ -19153,7 +20637,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "미얀마 확장-C"
+            "value" : "미얀마 확장-B"
           }
         },
         "nl" : {
@@ -19172,6 +20656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mianmar Ampliado-C"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бирманское письмо, расширение C"
           }
         },
         "tr" : {
@@ -19262,6 +20752,12 @@
             "value" : "N’Ko"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нко (письмо)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19348,6 +20844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nabataean"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Набатейское письмо"
           }
         },
         "tr" : {
@@ -19438,6 +20940,12 @@
             "value" : "Nag Mundari"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алфавит Нага для мундари"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19524,6 +21032,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nandinagari"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нандинагари"
           }
         },
         "tr" : {
@@ -19614,6 +21128,12 @@
             "value" : "Novo Tai Lue"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый тай-люэ"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19700,6 +21220,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Newa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нева"
           }
         },
         "tr" : {
@@ -19790,6 +21316,12 @@
             "value" : "Formas de Números"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Числовые символы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19876,6 +21408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nushu"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нюй‑шу"
           }
         },
         "tr" : {
@@ -19966,6 +21504,12 @@
             "value" : "Nyiakeng Puachue Hmong"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ньиэкэнг пуэцым хмонг"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20054,6 +21598,12 @@
             "value" : "Ogâmico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Огамическое письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20140,6 +21690,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ol Chiki"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ол-чики"
           }
         },
         "tr" : {
@@ -20233,6 +21789,12 @@
             "value" : "Húngaro Antigo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Венгерские руны"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20319,6 +21881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Itálico Antigo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старое италийское письмо"
           }
         },
         "tr" : {
@@ -20409,6 +21977,12 @@
             "value" : "Árabe do Norte Antigo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Североаравийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20495,6 +22069,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Permiano Antigo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древнепермское письмо"
           }
         },
         "tr" : {
@@ -20585,6 +22165,12 @@
             "value" : "Persa Antigo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старо-персидское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20671,6 +22257,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sogdiano Antigo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старосогдийское письмо"
           }
         },
         "tr" : {
@@ -20761,6 +22353,12 @@
             "value" : "Árabe do Sul Antigo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старое южно-аравийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20847,6 +22445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Turco Antigo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древнетюркское письмо"
           }
         },
         "tr" : {
@@ -20937,6 +22541,12 @@
             "value" : "Uigur Antigo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Староуйгурское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21023,6 +22633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reconhec. Óptico Caracteres"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оптическое распознавание символов"
           }
         },
         "tr" : {
@@ -21113,6 +22729,12 @@
             "value" : "Oriá"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ория"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21199,6 +22821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dingbats Ornamentais"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Декоративные дингбаты"
           }
         },
         "tr" : {
@@ -21289,6 +22917,12 @@
             "value" : "Osage"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Осейдж"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21375,6 +23009,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Osmanli"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Османья"
           }
         },
         "tr" : {
@@ -21465,6 +23105,12 @@
             "value" : "Números Siyaq Otomânicos"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Османские числа сиак"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21551,6 +23197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pahawh Hmong"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пахау Хмонг"
           }
         },
         "tr" : {
@@ -21641,6 +23293,12 @@
             "value" : "Alfabeto Palmireno"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пахау Хмонг"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21727,6 +23385,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pau Cin Hau"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пау Цин Хау"
           }
         },
         "tr" : {
@@ -21817,6 +23481,12 @@
             "value" : "Phags-pa"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пхагс-па"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21903,6 +23573,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disco de Phaistos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фестский диск"
           }
         },
         "tr" : {
@@ -21993,6 +23669,12 @@
             "value" : "Fenício"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Финикийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22079,6 +23761,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensões Fonéticas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фонетические расширения"
           }
         },
         "tr" : {
@@ -22169,6 +23857,12 @@
             "value" : "Suplemento de Extensões Fonéticas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные фонетические расширения"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22255,6 +23949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Baralho"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игральные карты"
           }
         },
         "tr" : {
@@ -22345,6 +24045,12 @@
             "value" : "Área de Uso Privado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персональная область"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22431,6 +24137,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Psalter Pahlavi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Псалтирное пехлевийское письмо"
           }
         },
         "tr" : {
@@ -22521,6 +24233,12 @@
             "value" : "Rejang"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реджанг"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22607,6 +24325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos Numéricos Rumi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цифры системы руми"
           }
         },
         "tr" : {
@@ -22697,6 +24421,12 @@
             "value" : "Rúnico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Руническое письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22783,6 +24513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Samaritano"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самаритянское письмо"
           }
         },
         "tr" : {
@@ -22873,6 +24609,12 @@
             "value" : "Saurashtra"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Саураштра"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22959,6 +24701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sharada"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шарада"
           }
         },
         "tr" : {
@@ -23049,6 +24797,12 @@
             "value" : "Shaviano"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шавиан"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23135,6 +24889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controles de Formatação Taquigráfica"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стенографические символы форматирования"
           }
         },
         "tr" : {
@@ -23225,6 +24985,12 @@
             "value" : "Siddham"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сиддхаматрика"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23311,6 +25077,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cingalês"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сингальское письмо"
           }
         },
         "tr" : {
@@ -23401,6 +25173,12 @@
             "value" : "Números Arcaicos Sinhala"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сингальские архаичные цифры"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23487,6 +25265,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Variantes de Formas Pequenas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малые варианты символов"
           }
         },
         "tr" : {
@@ -23577,6 +25361,12 @@
             "value" : "Extensão Kana Pequeno"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малая кана (расширение)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23663,6 +25453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sogdiano"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Согдийское письмо"
           }
         },
         "tr" : {
@@ -23753,6 +25549,12 @@
             "value" : "Sora Sompeng"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соранг Сомпенг"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23839,6 +25641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Soyombo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соембо"
           }
         },
         "tr" : {
@@ -23929,6 +25737,12 @@
             "value" : "Letras Modificadoras de Espaçamento"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модифицирующие символы паузы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24015,6 +25829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Especiais"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Специальные символы"
           }
         },
         "tr" : {
@@ -24105,6 +25925,12 @@
             "value" : "Sundanês"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунданское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24193,6 +26019,12 @@
             "value" : "Suplemento Sudanês"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнение сунданское"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24214,7 +26046,98 @@
       }
     },
     "Sunuwar" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwarština"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunwar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スヌワール語"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수누와르 문자"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунвар"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "苏努瓦尔文"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "松瓦爾文"
+          }
+        }
+      }
     },
     "Superscripts and Subscripts" : {
       "localizations" : {
@@ -24282,6 +26205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sobrescritos e Subscritos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надстрочные и подстрочные знаки"
           }
         },
         "tr" : {
@@ -24372,6 +26301,12 @@
             "value" : "Setas Suplementares-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные стрелки A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24458,6 +26393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Setas Suplementares-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные стрелки B"
           }
         },
         "tr" : {
@@ -24548,6 +26489,12 @@
             "value" : "Setas Suplementares-C"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные стрелки-C"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24634,6 +26581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sinais Matem. Suplementares"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные математические операторы"
           }
         },
         "tr" : {
@@ -24724,6 +26677,12 @@
             "value" : "Pontuação Suplementar"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные знаки пунктуации"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24810,6 +26769,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos e Pictogramas Complementares"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные символы и пиктограммы"
           }
         },
         "tr" : {
@@ -24900,6 +26865,12 @@
             "value" : "Área de Uso Privado Suplementar-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительная персональная область A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24986,6 +26957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Área de Uso Privado Suplementar-B"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительная персональная область B"
           }
         },
         "tr" : {
@@ -25076,6 +27053,12 @@
             "value" : "Alfabeto de Sinais Sutton"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жестовое письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25162,6 +27145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syloti Nagri"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Силоти Нагри"
           }
         },
         "tr" : {
@@ -25252,6 +27241,12 @@
             "value" : "Símbolos e Pictogramas Ampliados-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы и пиктограммы, расширение A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25338,6 +27333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Símbolos para Computação Legada"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Устаревшие вычислительные символы"
           }
         },
         "tr" : {
@@ -25431,6 +27432,12 @@
             "value" : "Siríaco"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сирийское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25517,6 +27524,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suplemento Siríaco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сирийское письмо (дополнение)"
           }
         },
         "tr" : {
@@ -25607,6 +27620,12 @@
             "value" : "Tagalogue"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тагальское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25693,6 +27712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tagbanwa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тагбанва"
           }
         },
         "tr" : {
@@ -25783,6 +27808,12 @@
             "value" : "Etiquetas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теги"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25869,6 +27900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tai Le"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тай Ле"
           }
         },
         "tr" : {
@@ -25959,6 +27996,12 @@
             "value" : "Tai Tham"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тай Тхам"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26045,6 +28088,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tai Viet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тай Вьет"
           }
         },
         "tr" : {
@@ -26135,6 +28184,12 @@
             "value" : "Símbolos Tai Xuan Jing"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы Тай Хуан Инь"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26221,6 +28276,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Takri"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Такри"
           }
         },
         "tr" : {
@@ -26311,6 +28372,12 @@
             "value" : "Tâmil"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тамильское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26397,6 +28464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suplemento Tâmil"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тамильское письмо (дополнение)"
           }
         },
         "tr" : {
@@ -26487,6 +28560,12 @@
             "value" : "Tangsa"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алфавит тангса"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26573,6 +28652,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tangute"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангутское письмо"
           }
         },
         "tr" : {
@@ -26663,6 +28748,12 @@
             "value" : "Componentes Tangute"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Элементы тангутского письма"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26749,6 +28840,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suplemento Tangute"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангутское письмо (дополнение)"
           }
         },
         "tr" : {
@@ -26839,6 +28936,12 @@
             "value" : "Telugo"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Телугу"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26925,6 +29028,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thaana"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тана (мальдивское письмо)"
           }
         },
         "tr" : {
@@ -27015,6 +29124,12 @@
             "value" : "Tailandês"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тайское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27101,6 +29216,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tibetano"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тибетское письмо"
           }
         },
         "tr" : {
@@ -27191,6 +29312,12 @@
             "value" : "Tifinagh"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тифинаг"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27279,6 +29406,12 @@
             "value" : "Tirhuta"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тирхута"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27300,7 +29433,98 @@
       }
     },
     "Todhri" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トドリー文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "토드리 문자"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тодри"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "托德里字母"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "托德瑞文"
+          }
+        }
+      }
     },
     "Toto" : {
 
@@ -27373,6 +29597,12 @@
             "value" : "Símbolos de Transportes e Mapas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы транспорта и карт"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27394,7 +29624,98 @@
       }
     },
     "Tulu-Tigalari" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuluština – tigalari"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-tigalari"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulù-tigalari"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トゥル・ティガラリ文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "툴루 티갈라리"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тулу-тигалари"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "图卢-提加拉文"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "圖盧提加拉文"
+          }
+        }
+      }
     },
     "Ugaritic" : {
       "localizations" : {
@@ -27462,6 +29783,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ugarítico"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Угаритское письмо"
           }
         },
         "tr" : {
@@ -27552,6 +29879,12 @@
             "value" : "Silabário Aborígine Canadense Unificado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированное слоговое письмо коренных народов Канады"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27638,6 +29971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Silabário Aborígine Canadense Unificado Ampliado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированное слоговое письмо коренных народов Канады — расширенная"
           }
         },
         "tr" : {
@@ -27728,6 +30067,12 @@
             "value" : "Silabário Aborígine Canadense Unificado Ampliado-A"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированное слоговое письмо коренных народов Канады — расширенная A"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27814,6 +30159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vai"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваи"
           }
         },
         "tr" : {
@@ -27904,6 +30255,12 @@
             "value" : "Seletores de Variação"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вариационные переключатели"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27990,6 +30347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suplemento de Seletores de Variação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные вариационные переключатели"
           }
         },
         "tr" : {
@@ -28080,6 +30443,12 @@
             "value" : "Extensões Védicas"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ведические символы, расширение"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28166,6 +30535,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formas Verticais"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикальные формы"
           }
         },
         "tr" : {
@@ -28256,6 +30631,12 @@
             "value" : "Vithkuqi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виткутьское письмо"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28342,6 +30723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wancho"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ванчо"
           }
         },
         "tr" : {
@@ -28432,6 +30819,12 @@
             "value" : "Warang Citi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Варанг-кшити"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28518,6 +30911,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Iazidi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Езидское письмо"
           }
         },
         "tr" : {
@@ -28608,6 +31007,12 @@
             "value" : "Radicais Yi"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключи письма ицзу"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28694,6 +31099,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sílabas Yi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слоговое письмо ицзу"
           }
         },
         "tr" : {
@@ -28784,6 +31195,12 @@
             "value" : "Símbolos de Hexagramas Yijing"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символы гексаграммы И-цзин"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28872,6 +31289,12 @@
             "value" : "Zanabazar Quadrado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Квадратное письмо Дзанабадзара"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28958,6 +31381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notação Musical Znamenny"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаменная нотная запись"
           }
         },
         "tr" : {
