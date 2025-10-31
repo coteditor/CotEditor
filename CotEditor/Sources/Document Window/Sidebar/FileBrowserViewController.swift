@@ -162,7 +162,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.view.addSubview(bottomSeparator)
         self.view.addSubview(footerView)
         
-        let footerHeight: CGFloat = isLiquidGlass ? 36 : 31
+        let footerHeight: CGFloat = isLiquidGlass ? 36 : 33
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
