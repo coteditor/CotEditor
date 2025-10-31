@@ -1986,7 +1986,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Восстановить по умолчанию"
+            "value" : "Настройки по умолчанию"
           }
         },
         "tr" : {
@@ -13705,7 +13705,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новый документ"
+            "value" : "новая папка"
           }
         },
         "tr" : {

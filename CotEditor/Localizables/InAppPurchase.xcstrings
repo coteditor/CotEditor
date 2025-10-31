@@ -79,7 +79,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Разовая поддержка"
+            "value" : "Вкусная чашка"
           }
         },
         "tr" : {
@@ -281,7 +281,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Годовая подписка"
+            "value" : "Кофе для ежедневной разработки"
           }
         },
         "tr" : {

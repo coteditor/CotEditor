@@ -1508,7 +1508,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Убрать выделенное"
+            "value" : "Убрать подсвеченное"
           }
         },
         "tr" : {
@@ -4874,7 +4874,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Помощь с программой"
+            "value" : "Справка CotEditor"
           }
         },
         "tr" : {
@@ -9872,7 +9872,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Преобразовать буквенно-цифровой текст в полную ширину"
+            "value" : "Преобразовать буквы и цифры в полноширинный текст"
           }
         },
         "tr" : {
@@ -9974,7 +9974,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Преобразовать буквенно-цифровой текст в половину ширины"
+            "value" : "Преобразовать буквы и цифры в полуширинный текст"
           }
         },
         "tr" : {
@@ -10688,7 +10688,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AppleScript"
+            "value" : "Словарь AppleScript"
           }
         },
         "tr" : {
@@ -13952,7 +13952,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Преобразовать в полную ширину"
+            "value" : "Конвертировать в полную ширину"
           }
         },
         "tr" : {
@@ -16298,7 +16298,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поиск в выделенном"
+            "value" : "Найти выбранное"
           }
         },
         "tr" : {
@@ -17930,7 +17930,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Заменить выделенное"
+            "value" : "Заменить выбранное"
           }
         },
         "tr" : {
@@ -18032,7 +18032,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Заглавные"
+            "value" : "С заглавной буквы"
           }
         },
         "tr" : {
@@ -21398,7 +21398,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сделать все ЗАГЛАВНЫМИ"
+            "value" : "Сделать все прописными"
           }
         },
         "tr" : {
@@ -21602,7 +21602,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Уменьшить ширину на половину"
+            "value" : "Конвертировать в половинную ширину"
           }
         },
         "tr" : {
@@ -24458,7 +24458,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сделать все прописными"
+            "value" : "Сделать все строчными"
           }
         },
         "tr" : {
