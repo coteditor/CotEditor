@@ -27,9 +27,15 @@ import SwiftUI
 
 struct CustomTabWidthView: View {
     
+    private enum Focus {
+        
+        case field
+    }
+    
+    
     var dismiss: () -> Void = { }
     
-    @Namespace private var namespace
+    @FocusState private var focus: Focus?
     
     @State private var value: Int
     private var defaultWidth: Int
@@ -56,7 +62,7 @@ struct CustomTabWidthView: View {
         VStack {
             LabeledContent(String(localized: "Tab width:", table: "CustomTabWidth")) {
                 StepperNumberField(value: $value, default: self.defaultWidth, in: 1...99)
-                    .prefersDefaultFocus(in: self.namespace)
+                    .focused($focus, equals: .field)
                     .onSubmit(self.submit)
             }
             
@@ -69,6 +75,9 @@ struct CustomTabWidthView: View {
                 }
             }
             .padding(.top, 8)
+        }
+        .onAppear {
+            self.focus = .field
         }
         .fixedSize()
         .scenePadding()

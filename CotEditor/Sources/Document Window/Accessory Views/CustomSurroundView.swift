@@ -28,6 +28,12 @@ import StringUtils
 
 struct CustomSurroundView: View {
     
+    private enum Focus {
+        
+        case beginField
+        case endField
+    }
+    
     var dismiss: () -> Void = { }
     
     @Environment(\.resetFocus) private var resetFocus
@@ -35,6 +41,7 @@ struct CustomSurroundView: View {
     @AppStorage("beginCustomSurroundString") private var defaultBeginString: String?
     @AppStorage("endCustomSurroundString") private var defaultEndString: String?
     
+    @FocusState private var focus: Focus?
     @Namespace private var namespace
     
     @State private var pair: Pair<String> = .init("", "")
@@ -71,13 +78,14 @@ struct CustomSurroundView: View {
                     TextField(text: $pair.begin, label: EmptyView.init)
                         .frame(width: 48)
                 }
-                .prefersDefaultFocus(in: self.namespace)
+                .focused($focus, equals: .beginField)
                 .padding(.trailing)
                 
                 LabeledContent(String(localized: "End:", table: "CustomSurround")) {
                     TextField(text: $pair.end, prompt: Text(self.pair.begin), label: EmptyView.init)
                         .frame(width: 48)
                 }
+                .focused($focus, equals: .endField)
             }
             .onSubmit(self.submit)
             .fixedSize()
@@ -91,6 +99,9 @@ struct CustomSurroundView: View {
                 }
             }
             .padding(.top, 8)
+        }
+        .onAppear {
+            self.focus = .beginField
         }
         .fixedSize()
         .scenePadding()

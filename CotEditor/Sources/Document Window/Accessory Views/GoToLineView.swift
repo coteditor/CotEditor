@@ -28,6 +28,12 @@ import StringUtils
 
 struct GoToLineView: View {
     
+    private enum Focus {
+        
+        case field
+    }
+    
+    
     /// The current line range.
     @State var lineRange: FuzzyRange
     
@@ -37,7 +43,7 @@ struct GoToLineView: View {
     
     var dismiss: () -> Void = { }
     
-    @Namespace private var namespace
+    @FocusState private var focus: Focus?
     
     
     // MARK: View
@@ -50,7 +56,7 @@ struct GoToLineView: View {
                           prompt: Text("Line Number", tableName: "GoToLine", comment: "placeholder"))
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
-                    .prefersDefaultFocus(in: self.namespace)
+                    .focused($focus, equals: .field)
                     .onSubmit(self.submit)
             }
             
@@ -66,6 +72,9 @@ struct GoToLineView: View {
                 }
             }
             .padding(.top, 8)
+        }
+        .onAppear {
+            self.focus = .field
         }
         .fixedSize()
         .scenePadding()
