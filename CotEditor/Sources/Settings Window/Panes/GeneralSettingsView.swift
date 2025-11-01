@@ -228,7 +228,7 @@ struct GeneralSettingsView: View {
         }
         .fixedSize(horizontal: false, vertical: true)
         .scenePadding()
-        .frame(width: 610)
+        .frame(width: 620)
     }
 }
 

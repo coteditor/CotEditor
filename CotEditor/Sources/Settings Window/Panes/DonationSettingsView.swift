@@ -204,7 +204,7 @@ struct DonationSettingsView: View {
             }
         }
         .scenePadding()
-        .frame(width: 610)
+        .frame(width: 620)
     }
     
     

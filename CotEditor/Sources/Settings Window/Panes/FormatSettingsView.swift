@@ -206,7 +206,7 @@ struct FormatSettingsView: View {
             self.isEncodingListPresented = true
         }
         .scenePadding()
-        .frame(width: 610)
+        .frame(width: 620)
     }
 }
 
