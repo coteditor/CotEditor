@@ -1,5 +1,14 @@
 # Change Log
 
+6.1.0 (unreleased)
+--------------------------
+
+Fixes
+
+- Fix an issue where the text fields in sheet dialogs don’t get focus when they appear.
+
+
+
 6.1.0-rc.2 (765)
 --------------------------
 
