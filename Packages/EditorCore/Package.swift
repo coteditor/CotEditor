@@ -14,7 +14,6 @@ let package = Package(
             "Defaults",
             "FileEncoding",
             "FilePermissions",
-            "URLUtils",
             "Invisible",
             "LineEnding",
             "LineSort",
@@ -24,6 +23,7 @@ let package = Package(
             "TextClipping",
             "TextEditing",
             "TextFind",
+            "URLUtils",
             "ValueRange",
         ]),
         
@@ -31,7 +31,6 @@ let package = Package(
         .library(name: "Defaults", targets: ["Defaults"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
-        .library(name: "URLUtils", targets: ["URLUtils"]),
         .library(name: "Invisible", targets: ["Invisible"]),
         .library(name: "LineEnding", targets: ["LineEnding"]),
         .library(name: "LineSort", targets: ["LineSort"]),
@@ -41,6 +40,7 @@ let package = Package(
         .library(name: "TextClipping", targets: ["TextClipping"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
         .library(name: "TextFind", targets: ["TextFind"]),
+        .library(name: "URLUtils", targets: ["URLUtils"]),
     ],
     dependencies: [
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
@@ -57,9 +57,6 @@ let package = Package(
         
         .target(name: "FilePermissions"),
         .testTarget(name: "FilePermissionsTests", dependencies: ["FilePermissions"]),
-        
-        .target(name: "URLUtils"),
-        .testTarget(name: "URLUtilsTests", dependencies: ["URLUtils"]),
         
         .target(name: "Invisible"),
         
@@ -86,6 +83,9 @@ let package = Package(
         
         .target(name: "TextFind", dependencies: ["StringUtils", "ValueRange"]),
         .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
+        
+        .target(name: "URLUtils"),
+        .testTarget(name: "URLUtilsTests", dependencies: ["URLUtils"]),
         
         .target(name: "ValueRange"),
     ],
