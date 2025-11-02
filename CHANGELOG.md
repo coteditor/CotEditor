@@ -6,6 +6,7 @@
 Fixes
 
 - Fix an issue where the text fields in sheet dialogs don’t get focus when they appear.
+- [beta] Fix an issue where the Syntax toolbar menu doesn’t select the current one.
 
 
 

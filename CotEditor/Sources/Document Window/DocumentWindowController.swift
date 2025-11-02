@@ -180,7 +180,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     override unowned(unsafe) var document: AnyObject? {
         
         didSet {
-            self.documentSyntaxObserver = nil
             if let document = document as? DataDocument {
                 self.fileDocument = document
             }
