@@ -356,15 +356,15 @@ private struct LicenseView: View {
             
             ItemView(name: "Yams",
                      url: "https://github.com/jpsim/Yams",
-                     license: "MIT license")
+                     license: .mit(copyright: "© 2016 JP Simard"))
             ItemView(name: "WFColorCode",
                      url: "https://github.com/1024jp/WFColorCode",
-                     license: "MIT license")
+                     license: .mit(copyright: "© 2014-2024 1024jp"))
             
             if self.hasSparkle {
                 ItemView(name: "Sparkle",
                          url: "https://sparkle-project.org",
-                         license: "MIT license",
+                         license: .custom(license: "MIT license", filename: "Sparkle"),
                          description: String(localized: "only on non-AppStore version", table: "About",
                                              comment: "annotation for the Sparkle framework license"))
             }
@@ -378,7 +378,7 @@ private struct LicenseView: View {
         
         var name: String
         var url: String
-        var license: String
+        var license: License
         var description: String?
         
         @State private var content: String = ""
@@ -400,7 +400,7 @@ private struct LicenseView: View {
                     }
                 }
                 
-                Text(self.license)
+                Text(self.license.name)
                     .fontWeight(.medium)
                     .opacity(0.8)
                 Text(self.content)
@@ -410,12 +410,9 @@ private struct LicenseView: View {
             }
             .onAppear {
                 guard self.content.isEmpty else { return }
-                guard
-                    let url = Bundle.main.url(forResource: self.name, withExtension: "txt", subdirectory: "Licenses"),
-                    let string = try? String(contentsOf: url, encoding: .utf8)
-                else { return assertionFailure() }
+                guard let content = try? self.license.content else { return assertionFailure() }
                 
-                self.content = string
+                self.content = content
             }
         }
     }
