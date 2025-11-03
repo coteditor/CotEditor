@@ -188,6 +188,30 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>CotEditor Settings Archive</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>Settings-image</string>
+				<key>UTTypeIconText</key>
+				<string>settings</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.CotEditor.settings</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cotsettings</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.json</string>
 			</array>
 			<key>UTTypeDescription</key>

@@ -1134,6 +1134,46 @@
         }
       }
     },
+    "CotEditor Settings Archive" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor-Einstellungsarchiv"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Settings Archive"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archivo de ajustes de CotEditor"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archive des paramètres CotEditor"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor設定アーカイブ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor-instellingenarchief"
+          }
+        }
+      }
+    },
     "CotEditor Theme" : {
       "localizations" : {
         "cs" : {
