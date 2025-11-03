@@ -88,7 +88,6 @@ struct CustomSurroundView: View {
                 .focused($focus, equals: .endField)
             }
             .onSubmit(self.submit)
-            .fixedSize()
             
             HStack {
                 Spacer()

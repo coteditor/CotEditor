@@ -85,7 +85,6 @@ struct WindowSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .fixedSize()
                 .accessibilityLabeledPair(role: .content, id: "windowTabbing", in: self.accessibility)
             }
             

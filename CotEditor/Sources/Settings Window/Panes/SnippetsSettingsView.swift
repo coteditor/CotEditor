@@ -342,7 +342,6 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
                 Menu(String(localized: "Insert Variable", table: "SnippetsSettings", comment: "button label")) {
                     self.menuContent
                 }
-                .fixedSize()
             }
             
             TokenTextEditor<Variable>(text: $text)

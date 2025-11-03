@@ -98,8 +98,9 @@ struct OpenPanelAccessory: View {
                         openPanel.treatsFilePackagesAsDirectories = newValue
                         openPanel.validateVisibleColumns()
                     }
-            }.fixedSize()
-        }.padding()
+            }
+        }
+        .padding()
     }
 }
 

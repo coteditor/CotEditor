@@ -148,7 +148,6 @@ struct EncodingListView: View {
                 .menuStyle(.button)
                 .menuIndicator(.hidden)
                 .labelStyle(.iconOnly)
-                .fixedSize()
             }
             .padding(.bottom)
             

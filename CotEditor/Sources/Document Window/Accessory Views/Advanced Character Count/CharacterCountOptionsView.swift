@@ -87,7 +87,6 @@ struct CharacterCountOptionsView: View {
                     } label: {
                         EmptyView()
                     }
-                    .fixedSize()
                     .labelsHidden()
                     .accessibilityLabeledPair(role: .content, id: "unit", in: self.accessibility)
                     
@@ -108,7 +107,6 @@ struct CharacterCountOptionsView: View {
                                 }
                             }
                         }
-                        .fixedSize()
                         .onGeometryChange(for: CGFloat.self, of: \.size.width) { self.contentWidth = $0 }
                     }
                     

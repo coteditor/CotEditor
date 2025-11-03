@@ -115,7 +115,7 @@ struct DonationSettingsView: View {
                                         Text(item.label)
                                     }
                                 }
-                            }.fixedSize()
+                            }
                             
                             Text("As proof of your kind support, a coffee badge appears on the status bar during continuous support.", tableName: "DonationSettings")
                                 .foregroundStyle(.secondary)
@@ -297,7 +297,6 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                         .font(.system(size: 11))
                 }
                 .monospacedDigit()
-                .fixedSize()
                 .padding(.top, 6)
                 .contentTransition(.numericText())
                 .animation(.default, value: self.quantity)
