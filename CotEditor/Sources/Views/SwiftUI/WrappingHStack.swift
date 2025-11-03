@@ -29,13 +29,13 @@ struct WrappingHStack<Content: View>: View {
     
     var horizontalSpacing: Double = 4
     var verticalSpacing: Double = 4
-    @ViewBuilder var content: () -> Content
+    @ViewBuilder var content: Content
     
     
     var body: some View {
         
         WrappingHStackLayout(horizontalSpacing: self.horizontalSpacing, verticalSpacing: self.verticalSpacing) {
-            self.content()
+            self.content
         }
     }
 }

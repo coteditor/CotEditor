@@ -296,20 +296,20 @@ private struct CreditsView: View {
     private struct SectionView<Content: View>: View {
         
         var label: String
-        var content: () -> Content
+        @ViewBuilder var content: Content
         
         
-        init(_ label: String, @ViewBuilder content: @escaping () -> Content) {
+        init(_ label: String, @ViewBuilder content: () -> Content) {
             
             self.label = label
-            self.content = content
+            self.content = content()
         }
         
         
         var body: some View {
             
             Section {
-                self.content()
+                self.content
                     .padding(.bottom, 14)
             } header: {
                 Text(self.label)

@@ -78,23 +78,23 @@ struct SyntaxFileMappingEditView: View {
         
         
         @Binding var items: [Item]
-        var label: () -> Label
+        @ViewBuilder var label: Label
         
         @State private var selection: Set<Item.ID> = []
         @FocusState private var focusedField: Item.ID?
         
         
-        init(_ items: Binding<[Item]>, @ViewBuilder label: @escaping () -> Label) {
+        init(_ items: Binding<[Item]>, @ViewBuilder label: () -> Label) {
             
             self._items = items
-            self.label = label
+            self.label = label()
         }
         
         
         var body: some View {
             
             VStack(alignment: .leading) {
-                self.label()
+                self.label
                     .accessibilityAddTraits(.isHeader)
                 
                 List(selection: $selection) {
