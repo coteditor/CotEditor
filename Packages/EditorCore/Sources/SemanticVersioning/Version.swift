@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,35 +26,49 @@
 
 public struct Version: Sendable {
     
-    public enum Prerelease: String, Sendable {
+    public enum Prerelease: Sendable {
         
-        case alpha
-        case beta
-        case rc
+        case alpha(Int?)
+        case beta(Int?)
+        case rc(Int?)
+        case other(String)
+        
+        static let alpha = Self.alpha(nil)
+        static let beta = Self.beta(nil)
+        static let rc = Self.rc(nil)
     }
     
     
     public var major: Int
     public var minor: Int
     public var patch: Int
-    public var prerelease: Prerelease?
+    public var prereleaseIdentifier: String?
     
-    public var isPrerelease: Bool  { self.prerelease != nil }
+    public var isPrerelease: Bool  { self.prereleaseIdentifier != nil }
     
     
-    public init(_ major: Int, _ minor: Int, _ patch: Int, prerelease: Prerelease? = nil) {
+    public init(_ major: Int, _ minor: Int, _ patch: Int, prereleaseIdentifier: String? = nil) {
         
         self.major = major
         self.minor = minor
         self.patch = patch
-        self.prerelease = prerelease
+        self.prereleaseIdentifier = prereleaseIdentifier
+    }
+    
+    
+    public init(_ major: Int, _ minor: Int, _ patch: Int, prerelease: Prerelease?) {
+        
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+        self.prereleaseIdentifier = prerelease?.rawValue
     }
     
     
     public init?(_ string: String) {
         
         guard
-            let match = string.wholeMatch(of: /(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)(-(?<prerelease>[a-z]+)(\.[0-9]+)?)?/),
+            let match = string.wholeMatch(of: /(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)(-(?<prerelease>[a-z.0-9]+))?/),
             let major = Int(match.major),
             let minor = Int(match.minor),
             let patch = Int(match.patch)
@@ -63,15 +77,47 @@ public struct Version: Sendable {
         self.major = major
         self.minor = minor
         self.patch = patch
+        self.prereleaseIdentifier = match.prerelease.map(String.init)
+    }
+}
+
+
+extension Version.Prerelease {
+    
+    init(rawValue: String) {
         
-        if let prereleaseIdentifier = match.prerelease {
-            guard let prerelease = Prerelease(rawValue: String(prereleaseIdentifier)) else { return nil }
+        if let match = rawValue.wholeMatch(of: /(?<token>[a-z]+)(\.(?<number>[0-9]+))?/) {
+            let number = match.number.map(String.init).flatMap(Int.init)
             
-            self.prerelease = prerelease
+            self = switch match.token {
+                case "alpha": .alpha(number)
+                case "beta": .beta(number)
+                case "rc": .rc(number)
+                default: .other(rawValue)
+            }
+        } else {
+            self = .other(rawValue)
+        }
+    }
+    
+    
+    var rawValue: String {
+        
+        switch self {
+            case .alpha(let number):
+                if let number { "alpha.\(number)" } else { "alpha" }
+            case .beta(let number):
+                if let number { "beta.\(number)" } else { "beta" }
+            case .rc(let number):
+                if let number { "rc.\(number)" } else { "rc" }
+            case .other(let string):
+                string
         }
     }
 }
 
+
+// MARK: Comparable
 
 extension Version: Comparable {
     
@@ -84,7 +130,7 @@ extension Version: Comparable {
         } else if lhs.patch != rhs.patch {
             lhs.patch < rhs.patch
         } else {
-            switch (lhs.prerelease, rhs.prerelease) {
+            switch (lhs.prereleaseIdentifier, rhs.prereleaseIdentifier) {
                 case (.none, .none): false
                 case (.some, .none): true
                 case (.none, .some): false
@@ -99,10 +145,6 @@ extension Version.Prerelease: Comparable {
     
     public static func < (lhs: Self, rhs: Self) -> Bool {
         
-        switch lhs {
-            case .alpha: rhs != .alpha
-            case .beta: rhs == .rc
-            case .rc: false
-        }
+        lhs.rawValue < rhs.rawValue
     }
 }

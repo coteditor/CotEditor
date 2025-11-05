@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 //
 
 import Testing
+import Foundation
 @testable import SemanticVersioning
 
 struct VersionTests {
@@ -33,11 +34,14 @@ struct VersionTests {
         
         #expect(Version("5.0.1") == Version(5, 0, 1))
         
+        #expect(Version("5.0.1-beta") == Version(5, 0, 1, prereleaseIdentifier: "beta"))
+        #expect(Version("5.0.1-beta.1") == Version(5, 0, 1, prereleaseIdentifier: "beta.1"))
+        #expect(Version("5.0.1-abc") == Version(5, 0, 1, prereleaseIdentifier: "abc"))
         #expect(Version("5.0.1-beta") == Version(5, 0, 1, prerelease: .beta))
-        #expect(Version("5.0.1-beta.1") == Version(5, 0, 1, prerelease: .beta))
+        #expect(Version("5.0.1-beta.1") != Version(5, 0, 1, prerelease: .beta))
         #expect(Version("5.0.1-alpha") == Version(5, 0, 1, prerelease: .alpha))
         #expect(Version("5.0.1-rc") == Version(5, 0, 1, prerelease: .rc))
-        #expect(Version("5.0.1-abc") == nil)
+        #expect(Version(5, 0, 1, prerelease: .beta) == Version(5, 0, 1, prereleaseIdentifier: "beta"))
     }
     
     
@@ -50,7 +54,11 @@ struct VersionTests {
         #expect(Version(5, 0, 1) < Version(6, 0, 1))
         #expect(Version(5, 0, 1) < Version(5, 1, 1))
         #expect(Version(5, 0, 1) < Version(5, 0, 2))
-        #expect(Version(5, 0, 1, prerelease: .beta) < Version(5, 0, 1))
+        
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.1") < Version(5, 0, 1))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta") < Version(5, 0, 1, prereleaseIdentifier: "beta.1"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.1") < Version(5, 0, 1, prereleaseIdentifier: "beta.2"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.1") < Version(5, 0, 1, prereleaseIdentifier: "rc"))
         
         #expect(Version(5, 0, 1, prerelease: .beta) < Version(5, 0, 1))
         #expect(Version(5, 0, 1, prerelease: .alpha) < Version(5, 0, 1, prerelease: .beta))
@@ -71,5 +79,23 @@ struct VersionTests {
         #expect(Version.Prerelease.rc > .alpha)
         #expect(Version.Prerelease.rc > .beta)
         #expect(Version.Prerelease.rc == .rc)
+        
+        #expect(Version.Prerelease.beta < .beta(1))
+        #expect(Version.Prerelease.beta(1) < .beta(2))
+        
+        #expect(Version.Prerelease.beta(2).rawValue == "beta.2")
+        #expect(Version.Prerelease.other("dogcow").rawValue == "dogcow")
+    }
+    
+    
+    @Test(arguments: ["6.1.0", "6.1.0-rc", "6.1.0-rc.1", "6.1.0-dogcow"])
+    func encode(rawValue: String) throws {
+        
+        let version = Version(rawValue)
+        
+        let data = try JSONEncoder().encode(version)
+        let decoded = try JSONDecoder().decode(Version.self, from: data)
+        
+        #expect(version == decoded)
     }
 }

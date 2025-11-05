@@ -31,7 +31,6 @@ struct WhatsNewView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    private var versionString: String = "\(NewFeature.version.major).\(NewFeature.version.minor)"
     @State private var isPrerelease: Bool = false
     
     
@@ -40,7 +39,7 @@ struct WhatsNewView: View {
         VStack {
             VStack(alignment: .leading, spacing: 20) {
                 HStack(alignment: .firstTextBaseline) {
-                    Text("What’s New in CotEditor \(self.versionString)", tableName: "WhatsNew", comment: "%@ is version number")
+                    Text("What’s New in CotEditor \(NewFeature.version, format: .version(part: .minor))", tableName: "WhatsNew", comment: "%@ is version number")
                         .fontWeight(.semibold)
                         .accessibilityHeading(.h1)
                     
