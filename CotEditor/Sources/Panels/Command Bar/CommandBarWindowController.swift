@@ -81,6 +81,7 @@ final class CommandBarWindowController: NSWindowController {
         // update action candidates
         // -> Needs to update before the bar becomes key window.
         if self.window?.isVisible != true {
+            self.model.input = ""
             self.model.commands = NSApp.actionCommands
         }
         

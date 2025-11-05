@@ -3,6 +3,10 @@
 6.1.1 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the Quick Action bar where the last input remains. 
+
 
 
 6.1.0 (767)

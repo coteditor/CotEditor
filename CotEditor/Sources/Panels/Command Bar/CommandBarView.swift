@@ -31,6 +31,7 @@ struct CommandBarView: View {
     
     @Observable final class Model {
         
+        var input: String = ""
         var commands: [ActionCommand] = []
     }
     
@@ -49,7 +50,6 @@ struct CommandBarView: View {
     weak var parent: NSWindow?
     
     
-    @State private var input: String = ""
     @State var candidates: [Candidate] = []
     
     @State private var position = ScrollPosition(edge: .top)
@@ -64,7 +64,7 @@ struct CommandBarView: View {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.secondary)
-                WindowDraggableTextField(String(localized: "Quick Actions", table: "CommandBar"), text: $input)
+                WindowDraggableTextField(String(localized: "Quick Actions", table: "CommandBar"), text: $model.input)
                     .onSubmit(self.perform)
                     .fontWeight(.light)
                     .textFieldStyle(.plain)
@@ -100,7 +100,7 @@ struct CommandBarView: View {
                 .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .onChange(of: self.input) { _, newValue in
+        .onChange(of: self.model.input) { _, newValue in
             self.candidates = self.model.commands
                 .compactMap { command in
                     guard let result = command.match(command: newValue) else { return nil }

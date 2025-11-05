@@ -133,6 +133,19 @@ private final class DraggableTextField: NSTextField {
         
         true
     }
+    
+    
+    override var stringValue: String {
+        
+        didSet {
+            guard
+                stringValue != oldValue,
+                let fieldEditor = self.window?.fieldEditor(false, for: self) as? DraggableFieldEditor
+            else { return }
+            
+            fieldEditor.sizeToFitTextWidth()
+        }
+    }
 }
 
 
@@ -182,7 +195,7 @@ private final class DraggableFieldEditor: NSTextView {
     
     
     /// Resizes the receiver's frame width just enough to draw the current text.
-    private func sizeToFitTextWidth() {
+    func sizeToFitTextWidth() {
         
         // keep width to draw placeholder text
         let attributedString = if self.string.isEmpty, let placeholderString {
