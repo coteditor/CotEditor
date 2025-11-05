@@ -110,6 +110,12 @@
                                                 <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="xe3-FG-SLT"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Duplicate" secondaryImage="plus.square.on.square" catalog="system" keyEquivalent="S" id="Dup-01-001">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="duplicateCurrentDocument:" target="Ady-hI-5gd" id="Dup-01-002"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Revert to Saved" id="112">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>

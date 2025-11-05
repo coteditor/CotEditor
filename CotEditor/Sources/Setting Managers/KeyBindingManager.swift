@@ -79,6 +79,10 @@ import URLUtils
         
         self.clearShortcuts(in: mainMenu)
         self.applyShortcuts(to: mainMenu)
+
+        // Clear shortcuts from system-provided duplicate menu items
+        self.clearSystemDuplicateShortcuts(in: mainMenu)
+
         mainMenu.update()
     }
     
@@ -234,6 +238,7 @@ import URLUtils
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
                  #selector(NSDocument.saveAs),
+                 #selector(NSDocument.duplicate(_:)),  // system-provided duplicate action
                  #selector(NSWindow.makeKeyAndOrderFront),  // documents in Window menu
                  #selector(NSApplication.showHelp):
                 return false
@@ -309,9 +314,24 @@ import URLUtils
                 }
                 
                 guard self.isModified(menuItem) else { return }
-                
+
                 menuItem.shortcut = nil
             }
+    }
+
+
+    /// Clears shortcuts from system-provided duplicate menu items.
+    ///
+    /// - Parameter menu: The menu where to remove shortcuts.
+    private func clearSystemDuplicateShortcuts(in menu: NSMenu) {
+
+        menu.items.forEach { menuItem in
+            if let submenu = menuItem.submenu {
+                self.clearSystemDuplicateShortcuts(in: submenu)
+            } else if menuItem.action == #selector(NSDocument.duplicate(_:)) {
+                menuItem.shortcut = nil
+            }
+        }
     }
     
     
