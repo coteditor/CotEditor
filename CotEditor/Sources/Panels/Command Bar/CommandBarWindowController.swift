@@ -77,14 +77,40 @@ final class CommandBarWindowController: NSWindowController {
     
     
     override func showWindow(_ sender: Any?) {
-        
+
         // update action candidates
         // -> Needs to update before the bar becomes key window.
         if self.window?.isVisible != true {
             self.model.commands = NSApp.actionCommands
         }
-        
+
         super.showWindow(sender)
+
+        // Select all text in the search field
+        DispatchQueue.main.async {
+            if let panel = self.window as? NSPanel,
+               let contentView = panel.contentView,
+               let textField = self.findTextField(in: contentView),
+               let fieldEditor = panel.fieldEditor(false, for: textField) as? NSTextView {
+                fieldEditor.selectAll(nil)
+            }
+        }
+    }
+
+
+    private func findTextField(in view: NSView) -> NSTextField? {
+
+        if let textField = view as? NSTextField {
+            return textField
+        }
+
+        for subview in view.subviews {
+            if let found = self.findTextField(in: subview) {
+                return found
+            }
+        }
+
+        return nil
     }
 }
 
