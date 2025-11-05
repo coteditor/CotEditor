@@ -439,6 +439,17 @@ extension SettingFileManaging {
     }
     
     
+    /// Exports all user setting files as a dictionary mapping each file's name to its data.
+    ///
+    /// - Returns: A dictionary where the key is the file name of each user setting and the value is the data content of that file.
+    func exportSettings() -> [String: Data] {
+        
+        self.userSettingFileURLs.reduce(into: [:]) { dictionary, url in
+            dictionary[url.lastPathComponent] = try? Data(contentsOf: url)
+        }
+    }
+    
+    
     /// Reloads settings in the user domain.
     func invalidateUserSettings() async {
         

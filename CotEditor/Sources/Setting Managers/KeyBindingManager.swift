@@ -110,6 +110,38 @@ import URLUtils
     }
     
     
+    /// Returns the encoded user key binding settings as an XML property list, or `nil` if there are no user-defined key bindings.
+    ///
+    /// - Throws: An error if encoding the key bindings fails.
+    /// - Returns: The encoded user key binding data in XML property list format, or `nil` if there are no user key bindings.
+    func userSettingsData() throws -> Data? {
+        
+        guard !self.userKeyBindings.isEmpty else { return nil }
+        
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        let descriptions = self.userKeyBindings.sorted(using: KeyPathComparator(\.action.description))
+        
+        return try encoder.encode(descriptions)
+    }
+    
+    
+    /// Imports the given key binding settings data and applies them.
+    ///
+    /// - Parameters:
+    ///   - data: The property-list-encoded user key binding data to import.
+    /// - Throws: An error if decoding the data fails.
+    func importSetting(data: Data) throws {
+        
+        self.userKeyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
+            .filter { $0.shortcut?.isValid ?? true }
+        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
+        
+        // apply new settings to the menu
+        self.applyShortcutsToMainMenu()
+    }
+    
+    
     // MARK: Private Methods
     
     /// File URL to save custom key bindings file.
@@ -174,17 +206,13 @@ import URLUtils
         self.modifiedKeyBindings.formUnion(self.userKeyBindings)
         
         // write to file
-        if self.userKeyBindings.isEmpty {
-            try self.removeSettingFile()
-        } else {
-            let encoder = PropertyListEncoder()
-            encoder.outputFormat = .xml
-            let descriptions = self.userKeyBindings.sorted(using: KeyPathComparator(\.action.description))
-            let data = try encoder.encode(descriptions)
+        if let data = try self.userSettingsData() {
             let fileURL = self.settingFileURL
-            
             try FileManager.default.createIntermediateDirectories(to: fileURL)
             try data.write(to: fileURL)
+            
+        } else {
+            try self.removeSettingFile()
         }
     }
     
