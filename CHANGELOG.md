@@ -5,7 +5,8 @@
 
 ### Fixes
 
-- Fix an issue in the Quick Action bar where the last input remains. 
+- Fix an issue in the Quick Action bar where the last input remains.
+- Fix an issue in editors where the word selection doesn’t expand properly when dragging the mouse.
 
 
 

@@ -796,7 +796,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         // treat additional specific characters as separator (see `wordRange(at:)` for details)
-        let wordRange = self.wordRange(at: proposedCharRange.location)
+        var wordRange = self.wordRange(at: proposedCharRange.location)
+        if proposedCharRange.length > 1 {
+            wordRange.formUnion(self.wordRange(at: proposedCharRange.upperBound - 1))
+        }
         
         guard
             proposedCharRange.isEmpty,  // not on expanding selection
