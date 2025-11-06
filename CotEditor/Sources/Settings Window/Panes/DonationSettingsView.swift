@@ -80,6 +80,7 @@ struct DonationSettingsView: View {
                                 .foregroundStyle(.secondary)
                                 .productIconBorder()
                         }
+                        .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
                         
                         Group {
                             if self.hasDonated {
@@ -136,11 +137,12 @@ struct DonationSettingsView: View {
                         ProductView(id: Donation.Product.onetime.id, prefersPromotionalIcon: true) {
                             Label(.InAppPurchase.donationOnetimeDisplayName, image: .espresso)
                                 .labelStyle(.iconOnly)
-                        }.productViewStyle(OnetimeProductViewStyle())
+                        }
+                        .productViewStyle(OnetimeProductViewStyle())
+                        .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
                     }
                     .accessibilityElement(children: .contain)
                 }
-                .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
                 .disabled(self.storeKitError != nil)
                 .opacity((self.storeKitError == nil) ? 1 : 0.5)
                 .overlay(alignment: .top) {
