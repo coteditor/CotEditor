@@ -70,6 +70,32 @@ extension Version.FormatStyle: FormatStyle {
 }
 
 
+extension Version {
+    
+    public struct ParseStrategy: Foundation.ParseStrategy {
+        
+        public enum ParseError: Error {
+            
+            case invalidValue
+        }
+        
+        
+        /// Creates an instance of the `ParseOutput` type from `value`.
+        ///
+        /// - Parameter value: The string representation of `Version` instance.
+        /// - Returns: A `Version` instance.
+        public func parse(_ value: String) throws(ParseError) -> Version {
+            
+            guard let version = Version(value) else {
+                throw .invalidValue
+            }
+            
+            return version
+        }
+    }
+}
+
+
 public extension Version {
     
     /// Converts `self` to its textual representation.

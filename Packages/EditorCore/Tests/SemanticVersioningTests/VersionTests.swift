@@ -98,4 +98,27 @@ struct VersionTests {
         
         #expect(version == decoded)
     }
+    
+    
+    @Test func format() {
+        
+        #expect(Version(5, 0, 1, prerelease: .beta(1)).formatted() == "5.0.1-beta.1")
+        #expect(Version(5, 0, 1, prerelease: .beta(1)).formatted(.version(part: .minor)) == "5.0")
+        #expect(Version(5, 0, 1, prerelease: .beta(1)).formatted(.version(part: .patch)) == "5.0.1")
+        #expect(Version(5, 0, 1, prerelease: .beta(1)).formatted(.version(part: .prerelease)) == "5.0.1-beta.1")
+    }
+    
+    
+    @Test func parse() throws {
+        
+        let parser = Version.ParseStrategy()
+        
+        #expect(try parser.parse("5.0.1") == Version(5, 0, 1))
+        #expect(try parser.parse("5.0.1-beta") == Version(5, 0, 1, prerelease: .beta))
+        #expect(try parser.parse("5.0.1-beta.1") == Version(5, 0, 1, prerelease: .beta(1)))
+        #expect(try parser.parse("5.0.1-abc") == Version(5, 0, 1, prerelease: .other("abc")))
+        
+        #expect(throws: Version.ParseStrategy.ParseError.invalidValue) { try parser.parse("") }
+        #expect(throws: Version.ParseStrategy.ParseError.invalidValue) { try parser.parse("5.0") }
+    }
 }
