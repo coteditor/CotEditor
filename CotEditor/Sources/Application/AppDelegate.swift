@@ -293,6 +293,18 @@ extension Logger {
     }
     
     
+    /// Opens the Export Settings panel.
+    @IBAction func exportSettings(_ sender: Any?) {
+        
+    }
+    
+    
+    /// Opens the Import Settings panel.
+    @IBAction func importSettings(_ sender: Any?) {
+        
+    }
+    
+    
     /// Shows the Quick Action command bar.
     @IBAction func showQuickActions(_ sender: Any?) {
         
