@@ -175,6 +175,13 @@ extension SettingFileManaging {
     }
     
     
+    /// The names of the setting user customized.
+    nonisolated var userSettingNames: [String] {
+    
+        self.userSettingFileURLs.map(Self.settingName(from:))
+    }
+    
+    
     /// Creates a setting name from a file URL (exists or not).
     ///
     /// - Parameters

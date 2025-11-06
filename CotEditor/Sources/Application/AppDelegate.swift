@@ -72,7 +72,7 @@ extension Logger {
 
 
 @main
-@MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
+@MainActor final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
     
     // MARK: Enums
     
@@ -98,11 +98,14 @@ extension Logger {
     
     // MARK: Private Properties
     
+    private var isSettingsImporterPresented = false
+    
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
     private lazy var settingsWindowController = SettingsWindowController<SettingsPane>()
     private weak var aboutPanel: NSPanel?
     private weak var whatsNewPanel: NSPanel?
+    private weak var exportSettingsPanel: NSPanel?
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -258,6 +261,18 @@ extension Logger {
     
     // MARK: Action Messages
     
+    func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
+        
+        switch item.action {
+            case #selector(importSettings):
+                return !self.isSettingsImporterPresented
+            default: break
+        }
+        
+        return true
+    }
+    
+    
     /// Activates self and perform New menu action (from Dock menu).
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
@@ -296,12 +311,48 @@ extension Logger {
     /// Opens the Export Settings panel.
     @IBAction func exportSettings(_ sender: Any?) {
         
+        let panel = self.exportSettingsPanel ?? NSPanel(
+            view: ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings),
+            hidesTitleButtons: true,
+            title: String(localized: "Export Settings", table: "SettingsPorting")
+        )
+        panel.makeKeyAndOrderFront(nil)
+        
+        self.exportSettingsPanel = panel
     }
     
     
     /// Opens the Import Settings panel.
     @IBAction func importSettings(_ sender: Any?) {
         
+        let panel = NSOpenPanel()
+        panel.allowedContentTypes = [.cotSettings]
+        panel.message = String(localized: "Choose a CotEditor settings archive to import.", table: "SettingsPorting")
+        panel.prompt = String(localized: "Action.import.label", defaultValue: "Import")
+        
+        self.isSettingsImporterPresented = true
+        
+        panel.begin { response in
+            self.isSettingsImporterPresented = false
+            
+            guard response == .OK, let url = panel.url else { return }
+            
+            let document: PortableSettingsDocument
+            do {
+                document = try PortableSettingsDocument(contentsOf: url)
+            } catch {
+                NSApp.presentError(error)
+                return
+            }
+            
+            let name = url.deletingPathExtension().lastPathComponent
+            let panel = NSPanel(
+                view: ImportSettingsView(name: name, document: document),
+                hidesTitleButtons: true,
+                title: String(localized: "Import Settings", table: "SettingsPorting")
+            )
+            panel.makeKeyAndOrderFront(nil)
+        }
     }
     
     
@@ -555,8 +606,9 @@ private extension NSPanel {
     ///
     /// - Parameters:
     ///   - view: The SwiftUI view.
+    ///   - hidesTitleButtons: If `true`, the close/miniaturize/zoom buttons are hidden.
     ///   - title: The window title mainly for the accessibility.
-    convenience init(view: some View, title: String? = nil) {
+    convenience init(view: some View, hidesTitleButtons: Bool = false, title: String? = nil) {
         
         let viewController = NSHostingController(rootView: view)
         viewController.safeAreaRegions = []
@@ -568,6 +620,12 @@ private extension NSPanel {
         self.titlebarAppearsTransparent = true
         self.hidesOnDeactivate = false
         self.setContentSize(viewController.view.intrinsicContentSize)
+        
+        if hidesTitleButtons {
+            self.standardWindowButton(.closeButton)?.isHidden = true
+            self.standardWindowButton(.miniaturizeButton)?.isHidden = true
+            self.standardWindowButton(.zoomButton)?.isHidden = true
+        }
         
         if let title {
             self.title = title

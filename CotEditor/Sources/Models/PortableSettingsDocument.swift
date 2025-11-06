@@ -161,6 +161,17 @@ struct PortableSettingsDocument: FileDocument, Equatable {
     }
     
     
+    /// The mapping of setting types bundled in the receiver.
+    var bundledSettings: [SettingTypes: [String]] {
+        
+        [
+            .replacements: self.replacements.keys.sorted(),
+            .syntaxes: self.syntaxes.keys.sorted(),
+            .themes: self.themes.keys.sorted(),
+        ]
+    }
+    
+    
     /// Verifies that the receiver's version matches the running app's version.
     func checkVersion() throws(Error) {
         
@@ -172,6 +183,17 @@ struct PortableSettingsDocument: FileDocument, Equatable {
 
 
 @MainActor extension PortableSettingsDocument {
+    
+    /// The mapping of exportable setting types.
+    static var exportableSettings: [SettingTypes: [String]] {
+        
+        [
+            .replacements: ReplacementManager.shared.userSettingNames,
+            .syntaxes: SyntaxManager.shared.userSettingNames,
+            .themes: ThemeManager.shared.userSettingNames,
+        ]
+    }
+    
     
     init(including types: SettingTypes) throws {
         
