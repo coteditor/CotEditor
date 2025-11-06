@@ -138,11 +138,10 @@ struct WhatsNewView: View {
 
 enum NewFeature: CaseIterable {
     
-    static let version = Version(6, 1, 0)
-    static let buildNumber = 760
+    static let version = Version(6, 2, 0)
+    static let buildNumber = 770
     
-    case fileBrowserFilter
-    case commentOut
+    case settingPorting
 }
     
 
@@ -151,10 +150,8 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
-            case .fileBrowserFilter:
-                Image(.folderBadgeMagnifyingglass)
-            case .commentOut:
-                Image(.textCommentout)
+            case .settingPorting:
+                Image(systemName: "truck.box")
         }
     }
     
@@ -162,12 +159,9 @@ private extension NewFeature {
     var label: String {
         
         switch self {
-            case .fileBrowserFilter:
-                String(localized: "NewFeature.fileBrowserFilter.label",
-                       defaultValue: "Find documents in the file browser", table: "WhatsNew")
-            case .commentOut:
-                String(localized: "NewFeature.commentOut.label",
-                       defaultValue: "More smart comment out", table: "WhatsNew")
+            case .settingPorting:
+                String(localized: "NewFeature.settingPorting.label",
+                       defaultValue: "Assist your migration", table: "WhatsNew")
         }
     }
     
@@ -175,12 +169,9 @@ private extension NewFeature {
     var description: String {
         
         switch self {
-            case .fileBrowserFilter:
-                String(localized: "NewFeature.fileBrowserFilter.description",
-                       defaultValue: "The file browser now allows filtering of items by filenames.", table: "WhatsNew")
-            case .commentOut:
-                String(localized: "NewFeature.commentOut.description",
-                       defaultValue: "The behavior of comments can now be customized, making the editor feel more natural to use.", table: "WhatsNew")
+            case .settingPorting:
+                String(localized: "NewFeature.settingPorting.description",
+                       defaultValue: "Export and import all your CotEditor settings, custom syntaxes, themes, and multiple replacement definitions from the File menu to easily move your environment to another Mac.", table: "WhatsNew")
         }
     }
     
@@ -188,8 +179,8 @@ private extension NewFeature {
     var helpAnchor: String? {
         
         switch self {
-            default:
-                nil
+            case .settingPorting:
+                "howto_port_settings"
         }
     }
     

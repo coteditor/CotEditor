@@ -3,6 +3,11 @@
 6.2.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Add a feature to export and import settings to transfer them to another Mac.
+
+
 ### Improvements
 
 - Update the layout of the user guide.
