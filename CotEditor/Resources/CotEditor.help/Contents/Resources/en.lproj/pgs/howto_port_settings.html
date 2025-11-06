@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="settings, import, export, themes, syntaxes, snippets, multiple replacements"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Export/Import settings in CotEditor on Mac</title>
+</head>
+
+<body>
+<a name="howto_port_settings"></a>
+
+<h1>Export/Import settings in CotEditor on Mac</h1>
+
+<p>Export CotEditor settings to an archive file, then import them into CotEditor on another computer.</p>
+
+<p>The settings archive can includes:</p>
+<table>
+	<thead>
+		<tr><th>Item</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Settings</th>
+			<td>All options that can be configured within the Settings window, such as modes, snippets, and key bindings</td>
+		</tr>
+		<tr>
+			<th>Themes</th>
+			<td>All custom themes defined by the user</td>
+		</tr>
+		<tr>
+			<th>Syntaxes</th>
+			<td>All custom syntaxes defined by the user.</td>
+		</tr>
+		<tr>
+			<th>Multiple Replacement definitions</th>
+			<td>All definitions set in the Find &gt; Multiple Replace menu.</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>The exported data is saved as a CotEditor Settings Archive (.cotsettings) file.</p>
+
+<p>You can also export themes, syntaxes, and multiple replacement definitions individually. For details, refer to “<a href="settings_appearance.html">Change Appearance settings</a>,” “<a href="settings_format.html">Change Format settings</a>,” and “<a href="howto_multiple_replace.html">Replace text by multiple rules</a>.”</p>
+
+
+<h2>Export settings</h2>
+
+<p>To export your settings in CotEditor:</p>
+<ol>
+	<li>Choose File &gt; Export Settings.</li>
+	<li>Select the items to export.<ul>
+		<li>All exportable items are automatically extracted.</li>
+	</ul></li>
+	<li>Click Export.</li>
+	<li>Enter a name and choose a location for the exported archive, then click Save.</li>
+</ol>
+
+
+<h2>Import settings</h2>
+
+<p>To import your settings in CotEditor</p>
+<ol>
+	<li>Choose File &gt; Import Settings.</li>
+	<li>Choose the CotEditor settings archive to import.</li>
+	<li>Select the specific items in the archive you want to import.</li>
+	<li>Click Import.<ul>
+		<li>If CotEditor already has a setting with the same name, it will be overwritten with the imported data.</li>
+	</ul></li>
+</ol>
+
+</body>
+</html>
