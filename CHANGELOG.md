@@ -7,6 +7,7 @@
 
 - Fix an issue in the Quick Action bar where the last input remains.
 - Fix an issue in editors where the word selection doesn’t expand properly when dragging the mouse.
+- Fix an issue in the navigation bar where a focus ring appears in an empty area when opening documents with the system keyboard navigation feature enabled.
 
 
 
