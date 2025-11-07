@@ -3,6 +3,11 @@
 6.1.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Reset filename filtering when performing the Add File/Folder commands.
+
+
 ### Fixes
 
 - Fix an issue where the editor doesn’t receive focus when the system keyboard navigation feature is enabled.
@@ -15,7 +20,7 @@
 6.1.0 (767)
 --------------------------
 
-Fixes
+### Fixes
 
 - Fix an issue where the text fields in sheet dialogs don’t get focus when they appear.
 - [beta] Fix an issue where the Syntax toolbar menu doesn’t select the current one.

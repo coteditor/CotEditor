@@ -509,6 +509,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let folderNode = self.targetFolderNode(for: sender) else { return }
         
+        if self.isFiltering {
+            self.filterQuery = ""
+        }
+        
         let node: FileNode
         do {
             node = try self.document.addFile(at: folderNode)
@@ -529,6 +533,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @IBAction func addFolder(_ sender: NSMenuItem) {
         
         guard let folderNode = self.targetFolderNode(for: sender) else { return }
+        
+        if self.isFiltering {
+            self.filterQuery = ""
+        }
         
         let node: FileNode
         do {
