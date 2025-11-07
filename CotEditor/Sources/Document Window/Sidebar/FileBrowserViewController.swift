@@ -39,10 +39,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var bottomSeparator: NSView
     @ViewLoading private var messageField: NSTextField
+    @ViewLoading private var filterField: NSSearchField
     @ViewLoading private var filterProgressIndicator: NSProgressIndicator
     
     private var showsHiddenFiles: Bool
-    private var filterQuery: String = ""
     private var expandedItems: [Any]?
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
@@ -186,6 +186,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
         self.messageField = messageField
+        self.filterField = filterField
         self.filterProgressIndicator = filterProgressIndicator
     }
     
@@ -510,7 +511,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         guard let folderNode = self.targetFolderNode(for: sender) else { return }
         
         if self.isFiltering {
-            self.filterQuery = ""
+            self.clearFilter()
         }
         
         let node: FileNode
@@ -535,7 +536,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         guard let folderNode = self.targetFolderNode(for: sender) else { return }
         
         if self.isFiltering {
-            self.filterQuery = ""
+            self.clearFilter()
         }
         
         let node: FileNode
@@ -623,8 +624,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @objc private func filterTextDidChange(_ sender: NSSearchField) {
         
-        self.filterQuery = sender.stringValue
-        
         self.filterTask?.cancel()
         self.filterTask = Task { [weak self] in
             try await Task.sleep(for: .seconds(0.5))
@@ -640,10 +639,26 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     // MARK: Private Methods
     
+    /// The text in the filter field.
+    private var filterQuery: String {
+        
+        self.filterField.stringValue
+    }
+    
+    
     /// Whether the file browser is currently in the filtering mode.
     private var isFiltering: Bool {
         
         !self.filterQuery.isEmpty
+    }
+    
+    
+    /// Immediately clears the filter query and cancels current filtering.
+    private func clearFilter() {
+        
+        self.filterField.stringValue = ""
+        self.filterTask?.cancel()
+        self.endFilter()
     }
     
     
@@ -777,6 +792,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     ///   - node: The note item to select.
     ///   - edit: If `true`, the text field will be in the editing mode.
     private func select(node: FileNode, edit: Bool = false) {
+        
+        self.outlineView.reloadItem(node)
         
         node.parents.reversed().forEach { self.outlineView.expandItem($0) }
         

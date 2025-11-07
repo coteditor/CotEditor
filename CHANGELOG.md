@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- Reset filename filtering when performing the Add File/Folder commands.
+- Reset filename filtering by performing the Add File/Folder commands.
 
 
 ### Fixes
