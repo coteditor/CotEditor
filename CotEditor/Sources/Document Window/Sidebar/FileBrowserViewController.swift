@@ -628,7 +628,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.filterTask?.cancel()
         self.filterTask = Task { [weak self] in
             try await Task.sleep(for: .seconds(0.5))
-            try await self?.updateFilter()
+            
+            if self?.isFiltering == true {
+                try await self?.updateFilter()
+            } else {
+                self?.endFilter()
+            }
         }
     }
     
@@ -649,7 +654,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     /// - Throws: `CancellationError` or errors on file reading.
     private func updateFilter(updatesExpansion: Bool = true) async throws {
         
-        try Task.checkCancellation()
+        assert(self.isFiltering)
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
         
@@ -657,7 +662,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         defer { self.filterProgressIndicator.stopAnimation(nil) }
         
         // store item expansion states
-        if self.isFiltering, self.expandedItems == nil {
+        if self.expandedItems == nil {
             self.outlineView.autosaveExpandedItems = false
             self.expandedItems = (0..<self.outlineView.numberOfRows)
                 .compactMap(self.outlineView.item(atRow:))
@@ -665,40 +670,50 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // filter
-        if self.isFiltering {
-            let matchedNodes = try await rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
-                .filter { $0 != rootNode }
-            self.outlineView.reloadData()
-            
-            if updatesExpansion {
-                let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
-                    .sorted(using: KeyPathComparator(\.parents.count))
-                    .prefix(1_000)  // limit the number of items to avoid getting stuck
-                for node in nodesToExpand {
-                    self.outlineView.expandItem(node)
-                }
+        let matchedNodes = try await rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
+            .filter { $0 != rootNode }
+        
+        // update UI
+        self.outlineView.reloadData()
+        self.messageField.isHidden = !matchedNodes.isEmpty
+        
+        if updatesExpansion {
+            let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
+                .sorted(using: KeyPathComparator(\.parents.count))
+                .prefix(1_000)  // limit the number of items to avoid getting stuck
+            for node in nodesToExpand {
+                self.outlineView.expandItem(node)
             }
-            self.messageField.isHidden = !matchedNodes.isEmpty
-            
-        } else {
-            rootNode.removeFilterStates()
-            self.outlineView.reloadData()
-            self.messageField.isHidden = true
         }
+    }
+    
+    
+    /// Ends filtering in the outline view.
+    private func endFilter() {
+        
+        assert(!self.isFiltering)
+        
+        guard let rootNode = self.document.fileNode else { return assertionFailure() }
+        
+        rootNode.removeFilterStates()
+        
+        // update UI
+        self.outlineView.reloadData()
+        self.messageField.isHidden = true
         
         // restore item expansion states
-        if !self.isFiltering, let expandedItems {
-            let selectedItems = self.outlineView.selectedRowIndexes
-                .compactMap(self.outlineView.item(atRow:))
-            
-            self.outlineView.collapseItem(nil, collapseChildren: true)
-            for item in expandedItems + selectedItems {
-                self.outlineView.expandItem(item)
-            }
-            
-            self.expandedItems = nil
-            self.outlineView.autosaveExpandedItems = true
+        guard let expandedItems else { return }
+        
+        let selectedItems = self.outlineView.selectedRowIndexes
+            .compactMap(self.outlineView.item(atRow:))
+        
+        self.outlineView.collapseItem(nil, collapseChildren: true)
+        for item in expandedItems + selectedItems {
+            self.outlineView.expandItem(item)
         }
+        
+        self.expandedItems = nil
+        self.outlineView.autosaveExpandedItems = true
     }
     
     
