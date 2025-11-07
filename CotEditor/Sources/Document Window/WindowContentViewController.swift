@@ -170,6 +170,13 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             }
         }
         
+        // move focus to the editor
+        // -> The editor doesn’t automatically receive focus
+        //    when keyboard navigation is enabled in system settings. (2025-11, macOS 26)
+        if let textView = self.documentViewController?.focusedTextView {
+            self.view.window?.makeFirstResponder(textView)
+        }
+        
         // observe user defaults for status bar
         if #available(macOS 26, *) {
             let statusBarController = self.contentViewItem.bottomAlignedAccessoryViewControllers.first
