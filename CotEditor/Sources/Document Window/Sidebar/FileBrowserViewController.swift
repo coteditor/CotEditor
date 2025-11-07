@@ -1144,9 +1144,11 @@ extension FileBrowserViewController: NSTextFieldDelegate {
             return false
         }
         
+        // sort
+        let parent = self.outlineView.parent(forItem: node)
         let oldIndex = self.outlineView.childIndex(forItem: node)
         if let newIndex = self.children(of: node.parent)?.firstIndex(of: node), newIndex != oldIndex {
-            self.outlineView.moveItem(at: oldIndex, inParent: node.parent, to: newIndex, inParent: node.parent)
+            self.outlineView.moveItem(at: oldIndex, inParent: parent, to: newIndex, inParent: parent)
         }
         
         return true
