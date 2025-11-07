@@ -267,8 +267,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles)
                 .sink { [unowned self] showsHiddenFiles in
                     self.showsHiddenFiles = showsHiddenFiles
+                    self.filterTask?.cancel()
                     if self.isFiltering {
-                        Task { try await self.updateFilter(updatesExpansion: false) }
+                        self.filterTask = Task { try await self.updateFilter(updatesExpansion: false) }
                     } else {
                         self.outlineView.reloadData()
                     }
