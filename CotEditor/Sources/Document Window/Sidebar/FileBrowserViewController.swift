@@ -674,6 +674,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
         
+        let selectedItem = self.outlineView.item(atRow: self.outlineView.selectedRow)
+        
         self.filterProgressIndicator.startAnimation(nil)
         defer { self.filterProgressIndicator.stopAnimation(nil) }
         
@@ -693,6 +695,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView.reloadData()
         self.messageField.isHidden = !matchedNodes.isEmpty
         
+        // select item again
+        let row = self.outlineView.row(forItem: selectedItem)
+        if row >= 0 {
+            self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
+        }
+        
         if updatesExpansion {
             let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
                 .sorted(using: KeyPathComparator(\.parents.count))
@@ -711,6 +719,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
         
+        let selectedItem = self.outlineView.item(atRow: self.outlineView.selectedRow)
+        
         rootNode.removeFilterStates()
         
         // update UI
@@ -718,18 +728,24 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.messageField.isHidden = true
         
         // restore item expansion states
-        guard let expandedItems else { return }
-        
-        let selectedItems = self.outlineView.selectedRowIndexes
-            .compactMap(self.outlineView.item(atRow:))
-        
-        self.outlineView.collapseItem(nil, collapseChildren: true)
-        for item in expandedItems + selectedItems {
-            self.outlineView.expandItem(item)
+        if let expandedItems {
+            let selectedItems = self.outlineView.selectedRowIndexes
+                .compactMap(self.outlineView.item(atRow:))
+            
+            self.outlineView.collapseItem(nil, collapseChildren: true)
+            for item in expandedItems + selectedItems {
+                self.outlineView.expandItem(item)
+            }
+            
+            self.expandedItems = nil
+            self.outlineView.autosaveExpandedItems = true
         }
         
-        self.expandedItems = nil
-        self.outlineView.autosaveExpandedItems = true
+        // select item again
+        let row = self.outlineView.row(forItem: selectedItem)
+        if row >= 0 {
+            self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
+        }
     }
     
     
