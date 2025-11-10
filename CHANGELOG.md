@@ -3,6 +3,10 @@
 6.2.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the layout of the user guide.
+
 
 
 6.1.2 (unreleased)

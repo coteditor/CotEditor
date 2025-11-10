@@ -28,7 +28,7 @@ ul ul {
 summary {
 	cursor: pointer;
 }
-summary::-webkit-details-marker {
+summary::marker {
 	color: -apple-system-tertiary-label;
 }
 

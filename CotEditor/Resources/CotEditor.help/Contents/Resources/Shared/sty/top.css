@@ -12,12 +12,14 @@
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 350 13px/1.5 -apple-system, sans-serif;
+	font: 350 16px/1.5 -apple-system, sans-serif;
 	text-rendering: optimizeLegibility;
 	color: -apple-system-label;
 }
 body {
-	margin: 1rem 2.75rem;
+	max-width: 820px;
+	margin: 1rem auto 2rem;
+	padding: 0 2.75rem;
 }
 
 a {
@@ -31,28 +33,35 @@ a:hover {
 }
 
 header {
+	font-size: 22px;
+	font-weight: 300;
 	position: relative;
-	height: 80px;
-	padding: 4px 0;
+	height: 170px;
 	border-bottom: 1px solid -apple-system-quaternary-label;
-	padding-left: 80px;
 }
 header img {
 	position: absolute;
 	top: 0;
-	left: 0;
-	width: 76px;
+	right: 40px;
+	width: 150px;
 }
 header h1 {
-	font-size: 210%;
-	font-weight: 650;
-	margin: 0 0 0.6rem;
+	font-size: 39px;
+	font-weight: 450;
+	margin: 0;
+}
+header p {
+	margin: 0.25rem 0;
 }
 header .toc::before {
 	display: inline-block;
 	content: url(../gfx/toc.svg);
 	vertical-align: -2px;
 	padding-right: 0.3rem;
+}
+header .toc {
+	font-size: 17px;
+	font-weight: 300;
 }
 
 
@@ -64,7 +73,27 @@ main > section {
 }
 h2 {
 	font-weight: 500;
-	font-size: 130%;
+	font-size: 160%;
+	margin: 0.5rem 0;
+}
+
+main > section.subhead {
+	text-align: center;
+}
+main > section.subhead h2 {
+	font-size: 200%;
+}
+
+main > section:not(.subhead) {
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+}
+main > section:not(.subhead) > * {
+	box-sizing: border-box;
+}
+main > section figure {
+	margin: 0;
 }
 
 img.snapshot {
