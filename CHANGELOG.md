@@ -8,6 +8,7 @@
 - Keep selection in the file browser by filename filtering.
 
 
+
 6.1.1 (769)
 --------------------------
 
