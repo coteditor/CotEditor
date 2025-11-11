@@ -10,6 +10,7 @@
 
 ### Improvements
 
+- Request file access permission by “Open in New Window” if CotEditor doesn’t have it yet.
 - Update the layout of the user guide.
 
 

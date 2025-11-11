@@ -6669,6 +6669,54 @@
         }
       }
     },
+    "GrantAccessPanel.message" : {
+      "comment" : "message in the Open dialog to grant the access permission to open an alias location.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffne den ursprünglichen Speicherort, um CotEditor Zugriff zu gewähren."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open the original location to grant CotEditor access."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Choose the original location to grant CotEditor access."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Abre la ubicación original para permitir que CotEditor acceda a ella."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ouvrez l’emplacement d’origine pour autoriser CotEditor à y accéder."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor がアクセスできるように、オリジナルの場所を開いてください。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open de oorspronkelijke locatie om CotEditor toegang te geven."
+          }
+        }
+      }
+    },
     "ImportDuplicationError.description" : {
       "comment" : "%@ is a name of a setting. Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",

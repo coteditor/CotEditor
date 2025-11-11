@@ -561,6 +561,14 @@ final class DirectoryDocument: NSDocument {
             return
         }
         
+        if node.file.isAlias {
+            do throws(CancellationError) {
+                try fileURL.grantAccess()
+            } catch {
+                return
+            }
+        }
+        
         if let document = self.currentDocument, fileURL == document.fileURL {
             // remove from the current window
             self.windowController?.fileDocument = nil
