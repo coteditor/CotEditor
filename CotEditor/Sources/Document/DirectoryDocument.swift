@@ -260,8 +260,6 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: Return `true` if the document of the given file did successfully open.
     @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false) async -> Bool {
         
-        assert(!fileURL.hasDirectoryPath)
-        
         if let currentDocument,
            fileURL == currentDocument.fileURL,
            !asPlainText || currentDocument is Document
