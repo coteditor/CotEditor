@@ -97,6 +97,33 @@ protocol FileContentAttributes: Sendable, Equatable { }
             self.isFolderAlias = isFolderAlias
         }
     }
+    
+    
+    // MARK: Public Methods
+    
+    /// Opens the file targeted by this document when it represents an alias.
+    ///
+    /// This method assumes the document URL points to an alias file.
+    func openLinkedFile() {
+        
+        assert(self.isAlias)
+        
+        guard
+            let fileURL = self.fileURL
+        else { return assertionFailure() }
+        
+        do throws(CancellationError) {
+            try fileURL.grantAccess()
+        } catch {
+            return
+        }
+        
+        NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { _, _, error in
+            if let error {
+                NSApp.presentError(error)
+            }
+        }
+    }
 }
 
 

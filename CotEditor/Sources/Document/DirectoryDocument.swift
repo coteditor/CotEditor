@@ -260,8 +260,6 @@ final class DirectoryDocument: NSDocument {
     /// - Returns: Return `true` if the document of the given file did successfully open.
     @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false) async -> Bool {
         
-        assert(!fileURL.hasDirectoryPath)
-        
         if let currentDocument,
            fileURL == currentDocument.fileURL,
            !asPlainText || currentDocument is Document
@@ -561,6 +559,14 @@ final class DirectoryDocument: NSDocument {
         } catch {
             self.presentError(error)
             return
+        }
+        
+        if node.file.isAlias {
+            do throws(CancellationError) {
+                try fileURL.grantAccess()
+            } catch {
+                return
+            }
         }
         
         if let document = self.currentDocument, fileURL == document.fileURL {

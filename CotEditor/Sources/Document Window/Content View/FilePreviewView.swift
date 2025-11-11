@@ -45,6 +45,11 @@ struct FilePreviewView: View {
                     Button(String(localized: "Show in Finder", table: "Document")) {
                         NSWorkspace.shared.activateFileViewerSelecting([self.item.previewItemURL])
                     }
+                    
+                    Button(String(localized: "Open in New Window", table: "Document")) {
+                        self.item.openLinkedFile()
+                    }
+                    
                 } else {
                     OpenWithExternalEditorMenu(url: self.item.previewItemURL)
                         .modifier { content in
@@ -56,12 +61,12 @@ struct FilePreviewView: View {
                                     .labelStyle(.titleAndIcon)
                             }
                         }
-                }
-                
-                Button(String(localized: "Open as Plain Text", table: "Document")) {
-                    let menuItem = NSMenuItem()
-                    menuItem.representedObject = self.item.previewItemURL
-                    NSApp.sendAction(#selector(DirectoryDocument.openDocumentAsPlainText), to: nil, from: menuItem)
+                    
+                    Button(String(localized: "Open as Plain Text", table: "Document")) {
+                        let menuItem = NSMenuItem()
+                        menuItem.representedObject = self.item.previewItemURL
+                        NSApp.sendAction(#selector(DirectoryDocument.openDocumentAsPlainText), to: nil, from: menuItem)
+                    }
                 }
             }
             .padding(.top)
