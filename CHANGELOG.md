@@ -8,6 +8,11 @@
 - Keep selection in the file browser by filename filtering.
 
 
+### Fixes
+
+- Fix an issue where changing the theme color while a document window is in front of the Settings window immediately applies the selected color to the editor’s text.
+
+
 
 6.1.1 (769)
 --------------------------

@@ -1441,7 +1441,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         guard let theme = self.theme else { return assertionFailure() }
         
-        self.textColor = theme.text.color
+        // -> Reduce the text color update as much as possible since it updates
+        //    the color in the Color panel (2025-11, macOS 26.2)
+        if self.textColor != theme.text.color {
+            self.textColor = theme.text.color
+        }
+        
         self.backgroundColor = theme.background.color
         self.lineHighlightColor = theme.lineHighlight.color
         self.insertionPointColor = theme.insertionPointColor
