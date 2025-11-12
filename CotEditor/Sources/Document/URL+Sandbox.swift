@@ -35,7 +35,7 @@ extension URL {
     /// - Throws: `CancellationError` if the user cancels the Open panel without granting access.
     @MainActor func grantAccess() throws(CancellationError) {
         
-        guard try? self.checkResourceIsReachable() == true else { return assertionFailure() }
+        guard (try? self.checkResourceIsReachable()) == true else { return assertionFailure() }
         
         guard
             !FileManager.default.isReadableFile(atPath: self.path)
