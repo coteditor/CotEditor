@@ -43,7 +43,8 @@ struct FilePreviewView: View {
             HStack(spacing: 12) {
                 if self.item.isAlias {
                     Button(String(localized: "Show in Finder", table: "Document")) {
-                        NSWorkspace.shared.activateFileViewerSelecting([self.item.previewItemURL])
+                        let url = (self.item.contentAttributes as? LinkFileAttributes)?.destinationURL ?? self.item.previewItemURL!
+                        NSWorkspace.shared.activateFileViewerSelecting([url])
                     }
                     
                     Button(String(localized: "Open in New Window", table: "Document")) {
@@ -85,6 +86,8 @@ struct FilePreviewView: View {
                 }
                 
                 switch self.item.contentAttributes {
+                    case let attributes as LinkFileAttributes:
+                        LinkFileAttributesView(attributes: attributes)
                     case let attributes as ImageAttributes:
                         ImageAttributesView(attributes: attributes)
                     case let attributes as MovieAttributes:
@@ -143,6 +146,25 @@ private struct QuickLookView: NSViewRepresentable {
 
 
 // MARK: - File Attributes Views
+
+struct LinkFileAttributesView: View {
+    
+    var attributes: LinkFileAttributes
+    
+    
+    var body: some View {
+        
+        LabeledContent(String(localized: "Original", table: "Document", comment: "label for the original path of alias/symlink (refer to the Finder)")) {
+            if let url = self.attributes.destinationURL {
+                Text(url, format: .url.scheme(.never))
+                    .multilineTextAlignment(.leading)
+            } else {
+                Text.none
+            }
+        }
+    }
+}
+
 
 struct ImageAttributesView: View {
     

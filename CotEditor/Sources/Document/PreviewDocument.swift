@@ -54,7 +54,15 @@ protocol FileContentAttributes: Sendable, Equatable { }
         let fileAttributes = FileAttributes(dictionary: attributes)
         let isAlias = try url.resourceValues(forKeys: [.isAliasFileKey]).isAliasFile == true
         
-        if let type = UTType(typeName) {
+        if isAlias {
+            let aliasURL = try? URL(resolvingAliasFileAt: url)
+            let attributes = LinkFileAttributes(destinationURL: aliasURL)
+            
+            Task { @MainActor in
+                self.contentAttributes = attributes
+            }
+            
+        } else if let type = UTType(typeName) {
             if let rep = NSImageRep(contentsOf: url) {
                 let previewSize = rep.size
                 let attributes = rep.attributes

@@ -12,6 +12,7 @@
 
 - Replace “Open as Plain Text” with “Open in New Window” button for alias and symlink files in file preview views.
 - Request file access permission by “Open in New Window” if CotEditor doesn’t have it yet.
+- Display the original path for alias and symlink files in file preview views.
 - Update the layout of the user guide.
 
 
