@@ -1,5 +1,5 @@
 //
-//  StringFilename.swift
+//  StringFilenameTests.swift
 //  URLUtilsTests
 //
 //  CotEditor
@@ -27,7 +27,7 @@
 import Testing
 @testable import URLUtils
 
-struct StringFilename {
+struct StringFilenameTests {
     
     @Test func removeExtension() {
         

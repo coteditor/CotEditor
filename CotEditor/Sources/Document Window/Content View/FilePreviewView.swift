@@ -69,6 +69,7 @@ struct FilePreviewView: View {
                     }
                 }
             }
+            .fixedSize()
             .padding(.top)
             
             Form {
@@ -141,6 +142,8 @@ private struct QuickLookView: NSViewRepresentable {
 }
 
 
+// MARK: - File Attributes Views
+
 struct ImageAttributesView: View {
     
     var attributes: ImageAttributes
@@ -191,6 +194,8 @@ struct AudioAttributesView: View {
     }
 }
 
+
+// MARK: - External Editor Menu
 
 private struct OpenWithExternalEditorMenu: View {
     
