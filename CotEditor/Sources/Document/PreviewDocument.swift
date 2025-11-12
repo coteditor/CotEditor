@@ -105,13 +105,18 @@ protocol FileContentAttributes: Sendable, Equatable { }
             let fileURL = self.fileURL
         else { return assertionFailure() }
         
-        do throws(CancellationError) {
-            try fileURL.grantAccess()
+        let destinationURL: URL
+        do {
+            destinationURL = try URL(resolvingAliasFileAt: fileURL)
+            try destinationURL.grantAccess()
+        } catch is CancellationError {
+            return
         } catch {
+            NSApp.presentError(error)
             return
         }
         
-        NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { _, _, error in
+        NSDocumentController.shared.openDocument(withContentsOf: destinationURL, display: true) { _, _, error in
             if let error {
                 NSApp.presentError(error)
             }
