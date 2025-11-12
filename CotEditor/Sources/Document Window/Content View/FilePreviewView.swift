@@ -64,6 +64,7 @@ struct FilePreviewView: View {
                     NSApp.sendAction(#selector(DirectoryDocument.openDocumentAsPlainText), to: nil, from: menuItem)
                 }
             }
+            .fixedSize()
             .padding(.top)
             
             Form {
@@ -136,6 +137,8 @@ private struct QuickLookView: NSViewRepresentable {
 }
 
 
+// MARK: - File Attributes Views
+
 struct ImageAttributesView: View {
     
     var attributes: ImageAttributes
@@ -186,6 +189,8 @@ struct AudioAttributesView: View {
     }
 }
 
+
+// MARK: - External Editor Menu
 
 private struct OpenWithExternalEditorMenu: View {
     
