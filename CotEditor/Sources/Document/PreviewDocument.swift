@@ -35,6 +35,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
     // MARK: Public Properties
     
     private(set) var isAlias = false
+    private(set) var isFolderAlias = false
     
     private(set) var previewSize: CGSize?
     private(set) var contentAttributes: (any FileContentAttributes)?
@@ -53,6 +54,11 @@ protocol FileContentAttributes: Sendable, Equatable { }
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))
         let fileAttributes = FileAttributes(dictionary: attributes)
         let isAlias = try url.resourceValues(forKeys: [.isAliasFileKey]).isAliasFile == true
+        let isFolderAlias = if isAlias {
+            try URL(resolvingAliasFileAt: url).resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
+        } else {
+            false
+        }
         
         if isAlias {
             let aliasURL = try? URL(resolvingAliasFileAt: url)
@@ -96,6 +102,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
         self.continueAsynchronousWorkOnMainActor {
             self.fileAttributes = fileAttributes
             self.isAlias = isAlias
+            self.isFolderAlias = isFolderAlias
         }
     }
     
