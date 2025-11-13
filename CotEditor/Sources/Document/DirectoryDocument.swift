@@ -553,7 +553,7 @@ final class DirectoryDocument: NSDocument {
     /// - Parameter node: The file node to open.
     func openInWindow(at node: FileNode) {
         
-        let fileURL: URL
+        var fileURL: URL
         do {
             fileURL = try node.file.resolvedFileURL
         } catch {

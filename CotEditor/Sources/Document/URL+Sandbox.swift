@@ -31,11 +31,14 @@ extension URL {
     /// Requests sandbox access for the receiver to the user by presenting an open panel when needed.
     ///
     /// If the URL is already readable, the method returns immediately without showing any UI.
+    /// When the access permission is newly acquired, the URL will be updated to one holding the permission.
     ///
     /// - Throws: `CancellationError` if the user cancels the Open panel without granting access.
-    @MainActor func grantAccess() throws(CancellationError) {
+    @MainActor mutating func grantAccess() throws(CancellationError) {
         
-        guard (try? self.checkResourceIsReachable()) == true else { return assertionFailure() }
+        guard
+            (try? self.checkResourceIsReachable()) == true
+        else { return assertionFailure() }
         
         guard
             !FileManager.default.isReadableFile(atPath: self.path)
@@ -50,9 +53,17 @@ extension URL {
         let delegate = GrantAccessDelegate(validURL: self)
         openPanel.delegate = delegate
         
-        guard openPanel.runModal() == .OK else {
-            throw CancellationError()
-        }
+        guard
+            openPanel.runModal() == .OK
+        else { throw CancellationError() }
+        
+        guard
+            let url = openPanel.url,
+            url == self
+        else { return assertionFailure() }
+        
+        // update to the URL having access permission
+        self = url
     }
 }
 

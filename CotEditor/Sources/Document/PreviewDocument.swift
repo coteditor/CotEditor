@@ -113,7 +113,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
             let fileURL = self.fileURL
         else { return assertionFailure() }
         
-        let destinationURL: URL
+        var destinationURL: URL
         do {
             destinationURL = try URL(resolvingAliasFileAt: fileURL)
             try destinationURL.grantAccess()
