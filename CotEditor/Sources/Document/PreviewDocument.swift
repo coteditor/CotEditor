@@ -26,6 +26,7 @@
 import AppKit
 import QuickLookUI
 import AVFoundation
+import URLUtils
 
 protocol FileContentAttributes: Sendable, Equatable { }
 
@@ -55,7 +56,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
         let fileAttributes = FileAttributes(dictionary: attributes)
         let isAlias = try url.resourceValues(forKeys: [.isAliasFileKey]).isAliasFile == true
         let isFolderAlias = if isAlias {
-            try URL(resolvingAliasFileAt: url).resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
+            (try? URL(resolvingAliasFileAt: url).isDirectory) == true
         } else {
             false
         }
