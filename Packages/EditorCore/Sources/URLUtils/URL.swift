@@ -35,6 +35,17 @@ public extension URL {
     }
     
     
+    /// Returns whether the URL points to a directory.
+    ///
+    /// - Note: This property uses cached resource if available.
+    var isDirectory: Bool {
+        
+        get throws {
+            try self.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
+        }
+    }
+    
+    
     /// Returns the path string relative to the given URL.
     ///
     /// - Note: The `baseURL` is assumed its `directoryHint` is properly set.
@@ -46,7 +57,7 @@ public extension URL {
         assert(self.isFileURL)
         assert(baseURL.isFileURL)
         
-        let isDirectory = (try? baseURL.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) ?? baseURL.hasDirectoryPath
+        let isDirectory = (try? baseURL.isDirectory) ?? baseURL.hasDirectoryPath
         
         if baseURL == self, !isDirectory {
             return self.lastPathComponent

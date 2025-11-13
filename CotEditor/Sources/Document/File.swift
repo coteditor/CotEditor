@@ -91,7 +91,7 @@ struct File: Equatable {
         self.isWritable = resourceValues.isWritable ?? true
         self.isAlias = resourceValues.isAliasFile ?? false
         
-        self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
+        self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).isDirectory) == true {
             .folder
         } else {
             Kind(type: resourceValues.contentType, isDirectory: self.isDirectory)

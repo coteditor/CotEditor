@@ -30,6 +30,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 import Defaults
 import StringUtils
+import URLUtils
 
 protocol AdditionalDocumentPreparing: NSDocument {
     
@@ -92,7 +93,7 @@ final class DocumentController: NSDocumentController {
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // do nothing for DirectoryDocument
-        if try url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory ?? false {
+        if try url.isDirectory {
             return try await super.openDocument(withContentsOf: url, display: displayDocument)
         }
         
