@@ -55,7 +55,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
         let fileAttributes = FileAttributes(dictionary: attributes)
         let isAlias = try url.resourceValues(forKeys: [.isAliasFileKey]).isAliasFile == true
         let isFolderAlias = if isAlias {
-            try URL(resolvingAliasFileAt: url).resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
+            (try? URL(resolvingAliasFileAt: url).resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true
         } else {
             false
         }

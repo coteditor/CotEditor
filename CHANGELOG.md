@@ -11,6 +11,7 @@
 ### Fixes
 
 - Fix an issue where changing the theme color while a document window is in front of the Settings window immediately applies the selected color to the editor’s text.
+- Fix an issue where the file browser prompts an error message when selecting a symlink or alias whose target is unavailable.
 
 
 
