@@ -28,21 +28,29 @@ import AppKit
 
 extension URL {
     
+    /// Returns whether the URL is currently readable (sandbox access granted).
+    var isReadable: Bool {
+        
+        get throws {
+            try self.resourceValues(forKeys: [.isReadableKey]).isReadable == true
+        }
+    }
+    
+    
     /// Requests sandbox access for the receiver to the user by presenting an open panel when needed.
     ///
-    /// If the URL is already readable, the method returns immediately without showing any UI.
-    /// When the access permission is newly acquired, the URL will be updated to one holding the permission.
+    /// - Note:
+    ///   If the URL is already readable, the method returns immediately without showing any UI.
+    ///   When the access permission is newly acquired, the URL will be updated to one holding the permission.
     ///
-    /// - Throws: `CancellationError` if the user cancels the Open panel without granting access.
-    @MainActor mutating func grantAccess() throws(CancellationError) {
+    /// - Throws: an error if the URL is not reachable, and `CancellationError` if the user cancels the Open panel without granting access.
+    @MainActor mutating func grantAccess() throws {
         
         guard
-            (try? self.checkResourceIsReachable()) == true
+            try self.checkResourceIsReachable()
         else { return assertionFailure() }
         
-        guard
-            !FileManager.default.isReadableFile(atPath: self.path)
-        else { return }  // -> already has permission
+        guard (try? self.isReadable) != true else { return }  // -> already has permission
         
         let openPanel = NSOpenPanel()
         openPanel.directoryURL = self

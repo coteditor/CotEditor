@@ -190,6 +190,147 @@
         }
       }
     },
+    "NewFeature.alias.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Originaldokumente hinter Aliasen und Symlinks können jetzt direkt im aktuellen Fenster aus der Dateiübersicht geöffnet werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The original documents behind aliases and symlinks can now be opened directly in the current window from the file browser."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The original documents behind aliases and symlinks can now be opened directly in the current window from the file browser."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Los documentos originales detrás de alias y enlaces simbólicos ahora pueden abrirse directamente en la ventana actual desde el Explorador de archivos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les documents originaux derrière les alias et les liens symboliques peuvent désormais être ouverts directement dans la fenêtre active depuis le Navigateur de fichiers."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エイリアスやシンボリックリンクのオリジナル書類を、ファイルブラウザから現在のウインドウに直接開けるようになりました。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De originele documenten achter aliassen en symlinks kunnen nu direct in het huidige venster worden geopend vanuit de Bestandskiezer."
+          }
+        }
+      }
+    },
+    "NewFeature.alias.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einfacherer Zugriff auf Aliase"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Easier access to aliases"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Easier access to aliases"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Acceso más sencillo a alias"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Accès simplifié aux alias"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エイリアスへ簡単にアクセス"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Eenvoudigere toegang tot aliassen"
+          }
+        }
+      }
+    },
+    "NewFeature.alias.supplement" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*Wenn es sich beim Original um einen Ordner handelt, wird er in einem neuen Fenster geöffnet."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "*If the original is a folder, it will open in a new window."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*If the original is a folder, it will open in a new window."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "* Si el original es una carpeta, se abrirá en una nueva ventana."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "* Si l’original est un dossier, il s’ouvrira dans une nouvelle fenêtre."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*オリジナルがフォルダの場合は新規ウインドウで開きます。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "*Als het origineel een map is, wordt het in een nieuw venster geopend."
+          }
+        }
+      }
+    },
     "NewFeature.settingPorting.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -231,7 +372,7 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Exporteer en importeer al je CotEditor-instellingen, aangepaste syntaxis, thema’s en definities voor meerdere vervangingen via het menu Archief om je omgeving eenvoudig naar een andere Mac te verplaatsen."
           }
         }

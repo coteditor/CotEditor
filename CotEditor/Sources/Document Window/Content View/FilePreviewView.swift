@@ -47,8 +47,16 @@ struct FilePreviewView: View {
                         NSWorkspace.shared.activateFileViewerSelecting([url])
                     }
                     
-                    Button(String(localized: "Open in New Window", table: "Document")) {
-                        self.item.openLinkedFile()
+                    if self.item.isFolderAlias {
+                        Button(String(localized: "Open in New Window", table: "Document")) {
+                            self.item.openLinkedFile()
+                        }
+                    } else {
+                        Button(String(localized: "Open Original", table: "Document")) {
+                            let menuItem = NSMenuItem()
+                            menuItem.representedObject = self.item.previewItemURL
+                            NSApp.sendAction(#selector(DirectoryDocument.openOriginalDocumentAsPlainText), to: nil, from: menuItem)
+                        }
                     }
                     
                 } else {

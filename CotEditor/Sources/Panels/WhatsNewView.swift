@@ -142,6 +142,7 @@ enum NewFeature: CaseIterable {
     static let buildNumber = 770
     
     case settingPorting
+    case alias
 }
     
 
@@ -152,6 +153,8 @@ private extension NewFeature {
         switch self {
             case .settingPorting:
                 Image(systemName: "truck.box")
+            case .alias:
+                Image(systemName: "arrowshape.turn.up.forward.fill")
         }
     }
     
@@ -162,6 +165,9 @@ private extension NewFeature {
             case .settingPorting:
                 String(localized: "NewFeature.settingPorting.label",
                        defaultValue: "Assist your migration", table: "WhatsNew")
+            case .alias:
+                String(localized: "NewFeature.alias.label",
+                       defaultValue: "Easier access to aliases", table: "WhatsNew")
         }
     }
     
@@ -172,6 +178,9 @@ private extension NewFeature {
             case .settingPorting:
                 String(localized: "NewFeature.settingPorting.description",
                        defaultValue: "Export and import all your CotEditor settings, custom syntaxes, themes, and multiple replacement definitions from the File menu to easily move your environment to another Mac.", table: "WhatsNew")
+            case .alias:
+                String(localized: "NewFeature.alias.description",
+                       defaultValue: "The original documents behind aliases and symlinks can now be opened directly in the current window from the file browser.", table: "WhatsNew")
         }
     }
     
@@ -181,6 +190,8 @@ private extension NewFeature {
         switch self {
             case .settingPorting:
                 "howto_port_settings"
+            default:
+                nil
         }
     }
     
@@ -188,6 +199,12 @@ private extension NewFeature {
     @ViewBuilder var supplementalView: some View {
         
         switch self {
+            case .alias:
+                Text(String(localized: "NewFeature.alias.supplement",
+                            defaultValue: "*If the original is a folder, it will open in a new window.", table: "WhatsNew"))
+                .foregroundStyle(.secondary)
+                .controlSize(.small)
+                .padding(.top, 2)
             default:
                 EmptyView()
         }

@@ -240,6 +240,29 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    /// Opens the link destination of selected file as plain text.
+    @IBAction func openOriginalDocumentAsPlainText(_ sender: NSMenuItem) {
+        
+        guard let fileURL = sender.representedObject as? URL else { return }
+        
+        assert((try? fileURL.isDirectory) != true)
+        
+        var resolvedURL: URL
+        do {
+            resolvedURL = try URL(resolvingAliasFileAt: fileURL)
+            try resolvedURL.grantAccess()
+        } catch is CancellationError {
+            return
+        } catch {
+            return self.presentErrorAsSheet(error)
+        }
+        
+        Task {
+            await self.openDocument(at: resolvedURL, asPlainText: true)
+        }
+    }
+    
+    
     // MARK: Public Methods
     
     /// Returns the opened document at the given file node.
@@ -254,17 +277,36 @@ final class DirectoryDocument: NSDocument {
     
     /// Opens a document as a member.
     ///
+    /// This method opens the alias destination instead, only if the URL already has permission.
+    ///
     /// - Parameters:
     ///   - fileURL: The file URL of the document to open.
     ///   - asPlainText: If `true`, the document is forcibly opened as a plain text file.
+    ///   - prefersOriginal: If `true`, opens the alias destination only if the URL already has permission. Otherwise, opens the original file.
     /// - Returns: Return `true` if the document of the given file did successfully open.
-    @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false) async -> Bool {
+    @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false, prefersOriginal: Bool = false) async -> Bool {
         
         if let currentDocument,
            fileURL == currentDocument.fileURL,
            !asPlainText || currentDocument is Document
         {
             return true  // already open
+        }
+        
+        // open alias target if the URL already has permission
+        var fileURL = fileURL
+        if prefersOriginal,
+           let resolvedURL = try? URL(resolvingAliasFileAt: fileURL),
+           (try? resolvedURL.isReadable) == true
+        {
+            if let currentDocument,
+               fileURL == currentDocument.fileURL,
+               !asPlainText || currentDocument is Document
+            {
+                return true  // already open
+            }
+            
+            fileURL = resolvedURL
         }
         
         // existing document
@@ -550,22 +592,21 @@ final class DirectoryDocument: NSDocument {
     
     /// Open the document at a given fileURL in a new window.
     ///
+    /// If the file is an alias, this method tries to open the linked URL instead.
+    ///
     /// - Parameter node: The file node to open.
     func openInWindow(at node: FileNode) {
         
-        var fileURL: URL
-        do {
-            fileURL = try node.file.resolvedFileURL
-        } catch {
-            self.presentError(error)
-            return
-        }
+        var fileURL = node.file.fileURL
         
         if node.file.isAlias {
-            do throws(CancellationError) {
+            do {
+                fileURL = try URL(resolvingAliasFileAt: fileURL)
                 try fileURL.grantAccess()
-            } catch {
+            } catch is CancellationError {
                 return
+            } catch {
+               // let NSDocumentController handle the error
             }
         }
         
@@ -722,3 +763,4 @@ private enum DirectoryDocumentError: LocalizedError {
         }
     }
 }
+

@@ -111,19 +111,6 @@ struct File: Equatable {
     }
     
     
-    /// The file URL by resolving any link and alias.
-    var resolvedFileURL: URL {
-        
-        get throws {
-            if self.isAlias {
-                try URL(resolvingAliasFileAt: self.fileURL)
-            } else {
-                self.fileURL
-            }
-        }
-    }
-    
-    
     /// Updates `.kind` with current filename.
     mutating func invalidateKind() {
         
