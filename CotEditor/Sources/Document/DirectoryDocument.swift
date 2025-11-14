@@ -240,6 +240,29 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    /// Opens the link destination of selected file as plain text.
+    @IBAction func openOriginalDocumentAsPlainText(_ sender: NSMenuItem) {
+        
+        guard let fileURL = sender.representedObject as? URL else { return }
+        
+        assert((try? fileURL.isDirectory) != true)
+        
+        var resolvedURL: URL
+        do {
+            resolvedURL = try URL(resolvingAliasFileAt: fileURL)
+            try resolvedURL.grantAccess()
+        } catch is CancellationError {
+            return
+        } catch {
+            return self.presentErrorAsSheet(error)
+        }
+        
+        Task {
+            await self.openDocument(at: resolvedURL, asPlainText: true)
+        }
+    }
+    
+    
     // MARK: Public Methods
     
     /// Returns the opened document at the given file node.
