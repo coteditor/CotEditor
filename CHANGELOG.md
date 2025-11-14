@@ -22,7 +22,7 @@
 
 ### Improvements
 
-- Keep selection in the file browser by filename filtering.
+- Keep the selection in the file browser when filtering by filename.
 
 
 ### Fixes
