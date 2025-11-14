@@ -1099,7 +1099,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         else { return }
         
         Task {
-            await self.document.openDocument(at: node.file.fileURL)
+            await self.document.openDocument(at: node.file.fileURL, prefersOriginal: node.file.isAlias && !node.file.isFolder)
         }
     }
     

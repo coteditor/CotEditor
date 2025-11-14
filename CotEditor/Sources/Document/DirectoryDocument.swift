@@ -277,17 +277,36 @@ final class DirectoryDocument: NSDocument {
     
     /// Opens a document as a member.
     ///
+    /// This method opens the alias destination instead, only if the URL already has permission.
+    ///
     /// - Parameters:
     ///   - fileURL: The file URL of the document to open.
     ///   - asPlainText: If `true`, the document is forcibly opened as a plain text file.
+    ///   - prefersOriginal: If `true`, opens the alias destination only if the URL already has permission. Otherwise, opens the original file.
     /// - Returns: Return `true` if the document of the given file did successfully open.
-    @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false) async -> Bool {
+    @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false, prefersOriginal: Bool = false) async -> Bool {
         
         if let currentDocument,
            fileURL == currentDocument.fileURL,
            !asPlainText || currentDocument is Document
         {
             return true  // already open
+        }
+        
+        // open alias target if the URL already has permission
+        var fileURL = fileURL
+        if prefersOriginal,
+           let resolvedURL = try? URL(resolvingAliasFileAt: fileURL),
+           (try? resolvedURL.isReadable) == true
+        {
+            if let currentDocument,
+               fileURL == currentDocument.fileURL,
+               !asPlainText || currentDocument is Document
+            {
+                return true  // already open
+            }
+            
+            fileURL = resolvedURL
         }
         
         // existing document
@@ -744,3 +763,4 @@ private enum DirectoryDocumentError: LocalizedError {
         }
     }
 }
+
