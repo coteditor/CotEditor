@@ -6,12 +6,12 @@
 ### New Features
 
 - Add a feature to export and import settings to transfer them to another Mac.
+- Allow opening alias and symlink documents from the file browser.
 
 
 ### Improvements
 
-- Replace “Open as Plain Text” with “Open in New Window” button for alias and symlink files in file preview views.
-- Request file access permission by “Open in New Window” if CotEditor doesn’t have it yet.
+- Request file access permission from the user by the “Open in New Window” command instead of simply presenting an error when CotEditor doesn’t have permission.
 - Display the original path for alias and symlink files in file preview views.
 - Update the layout of the user guide.
 
