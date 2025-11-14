@@ -550,22 +550,21 @@ final class DirectoryDocument: NSDocument {
     
     /// Open the document at a given fileURL in a new window.
     ///
+    /// If the file is an alias, this method tries to open the linked URL instead.
+    ///
     /// - Parameter node: The file node to open.
     func openInWindow(at node: FileNode) {
         
-        var fileURL: URL
-        do {
-            fileURL = try node.file.resolvedFileURL
-        } catch {
-            self.presentError(error)
-            return
-        }
+        var fileURL = node.file.fileURL
         
         if node.file.isAlias {
-            do throws(CancellationError) {
+            do {
+                fileURL = try URL(resolvingAliasFileAt: fileURL)
                 try fileURL.grantAccess()
-            } catch {
+            } catch is CancellationError {
                 return
+            } catch {
+               // let NSDocumentController handle the error
             }
         }
         
