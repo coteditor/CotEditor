@@ -119,7 +119,7 @@ final class DirectoryDocument: NSDocument {
         if self.documentObserver == nil {
             self.documentObserver = NotificationCenter.default.addObserver(forName: Document.DidUpdateChangeMessage.name, object: nil, queue: .main) { [unowned self] _ in
                 MainActor.assumeIsolated {
-                    let hasEditedDocuments = self.documents.contains { $0.isDocumentEdited }
+                    let hasEditedDocuments = self.documents.contains(where: \.isDocumentEdited)
                     self.windowController?.setDocumentEdited(hasEditedDocuments)
                 }
             }
@@ -763,4 +763,3 @@ private enum DirectoryDocumentError: LocalizedError {
         }
     }
 }
-

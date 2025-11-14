@@ -84,7 +84,7 @@ final class FindPanelContentViewController: NSSplitViewController {
         self.splitViewItems = [fieldViewItem, resultViewItem, buttonViewItem]
         
         self.resultObservationTask = Task { [weak self] in
-            for await userInfo in NotificationCenter.default.notifications(named: TextFinder.DidFindAllMessage.name).compactMap({ $0.userInfo }) {
+            for await userInfo in NotificationCenter.default.notifications(named: TextFinder.DidFindAllMessage.name).compactMap(\.userInfo) {
                 guard
                     let matches = userInfo["matches"] as? [FindAllMatch],
                     let findString = userInfo["findString"] as? String

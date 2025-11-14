@@ -216,7 +216,7 @@ private struct FontSettingView: View {
                     .font(nsFont: self.font.wrappedValue.withSize(0))
                     .help(self.font.wrappedValue.displayNameAndSize)
                     .frame(maxWidth: 260)
-                    .alignmentGuide(.firstTextBaseline) { $0.height }
+                    .alignmentGuide(.firstTextBaseline, computeValue: \.height)
                 FontSizeStepper(String(localized: "Font size", table: "AppearanceSettings"), font: self.font)
                     .accessibilityValue(String(localized: "\(self.font.wrappedValue.pointSize, format: .number) points",
                                                table: "AppearanceSettings", comment: "accessibility label for font size"))

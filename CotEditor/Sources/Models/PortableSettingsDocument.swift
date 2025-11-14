@@ -114,9 +114,9 @@ struct PortableSettingsDocument: FileDocument, Equatable {
         self.defaults = plist.mapValues(PropertyListValue.init)
         
         self.keyBindings = fileWrappers[WrapperKey.keyBindings]?.fileWrappers?[WrapperKey.shortcuts]?.regularFileContents
-        self.replacements = fileWrappers[WrapperKey.replacements]?.fileWrappers?.compactMapValues { $0.regularFileContents } ?? [:]
-        self.syntaxes = fileWrappers[WrapperKey.syntaxes]?.fileWrappers?.compactMapValues { $0.regularFileContents } ?? [:]
-        self.themes = fileWrappers[WrapperKey.themes]?.fileWrappers?.compactMapValues { $0.regularFileContents } ?? [:]
+        self.replacements = fileWrappers[WrapperKey.replacements]?.fileWrappers?.compactMapValues(\.regularFileContents) ?? [:]
+        self.syntaxes = fileWrappers[WrapperKey.syntaxes]?.fileWrappers?.compactMapValues(\.regularFileContents) ?? [:]
+        self.themes = fileWrappers[WrapperKey.themes]?.fileWrappers?.compactMapValues(\.regularFileContents) ?? [:]
     }
     
     

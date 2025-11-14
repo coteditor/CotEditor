@@ -220,7 +220,7 @@ extension MultiCursorEditing {
         let nonemptyRanges = selectionSet.rangeView
             .map(NSRange.init)
         var emptyRanges = ranges
-            .filter { $0.isEmpty }
+            .filter(\.isEmpty)
             .filter { !selectionSet.contains(integersIn: ($0.location - 1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
