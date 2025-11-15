@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="カラーリング, シンタックス, アウトライン, 入力補完候補"/>
+	<meta name="keywords" content="ハイライト, カラーリング, シンタックス, アウトライン, 入力補完候補"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
@@ -14,14 +14,14 @@
 
 <h1>MacのCotEditorでシンタックスを定義する</h1>
 
-<p>CotEditorの<dfn>シンタックス</dfn>は、シンタックスカラーリングやアウトラインの抽出ルールなど、書類の編集に関するいくつかの機能の振る舞いを書類のタイプ（シンタックス）毎にまとめて定義して書類によって簡単に切り替えられるようにしたものです。</p>
+<p>CotEditorの<dfn>シンタックス</dfn>は、シンタックスハイライトやアウトラインの抽出ルールなど、書類の編集に関するいくつかの機能の振る舞いを書類のタイプ（シンタックス）毎にまとめて定義して書類によって簡単に切り替えられるようにしたものです。</p>
 
 <p>CotEditorは書類のタイプによってシンタックスを自動で選んで適用します。ユーザはツールバーや「フォーマット」メニューの「シンタックス」メニューから手動で書類のシンタックスを変更することもできます。どのような書類にそのシンタックスを適用するかのルールもシンタックス自身が定義します。CotEditorが適用するシンタックスをどのように決定するかは<a href="syntax_file_mapping.html">「ファイルをシンタックスに関連付ける」</a>を参照してください。</p>
 
 <p>CotEditorでは、シンタックスが以下の機能の振る舞いを定義しています:</p>
 <ul>
 	<li>シンタックスの種類</li>
-	<li>シンタックスカラーリング</li>
+	<li>シンタックスハイライト</li>
 	<li>アウトラインの抽出ルール</li>
 	<li>コメント記号</li>
 	<li>入力補完</li>
@@ -48,8 +48,8 @@
 <ul>
 	<li><i>名前</i>: シンタックスの名前を設定します。</li>
 	<li><i>種類</i>: シンタックスの言語がコーディング用途か一般的な文書かを設定します。この設定は、<a href="settings_mode.html">「モード」設定</a>で設定するエディタの振る舞いやフォントに影響します。</li>
-	<li><a href="syntax_highlight_settings.html"><i>ハイライト要素</i></a>: シンタックスカラーリングのカラーリング条件を設定します。</li>
-	<li><a href="syntax_comment_settings.html">コメント</a>: コメント記号とコメントのシンタックスカラーリング条件を設定します。</li>
+	<li><a href="syntax_highlight_settings.html"><i>ハイライト要素</i></a>: シンタックスハイライトのカラーリング条件を設定します。</li>
+	<li><a href="syntax_comment_settings.html">コメント</a>: コメント記号とコメントのシンタックスハイライト条件を設定します。</li>
 	<li><a href="syntax_outline_settings.html">アウトライン</a>: アウトライン機能の項目抽出条件とフォーマット条件を設定します。</li>
 	<li><a href="syntax_completion_settings.html">入力補完</a>: 入力補完候補を設定します。</li>
 	<li><a href="syntax_file_mapping.html">ファイル関連付け</a>: シンタックスと関連付けるファイルを設定します。</li>

@@ -27,13 +27,15 @@
 <ol>
 	<li>Choose CotEditor &gt; Settings.</li>
 	<li>Select the Format pane.</li>
-	<li>In the “Priority of encodings” section, click the Edit List button.</li>
+	<li>In the “Encoding priorities” section, click the Edit List button.</li>
 	<li>Move up the encodings you use frequently.</li>
 </ol>
 
-<p>Encodings not on this list are not considered as candidates for the automatic encoding detection when opening documents. Keep encodings on the list that you want to use as candidates for encoding detection, even if you do not use them directly.</p>
+<p>CotEditor supports all text encodings available on macOS. You can also use the Add/Remove buttons to add separators or nonstandard encodings, or remove encodings you don't want used for the automatic detection.</p>
 
-<p>“Unicode (UTF-8)” and “Unicode (UTF-8) with BOM” can not be removed from the list and are always handled as a set. Because the BOM (byte order mark) is taken into account when trying to encode data into UTF-8, there is no effect on the detection precision that the order of these two encodings is fixed.</p>
+<p>Encodings not on this list aren’t considered as candidates for the automatic encoding detection when opening documents. Keep encodings on the list that you want to use as candidates for encoding detection, even if you don’t use them directly.</p>
+
+<p>“Unicode (UTF-8)” and “Unicode (UTF-8) with BOM” can’t be removed from the list and are always handled as a set. Because the BOM (byte order mark) is taken into account when trying to encode data into UTF-8, there is no effect on the detection precision that the order of these two encodings is fixed.</p>
 
 <p>“Unicode (UTF-16)” should be placed <strong>after</strong> other often-used encodings, because UTF-16 can encode most characters.</p>
 

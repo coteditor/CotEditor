@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="encoding, text encoding, reinterpretation"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Open a document with a specified encoding in CotEditor on Mac</title>
+</head>
+
+<body>
+<a name="howto_interpret_encoding"></a>
+
+<h1>Open a document with a specified encoding in CotEditor on Mac</h1>
+
+<p>CotEditor lets you open a document by interpreting it with a specified text encoding. This can be useful when a document doesn’t display correctly or appears garbled.</p>
+
+
+<h2>Specify the encoding when opening a document</h2>
+
+<ol>
+	<li>Choose File &gt; Open.</li>
+	<li>Select the document you want to open.</li>
+	<li>From the Text Encoding pop-up menu, select the encoding you want to use.</li>
+	<li>Click Open.</li>
+</ol>
+
+<p>The default setting is “Automatic.” When the “Automatic” is selected, CotEditor examines the document’s contents and the text encoding priority list, then automatically chooses the most appropriate encoding. For more information about encoding priorities, see “<a href="howto_customize_encoding_order.html">Change the priority of text encodings</a>.”</p>
+
+<p>If you open a document by dragging it to the CotEditor application icon, CotEditor uses an automatically detected encoding. If you need to open a document with a specific encoding, use the Open dialog.</p>
+
+
+<h2>Reinterpret a document using a different encoding</h2>
+
+<p>If a document doesn’t display correctly, you may be able to fix the issue by reinterpreting it using a different encoding.</p>
+
+<p>To reinterpret an open document using another encoding, do the following:</p>
+
+<ol>
+	<li>Click the “Text Encoding” button in the status bar, or choose Format &gt; Text Encoding.</li>
+	<li>From the list, select the encoding you want to use.</li>
+	<li>In the “Text encoding change” dialog that appears, click “Reinterpret.”</li>
+</ol>
+
+<p>When reinterpreting a document using a different encoding, note that any unsaved changes will be lost. If you want to preserve the content, it’s recommended to save a copy beforehand.</p>
+
+
+<h2>If you don’t see the encoding you want in the Text Encoding menu</h2>
+
+<p>If you don’t see the encoding you want in the Text Encoding menu, you may be able to customize the list and add the encoding you need.</p>
+<p>The encodings that appear in the Text Encoding menu can be changed in the <a href="settings_format.html">Format settings</a> under “Encoding priorities.” For more information, see “<a href="howto_customize_encoding_order.html">Change the priority of text encodings</a>.”</p>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="faq_cannot_display.html">If a document appears garbled</a></li>
+	<li><a href="howto_inspect_usedchar.html">Find characters incompatible with the document encoding</a></li>
+	<li><a href="howto_customize_encoding_order.html">Change priorities of text encodings</a></li>
+</ul>
+</section>
+
+</body>
+</html>
+
+
+ChatGPT can make mistakes. Check important info.

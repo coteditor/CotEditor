@@ -19,7 +19,7 @@
 
 <h2>cotコマンドのインストール</h2>
 <p><code>cot</code>コマンドはCotEditor.app内の'<code>Contents/SharedSupport/bin/cot</code>'にバンドルされています。</p>
-<p>Terminalからシンボリックリンクを作成して、任意の場所にインストールすることができます。特にこだわりがない場合は'<code>/usr/local/bin/</code>'にシンボリックリンク作成することをお勧めします。</p>
+<p>Terminalからシンボリックリンクを作成して、任意の場所にインストールできます。特にこだわりがない場合は'<code>/usr/local/bin/</code>'にシンボリックリンク作成することをお勧めします。</p>
 
 <p>推奨する場所にシンボリックリンクを作成するには、Terminalで以下の行を実行します。</p>
 <pre class="source"><code>mkdir /usr/local/bin/
@@ -39,7 +39,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <h2>cotコマンドのアンインストール</h2>
 
-<p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールする場合はTerminalから以下を実行します。</p>
+<p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールするときはTerminalから以下を実行します。</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 
@@ -71,7 +71,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>cot
 </code></pre>
 
-<p>以下のコマンドは、foo.txtファイルをCotEditorで開き200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しない場合は、<code>cot</code>コマンドは何も行いません。</p>
+<p>以下のコマンドは、foo.txtファイルをCotEditorで開き200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しないときは、<code>cot</code>コマンドは何も行いません。</p>
 
 <pre class="source"><code>cot --line 200 foo.txt
 </code></pre>

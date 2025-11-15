@@ -75,7 +75,7 @@
 
 <p>The latter three types, NEL, LS, and PS, are hardly used in the real world as line ending delimiters for document files. Therefore, CotEditor hides them by default in the line ending choices.</p>
 
-<p>In contrast, although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also visually break lines in CotEditor, they are not regarded as line endings characters.</p>
+<p>In contrast, although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also visually break lines in CotEditor, they aren’t regarded as line endings characters.</p>
 
 
 
@@ -120,7 +120,7 @@
 
 <p>In general, CotEditor uses only the document line ending when breaking lines so that you don’t need to care about the difference in the line endings types. Even if you insert text with different line endings in some way, such as by CotEditor script or text replacement using the regular expression, CotEditor implicitly converts all line endings in the text to insert to the line ending in the document.</p>
 
-<p>Currently, CotEditor provides only two ways to insert line endings different from the document’s line ending:</p>
+<p>CotEditor provides the following two ways to insert line endings different from the document’s line ending:</p>
 
 <ul>
 	<li>Manually input a line ending character by <a href="howto_input_unicode.html">Unicode code point</a>.</li>

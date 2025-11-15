@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="encoding, text encoding"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Change a document’s text encoding in CotEditor on Mac</title>
+</head>
+
+<body>
+<a name="howto_change_encoding"></a>
+
+<h1>Change a document’s text encoding in CotEditor on Mac</h1>
+
+<p>CotEditor lets you change the text encoding used when saving a document.</p>
+
+
+<h2>Change the default text encoding</h2>
+
+<p>To change the text encoding used for new documents you create in CotEditor, or when opening an empty document, change the “Default text encoding” option in the <a href="settings_format.html">Format settings</a>.</p>
+
+
+<h2>Change a document’s text encoding</h2>
+
+<p>To change a document’s text encoding in CotEditor, do one of the following:</p>
+
+<ol>
+	<li>Click the Encoding button in the status bar, or choose Format &gt; Text Encoding.</li>
+	<li>From the list, select the encoding you want to use.</li>
+</ol>
+
+<p>If the document has never been saved, the encoding you selected is immediately applied.</p>
+
+<p>When you change the encoding of a saved document, a dialog appears.</p>
+
+<figure>
+	<img srcset="../gfx/encodingWindow@2x.png 2x" alt="Screenshot of the “Change Text Encoding” dialog"/>
+</figure>
+
+<p>The options in the dialog are as follows:</p>
+<table>
+	<thead>
+		<tr><th>Option</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Convert</th>
+			<td>Keeps the current text and changes the document so that it’s saved using the selected encoding.</td>
+		</tr>
+		<tr>
+			<th>Reinterpret</th>
+			<td>Reopens the file using the specified encoding. For more information, see “<a href="howto_interpret_encoding.html">Open a document with a specified encoding</a>.”</td>
+		</tr>
+		<tr>
+			<th>Cancel</th>
+			<td>Cancels the operation. The document is not changed.</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>To change the document’s text encoding, click “Convert.”</p>
+
+
+<h2>If the document contains incompatible characters</h2>
+
+<p>If the document contains characters that can’t be represented in the text encoding you’re changing to, a warning dialog appears.</p>
+
+<p>To continue with the change, click “Change Encoding.” The Warnings inspector opens, and you can see a list of characters that are incompatible with the new encoding. For more information, see “<a href="howto_inspect_usedchar.html">Find characters incompatible with the document encoding</a>.”</p>
+
+
+<h2>If you don’t see the encoding you want in the Text Encoding menu</h2>
+
+<p>If you don’t see the encoding you want in the Text Encoding menu, you may be able to customize the list and add the encoding you need.</p>
+<p>The encodings that appear in the Text Encoding menu can be changed in the <a href="settings_format.html">Format settings</a> under “Encoding priorities.” For more information, see “<a href="howto_customize_encoding_order.html">Change the priority of text encodings</a>.”</p>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="howto_interpret_encoding.html">Open a document with a specified encoding</a></li>
+	<li><a href="howto_inspect_usedchar.html">Find characters incompatible with the document encoding</a></li>
+	<li><a href="howto_customize_encoding_order.html">Change the priority of text encodings</a></li>
+</ul>
+</section>
+
+</body>
+</html>

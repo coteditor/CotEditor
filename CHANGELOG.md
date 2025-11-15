@@ -13,7 +13,7 @@
 
 ### Improvements
 
-- Update the layout of the user guide.
+- Update the contents and layout of the user guide.
 
 
 

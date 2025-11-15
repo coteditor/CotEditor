@@ -7,40 +7,31 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>If characters aren’t appeared correctly in CotEditor on Mac</title>
+	<title>If a document appears garbled in CotEditor on Mac</title>
 </head>
 
 <body>
 
-<h1>If characters aren’t appeared correctly in CotEditor on Mac</h1>
+<h1>If a document appears garbled in CotEditor on Mac</h1>
 
-<p>Characters can be misinterpreted if CotEditor fails to detect the file’s text encoding correctly. In such cases, change the text encoding as described below:</p>
-<ol>
-	<li>Choose Format &gt; Text Encoding, and then choose encoding from the list.</li>
-	<li>When a dialog appears, click Reinterpret.</li>
-</ol>
-<p><img srcset="../gfx/encodingWindow@2x.png 2x" alt="Screenshot of the text encoding change dialog"/></p>
-<p>The behavior of each button in this dialog is as follows:</p>
-<dl>
-	<dd>Converts the text from the current encoding to the new one.</dd>
-	<dt>Reinterpret</dt>
-	<dd>Reopens the file with the new encoding.</dd>
-	<dt>Convert</dt>
-	<dt>Cancel</dt>
-	<dd>Cancels the operation. The document is left unmodified.</dd>
-</dl>
+<p>Characters can be misinterpreted mostly if CotEditor fails to detect the documents’s text encoding correctly.</p>
+
 <ul>
-	<li>You can also change the text encoding from the encoding menu in the status bar.</li>
+	<li>The document may display correctly if it’s opened using an appropriate text encoding. Try opening it with a different encoding.<br />
+	→ <a href="howto_interpret_encoding.html">Open a document with a specified encoding</a></li>
 	<li>Changing the priority of the encoding detection may help to reduce the occurrences of garbled characters.<br />
 	→ <a href="howto_customize_encoding_order.html">Change priorities of text encodings</a></li>
 	<li>If you select “Refer to encoding declaration in document” in the Format settings pane, in-document encoding declarations, such as “<code>encoding=</code>” or “<code>@charset</code>,” take precedence when CotEditor detects the text encoding.<br />
 	→ <a href="about_autodetect_charset.html">Use encoding declarations for encoding detection</a></li>
 </ul>
 
+<p>If a document can’t be interpreted as plain text, such as binary data, CotEditor can’t read its contents as text. Open the document in an application that supports its file type.</p>
+
 
 <section id="cf">
 <h2>See also</h2>
 <ul>
+	<li><a href="howto_interpret_encoding.html">Open a document with a specified encoding</a></li>
 	<li><a href="howto_customize_encoding_order.html">Change priorities of text encodings</a></li>
 	<li><a href="about_autodetect_charset.html">Use encoding declarations for encoding detection</a></li>
 	<li><a href="about_shiftjis.html">Use four kinds of Shift JIS properly</a></li>

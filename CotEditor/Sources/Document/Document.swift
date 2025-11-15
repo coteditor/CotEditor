@@ -1291,6 +1291,8 @@ extension NSTextView: EditorCounter.Source { }
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.reinterpret",
                                               defaultValue: "Reinterpret"))
             alert.addButton(withTitle: String(localized: .cancel))
+            alert.helpAnchor = "howto_change_encoding"
+            alert.showsHelp = true
             
             let documentWindow = self.windowForSheet!
             Task {
@@ -1389,8 +1391,8 @@ extension NSTextView: EditorCounter.Source { }
             alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
                                                     defaultValue: "Don’t ask again for this document",
                                                     comment: "toggle button label")
-            alert.showsHelp = true
             alert.helpAnchor = "inconsistent_line_endings"
+            alert.showsHelp = true
             
             Task {
                 let returnCode = await alert.beginSheetModal(for: documentWindow)

@@ -11,9 +11,11 @@
 
 
 :root {
-	-webkit-text-size-adjust: 100%;
-	font: 350 16px/1.5 -apple-system, sans-serif;
+	font: 350 16px/1.6 -apple-system, sans-serif;
+	font-size-adjust: from-font;
 	text-rendering: optimizeLegibility;
+	text-autospace: normal;
+	text-spacing-trim: trim-start;
 	color: -apple-system-label;
 }
 body {
