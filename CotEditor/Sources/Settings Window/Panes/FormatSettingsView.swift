@@ -100,7 +100,7 @@ struct FormatSettingsView: View {
                 .padding(.vertical, 6)
             
             GridRow {
-                Text("Default encoding:", tableName: "FormatSettings")
+                Text("Default text encoding:", tableName: "FormatSettings")
                     .accessibilityLabeledPair(role: .label, id: "fileEncoding", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
@@ -129,7 +129,7 @@ struct FormatSettingsView: View {
             }
             
             GridRow {
-                Text("Priority of encodings:", tableName: "FormatSettings")
+                Text("Encoding priorities:", tableName: "FormatSettings")
                     .accessibilityLabeledPair(role: .label, id: "encodingPriority", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
