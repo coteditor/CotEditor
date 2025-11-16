@@ -39,7 +39,6 @@ enum NestableToken: Equatable, Hashable, Sendable {
         guard
             !highlight.isRegularExpression,
             let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
-            Set(pair.begin) == Set(pair.end),
             pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
         else { return nil }
         
