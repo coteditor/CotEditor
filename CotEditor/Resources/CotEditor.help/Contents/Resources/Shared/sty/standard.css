@@ -217,7 +217,7 @@ img.bordered {
 	border-radius: 3px;
 }
 object.symbol {
-	vertical-align: -0.2em;
+	vertical-align: -0.1em;
 }
 object.symbol:lang(ja) {
 	padding: 0 0.2em;
