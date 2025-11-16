@@ -271,8 +271,12 @@ commentDelimiters:
   endDelimiter: ']]'
   inlineDelimiter: --
 comments:
-- beginString: --\[(=*)\[.*\]\1\]
-  regularExpression: true
+- beginString: --[===[
+  endString: ']===]'
+- beginString: --[==[
+  endString: ']==]'
+- beginString: --[=[
+  endString: ']=]'
 completions: []
 extensions:
 - keyString: lua
