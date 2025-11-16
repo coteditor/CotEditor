@@ -586,7 +586,8 @@ extension AppDelegate: NSMenuDelegate {
             }
         } + [
             .separator(),
-            NSMenuItem(title: String(localized: "Customize Encodings List…", table: "MainMenu"), action: #selector(showEncodingsListEditor), keyEquivalent: ""),
+            NSMenuItem(title: String(localized: "Customize Encodings List…", table: "MainMenu"),
+                       systemImage: "square.and.pencil", action: #selector(showEncodingsListEditor)),
         ]
     }
 }
