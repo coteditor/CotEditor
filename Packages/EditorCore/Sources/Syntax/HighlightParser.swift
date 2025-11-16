@@ -26,34 +26,8 @@
 //
 
 public import Foundation
-public import StringUtils
 public import ValueRange
-
-
-public enum NestableToken: Equatable, Hashable, Sendable {
-    
-    case inline(String)
-    case pair(Pair<String>)
-}
-
-
-private struct NestableItem {
-    
-    var type: SyntaxType
-    var token: NestableToken
-    var role: Role
-    var range: NSRange
-    
-    
-    struct Role: OptionSet {
-        
-        var rawValue: Int
-        
-        static let begin = Self(rawValue: 1 << 0)
-        static let end   = Self(rawValue: 1 << 1)
-    }
-}
-
+import StringUtils
 
 public struct HighlightParser: Sendable {
     

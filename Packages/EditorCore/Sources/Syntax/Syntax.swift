@@ -291,13 +291,10 @@ public struct Syntax: Equatable, Sendable {
                 
                 for highlight in item.value {
                     // extract paired delimiters such as quotes
-                    if !highlight.isRegularExpression,
-                       let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
-                       Set(pair.begin) == Set(pair.end),
-                       pair.begin.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
-                       !nestables.keys.contains(.pair(pair))  // not registered yet
+                    if let token = NestableToken(highlight: highlight),
+                       !nestables.keys.contains(token)  // not registered yet
                     {
-                        nestables[.pair(pair)] = item.key
+                        nestables[token] = item.key
                         continue
                     }
                     

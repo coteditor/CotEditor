@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ public struct Pair<T> {
     
     public var begin: T
     public var end: T
+    
+    public var array: [T]  { [begin, end] }
     
     
     public init(_ begin: T, _ end: T) {
