@@ -43,3 +43,12 @@ public struct Pair<T> {
 extension Pair: Equatable where T: Equatable { }
 extension Pair: Hashable where T: Hashable { }
 extension Pair: Sendable where T: Sendable { }
+
+
+extension Pair: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        
+        "Pair(\(self.begin), \(self.end))"
+    }
+}
