@@ -6,6 +6,7 @@
 ### Improvements
 
 - Keep the selection in the file browser when filtering by filename.
+- [non-AppStore ver.] Update Sparkle from 2.8.0 to 2.8.1.
 
 
 ### Fixes
