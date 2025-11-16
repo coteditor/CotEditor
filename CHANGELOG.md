@@ -14,6 +14,7 @@
 ### Improvements
 
 - Syntax highlighting now takes nesting into account when highlighting symbol pairs.
+- Update the Lua syntax to support nested string delimiters.
 - Update the contents and layout of the user guide.
 
 

@@ -304,9 +304,9 @@ kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2024-06-26'
+  lastModified: '2025-11-16'
   license: Same as CotEditor
-  version: 1.2.0
+  version: 1.3.0
 numbers:
 - beginString: 0[xX][0-9a-fA-F]+
   regularExpression: true
@@ -321,10 +321,16 @@ strings:
   endString: '"'
 - beginString: ''''
   endString: ''''
+- beginString: '[====['
+  endString: ']====]'
+- beginString: '[===['
+  endString: ']===]'
+- beginString: '[==['
+  endString: ']==]'
+- beginString: '[=['
+  endString: ']=]'
 - beginString: '[['
   endString: ']]'
-- beginString: \[(=*)\[.*\]\1\]
-  regularExpression: true
 types: []
 values:
 - beginString: (?<=math\.)huge
