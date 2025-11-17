@@ -691,13 +691,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Keep CotEditor’s edition"
+            "value" : "Keep CotEditor’s version"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keep CotEditor’s edition"
+            "value" : "Keep CotEditor’s version"
           }
         },
         "es" : {
@@ -893,13 +893,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Update to modified edition"
+            "value" : "Update to modified version"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Update to modified edition"
+            "value" : "Update to modified version"
           }
         },
         "es" : {

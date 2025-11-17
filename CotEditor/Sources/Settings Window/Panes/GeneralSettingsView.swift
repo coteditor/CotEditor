@@ -353,7 +353,7 @@ private extension DocumentConflictOption {
         switch self {
             case .ignore:
                 String(localized: "DocumentConflictOption.ignore.label",
-                       defaultValue: "Keep CotEditor’s edition",
+                       defaultValue: "Keep CotEditor’s version",
                        table: "GeneralSettings")
             case .notify:
                 String(localized: "DocumentConflictOption.notify.label",
@@ -361,7 +361,7 @@ private extension DocumentConflictOption {
                        table: "GeneralSettings")
             case .revert:
                 String(localized: "DocumentConflictOption.revert.label",
-                       defaultValue: "Update to modified edition",
+                       defaultValue: "Update to modified version",
                        table: "GeneralSettings")
         }
     }
