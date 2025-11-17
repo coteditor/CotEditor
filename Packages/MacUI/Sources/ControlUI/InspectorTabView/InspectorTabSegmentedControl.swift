@@ -41,7 +41,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
         
         super.viewWillDraw()
         
-        self.alphaValue = (self.window?.isMainWindow ?? false) ? 1 : 0.5
+        self.alphaValue = (unsafe self.window?.isMainWindow ?? false) ? 1 : 0.5
     }
     
     

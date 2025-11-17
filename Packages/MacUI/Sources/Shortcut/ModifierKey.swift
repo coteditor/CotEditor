@@ -97,10 +97,10 @@ enum ModifierKey: CaseIterable {
     /// Returns `true` if the user keyboard is supposed to have the Globe key.
     private static let supportsGlobeKey = {
         
-        let entry = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("AppleHIDKeyboardEventDriverV2"))
+        let entry = unsafe IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("AppleHIDKeyboardEventDriverV2"))
         defer { IOObjectRelease(entry) }
         
-        guard let property = IORegistryEntryCreateCFProperty(entry, "SupportsGlobeKey" as CFString, kCFAllocatorDefault, 0)?.takeRetainedValue() else { return false }
+        guard let property = unsafe IORegistryEntryCreateCFProperty(entry, "SupportsGlobeKey" as CFString, kCFAllocatorDefault, 0)?.takeRetainedValue() else { return false }
         
         return (property as? Int) == 1
     }()

@@ -78,7 +78,7 @@ final class SettingsTabViewController: NSTabViewController {
     /// - Parameter tabViewItem: The tab view item to switch.
     private func switchPane(to tabViewItem: NSTabViewItem) {
         
-        guard let window = self.view.window else { return }
+        guard let window = unsafe self.view.window else { return }
         
         guard let contentSize = tabViewItem.view?.frame.size else { return assertionFailure() }
         

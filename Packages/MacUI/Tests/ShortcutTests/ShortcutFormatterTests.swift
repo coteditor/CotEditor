@@ -39,7 +39,7 @@ struct ShortcutFormatterTests {
                 "^ ⇧ A")
         
         var value: AnyObject?
-        #expect(formatter.getObjectValue(&value, for: "^ ⇧ A", errorDescription: nil))
+        #expect(unsafe formatter.getObjectValue(&value, for: "^ ⇧ A", errorDescription: nil))
         #expect(value as? Shortcut == shortcut)
     }
 }

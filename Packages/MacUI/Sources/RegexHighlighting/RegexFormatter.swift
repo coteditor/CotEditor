@@ -123,7 +123,7 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
     /// Formats backwards.
     public override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
         
-        obj?.pointee = string as AnyObject
+        unsafe obj?.pointee = string as AnyObject
         
         return true
     }

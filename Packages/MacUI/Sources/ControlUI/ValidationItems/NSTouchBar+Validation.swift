@@ -129,7 +129,7 @@ public extension NSTouchBar {
         
         guard let firstResponder = NSApp.mainWindow?.firstResponder else { return }
         
-        for responder in sequence(first: firstResponder, next: \.nextResponder) {
+        for responder in unsafe sequence(first: firstResponder, next: \.nextResponder) {
             responder.touchBar?.validateVisibleItems()
         }
     }

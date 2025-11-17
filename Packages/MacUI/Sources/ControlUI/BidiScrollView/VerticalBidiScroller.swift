@@ -66,7 +66,7 @@ final class VerticalBidiScroller: NSScroller {
     /// Whether the parent scroll view's content direction is inconsistent with user interface layout direction.
     private var isInconsistentContentDirection: Bool {
         
-        (self.superview as? BidiScrollView)?.isInconsistentContentDirection == true
+        (unsafe self.superview as? BidiScrollView)?.isInconsistentContentDirection == true
     }
     
     

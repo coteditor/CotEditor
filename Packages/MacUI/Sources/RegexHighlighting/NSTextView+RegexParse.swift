@@ -77,7 +77,7 @@ public extension NSTextView {
     /// - Returns: Whether the contents are not invalid.
     private func highlightAsRegularExpressionPatternWithLegacyTextKit(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
         
-        guard let layoutManager = self.layoutManager else { assertionFailure(); return false }
+        guard let layoutManager = unsafe self.layoutManager else { assertionFailure(); return false }
         
         // clear the last highlight anyway
         layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: NSRange(..<self.string.utf16.count))
