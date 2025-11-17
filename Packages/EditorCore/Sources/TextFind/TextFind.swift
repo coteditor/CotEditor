@@ -403,14 +403,14 @@ public struct TextFind: Equatable, Sendable {
         let string = self.string
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
         
-        self.regex!.enumerateMatches(in: string, options: options, range: range) { result, _, stop in
+        unsafe self.regex!.enumerateMatches(in: string, options: options, range: range) { result, _, stop in
             guard let result else { return }
             
             var ioStop = false
             block(result.range, result, &ioStop)
             
             if ioStop {
-                stop.pointee = ObjCBool(ioStop)
+                unsafe stop.pointee = ObjCBool(ioStop)
             }
         }
     }

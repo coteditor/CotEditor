@@ -125,7 +125,7 @@ private extension UserDefaults.Publisher {
                 let change,
                 keyPath == self.key.rawValue,
                 object as? NSObject == self.userDefaults
-            else { return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context) }
+            else { return unsafe super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context) }
             
             guard
                 self.demand > 0,

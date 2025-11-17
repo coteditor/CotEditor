@@ -67,7 +67,7 @@ public extension StringProtocol {
         var start = self.startIndex
         var end = self.startIndex
         var contentsEnd = self.startIndex
-        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: range)
+        unsafe self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: range)
         
         return start..<contentsEnd
     }
@@ -85,7 +85,7 @@ public extension StringProtocol {
         var start = self.startIndex
         var end = self.startIndex
         var contentsEnd = self.startIndex
-        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
+        unsafe self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
         
         return start
     }
@@ -103,7 +103,7 @@ public extension StringProtocol {
         var start = self.startIndex
         var end = self.startIndex
         var contentsEnd = self.startIndex
-        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
+        unsafe self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
         
         return contentsEnd
     }

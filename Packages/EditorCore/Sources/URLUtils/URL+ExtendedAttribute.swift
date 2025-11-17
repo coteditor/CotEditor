@@ -34,16 +34,16 @@ public extension URL {
     /// - Returns: Data.
     func extendedAttribute(for name: String) throws -> Data {
         
-        try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
+        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
             // check buffer size
-            let length = getxattr(fileSystemPath, name, nil, 0, 0, XATTR_NOFOLLOW)
+            let length = unsafe getxattr(fileSystemPath, name, nil, 0, 0, XATTR_NOFOLLOW)
             
             guard length >= 0 else { throw POSIXError(err: errno) }
             
             // get xattr data
             var data = Data(count: length)
-            let size = data.withUnsafeMutableBytes {
-                getxattr(fileSystemPath, name, $0.baseAddress, length, 0, XATTR_NOFOLLOW)
+            let size = unsafe data.withUnsafeMutableBytes {
+                unsafe getxattr(fileSystemPath, name, $0.baseAddress, length, 0, XATTR_NOFOLLOW)
             }
             
             guard size >= 0 else { throw POSIXError(err: errno) }
@@ -65,9 +65,9 @@ public extension URL {
             return try self.removeExtendedAttribute(for: name)
         }
         
-        try self.withUnsafeFileSystemRepresentation { fileSystemPath in
-            let size = data.withUnsafeBytes {
-                setxattr(fileSystemPath, name, $0.baseAddress, data.count, 0, XATTR_NOFOLLOW)
+        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath in
+            let size = unsafe data.withUnsafeBytes {
+                unsafe setxattr(fileSystemPath, name, $0.baseAddress, data.count, 0, XATTR_NOFOLLOW)
             }
             
             guard size >= 0 else { throw POSIXError(err: errno) }
@@ -80,8 +80,8 @@ public extension URL {
     /// - Parameter name: The attribute key name to remove.
     private func removeExtendedAttribute(for name: String) throws {
         
-        try self.withUnsafeFileSystemRepresentation { fileSystemPath in
-            let size = removexattr(fileSystemPath, name, XATTR_NOFOLLOW)
+        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath in
+            let size = unsafe removexattr(fileSystemPath, name, XATTR_NOFOLLOW)
             
             guard size >= 0 else { throw POSIXError(err: errno) }
         }

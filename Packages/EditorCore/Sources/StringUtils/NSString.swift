@@ -143,7 +143,7 @@ public extension NSString {
         
         var start = 0
         var contentsEnd = 0
-        self.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, for: range)
+        unsafe self.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, for: range)
         
         return NSRange(location: start, length: contentsEnd - start)
     }
@@ -157,7 +157,7 @@ public extension NSString {
     final func lineStartIndex(at index: Int) -> Int {
         
         var start = 0
-        self.getLineStart(&start, end: nil, contentsEnd: nil, for: NSRange(location: index, length: 0))
+        unsafe self.getLineStart(&start, end: nil, contentsEnd: nil, for: NSRange(location: index, length: 0))
         
         return start
     }
@@ -171,7 +171,7 @@ public extension NSString {
     final func lineContentsEndIndex(at index: Int) -> Int {
         
         var contentsEnd = 0
-        self.getLineStart(nil, end: nil, contentsEnd: &contentsEnd, for: NSRange(location: index, length: 0))
+        unsafe self.getLineStart(nil, end: nil, contentsEnd: &contentsEnd, for: NSRange(location: index, length: 0))
         
         return contentsEnd
     }
@@ -201,7 +201,7 @@ public extension NSString {
             let linesRange = self.lineRange(for: range)
             
             // store each line to process
-            self.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { _, _, enclosingRange, _ in
+            unsafe self.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { _, _, enclosingRange, _ in
                 lineRanges.append(enclosingRange)
             }
         }
@@ -226,7 +226,7 @@ public extension NSString {
         var count = 0
         var index = 0
         while index < location {
-            self.getLineStart(nil, end: &index, contentsEnd: nil, for: NSRange(location: index, length: 0))
+            unsafe self.getLineStart(nil, end: &index, contentsEnd: nil, for: NSRange(location: index, length: 0))
             count += 1
         }
         
@@ -279,13 +279,13 @@ public extension NSString {
         
         let range = NSRange(..<min(index + 1, self.length))
         let options: EnumerationOptions = [.byComposedCharacterSequences, .substringNotRequired, .reverse]
-        self.enumerateSubstrings(in: range, options: options) { _, range, _, stop in
+        unsafe self.enumerateSubstrings(in: range, options: options) { _, range, _, stop in
             
             boundary = range.lowerBound
             remainingCount -= 1
             
             if remainingCount <= 0 {
-                stop.pointee = true
+                unsafe stop.pointee = true
             }
         }
         

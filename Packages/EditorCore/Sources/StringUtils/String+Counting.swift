@@ -158,7 +158,7 @@ public extension String {
         if self.isEmpty || range.isEmpty { return 0 }
         
         var count = 0
-        (self as NSString).enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _, _, _, _ in
+        unsafe (self as NSString).enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _, _, _, _ in
             count += 1
         }
         

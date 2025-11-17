@@ -105,7 +105,7 @@ extension String {
         let length = CFStringGetMaximumSizeOfFileSystemRepresentation(self as CFString)
         var buffer = [CChar](repeating: 0, count: length)
         
-        guard CFStringGetFileSystemRepresentation(self as CFString, &buffer, length) else { return self }
+        guard unsafe CFStringGetFileSystemRepresentation(self as CFString, &buffer, length) else { return self }
         
         return String(cString: buffer, encoding: .utf8) ?? self
     }

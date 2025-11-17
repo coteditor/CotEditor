@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,8 +38,8 @@ struct NSAttributedStringTests {
         
         #expect(!(fooBar is NSMutableAttributedString))
         #expect(fooBar.string == "foobar")
-        #expect(fooBar.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
-        #expect(fooBar.attribute(.test, at: 3, effectiveRange: nil) == nil)
+        #expect(unsafe fooBar.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(unsafe fooBar.attribute(.test, at: 3, effectiveRange: nil) == nil)
     }
     
     
@@ -50,8 +50,8 @@ struct NSAttributedStringTests {
         
         #expect(!(fooBar is NSMutableAttributedString))
         #expect(fooBar.string == "foobar")
-        #expect(fooBar.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
-        #expect(fooBar.attribute(.test, at: 3, effectiveRange: nil) == nil)
+        #expect(unsafe fooBar.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(unsafe fooBar.attribute(.test, at: 3, effectiveRange: nil) == nil)
     }
     
     
@@ -99,15 +99,15 @@ struct NSAttributedStringTests {
         let joined = attrs.joined()
         #expect(!(joined is NSMutableAttributedString))
         #expect(joined.string == "foobarbuz")
-        #expect(joined.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
-        #expect(joined.attribute(.test, at: 3, effectiveRange: nil) == nil)
+        #expect(unsafe joined.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(unsafe joined.attribute(.test, at: 3, effectiveRange: nil) == nil)
         
         let spaceJoined = attrs.joined(separator: space)
         #expect(!(spaceJoined is NSMutableAttributedString))
         #expect(spaceJoined.string == "foo bar buz")
-        #expect(spaceJoined.attribute(.test, at: 0, effectiveRange: nil) as? String == "moof")
-        #expect(spaceJoined.attribute(.test, at: 3, effectiveRange: nil) as? String == "space")
-        #expect(spaceJoined.attribute(.test, at: 4, effectiveRange: nil) == nil)
+        #expect(unsafe spaceJoined.attribute(.test, at: 0, effectiveRange: nil) as? String == "moof")
+        #expect(unsafe spaceJoined.attribute(.test, at: 3, effectiveRange: nil) as? String == "space")
+        #expect(unsafe spaceJoined.attribute(.test, at: 4, effectiveRange: nil) == nil)
         
         let empty: [NSAttributedString] = []
         let emptyJoined = empty.joined(separator: space)

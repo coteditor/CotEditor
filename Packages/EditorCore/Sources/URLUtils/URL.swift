@@ -144,8 +144,8 @@ public extension FileManager {
 
 public extension URL {
     
-    private static let homeDirectory = if let home = getpwuid(getuid())?.pointee.pw_dir {
-        FileManager.default.string(withFileSystemRepresentation: home, length: Int(strlen(home)))
+    private static let homeDirectory = if let home = unsafe getpwuid(getuid())?.pointee.pw_dir {
+        unsafe FileManager.default.string(withFileSystemRepresentation: home, length: Int(strlen(home)))
     } else {
         NSHomeDirectory()
     }
