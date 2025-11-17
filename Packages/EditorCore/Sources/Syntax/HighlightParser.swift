@@ -137,7 +137,7 @@ public struct HighlightParser: Sendable {
             else { continue }
             
             // search corresponding end delimiter
-            var endIndex: Int? = {
+            let endIndex: Int? = {
                 var nestDepth = 0
                 for (offset, position) in positions[index...].enumerated() where position.token == beginPosition.token {
                     if position.role.contains(.end) {
