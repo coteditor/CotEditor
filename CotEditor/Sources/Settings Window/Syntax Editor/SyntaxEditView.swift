@@ -135,7 +135,7 @@ struct SyntaxEditView: View {
                     if self.isBundled {
                         Text(self.name)
                             .fontWeight(.medium)
-                            .help(String(localized: "Bundled syntaxes can’t be renamed.", table: "SyntaxEditor",
+                            .help(String(localized: "Built-in syntaxes can’t be renamed.", table: "SyntaxEditor",
                                          comment: "tooltip for name field for bundled syntax"))
                     } else {
                         TextField(text: $name, label: EmptyView.init)
