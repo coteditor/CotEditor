@@ -53,7 +53,7 @@ public struct HighlightParser: Sendable {
     ///   - range: The range where to parse.
     /// - Returns: A dictionary of ranges to highlight per syntax types.
     /// - Throws: CancellationError.
-    public func parse(string: String, range: NSRange) async throws -> [Highlight] {
+    @concurrent public func parse(string: String, range: NSRange) async throws -> [Highlight] {
         
         try await withThrowingTaskGroup { group in
             for (type, extractors) in self.extractors {
