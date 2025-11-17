@@ -14,12 +14,12 @@
 
 <h1>Customize Script menu in CotEditor on Mac</h1>
 
-<p>You can change the order of scripts in the menu or assign keyboard shortcuts to scripts by modifying the filenames of your scripts in the script folder.</p>
+<p>You can change the order of scripts in the Script menu or assign keyboard shortcuts to scripts by modifying their filenames in the scripts folder.</p>
 
 
 <h2>Order of items in the menu</h2>
 
-<p>By adding “number + closing parenthesis ())” at the head of the name, you can line up the files in numerical order. The part “number + )” won’t be shown in the menu.</p>
+<p>To arrange scripts in a specific order, add a number followed by a closing parenthesis, such as “01)”, at the beginning of the filename. This prefix is used only for sorting and does not appear in the Script menu.</p>
 
 <table>
 	<caption>Example</caption>
@@ -37,27 +37,27 @@
 
 <h2>Separators</h2>
 
-<p>A folder named “-” appears as a separator line in the menu. By adding “number + closing parenthesis ())” at the head of the folder name, you can put a separator between the menu items.</p>
+<p>A folder named “-” becomes a separator line in the Script menu. You can insert the separator at a specific position by adding a number and a closing parenthesis at the beginning of the folder name (for example, “02)-”).</p>
 
 
 <h2>Hidden files/folders</h2>
 
-<p>A file/folder whose name begins with the underscore “_” doesn’t appear in the script menu. You can use it for setting files, library scripts, and so on.</p>
+<p>Files or folders whose names begin with an underscore “_” do not appear in the Script menu. You can use them to store settings files, library scripts, and other supporting items.</p>
 
 
 <h2>Submenus</h2>
 
-<p>A script placed in a folder in the scripts folder appears in a submenu.</p>
+<p>A script placed inside a folder within the scripts folder appears as an item in a submenu.</p>
 
 
 <h2>Keyboard shortcuts</h2>
 
-<p>By adding “dot (.) + modifier key + shortcut key” in front of the extension, you can assign a keyboard shortcut to the script.</p>
+<p>You can assign a keyboard shortcut to a script by adding dot “.” followed by modifier keys and a shortcut key before the file extension.</p>
 
 <ul>
-	<li>Shortcut keys are case sensitive. The one in uppercase indicates that “the Shift key should be pressed together.” See the examples below to see how it works.</li>
-	<li>A shortcut key must come after modifier keys and must be one letter. Thus, you can’t assign the keys, such as <kbd>F1</kbd> or <kbd>Delete</kbd>, to scripts.</li>
-	<li>When the keyboard shortcut you set is already taken by another function, the shortcut for the script is ignored.</li>
+	<li>Shortcut keys are case sensitive. An uppercase letter means the Shift key must also be pressed. See the examples below to see how it works.</li>
+	<li>The shortcut key must be a single letter and must come after the modifier keys. You cannot assign non-character keys such as <kbd>F1</kbd> or <kbd>Delete</kbd>.</li>
+	<li>If a shortcut is already used by another function in CotEditor, the shortcut for the script is ignored.</li>
 </ul>
 
 <table>
@@ -95,7 +95,7 @@
 
 <h3>Set the same shortcut to multiple scripts</h3>
 
-<p>CotEditor changes keyboard shortcut mapping dynamically to prioritize the scripts in the subfolder whose name is the same as the frontmost document’s syntax when the same keyboard shortcut is determined in multiple CotEditor scripts.</p>
+<p>When multiple scripts use the same keyboard shortcut, CotEditor prioritizes scripts located inside a subfolder whose name matches the syntax of the frontmost document. This priority is applied dynamically each time the frontmost document changes.</p>
 
 
 

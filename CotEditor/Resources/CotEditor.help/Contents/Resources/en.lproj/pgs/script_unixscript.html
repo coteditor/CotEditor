@@ -14,25 +14,25 @@
 
 <h1>Script CotEditor on Mac with UNIX script</h1>
 
-<p>This page explains how to pass your document’s text to UNIX scripts that are executable from the Script menu, or how to receive the outputs from them.</p>
+<p>This page explains how to pass a document’s text to UNIX scripts that you execute from the Script menu and how to receive output from those scripts.</p>
 
 <ul>
-	<li>The file extensions of the scripts you can add to the Script menu are .sh, .pl, .php, .rb, .py, .js, .awk, and .swift (regardless of the language)</li>
-	<li>To run a script, you need to set execute permission for the script file.</li>
+	<li>Script files must have one of the following extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift (regardless of the language)</li>
+	<li>To run a script, make sure the script file has execute permission.</li>
 </ul>
 
 
 <h2>Refer to the document file path</h2>
 
-<p>If the frontmost document has already been saved, the absolute file path to the document is referred to as an argument.</p>
+<p>If the frontmost document has been saved, its absolute file path is passed to the script as an argument.</p>
 
 
 <h2>Pass text data to a script</h2>
 
-<p>A script can receive the contents of the frontmost document on STDIN (standard in). To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>” inside. Replace “<code><var>xxxx</var></code>” with one of the parameters below. With no parameters, CotEditor passes nothing just like when you put “<coee>None</code>.”</p>
+<p>A script can receive the contents of the frontmost document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains: “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the parameters below. If you do not specify a parameter, CotEditor passes nothing. This is the same as using “<coee>None</code>.”</p>
 
 <ul>
-	<li>CotEditor passes text data encoded with UTF-8.</li>
+	<li>CotEditor passes all text to scripts encoded in UTF-8.</li>
 </ul>
 
 <table>
@@ -40,19 +40,19 @@
 		<tr><th>Keyword</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
-		<tr><th><code>AllText</code></th><td>To pass the whole text of your document.</td></tr>
-		<tr><th><code>None</code></th><td>To pass nothing (default).</td></tr>
+		<tr><th><code>Selection</code></th><td>Pass the currently selected text.</td></tr>
+		<tr><th><code>AllText</code></th><td>Pass the entire contents of the document.</td></tr>
+		<tr><th><code>None</code></th><td>Pass nothing (default).</td></tr>
 	</tbody>
 </table>
 
 
 <h2>Receive output data from a script</h2>
 
-<p>CotEditor can receive the output text from the script on STDOUT (standard out) and apply it to the document and so on. To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>” inside. Replace <code><var>xxxx</var></code> with one of the parameters below. Without parameters, CotEditor does nothing just like when you put “<code>Discard</code>.”</p>
+<p>CotEditor can receive output from the script through standard output (STDOUT) and apply it to the document. To define how CotEditor handles the output, add a comment at the top of the script that contains: “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>”. Replace <code><var>xxxx</var></code> with one of the parameters below. If you do not specify a parameter, CotEditor performs no action. This is the same as using “<code>Discard</code>.”</p>
 
 <ul>
-	<li>The text that CotEditor receives must be encoded in UTF-8.</li>
+	<li>Output text must be encoded in UTF-8.</li>
 </ul>
 
 <table>
@@ -60,25 +60,25 @@
 		<tr><th>Keyword</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
-		<tr><th><code>ReplaceAllText</code></th><td>To replace the whole text of your document with the contents of the output data.</td></tr>
-		<tr><th><code>InsertAfterSelection</code></th><td>To insert the contents of the output data right after the current selection.</td></tr>
-		<tr><th><code>AppendToAllText</code></th><td>To insert the contents of the output data at the end of your document.</td></tr>
-		<tr><th><code>NewDocument</code></th><td>To create a new document and insert the contents to it.</td></tr>
-		<tr><th><code>Pasteboardputs</code></th><td>To store the contents of the output data in the Clipboard.</td></tr>
-		<tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
+		<tr><th><code>ReplaceSelection</code></th><td>Replace the current selection with the output text.</td></tr>
+		<tr><th><code>ReplaceAllText</code></th><td>Replace the entire contents of the document with the output text.</td></tr>
+		<tr><th><code>InsertAfterSelection</code></th><td>Insert the output text immediately after the current selection.</td></tr>
+		<tr><th><code>AppendToAllText</code></th><td>Insert the output text at the end of the document.</td></tr>
+		<tr><th><code>NewDocument</code></th><td>Create a new document and insert the output text into it.</td></tr>
+		<tr><th><code>Pasteboardputs</code></th><td>Place the output text on the Clipboard.</td></tr>
+		<tr><th><code>Discard</code></th><td>Do nothing (default).</td></tr>
 	</tbody>
 </table>
 
 
 <h2>Print text to the Console</h2>
 
-<p>The strings thrown to the standard error are printed in the Console window.</p>
+<p>Any text written to standard error (STDERR) appears in the Console window.</p>
 
 
 <h2>Example</h2>
 
-<p>The following Python script prepends the “&gt;” character to every line in the selection of the frontmost document, and then prints the number of the processed lines to the Console.</p>
+<p>The following Python script adds a “&gt;” character to the beginning of each selected line in the frontmost document and prints the number of processed lines to the Console.</p>
 
 <pre class="source"><code><span class="comment">#!/usr/bin/env python3
 # %%%{CotEditorXInput=Selection}%%%
@@ -98,7 +98,7 @@ sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.for
 	<img srcset="../gfx/console@2x.png 2x" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 5 lines."/>
 </figure>
 
-<p>You can get more sample scripts on:<br/>
+<p>You can download more sample scripts from:<br/>
 <a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>
 
 

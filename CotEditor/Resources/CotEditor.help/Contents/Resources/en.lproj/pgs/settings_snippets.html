@@ -15,7 +15,7 @@
 
 <h1>Change Snippets settings in CotEditor on Mac</h1>
 
-<p>Use Snippets settings in CotEditor to define preset texts to insert with a command or by dropping a file onto the editor.</p>
+<p>Use Snippets settings in CotEditor to create preset text that you can insert with a command or by dropping a file onto the editor.</p>
 
 <p>To change these settings in the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_16x16@2x.png 2x" alt=""/> on your Mac, choose CotEditor &gt; Settings, then click Snippets.</p>
 
@@ -29,17 +29,17 @@
 <tbody>
 	<tr>
 		<th>Command definitions</th>
-		<td>Define the snippet insertion command. The commands defined here is assigned to the Text &gt; Insert Snippet menu.<ul>
-			<li><strong>Syntax</strong>: The snippet is available and listed in the snippet menu only when a document having this syntax is frontmost. If this field is empty (All), all documents are eligible.</li>
-			<li><strong>Name</strong>: The name of the command that appears in the menu for this snippet.</li>
-			<li><strong>Key</strong>: A keyboard shortcut to perform this snippet insertion command. A shortcut is optional and can be left blank.</li>
+		<td>Define commands for inserting snippets. These commands appear in the Text &gt; Insert Snippet menu.<ul>
+			<li><strong>Syntax</strong>: The snippet is available only in documents using this syntax. If this field is empty (All), the snippet can be used in any document.</li>
+			<li><strong>Name</strong>: The name of the command as it appears in the menu.</li>
+			<li><strong>Key</strong>: A keyboard shortcut to insert this snippet. A shortcut is optional and can be left blank.</li>
 			</ul></td>
 	</tr>
 	<tr>
-		<th>Insertion formart</th>
-		<td>Set the text to be inserted with the command selected in the command definition list above.
+		<th>Insertion format</th>
+		<td>Set the text inserted by the command selected in the list above.
 			<ul>
-				<li>When a snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the word <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code> is removed on insertion and move the insertion point there instead.</li>
+				<li>If the snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the variable is removed when the snippet is inserted, and the insertion point moves to that location.</li>
 			</ul></td>
 	</tr>
 </tbody>
@@ -55,18 +55,18 @@
 <tbody>
 	<tr>
 		<th>File drop definitions</th>
-		<td>Define the conditions to perform the file drop. When files are dropped directly into the editor and the conditions defined here are fulfilled, the text that matches the files can be inserted at the drop location.<ul>
-			<li><strong>Syntax</strong>: The setting is performed only when a file is dropped to a document having this syntax. If this field is empty (All), all documents are eligible.</li>
-			<li><strong>Extensions</strong>: The setting is performed only when a file with one of these extensions is dropped. If this field is empty (All), all files are eligible. No dot is required for file extensions. You can set multiple extensions by separating them by a comma.</li>
-			<li><strong>Description</strong>: You can use this field to leave a comment about the row. This field doesn’t affect the file drop behavior and can be left blank.</li>
+		<td>Define how File Drop behaves. When files are dropped into the editor and the defined conditions are met, CotEditor inserts the corresponding text at the drop location.<ul>
+			<li><strong>Syntax</strong>: The rule applies only when a file is dropped into a document using this syntax. Leave this field empty (All) to apply the rule to all documents.</li>
+			<li><strong>Extensions</strong>: The rule applies only to files with the listed extensions. Leave this field empty (All) to apply the rule to all files. Enter extensions without a leading period, separated by commas.</li>
+			<li><strong>Description</strong>: Optional field for leaving a note about the rule. This field does not affect File Drop behavior.</li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
-		<th>Insertion formart</th>
-		<td>Set the text to be inserted for the condition that is selected in the file drop definition list above.
+		<th>Insertion format</th>
+		<td>Set the text inserted when the selected File Drop rule is applied.
 			<ul>
-				<li>In an insertion format, you can use CotEditor’s variables. Variables are going to be replaced with the corresponding information of the dropped file. See <a href="about_filedrop.html">Write insertion format for File Drop</a> for each variable’s details.</li>
+				<li>You can use CotEditor variables in the insertion format. These variables are replaced with information from the dropped file. See <a href="about_filedrop.html">Write insertion format for File Drop</a> for each variable’s detail.</li>
 			</ul>
 		</td>
 	</tr>

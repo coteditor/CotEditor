@@ -15,7 +15,7 @@
 
 <h1>Change General settings in CotEditor on Mac</h1>
 
-<p>Use General settings in CotEditor to choose how to handle documents, save, and more.</p>
+<p>Use General settings in CotEditor to choose how documents are opened and saved and to adjust other basic behaviors.</p>
 
 <p>To change these settings in the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_16x16@2x.png 2x" alt=""/> on your Mac, choose CotEditor &gt; Settings, then click General.</p>
 
@@ -29,45 +29,45 @@
 <tbody>
 	<tr>
 		<th>Reopen windows from last session</th>
-		<td>On starting up, automatically opens the documents that were opened when quitting last time. This change is first applied at the next application launch and is reflected at the next launch after that.</td>
+		<td>When enabled, CotEditor automatically reopens the documents that were open the last time you quit the app. This setting takes effect the next time you launch CotEditor, and the change is fully applied the time after that.</td>
 	</tr>
 	
 	<tr>
 		<th>When nothing else is open</th>
-		<td>To change the behavior when you launch CotEditor and you had no window already open, click the pop-up menu, then select an option:
+		<td>Choose what CotEditor does when you launch the app and no other windows are open:
 			<ul>
 				<li><strong>Create New Document</strong>: Create a new blank document.</li>
 				<li><strong>Show Open Dialog</strong>: Show the Open dialog to select a document to open.</li>
-				<li><strong>Do Nothing</strong>: Just activate the application and do nothing.</li>
+				<li><strong>Do Nothing</strong>: Open the app without creating or showing any document.</li>
 			</ul></td>
 	</tr>
 	
 	<tr>
 		<th>Enable Auto Save with Versions</th>
-		<td>Automatically save documents to your file constantly while editing. This option also makes Versions available, the system feature allowing you to go back to previous versions, as well as modify document name or location from the window title bar.<br/>Even if the option is turned off, CotEditor creates backup covertly for unexpected quit.<br/>
+		<td>Automatically saves your document while you work. This option also enables Versions, the macOS feature that lets you browse and restore previous versions of a document and change its name or location from the title bar.<br/>Even when this option is off, CotEditor creates a backup in case the app quits unexpectedly.<br/>
 		For details, see <a href="howto_save_document.html">Save documents</a>.</td>
 	</tr>
 	
 	<tr>
 		<th>When document is changed by another application</th>
-		<td>Select the behavior when the document file was updated by another application while it is opened in CotEditor.
+		<td>Choose the behavior when the document is modified by another app while it’s open in CotEditor:
 			<ul>
-				<li><strong>Keep CotEditor’s edition</strong>: Do nothing and keep CotEditor’s edition. CotEditor may ask whether overwrite the file that was changed by another application first when you save the document.</li>
+				<li><strong>Keep CotEditor’s edition</strong>: Keep the version currently displayed in CotEditor. CotEditor may ask whether to overwrite the version changed by another app when you save.</li>
 				
-				<li><strong>Ask how to resolve</strong>: Show a dialog when the file was changed by another application so that you can choose between keeping CotEditor’s edition or reverting to the latest file.</li>
+				<li><strong>Ask how to resolve</strong>: Show a dialog so you can choose whether to keep CotEditor’s version or update to the latest version on disk.</li>
 				
-				<li><strong>Update to modified edition</strong>: Update the editor’s text to the latest version silently when the file was changed by another application. Take notice that the undo history will also be cleared after updating.</li>
+				<li><strong>Update to modified edition</strong>: Automatically update the text to the latest version on disk. Note that this also clears the undo history.</li>
 			</ul></td>
 	</tr>
 	
 	<tr>
 		<th>Dialog warnings</th>
-		<td>Manage whether showing a warning dialog when problems are found in the document. See <a href="howto_manage_warnings.html">Manage warnings</a> for each warning items.</td>
+		<td>Choose whether to show warning dialogs when issues are found in your document. See <a href="howto_manage_warnings.html">Manage warnings</a> for each warning items.</td>
 	</tr>
 	
 	<tr>
 		<th>Command-line tool</th>
-		<td>This section shows the installation status of the <code>cot</code> command-line tool. For details, see <a href="about_cot.html">Work with cot command</a>.</td>
+		<td>Shows the installation status of the <code>cot</code> command-line tool. For details, see <a href="about_cot.html">Work with cot command</a>.</td>
 	</tr>
 </tbody>
 </table>
@@ -83,12 +83,12 @@
 <tbody>
 	<tr>
 		<th>Check for updates automatically</th>
-		<td>Check the existence of a new version through the internet automatically on launch. Then if a new one has been released, CotEditor notifies the information on a dialog.</td>
+		<td>Automatically checks for a new version on the internet when the app launches. If one is available, CotEditor notifies you in a dialog.</td>
 	</tr>
 	
 	<tr>
 		<th>Include prereleases</th>
-		<td>Notify also about releases of prerelease versions (beta versions). Take notice that prerelease versions can be unstable.</td>
+		<td>Also notifies you when pre-release (beta) versions are available. Note that pre-release versions may be unstable.</td>
 	</tr>
 </tbody>
 </table>
