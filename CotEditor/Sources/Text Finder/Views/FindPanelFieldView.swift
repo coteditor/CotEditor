@@ -65,6 +65,11 @@ struct FindPanelFieldView: View {
                     : #selector((any TextFinderClient).matchNext)
                 NSApp.sendAction(action, to: nil, from: nil)
             }
+            .onTextChange { _ in
+                if self.settings.shouldSearchIncrementally {
+                    NSApp.sendAction(#selector((any TextFinderClient).incrementalSearch), to: nil, from: nil)
+                }
+            }
             .onModifierKeysChanged(mask: .shift) { _, new in self.isPressingShift = new.contains(.shift) }
             .overlay(alignment: .top) {
                 HStack(alignment: .firstTextBaseline) {
@@ -143,10 +148,6 @@ struct FindPanelFieldView: View {
         }
         .onChange(of: self.settings.findString) {
             self.result = nil
-            
-            if self.settings.shouldSearchIncrementally {
-                NSApp.sendAction(#selector((any TextFinderClient).incrementalSearch), to: nil, from: nil)
-            }
         }
         .onChange(of: self.settings.replacementString) {
             if self.result?.action == .replace {
@@ -275,6 +276,7 @@ private struct FindTextField: NSViewRepresentable {
     var prompt: String
     @Binding var text: String
     @MainActor var action: (() -> Void)?
+    @MainActor var onTextChange: ((String) -> Void)?
     
     var mode: RegexParseMode = .search
     var isRegularExpression: Bool = false
@@ -341,18 +343,20 @@ private struct FindTextField: NSViewRepresentable {
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(text: $text)
+        Coordinator(text: $text, onTextChange: self.onTextChange)
     }
     
     
     final class Coordinator: NSObject, NSTextViewDelegate {
         
         @Binding private var text: String
+        var onTextChange: ((String) -> Void)?
         
         
-        init(text: Binding<String>) {
+        init(text: Binding<String>, onTextChange: ((String) -> Void)?) {
             
             self._text = text
+            self.onTextChange = onTextChange
         }
         
         
@@ -364,7 +368,22 @@ private struct FindTextField: NSViewRepresentable {
             else { return }
             
             self.text = textView.string
+            self.onTextChange?(textView.string)
         }
+    }
+}
+
+
+extension FindTextField {
+    
+    /// Sets a closure to be called whenever the underlying text changes due to user editing.
+    ///
+    /// - Parameter onTextChange: A closure that receives the latest committed `String` value.
+    func onTextChange(_ onTextChange: @MainActor @escaping (String) -> Void) -> Self {
+        
+        var view = self
+        view.onTextChange = onTextChange
+        return view
     }
 }
 
