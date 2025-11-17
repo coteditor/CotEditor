@@ -10,6 +10,27 @@ CotEditor is a lightweight plain-text editor designed for macOS. The project aim
 ![screenshot](screenshot@2x.png)
 
 
+## Design Philosophy
+
+CotEditor is built with a clear focus on being a truly __macOS-native__ text editor.
+Its design emphasizes the following principles:
+
+- __Behave as a first-class macOS application.__
+  CotEditor adopts system-native UI components, conventions, and behaviors so that it feels instantly familiar to macOS users. Rather than asserting its own personality, CotEditor aims to blend naturally into the macOS experience as one of its native apps.
+
+- __Be accessible and comfortable for both beginners and advanced users.__
+  The editor aims to stay simple enough for casual use while providing the precision and control expected by experienced editors and developers.
+
+- __Handle a wide range of plain-text formats accurately.__
+  From everyday notes to niche or legacy formats, CotEditor prioritizes correct text handling, encoding support, and predictable editing behavior.
+
+- __Respect a diverse user base through localization and accessibility.__
+  Whenever possible, CotEditor integrates macOS features for localization, accessibility, and user customization to serve a global audience.
+
+These principles guide the project’s long-term direction and day-to-day development decisions,
+and they also help determine which feature requests align with CotEditor’s macOS-native identity.
+
+
 
 ## Source Code
 
@@ -27,7 +48,7 @@ CotEditor is a purely macOS native application written in Swift. It adheres to C
 
 ## Contribution
 
-CotEditor has its own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull request.
+CotEditor has its own contributing guidelines. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before creating an issue or submitting a pull request.
 
 
 
