@@ -38,7 +38,6 @@ struct FindPanelFieldView: View {
     @AppStorage(.findIgnoresCase) private var ignoresCase: Bool
     @AppStorage(.findInSelection) private var inSelection: Bool
     @AppStorage(.findRegexUnescapesReplacementString) private var unescapesReplacementString: Bool
-    @AppStorage(.findSearchesIncrementally) private var searchesIncrementally: Bool
     
     @State private var settings: TextFinderSettings = .shared
     @State private var result: FindResult?
@@ -142,15 +141,10 @@ struct FindPanelFieldView: View {
         .onAppear {
             self.invalidateScrollerThickness()
         }
-        .onChange(of: self.settings.findString) { _, newValue in
+        .onChange(of: self.settings.findString) {
             self.result = nil
             
-            // perform incremental search
-            if self.searchesIncrementally,
-               !self.inSelection,
-               !newValue.isEmpty,
-               !self.usesRegularExpression || (try? NSRegularExpression(pattern: newValue)) != nil
-            {
+            if self.settings.shouldSearchIncrementally {
                 NSApp.sendAction(#selector((any TextFinderClient).incrementalSearch), to: nil, from: nil)
             }
         }
