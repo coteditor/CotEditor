@@ -114,6 +114,16 @@ import TextFind
     }
     
     
+    /// Whether the incremental search should execute.
+    var shouldSearchIncrementally: Bool {
+        
+        self.searchesIncrementally &&
+        !self.inSelection &&
+        !self.findString.isEmpty &&
+        (!self.usesRegularExpression || (try? NSRegularExpression(pattern: self.findString)) != nil)
+    }
+    
+    
     /// Adds the current find string to the history.
     func noteFindHistory() {
         
@@ -130,6 +140,13 @@ import TextFind
     
     
     // MARK: Private Methods
+    
+    /// Whether the find operation should execute incrementally as the user types the search string.
+    private var searchesIncrementally: Bool {
+        
+        self.defaults[.findSearchesIncrementally]
+    }
+    
     
     /// Puts the current find string to the shared pasteboard.
     private func shareFindString() {

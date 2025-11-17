@@ -30,8 +30,9 @@
 
 ### Fixes
 
-- Fix an issue where changing the theme color while a document window is in front of the Settings window immediately applies the selected color to the editor’s text.
-- Fix an issue where the file browser prompts an error message when selecting a symlink or alias whose target is unavailable.
+- Fix an issue where changing the theme color while a document is in front of the Settings window immediately overwrites the editor’s text color with the selected color.
+- Fix an issue where an incremental search with the global search text is automatically performed when the application becomes active.
+- Fix an issue where the file browser prompts an error message when selecting a symlink or alias whose original is unavailable.
 
 
 
