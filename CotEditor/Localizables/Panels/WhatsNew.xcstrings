@@ -425,6 +425,100 @@
         }
       }
     },
+    "NewFeature.userGuide.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das integrierte Benutzerhandbuch bietet nun klarere Erklärungen, umfangreichere Inhalte und ein überarbeitetes Layout, das sich am neuesten macOS orientiert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The built-in user guide now offers clearer explanations, richer content, and a refreshed layout aligned with the latest macOS."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The built-in user guide now offers clearer explanations, richer content, and a refreshed layout aligned with the latest macOS."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El manual de uso integrado ofrece ahora explicaciones más claras, contenido más completo y un diseño renovado alineado con la versión más reciente de macOS."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le guide d’utilisation intégré propose désormais des explications plus claires, un contenu enrichi et une mise en page actualisée, en accord avec le dernier macOS."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内蔵しているユーザガイドを見直して内容を充実させました。最新のmacOSデザインに合わせてレイアウトも刷新しています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De ingebouwde gebruikershandleiding biedt nu duidelijkere uitleg, rijkere inhoud en een vernieuwde lay-out die aansluit bij de nieuwste versie van macOS."
+          }
+        }
+      }
+    },
+    "NewFeature.userGuide.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein integriertes Handbuch, frisch überarbeitet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your built-in guide, newly polished"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your built-in guide, newly polished"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tu manual integrado, renovado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Votre guide intégré, fraîchement revu"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ユーザガイド、ちょっと良くなりました"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Je ingebouwde handleiding, opnieuw verfijnd"
+          }
+        }
+      }
+    },
     "Release Notes" : {
       "localizations" : {
         "cs" : {

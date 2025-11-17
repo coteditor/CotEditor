@@ -139,10 +139,11 @@ struct WhatsNewView: View {
 enum NewFeature: CaseIterable {
     
     static let version = Version(6, 2, 0)
-    static let buildNumber = 770
+    static let buildNumber = 772
     
     case settingPorting
     case alias
+    case userGuide
 }
     
 
@@ -155,6 +156,8 @@ private extension NewFeature {
                 Image(systemName: "truck.box")
             case .alias:
                 Image(systemName: "arrowshape.turn.up.forward.fill")
+            case .userGuide:
+                Image(systemName: "book.closed")
         }
     }
     
@@ -168,6 +171,9 @@ private extension NewFeature {
             case .alias:
                 String(localized: "NewFeature.alias.label",
                        defaultValue: "Easier access to aliases", table: "WhatsNew")
+            case .userGuide:
+                String(localized: "NewFeature.userGuide.label",
+                       defaultValue: "Your built-in guide, newly polished", table: "WhatsNew")
         }
     }
     
@@ -181,6 +187,9 @@ private extension NewFeature {
             case .alias:
                 String(localized: "NewFeature.alias.description",
                        defaultValue: "The original documents behind aliases and symlinks can now be opened directly in the current window from the file browser.", table: "WhatsNew")
+            case .userGuide:
+                String(localized: "NewFeature.userGuide.description",
+                       defaultValue: "The built-in user guide now offers clearer explanations, richer content, and a refreshed layout aligned with the latest macOS.", table: "WhatsNew")
         }
     }
     
