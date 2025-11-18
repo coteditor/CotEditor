@@ -52,7 +52,8 @@ struct FilePreviewView: View {
                             self.item.openLinkedFile()
                         }
                     } else {
-                        Button(String(localized: "Open Original", table: "Document")) {
+                        Button(String(localized: "Open Original", table: "Document",
+                                      comment: "action label; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.")) {
                             let menuItem = NSMenuItem()
                             menuItem.representedObject = self.item.previewItemURL
                             NSApp.sendAction(#selector(DirectoryDocument.openOriginalDocumentAsPlainText), to: nil, from: menuItem)

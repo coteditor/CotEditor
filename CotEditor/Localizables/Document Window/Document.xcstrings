@@ -7593,6 +7593,7 @@
       }
     },
     "Open Original" : {
+      "comment" : "an action label, “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
