@@ -349,7 +349,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obecne dowiązanie symboliczne `cot` nie wskazuje działającego CotEditora."
+            "value" : "Obecne połączenie symboliczne `cot` nie wskazuje działającego CotEditora."
           }
         },
         "pt" : {
@@ -450,7 +450,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obecne dowiązanie symboliczne `cot` może wskazywać nieprawidłową ścieżkę."
+            "value" : "Obecne połączenie symboliczne `cot` może wskazywać nieprawidłową ścieżkę."
           }
         },
         "pt" : {

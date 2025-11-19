@@ -123,6 +123,36 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własne składnie"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własnych składni"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własna składnia"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własnej składni"
+                }
+              }
+            }
+          }
+        },
         "ru" : {
           "variations" : {
             "plural" : {
@@ -314,6 +344,36 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "%lld aangepaste thema's"
+                }
+              }
+            }
+          }
+        },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własne motywy"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własnych motywów"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własny motyw"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld własnego motywu"
                 }
               }
             }
@@ -516,6 +576,36 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definicje"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definicji"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definicja"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definicji"
+                }
+              }
+            }
+          }
+        },
         "ru" : {
           "variations" : {
             "plural" : {
@@ -628,6 +718,12 @@
             "value" : "Kies een CotEditor-instellingenarchief om te importeren."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz archiwum ustawień CotEditora, które chcesz importować."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -697,6 +793,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Dit instellingenarchief is gemaakt door een andere versie van CotEditor (%@).\n"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To archiwum ustawień zostało utworzone przy użyciu innej wersji CotEditora (%@)."
           }
         },
         "ru" : {
@@ -770,6 +872,12 @@
             "value" : "Je kunt deze items alsnog importeren, maar sommige instellingen zijn mogelijk niet compatibel."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadal możesz importować te ustawienia, choć niektóre z nich mogą być niekompatybilne."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -832,6 +940,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Exporteer geselecteerde instellingen als archief om ze naar andere computers te kunnen importeren."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj wybrane ustawienia w formie archiwum, by umożliwić ich importowanie do innych komputerów."
           }
         },
         "ru" : {
@@ -1187,6 +1301,12 @@
             "value" : "Definities voor meerdere vervangingen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definicje wielokrotnych zastąpień"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1262,6 +1382,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Alle instellingen in het venster 'Instellingen'"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wszystkie ustawienia w oknie Ustawienia"
           }
         },
         "zh-Hans" : {
@@ -1412,6 +1538,12 @@
             "value" : "Syntaxis"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnie"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1481,6 +1613,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Thema's"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motywy"
           }
         },
         "ru" : {
