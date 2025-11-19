@@ -155,7 +155,7 @@ private extension NewFeature {
             case .settingPorting:
                 Image(systemName: "truck.box")
             case .alias:
-                Image(systemName: "arrowshape.turn.up.forward.fill")
+                Image(.arrowshapeTurnUpBackwardSquareDashed)
             case .userGuide:
                 Image(systemName: "book.closed")
         }
