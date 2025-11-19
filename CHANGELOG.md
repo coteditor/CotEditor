@@ -20,7 +20,7 @@
 
 ### Known issues
 
-- The text added to CotEditor 6.2.0 are not localized to Czech, Italian, Korean, Polish, and Portuguese yet.
+- The text added to CotEditor 6.2.0 are not localized to Czech, Korean, and Portuguese yet.
 
 
 

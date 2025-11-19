@@ -1160,6 +1160,12 @@
             "value" : "Archive des paramètres CotEditor"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivio Impostazioni CotEditor"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

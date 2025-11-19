@@ -6703,6 +6703,12 @@
             "value" : "Ouvrez l’emplacement d’origine pour autoriser CotEditor à y accéder."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accedi alla posizione originale per autorizzare CotEditor all'accesso."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

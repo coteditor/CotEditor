@@ -7619,6 +7619,12 @@
             "value" : "Ouvrir l’original"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri Originale"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

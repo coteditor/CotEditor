@@ -223,6 +223,12 @@
             "value" : "Les documents originaux derrière les alias et les liens symboliques peuvent désormais être ouverts directement dans la fenêtre active depuis le Navigateur de fichiers."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adesso è possibile, col File Browser, aprire direttamente nella finestra attiva i documenti originali degli alias e dei symlink."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -298,6 +304,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Accès simplifié aux alias"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accesso più semplice agli alias"
           }
         },
         "ja" : {
@@ -377,6 +389,12 @@
             "value" : "* Si l’original est un dossier, il s’ouvrira dans une nouvelle fenêtre."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*Se l'originale è una cartella, verrà aperta in una nuova finestra."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -452,6 +470,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Exportez et importez tous vos réglages CotEditor, syntaxes personnalisées, thèmes et définitions de remplacements multiples depuis le menu Fichier pour transférer facilement votre environnement vers un autre Mac."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esporta ed importa tutte le impostazioni di CotEditor settings, sintassi personalizzate, temi, e le definizioni di sostituzione multipla dal menu File, per trasferire facilmente il proprio ambiente su un altro Mac."
           }
         },
         "ja" : {
@@ -531,6 +555,12 @@
             "value" : "Facilitez votre migration"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Migrazione assistita"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -608,6 +638,12 @@
             "value" : "Le guide d’utilisation intégré propose désormais des explications plus claires, un contenu enrichi et une mise en page actualisée, en accord avec le dernier macOS."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La guida utente incorporata presenta ora spiegazioni più chiare, contenuti più ricchi, ed un layout aggiornato in linea con l'ultimo macOS."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -683,6 +719,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Votre guide intégré, fraîchement revu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La nuova guida utente, appena rinnovata"
           }
         },
         "ja" : {

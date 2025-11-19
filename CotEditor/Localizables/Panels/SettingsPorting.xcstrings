@@ -93,6 +93,24 @@
             }
           }
         },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sintassi personalizzata"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sintassi personalizzate"
+                }
+              }
+            }
+          }
+        },
         "ja" : {
           "variations" : {
             "plural" : {
@@ -171,7 +189,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld пользовательских синтаксисов"
+                  "value" : "%lld пользовательский синтаксис"
                 }
               },
               "other" : {
@@ -319,6 +337,24 @@
             }
           }
         },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld tema personalizzato"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld temi personalizzati"
+                }
+              }
+            }
+          }
+        },
         "ja" : {
           "variations" : {
             "plural" : {
@@ -397,7 +433,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld пользовательских тем"
+                  "value" : "%lld пользовательская тема"
                 }
               },
               "other" : {
@@ -546,6 +582,24 @@
             }
           }
         },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definizione"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definizioni"
+                }
+              }
+            }
+          }
+        },
         "ja" : {
           "variations" : {
             "plural" : {
@@ -624,7 +678,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld определений"
+                  "value" : "%lld определение"
                 }
               },
               "other" : {
@@ -706,6 +760,12 @@
             "value" : "Choisissez une archive de paramètres CotEditor à importer."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selezionare un archivio di impostazioni di CotEditor da importare."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -781,6 +841,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Cet archive de réglages a été créé par une autre version de CotEditor (%@)."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo archivio di impostazioni è stato creato con una versione differente di CotEditor (%@)."
           }
         },
         "ja" : {
@@ -860,6 +926,12 @@
             "value" : "Vous pouvez toujours importer ces éléments, mais certains réglages peuvent être incompatibles."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puoi comunque importare l'archivio, ma alcune impostazioni potrebbero essere incompatibili."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -928,6 +1000,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Exporter les réglages sélectionnés sous forme d'archive afin de pouvoir les importer sur d'autres ordinateurs."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esporta le impostazioni selezionate in un archivio per poterle importare in altri computer."
           }
         },
         "ja" : {
@@ -1289,6 +1367,12 @@
             "value" : "Définitions de remplacement multiples"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definizioni di Sostituzione Multipla"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1372,6 +1456,12 @@
             "value" : "Tous les paramètres dans la fenêtre Réglages"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutte le impostazioni nella\nfinestra Impostazioni"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1388,6 +1478,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wszystkie ustawienia w oknie Ustawienia"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все настройки в окне «Настройки»"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar penceresindeki tüm ayarlar"
           }
         },
         "zh-Hans" : {
@@ -1526,6 +1628,12 @@
             "value" : "Syntaxes"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintassi"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1601,6 +1709,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Thèmes"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temi"
           }
         },
         "ja" : {
