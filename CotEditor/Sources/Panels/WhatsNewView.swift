@@ -70,7 +70,7 @@ struct WhatsNewView: View {
                             .frame(width: 60, alignment: .center)
                             .accessibilityHidden(true)
                         
-                        VStack(alignment: .leading, spacing: 2) {
+                        VStack(alignment: .leading, spacing: 4) {
                             Text(feature.label)
                                 .font(.system(size: 14, weight: .semibold))
                                 .accessibilityHeading(.h2)
@@ -123,7 +123,7 @@ struct WhatsNewView: View {
             }
         }
         .scenePadding()
-        .frame(width: 480)
+        .frame(width: 520)
         .background {
             Image(systemName: "gearshape.2")
                 .font(.system(size: 750, weight: .ultraLight))
