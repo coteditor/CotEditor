@@ -235,6 +235,12 @@
             "value" : "De originele documenten achter aliassen en symlinks kunnen nu direct in het huidige venster worden geopend vanuit de Bestandskiezer."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oryginalne dokumenty kryjące się za aliasami i połączeniami symbolicznymi można teraz otwierać bezpośrednio w bieżącym oknie z poziomu przeglądarki plików."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -304,6 +310,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Eenvoudigere toegang tot aliassen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Łatwiejszy dostęp do aliasów"
           }
         },
         "ru" : {
@@ -377,6 +389,12 @@
             "value" : "*Als het origineel een map is, wordt het in een nieuw venster geopend."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* Jeśli oryginał jest folderem, zostanie otwarty w nowym oknie."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -446,6 +464,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Exporteer en importeer al je CotEditor-instellingen, aangepaste syntaxis, thema’s en definities voor meerdere vervangingen via het menu Archief om je omgeving eenvoudig naar een andere Mac te verplaatsen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksportuj i importuj z poziomu menu Plik wszystkie ustawienia CotEditora, własne składnie, motywy oraz definicje wielokrotnych zastąpień, aby łatwo przenieść swoje środowisko na innego Maca."
           }
         },
         "ru" : {
@@ -519,6 +543,12 @@
             "value" : "Hulp bij je migratie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomoc w migracji"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -590,6 +620,12 @@
             "value" : "De ingebouwde gebruikershandleiding biedt nu duidelijkere uitleg, rijkere inhoud en een vernieuwde lay-out die aansluit bij de nieuwste versie van macOS."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wbudowany podręcznik użytkownika, dostępny w języku angielskim, oferuje teraz bardziej przejrzyste wyjaśnienia, bogatszą treść i odświeżony układ, dostosowany do najnowszej wersji systemu macOS."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -659,6 +695,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Je ingebouwde handleiding, opnieuw verfijnd"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twój wbudowany przewodnik, nowo dopracowany"
           }
         },
         "ru" : {
