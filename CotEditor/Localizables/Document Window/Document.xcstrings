@@ -7593,7 +7593,7 @@
       }
     },
     "Open Original" : {
-      "comment" : "an action label, “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.",
+      "comment" : "action label; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7629,6 +7629,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Open origineel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть оригинал"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Özgünü Aç"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开原项目"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟原始檔"
           }
         }
       }
@@ -7812,13 +7836,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始项目"
+            "value" : "原项目"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原項目"
+            "value" : "原始檔"
           }
         }
       }

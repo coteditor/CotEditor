@@ -234,6 +234,30 @@
             "state" : "needs_review",
             "value" : "De originele documenten achter aliassen en symlinks kunnen nu direct in het huidige venster worden geopend vanuit de Bestandskiezer."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оригинальные документы, скрывающиеся за псевдонимами и символическими ссылками теперь можно открывать непосредственно в текущем окне из файлового браузера."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armaların ve sembolik bağlantıların ardındaki özgün belgeler artık doğrudan dosya tarayıcısındaki geçerli pencerede açılabilir."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现在可以直接在当前窗口中打开别名或符号链接所指向的原始文件。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在您可以直接從檔案瀏覽器，於目前視窗中開啟替身與符號連結所指向的原始文件。"
+          }
         }
       }
     },
@@ -280,6 +304,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Eenvoudigere toegang tot aliassen"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поддержка синонимов и символических ссылок"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armalara daha kolay erişim"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更便捷地访问别名"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更輕鬆存取替身"
           }
         }
       }
@@ -328,6 +376,30 @@
             "state" : "needs_review",
             "value" : "*Als het origineel een map is, wordt het in een nieuw venster geopend."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*Если оригинал является папкой, то он откроется в новом окне."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*Özgün öğe bir klasörse yeni bir pencerede açılır."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*如果原始项目是文件夹，则会在新窗口中打开。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*若原始項目為檔案夾，則會在新視窗中開啟。"
+          }
         }
       }
     },
@@ -374,6 +446,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Exporteer en importeer al je CotEditor-instellingen, aangepaste syntaxis, thema’s en definities voor meerdere vervangingen via het menu Archief om je omgeving eenvoudig naar een andere Mac te verplaatsen."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Экспортируйте и импортируйте настройки CotEditor, пользовательские синтаксисы, темы и определения замен, чтобы легко перенести свою привычную среду на другой компьютер Mac."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ortamınızı başka bir Mac’e kolayca taşımak için tüm CotEditor ayarlarınızı, özel sözdizimlerinizi, temalarınızı ve birden fazla değiştirme tanımını Dosya menüsünden içe ve dışa aktarın."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从“文件”菜单导出并导入所有CotEditor设置、自定义语法、高亮主题和多重替换定义，让您轻松在另一台Mac上复刻工作环境。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可從「檔案」選單匯出與匯入您所有的CotEditor設定、自訂語法、主題與多重取代定義，讓您能輕鬆將使用環境轉移至另一台Mac。"
           }
         }
       }
@@ -422,6 +518,30 @@
             "state" : "needs_review",
             "value" : "Hulp bij je migratie"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перенос настроек и профиля"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktarım yardımı"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "协助您进行迁移"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "協助您遷移設定"
+          }
         }
       }
     },
@@ -469,6 +589,30 @@
             "state" : "needs_review",
             "value" : "De ingebouwde gebruikershandleiding biedt nu duidelijkere uitleg, rijkere inhoud en een vernieuwde lay-out die aansluit bij de nieuwste versie van macOS."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Встроенное руководство пользователя теперь предлагает более понятные объяснения, содержательное наполнение и обновленный дизайн, соответствующий последней версии macOS."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yerleşik kullanıcı kılavuzu artık daha net açıklamalar, daha zengin içerik ve en son macOS ile uyumlu yenilenmiş bir yerleşim sunuyor."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内置用户指南现已提供更清晰的说明、更丰富的内容，以及与最新 macOS 风格一致的全新布局。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內建使用指南現在提供更清晰易懂的說明、更豐富的內容，並採用與最新macOS風格一致的嶄新版面設計。"
+          }
         }
       }
     },
@@ -515,6 +659,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Je ingebouwde handleiding, opnieuw verfijnd"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновленное руководство пользователя"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yerleşik kılavuzunuz, taze cilalandı"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内置用户指南，焕然一新"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內建使用指南全新改版"
           }
         }
       }

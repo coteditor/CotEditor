@@ -18,6 +18,11 @@
 - Update the contents and layout of the user guide.
 
 
+### Known issues
+
+- The text added to CotEditor 6.2.0 are not localized to Czech, Italian, Korean, Polish, and Portuguese yet.
+
+
 
 6.1.2 (unreleased)
 --------------------------

@@ -6714,6 +6714,30 @@
             "state" : "needs_review",
             "value" : "Open de oorspronkelijke locatie om CotEditor toegang te geven."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте оригинальное местоположение, чтобы предоставить CotEditor доступ к объекту."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor’e erişim izni vermek için özgün konumu açın."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开原始位置以授予CotEditor存取权限。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟原始位置以授予CotEditor存取權限。"
+          }
         }
       }
     },
