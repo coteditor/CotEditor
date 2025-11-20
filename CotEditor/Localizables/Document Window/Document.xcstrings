@@ -7631,6 +7631,12 @@
             "value" : "オリジナルを開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원본 열기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

@@ -1172,6 +1172,12 @@
             "value" : "CotEditor設定アーカイブ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor 설정 아카이브"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

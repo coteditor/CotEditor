@@ -6715,6 +6715,12 @@
             "value" : "CotEditor がアクセスできるように、オリジナルの場所を開いてください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원본 위치를 열어 CotEditor에 접근 권한을 부여하십시오."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

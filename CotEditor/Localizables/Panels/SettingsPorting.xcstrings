@@ -123,6 +123,18 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%ll개의 사용자 정의 구문"
+                }
+              }
+            }
+          }
+        },
         "nl" : {
           "variations" : {
             "plural" : {
@@ -362,6 +374,18 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld個のカスタムテーマ"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld개의 사용자 정의 테마"
                 }
               }
             }
@@ -612,6 +636,18 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld개의 정의"
+                }
+              }
+            }
+          }
+        },
         "nl" : {
           "variations" : {
             "plural" : {
@@ -772,6 +808,12 @@
             "value" : "読み込むCotEditor設定アーカイブを選択"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가져올 CotEditor 설정 아카이브를 선택하십시오."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -853,6 +895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この設定アーカイブは、別のバージョンのCotEditor（%@）で作成されています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 설정 아카이브는 다른 버전의 CotEditor에서 생성되었습니다. (%@)"
           }
         },
         "nl" : {
@@ -938,6 +986,12 @@
             "value" : "読み込むことはできますが、一部の設定は互換性がない場合があります。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 항목들을 가져올 수 있지만 일부 설정이 호환되지 않을 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1012,6 +1066,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択した設定をアーカイブとして書き出して、他のコンピュータで読み込むことができます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 설정을 아카이브로 내보내 다른 컴퓨터로 가져올 수 있도록 합니다."
           }
         },
         "nl" : {
@@ -1379,6 +1439,12 @@
             "value" : "複数置換定義"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다중 대치 정의"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1468,6 +1534,12 @@
             "value" : "設定ウインドウ内のすべての設定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 윈도우의 모든 설정"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1496,6 +1568,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置窗口中的所有设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定」視窗內的全部設定"
           }
         }
       }
@@ -1640,6 +1718,12 @@
             "value" : "シンタックス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1721,6 +1805,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テーマ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테마"
           }
         },
         "nl" : {

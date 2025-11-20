@@ -235,6 +235,12 @@
             "value" : "ファイルブラウザから、エイリアスやシンボリックリンクのオリジナル書類を現在のウインドウに直接開けるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 브라우저에서 가상본 및 심볼릭 링크의 원본 문서를 현재 윈도우에서 바로 열 수 있게 되었습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -316,6 +322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エイリアスへ簡単にアクセス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가상본에 더 쉽게 접근"
           }
         },
         "nl" : {
@@ -401,6 +413,12 @@
             "value" : "*オリジナルがフォルダの場合は新規ウインドウで開きます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*원본이 폴더인 경우 새 윈도우에서 열립니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -482,6 +500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「ファイル」メニューから、CotEditorの設定、カスタムシンタックス、テーマ、複数置換の定義をまとめて書き出したり読み込んだりできるようになりました。環境の引っ越しがこれまでより簡単になります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 메뉴에서 CotEditor의 모든 설정과 사용자 정의 구문, 테마, 다중 대치 정의를 내보내고 가져와 다른 Mac으로 손쉽게 환경을 이전하세요."
           }
         },
         "nl" : {
@@ -567,6 +591,12 @@
             "value" : "引越しをサポート"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "손쉬운 마이그레이션"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -650,6 +680,12 @@
             "value" : "内蔵しているユーザガイドを見直して内容を充実させました。最新のmacOSデザインに合わせてレイアウトも刷新しています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내장 사용자 가이드가 더욱 명확한 설명, 풍부한 콘텐츠, 최신 macOS와 조화된 새로운 레이아웃으로 개선되었습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -731,6 +767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ユーザガイド、ちょっと良くなりました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로 다듬어진 내장 가이드"
           }
         },
         "nl" : {
