@@ -16,6 +16,7 @@
 - Syntax highlighting now takes nesting into account when highlighting symbol pairs.
 - Update the Lua syntax to support nested string delimiters.
 - Update the contents and layout of the user guide.
+- [dev] Update the build environment to Xcode 26.2 beta 2.
 
 
 ### Known issues

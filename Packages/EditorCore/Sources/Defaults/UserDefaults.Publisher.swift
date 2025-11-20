@@ -115,7 +115,7 @@ private extension UserDefaults.Publisher {
         
         func register(initial: Bool) {
             
-            self.userDefaults?.addObserver(self, forKeyPath: self.key.rawValue, options: initial ? [.new, .initial] : [.new], context: nil)
+            unsafe self.userDefaults?.addObserver(self, forKeyPath: self.key.rawValue, options: initial ? [.new, .initial] : [.new], context: nil)
         }
         
         

@@ -272,7 +272,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 2620;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {
