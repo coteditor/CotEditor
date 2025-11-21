@@ -108,11 +108,11 @@ struct FindTextualOptionsView: View {
         VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
             Section {
                 Toggle(String(localized: "FindSettings.matchesFullWord.label",
-                              defaultValue: "Match only whole word",
+                              defaultValue: "Match only whole words",
                               table: "TextFind", comment: "toggle button label"),
                        isOn: $matchesFullWord)
                 .help(String(localized: "FindSettings.matchesFullWord.description",
-                             defaultValue: "Restrict search results to the whole words.",
+                             defaultValue: "Restrict search results to whole words.",
                              table: "TextFind", comment: "tooltip"))
                 
                 Toggle(String(localized: "FindSettings.isLiteralSearch.label",

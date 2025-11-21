@@ -143,7 +143,7 @@ struct GeneralSettingsView: View {
             
             
             GridRow {
-                Text("When the document is changed by another application:", tableName: "GeneralSettings")
+                Text("When document is changed by another application:", tableName: "GeneralSettings")
                     .accessibilityLabeledPair(role: .label, id: "documentConflictOption", in: self.accessibility)
                     .gridCellColumns(2)
             }.padding(.bottom, -8)

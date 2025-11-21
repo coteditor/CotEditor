@@ -4239,13 +4239,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Restrict search results to the whole words."
+            "value" : "Restrict search results to whole words."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Restrict search results to the whole words."
+            "value" : "Restrict search results to whole words."
           }
         },
         "es" : {
@@ -4341,13 +4341,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Match only whole word"
+            "value" : "Match only whole words"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Match only whole word"
+            "value" : "Match only whole words"
           }
         },
         "es" : {
@@ -4359,7 +4359,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rechercher le mot entier"
+            "value" : "Rechercher seulement les mots entiers"
           }
         },
         "it" : {
@@ -4371,7 +4371,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "単語に完全一致"
+            "value" : "完全に一致する語のみ"
           }
         },
         "ko" : {
@@ -4395,7 +4395,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apenas ocorrências da palavra completa"
+            "value" : "Apenas ocorrências de palavras completas"
           }
         },
         "ru" : {
