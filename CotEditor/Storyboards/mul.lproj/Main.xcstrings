@@ -13922,7 +13922,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定を書き出す…"
+            "value" : "設定を読み込む…"
           }
         },
         "ko" : {
@@ -17186,7 +17186,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定を読み込む…"
+            "value" : "設定を書き出す…"
           }
         },
         "ko" : {
