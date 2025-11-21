@@ -1548,7 +1548,7 @@ private enum DocumentError: LocalizedError {
         switch self {
             case .notEditable:
                 String(localized: "DocumentError.notEditable.recoverySuggestion",
-                       defaultValue: "To make changes to the contents of the document, first allow editing it.")
+                       defaultValue: "To make changes to the document, allow editing first.")
         }
     }
     

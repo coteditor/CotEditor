@@ -143,7 +143,7 @@ struct GeneralSettingsView: View {
             
             
             GridRow {
-                Text("When document is changed by another application:", tableName: "GeneralSettings")
+                Text("When the document is changed by another application:", tableName: "GeneralSettings")
                     .accessibilityLabeledPair(role: .label, id: "documentConflictOption", in: self.accessibility)
                     .gridCellColumns(2)
             }.padding(.bottom, -8)
@@ -276,7 +276,7 @@ private struct WarningsSettingView: View {
         
         VStack {
             Form {
-                Text("Suppress following warnings:", tableName: "GeneralSettings")
+                Text("Suppress the following warnings:", tableName: "GeneralSettings")
                 Toggle(String(localized: "Inconsistent line endings", table: "GeneralSettings"), isOn: $suppressesInconsistentLineEndingAlert)
             }
             

@@ -61,7 +61,7 @@ struct IssueReport {
     private var description: String {
         
         String(localized: "IssueReport.description",
-               defaultValue: "Fill the following template, and post it on \(Self.issueLink) or send to \(Self.mail). Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese.",
+               defaultValue: "Fill in the following template, then post it on \(Self.issueLink) or send it to \(Self.mail). Please note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese.",
                comment: "%1$@ is a link to a web page and %2$@ is an e-mail")
     }
     

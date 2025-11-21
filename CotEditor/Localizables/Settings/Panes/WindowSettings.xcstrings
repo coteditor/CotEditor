@@ -1982,7 +1982,7 @@
         }
       }
     },
-    "Other whitespaces" : {
+    "Other whitespace" : {
       "comment" : "invisible character type",
       "localizations" : {
         "cs" : {
@@ -2000,7 +2000,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Other whitespaces"
+            "value" : "Other whitespace"
           }
         },
         "es" : {

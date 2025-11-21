@@ -71,7 +71,7 @@ public struct CSVSortPattern: SortPattern, Equatable, Sendable {
         let start = line.index(line.startIndex, offsetBy: offset)
         let end = line.index(start, offsetBy: component.count)
         
-        // trim whitespaces
+        // trim whitespace
         let headTrim = component.prefix(while: \.isWhitespace).count
         let endTrim = component.reversed().prefix(while: \.isWhitespace).count
         let trimmedStart = line.index(start, offsetBy: headTrim)

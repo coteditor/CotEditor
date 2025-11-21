@@ -124,13 +124,13 @@ extension FileDropItem {
         case fileExtensionLowercase = "FILEEXTENSION-LOWER"
         case fileExtensionUppercase = "FILEEXTENSION-UPPER"
         case directory = "DIRECTORY"
-        case fileContents = "FILECONTENT"
+        case fileContent = "FILECONTENT"
         case imageWidth = "IMAGEWIDTH"
         case imageHeight = "IMAGEHEIGHT"
         
         static let listCases: [Self?] = Self.pathTokens + [nil] + Self.textTokens + [nil] + Self.imageTokens
         static let pathTokens: [Self] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
-        static let textTokens: [Self] = [.fileContents]
+        static let textTokens: [Self] = [.fileContent]
         static let imageTokens: [Self] = [.imageWidth, .imageHeight]
         
         
@@ -161,9 +161,9 @@ extension FileDropItem {
                 case .directory:
                     String(localized: "FileDropItem.Variable.directory.description",
                            defaultValue: "The parent directory name of dropped file.")
-                case .fileContents:
-                    String(localized: "FileDropItem.Variable.fileContents.description",
-                           defaultValue: "(If the dropped file is a text file) file contents.")
+                case .fileContent:
+                    String(localized: "FileDropItem.Variable.fileContent.description",
+                           defaultValue: "(If the dropped file is a text file) file content.")
                 case .imageWidth:
                     String(localized: "FileDropItem.Variable.imageWidth.description",
                            defaultValue: "(If the dropped file is an image) image width.")
@@ -212,9 +212,9 @@ extension FileDropItem {
         
         // get text content if needed
         // -> Replace this at last because the file contents can contain other tokens.
-        if self.format.contains(Variable.fileContents.token) {
+        if self.format.contains(Variable.fileContent.token) {
             let contents = try? String(contentsOf: droppedFileURL, encoding: .utf8)
-            dropText = dropText.replacing(Variable.fileContents.token, with: contents ?? "")
+            dropText = dropText.replacing(Variable.fileContent.token, with: contents ?? "")
         }
         
         return dropText

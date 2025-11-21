@@ -512,7 +512,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
             let lineRange = self.string.lineRange(at: insertionIndex)
             
-            // decrease indent level if the line is consists of only whitespaces
+            // decrease indent level if the line is consists of only whitespace
             if self.string[lineRange].starts(with: /[ \t]+\R?$/),
                let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}"))
             {

@@ -157,7 +157,7 @@ struct WindowSettingsView: View {
                             Toggle(String(localized: "Space", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleSpace)
                         }
                         GridRow {
-                            Toggle(String(localized: "Other whitespaces", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleWhitespaces)
+                            Toggle(String(localized: "Other whitespace", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleWhitespaces)
                             Toggle(String(localized: "Other control characters", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleControl)
                                 .gridCellColumns(2)
                         }

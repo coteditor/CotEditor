@@ -3435,25 +3435,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li provést změny v obsahu dokumentu, povolte nejprve jeho úpravy."
+            "value" : "Chcete-li provést změny v dokumentu, povolte nejprve jeho úpravy."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Um Änderungen am Inhalt des Dokuments vorzunehmen, lass es zunächst die Bearbeitung zu."
+            "value" : "Um Änderungen am Dokuments vorzunehmen, lass es zunächst die Bearbeitung zu."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "To make changes to the contents of the document, first allow editing it."
+            "value" : "To make changes to the document, allow editing first."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To make changes to the contents of the document, first allow editing it."
+            "value" : "To make changes to the document, allow editing first."
           }
         },
         "es" : {
@@ -3464,20 +3464,20 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pour modifier le contenu du document, autoriser d'abord les modifications."
+            "state" : "translated",
+            "value" : "Pour modifier le document, autoriser d'abord les modifications."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Per modificare il contenuto del documento, bisogna prima consentire le modifiche."
+            "value" : "Per modificare il documento, bisogna prima consentire le modifiche."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書類の内容を変更するためには、まず書類を編集可能にしてください。"
+            "value" : "書類を変更するためには、まず書類を編集可能にしてください。"
           }
         },
         "ko" : {
@@ -3488,20 +3488,20 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Om wijzigingen aan te brengen in de inhoud van het document, sta je eerst bewerken toe."
+            "state" : "translated",
+            "value" : "Om wijzigingen aan te brengen in het document, sta je eerst bewerken toe."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aby dokonać zmian w zawartości dokumentu, najpierw pozwól na jego edycję."
+            "value" : "Aby dokonać zmian w dokumencie, najpierw pozwól na jego edycję."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para fazer alterações no conteúdo do documento, primeiro permita a edição."
+            "value" : "Para fazer alterações no documento, primeiro permita a edição."
           }
         },
         "ru" : {
@@ -3513,19 +3513,19 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belgenin içeriğinde değişiklik yapmak için önce onu düzenlemeye izin　verin."
+            "value" : "Belgede değişiklik yapmak için önce onu düzenlemeye izin verin."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "若要修改文档内容，请先允许编辑。"
+            "value" : "若要修改文档，请先允许编辑。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "若要修改文件內容，請先允許編輯。"
+            "value" : "若要修改文件，請先允許編輯。"
           }
         }
       }
@@ -5356,7 +5356,7 @@
         }
       }
     },
-    "FileDropItem.Variable.fileContents.description" : {
+    "FileDropItem.Variable.fileContent.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5374,30 +5374,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "(If the dropped file is a text file) file contents."
+            "value" : "(If the dropped file is a text file) file content."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(If the dropped file is a text file) file contents."
+            "value" : "(If the dropped file is a text file) file content."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Si el archivo eliminado es un archivo de texto), contenido del archivo."
+            "value" : "(Si el archivo eliminado es un archivo de texto), contenuto del file."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Contenu du fichier (si le fichier déposé est un fichier texte)"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(Se il file rilasciato è di testo) contenuto del file."
           }
         },
@@ -5415,7 +5415,7 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "(Als het geplaatste bestand een tekstbestand is) bestandsinhoud."
           }
         },
@@ -6687,8 +6687,8 @@
         },
         "en-GB" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choose the original location to grant CotEditor access."
+            "state" : "translated",
+            "value" : "Open the original location to grant CotEditor access."
           }
         },
         "es" : {
@@ -6880,13 +6880,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current contents."
+            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current content."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current contents."
+            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current content."
           }
         },
         "es" : {
@@ -8493,36 +8493,36 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fülle die folgende Vorlage aus und poste sie auf %1$@ oder sende sie uns an %2$@. Bitte beachte, dass der Inhalt der gesendeten E-Mail auf einer Issue-Seite geteilt werden könnte. Bitte schreibe den Inhalt entweder auf Englisch oder auf Japanisch."
+            "value" : "Fülle die folgende Vorlage aus und poste sie auf %1$@ oder sende sie an %2$@. Bitte beachte, dass der Inhalt deiner E-Mail auf der Issue-Seite geteilt werden kann. Bitte schreibe deine Nachricht auf Englisch oder Japanisch."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Fill the following template, and post it on %1$@ or send to %2$@. Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese."
+            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Please note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fill the following template, and post it on %1$@ or send to %2$@. Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese."
+            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Please note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rellenar la siguiente plantilla, y subirla a %1$@ o enviarla a %2$@. Tener en cuenta que el contenido del email enviado se compartirá en la página Issue. Por favor el contenido escibirlo en Inglés o Japonés."
+            "value" : "Rellena la siguiente plantilla y publícala en %1$@ o envíala a %2$@. Ten en cuenta que el contenido de tu correo puede compartirse en la página de issues. Escribe tu mensaje en inglés o en japonés."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remplissez le modèle suivant, et postez le sur %1$@ ou bien envoyez le à %2$@.\nVeuillez prendre note que le contenu du courriel envoyé sera partagé sur la page Issues. Merci de rédiger le contenu en anglais ou en japonais."
+            "state" : "needs_review",
+            "value" : "Remplis le modèle ci-dessous, puis publie-le sur %1$@ ou envoie-le à %2$@. Note que le contenu de ton e-mail peut être partagé sur la page des issues. Rédige ton message en anglais ou en japonais."
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Compilare il template che segue, e caricarlo su %1$@ oppure inviarlo a %2$@. Si prega di notare che i contenuti della email inviata potrebbero essere condivisi sulla pagina dedicata alla risoluzione dei problemi (Issues). Scrivere il contenuto in inglese o giapponese."
           }
         },
@@ -8540,8 +8540,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vul het volgende sjabloon in en post het op %1$@ of stuur het naar %2$@. Houd er rekening mee dat de inhoud van de verzonden e-mail kan worden gedeeld op de Issue-pagina. Schrijf de inhoud in het Engels of Japans."
+            "state" : "needs_review",
+            "value" : "Vul het onderstaande sjabloon in en plaats het op %1$@ of stuur het naar %2$@. Let op dat de inhoud van je e-mail op de issuepagina kan worden gedeeld. Schrijf je bericht in het Engels of Japans."
           }
         },
         "pl" : {
@@ -11119,13 +11119,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No document to get input."
+            "value" : "No document to get input from."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No document to get input."
+            "value" : "No document to get input from."
           }
         },
         "es" : {
@@ -11220,13 +11220,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No document to put output."
+            "value" : "No document to put output into."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No document to put output."
+            "value" : "No document to put output into."
           }
         },
         "es" : {
@@ -11618,19 +11618,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Skript „%@“ kann nicht ausgeführt werden, da du keine Ausführungsrechte hast."
+            "value" : "Das Skript „%@“ kann nicht ausgeführt werden, da du keine Berechtigung zum Ausführen hast."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The script “%@” can’t be executed because you don’t have the execute permission."
+            "value" : "The script “%@” can’t be executed because you don’t have permission to execute it."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The script “%@” can’t be executed because you don’t have the execute permission."
+            "value" : "The script “%@” can’t be executed because you don’t have permission to execute it."
           }
         },
         "es" : {

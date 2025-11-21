@@ -102,7 +102,7 @@
         }
       }
     },
-    "CreateDocumentIntent.Parameter.contents" : {
+    "CreateDocumentIntent.Parameter.content" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -120,7 +120,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contents"
+            "value" : "Content"
           }
         },
         "en-GB" : {
@@ -132,7 +132,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contenidos"
+            "value" : "Contenido"
           }
         },
         "fr" : {
@@ -144,7 +144,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contenuti"
+            "value" : "Contenuto"
           }
         },
         "ja" : {

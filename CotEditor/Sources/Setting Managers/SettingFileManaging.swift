@@ -642,7 +642,7 @@ struct ImportDuplicationError: LocalizedError {
     var recoverySuggestion: String {
         
         String(localized: "ImportDuplicationError.recoverySuggestion",
-               defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current contents.",
+               defaultValue: "A custom setting with the same name already exists. Replacing it will overwrite its current content.",
                comment: "Refer to similar expressions by Apple.")
     }
 }

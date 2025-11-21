@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,8 +56,8 @@ struct CreateDocumentIntent: AppIntent {
     
     static let openAppWhenRun: Bool = true
     
-    @Parameter(title: LocalizedStringResource("CreateDocumentIntent.Parameter.contents",
-                                              defaultValue: "Contents", table: "Intents"),
+    @Parameter(title: LocalizedStringResource("CreateDocumentIntent.Parameter.content",
+                                              defaultValue: "Content", table: "Intents"),
                inputOptions: .init(multiline: true))
     var contents: String?
     

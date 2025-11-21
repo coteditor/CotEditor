@@ -10564,55 +10564,55 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit paletu emotikonů a symbolů"
+            "value" : "Zobrazit Emotikony a symboly"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emoji- & Symbolpalette einblenden"
+            "value" : "Emojis & Symbole anzeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Show Emoji & Symbols palette"
+            "value" : "Show Emoji & Symbols"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show Emoji & Symbols palette"
+            "value" : "Show Emoji & Symbols"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar paleta de emojis y símbolos"
+            "value" : "Mostrar emojis y símbolos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Afficher le panneau Emoji et Symboles"
+            "value" : "Afficher Emoji et symboles"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra palette delle Emoji e dei simboli"
+            "value" : "Mostrare “Emoji e simboli”"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“絵文字と記号”を表示"
+            "value" : "“絵文字と記号”を表示します"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emoji"
+            "value" : "이모지 및 기호 보기"
           }
         },
         "nl" : {
@@ -10624,37 +10624,37 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokaż paletę emoji i symboli"
+            "value" : "Pokaż emoji i symbole"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar Paleta de Emojis e Símbolos"
+            "value" : "Mostrar Emoji e Símbolos"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать панель Эмоджи и символы"
+            "value" : "Показать Эмодзи и символы"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emoji ve Semboller paletini göster"
+            "value" : "Emoji ve Semboller’i Göster"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "显示查找和替换"
+            "value" : "显示表情与符号"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示查找和取代"
+            "value" : "顯示表情符號與符號"
           }
         }
       }
@@ -11688,13 +11688,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Shift lines to left"
+            "value" : "Shift lines to the left"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shift lines to left"
+            "value" : "Shift lines to the left"
           }
         },
         "es" : {
@@ -11890,13 +11890,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Shift lines to right"
+            "value" : "Shift lines to the right"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shift lines to right"
+            "value" : "Shift lines to the right"
           }
         },
         "es" : {

@@ -107,7 +107,7 @@ struct ScriptFileError: LocalizedError {
                        defaultValue: "The script file “\(self.url, format: .url.scheme(.never))” couldn’t be opened.")
             case .permission:
                 String(localized: "ScriptFileError.permission.description",
-                       defaultValue: "The script “\(self.url.lastPathComponent)” can’t be executed because you don’t have the execute permission.")
+                       defaultValue: "The script “\(self.url.lastPathComponent)” can’t be executed because you don’t have permission to execute it.")
         }
     }
     
@@ -141,10 +141,10 @@ enum ScriptError: LocalizedError {
                 string
             case .noInputTarget:
                 String(localized: "ScriptError.noInputTarget.description",
-                       defaultValue: "No document to get input.")
+                       defaultValue: "No document to get input from.")
             case .noOutputTarget:
                 String(localized: "ScriptError.noOutputTarget.description",
-                       defaultValue: "No document to put output.")
+                       defaultValue: "No document to put output into.")
             case .notEditable:
                 String(localized: "ScriptError.notEditable.description",
                        defaultValue: "The document is not editable.")

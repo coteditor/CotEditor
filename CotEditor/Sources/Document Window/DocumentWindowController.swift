@@ -693,7 +693,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 leftItem.label = String(localized: "Toolbar.indent.shiftLeft.label",
                                         defaultValue: "Shift Left", table: "Document")
                 leftItem.toolTip = String(localized: "Toolbar.indent.shiftLeft.tooltip",
-                                          defaultValue: "Shift lines to left", table: "Document")
+                                          defaultValue: "Shift lines to the left", table: "Document")
                 leftItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: leftItem.label)
                 leftItem.action = #selector(EditorTextView.shiftLeft)
                 
@@ -701,7 +701,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 rightItem.label = String(localized: "Toolbar.indent.shiftRight.label",
                                          defaultValue: "Shift Right", table: "Document")
                 rightItem.toolTip = String(localized: "Toolbar.indent.shiftRight.tooltip",
-                                           defaultValue: "Shift lines to right", table: "Document")
+                                           defaultValue: "Shift lines to the right", table: "Document")
                 rightItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: rightItem.label)
                 rightItem.action = #selector(EditorTextView.shiftRight)
                 
@@ -838,7 +838,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = String(localized: "Toolbar.emojiAndSymbols.label",
                                     defaultValue: "Emoji & Symbols", table: "Document")
                 item.toolTip = String(localized: "Toolbar.emojiAndSymbols.tooltip",
-                                      defaultValue: "Show Emoji & Symbols palette", table: "Document")
+                                      defaultValue: "Show Emoji & Symbols", table: "Document")
                 item.image = NSImage(resource: .emoji)
                 item.action = #selector(NSApplication.orderFrontCharacterPalette)
                 return item

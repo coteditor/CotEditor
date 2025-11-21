@@ -187,7 +187,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     
     override func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: NSFont, forGlyphRange glyphRange: NSRange) {
         
-        // fix the width of whitespaces when the base font is fixed pitch.
+        // fix the width of whitespace when the base font is fixed pitch.
         let newProps = UnsafeMutablePointer(mutating: props)
         if self.textFont.isFixedPitch {
             for index in 0..<glyphRange.length {
