@@ -1040,7 +1040,7 @@
         }
       }
     },
-    "CotEditor Replacement Definition" : {
+    "CotEditor Replace Definition" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1057,7 +1057,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor Replacement Definition"
+            "value" : "CotEditor Replace Definition"
           }
         },
         "es" : {

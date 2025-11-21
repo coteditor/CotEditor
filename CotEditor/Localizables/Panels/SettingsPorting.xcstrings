@@ -514,7 +514,7 @@
       }
     },
     "%lld definitions" : {
-      "comment" : "unit for multiple replacement settings",
+      "comment" : "unit for multiple replace settings",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -1399,20 +1399,20 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Definitionen für das Multiple Ersetzen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Multiple Replacement Definitions"
+            "value" : "Multiple Replace Definitions"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Multiple Replacement Definitions"
+            "value" : "Multiple Replace Definitions"
           }
         },
         "es" : {
@@ -1429,19 +1429,19 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Definizioni di Sostituzione Multipla"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "複数置換定義"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "다중 대치 정의"
           }
         },
@@ -1453,31 +1453,31 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Definicje wielokrotnych zastąpień"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Настройки множественых замен"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Çoklu değişim tanımları"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "多重替换定义"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "多重取代定義"
           }
         }

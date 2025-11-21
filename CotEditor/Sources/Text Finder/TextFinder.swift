@@ -340,7 +340,7 @@ struct FindAllMatch: Identifiable {
     
     /// Performs multiple replacement with a specific replacement definition.
     ///
-    /// - Parameter name: The name of the multiple replacement definition.
+    /// - Parameter name: The name of the Multiple Replace definition.
     private func multiReplaceAll(name: String) {
         
         guard let definition = try? ReplacementManager.shared.setting(name: name) else { return assertionFailure() }

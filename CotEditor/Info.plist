@@ -239,7 +239,7 @@
 				<string>public.json</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>CotEditor Replacement Definition</string>
+			<string>CotEditor Replace Definition</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBadgeName</key>

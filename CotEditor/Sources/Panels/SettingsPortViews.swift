@@ -198,9 +198,9 @@ private struct PortableTypesView: View {
             
             if let names = self.includedTypes[.replacements], !names.isEmpty {
                 Toggle(isOn: $types.bind(.replacements)) {
-                    Text(String(localized: "SettingTypes.replacements.label", defaultValue: "Multiple Replacement Definitions", table: "SettingsPorting"))
+                    Text(String(localized: "SettingTypes.replacements.label", defaultValue: "Multiple Replace Definitions", table: "SettingsPorting"))
                     Text("\(names.count) definitions", tableName: "SettingsPorting",
-                         comment: "unit for multiple replacement settings")
+                         comment: "unit for multiple replace settings")
                 }
             }
         }

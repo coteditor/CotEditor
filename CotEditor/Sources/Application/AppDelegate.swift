@@ -518,7 +518,7 @@ extension Logger {
             return item
         }
         
-        // build multiple replacement menu items
+        // build multiple replace menu items
         ReplacementManager.shared.$settingNames
             .sink { [weak self] names in
                 guard let menu = self?.multipleReplaceMenu else { return }

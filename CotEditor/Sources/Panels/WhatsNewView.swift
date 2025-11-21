@@ -183,7 +183,7 @@ private extension NewFeature {
         switch self {
             case .settingPorting:
                 String(localized: "NewFeature.settingPorting.description",
-                       defaultValue: "Export and import all your CotEditor settings, custom syntaxes, themes, and multiple replacement definitions from the File menu to easily move your environment to another Mac.", table: "WhatsNew")
+                       defaultValue: "Export and import all your CotEditor settings, custom syntaxes, themes, and Multiple Replace definitions from the File menu to easily move your environment to another Mac.", table: "WhatsNew")
             case .alias:
                 String(localized: "NewFeature.alias.description",
                        defaultValue: "The original documents behind aliases and symlinks can now be opened directly in the current window from the file browser.", table: "WhatsNew")
