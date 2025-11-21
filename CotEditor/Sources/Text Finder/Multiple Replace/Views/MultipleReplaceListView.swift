@@ -135,7 +135,7 @@ struct MultipleReplaceListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.importingError = nil
             }
         } message: { error in
@@ -164,7 +164,7 @@ struct MultipleReplaceListView: View {
                 }
                 self.selection = self.settingNames.first
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.deletingItem = nil
             }
         } message: { _ in

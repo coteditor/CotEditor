@@ -66,7 +66,7 @@ struct FindProgressView: View {
                 Text(self.description)
             }
             
-            Button(.cancel, systemImage: "xmark", role: .cancel) {
+            Button(role: .cancel) {
                 self.progress.cancel()
             }
             .symbolVariant(.circle.fill)

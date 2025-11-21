@@ -116,7 +116,7 @@ struct GeneralSettingsView: View {
                             Button(String(localized: "Later", table: "GeneralSettings", comment: "button label")) {
                                 // do nothing
                             }
-                            Button(.cancel, role: .cancel) {
+                            Button(role: .cancel) {
                                 self.enablesAutosaveInPlace.toggle()
                             }
                         } message: {

@@ -51,7 +51,7 @@ struct SubmitButtonGroup: View {
     var body: some View {
         
         EqualWidthHStack {
-            Button(.cancel, role: .cancel, action: self.cancelAction)
+            Button(role: .cancel, action: self.cancelAction)
                 .buttonSizing(.flexible)
                 .keyboardShortcut(.cancelAction)
                 .environment(\.isEnabled, true)  // Cancel button is always active

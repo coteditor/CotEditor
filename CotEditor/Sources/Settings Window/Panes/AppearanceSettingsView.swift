@@ -93,7 +93,7 @@ struct AppearanceSettingsView: View {
                         Button(.ok) {
                             self.selectingFont = nil
                         }
-                        Button(.cancel, role: .cancel) {
+                        Button(role: .cancel) {
                             self.selectingFont = nil
                             self.isRestoringMonospacedFont = true
                             self.monospacedFont = font

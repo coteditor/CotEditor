@@ -256,7 +256,7 @@ private struct ThemeListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.importingError = nil
             }
         } message: { error in
@@ -285,7 +285,7 @@ private struct ThemeListView: View {
                 }
                 UserDefaults.standard.restore(key: .theme)
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.deletingItem = nil
             }
         } message: { _ in

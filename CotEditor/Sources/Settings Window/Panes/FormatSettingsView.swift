@@ -336,7 +336,7 @@ private struct SyntaxListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.importingError = nil
             }
         } message: { error in
@@ -363,7 +363,7 @@ private struct SyntaxListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.deletingItem = nil
             }
         } message: { _ in
