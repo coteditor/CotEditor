@@ -22,7 +22,7 @@
 
 <h2>Use Multiple Replace window</h2>
 
-<p>Use the Multiple Replace window to manage and process the multiple replacements in your document.</p>
+<p>Use the Multiple Replace window to manage and perform the multiple replacements in your document.</p>
 
 <p>To open the Multiple Replace window:</p>
 <ol>
@@ -49,7 +49,7 @@
 <h3>Export/import replacement definitions</h3>
 
 <p>You can export replacement definitions to transfer them to another computer.
-Each definition is saved as a <dfn>CotEditor replacement definition</dfn> file with the <code>.cotrpl</code> extension. The file contents are written in JSON format.</p>
+Each definition is saved as a <dfn>CotEditor replacement definition</dfn> file with the <code>.cotrpl</code> extension. The file content is written in JSON format.</p>
 
 <ul>
 	<li><b>Export</b>: Select a definition in the list, then choose Export or Share from the Action menu.</li>
@@ -58,15 +58,15 @@ Each definition is saved as a <dfn>CotEditor replacement definition</dfn> file w
 
 
 
-<h2>Process multiple replacements</h2>
+<h2>Perform multiple replacements</h2>
 
 <p>The definition selected in the list appears in the editor area on the right side. The replacement rules in the editor area are performed row by row from top to bottom at once.</p>
 
 <p>Use the buttons below the editor area to perform multiple replacements.</p>
 
 <ul>
-	<li><b>Replace All</b>: Perform all replacements for the frontmost document.</li>
-	<li><b>Highlight</b>: Highlight all matches in the frontmost document*.</li>
+	<li><b>Replace All</b>: Perform all replacements for the current document.</li>
+	<li><b>Highlight</b>: Highlight all matches in the current document*.</li>
 </ul>
 
 <p><small>* The matches highlighted by the Highlight command may differ from the actual replacement results because Replace All applies rules sequentially, and each rule is applied to the document after previous rules have already taken effect.</small></p>
@@ -99,8 +99,8 @@ Each definition is saved as a <dfn>CotEditor replacement definition</dfn> file w
 	</thead>
 	<tbody>
 		<tr><th>(checkbox)</th><td>If the checkbox is unselected, the row is just skipped. You can use this option to keep a replacement rule that is used depending on the situation.</td></tr>
-		<tr><th>Find</th><td>A text to search for. This field cannot be left empty. If empty, the rule is considered invalid and skipped.</td></tr>
-		<tr><th>Replace With</th><td>A text to replace with. If left empty, the matched text is removed.</td></tr>
+		<tr><th>Find</th><td>The text to search for. This field cannot be left empty. If empty, the rule is considered invalid and skipped.</td></tr>
+		<tr><th>Replace With</th><td>The text to replace with. If left empty, the matched text is removed.</td></tr>
 		<tr><td>RE</td><td>Search using a regular expression (abbreviation of <u>R</u>egular <u>E</u>xpression).</td></tr>
 		<tr><td>IC</td><td>Ignore case when searching (abbreviation of <u>I</u>gnore <u>C</u>ase).</td></tr>
 		<tr><th>Description</th><td>You can use this field to leave a comment about the rule. The description doesn’t affect to replacement. This field can be left blank.</td></tr>

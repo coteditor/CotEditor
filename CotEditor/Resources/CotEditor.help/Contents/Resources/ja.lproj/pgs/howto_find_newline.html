@@ -7,12 +7,12 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>MacのCotEditorで改行を検索/置換する</title>
+	<title>MacのCotEditorで改行を検索する/置換する</title>
 </head>
 
 <body>
 
-<h1>MacのCotEditorで改行を検索/置換する</h1>
+<h1>MacのCotEditorで改行を検索する/置換する</h1>
 
 <h2>改行の入力</h2>
 
@@ -23,7 +23,7 @@
 
 <h3>テキスト検索</h3>
 
-<p>検索文字列内の改行は、検索対象の書類で用いられている改行コードと同一の改行コードであると想定して使用されます。つまり、書類内に書類の改行コードと異なる改行が紛れていたとき、この改行には一致しません。</p>
+<p>検索テキスト内の改行は、検索対象の書類で用いられている改行コードと同一の改行コードであると想定して使用されます。つまり、書類内に書類の改行コードと異なる改行が紛れていたとき、この改行には一致しません。</p>
 
 
 <h3>正規表現検索</h3>
@@ -47,9 +47,9 @@
 
 <h2>改行の置換</h2>
 
-<p>置換では、<code>\n</code>のようなメタ文字での指定や捕捉した文字列への差し替えも含めて、挿入される置換後の文字列のすべての改行が書類の改行コードと同一の改行に差し替えられます。</p>
+<p>置換では、<code>\n</code>のようなメタ文字での指定や捕捉したテキストへの差し替えも含めて、挿入される置換後のテキストのすべての改行が書類の改行コードと同一の改行に差し替えられます。</p>
 
-<p>例えば、改行コードがLF（<code>\n</code>）の書類で、正規表現を使って検索文字列「dog\Rcow」を置換文字列「$0\r」で置換したとき、書類内の文字列「dog<span class="invisible">\r\n</span>cow」にも一致して正規表現上は「dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>」に置換されることになりますが、CotEditorは一致した「dog<span class="invisible">\r\n</span>cow」を「dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>」に置換します。</p>
+<p>例えば、改行コードがLF（<code>\n</code>）の書類で、正規表現を使って検索テキスト「dog\Rcow」を置換テキスト「$0\r」で置換したとき、書類内のテキスト「dog<span class="invisible">\r\n</span>cow」にも一致して正規表現上は「dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>」に置換されることになりますが、CotEditorは一致した「dog<span class="invisible">\r\n</span>cow」を「dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>」に置換します。</p>
 
 <p>現在、書類の改行コード以外の改行文字に置換する方法は提供されていません。</p>
 
@@ -58,7 +58,7 @@
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="howto_find.html">テキストを検索/置換する</a></li>
+	<li><a href="howto_find.html">テキストを検索する/置換する</a></li>
 	<li><a href="about_line_endings.html">多様な改行コードを扱う</a></li>
 	<li><a href="about_regex.html">正規表現を使う</a></li>
 </ul>

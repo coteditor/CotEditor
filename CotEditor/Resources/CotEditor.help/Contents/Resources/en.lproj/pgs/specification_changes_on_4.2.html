@@ -40,9 +40,9 @@
 
 <h2>Line endings in Find &amp; Replace</h2>
 
-<p>In the normal textual search and replace, the line endings contain in the search or replace string are assumed as the same as the line ending code used in the document being searched for.</p>
+<p>In the normal textual search and replace, the line endings contain in the search or replace text are assumed as the same as the line ending code used in the document being searched for.</p>
 
-<p>That is, for example, if you search a document in which the line endings are LF for a string containing the CR line ending as a (non-regular expression) text search, all line endings in the search string will be assumed as LF. If you want to handle line endings strictly on search, use the regular expression instead.</p>
+<p>That is, for example, if you search a document in which the line endings are LF for the text containing the CR line ending as a (non-regular expression) text search, all line endings in the search text will be assumed as LF. If you want to handle line endings strictly on search, use the regular expression instead.</p>
 
 <p>On the other hand, regarding the text replacing with, all line endings even ones defined as a metacharacter like <code>\r</code> are assumed as the document line ending. Currently, there is no way to replace with line endings other than the document line ending and this is the same behavior as the previous CotEditor.</p>
 

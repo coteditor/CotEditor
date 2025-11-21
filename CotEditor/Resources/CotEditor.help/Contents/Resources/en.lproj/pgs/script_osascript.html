@@ -121,7 +121,7 @@
 
 <figure>
 	<pre class="source"><code class="AppleScript">contents of selection of document 1</code></pre>
-	<figcaption>Returns the selected string in the frontmost document.</figcaption>
+	<figcaption>Returns the selected text in the current document.</figcaption>
 </figure>
 
 <figure>
@@ -174,7 +174,7 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 
 <dl class="tree">
 	<dt><code class="command">write to console</code></dt>
-	<dd>Print a string on CotEditor’s console window.</dd>
+	<dd>Print text on CotEditor’s console window.</dd>
 	<dd><dl class="subtree">
 		<dt>[<code>title</code> (boolean)]</dt>
 		<dd>Should the script name be displayed with? <span class="added">(added on CotEditor 5.0.7)</span></dd>
@@ -205,10 +205,10 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 
 <dl class="tree">
 	<dt><code class="command">find</code></dt>
-	<dd>Searches a string, selects the string and returns <code>true</code>, if any, otherwise returns <code>false</code>.</dd>
+	<dd>Searches text, selects the matched text and returns <code>true</code>, if any, otherwise returns <code>false</code>.</dd>
 	<dd><dl class="subtree">
 		<dt><code>for</code> (text)</dt>
-		<dd>The string to search for.</dd>
+		<dd>The text to search for.</dd>
 
 		<dt>[<code>RE</code> (boolean)]</dt>
 		<dd>Perform regular expression search or not.</dd>
@@ -237,14 +237,14 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 
 <figure>
 	<pre class="source"><code class="AppleScript">find front document for &quot;Apple&quot; with ignore case</code></pre>
-	<figcaption>Searches “Apple” with ignoring case, starting from the current selection to the end of the frontmost document, and returns the result.</figcaption>
+	<figcaption>Searches “Apple” with ignoring case, starting from the current selection to the end of the current document, then returns the result.</figcaption>
 </figure>
 
 
 <h4>Discussion</h4>
 
 <p>The search starts from the current selection (caret position).<br/>
-For example, when not using the <code>wrap</code> or <code>backwards</code> options and when there are no matching string after the current selection, then <code>false</code> is returned.</p>
+For example, when not using the <code>wrap</code> or <code>backwards</code> options and when there are no matching text after the current selection, then <code>false</code> is returned.</p>
 <p>The regular expression search cannot search backwards. If both options were specified at the same time, <code>RE</code> takes precedence and <code>backwards</code> is ignored.</p>
 </section>
 
@@ -254,13 +254,13 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">replace</code></dt>
-	<dd>Searches a string, replaces the string and returns the number of replacements, if any, otherwise returns <code>0</code>.</dd>
+	<dd>Searches text, replaces the text and returns the number of replacements, if any, otherwise returns <code>0</code>.</dd>
 	<dd><dl class="subtree">
 		<dt><code>for</code> (text)</dt>
-		<dd>The string to search for.</dd>
+		<dd>The text to search for.</dd>
 
 		<dt><code>to</code> (text)</dt>
-		<dd>The string to replace with.</dd>
+		<dd>The text to replace with.</dd>
 
 		<dt>[<code>all</code> (boolean)]</dt>
 		<dd>Search the whole document or not.</dd>
@@ -292,14 +292,14 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <figure>
 	<pre class="source"><code class="AppleScript">replace front document for &quot;Apple&quot; to &quot;Orange&quot; with all and ignore case</code></pre>
-	<figcaption>Searches “Apple” with ignoring case in the frontmost document, replaces the matching strings with “Orange” and returns the number of replacements.</figcaption>
+	<figcaption>Searches “Apple” with ignoring case in the current document, replaces the matching text with “Orange” and returns the number of replacements.</figcaption>
 </figure>
 
 
 <h4>Discussion</h4>
 
 <p>As in the case of the <code>find</code> command, the search starts from the current selection (caret position). Use the <code>all</code> option for searching the whole document.</p>
-<p>After replacing the whole document using the <code>all</code> option, the caret moves to the head of the document. If there were no matching string, the caret doesn’t move.</p>
+<p>After replacing the whole document using the <code>all</code> option, the caret moves to the head of the document. If there were no matching text, the caret doesn’t move.</p>
 <p>The regular expression search cannot search backwards. If both options were specified at the same time, the <code>backwards</code> option is ignored.</p>
 </section>
 
@@ -322,7 +322,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <figure>
 	<pre class="source"><code class="AppleScript">scroll to caret front document</code></pre>
-	<figcaption>Scrolls the frontmost window so that the caret or the selection can be seen.</figcaption>
+	<figcaption>Scrolls the current window so that the caret or the selection can be seen.</figcaption>
 </figure>
 </section>
 
@@ -392,7 +392,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <figure>
 	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; with BOM without lossy</code></pre>
-	<figcaption>Converts the text encoding of the frontmost window to Unicode (UTF-8) with BOM, returns the result.</figcaption>
+	<figcaption>Converts the text encoding of the current window to Unicode (UTF-8) with BOM, returns the result.</figcaption>
 </figure>
 
 <h4>Discussion</h4>
@@ -505,7 +505,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">string</code></dt>
-	<dd>Returns the string in the specified range regardless of the current selection.</dd>
+	<dd>Returns the text in the specified range regardless of the current selection.</dd>
 	<dd><dl class="subtree">
 		<dt><code>in</code> (list)</dt>
 		<dd>The range.</dd>
@@ -532,7 +532,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <h4>Discussion</h4>
 
-<p>Returns an empty string if the specified range was invalid.</p>
+<p>Returns empty text if the specified range was invalid.</p>
 <p>This command doesn’t change the specified range.</p>
 </section>
 

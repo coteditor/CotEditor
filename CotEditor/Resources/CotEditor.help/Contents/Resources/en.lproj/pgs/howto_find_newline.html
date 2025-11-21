@@ -23,15 +23,15 @@
 
 <h3>Textual search</h3>
 
-<p>On the normal textual search, the line endings contained in the search string are assumed to be the line ending code used in the document being searched for. That is, it doesn’t match the line endings that differ from the document line ending type.</p>
+<p>On the normal textual search, the line endings contained in the search text are assumed to be the line ending code used in the document being searched for. That is, it doesn’t match the line endings that differ from the document line ending type.</p>
 
 
 <h3>Regular expression search</h3>
 
-<p>As with the textual search, the line endings contained in the search string are assumed to be the line ending code used in the document being searched for. On the other hand, the line endings specified as a metacharacter or a Unicode code point in the regular expression pattern are treated as-is regardless of the line endings type of the target document.</p>
+<p>As with the textual search, the line endings contained in the search text are assumed to be the line ending code used in the document being searched for. On the other hand, the line endings specified as a metacharacter or a Unicode code point in the regular expression pattern are treated as-is regardless of the line endings type of the target document.</p>
 
 <table>
-    <caption>Metacharacters indicating a line ending in the regular expression</caption>
+	<caption>Metacharacters indicating a line ending in the regular expression</caption>
 	
 	<thead>
 		<tr><th>Pattern</th><th>Description</th></tr>
@@ -49,7 +49,7 @@
 
 <p>As for the text replacing with, all line endings, even ones defined as a metacharacter like<code>\n</code> or captured, are assumed to be the document line ending.</p>
 
-<p>For example, when replacing the find string “dog\Rcow” with the replacement string “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the substring “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
+<p>For example, when replacing the find text “dog\Rcow” with the replacement text “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the text “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
 
 <p>There is currently no way to replace them with line endings other than the document line ending.</p>
 

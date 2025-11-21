@@ -107,19 +107,19 @@
 	<li>「フォーマット」メニューの「改行コード」サブメニュー</li>
 </ul>
 
-<p>NEL, LS, PSなどの非表示の改行コードは、<kbd>Option</kbd>キーを押しながら改行コードメニューを開くことで選択できるようになります。</p>
+<p>NEL、LS、PSなどの非表示の改行コードは、<kbd>Option</kbd>キーを押しながら改行コードメニューを開くことで選択できるようになります。</p>
 
 
 
 <h2>書類と異なる改行コードを挿入する</h2>
 
-<p>ユーザが改行コードの違いを意識しなくて良いように、基本的にCotEditorは、改行には書類の改行コードのみを使用します。たとえCotEditorスクリプトや正規表現での置換などで書類の改行コードとは異なる改行を含むテキストを挿入したときも、CotEditorは暗黙で挿入されるテキストに含まれるすべての改行コードを書類の改行コードに揃えてから書類に挿入します。</p>
+<p>ユーザが改行コードの違いを意識しなくて良いように、基本的にCotEditorは、改行には書類の改行コードのみを使用します。たとえCotEditorスクリプトや正規表現での置換などで書類の改行コードとは異なる改行を含むテキストを挿入したときも、CotEditorは挿入されるテキストに含まれるすべての改行コードを、暗黙で書類の改行コードに揃えてから書類に挿入します。</p>
 
 <p>CotEditorで書類と異なる改行コードを挿入する方法は以下の2つがあります:</p>
 
 <ul>
-	<li>改行コード文字の<a href="howto_input_unicode.html">Unicodeコードポイントでの手動入力</a></li>
-	<li><a href="howto_paste.html">「正確にペースト」コマンド</a>で異なる改行コードを含むテキストをペースト</li>
+	<li>改行コード文字の<a href="howto_input_unicode.html">Unicodeコードポイントで入力</a>する。</li>
+	<li><a href="howto_paste.html">「正確にペースト」コマンド</a>で異なる改行コードを含むテキストをペーストする。</li>
 </ul>
 
 
@@ -127,7 +127,7 @@
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="howto_find_newline.html">改行を検索/置換する</a></li>
+	<li><a href="howto_find_newline.html">改行を検索する/置換する</a></li>
 	<li><a href="howto_find_inconsistent_line_endings.html">混在する改行を探す</a></li>
 	<li><a href="howto_input_unicode.html">文字をUnicodeのコードポイントで入力する</a></li>
 	<li><a href="howto_paste.html">テキストをペーストする</a></li>

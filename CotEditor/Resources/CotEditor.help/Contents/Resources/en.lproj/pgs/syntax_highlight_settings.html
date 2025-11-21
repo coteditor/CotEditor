@@ -15,18 +15,18 @@
 
 <h1>Define syntax highlighting in CotEditor on Mac</h1>
 
-<p>Syntax highlighting is the feature to color keywords in a document depending on specific rules.</p>
+<p>Syntax highlighting is a feature that colors keywords in a document based on predefined rules.</p>
 
-<p>A typical use is to colorize programming source code according to the grammatical function of terms, such as commands or variables, to make the structure of the program easier to understand. Other uses are coloring headings in structured languages such as Markdown, making certain characters that shouldn’t be used stand out, and many other uses depending on the type of document.</p>
+<p>A common use is to color programming source code according to the grammatical role of each term, such as commands or variables, to make the structure of the code easier to understand. Other uses include coloring headings in structured formats like Markdown, highlighting characters that shouldn’t normally be used, and many other usages depending on the type of document.</p>
 
-<p>In CotEditor, a syntax rules the semantic meaning of the syntax highlighting, and the color scheme used in the actual highlighting is defined as a <a href="howto_customize_theme.html">theme</a>.</p>
+<p>In CotEditor, a syntax defines the semantic rules for highlighting, while a <a href="howto_customize_theme.html">theme</a> specifies the colors used in the actual highlighting.</p>
 
-<p>To define highlighting defines for a syntax, select a syntax element to add a highlighting condition from the list on the left of the syntax editor, then add conditions to the list on the right side. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
+<p>To define highlighting rules for a syntax, select a syntax element from the list on the sidebar of the syntax editor, then add highlighting conditions to the list on the right. For instructions on opening the syntax editor, see <a href="syntax_definition.html">Define a syntax</a>.</p>
 
 
 <h2>Elements of syntax highlighting</h2>
 
-<p>CotEditor predefines the types of elements for the syntax highlighting already for the theme. They are:</p>
+<p>CotEditor already defines the element types used for syntax highlighting in each theme. These elements are:</p>
 
 <table>
 	<thead>
@@ -76,13 +76,12 @@
 	</tbody>
 </table>
 
-<p>CotEditor colors the elements from the top to the bottom: like Keywords, Commands, Types, and so on. When the document contains an item matching multiple categories (for example, keywords and commands), the color of the latter in the order overwrites the former’s. The name of each element is just for reference and thus can actually apply also to other grammatical uses.</p>
-
+<p>CotEditor colors syntax elements from top to bottom in the list, such as Keywords, Commands, and Types. If a document contains text that matches multiple categories (for example, both a keyword and a command) the style of the element that appears later in the order overrides the earlier one. The names of the elements are provided for reference and can also be used for other grammatical purposes.</p>
 
 
 <h2>Customize syntax highlighting</h2>
 
-<p>To define the way to highlight, register either a specific string, a pair of the start and end strings, or a regular expression pattern as a highlighting condition for each highlighting element.</p>
+<p>To define how text is highlighted, register one of the following as a highlighting condition for each element: a specific piece of text, a pair of start and end strings, or a regular expression pattern.</p>
 
 <p>Highlighting rules are determined by the following settings:</p>
 
@@ -91,24 +90,24 @@
 		<tr><th>Field</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>RE</th><td>If selected, both the begin and end strings are considered as regular expressions (RE stands for Regular Expression).</td></tr>
-		<tr><th>IC</th><td>If selected, the case is ignored for searching (IC stands for Ignore Case). For example, if you set “abc” as the begin string and select IC, “ABC” or “abc” or “Abc” in your document will be matched.</td></tr>
-		<tr><th>Begin String</th><td>A string that denotes the beginning of the search pattern. This is required to search the code elements you want to be colored.</td></tr>
-		<tr><th>End String</th><td>A string that denotes the end of the search pattern. This field can be left blank.</td></tr>
-		<tr><th>Description</th><td>You can use this field to leave a comment about the term. Description doesn’t affect syntax highlighting. This field can be left blank.</td></tr>
+		<tr><th>RE</th><td>If selected, both the begin and end strings are treated as regular expressions (RE stands for Regular Expression).</td></tr>
+		<tr><th>IC</th><td>If selected, the search ignores case (IC stands for Ignore Case). For example, if you set “abc” as the begin string and enable IC, occurrences such as “ABC”, “abc”, or “aBc” in your document will all match.</td></tr>
+		<tr><th>Begin String</th><td>The text that marks the beginning of the search pattern. This field is required for defining a syntax element to highlight.</td></tr>
+		<tr><th>End String</th><td>The text that marks the end of the search pattern. This field may be left blank.</td></tr>
+		<tr><th>Description</th><td>A note or comment for your reference. The description does not affect syntax highlighting and may be left blank.</td></tr>
 	</tbody>
 </table>
 
 <p>By defining conditions:</p>
 <ul>
-	<li>A condition whose begin string is blank is ignored.</li>
-	<li>The RE setting affects both the begin and end strings, which means they should be written in the regular expression or plain form both together.</li>
+	<li>A condition with an empty begin string is ignored.</li>
+	<li>When RE is enabled, both the begin and end strings are interpreted as regular expressions, meaning they must both be written either in regular expression pattern or in plain text.</li>
 </ul>
 
 
 <h2>Completion candidates</h2>
 
-<p>A condition whose end string is blank and the regular expression option is unselected is used for defining the completion list as well.</p>
+<p>A condition whose end string is blank and whose regular expression option is disabled is also used for completion candidates.</p>
 
 
 <section id="cf">

@@ -11,12 +11,13 @@
 
 
 :root {
-	font: 350 16px/1.6 -apple-system, sans-serif;
+	font: 400 16px/1.65 -apple-system, sans-serif;
 	font-size-adjust: from-font;
 	text-rendering: optimizeLegibility;
 	text-autospace: normal;
 	text-spacing-trim: trim-start;
-	color: -apple-system-label;
+	
+	-webkit-font-smoothing: antialiased;
 }
 body {
 	max-width: 820px;
@@ -77,12 +78,12 @@ body > h1::before {
 	display: inline-block;
 	width: 32px;
 	height: 32px;
-	vertical-align: -8px;
+	vertical-align: -4px;
 	margin-right: 10px;
 }
 h2 {
 	font-size: 1.1rem;
-	font-weight: 600;
+	font-weight: 700;
 	line-height: 1.4;
 	letter-spacing: 0.02em;
 	margin-top: 2.5rem;
@@ -95,7 +96,7 @@ h2 {
 }
 h3 {
 	font-size: 100%;
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.1;
 	margin-top: 2rem;
 }
@@ -182,8 +183,8 @@ table ul li {
 p.addition {
 	position: relative;
 	text-indent: 0;
-	padding: 0.3rem 0.6rem;
-	border-radius: 0.5rem;
+	padding: 0.8rem 1.2rem;
+	border-radius: 0.8rem;
 	background: hsl(213, 50%, 97%);
 }
 p.addition::after {

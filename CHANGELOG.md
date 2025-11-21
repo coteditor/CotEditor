@@ -3,6 +3,10 @@
 6.2.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta][trivial] Update the user guide.
+
 
 
 6.2.0-beta (774)
@@ -400,7 +404,7 @@
 
 ### Known Issue
 
-- The texts added in CotEditor 5.2.0 are not localized yet in Dutch, Korean, Polish, Portuguese, and Spanish.
+- The text added in CotEditor 5.2.0 are not localized yet in Dutch, Korean, Polish, Portuguese, and Spanish.
 
 
 
@@ -619,7 +623,7 @@
 
 ### Known Issue
 
-- The texts added in CotEditor 5.1.0 are not localized yet in Dutch.
+- The text added in CotEditor 5.1.0 are not localized yet in Dutch.
 
 
 
@@ -679,7 +683,7 @@
 - Provide more Unicode information about the selected character in the document inspector.
 - Prevent the console from hiding when the app goes into the background.
 - Optimize the file browser’s performance when expanding a folder containing a large number of items.
-- Improve the trimming of whitespaces in the extracted outline labels.
+- Improve the trimming of whitespace in the extracted outline labels.
 - Modify the syntax highlighting rule to extract strings in the form of “begin-end” string pairs, even if one of those is escaped.
 - Adjust the editor’s initial scroll position.
 - [trivial] Update the layout of the Donation settings pane.
@@ -2373,7 +2377,7 @@
 
 - Update document icons.
 - Detect the line ending in documents more intelligently.
-- Display code points instead of being left blank in the incompatible character list for whitespaces.
+- Display code points instead of being left blank in the incompatible character list for whitespace.
 - Improve the scrolling behavior by normal size documents by enabling the non-contiguous text layout mode only with large documents.
 - Optimize syntax parsing.
 - Rename the Incompatible Characters pane to the Warnings pane to share the pane with the inconsistent line ending list.
@@ -2742,7 +2746,7 @@
 
 ### Improvements
 
-- [beta] Add missing localizations for new texts.
+- [beta] Add missing localizations for new text.
 - [beta] Update screenshots in help.
 - [beta][dev] Update the build environment to Xcode 12.2 RC.
 
@@ -3541,7 +3545,7 @@
 ### Fixes
 
 - Fix performance regression due to a bug fix in CotEditor 3.7.4.
-- Fix an issue where the snippet texts were still occasionally not editable from the preferences pane.
+- Fix an issue where snippet text was still occasionally not editable from the preferences pane.
 
 
 
@@ -3554,7 +3558,7 @@
 
 
 ### Fixes
-- Fix an issue where the snippet texts were occasionally not editable from the preferences pane.
+- Fix an issue where the snippet text was occasionally not editable from the preferences pane.
 - Fix an issue where the Unicode character name for `U+FEFF` (ZERO WIDTH NO-BREAK SPACE) was empty.
 - Fix an issue where the application did crash when the selected text contains some specific control characters.
 - Fix an issue where the word completion suggested words start with letters in the middle of the typed word.
@@ -3615,7 +3619,7 @@
 
 ### Fixes
 
-- Fix an issue where trailing whitespaces before the insertion points could be wrongly removed on the first auto-saving.
+- Fix an issue where trailing whitespace before the insertion points could be wrongly removed on the first auto-saving.
 - Improve stability.
 
 
@@ -4785,7 +4789,7 @@
 
 - Fix an issue where UNIX scripts could fail getting the contents of the document.
 - Fix an issue where font change in the preferences pane could be ignored.
-- Fix a potential issue where syntax keywords could be highlighted incorrectly if whitespaces accidentally get into keywords definition.
+- Fix a potential issue where syntax keywords could be highlighted incorrectly if whitespace accidentally get into keywords definition.
 - Workaround an issue where word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly.
 - Workaround an issue where the application could crash on document auto-saving.
 
@@ -6561,7 +6565,7 @@
 - Fix an issue that some objects couldn't be handled via JavaScript for Automation on Yosemite.
 - Fix an issue that syntax style validator didn't warn about keywords duplication that were newly added.
 - Fix an issue that syntax style mapping conflict tables were always blank.
-- Fix an issue that quoted texts and block comments at the end of document weren't highlighted.
+- Fix an issue that quoted text and block comments at the end of document weren't highlighted.
 - Fix an issue that text kerning was too narrow with non-antialiasing text (thanks to tsawada2-san).
 - Fix an issue that text view scrolls to the opposite side when line number view is dragged.
 - Fix an issue that `contents` of document property couldn't be set via AppleScript.
@@ -6622,7 +6626,7 @@
 - Move version history from rich text format to one of the User Guide.
 - Improve background drawing:
     - On Mountain Lion and later, scrolling performance on semi-transparent views has been improved.
-    - On Mountain Lion and later, text view gets no drop-shadow by texts on semi-transparent.
+    - On Mountain Lion and later, text view gets no drop-shadow by text on semi-transparent.
 - Avoid the move to previous outline item button to select the first “<Outline Menu>” item.
 - Deprecate text color setting for line number view which is hidden setting.
 - Remove the output type keyword `Pasteboard puts` for CotEditor script, that was deprecated on CotEditor 0.7.2 and had remained for backwards compatibility.

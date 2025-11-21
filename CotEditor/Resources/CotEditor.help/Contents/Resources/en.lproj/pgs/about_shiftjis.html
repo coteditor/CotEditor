@@ -14,7 +14,7 @@
 
 <h1>Use four kinds of Shift JIS properly in CotEditor on Mac</h1>
 
-<p>There are multiple variations of Japanese Shift JIS encoding, and CotEditor handles the four types of Japanese Shift JIS encoding as distinct with the names as described below. Although “Japanese (Mac OS)” and “Japanese (Windows, DOS)” don’t include “Shift JIS” in their names, both are also extended versions of Shift JIS. Choosing an appropriate encoding varies from case to case, but it is normally safer to use the normal “Japanese (Shift JIS).”</p>
+<p>There are multiple variants of the Japanese Shift JIS encoding. CotEditor distinguishes among the following four Shift JIS–based encodings. These encoding names follow the terminology used in standard macOS. Although “Japanese (Mac OS)” and “Japanese (Windows, DOS)” do not include the term Shift JIS in their names, both are extended versions of Shift JIS.</p>
 
 <table>
 	<thead>
@@ -28,7 +28,12 @@
 	</tbody>
 </table>
 
-<p>Even among members of the same Shift JIS family, there are differences between these encodings in the way of dealing with particular characters as below:</p>
+<p>The appropriate encoding varies depending on the situation, but in general “Japanese (Shift JIS)” is the safest choice.</p>
+
+
+<h3>Handling of certain characters in Shift JIS–based encodings</h3>
+
+<p>Even within the same Shift JIS family, some characters are treated differently, as shown in the table below:</p>
 
 <table>
 	<thead>
@@ -42,8 +47,11 @@
 	</tbody>
 </table>
 
+<p>When using these characters in a document, be aware of differences among text encodings.</p>
+
+<p>To check whether any incompatible characters are included in the document, do the following:</p>
 <ul>
-	<li>You can inspect whether such encoding incompatible characters are included in your document by choosing View &gt; Inspector &gt; Warnings.</li>
+	<li>Choose View &gt; Inspector &gt; Warnings.</li>
 </ul>
 
 

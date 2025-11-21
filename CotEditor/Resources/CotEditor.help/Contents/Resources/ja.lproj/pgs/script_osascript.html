@@ -55,10 +55,10 @@
 	<dt>プロパティ</dt>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
-		<dd>書類の内容文字列（text型）</dd>
+		<dd>書類の内容テキスト（text型）</dd>
 
 		<dt><code>text</code></dt>
-		<dd>書類の内容文字列（text型）</dd>
+		<dd>書類の内容テキスト（text型）</dd>
 
 		<dt><code>editable</code></dt>
 		<dd>書類が編集可能かどうか（boolean型）<span class="added">CotEditor 5.1で追加</span></dd>
@@ -106,7 +106,7 @@
 	<dt>プロパティ</dt>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
-		<dd>選択内容文字列</dd>
+		<dd>選択内容テキスト</dd>
 
 		<dt><code>range</code></dt>
 		<dd>文字単位での選択位置（{location, length}の型）</dd>
@@ -121,7 +121,7 @@
 
 <figure>
 	<pre class="source"><code class="AppleScript">contents of selection of document 1</code></pre>
-	<figcaption>最前面の書類選択部分の文字列を返す。</figcaption>
+	<figcaption>最前面の書類選択部分のテキストを返す。</figcaption>
 </figure>
 
 <figure>
@@ -155,9 +155,9 @@
 
 <p>CotEditor 5.0以降、文字はUnicode書記素クラスタ単位でカウントします。これはAppleScript 2.0の仕様と同一です。</p>
 
-<p>locationが負のとき、対象書類の文字列の後ろから数えてlocation番目から始まる範囲となります。<br/>
-lengthが正のとき、指定される範囲はlocationから数えてlength文字数分となります。また、対象書類の文字列の長さを超えてlengthが入力された場合、末尾までが範囲となります。<br/>
-lengthが負のとき、指定される範囲は対象書類の文字列の後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
+<p>locationが負のとき、対象書類のテキストの後ろから数えてlocation番目から始まる範囲となります。<br/>
+lengthが正のとき、指定される範囲はlocationから数えてlength文字数分となります。また、対象書類のテキストの長さを超えてlengthが入力された場合、末尾までが範囲となります。<br/>
+lengthが負のとき、指定される範囲は対象書類のテキストの後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
 <p>この指定方法はPHPの<code>substr</code>のそれにならっています。</p>
 <p>選択位置を変える命令だけでは画面のスクロールは行われません。選択位置を見えるようにするには<code>scroll to caret</code>コマンドか<code>jump</code>コマンドを使用してください。</p>
 </section>
@@ -174,7 +174,7 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 
 <dl class="tree">
 	<dt><code class="command">write to console</code></dt>
-	<dd>文字列をCotEditorのコンソールウインドウに表示する。</dd>
+	<dd>テキストをCotEditorのコンソールウインドウに表示する。</dd>
 	<dd><dl class="subtree">
 		<dt>[<code>title</code> (boolean)]</dt>
 		<dd>スクリプト名を表示するか <span class="added">(CotEditor 5.0.7で追加)</span></dd>
@@ -191,12 +191,12 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 
 <figure>
 	<pre class="source"><code class="AppleScript">write to console &quot;Script failed.&quot;</code></pre>
-	<figcaption>「Script failed.」という文字列をコンソールで表示する。</figcaption>
+	<figcaption>「Script failed.」というテキストをコンソールで表示する。</figcaption>
 </figure>
 
 <figure>
 	<pre class="source"><code class="AppleScript">write to console &quot;calculating…&quot; without title and timestamp</code></pre>
-	<figcaption>タイトルやタイムスタンプは表示せず「calculating…」という文字列のみをコンソールで表示する。</figcaption>
+	<figcaption>タイトルやタイムスタンプは表示せず「calculating…」というテキストのみをコンソールで表示する。</figcaption>
 </figure>
 </section>
 
@@ -205,10 +205,10 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 
 <dl class="tree">
 	<dt><code class="command">find</code></dt>
-	<dd>検索し、対象文字列があれば選択状態にして<code>true</code>を返す。見つからなければ<code>false</code>を返す。</dd>
+	<dd>検索し、対象テキストがあれば選択状態にして<code>true</code>を返す。見つからなければ<code>false</code>を返す。</dd>
 	<dd><dl class="subtree">
 		<dt><code>for</code> (text)</dt>
-		<dd>検索対象文字列</dd>
+		<dd>検索対象テキスト</dd>
 
 		<dt>[<code>RE</code> (boolean)]</dt>
 		<dd>正規表現検索か</dd>
@@ -243,7 +243,7 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 <h4>詳細</h4>
 
 <p>検索は、現在の挿入ポイントの位置を基準に行われます。<br/>
-例えば、<code>wrap</code>や<code>backwards</code>が指定されていなかったとき、選択位置以降に対象文字列がないときは、<code>false</code>を返します。</p>
+例えば、<code>wrap</code>や<code>backwards</code>が指定されていなかったとき、選択位置以降に対象テキストがないときは、<code>false</code>を返します。</p>
 <p><code>RE</code>（正規表現検索）のときは、<code>backwards</code>（後方からの検索）ができません。同時に指定されたときは、<code>RE</code>が優先され、<code>backwards</code>は無視されます。</p>
 </section>
 
@@ -253,13 +253,13 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 
 <dl class="tree">
 	<dt><code class="command">replace</code></dt>
-	<dd>検索し、対象文字列があれば置換して置換された回数を返す。見つからなければ<code>0</code>を返す。</dd>
+	<dd>検索し、対象テキストがあれば置換して置換された回数を返す。見つからなければ<code>0</code>を返す。</dd>
 	<dd><dl class="subtree">
 		<dt><code>for</code> (text)</dt>
-		<dd>置換対象文字列</dd>
+		<dd>置換対象テキスト</dd>
 
 		<dt><code>to</code> (text)</dt>
-		<dd>置換後の文字列</dd>
+		<dd>置換後のテキスト</dd>
 
 		<dt>[<code>all</code> (boolean)]</dt>
 		<dd>書類全体を対象とするか</dd>
@@ -297,7 +297,7 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 <h4>詳細</h4>
 
 <p><code>find</code>同様、命令実行前の挿入ポイントの位置を基準に置換が行われます。書類全体を対象に実行するときは<code>all</code>を指定してください。</p>
-<p><code>all</code>オプションを付けて書類全体を対象に実行され置換が行われたとき、実行後の挿入ポイントの位置は書類の先頭になります。ただし、対象文字列が見つからなかったときは挿入ポイントの位置は変更されません。</p>
+<p><code>all</code>オプションを付けて書類全体を対象に実行され置換が行われたとき、実行後の挿入ポイントの位置は書類の先頭になります。ただし、対象テキストが見つからなかったときは挿入ポイントの位置は変更されません。</p>
 <p><code>RE</code>（正規表現検索）のときは、<code>backwards</code>（後方からの検索）ができません。同時に指定されたときは<code>RE</code>が優先され、<code>backwards</code>は無視されます。</p>
 </section>
 
@@ -373,7 +373,7 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 		<dd>新しいテキストエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
 
 		<dt>[<code>lossy</code>] (boolean)</dt>
-		<dd>エンコーディング適用によって一部の文字列が失われても良いか</dd>
+		<dd>エンコーディング適用によって一部のテキストが失われても良いか</dd>
 
 		<dt>[<code>BOM</code>] (boolean)</dt>
 		<dd>エンコーディングにBOMを付けるかどうか <span class="added">(CotEditor 4.1で追加)</span></dd>
@@ -500,7 +500,7 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 
 <dl class="tree">
 	<dt><code class="command">string</code></dt>
-	<dd>選択範囲に関係なく、書類中の指定された範囲の文字列を返す。</dd>
+	<dd>選択範囲に関係なく、書類中の指定された範囲のテキストを返す。</dd>
 	<dd><dl class="subtree">
 		<dt><code>in</code> (list)</dt>
 		<dd>範囲</dd>
@@ -525,7 +525,7 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 
 <h4>詳細</h4>
 
-<p>無効な範囲を指定した場合などは、空の文字列を返します。</p>
+<p>無効な範囲を指定した場合などは、空のテキストを返します。</p>
 <p>このコマンドは指定された選択範囲を変更しません。</p>
 </section>
 
@@ -663,7 +663,7 @@ lengthが負のとき、指定される範囲は対象書類の文字列の後�
 
 <figure>
 	<pre class="source"><code class="AppleScript">normalize unicode selection of front document to NFC</code></pre>
-	<figcaption>選択位置の文字列をUnicode正規化する。</figcaption>
+	<figcaption>選択位置のテキストをUnicode正規化する。</figcaption>
 </figure>
 </section>
 

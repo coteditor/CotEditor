@@ -791,7 +791,7 @@
 			<li>Provide more Unicode information about the selected character in the document inspector.</li>
 			<li>Prevent the console from hiding when the app goes into the background.</li>
 			<li>Optimize the file browser’s performance when expanding a folder containing a large number of items.</li>
-			<li>Improve the trimming of whitespaces in the extracted outline labels.</li>
+			<li>Improve the trimming of whitespace in the extracted outline labels.</li>
 			<li>Modify the syntax highlighting rule to extract strings in the form of “begin-end” string pairs, even if one of those is escaped.</li>
 			<li>Adjust the editor’s initial scroll position.</li>
 			<li><span class="trivial">trivial</span>: Update the layout of the Donation settings pane.</li>
@@ -2340,7 +2340,7 @@
 			<li>Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.<ul>
 				<li><strong>for advanced users</strong>: Now you can also disable the feature entirely within the application by running the following command in Terminal, though it is not recommended:<br/>
 					<code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
-    		</ul></li>
+			</ul></li>
 			<li>Deprecate the <code>length</code> property in AppleScript (Use <code>number of characters of contents</code> instead).</li>
 			<li>Support the split cursor for bidirectional languages in multi-cursor editing.</li>
 			<li>Update the CotEditor’s setting view in the print panel.</li>
@@ -2725,7 +2725,7 @@
 			<li>Print the line numbers on the right side on printing if the writing direction is right-to-left.</li>
 			<li>Adjust the vertical position of line numbers on printing.</li>
 			<li>Restore the characters even incompatible with the document encoding when restoring documents from the last session.</li>
-			<li>Display code points instead of being left blank in the incompatible character list for whitespaces.</li>
+			<li>Display code points instead of being left blank in the incompatible character list for whitespace.</li>
 			<li>Update HTML syntax style to display <code>hr</code> elements as separators in the Outline.</li>
 			<li>Add steppers to the font setting controls.</li>
 			<li>Restore the file encoding to one the user explicitly set in the last session.</li>
@@ -3097,7 +3097,7 @@
 			<li>Add “Share” command to the menus for setting files, such as theme, syntax style, or multi replacement definition.</li>
 			<li>Resume “Select word” on top of the document if the search reached the end.</li>
 			<li>Update the visual style of the multiple replacement window on macOS 11.</li>
-			<li>Minimize scrolling when focusing on a text such as text search and outline selection.</li>
+			<li>Minimize scrolling when focusing on text such as text search and outline selection.</li>
 			<li>Improve the syntax highlighting algorithm around comments and quoted text.</li>
 			<li>Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.</li>
 			<li>Update the bundled cot command to enable reading large piped text entirely.</li>
@@ -3516,8 +3516,8 @@
 	<li>Fix an issue in theme editing that the values in the theme editor were not updated when the bundled theme currently edited is restored.</li>
 	<li>Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”</li>
 	<li>Fix the feedback animation when dragging and dropping items in a table.</li>
-    <li><span class="trivial">trivial</span>: Fix an issue that the menus in toolbar expended unwontedly after customizing toolbar.</li>
-    <li><span class="trivial">trivial</span>: Fix some layout corruptions under macOS Big Sur 11 (beta).</li>
+	<li><span class="trivial">trivial</span>: Fix an issue that the menus in toolbar expended unwontedly after customizing toolbar.</li>
+	<li><span class="trivial">trivial</span>: Fix some layout corruptions under macOS Big Sur 11 (beta).</li>
 </ul>
 </section>
 </article>
@@ -4211,7 +4211,7 @@
 
 <ul>
 	<li>Fix performance regression due to a bug fix in CotEditor 3.7.4.</li>
-	<li>Fix an issue where the snippet texts were still occasionally not editable from the preferences pane.</li>
+	<li>Fix an issue where the snippet text was still occasionally not editable from the preferences pane.</li>
 	<li>Improve stability.</li>
 </ul>
 </section>
@@ -4239,7 +4239,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where the snippet texts were occasionally not editable from the preferences pane.</li>
+	<li>Fix an issue where the snippet text was occasionally not editable from the preferences pane.</li>
 	<li>Fix an issue where the Unicode character name for <code>U+FEFF</code> (ZERO WIDTH NO-BREAK SPACE) was empty.</li>
 	<li>Fix an issue where the application did crash when the selected text contains some specific control characters.</li>
 	<li>Fix an issue where the word completion suggested words start with letters in the middle of the typed word.</li>
@@ -4339,7 +4339,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where trailing whitespaces before the insertion points could be wrongly removed on the first auto-saving.</li>
+	<li>Fix an issue where trailing whitespace before the insertion points could be wrongly removed on the first auto-saving.</li>
 	<li>Improve stability.</li>
 </ul>
 </section>
@@ -5649,7 +5649,7 @@
 <ul>
 	<li>Fix an issue where UNIX scripts could fail getting the contents of the document.</li>
 	<li>Fix an issue where font change in the preferences pane could be ignored.</li>
-	<li>Fix a potential issue where syntax keywords could be highlighted incorrectly if whitespaces accidentally get into keywords definition.</li>
+	<li>Fix a potential issue where syntax keywords could be highlighted incorrectly if whitespace accidentally get into keywords definition.</li>
 	<li>Workaround an issue where word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly.</li>
 	<li>Workaround an issue where the application could crash on document auto-saving.</li>
 </ul>
@@ -7952,7 +7952,7 @@
 	<li>Fix an issue that some objects couldn’t be handled via JavaScript for Automation on Yosemite.</li>
 	<li>Fix an issue that syntax style validator didn’t warn about keywords duplication that were newly added.</li>
 	<li>Fix an issue that syntax style mapping conflict tables were always blank.</li>
-	<li>Fix an issue that quoted texts and block comments at the end of document weren’t highlighted.</li>
+	<li>Fix an issue that quoted text and block comments at the end of document weren’t highlighted.</li>
 	<li>Fix an issue that text kerning was too narrow with non-antialiasing text (thanks to tsawada2-san).</li>
 	<li>Fix an issue that text view scrolls to the opposite side when line number view is dragged.</li>
 	<li>Fix an issue that <code>contents</code> property of document property couldn’t be set via AppleScript.</li>
@@ -8049,7 +8049,7 @@
 		<li>Cancel with ESC key.</li>
 	</ul></li>
 	<li>Apply theme color to the line number view.</li>
-	<li>On Mountain Lion and later, text view gets no drop-shadow by texts on semi-transparent.</li>
+	<li>On Mountain Lion and later, text view gets no drop-shadow by text on semi-transparent.</li>
 	<li>Define document types for CotEditor in more details and also add document icons for each.</li>
 	<li>Scroll line by line with an arrow key.</li>
 	<li>Adjust indent automatically on return just after <code>{</code> and <code>}</code> if Auto-Indent is on. (thanks to Naotaka-san).</li>
@@ -8160,7 +8160,7 @@
 	<li>Update some of alternative characters for full-width space char.</li>
 	<li>Improve appearance of the encoding list edit sheet.</li>
 	<li>Improve window size setting fields in preferences to move fields with tab key.</li>
-	<li>Tweak some texts in UI.</li>
+	<li>Tweak some text in UI.</li>
 	<li>Deprecate “Drag selected text immediately” setting.</li>
 	<li>Remove the output type keyword <code>Pasteboard puts</code> for CotEditor script, that was deprecated on CotEditor 0.7.2 and had remained for backwards compatibility.</li>
 	<li>Add hidden setting key <code>layoutTextVertical</code> (boolean) to set text orientation vertical as default.</li>
@@ -8332,7 +8332,7 @@
 	</ul></li>
 	<li>New color code panel:<ul>
 		<li>Support 3-digit Hex, CSS’s rgb(), rgba(), hsl() and hsla().</li>
-		<li>Fix an issue that the color selected in the color panel was applied also to texts in text view.</li>
+		<li>Fix an issue that the color selected in the color panel was applied also to the text in text view.</li>
 	</ul></li>
 	<li>Add “Input Char in Unicode Hex” feature to “Edit” menu.</li>
 	<li>Information to display in status bar become selectable.</li>
