@@ -1,6 +1,6 @@
 # Change Log
 
-6.2.0 (unreleased)
+6.2.0-beta (774)
 --------------------------
 
 ### New Features
@@ -19,7 +19,7 @@
 - [dev] Update the build environment to Xcode 26.2 beta 2.
 
 
-### Known issues
+### Known Issues
 
 - The text added to CotEditor 6.2.0 are not yet localized to Czech and Portuguese.
 
