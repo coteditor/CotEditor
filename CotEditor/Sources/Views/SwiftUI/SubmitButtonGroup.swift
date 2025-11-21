@@ -51,18 +51,14 @@ struct SubmitButtonGroup: View {
     var body: some View {
         
         EqualWidthHStack {
-            Button(role: .cancel, action: self.cancelAction) {
-                Text(.cancel)
-                    .frame(maxWidth: .infinity)
-            }
-            .keyboardShortcut(.cancelAction)
-            .environment(\.isEnabled, true)  // Cancel button is always active
+            Button(.cancel, role: .cancel, action: self.cancelAction)
+                .buttonSizing(.flexible)
+                .keyboardShortcut(.cancelAction)
+                .environment(\.isEnabled, true)  // Cancel button is always active
             
-            Button(action: self.submitAction) {
-                Text(self.submitLabel)
-                    .frame(maxWidth: .infinity)
-            }
-            .keyboardShortcut(.defaultAction)
+            Button(self.submitLabel, action: self.submitAction)
+                .buttonSizing(.flexible)
+                .keyboardShortcut(.defaultAction)
         }
     }
 }
