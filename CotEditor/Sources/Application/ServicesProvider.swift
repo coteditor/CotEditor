@@ -35,7 +35,7 @@ import AppKit
         guard let selection = pboard.string(forType: .string) else { return assertionFailure() }
         
         do {
-            try (NSDocumentController.shared as! DocumentController).openUntitledDocument(contents: selection, display: true)
+            try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: selection, display: true)
         } catch {
             errorPointer?.pointee = error as NSError
             NSApp.presentError(error)

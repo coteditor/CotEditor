@@ -59,7 +59,7 @@ import StringUtils
     }
     
     
-    /// Observe the contents and selections of the given text view to count.
+    /// Observe the content and selection of the given text view to count.
     ///
     /// - Parameter textView: The text view to observe.
     func observe(textView: NSTextView) {

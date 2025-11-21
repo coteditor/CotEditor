@@ -212,7 +212,7 @@ private extension IncompatibleCharactersView.Model {
     }
     
     
-    /// Scans the characters incompatible with the current encoding in the document contents.
+    /// Scans the characters incompatible with the current encoding in the document content.
     ///
     /// - Returns: An array of Item.
     /// - Throws: `CancellationError`

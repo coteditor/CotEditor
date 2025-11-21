@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ struct LineParseCache {
 
 extension LazyLineEndingCaching {
     
-    /// The UTF16-based length of the contents string (implementation of `LineRangeCalculating`).
+    /// The UTF16-based length of the content string (implementation of `LineRangeCalculating`).
     public var length: Int {
         
         self.string.utf16.count

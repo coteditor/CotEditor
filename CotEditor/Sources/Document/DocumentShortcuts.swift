@@ -59,12 +59,12 @@ struct CreateDocumentIntent: AppIntent {
     @Parameter(title: LocalizedStringResource("CreateDocumentIntent.Parameter.content",
                                               defaultValue: "Content", table: "Intents"),
                inputOptions: .init(multiline: true))
-    var contents: String?
+    var content: String?
     
     
     @MainActor func perform() async throws -> some IntentResult {
         
-        try (DocumentController.shared as! DocumentController).openUntitledDocument(contents: self.contents ?? "", display: true)
+        try (DocumentController.shared as! DocumentController).openUntitledDocument(content: self.content ?? "", display: true)
         
         return .result()
     }

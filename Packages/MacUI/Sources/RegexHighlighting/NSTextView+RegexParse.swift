@@ -34,7 +34,7 @@ public extension NSTextView {
     ///   - mode: Parse mode of regular expression.
     ///   - theme: The color theme for regex highlighting.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
-    /// - Returns: Whether the contents are not invalid.
+    /// - Returns: Whether the content are not invalid.
     @discardableResult
     final func highlightAsRegularExpressionPattern(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
         
@@ -74,7 +74,7 @@ public extension NSTextView {
     ///   - mode: Parse mode of regular expression.
     ///   - theme: The color theme for regex highlighting.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
-    /// - Returns: Whether the contents are not invalid.
+    /// - Returns: Whether the content are not invalid.
     private func highlightAsRegularExpressionPatternWithLegacyTextKit(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
         
         guard let layoutManager = unsafe self.layoutManager else { assertionFailure(); return false }

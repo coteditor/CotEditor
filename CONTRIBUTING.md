@@ -110,7 +110,7 @@ Especially, follow the terms of the following applications:
 - The Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-Additionally, we strongly recommend utilizing the [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS apps and frameworks.
+Additionally, we strongly recommend utilizing the [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the text localized by Apple for macOS apps and frameworks.
 You also need to take care of how Apple treats punctuation characters and symbols. For example, regarding quotation marks, they generally prefer the typographer's ones.
 
 
@@ -138,7 +138,7 @@ We don't accept pull requests for image resources. @1024jp enjoys creating and b
 
 ## Coding Style Guide
 
-Please follow the style of the existing codes in CotEditor.
+Please follow the style of the existing code in CotEditor.
 
 - Respect the existing coding style.
 - Leave reasonable comments.

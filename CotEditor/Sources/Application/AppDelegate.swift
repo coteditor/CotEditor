@@ -441,7 +441,7 @@ extension Logger {
         
         // open as document
         do {
-            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(contents: report.template, title: report.title, display: true)
+            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report.template, title: report.title, display: true)
             document.setSyntax(name: SyntaxName.markdown)
         } catch {
             NSApp.presentError(error)

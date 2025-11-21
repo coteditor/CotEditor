@@ -211,10 +211,10 @@ extension FileDropItem {
         }
         
         // get text content if needed
-        // -> Replace this at last because the file contents can contain other tokens.
+        // -> Replace this at last because the file content can contain other tokens.
         if self.format.contains(Variable.fileContent.token) {
-            let contents = try? String(contentsOf: droppedFileURL, encoding: .utf8)
-            dropText = dropText.replacing(Variable.fileContent.token, with: contents ?? "")
+            let content = try? String(contentsOf: droppedFileURL, encoding: .utf8)
+            dropText = dropText.replacing(Variable.fileContent.token, with: content ?? "")
         }
         
         return dropText

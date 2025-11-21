@@ -213,7 +213,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// Invoked when the receiver was focused to edit the contents.
+    /// Invoked when the receiver was focused to edit the content.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }

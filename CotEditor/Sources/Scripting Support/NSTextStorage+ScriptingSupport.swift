@@ -32,7 +32,7 @@ extension NSAttributedString: @retroactive @unchecked Sendable { }
 
 extension NSTextStorage {
     
-    /// Observes text storage update for in case when a part of the contents are directly edited from AppleScript.
+    /// Observes text storage update for in case when a part of the content is directly edited from AppleScript.
     ///
     /// example:
     /// ```AppleScript
@@ -45,7 +45,7 @@ extension NSTextStorage {
     ///
     /// - Parameters:
     ///   - block: The block to be executed when the textStorage is edited.
-    ///   - editedString: The contents of the textStorage after the editing.
+    ///   - editedString: The content of the textStorage after the editing.
     final func observeDirectEditing(block: @MainActor @escaping @Sendable (_ editedString: String) -> Void) {
         
         let notifications = NotificationCenter.default.notifications(named: NSTextStorage.didProcessEditingNotification, object: self)

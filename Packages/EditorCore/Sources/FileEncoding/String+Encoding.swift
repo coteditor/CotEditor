@@ -44,7 +44,7 @@ public extension String {
         /// The text encoding read from the file's extended attributes.
         public var xattrEncoding: String.Encoding?
         
-        /// Maximal length to scan encoding declaration, or `nil` it not refer to encoding tag in the file contents.
+        /// Maximal length to scan encoding declaration, or `nil` it not refer to encoding tag in the file content.
         public var tagScanLength: Int?
         
         
@@ -82,23 +82,23 @@ public extension String {
     static func string(data: Data, decodingStrategy: String.DecodingStrategy) throws(CocoaError) -> (String, FileEncoding) {
         
         // decode Data to String
-        let contents: String
+        let content: String
         let encoding: String.Encoding
         switch decodingStrategy {
             case .automatic(let options):
-                (contents, encoding) = try String.string(data: data, options: options)
+                (content, encoding) = try String.string(data: data, options: options)
             case .specific(let readingEncoding):
                 guard let string = String(bomCapableData: data, encoding: readingEncoding) else {
                     throw CocoaError(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: readingEncoding.rawValue])
                 }
-                contents = string
+                content = string
                 encoding = readingEncoding
         }
         
         let hasUTF8BOM = (encoding == .utf8) && data.starts(with: Unicode.BOM.utf8.sequence)
         let fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: hasUTF8BOM)
         
-        return (contents, fileEncoding)
+        return (content, fileEncoding)
     }
     
     
@@ -125,7 +125,7 @@ extension String {
         
         // try interpreting with xattr encoding
         if let xattrEncoding = options.xattrEncoding {
-            // just trust xattr encoding if the contents is empty
+            // just trust xattr encoding if the content is empty
             if let string = data.isEmpty ? "" : String(bomCapableData: data, encoding: xattrEncoding) {
                 return (string, xattrEncoding)
             }

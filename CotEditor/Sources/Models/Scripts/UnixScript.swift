@@ -120,7 +120,7 @@ struct UnixScript: Script {
     
     // MARK: Private Methods
     
-    /// Reads the document contents.
+    /// Reads the document content.
     ///
     /// - Parameters:
     ///   - type: The type of input target.
@@ -170,7 +170,7 @@ struct UnixScript: Script {
                 editor.insert(string: output, at: .afterAll)
                 
             case .newDocument:
-                try (DocumentController.shared as! DocumentController).openUntitledDocument(contents: output, display: true)
+                try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
                 
             case .pasteboard:
                 NSPasteboard.general.clearContents()

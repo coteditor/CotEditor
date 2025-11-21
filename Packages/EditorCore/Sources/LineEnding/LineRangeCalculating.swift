@@ -29,7 +29,7 @@ public import ValueRange
 
 public protocol LineRangeCalculating {
     
-    /// The UTF16-based length of the contents string.
+    /// The UTF16-based length of the content string.
     var length: Int { get }
     
     /// Line Endings sorted by location.
@@ -83,10 +83,10 @@ public extension LineRangeCalculating {
     }
     
     
-    /// Returns the range of the contents lines including the given range.
+    /// Returns the range of the content lines including the given range.
     ///
     /// - Parameter range: The range of character for finding the line range.
-    /// - Returns: The character range of the contents line.
+    /// - Returns: The character range of the content lines.
     func lineContentsRange(for range: NSRange) -> NSRange {
         
         assert(range.upperBound <= self.length)

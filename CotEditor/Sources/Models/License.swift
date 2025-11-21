@@ -60,7 +60,7 @@ enum License {
     /// Loads a text resource from the app bundle under the `Licenses` subdirectory.
     ///
     /// - Parameter name: Filename without extension.
-    /// - Returns: The file contents as a `String`.
+    /// - Returns: The file content as a `String`.
     /// - Throws: `CocoaError(.fileReadNoSuchFile)` if the resource is missing, or file read errors.
     private static func load(name: String) throws -> String {
         

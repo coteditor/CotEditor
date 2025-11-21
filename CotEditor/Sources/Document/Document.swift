@@ -263,7 +263,7 @@ extension NSTextView: EditorCounter.Source { }
             let windowController = DocumentWindowController(document: self)
             self.addWindowController(windowController)
             
-            // avoid showing "edited" indicator in the close button when the contents are empty
+            // avoid showing "edited" indicator in the close button when the content is empty
             if !Self.autosavesInPlace {
                 self.textStorageObserver = NotificationCenter.default
                     .publisher(for: NSTextStorage.didProcessEditingNotification, object: self.textStorage)
@@ -381,7 +381,7 @@ extension NSTextView: EditorCounter.Source { }
         // .readingEncoding is only valid once
         self.readingEncoding = nil
         
-        // store file data in order to check the file contents identity in `presentedItemDidChange()`
+        // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = data
         
         // use file attributes only if `fileURL` exists
@@ -418,7 +418,7 @@ extension NSTextView: EditorCounter.Source { }
             
             // determine syntax (only on the first file open)
             if !self.isInitialized {
-                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, contents: string)
+                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
                 self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
             }
             self.isInitialized = true
@@ -461,7 +461,7 @@ extension NSTextView: EditorCounter.Source { }
     
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
         
-        // check if the contents can be saved with the current text encoding
+        // check if the content can be saved with the current text encoding
         guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
             let error = DocumentSavingError(.lossyEncoding(self.fileEncoding), attempter: self)
             return completionHandler(error)
@@ -505,7 +505,7 @@ extension NSTextView: EditorCounter.Source { }
             }
             if error != nil { return }
             
-            // store file data in order to check the file contents identity in `presentedItemDidChange()`
+            // store file data in order to check the file content identity in `presentedItemDidChange()`
             if saveOperation != .autosaveElsewhereOperation {
                 assert(self.lastSavedData != nil)
                 self.fileData = self.lastSavedData
@@ -514,9 +514,9 @@ extension NSTextView: EditorCounter.Source { }
             
             // apply syntax that is inferred from the filename or the shebang
             if saveOperation == .saveAsOperation,
-               let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, contents: self.textStorage.string)
+               let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: self.textStorage.string)
             {
-                // -> Due to the async-saving, self.textStorage can be changed from the actual saved contents.
+                // -> Due to the async-saving, self.textStorage can be changed from the actual saved content.
                 //    But we don't care about that.
                 self.setSyntax(name: syntaxName)
             }
@@ -596,7 +596,7 @@ extension NSTextView: EditorCounter.Source { }
     
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        // suppress save dialog if contents are empty and not saved explicitly
+        // suppress save dialog if the content is empty and not saved explicitly
         suppression: if self.isDraft || self.fileURL == nil, self.textStorage.string.isEmpty {
             // delete autosaved file if exists
             // -> An engineer at Apple told there is no need to wrap the file access here with NSFileCoordinator (2023-06).
@@ -835,7 +835,7 @@ extension NSTextView: EditorCounter.Source { }
         
         guard strategy != .ignore else { return }  // don't check twice if already notified
         
-        // check if the file contents were changed from the stored file data
+        // check if the file content were changed from the stored file data
         let didChange: Bool
         let modificationDate: Date?
         do {
@@ -950,10 +950,10 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    /// Checks if the contents can be converted in the given encoding without loss of information.
+    /// Checks if the content can be converted in the given encoding without loss of information.
     ///
     /// - Parameter fileEncoding: The text encoding to test, or `nil` to test with the current file encoding.
-    /// - Returns: `true` if the contents can be encoded in encoding without loss of information; otherwise, `false`.
+    /// - Returns: `true` if the content can be encoded in encoding without loss of information; otherwise, `false`.
     func canBeConverted(to fileEncoding: FileEncoding? = nil) -> Bool {
         
         self.textStorage.string.canBeConverted(to: (fileEncoding ?? self.fileEncoding).encoding)
@@ -1102,7 +1102,7 @@ extension NSTextView: EditorCounter.Source { }
     func invalidateSyntax(filename: String) {
         
         guard
-            let syntaxName = SyntaxManager.shared.settingName(documentName: filename, contents: self.textStorage.string),
+            let syntaxName = SyntaxManager.shared.settingName(documentName: filename, content: self.textStorage.string),
             syntaxName != self.syntaxParser.name
         else { return }
         
@@ -1150,7 +1150,7 @@ extension NSTextView: EditorCounter.Source { }
     
     /// Creates a unique file URL for `autosavedContentsFileURL` to use in Autosave Elsewhere.
     ///
-    /// Let the contents backup in `~/Library/Autosaved Information/` directory,
+    /// Let the content backup in `~/Library/Autosaved Information/` directory,
     /// since the default backup URL for the Save Elsewhere is the same directory as the fileURL,
     /// which doesn't work in a Sandbox environment.
     ///
@@ -1230,7 +1230,7 @@ extension NSTextView: EditorCounter.Source { }
         
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         
-        // check if the file contents were changed from the stored file data
+        // check if the file content was changed from the stored file data
         var didChange = false
         var modificationDate: Date?
         var coordinationError: NSError?
@@ -1241,7 +1241,7 @@ extension NSTextView: EditorCounter.Source { }
                 modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
                 guard modificationDate != self.fileModificationDate else { return }
                 
-                // check if file contents were changed from the stored file data
+                // check if file content was changed from the stored file data
                 let data = try Data(contentsOf: newURL)
                 didChange = data != self.fileData
             } catch {
