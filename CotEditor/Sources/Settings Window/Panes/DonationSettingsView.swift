@@ -285,7 +285,7 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                         }
                     }
                 } label: {
-                    Text((product.price * Decimal(self.quantity)).formatted(product.priceFormatStyle))
+                    Text(product.price * Decimal(self.quantity), format: product.priceFormatStyle)
                         .font(.system(size: 11))
                 }
                 .monospacedDigit()
