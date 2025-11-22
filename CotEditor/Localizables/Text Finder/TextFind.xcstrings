@@ -4443,13 +4443,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unescape meta characters with backslash in replacement text."
+            "value" : "Unescape metacharacters with backslash in replacement text."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unescape meta characters with backslash in replacement tekst."
+            "value" : "Unescape metacharacters with backslash in replacement text."
           }
         },
         "es" : {
