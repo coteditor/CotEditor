@@ -1445,6 +1445,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         //    the color in the Color panel (2025-11, macOS 26.2)
         if self.textColor != theme.text.color {
             self.textColor = theme.text.color
+        } else if self.typingAttributes[.foregroundColor] as? NSColor != theme.text.color {
+            // for case when the textView was created for sub split editor
+            self.typingAttributes[.foregroundColor] = theme.text.color
         }
         
         self.backgroundColor = theme.background.color

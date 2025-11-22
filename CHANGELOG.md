@@ -8,6 +8,11 @@
 - [beta][trivial] Update the user guide.
 
 
+### Fixes
+
+- Fix an issue in CotEditor 6.1.2 where the text entered in a split editor does not match the theme's text color.
+
+
 
 6.2.0-beta (774)
 --------------------------
