@@ -34,7 +34,7 @@ from subprocess import Popen, PIPE, CalledProcessError
 
 
 # meta data
-__version__ = '5.1.0'
+__version__ = '6.2.0'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -220,8 +220,8 @@ class ScriptableApplication(object):
                 'To authorize cot command, select ' +
                 Style.bold(self.name) + ' under your client application, '
                 'such as Terminal, in ' +
-                Style.bold('System Preferences') + ' > ' +
-                Style.bold('Security & Privacy') + ' > ' +
+                Style.bold('System Settings') + ' > ' +
+                Style.bold('Privacy & Security') + ' > ' +
                 Style.bold('Privacy') + ' > ' +
                 Style.bold('Automation') + '.\n'
             )
