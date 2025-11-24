@@ -1453,7 +1453,7 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Definicje wielokrotnych zastąpień"
           }
         },
