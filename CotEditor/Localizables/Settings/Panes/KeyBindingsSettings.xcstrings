@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "To change a shortcut, click the key column, and then type the new keys." : {
+    "To change a shortcut, click the key column, then type the new keys." : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -18,7 +18,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To change a shortcut, click the key column, and then type the new keys."
+            "value" : "To change a shortcut, click the key column, then type the new keys."
           }
         },
         "es" : {
@@ -54,7 +54,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Om een sneltoets te wijzigen, klik je op de sleutelkolom en typ je de nieuwe toetsen."
+            "value" : "Als je een toetscombinatie wilt wijzigen, klik je op de sleutelkolom en typ je de nieuwe toetsen."
           }
         },
         "pl" : {

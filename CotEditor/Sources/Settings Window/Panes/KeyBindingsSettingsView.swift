@@ -36,7 +36,7 @@ struct KeyBindingsSettingsView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("To change a shortcut, click the key column, and then type the new keys.", tableName: "KeyBindingsSettings")
+            Text("To change a shortcut, click the key column, then type the new keys.", tableName: "KeyBindingsSettings")
                 .lineLimit(10)
                 .fixedSize(horizontal: false, vertical: true)
             
