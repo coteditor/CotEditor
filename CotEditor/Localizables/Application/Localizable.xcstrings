@@ -6733,6 +6733,12 @@
             "value" : "Otwórz miejsce oryginału, aby udzielić dostępu aplikacji CotEditor."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abra o local original para conceder acesso ao CotEditor."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

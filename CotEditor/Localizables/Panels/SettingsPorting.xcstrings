@@ -183,6 +183,24 @@
             }
           }
         },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sintaxe personalizada"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sintaxes personalizadas"
+                }
+              }
+            }
+          }
+        },
         "ru" : {
           "variations" : {
             "plural" : {
@@ -434,6 +452,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld własnego motywu"
+                }
+              }
+            }
+          }
+        },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld tema personalizado"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld temas personalizados"
                 }
               }
             }
@@ -696,6 +732,24 @@
             }
           }
         },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definição"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definições"
+                }
+              }
+            }
+          }
+        },
         "ru" : {
           "variations" : {
             "plural" : {
@@ -826,6 +880,12 @@
             "value" : "Wybierz archiwum ustawień CotEditora, które chcesz importować."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escolha um arquivo de configurações do CotEditor para importar."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -913,6 +973,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "To archiwum ustawień zostało utworzone przy użyciu innej wersji CotEditora (%@)."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este arquivo de configurações foi criado por uma versão diferente do CotEditor (%@)."
           }
         },
         "ru" : {
@@ -1004,6 +1070,12 @@
             "value" : "Nadal możesz importować te ustawienia, choć niektóre z nich mogą być niekompatybilne."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você ainda pode importar estes itens, mas algumas configurações podem ser incompatíveis."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1084,6 +1156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eksportuj wybrane ustawienia w formie archiwum, by umożliwić ich importowanie do innych komputerów."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporte as configurações selecionadas como um arquivo para permitir a importação em outros computadores."
           }
         },
         "ru" : {
@@ -1457,6 +1535,12 @@
             "value" : "Definicje wielokrotnych zastąpień"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definições de Substituição Múltipla"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1550,6 +1634,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wszystkie ustawienia w oknie Ustawienia"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todas as configurações na janela de Configurações"
           }
         },
         "ru" : {
@@ -1736,6 +1826,12 @@
             "value" : "Składnie"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxes"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1823,6 +1919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Motywy"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temas"
           }
         },
         "ru" : {

@@ -7649,6 +7649,12 @@
             "value" : "Otwórz oryginał"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Original"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

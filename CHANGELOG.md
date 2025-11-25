@@ -13,6 +13,11 @@
 - Fix an issue in CotEditor 6.1.2 where the text entered in a split editor does not match the theme's text color.
 
 
+### Known Issues
+
+- The text added to CotEditor 6.2.0 are not yet localized to Czech.
+
+
 
 6.2.0-beta (774)
 --------------------------

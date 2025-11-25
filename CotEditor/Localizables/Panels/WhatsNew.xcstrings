@@ -253,6 +253,12 @@
             "value" : "Oryginalne dokumenty kryjące się za aliasami i połączeniami symbolicznymi można teraz otwierać bezpośrednio w bieżącym oknie z poziomu przeglądarki plików."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os documentos originais por trás de aliases e links simbólicos agora podem ser abertos diretamente na janela atual através do navegador de arquivos."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -340,6 +346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Łatwiejszy dostęp do aliasów"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acesso mais fácil a aliases"
           }
         },
         "ru" : {
@@ -431,6 +443,12 @@
             "value" : "* Jeśli oryginał jest folderem, zostanie otwarty w nowym oknie."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*Se o original for uma pasta, será aberto em uma nova janela."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -518,6 +536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eksportuj i importuj z poziomu menu Plik wszystkie ustawienia CotEditora, własne składnie, motywy oraz definicje wielokrotnych zastąpień, aby łatwo przenieść swoje środowisko na innego Maca."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporte e importe todas as suas configurações do CotEditor, sintaxes personalizadas, temas e definições de Substituição Múltipla do menu Arquivo para mover facilmente seu ambiente para outro Mac."
           }
         },
         "ru" : {
@@ -609,6 +633,12 @@
             "value" : "Pomoc w migracji"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auxilie sua migração"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -698,6 +728,12 @@
             "value" : "Wbudowany podręcznik użytkownika, dostępny w języku angielskim, oferuje teraz bardziej przejrzyste wyjaśnienia, bogatszą treść i odświeżony układ, dostosowany do najnowszej wersji systemu macOS."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O guia do usuário integrado agora oferece explicações mais claras, conteúdo mais rico e um layout renovado alinhado com o macOS mais recente."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -785,6 +821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twój wbudowany przewodnik, nowo dopracowany"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seu guia integrado, recém-aprimorado"
           }
         },
         "ru" : {

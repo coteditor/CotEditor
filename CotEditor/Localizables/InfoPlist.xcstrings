@@ -1190,6 +1190,12 @@
             "value" : "archiwum ustawień CotEditora"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arquivo de Configurações do CotEditor"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
