@@ -5,7 +5,8 @@
 
 ### Improvements
 
-- [beta][trivial] Update the user guide.
+- [beta] Add missing Portuguese localizations.
+- [beta] Update the user guide.
 
 
 ### Fixes
