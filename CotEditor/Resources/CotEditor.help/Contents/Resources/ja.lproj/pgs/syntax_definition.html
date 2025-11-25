@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="ハイライト, カラーリング, シンタックス, アウトライン, 入力補完候補"/>
+	<meta name="keywords" content="ハイライト, カラーリング, シンタックス, アウトライン, 入力補完"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
@@ -14,53 +14,48 @@
 
 <h1>MacのCotEditorでシンタックスを定義する</h1>
 
-<p>CotEditorの<dfn>シンタックス</dfn>は、シンタックスハイライトやアウトラインの抽出ルールなど、書類の編集に関するいくつかの機能の振る舞いを書類のタイプ（シンタックス）毎にまとめて定義して書類によって簡単に切り替えられるようにしたものです。</p>
-
-<p>CotEditorは書類のタイプによってシンタックスを自動で選んで適用します。ユーザはツールバーや「フォーマット」メニューの「シンタックス」メニューから手動で書類のシンタックスを変更することもできます。どのような書類にそのシンタックスを適用するかのルールもシンタックス自身が定義します。CotEditorが適用するシンタックスをどのように決定するかは、<a href="syntax_file_mapping.html">ファイルをシンタックスに関連付ける</a>を参照してください。</p>
-
-<p>CotEditorでは、シンタックスが以下の機能の振る舞いを定義しています:</p>
-<ul>
-	<li>シンタックスの種類</li>
-	<li>シンタックスハイライト</li>
-	<li>アウトラインの抽出ルール</li>
-	<li>コメント記号</li>
-	<li>入力補完</li>
-	<li>ファイルの関連付け</li>
-</ul>
+<p>CotEditorのシンタックスエディタで、CotEditor内蔵のシンタックスを編集したり、独自のシンタックスを追加することができます。</p>
 
 
-<h2>シンタックスを管理する</h2>
+<h2>シンタックスエディタを開く</h2>
 
-<p>CotEditorはメジャーな言語のシンタックスをすでに同梱しています。さらに、ユーザはそれらを改変したり独自のシンタックスを追加したりすることができます。シンタックスを管理するには、「CotEditor」＞「設定」と選択してから、「フォーマット」をクリックします。すべての利用可能なシンタックスが「利用可能なシンタックス」リストに列挙されています。</p>
-
-<p>新しいシンタックスを追加するには、リスト下部の「追加」（プラスアイコン）ボタンをクリックします。既存のシンタックスを参考にして独自のシンタックスを作成するには、アクションポップアップメニュー <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">（3点リーダシンボル）</object> から「複製」を選択してください。</p>
-
-<h2>シンタックス定義を編集する</h2>
-
-<p>シンタックス定義はシンタックスエディタで編集できます。シンタックスエディタを開く手順は次の通りです。</p>
+<p>シンタックスエディタを開くには、以下の操作を行います:</p>
 <ol>
-	<li>「利用可能なシンタックス」リストから設定したいシンタックスを選択します。</li>
-	<li>シンタックス名をダブルクリック、または「編集」ボタンをクリックします。</li>
+	<li>「CotEditor」＞「設定」と選択してから、「フォーマット」をクリックします。</li>
+	<li><ul>
+		<li>既存のシンタックスをカスタマイズする場合:<ol>
+			<li>「利用可能なシンタックス」リストから設定したいシンタックスを選択します。</li>
+			<li>シンタックス名をダブルクリック、または「編集」ボタンをクリックします。</li>
+		</ol></li>
+		<li>新しいシンタックスを定義する場合:<ol>
+			<li>「利用可能なシンタックス」リストの下の「追加」ボタンをクリックします。</li>
+		</ol></li>
+	</ul></li>
 </ol>
+
+
+
+<h2>シンタックスの各機能を定義する</h2>
 
 <p>シンタックスエディタでは、シンタックスの以下の機能が編集できます。</p>
 
 <ul>
-	<li><i>名前</i>: シンタックスの名前を設定します。</li>
-	<li><i>種類</i>: シンタックスの言語がコーディング用途か一般的な文書かを設定します。この設定は、<a href="settings_mode.html">「モード」設定</a>で設定するエディタの振る舞いやフォントに影響します。</li>
-	<li><a href="syntax_highlight_settings.html"><i>ハイライト要素</i></a>: シンタックスハイライトのカラーリング条件を設定します。</li>
-	<li><a href="syntax_comment_settings.html">コメント</a>: コメント記号とコメントのシンタックスハイライト条件を設定します。</li>
-	<li><a href="syntax_outline_settings.html">アウトライン</a>: アウトライン機能の項目抽出条件とフォーマット条件を設定します。</li>
-	<li><a href="syntax_completion_settings.html">入力補完</a>: 入力補完候補を設定します。</li>
-	<li><a href="syntax_file_mapping.html">ファイル関連付け</a>: シンタックスと関連付けるファイルを設定します。</li>
-	<li><a href="syntax_metadata_settings.html">情報</a>: シンタックス定義のメタ情報を設定します。</li>
-	<li><i>検証</i>: 定義に文法やフォーマット上のエラーが存在しないかを検証します。</li>
+	<li><strong>名前</strong>: シンタックスの名前を設定します。</li>
+	<li><strong>種類</strong>: シンタックスの言語がコーディング用途か一般的な文書かを設定します。この設定は、<a href="settings_mode.html">「モード」設定</a>で設定するエディタの振る舞いやフォントに影響します。</li>
+	<li><strong><a href="syntax_highlight_settings.html">ハイライト要素</a></strong>: シンタックスハイライトのカラーリング条件を設定します。</li>
+	<li><strong><a href="syntax_comment_settings.html">コメント</a></strong>: コメント記号とコメントのシンタックスハイライト条件を設定します。</li>
+	<li><strong><a href="syntax_outline_settings.html">アウトライン</a></strong>: アウトライン機能の項目抽出条件とフォーマット条件を設定します。</li>
+	<li><strong><a href="syntax_completion_settings.html">入力補完</a></strong>: 入力補完候補を設定します。</li>
+	<li><strong><a href="syntax_file_mapping.html">ファイル関連付け</a></strong>: シンタックスと関連付けるファイルを設定します。</li>
+	<li><strong><a href="syntax_metadata_settings.html">情報</a></strong>: シンタックス定義のメタ情報を設定します。</li>
+	<li><strong>検証</strong>: 定義に文法やフォーマット上のエラーが存在しないかを検証します。</li>
 </ul>
 
 
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
+	<li><a href="syntax_overview.html">シンタックスを解析する</a></li>
 	<li><a href="settings_format.html">「フォーマット」設定を変更する</a></li>
 </ul>
 </section>

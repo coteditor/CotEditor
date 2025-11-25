@@ -236,6 +236,9 @@ dd + dt {
 dd + dd dl {
 	margin-top: 0.5rem;
 }
+dd p {
+	margin: 0;
+}
 
 table {
 	font-size: 100%;

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="syntax highlighting, syntax, Outline, completion"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Analyze the syntax of a document in CotEditor on Mac</title>
+</head>
+
+<body>
+
+<h1>Analyze the syntax of a document in CotEditor on Mac</h1>
+
+<p>CotEditor continuously analyzes the contents of your document and smartly supports text editing by visualizing structure with color, extracting an outline, and inserting comment delimiters according to each language’s grammar. These behaviors are organized as a “syntax” for each document type.</p>
+
+<p>A syntax defines the behaviors of the following features:</p>
+<dl>
+	<dt>Syntax highlighting</dt>
+	<dd>
+		<p><dfn>Syntax highlighting</dfn> colors elements in a document according to predefined rules.</p>
+		<p>For example, in program source code, commands and variables can be color-coded according to their grammatical roles, making the structure of the code easier to understand. Syntax highlighting is also useful for structured formats like Markdown, or for drawing attention to characters or words that should not be used.</p>
+		<p>A syntax defines the semantic rules for highlighting, while a <a href="howto_customize_theme.html">theme</a> specifies the colors for highlighting.</p>
+	</dd>
+	
+	<dt>Outline extraction</dt>
+	<dd>
+		<p>The <dfn>Outline feature</dfn> extracts specific parts of a document based on the syntax definition and generates an outline list.</p>
+		<p>For instractions how to use the Outline feature, see <a href="howto_show_outlinemenu.html">Inspect the outline of a document</a>.</p>
+	</dd>
+	
+	<dt>Comment out</dt>
+	<dd>
+		<p>The Comment Out command intelligently inserts or removes the appropriate comment delimiters used by programming languages in the selected text. Comment-related commands are grouped in the Text &gt; Comment menu.</p>
+	</dd>
+	
+	<dt>Word completion</dt>
+	<dd>
+		<p>You can include syntax-specific reserved words to the completion list.</p>
+		<p>For details about the completion feature, see <a href="howto_complete.html">Complete a word</a>.</p>
+	</dd>
+	
+	<dt>Mode of the editor</dt>
+	<dd>
+		<p>A mode is a feature that lets you change the editor’s font and behavior in a unified way according to the type of document. The editor can can switch its mode automatically based on the “kind” of the syntax applied to the document, or you can create individual mode settings for a syntax.</p>
+		<p>For details, see <a href="settings_mode.html">Change Mode settings</a>.</p>
+	</dd>
+</dl>
+
+<p>CotEditor includes a wide range of built-in syntaxes for many major languages.</p>
+
+
+<h2>Set the syntax of a document</h2>
+
+<p>CotEditor automatically applies a syntax based on the document type. You can also set it manually from the Syntax menu in the toolbar or the Format menu.</p>
+
+<p>Each syntax defines its own file-mapping rules. To learn how CotEditor determines which syntax to apply, see <a href="syntax_file_mapping.html">Map files to syntaxes</a>.</p>
+
+
+<h2>Manage syntaxes</h2>
+
+<p>You can edit the built-in syntaxes or add your own. To manage syntaxes, choose CotEditor &gt; Settings, then click Format. All available syntaxes are listed in the “Available syntaxes” list.</a>
+
+<p>For mdetails on editing syntaxes, see <a href="syntax_definition.html">Define a syntax</a></p>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="syntax_definition.html">Define a syntax</a></li>
+	<li><a href="settings_format.html">Change Format settings</a></li>
+</ul>
+</section>
+
+</body>
+</html>

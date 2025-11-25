@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="syntax coloring, syntax style, Outline, possible completions"/>
+	<meta name="keywords" content="syntax coloring, syntax style, Outline, completion"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
@@ -14,47 +14,38 @@
 
 <h1>Define a syntax in CotEditor on Mac</h1>
 
-<p>CotEditor's <dfn>syntax</dfn> defines the behavior of several functions related to document editing, such as syntax highlighting, extraction rules of Outline, grouped by document type (syntax) so that they can easily be switched depending on the document.</p>
-
-<p>CotEditor automatically applies one of syntaxes based on the document type. You also can manually set it by selecting a new one from the Syntax menu in the toolbar or the Format menu. A syntax itself defines the rules to which documents the syntax is applied. See <a href="syntax_file_mapping.html">Map files to syntaxes</a> to know how CotEditor selects the syntax for a document.</p>
-
-<p>In CotEditor, a syntax defines the behaviors of the following features:</p>
-<ul>
-	<li>Kind of syntax</li>
-	<li>Syntax highlighting</li>
-	<li>Extraction rules of Outline</li>
-	<li>Comment delimiters</li>
-	<li>Word completion</li>
-	<li>File mapping</li>
-</ul>
+<p>Use the syntax editor in CotEditor to edit the built-in syntaxes or create your own.</p>
 
 
+<h2>Open the syntax editor</h2>
 
-<h2>Manage syntaxes</h2>
-
-<p>CotEditor bundles syntax definitions for major languages. You can also modify them or add new syntaxes. To manage available syntaxes, choose CotEditor &gt; Settings, then click Format. All syntaxes available are listed in the “Available syntaxes” list.</a>
-
-<p>To add a new syntax, click the Add (plus icon) button below the list. To use an existing syntax as a template for creating your own, choose the Duplicate command in the Action pop-up menu <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">with the ellipsis symbol</object> instead.</p>
-
-
-<h2>Edit syntax definition</h2>
-
-<p>A syntax definition can be edited through the syntax editor. To open the editor:</p>
+<p>To open the syntax editor, do the following:</p>
 <ol>
-	<li>Select the syntax you want to customize from the Available syntaxes list.</li>
-	<li>Double-click the syntax name, or click the Edit button.</li>
+	<li>Choose CotEditor &gt; Settings, then click Format.</li>
+	<li><ul>
+		<li>To customize an existing syntax:<ol>
+			<li>Select the syntax you want to customize in the “available syntaxes” list.</li>
+			<li>Double-click the syntax name, or click the Edit button.</li>
+		</ol></li>
+		<li>To define a new syntax:<ol>
+			<li>Click the Add button below the “available syntaxes” list.</li>
+		</ol></li>
+	</ul></li>
 </ol>
 
-<p>In the syntax editor, set settings for the syntax:</p>
+
+<h2>Edit a syntax definition</h2>
+
+<p>In the syntax editor, you can configure the following features:</p>
 <ul>
-	<li><i>Name</i>: Change the syntax name.</li>
-	<li><i>Kind</i>: Define whether the syntax is for coding or for general purpose. This option affects the editor’s font and behavior set in <a href="settings_mode.html">Mode settings</a>.</li>
-	<li><a href="syntax_highlight_settings.html"><i>highlighting elements</i></a>: Define the rules of the syntax highlighting.</li>
-	<li><a href="syntax_comment_settings.html">Comments</a>: Define the comment delimiters and syntax highlighting for comments.</li>
-	<li><a href="syntax_outline_settings.html">Outline</a>: Define the extraction and formatting rules of outline items for the Outline feature.</li>
-	<li><a href="syntax_completion_settings.html">Completion</a>: Define the text completion candidates.</li>
-	<li><a href="syntax_file_mapping.html">File Mapping</a>: Define the file attributes to map the syntax.</li>
-	<li><a href="syntax_metadata_settings.html">Information</a>: Change the metadata of the syntax definition.</li>
+	<li><i>Name</i>: Set the name of the syntax.</li>
+	<li><i>Kind</i>: Specify whether the syntax is for coding or for general purpose. This option affects the editor’s font and behavior set in the <a href="settings_mode.html">Mode settings</a>.</li>
+	<li><a href="syntax_highlight_settings.html"><i>highlighting elements</i></a>: Define the rules for syntax highlighting.</li>
+	<li><a href="syntax_comment_settings.html">Comments</a>: Define comment delimiters and related highlighting rules.</li>
+	<li><a href="syntax_outline_settings.html">Outline</a>: Define how outline items are extracted and formatted.</li>
+	<li><a href="syntax_completion_settings.html">Completion</a>: Define completion candidates.</li>
+	<li><a href="syntax_file_mapping.html">File Mapping</a>: Define what kind of files use this syntax.</li>
+	<li><a href="syntax_metadata_settings.html">Information</a>: Edit metadata for the syntax definition.</li>
 	<li><i>Validation</i>: Verify that no grammatical or formatting errors exist in the definition.</li>
 </ul>
 
@@ -63,6 +54,7 @@
 <section id="cf">
 <h2>See also</h2>
 <ul>
+	<li><a href="syntax_overview.html">Analyze the syntax of a document</a></li>
 	<li><a href="settings_format.html">Change Format settings</a></li>
 </ul>
 </section>
