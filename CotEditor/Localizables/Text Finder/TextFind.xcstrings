@@ -7429,13 +7429,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Input text to find."
+            "value" : "Enter text to find."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Input text to find."
+            "value" : "Enter text to find."
           }
         },
         "es" : {

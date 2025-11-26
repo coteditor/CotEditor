@@ -10712,7 +10712,7 @@
       }
     },
     "631.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Input Backslash\"; ObjectID = \"631\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Insert Backslash\"; ObjectID = \"631\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -10730,13 +10730,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Input Backslash"
+            "value" : "Insert Backslash"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Input Backslash"
+            "value" : "Insert Backslash"
           }
         },
         "es" : {
@@ -10814,7 +10814,7 @@
       }
     },
     "633.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Input Yen Mark\"; ObjectID = \"633\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Insert Yen Mark\"; ObjectID = \"633\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -10832,13 +10832,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Input Yen Mark"
+            "value" : "Insert Yen Mark"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Input Yen Mark"
+            "value" : "Insert Yen Mark"
           }
         },
         "es" : {
@@ -22646,7 +22646,7 @@
       }
     },
     "tWx-pj-3PL.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Input in Unicode Code Point…\"; ObjectID = \"tWx-pj-3PL\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Insert by Unicode Code Point…\"; ObjectID = \"tWx-pj-3PL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -22664,13 +22664,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Input in Unicode Code Point…"
+            "value" : "Insert by Unicode Code Point…"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Input in Unicode Code Point…"
+            "value" : "Insert by Unicode Code Point…"
           }
         },
         "es" : {

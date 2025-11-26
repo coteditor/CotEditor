@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -270,17 +270,17 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="ngg-iN-BYh"/>
-                                        <menuItem title="Input Backslash" secondaryImage="character.cursor.ibeam" catalog="system" keyEquivalent="¥" id="631">
+                                        <menuItem title="Insert Backslash" secondaryImage="character.cursor.ibeam" catalog="system" keyEquivalent="¥" id="631">
                                             <connections>
                                                 <action selector="inputBackSlash:" target="Ady-hI-5gd" id="PpN-Zj-7Zc"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Input Yen Mark" keyEquivalent="y" id="633">
+                                        <menuItem title="Insert Yen Mark" keyEquivalent="y" id="633">
                                             <connections>
                                                 <action selector="inputYenMark:" target="Ady-hI-5gd" id="4HI-qU-zlg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Input in Unicode Code Point…" id="tWx-pj-3PL">
+                                        <menuItem title="Insert by Unicode Code Point…" id="tWx-pj-3PL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showUnicodeInputPanel:" target="Ady-hI-5gd" id="c4v-c9-nMK"/>

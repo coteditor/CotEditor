@@ -54,7 +54,7 @@ extension TextFind.Error: @retroactive LocalizedError {
                 reason
             case .emptyFindString:
                 String(localized: "TextFind.Error.emptyFindString.recoverySuggestion",
-                       defaultValue: "Input text to find.",
+                       defaultValue: "Enter text to find.",
                        table: "TextFind")
             case .emptyInSelectionSearch:
                 String(localized: "TextFind.Error.emptyInSelectionSearch.recoverySuggestion",

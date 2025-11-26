@@ -41,12 +41,22 @@ struct ExportSettingsView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Export Settings", tableName: "SettingsPorting")
-                .font(.system(size: 14, weight: .semibold))
-            
-            Text("Export selected settings as an archive to allow importing into other computers.", tableName: "SettingsPorting")
-                .padding(.bottom, 4)
+        VStack(alignment: .leading) {
+            HStack(alignment: .top, spacing: 16) {
+                Image(nsImage: NSApp.applicationIconImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 72)
+                    .accessibilityLabel(Bundle.main.bundleName)
+                    .padding(-6)
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Export Settings", tableName: "SettingsPorting")
+                        .font(.system(size: 14, weight: .semibold))
+                    Text("Export selected settings as an archive to allow importing into other computers.", tableName: "SettingsPorting")
+                }
+            }
+            .padding(.bottom, 12)
             
             PortableTypesView(types: $types, includedTypes: self.includedTypes)
             
