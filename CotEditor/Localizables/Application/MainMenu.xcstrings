@@ -5102,7 +5102,7 @@
         }
       }
     },
-    "To show invisible characters, set them in the Window settings" : {
+    "To show invisible characters, set them in Window settings" : {
       "comment" : "tooltip for the “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled",
       "localizations" : {
         "cs" : {
@@ -5120,7 +5120,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To show invisible characters, set them in the Window settings"
+            "value" : "To show invisible characters, set them in Window settings"
           }
         },
         "es" : {

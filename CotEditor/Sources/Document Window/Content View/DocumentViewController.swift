@@ -335,7 +335,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 let canActivateShowInvisibles = !UserDefaults.standard.shownInvisible.isEmpty
                 item.toolTip = canActivateShowInvisibles
                     ? nil
-                    : String(localized: "To show invisible characters, set them in the Window settings",
+                    : String(localized: "To show invisible characters, set them in Window settings",
                              table: "MainMenu",
                              comment: "tooltip for the “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled")
                 if canActivateShowInvisibles {
