@@ -115,7 +115,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>${PRODUCT_NAME} needs user approval to control other applications with AppleScript.</string>
+	<string>${PRODUCT_NAME} needs your approval to control other applications with AppleScript.</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>

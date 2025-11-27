@@ -2927,25 +2927,25 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor benötigt die Erlaubnis des Benutzers, um andere Programme mit AppleScript zu steuern."
+            "value" : "CotEditor benötigt deine Erlaubnis, um andere Programme mit AppleScript zu steuern."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "CotEditor needs user approval to control other applications with AppleScript."
+            "value" : "CotEditor needs your approval to control other applications with AppleScript."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor needs user approval to control other applications with AppleScript."
+            "value" : "CotEditor needs your approval to control other applications with AppleScript."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor necesita la aprobación del usuario para controlar otras aplicaciones con AppleScript"
+            "value" : "CotEditor necesita tu aprobación para controlar otras aplicaciones con AppleScript"
           }
         },
         "fr" : {
@@ -2975,7 +2975,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor heeft toestemming nodig van de gebruiker om andere programma's te besturen met AppleScript."
+            "value" : "CotEditor heeft jouw toestemming nodig om andere apps te bedienen met AppleScript."
           }
         },
         "pl" : {
