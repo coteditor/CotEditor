@@ -51,17 +51,15 @@ kbd {
 :not(h1) > code {
 	font-family: 'SF Mono', monospace;
 	font-size: 90%;
-	background: hsla(201, 30%, 50%, .02);
-	border: 1px solid hsla(201, 40%, 50%, .15);
-	border-radius: 2px;
-	padding: 0 0.2em;
+	background: hsla(201, 30%, 50%, .07);
+	border-radius: 3px;
+	padding: 0.1em 0.2em;
 }
 code.AppleScript {
 	color: hsl(230, 67%, 45%);
 }
 pre code {
 	background: transparent;
-	border: none;
 }
 
 body > h1 {

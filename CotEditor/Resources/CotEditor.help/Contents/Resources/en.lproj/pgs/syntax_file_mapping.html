@@ -36,7 +36,7 @@
 		<li>For example, .htaccess → Apache</li>
 		<li>For example, makefile → Makefile</li>
 	</ul></li>
-	<li>The #! header of the document<ul>
+	<li>The <span area-label="shebang">#!</area> header of the document<ul>
 		<li>When there is no corresponding syntax for the extension and the filename, and if the first line of the document content is the #! header, then try determining syntax from the 1# header. In this trial, the interpreter names which is defined in the syntaxes are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</li>
 		<li>For example, <code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</li>
 		<li>For example, <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</li>

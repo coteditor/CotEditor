@@ -157,7 +157,7 @@
 
 <p>When ‘location’ is a negative value, the selection range starts from the ‘location’-th last character.<br/>
 When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range is from ‘location’ to the end.<br/>
-When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (that is, the selection’s end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
+When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (that is, the selection’s end point is before ‘location’), the insertion point just moves to ‘location’ (same as when {location, 0} was input).</p>
 <p>This specifying method is based on <code>substr</code> in PHP.</p>
 <p>The command for changing selection doesn’t scroll through the editor. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
 </section>
@@ -177,10 +177,10 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 	<dd>Print text on CotEditor’s console window.</dd>
 	<dd><dl class="subtree">
 		<dt>[<code>title</code> (boolean)]</dt>
-		<dd>Should the script name be displayed with? <span class="added">(added on CotEditor 5.0.7)</span></dd>
+		<dd>Should the script name appear with? <span class="added">(added on CotEditor 5.0.7)</span></dd>
 
 		<dt>[<code>timestamp</code> (boolean)]</dt>
-		<dd>Should the timestamp be displayed with? <span class="added">(added on CotEditor 5.0.7)</span></dd>
+		<dd>Should the timestamp appear with? <span class="added">(added on CotEditor 5.0.7)</span></dd>
 	</dl></dd>
 </dl>
 
@@ -243,7 +243,7 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 
 <h4>Discussion</h4>
 
-<p>The search starts from the current selection (caret position).<br/>
+<p>The search starts from the current selection (insertion point).<br/>
 For example, when not using the <code>wrap</code> or <code>backwards</code> options and when there are no matching text after the current selection, then <code>false</code> is returned.</p>
 <p>The regular expression search cannot search backwards. If both options were specified at the same time, <code>RE</code> takes precedence and <code>backwards</code> is ignored.</p>
 </section>
@@ -298,8 +298,8 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <h4>Discussion</h4>
 
-<p>As in the case of the <code>find</code> command, the search starts from the current selection (caret position). Use the <code>all</code> option for searching the whole document.</p>
-<p>After replacing the whole document using the <code>all</code> option, the caret moves to the head of the document. If there were no matching text, the caret doesn’t move.</p>
+<p>As in the case of the <code>find</code> command, the search starts from the current selection (insertion point). Use the <code>all</code> option for searching the whole document.</p>
+<p>After replacing the whole document using the <code>all</code> option, the insertion point moves to the head of the document. If there were no matching text, the insertion point doesn’t move.</p>
 <p>The regular expression search cannot search backwards. If both options were specified at the same time, the <code>backwards</code> option is ignored.</p>
 </section>
 
@@ -310,7 +310,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">scroll to caret</code></dt>
-	<dd>Scrolls the window so that the caret or the selection can be seen.</dd>
+	<dd>Scrolls the window so that the insertion point or the selection can be seen.</dd>
 	<dd><dl>
 		<dt>target</dt>
 		<dd>‘document’ object</dd>
@@ -322,7 +322,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <figure>
 	<pre class="source"><code class="AppleScript">scroll to caret front document</code></pre>
-	<figcaption>Scrolls the current window so that the caret or the selection can be seen.</figcaption>
+	<figcaption>Scrolls the current window so that the insertion point or the selection can be seen.</figcaption>
 </figure>
 </section>
 
@@ -333,7 +333,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">jump</code></dt>
-	<dd>Move the caret to the specified location. At least, either one of a parameter is required.</dd>
+	<dd>Move the insertion point to the specified location. At least, either one of a parameter is required.</dd>
 	<dd><dl class="subtree">
 		<dt><code>to line</code> (int)</dt>
 		<dd>The number of the line to jump.</dd>
@@ -460,7 +460,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <figure>
 	<pre class="source"><code class="AppleScript">shift right selection of front document</code></pre>
-	<figcaption>Shifts the line where the selection/caret is positioned right.</figcaption>
+	<figcaption>Shifts the line where the selection/insertion point is positioned right.</figcaption>
 </figure>
 </section>
 

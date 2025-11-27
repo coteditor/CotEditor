@@ -35,7 +35,7 @@
 		<li>例: .htaccess → Apache</li>
 		<li>例: makefile → Makefile</li>
 	</ul></li>
-	<li>書類内の#!ヘッダー<ul>
+	<li>書類内の<span area-label="シェバン">#!</span>ヘッダー<ul>
 		<li>対応する拡張子・ファイル名がないとき、書類内の最初の行が#!ヘッダーであれば、それを手掛かりにシンタックスを探します。この捜査ではシンタックス定義のファイル関連付けの「インタープリタ」の設定が用いられます。#!ヘッダーの <code>#!</code> 直後のパスの最後の語句、またはパスが <code>env</code> のときはその次の語句が、インタープリタ名として検索語句に使用されます。</li>
 		<li>例: <code>#!/usr/bin/perl</code> → Perl (インタープリタ名: <code>perl</code>)</li>
 		<li>例: <code>#!/usr/bin/env python3</code> → Python (インタープリタ名: <code>python3</code>)</li>
