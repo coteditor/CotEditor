@@ -96,7 +96,7 @@ protocol SettingFileManaging: AnyObject, Sendable {
     
     
     /// Loads the setting from the data.
-    nonisolated static func loadSetting(from data: Data) throws -> sending Setting
+    nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting
     
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
     func setting(name: String) throws(SettingFileError) -> Setting
@@ -412,7 +412,7 @@ extension SettingFileManaging {
     ///   - name: The name of the setting to import.
     ///   - overwrite: Whether overwrites the existing setting if exists.
     /// - Throws: `ImportDuplicationError` (only when the `overwrite` flag is `true`), or `any Error`
-    func importSetting(data: Data, name: String, overwrite: Bool) throws {
+    func importSetting(data: Data, name: String, type: UTType = Self.fileType, overwrite: Bool) throws {
         
         // check duplication
         if !overwrite {
@@ -426,7 +426,7 @@ extension SettingFileManaging {
         }
         
         // test if the setting file can be read correctly
-        let setting = try Self.loadSetting(from: data)
+        let setting = try Self.loadSetting(from: data, type: type)
         
         // write file
         let destURL = self.preparedURLForUserSetting(name: name)
@@ -504,9 +504,11 @@ extension SettingFileManaging {
     /// - Returns: A Setting instance.
     nonisolated func loadSetting(at fileURL: URL) throws -> sending Setting {
         
+        guard let type = UTType(filenameExtension: fileURL.pathExtension) else { throw CocoaError(.fileReadUnsupportedScheme) }
+        
         let data = try Data(contentsOf: fileURL)
         
-        return try Self.loadSetting(from: data)
+        return try Self.loadSetting(from: data, type: type)
     }
     
     

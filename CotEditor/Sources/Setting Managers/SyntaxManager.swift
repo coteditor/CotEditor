@@ -234,9 +234,13 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     // MARK: Setting File Managing
     
     /// Loads the setting from the data.
-    nonisolated static func loadSetting(from data: Data) throws -> sending Setting {
+    nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {
         
-        try YAMLDecoder().decode(Setting.self, from: data)
+        if type.conforms(to: Self.fileType) {
+            try YAMLDecoder().decode(Setting.self, from: data)
+        } else {
+            throw CocoaError(.fileReadUnsupportedScheme)
+        }
     }
     
     

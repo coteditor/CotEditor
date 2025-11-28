@@ -193,9 +193,13 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     // MARK: Setting File Managing
     
     /// Loads the setting from the data.
-    nonisolated static func loadSetting(from data: Data) throws -> sending Setting {
+    nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {
         
-        try JSONDecoder().decode(Setting.self, from: data)
+        if type.conforms(to: Self.fileType) {
+            try JSONDecoder().decode(Setting.self, from: data)
+        } else {
+            throw CocoaError(.fileReadUnsupportedScheme)
+        }
     }
     
     
