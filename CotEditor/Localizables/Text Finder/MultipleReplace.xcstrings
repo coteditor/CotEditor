@@ -191,6 +191,54 @@
         }
       }
     },
+    "FileImporter.message" : {
+      "comment" : "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle CotEditor-Ersetzungsdefinitionsdateien oder TSV-Dateien (Tab-separierte Werte)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Choose CotEditor Replace Definition or TSV (Tab-separated values) files."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose CotEditor Replace Definition or TSV (Tab-separated values) files."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Selecciona archivos de definición de reemplazo de CotEditor o archivos TSV (valores separados por tabulaciones)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Choisissez des fichiers de la liste de remplacements CotEditor ou des fichiers TSV (valeurs séparées par des tabulations)."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor置換定義かTSV （タブ区切り値）ファイルを選択してください。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kies bestanden van Vervangingsdefinitie CotEditor of TSV-bestanden (door tabs gescheiden waarden)."
+          }
+        }
+      }
+    },
     "Insert Rule" : {
       "comment" : "action name",
       "localizations" : {

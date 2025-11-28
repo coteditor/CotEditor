@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct MultipleReplaceListView: View {
     
@@ -102,7 +103,7 @@ struct MultipleReplaceListView: View {
                 self.createUntitledSetting()
             }
         }
-        .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotReplacement], allowsMultipleSelection: true) { result in
+        .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotReplacement, .tabSeparatedText], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
                     for url in urls {
@@ -112,9 +113,10 @@ struct MultipleReplaceListView: View {
                         }
                         
                         let name = url.deletingPathExtension().lastPathComponent
+                        let type = UTType(filenameExtension: url.pathExtension)
                         do {
                             let data = try Data(contentsOf: url)
-                            try self.manager.importSetting(data: data, name: name, overwrite: false)
+                            try self.manager.importSetting(data: data, name: name, type: type, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -126,6 +128,9 @@ struct MultipleReplaceListView: View {
                     self.error = error
             }
         }
+        .fileDialogMessage(String(localized: "FileImporter.message",
+                                  defaultValue: "Choose CotEditor Replace Definition or TSV (Tab-separated values) files.", table: "MultipleReplace",
+                                  comment: "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings."))
         .fileDialogConfirmationLabel(String(localized: "Action.import.label", defaultValue: "Import"))
         .confirmationDialog(String(localized: "ImportDuplicationError.description",
                                    defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",

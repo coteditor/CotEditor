@@ -108,6 +108,8 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
         
         if type.conforms(to: Self.fileType) {
             try JSONDecoder().decode(Setting.self, from: data)
+        } else if type.conforms(to: .tabSeparatedText), let string = String(data: data, encoding: .utf8) {
+            try MultipleReplace(tabSeparatedText: string)
         } else {
             throw CocoaError(.fileReadUnsupportedScheme)
         }

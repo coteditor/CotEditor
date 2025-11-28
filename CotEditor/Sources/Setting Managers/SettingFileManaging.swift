@@ -412,7 +412,7 @@ extension SettingFileManaging {
     ///   - name: The name of the setting to import.
     ///   - overwrite: Whether overwrites the existing setting if exists.
     /// - Throws: `ImportDuplicationError` (only when the `overwrite` flag is `true`), or `any Error`
-    func importSetting(data: Data, name: String, type: UTType = Self.fileType, overwrite: Bool) throws {
+    func importSetting(data: Data, name: String, type: UTType? = nil, overwrite: Bool) throws {
         
         // check duplication
         if !overwrite {
@@ -426,6 +426,7 @@ extension SettingFileManaging {
         }
         
         // test if the setting file can be read correctly
+        let type = type ?? Self.fileType
         let setting = try Self.loadSetting(from: data, type: type)
         
         // write file
