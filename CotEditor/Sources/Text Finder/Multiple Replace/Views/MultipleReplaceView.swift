@@ -53,6 +53,9 @@ struct MultipleReplaceView: NSViewControllerRepresentable {
 
 final class MultipleReplaceViewController: NSViewController, NSUserInterfaceValidations {
     
+    private typealias Replacement = MultipleReplace.Replacement
+    
+    
     // MARK: Private Properties
     
     private let updateHandler: (MultipleReplace) -> Void
@@ -152,7 +155,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         self.endEditing()
         
         let row = self.tableView?.selectedRowIndexes.last?.advanced(by: 1) ?? self.definition.replacements.endIndex
-        let replacements = [MultipleReplace.Replacement()]
+        let replacements: [Replacement] = [.init()]
         
         self.insertReplacements(replacements, at: [row])
         
@@ -293,7 +296,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     /// - Parameters:
     ///   - replacements: New replacement definitions to insert.
     ///   - rowIndexes: Rows of definitions to insert.
-    private func insertReplacements(_ replacements: [MultipleReplace.Replacement], at rowIndexes: IndexSet) {
+    private func insertReplacements(_ replacements: [Replacement], at rowIndexes: IndexSet) {
         
         assert(replacements.count == rowIndexes.count)
         
@@ -353,7 +356,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     /// - Parameters:
     ///   - replacements: New replacement definitions to update.
     ///   - rowIndexes: Rows of definitions to be updated.
-    private func updateReplacements(_ replacements: [MultipleReplace.Replacement], at rowIndexes: IndexSet) {
+    private func updateReplacements(_ replacements: [Replacement], at rowIndexes: IndexSet) {
         
         assert(replacements.count == rowIndexes.count)
         
@@ -529,7 +532,7 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
         
         let identifier = tableView.tableColumns[column].identifier
         
-        let replacements: [MultipleReplace.Replacement] = rowIndexes
+        let replacements: [Replacement] = rowIndexes
             .map { self.definition.replacements[$0] }
             .map { replacement in
                 var replacement = replacement
