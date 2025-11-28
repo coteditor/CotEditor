@@ -236,6 +236,12 @@
             "state" : "translated",
             "value" : "Kies bestanden van Vervangingsdefinitie CotEditor of TSV-bestanden (door tabs gescheiden waarden)."
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz pliki definicji zastąpienia CotEditora lub TSV (wartości oddzielonych tabulatorem)."
+          }
         }
       }
     },
