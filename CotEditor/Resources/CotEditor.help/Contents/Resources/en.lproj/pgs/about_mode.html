@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="mode, font"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Switch editor modes in CotEditor on Mac</title>
+</head>
+
+<body>
+
+<h1>Switch editor modes in CotEditor on Mac</h1>
+
+<p>With editor modes, you can switch fonts and editing-assistance features at once based on the type of document you’re working on. This lets you move smoothly between writing text and editing code while keeping an editing environment that fits each task.</p>
+
+
+<p>Modes let you switch the following settings:</p>
+
+<ul>
+    <li>Editor fonts:<ul>
+		<li>The display font (standard font or monospaced font)</li>
+	</ul></li>
+    <li>Editor behavior:<ul>
+		<li>Text substitutions (such as smart quotes and automatic text replacement)</li>
+		<li>Spell checking</li>
+		<li>Text completion</li>
+	</ul></li>
+</ul>
+
+<p>Edit and manage modes in the Mode settings panel. For details about what can be configured in a mode and how to edit and manage modes, see <a href="settings_mode.html">Change Mode settings</a>.</p>
+
+
+<h2>Specify the font used by a mode</h2>
+
+<p>In CotEditor’s mode settings, you can choose whether to use the standard font or the monospaced font based on the type of document. For more information about how fonts are handled in CotEditor, see <a href="howto_customize_font.html">Change fonts</a>.</p>
+
+
+<h2>Assign a mode to a syntax</h2>
+
+<p>CotEditor automatically switches the editor mode according to the syntax of the open document. This ensures that when you open a document written in a particular language or format, the same mode is always applied.</p>
+
+<p>Modes can be assigned to both the syntax “Kind” and to individual syntaxes. By default, modes are set only for each syntax kind: General for writing and Code for programming. These default modes can be customized in Mode settings.</p>
+
+<p>You can also create a dedicated mode for a specific syntax. For example, the LaTeX syntax belongs to the General kind, but by creating a LaTeX-specific mode, you can disable smart quotes and other features that might interfere with writing code while using a proportional font set as the standard font.</p>
+
+<p>For more information about syntax, see <a href="syntax_overview.html">Analyze document syntax</a>.</p>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="howto_customize_font.html">Change fonts</a></li>
+	<li><a href="howto_complete.html">Complete a word</a></li>
+	<li><a href="settings_mode.html">Change Mode settings</a></li>
+	<li><a href="syntax_overview.html">Analyze the syntax of a document</a></li>
+</ul>
+</section>
+
+</body>
+</html>
