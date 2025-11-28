@@ -665,6 +665,100 @@
         }
       }
     },
+    "NewFeature.tsvReplacement.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstelle eine Ersetzungsdefinition aus tabgetrennten Paaren von Such- und Ersetzungstexten. Ideal für umfangreiche Glossare."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Import tab-separated pairs of search and replacement texts to create a replace definition. Ideal for large glossaries."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import tab-separated pairs of search and replacement texts to create a replace definition. Ideal for large glossaries."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Crea una definición de reemplazo a partir de pares de textos de búsqueda y reemplazo separados por tabulaciones. Ideal para glosarios extensos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Créez une définition de remplacement à partir de paires de textes de recherche et de remplacement séparés par des tabulations. Idéal pour de grands glossaires."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "タブ区切りの検索テキストと置換テキストのペアを読み込んで、置換定義を作成できるようになりました。大量の語句リストに最適。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Maak een vervangingsdefinitie van tabgescheiden paren van zoek- en vervangingsteksten. Ideaal voor grote glossaria."
+          }
+        }
+      }
+    },
+    "NewFeature.tsvReplacement.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mehrere Ersetzungsregeln auf einmal aus TSV erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Build replace rules in bulk from TSV"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Build replace rules in bulk from TSV"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Crear reglas de reemplazo de una sola vez desde TSV"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Créer des règles de remplacement en masse à partir de TSV"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TSVから置換ルールを一括作成"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Vervangingsregels in één keer vanuit TSV maken"
+          }
+        }
+      }
+    },
     "NewFeature.userGuide.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

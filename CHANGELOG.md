@@ -3,6 +3,11 @@
 6.2.0-beta.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Support for importing multiple replace definitions from tab-separated values.
+
+
 ### Improvements
 
 - [beta] Add missing Portuguese localizations.

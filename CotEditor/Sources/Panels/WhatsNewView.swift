@@ -143,6 +143,7 @@ enum NewFeature: CaseIterable {
     
     case settingPorting
     case alias
+    case tsvReplacement
     case userGuide
 }
     
@@ -156,6 +157,8 @@ private extension NewFeature {
                 Image(systemName: "truck.box")
             case .alias:
                 Image(.arrowshapeTurnUpBackwardSquareDashed)
+            case .tsvReplacement:
+                Image(systemName: "arrow.down.document")
             case .userGuide:
                 Image(systemName: "book.closed")
         }
@@ -171,6 +174,10 @@ private extension NewFeature {
             case .alias:
                 String(localized: "NewFeature.alias.label",
                        defaultValue: "Easier access to aliases", table: "WhatsNew")
+            case .tsvReplacement:
+                String(localized: "NewFeature.tsvReplacement.label",
+                       defaultValue: "Build replace rules in bulk from TSV", table: "WhatsNew")
+                
             case .userGuide:
                 String(localized: "NewFeature.userGuide.label",
                        defaultValue: "Your built-in guide, newly polished", table: "WhatsNew")
@@ -187,6 +194,9 @@ private extension NewFeature {
             case .alias:
                 String(localized: "NewFeature.alias.description",
                        defaultValue: "The original documents behind aliases and symlinks can now be opened directly in the current window from the file browser.", table: "WhatsNew")
+            case .tsvReplacement:
+                String(localized: "NewFeature.tsvReplacement.description",
+                       defaultValue: "Import tab-separated pairs of search and replacement texts to create a replace definition. Ideal for large glossaries.", table: "WhatsNew")
             case .userGuide:
                 String(localized: "NewFeature.userGuide.description",
                        defaultValue: "The built-in user guide now offers clearer explanations, richer content, and a refreshed layout aligned with the latest macOS.", table: "WhatsNew")
@@ -199,6 +209,8 @@ private extension NewFeature {
         switch self {
             case .settingPorting:
                 "howto_port_settings"
+            case .tsvReplacement:
+                "howto_multiple_replace"
             default:
                 nil
         }
