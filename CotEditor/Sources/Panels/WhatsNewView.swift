@@ -40,7 +40,7 @@ struct WhatsNewView: View {
             VStack(alignment: .leading, spacing: 20) {
                 HStack(alignment: .firstTextBaseline) {
                     Text("What’s New in CotEditor \(NewFeature.version, format: .version(part: .minor))", tableName: "WhatsNew", comment: "%@ is version number")
-                        .fontWeight(.semibold)
+                        .fontWeight(isLiquidGlass ? .bold : .semibold)
                         .accessibilityHeading(.h1)
                     
                     if self.isPrerelease {
@@ -53,11 +53,12 @@ struct WhatsNewView: View {
                     }
                 }
                 .font(.system(size: 18))
+                .padding(.vertical)
                 
                 ForEach(NewFeature.allCases, id: \.self) { feature in
-                    HStack {
+                    HStack(alignment: .top) {
                         feature.image
-                            .font(.system(size: 36, weight: .light))
+                            .font(.system(size: 32, weight: .light))
                             .foregroundStyle(.tint)
                             .modifier { content in
                                 if #available(macOS 26, *) {
@@ -96,7 +97,6 @@ struct WhatsNewView: View {
                 }
             }
             .padding()
-            .padding(.vertical)
             
             HStack {
                 Button {
@@ -105,6 +105,15 @@ struct WhatsNewView: View {
                     Text("Release Notes", tableName: "WhatsNew")
                         .frame(minWidth: 120)
                 }
+                .modifier { content in
+                    if #available(macOS 26, *) {
+                        content
+                            .glassEffect()
+                    } else {
+                        content
+                    }
+                }
+                
                 Spacer()
                 Button {
                     self.dismiss()
@@ -112,10 +121,17 @@ struct WhatsNewView: View {
                     Text("Continue", tableName: "WhatsNew")
                         .frame(minWidth: 120)
                 }
-                .keyboardShortcut(.cancelAction)
-                .buttonStyle(.borderedProminent)
+                .keyboardShortcut(.defaultAction)
+                .modifier { content in
+                    if #available(macOS 26, *) {
+                        content
+                            .glassEffect()
+                    } else {
+                        content
+                    }
+                }
             }
-            .controlSize(.large)
+            .controlSize(isLiquidGlass ? .extraLarge : .large)
         }
         .onAppear {
             if let version = Bundle.main.version, version < NewFeature.version {
@@ -123,7 +139,7 @@ struct WhatsNewView: View {
             }
         }
         .scenePadding()
-        .frame(width: 520)
+        .frame(width: 480)
         .background {
             Image(systemName: "gearshape.2")
                 .font(.system(size: 750, weight: .ultraLight))
