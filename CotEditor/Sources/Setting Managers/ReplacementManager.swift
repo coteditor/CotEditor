@@ -68,10 +68,7 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     ///   - name: The name of the setting to save.
     func save(setting: Setting, name: String) throws {
         
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        
-        let data = try encoder.encode(setting)
+        let data = try Self.data(from: setting)
         let fileURL = self.preparedURLForUserSetting(name: name)
         
         try FileManager.default.createIntermediateDirectories(to: fileURL)
@@ -102,6 +99,16 @@ final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     
     
     // MARK: Setting File Managing
+    
+    /// Encodes the provided setting into data to store.
+    nonisolated static func data(from setting: Setting) throws -> Data {
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        
+        return try encoder.encode(setting)
+    }
+    
     
     /// Loads the setting from the data.
     nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {

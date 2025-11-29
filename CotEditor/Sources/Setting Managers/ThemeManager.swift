@@ -133,11 +133,7 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
                 try FileManager.default.removeItem(at: fileURL)
             }
         } else {
-            // save file to user domain
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-            
-            let data = try encoder.encode(setting)
+            let data = try Self.data(from: setting)
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
             try data.write(to: fileURL)
@@ -191,6 +187,16 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     
     
     // MARK: Setting File Managing
+    
+    /// Encodes the provided setting into data to store.
+    nonisolated static func data(from setting: Setting) throws -> Data {
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        
+        return try encoder.encode(setting)
+    }
+    
     
     /// Loads the setting from the data.
     nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {

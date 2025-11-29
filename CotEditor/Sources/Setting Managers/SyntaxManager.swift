@@ -197,11 +197,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
             }
         } else {
             // save file to user domain
-            let encoder = YAMLEncoder()
-            encoder.options.allowUnicode = true
-            encoder.options.sortKeys = true
-            let yamlString = try encoder.encode(setting)
-            let data = Data(yamlString.utf8)
+            let data = try Self.data(from: setting)
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
             try data.write(to: fileURL)
@@ -232,6 +228,19 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     
     
     // MARK: Setting File Managing
+    
+    /// Encodes the provided setting into data to store.
+    nonisolated static func data(from setting: Setting) throws -> Data {
+        
+        let encoder = YAMLEncoder()
+        encoder.options.allowUnicode = true
+        encoder.options.sortKeys = true
+        
+        let yamlString = try encoder.encode(setting)
+        
+        return Data(yamlString.utf8)
+    }
+    
     
     /// Loads the setting from the data.
     nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {

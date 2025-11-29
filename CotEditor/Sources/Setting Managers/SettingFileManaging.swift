@@ -95,6 +95,9 @@ protocol SettingFileManaging: AnyObject, Sendable {
     var cachedSettings: [String: Setting] { get set }
     
     
+    /// Encodes the provided setting into data to store.
+    nonisolated static func data(from setting: Setting) throws -> Data
+    
     /// Loads the setting from the data.
     nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting
     
@@ -428,12 +431,13 @@ extension SettingFileManaging {
         // test if the setting file can be read correctly
         let type = type ?? Self.fileType
         let setting = try Self.loadSetting(from: data, type: type)
+        let dataToStore = type.conforms(to: Self.fileType) ? data : try Self.data(from: setting)
         
         // write file
         let destURL = self.preparedURLForUserSetting(name: name)
         do {
             try FileManager.default.createIntermediateDirectories(to: destURL)
-            try data.write(to: destURL)
+            try dataToStore.write(to: destURL)
         } catch {
             throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
         }
