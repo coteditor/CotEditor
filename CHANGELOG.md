@@ -1,6 +1,6 @@
 # Change Log
 
-6.2.0-beta.2 (unreleased)
+6.2.0-beta.2 (777)
 --------------------------
 
 ### New Features
