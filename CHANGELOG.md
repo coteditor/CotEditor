@@ -10,6 +10,7 @@
 
 ### Improvements
 
+- [trivial] Select the newly added settings after importing a settings file.
 - [beta] Add missing Portuguese localizations.
 - [beta] Update the user guide.
 

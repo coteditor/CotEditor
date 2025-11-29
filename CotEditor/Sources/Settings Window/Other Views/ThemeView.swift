@@ -223,9 +223,12 @@ private struct ThemeListView: View {
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
+                            return
                         } catch {
                             self.error = error
+                            return
                         }
+                        self.selection = name
                     }
                 case .failure(let error):
                     self.error = error
