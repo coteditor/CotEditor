@@ -5619,7 +5619,7 @@
 <ul>
 	<li><span class="label">High Sierra</span>: Workaround a system issue where editor views could occasionally not scroll to the end of the document under specific environments on macOS High Sierra 10.13.
 	<ul>
-		<li><strong>for advanced users</strong>: This workaround may affect rendering performance by large size documents, because the workaround disables non-contiguous layout on High Sierra (The non-contiguous layout are still used on lower versions). The workaround will be removed in the future when the bug origin is resolved. You can forcibly enable non-contiguous layout support on High Sierra by setting the hidden default key <code>enableNonContiguousLayoutOnHighSierra</code> to <code>YES</code> in Terminal, although this key is actually for debug-use.</li>
+		<li><strong>for advanced users</strong>: This workaround may affect rendering performance by large size documents, because the workaround disables non-contiguous layout on High Sierra (The non-contiguous layout are still used in earlier versions). The workaround will be removed in the future when the bug origin is resolved. You can forcibly enable non-contiguous layout support on High Sierra by setting the hidden default key <code>enableNonContiguousLayoutOnHighSierra</code> to <code>YES</code> in Terminal, although this key is actually for debug-use.</li>
 	</ul></li>
 	<li>Fix an issue where “Reset to Default” action in Font menu was ignored.</li>
 	<li>Fix an issue where matching brace was highlighted unwontedly also by text finding.</li>

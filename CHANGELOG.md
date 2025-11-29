@@ -1,5 +1,14 @@
 # Change Log
 
+6.2.0-beta.4 (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Update the user guide.
+
+
+
 6.2.0-beta.3 (778)
 --------------------------
 

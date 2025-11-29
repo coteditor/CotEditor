@@ -85,23 +85,23 @@
 	</thead>
 	<tbody>
 		<tr><th>RE</th><td>If selected, both the begin and end strings are treated as regular expressions (RE stands for Regular Expression).</td></tr>
-		<tr><th>IC</th><td>If selected, the search ignores case (IC stands for Ignore Case). For example, if you set “abc” as the begin string and enable IC, occurrences such as “ABC”, “abc”, or “aBc” in your document will all match.</td></tr>
+		<tr><th>IC</th><td>If selected, the search ignores case (IC stands for Ignore Case). For example, if you set “abc” as the begin string and turn on IC, occurrences such as “ABC,” “abc,” and “aBc” in your document all match.</td></tr>
 		<tr><th>Begin String</th><td>The text that marks the beginning of the search pattern. This field is required for defining a syntax element to highlight.</td></tr>
 		<tr><th>End String</th><td>The text that marks the end of the search pattern. This field may be left blank.</td></tr>
-		<tr><th>Description</th><td>A note or comment for your reference. The description does not affect syntax highlighting and may be left blank.</td></tr>
+		<tr><th>Description</th><td>A note or comment for your reference. The description doesn’t affect syntax highlighting and may be left blank.</td></tr>
 	</tbody>
 </table>
 
 <p>By defining conditions:</p>
 <ul>
 	<li>A condition with an empty begin string is ignored.</li>
-	<li>When RE is enabled, both the begin and end strings are interpreted as regular expressions, meaning they must both be written either in regular expression pattern or in plain text.</li>
+	<li>When RE is selected, both the begin and end strings are interpreted as regular expressions, meaning they must both be written either in regular expression pattern or in plain text.</li>
 </ul>
 
 
 <h2>Completion candidates</h2>
 
-<p>A condition whose end string is blank and whose regular expression option is disabled is also used for completion candidates.</p>
+<p>A condition whose end string is blank and whose regular expression option is not selected is also used for completion candidates.</p>
 
 
 <section id="cf">

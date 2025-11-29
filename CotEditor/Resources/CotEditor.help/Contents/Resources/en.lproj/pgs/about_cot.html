@@ -19,7 +19,7 @@
 
 
 <h2>Install cot command</h2>
-<p>You can install the <code>cot</code> command-line tool by creating a symbolic link in Terminal. The actual executable is bundled in CotEditor at '<code>Contents/SharedSupport/bin/cot</code>'. If you do not have a preferred location, placing the symbolic link in '<code>/usr/local/bin/</code>' is recommended.</p>
+<p>You can install the <code>cot</code> command-line tool by creating a symbolic link in Terminal. The actual executable is bundled in CotEditor at '<code>Contents/SharedSupport/bin/cot</code>'. If you don’t have a preferred location, placing the symbolic link in '<code>/usr/local/bin/</code>' is recommended.</p>
 
 <p>To create the symbolic link at the recommended location, run the following commands in Terminal:</p>
 
@@ -28,7 +28,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>Security authorization</h3>
-<p>macOS requires user authorization when an external application invokes CotEditor through the <code>cot</code> command. Normally, authorization is requested the first time you run the <code>cot</code> command. However, in some cases, you may need to authorize it manually from System Settings &gt; Privacy &amp; Security &gt; Automation. Enable CotEditor under your client application, such as Terminal. For the <code>--wait</code> option, you may also need to enable System Events.</p>
+<p>macOS requires user authorization when an external application invokes CotEditor through the <code>cot</code> command. Normally, authorization is requested the first time you run the <code>cot</code> command. However, in some cases, you may need to authorize it manually from System Settings &gt; Privacy &amp; Security &gt; Automation. Turn on CotEditor under your client application, such as Terminal. For the <code>--wait</code> option, you may also need to turn on System Events.</p>
 
 
 <h3>Installation of Python 3</h3>
@@ -82,7 +82,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
 
-<p>Passing a dash (<code>-</code>) in place of filenames enters the mode to receive standard input. The input received will be opened as a new document.</p>
+<p>Passing a dash (<code>-</code>) in place of filenames enters the mode to receive standard input. The input received is opened as a new document.</p>
 
 <pre class="source"><code>cot -
 </code></pre>
