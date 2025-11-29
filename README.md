@@ -16,10 +16,13 @@ CotEditor is built with a clear focus on being a truly __macOS-native__ text edi
 Its design emphasizes the following principles:
 
 - __Behave as a first-class macOS application.__
-  CotEditor adopts system-native UI components, conventions, and behaviors so that it feels instantly familiar to macOS users. Rather than asserting its own personality, CotEditor aims to blend naturally into the macOS experience as one of its native apps.
+  CotEditor adopts system-native UI components, conventions, and behaviors so that it feels instantly familiar to macOS users. Rather than asserting its own personality, CotEditor aims to blend naturally into the macOS experience as one of its native apps. Features that deviate from standard macOS behavior may be rejected, even if they’re common in other editors.
 
 - __Be accessible and comfortable for both beginners and advanced users.__
   CotEditor aims to stay simple enough for casual use while providing the precision and control expected by experienced editors and developers.
+
+- __Less is more.__
+  CotEditor avoids unnecessary complexity, as minor options accumulate and ultimately place unnecessary decision-making burdens on users.
 
 - __Handle a wide range of plain-text formats accurately.__
   From everyday notes to niche or legacy formats, CotEditor prioritizes correct text handling, encoding support, and predictable editing behavior.
