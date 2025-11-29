@@ -704,6 +704,12 @@
             "value" : "タブ区切りの検索テキストと置換テキストのペアを読み込んで、置換定義を作成できるようになりました。大量の語句リストに最適。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탭으로 분리된 검색·대치 텍스트 쌍을 가져와 대치 정의를 만듭니다. 대규모 용어집 처리에 적합합니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -714,6 +720,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importuj pary tekstów wyszukiwanego i zastępującego oddzielonych tabulatorem, aby utworzyć definicję zastąpienia. Idealne dla dużych słowników."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arama ve değiştirme metinlerinin tab ile ayrılmış çiftlerini içe aktararak bir değişiklik tanımı oluşturun. Büyük kavram dizinleri için idealdir."
           }
         }
       }
@@ -757,6 +769,12 @@
             "value" : "TSVから置換ルールを一括作成"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TSV로부터 한 번에 대치 규칙 만들기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -767,6 +785,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twórz reguły zastąpienia hurtowo z plików TSV"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değiştirme tanımlarını tab ile ayrılmış değerlerden toplu yapın"
           }
         }
       }

@@ -231,6 +231,12 @@
             "value" : "CotEditor置換定義かTSV （タブ区切り値）ファイルを選択してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor 대치 정의 또는 TSV(탭으로 분리된 값) 파일을 선택하십시오."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -241,6 +247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wybierz pliki definicji zastąpienia CotEditora lub TSV (wartości oddzielonych tabulatorem)."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalardan CotEditor Değişiklik Tanımları veya Tab ile Ayrılmış Değerler seçin."
           }
         }
       }

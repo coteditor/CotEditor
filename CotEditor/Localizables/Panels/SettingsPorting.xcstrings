@@ -1519,7 +1519,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "다중 대치 정의"
           }
         },
@@ -1549,8 +1549,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Çoklu değişim tanımları"
+            "state" : "translated",
+            "value" : "Birden çok değişiklik tanımı"
           }
         },
         "zh-Hans" : {
