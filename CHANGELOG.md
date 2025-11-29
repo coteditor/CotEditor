@@ -5,7 +5,13 @@
 
 ### Improvements
 
+- [beta] Add missing localizations.
 - [beta] Update the user guide.
+
+
+### Known Issues
+
+- The text added to CotEditor 6.2.0 are not yet localized to Simplified Chinese, Czech and Portuguese.
 
 
 

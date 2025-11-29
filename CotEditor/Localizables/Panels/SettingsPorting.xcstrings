@@ -1507,8 +1507,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Definizioni di Sostituzione Multipla"
+            "state" : "translated",
+            "value" : "Definizioni di sostituzioni multiple"
           }
         },
         "ja" : {
@@ -1543,8 +1543,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Настройки множественых замен"
+            "state" : "translated",
+            "value" : "Массовые правила замен текста"
           }
         },
         "tr" : {
@@ -1561,7 +1561,7 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "多重取代定義"
           }
         }

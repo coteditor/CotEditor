@@ -225,6 +225,12 @@
             "value" : "Choisissez des fichiers de la liste de remplacements CotEditor ou des fichiers TSV (valeurs séparées par des tabulations)."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scegliere una definizione sostiuzioni di\nCotEditor oppure file TSV (valori separati da tabulatore)."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -249,10 +255,22 @@
             "value" : "Wybierz pliki definicji zastąpienia CotEditora lub TSV (wartości oddzielonych tabulatorem)."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите файл замен CotEditor, или TSV (файл значений, разделенных табулятором)."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dosyalardan CotEditor Değişiklik Tanımları veya Tab ile Ayrılmış Değerler seçin."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選取承載了CotEditor取代定義或定位符號分隔值的檔案。"
           }
         }
       }

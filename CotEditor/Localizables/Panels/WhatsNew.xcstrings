@@ -698,6 +698,12 @@
             "value" : "Créez une définition de remplacement à partir de paires de textes de recherche et de remplacement séparés par des tabulations. Idéal pour de grands glossaires."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importa coppie separate da\ntabulatore per la ricerca e la sostituzione del testo, per creare una\ndefinizione di sostituzione. Ideale per glossari ampi."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -722,10 +728,22 @@
             "value" : "Importuj pary tekstów wyszukiwanego i zastępującego oddzielonych tabulatorem, aby utworzyć definicję zastąpienia. Idealne dla dużych słowników."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортируйте файл пары текстов для поиска и замен, разделённые табуляцией. Идеально подходит для больших списков определения замен."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arama ve değiştirme metinlerinin tab ile ayrılmış çiftlerini içe aktararak bir değişiklik tanımı oluşturun. Büyük kavram dizinleri için idealdir."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯入以Tab分隔的搜尋與取代文字配對來建立取代定義。非常適合用於大型詞彙表。"
           }
         }
       }
@@ -763,6 +781,12 @@
             "value" : "Créer des règles de remplacement en masse à partir de TSV"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea regole di sostituzione in blocco\nda un TSV"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -787,10 +811,22 @@
             "value" : "Twórz reguły zastąpienia hurtowo z plików TSV"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Массовые правила замен из файла TSV"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Değiştirme tanımlarını tab ile ayrılmış değerlerden toplu yapın"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從定位符號分隔值批次建立取代規則"
           }
         }
       }
