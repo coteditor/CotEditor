@@ -225,6 +225,8 @@ private extension NewFeature {
         switch self {
             case .settingPorting:
                 "howto_port_settings"
+            case .alias:
+                "nowto_open_alias"
             case .tsvReplacement:
                 "howto_multiple_replace"
             default:

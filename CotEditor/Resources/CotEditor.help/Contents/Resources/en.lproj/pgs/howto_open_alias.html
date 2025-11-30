@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="symlink, symbolic link, alias"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Open an alias or a symlink in CotEditor on Mac</title>
+</head>
+
+<body>
+<a name="howto_open_alias"></a>
+
+<h1>Open an alias or a symlink in CotEditor on Mac</h1>
+
+<p>You can open the original file or folder at the target of an alias or a symlink as a document in CotEditor.</p>
+
+<h2>Open the original document or folder directly</h2>
+
+<p>When you open an alias or a symlink in CotEditor, the app opens its original file or folder just like opening a regular document.</p>
+
+<h2>Open the original item from the file browser</h2>
+
+<p>In CotEditor, you can open the original item of an alias or a symlink from the file browser.</p>
+
+<p>Because CotEditor is sandboxed, it can’t open documents or folders outside the sandbox without explicit user action. If the original item is outside the folder that’s already open, CotEditor may show an Open dialog to request access. To grant permission, choose the original item in the dialog and click Open. Once permission is granted, CotEditor can open the original item again without showing the dialog until you quit the application.</p>
+
+<h3>Open the original document from the file browser</h3>
+
+<p>When you select an alias or a symlink to a file in the file browser, the preview shows information about the selected item. Click Open Original to open the original document in the same window.</p>
+
+<p>If permission is already granted and the original item appears to be a text file, selecting the item in the file browser opens the original document directly without going through the preview.</p>
+
+<h3>Open the original folder from the file browser</h3>
+
+<p>CotEditor can’t expand the original folder of an alias or a symlink directly inside the file browser. Instead, click Open in New Window in the preview to open the original folder as a document in a new window.
+</p>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="howto_open_document.html">Create or open documents</a></li>
+</ul>
+</section>
+
+</body>
+</html>
