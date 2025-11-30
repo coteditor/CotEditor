@@ -12,6 +12,7 @@
 ### Fixes
 
 - Fix an issue in the Donation settings pane where the purchase button for the one-time donation didn’t work on subsequent attempts.
+- Address an issue where scrolling the editor with arrow keys caused unexpected jumps.
 
 
 ### Known Issues
