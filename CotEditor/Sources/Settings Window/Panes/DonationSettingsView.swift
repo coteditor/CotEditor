@@ -279,7 +279,7 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                 Button {
                     Task {
                         do {
-                            _ = try await product.purchase(options: [.quantity(self.quantity)])
+                            try await self.purchase(product, quantity: self.quantity)
                         } catch {
                             self.error = error
                         }
@@ -298,6 +298,33 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .alert(error: $error)
+    }
+    
+    
+    /// Purchases the given product with the selected quantity.
+    ///
+    /// - Parameters:
+    ///   - product: The StoreKit product to purchase.
+    ///   - quantity: The number of items to purchase.
+    /// - Throws: An error if the purchase fails or the transaction cannot be verified.
+    private func purchase(_ product: Product, quantity: Int) async throws {
+        
+        let result = try await product.purchase(options: [.quantity(quantity)])
+        
+        switch result {
+            case .success(let verificationResult):
+                switch verificationResult {
+                    case .verified(let transaction):
+                        await transaction.finish()
+                    case .unverified(let transaction, let verificationError):
+                        await transaction.finish()
+                        throw verificationError
+                }
+            case .pending, .userCancelled:
+                break
+            @unknown default:
+                break
+        }
     }
 }
 

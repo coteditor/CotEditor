@@ -9,6 +9,11 @@
 - [beta] Update the user guide.
 
 
+### Fixes
+
+- Fix an issue in the Donation settings pane where the purchase button for the one-time donation didn’t work on subsequent attempts.
+
+
 ### Known Issues
 
 - The text added to CotEditor 6.2.0 are not yet localized to Simplified Chinese, Czech and Portuguese.
