@@ -89,7 +89,7 @@ struct UnixScript: Script {
             throw ScriptFileError(.read, url: self.url)
         }
         
-        weak let document = await (DocumentController.shared as! DocumentController).currentPlainTextDocument
+        weak var document = await (DocumentController.shared as! DocumentController).currentPlainTextDocument
         
         let input: String?
         if let inputType = InputType(scanning: script) {
