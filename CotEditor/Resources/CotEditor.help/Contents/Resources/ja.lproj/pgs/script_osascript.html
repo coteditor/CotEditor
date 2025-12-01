@@ -153,7 +153,7 @@
 
 <h4>詳細</h4>
 
-<p>「selection」は単独では意味を持ちません。contentsなどのプロパティとともに使用してください。</p>
+<p>「selection」は単独では意味を持ちません。contentsなどのプロパティとともに使用します。</p>
 
 <p>CotEditor 5.0以降、文字はUnicode書記素クラスタ単位でカウントします。これはAppleScript 2.0の仕様と同一です。</p>
 
@@ -161,7 +161,7 @@
 lengthが正のとき、指定される範囲はlocationから数えてlength文字数分となります。また、対象書類のテキストの長さを超えてlengthが入力された場合、末尾までが範囲となります。<br/>
 lengthが負のとき、指定される範囲は対象書類のテキストの後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
 <p>この指定方法はPHPの<code>substr</code>のそれにならっています。</p>
-<p>選択位置を変える命令だけでは画面のスクロールは行われません。選択位置を見えるようにするには<code>scroll to caret</code>コマンドか<code>jump</code>コマンドを使用してください。</p>
+<p>選択位置を変える命令だけでは画面のスクロールは行われません。選択位置を見えるようにするには<code>scroll to caret</code>コマンドか<code>jump</code>コマンドを使用します。</p>
 </section>
 </section>
 
@@ -298,7 +298,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <h4>詳細</h4>
 
-<p><code>find</code>同様、命令実行前の挿入ポイントの位置を基準に置換が行われます。書類全体を対象に実行するときは<code>all</code>を指定してください。</p>
+<p><code>find</code>同様、命令実行前の挿入ポイントの位置を基準に置換が行われます。書類全体を対象に実行するときは<code>all</code>を指定します。</p>
 <p><code>all</code>オプションを付けて書類全体を対象に実行され置換が行われたとき、実行後の挿入ポイントの位置は書類の先頭になります。ただし、対象テキストが見つからなかったときは挿入ポイントの位置は変更されません。</p>
 <p><code>RE</code>（正規表現検索）のときは、<code>backwards</code>（後方からの検索）ができません。同時に指定されたときは<code>RE</code>が優先され、<code>backwards</code>は無視されます。</p>
 </section>
