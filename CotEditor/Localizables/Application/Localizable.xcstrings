@@ -6673,6 +6673,12 @@
       "comment" : "message in the Open dialog to grant the access permission to open an alias location.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít původní umístění, abyste CotEditoru udělili přístup."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

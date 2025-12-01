@@ -193,6 +193,12 @@
     "NewFeature.alias.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Původní dokumenty za zástupci a symbolickými odkazy lze nyní otevřít přímo v aktuálním okně z prohlížeče souborů."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -288,6 +294,12 @@
     "NewFeature.alias.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snazší přístup k zástupcům"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +395,12 @@
     "NewFeature.alias.supplement" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*Pokud je původní položkou složka, otevře se v novém okně."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -478,6 +496,12 @@
     "NewFeature.settingPorting.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportujte a importujte všechna nastavení CotEditoru, vlastní syntaxe, motivy a definice hromadných nahrazení z nabídky Soubor a snadno tak přeneste své prostředí na jiný Mac."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -573,6 +597,12 @@
     "NewFeature.settingPorting.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usnadněte si migraci"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -668,6 +698,12 @@
     "NewFeature.tsvReplacement.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importujte dvojice textů pro vyhledání a nahrazení oddělené tabulátory a vytvořte definici nahrazení. Ideální pro velké slovníky."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -751,6 +787,12 @@
     "NewFeature.tsvReplacement.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořte hromadná pravidla nahrazení ze souboru TSV"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -834,6 +876,12 @@
     "NewFeature.userGuide.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vestavěná uživatelská příručka nyní nabízí jasnější vysvětlení, bohatší obsah a modernizované rozvržení v souladu s nejnovějším macOS."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -929,6 +977,12 @@
     "NewFeature.userGuide.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nově vylepšená vestavěná příručka"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

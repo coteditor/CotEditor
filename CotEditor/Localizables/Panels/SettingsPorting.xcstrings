@@ -3,6 +3,36 @@
   "strings" : {
     "%lld custom syntaxes" : {
       "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastní syntaxe"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastních syntaxí"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastní syntaxe"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastních syntaxí"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -277,6 +307,36 @@
     },
     "%lld custom themes" : {
       "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastní motivy"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastních motivů"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastní motiv"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld vlastních motivů"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -552,6 +612,36 @@
     "%lld definitions" : {
       "comment" : "unit for multiple replace settings",
       "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definice"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definic"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definice"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definic"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -826,6 +916,12 @@
     },
     "Choose a CotEditor settings archive to import." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyberte archiv nastavení CotEditoru, který chcete importovat."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -915,6 +1011,12 @@
     "Error.versionMismatch.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tento archiv nastavení byl vytvořen jinou verzí CotEditoru (%@)."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1010,6 +1112,12 @@
     "Error.versionMismatch.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tyto položky můžete přesto importovat, ale některá nastavení mohou být nekompatibilní."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1104,6 +1212,12 @@
     },
     "Export selected settings as an archive to allow importing into other computers." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportovat vybraná nastavení jako archiv pro import do jiných počítačů."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1475,9 +1589,15 @@
     "SettingTypes.replacements.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Více definic nahrazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Definitionen für das Multiple Ersetzen"
           }
         },
@@ -1513,7 +1633,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "複数置換定義"
           }
         },
@@ -1573,7 +1693,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nastavení"
+            "value" : "Všechna nastavení v okně Nastavení"
           }
         },
         "de" : {
@@ -1671,6 +1791,12 @@
     "SettingTypes.settings.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1766,6 +1892,12 @@
     "SettingTypes.syntaxes.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1861,6 +1993,12 @@
     "SettingTypes.themes.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motivy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

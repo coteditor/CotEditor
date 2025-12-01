@@ -7595,6 +7595,12 @@
     "Open Original" : {
       "comment" : "action label; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít původní položku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

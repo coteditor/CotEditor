@@ -195,6 +195,12 @@
       "comment" : "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyberte soubor definice nahrazení CotEditoru nebo TSV (hodnoty oddělené tabulátory)."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
