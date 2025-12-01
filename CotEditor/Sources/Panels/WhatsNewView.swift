@@ -53,7 +53,7 @@ struct WhatsNewView: View {
                     }
                 }
                 .font(.system(size: 18))
-                .padding(.vertical)
+                .padding(.vertical, 8)
                 
                 ForEach(NewFeature.allCases, id: \.self) { feature in
                     HStack(alignment: .top) {
@@ -68,7 +68,7 @@ struct WhatsNewView: View {
                                     content
                                 }
                             }
-                            .frame(width: 60, alignment: .center)
+                            .frame(width: 52, alignment: .center)
                             .accessibilityHidden(true)
                         
                         VStack(alignment: .leading, spacing: 4) {
@@ -96,7 +96,7 @@ struct WhatsNewView: View {
                     }
                 }
             }
-            .padding()
+            .padding(30)
             
             HStack {
                 Button {
