@@ -8,13 +8,10 @@
  
  Created on 2014 by 1024jp
  
- © 2014-2023 CotEditor Project
+ © 2014-2025 CotEditor Project
 */
 
 
-article ul, ol {
-	padding: 0 1.5rem;
-}
 article ul li {
 	margin: 0.2rem 0;
 	list-style-type: circle;
@@ -24,17 +21,15 @@ footer {
 	font-size: 90%;
 	color: -apple-system-secondary-label;
 	margin-top: 2rem;
-	padding: 0 1rem;
 }
 footer::before {
 	content: '';
 	display: block;
-	width: 140px;
+	width: 10rem;
 	border-top: 1px solid -apple-system-separator;
-	margin: 0.6rem 0;
 }
 
-article+article {
+article + article {
 	margin-top: 4rem;
 	padding-top: 2rem;
 }
@@ -47,32 +42,25 @@ article > header h1 {
 article > header p {
 	color: -apple-system-secondary-label;
 	margin: 0;
-	text-indent: 0 !important;
 }
 article h2 {
 	margin-top: 1.5rem;
 	margin-bottom: 0.5rem;
 }
 
-.none {
-	color: -apple-system-secondary-label;
-}
-
 .trivial,
 .label {
 	color: hsl(198, 40%, 45%);
 	border: 1px solid;
-	border-radius: 3px;
-	padding: 0 0.2rem;
+	border-radius: 0.3rem;
+	padding: 0.05rem 0.2rem;
 }
 .trivial {
 	color: -apple-system-secondary-label;
 }
 p.important {
-	display: inline-block;
 	color: hsl(203, 30%, 30%);
-	background: hsl(203, 50%, 98%);
-	border: 1px solid hsl(203, 20%, 70%);
-	border-radius: 3px;
-	padding: 0.1rem 0.5rem;
+	background: hsl(201, 40%, 97%);
+	border-radius: 0.6rem;
+	padding: 0.4rem 0.8rem;
 }

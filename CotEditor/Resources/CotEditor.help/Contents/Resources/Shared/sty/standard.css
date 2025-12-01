@@ -326,10 +326,11 @@ span.variable {
 
 /* settings */
 
-p img.appicon {
+img.appicon {
 	vertical-align: text-bottom;
+	height: 18px;
 }
-p img.appicon:lang(ja) {
+img.appicon:lang(ja) {
 	padding: 0 0.1em;
 }
 

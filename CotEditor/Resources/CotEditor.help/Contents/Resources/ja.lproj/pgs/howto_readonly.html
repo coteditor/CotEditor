@@ -20,22 +20,22 @@
 <p>読み出し専用またはロックされた書類の場合は、読み出し専用状態またはロックを解除したあとに書類を編集できます。</p>
 
 
-<h2>編集不可にする</h2>
+<h2>書類を編集不可にする</h2>
 
 <p>意図しないデータの変更を避けるために、CotEditorは書類を一時的に編集できないようにすることができます。状態はCotEditorで書類を開いている間のみ有効で、ファイルには保存されません。</p>
 
 <ul>
 	<li>書類を編集不可にするには、以下のいずれかの操作を行います:<ul>
-		<li>「フォーマット」＞「編集不可にする」と選択します。</li>
-		<li>AppleScriptで<code>document</code>オブジェクトの<code>editable</code>プロパティを<code>false</code>にします。</li>
+		<li>MacのCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>で、「フォーマット」＞「編集不可にする」と選択します。</li>
+		<li><a href="script_osascript.html">AppleScript</a>で、<code>document</code>オブジェクトの<code>editable</code>プロパティを<code>false</code>にします。</li>
 	</ul></li>
 	
 	<li>書類を読み出し専用で開くには、以下のいずれかの操作を行います:<ul>
-		<li>「ファイル」 ＞ 「開く」と選択し、「開く」ダイアログの「読み出し専用で開く」チェックボックスを有効にします。</li>
-		<li><a href="about_cot.html">cotコマンドラインツール</a>で<code>--readonly</code> (<code>-r</code>）オプションを付けて書類を開きます。</li>
+		<li>MacのCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>で、「ファイル」 ＞ 「開く」と選択し、「開く」ダイアログの「読み出し専用で開く」チェックボックスを有効にします。</li>
+		<li><a href="about_cot.html"><code>cot</code>コマンドラインツール</a>で、<code>--readonly</code> (<code>-r</code>）オプションを付けて書類を開きます。</li>
 	</ul></li>
 	
-	<li>編集不可の書類をふたたび編集可能にするには、「フォーマット」＞「編集可能にする」と選択します。</li>
+	<li>編集不可の書類をふたたび編集可能にするには、MacのCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>で、「フォーマット」＞「編集可能にする」と選択します。</li>
 </ul>
 
 <p>また、ツールバーをカスタマイズし、書類の編集可能と不可を切り替えられる「編集」ツールバー項目を追加することもできます。</p>
@@ -43,13 +43,13 @@
 <p>書類が編集不可になっているときは、ステータスバーに編集不可アイコン<object type="image/svg+xml" class="symbol" data="../../Shared/gfx/pencil.slash.svg" height="13">（スラッシュ付き鉛筆）</object>が表示されます。</p>
 
 
-<h2>ロック</h2>
+<h2>書類をロックする</h2>
 
 <p>ロックは書類が誤って変更されたり削除されたりするのを防ぐmacOSの機能です。状態はファイルに保存され、Mac上のほかのアプリからその書類を操作する際にも引き継がれます。</p>
 
 <ul>
-	<li>書類をロックするには、書類ウインドウ上部の書類のタイトルの右にポインタを置き、表示される矢印をクリックして、「ロック」を選択します。</li>
-	<li>書類のロックを解除するには、「ロック」の選択を解除します。</li>
+	<li>書類をロックするには、MacのCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>で、書類ウインドウ上部の書類のタイトルの右にポインタを置き、表示される矢印をクリックして、「ロック」を選択します。</li>
+	<li>書類のロックを解除するには、MacのCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>で、「ロック」の選択を解除します。</li>
 </ul>
 
 <p>書類をFinderからロックまたはロック解除することもできます。Macのロック機能について詳しくは、<a href="https://support.apple.com/en/guide/mac-help/mchlp1342/mac" rel="external">Macで書類をロックする</a>を参照してください。</p>

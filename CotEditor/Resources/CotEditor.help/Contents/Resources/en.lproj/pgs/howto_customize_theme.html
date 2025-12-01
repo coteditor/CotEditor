@@ -21,8 +21,6 @@
 </figure>
 
 
-<h2>Coloring components available in themes</h2>
-
 <p>CotEditor themes offer the ability to set the color scheme of the elements that compose the editor view.</p>
 
 
@@ -81,10 +79,16 @@
 <p>Invisible characters, cursors, current lines, and syntax highlighting can have opacity set to a color. On the other hand, opacity cannot be set for the basic text color and some other components. These elements whose opacity cannot be set by the theme may adjust their opacity automatically depending on the opacity of the editor itself and other conditions.</p>
 
 
+<h3>File format of CotEditor themes</h3>
+
+<p>A CotEditor theme file must have the .cottheme extension and its format is based on JSON with hexadecimal color values with a <code>#</code> symbol.</p>
+
+
 <h2>Customize a theme</h2>
 
 <p>To select a theme to customize:</p>
 <ol>
+	<li>Go to the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac.</li>
 	<li>Choose CotEditor &gt; Settings.</li>
 	<li>Select the Appearance pane.</li>
 	<li>Select the theme you want to customize from the theme list.</li>
@@ -109,12 +113,6 @@
 <p>A pair of themes with the same theme name but “ (Dark)” (with a space) at the end of one of them automatically switches themes depending on the window’s appearance. In this case, the theme name for light mode can be either the theme name only or the theme name with “ (Light)” at the end. For example, built-in “Anura” and “Anura (Dark)” themes are a pair. So, “Anura” is used when the appearance is light, and “Anura (Dark)” is used in Dark Mode.</p>
 
 <p>However, if you select a theme opposite to the appearance as the default theme, that theme takes precedence regardless of the appearance.</p>
-
-
-
-<h2>File format of CotEditor themes</h2>
-
-<p>A CotEditor theme file must have the .cottheme extension and its format is based on JSON with hexadecimal color values with a <code>#</code> symbol.</p>
 
 
 <section id="cf">
