@@ -55,9 +55,6 @@ kbd {
 	border-radius: 3px;
 	padding: 0.1em 0.2em;
 }
-code.AppleScript {
-	color: hsl(230, 67%, 45%);
-}
 pre code {
 	background: transparent;
 }
@@ -131,7 +128,7 @@ pre {
 pre.source {
 	background: hsl(0, 0%, 98%);
 	border: 1px solid -apple-system-tertiary-label;
-	border-radius: 3px;
+	border-radius: 0.3rem;
 	max-width: 50rem;
 	padding: 0.2rem 0.5rem;
 	overflow: scroll;
@@ -288,21 +285,25 @@ td > :last-child {
 
 /* syntax highlight */
 
-span.comment {
-	color: hsl(0, 40%, 40%);
-}
-span.keyword {
-	color: hsl(210, 50%, 40%);
-}
-span.string {
-	color: hsl(0, 0%, 50%);
-}
 span.invisible {
 	opacity: 0.4;
 }
 span.variable {
 	font-style: italic;
 }
+
+code.AppleScript {
+	color: hsl(230, 67%, 45%);
+}
+code span.keyword   { color: #1b556b; font-weight: bold }
+code span.tag       { color: #1b556b }
+code span.command   { color: #947231 }
+code span.type      { color: #ae3d16 }
+code span.attribute { color: #862753 }
+code span.variable  { color: #348986 }
+code span.value     { color: #b22729 }
+code span.string    { color: #526e2a }
+code span.comment   { color: #66747a }
 
 
 /* dark mode */
@@ -321,6 +322,15 @@ span.variable {
 	code.AppleScript {
 		color: hsl(230, 50%, 60%);
 	}
+	code span.keyword   { color: #5199b3 }
+	code span.tag       { color: #5199b3 }
+	code span.command   { color: #d4a046 }
+	code span.type      { color: #ed734c }
+	code span.attribute { color: #c76090 }
+	code span.variable  { color: #75c9c6 }
+	code span.value     { color: #f26669 }
+	code span.string    { color: #90ad65 }
+	code span.comment   { color: #808080 }
 }
 
 
