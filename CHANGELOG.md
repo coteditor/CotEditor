@@ -38,7 +38,7 @@
 
 ### Fixes
 
-- Fix an issue in CotEditor 6.1.2 where the text entered in a split editor does not match the theme's text color.
+- Fix an issue in CotEditor 6.1.2 where the text entered in a split editor didn’t match the theme's text color.
 
 
 ### Known Issues
