@@ -1,5 +1,14 @@
 # Change Log
 
+6.2.0-beta.5 (unreleased)
+--------------------------
+
+### Known Issues
+
+- The text added to CotEditor 6.2.0 are not yet localized to Simplified Chinese and Portuguese.
+
+
+
 6.2.0-beta.4 (780)
 --------------------------
 
