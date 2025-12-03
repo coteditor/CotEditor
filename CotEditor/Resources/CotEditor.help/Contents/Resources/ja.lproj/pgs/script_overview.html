@@ -7,15 +7,15 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>MacのCotEditorでスクリプトで作業を自動化する</title>
+	<title>MacのCotEditorの作業をスクリプトで自動化する</title>
 </head>
 
 <body>
 <a name="script_overview"></a>
 
-<h1>MacのCotEditorでスクリプトで作業を自動化する</h1>
+<h1>MacのCotEditorの作業をスクリプトで自動化する</h1>
 
-<p>CotEditorのスクリプト機能で、自分で書いたスクリプトをCotEditor上で実行して編集中の書類を加工したり外部のプログラムを起動したりできます。スクリプトは<object type="image/svg+xml" class="symbol" data="../../Shared/gfx/script.svg" height="14">スクリプトアイコン</object>で表されるスクリプトメニューに登録されます。</p>
+<p>自分で書いたスクリプトをCotEditor上で実行して、編集中の書類を加工したり外部のプログラムを起動したりできます。スクリプトは<object type="image/svg+xml" class="symbol" data="../../Shared/gfx/script.svg" height="14">スクリプトアイコン</object>で表されるスクリプトメニューから呼び出せます。</p>
 
 
 <figure>
@@ -26,29 +26,30 @@
 <p>CotEditorスクリプトには大きく分けて以下の2つの種類の書き方があります:</p>
 <dl>
 	<dt>AppleScript</dt>
-	<dd>AppleScript（JXA; JavaScript for Automationを含む）では、より詳細にアプリを制御することができます。</dd>
+	<dd>AppleScriptまたはJavaScript for Automation（JXA）では、より高度にアプリケーションを制御することができます。</dd>
 	
 	<dt>UNIXスクリプト</dt>
-	<dd>UNIXスクリプトは、現在の書類の内容しか編集できませんが、Python, Ruby, Swiftなど、より一般的な好みの言語でスクリプトを書くことができます。</dd>
+	<dd>UNIXスクリプトは、最前面の書類の内容しか編集できませんが、Python、Ruby、Swiftなど、より一般的な好みの言語でスクリプトを書くことができます。</dd>
 </dl>
 
 <p>用途に合わせて使い分けてください。スクリプトの書き方について詳しくは、<a href="script_osascript.html">AppleScriptを使って作業を自動化する</a>、または<a href="script_unixscript.html">UNIXスクリプトを使って作業を自動化する</a>を参照してください。</p>
 
 
-<h2>スクリプトを追加または削除する</h2>
+<h2>スクリプトを追加する/削除する</h2>
 <p>スクリプトメニューに項目を追加したり、削除したりするには次のようにします。</p>
 <ol>
-	<li>CotEditorのスクリプトメニューから「スクリプトフォルダを開く」を選択すると、Finderがスクリプト用の次のフォルダを開きます:<br/>
+	<li>MacでCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>に移動します。</li>
+	<li>スクリプトメニューから「スクリプトフォルダを開く」を選択すると、Finderがスクリプト用の次のフォルダを開きます:<br/>
 	~/ライブラリ/Application Scripts/com.coteditor.CotEditor/</li>
 	<li>このフォルダに作成したスクリプトを置くか、またフォルダの不要なスクリプトを削除します。</li>
 	<li>スクリプトフォルダの変更がスクリプトメニューに自動的に反映されます。</li>
 </ol>
 
-<p>スクリプトのファイル名にある特定のテキストを含めることで、表示順を変更したりキーボードショートカットを付与したりできます。詳しくは、<a href="script_menu.html">スクリプトメニューをカスタマイズする</a>を参照してください。</p>
+<p>スクリプトのファイル名に特定のテキストを含めることで、表示順を変更したりキーボードショートカットを付与したりできます。詳しくは、<a href="script_menu.html">スクリプトメニューをカスタマイズする</a>を参照してください。</p>
 
 
 <h2>既存のCotEditorスクリプトを入手する</h2>
-<p>CotEditorプロジェクトはサンプルスクリプトを提供しています。以下のページからダウンロードできます。<br/>
+<p>CotEditorプロジェクトはサンプルスクリプトを提供しています。以下のWebページからダウンロードできます。<br/>
 <a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>
 
 <p>有志の親切なユーザが自身のスクリプトをオンラインで公開していることもあります。そのうちのいくつかは以下のページにリストアップされています。<br/>

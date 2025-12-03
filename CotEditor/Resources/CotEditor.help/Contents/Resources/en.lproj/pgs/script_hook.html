@@ -14,8 +14,9 @@
 
 <h1>Run script on specific events in CotEditor on Mac scripts</h1>
 
-<p>With scripting hooks, you can execute CotEditor scripts on certain events. The following events are available with CotEditor:</p>
+<p>With scripting hooks, you can execute CotEditor scripts on certain events.</p>
 
+<p>The following events are available with CotEditor:</p>
 <ul>
 	<li><code>document opened</code> : after you opened the file and then the content was loaded</li>
 	<li><code>document saved</code> : after you saved the file and then the content was stored</li>
@@ -29,8 +30,8 @@
 <p>Scripts with scripting hook must conform to the following protocols:</p>
 
 <ul>
-	<li>written in AppleScript or JavaScript for Automation (JXA)</li>
-	<li>stored in the form of a script bundle (.scptd)</li>
+	<li>Written in AppleScript or JavaScript for Automation (JXA)</li>
+	<li>Stored in the form of a script bundle (.scptd)</li>
 </ul>
 
 <p>In addition, events to subscribe to and handlers for them must be declared, as described below.</p>
@@ -53,9 +54,9 @@ HookingScript.scptd
             └── TXT.rtf
 </pre>
 
-<p>Any scripts can be exported in this form with Script Editor.app, which is one of the standard applications distributed with macOS.</p>
+<p>Any scripts can be exported in this form with Script Editor, which is one of the standard applications distributed with macOS.</p>
 
-<p>To support scripting hooks, the list of events to subscribing must be written in `Contents/Info.plist`. Info.plist is a property list containing the metadata of the bundle and formatted in XML like the following example:</p>
+<p>To support scripting hooks, the list of events to subscribing must be written in Contents/Info.plist. Info.plist is a property list containing the metadata of the bundle and formatted in XML like the following example:</p>
 
 <pre class="source">
 <code><span class="type">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
@@ -72,7 +73,7 @@ HookingScript.scptd
 <span class="tag">&lt;/plist&gt;</span>
 </code></pre>
 
-<p>The events to subscribe must be stored at the key <code>CotEditorHandlers</code> and in the form of <code>array</code> of <code>string</code>.</p>
+<p>The events to subscribe must be stored at the key <code>CotEditorHandlers</code> and in the form of <code>array</code> of <code>string</code>. For example, to run a script automatically when opening and saving a document, write as follows:</p>
 
 <pre class="source">
 <code><span class="tag">&lt;key&gt;</span>CotEditorHandlers<span class="tag">&lt;/key&gt;</span>
@@ -104,7 +105,7 @@ HookingScript.scptd
 
 <h3>JavaScript for Automation (JXA)</h3>
 
-<p>In JXA, <code>function</code> statements on the global object creates handlers.</p>
+<p>In JavaScript for Automation, <code>function</code> statements on the global object creates handlers.</p>
 
 <pre class="source">
 <code><span class="variable">CotEditor</span> = <span class="variable">Application</span><span class="p">.</span><span class="command">currentApplication</span><span class="p">()</span>

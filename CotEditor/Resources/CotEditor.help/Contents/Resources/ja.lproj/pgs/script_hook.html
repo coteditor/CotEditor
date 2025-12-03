@@ -14,11 +14,13 @@
 
 <h1>MacのCotEditorで特定のイベントでスクリプトを実行する</h1>
 
-<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。CotEditorは次に挙げるイベントでのフックをサポートしています。</p>
+<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。</p>
+
+<p>CotEditorは以下のイベントでのフックをサポートしています:</p>
 
 <ul>
-	<li><code>document opened</code>: 書類を開く操作を行い、テキストが読み込まれた直後</li>
-	<li><code>document saved</code>: 書類を保存する操作を行い、テキストが書き込まれた直後</li>
+	<li><code>document opened</code>: 書類を開いて、テキストが読み込まれた直後</li>
+	<li><code>document saved</code>: 書類を保存して、テキストが書き込まれた直後</li>
 </ul>
 
 <p>イベントの詳細な仕様については、AppleScript辞書の「CotEditor Event Handler suite」項を参照してください。</p>
@@ -26,14 +28,14 @@
 
 <h2>スクリプトフックに対応する</h2>
 
-<p>フックに対応したスクリプトを作成する場合、以下の制約を満足する必要があります。</p>
+<p>フックに対応したスクリプトを作成するには、以下の制約を満たす必要があります。</p>
 
 <ul>
-	<li>AppleScriptまたはJavaScript for Automation (JXA)による記述</li>
-	<li>スクリプトバンドル形式 (.scptd) で格納</li>
+	<li>AppleScriptまたはJavaScript for Automation（JXA）で記述</li>
+	<li>スクリプトバンドル形式（.scptd）で保存</li>
 </ul>
 
-<p>以上に加えて、フックしたいイベントをメタデータファイルにて明示し、イベントハンドラを記述する必要があります。</p>
+<p>以上に加えて、フックしたいイベントをInfo.plistファイルにて明示し、イベントハンドラを記述する必要があります。</p>
 
 
 <h2>スクリプトバンドルでフックを宣言する</h2>
@@ -73,7 +75,7 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
 <span class="tag">&lt;/plist&gt;</span>
 </code></pre>
 
-<p>フックしたいイベントの一覧は、キー<code>CotEditorHandlers</code>に文字列の配列として記載します。以下にその一例を示します。</p>
+<p>フックしたいイベントの一覧は、キー<code>CotEditorHandlers</code>に文字列の配列として記載します。例えば、書類を開いたときと保存したときにスクリプトを自動的に実行したいときは、以下のように記述します:</p>
 
 <pre class="source">
 <code><span class="tag">&lt;key&gt;</span>CotEditorHandlers<span class="tag">&lt;/key&gt;</span>
@@ -106,7 +108,7 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
 
 <h3>JavaScript for Automation (JXA)</h3>
 
-<p>JXAでスクリプトを記述する場合、<code>function</code>文を用いてハンドラを作成します。関数はグローバルオブジェクト上で定義する必要があります。</p>
+<p>JavaScript for Automationでスクリプトを記述する場合、<code>function</code>文を用いてハンドラを作成します。関数はグローバルオブジェクト上で定義する必要があります。</p>
 
 <pre class="source">
 <code><span class="variable">CotEditor</span> = <span class="variable">Application</span><span class="p">.</span><span class="command">currentApplication</span><span class="p">()</span>
@@ -125,9 +127,9 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="script_overview.html">スクリプトでタスクを自動化する</a></li>
+	<li><a href="script_overview.html">作業をスクリプトで自動化する</a></li>
 	<li><a href="script_menu.html">スクリプトメニューをカスタマイズする</a></li>
-	<li><a href="script_osascript.html">AppleScriptを使ってタスクを自動化する</a></li>
+	<li><a href="script_osascript.html">AppleScriptを使って作業を自動化する</a></li>
 </ul>
 </section>
 

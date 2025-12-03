@@ -15,7 +15,7 @@
 
 <h1>Automate tasks with scripting in CotEditor on Mac</h1>
 
-<p>CotEditor includes a scripting feature you can use to run scripts in CotEditor to modify documents or launch external tools. Your scripts appear in the Script menu represented with <object type="image/svg+xml" data="../../Shared/gfx/script.svg" height="14">script icon</object>.</p>
+<p>Run your own scripts on CotEditor to modify documents or launch external tools. Your scripts appear in the Script menu represented with <object type="image/svg+xml" data="../../Shared/gfx/script.svg" height="14">script icon</object>.</p>
 
 <figure>
 	<img srcset="../gfx/ov_scriptmenu@2x.png 2x" alt="Screenshot of the Script menu"/>
@@ -25,10 +25,10 @@
 <p>On CotEditor, there are two different ways to write scripts:</p>
 <dl>
 	<dt>AppleScript</dt>
-	<dd>AppleScript (incl. JXA; JavaScript for Automation) can control documents in CotEditor with a high level of flexibility.</dd>
+	<dd>AppleScript and JavaScript for Automation (JXA) can control documents in CotEditor with a high level of flexibility.</dd>
 	
 	<dt>UNIX script</dt>
-	<dd>UNIX scripts can modify only the current document, but you can write them in various languages such as Python, Ruby, and Swift.</dd>
+	<dd>UNIX scripts can modify only the frontmost document, but you can write them in various languages such as Python, Ruby, and Swift.</dd>
 </dl>
 
 <p>Choose the scripting type that suits your needs. For details about how to write your scripts, see <a href="script_osascript.html">Automate tasks using AppleScript</a> or <a href="script_unixscript.html">Automate tasks using UNIX scripts</a>.</p>
@@ -38,10 +38,11 @@
 
 <p>To add scripts to or remove scripts from the Script menu, follow these steps:</p>
 <ol>
-	<li>Choose Script &gt; Open Scripts Folder in CotEditor. The Finder opens the folder for CotEditor scripts at:<br/>
+	<li>Go to the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac.</li>
+	<li>Choose Script &gt; Open Scripts Folder. The Finder opens the folder for CotEditor scripts at:<br/>
 	~/Library/Application Scripts/com.coteditor.CotEditor/</li>
 	<li>Put your script files in this folder, or remove unwanted ones.</li>
-	<li>Changes to this folder are applied automatically to the Script menu.</li>
+	<li>CotEditor automatically applies changes in this folder to the Script menu.</li>
 </ol>
 
 <p>You can also change the order of scripts or assign keyboard shortcuts by modifying the names of your script files. See <a href="script_menu.html">Customize the Script menu</a> for the details.</p>
