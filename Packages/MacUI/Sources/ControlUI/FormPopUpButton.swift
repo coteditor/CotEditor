@@ -102,8 +102,8 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
         
         let width = cellFrame.height - 6
         let x = (self.userInterfaceLayoutDirection == .rightToLeft)
-                ? cellFrame.minX + 3.5
-                : cellFrame.maxX - width - 3.5
+                ? cellFrame.minX + 5
+                : cellFrame.maxX - width - 5
         let rect = NSRect(x: x, y: cellFrame.minY + 3, width: width, height: width)
         
         // draw capsule
