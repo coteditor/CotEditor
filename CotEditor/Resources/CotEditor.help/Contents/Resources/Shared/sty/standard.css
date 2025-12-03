@@ -48,7 +48,7 @@ kbd {
 	box-shadow: 0 1px 0 hsla(0, 0%, 0%, .04);
 }
 
-:not(h1) > code {
+:not(h1, h2, h3) > code {
 	font-family: 'SF Mono', monospace;
 	font-size: 90%;
 	background: hsla(201, 30%, 50%, .07);

@@ -15,36 +15,39 @@
 
 <h1>MacのCotEditorで<code>cot</code>コマンドと連携する</h1>
 
-<p>CotEditorにはコマンドラインからの操作を可能にする<strong>cot</strong>コマンドラインツールがあります。<code>cot</code>コマンドを使うためには、まずコマンドをインストールしてください。</p>
+<p>CotEditorにはコマンドラインからの操作を可能にする<code>cot</code>コマンドラインツールがあります。<code>cot</code>コマンドを使うためには、まずコマンドをインストールしてください。</p>
 
-<h2>cotコマンドをインストールする</h2>
-<p><code>cot</code>コマンドはCotEditor.app内の'<code>Contents/SharedSupport/bin/cot</code>'に内蔵されています。</p>
-<p>Terminalからシンボリックリンクを作成して、任意の場所にインストールできます。特にこだわりがない場合は'<code>/usr/local/bin/</code>'にシンボリックリンク作成することをお勧めします。</p>
 
-<p>推奨する場所にシンボリックリンクを作成するには、Terminalで以下の行を実行します。</p>
+<h2><code>cot</code>コマンドをインストールする</h2>
+
+<p><code>cot</code>コマンドはCotEditor.app内の<code>Contents/SharedSupport/bin/cot</code>に内蔵されています。</p>
+<p>Terminalからシンボリックリンクを作成して、任意の場所にコマンドをインストールできます。特にこだわりがない場合は<code>/usr/local/bin/</code>にシンボリックリンクを作成することをお勧めします。</p>
+
+<p>推奨する場所にシンボリックリンクを作成するには、Terminalで以下のコマンドを実行します。</p>
 <pre class="source"><code>mkdir /usr/local/bin/
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 
 <h3>セキュリティ認証</h3>
-<p>macOSで別のアプリから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。「システム設定」＞「プライバシーとセキュリティー」＞「オートメーション」で、ターミナルなど利用するクライアントの下にある「CotEditor」のチェックボックスを有効にします。さらに、<code>--wait</code>オプションのためには「System Events」も有効にします。</p>
+<p>macOSで別のアプリから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は、手動での設定が必要です。「システム設定」＞「プライバシーとセキュリティー」＞「オートメーション」で、ターミナルなど利用するクライアントの下にある「CotEditor」のチェックボックスを有効にします。さらに、<code>--wait</code>オプションのためには「System Events」も有効にします。</p>
 
 
 <h3>Python 3のインストール</h3>
 <p>cotコマンドはPython 3で実装されています。PythonはmacOS 12.3からシステムには同梱されなくなったため、cotコマンドを使うには自身で<code>python3</code>をインストールする必要があります。</p>
-<p>Appleが提供する開発ツールには<code>python3</code>は同梱されています。下記のコマンドをTerminalで実行するとAppleのコマンドライン・デベロッパツールをインストールできます。もちろん他の方法で<code>python3</code>をインストールした場合は、そちらが使えます。</p>
+<p>Appleが提供する開発ツールには<code>python3</code>が同梱されています。下記のコマンドをTerminalで実行するとAppleのコマンドラインデベロッパツールをインストールできます。もちろん他の方法で<code>python3</code>をインストールしてもかまいません。</p>
 
 <pre class="source"><code>xcode-select --install</code></pre>
 
 
-<h2>cotコマンドをアンインストールする</h2>
+<h2><code>cot</code>コマンドをアンインストールする</h2>
 
-<p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールするときはTerminalから以下を実行します。</p>
+<p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールするときは、Terminalで以下のコマンドを実行します。</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 
-<h2>オプションとともに使う</h2>
-<p><code>cot</code>コマンドは以下のオプションが使用できます。</p>
+<h2>コマンドをオプションとともに使う</h2>
+
+<p><code>cot</code>コマンドは以下のオプションが使用できます:</p>
 
 <table>
 	<thead>
@@ -52,7 +55,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	</thead>
 	<tbody>
 		<tr><th><code>-w</code>, <code>--wait</code></th><td>開いた書類が閉じるまでコマンドの終了を待ちます。</td></tr>
-		<tr><th><code>-r</code>, <code>--readonly</code></th><td>書類を<a href="howto_readonly.html">読み出し専用</a>として開きます。</td></tr>
+		<tr><th><code>-r</code>, <code>--readonly</code></th><td>書類を<a href="howto_readonly.html">読み出し専用</a>で開きます。</td></tr>
 		<tr><th><code>-n</code>, <code>--new</code></th><td>空の新規書類を開きます。</td></tr>
 		<tr><th><code>-s</code>, <code>--syntax</code></th><td>開いた書類に任意のシンタックスをセットします。</td></tr>
 		<tr><th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th><td>開いた書類の指定した行に移動します。<code>&lt;line&gt;</code>は行を指定する整数型です。</td></tr>
@@ -65,36 +68,32 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <p><code>--line</code>オプションと<code>--column</code>は負の値を指定することもできます。そのとき、<code>--line</code>オプションの場合は書類の末尾から、<code>--column</code>オプションの場合は行の末尾からカウントされます。</p>
 
-<h2>例</h2>
-<p><code>cot</code>コマンド単体でCotEditorが起動します。</p>
 
-<pre class="source"><code>cot
-</code></pre>
+<h2><code>cot</code>コマンドを実行する</h2>
+
+<p><code>cot</code>コマンド単体でCotEditorが起動します。CotEditorがすでに起動している場合は、最前面に持っていきます。</p>
+
+<pre class="source"><code>cot</code></pre>
 
 <p>以下のコマンドは、foo.txtファイルをCotEditorで開き200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しないときは、<code>cot</code>コマンドは何も行いません。</p>
 
-<pre class="source"><code>cot --line 200 foo.txt
-</code></pre>
+<pre class="source"><code>cot --line 200 foo.txt</code></pre>
 
 <p>以下のコマンドは、foo.txtファイルをCotEditorで開き、書類末尾に挿入ポイントを移動します。</p>
 
-<pre class="source"><code>cot --line -1 --column -1 foo.txt
-</code></pre>
+<pre class="source"><code>cot --line -1 --column -1 foo.txt</code></pre>
 
-<p>ファイル名の代わりにダッシュを渡すと、標準入力を受け取るモードになります。受け取った入力は新規書類として開かれます。</p>
+<p>ファイル名の代わりにダッシュ（<code>-</code>）を渡すと、標準入力を受け取るモードになります。受け取った入力は新規書類として開かれます。</p>
 
-<pre class="source"><code>cot -
-</code></pre>
+<pre class="source"><code>cot -</code></pre>
 
 <p>テキストをパイプで渡すこともできます。CotEditorは渡されたテキストを新規書類として開きます。</p>
 
-<pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
-</code></pre>
+<pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot</code></pre>
 
 <p><code>--wait</code>オプションを使えばCotEditorを<code>git</code>のエディタとして指定することもできます。</p>
 
-<pre class="source"><code>git config --global core.editor &quot;cot -w&quot;
-</code></pre>
+<pre class="source"><code>git config --global core.editor &quot;cot -w&quot;</code></pre>
 
 
 <section id="cf">
