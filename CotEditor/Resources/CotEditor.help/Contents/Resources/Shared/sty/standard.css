@@ -18,6 +18,8 @@
 	text-spacing-trim: trim-start;
 	
 	-webkit-font-smoothing: antialiased;
+	
+	color-scheme: light dark;
 }
 body {
 	max-width: 820px;
@@ -41,22 +43,11 @@ img {
 
 kbd {
 	font-family: inherit;
-	padding: 0 0.2em;
-	margin: 0 0.1em;
-	border-radius: 0.2em;
-	border: 1px solid -apple-system-quaternary-label;
-	box-shadow: 0 1px 0 hsla(0, 0%, 0%, .04);
 }
 
-:not(h1, h2, h3) > code {
+pre, code {
 	font-family: 'SF Mono', monospace;
-	font-size: 90%;
-	background: hsla(201, 30%, 50%, .07);
-	border-radius: 3px;
-	padding: 0.1em 0.2em;
-}
-pre code {
-	background: transparent;
+	font-size: 95%;
 }
 
 body > h1 {
@@ -67,9 +58,7 @@ body > h1 {
 	margin: 2.5rem 0 1.5rem;
 }
 body > h1::before {
-	content: '';
-	background-image: image-set(url(../gfx/icon_32x32@2x.png) 2x);
-	background-size: contain;
+	content: image-set(url(../gfx/icon_32x32@2x.png) 2x);
 	display: inline-block;
 	width: 32px;
 	height: 32px;
@@ -81,8 +70,7 @@ h2 {
 	font-weight: 700;
 	line-height: 1.4;
 	letter-spacing: 0.02em;
-	margin-top: 2.5rem;
-	margin-bottom: 1rem;
+	margin: 2.5rem 0 1rem;
 	clear: both;
 }
 :not(h1) + h2 {
@@ -121,17 +109,6 @@ pre {
 	margin: 0.5rem 0;
 	padding: 0 1.5rem;
 	clear: both;
-}
-pre {
-	font-family: 'Courier', 'Courier New', monospace;
-}
-pre.source {
-	background: hsl(0, 0%, 98%);
-	border: 1px solid -apple-system-tertiary-label;
-	border-radius: 0.3rem;
-	max-width: 50rem;
-	padding: 0.2rem 0.5rem;
-	overflow: scroll;
 }
 
 ul {
@@ -208,6 +185,14 @@ em, strong {
 	font-style: normal;
 }
 
+img.appicon {
+	vertical-align: text-bottom;
+	height: 18px;
+}
+img.appicon:lang(ja) {
+	padding: 0 0.1em;
+}
+
 img.bordered {
 	border: 0.5px solid -apple-system-tertiary-label;
 	border-radius: 3px;
@@ -270,10 +255,6 @@ th {
 	font-weight: normal;
 	white-space: nowrap;
 }
-th code {
-	border: none;
-	background: none;
-}
 tbody th:first-child {
 	text-align: left;
 	vertical-align: top;
@@ -292,6 +273,15 @@ span.variable {
 	font-style: italic;
 }
 
+pre.source {
+	background: hsl(0, 0%, 98%);
+	border: 1px solid -apple-system-tertiary-label;
+	border-radius: 0.3rem;
+	max-width: 50rem;
+	padding: 0.2rem 0.5rem;
+	overflow: scroll;
+}
+
 code.AppleScript {
 	color: hsl(230, 67%, 45%);
 }
@@ -305,17 +295,7 @@ code span.value     { color: #b22729 }
 code span.string    { color: #526e2a }
 code span.comment   { color: #66747a }
 
-
-/* dark mode */
-
-:root {
-	color-scheme: light dark;
-}
-
 @media (prefers-color-scheme: dark) {
-	table thead {
-		color: -apple-system-secondary-label;
-	}
 	pre.source {
 		background: hsl(0, 0%, 10%);
 	}
@@ -335,14 +315,6 @@ code span.comment   { color: #66747a }
 
 
 /* settings */
-
-img.appicon {
-	vertical-align: text-bottom;
-	height: 18px;
-}
-img.appicon:lang(ja) {
-	padding: 0 0.1em;
-}
 
 table.settings th {
 	width: 18em;

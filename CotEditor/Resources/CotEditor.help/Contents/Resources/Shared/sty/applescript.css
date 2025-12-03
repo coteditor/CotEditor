@@ -6,13 +6,13 @@
  CotEditor
  https://coteditor.com
  
- © 2016-2023 1024jp
+ © 2016-2025 1024jp
 */
 
 
 #Class section,
 #Command section {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid -apple-system-tertiary-label;
 }
 #Command h3 {
 	display: none;
