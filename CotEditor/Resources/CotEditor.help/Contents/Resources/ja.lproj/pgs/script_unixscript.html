@@ -7,12 +7,12 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>MacのCotEditorをUNIXスクリプトで操作する</title>
+	<title>MacのCotEditorでUNIXスクリプトを使って作業を自動化する</title>
 </head>
 
 <body>
 
-<h1>MacのCotEditorをUNIXスクリプトで操作する</h1>
+<h1>MacのCotEditorでUNIXスクリプトを使って作業を自動化する</h1>
 
 <p>このページではスクリプトメニューから実行するUNIXスクリプトにCotEditorで編集中の書類の情報やテキストを渡したり、スクリプトの実行結果を書類に反映する方法を説明します。</p>
 
@@ -76,9 +76,9 @@
 <p>標準エラー出力に投げられたテキストはコンソールウインドウに出力されます。</p>
 
 
-<h2>例</h2>
+<h2>スクリプトを書く</h2>
 
-<p>以下のPythonスクリプトは最前面書類の選択範囲内のすべての行の行頭に「&gt;」を追加し、さらに処理した行数をコンソールに表示します。</p>
+<p>例えば、以下のPythonスクリプトは、現在の書類の選択範囲内のすべての行の行頭に「&gt;」を追加し、さらに処理した行数をコンソールに表示します。</p>
 
 <pre class="source"><code><span class="comment">#!/usr/bin/env python3
 # %%%{CotEditorXInput=Selection}%%%
@@ -105,7 +105,7 @@ sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.for
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="script_overview.html">CotEditorスクリプトを使う</a></li>
+	<li><a href="script_overview.html">スクリプトで作業を自動化する</a></li>
 </ul>
 </section>
 
