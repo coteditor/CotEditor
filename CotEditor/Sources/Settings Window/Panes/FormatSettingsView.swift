@@ -392,33 +392,33 @@ private struct SyntaxListView: View {
             Button {
                 self.editingMode = .new
             } label: {
-                Image(systemName: "plus")
-                    .accessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
+                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
                     .padding(2)
             }
             .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .labelStyle(.iconOnly)
             .frame(width: 16)
             
             Button {
                 self.deletingItem = self.selection?.name
                 self.isDeleteConfirmationPresented = true
             } label: {
-                Image(systemName: "minus")
-                    .accessibilityLabel(String(localized: "Action.delete.label", defaultValue: "Delete"))
+                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
             }
             .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .labelStyle(.iconOnly)
             .frame(width: 16)
             .disabled(self.selection?.isBundled != false)
             
             Button {
                 self.editingMode = .edit(self.selection!)
             } label: {
-                Image(systemName: "pencil")
-                    .accessibilityLabel(String(localized: "Action.edit.label", defaultValue: "Edit"))
+                Label(String(localized: "Action.edit.label", defaultValue: "Edit"), systemImage: "pencil")
                     .padding(2)
             }
             .help(String(localized: "Edit selected item", table: "FormatSettings"))
+            .labelStyle(.iconOnly)
             .frame(width: 16)
             .disabled(self.selection == nil)
             
@@ -427,9 +427,9 @@ private struct SyntaxListView: View {
             Menu {
                 self.menu(for: self.selection)
             } label: {
-                Image(systemName: "ellipsis")
+                Label(String(localized: "Button.actions.label", defaultValue: "Actions"), systemImage: "ellipsis")
                     .symbolVariant(.circle)
-                    .accessibilityLabel(String(localized: "Button.actions.label", defaultValue: "Actions"))
+                    .labelStyle(.iconOnly)
             }
         }
         .buttonStyle(.borderless)
