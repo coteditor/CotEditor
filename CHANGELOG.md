@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- [dev] Update the build environment to Xcode 26.2 RC.
 - [beta] Update the user guide.
 
 
