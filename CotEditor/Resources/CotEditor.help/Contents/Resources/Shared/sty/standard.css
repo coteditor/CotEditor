@@ -36,6 +36,10 @@ a:link, a:visited {
 a:hover {
 	text-decoration: underline;
 }
+em:lang(ja) {
+	font-weight: 600;
+	font-style: normal;
+}
 
 img {
 	max-width: 100%;
@@ -148,8 +152,6 @@ table ul li {
 #cf ul {
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
-	border: none;
 }
 
 .na {
@@ -181,11 +183,6 @@ p.addition > span:first-child {
 	p.addition::after {
 		border-bottom-color: hsl(213, 30%, 20%);
 	}
-}
-
-em, strong {
-	font-weight: 600;
-	font-style: normal;
 }
 
 img.appicon {
@@ -248,11 +245,11 @@ table tr > :last-child {
 	padding-right: 0;
 }
 table thead tr th {
-	font-weight: 600;
+	font-weight: 650;
 	text-align: left;
 }
 table thead tr:first-child > * {
-	border-top: 2px solid -apple-system-quaternary-label;
+	border-top: 2.5px solid -apple-system-quaternary-label;
 }
 th {
 	font-weight: normal;
@@ -272,9 +269,6 @@ td > :last-child {
 span.invisible {
 	opacity: 0.4;
 }
-span.variable {
-	font-style: italic;
-}
 
 pre.source {
 	background: hsl(0, 0%, 98%);
@@ -293,7 +287,7 @@ code span.tag       { color: #1b556b }
 code span.command   { color: #947231 }
 code span.type      { color: #ae3d16 }
 code span.attribute { color: #862753 }
-code span.variable  { color: #348986 }
+code span.variable  { color: #348986; font-style: italic; }
 code span.value     { color: #b22729 }
 code span.string    { color: #526e2a }
 code span.comment   { color: #66747a }
@@ -328,15 +322,4 @@ table.settings tbody {
 }
 table.settings td dl > * {
 	margin-left: 0;
-}
-table.settings td ul {
-	padding-left: 1.5rem;
-}
-table.settings td ul li strong {
-	font-weight: 400;
-	font-style: italic;
-}
-table.settings td ul li strong:lang(ja) {
-	font-weight: 600;
-	font-style: normal;
 }
