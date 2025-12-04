@@ -118,6 +118,9 @@ ul {
 li {
 	margin-bottom: 0.4rem;
 }
+li p {
+	margin: 0;
+}
 
 ul ul,
 ul ol {

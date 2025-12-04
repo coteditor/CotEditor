@@ -17,8 +17,8 @@
 <p>This page explains how to pass a document’s text to UNIX scripts that you execute from the Script menu and how to receive output from those scripts.</p>
 
 <ul>
-	<li>Script files must have one of the following extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift (regardless of the language)</li>
-	<li>To run a script, make sure the script file has execute permission.</li>
+	<li><p>Script files must have one of the following extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift (regardless of the language)</p></li>
+	<li><p>To run a script, make sure the script file has execute permission.</p></li>
 </ul>
 
 
@@ -32,7 +32,7 @@
 <p>A script can receive the content of the current document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains: “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the parameters below. If you don’t specify a parameter, CotEditor passes nothing. This is the same as using “<coee>None</code>.”</p>
 
 <ul>
-	<li>CotEditor passes all text to scripts encoded in UTF-8.</li>
+	<li><p>CotEditor passes all text to scripts encoded in UTF-8.</p></li>
 </ul>
 
 <table>
@@ -52,7 +52,7 @@
 <p>CotEditor can receive output from the script through standard output (STDOUT) and apply it to the document. To define how CotEditor handles the output, add a comment at the top of the script that contains: “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>”. Replace <code><var>xxxx</var></code> with one of the parameters below. If you don’t specify a parameter, CotEditor performs no action. This is the same as using “<code>Discard</code>.”</p>
 
 <ul>
-	<li>Output text must be encoded in UTF-8.</li>
+	<li><p>Output text must be encoded in UTF-8.</p></li>
 </ul>
 
 <table>
