@@ -21,6 +21,9 @@ body > ul {
 	font-size: 15px;
 	font-weight: 500;
 }
+li {
+	margin: 0.4rem 0;
+}
 ul {
 	padding: 0;
 	list-style-type: none;

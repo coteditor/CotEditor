@@ -11,7 +11,7 @@
 
 
 :root {
-	font: 400 16px/1.65 -apple-system, sans-serif;
+	font: 400 16px/1.6 -apple-system, sans-serif;
 	font-size-adjust: from-font;
 	text-rendering: optimizeLegibility;
 	text-autospace: normal;
@@ -37,21 +37,19 @@ a:hover {
 	text-decoration: underline;
 }
 em:lang(ja) {
-	font-weight: 600;
+	font-weight: 650;
 	font-style: normal;
+}
+kbd {
+	font-family: inherit;
+}
+pre, code {
+	font-family: 'SF Mono', monospace;
+	font-size: 95%;
 }
 
 img {
 	max-width: 100%;
-}
-
-kbd {
-	font-family: inherit;
-}
-
-pre, code {
-	font-family: 'SF Mono', monospace;
-	font-size: 95%;
 }
 
 body > h1 {
@@ -99,6 +97,10 @@ article+article {
 	border-top: 1px solid -apple-system-separator;
 }
 
+p + p {
+	margin-top: 1em;
+}
+
 p, li {
 	text-align: justify;
 }
@@ -110,7 +112,7 @@ figure {
 ol,
 ul,
 pre {
-	margin: 0.5rem 0;
+	margin: 1rem 0;
 	padding: 0 1.5rem;
 	clear: both;
 }
@@ -120,10 +122,7 @@ ul {
 }
 
 li {
-	margin-bottom: 0.4rem;
-}
-li p {
-	margin: 0;
+	margin-bottom: 1rem;
 }
 
 ul ul,
@@ -131,13 +130,6 @@ ul ol {
 	padding: 0 3rem;
 	margin: 0.5rem 0;
 	border: none;
-}
-
-ul + ul,
-ol + ol,
-ul + ol,
-ol + ul {
-	margin-top: 1rem;
 }
 
 table ul li {
