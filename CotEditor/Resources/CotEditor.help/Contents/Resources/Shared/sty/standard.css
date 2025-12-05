@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*
- Standard Help Style Sheet
+ Standard Style Sheet
  
  CotEditor
  https://coteditor.com
@@ -9,33 +9,8 @@
  © 2006-2025 CotEditor Project
 */
 
+@import "common.css";
 
-:root {
-	font: 400 16px/1.6 -apple-system, sans-serif;
-	font-size-adjust: from-font;
-	text-rendering: optimizeLegibility;
-	text-autospace: normal;
-	text-spacing-trim: trim-start;
-	
-	-webkit-font-smoothing: antialiased;
-	
-	color-scheme: light dark;
-}
-body {
-	max-width: 820px;
-	margin: 1rem auto 2rem;
-	padding: 0 2.75rem;
-}
-
-a {
-	text-decoration: none;
-}
-a:link, a:visited {
-	color: -apple-system-blue;
-}
-a:hover {
-	text-decoration: underline;
-}
 em:lang(ja) {
 	font-weight: 650;
 	font-style: normal;

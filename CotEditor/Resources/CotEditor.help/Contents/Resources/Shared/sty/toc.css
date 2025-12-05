@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*
- Additional Help Style Sheet for Table of Contents
+ Style Sheet for Table of Contents
  
  CotEditor
  https://coteditor.com
@@ -9,19 +9,16 @@
  © 2006-2025 CotEditor Project
 */
 
+@import "common.css";
 
-body > h1::before {
-	display: none;
-}
 a {
 	color: inherit !important;
 }
 
-body > ul {
+ul {
 	font-size: 15px;
 	font-weight: 500;
-}
-ul {
+	
 	padding: 0;
 	list-style-type: none;
 }
@@ -36,7 +33,6 @@ body > ul > li {
 }
 
 summary {
-	cursor: pointer;
 	display: block;
 }
 summary::before {
