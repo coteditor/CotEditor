@@ -59,7 +59,7 @@ header p {
 header .toc::before {
 	display: inline-block;
 	content: url(../gfx/toc.svg);
-	vertical-align: -2px;
+	vertical-align: -1px;
 	padding-right: 0.3rem;
 }
 header .toc {

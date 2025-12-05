@@ -21,9 +21,6 @@ body > ul {
 	font-size: 15px;
 	font-weight: 500;
 }
-li {
-	margin: 0.4rem 0;
-}
 ul {
 	padding: 0;
 	list-style-type: none;
@@ -31,28 +28,24 @@ ul {
 ul ul {
 	padding-left: 1.5rem;
 }
-
-summary {
-	cursor: pointer;
+li {
+	margin: 0.4rem 0;
 }
-summary::marker {
-	color: -apple-system-tertiary-label;
-}
-
 body > ul > li {
 	padding: 0.15rem 0;
 }
 
-details[open] > ul {
-	animation: 0.3s ease fadeIn;
+summary {
+	cursor: pointer;
+	display: block;
 }
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-	100% {
-		opacity: 1;
-		transform: none;
-	}
+summary::before {
+	content: url(../gfx/chevron.svg);
+	opacity: 0.45;
+	display: inline-block;
+	vertical-align: -1.5px;
+	padding-right: 0.4rem;
+}
+details[open] summary::before {
+	transform: translateY(1.5px) rotate(90deg);
 }
