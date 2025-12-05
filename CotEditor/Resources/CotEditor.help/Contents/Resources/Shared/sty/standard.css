@@ -72,12 +72,12 @@ h2 {
 	font-weight: 700;
 	line-height: 1.4;
 	letter-spacing: 0.02em;
-	margin: 2.5rem 0 1rem;
-	clear: both;
 }
-:not(h1) + h2 {
+body > section:not(#cf) {
+	margin: 2rem 0 1rem;
+	padding-top: 0.5rem;
 	border-top: 1px solid -apple-system-separator;
-	padding-top: 1rem;
+	clear: both;
 }
 h3 {
 	font-size: 100%;
@@ -134,16 +134,6 @@ ul ol {
 
 table ul li {
 	margin-bottom: 0.2em;
-}
-#cf {
-	margin-top: 3rem;
-}
-#cf h2 {
-	margin-bottom: 0.5rem;
-}
-#cf ul {
-	list-style-type: none;
-	padding: 0;
 }
 
 .na {
@@ -256,7 +246,7 @@ td > :last-child {
 }
 
 
-/* syntax highlight */
+/* Syntax highlight */
 
 span.invisible {
 	opacity: 0.4;
@@ -303,7 +293,24 @@ code span.comment   { color: #66747a }
 }
 
 
-/* settings */
+/* See also */
+
+#cf {
+	margin-top: 3rem;
+}
+#cf > * {
+	margin: 0;
+}
+#cf ul {
+	list-style-type: none;
+	padding: 0;
+}
+#cf li {
+	margin: 0.4rem 0;
+}
+
+
+/* Settings */
 
 table.settings th {
 	width: 18em;

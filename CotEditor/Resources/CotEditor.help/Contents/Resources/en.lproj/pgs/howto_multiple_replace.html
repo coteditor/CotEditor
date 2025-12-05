@@ -18,6 +18,7 @@
 <p>With the <dfn>Multiple Replace</dfn> feature, you can apply multiple text replacements at once in sequence. Each set of replacement rules can be saved as a named preset and reused whenever needed.</p>
 
 
+<section>
 <h2>Use Multiple Replace window</h2>
 
 <p>Use the Multiple Replace window to manage and perform the multiple replacements in your document.</p>
@@ -29,9 +30,10 @@
 </ol>
 
 <p><img srcset="../gfx/multiple_replace_panel@2x.png 2x" alt="Screenshot of the Multiple Replace window"/></p>
+</section>
 
 
-
+<section>
 <h2>Manage replacement definitions</h2>
 
 <p>The stored replacement definitions you have created before appear in the list on the sidebar.</p>
@@ -42,7 +44,6 @@
 	<li><p>Click the selected definition in the list again to rename it.</p></li>
 	<li><p>Click the Action pop-up menu (<object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg"></object>) for further operations.</p></li>
 </ul>
-
 
 
 <h3>Export/import replacement definitions</h3>
@@ -59,9 +60,10 @@ Each definition is saved as a <dfn>CotEditor replace definition</dfn> file with 
 <h3>Import TSV data as replacement definitions</h3>
 
 <p>You can also create a replace definition from a UTF-8–encoded TSV file in which each line contains a pair of search and replacement texts separated by tabs. To import this format, choose a file with the .tsv extension using the Import command. In this format, you can’t specify options such as case sensitivity or enabling regular expressions. After importing a TSV file as a replace definition, configure any necessary options manually.</p>
+</section>
 
 
-
+<section>
 <h2>Perform multiple replacements</h2>
 
 <p>The definition selected in the list appears in the editor area on the right side. The replacement rules in the editor area are performed row by row from top to bottom at once.</p>
@@ -74,12 +76,13 @@ Each definition is saved as a <dfn>CotEditor replace definition</dfn> file with 
 </ul>
 
 <p><small>* The matches highlighted by the Highlight command may differ from the actual replacement results because Replace All applies rules sequentially, and each rule is applied to the document after previous rules have already taken effect.</small></p>
+</section>
 
 
+<section>
 <h2>Edit replacement definition</h2>
 
 <p>You can create and customize your own replacement definitions.</p>
-
 
 
 <h3>Create a new replacement definition</h3>
@@ -110,9 +113,10 @@ Each definition is saved as a <dfn>CotEditor replace definition</dfn> file with 
 		<tr><th>Description</th><td>You can use this field to leave a comment about the rule. The description doesn’t affect to replacement. This field can be left blank.</td></tr>
 	</tbody>
 </table>
+</section>
 
 
-
+<section>
 <h2>Change advanced find options</h2>
 
 <p>You can fine-tune the find behavior for the entire replacement definition in the Advanced options view. Those settings are also saved to your definition and apply to all rules within the definition.</p>
@@ -120,7 +124,7 @@ Each definition is saved as a <dfn>CotEditor replace definition</dfn> file with 
 <p>Click the gear button in the Multiple Replace window, then click checkboxes as needed.</p>
 
 <p>For details on each setting, see <a href="howto_find.html">Find or replace text</a>.</p>
-
+</section>
 
 
 <section id="cf">

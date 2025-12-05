@@ -18,6 +18,7 @@
 <p>CotEditor provides the <code>cot</code> command-line tool, which lets you open documents, receive text through standard input, and control CotEditor directly from the command line. To use the <code>cot</code> command, install it on your computer first.</p>
 
 
+<section>
 <h2>Install the <code>cot</code> command</h2>
 
 <p>You can install the <code>cot</code> command-line tool by creating a symbolic link in Terminal. The actual executable is built in CotEditor at <code>Contents/SharedSupport/bin/cot</code>. If you don’t have a preferred location, placing the symbolic link in <code>/usr/local/bin/</code> is recommended.</p>
@@ -37,15 +38,19 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>Installing Apple’s Command Line Developer Tools provides <code>python3</code>. Run the following command in Terminal to install the tools. You can also install <code>python3</code> using any other method.</p>
 
 <pre class="source"><code>xcode-select --install</code></pre>
+</section>
 
 
+<section>
 <h2>Uninstall the <code>cot</code> command</h2>
 
 <p>To uninstall the <code>cot</code> command from the recommended location, run the following command in Terminal:</p>
 
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
+</section>
 
 
+<section>
 <h2>Use the command with options</h2>
 
 <p>The <code>cot</code> command supports the following options:</p>
@@ -68,8 +73,10 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 </table>
 
 <p>For the <code>--line</code> and <code>--column</code> options, you can specify a negative number to count from the end of the document (<code>--line</code>) or from the end of a line (<code>--column</code>).</p>
+</section>
 
 
+<section>
 <h2>Execute the <code>cot</code> command</h2>
 
 <p>A simple <code>cot</code> command launches CotEditor, or activates it if CotEditor is already running.</p>
@@ -95,6 +102,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>Using the <code>--wait</code> option, CotEditor can be used as the editor for <code>git</code>.</p>
 
 <pre class="source"><code>git config --global core.editor "cot -w"</code></pre>
+</section>
 
 
 <section id="cf">

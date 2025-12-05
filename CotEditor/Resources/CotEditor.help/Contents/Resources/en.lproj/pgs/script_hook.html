@@ -24,7 +24,7 @@
 
 <p>See “CotEditor Event Handler suite” section on AppleScript Dictionary for further information.</p>
 
-
+<section>
 <h2>Support scrpt the hooking</h2>
 
 <p>Scripts with scripting hook must conform to the following protocols:</p>
@@ -35,8 +35,10 @@
 </ul>
 
 <p>In addition, events to subscribe to and handlers for them must be declared, as described below.</p>
+</section>
 
 
+<section>
 <h2>Declare hooking in the script bundle</h2>
 
 <p>A script bundle is a package-type file format that has the following folder structure:</p>
@@ -82,8 +84,10 @@ HookingScript.scptd
   <span class="tag">&lt;string&gt;</span>document saved<span class="tag">&lt;/string&gt;</span>
 <span class="tag">&lt;/array&gt;</span>
 </code></pre>
+</section>
 
 
+<section>
 <h2>Describe event handling</h2>
 
 <p>An event handler is a block to receive certain events that the application caused and do something with the received event. In this section, the manners to write an event handler are described with a simple example, which shows the dialog on opening and saving a file.</p>
@@ -120,6 +124,7 @@ HookingScript.scptd
   <span class="variable">CotEditor</span><span class="p">.</span><span class="command">writeToConsole</span><span class="p">(</span><span class="string">&quot;Saved &quot;</span> + <span class="variable">document</span><span class="p">.</span><span class="command">name</span><span class="p">())</span>
 <span class="p">}</span>
 </code></pre>
+</section>
 
 
 <section id="cf">

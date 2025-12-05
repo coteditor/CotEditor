@@ -16,12 +16,17 @@
 <p>CotEditor 2.0 includes some specification changes for customization from the previous versions. If you’ve used the legacy version before, you may need some manual migrations.</p>
 
 
+<section>
 <h2>Syntax Style Format</h2>
+
 <p>The format for syntax style definition has been changed significantly. The user customized styles will be translated automatically to the new style format on the first launch of CotEditor 2. However, it is recommend to update or rewrite your styles to conform to the new features for syntax style like the comment-out toggling or new highlighting variations.</p>
 <p>You may find some new additional syntax styles on our <a href="https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles" rel="external">Wiki page</a>.</p>
+</section>
 
 
+<section>
 <h2>Regular Expression Engine for Outline Extracting</h2>
+
 <p>Those who have customized syntax styles in CotEditor 1.x may have to fix their definition to extract outline menu manually, because the regular expression engine for outline parsing has been changed in 2.0 from Oniguruma to ICU library.
 Validate your customized syntax styles in syntax style editor and follow the messages.</p>
 
@@ -33,16 +38,23 @@ Validate your customized syntax styles in syntax style editor and follow the mes
 </ul>
 
 <p>For all regex syntax, see <a href="about_regex.html">Use the regular expression</a>.</p>
+</section>
 
 
+<section>
 <h2>API for AppleScript</h2>
+
 <p>Some specifications for scripting support have been updated on CotEditor 2.0. From this, some user scripts may not run correctly on 2.0 without modifying. For details about this specification change, see <a href="script_osascript.html">Automate tasks using AppleScript</a>.</p>
+</section>
 
 
+<section>
 <h2>Bundle Identifier</h2>
+
 <p>The bundle identifier for CotEditor was changed from “com.aynimac.CotEditor” to “com.coteditor.CotEditor”. From this change, file mappings or other links to CotEditor (such as, external editor) outside CotEditor can be reset. Please link them again, if links are lost.</p>
 
 <p><em>For advanced users</em>: Notice that the filenames for preferences and the domain name for “<code>defaults</code>” command in Terminal was also changed.</p>
+</section>
 
 
 <section id="cf">

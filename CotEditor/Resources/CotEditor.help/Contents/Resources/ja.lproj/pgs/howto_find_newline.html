@@ -19,6 +19,7 @@
 <p>検索ウインドウのテキストフィールドでは、<kbd>Option</kbd>+<kbd>Return</kbd>で改行ができます。</p>
 
 
+<section>
 <h2>改行を検索する</h2>
 
 <h3>テキスト検索</h3>
@@ -43,8 +44,10 @@
 		<tr><td>\R</td><td>汎用の改行表現。<code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, および<code>U+000D</code> <code>U+000A</code>の組み合わせ (CRLF)のいずれでも一致します。</td></tr>
 	</tbody>
 </table>
+</section>
 
 
+<section>
 <h2>改行を置換する</h2>
 
 <p>置換では、<code>\n</code>のようなメタ文字での指定や捕捉したテキストへの差し替えも含めて、挿入される置換後のテキストのすべての改行が書類の改行コードと同一の改行に差し替えられます。</p>
@@ -52,7 +55,7 @@
 <p>例えば、改行コードがLF（<code>\n</code>）の書類で、正規表現を使って検索テキスト「dog\Rcow」を置換テキスト「$0\r」で置換したとき、書類内のテキスト「dog<span class="invisible">\r\n</span>cow」にも一致して正規表現上は「dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>」に置換されることになりますが、CotEditorは一致した「dog<span class="invisible">\r\n</span>cow」を「dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>」に置換します。</p>
 
 <p>現在、書類の改行コード以外の改行文字に置換する方法は提供されていません。</p>
-
+</section>
 
 
 <section id="cf">

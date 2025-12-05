@@ -22,11 +22,14 @@
 </ul>
 
 
+<section>
 <h2>Refer to the document file path</h2>
 
 <p>If the current document has been saved, its absolute file path is passed to the script as an argument.</p>
+</section>
 
 
+<section>
 <h2>Pass text data to a script</h2>
 
 <p>A script can receive the content of the current document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains: “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the parameters below. If you don’t specify a parameter, CotEditor passes nothing. This is the same as using “<coee>None</code>.”</p>
@@ -45,8 +48,10 @@
 		<tr><th><code>None</code></th><td>Pass nothing (default).</td></tr>
 	</tbody>
 </table>
+</section>
 
 
+<section>
 <h2>Receive output data from a script</h2>
 
 <p>CotEditor can receive output from the script through standard output (STDOUT) and apply it to the document. To define how CotEditor handles the output, add a comment at the top of the script that contains: “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>”. Replace <code><var>xxxx</var></code> with one of the parameters below. If you don’t specify a parameter, CotEditor performs no action. This is the same as using “<code>Discard</code>.”</p>
@@ -69,13 +74,17 @@
 		<tr><th><code>Discard</code></th><td>Do nothing (default).</td></tr>
 	</tbody>
 </table>
+</section>
 
 
+<section>
 <h2>Print text to the Console</h2>
 
 <p>Any text written to standard error (STDERR) appears in the Console window.</p>
+</section>
 
 
+<section>
 <h2>Write a script</h2>
 
 <p>For example, the following Python script adds a “&gt;” character to the beginning of each selected line in the current document and prints the number of processed lines to the Console.</p>
@@ -100,6 +109,7 @@ sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.for
 
 <p>You can download more sample scripts from:<br/>
 <a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>
+</section>
 
 
 <section id="cf">

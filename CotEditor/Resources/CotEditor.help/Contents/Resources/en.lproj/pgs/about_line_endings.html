@@ -76,21 +76,23 @@
 <p>In contrast, although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also visually break lines in CotEditor, they aren’t regarded as line endings characters.</p>
 
 
-
+<section>
 <h2>Set default line endings</h2>
 
 <p>You can set the default line ending type for new documents in Format settings. This setting is used also when the existing document doesn’t have any line endings.</p>
+</section>
 
 
-
+<section>
 <h2>Detect line endings in a document</h2>
 
 <p>CotEditor detects the line ending used in a document automatically. When you open an existing document, the app sets the detected line ending as the line ending for further editing.</p>
 
 <p>If a document has inconsistent line endings, CotEditor automatically alerts and highlights them. For details, see <a href="howto_find_inconsistent_line_endings.html">Find inconsistent line endings</a>.</p>
+</section>
 
 
-
+<section>
 <h2>Inspect the document line ending</h2>
 
 <p>You can inspect the type of line endings used in the document either in the following area:</p>
@@ -99,9 +101,10 @@
 	<li><p>The Document Inspector by choosing View &gt; Inspectors &gt; Document</p></li>
 	<li><p>The selection of the Line Endings submenu in the Format menu</p></li>
 </ul>
+</section>
 
 
-
+<section>
 <h2>Change the document line ending</h2>
 
 <p>You can change all the line endings in the document to another either in the following area:</p>
@@ -111,9 +114,10 @@
 </ul>
 
 <p>To convert the document line endings to a hidden one, such as NEL, LS, or PS, open the Line Endings menu by pressing the <kbd>Option</kbd> key.</p>
+</section>
 
 
-
+<section>
 <h2>Insert line endings different from document line ending</h2>
 
 <p>In general, CotEditor uses only the document line ending when breaking lines so that you don’t need to care about the difference in the line endings types. Even if you insert text with different line endings in some way, such as by CotEditor script or text replacement using the regular expression, CotEditor implicitly converts all line endings in the text to insert to the line ending in the document.</p>
@@ -124,7 +128,7 @@
 	<li><p>Manually enter a line ending character by its <a href="howto_input_unicode.html">Unicode code point</a>.</p></li>
 	<li><p>Paste text containing some different line endings with the <a href="howto_paste.html">Paste Exactly command</a>.</p></li>
 </ul>
-
+</section>
 
 
 <section id="cf">

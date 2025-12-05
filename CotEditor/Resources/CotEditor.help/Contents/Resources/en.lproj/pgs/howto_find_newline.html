@@ -19,6 +19,7 @@
 <p>Typing <kbd>Option</kbd>-<kbd>Return</kbd> in a text field in the Find window breaks a line.</p>
 
 
+<section>
 <h2>Find line endings</h2>
 
 <h3>Textual search</h3>
@@ -43,8 +44,10 @@
 		<tr><td>\R</td><td>Any kind of line endings from <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</td></tr>
 	</tbody>
 </table>
+</section>
 
 
+<section>
 <h2>Replace with line endings</h2>
 
 <p>As for the text replacing with, all line endings, even ones defined as a metacharacter like<code>\n</code> or captured, are assumed to be the document line ending.</p>
@@ -52,7 +55,7 @@
 <p>For example, when replacing the find text “dog\Rcow” with the replacement text “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the text “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
 
 <p>There is currently no way to replace them with line endings other than the document line ending.</p>
-
+</section>
 
 
 <section id="cf">

@@ -26,6 +26,7 @@
 <p>イベントの詳細な仕様については、AppleScript辞書の「CotEditor Event Handler suite」項を参照してください。</p>
 
 
+<section>
 <h2>スクリプトフックに対応する</h2>
 
 <p>フックに対応したスクリプトを作成するには、以下の制約を満たす必要があります。</p>
@@ -36,8 +37,10 @@
 </ul>
 
 <p>以上に加えて、フックしたいイベントをInfo.plistファイルにて明示し、イベントハンドラを記述する必要があります。</p>
+</section>
 
 
+<section>
 <h2>スクリプトバンドルでフックを宣言する</h2>
 
 <p>スクリプトバンドルは、以下のファイル構造を持つパッケージ型のファイルです。</p>
@@ -84,8 +87,10 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
   <span class="tag">&lt;string&gt;</span>document saved<span class="tag">&lt;/string&gt;</span>
 <span class="tag">&lt;/array&gt;</span>
 </code></pre>
+</section>
 
 
+<section>
 <h2>イベントの処理を記述する</h2>
 
 <p>イベントハンドラは、アプリケーションが発生させたイベントを受信し、処理をするスクリプトを指します。ここでは、ファイルを読み込んだ後と書き込んだ後にダイアログを表示するスクリプトを例に採り上げ、イベントハンドラの記述方法について説明します。</p>
@@ -122,6 +127,7 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
   <span class="variable">CotEditor</span><span class="p">.</span><span class="command">writeToConsole</span><span class="p">(</span><span class="string">&quot;Saved &quot;</span> + <span class="variable">document</span><span class="p">.</span><span class="command">name</span><span class="p">())</span>
 <span class="p">}</span>
 </code></pre>
+</section>
 
 
 <section id="cf">

@@ -18,6 +18,7 @@
 <p>CotEditorにはコマンドラインからの操作を可能にする<code>cot</code>コマンドラインツールがあります。<code>cot</code>コマンドを使うためには、まずコマンドをインストールしてください。</p>
 
 
+<section>
 <h2><code>cot</code>コマンドをインストールする</h2>
 
 <p><code>cot</code>コマンドはCotEditor.app内の<code>Contents/SharedSupport/bin/cot</code>に内蔵されています。</p>
@@ -37,14 +38,18 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>Appleが提供する開発ツールには<code>python3</code>が同梱されています。下記のコマンドをTerminalで実行するとAppleのコマンドラインデベロッパツールをインストールできます。もちろん他の方法で<code>python3</code>をインストールしてもかまいません。</p>
 
 <pre class="source"><code>xcode-select --install</code></pre>
+</section>
 
 
+<section>
 <h2><code>cot</code>コマンドをアンインストールする</h2>
 
 <p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールするときは、Terminalで以下のコマンドを実行します。</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
+</section>
 
 
+<section>
 <h2>コマンドをオプションとともに使う</h2>
 
 <p><code>cot</code>コマンドは以下のオプションが使用できます:</p>
@@ -67,8 +72,10 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 </table>
 
 <p><code>--line</code>オプションと<code>--column</code>は負の値を指定することもできます。そのとき、<code>--line</code>オプションの場合は書類の末尾から、<code>--column</code>オプションの場合は行の末尾からカウントされます。</p>
+</section>
 
 
+<section>
 <h2><code>cot</code>コマンドを実行する</h2>
 
 <p><code>cot</code>コマンド単体でCotEditorが起動します。CotEditorがすでに起動している場合は、最前面に持っていきます。</p>
