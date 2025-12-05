@@ -296,7 +296,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
             .sorted(using: .localizedStandard)
         
         // reset user defaults if not found
-        if !settingNames.contains(UserDefaults.standard[.syntax]) {
+        if !(settingNames + [SyntaxName.none]).contains(UserDefaults.standard[.syntax]) {
             UserDefaults.standard.restore(key: .syntax)
         }
         UserDefaults.standard[.recentSyntaxNames].removeAll { !settingNames.contains($0) }

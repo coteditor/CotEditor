@@ -9,6 +9,11 @@
 - [beta] Update the user guide.
 
 
+### Fixes
+
+- Fix an issue where the default syntax setting reverted to Plain Text after a short time when set to None.
+
+
 ### Known Issues
 
 - The text added to CotEditor 6.2.0 are not yet localized to Simplified Chinese and Portuguese.
