@@ -50,7 +50,7 @@ h2 {
 	font-weight: 700;
 	line-height: 1.4;
 }
-body > section:not(#cf) {
+body > section:not(#cf), article {
 	margin: 2rem 0 1rem;
 	padding-top: 0.25rem;
 	border-top: 1px solid -apple-system-separator;
@@ -67,11 +67,6 @@ h4 {
 }
 h4 + * {
 	margin-top: 0;
-}
-
-article+article {
-	margin: 2rem 0;
-	border-top: 1px solid -apple-system-separator;
 }
 
 p + p {
@@ -303,8 +298,8 @@ code span.comment   { color: #66747a }
 
 /* Settings */
 
-table.settings th {
-	width: 18em;
+table.settings tbody th {
+	width: 30%;
 	white-space: normal;
 }
 table.settings tbody {

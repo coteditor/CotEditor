@@ -10,7 +10,7 @@
 */
 
 article ul li {
-	margin: 0.2rem 0;
+	margin: 0.4rem 0;
 	list-style-type: circle;
 }
 
@@ -26,9 +26,12 @@ footer::before {
 	border-top: 1px solid -apple-system-separator;
 }
 
-article + article {
-	margin-top: 4rem;
-	padding-top: 2rem;
+article+article {
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+}
+h1 + article {
+	border-top: none;
 }
 
 article > header h1 {
@@ -42,7 +45,6 @@ article > header p {
 }
 article h2 {
 	margin-top: 1.5rem;
-	margin-bottom: 0.5rem;
 }
 
 .trivial,
