@@ -1675,7 +1675,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "多重替换定义"
           }
         },

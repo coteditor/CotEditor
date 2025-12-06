@@ -273,6 +273,12 @@
             "value" : "Dosyalardan CotEditor Değişiklik Tanımları veya Tab ile Ayrılmış Değerler seçin."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择CotEditor替换定义文件或TSV（制表符分隔值）文件。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",

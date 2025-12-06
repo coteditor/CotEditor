@@ -776,6 +776,12 @@
             "value" : "Arama ve değiştirme metinlerinin tab ile ayrılmış çiftlerini içe aktararak bir değişiklik tanımı oluşturun. Büyük kavram dizinleri için idealdir."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导入以制表符分隔的搜索与替换文本对，以创建替换定义。适用于大型术语表。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -863,6 +869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Değiştirme tanımlarını tab ile ayrılmış değerlerden toplu yapın"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从TSV批量创建替换规则"
           }
         },
         "zh-Hant" : {
