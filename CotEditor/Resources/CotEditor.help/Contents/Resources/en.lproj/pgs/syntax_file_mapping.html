@@ -15,40 +15,65 @@
 
 <h1>Map files to syntaxes in CotEditor on Mac</h1>
 
-<p>When opening a file, CotEditor detects the document type and applies the corresponding syntax automatically.</p>
+<p>When opening a document, CotEditor detects the document type and applies the corresponding syntax automatically.</p>
 
-<p>The File Mapping definitions in each syntax are used for this detection.</p>
 
+<section>
+<h2></h2>
+
+<p>When opening a document, CotEditor determines which syntax to apply by aggregating the File Mapping rules configured in each syntax definition.</p>
 
 <p>CotEditor detects the corresponding syntax in the following order:</p>
 
 <ol>
-	<li><p>File extension</p><ul>
-		<li><p>Try determining syntax from the file extension. The case is basically ignored; however, case-matched ones are prioritized if multiple syntaxes are found</p></li>
-		<li><p>For example, .html → HTML</p></li>
-		<li><p>For example, .hTmL → HTML</p></li>
-		<li><p>For example, .py → Python</p></li>
-	</ul></li>
-	<li><p>Filename</p><ul>
-		<li><p>When there is no syntax in which the find file extension is defined or the filename doesn’t have an extension, then try determining syntax from the whole filename.</p></li>
-		<li><p>For example, .htaccess → Apache</p></li>
-		<li><p>For example, makefile → Makefile</p></li>
-	</ul></li>
-	<li><p>The <span area-label="shebang">#!</area> header of the document</p><ul>
-		<li><p>When there is no corresponding syntax for the extension and the filename, and if the first line of the document content is the #! header, then try determining syntax from the 1# header. In this trial, the interpreter names which is defined in the syntaxes are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</p></li>
-		<li><p>For example, <code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</p></li>
-		<li><p>For example, <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</p></li>
-	</ul></li>
-	<li><p>XML declaration</p><ul>
-		<li><p>When there is no corresponding syntax up to here but the file content start with an XML declaration, syntax is automatically set to XML.</p></li>
-		<li><p>For example, <code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</p></li>
-	</ul></li>
-	<li><p>None</p><ul>
-		<li><p>If no appropriate syntax can be found at all, the “None” syntax would be set.</p></li>
-	</ul></li>
+	<li>
+		<p><em>File extension</em>:</p>
+		<p>Try determining syntax from the file extension. The case is basically ignored; however, case-matched ones are prioritized if multiple syntaxes are found.</p>
+		<p>For example:</p>
+		<ul>
+			<li><p>.html → HTML</p></li>
+			<li><p>.hTmL → HTML</p></li>
+			<li><p>.py → Python</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<p><em>Filename</em>:</p>
+		<p>When there is no syntax in which the find file extension is defined or the filename doesn’t have an extension, then try determining syntax from the whole filename.</p>
+		<p>For example:</p>
+		<ul>
+			<li><p>.htaccess → Apache</p></li>
+			<li><p>makefile → Makefile</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<p><em>The <span area-label="shebang">#!</area> header of the document</em>:</p>
+		<p>When there is no corresponding syntax for the extension and the filename, and if the first line of the document content is the #! header, then try determining syntax from the 1# header. In this trial, the interpreter names which is defined in the syntaxes are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</p>
+		<p>For example:</p>
+		<ul>
+			<li><p><code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</p></li>
+			<li><p><code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<p><em>XML declaration</em>:</p>
+		<p>When there is no corresponding syntax up to here but the file content start with an XML declaration, syntax is automatically set to XML.</p>
+		<p>For example:</p>
+		<ul>
+			<li><p><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<p><em>None</em>:</p>
+		<p>If no appropriate syntax can be found at all, the “None” syntax would be set.</p>
+	</li>
 </ol>
 
 <p>When there are multiple syntaxes in the same level like the file extension level or the filename level, custom syntaxes are prioritized over the built-in syntaxes. And yet, if there are multiple corresponding syntaxes, the firstly found syntax is used automatically.</p>
+</section>
 
 
 <section>
