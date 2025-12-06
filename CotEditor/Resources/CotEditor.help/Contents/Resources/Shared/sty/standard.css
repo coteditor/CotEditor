@@ -142,6 +142,20 @@ p.addition > span:first-child {
 	}
 }
 
+a.toc::before {
+	display: inline-block;
+	content: url(../gfx/toc_secondary.svg);
+	vertical-align: -1px;
+	padding-right: 0.3rem;
+}
+a.toc {
+	font-size: 15px;
+	font-weight: 400;
+	position: absolute;
+	top: 5px;
+	color: -apple-system-secondary-label;
+}
+
 img.appicon {
 	vertical-align: text-bottom;
 	height: 18px;

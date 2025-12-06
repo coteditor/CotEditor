@@ -7,19 +7,32 @@ Help Script for Table of Contents
  © 2023-2025 1024jp
 */
 
+const directories = window.location.href.split('/').slice(-3)
+const isTop = (directories[1] != 'pgs')
+
 // enable toc button in the viewer's toolbar
-if ('HelpViewer' in window) {
+document.addEventListener("DOMContentLoaded", () => {
     function toggleTOC() {
-        const parentDirectory = window.location.href.split('/').slice(-2)[0]
-        
-        if (parentDirectory == 'pgs') {
-            window.location = "../toc.html";
-        } else {
-            window.location = "toc.html";
-        }
+        window.location = (isTop) ? "toc.html" : "../toc.html";
     }
-    
-    window.setTimeout(function() {
+
+    if ('HelpViewer' in window) {
         window.HelpViewer.showTOCButton(true, toggleTOC, toggleTOC);
-    }, 100);
+    }
+});
+
+// insert ToC button
+if (!isTop) {
+    document.addEventListener("DOMContentLoaded", () => {
+            const tocButton = document.createElement("a");
+            tocButton.className = "toc";
+            tocButton.href = "../toc.html";
+            
+            if (directories.includes("ja.lproj")) {
+                tocButton.textContent = "目次";
+            } else {
+                tocButton.textContent = "Table of Contents";
+            }
+            document.body.prepend(tocButton);
+    });
 }
