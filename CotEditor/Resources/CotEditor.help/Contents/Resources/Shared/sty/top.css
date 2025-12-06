@@ -12,7 +12,7 @@
 @import "common.css";
 
 header {
-	font-size: 22px;
+	font-size: 23px;
 	font-weight: 300;
 	position: relative;
 	height: 170px;
@@ -25,22 +25,25 @@ header img {
 	width: 150px;
 }
 header h1 {
-	font-size: 39px;
-	font-weight: 450;
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 1.4;
 	margin: 0;
 }
 header p {
-	margin: 0.25rem 0;
+	margin: 0;
 }
-header .toc::before {
+header a.toc::before {
 	display: inline-block;
 	content: url(../gfx/toc.svg);
 	vertical-align: -1px;
 	padding-right: 0.3rem;
 }
-header .toc {
+header a.toc {
+	display: block;
 	font-size: 17px;
 	font-weight: 400;
+	margin-top: 0.8rem;
 }
 
 

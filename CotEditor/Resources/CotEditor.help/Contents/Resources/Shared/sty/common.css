@@ -10,7 +10,7 @@
 */
 
 :root {
-	font: 400 16px/1.6 -apple-system, sans-serif;
+	font: 400 17px/1.5 -apple-system, sans-serif;
 	font-size-adjust: from-font;
 	text-rendering: optimizeLegibility;
 	text-autospace: normal;
@@ -28,13 +28,13 @@ body {
 }
 
 a {
-	text-decoration: none;
+	text-decoration-line: unset;
 }
 a:link, a:visited {
 	color: -apple-system-blue;
 }
 a:hover {
-	text-decoration: underline;
+	text-decoration-line: underline;
 }
 
 summary {
