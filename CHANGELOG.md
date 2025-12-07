@@ -1,11 +1,12 @@
 # Change Log
 
-6.2.0-beta.5 (unreleased)
+6.2.0-rc (782)
 --------------------------
 
 ### Improvements
 
 - [dev] Update the build environment to Xcode 26.2 RC.
+- [beta] Add missing localizations.
 - [beta] Update the user guide.
 
 
