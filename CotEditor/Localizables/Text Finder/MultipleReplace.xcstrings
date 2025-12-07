@@ -261,6 +261,12 @@
             "value" : "Wybierz pliki definicji zastąpienia CotEditora lub TSV (wartości oddzielonych tabulatorem)."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Escolha arquivos Substituição de definição do CotEditor ou TSV (valores separados por tabulação)."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

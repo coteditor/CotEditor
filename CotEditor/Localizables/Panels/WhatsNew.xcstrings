@@ -764,6 +764,12 @@
             "value" : "Importuj pary tekstów wyszukiwanego i zastępującego oddzielonych tabulatorem, aby utworzyć definicję zastąpienia. Idealne dla dużych słowników."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Importe pares de texto de busca e substituição separados por tabulação para criar uma definição de substituição. Ideal para glossários extensos."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -857,6 +863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twórz reguły zastąpienia hurtowo z plików TSV"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Criar regras de substituição em lote a partir de TSV"
           }
         },
         "ru" : {
