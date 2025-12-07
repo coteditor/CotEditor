@@ -58,8 +58,13 @@ article h2 {
 	color: -apple-system-secondary-label;
 }
 p.important {
-	color: hsl(203, 30%, 30%);
 	background: hsl(201, 40%, 97%);
 	border-radius: 0.6rem;
 	padding: 0.4rem 0.8rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	p.important {
+		background: hsl(206, 30%, 20%);
+	}
 }

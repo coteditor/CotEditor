@@ -73,7 +73,7 @@ p + p {
 	margin-top: 1em;
 }
 
-p:lang(ja), li:lang(ja) {
+p:lang(ja) {
 	text-align: justify;
 }
 
@@ -125,17 +125,17 @@ p.addition::after {
 	left: 4rem;
 	margin-left: -1rem;
 	border: 1rem solid transparent;
-	border-bottom: 15px solid hsl(213, 50%, 97%);
+	border-bottom: 15px solid hsl(203, 50%, 97%);
 }
 p.addition > span:first-child {
-	color: hsl(201, 25%, 55%);
+	color: hsl(203, 25%, 55%);
 }
 @media (prefers-color-scheme: dark) {
 	p.addition {
-		background: hsl(213, 30%, 20%);
+		background: hsl(203, 30%, 20%);
 	}
 	p.addition::after {
-		border-bottom-color: hsl(213, 30%, 20%);
+		border-bottom-color: hsl(203, 30%, 20%);
 	}
 }
 
@@ -151,6 +151,11 @@ a.toc {
 	position: absolute;
 	top: 5px;
 	color: -apple-system-secondary-label;
+}
+@media (prefers-color-scheme: dark) {
+	a.toc::before {
+		content: url(../gfx/toc_secondary-dark.svg);
+	}
 }
 
 img.appicon {
@@ -240,10 +245,10 @@ span.invisible {
 
 pre.source {
 	background: hsl(0, 0%, 98%);
-	border: 1px solid -apple-system-tertiary-label;
-	border-radius: 0.3rem;
+	border: 1px solid -apple-system-separator;
+	border-radius: 0.5rem;
 	max-width: 50rem;
-	padding: 0.2rem 0.5rem;
+	padding: 0.4rem 0.8rem;
 	overflow: scroll;
 }
 
