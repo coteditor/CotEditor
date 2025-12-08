@@ -12,7 +12,7 @@
 @import "common.css";
 
 em:lang(ja) {
-	font-weight: 650;
+	font-weight: 600;
 	font-style: normal;
 }
 kbd {
@@ -110,6 +110,20 @@ table ul li {
 
 .na {
 	color: -apple-system-tertiary-label;
+}
+em.note:lang(ja) {
+	font-weight: inherit;
+}
+em.tip {
+	font-weight: 700;
+	font-style: inherit;
+}
+em.tip::before {
+	content: url(../gfx/lightbulb.max.svg);
+	display: inline-block;
+	position: relative;
+	top: 4px;
+	padding-right: 0.2em;
 }
 p.addition {
 	position: relative;
