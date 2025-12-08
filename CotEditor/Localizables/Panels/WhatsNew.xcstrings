@@ -766,8 +766,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Importe pares de texto de busca e substituição separados por tabulação para criar uma definição de substituição. Ideal para glossários extensos."
+            "state" : "translated",
+            "value" : "Importar pares separados por tabulação de textos de busca e substituição para criar uma definição de substituição. Ideal para glossários extensos."
           }
         },
         "ru" : {
@@ -867,7 +867,7 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Criar regras de substituição em lote a partir de TSV"
           }
         },

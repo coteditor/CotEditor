@@ -263,8 +263,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Escolha arquivos Substituição de definição do CotEditor ou TSV (valores separados por tabulação)."
+            "state" : "translated",
+            "value" : "Escolha arquivos de Definição de Substituição do CotEditor ou TSV (valores separados por tabulação)."
           }
         },
         "ru" : {

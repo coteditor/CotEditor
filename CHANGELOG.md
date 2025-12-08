@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- [beta] Add missing localizations.
 - [beta] Update the user guide.
 
 
