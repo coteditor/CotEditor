@@ -43,22 +43,6 @@ public final class BidiScrollView: NSScrollView {
     
     // MARK: View Methods
     
-    public override init(frame frameRect: NSRect) {
-        
-        super.init(frame: frameRect)
-        
-        if #unavailable(macOS 26) {
-            self.verticalScroller = VerticalBidiScroller()
-        }
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     public override func tile() {
         
         super.tile()
@@ -151,6 +135,13 @@ public final class BidiScrollView: NSScrollView {
             inset
         }
         
+        // horizontally flip scroller drawing
+        verticalScroller.wantsLayer = true
+        verticalScroller.layer?.sublayerTransform = CATransform3DConcat(
+            CATransform3DMakeScale(-1, 1, 1),
+            CATransform3DMakeTranslation(verticalScroller.bounds.width, 0, 0)
+        )
+        
         guard let horizontalScroller else { return }
         
         horizontalScroller.frame.origin.x = if self.contentDirection == .rightToLeft,
@@ -163,5 +154,14 @@ public final class BidiScrollView: NSScrollView {
         } else {
             inset
         }
+    }
+}
+
+
+private extension NSScroller {
+    
+    var thickness: CGFloat {
+        
+        Self.scrollerWidth(for: self.controlSize, scrollerStyle: self.scrollerStyle)
     }
 }

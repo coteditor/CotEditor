@@ -11,6 +11,7 @@
 ### Fixes
 
 - Fix an issue where scroll bars in the editor became invisible under certain theme and appearance combinations.
+- [trivial] Fix the vertical scroller drawing with the RTL writing mode on macOS 26.
 
 
 
