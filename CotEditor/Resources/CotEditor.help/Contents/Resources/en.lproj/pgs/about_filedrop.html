@@ -17,7 +17,6 @@
 <p>CotEditor has the following variables for the use of File Drop.</p>
 
 <table>
-	<caption>Variables for File Drop</caption>
 	<thead>
 		<tr><th>Variable</th><th>Replaced with</th></tr>
 	</thead>
@@ -37,23 +36,37 @@
 </table>
 
 
-<p>Here are a few examples of what it’s like to use variables.</p>
+<section>
+<h2>Use snippets</h2>
 
+<p>Here are some examples of what it’s like to use variables.</p>
+
+<p>When you drop a file named “example.html”:</p>
 <table>
-	<caption>example 1) When you drop example.html:</caption>
+	<thead>
+		<tr><th>Insertion format you set</th><th>Text actually inserted</th></tr>
+	</thead>
 	<tbody>
-		<tr><th>Insertion format you set</th><td><code>&lt;a href=&quot;&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;&quot;&gt;&lt;/a&gt;</code></td></tr>
-		<tr><th>The text actually inserted</th><td><code>&lt;a href=&quot;example.html&quot;&gt;&lt;/a&gt;</code></td></tr>
+		<tr>
+			<td><code>&lt;a href=&quot;&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;&quot;&gt;&lt;/a&gt;</code></td>
+			<td><code>&lt;a href=&quot;example.html&quot;&gt;&lt;/a&gt;</code></td>
+		</tr>
 	</tbody>
 </table>
 
+<p>When you drop a file named “example.jpg”:</p>
 <table>
-	<caption>example 2) When you drop example.jpg:</caption>
+	<thead>
+		<tr><th>Insertion format you set</th><th>Text actually inserted</th></tr>
+	</thead>
 	<tbody>
-		<tr><th>Insertion format you set</th><td><code>&lt;img src=&quot;&lt;&lt;&lt;FILENAME&gt;&gt;&gt;&quot; width=&quot;&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;&quot; height=&quot;&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;&quot; /&gt;</code></td></tr>
-		<tr><th>The text actually inserted</th><td><code>&lt;img src=&quot;example.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</code></td></tr>
+		<tr>
+			<td><code>&lt;img src=&quot;&lt;&lt;&lt;FILENAME&gt;&gt;&gt;&quot; width=&quot;&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;&quot; height=&quot;&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;&quot; /&gt;</code></td>
+			<td><code>&lt;img src=&quot;example.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</code></td>
+		</tr>
 	</tbody>
 </table>
+</section>
 
 
 <section id="cf">

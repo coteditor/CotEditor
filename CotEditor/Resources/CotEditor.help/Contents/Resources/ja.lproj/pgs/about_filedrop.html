@@ -14,10 +14,9 @@
 
 <h1>MacのCotEditorでファイルドロップの挿入フォーマットを作成する</h1>
 
-<p>ファイルドロップの「フォーマット」で使用できる変数と、使用例を示します。</p>
+<p>ファイルドロップの「フォーマット」で使用できる変数とその使用例は以下のとおりです。</p>
 
 <table>
-	<caption>ファイルドロップの変数</caption>
 	<thead>
 		<tr><th>変数</th><th>置換される値</th></tr>
 	</thead>
@@ -36,23 +35,38 @@
 	</tbody>
 </table>
 
-<p>下記に使用例を示します。</p>
 
+<section>
+<h2>スニペットを使う</h2>
+
+<p>例えば、以下のようにスニペットを利用できます。</p>
+
+<p>「example.html」という名前のファイルをドロップした場合:</p>
 <table>
-	<caption>例1) example.htmlをドロップした場合:</caption>
+	<thead>
+		<tr><th>フォーマット</th><th>実際に挿入されるテキスト</th></tr>
+	</thead>
 	<tbody>
-		<tr><th>フォーマット</th><td><code>&lt;a href=&quot;&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;&quot;&gt;&lt;/a&gt;</code></td></tr>
-		<tr><th>挿入テキスト</th><td><code>&lt;a href=&quot;example.html&quot;&gt;&lt;/a&gt;</code></td></tr>
+		<tr>
+			<td><code>&lt;a href=&quot;&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;&quot;&gt;&lt;/a&gt;</code></td>
+			<td><code>&lt;a href=&quot;example.html&quot;&gt;&lt;/a&gt;</code></td>
+		</tr>
 	</tbody>
 </table>
 
+<p>「example.jpg」という名前のファイルをドロップした場合:</p>
 <table>
-	<caption>例2) example.jpgをドロップした場合:</caption>
+	<thead>
+		<tr><th>フォーマット</th><th>実際に挿入されるテキスト</th></tr>
+	</thead>
 	<tbody>
-		<tr><th>フォーマット</th><td><code>&lt;img src=&quot;&lt;&lt;&lt;FILENAME&gt;&gt;&gt;&quot; width=&quot;&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;&quot; height=&quot;&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;&quot; /&gt;</code></td></tr>
-		<tr><th>挿入テキスト</th><td><code>&lt;img src=&quot;example.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</code></td></tr>
+		<tr>
+			<td><code>&lt;img src=&quot;&lt;&lt;&lt;FILENAME&gt;&gt;&gt;&quot; width=&quot;&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;&quot; height=&quot;&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;&quot; /&gt;</code></td>
+			<td><code>&lt;img src=&quot;example.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</code></td>
+		</tr>
 	</tbody>
 </table>
+</section>
 
 
 <section id="cf">

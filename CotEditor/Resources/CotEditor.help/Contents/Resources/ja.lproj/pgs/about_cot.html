@@ -25,7 +25,7 @@
 <p>Terminalからシンボリックリンクを作成して、任意の場所にコマンドをインストールできます。特にこだわりがない場合は<code>/usr/local/bin/</code>にシンボリックリンクを作成することをお勧めします。</p>
 
 <p>推奨する場所にシンボリックリンクを作成するには、Terminalで以下のコマンドを実行します。</p>
-<pre class="source"><code>mkdir /usr/local/bin/
+<pre class="shell"><code>mkdir /usr/local/bin/
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 
@@ -37,7 +37,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>cotコマンドはPython 3で実装されています。PythonはmacOS 12.3からシステムには同梱されなくなったため、cotコマンドを使うには自身で<code>python3</code>をインストールする必要があります。</p>
 <p>Appleが提供する開発ツールには<code>python3</code>が同梱されています。下記のコマンドをTerminalで実行するとAppleのコマンドラインデベロッパツールをインストールできます。もちろん他の方法で<code>python3</code>をインストールしてもかまいません。</p>
 
-<pre class="source"><code>xcode-select --install</code></pre>
+<pre class="shell"><code>xcode-select --install</code></pre>
 </section>
 
 
@@ -45,7 +45,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <h2><code>cot</code>コマンドをアンインストールする</h2>
 
 <p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールするときは、Terminalで以下のコマンドを実行します。</p>
-<pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
+<pre class="shell"><code>unlink /usr/local/bin/cot</code></pre>
 </section>
 
 
@@ -80,27 +80,27 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <p><code>cot</code>コマンド単体でCotEditorが起動します。CotEditorがすでに起動している場合は、最前面に持っていきます。</p>
 
-<pre class="source"><code>cot</code></pre>
+<pre class="shell"><code>cot</code></pre>
 
 <p>以下のコマンドは、foo.txtファイルをCotEditorで開き200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しないときは、<code>cot</code>コマンドは何も行いません。</p>
 
-<pre class="source"><code>cot --line 200 foo.txt</code></pre>
+<pre class="shell"><code>cot --line 200 foo.txt</code></pre>
 
 <p>以下のコマンドは、foo.txtファイルをCotEditorで開き、書類末尾に挿入ポイントを移動します。</p>
 
-<pre class="source"><code>cot --line -1 --column -1 foo.txt</code></pre>
+<pre class="shell"><code>cot --line -1 --column -1 foo.txt</code></pre>
 
 <p>ファイル名の代わりにダッシュ（<code>-</code>）を渡すと、標準入力を受け取るモードになります。受け取った入力は新規書類として開かれます。</p>
 
-<pre class="source"><code>cot -</code></pre>
+<pre class="shell"><code>cot -</code></pre>
 
 <p>テキストをパイプで渡すこともできます。CotEditorは渡されたテキストを新規書類として開きます。</p>
 
-<pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot</code></pre>
+<pre class="shell"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot</code></pre>
 
 <p><code>--wait</code>オプションを使えばCotEditorを<code>git</code>のエディタとして指定することもできます。</p>
 
-<pre class="source"><code>git config --global core.editor &quot;cot -w&quot;</code></pre>
+<pre class="shell"><code>git config --global core.editor &quot;cot -w&quot;</code></pre>
 
 
 <section id="cf">

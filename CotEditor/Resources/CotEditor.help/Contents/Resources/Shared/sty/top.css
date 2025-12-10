@@ -40,9 +40,10 @@ header a.toc::before {
 	padding-right: 0.3rem;
 }
 header a.toc {
-	display: block;
+	display: inline-block;
 	font-size: 17px;
 	font-weight: 400;
+	text-decoration-line: none;
 	margin-top: 0.8rem;
 }
 

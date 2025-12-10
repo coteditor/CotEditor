@@ -82,10 +82,13 @@ figure {
 }
 
 ol,
-ul,
-pre {
+ul {
 	margin: 1rem 0;
 	padding: 0 1.5rem;
+	clear: both;
+}
+pre {
+	margin: 1rem 0;
 	clear: both;
 }
 
@@ -208,7 +211,7 @@ dd p {
 }
 
 table {
-	font-size: 100%;
+	font-size: 95%;
 	border-collapse: collapse;
 	empty-cells: show;
 	margin: 1rem 0;
@@ -232,7 +235,8 @@ table tr > :last-child {
 	padding-right: 0;
 }
 table thead tr th {
-	font-weight: 650;
+	padding: 0.4rem 0.6rem;
+	font-weight: bold;
 	text-align: left;
 }
 table thead tr:first-child > * {

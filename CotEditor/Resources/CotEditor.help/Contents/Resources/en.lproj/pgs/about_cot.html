@@ -25,7 +25,7 @@
 
 <p>To create the symbolic link at the recommended location, run the following commands in Terminal:</p>
 
-<pre class="source"><code>mkdir /usr/local/bin/
+<pre class="shell"><code>mkdir /usr/local/bin/
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 
@@ -37,7 +37,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>The <code>cot</code> command is implemented in Python 3. Since macOS 12.3, Python is no longer bundled with macOS, so you need to install <code>python3</code> manually for the cot command.</p>
 <p>Installing Apple’s Command Line Developer Tools provides <code>python3</code>. Run the following command in Terminal to install the tools. You can also install <code>python3</code> using any other method.</p>
 
-<pre class="source"><code>xcode-select --install</code></pre>
+<pre class="shell"><code>xcode-select --install</code></pre>
 </section>
 
 
@@ -46,7 +46,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <p>To uninstall the <code>cot</code> command from the recommended location, run the following command in Terminal:</p>
 
-<pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
+<pre class="shell"><code>unlink /usr/local/bin/cot</code></pre>
 </section>
 
 
@@ -81,27 +81,27 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <p>A simple <code>cot</code> command launches CotEditor, or activates it if CotEditor is already running.</p>
 
-<pre class="source"><code>cot</code></pre>
+<pre class="shell"><code>cot</code></pre>
 
 <p>The following command opens the foo.txt file in CotEditor and moves the insertion point to line 200. The <code>cot</code> command does nothing if foo.txt doesn’t exist.</p>
 
-<pre class="source"><code>cot --line 200 foo.txt</code></pre>
+<pre class="shell"><code>cot --line 200 foo.txt</code></pre>
 
 <p>The following command opens the foo.txt file in CotEditor and moves the insertion point to the end of the document:</p>
 
-<pre class="source"><code>cot --line -1 --column -1 foo.txt</code></pre>
+<pre class="shell"><code>cot --line -1 --column -1 foo.txt</code></pre>
 
 <p>Passing a dash (<code>-</code>) in place of a filename enters a mode to receive standard input. The text received is opened as a new document.</p>
 
-<pre class="source"><code>cot -</code></pre>
+<pre class="shell"><code>cot -</code></pre>
 
 <p>You can also pipe text. CotEditor opens a new document with the piped text.</p>
 
-<pre class="source"><code>echo "I am a dog but also a cow at the same time." | cot</code></pre>
+<pre class="shell"><code>echo "I am a dog but also a cow at the same time." | cot</code></pre>
 
 <p>Using the <code>--wait</code> option, CotEditor can be used as the editor for <code>git</code>.</p>
 
-<pre class="source"><code>git config --global core.editor "cot -w"</code></pre>
+<pre class="shell"><code>git config --global core.editor "cot -w"</code></pre>
 </section>
 
 
