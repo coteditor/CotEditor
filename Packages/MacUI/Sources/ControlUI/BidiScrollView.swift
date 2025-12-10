@@ -27,18 +27,17 @@
 public import AppKit
 
 /// A scroll view that allows switching the vertical scroller position regardless of the user interface layout direction.
-///
-/// The implementation referred a lot to <https://github.com/aiaf/MKKRightToLeftScrollView>. Thank you!
 public final class BidiScrollView: NSScrollView {
     
     // MARK: Public Properties
     
-    public var contentDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
-    
-    
-    // MARK: Internal Properties
-    
-    var isInconsistentContentDirection: Bool { self.contentDirection != self.userInterfaceLayoutDirection }
+    public var contentDirection: NSUserInterfaceLayoutDirection = .rightToLeft  {
+        
+        didSet {
+            self.tile()
+            self.invalidateScrollerFlipState()
+        }
+    }
     
     
     // MARK: View Methods
@@ -56,6 +55,25 @@ public final class BidiScrollView: NSScrollView {
     
     
     // MARK: Private Methods
+    
+    /// Wether the content direction and user interface layout direction are inconsistent.
+    private var isInconsistentContentDirection: Bool {
+        
+        self.contentDirection != self.userInterfaceLayoutDirection
+    }
+    
+    
+    /// Horizontally flips the scroller drawing if required.
+    private func invalidateScrollerFlipState() {
+        
+        guard let verticalScroller else { return assertionFailure() }
+        
+        verticalScroller.layer?.sublayerTransform = self.isInconsistentContentDirection
+            ? CATransform3DConcat(CATransform3DMakeScale(-1, 1, 1),
+                                  CATransform3DMakeTranslation(verticalScroller.bounds.width, 0, 0))
+            : CATransform3DIdentity
+    }
+    
     
     /// Adjusts the content insets by taking the preserved scroller area for the legacy scroll style into the account.
     ///
@@ -135,13 +153,6 @@ public final class BidiScrollView: NSScrollView {
             inset
         }
         
-        // horizontally flip scroller drawing
-        verticalScroller.wantsLayer = true
-        verticalScroller.layer?.sublayerTransform = CATransform3DConcat(
-            CATransform3DMakeScale(-1, 1, 1),
-            CATransform3DMakeTranslation(verticalScroller.bounds.width, 0, 0)
-        )
-        
         guard let horizontalScroller else { return }
         
         horizontalScroller.frame.origin.x = if self.contentDirection == .rightToLeft,
@@ -160,6 +171,7 @@ public final class BidiScrollView: NSScrollView {
 
 private extension NSScroller {
     
+    /// The scroller width calculated using the current settings.
     var thickness: CGFloat {
         
         Self.scrollerWidth(for: self.controlSize, scrollerStyle: self.scrollerStyle)

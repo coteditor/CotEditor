@@ -8,6 +8,7 @@
 - [beta] Add missing localizations.
 - [beta] Update the user guide.
 
+
 ### Fixes
 
 - Fix an issue where scroll bars in the editor became invisible under certain theme and appearance combinations.
