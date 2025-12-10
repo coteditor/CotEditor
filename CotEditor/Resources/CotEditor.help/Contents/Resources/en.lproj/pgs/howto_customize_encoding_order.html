@@ -17,7 +17,9 @@
 
 <p>CotEditor has a powerful text encoding detection feature that automatically determines the text encoding of the file when opening a document.</p>
 
-<p>The priority of text encoding depends on the language and use case. So, you can prioritize specific encodings to detect text encoding of documents.</p>
+<p>CotEditor supports all text encodings available on macOS.</p>
+
+<p>The priority of text encoding depends on the language and use case. So, you can prioritize specific encodings to detect text encoding of documents. You can also add separators or nonstandard encodings, or remove encodings you don't want used for the automatic detection.</p>
 
 <figure>
 	<img srcset="../gfx/encodingPriority@2x.png 2x" width="500" alt="Screenshot of the encoding priority setting dialog"/>
@@ -25,15 +27,18 @@
 
 
 <section>
-<p>To change the priority used to detect a document’s encoding when opening it:</p>
 <ol>
 	<li><p>Go to the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac.</p></li>
 	<li><p>Choose CotEditor &gt; Settings, then click Format.</p></li>
-	<li><p>In the “Encoding priorities” section, click the Edit List button.</p></li>
-	<li><p>Move up the encodings you use frequently.</p></li>
+	<li><p>Click the Edit List button in the “Encoding priorities” section.</p></li>
+	<li><p>Do any of the following:</p><ul>
+		<li><p><em>Change priority:</em> Move up the encodings you use frequently.</p></li>
+		<li><p><em>Add a text encoding not in the list or a separator:</em> Select the item at the location to insert, click the Add + button, then choose the item to add.</p></li>
+		<li><p><em>Remove items in the list:</em> Select the items to remove, then click the Delete - button.</p></li>
+		<li><p><em>Restore the list to the default:</em> Click Restore Defaults.</p></li>
+	</ul></li>
+	<li><p>Click OK.</p></li>
 </ol>
-
-<p>CotEditor supports all text encodings available on macOS. You can also use the Add/Remove buttons to add separators or nonstandard encodings, or remove encodings you don't want used for the automatic detection.</p>
 
 <p>Encodings not on this list aren’t considered as candidates for the automatic encoding detection when opening documents. Keep encodings on the list that you want to use as candidates for encoding detection, even if you don’t use them directly.</p>
 

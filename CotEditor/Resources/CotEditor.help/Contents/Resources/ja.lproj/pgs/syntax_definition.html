@@ -25,7 +25,7 @@
 	<li><p>「CotEditor」＞「設定」と選択してから、「フォーマット」をクリックします。</p></li>
 	<li>以下のいずれかの操作を行います:<ul>
 		<li><em>既存のシンタックスをカスタマイズ:</em> 「利用可能なシンタックス」リストから設定したいシンタックスを選択して、シンタックス名をダブルクリック、または「編集」ボタンをクリックします。</p></li>
-		<li><p><em>新しいシンタックスを定義:</em> 「利用可能なシンタックス」リストの下の「追加」ボタンをクリックします。</p></li>
+		<li><p><em>新しいシンタックスを定義:</em> 「利用可能なシンタックス」リスト下部の追加 + ボタンをクリックします。</p></li>
 	</ul></li>
 </ol>
 </section>
@@ -47,6 +47,42 @@
 	<li><p><em><a href="syntax_metadata_settings.html">情報</a></em>: シンタックス定義のメタ情報を設定します。</p></li>
 	<li><p><em>検証</em>: 定義に文法やフォーマット上のエラーが存在しないかを検証します。</p></li>
 </ul>
+</section>
+
+
+<section>
+<h2>カスタムシンタックスを書き出す</h2>
+
+<ol>
+	<li><p>MacでCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>に移動します。</p></li>
+	<li><p>「CotEditor」＞「設定」と選択してから、「フォーマット」をクリックします。</p></li>
+	<li><p>「利用可能なシンタックス」リストで書き出したいシンタックスを選択します。</p></li>
+	<li><p>以下のいずれかの操作を行います:</p><ul>
+		<li><p><object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">アクションボタン</object>をクリックするか選択した項目のコンテキストメニューを開き、「書き出す」を選択します。</p></li>
+		<li><p><object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">アクションボタン</object>をクリックするか選択した項目のコンテキストメニューを開き、「共有」を選択してから、シンタックスの共有方法を選択します。</p></li>
+		<li><p>シンタックスをFinderにドラッグします。</p></li>
+	</ul></li>
+</ol>
+
+<p><em class="note">注記:</em> カスタムシンタックスのみ書き出すことができます。オリジナルの内蔵シンタックスは書き出せません。</p>
+
+<p><em class="tip">ヒント:</em> CotEditor設定アーカイブとしてすべてのカスタムシンタックスを一度に書き出したり読み込んだりすることもできます。詳しくは、<a href="howto_port_settings.html">設定を書き出す/読み込む</a>を参照してください。</p>
+</section>
+
+
+<section>
+<h2>カスタムシンタックスを読み込む</h2>
+
+<ol>
+	<li><p>MacでCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>に移動します。</p></li>
+	<li><p>「CotEditor」＞「設定」と選択してから、「フォーマット」をクリックします。</p></li>
+	<li><p>以下のいずれかの操作を行います:</p><ul>
+		<li><p><object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">アクションボタン</object>をクリックして、「読み込み」を選択してから、読み込むCotEditorシンタックスファイル（YAML形式）を選択します。</p></li>
+		<li><p>CotEditorシンタックスファイル（YAML形式）をFinderから「利用可能なシンタックス」リストにドロップします。</p></li>
+	</ul></li>
+</ol>
+
+<p>CotEditorシンタックスファイルは、独自のフォーマットを持つ拡張子.ymlのYAMLファイルです。</p>
 </section>
 
 

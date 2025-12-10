@@ -22,6 +22,9 @@ pre, code {
 	font-family: 'SF Mono', monospace;
 	font-size: 95%;
 }
+dfn {
+	font-style: inherit;
+}
 
 img {
 	max-width: 100%;
@@ -188,7 +191,7 @@ img.bordered {
 	border-radius: 3px;
 }
 object.symbol {
-	vertical-align: -0.1em;
+	vertical-align: -0.05em;
 }
 object.symbol:lang(ja) {
 	padding: 0 0.2em;
