@@ -38,10 +38,7 @@
 
 	<tr>
 		<th>Encoding priorities</th>
-		<td>Set the priority order for text encodings and how CotEditor detects encodings when opening a file.
-		<dl>
-			<dt>Edit List</dt>
-			<dd>Click Edit List to set the order of encodings shown in the Text Encoding submenu in the Format menu and in the status bar. This order is also used for encoding detection. CotEditor tries each encoding starting from the top of the list. For details, see <a href="howto_customize_encoding_order.html">Change priorities of text encodings</a>.</dd>
+		<td>Set the priority order for text encodings and how CotEditor detects encodings when opening a file. For details, see <a href="howto_customize_encoding_order.html">Change priorities of text encodings</a>.</dd>
 		</dl></td>
 	</tr>
 
@@ -59,19 +56,19 @@
 		<th>Available syntaxes</th>
 		<td>The list of all available syntaxes. A dot before the syntax name indicates that the syntax has been customized. See <a href="syntax_definition.html">Define a syntax</a> for editing syntax definitions.</dd>
 
-		<dl>
-			<dt>Add +, Delete -</dt>
-			<dd>Create a new syntax or delete the selected syntax. Built-in syntaxes can’t be removed.</dd>
+		<ul>
+			<li><p><em>Add +:</em> Create a new syntax.</p></li>
+			
+			<li><p><em>Delete -:</em> Delete the selected syntax. Built-in syntaxes can’t be removed.</p></li>
 
-			<dt>Edit (pencil icon)</dt>
-			<dd>Edit the selected syntax.</dd>
+			<li><p><em>Edit (pencil icon):</em> Edit the selected syntax.</p></li>
 
-			<dt>Action pop-up menu <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">with the ellipsis symbol</object></dt>
+			<li><p><em>Action pop-up menu <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">with the ellipsis symbol</object>:</em></p>
 			<ul>
-				<li><em>Duplicate “[<i>syntax name</i>]”</em>:
+				<li><em>Duplicate</em>:
 				Duplicate the selected syntax to create your own version.</li>
 
-				<li><em>Export “[<i>syntax name</i>]”</em>:
+				<li><em>Export</em>:
 				Export a syntax definition file created from the selected syntax. You can use this exported file to use it on another computer. To use an exported file, choose Import.</li>
 
 				<li><em>Share</em>:
@@ -82,8 +79,8 @@
 
 				<li><em>Show File Mapping Conflicts</em>:
 				Check whether multiple syntaxes are associated with the same extension or filename. This command is unavailable when no conflicts exist.</li>
-			</ul></dd>
-		</dl></td>
+			</ul></li>
+		</ul></td>
 	</tr>
 </tbody>
 </table>

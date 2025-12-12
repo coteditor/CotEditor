@@ -37,6 +37,21 @@ a:hover {
 	text-decoration-line: underline;
 }
 
+em:lang(ja) {
+	font-weight: 600;
+	font-style: normal;
+}
+kbd {
+	font-family: inherit;
+}
+pre, code {
+	font-family: monospace;
+	font-size: 95%;
+}
+dfn {
+	font-style: inherit;
+}
+
 summary {
 	cursor: pointer;
 }

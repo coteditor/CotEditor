@@ -26,7 +26,7 @@
 <ol>
 	<li><p>In the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, open a document.</p></li>
 	<li><p>Choose Find &gt; Go to Line.</p></li>
-	<li><p>In the dialog, enter the line number you want to jump to.</p></li>
+	<li><p>Enter the line number you want to jump to.</p></li>
 	<li><p>Click Go, or press <kbd>Return</kbd>.</p></li>
 </ol>
 </section>
@@ -35,21 +35,27 @@
 <section>
 <h2>Specify selection</h2>
 
-<p>You can also specify a range of lines using the following formats:</p>
-<ul>
-	<li><dl>
-		<dt>Entering “3”:</dt>
-		<dd>→ Selects line 3 (the third line from the top).</dd>
-	</dl></li>
-	<li><dl>
-		<dt>Entering “3:2”:</dt>
-		<dd>→ Selects 2 lines starting from line 3. Lines 3 and 4 are selected.</dd>
-	</dl></li>
-	<li><dl>
-		<dt>Entering “3:-1”:</dt>
-		<dd>→ Selects the lines from line 3 up to the second-to-last line. For example, if the document has 10 lines, lines 3 to 9 are selected.</dd>
-	</dl></li>
-</ul>
+<p>You can also specify a range of lines using the specific format. For example:</p>
+
+<table>
+	<thead>
+		<tr><th>Input</th><th>Range to select</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>3</th>
+			<td>Selects line 3 (the third line from the top).</td>
+		</tr>
+		<tr>
+			<th>3:2</th>
+			<td>Selects 2 lines starting from line 3. Lines 3 and 4 are selected.</td>
+		</tr>
+		<tr>
+			<th>3:-1</th>
+			<td>Selects the lines from line 3 up to the second-to-last line. For example, if the document has 10 lines, lines 3 to 9 are selected.</td>
+		</tr>
+	</tbody>
+</table>
 </section>
 
 </body>

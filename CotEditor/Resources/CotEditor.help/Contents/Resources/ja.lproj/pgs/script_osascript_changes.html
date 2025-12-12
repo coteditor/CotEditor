@@ -232,8 +232,7 @@
 	<h3><code>range</code>プロパティの内部コードの変更</h3>
 	<p>selectionオブジェクトが持つ<code>range</code>プロパティを内部的に表すコードがCotEditor 2.0で変更されました。<code>range</code>プロパティは引き続き<code>range</code>というキーで操作するのでスクリプトを書く上では変更はありませんが、以前書かれたコンパイルされたスクリプト(.scpt)は新しい<code>range</code>プロパティを見つけられない可能性が高いです。</p>
 
-	<h4>修正方法</h4>
-	<p>以前の.scptファイルをAppleScript Editor (もしくはScript Editor)で開くと、従来<code>range</code>であった部分が<code>«class prng»</code>のような文字列に変更されているはずなのでその部分を再び<code>range</code>に書き戻してください。プレーンテキスト形式のスクリプト(.applescript)ではこの問題は発生しません。</p>
+	<p><em>修正方法:</em> 以前の.scptファイルをAppleScript Editor (もしくはScript Editor)で開くと、従来<code>range</code>であった部分が<code>«class prng»</code>のような文字列に変更されているはずなのでその部分を再び<code>range</code>に書き戻してください。プレーンテキスト形式のスクリプト(.applescript)ではこの問題は発生しません。</p>
 </section>
 </article>
 

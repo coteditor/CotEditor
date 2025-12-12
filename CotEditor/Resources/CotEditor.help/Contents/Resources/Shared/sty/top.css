@@ -37,7 +37,7 @@ header a.toc::before {
 	display: inline-block;
 	content: url(../gfx/toc.svg);
 	vertical-align: -1px;
-	padding-right: 0.3rem;
+	padding-inline-end: 0.3rem;
 }
 header a.toc {
 	display: inline-block;

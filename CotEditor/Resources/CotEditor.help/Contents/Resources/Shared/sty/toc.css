@@ -30,7 +30,7 @@ ul {
 	list-style-type: none;
 }
 ul ul {
-	padding-left: 1.5rem;
+	padding-inline-start: 1.5rem;
 }
 li {
 	margin: 0.4rem 0;
@@ -47,7 +47,7 @@ summary::before {
 	opacity: 0.45;
 	display: inline-block;
 	vertical-align: -1.5px;
-	padding-right: 0.4rem;
+	padding-inline-end: 0.4rem;
 }
 details[open] > summary::before {
 	transform: translateY(1.5px) rotate(90deg);

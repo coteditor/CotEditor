@@ -9,12 +9,14 @@
  © 2016-2025 1024jp
 */
 
-#Class section,
-#Command section {
-	border-top: 1px solid -apple-system-separator;
+p.type {
+	font-size: 0.9rem;
+	color: -apple-system-secondary-label;
+	margin-bottom: 0;
 }
-#Command h3 {
-	display: none;
+h2 {
+	font-size: 1.2rem;
+	margin-top: 0;
 }
 
 .added {
@@ -23,59 +25,21 @@
 .deprecated {
 	color: -apple-system-brown;
 }
-dfn {
-	font-weight: bold;
-}
 
-figure {
-	margin: 1rem 0;
-}
 figure > figcaption {
-	margin-left: 2rem;
+	margin-inline-start: 1rem;
 }
 
-
-/* tree */
-dl.tree,
-dl.subtree {
-	overflow: hidden;
+dl dd {
+	margin-inline-start: 0;
 }
-dl.tree + * {
-	clear: left;
+dl ul li {
+	list-style-type: '– ';
 }
-dl.tree dt::after {
-	content: ':';
-	font-weight: normal;
-	margin-right: 0.5rem;
+dl ul li p {
+	margin: 0.2em 0;
 }
-dl.tree dt,
-dl.tree dd {
-	float: left;
-	margin: 0.1rem 0;
-}
-dl.tree dt,
-dl.tree dd + dd {
-	clear: left;
-}
-dl.tree dl.subtree {
-	margin: 0 0 0 2.5rem;
-}
-dl.tree dl.subtree dt {
-	font-weight: normal;
-}
-dl.tree dl.subtree dt::before {
-	content: '- ';
-	color: -apple-system-secondary-label;
-}
-
-ul.tree, ul.tree ul {
-	border: none;
-	background: none;
-}
-ul.tree li {
-	list-style: none;
-}
-ul.tree li li::before {
-	content: '- ';
-	color: -apple-system-secondary-label;
+dl ul li em {
+	font-weight: normal !important;
+	font-style: inherit;
 }

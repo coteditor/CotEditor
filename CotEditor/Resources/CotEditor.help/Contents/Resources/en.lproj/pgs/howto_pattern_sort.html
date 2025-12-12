@@ -15,78 +15,76 @@
 
 <h1>Sort lines using specific pattern in CotEditor on Mac</h1>
 
-<p>With Sort by Pattern, you can sort selected lines by specifying the way to compare.</p>
+<p>With Sort by Pattern, you can sort selected lines using custom comparison rules.</p>
 
 
 <section>
 <ol>
 	<li><p>In the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, open a document.</p></li>
 	<li><p>Choose Text &gt; Lines &gt; Sort by Pattern.</p></li>
-	<li><p>Configure the sorting rules in the dialog.</p></li>
+	<li><p>Configure the sorting rules.</p></li>
 	<li><p>Click Sort.</p></li>
 </ol>
-
-<p>The normal Sort command in the Text &gt; Lines menu is the same as sorting “Entire line” with “Ignore case” and “Respect language rules” options on.</p>
 </section>
 
 
 <section>
 <h2>Configure the sorting rules</h2>
 
-<h3>Sample</h3>
+<p>Set how CotEditor extracts and compares sort keys for the selected lines.</p>
 
-<p>In this field, you can test which part in a line is used for sort comparison.</p>
-
-
-<h3>Sort key</h3>
-<p>Specify the part in lines to compare on sort.</p>
-
-<dl>
-	<dt>Entire line</dt>
-	<dd>Compare entire lines.</dd>
+<ul>
+	<li><p><em>Sample:</em> You can test which part in a line is used for the sort comparison.</p></li>
 	
-	<dt>Column</dt>
-	<dd>Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator is just ignored.</dd>
-	<dd><table>
-		<thead>
-			<tr><th>Option</th><th>Description</th></tr>
-		</thead>
-		<tbody>
-			<tr><td>Delimiter</td><td>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma is used when this field is blank.</dd>
-			<tr><td>Position</td><td>The number of the column to use as the sort key. The column count starts at 1.</td></tr>
-		</tbody>
-	</table></dd>
+	<li><p><em>Sort key:</em> Specify the part of each line to use for sorting.</p>
+		<ul>
+			<li><p><em>Entire line:</em> Compare entire lines.</p>
+	
+			<li><p><em>Column:</em> Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator is ignored.</p>
+				<table>
+					<thead>
+						<tr><th>Option</th><th>Description</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Delimiter</td><td>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma is used when this field is blank.</td></tr>
+						<tr><td>Position</td><td>The number of the column to use as the sort key. The column count starts at 1.</td></tr>
+					</tbody>
+				</table>
+			</li>
+			
+			<li><p><em>Regular expression:</em> Specify the part of each line to compare using a regular expression.</p>
+				<table>
+					<thead>
+						<tr><th>Option</th><th>Description</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Pattern</td><td>The regular expression pattern to extract the part to compare.</td></tr>
+						<tr><td>Ignore case</td><td>Whether to ignore character case when extracting the regular expression pattern. This option applies only to extracting the sort key. To perform a case-insensitive sort, use the “Ignore case” option in the sort options below.</td></tr>
+						<tr><td>Use captured group</td><td>The part in matches to use as the sort key. The entire match is used when this option is unselected.</td></tr>
+					</tbody>
+				</table>
+			</li>
+		</ul>
+	</li>
+	
+	<li><p><em>Sort options:</em> Configure the behaviors on comparing sort keys.</p>
+		
+		<table>
+			<thead>
+				<tr><th>Option</th><th>Description</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>Ignore case</td><td>Ignore character case on sort.</td></tr>
+				<tr><td>Respect language rules</td><td>Fuzzily sort respecting the current language setting. For example, ignoring trivial differences such as character widths or diacritical marks.</td></tr>
+				<tr><td>Treat numbers as numeric values</td><td>Numbers within the sort keys are compared as numeric value. (for example, file12 &gt; file5)</td></tr>
+				<tr><td>Keep the first line at the top</td><td>Exclude the first line from sorting.</td></tr>
+				<tr><td>In descending order</td><td>Sort results in descending order.</td></tr>
+			</tbody>
+		</table>
+	</li>
+</ul>
 
-	<dt>Regular expression</dt>
-	<dd>Specify the part to compare with the regular expression.</dd>
-	<dd><table>
-		<thead>
-			<tr><th>Option</th><th>Description</th></tr>
-		</thead>
-		<tbody>
-			<tr><td>Pattern</td><td>The regular expression pattern to extract the part to compare.</dd>
-			<tr><td>Ignore case</td><td>Whether ignore the character case by extracting the regular expression pattern. This option is used only for the sort key extraction. To set case-insensitive state for the sort phase, set in the sort option bellow.</td></tr>
-			<tr><td>Use captured group</td><td>The part in matches to use as the sort key. The entire match is used when this option is unselected.</td></tr>
-		</tbody>
-	</table></dd>
-</dl>
-
-
-<h3>Sort options</h3>
-<p>Options to control behavior on comparing sort keys.</p>
-
-<table>
-	<thead>
-		<tr><th>Option</th><th>Description</th></tr>
-	</thead>
-	<tbody>
-		<tr><td>Ignore case</td><td>Ignore character case on sort.</td></tr>
-		<tr><td>Respect language rules</td><td>Fuzzily sort respecting the current language setting. For example, ignoring trivial differences such as character widths or diacritical marks.</td></tr>
-		<tr><td>Treat numbers as numeric value</td><td>Numbers within the sort keys are compared as numeric value. (for example, file12 &gt; file5)</td></tr>
-		<tr><td>Keep the first line at the top</td><td>Ignore the first line by sorting.</td></tr>
-		<tr><td>In descending order</td><td>Sort results in descending order.</td></tr>
-	</tbody>
-</table>
+<p><em class="tip">Tip:</em> The standard Sort command in the Text &gt; Lines menu is equivalent to sorting by “Entire line” with the “Ignore case” and “Respect language rules” options enabled.</p>
 </section>
 
 

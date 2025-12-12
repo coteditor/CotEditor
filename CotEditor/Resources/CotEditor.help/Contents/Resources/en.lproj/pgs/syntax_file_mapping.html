@@ -19,16 +19,14 @@
 
 
 <section>
-<h2></h2>
-
-<p>When opening a document, CotEditor determines which syntax to apply by aggregating the File Mapping rules configured in each syntax definition.</p>
+<p>CotEditor determines which syntax to apply based on the File Mapping rules configured in each syntax definition.</p>
 
 <p>CotEditor detects the corresponding syntax in the following order:</p>
 
 <ol>
 	<li>
 		<p><em>File extension</em>:</p>
-		<p>Try determining syntax from the file extension. The case is basically ignored; however, case-matched ones are prioritized if multiple syntaxes are found.</p>
+		<p>CotEditor first tries to determine the syntax from the file extension. The case is basically ignored; however, case-matched ones are prioritized if multiple syntaxes are found.</p>
 		<p>For example:</p>
 		<ul>
 			<li><p>.html → HTML</p></li>
@@ -39,7 +37,7 @@
 	
 	<li>
 		<p><em>Filename</em>:</p>
-		<p>When there is no syntax in which the find file extension is defined or the filename doesn’t have an extension, then try determining syntax from the whole filename.</p>
+		<p>If there is no syntax in which the file extension is defined or the filename doesn’t have an extension, then try determining syntax from the whole filename.</p>
 		<p>For example:</p>
 		<ul>
 			<li><p>.htaccess → Apache</p></li>
@@ -48,8 +46,9 @@
 	</li>
 	
 	<li>
-		<p><em>The <span area-label="shebang">#!</area> header of the document</em>:</p>
-		<p>When there is no corresponding syntax for the extension and the filename, and if the first line of the document content is the #! header, then try determining syntax from the 1# header. In this trial, the interpreter names which is defined in the syntaxes are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</p>
+		<p><em>The <span area-label="shebang">#!</span> header of the document</em>:</p>
+		<p>If no syntax is found based on the file extension or filename, and the first line of the document starts with a #! header, CotEditor tries to determine the syntax from the interpreter specified in the header. The interpreter can be either the last component of the path after <code>#!</code>, or the argument following the path when <code>env</code> is used.</p>
+		
 		<p>For example:</p>
 		<ul>
 			<li><p><code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</p></li>
@@ -59,7 +58,7 @@
 	
 	<li>
 		<p><em>XML declaration</em>:</p>
-		<p>When there is no corresponding syntax up to here but the file content start with an XML declaration, syntax is automatically set to XML.</p>
+		<p>If there is no corresponding syntax up to here but the file content starts with an XML declaration, CotEditor automatically applies the XML syntax.</p>
 		<p>For example:</p>
 		<ul>
 			<li><p><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</p></li>
@@ -68,11 +67,11 @@
 	
 	<li>
 		<p><em>None</em>:</p>
-		<p>If no appropriate syntax can be found at all, the “None” syntax would be set.</p>
+		<p>If no appropriate syntax can be found at all, the “None” syntax is set.</p>
 	</li>
 </ol>
 
-<p>When there are multiple syntaxes in the same level like the file extension level or the filename level, custom syntaxes are prioritized over the built-in syntaxes. And yet, if there are multiple corresponding syntaxes, the firstly found syntax is used automatically.</p>
+<p>If multiple syntaxes match at the same level, custom syntaxes take precedence over built-in syntaxes. If multiple matches still remain, CotEditor uses the first matching syntax.</p>
 </section>
 
 
@@ -88,7 +87,7 @@
 
 <p>There are no conflicts among the built-in syntaxes. However, if you added custom syntaxes or modified the built-in syntaxes, the file mapping can conflict. You can see the existence of mapping conflicts from the Show File Mapping Conflict command in the Action pop-up menu for the available syntaxes list in Format settings. If the menu item is dimmed, it means there is no conflict.</p>
 
-<p>You can just leave the file mapping conflicts as long as you can open documents with your expected syntax. There is no side issue.</p>
+<p>You can leave file mapping conflicts as long as documents open with the expected syntax. This doesn’t cause any issues.</p>
 </section>
 
 
