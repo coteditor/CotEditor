@@ -130,7 +130,7 @@ struct PatternSortView: View {
                                isOn: $options.ignoresCase)
                         Toggle(String(localized: "Respect language rules", table: "PatternSort"),
                                isOn: $options.isLocalized)
-                        Toggle(String(localized: "Treat numbers as numeric value", table: "PatternSort"),
+                        Toggle(String(localized: "Treat numbers as numeric values", table: "PatternSort"),
                                isOn: $options.numeric)
                         Toggle(String(localized: "Keep the first line at the top", table: "PatternSort"),
                                isOn: $options.keepsFirstLine)

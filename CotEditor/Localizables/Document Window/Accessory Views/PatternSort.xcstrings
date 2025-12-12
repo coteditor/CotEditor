@@ -1890,7 +1890,7 @@
         }
       }
     },
-    "Treat numbers as numeric value" : {
+    "Treat numbers as numeric values" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1901,19 +1901,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zahlen als Zahlenwert Behandeln"
+            "value" : "Zahlen als numerische Werte behandeln"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Treat numbers as numeric value"
+            "value" : "Treat numbers as numeric values"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tratar los números como valor numérico"
+            "value" : "Tratar los números como valores numéricos"
           }
         },
         "fr" : {
@@ -1943,7 +1943,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Behandel getallen als numerieke waarde"
+            "value" : "Behandel getallen als numerieke waarden"
           }
         },
         "pl" : {
