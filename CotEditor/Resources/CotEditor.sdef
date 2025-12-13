@@ -60,7 +60,7 @@
             <property name="IANA charset" code="iacs" type="text" access="r" description="The IANA charset name of the document.">
                 <cocoa key="IANACharSetName"/>
             </property>
-            <property name="has BOM" code="hBOM" type="boolean" access="r" description="Is the text encoding of the document has BOM (byte order mark)?">
+            <property name="has BOM" code="hBOM" type="boolean" access="r" description="Does the document’s text encoding have a BOM (byte order mark)?">
                 <cocoa key="hasBOM"/>
             </property>
             <property name="length" code="slen" type="integer" access="r" hidden="yes" description="The number of characters in the document. !!!: This property is deprecated on CotEditor 4.4.0, and available just for the backward compatibility.">
@@ -72,7 +72,7 @@
             <property name="tab width" code="tbwd" type="integer" access="rw" description="The width of a tab character in space equivalents.">
                 <cocoa key="tabWidth"/>
             </property>
-            <property name="expands tab" code="extb" type="boolean" access="rw" description="Are tab characters expanded to space?">
+            <property name="expands tab" code="extb" type="boolean" access="rw" description="Are tab characters expanded to spaces?">
                 <cocoa key="expandsTab"/>
             </property>
             <property name="selection" code="sele" type="text selection" access="r" description="The current selection.">
@@ -167,10 +167,10 @@
             <cocoa class="CotEditor.WriteToConsoleCommand"/>
             <access-group identifier="*"/>
             <direct-parameter code="cLog" type="text" description="The message to display on the console."/>
-            <parameter name="title" code="cstt" type="boolean" optional="yes" description="Should the script name be displayed with?">
+            <parameter name="title" code="cstt" type="boolean" optional="yes" description="Should the script name be displayed?">
                 <cocoa key="title"/>
             </parameter>
-            <parameter name="timestamp" code="csts" type="boolean" optional="yes" description="Should the timestamp be displayed with?">
+            <parameter name="timestamp" code="csts" type="boolean" optional="yes" description="Should the timestamp be displayed?">
                 <cocoa key="timestamp"/>
             </parameter>
         </command>
@@ -191,19 +191,19 @@
             </parameter>
         </command>
         
-        <command name="convert" code="cEd1CVrt" description="Convert the document text to new encoding.">
+        <command name="convert" code="cEd1CVrt" description="Convert the document text to a new encoding.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to convert encoding."/>
-            <parameter name="lossy" code="lOsy" type="boolean" description="Allows lossy conversion?" optional="yes">
+            <parameter name="lossy" code="lOsy" type="boolean" description="Is lossy conversion allowed?" optional="yes">
                 <cocoa key="lossy"/>
             </parameter>
-            <parameter name="BOM" code="wBOM" type="boolean" description="Has the new encoding a BOM (byte order mark)?" optional="yes">
+            <parameter name="BOM" code="wBOM" type="boolean" description="Does the document’s text encoding have a BOM (byte order mark)?" optional="yes">
                 <cocoa key="BOM"/>
             </parameter>
             <parameter name="to" code="nEcd" type="text" description="The new encoding, either in localized encoding name or an IANA charset name.">
                 <cocoa key="newEncoding"/>
             </parameter>
-            <result type="boolean" description="Did the convertion succeed?"/>
+            <result type="boolean" description="Did the conversion succeed?"/>
         </command>
         
         <command name="find" code="cEd1SRch" description="Search text.">
@@ -212,7 +212,7 @@
             <parameter name="for" code="tRgt" type="text" description="The text to search.">
                 <cocoa key="targetString"/>
             </parameter>
-            <parameter name="backwards" code="bKwd" type="boolean" optional="yes" description="Should the search be performed backwards? Can not use with RE.">
+            <parameter name="backwards" code="bKwd" type="boolean" optional="yes" description="Should the search be performed backwards? This option can’t be used with the RE option.">
                 <cocoa key="backwardsSearch"/>
             </parameter>
             <parameter name="ignore case" code="iGcs" type="boolean" optional="yes" description="Should case be ignored (case insensitive) on search?">
@@ -268,7 +268,7 @@
             <direct-parameter type="document" description="The document to scroll its caret."/>
         </command>
         
-        <command name="jump" code="cEd1Jump" description="Move the caret to the specified location. At least, either one of a parameter is required.">
+        <command name="jump" code="cEd1Jump" description="Move the caret to the specified location. At least one parameter is required.">
             <access-group identifier="*"/>
             <direct-parameter type="document" description="The document to move."/>
             <parameter name="to line" code="line" type="integer" description="The number of the line to go. If a negative value is provided, the line is counted from the end of the document.">
@@ -314,12 +314,12 @@
             <direct-parameter type="text selection" description="The selection to check duplication"/>
         </command>
         
-        <command name="comment out" code="cEd1Cout" description="Append comment delimiters to selected text if possible.">
+        <command name="comment out" code="cEd1Cout" description="Append comment delimiters to the selected text.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to comment out"/>
         </command>
         
-        <command name="uncomment" code="cEd1Uncm" description="Remove comment delimiters from selected text if possible.">
+        <command name="uncomment" code="cEd1Uncm" description="Remove comment delimiters from the selected text.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to uncomment."/>
         </command>
@@ -361,13 +361,13 @@
     
     <suite name="CotEditor Event Handler suite" code="cEd1" description="commands that are executed as CotEditor event handlers.">
         <!-- handle [e]vent [d]ocument [o]pene[d] -->
-        <event name="document opened" code="cEd1edod" description="This handler is called when CotEditor opened a document.">
-            <direct-parameter type="document" description="The document that opened."/>
+        <event name="document opened" code="cEd1edod" description="Called after CotEditor opened a document.">
+            <direct-parameter type="document" description="The document that was opened."/>
         </event>
         
         <!-- handle [e]vent [d]ocument [s]ave[d] -->
-        <event name="document saved" code="cEd1edsd" description="This handler is called when CotEditor saved a document.">
-            <direct-parameter type="document" description="The document that saved."/>
+        <event name="document saved" code="cEd1edsd" description="Called after CotEditor saved a document.">
+            <direct-parameter type="document" description="The document that was saved."/>
         </event>
     </suite>
     
