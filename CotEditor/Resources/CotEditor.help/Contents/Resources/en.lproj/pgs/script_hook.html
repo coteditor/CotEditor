@@ -98,13 +98,13 @@ HookingScript.scptd
 
 <pre class="source">
 <code><span class="keyword">using terms from</span> <span class="type">application</span> <span class="string">&quot;CotEditor&quot;</span>
-    <span class="keyword">on</span> <span class="command">document opened</span> <span class="variable">theDocument</span>
-        <span class="command">write to console</span> <span class="string">&quot;Opened &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
-    <span class="keyword">end</span> <span class="command">document opened</span>
+	<span class="keyword">on</span> <span class="command">document opened</span> <span class="variable">theDocument</span>
+		<span class="command">write to console</span> <span class="string">&quot;Opened &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
+	<span class="keyword">end</span> <span class="command">document opened</span>
 
-    <span class="keyword">on</span> <span class="command">document saved</span> <span class="variable">theDocument</span>
-        <span class="command">write to console</span> <span class="string">&quot;Saved &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
-    <span class="keyword">end</span> <span class="command">document saved</span>
+	<span class="keyword">on</span> <span class="command">document saved</span> <span class="variable">theDocument</span>
+		<span class="command">write to console</span> <span class="string">&quot;Saved &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
+	<span class="keyword">end</span> <span class="command">document saved</span>
 <span class="keyword">end</span> <span class="keyword">using terms from</span>
 </code></pre>
 
@@ -113,16 +113,16 @@ HookingScript.scptd
 <p>In JavaScript for Automation, <code>function</code> statements on the global object create handlers.</p>
 
 <pre class="source">
-<code><span class="variable">CotEditor</span> = <span class="variable">Application</span><span class="p">.</span><span class="command">currentApplication</span><span class="p">()</span>
-<span class="variable">CotEditor</span><span class="p">.</span><span class="attribute">includeStandardAdditions</span> = <span class="value">true</span>
+<code><span class="variable">CotEditor</span> = <span class="variable">Application</span>.<span class="command">currentApplication</span>()
+<span class="variable">CotEditor</span>.<span class="attribute">includeStandardAdditions</span> = <span class="value">true</span>
 
-<span class="keyword">function</span> <span class="command">documentOpened</span><span class="p">(</span><span class="variable">document</span><span class="p">)</span> <span class="p">{</span>
-  <span class="variable">CotEditor</span><span class="p">.</span><span class="command">writeToConsole</span><span class="p">(</span><span class="string">&quot;Opened &quot;</span> + <span class="variable">document</span><span class="p">.</span><span class="command">name</span><span class="p">())</span>
-<span class="p">}</span>
+<span class="keyword">function</span> <span class="command">documentOpened</span>(<span class="variable">document</span>) {
+  <span class="variable">CotEditor</span>.<span class="command">writeToConsole</span>(<span class="string">&quot;Opened &quot;</span> + <span class="variable">document</span>.<span class="command">name</span>())
+}
 
-<span class="keyword">function</span> <span class="command">documentSaved</span><span class="p">(</span><span class="variable">document</span><span class="p">)</span> <span class="p">{</span>
-  <span class="variable">CotEditor</span><span class="p">.</span><span class="command">writeToConsole</span><span class="p">(</span><span class="string">&quot;Saved &quot;</span> + <span class="variable">document</span><span class="p">.</span><span class="command">name</span><span class="p">())</span>
-<span class="p">}</span>
+<span class="keyword">function</span> <span class="command">documentSaved</span>(<span class="variable">document</span>) {
+  <span class="variable">CotEditor</span>.<span class="command">writeToConsole</span>(<span class="string">&quot;Saved &quot;</span> + <span class="variable">document</span>.<span class="command">name</span>())
+}
 </code></pre>
 </section>
 

@@ -19,8 +19,8 @@
 <p>CotEditorは以下のイベントでのフックをサポートしています:</p>
 
 <ul>
-	<li><p><code>document opened</code>: 書類を開いて、テキストが読み込まれた直後</p></li>
-	<li><p><code>document saved</code>: 書類を明示的な保存して、テキストが書き込まれた直後</p></li>
+	<li><p><code>document opened</code>: 書類を開いて、テキストが読み込まれたとき</p></li>
+	<li><p><code>document saved</code>: 書類を明示的に保存して、テキストが書き込まれたとき</p></li>
 </ul>
 
 <p>イベントの詳細な仕様については、AppleScript辞書の「CotEditor Event Handler suite」項を参照してください。</p>
@@ -101,13 +101,13 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
 
 <pre class="source">
 <code><span class="keyword">using terms from</span> <span class="type">application</span> <span class="string">&quot;CotEditor&quot;</span>
-    <span class="keyword">on</span> <span class="command">document opened</span> <span class="variable">theDocument</span>
-        <span class="command">write to console</span> <span class="string">&quot;Opened &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
-    <span class="keyword">end</span> <span class="command">document opened</span>
+	<span class="keyword">on</span> <span class="command">document opened</span> <span class="variable">theDocument</span>
+		<span class="command">write to console</span> <span class="string">&quot;Opened &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
+	<span class="keyword">end</span> <span class="command">document opened</span>
 
-    <span class="keyword">on</span> <span class="command">document saved</span> <span class="variable">theDocument</span>
-        <span class="command">write to console</span> <span class="string">&quot;Saved &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
-    <span class="keyword">end</span> <span class="command">document saved</span>
+	<span class="keyword">on</span> <span class="command">document saved</span> <span class="variable">theDocument</span>
+		<span class="command">write to console</span> <span class="string">&quot;Saved &quot;</span> &amp; (<span class="variable">theDocument's</span> <span class="attribute">name</span>)
+	<span class="keyword">end</span> <span class="command">document saved</span>
 <span class="keyword">end</span> <span class="keyword">using terms from</span>
 </code></pre>
 
@@ -116,16 +116,16 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
 <p>JavaScript for Automationでスクリプトを記述する場合、<code>function</code>文を用いてハンドラを作成します。関数はグローバルオブジェクト上で定義する必要があります。</p>
 
 <pre class="source">
-<code><span class="variable">CotEditor</span> = <span class="variable">Application</span><span class="p">.</span><span class="command">currentApplication</span><span class="p">()</span>
-<span class="variable">CotEditor</span><span class="p">.</span><span class="attribute">includeStandardAdditions</span> = <span class="value">true</span>
+<code><span class="variable">CotEditor</span> = <span class="variable">Application</span>.<span class="command">currentApplication</span>()
+<span class="variable">CotEditor</span>.<span class="attribute">includeStandardAdditions</span> = <span class="value">true</span>
 
-<span class="keyword">function</span> <span class="command">documentOpened</span><span class="p">(</span><span class="variable">document</span><span class="p">)</span> <span class="p">{</span>
-  <span class="variable">CotEditor</span><span class="p">.</span><span class="command">writeToConsole</span><span class="p">(</span><span class="string">&quot;Opened &quot;</span> + <span class="variable">document</span><span class="p">.</span><span class="command">name</span><span class="p">())</span>
-<span class="p">}</span>
+<span class="keyword">function</span> <span class="command">documentOpened</span>(<span class="variable">document</span>) {
+  <span class="variable">CotEditor</span>.<span class="command">writeToConsole</span>(<span class="string">&quot;Opened &quot;</span> + <span class="variable">document</span>.<span class="command">name</span>())
+}
 
-<span class="keyword">function</span> <span class="command">documentSaved</span><span class="p">(</span><span class="variable">document</span><span class="p">)</span> <span class="p">{</span>
-  <span class="variable">CotEditor</span><span class="p">.</span><span class="command">writeToConsole</span><span class="p">(</span><span class="string">&quot;Saved &quot;</span> + <span class="variable">document</span><span class="p">.</span><span class="command">name</span><span class="p">())</span>
-<span class="p">}</span>
+<span class="keyword">function</span> <span class="command">documentSaved</span>(<span class="variable">document</span>) {
+  <span class="variable">CotEditor</span>.<span class="command">writeToConsole</span>(<span class="string">&quot;Saved &quot;</span> + <span class="variable">document</span>.<span class="command">name</span>())
+}
 </code></pre>
 </section>
 

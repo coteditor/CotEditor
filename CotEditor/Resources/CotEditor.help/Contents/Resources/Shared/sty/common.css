@@ -47,6 +47,7 @@ kbd {
 pre, code {
 	font-family: monospace;
 	font-size: 95%;
+	tab-size: 4;
 }
 dfn {
 	font-style: inherit;

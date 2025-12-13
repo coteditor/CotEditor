@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="Script menu, script, AppleScript, JXA, JavaScript"/>
+	<meta name="keywords" content="Script menu, script, AppleScript, JXA, JavaScript, osascript"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/applescript.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
@@ -63,7 +63,7 @@
 		Has the text encoding a BOM (byte order mark)? (boolean) <span class="added">new on CotEditor 4.1</span></p></li>
 
 		<li><p><em><code>line ending</code>:</em>
-		The line ending code of the document. (<code>CR</code> / <code>LF</code> / <code>CRLF</code> / <code>NEL</code> / <code>LS</code> / <code>PS</code>)</p></li>
+		The line ending code of the document. (<code>CR</code> <span class="separator">/</span> <code>LF</code> <span class="separator">/</span> <code>CRLF</code> <span class="separator">/</span> <code>NEL</code> <span class="separator">/</span> <code>LS</code> <span class="separator">/</span> <code>PS</code>)</p></li>
 
 		<li><p><em><code>tab width</code>:</em>
 		The width of a tab character in space equivalents. (int) <span class="added">new on CotEditor 2.1</span></p></li>
@@ -140,9 +140,9 @@
 
 <p>Starting from CotEditor 5.0, characters are counted in the Unicode grapheme cluster unit. This is the same as the specification of AppleScript 2.0.</p>
 
-<p>If you specify a negative value for ‘location’, CotEditor counts from the end of the document.<br/>
-If the specified ‘length’ exceeds the remaining characters, CotEditor selects text up to the end of the document.<br/>
-When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (that is, the selection’s end point is before ‘location’), the insertion point just moves to ‘location’ (same as when {location, 0} was input).</p>
+<p>If you specify a negative value for <code>location</code>, CotEditor counts from the end of the document.<br/>
+If the specified <code>length</code> exceeds the remaining characters, CotEditor selects text up to the end of the document.<br/>
+When <code>length</code> is a negative value, the selection range ends at the <code>length</code>-th last character. If the absolute value of <code>length</code> is smaller than <code>location</code> (that is, the selection’s end point is before <code>location</code>), the insertion point just moves to <code>location</code> (same as when {location, 0} was input).</p>
 
 <p>This specifying method is based on <code>substr</code> in PHP.</p>
 
@@ -212,7 +212,7 @@ Returns <code>true</code> if a match is found; otherwise, returns <code>false</c
 	<dd>boolean</dd>
 	
 	<dt>Target</dt>
-	<dd>‘document’ object</dd>
+	<dd><code>document</code> object</dd>
 </dl>
 
 
@@ -267,7 +267,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dd>int</dd>
 	
 	<dt>Target</dt>
-	<dd>‘document’ object</dd>
+	<dd><code>document</code> object</dd>
 </dl>
 
 
@@ -295,7 +295,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘document’ object</dd>
+	<dd><code>document</code> object</dd>
 </dl>
 
 
@@ -365,7 +365,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dd>boolean</dd>
 	
 	<dt>Target</dt>
-	<dd>‘document’ object</dd>
+	<dd><code>document</code> object</dd>
 </dl>
 
 
@@ -399,7 +399,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dd>boolean</dd>
 	
 	<dt>Target</dt>
-	<dd>‘document’ object</dd>
+	<dd><code>document</code> object</dd>
 </dl>
 
 
@@ -428,7 +428,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 </dl>
 </section>
 
@@ -441,7 +441,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 </dl>
 
 
@@ -462,7 +462,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.0.1+</dd>
@@ -491,7 +491,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.0.1+</dd>
@@ -521,7 +521,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dd>text</dd>
 	
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 </dl>
 
 
@@ -549,13 +549,13 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 <dl>
 	<dt>Parameters</dt>
 	<dd><ul>
-		<li><p><em><code>to</code> <code>upper</code> / <code>lower</code> / <code>capitalized</code>:</em>
+		<li><p><em><code>to</code> <code>upper</code> <span class="separator">/</span> <code>lower</code> <span class="separator">/</span> <code>capitalized</code>:</em>
 		The case type to change.</p></li>
 	</ul></dd>
 	
 	
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 </dl>
 
 
@@ -577,12 +577,12 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 <dl>
 	<dt>Parameters</dt>
 	<dd><ul>
-		<li><p><em><code>to</code> <code>half</code> / <code>full</code>:</em>
+		<li><p><em><code>to</code> <code>half</code> <span class="separator">/</span> <code>full</code>:</em>
 		The text width to change.</p></li>
 	</ul></dd>
 	
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 </dl>
 
 <h3>Example</h3>
@@ -602,7 +602,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 3.9.7+</dd>
@@ -625,7 +625,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 3.9.7+</dd>
@@ -641,7 +641,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 3.9.7+</dd>
@@ -665,13 +665,13 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 <dl>
 	<dt>Parameters</dt>
 	<dd><ul>
-		<li><p><em><code>to</code> <code>NFKC</code> / <code>NFD</code> / <code>NFC</code> / <code>NFKD</code> / <code>NFKC Casefold</code> / <code>Modified NFC</code> / <code>Modified NFD</code>:</em>
+		<li><p><em><code>to</code> <code>NFKC</code> <span class="separator">/</span> <code>NFD</code> <span class="separator">/</span> <code>NFC</code> <span class="separator">/</span> <code>NFKD</code> <span class="separator">/</span> <code>NFKC Casefold</code> <span class="separator">/</span> <code>Modified NFC</code> <span class="separator">/</span> <code>Modified NFD</code>:</em>
 		The normalized forms of Unicode text.</p></li>
 	</ul></dd>
 	
 	
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.0.0+</dd>
@@ -694,7 +694,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.3.0+</dd>
@@ -710,7 +710,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.3.0+</dd>
@@ -726,7 +726,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.3.0+</dd>
@@ -742,7 +742,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.3.0+</dd>
@@ -758,7 +758,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <dl>
 	<dt>Target</dt>
-	<dd>‘selection’ object</dd>
+	<dd><code>selection</code> object</dd>
 	
 	<dt>Availability</dt>
 	<dd>CotEditor 2.3.0+</dd>

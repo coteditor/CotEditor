@@ -37,16 +37,17 @@ body > h1::before {
 	top: 4px;
 }
 
-body > section:not(#cf),
+body > section,
 article {
-	margin: 2rem 0 1rem;
-	padding-top: 0.25rem;
+	margin: 1.5rem 0 1rem;
+	padding: 1rem 0 0;
 	border-top: 1px solid -apple-system-separator;
 }
 h2 {
 	font-size: 1rem;
 	font-weight: 700;
 	line-height: 1.4;
+	margin-top: 0;
 }
 h3 {
 	font-size: 1rem;
@@ -221,7 +222,7 @@ pre.source {
 }
 
 code.AppleScript {
-	color: hsl(230, 67%, 45%);
+	color: hsl(213, 50%, 25%);
 }
 code span.keyword   { color: #1b556b; font-weight: bold }
 code span.tag       { color: #1b556b }
@@ -238,7 +239,7 @@ code span.comment   { color: #66747a }
 		background: hsl(0, 0%, 10%);
 	}
 	code.AppleScript {
-		color: hsl(230, 50%, 60%);
+		color: hsl(213, 30%, 75%);
 	}
 	code span.keyword   { color: #5199b3 }
 	code span.tag       { color: #5199b3 }
@@ -255,7 +256,7 @@ code span.comment   { color: #66747a }
 /* See also */
 
 #cf {
-	margin-top: 3rem;
+	border-top: none;
 }
 #cf > * {
 	margin: 0;

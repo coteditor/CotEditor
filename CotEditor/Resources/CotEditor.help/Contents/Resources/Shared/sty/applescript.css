@@ -16,7 +16,6 @@ p.type {
 }
 h2 {
 	font-size: 1.2rem;
-	margin-top: 0;
 }
 
 .added {
@@ -25,9 +24,9 @@ h2 {
 .deprecated {
 	color: -apple-system-brown;
 }
-
-figure > figcaption {
-	margin-inline-start: 1rem;
+.separator {
+	font-weight: 200;
+	color: -apple-system-secondary-label;
 }
 
 dl dd {
@@ -36,10 +35,17 @@ dl dd {
 dl ul li {
 	list-style-type: '– ';
 }
+dl ul li::marker {
+	color: -apple-system-secondary-label;
+	font-weight: 200;
+}
 dl ul li p {
 	margin: 0.2em 0;
 }
 dl ul li em {
 	font-weight: normal !important;
 	font-style: inherit;
+}
+dl ul li em code {
+	font-weight: bold;
 }

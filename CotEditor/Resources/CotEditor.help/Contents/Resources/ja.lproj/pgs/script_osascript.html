@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="スクリプトメニュー, スクリプト, スクリプティング, アップルスクリプト, AppleScript, JXA, JavaScript"/>
+	<meta name="keywords" content="スクリプトメニュー, スクリプト, アップルスクリプト, AppleScript, JXA, JavaScript, osascript"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/applescript.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
@@ -17,7 +17,7 @@
 
 <p>AppleScriptやJavaScript for Automation（JXA）を使って、書類の作成や編集、選択範囲の操作、エディタウインドウの制御など、CotEditorのさまざまな作業を自動化できます。このページでは、CotEditorが提供するスクリプトインターフェイスについて、利用できるクラスやコマンドを説明します。</p>
 
-<p>CotEditorは、システム標準のスクリプティング用語に加えて、独自のクラスやコマンドを提供しています。これにより、CotEditorの書類や機能を、スクリプトからより直接的に操作できます。また、特定のイベントに応じてスクリプトを自動的に実行するためのスクリプトフックも利用できます。詳しくは、<a href="script_hook.html">特定のイベントでスクリプトを実行する</a>を参照してください。</p>
+<p>CotEditorは、システム標準のスクリプティング用語に加えて、独自のクラスやコマンドを提供しています。これにより、スクリプトからCotEditorの書類や機能をより直接的に操作できます。また、特定のイベントに応じてスクリプトを自動的に実行するためのスクリプトフックも利用できます。詳しくは、<a href="script_hook.html">特定のイベントでスクリプトを実行する</a>を参照してください。</p>
 
 <p>CotEditorにおけるAppleScriptサポートの仕様は、Script Editorのライブラリでも確認できます。用語解説を開くには次のようにします:</p>
 <ol>
@@ -62,7 +62,7 @@
 		テキストエンコーディングでBOMがあるかどうか（boolean型）<span class="added">CotEditor 4.1で追加</span></p></li>
 
 		<li><p><em><code>line ending</code>:</em>
-		改行コード（<code>CR</code> / <code>LF</code> / <code>CRLF</code> / <code>NEL</code> / <code>LS</code> / <code>PS</code>）</p></li>
+		改行コード（<code>CR</code> <span class="separator">/</span> <code>LF</code> <span class="separator">/</span> <code>CRLF</code> <span class="separator">/</span> <code>NEL</code> <span class="separator">/</span> <code>LS</code> <span class="separator">/</span> <code>PS</code>）</p></li>
 
 		<li><p><em><code>tab width</code>:</em>
 		スペース幅換算のタブ幅（int型）<span class="added">CotEditor 2.1で追加</span></p></li>
@@ -139,9 +139,9 @@
 
 <p>CotEditor 5.0以降、文字はUnicode書記素クラスタ単位でカウントします。これはAppleScript 2.0の仕様と同一です。</p>
 
-<p>locationが負のとき、対象書類のテキストの後ろから数えてlocation番目から始まる範囲となります。<br/>
-lengthが対象書類のテキストの長さを超えて入力された場合、末尾までが範囲となります。<br/>
-lengthが負のとき、指定される範囲は対象書類のテキストの後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
+<p><code>location</code>が負のとき、対象書類のテキストの後ろから数えて<code>location</code>番目から始まる範囲となります。<br/>
+<code>length</code>が対象書類のテキストの長さを超えて入力された場合、末尾までが範囲となります。<br/>
+<code>length</code>が負のとき、指定される範囲は対象書類のテキストの後ろから数えて<code>length</code>文字までとなります。もし、<code>length</code>の絶対値が<code>location</code>よりも小さい（<code>location</code>よりも前に終了位置がある）場合には、<code>location</code>が優先され<code>location</code>位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
 
 <p>この指定方法はPHPの<code>substr</code>のそれにならっています。</p>
 
@@ -211,7 +211,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 	<dd>boolean型</dd>
 	
 	<dt>対象</dt>
-	<dd>documentオブジェクト</dd>
+	<dd><code>document</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -263,7 +263,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 	<dd>int型</dd>
 	
 	<dt>対象</dt>
-	<dd>documentオブジェクト</dd>
+	<dd><code>document</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -289,7 +289,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>documentオブジェクト</dd>
+	<dd><code>document</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -318,7 +318,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 	</ul></dd>
 	
 	<dt>対象</dt>
-	<dd>documentオブジェクト</dd>
+	<dd><code>document</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.1.0以降</dd>
@@ -360,7 +360,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 	<dd>boolean型</dd>
 	
 	<dt>対象</dt>
-	<dd>documentオブジェクト</dd>
+	<dd><code>document</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -393,7 +393,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 	<dd>boolean型</dd>
 	
 	<dt>対象</dt>
-	<dd>documentオブジェクト</dd>
+	<dd><code>document</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -419,7 +419,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 </dl>
 </section>
 
@@ -432,7 +432,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -452,7 +452,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.0.1以降</dd>
@@ -479,7 +479,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.0.1以降</dd>
@@ -508,7 +508,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 	<dd>text型</dd>
 	
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -534,12 +534,12 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 <dl>
 	<dt>パラメータ</dt>
 	<dd><ul>
-		<li><p><em><code>to</code> <code>upper</code> / <code>lower</code> / <code>capitalized</code>:</em>
+		<li><p><em><code>to</code> <code>upper</code> <span class="separator">/</span> <code>lower</code> <span class="separator">/</span> <code>capitalized</code>:</em>
 		置き換えるスタイル</p></li>
 	</ul></dd>
 	
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -564,12 +564,12 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 <dl>
 	<dt>パラメータ</dt>
 	<dd><ul>
-		<li><p><em><code>to</code> <code>half</code> / <code>full</code>:</em>
+		<li><p><em><code>to</code> <code>half</code> <span class="separator">/</span> <code>full</code>:</em>
 		置き換えるスタイル</p></li>
 	</ul></dd>
 	
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -589,7 +589,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 3.9.7以降</dd>
@@ -612,7 +612,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 3.9.7以降</dd>
@@ -628,7 +628,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 3.9.7以降</dd>
@@ -652,12 +652,12 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 <dl>
 	<dt>パラメータ</dt>
 	<dd><ul>
-		<li><p><em><code>to</code> <code>NFKC</code> / <code>NFD</code> / <code>NFC</code> / <code>NFKD</code> / <code>NFKC Casefold</code> / <code>Modified NFC</code> / <code>Modified NFD</code>:</em>
+		<li><p><em><code>to</code> <code>NFKC</code> <span class="separator">/</span> <code>NFD</code> <span class="separator">/</span> <code>NFC</code> <span class="separator">/</span> <code>NFKD</code> <span class="separator">/</span> <code>NFKC Casefold</code> <span class="separator">/</span> <code>Modified NFC</code> <span class="separator">/</span> <code>Modified NFD</code>:</em>
 		正規化方式</p></li>
 	</ul></dd>
 	
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.0.0以降</dd>
@@ -680,7 +680,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.3.0以降</dd>
@@ -696,7 +696,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.3.0以降</dd>
@@ -712,7 +712,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.3.0以降</dd>
@@ -728,7 +728,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.3.0以降</dd>
@@ -744,7 +744,7 @@ lengthが負のとき、指定される範囲は対象書類のテキストの�
 
 <dl>
 	<dt>対象</dt>
-	<dd>selectionオブジェクト</dd>
+	<dd><code>selection</code>オブジェクト</dd>
 	
 	<dt>対応バージョン</dt>
 	<dd>CotEditor 2.3.0以降</dd>
