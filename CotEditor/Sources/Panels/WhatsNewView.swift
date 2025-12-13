@@ -155,7 +155,7 @@ struct WhatsNewView: View {
 enum NewFeature: CaseIterable {
     
     static let version = Version(6, 2, 0)
-    static let buildNumber = 778
+    static let buildNumber = 785
     
     case settingPorting
     case alias
