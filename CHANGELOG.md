@@ -3,6 +3,10 @@
 6.2.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Tweak the user guide.
+
 
 
 6.2.0 (785)
