@@ -12,34 +12,36 @@
 
 <body>
 
-<h1>Run script on specific events in CotEditor on Mac scripts</h1>
+<h1>Run script on specific events in CotEditor on Mac</h1>
 
-<p>With scripting hooks, you can execute CotEditor scripts on certain events.</p>
+<p>With scripting hooks, you can automatically run CotEditor scripts in response to specific events.</p>
 
-<p>The following events are available with CotEditor:</p>
-<ul>
-	<li><p><code>document opened</code>: After you opened the document and then the content was loaded.</p></li>
-	<li><p><code>document saved</code>: After you explicitly saved the document and then the content was stored.</p></li>
-</ul>
+<p>To support the scripting hooks, the script must be written in AppleScript or JavaScript for Automation (JXA), and stored in the form of a script bundle (.scptd).</p>
 
-<p>See “CotEditor Event Handler suite” section on AppleScript Dictionary for further information.</p>
+<p>The following events are available in CotEditor:</p>
+
+<table>
+	<thead>
+		<tr><th>Event handler</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><code>document opened</code></th>
+			<td>After the document is opened and the content is loaded.</td>
+		</tr>
+		
+		<tr>
+			<th><code>document saved</code></th>
+			<td>After the document is explicitly saved and the content is stored.</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>You can find the specifications under the CotEditor Event Handler Suite section in the CotEditor AppleScript dictionary in Script Editor.</p>
+
 
 <section>
-<h2>Support script the hooking</h2>
-
-<p>Scripts with scripting hook must conform to the following protocols:</p>
-
-<ul>
-	<li><p>Written in AppleScript or JavaScript for Automation (JXA)</p></li>
-	<li><p>Stored in the form of a script bundle (.scptd)</p></li>
-</ul>
-
-<p>In addition, events to subscribe to and handlers for them must be declared, as described below.</p>
-</section>
-
-
-<section>
-<h2>Declare hooking in the script bundle</h2>
+<h2>Declare hooks in the script bundle</h2>
 
 <p>A script bundle is a package-type file format that has the following folder structure:</p>
 
@@ -48,17 +50,14 @@ HookingScript.scptd
 └── Contents
     ├── Info.plist
     └── Resources
-        ├── Script Libraries
-        │   └── my-fancy-library.scpt
         ├── Scripts
         │   └── main.scpt
         └── description.rtfd
-            └── TXT.rtf
 </pre>
 
-<p>Any scripts can be exported in this form with Script Editor, which is one of the standard apps distributed with macOS.</p>
+<p><em class="tip">Tip:</em> You can use Script Editor, which is built into macOS, to create scripts in the script bundle format.</p>
 
-<p>To support scripting hooks, the list of events to subscribing must be written in Contents/Info.plist. Info.plist is a property list containing the metadata of the bundle and formatted in XML like the following example:</p>
+<p>To support scripting hooks, the list of events to subscribe to must be written in Contents/Info.plist. Info.plist is a property list containing the metadata of the bundle and formatted in XML like the following example:</p>
 
 <pre class="source">
 <code><span class="type">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
@@ -90,7 +89,7 @@ HookingScript.scptd
 <section>
 <h2>Describe event handling</h2>
 
-<p>An event handler is a block to receive certain events that the app caused and do something with the received event. In this section, the manners to write an event handler are described with a simple example, which shows the dialog on opening and saving a file.</p>
+<p>An event handler is a block of code that receives specific events triggered by the app and performs actions in response. In this section, the ways to write an event handler are described using a simple example that shows a dialog when opening and saving a document.</p>
 
 <h3>AppleScript</h3>
 

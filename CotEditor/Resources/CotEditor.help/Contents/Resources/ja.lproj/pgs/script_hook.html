@@ -14,30 +14,30 @@
 
 <h1>MacのCotEditorで特定のイベントでスクリプトを実行する</h1>
 
-<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。</p>
+<p>スクリプトフックを使うと、特定のイベント発生時にスクリプトを自動で実行することができます。</p>
+
+<p>フックに対応したスクリプトを作成するには、AppleScriptまたはJavaScript for Automation（JXA）で記述して、スクリプトバンドル形式（.scptd）で保存する必要があります。</p>
 
 <p>CotEditorは以下のイベントでのフックをサポートしています:</p>
 
-<ul>
-	<li><p><code>document opened</code>: 書類を開いて、テキストが読み込まれたとき</p></li>
-	<li><p><code>document saved</code>: 書類を明示的に保存して、テキストが書き込まれたとき</p></li>
-</ul>
+<table>
+	<thead>
+		<tr><th>イベントハンドラ</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><code>document opened</code></th>
+			<td>書類を開いて、テキストが読み込まれたとき。</td>
+		</tr>
+		
+		<tr>
+			<th><code>document saved</code></th>
+			<td>書類を明示的に保存して、テキストが書き込まれたとき。</td>
+		</tr>
+	</tbody>
+</table>
 
-<p>イベントの詳細な仕様については、AppleScript辞書の「CotEditor Event Handler suite」項を参照してください。</p>
-
-
-<section>
-<h2>スクリプトフックに対応する</h2>
-
-<p>フックに対応したスクリプトを作成するには、以下の制約を満たす必要があります:</p>
-
-<ul>
-	<li><p>AppleScriptまたはJavaScript for Automation（JXA）で記述</p></li>
-	<li><p>スクリプトバンドル形式（.scptd）で保存</p></li>
-</ul>
-
-<p>以上に加えて、フックしたいイベントをInfo.plistファイルにて明示し、イベントハンドラを記述する必要があります。</p>
-</section>
+<p>この仕様は、スクリプトエディタで、CotEditorのAppleScript辞書の「CotEditor Event Handler Suite」のセクションで確認することができます。</p>
 
 
 <section>
@@ -50,15 +50,12 @@ HookingScript.scptd
 └── Contents
     ├── Info.plist
     └── Resources
-        ├── Script Libraries
-        │   └── my-fancy-library.scpt
         ├── Scripts
         │   └── main.scpt
         └── description.rtfd
-            └── TXT.rtf
 </pre>
 
-<p>この形式には、macOSに標準で添付されているスクリプトエディタを用いることにより、簡単に書き出すことができます。</p>
+<p><em class="tip">ヒント:</em> Macに標準で内蔵されているスクリプトエディタで、スクリプトをスクリプトバンドル形式で保存することができます。</p>
 
 <p>CotEditorのスクリプトフックに対応させるためには、まず、Contents/Info.plistにフックしたいイベントの一覧を記載する必要があります。
 plistファイルはプロパティリストと呼ばれ、その内容は以下に示すようなXML形式で記述されたバンドルのメタデータです。</p>
