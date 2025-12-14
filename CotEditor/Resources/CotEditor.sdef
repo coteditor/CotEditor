@@ -4,7 +4,7 @@
 <dictionary title="Dictionary" xmlns:xi="http://www.w3.org/2003/XInclude">
     <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
     
-    <suite name="CotEditor suite" code="cEd1" description="CotEditor specific classes.">
+    <suite name="CotEditor Suite" code="cEd1" description="CotEditor-specific classes.">
         <enumeration name="saveable file format" code="savf">
             <enumerator name="Text" code="TXT " description="The plain text.">
                 <cocoa string-value="public.data"/>
@@ -359,7 +359,7 @@
     </suite>
     
     
-    <suite name="CotEditor Event Handler suite" code="cEd1" description="commands that are executed as CotEditor event handlers.">
+    <suite name="CotEditor Event Handler Suite" code="cEd1" description="Commands that are executed as CotEditor event handlers.">
         <!-- handle [e]vent [d]ocument [o]pene[d] -->
         <event name="document opened" code="cEd1edod" description="Called after CotEditor opened a document.">
             <direct-parameter type="document" description="The document that was opened."/>
