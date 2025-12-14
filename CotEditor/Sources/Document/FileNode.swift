@@ -351,9 +351,6 @@ extension FileNode {
         
         try Task.checkCancellation()
         
-        let match = (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
-        let isMatched = !match.isNotFound
-        
         var matchedDescendants: [FileNode] = []
         if self.file.isDirectory {
             // async read files in background
@@ -372,6 +369,11 @@ extension FileNode {
                 }
             }
         }
+        
+        let match: NSRange = (self.parent == nil)
+        ? .notFound
+        : (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
+        let isMatched = !match.isNotFound
         
         self.filterState = FilterState(matchedRange: isMatched ? match : nil,
                                        hasMatchedDescendant: !matchedDescendants.isEmpty)

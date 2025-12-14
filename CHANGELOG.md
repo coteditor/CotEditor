@@ -8,6 +8,11 @@
 - [trivial] Tweak the user guide.
 
 
+### Fixes
+
+- Fix an issue in the file browser where files weren’t hidden when the document’s folder name matched the filter string.
+
+
 
 6.2.0 (785)
 --------------------------
