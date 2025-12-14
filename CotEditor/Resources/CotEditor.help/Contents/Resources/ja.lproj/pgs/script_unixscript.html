@@ -98,8 +98,8 @@
 count = 0
 <span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:
     count += 1
-    print(<span class="string">&quot;&gt;&quot;</span> + line.rstrip())
-sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.format(count))
+    <span class="command">print</span>(<span class="string">&quot;&gt;&quot;</span> + line.<span class="command">rstrip</span>())
+sys.stderr.<span class="command">write</span>(<span class="string">&quot;Processed {} lines.&quot;</span>.<span class="command">format</span>(count))
 </code></pre>
 
 <p>このスクリプトをCotEditorのスクリプトメニューから実行すると、以下のメッセージがコンソールに表示されます:</p>

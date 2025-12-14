@@ -14,16 +14,16 @@
 
 <h1>Automate tasks using UNIX scripts in CotEditor on Mac</h1>
 
-<p>This page explains how to pass a document’s text to UNIX scripts that you execute from the Script menu and how to receive output from those scripts.</p>
+<p>This page explains how to pass a document’s text to UNIX scripts run from the Script menu, and how to receive output from those scripts.</p>
 
 <ul>
-	<li><p>Script files must have one of the following extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift (regardless of the language)</p></li>
+	<li><p>Script files must have one of the following extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift (regardless of the language).</p></li>
 	<li><p>To run a script, make sure the script file has execute permission.</p></li>
 </ul>
 
 
 <section>
-<h2>Refer to the document file path</h2>
+<h2>Refer to the document’s file path</h2>
 
 <p>If the current document has been saved, its absolute file path is passed to the script as an argument.</p>
 </section>
@@ -32,7 +32,7 @@
 <section>
 <h2>Pass text data to a script</h2>
 
-<p>A script can receive the content of the current document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains: “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the parameters below. If you don’t specify a parameter, CotEditor passes nothing. This is the same as using “<coee>None</code>.”</p>
+<p>A script can receive the content of the current document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains: “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the parameters below. If you don’t specify a parameter, CotEditor passes no data. This is the same as using “<code>None</code>.”</p>
 
 <ul>
 	<li><p>CotEditor passes all text to scripts encoded in UTF-8.</p></li>
@@ -98,8 +98,8 @@
 count = 0
 <span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:
     count += 1
-    print(<span class="string">&quot;&gt;&quot;</span> + line.rstrip())
-sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.format(count))
+    <span class="command">print</span>(<span class="string">&quot;&gt;&quot;</span> + line.<span class="command">rstrip</span>())
+sys.stderr.<span class="command">write</span>(<span class="string">&quot;Processed {} lines.&quot;</span>.<span class="command">format</span>(count))
 </code></pre>
 
 <p>The following message appears when running the script from the Script menu in CotEditor:</p>
