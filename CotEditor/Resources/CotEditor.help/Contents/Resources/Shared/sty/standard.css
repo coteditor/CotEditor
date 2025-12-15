@@ -194,6 +194,11 @@ img.appicon:lang(ja) {
 	padding: 0 0.1em;
 }
 
+object[data*="script.svg"] {
+	height: 1em;
+	vertical-align: -0.1rem;
+}
+
 img.bordered {
 	border: 0.5px solid -apple-system-tertiary-label;
 	border-radius: 3px;

@@ -29,7 +29,7 @@
 <tbody>
 	<tr>
 		<th>Command definitions</th>
-		<td>Define commands for inserting snippets. These commands appear in the Text &gt; Insert Snippet menu.<ul>
+		<td><p>Define commands for inserting snippets. These commands appear in the Text &gt; Insert Snippet menu.</p><ul>
 			<li><em>Syntax</em>: The snippet is available only in documents using this syntax. If this field is empty (All), the snippet can be used in any document.</li>
 			<li><em>Name</em>: The name of the command as it appears in the menu.</li>
 			<li><em>Key</em>: A keyboard shortcut to insert this snippet. A shortcut is optional and can be left blank.</li>
@@ -37,10 +37,9 @@
 	</tr>
 	<tr>
 		<th>Insertion format</th>
-		<td>Set the text inserted by the command selected in the list above.
-			<ul>
-				<li>If the snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the variable is removed when the snippet is inserted, and the insertion point moves to that location.</li>
-			</ul></td>
+		<td><p>Set the text inserted by the command selected in the list above.</p>
+			<p>If the snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the variable is removed when the snippet is inserted, and the insertion point moves to that location.</p>
+			</td>
 	</tr>
 </tbody>
 </table>
@@ -55,7 +54,7 @@
 <tbody>
 	<tr>
 		<th>File drop definitions</th>
-		<td>Define how File Drop behaves. When files are dropped into the editor and the defined conditions are met, CotEditor inserts the corresponding text at the drop location.<ul>
+		<td><p>Define how File Drop behaves. When files are dropped into the editor and the defined conditions are met, CotEditor inserts the corresponding text at the drop location.</p><ul>
 			<li><em>Syntax</em>: The rule applies only when a file is dropped into a document using this syntax. Leave this field empty (All) to apply the rule to all documents.</li>
 			<li><em>Extensions</em>: The rule applies only to files with the listed extensions. Leave this field empty (All) to apply the rule to all files. Enter extensions without a leading period, separated by commas.</li>
 			<li><em>Description</em>: Optional field for leaving a note about the rule. This field doesn’t affect File Drop behavior.</li>
@@ -64,10 +63,8 @@
 	</tr>
 	<tr>
 		<th>Insertion format</th>
-		<td>Set the text inserted when the selected File Drop rule is applied.
-			<ul>
-				<li>You can use CotEditor variables in the insertion format. These variables are replaced with information from the dropped file. See <a href="about_filedrop.html">Write insertion format for File Drop</a> for each variable’s detail.</li>
-			</ul>
+		<td><p>Set the text inserted when the selected File Drop rule is applied.</p>
+			<p>You can use CotEditor variables in the insertion format. These variables are replaced with information from the dropped file. See <a href="about_filedrop.html">Write insertion format for File Drop</a> for each variable’s detail.</p>
 		</td>
 	</tr>
 </tbody>

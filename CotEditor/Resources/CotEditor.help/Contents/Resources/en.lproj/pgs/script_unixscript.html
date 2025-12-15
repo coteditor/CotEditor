@@ -14,16 +14,21 @@
 
 <h1>Automate tasks using UNIX scripts in CotEditor on Mac</h1>
 
-<p>This page explains how to pass a document’s text to UNIX scripts run from the Script menu, and how to receive output from those scripts.</p>
+<p>From CotEditor’s Script menu, you can run UNIX scripts to pass information and text from the document you’re editing to the script, and apply the script’s output to the document.</p>
 
-<ul>
-	<li><p>Script files must have one of the following extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift (regardless of the language).</p></li>
-	<li><p>To run a script, make sure the script file has execute permission.</p></li>
-</ul>
 
 
 <section>
-<h2>Refer to the document’s file path</h2>
+<h2>Create a UNIX script for the Script menu</h2>
+
+<p>You can write UNIX scripts for CotEditor in any scripting language, as long as the execution environment is available on your Mac. However, script files must have one of the following file extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift.</p>
+
+<p>To run a script properly, include a <span aria-label="shebang">#!</span> line that specifies the interpreter, and make sure the script file is executable. For example, you can <a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">make a script executable in Terminal on Mac</a>.</p>
+</section>
+
+
+<section>
+<h2>Get the document’s file path</h2>
 
 <p>If the current document has been saved, its absolute file path is passed to the script as an argument.</p>
 </section>
@@ -34,20 +39,19 @@
 
 <p>A script can receive the content of the current document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains: “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the parameters below. If you don’t specify a parameter, CotEditor passes no data. This is the same as using “<code>None</code>.”</p>
 
-<ul>
-	<li><p>CotEditor passes all text to scripts encoded in UTF-8.</p></li>
-</ul>
-
+<p>For “<code><var>xxxx</var></code>,” you can specify one of the following input source:</p>
 <table>
 	<thead>
 		<tr><th>Keyword</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th><code>Selection</code></th><td>Pass the currently selected text.</td></tr>
-		<tr><th><code>AllText</code></th><td>Pass the entire content of the document.</td></tr>
-		<tr><th><code>None</code></th><td>Pass nothing (default).</td></tr>
+		<tr><th><code>Selection</code></th><td><p>Pass the currently selected text.</p></td></tr>
+		<tr><th><code>AllText</code></th><td><p>Pass the entire content of the document.</p></td></tr>
+		<tr><th><code>None</code></th><td><p>Pass nothing (default).</p></td></tr>
 	</tbody>
 </table>
+
+<p>Text passed from CotEditor to a script is always encoded in UTF-8, regardless of the document’s text encoding.</p>
 </section>
 
 
@@ -56,24 +60,23 @@
 
 <p>CotEditor can receive output from the script through standard output (STDOUT) and apply it to the document. To define how CotEditor handles the output, add a comment at the top of the script that contains: “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>”. Replace <code><var>xxxx</var></code> with one of the parameters below. If you don’t specify a parameter, CotEditor performs no action. This is the same as using “<code>Discard</code>.”</p>
 
-<ul>
-	<li><p>Output text must be encoded in UTF-8.</p></li>
-</ul>
-
+<p>For “<code><var>xxxx</var></code>,” you can specify one of the following output target:</p>
 <table>
 	<thead>
 		<tr><th>Keyword</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th><code>ReplaceSelection</code></th><td>Replace the current selection with the output text.</td></tr>
-		<tr><th><code>ReplaceAllText</code></th><td>Replace the entire content of the document with the output text.</td></tr>
-		<tr><th><code>InsertAfterSelection</code></th><td>Insert the output text immediately after the current selection.</td></tr>
-		<tr><th><code>AppendToAllText</code></th><td>Insert the output text at the end of the document.</td></tr>
-		<tr><th><code>NewDocument</code></th><td>Create a new document and insert the output text into it.</td></tr>
-		<tr><th><code>Pasteboardputs</code></th><td>Place the output text on the Clipboard.</td></tr>
-		<tr><th><code>Discard</code></th><td>Do nothing (default).</td></tr>
+		<tr><th><code>ReplaceSelection</code></th><td><p>Replace the current selection with the output text.</p></td></tr>
+		<tr><th><code>ReplaceAllText</code></th><td><p>Replace the entire content of the document with the output text.</p></td></tr>
+		<tr><th><code>InsertAfterSelection</code></th><td><p>Insert the output text immediately after the current selection.</p></td></tr>
+		<tr><th><code>AppendToAllText</code></th><td><p>Insert the output text at the end of the document.</p></td></tr>
+		<tr><th><code>NewDocument</code></th><td><p>Create a new document and insert the output text into it.</p></td></tr>
+		<tr><th><code>Pasteboardputs</code></th><td><p>Place the output text on the Clipboard.</p></td></tr>
+		<tr><th><code>Discard</code></th><td><p>Do nothing (default).</p></td></tr>
 	</tbody>
 </table>
+
+<p>Text returned from a script to CotEditor must also be encoded in UTF-8, regardless of the document’s text encoding.</p>
 </section>
 
 
