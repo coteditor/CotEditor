@@ -358,6 +358,17 @@ extension SortPatternError: @retroactive LocalizedError {
                        comment: "error message (“pattern” is a regular expression pattern)")
         }
     }
+    
+    
+    public var helpAnchor: String? {
+        
+        switch self {
+        case .invalidRegularExpressionPattern:
+            "about_regex"
+        default:
+            nil
+        }
+    }
 }
 
 

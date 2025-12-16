@@ -62,4 +62,15 @@ extension TextFind.Error: @retroactive LocalizedError {
                        table: "TextFind")
         }
     }
+    
+    
+    public var helpAnchor: String? {
+        
+        switch self {
+        case .regularExpression:
+            "about_regex"
+        default:
+            nil
+        }
+    }
 }

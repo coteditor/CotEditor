@@ -46,7 +46,7 @@ public struct TextFind: Equatable, Sendable {
     }
     
     
-    public enum `Error`: Swift.Error, Sendable {
+    public enum Error: Swift.Error, Sendable {
         
         case regularExpression(reason: String)
         case emptyFindString

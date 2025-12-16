@@ -51,7 +51,7 @@
 
 <p>As for the text replacing with, all line endings, even ones defined as a metacharacter like<code>\n</code> or captured, are assumed to be the document line ending.</p>
 
-<p>For example, when replacing the find text “dog\Rcow” with the replacement text “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the text “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
+<p>For example, when replacing the find text “dog\Rcow” with the replacement text “$0\r” using regular expressions in a document whose line ending type is LF (<code>\n</code>), the text “dog<span class="invisible">\r\n</span>cow” in the document also matches. Theoretically, the regular expression would replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”. However, CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
 
 <p>There is currently no way to replace them with line endings other than the document line ending.</p>
 </section>
@@ -62,7 +62,7 @@
 <ul>
 	<li><a href="about_line_endings.html">Handle various types of line endings in CotEditor on Mac</a></li>
 	<li><a href="howto_find.html">Find or replace text in CotEditor on Mac</a></li>
-	<li><a href="about_regex.html">Use the regular expression in CotEditor on Mac</a></li>
+	<li><a href="about_regex.html">Use regular expressions in CotEditor on Mac</a></li>
 </ul>
 </section>
 
