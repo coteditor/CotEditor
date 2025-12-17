@@ -363,10 +363,10 @@ extension SortPatternError: @retroactive LocalizedError {
     public var helpAnchor: String? {
         
         switch self {
-        case .invalidRegularExpressionPattern:
-            "about_regex"
-        default:
-            nil
+            case .invalidRegularExpressionPattern:
+                "about_regex"
+            default:
+                nil
         }
     }
 }

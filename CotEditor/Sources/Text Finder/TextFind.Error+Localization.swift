@@ -67,10 +67,10 @@ extension TextFind.Error: @retroactive LocalizedError {
     public var helpAnchor: String? {
         
         switch self {
-        case .regularExpression:
-            "about_regex"
-        default:
-            nil
+            case .regularExpression:
+                "about_regex"
+            default:
+                nil
         }
     }
 }
