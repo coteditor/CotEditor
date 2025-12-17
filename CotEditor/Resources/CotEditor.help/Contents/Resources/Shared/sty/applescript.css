@@ -19,7 +19,7 @@ h2 {
 }
 
 .added {
-	color: hsl(80, 60%, 35%);
+	color: var(--accent-green);
 }
 .deprecated {
 	color: -apple-system-brown;

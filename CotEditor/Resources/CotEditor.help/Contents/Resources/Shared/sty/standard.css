@@ -6,10 +6,21 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2025 CotEditor Project
+ © 2014-2025 1024jp
 */
 
 @import "common.css";
+
+:root {
+	--accent-blue: hsl(198, 40%, 45%);
+	--accent-green: hsl(80, 60%, 35%);
+	--accent-background: hsl(206, 50%, 97%);
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--accent-background: hsl(206, 30%, 20%);
+	}
+}
 
 img {
 	max-width: 100%;
@@ -83,7 +94,7 @@ dd + dt {
 }
 
 table {
-	font-size: 95%;
+	font-size: 0.95rem;
 	border-collapse: collapse;
 	empty-cells: show;
 	margin: 1rem 0;
@@ -149,12 +160,13 @@ em.tip::before {
 	top: 4px;
 	padding-inline-end: 0.2em;
 }
+
 p.addition {
 	position: relative;
 	text-indent: 0;
 	padding: 0.8rem 1.2rem;
 	border-radius: 0.8rem;
-	background: hsl(213, 50%, 97%);
+	background: var(--accent-background);
 }
 p.addition::after {
 	content: '';
@@ -163,18 +175,10 @@ p.addition::after {
 	left: 4rem;
 	margin-inline-start: -1rem;
 	border: 1rem solid transparent;
-	border-bottom: 15px solid hsl(203, 50%, 97%);
+	border-bottom: 15px solid var(--accent-background);
 }
 p.addition > span:first-child {
-	color: hsl(203, 25%, 55%);
-}
-@media (prefers-color-scheme: dark) {
-	p.addition {
-		background: hsl(203, 30%, 20%);
-	}
-	p.addition::after {
-		border-bottom-color: hsl(203, 30%, 20%);
-	}
+	color: -apple-system-secondary-label;
 }
 
 a.toc::before {
@@ -202,11 +206,6 @@ img.appicon {
 }
 img.appicon:lang(ja) {
 	padding: 0 0.1em;
-}
-
-object[data*="script.svg"] {
-	height: 1em;
-	vertical-align: -0.1rem;
 }
 
 img.bordered {

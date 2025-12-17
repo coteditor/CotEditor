@@ -56,3 +56,8 @@ dfn {
 summary {
 	cursor: pointer;
 }
+
+p object[data*="script.svg"] {
+	height: 1em;
+	vertical-align: -0.15em;
+}

@@ -24,7 +24,7 @@
 
 <p>Because the previous CotEditor handled all line ending codes as LF internally, <code>\n</code> could be used in regular expression patterns to recognize newlines, regardless of the actual line endings in the document. From CotEditor 4.2.0 on, <code>\n</code> matches only the line endings of which document actually uses LF as the line ending. If you want your documents to match any line endings regardless of the line ending character, use <code>\R</code> instead of <code>\n</code>.</p>
 
-<p class="addition"><code>\R</code> is the metacharacter defined in the <a href="about_regex.html">CUI regular expression engine</a>, which is used in CotEditor; and matches any of a newline character, such as <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</p>
+<p class="addition">“<code>\R</code>” is the metacharacter defined in the <a href="about_regex.html">CUI regular expression engine</a>, which is used in CotEditor; and matches any of a newline character, such as <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</p>
 </section>
 
 
