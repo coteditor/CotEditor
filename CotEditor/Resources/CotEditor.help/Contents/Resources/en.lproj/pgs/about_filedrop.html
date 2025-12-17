@@ -7,44 +7,51 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>Write insertion format for File Drop in CotEditor on Mac</title>
+	<title>Create insertion formats for File Drop in CotEditor on Mac</title>
 </head>
 
 <body>
 
-<h1>Write insertion format for File Drop in CotEditor on Mac</h1>
+<h1>Create insertion formats for File Drop in CotEditor on Mac</h1>
 
-<p>CotEditor has the following variables for the use of File Drop.</p>
+<p>By using variables in File Drop insertion formats, you can insert text that reflects information about the dropped file.</p>
+
+
+<section>
+<p>The following variables are available in File Drop insertion formats:</p>
+
 
 <table>
 	<thead>
-		<tr><th>Variable</th><th>Replaced with</th></tr>
+		<tr><th>Variable</th><th>Description</th></tr>
 	</thead>
 	<tbody>
 		<tr><td><code>&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;</code></td><td><p>The absolute path of the dropped file.</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td><p>The relative path from your document to the dropped file.</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</code></td><td><p>The name of the dropped file with extension.</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td><p>The name of the dropped file without extension.</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</code></td><td><p>The name of the dropped file including its extension.</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td><p>The name of the dropped file without its extension.</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;</code></td><td><p>The file extension of the dropped file.</p></td></tr>
-		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</code></td><td>The file extension of the dropped file (lowercase).</td></tr>
-		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;</code></td><td><p>The file extension of the dropped file (uppercase).</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;</code></td><td><p>The directory of the dropped file.</p></td></tr>
-		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code></td><td><p>The text content of the dropped file (works only when you drop an text file).</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;</code></td><td><p>The image width (works only when you drop an image file).</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;</code></td><td><p>The image height (works only when you drop an image file).</p></td></tr>
+		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</code></td><td>The file extension of the dropped file in lowercase.</td></tr>
+		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;</code></td><td><p>The file extension of the dropped file in uppercase.</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;</code></td><td><p>The name of the directory containing the dropped file.</p></td></tr>
+		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code></td><td><p>The text contents of the dropped file (available only when the dropped file is a text file).</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;</code></td><td><p>The width of the image (available only when the dropped file is an image file).</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;</code></td><td><p>The height of the image (available only when the dropped file is an image file).</p></td></tr>
 	</tbody>
 </table>
+</section>
 
 
 <section>
-<h2>Use snippets</h2>
+<h2>Create an insertion format</h2>
 
-<p>Here are some examples of what it’s like to use variables.</p>
+<p>You can create snippets for different purposes, such as the following examples. The inserted text varies depending on the dropped file.</p>
 
-<p>When you drop a file named “example.html”:</p>
+<p>When a file named “example.html” is dropped:</p>
+
 <table>
 	<thead>
-		<tr><th>Insertion format you set</th><th>Text actually inserted</th></tr>
+		<tr><th>Insertion format</th><th>Text actually inserted</th></tr>
 	</thead>
 	<tbody>
 		<tr>
@@ -54,10 +61,11 @@
 	</tbody>
 </table>
 
-<p>When you drop a file named “example.jpg”:</p>
+<p>When a file named “example.jpg” is dropped:</p>
+
 <table>
 	<thead>
-		<tr><th>Insertion format you set</th><th>Text actually inserted</th></tr>
+		<tr><th>Insertion format</th><th>Text actually inserted</th></tr>
 	</thead>
 	<tbody>
 		<tr>

@@ -15,7 +15,7 @@
 
 <h1>Change Snippets settings in CotEditor on Mac</h1>
 
-<p>In the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, use Snippets settings to create preset text that you can insert with a command or by dropping a file onto the editor.</p>
+<p>In the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, use Snippets settings to manage text that you can insert using commands or by dropping files onto the editor.</p>
 
 <p>To change these settings, choose CotEditor &gt; Settings, then click Snippets.</p>
 
@@ -37,8 +37,8 @@
 	</tr>
 	<tr>
 		<th>Insertion format</th>
-		<td><p>Set the text inserted by the command selected in the list above.</p>
-			<p>If the snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the variable is removed when the snippet is inserted, and the insertion point moves to that location.</p>
+		<td><p>Set the text to insert when the selected command is applied.</p>
+			<p>You can use variables in the insertion format. These variables specify the relationship between the insertion point and the inserted text. See <a href="about_snippet.html">Create insertion formats for command snippets</a> for details about each variable.</p>
 			</td>
 	</tr>
 </tbody>
@@ -54,7 +54,7 @@
 <tbody>
 	<tr>
 		<th>File drop definitions</th>
-		<td><p>Define how File Drop behaves. When files are dropped into the editor and the defined conditions are met, CotEditor inserts the corresponding text at the drop location.</p><ul>
+		<td><p>Define how File Drop inserts text when files are dropped into the editor. When files are dropped into the editor and the defined conditions are met, CotEditor inserts the corresponding text at the drop location.</p><ul>
 			<li><em>Syntax</em>: The rule applies only when a file is dropped into a document using this syntax. Leave this field empty (All) to apply the rule to all documents.</li>
 			<li><em>Extensions</em>: The rule applies only to files with the listed extensions. Leave this field empty (All) to apply the rule to all files. Enter extensions without a leading period, separated by commas.</li>
 			<li><em>Description</em>: Optional field for leaving a note about the rule. This field doesn’t affect File Drop behavior.</li>
@@ -63,8 +63,8 @@
 	</tr>
 	<tr>
 		<th>Insertion format</th>
-		<td><p>Set the text inserted when the selected File Drop rule is applied.</p>
-			<p>You can use CotEditor variables in the insertion format. These variables are replaced with information from the dropped file. See <a href="about_filedrop.html">Write insertion format for File Drop</a> for each variable’s detail.</p>
+		<td><p>Set the text to insert when the selected File Drop rule is applied.</p>
+			<p>You can use variables in the insertion format. These variables are replaced with information from the dropped file. See <a href="about_filedrop.html">Create insertion formats for File Drop</a> for details about each variable.</p>
 		</td>
 	</tr>
 </tbody>
@@ -74,8 +74,9 @@
 <section id="cf">
 <h2>See also</h2>
 <ul>
-	<li><a href="howto_filedrop.html">Drop files into the editor in CotEditor on Mac</a></li>
-	<li><a href="about_filedrop.html">Write insertion format for File Drop in CotEditor on Mac</a></li>
+	<li><a href="howto_insert_snippet.html">Insert a snippet in CotEditor on Mac</a></li>
+	<li><a href="about_snippet.html">Create insertion formats for command snippets in CotEditor on Mac</a></li>
+	<li><a href="about_filedrop.html">Create insertion formats for File Drop in CotEditor on Mac</a></li>
 	<li><a href="settings.html">Change settings in CotEditor on Mac</a></li>
 </ul>
 </section>

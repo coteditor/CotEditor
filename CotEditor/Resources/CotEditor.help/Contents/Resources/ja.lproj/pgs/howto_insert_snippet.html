@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="スニペット"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>MacのCotEditorでスニペットを挿入する</title>
+</head>
+
+<body>
+
+<h1>MacのCotEditorでスニペットを挿入する</h1>
+
+<p>よく使うテキストの断片（スニペット）を登録しておいて、状況に合わせて簡単に挿入することができます。</p>
+
+<p>CotEditorには、挿入の方法が異なる「コマンド」と「ファイルドロップ」の2種類のスニペットがあります。</p>
+
+<p>どちらのスニペットも、設定は<a href="settings_snippets.html">「スニペット」設定</a>で行います。</p>
+
+<section>
+<h2>コマンドでスニペットを挿入する</h2>
+
+<p>メニューやショートカットキーから挿入できるスニペットです。コマンドを実行したときに選択しているテキストを囲むように挿入したり、挿入後の挿入ポイントの位置を指定したりすることもできます。</p>
+
+<ol>
+	<li><p>MacでCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>で、書類を開きます。</p></li>
+	<li><p>以下のいずれかの操作を行います:</p>
+	<ul>
+		<li><p>「テキスト」＞「スニペットを挿入」と選択し、挿入するスニペットを選択します。</p></li>
+		<li><p>スニペットに登録したショートカットキーを押します。</p></li>
+	</ul></li>
+</ol>
+
+<p><em class="tip">ヒント:</em> スニペットにシンタックスを設定している場合、現在の書類のシンタックスが設定したスニペットと一致するときのみ、メニューに表示されショートカットも有効になります。これを利用して、書類のシンタックスによって挿入するスニペットを変更することができます。</p>
+</section>
+
+
+<section>
+<h2>ファイルドロップでスニペットを挿入する</h2>
+
+<p>ファイルをエディタにドロップすることで挿入するスニペットです。ファイルの種類に応じて、あらかじめ指定した定型テキストをドロップ位置に挿入できます。例えば、HTML書類にFinderから画像ファイルをドロップしたときに<code>img</code>要素タグを挿入する、といった使い方ができます。</p>
+
+<ol>
+	<li><p>MacでCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>で、書類を開きます。</p></li>
+	<li><p>エディタ上の挿入したい場所に、Finderなどのほかのアプリからファイルをドロップします。</p>
+		<p><em class="note">注記:</em> 該当するファイルドロップルールがないときは、ドロップしたファイルのフルパスが挿入されます。</p>
+	</li>
+</ol>
+</section>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings_snippets.html">MacのCotEditorで「スニペット」設定を変更する</a></li>
+	<li><a href="about_snippet.html">MacのCotEditorでコマンドスニペットの挿入フォーマットを作成する</a></li>
+	<li><a href="about_filedrop.html">MacのCotEditorでファイルドロップの挿入フォーマットを作成する</a></li>
+	<li><a href="howto_customize_shortcut.html">MacのCotEditorでキーボードショートカットをカスタマイズする</a></li>
+</ul>
+</section>
+
+</body>
+</html>

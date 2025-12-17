@@ -14,15 +14,19 @@
 
 <h1>MacのCotEditorでファイルドロップの挿入フォーマットを作成する</h1>
 
-<p>ファイルドロップの「フォーマット」で使用できる変数とその使用例は以下のとおりです。</p>
+<p>ファイルドロップの挿入フォーマットに変数を使うと、ドロップされたファイルの情報を反映したテキストを挿入できます。</p>
+
+
+<section>
+<p>ファイルドロップの「挿入フォーマット」で使用できる変数は以下のとおりです。</p>
 
 <table>
 	<thead>
-		<tr><th>変数</th><th>置換される値</th></tr>
+		<tr><th>変数</th><th>説明</th></tr>
 	</thead>
 	<tbody>
 		<tr><td><code>&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの絶対パス</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td><p>ドロップ先ファイルからドロップ元ファイルへの相対パス</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td><p>ドロップ先書類のファイルからドロップ元ファイルへの相対パス</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの、拡張子を含むファイル名</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの名前から拡張子を削除したテキスト</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの拡張子</p></td></tr>
@@ -34,12 +38,13 @@
 		<tr><td><code>&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;</code></td><td><p>画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）</p></td></tr>
 	</tbody>
 </table>
+</section>
 
 
 <section>
-<h2>スニペットを使う</h2>
+<h2>挿入フォーマットを作成する</h2>
 
-<p>例えば、以下のようにスニペットを利用できます。</p>
+<p>目的に合わせて、例えば以下のようなスニペットを作成できます。また、作成した挿入フォーマットに対して、具体的にこのようなテキストが挿入されます。</p>
 
 <p>「example.html」という名前のファイルをドロップした場合:</p>
 <table>
