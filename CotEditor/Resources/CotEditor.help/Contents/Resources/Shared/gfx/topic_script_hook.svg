@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="210" height="170" viewBox="0 0 210 170">
+<style>
+    polyline {
+        fill: none;
+        stroke: black;
+    }
+    text {
+        font-family: sans-serif;
+        font-size: 17px;
+        letter-spacing: 0.02em;
+        fill: black;
+        
+        font-size-adjust: from-font;
+        text-rendering: optimizeLegibility;
+        text-autospace: normal;
+        text-spacing-trim: trim-start;
+        
+        -webkit-font-smoothing: antialiased;
+    }
+    .lines {
+        opacity: 0.4;
+    }
+    @media (prefers-color-scheme: dark) {
+        polyline { stroke: white }
+        text     { fill: white }
+    }
+</style>
+
+<text y="15">HookingScript.scptd</text>
+<text x="30" y="40">Contents</text>
+<text x="60" y="65">Info.plist</text>
+<text x="60" y="90">Resources</text>
+<text x="90" y="115">Scripts</text>
+<text x="120" y="140">main.scpt</text>
+<text x="90" y="165">description.rtfd</text>
+
+<g class="lines">
+    <polyline transform="translate(10,20)" points="0,2 0,15 16,15"/>
+    <polyline transform="translate(40,45)" points="0,2 0,40 16,40"/>
+    <polyline transform="translate(40,45)" points="0,15 16,15"/>
+    <polyline transform="translate(70,95)" points="0,2 0,65 16,65"/>
+    <polyline transform="translate(70,95)" points="0,15 16,15"/>
+    <polyline transform="translate(100,120)" points="0,2 0,15 16,15"/>
+</g>
+</svg>
