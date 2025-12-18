@@ -2,9 +2,9 @@
 <html lang="ja">
 
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="keywords" content="スクリプトメニュー, スクリプト, スクリプティング"/>
-	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="スクリプトメニュー, スクリプト, スクリプティング">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
 	<title>MacのCotEditorでUNIXスクリプトを使って作業を自動化する</title>
@@ -22,7 +22,7 @@
 
 <p>CotEditor用のUNIXスクリプトは、実行環境がMacに用意されていればどんなスクリプト言語でも作成できます。ただし、スクリプトファイルは、.sh、.pl、.php、.rb、.py、.js、.awk、または.swiftのいずれかの拡張子を付ける必要があります。</p>
 
-<p>スクリプトを正しく実行するには、使用するインタープリタを指定する<span aria-label="シェバン">#!行</span>をスクリプトに含め、スクリプトファイルが実行可能である必要があります。例えば、<a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">Macの「ターミナル」でファイルを実行可能ファイルにする</a>ことができます。</p>
+<p>スクリプトを正しく実行するには、使用するインタープリタを指定する<code>#!</code>（shebang）行をスクリプトに含め、スクリプトファイルが実行可能である必要があります。例えば、<a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">Macの「ターミナル」でファイルを実行可能ファイルにする</a>ことができます。</p>
 </section>
 
 
@@ -107,7 +107,7 @@ sys.stderr.<span class="command">write</span>(<span class="string">&quot;Process
 
 <p>このスクリプトをCotEditorのスクリプトメニューから実行すると、以下のメッセージがコンソールに表示されます:</p>
 <figure>
-	<img srcset="../gfx/console@2x.png 2x" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 3 lines."/>
+	<img src="../gfx/console@2x.png" srcset="../gfx/console@2x.png 2x" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 3 lines.">
 </figure>
 </section>
 

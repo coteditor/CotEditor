@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="keywords" content="Script menu, script, AppleScript, JXA, JavaScript, osascript"/>
-	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<link rel="stylesheet" href="../../Shared/sty/applescript.css"/>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Script menu, script, AppleScript, JXA, JavaScript, osascript">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<link rel="stylesheet" href="../../Shared/sty/applescript.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
 	<title>Automate tasks using AppleScript in CotEditor on Mac</title>
@@ -22,7 +22,7 @@
 <p>You can also view CotEditor’s scripting interface in Script Editor’s library. To open the scripting dictionary:</p>
 
 <ol>
-	<li><p>Go to the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac.</p></li>
+	<li><p>Go to the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac.</p></li>
 	<li><p>Choose Help &gt; CotEditor Scripting Guide &gt; AppleScript Dictionary.</p></li>
 </ol>
 
@@ -140,8 +140,8 @@
 
 <p>Starting from CotEditor 5.0, characters are counted in the Unicode grapheme cluster unit. This is the same as the specification of AppleScript 2.0.</p>
 
-<p>If you specify a negative value for <code>location</code>, CotEditor counts from the end of the document.<br/>
-If the specified <code>length</code> exceeds the remaining characters, CotEditor selects text up to the end of the document.<br/>
+<p>If you specify a negative value for <code>location</code>, CotEditor counts from the end of the document.<br>
+If the specified <code>length</code> exceeds the remaining characters, CotEditor selects text up to the end of the document.<br>
 When <code>length</code> is a negative value, the selection range ends at the <code>length</code>-th last character. If the absolute value of <code>length</code> is smaller than <code>location</code> (that is, the selection’s end point is before <code>location</code>), the insertion point just moves to <code>location</code> (same as when {location, 0} was input).</p>
 
 <p>This specifying method is based on <code>substr</code> in PHP.</p>

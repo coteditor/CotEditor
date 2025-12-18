@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="keywords" content="syntax, file mapping, extension, shebang, interpreter"/>
-	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="syntax, file mapping, extension, shebang, interpreter">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
 	<title>Map files to syntaxes in CotEditor on Mac</title>
@@ -18,7 +18,6 @@
 <p>When opening a document, CotEditor detects the document type and applies the corresponding syntax automatically.</p>
 
 
-<section>
 <p>CotEditor determines which syntax to apply based on the File Mapping rules configured in each syntax definition.</p>
 
 <p>CotEditor detects the corresponding syntax in the following order:</p>
@@ -46,8 +45,8 @@
 	</li>
 	
 	<li>
-		<p><em>The <span area-label="shebang">#!</span> header of the document</em>:</p>
-		<p>If no syntax is found based on the file extension or filename, and the first line of the document starts with a #! header, CotEditor tries to determine the syntax from the interpreter specified in the header. The interpreter can be either the last component of the path after <code>#!</code>, or the argument following the path when <code>env</code> is used.</p>
+		<p><em>The <code>#!</code> header of the document</em>:</p>
+		<p>If no syntax is found based on the file extension or filename, and the first line of the document starts with a <code>#!</code> (shebang) header, CotEditor tries to determine the syntax from the interpreter specified in the header. The interpreter can be either the last component of the path after <code>#!</code>, or the argument following the path when <code>env</code> is used.</p>
 		
 		<p>For example:</p>
 		<ul>
@@ -72,7 +71,6 @@
 </ol>
 
 <p>If multiple syntaxes match at the same level, custom syntaxes take precedence over built-in syntaxes. If multiple matches still remain, CotEditor uses the first matching syntax.</p>
-</section>
 
 
 <section>

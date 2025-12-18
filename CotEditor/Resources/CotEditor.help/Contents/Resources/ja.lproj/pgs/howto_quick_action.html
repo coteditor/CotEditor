@@ -2,9 +2,9 @@
 <html lang="ja">
 
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="keywords" content="quick action, クイックアクション, コマンドバー, メニューコマンド"/>
-	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="quick action, クイックアクション, コマンドバー, メニューコマンド">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
 	<title>MacのCotEditorでキー入力でアクションを実行する</title>
@@ -17,13 +17,15 @@
 <p>クイックアクション機能を使えば、キーボードから手を離すことなくメニューコマンドを実行できます。</p>
 
 <figure>
-	<img srcset="../gfx/quickActionBar@2x.png 2x" width="460" alt="クイックアクションバーのスクリーンショット"/>
+	<img src="../gfx/quickActionBar@2x.png" srcset="../gfx/quickActionBar@2x.png 2x" width="460" alt="クイックアクションバーのスクリーンショット">
 </figure>
 
 
 <section>
+<h2>コマンドバーからアクションを実行する</h2>
+
 <ol>
-	<li><p>MacでCotEditorアプリ<img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/>に移動します。</p></li>
+	<li><p>MacでCotEditorアプリ<img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt="">に移動します。</p></li>
 	
 	<li><p>「表示」＞「クイックアクションを表示」と選択するか、<kbd>Command</kbd>+<kbd>K</kbd>と入力して、コマンドバーを表示します。</p></li>
 	
@@ -31,14 +33,14 @@
 		<p>入力した文字列が、その順番のままタイトルに含まれるメニュー項目がマッチします。サブメニュー内の項目も対象です。</p>
 	</li>
 	
-	<li><p><kbd aria-label="下矢印">↓</kbd>キーと<kbd aria-label="上矢印">↑</kbd>キーでリストから実行するアクションを選択します。</p></li>
+	<li><p><kbd>↓</kbd>キーと<kbd>↑</kbd>キーでリストから実行するアクションを選択します。</p></li>
 	
 	<li><p><kbd>Return</kbd>キーを押して選択されたアクションを実行します。</p>
 		<p>コマンドを実行せずにコマンドバーを閉じるには、以下のいずれかの操作を行います:</p>
 		<ul>
 			<li><p><kbd>Command</kbd>+<kbd>K</kbd>を再度押します。</p></li>
 			<li><p><kbd>Esc</kbd>を押します。</p></li>
-			<li><p><kbd>Command</kbd>+<kbd area-label="ピリオド">ピリオド（.）</kbd>を押します。</p></li>
+			<li><p><kbd>Command</kbd>+<kbd>ピリオド<span aria-hidden="true">（.）</span></kbd>を押します。</p></li>
 			<li><p>アクションの候補が何も表示されていない状態で<kbd>Return</kbd>を押します。</p></li>
 			<li><p>コマンドバー以外のどこかをクリックします。</p></li>
 		</ul>

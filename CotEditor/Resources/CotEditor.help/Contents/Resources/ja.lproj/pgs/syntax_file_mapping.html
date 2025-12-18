@@ -2,9 +2,9 @@
 <html lang="ja">
 
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="keywords" content="シンタックス, ファイルマッピング, ファイル関連付け, 拡張子, シェバン, シバン, インタープリタ"/>
-	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="シンタックス, ファイルマッピング, ファイル関連付け, 拡張子, シェバン, シバン, インタープリタ">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
 	<title>MacのCotEditorでファイルをシンタックスに関連付ける</title>
@@ -17,9 +17,6 @@
 
 <p>書類を開いたとき、CotEditorは自動でその書類の種類を判定して適切なシンタックスを適用します。</p>
 
-
-<section>
-<h2>シンタックス適用の優先順位を決定する</h2>
 
 <p>CotEditorは、各シンタックス定義内で設定された「ファイル関連付け」の情報を元にそれらを統合して、開いた書類にどのシンタックスを適用するかを決定します。</p>
 
@@ -46,8 +43,8 @@
 	</li>
 	
 	<li>
-		<p><em>書類内の<span area-label="シェバン">#!</span>ヘッダー</em>:</p>
-		<p>対応する拡張子・ファイル名がないとき、書類内の最初の行が#!ヘッダーであれば、それを手掛かりにシンタックスを探します。この捜査ではシンタックス定義のファイル関連付けの「インタープリタ」の設定が用いられます。#!ヘッダーの <code>#!</code> 直後のパスの最後の語句、またはパスが <code>env</code> のときはその次の語句が、インタープリタ名として検索語句に使用されます。</p>
+		<p><em>書類内の<code>#!</code>ヘッダー</em>:</p>
+		<p>対応する拡張子・ファイル名がないとき、書類内の最初の行が<code>#!</code>（shebang）ヘッダーであれば、それを手掛かりにシンタックスを探します。この捜査ではシンタックス定義のファイル関連付けの「インタープリタ」の設定が用いられます。#!ヘッダーの <code>#!</code> 直後のパスの最後の語句、またはパスが <code>env</code> のときはその次の語句が、インタープリタ名として検索語句に使用されます。</p>
 		<p>以下に例を挙げます:</p><ul>
 			<li><p><code>#!/usr/bin/perl</code> → Perl (インタープリタ名: <code>perl</code>)</p></li>
 			<li><p><code>#!/usr/bin/env python3</code> → Python (インタープリタ名: <code>python3</code>)</p></li>
@@ -56,7 +53,7 @@
 	
 	<li>
 		<p><em>XML宣言</em>:</p>
-		<li><p>対応する拡張子・ファイル名・インタープリタがないとき、ファイル内容がXML宣言で始まっていたら、自動的にXMLシンタックスを適用します。</p></li>
+		<li><p>対応する拡張子・ファイル名・インタープリタがないとき、ファイル内容がXML宣言で始まっていたら、自動的にXMLシンタックスを適用します。</p>
 		<p>以下に例を挙げます:</p><ul>
 			<li><p><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</p></li>
 		</ul>
@@ -69,7 +66,6 @@
 </ol>
 
 <p>同じレベルで複数の対応シンタックスがあった場合は、内蔵されたシンタックスよりもカスタムシンタックスが優先されます。それでも複数の対応シンタックスがあった場合は、CotEditorは最初に見つかったシンタックスを使用します。</p>
-</section>
 
 
 <section>

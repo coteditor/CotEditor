@@ -139,6 +139,9 @@ table tbody td > :last-child {
 table tbody ul li {
 	margin-top: 0.2em;
 }
+tbody td.center {
+	text-align: center;
+}
 
 
 /* classes */

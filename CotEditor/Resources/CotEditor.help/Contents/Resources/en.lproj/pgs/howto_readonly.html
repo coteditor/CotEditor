@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="keywords" content="readonly, read-only, prevent editing, allow editing, lock, unlock"/>
-	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="readonly, read-only, prevent editing, allow editing, lock, unlock">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
 	<title>Make a document read-only in CotEditor on Mac</title>
@@ -18,7 +18,6 @@
 <p>In CotEditor, you can make a document read-only so it can’t be edited, or lock it so it can’t be edited or deleted.</p>
 
 <p>If you own a read-only or locked document, you can edit it after removing its read-only state or unlocking it.</p>
-</figure>
 
 
 <section>
@@ -28,16 +27,16 @@
 
 <ul>
 	<li><p>To prevent a document from being edited, do one of the following:</p><ul>
-		<li><p>In the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, choose Format &gt; Prevent Editing.</p></li>
+		<li><p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, choose Format &gt; Prevent Editing.</p></li>
 		<li><p>From an <a href="script_osascript.html">AppleScript script</a>, set the <code>editable</code> property of the <code>document</code> object to <code>false</code>.</p></li>
 	</ul></li>
 	
 	<li><p>To open a document as read-only, do one of the following:</p><ul>
-		<li><p>In the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, choose File &gt; Open, select the “Open as read-only” checkbox in the Open dialog, then click Open.</p></li>
+		<li><p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, choose File &gt; Open, select the “Open as read-only” checkbox in the Open dialog, then click Open.</p></li>
 		<li><p>From the <a href="about_cot.html"><code>cot</code> command-line tool</a>, open documents with the <code>--readonly</code> (<code>-r</code>) option.</p></li>
 	</ul></li>
 	
-	<li><p>To allow editing a document being prevented from editing in the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, choose Format &gt; Allow Editing.</p></li>
+	<li><p>To allow editing a document being prevented from editing in the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, choose Format &gt; Allow Editing.</p></li>
 </ul>
 
 <p>You can also customize the toolbar and add the Edit toolbar item to quickly switch between preventing and allowing editing.</p>
@@ -53,8 +52,8 @@
 </p>
 
 <ul>
-	<li><p>To lock a document in the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, place the pointer to the right of the document title at the top of the document window, click the arrow that appears, then select Locked.</p></li>
-	<li><p>To unlock a document in the CotEditor app <img class="appicon" srcset="../../Shared/gfx/icon_32x32@2x.png 2x" alt=""/> on your Mac, deselect Locked.</p></li>
+	<li><p>To lock a document in the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, place the pointer to the right of the document title at the top of the document window, click the arrow that appears, then select Locked.</p></li>
+	<li><p>To unlock a document in the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, deselect Locked.</p></li>
 </ul>
 
 <p><em class="tip">Tip:</em> You can also lock or unlock a document from the Finder. For details about the Lock feature on Mac, see <a href="https://support.apple.com/ja-jp/guide/mac-help/mchlp1342/mac" rel="external">Lock a document on Mac</a>.</p>
