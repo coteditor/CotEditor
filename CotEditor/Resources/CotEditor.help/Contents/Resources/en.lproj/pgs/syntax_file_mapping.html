@@ -15,17 +15,17 @@
 
 <h1>Map files to syntaxes in CotEditor on Mac</h1>
 
-<p>When opening a document, CotEditor detects the document type and applies the corresponding syntax automatically.</p>
+<p>When you open a document, CotEditor detects the document type and automatically applies the appropriate syntax.</p>
 
 
-<p>CotEditor determines which syntax to apply based on the File Mapping rules configured in each syntax definition.</p>
+<p>CotEditor determines which syntax to apply based on the File Mapping rules defined in each syntax definition.</p>
 
-<p>CotEditor detects the corresponding syntax in the following order:</p>
+<p>CotEditor detects the appropriate syntax in the following order:</p>
 
 <ol>
 	<li>
 		<p><em>File extension</em>:</p>
-		<p>CotEditor first tries to determine the syntax from the file extension. The case is basically ignored; however, case-matched ones are prioritized if multiple syntaxes are found.</p>
+		<p>CotEditor first tries to determine the syntax from the file extension. Case is generally ignored; however, case-matching extensions are prioritized when multiple syntaxes are found.</p>
 		<p>For example:</p>
 		<ul>
 			<li><p>.html → HTML</p></li>
@@ -36,8 +36,7 @@
 	
 	<li>
 		<p><em>Filename</em>:</p>
-		<p>If there is no syntax in which the file extension is defined or the filename doesn’t have an extension, then try determining syntax from the whole filename.</p>
-		<p>For example:</p>
+		<p>If no syntax is defined for the file extension, or if the filename doesn’t have an extension, CotEditor then tries to determine the syntax from the entire filename.</p>
 		<ul>
 			<li><p>.htaccess → Apache</p></li>
 			<li><p>makefile → Makefile</p></li>
@@ -46,7 +45,7 @@
 	
 	<li>
 		<p><em>The <code>#!</code> header of the document</em>:</p>
-		<p>If no syntax is found based on the file extension or filename, and the first line of the document starts with a <code>#!</code> (shebang) header, CotEditor tries to determine the syntax from the interpreter specified in the header. The interpreter can be either the last component of the path after <code>#!</code>, or the argument following the path when <code>env</code> is used.</p>
+		<p>If no syntax is found based on the file extension or filename, and the first line of the document starts with a <code>#!</code> (shebang) header, CotEditor tries to determine the syntax from the interpreter specified in the header. The interpreter can be either the last path component following <code>#!</code> or the argument that follows the path when <code>env</code> is used.</p>
 		
 		<p>For example:</p>
 		<ul>
@@ -57,7 +56,7 @@
 	
 	<li>
 		<p><em>XML declaration</em>:</p>
-		<p>If there is no corresponding syntax up to here but the file content starts with an XML declaration, CotEditor automatically applies the XML syntax.</p>
+		<p>If no corresponding syntax is found up to this point but the file content starts with an XML declaration, CotEditor automatically applies the XML syntax.</p>
 		<p>For example:</p>
 		<ul>
 			<li><p><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</p></li>
@@ -66,7 +65,7 @@
 	
 	<li>
 		<p><em>None</em>:</p>
-		<p>If no appropriate syntax can be found at all, the “None” syntax is set.</p>
+		<p>If no appropriate syntax can be found, the “None” syntax is applied.</p>
 	</li>
 </ol>
 
@@ -76,16 +75,16 @@
 <section>
 <h2>Modify file mapping</h2>
 
-<p>To define the rules to map files for a syntax, select File Mapping from the list on the left of the syntax editor, then add file extensions, filenames, or interpreters to the lists on the right side. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
+<p>To define rules for mapping files to a syntax, select File Mapping from the list on the left side of the syntax editor, then add file extensions, filenames, or interpreters to the lists on the right. See <a href="syntax_definition.html">Define a syntax</a> to learn how to open the syntax editor.</p>
 </section>
 
 
 <section>
 <h2>Solve file mapping conflicts</h2>
 
-<p>There are no conflicts among the built-in syntaxes. However, if you added custom syntaxes or modified the built-in syntaxes, the file mapping can conflict. You can see the existence of mapping conflicts from the Show File Mapping Conflict command in the Action pop-up menu for the available syntaxes list in Format settings. If the menu item is dimmed, it means there is no conflict.</p>
+<p>There are no conflicts among the built-in syntaxes. However, if you add custom syntaxes or modify built-in syntaxes, file mappings can conflict. You can check for mapping conflicts by choosing Show File Mapping Conflict from the Action pop-up menu in the available syntaxes list in Format settings. If the menu item is dimmed, there are no conflicts.</p>
 
-<p>You can leave file mapping conflicts as long as documents open with the expected syntax. This doesn’t cause any issues.</p>
+<p>You can leave file mapping conflicts unresolved as long as documents open with the expected syntax. This doesn’t cause any issues.</p>
 </section>
 
 

@@ -15,15 +15,14 @@
 
 <h1>Replace text using multiple rules in CotEditor on Mac</h1>
 
-<p>With the <dfn>Multiple Replace</dfn> feature, you can apply multiple text replacements sequentially. Each set of replacement rules can be saved as a named preset and reused when needed.</p>
+<p>The <dfn>Multiple Replace</dfn> feature applies multiple text replacements sequentially. You can save each set of replacement rules as a named definition and reuse it whenever needed.</p>
 
 
 <section>
-<h2>Use Multiple Replace window</h2>
+<h2>Open the Multiple Replace window</h2>
 
-<p>Use the Multiple Replace window to manage and perform replacements in your document.</p>
+<p>Use the Multiple Replace window to manage and perform text replacements in your document.</p>
 
-<p>To open the Multiple Replace window:</p>
 <ol>
 	<li><p>Go to the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac.</p></li>
 	<li><p>Choose Find &gt; Multiple Replace.</p></li>
@@ -34,97 +33,101 @@
 
 
 <section>
-<h2>Manage replacement definitions</h2>
+<h2>Manage replace definitions</h2>
 
-<p>The stored replacement definitions appear in the list on the sidebar.</p>
+<p>Stored replace definitions appear in the list in the sidebar.</p>
 
 <p>In the sidebar, do any of the following:</p>
 <ul>
-	<li><p><em>Create a new definition</em>: Click the Add - button at the bottom of the list.</p></li>
-	<li><p><em>Delete a definition</em>: Select a definition in the list, then click the Delete - button at the bottom of the list.</p></li>
-	<li><p><em>Rename a definition</em>: Select a definition in the list, then click it again.</p></li>
+	<li><p><em>Create a definition</em>: Click the Add + button at the bottom of the list.</p></li>
+	<li><p><em>Delete a definition</em>: Select a definition, then click the Delete - button at the bottom of the list.</p></li>
+	<li><p><em>Rename a definition</em>: Select a definition, then click it again.</p></li>
 	<li><p><em>More actions</em>: Click <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">the Action button</object> at the bottom of the list.</p></li>
 </ul>
 
 
-<h3>Export and import replacement definitions</h3>
+<h3>Export and import replace definitions</h3>
 
-<p>You can export replacement definitions to transfer them to another computer.
-Each definition is saved as a <dfn>CotEditor replace definition</dfn> file with the <code>.cotrpl</code> extension. The file content is written in JSON format.</p>
+<p>You can export replace definitions to transfer them to another computer. Each definition is saved as a <dfn>CotEditor replace definition</dfn> file with the .cotrpl extension. The file content is written in JSON format.</p>
 
 <ul>
-	<li><p><em>Export</em>: Select a definition in the list, then choose Export or Share from the Action menu.</p></li>
-	<li><p><em>Import</em>: Drop replacement definition files into the list, or choose Import from the Action menu, then select the files to import.</p></li>
+	<li><p><em>Export</em>: Select a definition, then choose Export or Share from the Action menu.</p></li>
+	<li><p><em>Import</em>: Drag replace definition files into the list, or choose Import from the Action menu and select the files to import.</p></li>
 </ul>
 
 
-<h3>Import TSV data as replacement definitions</h3>
+<h3>Import TSV data as replace definitions</h3>
 
-<p>You can also create a replace definition from a UTF-8–encoded TSV file in which each line contains a pair of search and replacement texts separated by tabs. To import this format, choose a file with the .tsv extension using the Import command. This format doesn’t support options such as case sensitivity or regular expressions. After importing a TSV file, configure any required options manually.</p>
+<p>You can also create a replace definition from a UTF-8–encoded TSV file. Each line must contain a pair of search and replacement text separated by a tab. To import this format, choose a file with the .tsv extension using the Import command. This format doesn’t support options such as case sensitivity or regular expressions. After importing a TSV file, configure any required options manually.</p>
 </section>
 
 
 <section>
-<h2>Perform multiple replacements</h2>
+<h2>Edit a replace definition</h2>
 
-<p>The definition selected in the list appears in the editor area on the right side. The replacement rules in the editor area are performed sequentially, from top to bottom.</p>
-
-<p>Click the buttons below the editor area to perform multiple replacements.</p>
+<p>To edit a replace definition in the right pane of the Multiple Replace window, do any of the following:</p>
 
 <ul>
-	<li><p><em>Replace All</em>: Perform all replacements for the current document.</p></li>
-	<li><p><em>Highlight</em>: Highlight all matches in the current document.</p></li>
+	<li><p><em>Add a replacement rule:</em> Click the Add + button, then enter the replacement rule in the new row.</p></li>
+	<li><p><em>Delete replacement rules:</em> Select the rules to remove, then click the Delete - button.</p></li>
+	<li><p><em>Change advanced find options:</em> Click <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">the Action button</object>, then select the options you want. These settings apply to all replacement rules in the definition. For details about each option, see <a href="howto_find.html">Find or replace text</a>.</p></li>
 </ul>
 
-<p><em class="note">Note:</em> Highlighted matches may differ from the actual replacement results. This is because Replace All applies rules sequentially, and each rule is applied after the previous rules have already taken effect.</p>
-</section>
+<p>Changes save automatically as you work.</p>
 
-
-<section>
-<h2>Edit replacement definition</h2>
-
-<p>You can create and customize your own replacement definitions.</p>
-
-
-<h3>Create a new replacement definition</h3>
-
-<ol>
-	<li><p>Click the Add + button at the bottom of the list on the left side to create a new replacement definition.</p></li>
-	<li><p>Click the Add + button in the editor area on the right side to create a new replacement rule.</p></li>
-	<li><p>Enter your replacement rule in the added row.</p>
-		
-		<p>Changes save automatically as you work.</p></li>
-</ol>
-
-
-
-<p>If a row contains an invalid rule, it is skipped when performing the replacement.</p>
-
-
-<h3>Replacement rule options</h3>
+<p>For each replacement rule, you can configure the following options:</p>
 
 <table>
 	<thead>
 		<tr><th>Option</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>(checkbox)</th><td><p>If the checkbox is unselected, the row is skipped. You can use this option to keep a replacement rule that is used depending on the situation.</p></td></tr>
+		<tr><th>(checkbox)</th><td><p>If the checkbox is deselected, the rule is skipped. Use this option to temporarily disable a rule without removing it from the definition.</p></td></tr>
 		<tr><th>Find</th><td><p>The text to search for. This field can’t be left empty. Empty rules are considered invalid and skipped.</p></td></tr>
-		<tr><th>Replace With</th><td><p>The text to replace with. If left empty, the matched text is removed.</p></td></tr>
+		<tr><th>Replace With</th><td><p>The replacement text. If left empty, the matched text is removed.</p></td></tr>
 		<tr><th>RE</th><td><p>Search using regular expressions (abbreviation of <u>R</u>egular <u>E</u>xpression).</p></td></tr>
-		<tr><th>IC</th><td><p>Ignore case when searching (abbreviation of <u>I</u>gnore <u>C</u>ase).</p></td></tr>
-		<tr><th>Description</th><td><p>You can use this field to leave a comment about the rule. The description doesn’t affect the replacement. This field can be left blank.</p></td></tr>
+		<tr><th>IC</th><td><p>Search ignoring case (abbreviation of <u>I</u>gnore <u>C</u>ase).</p></td></tr>
+		<tr><th>Description</th><td><p>Add a note for your reference. The description doesn’t affect replacement and can be left blank.</p></td></tr>
 	</tbody>
 </table>
 
+<p>Replacement rules are applied sequentially from top to bottom.</p>
 
-<h3>Change advanced find options</h3>
+<p><em class="note">Note:</em> If a rule is invalid, it is skipped when replacements are performed.</p>
+</section>
 
-<p>You can fine-tune the find behavior for the entire replacement definition in the Advanced options view. Those settings are also saved to your definition and apply to all rules within the definition.</p>
 
-<p>Click the gear button in the Multiple Replace window, then click checkboxes as needed.</p>
+<section>
+<h2>Perform multiple replacements</h2>
 
-<p>For details on each setting option, see <a href="howto_find.html">Find or replace text</a>.</p>
+<p>To perform multiple replacements using a replace definition, do the following:</p>
+
+<ol>
+	<li><p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, open a document.</p></li>
+		<li><p>Choose Find &gt; Multiple Replace.</p></li>
+	<li><p>Do one of the following:</p>
+		<ul>
+			<li><p>Choose the replace definition in the Multiple Replace submenu.</p></li>
+			<li><p>Choose Manage Multiple Replace, select the replace definition to use in the sidebar, then click Replace All.</p></li>
+		</ul>
+	</li>
+</ol>
+</section>
+
+
+<section>
+<h2>Highlight matches using a multiple replace definition</h2>
+
+<p>You can also highlight all matches in the current document using a multiple replace definition.</p>
+
+<ol>
+	<li><p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, open a document.</p></li>
+	<li><p>Choose Find &gt; Multiple Replace &gt; Manage Multiple Replace.</p></li>
+	<li><p>Select the replace definition to use in the sidebar.</p></li>
+	<li><p>Click Highlight.</p></li>
+</ol>
+
+<p><em class="note">Note:</em> Highlighted matches may differ from the actual replacement results. This is because Replace All applies rules sequentially, and each rule is applied after the previous rules have already taken effect.</p>
 </section>
 
 
