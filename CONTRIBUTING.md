@@ -4,22 +4,28 @@
 
 Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). We welcome feedback in either English (preferred) or Japanese.
 
+Instead of listing multiple features or issues in a single post, create an issue for each topic.
 
 ### Issue reports
 
-The CotEditor project only supports issues on the latest version. Before submitting an issue, ensure that you have updated CotEditor to the latest version and that the issue you are experiencing is also present in the latest version.
+Create a new post using the “Bug report” template.
 
-First, search for existing issues related to your problem. If you find a similar issue that has already been reported, post your case to that thread. If not, create a new issue by filling out the “Bug report” template. Feel free to post the same issue to the existing one, as long as there are fewer than 10 cases. Multiple instances of the same issue can be very helpful in finding the cause. In that case, please include your environment (versions of both CotEditor and macOS) in your post.
+Before submitting an issue, please make sure of the following:
 
-If possible, attach screenshots or screen recordings of the issue you encounter. It is also helpful to attach sample files that can reproduce the issue.
+- Confirm that you are using the latest versions of both CotEditor and macOS, and that the issue still occurs in those versions.
+- Confirm that the issue is specific to CotEditor. If possible, try performing the same steps in TextEdit and verify that the issue does not occur there.
+- Search for existing issues related to your problem. If you find a similar issue, add your case to that thread instead of creating a new issue. Multiple reports of the same issue can be very helpful in identifying the cause. When adding your case, please include your environment details, such as the versions of CotEditor and macOS you are using.
 
-If your issue relates to syntax highlighting, include the sample code that can reproduce the unwanted highlight in your post.
+If possible, attach screenshots or screen recordings that show the issue clearly. It’s also helpful to include sample files that can reproduce the problem. If the issue is related to syntax highlighting, please include a minimal code sample that demonstrates the unexpected highlighting.
 
 
 ### Feature requests
 
-First, search for existing feature requests. If your idea is already posted, comment on that thread. Otherwise, create a new one using the “Feature request” template.
-Instead of listing multiple features in a single post, create an issue for each feature.
+Create a new post using the “Feature request” template.
+ 
+Before submitting a request, please make sure of the following:
+
+- Search for existing feature requests. If your idea is already posted, comment on that thread instead of creating a new issue.
 
 Please refrain from simply adding “+1” or similar comments to existing requests; it serves no purpose and contributes to unnecessary clutter.
 
@@ -29,7 +35,7 @@ Please refrain from simply adding “+1” or similar comments to existing reque
 
 ### General Code Improvements
 
-Bug fixes and improvements are always welcome. However, if you are considering adding a new feature or making a significant change, please consult the team beforehand to ensure its acceptance. Feature additions that do not align with the project's direction are likely to be rejected.
+Bug fixes and improvements are always welcome. However, if you are considering adding a new feature or making a significant change, please consult the team beforehand to ensure it aligns with the project’s direction. Feature additions that do not align with the project's direction are likely to be rejected.
 
 Instead of modifying multiple features in a single pull request, create a pull request for each feature.
 
@@ -48,7 +54,7 @@ Currently, the CotEditor project only accepts new localizations from providers w
 
 You have two options for adding a new localization to CotEditor. Choose one of them depending on your knowledge and preferences:
 
-- Option 1: Add a new localization in Xcode by yourself and make a pull request (for those who get used to git and Xcode projects):
+- Option 1: Add a new localization in Xcode by yourself and make a pull request (for those who are familiar with git and Xcode projects):
     - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and add your language to the table. Then, the new language you added will automatically appear in the string catalogs.
     - CotEditor uses the String Catalog format (.xcstrings), introduced in 2023. To add localization to each string catalog file, select your language and fill in the corresponding cells in the table. Cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
     - You can find the string catalogs to localize under:
