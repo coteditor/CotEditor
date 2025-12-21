@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="normalization">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Normalize Unicode text in CotEditor on Mac</title>
+</head>
+
+<body>
+
+<h1>Normalize Unicode text in CotEditor on Mac</h1>
+
+<p>Unicode normalization lets you convert text into a consistent Unicode form. In CotEditor, you can normalize the text in a document using various Unicode normalization methods.</p>
+
+<p>Unicode normalization is the process of converting text into a standardized Unicode representation. In Unicode text, characters that look the same can sometimes be represented by different Unicode sequences, and normalization helps eliminate those differences.</p>
+
+
+<section>
+<h2>Normalize Unicode text</h2>
+
+<ol>
+	<li><p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, open a document.</p></li>
+	<li><p>Select text to normalize.</p></li>
+	<li><p>Choose Text &gt; Unicode Normalizations, then choose a normalization form.</p></li>
+</ol>
+
+<p>CotEditor supports the following Unicode normalization forms:</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Form</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>NFD</th>
+			<td><p>Canonical Decomposition.</p></td>
+		</tr>
+		<tr>
+			<th>NFC</th>
+			<td><p>Canonical Decomposition, followed by Canonical Composition.</p></td>
+		</tr>
+		<tr>
+			<th>NFKD</th>
+			<td><p>Compatibility Decomposition.</p></td>
+		</tr>
+		<tr>
+			<th>NFKC</th>
+			<td><p>Compatibility Decomposition, followed by Canonical Composition.</p></td>
+		</tr>
+		<tr>
+			<th>NFKC Case-Fold</th>
+			<td><p>Applying NFKC, case folding, and removal of default-ignorable code points.</p></td>
+		</tr>
+		<tr>
+			<th>Modified NFD</th>
+			<td><p>Unofficial NFD-based normalization form used in HFS+.</p></td>
+		</tr>
+		<tr>
+			<th>Modified NFC</th>
+			<td><p>Unofficial NFC-based normalization form corresponding to Modified NFD.</p></td>
+		</tr>
+	</tbody>
+</table>
+
+<p><em class="note">Note:</em> Modified NFD and Modified NFC follow the modified Unicode normalization used by macOS file systems, such as HFS+, where file names are normalized using a variant of Unicode normalization. It is useful when working with text derived from macOS file names.</p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Unicode">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>MacのCotEditorでテキストをUnicode正規化する</title>
+</head>
+
+<body>
+
+<h1>MacのCotEditorでテキストをUnicode正規化する</h1>
+
+<p>Unicode正規化を使うと、テキストを一貫したUnicode形式に変換できます。CotEditorでは、さまざまなUnicode正規化方式を使って、書類内のテキストを正規化できます。</p>
+
+<p>Unicode正規化とは、テキストを標準化されたUnicode表現に変換する処理です。Unicodeでは、見た目が同じ文字であっても異なるUnicodeシーケンスで表現されている場合があり、正規化はそのような違いを解消するために使われます。</p>
+
+
+<section>
+<h2>テキストをUnicode正規化する</h2>
+
+<ol>
+	<li><p>MacのCotEditorアプリ<img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt="">で、書類を開きます。</p></li>
+	<li><p>正規化をするテキスト範囲を選択します。</p></li>
+	<li><p>「テキスト」＞「Unicode正規化」と選択し、正規化方式を選択します。</p></li>
+</ol>
+
+<p>CotEditorでは、次のUnicode正規化方式を利用できます:</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>方式</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>NFD</th>
+			<td><p>正準等価によって分解します。</p></td>
+		</tr>
+		<tr>
+			<th>NFC</th>
+			<td><p>正準等価によって分解し、正準等価によって合成します。</p></td>
+		</tr>
+		<tr>
+			<th>NFKD</th>
+			<td><p>互換性等価によって分解します。</p></td>
+		</tr>
+		<tr>
+			<th>NFKC</th>
+			<td><p>互換性等価によって分解し、正準等価によって合成します。</p></td>
+		</tr>
+		<tr>
+			<th>NFKC Case-Fold</th>
+			<td><p>NFKCを適用しすべて小文字に変換（case folding）したのち、デフォルトの無視できるコードポイントを削除します。</p></td>
+		</tr>
+		<tr>
+			<th>修正NFD</th>
+			<td><p>HFS+で使用されているNFDを基にした非公式の正規化形式です。</p></td>
+		</tr>
+		<tr>
+			<th>修正NFC</th>
+			<td><p>修正NFDに対応するNFCを基にした非公式の正規化形式です。</p></td>
+		</tr>
+	</tbody>
+</table>
+
+<p><em class="note">注記:</em> 修正NFDおよび修正NFCは、macOSのファイルシステムで使用されているUnicode正規化を元にした特殊な正規化方式です。macOSでは、ファイル名を扱う際にUnicode標準の正規化とは一部挙動の異なる正規化が行われています。これらの方式はそのようなmacOSのファイル名由来のテキストを扱う場合に役立ちます。</p>
+</section>
+
+</body>
+</html>
