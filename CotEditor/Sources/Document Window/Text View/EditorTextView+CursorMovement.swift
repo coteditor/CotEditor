@@ -484,9 +484,9 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the word and modifies the selection (^⌥⇧B).
     override func moveWordBackwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            return super.moveWordBackwardAndModifySelection(sender)
-        }
+        // -> Do not invoke super, even with a single selection,
+        //    to take `additionalWordSeparators` and CRLF into account.
+        //    (2025-12, macOS 26)
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
             self.nextWord(from: cursor, forward: false)
@@ -510,9 +510,9 @@ extension EditorTextView {
     /// Moves the cursor to the end of the word and modifies the selection (^⌥⇧F).
     override func moveWordForwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            return super.moveWordForwardAndModifySelection(sender)
-        }
+        // -> Do not invoke super, even with a single selection,
+        //    to take `additionalWordSeparators` and CRLF into account.
+        //    (2025-12, macOS 26)
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
             self.nextWord(from: cursor, forward: true)
@@ -651,9 +651,9 @@ extension EditorTextView {
     /// Deletes to the beginning of the word (⌥-Delete).
     override func deleteWordBackward(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else {
-            return super.deleteWordBackward(sender)
-        }
+        // -> Do not invoke super, even with a single selection,
+        //    to take `additionalWordSeparators` into account.
+        //    (2025-12, macOS 26)
         
         self.moveWordBackwardAndModifySelection(sender)
         self.deleteBackward(sender)
@@ -663,9 +663,9 @@ extension EditorTextView {
     /// Deletes to the end of the word (⌥⌦).
     override func deleteWordForward(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else {
-            return super.deleteWordForward(sender)
-        }
+        // -> Do not invoke super, even with a single selection,
+        //    to take `additionalWordSeparators` into account.
+        //    (2025-12, macOS 26)
         
         self.moveWordForwardAndModifySelection(sender)
         self.deleteForward(sender)

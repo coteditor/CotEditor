@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Improve word deletion to treat periods and colons as word delimiters.
 - [trivial] Tweak the user guide.
 
 
