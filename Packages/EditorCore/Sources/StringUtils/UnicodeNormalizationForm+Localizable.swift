@@ -92,7 +92,7 @@ public extension UnicodeNormalizationForm {
                 String(localized: "UnicodeNormalization.nfkcCaseFold.description",
                        defaultValue: "Applying NFKC, case folding, and removal of default-ignorable code points",
                        bundle: .module,
-                       comment: "description for NFKD case-fold")
+                       comment: "description for NFKC case-fold")
             case .modifiedNFD:
                 String(localized: "UnicodeNormalization.modifiedNFD.description",
                        defaultValue: "Unofficial NFD-based normalization form used in HFS+",

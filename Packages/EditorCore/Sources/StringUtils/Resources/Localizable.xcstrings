@@ -987,7 +987,7 @@
       }
     },
     "UnicodeNormalization.nfkcCaseFold.description" : {
-      "comment" : "description for NFKD case-fold",
+      "comment" : "description for NFKC case-fold",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
