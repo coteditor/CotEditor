@@ -105,19 +105,22 @@ struct RegularExpressionReferenceView: View {
                 .accessibilityElement(children: .contain)
             }
             
-            let icuURL = "https://unicode-org.github.io/icu/userguide/strings/regexp.html"
-            let icuLink = AttributedString(localized: "ICU Regular Expressions", table: "RegexReference")
-                .settingAttributes(AttributeContainer
-                    .link(URL(string: icuURL)!)
-                    .underlineStyle(.single))
-            
-            Text("The syntax conforms to the \(icuLink) specifications.",
-                 tableName: "RegexReference",
-                 comment: "%@ is the name of the regex engine (ICU Regular Expressions)")
-                .foregroundStyle(.secondary)
-                .tint(.accentColor)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.top, 8)
+            HStack {
+                let icuURL = "https://unicode-org.github.io/icu/userguide/strings/regexp.html"
+                let icuLink = AttributedString(localized: "ICU Regular Expressions", table: "RegexReference")
+                    .settingAttributes(AttributeContainer
+                        .link(URL(string: icuURL)!)
+                        .underlineStyle(.single))
+                
+                Spacer()
+                Text("The syntax conforms to the \(icuLink) specifications.",
+                     tableName: "RegexReference",
+                     comment: "%@ is the name of the regex engine (ICU Regular Expressions)")
+                    .foregroundStyle(.secondary)
+                    .tint(.accentColor)
+                HelpLink(anchor: "about_regex")
+            }
+            .padding(.top, 8)
         }
         .controlSize(.small)
         .fixedSize()
