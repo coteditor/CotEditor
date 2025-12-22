@@ -67,7 +67,6 @@ struct SyntaxMappingConflictView: View {
                 .font(.headline)
                 .accessibilityHeading(.h1)
             Text("The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.", tableName: "SyntaxMappingConflict")
-                .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
                 ConflictTable(String(localized: "Extension", table: "SyntaxMappingConflict", comment: "heading"), items: self.extensionConflicts)
