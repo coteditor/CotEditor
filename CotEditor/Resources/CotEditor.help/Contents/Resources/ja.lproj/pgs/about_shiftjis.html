@@ -14,7 +14,10 @@
 
 <h1>MacのCotEditorでShift JIS系のエンコーディングを使い分ける</h1>
 
-<p>日本語Shift JISのエンコーディングには複数のバリエーションが存在します。CotEditorでは、以下の4種類のShift JIS系エンコーディングを区別して扱います。これらのエンコーディング名はmacOS標準の名称です。「日本語（Mac OS）」と「日本語（Windows, DOS）」は名称に「Shift JIS」が含まれませんが、どちらもShift JISの拡張版です。</p>
+<p>日本語Shift JISのエンコーディングには複数のバリエーションが存在します。正しく使い分けることで意図せぬ文字化けを防げます。</p>
+
+
+<p>CotEditorでは、以下の4種類のShift JIS系エンコーディングを区別して扱います:</p>
 
 <table>
 	<thead>
@@ -27,6 +30,9 @@
 		<tr><th>日本語（Windows, DOS）</th><td>cp932</td><td><p>Windows独自の機種依存文字などを加えたものです。</p></td></tr>
 	</tbody>
 </table>
+
+<p>これらのエンコーディング名はmacOS標準の名称です。「日本語（Mac OS）」と「日本語（Windows, DOS）」は名称に「Shift JIS」が含まれませんが、どちらもShift JISの拡張版です。</p>
+
 <p>適切なエンコーディングは場合によって異なりますが、一般には「日本語（Shift JIS）」が無難です。</p>
 
 

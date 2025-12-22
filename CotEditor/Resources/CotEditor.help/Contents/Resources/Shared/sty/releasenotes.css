@@ -29,9 +29,6 @@ footer::before {
 article {
 	margin-bottom: 3rem;
 }
-h1 + article {
-	border-top: none;
-}
 
 article > header h1 {
 	font-size: 1.6rem;
@@ -48,6 +45,7 @@ article h2 {
 article h2 + * {
 	margin-top: 0.5rem;
 }
+
 .trivial,
 .label {
 	font-size: 90%;

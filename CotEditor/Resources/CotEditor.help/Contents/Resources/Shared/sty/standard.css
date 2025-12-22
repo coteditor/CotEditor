@@ -70,6 +70,12 @@ h3 {
 figure {
 	margin: 0;
 }
+blockquote {
+	border-inline-start: 0.2rem solid -apple-system-grid;
+	padding-inline-start: 1rem;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+}
 
 ul {
 	list-style-type: disc;

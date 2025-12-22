@@ -14,7 +14,10 @@
 
 <h1>Use four kinds of Shift JIS properly in CotEditor on Mac</h1>
 
-<p>There are multiple variants of the Japanese Shift JIS encoding. CotEditor distinguishes among the following four Shift JIS–based encodings. These encoding names follow the terminology used in standard macOS. Although “Japanese (Mac OS)” and “Japanese (Windows, DOS)” don’t include the term Shift JIS in their names, both are extended versions of Shift JIS.</p>
+<p>There are multiple variants of the Japanese Shift JIS encoding. Using the appropriate variant helps prevent unintended character corruption.</p>
+
+
+<p>CotEditor distinguishes among the following four Shift JIS–based encodings.</p>
 
 <table>
 	<thead>
@@ -27,6 +30,8 @@
 		<tr><th>Japanese (Windows, DOS)</th><td>cp932</td><td><p>Based on Shift JIS, with extended support for such as Windows-dependent characters.</p></td></tr>
 	</tbody>
 </table>
+
+<p>These encoding names follow the terminology used in standard macOS. Although “Japanese (Mac OS)” and “Japanese (Windows, DOS)” don’t include the term Shift JIS in their names, both are extended versions of Shift JIS.</p>
 
 <p>The appropriate encoding varies depending on the situation, but in general “Japanese (Shift JIS)” is the safest choice.</p>
 
