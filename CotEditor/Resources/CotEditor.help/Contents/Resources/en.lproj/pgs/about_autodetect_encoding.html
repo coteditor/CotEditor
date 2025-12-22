@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="text encoding, encoding, detection">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Detect a document’s text encoding in CotEditor on Mac</title>
+</head>
+
+<body>
+
+<h1>Detect a document’s text encoding in CotEditor on Mac</h1>
+
+<p>CotEditor reliably detects a document’s text encoding when you open it. You can also fine-tune how the detection works, depending on your needs.</p>
+
+
+<section>
+<h2>Detect the text encoding of a document</h2>
+
+<p>When you open a document, CotEditor automatically determines its text encoding by examining several pieces of information in a specific order, such as encoding hints stored with the file, byte order marks (BOMs), and the text encoding priorities you have configured.</p>
+
+<p>In most cases, you don’t need to take any action, as CotEditor automatically detects a document’s text encoding. If the detected encoding doesn’t match your expectations, you can <a href="howto_interpret_encoding.html">open the document by specifying a text encoding</a>. Depending on your use case, adjusting settings related to text encoding detection may improve the detection result. For details, see <a href="howto_customize_encoding_order.html">Customize text encoding priorities</a> and “Refer to the encoding declaration in a document” in the next section.</p>
+
+</section>
+
+
+<section>
+<h2>Refer to the encoding declaration in a document</h2>
+
+<p>During text encoding detection, CotEditor can refer to encoding declarations written in a document. This can help determine the correct encoding when a document explicitly specifies one. To turn on this feature, select the “Refer to encoding declaration in document” option in <a href="settings_format.html">Format settings</a>.</p>
+
+<p>When this feature is enabled, CotEditor looks for encoding declarations only near the beginning of the document and uses the first declaration it finds. The following declaration forms are recognized if present: “<code>charset=</code>,” “<code>encoding=</code>,” “<code>@charset</code>,” “<code>encoding:</code>,” and <code>coding:</code>.”</p>
+
+<p><em class="note">Note:</em> If you need to include wording that looks like an encoding declaration, even though it does not reflect the document’s actual text encoding, either place the correct encoding declaration before that phrase or turn off the “Refer to encoding declaration in document” option.</p>
+
+</section>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="settings_format.html">Change Format settings in CotEditor on Mac</a></li>
+	<li><a href="howto_customize_encoding_order.html">Customize text encoding priorities in CotEditor on Mac</a></li>
+	<li><a href="about_shiftjis.html">Use four kinds of Shift JIS properly in CotEditor on Mac</a></li>
+</ul>
+</section>
+
+</body>
+</html>

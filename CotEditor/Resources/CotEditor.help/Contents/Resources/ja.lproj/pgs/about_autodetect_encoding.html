@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="テキストエンコーディング, エンコーディング, 自動判別">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>MacのCotEditorで書類のエンコーディングを判別する</title>
+</head>
+
+<body>
+
+<h1>MacのCotEditorで書類のエンコーディングを判別する</h1>
+
+<p>CotEditorは、書類を開くときにテキストエンコーディングを高い精度で自動判別します。また、必要に応じてこの判別方法を柔軟に調整することもできます。</p>
+
+
+<section>
+<h2>書類のエンコーディングを判別する</h2>
+
+<p>書類を開くと、ファイルに関連付けられたエンコーディング情報、バイトオーダーマーク（BOM）、および設定したテキストエンコーディングの優先順位など、複数の情報を一定の順序で確認して、テキストエンコーディングを自動的に判別します。</p>
+
+<p>CotEditorが書類のテキストエンコーディングを自動的に判別するため、ほとんどの場合ユーザの操作は必要ありません。判別結果が意図したものと異なる場合は、<a href="howto_interpret_encoding.html">エンコーディングを指定して書類を開く</a>こともできます。また、ユースケースによっては、エンコーディング判別に関連する設定を変更することで判定精度が改善する場合があります。詳しくは、<a href="howto_customize_encoding_order.html">テキストエンコーディングの優先順位をカスタマイズする</a>と、次のセクションの「書類内のエンコーディング宣言を参照する」を参照してください。</p>
+</section>
+
+
+<section>
+<h2>書類内のエンコーディング宣言を参照する</h2>
+
+<p>テキストエンコーディングの判別処理の一部として、CotEditorは、書類内に記述されたエンコーディング宣言を参照することがあります。これにより、書類内で明示的に指定されているエンコーディングをもとに、正しいエンコーディングを判別できます。この機能を有効にするには、「フォーマット」設定で「書類内のエンコーディング宣言を参照」をオンにします。</p>
+
+<p>この機能が有効な場合、CotEditorは書類の先頭付近のみを確認し、最初に見つかったエンコーディング宣言を使用します。次の形式の宣言が認識されます: 「<code>charset=</code>」、「<code>encoding=</code>」、「<code>@charset</code>」、「<code>encoding:</code>」、「<code>coding:</code>」。</p>
+</section>
+
+<p><em class="note">注記:</em> もし書類のエンコーディングでないものを<code>charset=</code>などのエンコーディング指定タグとともに記述する必要があるときには、その記述よりも前に実際のエンコーディングを書き込むか、「フォーマット」設定の「書類中のエンコーディング宣言を参照」オプションをオフにしてください。</p>
+</section>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings_format.html">MacのCotEditorで「フォーマット」設定を変更する</a></li>
+	<li><a href="howto_customize_encoding_order.html">MacのCotEditorでテキストエンコーディングの優先順位をカスタマイズする</a></li>
+	<li><a href="about_shiftjis.html">MacのCotEditorでShift JIS系のエンコーディングを使い分ける</a></li>
+</ul>
+</section>
+
+</body>
+</html>

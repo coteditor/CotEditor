@@ -14,17 +14,17 @@
 
 <h1>MacのCotEditorで文字化けする場合</h1>
 
-<p>文字化けは、多くの場合、書類のテキストエンコーディングをCotEditorが正しく認識できなかったときに発生します。</p>
+<p>文字化けは、多くの場合、書類のテキストエンコーディングをCotEditorが正しく判別できなかったときに発生します。</p>
 
 <ul>
 	<li><p>適切なテキストエンコーディングで読み込むことで正しく表示される可能性があります。別のエンコーディングでの読み込みを試してみてください。</p>
 	<p>→ <a href="howto_interpret_encoding.html">エンコーディングを指定して書類を開く</a></p></li>
 	
-	<li><p>自動認識する際のエンコーディングの認識順序を調整することで、文字化けが発生する頻度をより少なくできます。</p>
-	<p>→ <a href="howto_customize_encoding_order.html">テキストエンコーディングの優先順位を変更する</a></p></li>
+	<li><p>自動判別する際のエンコーディングの判別順序を調整することで、文字化けが発生する頻度をより少なくできます。</p>
+	<p>→ <a href="howto_customize_encoding_order.html">テキストエンコーディングの優先順位をカスタマイズする</a></p></li>
 	
-	<li><p>「フォーマット」設定で「書類中のエンコーディング宣言を参照」が有効になっていると、エンコーディングの自動認識で書類中にある<code>encoding=</code>, <code>@charset</code>などの宣言として記述されているエンコーディングが優先されます。</p>
-	<p>→ <a href="about_autodetect_charset.html">エンコーディング宣言を参照する</a></p></li>
+	<li><p>「フォーマット」設定で「書類中のエンコーディング宣言を参照」が有効になっていると、エンコーディングの自動判別で書類中にある<code>encoding=</code>, <code>@charset</code>などの宣言として記述されているエンコーディングが優先されます。</p>
+	<p>→ <a href="about_autodetect_encoding.html">書類のエンコーディングを判別する</a></p></li>
 </ul>
 
 <p>バイナリデータなど、プレーンテキストとして解釈できない書類を開いた場合、CotEditorは内容のテキストを解釈して読み込むことはできません。ファイルタイプに対応したアプリで書類を開いてください。</p>
@@ -33,8 +33,8 @@
 <h2>関連項目</h2>
 <ul>
 	<li><a href="howto_interpret_encoding.html">MacのCotEditorでエンコーディングを指定して書類を開く</a></li>
-	<li><a href="howto_customize_encoding_order.html">MacのCotEditorでテキストエンコーディングの優先順位を変更する</a></li>
-	<li><a href="about_autodetect_charset.html">MacのCotEditorでエンコーディング宣言を参照する</a></li>
+	<li><a href="howto_customize_encoding_order.html">MacのCotEditorでテキストエンコーディングの優先順位をカスタマイズする</a></li>
+	<li><a href="about_autodetect_encoding.html">MacのCotEditorで書類のエンコーディングを判別する</a></li>
 	<li><a href="about_shiftjis.html">MacのCotEditorでShift JIS系のエンコーディングを使い分ける</a></li>
 </ul>
 </section>
