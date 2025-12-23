@@ -10,40 +10,40 @@
 */
 
 article ul li {
-	margin: 0.4rem 0;
+	margin-block: 0.4rem;
 	list-style-type: circle;
 }
 
 footer {
 	font-size: 0.9rem;
 	color: -apple-system-secondary-label;
-	margin-top: 2rem;
+	margin-block-start: 2rem;
 }
 footer::before {
 	content: '';
 	display: block;
-	width: 10rem;
-	border-top: 1px solid -apple-system-separator;
+	inline-size: 10rem;
+	border-block-start: 1px solid -apple-system-separator;
 }
 
 article {
-	margin-bottom: 3rem;
+	margin-block-end: 3rem;
 }
 
 article > header h1 {
 	font-size: 1.6rem;
 	font-weight: 500;
-	margin: 0;
+	margin-block: 1rem 0;
 }
 article > header p {
 	color: -apple-system-secondary-label;
-	margin: 0;
+	margin-block: 0;
 }
 article h2 {
-	margin: 1.5rem 0 0.5rem;
+	margin-block: 1.5rem 0.5rem;
 }
 article h2 + * {
-	margin-top: 0.5rem;
+	margin-block-start: 0.5rem;
 }
 
 .trivial,
@@ -52,7 +52,7 @@ article h2 + * {
 	color: var(--accent-blue);
 	border: 1px solid;
 	border-radius: 0.3rem;
-	padding: 0 0.2rem;
+	padding-inline: 0.2rem;
 }
 .trivial {
 	color: -apple-system-secondary-label;
@@ -60,5 +60,6 @@ article h2 + * {
 p.important {
 	background: var(--accent-background);
 	border-radius: 0.6rem;
-	padding: 0.4rem 0.8rem;
+	padding-block: 0.4rem;
+	padding-inline: 0.8rem;
 }

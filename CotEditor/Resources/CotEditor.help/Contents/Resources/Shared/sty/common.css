@@ -22,9 +22,10 @@
 }
 
 body {
-	max-width: 820px;
-	margin: 1rem auto 2rem;
-	padding: 0 2.75rem;
+	max-inline-size: 820px;
+	margin-block: 2.5rem;
+	margin-inline: auto;
+	padding-inline: 2.75rem;
 }
 
 a {
@@ -58,6 +59,6 @@ summary {
 }
 
 p object[data*="script.svg"] {
-	height: 1em;
+	block-size: 1em;
 	vertical-align: -0.15em;
 }

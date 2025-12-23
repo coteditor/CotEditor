@@ -12,7 +12,7 @@
 p.type {
 	font-size: 0.9rem;
 	color: -apple-system-secondary-label;
-	margin-bottom: 0;
+	margin-block-end: 0;
 }
 h2 {
 	font-size: 1.2rem;
@@ -40,7 +40,7 @@ dl ul li::marker {
 	font-weight: 200;
 }
 dl ul li p {
-	margin: 0.2em 0;
+	margin-block: 0.2em;
 }
 dl ul li em {
 	font-weight: normal !important;

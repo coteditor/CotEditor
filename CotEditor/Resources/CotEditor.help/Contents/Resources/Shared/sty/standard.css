@@ -23,7 +23,7 @@
 }
 
 img {
-	max-width: 100%;
+	max-inline-size: 100%;
 }
 p:lang(ja) {
 	text-align: justify;
@@ -33,7 +33,7 @@ body > h1 {
 	font-size: 2rem;
 	font-weight: 500;
 	line-height: 1.2;
-	margin: 2.5rem 0 1.4rem;
+	margin-block-end: 1.4rem;
 	
 	display: flex;
 	align-items: flex-start;
@@ -42,39 +42,35 @@ body > h1 {
 body > h1::before {
 	content: image-set(url(../gfx/icon_32x32@2x.png) 2x);
 	display: inline-block;
-	width: 32px;
-	height: 32px;
 	position: relative;
-	top: 4px;
+	inset-block-start: 4px;
 }
 
 body > section,
 article {
-	margin: 1.5rem 0 1rem;
-	padding: 1rem 0 0;
-	border-top: 1px solid -apple-system-separator;
+	border-block-start: 1px solid -apple-system-separator;
+	margin-block: 1.5rem;
 }
 h2 {
 	font-size: 1rem;
 	font-weight: 700;
 	line-height: 1.4;
-	margin-top: 0;
+	margin-block: 1rem;
 }
 h3 {
 	font-size: 1rem;
 	font-weight: 600;
 	line-height: 1.1;
-	margin-top: 2rem;
+	margin-block-start: 1.5rem;
 }
 
 figure {
-	margin: 0;
+	margin-inline: 0;
 }
 blockquote {
 	border-inline-start: 0.2rem solid -apple-system-grid;
 	padding-inline-start: 1rem;
-	margin-inline-start: 0;
-	margin-inline-end: 0;
+	margin-inline: 0;
 }
 
 ul {
@@ -82,13 +78,13 @@ ul {
 }
 ol,
 ul {
-	padding: 0 1.5rem;
+	padding-inline: 1.5rem;
 }
 li p {
-	margin: 0.5rem 0;
+	margin-block: 0.5rem;
 }
 li:first-child p {
-	margin-top: 0;
+	margin-block-start: 0;
 }
 
 
@@ -96,24 +92,25 @@ dt {
 	font-weight: 600;
 }
 dd + dt {
-	margin-top: 0.5rem;
+	margin-block-start: 0.5rem;
 }
 
 table {
 	font-size: 0.95rem;
 	border-collapse: collapse;
 	empty-cells: show;
-	margin: 1rem 0;
+	margin-block: 1rem;
 }
 table tr {
-	border-bottom: 1px solid -apple-system-quaternary-label;
+	border-block: 1px solid -apple-system-quaternary-label;
 }
 table thead tr:first-child {
-	border-top: 2.5px solid -apple-system-quaternary-label;
+	border-block-start: 2.5px solid -apple-system-quaternary-label;
 }
 table tr > * {
-	padding: 0.5rem 0.6rem;
-	text-align: left;
+	padding-block: 0.5rem;
+	padding-inline: 0.6rem;
+	text-align: start;
 }
 table tr > :first-child {
 	padding-inline-start: 0;
@@ -122,7 +119,7 @@ table tr > :last-child {
 	padding-inline-end: 0;
 }
 table thead th {
-	padding: 0.4rem 0.6rem;
+	padding-block: 0.4rem;
 	font-weight: bold;
 }
 table th {
@@ -130,20 +127,19 @@ table th {
 	white-space: nowrap;
 }
 table tbody {
-	vertical-align: top;
+	vertical-align: baseline;
 }
 table tbody td > * {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
+	margin-block: 0.5rem;
 }
 table tbody td > :first-child {
-	margin-top: 0;
+	margin-block-start: 0;
 }
 table tbody td > :last-child {
-	margin-bottom: 0;
+	margin-block-end: 0;
 }
 table tbody ul li {
-	margin-top: 0.2em;
+	margin-block-start: 0.2em;
 }
 tbody td.center {
 	text-align: center;
@@ -166,25 +162,26 @@ em.tip::before {
 	content: url(../gfx/lightbulb.max.svg);
 	display: inline-block;
 	position: relative;
-	top: 4px;
+	inset-block-start: 4px;
 	padding-inline-end: 0.2em;
 }
 
 p.addition {
 	position: relative;
 	text-indent: 0;
-	padding: 0.8rem 1.2rem;
+	padding-block: 0.8rem;
+	padding-inline: 1.2rem;
 	border-radius: 0.8rem;
 	background: var(--accent-background);
 }
 p.addition::after {
 	content: '';
 	position: absolute;
-	top: -1.8rem;
-	left: 4rem;
+	inset-block-start: -1.8rem;
+	inset-inline-start: 4rem;
 	margin-inline-start: -1rem;
 	border: 1rem solid transparent;
-	border-bottom: 15px solid var(--accent-background);
+	border-block-end: 15px solid var(--accent-background);
 }
 p.addition > span:first-child {
 	color: -apple-system-secondary-label;
@@ -200,7 +197,7 @@ a.toc {
 	font-size: 15px;
 	font-weight: 400;
 	position: absolute;
-	top: 5px;
+	inset-block-start: 5px;
 	color: -apple-system-secondary-label;
 }
 @media (prefers-color-scheme: dark) {
@@ -213,10 +210,6 @@ img.appicon {
 	vertical-align: text-bottom;
 	height: 18px;
 }
-img.appicon:lang(ja) {
-	padding: 0 0.1em;
-}
-
 img.bordered {
 	border: 0.5px solid -apple-system-tertiary-label;
 	border-radius: 3px;
@@ -224,8 +217,9 @@ img.bordered {
 object.symbol {
 	vertical-align: -0.05em;
 }
-object.symbol:lang(ja) {
-	padding: 0 0.2em;
+p img.appicon:lang(ja),
+p object.symbol:lang(ja) {
+	padding-inline: 0.2em;
 }
 
 
@@ -239,15 +233,16 @@ pre.source {
 	background: hsl(0, 0%, 98%);
 	border: 1px solid -apple-system-separator;
 	border-radius: 0.5rem;
-	max-width: 50rem;
-	padding: 0.4rem 0.8rem;
+	max-inline-size: 50rem;
+	padding-block: 0.4rem;
+	padding-inline: 0.8rem;
 	overflow: scroll;
 }
 
 code.AppleScript {
 	color: hsl(213, 50%, 25%);
 }
-code span.keyword   { color: #1b556b; font-weight: bold }
+code span.keyword   { color: #1b556b; font-weight: bold; }
 code span.tag       { color: #1b556b }
 code span.command   { color: #947231 }
 code span.type      { color: #ae3d16 }
@@ -279,28 +274,28 @@ code span.comment   { color: #66747a }
 /* See also */
 
 #cf {
-	border-top: none;
+	border-block-start: none;
 }
 #cf > * {
-	margin: 0;
+	margin-block: 0;
 }
 #cf ul {
 	list-style-type: none;
-	padding: 0;
+	padding-inline-start: 0;
 }
 #cf ul li {
-	margin: 0.4rem 0;
+	margin-block: 0.4rem;
 }
 
 
 /* Settings */
 
 table.settings tbody th {
-	width: 30%;
+	inline-size: 30%;
 	white-space: normal;
 }
 table.settings caption {
 	font-weight: 500;
-	text-align: left;
-	margin: 0.4rem 0;
+	text-align: start;
+	margin-block: 0.4rem;
 }

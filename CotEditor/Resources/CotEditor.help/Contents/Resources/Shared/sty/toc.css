@@ -15,7 +15,7 @@ body > h1 {
 	font-size: 2rem;
 	font-weight: 500;
 	line-height: 1.3;
-	margin: 2.5rem 0 1.5rem;
+	margin-block-end: 1.4rem;
 }
 
 a {
@@ -26,17 +26,17 @@ ul {
 	font-size: 15px;
 	font-weight: 500;
 	
-	padding: 0;
+	padding-inline: 0;
 	list-style-type: none;
 }
 ul ul {
 	padding-inline-start: 1.5rem;
 }
 li {
-	margin: 0.4rem 0;
+	margin-block: 0.4rem;
 }
 body > ul > li {
-	padding: 0.15rem 0;
+	margin-block: 0.6rem;
 }
 
 summary {
@@ -46,7 +46,7 @@ summary::before {
 	content: url(../gfx/chevron.svg);
 	opacity: 0.45;
 	display: inline-block;
-	vertical-align: -1.5px;
+	vertical-align: middle;
 	padding-inline-end: 0.4rem;
 }
 details[open] > summary::before {

@@ -14,24 +14,24 @@
 header {
 	font-weight: 300;
 	position: relative;
-	height: 170px;
-	border-bottom: 1px solid -apple-system-separator;
+	block-size: 170px;
+	border-block-end: 1px solid -apple-system-separator;
 }
 header img {
 	position: absolute;
-	top: 0;
-	right: 40px;
-	width: 150px;
+	inset-block-start: 0;
+	inset-inline-end: 40px;
+	inline-size: 150px;
 }
 header h1 {
 	font-size: 40px;
 	font-weight: 500;
 	line-height: 1.4;
-	margin: 0;
+	margin-block: 0;
 }
 header p {
 	font-size: 23px;
-	margin: 0;
+	margin-block: 0;
 }
 header a.toc::before {
 	display: inline-block;
@@ -43,15 +43,15 @@ header a.toc {
 	display: inline-block;
 	font-weight: 400;
 	text-decoration-line: none;
-	margin-top: 0.8rem;
+	margin-block-start: 0.8rem;
 }
 
 
 /* topic */
 
 main > section {
-	padding: 1.5rem 0;
-	border-bottom: solid 1px -apple-system-separator;
+	padding-block: 1.5rem;
+	border-block-end: solid 1px -apple-system-separator;
 }
 main > section:first-child {
 	text-align: center;
@@ -69,7 +69,7 @@ main > section h2 {
 	font-weight: 500;
 	font-size: 2rem;
 	line-height: 1.3;
-	margin: 0 0 1rem;
+	margin-block: 0 1rem;
 }
 main > section:first-child h2 {
 	font-size: 2.2rem;
@@ -85,7 +85,7 @@ section figure img {
 
 section ul {
 	list-style-type: none;
-	padding: 0;
+	padding-inline-start: 0;
 }
 section ul li a::after {
 	content: ' ›';
