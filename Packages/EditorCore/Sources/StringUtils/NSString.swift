@@ -238,6 +238,27 @@ public extension NSString {
     }
     
     
+    /// Returns a safe range that avoids ending between a CRLF line ending pair.
+    ///
+    /// - Parameters
+    ///   - range: The original character range in UTF-16 code units.
+    /// - Returns: A range adjusted to avoid splitting a CRLF line ending, or the original range if no adjustment is needed.
+    final func safeEndingRange(for range: NSRange) -> NSRange {
+        
+        guard
+            !range.isNotFound,
+            range.upperBound < self.length,
+            range.upperBound > 0,
+            self.character(at: range.upperBound - 1) == 0xD,  // CR
+            self.character(at: range.upperBound) == 0xA       // LF
+        else { return range }
+
+        return range.isEmpty
+            ? NSRange(location: range.location - 1, length: 0)
+            : NSRange(location: range.location, length: range.length - 1)
+    }
+    
+    
     /// Finds the widest character range that contains the given `index` and does not contain any characters from the given set.
     ///
     /// - Parameters:

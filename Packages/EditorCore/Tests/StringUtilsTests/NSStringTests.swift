@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2025 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -77,6 +77,41 @@ struct NSStringTests {
         
         // composed character does not care CRLF
         #expect(("\r\n" as NSString).rangeOfComposedCharacterSequence(at: 1) == NSRange(1..<2))
+    }
+    
+    
+    @Test func safeEndingRange() {
+        
+        let crlf = "ba\r\n" as NSString
+        // empty ranges
+        #expect(crlf.safeEndingRange(for: NSRange(2..<2)) == NSRange(2..<2))
+        #expect(crlf.safeEndingRange(for: NSRange(3..<3)) == NSRange(2..<2))
+        // one length ranges
+        #expect(crlf.safeEndingRange(for: NSRange(1..<2)) == NSRange(1..<2))
+        #expect(crlf.safeEndingRange(for: NSRange(1..<3)) == NSRange(1..<2))
+        #expect(crlf.safeEndingRange(for: NSRange(1..<4)) == NSRange(1..<4))
+        #expect(crlf.safeEndingRange(for: NSRange(1..<5)) == NSRange(1..<5))
+        #expect(crlf.safeEndingRange(for: NSRange(2..<2)) == NSRange(2..<2))
+        #expect(crlf.safeEndingRange(for: NSRange(2..<3)) == NSRange(2..<2))
+        #expect(crlf.safeEndingRange(for: NSRange(2..<4)) == NSRange(2..<4))
+        #expect(crlf.safeEndingRange(for: .notFound) == .notFound)
+        
+        let cr = "a\ra" as NSString
+        #expect(cr.safeEndingRange(for: NSRange(0..<1)) == NSRange(0..<1))
+        #expect(cr.safeEndingRange(for: NSRange(0..<2)) == NSRange(0..<2))
+        #expect(cr.safeEndingRange(for: NSRange(0..<3)) == NSRange(0..<3))
+        
+        let lf = "a\na" as NSString
+        #expect(lf.safeEndingRange(for: NSRange(0..<1)) == NSRange(0..<1))
+        #expect(lf.safeEndingRange(for: NSRange(0..<2)) == NSRange(0..<2))
+        #expect(lf.safeEndingRange(for: NSRange(0..<3)) == NSRange(0..<3))
+        
+        let empty = "" as NSString
+        #expect(empty.safeEndingRange(for: NSRange(0..<0)) == NSRange(0..<0))
+        #expect(empty.safeEndingRange(for: NSRange(0..<1)) == NSRange(0..<1))
+        
+        #expect("\r\n".safeEndingRange(for: NSRange(0..<1)) == NSRange(0..<0))
+        #expect("\r\n".safeEndingRange(for: NSRange(1..<2)) == NSRange(1..<2))
     }
     
     

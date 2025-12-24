@@ -728,6 +728,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
                 self.insertionLocations = Array(locations[1...])
             } else {
+                // avoid putting range boundaries across CRLF (2025-12, macOS 26.2, #2000)
+                ranges = ranges
+                    .map(\.rangeValue)
+                    .map((self.string as NSString).safeEndingRange(for:)) as [NSValue]
                 self.insertionLocations = []
             }
         }

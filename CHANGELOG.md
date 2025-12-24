@@ -12,6 +12,7 @@
 ### Fixes
 
 - Fix an issue in the file browser where files weren’t hidden when the document’s folder name matched the filter string.
+- Fix an issue where the app crashed when cutting rectangular selections at the end of a document with CRLF line endings.
 
 
 
