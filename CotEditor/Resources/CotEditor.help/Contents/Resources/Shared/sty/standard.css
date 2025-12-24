@@ -275,6 +275,7 @@ code span.comment   { color: #66747a }
 
 #cf {
 	border-block-start: none;
+	margin-block-start: 2.5rem;
 }
 #cf > * {
 	margin-block: 0;

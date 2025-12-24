@@ -14,20 +14,22 @@
 
 <h1>If a document appears garbled in CotEditor on Mac</h1>
 
-<p>Characters can be misinterpreted mostly if CotEditor fails to detect the documents’s text encoding correctly.</p>
+<p>Characters can be misinterpreted mostly if CotEditor fails to detect the documents’s text encoding correctly. There are several things you can try to solve the problem.</p>
 
 <ul>
 	<li><p>The document may appear correctly if you open it using a different text encoding.</p>
-	<p>→ <a href="howto_interpret_encoding.html">Open a document with a specified encoding</a></p></li>
+	<p>See <a href="howto_interpret_encoding.html">Open a document with a specified encoding</a>.</p></li>
 	
 	<li><p>Adjusting the priority of encoding detection may help reduce garbled text.</p>
-	<p>→ <a href="howto_customize_encoding_order.html">Customize text encoding priorities</a></p></li>
+	<p>See <a href="howto_customize_encoding_order.html">Customize text encoding priorities</a>.</p></li>
 	
 	<li><p>If you select “Refer to encoding declaration in document” in Format settings, in-document encoding declarations, such as “<code>encoding=</code>” or “<code>@charset</code>” take priority when CotEditor detects the text encoding.</p>
-	<p>→ <a href="about_autodetect_encoding.html">Detect a document’s text encoding</a></p></li>
+	<p>See <a href="about_autodetect_encoding.html">Detect a document’s text encoding</a>.</p></li>
+	
+	<li><p>If a document can’t be interpreted as plain text, such as binary data, CotEditor can’t read the content text. Open the document in an app that supports its file type.</p></li>
 </ul>
 
-<p>If a document can’t be interpreted as plain text, such as binary data, CotEditor can’t read the content text. Open the document in an app that supports its file type.</p>
+
 
 
 <section id="cf">
