@@ -336,6 +336,20 @@ extension FileNode {
     }
     
     
+    @discardableResult func updateFilter(with searchString: String, hasMatchedDescendant: Bool) -> Bool {
+        
+        let match: NSRange = (self.parent == nil)
+            ? .notFound
+            : (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
+        let isMatched = !match.isNotFound
+        
+        self.filterState = FilterState(matchedRange: isMatched ? match : nil,
+                                       hasMatchedDescendant: hasMatchedDescendant)
+        
+        return isMatched
+    }
+    
+    
     /// Recursively searches the receiver and its descendants for names matching the given string.
     ///
     /// - Note: This method updates the `filterState` property of each visited node.
@@ -370,13 +384,7 @@ extension FileNode {
             }
         }
         
-        let match: NSRange = (self.parent == nil)
-        ? .notFound
-        : (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
-        let isMatched = !match.isNotFound
-        
-        self.filterState = FilterState(matchedRange: isMatched ? match : nil,
-                                       hasMatchedDescendant: !matchedDescendants.isEmpty)
+        let isMatched = self.updateFilter(with: searchString, hasMatchedDescendant: !matchedDescendants.isEmpty)
         
         return isMatched ? ([self] + matchedDescendants) : matchedDescendants
     }

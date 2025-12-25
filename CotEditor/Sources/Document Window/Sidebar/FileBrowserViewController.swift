@@ -394,7 +394,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 return self.targetFolderNode(for: menuItem)?.file.isWritable == true
                 
             case #selector(duplicate):
-                menuItem.isHidden = self.targetRows(for: menuItem).count != 1
+                let targetNodes = self.targetNodes(for: menuItem)
+                menuItem.isHidden = if targetNodes.count == 1 {
+                    self.isFiltering ? targetNodes[0].file.isDirectory : false
+                } else {
+                     true
+                }
                 
             case #selector(moveToTrash):
                 let targetNodes = self.targetNodes(for: menuItem)
@@ -569,6 +574,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             newNode = try self.document.duplicateItem(at: node)
         } catch {
             return self.presentErrorAsSheet(error)
+        }
+        
+        // update filter
+        if self.isFiltering {
+            newNode.updateFilter(with: self.filterQuery, hasMatchedDescendant: false)
         }
         
         // update UI
@@ -816,7 +826,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let row = self.outlineView.row(forItem: node)
         
-        guard row >= 0 else { return assertionFailure() }
+        guard row >= 0 else { return }  // row can be -1 when the node is filtered
         
         self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
         
