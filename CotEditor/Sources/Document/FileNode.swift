@@ -97,7 +97,7 @@ final class FileNode {
         guard
             let children, !children.isEmpty,
             self.filterState != nil,
-            !sequence(first: self, next: \.parent).lazy.contains(where: { $0.filterState?.matchedRange != nil })
+            !sequence(first: self, next: \.parent).contains(where: { $0.filterState?.matchedRange != nil })
         else { return children }
         
         return children.filter { $0.filterState.map { $0.hasMatchedDescendant || $0.matchedRange != nil } ?? false }
