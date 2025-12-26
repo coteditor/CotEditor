@@ -100,8 +100,7 @@ extension Indenting {
     
     
     /// Increases indent level of the selected ranges.
-    @discardableResult
-    func indent() -> Bool {
+    @discardableResult func indent() -> Bool {
         
         guard
             self.tabWidth > 0,
@@ -115,8 +114,7 @@ extension Indenting {
     
     
     /// Decreases indent level of the selected ranges.
-    @discardableResult
-    func outdent() -> Bool {
+    @discardableResult func outdent() -> Bool {
         
         guard
             self.tabWidth > 0,

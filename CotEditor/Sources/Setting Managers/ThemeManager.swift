@@ -151,8 +151,7 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     /// Creates a new untitled setting.
     ///
     /// - Returns: The setting name created.
-    @discardableResult
-    func createUntitledSetting() throws -> String {
+    @discardableResult func createUntitledSetting() throws -> String {
         
         let name = String(localized: "Untitled", comment: "initial setting filename")
             .appendingUniqueNumber(in: self.settingNames)

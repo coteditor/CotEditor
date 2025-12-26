@@ -29,7 +29,8 @@ import Testing
 
 struct CollectionTests {
     
-    @Test(arguments: 0..<10) func binarySearch(_: Int) {
+    @Test(arguments: 0..<10)
+    func binarySearch(_: Int) {
         
         let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
         

@@ -364,8 +364,7 @@ extension SettingFileManaging {
     /// - Parameters:
     ///   - name: The original setting name.
     /// - Returns: The name of the created setting.
-    @discardableResult
-    func duplicateSetting(name: String) throws -> String {
+    @discardableResult func duplicateSetting(name: String) throws -> String {
         
         let newName = name.appendingUniqueNumber(in: self.settingNames)
         

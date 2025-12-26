@@ -318,8 +318,7 @@ private extension NSMenuItem {
     ///   - recursively: When `true`, apply shortcuts also to the menu items in the `submenu` recursively.
     ///   - exclude: The list of shortcuts not to apply.
     /// - Returns: The shortcuts actually applied.
-    @discardableResult
-    func applyShortcut(recursively: Bool, exclude: [Shortcut] = []) -> [Shortcut] {
+    @discardableResult func applyShortcut(recursively: Bool, exclude: [Shortcut] = []) -> [Shortcut] {
         
         guard self.keyEquivalent.isEmpty else { return [] }
         

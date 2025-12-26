@@ -35,8 +35,7 @@ public extension NSTextView {
     ///   - theme: The color theme for regex highlighting.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     /// - Returns: Whether the content are not invalid.
-    @discardableResult
-    final func highlightAsRegularExpressionPattern(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
+    @discardableResult final func highlightAsRegularExpressionPattern(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
         
         guard
             let layoutManager = self.textLayoutManager

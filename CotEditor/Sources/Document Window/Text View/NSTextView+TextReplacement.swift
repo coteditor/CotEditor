@@ -32,16 +32,14 @@ extension NSTextView {
     // MARK: Public Methods
     
     /// Replaces the content according to EditingContext.
-    @discardableResult
-    final func edit(with context: EditingContext, actionName: String? = nil) -> Bool {
+    @discardableResult final func edit(with context: EditingContext, actionName: String? = nil) -> Bool {
         
         self.replace(with: context.strings, ranges: context.ranges, selectedRanges: context.selectedRanges, actionName: actionName)
     }
     
     
     /// Performs simple text replacement.
-    @discardableResult
-    final func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
+    @discardableResult final func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
         let selectedRanges: [NSRange]? = selectedRange.map { [$0] }
         
@@ -50,8 +48,7 @@ extension NSTextView {
     
     
     /// Performs multiple text replacements.
-    @discardableResult
-    final func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
+    @discardableResult final func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
         
         assert(Thread.isMainThread)
         assert(strings.count == ranges.count, "unbalanced number of strings and ranges for multiple replacement")

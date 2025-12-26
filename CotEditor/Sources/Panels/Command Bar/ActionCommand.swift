@@ -50,8 +50,7 @@ struct ActionCommand: Identifiable {
     
     
     /// Performs the original menu action.
-    @discardableResult
-    @MainActor func perform() -> Bool {
+    @MainActor @discardableResult func perform() -> Bool {
         
         let sender = NSMenuItem()
         sender.title = self.title

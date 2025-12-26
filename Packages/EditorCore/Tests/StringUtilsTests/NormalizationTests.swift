@@ -38,7 +38,8 @@ struct NormalizationTests {
     }
     
     
-    @Test(arguments: UnicodeNormalizationForm.allCases) func normalize(form: UnicodeNormalizationForm) {
+    @Test(arguments: UnicodeNormalizationForm.allCases)
+    func normalize(form: UnicodeNormalizationForm) {
         
         #expect("".normalizing(in: form).isEmpty)
         #expect("abc".normalizing(in: form) == "abc")

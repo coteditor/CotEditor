@@ -71,7 +71,8 @@ struct CollectionTests {
     }
     
     
-    @Test(arguments: 0..<10) func sort(_: Int) {
+    @Test(arguments: 0..<10)
+    func sort(_: Int) {
         
         var array: [Int] = (0..<10).map { _ in .random(in: 0..<100) }
         let sorted = array.sorted { $0 < $1 }

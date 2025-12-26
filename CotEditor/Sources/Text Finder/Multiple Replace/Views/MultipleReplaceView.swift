@@ -110,8 +110,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     }
     
     
-    @discardableResult
-    override func commitEditing() -> Bool {
+    @discardableResult override func commitEditing() -> Bool {
         
         guard super.commitEditing() else { return false }
         

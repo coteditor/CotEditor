@@ -468,8 +468,7 @@ struct FindAllMatch: Identifiable {
     
     
     /// Replaces a matched string in selection with replacementString.
-    @discardableResult
-    private func replaceSelected() -> Bool {
+    @discardableResult private func replaceSelected() -> Bool {
         
         guard let textFind = self.prepareTextFind() else { return false }
         

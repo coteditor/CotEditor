@@ -84,8 +84,7 @@ extension EditorTextView {
 extension NSTextView {
     
     /// Inserts strings around selections.
-    @discardableResult
-    final func surroundSelections(begin: String, end: String) -> Bool {
+    @discardableResult final func surroundSelections(begin: String, end: String) -> Bool {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return false }
         

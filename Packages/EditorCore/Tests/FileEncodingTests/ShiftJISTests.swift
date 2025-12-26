@@ -79,7 +79,7 @@ struct ShiftJISTests {
     
     
     @Test(arguments: ShiftJIS.allCases)
-    private func convertYen(shiftJIS: ShiftJIS) {
+    func convertYen(shiftJIS: ShiftJIS) {
         
         #expect(("¥".convertYenSign(for: shiftJIS.encoding) == "¥") == (shiftJIS.encode("¥") == "¥"))
     }

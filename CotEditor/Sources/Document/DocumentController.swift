@@ -278,8 +278,7 @@ final class DocumentController: NSDocumentController {
     ///   - title: The document title to display in the window, or `nil` to leave it as untitled.
     ///   - displayDocument: `true` if the user interface for the document should be shown, otherwise `false`.
     /// - Returns: Returns the new Document object.
-    @discardableResult
-    func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
+    @discardableResult func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
         
         let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
         

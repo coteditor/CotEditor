@@ -30,7 +30,8 @@ import Testing
 
 struct EncodingDetectionTests {
     
-    @Test(.bug("https://bugs.swift.org/browse/SR-10173")) func utf8BOM() throws {
+    @Test(.bug("https://bugs.swift.org/browse/SR-10173"))
+    func utf8BOM() throws {
         
         // -> String(data:encoding:) preserves BOM since Swift 5 (2019-03)
         // -> This issue has already solved in macOS 26 (2025-09)
@@ -57,7 +58,8 @@ struct EncodingDetectionTests {
     
     
     /// Tests if the U+FEFF omitting bug on Swift 5 still exists.
-    @Test(.bug("https://bugs.swift.org/browse/SR-10896")) func feff() {
+    @Test(.bug("https://bugs.swift.org/browse/SR-10896"))
+    func feff() {
         
         let bom = "\u{feff}"
         #expect(bom.count == 1)

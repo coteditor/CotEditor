@@ -281,8 +281,7 @@ struct SyntaxEditView: View {
     ///
     /// - Parameter name: The syntax name to test.
     /// - Returns: `true` if the syntax name is valid.
-    @discardableResult
-    private func validate(name: String) -> Bool {
+    @discardableResult private func validate(name: String) -> Bool {
         
         if self.isBundled { return true }  // cannot edit syntax name
         

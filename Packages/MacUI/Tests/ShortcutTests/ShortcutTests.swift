@@ -80,13 +80,15 @@ struct ShortcutTests {
     }
     
     
-    @Test(arguments: ModifierKey.allCases) func symbol(modifierKey: ModifierKey) {
+    @Test(arguments: ModifierKey.allCases)
+    func symbol(modifierKey: ModifierKey) {
         
         #expect(NSImage(systemSymbolName: modifierKey.symbolName, accessibilityDescription: nil) != nil)
     }
     
     
-    @Test(arguments: Set(Shortcut.keyEquivalentSymbolNames.values)) func symbol(name: String) {
+    @Test(arguments: Set(Shortcut.keyEquivalentSymbolNames.values))
+    func symbol(name: String) {
         
         #expect(NSImage(systemSymbolName: name, accessibilityDescription: nil) != nil)
     }

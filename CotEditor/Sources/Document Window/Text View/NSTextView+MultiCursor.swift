@@ -61,8 +61,7 @@ extension MultiCursorEditing {
     ///   - string: The string to insert.
     ///   - replacementRanges: The ranges to insert.
     /// - Returns: Whether the insertion succeed.
-    @discardableResult
-    func insertText(_ string: String, replacementRanges: [NSRange]) -> Bool {
+    @discardableResult func insertText(_ string: String, replacementRanges: [NSRange]) -> Bool {
         
         assert(!replacementRanges.isEmpty)
         
@@ -235,8 +234,7 @@ extension MultiCursorEditing {
     ///
     /// - Parameter point: The point where user clicked, in view coordinates.
     /// - Returns: Whether the insertion/removal succeed.
-    @discardableResult
-    func modifyInsertionPoint(at point: NSPoint) -> Bool {
+    @discardableResult func modifyInsertionPoint(at point: NSPoint) -> Bool {
         
         let location = self.characterIndexForInsertion(at: point)
         var ranges = self.insertionRanges
