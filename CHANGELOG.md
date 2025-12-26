@@ -7,7 +7,7 @@
 
 - Improve word deletion to treat periods and colons as word delimiters.
 - Update the filter after duplicating a file in the file browser.
-- [trivial] Tweak the user guide.
+- Update the user guide.
 
 
 ### Fixes
