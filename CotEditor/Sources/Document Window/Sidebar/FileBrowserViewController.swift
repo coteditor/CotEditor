@@ -578,6 +578,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         // update filter
         if self.isFiltering {
+            assert(!newNode.file.isFolder, "accept only a file for duplication while filtering")
             newNode.updateFilter(with: self.filterQuery, hasMatchedDescendant: false)
         }
         
