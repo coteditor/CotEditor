@@ -342,7 +342,6 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
                         }
                     }
                 }
-                .controlSize(.small)
                 .fixedSize()
             }
             
