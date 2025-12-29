@@ -2381,8 +2381,8 @@
 			<li>システム要件を<strong>macOS Monterey 12以上</strong>に変更</li>
 			<li>macOS Ventura 13以降では「すべて検索」ボタンからほかの関連するコマンドも実行できるように改良</li>
 			<li>改行コードの不一致アラートの「この書類では次回から確認しない」オプションの状態を書類に記憶し、将来の同書類オープンでも設定を反映するように改良<ul>
-				<li>[上級者向け] 下記のコマンドを実行することでこのアラート機能をアプリケーションレベルで完全に無効化できます（ただし推奨しません）: <br>
-					<code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
+				<li>[上級者向け] 下記のコマンドを実行することでこのアラート機能をアプリケーションレベルで完全に無効化できます（ただし推奨しません）:
+					<pre><code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></pre></li>
 			</ul></li>
 			<li>AppleScriptの<code>length</code>プロパティを廃止（代わりに <code>number of characters of contents</code>を使用してください）</li>
 			<li>マルチカーソル編集で双方向テキストの分割カーソルをサポート</li>

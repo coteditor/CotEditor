@@ -139,9 +139,7 @@
 
 <p>CotEditor 5.0以降、文字はUnicode書記素クラスタ単位でカウントします。これはAppleScript 2.0の仕様と同一です。</p>
 
-<p><code>location</code>が負のとき、対象書類のテキストの後ろから数えて<code>location</code>番目から始まる範囲となります。<br>
-<code>length</code>が対象書類のテキストの長さを超えて入力された場合、末尾までが範囲となります。<br>
-<code>length</code>が負のとき、指定される範囲は対象書類のテキストの後ろから数えて<code>length</code>文字までとなります。もし、<code>length</code>の絶対値が<code>location</code>よりも小さい（<code>location</code>よりも前に終了位置がある）場合には、<code>location</code>が優先され<code>location</code>位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
+<p><code>location</code>が負のとき、対象書類のテキストの後ろから数えて<code>location</code>番目から始まる範囲となります。<code>length</code>が対象書類のテキストの長さを超えて入力された場合、末尾までが範囲となります。<code>length</code>が負のとき、指定される範囲は対象書類のテキストの後ろから数えて<code>length</code>文字までとなります。もし、<code>length</code>の絶対値が<code>location</code>よりも小さい（<code>location</code>よりも前に終了位置がある）場合には、<code>location</code>が優先され<code>location</code>位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
 
 <p>この指定方法はPHPの<code>substr</code>のそれにならっています。</p>
 

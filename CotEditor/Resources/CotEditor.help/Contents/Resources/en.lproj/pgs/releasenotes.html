@@ -2384,8 +2384,8 @@
 			<li>Change the system requirement to <strong>macOS Monterey 12 and later</strong>.</li>
 			<li>Improve the Find All button only on macOS Ventura 13 (and later) to enable performing additional commands.</li>
 			<li>Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.<ul>
-				<li><strong>for advanced users</strong>: Now you can also disable the feature entirely within the application by running the following command in Terminal, though it is not recommended:<br>
-					<code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
+				<li><strong>for advanced users</strong>: Now you can also disable the feature entirely within the application by running the following command in Terminal, though it is not recommended:
+					<pre><code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></pre></li>
 			</ul></li>
 			<li>Deprecate the <code>length</code> property in AppleScript (Use <code>number of characters of contents</code> instead).</li>
 			<li>Support the split cursor for bidirectional languages in multi-cursor editing.</li>
