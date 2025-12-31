@@ -190,7 +190,9 @@ struct GeneralSettingsView: View {
                                     .imageScale(.small)
                                     .help(self.commandLineToolStatus.message ?? "")
                                     .accessibilityHint(self.commandLineToolStatus.message ?? "")
-                            }.foregroundStyle(.secondary)
+                            }
+                            .foregroundStyle(.secondary)
+                            .labelIconToTitleSpacing(6)
                         }
                     }
                     Text("With the `cot` command-line tool, you can launch CotEditor and let it open files from the command line.", tableName: "GeneralSettings")
