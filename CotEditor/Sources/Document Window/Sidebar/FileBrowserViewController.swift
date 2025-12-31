@@ -118,9 +118,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        systemImage: "folder.badge.plus",
                        action: #selector(addFolder), target: self),
         ]
-        if #unavailable(macOS 26) {
-            addButton.menu!.items[0].image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
-        }
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
         let filterField = FilterSearchField()
@@ -1394,9 +1391,6 @@ private final class FileBrowserTableCellView: NSTableCellView {
         
         self.tagsView?.rootView = TagsView(tags: self.tags, isSelected: self.isSelected)
         self.tagsLayoutConstraint?.isActive = !self.tags.isEmpty
-        
-        guard #available(macOS 26, *) else { return }
-        
         self.imageView?.contentTintColor = self.tags.last?.color.color
     }
 }

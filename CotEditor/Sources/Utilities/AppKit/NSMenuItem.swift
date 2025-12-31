@@ -32,9 +32,6 @@ extension NSMenuItem {
         self.init(title: title, action: action, keyEquivalent: "")
         
         self.target = target
-        
-        guard #available(macOS 26, *) else { return }
-        
         self.image = NSImage(systemSymbolName: systemImage, accessibilityDescription: nil)
     }
 }

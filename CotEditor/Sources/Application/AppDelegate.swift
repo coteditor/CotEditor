@@ -625,7 +625,7 @@ private extension NSPanel {
         self.titlebarAppearsTransparent = true
         self.hidesOnDeactivate = false
         self.setContentSize(viewController.view.intrinsicContentSize)
-        if #available(macOS 26, *), title == nil {
+        if title == nil {
             self.toolbar = NSToolbar()
         }
         

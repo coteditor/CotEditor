@@ -891,9 +891,6 @@ extension NSTextView: EditorCounter.Source { }
                     item.image = self.isEditable
                         ? NSImage(systemSymbolName: "pencil.slash", accessibilityDescription: nil)
                         : NSImage(systemSymbolName: "pencil", accessibilityDescription: nil)
-                    if #unavailable(macOS 26) {
-                        item.image = nil
-                    }
                     
                 } else if let item = item as? StatableToolbarItem {
                     item.toolTip = self.isEditable

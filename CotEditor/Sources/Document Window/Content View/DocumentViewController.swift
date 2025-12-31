@@ -327,9 +327,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.image = self.showsInvisibles
                     ? NSImage(resource: .paragraphsignSlash)
                     : NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: nil)
-                if #unavailable(macOS 26) {
-                    (item as? NSMenuItem)?.image = nil
-                }
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
@@ -408,17 +405,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.image = self.splitView.isVertical
                     ? NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
                     : NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
-                if #unavailable(macOS 26) {
-                    (item as? NSMenuItem)?.image = nil
-                }
                 
             case #selector(openSplitTextView):
                 (item as? NSMenuItem)?.image = self.splitView.isVertical
                     ? NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
                     : NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
-                if #unavailable(macOS 26) {
-                    (item as? NSMenuItem)?.image = nil
-                }
                 
             case #selector(closeSplitTextView):
                 return self.splitViewItems.count > 1
