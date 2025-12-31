@@ -102,7 +102,9 @@
       "hpp",
       "hxx",
       "h++",
-      "ipp"
+      "ipp",
+      "cu",
+      "cuh"
     ],
     "filenames" : [
 

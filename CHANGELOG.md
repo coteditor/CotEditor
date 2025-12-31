@@ -3,6 +3,10 @@
 6.2.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the C++ syntax to include .cu and .cuh filename extensions.
+
 
 
 6.2.1 (787)
