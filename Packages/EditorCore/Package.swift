@@ -43,7 +43,7 @@ let package = Package(
         .library(name: "URLUtils", targets: ["URLUtils"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),

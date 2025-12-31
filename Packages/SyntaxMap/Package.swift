@@ -11,9 +11,9 @@ let package = Package(
         .library(name: "SyntaxMap", targets: ["SyntaxMap"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 3, 0)),
-        .package(url: "https://github.com/jpsim/Yams", from: Version(6, 1, 0)),
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 7, 0)),
+        .package(url: "https://github.com/jpsim/Yams", from: Version(6, 2, 0)),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
     ],
     targets: [
         .executableTarget(
