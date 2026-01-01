@@ -87,7 +87,7 @@ struct SyntaxEditView: View {
     @State private var message: String?
     
     @State private var pane: Pane = .keywords
-    @State private var errors: [SyntaxObject.Error] = []
+    @State private var errors: [Syntax.Error] = []
     @State private var error: (any Error)?
     
     @FocusState private var isNameFieldFocused: Bool
@@ -185,7 +185,7 @@ struct SyntaxEditView: View {
             self.name = self.originalName ?? ""
         }
         .onChange(of: self.pane) {
-            self.errors = self.syntax.validate()
+            self.errors = self.syntax.value.validate()
         }
         .alert(error: $error)
         .frame(minWidth: 400, idealWidth: 680, minHeight: 525, idealHeight: 525)
@@ -246,7 +246,7 @@ struct SyntaxEditView: View {
             return
         }
         
-        self.errors = self.syntax.validate()
+        self.errors = self.syntax.value.validate()
         if !self.errors.isEmpty {
             self.pane = .validation
             NSSound.beep()
@@ -273,7 +273,7 @@ struct SyntaxEditView: View {
         else { return }
         
         self.syntax.update(with: syntax)
-        self.errors = self.syntax.validate()
+        self.errors = self.syntax.value.validate()
     }
     
     

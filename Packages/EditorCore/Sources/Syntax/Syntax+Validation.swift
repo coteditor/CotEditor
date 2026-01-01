@@ -1,5 +1,6 @@
 //
-//  SyntaxObject+Validation.swift
+//  Syntax+Validation.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,13 +26,12 @@
 //
 
 import Foundation
-import Syntax
 
-extension SyntaxObject {
+public extension Syntax {
     
     struct Error: Swift.Error {
         
-        enum Code {
+        public enum Code: Sendable {
             
             case duplicated
             case regularExpression
@@ -39,7 +39,7 @@ extension SyntaxObject {
         }
         
         
-        enum Scope {
+        public enum Scope: Sendable {
             
             case highlight(SyntaxType)
             case outline
@@ -47,12 +47,12 @@ extension SyntaxObject {
         }
         
         
-        var code: Code
-        var scope: Scope
-        var value: String
+        public var code: Code
+        public var scope: Scope
+        public var value: String
         
         
-        init(_ code: Code, scope: Scope, value: String) {
+        public init(_ code: Code, scope: Scope, value: String) {
             
             self.code = code
             self.scope = scope
@@ -69,8 +69,9 @@ extension SyntaxObject {
         var errors: [Error] = []
         
         for type in SyntaxType.allCases {
-            let highlights = self.highlights.values(for: type)
+            guard let highlights = self.highlights[type]?
                 .sorted(using: [KeyPathComparator(\.begin), KeyPathComparator(\.end)])  // sort for duplication check
+            else { continue }
             
             // allow appearing the same highlights in different kinds
             var lastHighlight: Syntax.Highlight?
@@ -103,7 +104,7 @@ extension SyntaxObject {
             }
         }
         
-        for outline in self.outlines.map(\.value) {
+        for outline in self.outlines {
             do {
                 _ = try NSRegularExpression(pattern: outline.pattern)
             } catch {

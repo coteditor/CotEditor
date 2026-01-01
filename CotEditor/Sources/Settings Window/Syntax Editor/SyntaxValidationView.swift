@@ -28,7 +28,7 @@ import Syntax
 
 struct SyntaxValidationView: View {
     
-    var errors: [SyntaxObject.Error]
+    var errors: [Syntax.Error]
     
     @State private var selection: Int?
     
@@ -80,7 +80,7 @@ struct SyntaxValidationView: View {
     
     private struct ErrorView: View {
         
-        var error: SyntaxObject.Error
+        var error: Syntax.Error
         
         
         var body: some View {
@@ -94,7 +94,7 @@ struct SyntaxValidationView: View {
                             .help(self.error.value)
                             .lineLimit(1)
                     }
-                    Text(self.error.localizedDescription)
+                    Text(self.error.code.localizedDescription)
                         .controlSize(.small)
                         .foregroundStyle(.secondary)
                 }
@@ -109,30 +109,21 @@ struct SyntaxValidationView: View {
 }
 
 
-extension SyntaxObject.Error {
-    
-    var localizedDescription: String {
-        
-        self.code.localizedDescription
-    }
-}
-
-
-extension SyntaxObject.Error.Code {
+extension Syntax.Error.Code {
     
     var localizedDescription: String {
         
         switch self {
             case .duplicated:
-                String(localized: "SyntaxObject.Error.Code.duplicated",
+                String(localized: "Syntax.Error.Code.duplicated",
                        defaultValue: "The same word is registered multiple times.",
                        table: "SyntaxEditor")
             case .regularExpression:
-                String(localized: "SyntaxObject.Error.Code.regularExpression",
+                String(localized: "Syntax.Error.Code.regularExpression",
                        defaultValue: "Invalid regular expression.",
                        table: "SyntaxEditor")
             case .blockComment:
-                String(localized: "SyntaxObject.Error.Code.blockComment",
+                String(localized: "Syntax.Error.Code.blockComment",
                        defaultValue: "Block comment needs both begin and end delimiters.",
                        table: "SyntaxEditor")
         }
@@ -140,7 +131,7 @@ extension SyntaxObject.Error.Code {
 }
 
 
-extension SyntaxObject.Error.Scope {
+private extension Syntax.Error.Scope {
     
     var label: String {
         
@@ -159,7 +150,7 @@ extension SyntaxObject.Error.Scope {
 // MARK: - Preview
 
 #Preview {
-    let errors: [SyntaxObject.Error] = [
+    let errors: [Syntax.Error] = [
         .init(.duplicated, scope: .highlight(.values), value: "bb"),
         .init(.regularExpression, scope: .outline, value: "[]"),
         .init(.blockComment, scope: .blockComment, value: "bb"),

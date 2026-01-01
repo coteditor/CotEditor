@@ -54,8 +54,7 @@ actor SyntaxTests {
     @Test func validateAllSyntaxes() {
         
         for (name, syntax) in self.syntaxes {
-            let model = SyntaxObject(value: syntax)
-            let errors = model.validate()
+            let errors = syntax.validate()
             
             #expect(errors.isEmpty)
             for error in errors {
