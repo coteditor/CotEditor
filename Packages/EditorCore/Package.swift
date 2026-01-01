@@ -78,7 +78,7 @@ let package = Package(
         .target(name: "TextClipping"),
         .testTarget(name: "TextClippingTests", dependencies: ["TextClipping"], resources: [.process("Resources")]),
         
-        .target(name: "TextEditing", dependencies: ["StringUtils", "Syntax"]),
+        .target(name: "TextEditing", dependencies: ["StringUtils"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),
         
         .target(name: "TextFind", dependencies: ["StringUtils", "ValueRange"]),

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,8 +25,14 @@
 //
 
 public import Foundation
-public import Syntax
-import StringUtils
+public import StringUtils
+
+public protocol CommentDelimiters {
+    
+    var inline: String? { get }
+    var block: Pair<String>? { get }
+}
+
 
 public struct CommentTypes: OptionSet, Sendable {
     
@@ -68,7 +74,7 @@ public extension String {
     ///   - spacer: The spacer between delimiter and string.
     ///   - selectedRanges: The current selected ranges in the editor.
     ///   - location: The location type to insert comment delimiters.
-    func commentOut(types: CommentTypes, delimiters: Syntax.Comment, spacer: String, in selectedRanges: [NSRange], at location: CommentOutLocation) -> EditingContext? {
+    func commentOut(types: CommentTypes, delimiters: any CommentDelimiters, spacer: String, in selectedRanges: [NSRange], at location: CommentOutLocation) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
         
@@ -97,7 +103,7 @@ public extension String {
     /// - Parameters:
     ///   - delimiters: The comment delimiters to remove.
     ///   - selectedRanges: The current selected ranges in the editor.
-    func uncomment(delimiters: Syntax.Comment, spacer: String, in selectedRanges: [NSRange]) -> EditingContext? {
+    func uncomment(delimiters: any CommentDelimiters, spacer: String, in selectedRanges: [NSRange]) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
         
@@ -135,7 +141,7 @@ public extension String {
     ///   - delimiters: The comment delimiters to detect.
     ///   - selectedRanges: The current selected ranges in the editor.
     /// - Returns: `true` if uncommenting is possible.
-    func canUncomment(partly: Bool, delimiters: Syntax.Comment, in selectedRanges: [NSRange]) -> Bool {
+    func canUncomment(partly: Bool, delimiters: any CommentDelimiters, in selectedRanges: [NSRange]) -> Bool {
         
         guard !delimiters.isEmpty else { return false }
         
@@ -161,6 +167,12 @@ public extension String {
         
         return false
     }
+}
+
+
+extension CommentDelimiters {
+    
+    var isEmpty: Bool { self.inline == nil && self.block == nil }
 }
 
 
