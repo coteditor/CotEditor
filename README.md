@@ -80,6 +80,6 @@ For those people who just want to build and play with CotEditor locally.
 
 © 2005-2009 nakamuxu,
 © 2011, 2014 usami-k,
-© 2013-2025 1024jp.
+© 2013-2026 1024jp.
 
 The source code is licensed under the terms of the __Apache License, Version 2.0__. Image resources are licensed under the [__Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License__](https://creativecommons.org/licenses/by-nc-nd/4.0/). See [LICENSE](LICENSE) for details.
