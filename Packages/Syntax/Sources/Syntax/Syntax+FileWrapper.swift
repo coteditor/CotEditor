@@ -148,3 +148,49 @@ extension Syntax {
         }
     }
 }
+
+
+extension Syntax.FileMap {
+    
+    /// Creates a `Syntax.FileMap` by reading a `.cotsyntax` package on disk.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The file URL pointing to the root directory of a .cotsynta package.
+    /// - Throws: A `CocoaError` or decoding error if the file cannot be read or the JSON is invalid.
+    init?(contentsOf fileURL: URL) throws {
+        
+        let url = fileURL.appending(component: Syntax.Filename.info)
+        let data = try Data(contentsOf: url)
+        let info = try JSONDecoder().decode(Syntax.Info.self, from: data)
+        
+        guard let fileMap = info.fileMap else { return nil }
+        
+        self = fileMap
+    }
+    
+    
+    /// Loads Syntax.FileMap of the given files.
+    ///
+    /// - Parameters:
+    ///   - urls: File URLs of CotEditor's syntax definition files to load.
+    ///   - ignoresInvalidData: If `true`, just ignores invalid files and continues scanning, otherwise throws an `InvalidError`.
+    /// - Returns: Valid Syntax.FileMaps.
+    static func load(at urls: [URL], ignoresInvalidData: Bool = false) throws -> [String: Syntax.FileMap] {
+        
+        try urls.reduce(into: [:]) { maps, url in
+            let map: Syntax.FileMap
+            do {
+                map = try Syntax.FileMap(contentsOf: url) ?? .init()
+            } catch {
+                if ignoresInvalidData {
+                    return
+                } else {
+                    throw InvalidError(filename: url.lastPathComponent, underlyingError: error)
+                }
+            }
+            
+            let syntaxName = url.deletingPathExtension().lastPathComponent
+            maps[syntaxName] = map
+        }
+    }
+}
