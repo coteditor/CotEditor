@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -132,7 +132,7 @@ extension NSTextView: EditorCounter.Source { }
         let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
-        self.syntaxFileExtension = syntax?.extensions.first
+        self.syntaxFileExtension = syntax?.fileMap.extensions?.first
         self.syntaxName = syntaxName
         
         // use the encoding selected by the user in the open panel, if exists
@@ -1086,7 +1086,7 @@ extension NSTextView: EditorCounter.Source { }
         SyntaxManager.shared.noteRecentSetting(name: name)
         
         // update
-        self.syntaxFileExtension = syntax.extensions.first
+        self.syntaxFileExtension = syntax.fileMap.extensions?.first
         self.syntaxParser.update(syntax: syntax, name: name)
         self.syntaxName = name
         

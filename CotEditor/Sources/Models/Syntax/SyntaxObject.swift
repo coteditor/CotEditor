@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,21 +42,44 @@ import Syntax
     typealias Metadata = Syntax.Metadata
     
     
+    @Observable final class Highlights {
+        
+        var keywords: [Highlight] = []
+        var commands: [Highlight] = []
+        var types: [Highlight] = []
+        var attributes: [Highlight] = []
+        var variables: [Highlight] = []
+        var values: [Highlight] = []
+        var numbers: [Highlight] = []
+        var strings: [Highlight] = []
+        var characters: [Highlight] = []
+        var comments: [Highlight] = []
+        
+        
+        func values(for type: SyntaxType) -> [Syntax.Highlight] {
+            
+            switch type {
+                case .keywords: self.keywords.map(\.value)
+                case .commands: self.commands.map(\.value)
+                case .types: self.types.map(\.value)
+                case .attributes: self.attributes.map(\.value)
+                case .variables: self.variables.map(\.value)
+                case .values: self.values.map(\.value)
+                case .numbers: self.numbers.map(\.value)
+                case .strings: self.strings.map(\.value)
+                case .characters: self.characters.map(\.value)
+                case .comments: self.comments.map(\.value)
+            }
+        }
+    }
+    
+    
     var kind: Syntax.Kind = .general
     
-    var keywords: [Highlight] = []
-    var commands: [Highlight] = []
-    var types: [Highlight] = []
-    var attributes: [Highlight] = []
-    var variables: [Highlight] = []
-    var values: [Highlight] = []
-    var numbers: [Highlight] = []
-    var strings: [Highlight] = []
-    var characters: [Highlight] = []
-    var comments: [Highlight] = []
+    var highlights: Highlights = Highlights()
     
-    var commentDelimiters: Comment = Comment()
     var outlines: [Outline] = []
+    var commentDelimiters: Comment = Comment()
     var completions: [KeyString] = []
     
     var filenames: [KeyString] = []
@@ -64,23 +87,6 @@ import Syntax
     var interpreters: [KeyString] = []
     
     var metadata: Metadata = Metadata()
-    
-    
-    static func highlightKeyPath(for type: SyntaxType) -> KeyPath<SyntaxObject, [Highlight]> {
-        
-        switch type {
-            case .keywords: \.keywords
-            case .commands: \.commands
-            case .types: \.types
-            case .attributes: \.attributes
-            case .variables: \.variables
-            case .values: \.values
-            case .numbers: \.numbers
-            case .strings: \.strings
-            case .characters: \.characters
-            case .comments: \.comments
-        }
-    }
 }
 
 
@@ -108,24 +114,15 @@ extension SyntaxObject {
         
         self.kind = value.kind
         
-        self.keywords = value.keywords.map { .init(value: $0) }
-        self.commands = value.commands.map { .init(value: $0) }
-        self.types = value.types.map { .init(value: $0) }
-        self.attributes = value.attributes.map { .init(value: $0) }
-        self.variables = value.variables.map { .init(value: $0) }
-        self.values = value.values.map { .init(value: $0) }
-        self.numbers = value.numbers.map { .init(value: $0) }
-        self.strings = value.strings.map { .init(value: $0) }
-        self.characters = value.characters.map { .init(value: $0) }
-        self.comments = value.comments.map { .init(value: $0) }
+        self.highlights.update(with: value.highlights)
         
-        self.commentDelimiters = value.commentDelimiters
         self.outlines = value.outlines.map { .init(value: $0) }
+        self.commentDelimiters = value.commentDelimiters
         self.completions = value.completions.map { .init(value: $0) }
         
-        self.filenames = value.filenames.map { .init(value: $0) }
-        self.extensions = value.extensions.map { .init(value: $0) }
-        self.interpreters = value.interpreters.map { .init(value: $0) }
+        self.extensions = value.fileMap.extensions?.map { .init(value: $0) } ?? []
+        self.filenames = value.fileMap.filenames?.map { .init(value: $0) } ?? []
+        self.interpreters = value.fileMap.interpreters?.map { .init(value: $0) } ?? []
         
         self.metadata = value.metadata
     }
@@ -135,26 +132,46 @@ extension SyntaxObject {
     var value: Value {
         
         Value(kind: self.kind,
-              keywords: self.keywords.map(\.value),
-              commands: self.commands.map(\.value),
-              types: self.types.map(\.value),
-              attributes: self.attributes.map(\.value),
-              variables: self.variables.map(\.value),
-              values: self.values.map(\.value),
-              numbers: self.numbers.map(\.value),
-              strings: self.strings.map(\.value),
-              characters: self.characters.map(\.value),
-              comments: self.comments.map(\.value),
               
-              commentDelimiters: self.commentDelimiters,
+              fileMap: .init(
+                extensions: self.extensions.map(\.value),
+                filenames: self.filenames.map(\.value),
+                interpreters: self.interpreters.map(\.value)
+              ),
+              
+              highlights: SyntaxType.allCases.reduce(into: [:]) { value, type in
+                  value[type] = self.highlights.values(for: type)
+              },
+              
               outlines: self.outlines.map(\.value),
+              commentDelimiters: self.commentDelimiters,
               completions: self.completions.map(\.value),
               
-              filenames: self.filenames.map(\.value),
-              extensions: self.extensions.map(\.value),
-              interpreters: self.interpreters.map(\.value),
-              
               metadata: self.metadata)
+    }
+}
+
+
+private extension SyntaxObject.Highlights {
+    
+    typealias Value = [SyntaxType: [Syntax.Highlight]]
+    
+    
+    /// Updates the content with the given value.
+    ///
+    /// - Parameter value: The new value.
+    func update(with value: Value) {
+        
+        self.keywords = value[.keywords]?.map { .init(value: $0) } ?? []
+        self.commands = value[.commands]?.map { .init(value: $0) } ?? []
+        self.types = value[.types]?.map { .init(value: $0) } ?? []
+        self.attributes = value[.attributes]?.map { .init(value: $0) } ?? []
+        self.variables = value[.variables]?.map { .init(value: $0) } ?? []
+        self.values = value[.values]?.map { .init(value: $0) } ?? []
+        self.numbers = value[.numbers]?.map { .init(value: $0) } ?? []
+        self.strings = value[.strings]?.map { .init(value: $0) } ?? []
+        self.characters = value[.characters]?.map { .init(value: $0) } ?? []
+        self.comments = value[.comments]?.map { .init(value: $0) } ?? []
     }
 }
 

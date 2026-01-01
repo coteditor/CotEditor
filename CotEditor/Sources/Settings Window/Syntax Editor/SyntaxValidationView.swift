@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Syntax
 
 struct SyntaxValidationView: View {
     
@@ -87,10 +88,10 @@ struct SyntaxValidationView: View {
             Label {
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(alignment: .firstTextBaseline) {
-                        Text("\(self.error.type.label):", tableName: "SyntaxEditor")
+                        Text("\(self.error.scope.label):", tableName: "SyntaxEditor")
                             .fontWeight(.medium)
-                        Text(self.error.string)
-                            .help(self.error.string)
+                        Text(self.error.value)
+                            .help(self.error.value)
                             .lineLimit(1)
                     }
                     Text(self.error.localizedDescription)
@@ -139,13 +140,29 @@ extension SyntaxObject.Error.Code {
 }
 
 
+extension SyntaxObject.Error.Scope {
+    
+    var label: String {
+        
+        switch self {
+            case .highlight(let syntaxType):
+                syntaxType.label
+            case .outline:
+                SyntaxEditView.Pane.outline.label
+            case .blockComment:
+                SyntaxEditView.Pane.comments.label
+        }
+    }
+}
+
+
 // MARK: - Preview
 
 #Preview {
     let errors: [SyntaxObject.Error] = [
-        .init(.duplicated, type: \.values, string: "bb"),
-        .init(.regularExpression, type: \.outlines, string: "[]"),
-        .init(.blockComment, type: \.comments, string: "bb"),
+        .init(.duplicated, scope: .highlight(.values), value: "bb"),
+        .init(.regularExpression, scope: .outline, value: "[]"),
+        .init(.blockComment, scope: .blockComment, value: "bb"),
     ]
     
     return SyntaxValidationView(errors: errors)

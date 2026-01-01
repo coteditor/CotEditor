@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -358,7 +358,7 @@ final class DirectoryDocument: NSDocument {
         assert(parentNode.file.isDirectory)
         
         let name = String(localized: "Untitled", comment: "default filename for new creation")
-        let pathExtension = (try? SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]))?.extensions.first
+        let pathExtension = (try? SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]))?.fileMap.extensions?.first
         let fileURL = parentNode.file.fileURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
         
         var coordinationError: NSError?

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,8 +43,8 @@ extension Syntax: Codable {
         case characters
         case comments
         
-        case commentDelimiters
         case outlines = "outlineMenu"
+        case commentDelimiters
         case completions
         
         case filenames
@@ -66,24 +66,29 @@ extension Syntax: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         self.kind = try values.decodeIfPresent(Kind.self, forKey: .kind) ?? .general
-        self.keywords = try values.decodeIfPresent([Highlight].self, forKey: .keywords) ?? []
-        self.commands = try values.decodeIfPresent([Highlight].self, forKey: .commands) ?? []
-        self.types = try values.decodeIfPresent([Highlight].self, forKey: .types) ?? []
-        self.attributes = try values.decodeIfPresent([Highlight].self, forKey: .attributes) ?? []
-        self.variables = try values.decodeIfPresent([Highlight].self, forKey: .variables) ?? []
-        self.values = try values.decodeIfPresent([Highlight].self, forKey: .values) ?? []
-        self.numbers = try values.decodeIfPresent([Highlight].self, forKey: .numbers) ?? []
-        self.strings = try values.decodeIfPresent([Highlight].self, forKey: .strings) ?? []
-        self.characters = try values.decodeIfPresent([Highlight].self, forKey: .characters) ?? []
-        self.comments = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
         
-        self.commentDelimiters = try values.decodeIfPresent(Comment.self, forKey: .commentDelimiters) ?? .init()
+        var highlights: [SyntaxType: [Highlight]] = [:]
+        highlights[.keywords] = try values.decodeIfPresent([Highlight].self, forKey: .keywords) ?? []
+        highlights[.commands] = try values.decodeIfPresent([Highlight].self, forKey: .commands) ?? []
+        highlights[.types] = try values.decodeIfPresent([Highlight].self, forKey: .types) ?? []
+        highlights[.attributes] = try values.decodeIfPresent([Highlight].self, forKey: .attributes) ?? []
+        highlights[.variables] = try values.decodeIfPresent([Highlight].self, forKey: .variables) ?? []
+        highlights[.values] = try values.decodeIfPresent([Highlight].self, forKey: .values) ?? []
+        highlights[.numbers] = try values.decodeIfPresent([Highlight].self, forKey: .numbers) ?? []
+        highlights[.strings] = try values.decodeIfPresent([Highlight].self, forKey: .strings) ?? []
+        highlights[.characters] = try values.decodeIfPresent([Highlight].self, forKey: .characters) ?? []
+        highlights[.comments] = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
+        self.highlights = highlights
+        
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
+        self.commentDelimiters = try values.decodeIfPresent(Comment.self, forKey: .commentDelimiters) ?? .init()
         self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.compactMap(\.keyString) ?? []
         
-        self.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.compactMap(\.keyString) ?? []
-        self.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.compactMap(\.keyString) ?? []
-        self.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.compactMap(\.keyString) ?? []
+        var fileMap = FileMap()
+        fileMap.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.compactMap(\.keyString) ?? []
+        fileMap.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.compactMap(\.keyString) ?? []
+        fileMap.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.compactMap(\.keyString) ?? []
+        self.fileMap = fileMap
         
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
     }
@@ -95,24 +100,24 @@ extension Syntax: Codable {
         
         try container.encode(self.kind, forKey: .kind)
         
-        try container.encode(self.keywords, forKey: .keywords)
-        try container.encode(self.commands, forKey: .commands)
-        try container.encode(self.types, forKey: .types)
-        try container.encode(self.attributes, forKey: .attributes)
-        try container.encode(self.variables, forKey: .variables)
-        try container.encode(self.values, forKey: .values)
-        try container.encode(self.numbers, forKey: .numbers)
-        try container.encode(self.strings, forKey: .strings)
-        try container.encode(self.characters, forKey: .characters)
-        try container.encode(self.comments, forKey: .comments)
+        try container.encode(self.highlights[.keywords], forKey: .keywords)
+        try container.encode(self.highlights[.commands], forKey: .commands)
+        try container.encode(self.highlights[.types], forKey: .types)
+        try container.encode(self.highlights[.attributes], forKey: .attributes)
+        try container.encode(self.highlights[.variables], forKey: .variables)
+        try container.encode(self.highlights[.values], forKey: .values)
+        try container.encode(self.highlights[.numbers], forKey: .numbers)
+        try container.encode(self.highlights[.strings], forKey: .strings)
+        try container.encode(self.highlights[.characters], forKey: .characters)
+        try container.encode(self.highlights[.comments], forKey: .comments)
         
-        try container.encode(self.commentDelimiters, forKey: .commentDelimiters)
         try container.encode(self.outlines, forKey: .outlines)
+        try container.encode(self.commentDelimiters, forKey: .commentDelimiters)
         try container.encode(self.completions.map(KeyString.init(keyString:)), forKey: .completions)
         
-        try container.encode(self.filenames.map(KeyString.init(keyString:)), forKey: .filenames)
-        try container.encode(self.extensions.map(KeyString.init(keyString:)), forKey: .extensions)
-        try container.encode(self.interpreters.map(KeyString.init(keyString:)), forKey: .interpreters)
+        try container.encode(self.fileMap.extensions?.map(KeyString.init(keyString:)), forKey: .extensions)
+        try container.encode(self.fileMap.filenames?.map(KeyString.init(keyString:)), forKey: .filenames)
+        try container.encode(self.fileMap.interpreters?.map(KeyString.init(keyString:)), forKey: .interpreters)
         
         try container.encode(self.metadata, forKey: .metadata)
     }
