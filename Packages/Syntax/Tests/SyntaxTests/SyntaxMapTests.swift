@@ -1,14 +1,15 @@
 //
 //  SyntaxMapTests.swift
+//  SyntaxTests
 //
-//  SyntaxMap
+//  CotEditor
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2020-02-18.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,22 +26,22 @@
 
 import Testing
 import Foundation
-@testable import SyntaxMap
+@testable import Syntax
 
 struct SyntaxMapTests {
     
     @Test func testMapLoad() throws {
         
         let urls = try #require(Bundle.module.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
-        let maps = try SyntaxMap.loadMaps(at: urls)
+        let maps = try Syntax.FileMap.loadMaps(at: urls)
         
         #expect(maps == [
-            "Apache": SyntaxMap(extensions: ["conf"],
-                                filenames: [".htaccess"],
-                                interpreters: []),
-            "Python": SyntaxMap(extensions: ["py"],
-                                filenames: [],
-                                interpreters: ["python", "python2", "python3"]),
+            "Apache": Syntax.FileMap(extensions: ["conf"],
+                                     filenames: [".htaccess"],
+                                     interpreters: []),
+            "Python": Syntax.FileMap(extensions: ["py"],
+                                     filenames: [],
+                                     interpreters: ["python", "python2", "python3"]),
         ])
     }
 }

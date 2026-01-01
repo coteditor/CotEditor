@@ -19,7 +19,6 @@ let package = Package(
             "LineSort",
             "SemanticVersioning",
             "StringUtils",
-            "Syntax",
             "TextClipping",
             "TextEditing",
             "TextFind",
@@ -36,7 +35,6 @@ let package = Package(
         .library(name: "LineSort", targets: ["LineSort"]),
         .library(name: "SemanticVersioning", targets: ["SemanticVersioning"]),
         .library(name: "StringUtils", targets: ["StringUtils"]),
-        .library(name: "Syntax", targets: ["Syntax"]),
         .library(name: "TextClipping", targets: ["TextClipping"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
         .library(name: "TextFind", targets: ["TextFind"]),
@@ -71,9 +69,6 @@ let package = Package(
         
         .target(name: "StringUtils", resources: [.process("Resources")]),
         .testTarget(name: "StringUtilsTests", dependencies: ["StringUtils"]),
-        
-        .target(name: "Syntax", dependencies: ["StringUtils", "ValueRange"], resources: [.process("Resources")]),
-        .testTarget(name: "SyntaxTests", dependencies: ["Syntax"]),
         
         .target(name: "TextClipping"),
         .testTarget(name: "TextClippingTests", dependencies: ["TextClipping"], resources: [.process("Resources")]),

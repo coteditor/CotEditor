@@ -1,5 +1,6 @@
 //
 //  String+Constants.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com

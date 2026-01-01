@@ -1,14 +1,15 @@
 //
 //  SyntaxMap.swift
+//  Syntax
 //
-//  SyntaxMap
+//  CotEditor
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2024-02-21.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +27,7 @@
 public import Foundation
 import Yams
 
-public struct SyntaxMap: Equatable, Sendable, Codable {
+public extension Syntax.FileMap {
     
     struct InvalidError: Error {
         
@@ -34,26 +35,22 @@ public struct SyntaxMap: Equatable, Sendable, Codable {
         var underlyingError: any Error
     }
     
-    public var extensions: [String]
-    public var filenames: [String]
-    public var interpreters: [String]
-
     
-    /// Loads SyntaxMap of the given files.
+    /// Loads Syntax.FileMap of the given files.
     ///
     /// - Parameters:
     ///   - urls: File URLs of CotEditor's syntax definition files to load.
     ///   - ignoresInvalidData: If `true`, just ignores invalid files and continues scanning, otherwise throws an `InvalidError`.
-    /// - Returns: Valid SyntaxMaps.
-    public static func loadMaps(at urls: [URL], ignoresInvalidData: Bool = false) throws -> [String: SyntaxMap] {
+    /// - Returns: Valid Syntax.FileMaps.
+    static func loadMaps(at urls: [URL], ignoresInvalidData: Bool = false) throws -> [String: Syntax.FileMap] {
         
         let decoder = YAMLDecoder()
         
         return try urls.reduce(into: [:]) { map, url in
-            let syntax: Syntax
+            let syntax: MiniSyntax
             do {
                 let data = try Data(contentsOf: url)
-                syntax = try decoder.decode(Syntax.self, from: data)
+                syntax = try decoder.decode(MiniSyntax.self, from: data)
             } catch {
                 if ignoresInvalidData {
                     return
@@ -64,7 +61,7 @@ public struct SyntaxMap: Equatable, Sendable, Codable {
             
             let syntaxName = url.deletingPathExtension().lastPathComponent
             
-            map[syntaxName] = SyntaxMap(
+            map[syntaxName] = Syntax.FileMap(
                 extensions: syntax.extensions?.compactMap(\.keyString) ?? [],
                 filenames: syntax.filenames?.compactMap(\.keyString) ?? [],
                 interpreters: syntax.interpreters?.compactMap(\.keyString) ?? []
@@ -74,7 +71,7 @@ public struct SyntaxMap: Equatable, Sendable, Codable {
 }
 
 
-private struct Syntax: Codable {
+private struct MiniSyntax: Codable {
     
     struct KeyString: Codable {
         

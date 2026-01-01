@@ -1,14 +1,15 @@
 //
 //  Command.swift
+//  Syntax
 //
-//  SyntaxMap
+//  CotEditor
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2020-02-18.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +26,7 @@
 
 import Foundation
 import ArgumentParser
-import SyntaxMap
+import Syntax
 
 @main
 struct Command: ParsableCommand {
@@ -41,7 +42,7 @@ struct Command: ParsableCommand {
         
         let urls = try FileManager.default.contentsOfDirectory(at: self.input, includingPropertiesForKeys: nil)
             .filter { $0.pathExtension == "yml" }
-        let syntaxMap = try SyntaxMap.loadMaps(at: urls)
+        let syntaxMap = try Syntax.FileMap.loadMaps(at: urls)
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
