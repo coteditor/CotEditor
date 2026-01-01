@@ -356,15 +356,26 @@ private struct LicenseView: View {
             
             ItemView(name: "Yams",
                      url: "https://github.com/jpsim/Yams",
-                     license: .mit(copyright: "© 2016 JP Simard"))
+                     copyright: "© 2016 JP Simard",
+                     license: .mit)
             ItemView(name: "WFColorCode",
                      url: "https://github.com/1024jp/WFColorCode",
-                     license: .mit(copyright: "© 2014-2024 1024jp"))
+                     copyright: "© 2014-2024 1024jp",
+                     license: .mit)
             
             if self.hasSparkle {
                 ItemView(name: "Sparkle",
                          url: "https://sparkle-project.org",
-                         license: .custom(license: "MIT license", filename: "Sparkle"),
+                         copyright: """
+                                    © 2006-2013 Andy Matuschak.
+                                    © 2009-2013 Elgato Systems GmbH.
+                                    © 2011-2014 Kornel Lesiński.
+                                    © 2015-2017 Mayur Pawashe.
+                                    © 2014 C.W. Betts.
+                                    © 2014 Petroules Corporation.
+                                    © 2014 Big Nerd Ranch.
+                                    """,
+                         license: .custom("Sparkle"),
                          description: String(localized: "only on non-AppStore version", table: "About",
                                              comment: "annotation for the Sparkle framework license"))
             }
@@ -378,6 +389,7 @@ private struct LicenseView: View {
         
         var name: String
         var url: String
+        var copyright: String
         var license: License
         var description: String?
         
@@ -400,13 +412,14 @@ private struct LicenseView: View {
                     }
                 }
                 
-                Text(self.license.name)
-                    .fontWeight(.medium)
-                    .opacity(0.8)
-                Text(self.content)
-                    .foregroundStyle(.secondary)
-                    .environment(\.locale, Locale(languageCode: .english))
-                    .environment(\.layoutDirection, .leftToRight)
+                Text(self.copyright)
+                
+                DisclosureGroup(self.license.name ?? String(localized: "License", table: "About")) {
+                    Text(self.content)
+                        .foregroundStyle(.secondary)
+                        .environment(\.locale, Locale(languageCode: .english))
+                        .environment(\.layoutDirection, .leftToRight)
+                }
             }
             .onAppear {
                 guard self.content.isEmpty else { return }
