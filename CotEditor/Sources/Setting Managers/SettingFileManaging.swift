@@ -187,7 +187,7 @@ extension SettingFileManaging {
     
     /// Creates a setting name from a file URL (exists or not).
     ///
-    /// - Parameters
+    /// - Parameters:
     ///   - fileURL: The file URL.
     /// - Returns: The setting name.
     nonisolated static func settingName(from fileURL: URL) -> String {

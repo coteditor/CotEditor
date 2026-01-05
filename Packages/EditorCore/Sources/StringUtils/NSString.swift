@@ -240,7 +240,7 @@ public extension NSString {
     
     /// Returns a safe range that avoids ending between a CRLF line ending pair.
     ///
-    /// - Parameters
+    /// - Parameters:
     ///   - range: The original character range in UTF-16 code units.
     /// - Returns: A range adjusted to avoid splitting a CRLF line ending, or the original range if no adjustment is needed.
     final func safeEndingRange(for range: NSRange) -> NSRange {
