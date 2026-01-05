@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -89,7 +89,7 @@ struct SyntaxHighlightEditView: View {
                             if wrappedItem.value.isRegularExpression, (try? NSRegularExpression(pattern: wrappedItem.value.begin)) == nil {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .symbolRenderingMode(.multicolor)
-                                    .help(SyntaxObject.Error.Code.regularExpression.localizedDescription)
+                                    .help(Syntax.Error.Code.regularExpression.localizedDescription)
                             }
                         }
                     }
@@ -105,7 +105,7 @@ struct SyntaxHighlightEditView: View {
                             if let end = wrappedItem.value.end, wrappedItem.value.isRegularExpression, (try? NSRegularExpression(pattern: end)) == nil {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .symbolRenderingMode(.multicolor)
-                                    .help(SyntaxObject.Error.Code.regularExpression.localizedDescription)
+                                    .help(Syntax.Error.Code.regularExpression.localizedDescription)
                             }
                         }
                     }

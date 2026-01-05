@@ -1,5 +1,14 @@
 # Change Log
 
+7.0.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [trivial] Adjust the About view.
+
+
+
 6.2.2 (unreleased)
 --------------------------
 

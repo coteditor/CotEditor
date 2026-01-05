@@ -4424,7 +4424,7 @@
         }
       }
     },
-    "SyntaxObject.Error.Code.blockComment" : {
+    "Syntax.Error.Code.blockComment" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4525,7 +4525,7 @@
         }
       }
     },
-    "SyntaxObject.Error.Code.duplicated" : {
+    "Syntax.Error.Code.duplicated" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4626,7 +4626,7 @@
         }
       }
     },
-    "SyntaxObject.Error.Code.regularExpression" : {
+    "Syntax.Error.Code.regularExpression" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

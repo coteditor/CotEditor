@@ -19,7 +19,6 @@ let package = Package(
             "LineSort",
             "SemanticVersioning",
             "StringUtils",
-            "Syntax",
             "TextClipping",
             "TextEditing",
             "TextFind",
@@ -36,14 +35,13 @@ let package = Package(
         .library(name: "LineSort", targets: ["LineSort"]),
         .library(name: "SemanticVersioning", targets: ["SemanticVersioning"]),
         .library(name: "StringUtils", targets: ["StringUtils"]),
-        .library(name: "Syntax", targets: ["Syntax"]),
         .library(name: "TextClipping", targets: ["TextClipping"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
         .library(name: "TextFind", targets: ["TextFind"]),
         .library(name: "URLUtils", targets: ["URLUtils"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),
@@ -72,13 +70,10 @@ let package = Package(
         .target(name: "StringUtils", resources: [.process("Resources")]),
         .testTarget(name: "StringUtilsTests", dependencies: ["StringUtils"]),
         
-        .target(name: "Syntax", dependencies: ["StringUtils", "ValueRange"], resources: [.process("Resources")]),
-        .testTarget(name: "SyntaxTests", dependencies: ["Syntax"]),
-        
         .target(name: "TextClipping"),
         .testTarget(name: "TextClippingTests", dependencies: ["TextClipping"], resources: [.process("Resources")]),
         
-        .target(name: "TextEditing", dependencies: ["StringUtils", "Syntax"]),
+        .target(name: "TextEditing", dependencies: ["StringUtils"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),
         
         .target(name: "TextFind", dependencies: ["StringUtils", "ValueRange"]),

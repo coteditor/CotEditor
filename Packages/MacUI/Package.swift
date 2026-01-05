@@ -20,7 +20,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "EditorCore", path: "../EditorCore"),
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 59, 0)),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
     ],
     targets: [
         .target(name: "ControlUI", dependencies: ["EditorCore"], swiftSettings: [

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,8 +54,7 @@ actor SyntaxTests {
     @Test func validateAllSyntaxes() {
         
         for (name, syntax) in self.syntaxes {
-            let model = SyntaxObject(value: syntax)
-            let errors = model.validate()
+            let errors = syntax.validate()
             
             #expect(errors.isEmpty)
             for error in errors {
@@ -73,8 +72,7 @@ actor SyntaxTests {
             #expect(syntax.kind == sanitized.kind)
             
             for type in SyntaxType.allCases {
-                let keyPath = Syntax.highlightKeyPath(for: type)
-                #expect(syntax[keyPath: keyPath] == sanitized[keyPath: keyPath],
+                #expect(syntax.highlights[type] == sanitized.highlights[type],
                         ".\(type.rawValue) of “\(name)” is not sanitized in the latest manner")
             }
             
@@ -84,11 +82,11 @@ actor SyntaxTests {
                     ".completions of “\(name)” is not sanitized in the latest manner")
             #expect(syntax.commentDelimiters == sanitized.commentDelimiters,
                     ".commentDelimiters of “\(name)” is not sanitized in the latest manner")
-            #expect(syntax.extensions == sanitized.extensions,
+            #expect(syntax.fileMap.extensions == sanitized.fileMap.extensions,
                     ".extensions of “\(name)” is not sanitized in the latest manner")
-            #expect(syntax.filenames == sanitized.filenames,
+            #expect(syntax.fileMap.filenames == sanitized.fileMap.filenames,
                     ".filenames of “\(name)” is not sanitized in the latest manner")
-            #expect(syntax.interpreters == sanitized.interpreters,
+            #expect(syntax.fileMap.interpreters == sanitized.fileMap.interpreters,
                     ".interpreters of “\(name)” is not sanitized in the latest manner")
             #expect(syntax.metadata == sanitized.metadata,
                     ".metadata of “\(name)” is not sanitized in the latest manner")

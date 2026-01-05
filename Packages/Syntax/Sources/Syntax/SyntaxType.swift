@@ -1,14 +1,15 @@
 //
-//  String+Constants.swift
+//  SyntaxType.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-06-25.
+//  Created by 1024jp on 2026-01-01.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,8 +24,16 @@
 //  limitations under the License.
 //
 
-extension String {
+public enum SyntaxType: String, Sendable, CaseIterable {
     
-    /// Constant string representing a separator.
-    static let separator = "-"
+    case keywords
+    case commands
+    case types
+    case attributes
+    case variables
+    case values
+    case numbers
+    case strings
+    case characters
+    case comments
 }

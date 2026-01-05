@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ import Yams
 import Defaults
 import StringUtils
 import Syntax
-import SyntaxMap
 import URLUtils
 
 enum SyntaxName {
@@ -47,7 +46,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     typealias Setting = Syntax
     
     typealias SettingName = String
-    typealias MappingTable = [KeyPath<SyntaxMap, [String]>: [String: [SettingName]]]
+    typealias MappingTable = [KeyPath<Syntax.FileMap, [String]?>: [String: [SettingName]]]
     
     
     // MARK: Public Properties
@@ -68,7 +67,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     
     // MARK: Private Properties
     
-    private let bundledMaps: [SettingName: SyntaxMap]
+    private let bundledMaps: [SettingName: Syntax.FileMap]
     @Atomic private var mappingTable: MappingTable = [\.extensions: [:],
                                                       \.filenames: [:],
                                                       \.interpreters: [:]]
@@ -81,7 +80,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         // load bundled syntax list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
-        self.bundledMaps = try! JSONDecoder().decode([SettingName: SyntaxMap].self, from: data)
+        self.bundledMaps = try! JSONDecoder().decode([SettingName: Syntax.FileMap].self, from: data)
         self.bundledSettingNames = self.bundledMaps.keys.sorted(using: .localizedStandard)
         
         // sanitize user setting file extensions
@@ -312,7 +311,7 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
         let sortedSettingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames
         
         // load mapping definitions from syntax files in the user domain
-        let userMaps = try! SyntaxMap.loadMaps(at: self.userSettingFileURLs, ignoresInvalidData: true)
+        let userMaps = try! Syntax.FileMap.loadMaps(at: self.userSettingFileURLs, ignoresInvalidData: true)
         let maps = self.bundledMaps.merging(userMaps) { _, new in new }
         
         // update file mapping table

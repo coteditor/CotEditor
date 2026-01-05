@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2025 1024jp
+//  © 2019-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@
 
 import Foundation
 import Testing
-import Syntax
 import struct StringUtils.Pair
 @testable import TextEditing
 
@@ -277,7 +276,13 @@ struct StringCommentingTests {
 /// TextView mock
 private struct Editor {
     
-    private let delimiters = Syntax.Comment(inline: "//", blockBegin: "<-", blockEnd: "->")
+    struct Delimiters: CommentDelimiters {
+        
+        var inline: String?
+        var block: Pair<String>?
+    }
+    
+    private let delimiters = Delimiters(inline: "//", block: Pair("<-", "->"))
     
     var string: String
     var selectedRanges: [NSRange] = []

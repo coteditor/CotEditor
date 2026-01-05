@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ struct SyntaxEditView: View {
     }
     
     
-    fileprivate enum Pane {
+    enum Pane {
         
         case keywords
         case commands
@@ -87,7 +87,7 @@ struct SyntaxEditView: View {
     @State private var message: String?
     
     @State private var pane: Pane = .keywords
-    @State private var errors: [SyntaxObject.Error] = []
+    @State private var errors: [Syntax.Error] = []
     @State private var error: (any Error)?
     
     @FocusState private var isNameFieldFocused: Bool
@@ -185,7 +185,7 @@ struct SyntaxEditView: View {
             self.name = self.originalName ?? ""
         }
         .onChange(of: self.pane) {
-            self.errors = self.syntax.validate()
+            self.errors = self.syntax.value.validate()
         }
         .alert(error: $error)
         .frame(minWidth: 400, idealWidth: 680, minHeight: 525, idealHeight: 525)
@@ -197,25 +197,25 @@ struct SyntaxEditView: View {
         
         switch self.pane {
             case .keywords:
-                SyntaxHighlightEditView(items: $syntax.keywords)
+                SyntaxHighlightEditView(items: $syntax.highlights.keywords)
             case .commands:
-                SyntaxHighlightEditView(items: $syntax.commands)
+                SyntaxHighlightEditView(items: $syntax.highlights.commands)
             case .types:
-                SyntaxHighlightEditView(items: $syntax.types)
+                SyntaxHighlightEditView(items: $syntax.highlights.types)
             case .attributes:
-                SyntaxHighlightEditView(items: $syntax.attributes)
+                SyntaxHighlightEditView(items: $syntax.highlights.attributes)
             case .variables:
-                SyntaxHighlightEditView(items: $syntax.variables)
+                SyntaxHighlightEditView(items: $syntax.highlights.variables)
             case .values:
-                SyntaxHighlightEditView(items: $syntax.values)
+                SyntaxHighlightEditView(items: $syntax.highlights.values)
             case .numbers:
-                SyntaxHighlightEditView(items: $syntax.numbers)
+                SyntaxHighlightEditView(items: $syntax.highlights.numbers)
             case .strings:
-                SyntaxHighlightEditView(items: $syntax.strings)
+                SyntaxHighlightEditView(items: $syntax.highlights.strings)
             case .characters:
-                SyntaxHighlightEditView(items: $syntax.characters)
+                SyntaxHighlightEditView(items: $syntax.highlights.characters)
             case .comments:
-                SyntaxCommentEditView(comment: $syntax.commentDelimiters, highlights: $syntax.comments)
+                SyntaxCommentEditView(comment: $syntax.commentDelimiters, highlights: $syntax.highlights.comments)
             case .outline:
                 SyntaxOutlineEditView(items: $syntax.outlines)
             case .completion:
@@ -246,7 +246,7 @@ struct SyntaxEditView: View {
             return
         }
         
-        self.errors = self.syntax.validate()
+        self.errors = self.syntax.value.validate()
         if !self.errors.isEmpty {
             self.pane = .validation
             NSSound.beep()
@@ -273,7 +273,7 @@ struct SyntaxEditView: View {
         else { return }
         
         self.syntax.update(with: syntax)
-        self.errors = self.syntax.validate()
+        self.errors = self.syntax.value.validate()
     }
     
     
@@ -298,37 +298,43 @@ struct SyntaxEditView: View {
 }
 
 
-private extension SyntaxEditView.Pane {
+extension SyntaxEditView.Pane {
     
     /// The localized label.
     var label: String {
         
         switch self {
             case .keywords:
-                (\SyntaxObject.keywords).label
+                SyntaxType.keywords.label
             case .commands:
-                (\SyntaxObject.commands).label
+                SyntaxType.commands.label
             case .types:
-                (\SyntaxObject.types).label
+                SyntaxType.types.label
             case .attributes:
-                (\SyntaxObject.attributes).label
+                SyntaxType.attributes.label
             case .variables:
-                (\SyntaxObject.variables).label
+                SyntaxType.variables.label
             case .values:
-                (\SyntaxObject.values).label
+                SyntaxType.values.label
             case .numbers:
-                (\SyntaxObject.numbers).label
+                SyntaxType.numbers.label
             case .strings:
-                (\SyntaxObject.strings).label
+                SyntaxType.strings.label
             case .characters:
-                (\SyntaxObject.characters).label
+                SyntaxType.characters.label
             case .comments:
-                (\SyntaxObject.comments).label
+                SyntaxType.comments.label
                 
             case .outline:
-                (\SyntaxObject.outlines).label
+                String(localized: "Syntax.key.outlines.label",
+                       defaultValue: "Outline",
+                       table: "SyntaxEditor",
+                       comment: "syntax definition type")
             case .completion:
-                (\SyntaxObject.completions).label
+                String(localized: "Syntax.key.completions.label",
+                       defaultValue: "Completion",
+                       table: "SyntaxEditor",
+                       comment: "syntax definition type")
             case .fileMapping:
                 String(localized: "File Mapping",
                        table: "SyntaxEditor",
@@ -342,74 +348,6 @@ private extension SyntaxEditView.Pane {
                 String(localized: "Validation",
                        table: "SyntaxEditor",
                        comment: "menu item in sidebar")
-        }
-    }
-    
-    
-    private var keyPath: PartialKeyPath<SyntaxObject>? {
-        
-        switch self {
-            case .keywords: \.keywords
-            case .commands: \.commands
-            case .types: \.types
-            case .attributes: \.attributes
-            case .variables: \.variables
-            case .values: \.variables
-            case .numbers: \.numbers
-            case .strings: \.strings
-            case .characters: \.characters
-            case .comments: \.comments
-                
-            case .outline: \.outlines
-            case .completion: \.completions
-            default: nil
-        }
-    }
-}
-
-
-extension PartialKeyPath<SyntaxObject> {
-    
-    /// The localized label for the root definition keys.
-    ///
-    /// Not all key paths are localized.
-    var label: String {
-        
-        switch self {
-            case \.keywords:
-                SyntaxType.keywords.label
-            case \.commands:
-                SyntaxType.commands.label
-            case \.types:
-                SyntaxType.types.label
-            case \.attributes:
-                SyntaxType.attributes.label
-            case \.variables:
-                SyntaxType.variables.label
-            case \.values:
-                SyntaxType.values.label
-            case \.numbers:
-                SyntaxType.numbers.label
-            case \.strings:
-                SyntaxType.strings.label
-            case \.characters:
-                SyntaxType.characters.label
-            case \.comments, \.commentDelimiters:
-                SyntaxType.comments.label
-                
-            case \.outlines:
-                String(localized: "Syntax.key.outlines.label",
-                       defaultValue: "Outline",
-                       table: "SyntaxEditor",
-                       comment: "syntax definition type")
-            case \.completions:
-                String(localized: "Syntax.key.completions.label",
-                       defaultValue: "Completion",
-                       table: "SyntaxEditor",
-                       comment: "syntax definition type")
-                
-            default:
-                "\(self)"
         }
     }
 }
