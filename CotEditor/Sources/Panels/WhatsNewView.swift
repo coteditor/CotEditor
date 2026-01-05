@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,6 +30,9 @@ import SemanticVersioning
 struct WhatsNewView: View {
     
     @Environment(\.dismiss) private var dismiss
+    
+    @Namespace private var namespace
+    @FocusState private var isContinueButtonFocused: Bool
     
     @State private var isPrerelease: Bool = false
     
@@ -121,6 +124,8 @@ struct WhatsNewView: View {
                     Text("Continue", tableName: "WhatsNew")
                         .frame(minWidth: 120)
                 }
+                .focused($isContinueButtonFocused)  // workaround: .prefersDefaultFocus(in:) doesn't work (2026-01, macOS 26).
+                .prefersDefaultFocus(true, in: self.namespace)
                 .keyboardShortcut(.defaultAction)
                 .modifier { content in
                     if #available(macOS 26, *) {
@@ -134,10 +139,12 @@ struct WhatsNewView: View {
             .controlSize(isLiquidGlass ? .extraLarge : .large)
         }
         .onAppear {
+            self.isContinueButtonFocused = true
             if let version = Bundle.main.version, version < NewFeature.version {
                 self.isPrerelease = true
             }
         }
+        .focusScope(self.namespace)
         .scenePadding()
         .frame(width: 480)
         .background {
