@@ -1,5 +1,5 @@
 //
-//  SyntaxTests.swift
+//  BundledSyntaxTests.swift
 //  Tests
 //
 //  CotEditor
@@ -31,9 +31,9 @@ import Syntax
 import StringUtils
 @testable import CotEditor
 
-actor SyntaxTests {
+actor BundledSyntaxTests {
     
-    private var syntaxes: [String: Syntax] = [:]
+    private let syntaxes: [String: Syntax]
     
     
     init() throws {
