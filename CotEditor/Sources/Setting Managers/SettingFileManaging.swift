@@ -73,7 +73,7 @@ extension URL {
 
 protocol SettingFileManaging: AnyObject, Sendable {
     
-    associatedtype Setting
+    associatedtype Setting: Sendable
     
     
     /// The directory name in both Application Support and bundled Resources.
