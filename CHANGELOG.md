@@ -12,6 +12,11 @@
 6.2.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Chinese (Hong Kong) localization (Thanks to changanmoon!).
+
+
 ### Improvements
 
 - Update the C++ syntax to include .cu and .cuh filename extensions.
