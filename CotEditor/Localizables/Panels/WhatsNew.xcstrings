@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "Beta"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
+          }
         }
       }
     },
@@ -183,6 +189,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繼續"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "繼續"
@@ -288,6 +300,12 @@
             "state" : "translated",
             "value" : "現在您可以直接從檔案瀏覽器，於目前視窗中開啟替身與符號連結所指向的原始文件。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在可以直接從檔案瀏覽器在現用視窗中開啟替身與符號連結背後的原始文件。"
+          }
         }
       }
     },
@@ -388,6 +406,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更輕鬆存取替身"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取用替身更加輕鬆"
           }
         }
       }
@@ -490,6 +514,12 @@
             "state" : "translated",
             "value" : "*若原始項目為檔案夾，則會在新視窗中開啟。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*如原始項目是資料夾，它會將在新視窗中開啟。"
+          }
         }
       }
     },
@@ -590,6 +620,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "可從「檔案」選單匯出與匯入您所有的CotEditor設定、自訂語法、主題與多重取代定義，讓您能輕鬆將使用環境轉移至另一台Mac。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從「檔案」選單中輸出與輸入所有CotEditor設定、自訂語法、主題與多重取代定義，輕鬆將你的環境移至另一台Mac。"
           }
         }
       }
@@ -692,6 +728,12 @@
             "state" : "translated",
             "value" : "協助您遷移設定"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "助你無縫遷移資料"
+          }
         }
       }
     },
@@ -792,6 +834,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "匯入以Tab分隔的搜尋與取代文字配對來建立取代定義。非常適合用於大型詞彙表。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入以定位符號分隔的搜尋與取代文字對，用來製作取代定義。此功能相當適合大型詞彙表。"
           }
         }
       }
@@ -894,6 +942,12 @@
             "state" : "translated",
             "value" : "從定位符號分隔值批次建立取代規則"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從TSV批次建立取代規則"
+          }
         }
       }
     },
@@ -994,6 +1048,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "內建使用指南現在提供更清晰易懂的說明、更豐富的內容，並採用與最新macOS風格一致的嶄新版面設計。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內置用户指南現在提供了更清晰的解釋、更豐富的內容，還有與最新的macOS保持一致的全新佈局。"
           }
         }
       }
@@ -1096,6 +1156,12 @@
             "state" : "translated",
             "value" : "內建使用指南全新改版"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內置指南全新升級"
+          }
         }
       }
     },
@@ -1196,6 +1262,12 @@
             "state" : "translated",
             "value" : "版本附註"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本備註"
+          }
         }
       }
     },
@@ -1287,6 +1359,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@的新功能"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor %@的新功能"

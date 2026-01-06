@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "定位符號寬度："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定位符號間隔闊度："
+          }
         }
       }
     }

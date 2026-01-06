@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "自動"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動"
+          }
         }
       }
     },
@@ -187,6 +193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以唯讀模式開啟"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以唯讀方式開啟"
           }
         }
       }
@@ -283,6 +295,12 @@
             "state" : "translated",
             "value" : "顯示隱藏檔案"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示隱藏檔案"
+          }
         }
       }
     },
@@ -373,6 +391,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字編碼："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字編碼："

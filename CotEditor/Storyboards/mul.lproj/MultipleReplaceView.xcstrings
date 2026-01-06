@@ -100,6 +100,12 @@
             "state" : "translated",
             "value" : "所選範圍"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在所選範圍中"
+          }
         }
       }
     },
@@ -201,6 +207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用這些規則從上至下連續進行取代:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用以下規則由上至下連續進行取代："
           }
         }
       }
@@ -304,6 +316,12 @@
             "state" : "translated",
             "value" : "高亮所有匹配取代規則的文字。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重點標示所有符合取代規則的項目。"
+          }
         }
       }
     },
@@ -402,6 +420,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -508,6 +532,12 @@
             "state" : "translated",
             "value" : "忽略大小寫"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略大小寫"
+          }
         }
       }
     },
@@ -609,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無效的規則將被跳過。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無效的規則會被略過。"
           }
         }
       }
@@ -725,6 +761,12 @@
             "state" : "translated",
             "value" : "進階選項"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進階選項"
+          }
         }
       }
     },
@@ -823,6 +865,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示進階選項"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示進階選項"
@@ -929,6 +977,12 @@
             "state" : "translated",
             "value" : "選中以忽略大小寫。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇以忽略尋找中的字元大小寫。"
+          }
         }
       }
     },
@@ -1031,6 +1085,12 @@
             "state" : "translated",
             "value" : "全部高亮"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部重點標示"
+          }
         }
       }
     },
@@ -1129,6 +1189,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟用"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "啟用"
@@ -1235,6 +1301,12 @@
             "state" : "translated",
             "value" : "全部取代"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部取代"
+          }
         }
       }
     },
@@ -1337,6 +1409,12 @@
             "state" : "translated",
             "value" : "選中以啟用常規表示式尋找。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇以使用常規表示式尋找。"
+          }
         }
       }
     },
@@ -1435,6 +1513,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取代"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取代"
@@ -1541,6 +1625,12 @@
             "state" : "translated",
             "value" : "依據取代規則取代所有匹配文字。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "根據取代規則取代所有符合的項目。"
+          }
         }
       }
     },
@@ -1642,6 +1732,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選中僅在選擇範圍內進行文字尋找。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇以只在所選範圍中取代文字。"
           }
         }
       }
@@ -1745,6 +1841,12 @@
             "state" : "translated",
             "value" : "勾選此項以套用該取代規則。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇以使用此取代規則。"
+          }
         }
       }
     },
@@ -1843,6 +1945,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "描述"
@@ -1949,6 +2057,12 @@
             "state" : "translated",
             "value" : "RE"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
         }
       }
     },
@@ -2051,6 +2165,12 @@
             "state" : "translated",
             "value" : "常規表示式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常規表示式"
+          }
         }
       }
     },
@@ -2149,6 +2269,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找"

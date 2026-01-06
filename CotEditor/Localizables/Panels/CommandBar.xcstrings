@@ -399,6 +399,24 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "找到%lld個指令"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "未找到指令"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -490,6 +508,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "指令"
@@ -588,6 +612,12 @@
             "state" : "translated",
             "value" : "快速操作"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速動作"
+          }
         }
       }
     },
@@ -682,6 +712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "指令碼"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "程式碼"
           }
         }
       }

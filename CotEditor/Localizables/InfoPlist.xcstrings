@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "AWK腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AWK程式碼"
+          }
         }
       }
     },
@@ -185,6 +191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BibTeX參考書目"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BibTeX文獻目錄"
           }
         }
       }
@@ -280,6 +292,12 @@
             "state" : "translated",
             "value" : "C頭檔案"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C標題碼"
+          }
         }
       }
     },
@@ -373,6 +391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C源碼"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C原始碼"
           }
         }
       }
@@ -468,6 +492,12 @@
             "state" : "translated",
             "value" : "C#源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C#原始碼"
+          }
         }
       }
     },
@@ -561,6 +591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C++頭檔案"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++標題碼"
           }
         }
       }
@@ -656,6 +692,12 @@
             "state" : "translated",
             "value" : "C++源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++原始碼"
+          }
         }
       }
     },
@@ -749,6 +791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS檔案"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS樣式表"
           }
         }
       }
@@ -943,6 +991,12 @@
             "state" : "translated",
             "value" : "Cot editor"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cot editor"
+          }
         }
       }
     },
@@ -1036,6 +1090,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "配置檔案"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定檔"
           }
         }
       }
@@ -1131,6 +1191,12 @@
             "state" : "translated",
             "value" : "CotEditor取代定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor取代定義檔"
+          }
         }
       }
     },
@@ -1221,6 +1287,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor設定封存檔"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor設定封存檔"
@@ -1319,6 +1391,12 @@
             "state" : "translated",
             "value" : "CotEditor主題"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor主題"
+          }
         }
       }
     },
@@ -1412,6 +1490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "D源碼"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D原始碼"
           }
         }
       }
@@ -1507,6 +1591,12 @@
             "state" : "translated",
             "value" : "Dart腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dart程式碼"
+          }
         }
       }
     },
@@ -1597,6 +1687,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diff"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diff"
@@ -1695,6 +1791,12 @@
             "state" : "translated",
             "value" : "Fortran源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortran原始碼"
+          }
         }
       }
     },
@@ -1788,6 +1890,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Go 腳本"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go程式碼"
           }
         }
       }
@@ -1883,6 +1991,12 @@
             "state" : "translated",
             "value" : "Haskell腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haskell程式碼"
+          }
         }
       }
     },
@@ -1973,6 +2087,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTML文件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "HTML文件"
@@ -2071,6 +2191,12 @@
             "state" : "translated",
             "value" : "INI"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
         }
       }
     },
@@ -2165,6 +2291,12 @@
             "state" : "translated",
             "value" : "Java源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Java原始碼"
+          }
         }
       }
     },
@@ -2255,6 +2387,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "JavaScript"
@@ -2353,6 +2491,12 @@
             "state" : "translated",
             "value" : "JSON文件"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON文件"
+          }
         }
       }
     },
@@ -2446,6 +2590,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Julia腳本"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Julia程式碼"
           }
         }
       }
@@ -2541,6 +2691,12 @@
             "state" : "translated",
             "value" : "Kotlin腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kotlin程式碼"
+          }
         }
       }
     },
@@ -2634,6 +2790,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lisp腳本"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisp程式碼"
           }
         }
       }
@@ -2729,6 +2891,12 @@
             "state" : "translated",
             "value" : "Lua腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lua程式碼"
+          }
         }
       }
     },
@@ -2819,6 +2987,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markdown文件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Markdown文件"
@@ -2916,6 +3090,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mojo腳本"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mojo程式碼"
           }
         }
       }
@@ -3018,6 +3198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor需要用戶授權使用AppleScript控制其他應用。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor需要你的批准才能使用AppleScript控制其他應用程式。"
           }
         }
       }
@@ -3126,6 +3312,12 @@
             "state" : "translated",
             "value" : "Perl腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perl程式碼"
+          }
         }
       }
     },
@@ -3220,6 +3412,12 @@
             "state" : "translated",
             "value" : "PHP腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PHP程式碼"
+          }
         }
       }
     },
@@ -3310,6 +3508,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "純文字文件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "純文字文件"
@@ -3408,6 +3612,12 @@
             "state" : "translated",
             "value" : "Python腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python程式碼"
+          }
         }
       }
     },
@@ -3498,6 +3708,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "reStructured文字文件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "reStructured文字文件"
@@ -3596,6 +3812,12 @@
             "state" : "translated",
             "value" : "Ruby腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruby程式碼"
+          }
         }
       }
     },
@@ -3689,6 +3911,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rust腳本"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust程式碼"
           }
         }
       }
@@ -3784,6 +4012,12 @@
             "state" : "translated",
             "value" : "Scala源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scala原始碼"
+          }
         }
       }
     },
@@ -3877,6 +4111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "矢量圖"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可變式向量圖形"
           }
         }
       }
@@ -3972,6 +4212,12 @@
             "state" : "translated",
             "value" : "Scheme腳本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scheme程式碼"
+          }
         }
       }
     },
@@ -4065,6 +4311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shell腳本"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell程式碼"
           }
         }
       }
@@ -4160,6 +4412,12 @@
             "state" : "translated",
             "value" : "SQL源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SQL原始碼"
+          }
         }
       }
     },
@@ -4254,6 +4512,12 @@
             "state" : "translated",
             "value" : "Swift源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swift原始碼"
+          }
         }
       }
     },
@@ -4344,6 +4608,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TeX文件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TeX文件"
@@ -4442,6 +4712,12 @@
             "state" : "translated",
             "value" : "Textile文件"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textile文件"
+          }
         }
       }
     },
@@ -4532,6 +4808,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOML文件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TOML文件"
@@ -4630,6 +4912,12 @@
             "state" : "translated",
             "value" : "UUID"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UUID"
+          }
         }
       }
     },
@@ -4723,6 +5011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verilog源碼"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verilog原始碼"
           }
         }
       }
@@ -4818,6 +5112,12 @@
             "state" : "translated",
             "value" : "VHDL源碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VHDL原始碼"
+          }
         }
       }
     },
@@ -4912,6 +5212,12 @@
             "state" : "translated",
             "value" : "XML文件"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XML文件"
+          }
         }
       }
     },
@@ -5002,6 +5308,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YAML文件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "YAML文件"

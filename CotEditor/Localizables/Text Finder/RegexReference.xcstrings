@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "0次或更多"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0次或多次"
+          }
         }
       }
     },
@@ -182,6 +188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1次或0次"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1次或0次"
@@ -280,6 +292,12 @@
             "state" : "translated",
             "value" : "1次或更多"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1次或多次"
+          }
         }
       }
     },
@@ -371,6 +389,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錨點"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "錨點"
@@ -469,6 +493,12 @@
             "state" : "translated",
             "value" : "任意字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任何字元"
+          }
         }
       }
     },
@@ -562,6 +592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A到Z範圍內的任意字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任何A至Z間的字元"
           }
         }
       }
@@ -657,6 +693,12 @@
             "state" : "translated",
             "value" : "不在A到Z範圍內的任意字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任何不在A至Z間的字元"
+          }
         }
       }
     },
@@ -750,6 +792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "至少0次但不超過n次"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "至少0次但不多於n次"
           }
         }
       }
@@ -845,6 +893,12 @@
             "state" : "translated",
             "value" : "至少n次但不超過m次"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "至少n次但不多過m次"
+          }
         }
       }
     },
@@ -935,6 +989,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "至少n次"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "至少n次"
@@ -1034,6 +1094,12 @@
             "state" : "translated",
             "value" : "回溯引用"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "反向參照"
+          }
         }
       }
     },
@@ -1129,6 +1195,12 @@
             "state" : "translated",
             "value" : "基本常規表示式文法"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基本常規表示式語法"
+          }
         }
       }
     },
@@ -1223,6 +1295,12 @@
             "state" : "translated",
             "value" : "行首"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行開頭"
+          }
         }
       }
     },
@@ -1314,6 +1392,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字元"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "字元"
@@ -1412,6 +1496,12 @@
             "state" : "translated",
             "value" : "數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "十進位制"
+          }
         }
       }
     },
@@ -1505,6 +1595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行末"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行結尾"
           }
         }
       }
@@ -1601,6 +1697,12 @@
             "state" : "translated",
             "value" : "擴展分組"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "延伸分組"
+          }
         }
       }
     },
@@ -1694,6 +1796,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "首字匹配"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第一個符合"
           }
         }
       }
@@ -1789,6 +1897,12 @@
             "state" : "translated",
             "value" : "ICU Regular Expressions"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICU常規表示式"
+          }
         }
       }
     },
@@ -1882,6 +1996,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "前向"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "往前"
           }
         }
       }
@@ -1977,6 +2097,12 @@
             "state" : "translated",
             "value" : "後向"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "往後"
+          }
         }
       }
     },
@@ -2067,6 +2193,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n次"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "n次"
@@ -2165,6 +2297,12 @@
             "state" : "translated",
             "value" : "換行符"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新行字元"
+          }
         }
       }
     },
@@ -2258,6 +2396,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "非空格字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非空白字元"
           }
         }
       }
@@ -2354,6 +2498,12 @@
             "state" : "translated",
             "value" : "數量"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "數量詞"
+          }
         }
       }
     },
@@ -2447,6 +2597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "定位符號"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定位符號字元"
           }
         }
       }
@@ -2543,6 +2699,12 @@
             "state" : "translated",
             "value" : "該文法遵循「%@」引擎之規範。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此語法符合%@規範。"
+          }
         }
       }
     },
@@ -2636,6 +2798,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空格字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白字元"
           }
         }
       }
@@ -2731,6 +2899,12 @@
             "state" : "translated",
             "value" : "單字邊界"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字詞邊界"
+          }
         }
       }
     },
@@ -2824,6 +2998,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "單字字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字詞字元"
           }
         }
       }

@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "<包含有%lld個字元>"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<一個由%lld個字元組成的字母>"
+          }
         }
       }
     },
@@ -186,6 +192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "區段:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區塊："
           }
         }
       }
@@ -281,6 +293,12 @@
             "state" : "translated",
             "value" : "分類:"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "類別："
+          }
         }
       }
     },
@@ -374,6 +392,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "碼位:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "代碼位："
           }
         }
       }
@@ -470,6 +494,12 @@
             "state" : "translated",
             "value" : "已廢棄"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已停用"
+          }
         }
       }
     },
@@ -563,6 +593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無區段"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無區塊"
           }
         }
       }
@@ -658,6 +694,12 @@
             "state" : "translated",
             "value" : "未知的"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知"
+          }
         }
       }
     },
@@ -751,6 +793,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本："
           }
         }
       }

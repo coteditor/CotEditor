@@ -133,6 +133,14 @@
               "使用${applicationName}創建新的文件"
             ]
           }
+        },
+        "zh-HK" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "在${applicationName}中製作文件"
+            ]
+          }
         }
       }
     }

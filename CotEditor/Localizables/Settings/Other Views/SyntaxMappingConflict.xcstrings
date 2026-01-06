@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "重複的文法定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重複的語法"
+          }
         }
       }
     },
@@ -184,6 +190,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "副檔名"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "副檔名"
@@ -283,6 +295,12 @@
             "state" : "translated",
             "value" : "檔名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案名稱"
+          }
         }
       }
     },
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "直譯器"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解譯器"
           }
         }
       }
@@ -473,6 +497,12 @@
             "state" : "translated",
             "value" : "文法定義映射衝突"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法對應衝突"
+          }
         }
       }
     },
@@ -566,6 +596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下述檔案映射規則已登記於多個文法定義當中。CotEditor會自動使用最開頭的那筆文法定義。如欲解決這些衝突，請逐個編輯每一筆文法定義。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以下檔案對應規則使用了多個語法註冊。CotEditor自動使用第一個語法。如要解決衝突，請編輯每個語法定義。"
           }
         }
       }
@@ -661,6 +697,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已使用的文法定義"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用的語法"
           }
         }
       }

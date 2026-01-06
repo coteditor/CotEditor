@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "開頭："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開頭："
+          }
         }
       }
     },
@@ -182,6 +188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結尾："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "結尾："
@@ -279,6 +291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "進行環繞："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "環繞："
           }
         }
       }
