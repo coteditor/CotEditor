@@ -152,7 +152,7 @@ private struct ThemeListView: View {
                     }
                     .editDisabled(state?.isBundled == true)
                     .focused($editingItem, equals: name)
-                    .draggable(TransferableTheme(name: name, canExport: state?.isCustomized == true, data: self.manager.dataForUserSetting(name: name))) {
+                    .draggable(TransferableTheme(name: name, canExport: state?.isCustomized == true, data: self.manager.persistenceForUserSetting(name: name))) {
                         Label {
                             Text(name)
                         } icon: {
@@ -190,7 +190,7 @@ private struct ThemeListView: View {
             for item in items {
                 guard let data = item.data() else { continue }
                 do {
-                    try self.manager.importSetting(data: data, name: item.name, overwrite: false)
+                    try self.manager.importSetting(persistence: data, name: item.name, overwrite: false)
                     succeed = true
                 } catch let error as ImportDuplicationError {
                     self.importingError = error
@@ -219,7 +219,7 @@ private struct ThemeListView: View {
                         let name = url.deletingPathExtension().lastPathComponent
                         do {
                             let data = try Data(contentsOf: url)
-                            try self.manager.importSetting(data: data, name: name, overwrite: false)
+                            try self.manager.importSetting(persistence: data, name: name, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -242,7 +242,7 @@ private struct ThemeListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(data: item.data, name: item.name, overwrite: true)
+                    try self.manager.importSetting(persistence: item.persistence, name: item.name, overwrite: true)
                 } catch {
                     self.error = error
                 }
@@ -388,7 +388,7 @@ private struct ThemeListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableTheme(name: selection.name, data: self.manager.dataForUserSetting(name: selection.name))
+                self.exportingItem = TransferableTheme(name: selection.name, data: self.manager.persistenceForUserSetting(name: selection.name))
                 self.isExporterPresented = true
             }
             .modifierKeyAlternate(.option) {

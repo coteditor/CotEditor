@@ -60,7 +60,7 @@ struct MultipleReplaceListView: View {
                     return true
                 }
                 .focused($editingItem, equals: name)
-                .draggable(TransferableReplacement(name: name, data: self.manager.dataForUserSetting(name: name))) {
+                .draggable(TransferableReplacement(name: name, data: self.manager.persistenceForUserSetting(name: name))) {
                     Label {
                         Text(name)
                     } icon: {
@@ -116,7 +116,7 @@ struct MultipleReplaceListView: View {
                         let type = UTType(filenameExtension: url.pathExtension)
                         do {
                             let data = try Data(contentsOf: url)
-                            try self.manager.importSetting(data: data, name: name, type: type, overwrite: false)
+                            try self.manager.importSetting(persistence: data, name: name, type: type, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -142,7 +142,7 @@ struct MultipleReplaceListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(data: item.data, name: item.name, overwrite: true)
+                    try self.manager.importSetting(persistence: item.persistence, name: item.name, overwrite: true)
                 } catch {
                     self.error = error
                 }
@@ -268,7 +268,7 @@ struct MultipleReplaceListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableReplacement(name: selection, data: self.manager.dataForUserSetting(name: selection))
+                self.exportingItem = TransferableReplacement(name: selection, data: self.manager.persistenceForUserSetting(name: selection))
                 self.isExporterPresented = true
             }
             .modifierKeyAlternate(.option) {

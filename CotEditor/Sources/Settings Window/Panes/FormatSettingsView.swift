@@ -249,7 +249,7 @@ private struct SyntaxListView: View {
             .tag(state)
             .frame(height: self.rowHeight)
             .listRowSeparator(.hidden)
-            .draggable(TransferableSyntax(name: state.name, canExport: !state.isBundled, data: self.manager.dataForUserSetting(name: state.name))) {
+            .draggable(TransferableSyntax(name: state.name, canExport: !state.isBundled, data: self.manager.persistenceForUserSetting(name: state.name))) {
                 Label {
                     Text(state.name)
                 } icon: {
@@ -308,7 +308,7 @@ private struct SyntaxListView: View {
                         let name = url.deletingPathExtension().lastPathComponent
                         do {
                             let data = try Data(contentsOf: url)
-                            try self.manager.importSetting(data: data, name: name, overwrite: false)
+                            try self.manager.importSetting(persistence: data, name: name, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -331,7 +331,7 @@ private struct SyntaxListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(data: item.data, name: item.name, overwrite: true)
+                    try self.manager.importSetting(persistence: item.persistence, name: item.name, overwrite: true)
                 } catch {
                     self.error = error
                 }
@@ -490,7 +490,7 @@ private struct SyntaxListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableSyntax(name: selection.name, data: self.manager.dataForUserSetting(name: selection.name))
+                self.exportingItem = TransferableSyntax(name: selection.name, data: self.manager.persistenceForUserSetting(name: selection.name))
                 self.isExporterPresented = true
             }
             .modifierKeyAlternate(.option) {

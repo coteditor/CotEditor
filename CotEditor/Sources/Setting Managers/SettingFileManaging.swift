@@ -69,11 +69,31 @@ extension URL {
 }
 
 
+protocol Persistable: Equatable, Sendable {
+    
+    /// Write the contents  to a location.
+    ///
+    /// - parameters:
+    ///   - fileURL: The location to write the data into.
+    func write(to fileURL: URL) throws
+}
+
+
+extension Data: Persistable {
+    
+    func write(to fileURL: URL) throws {
+        
+        try self.write(to: fileURL, options: [])
+    }
+}
+
+
 // MARK: -
 
 @MainActor protocol SettingFileManaging: AnyObject, Sendable {
     
     associatedtype Setting: Sendable
+    associatedtype PersistentSetting: Persistable
     
     
     /// The directory name in both Application Support and bundled Resources.
@@ -95,11 +115,14 @@ extension URL {
     var cachedSettings: [String: Setting] { get set }
     
     
-    /// Encodes the provided setting into data to store.
-    nonisolated static func data(from setting: Setting) throws -> Data
+    /// Loads the persistence at the given URL.
+    nonisolated static func persistence(at url: URL) throws -> PersistentSetting
     
-    /// Loads the setting from the data.
-    nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting
+    /// Encodes the provided setting into persistable representation to store.
+    nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting
+    
+    /// Loads the setting from a persisted representation.
+    nonisolated static func loadSetting(from persistent: any Persistable, type: UTType) throws -> sending Setting
     
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
     func setting(name: String) throws(SettingFileError) -> Setting
@@ -233,16 +256,16 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns a setting file URL in the user's Application Support domain if it exists.
+    /// Returns the persistent user setting for the given name, if available.
     ///
     /// - Parameters:
     ///   - name: The setting name.
-    /// - Returns: The data, or `nil` if the file not found or failed to load the data.
-    func dataForUserSetting(name: String) -> Data? {
+    /// - Returns: The correspondent persistable representation of the user setting, or `nil` if the file doesn't exist or can't be read.
+    func persistenceForUserSetting(name: String) -> PersistentSetting? {
         
         guard let url = self.urlForUserSetting(name: name) else { return nil }
         
-        return try? Data(contentsOf: url)
+        return try? Self.persistence(at: url)
     }
     
     
@@ -410,11 +433,11 @@ extension SettingFileManaging {
     /// Imports the setting.
     ///
     /// - Parameters:
-    ///   - data: The data to import.
+    ///   - persistence: The persistable representation to import.
     ///   - name: The name of the setting to import.
     ///   - overwrite: Whether overwrites the existing setting if exists.
     /// - Throws: `ImportDuplicationError` (only when the `overwrite` flag is `true`), or `any Error`
-    func importSetting(data: Data, name: String, type: UTType? = nil, overwrite: Bool) throws {
+    func importSetting(persistence: any Persistable, name: String, type: UTType? = nil, overwrite: Bool) throws {
         
         // check duplication
         if !overwrite {
@@ -422,21 +445,21 @@ extension SettingFileManaging {
                 guard existingName.caseInsensitiveCompare(name) == .orderedSame else { continue }
                 
                 guard self.urlForUserSetting(name: existingName) == nil else {  // duplicated
-                    throw ImportDuplicationError(name: existingName, data: data)
+                    throw ImportDuplicationError(name: existingName, persistence: persistence)
                 }
             }
         }
         
         // test if the setting file can be read correctly
         let type = type ?? Self.fileType
-        let setting = try Self.loadSetting(from: data, type: type)
-        let dataToStore = type.conforms(to: Self.fileType) ? data : try Self.data(from: setting)
+        let setting = try Self.loadSetting(from: persistence, type: type)
+        let persistenceToStore = type.conforms(to: Self.fileType) ? persistence : try Self.persistence(from: setting)
         
         // write file
         let destURL = self.preparedURLForUserSetting(name: name)
         do {
             try FileManager.default.createIntermediateDirectories(to: destURL)
-            try dataToStore.write(to: destURL)
+            try persistenceToStore.write(to: destURL)
         } catch {
             throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
         }
@@ -450,13 +473,13 @@ extension SettingFileManaging {
     }
     
     
-    /// Exports all user setting files as a dictionary mapping each file's name to its data.
+    /// Exports all user setting files as a dictionary mapping each file's name to its persistable representation.
     ///
-    /// - Returns: A dictionary where the key is the file name of each user setting and the value is the data content of that file.
-    func exportSettings() -> [String: Data] {
+    /// - Returns: A dictionary where the key is the file name of each user setting and the value is the persistable content of that file.
+    func exportSettings() -> [String: PersistentSetting] {
         
         self.userSettingFileURLs.reduce(into: [:]) { dictionary, url in
-            dictionary[url.lastPathComponent] = try? Data(contentsOf: url)
+            dictionary[url.lastPathComponent] = try? Self.persistence(at: url)
         }
     }
     
@@ -510,9 +533,9 @@ extension SettingFileManaging {
         
         guard let type = UTType(filenameExtension: fileURL.pathExtension) else { throw CocoaError(.fileReadUnsupportedScheme) }
         
-        let data = try Data(contentsOf: fileURL)
+        let persistence = try Self.persistence(at: fileURL)
         
-        return try Self.loadSetting(from: data, type: type)
+        return try Self.loadSetting(from: persistence, type: type)
     }
     
     
@@ -634,7 +657,7 @@ struct SettingFileError: LocalizedError {
 struct ImportDuplicationError: LocalizedError {
     
     var name: String
-    var data: Data
+    var persistence: any Persistable
     
     
     var errorDescription: String {

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025−2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -226,19 +226,19 @@ struct PortableSettingsDocument: FileDocument, Equatable {
         
         if types.contains(.replacements) {
             for (name, data) in self.replacements {
-                try ReplacementManager.shared.importSetting(data: data, name: name, overwrite: true)
+                try ReplacementManager.shared.importSetting(persistence: data, name: name, overwrite: true)
             }
         }
         
         if types.contains(.syntaxes) {
             for (name, data) in self.syntaxes {
-                try SyntaxManager.shared.importSetting(data: data, name: name, overwrite: true)
+                try SyntaxManager.shared.importSetting(persistence: data, name: name, overwrite: true)
             }
         }
         
         if types.contains(.themes) {
             for (name, data) in self.themes {
-                try ThemeManager.shared.importSetting(data: data, name: name, overwrite: true)
+                try ThemeManager.shared.importSetting(persistence: data, name: name, overwrite: true)
             }
         }
     }

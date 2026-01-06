@@ -44,6 +44,7 @@ enum SyntaxName {
 @MainActor final class SyntaxManager: SettingFileManaging {
     
     typealias Setting = Syntax
+    typealias PersistentSetting = Data
     
     typealias SettingName = String
     typealias MappingTable = [KeyPath<Syntax.FileMap, [String]?>: [String: [SettingName]]]
@@ -199,10 +200,10 @@ enum SyntaxName {
             }
         } else {
             // save file to user domain
-            let data = try Self.data(from: setting)
+            let persistence = try Self.persistence(from: setting)
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try data.write(to: fileURL)
+            try persistence.write(to: fileURL)
         }
         
         // invalidate current cache
@@ -231,8 +232,15 @@ enum SyntaxName {
     
     // MARK: Setting File Managing
     
-    /// Encodes the provided setting into data to store.
-    nonisolated static func data(from setting: Setting) throws -> Data {
+    /// Loads the persistence at the given URL.
+    nonisolated static func persistence(at url: URL) throws -> PersistentSetting {
+        
+        try Data(contentsOf: url)
+    }
+    
+    
+    /// Encodes the provided setting into persistable representation to store.
+    nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting {
         
         let encoder = YAMLEncoder()
         encoder.options.allowUnicode = true
@@ -244,11 +252,14 @@ enum SyntaxName {
     }
     
     
-    /// Loads the setting from the data.
-    nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {
+    /// Loads the setting from a persisted representation.
+    nonisolated static func loadSetting(from persistence: any Persistable, type: UTType) throws -> sending Setting {
         
         if type.conforms(to: Self.fileType) {
-            try YAMLDecoder().decode(Setting.self, from: data)
+            guard let data = persistence as? Data else { throw CocoaError(.fileReadCorruptFile) }
+            
+            return try YAMLDecoder().decode(Setting.self, from: data)
+            
         } else {
             throw CocoaError(.fileReadUnsupportedScheme)
         }

@@ -33,6 +33,7 @@ import URLUtils
 @MainActor final class ReplacementManager: SettingFileManaging {
     
     typealias Setting = MultipleReplace
+    typealias PersistentSetting = Data
     
     
     // MARK: Public Properties
@@ -68,11 +69,11 @@ import URLUtils
     ///   - name: The name of the setting to save.
     func save(setting: Setting, name: String) throws {
         
-        let data = try Self.data(from: setting)
+        let persistence = try Self.persistence(from: setting)
         let fileURL = self.preparedURLForUserSetting(name: name)
         
         try FileManager.default.createIntermediateDirectories(to: fileURL)
-        try data.write(to: fileURL)
+        try persistence.write(to: fileURL)
         
         self.cachedSettings[name] = setting
         
@@ -99,8 +100,15 @@ import URLUtils
     
     // MARK: Setting File Managing
     
-    /// Encodes the provided setting into data to store.
-    nonisolated static func data(from setting: Setting) throws -> Data {
+    /// Loads the persistence at the given URL.
+    nonisolated static func persistence(at url: URL) throws -> PersistentSetting {
+        
+        try Data(contentsOf: url)
+    }
+    
+    
+    /// Encodes the provided setting into persistable representation to store.
+    nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting {
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
@@ -109,13 +117,22 @@ import URLUtils
     }
     
     
-    /// Loads the setting from the data.
-    nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {
+    /// Loads the setting from a persisted representation.
+    nonisolated static func loadSetting(from persistence: any Persistable, type: UTType) throws -> sending Setting {
         
         if type.conforms(to: Self.fileType) {
-            try JSONDecoder().decode(Setting.self, from: data)
-        } else if type.conforms(to: .tabSeparatedText), let string = String(data: data, encoding: .utf8) {
-            try MultipleReplace(tabSeparatedText: string)
+            guard let data = persistence as? Data else { throw CocoaError(.fileReadCorruptFile) }
+            
+            return try JSONDecoder().decode(Setting.self, from: data)
+            
+        } else if type.conforms(to: .tabSeparatedText) {
+            guard
+                let data = persistence as? Data,
+                let string = String(data: data, encoding: .utf8)
+            else { throw CocoaError(.fileReadCorruptFile) }
+            
+            return try MultipleReplace(tabSeparatedText: string)
+            
         } else {
             throw CocoaError(.fileReadUnsupportedScheme)
         }
