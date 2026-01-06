@@ -302,6 +302,18 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld個自訂語法"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -596,6 +608,18 @@
           }
         },
         "zh-Hant" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld個自訂主題"
+                }
+              }
+            }
+          }
+        },
+        "zh-HK" : {
           "variations" : {
             "plural" : {
               "other" : {
@@ -911,6 +935,18 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld個定義"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -1004,6 +1040,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇要匯入的CotEditor設定封存檔。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇要輸入的CotEditor設定封存檔。"
           }
         }
       }
@@ -1106,6 +1148,12 @@
             "state" : "translated",
             "value" : "此設定封存檔是由不同版本的CotEditor (%@) 所建立。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此設定封存檔是由不同版本的CotEditor （%@）製作。"
+          }
         }
       }
     },
@@ -1207,6 +1255,12 @@
             "state" : "translated",
             "value" : "您仍可匯入這些項目，但部分設定可能不相容。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你仍然可輸入這些項目，但部份設定可能不相容。"
+          }
         }
       }
     },
@@ -1301,6 +1355,12 @@
             "state" : "translated",
             "value" : "將選取的設定匯出為封存檔，以便匯入至其他電腦。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將選擇的設定輸出為封存檔，以便輸入到其他電腦。"
+          }
         }
       }
     },
@@ -1391,6 +1451,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸出設定"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸出設定"
@@ -1489,6 +1555,12 @@
             "state" : "translated",
             "value" : "輸入設定"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入設定"
+          }
         }
       }
     },
@@ -1579,6 +1651,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇要輸入的項目："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇要輸入的項目："
@@ -1684,6 +1762,12 @@
             "state" : "translated",
             "value" : "多重取代定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "多重取代定義"
+          }
         }
       }
     },
@@ -1785,6 +1869,12 @@
             "state" : "translated",
             "value" : "「設定」視窗內的全部設定"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定」視窗內的所有設定"
+          }
         }
       }
     },
@@ -1882,6 +1972,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定"
@@ -1987,6 +2083,12 @@
             "state" : "translated",
             "value" : "語法"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法"
+          }
         }
       }
     },
@@ -2084,6 +2186,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "主題"

@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "Classic Mac OS"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Mac OS"
+          }
         }
       }
     },
@@ -188,6 +194,12 @@
             "state" : "translated",
             "value" : "Windows"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
         }
       }
     },
@@ -279,6 +291,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS / Unix"
@@ -379,6 +397,12 @@
             "state" : "translated",
             "value" : "Unix Line Separator"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
+          }
         }
       }
     },
@@ -475,6 +499,12 @@
             "state" : "translated",
             "value" : "Unix Next Line"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
         }
       }
     },
@@ -567,6 +597,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix Paragraph Separator"

@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "%@圖像"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@圖像"
+          }
         }
       }
     },
@@ -184,6 +190,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關於%@"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "關於%@"
@@ -283,6 +295,12 @@
             "state" : "translated",
             "value" : "以及應援著CotEditor的諸位！"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以及支持CotEditor的各位！"
+          }
         }
       }
     },
@@ -378,6 +396,12 @@
             "state" : "translated",
             "value" : "原始碼貢獻者們"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "程式碼貢獻者"
+          }
         }
       }
     },
@@ -471,6 +495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor是基於Apache協議2.0版的開源軟體"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor是依Apache許可協議2.0版本授權的開放原始碼程式。"
           }
         }
       }
@@ -566,6 +596,12 @@
             "state" : "translated",
             "value" : "CotEditor有使用到下述絕倫的技術。我們對那些讓我們用上了這些技術的人士們深表敬意。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor採用了以下令人驚奇的技術。我們衷心多謝所有允許我們使用其寶貴成果的人。"
+          }
         }
       }
     },
@@ -660,6 +696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "銘謝"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "致謝"
           }
         }
       }
@@ -851,6 +893,12 @@
             "state" : "translated",
             "value" : "本地化"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本地化"
+          }
         }
       }
     },
@@ -946,6 +994,12 @@
             "state" : "translated",
             "value" : "僅「非Mac App Store」發行版有使用到该模组"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅非App Store版本使用"
+          }
         }
       }
     },
@@ -1040,6 +1094,12 @@
             "state" : "translated",
             "value" : "原開發者"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "原始開發者"
+          }
         }
       }
     },
@@ -1131,6 +1191,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "特別感謝"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "特別感謝"
@@ -1229,6 +1295,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor專案"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor項目"
           }
         }
       }
@@ -1330,6 +1402,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本 %1$@ (%2$@)"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本%1$@ (%2$@)"
           }
         }
       }

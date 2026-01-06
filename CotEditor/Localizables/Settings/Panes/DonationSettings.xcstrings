@@ -303,6 +303,18 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld杯"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -394,6 +406,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "× %lld"
@@ -493,6 +511,12 @@
             "state" : "translated",
             "value" : "捐贈功能需要可用的網際網路連線。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要網絡連線才能捐贈。"
+          }
         }
       }
     },
@@ -586,6 +610,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "作為您熱心支援的證明，軟體的狀態列會在整個在持續支援期間顯示一個咖啡徽章。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作為你有心支持的證明，在持續支持期間，狀態列上會顯示一個咖啡標記。"
           }
         }
       }
@@ -681,6 +711,12 @@
             "state" : "translated",
             "value" : "徽章類型:"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標記種類："
+          }
         }
       }
     },
@@ -774,6 +810,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "持續支援"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "持續支持"
           }
         }
       }
@@ -869,6 +911,12 @@
             "state" : "translated",
             "value" : "CotEditor向所有人免費提供所有功能。您可以藉由捐贈咖啡費用的方式來聲援該專案。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor向所有人免費提供全部功能。你可以透過提供咖啡來支持這個項目。"
+          }
         }
       }
     },
@@ -962,6 +1010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "捐贈功能目前不可用。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現時無法使用捐贈。"
           }
         }
       }
@@ -1057,6 +1111,12 @@
             "state" : "translated",
             "value" : "管理訂閱項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理訂閲項目"
+          }
         }
       }
     },
@@ -1147,6 +1207,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次性捐贈"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "一次性捐贈"
@@ -1246,6 +1312,12 @@
             "state" : "translated",
             "value" : "點此開啟「GitHub Sponsors」捐贈服務"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟「GitHub Sponsors」"
+          }
         }
       }
     },
@@ -1340,6 +1412,12 @@
             "state" : "translated",
             "value" : "在App Store中打開"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在App Store開啟"
+          }
         }
       }
     },
@@ -1433,6 +1511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "隱私權政策"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "私隱政策"
           }
         }
       }
@@ -1529,6 +1613,12 @@
             "state" : "translated",
             "value" : "份量"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "數量"
+          }
         }
       }
     },
@@ -1623,6 +1713,12 @@
             "state" : "translated",
             "value" : "回復訂閱項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原訂閲項目"
+          }
         }
       }
     },
@@ -1713,6 +1809,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服務條款"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "服務條款"
@@ -1810,6 +1912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "App內該捐贈功能僅可用於藉由 App Store 安裝的 CotEditor。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "只有App Store發佈的CotEditor才能使用App內捐贈功能。"
           }
         }
       }

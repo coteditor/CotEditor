@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "顏色碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顏色碼"
+          }
         }
       }
     },
@@ -190,6 +196,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HSL"
@@ -295,6 +307,12 @@
             "state" : "translated",
             "value" : "CSS HSLa"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLa"
+          }
         }
       }
     },
@@ -392,6 +410,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS關鍵字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS關鍵字"
@@ -497,6 +521,12 @@
             "state" : "translated",
             "value" : "CSS RGB"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
         }
       }
     },
@@ -594,6 +624,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBa"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS RGBa"
@@ -699,6 +735,12 @@
             "state" : "translated",
             "value" : "十六進位"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "十六進位"
+          }
         }
       }
     },
@@ -796,6 +838,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "帶有Alpha的十六進位"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "帶有Alpha的十六進位"
@@ -901,6 +949,12 @@
             "state" : "translated",
             "value" : "十六進位（短）"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "十六進位（短）"
+          }
         }
       }
     },
@@ -996,6 +1050,12 @@
             "state" : "translated",
             "value" : "插入"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入"
+          }
         }
       }
     },
@@ -1087,6 +1147,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "樣式表關鍵字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "樣式表關鍵字"

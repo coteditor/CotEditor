@@ -100,6 +100,12 @@
             "state" : "translated",
             "value" : "表情符號風格"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "表情符號樣式"
+          }
         }
       }
     },
@@ -202,6 +208,12 @@
             "state" : "translated",
             "value" : "文字風格"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字樣式"
+          }
         }
       }
     },
@@ -300,6 +312,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "膚色III"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "膚色III"
@@ -406,6 +424,12 @@
             "state" : "translated",
             "value" : "膚色IV"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "膚色IV"
+          }
         }
       }
     },
@@ -504,6 +528,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "膚色V"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "膚色V"
@@ -610,6 +640,12 @@
             "state" : "translated",
             "value" : "膚色VI"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "膚色VI"
+          }
         }
       }
     },
@@ -712,6 +748,12 @@
             "state" : "translated",
             "value" : "膚色I-II"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "膚色I-II"
+          }
         }
       }
     },
@@ -806,6 +848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "異體字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "變體"
           }
         }
       }

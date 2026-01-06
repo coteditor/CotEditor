@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "在註解分界符後附加空格"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在註解分隔符號後插入一個空格"
+          }
         }
       }
     },
@@ -191,6 +197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在鍵入時自動縮進"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在輸入時同時自動縮排"
           }
         }
       }
@@ -286,6 +298,12 @@
             "state" : "translated",
             "value" : "自動去除末尾空格"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動裁剪後端空白字元"
+          }
         }
       }
     },
@@ -380,6 +398,12 @@
             "state" : "translated",
             "value" : "註釋："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "註解："
+          }
         }
       }
     },
@@ -470,6 +494,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容解析："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "內容解析："
@@ -568,6 +598,12 @@
             "state" : "translated",
             "value" : "延遲："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "延遲："
+          }
         }
       }
     },
@@ -661,6 +697,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在開啟文件時檢測縮排格式"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在開啟文件時偵測縮排樣式"
           }
         }
       }
@@ -756,6 +798,12 @@
             "state" : "translated",
             "value" : "高亮選中文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重點標示所選文字的實例"
+          }
         }
       }
     },
@@ -849,6 +897,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高亮配對括弧"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重點標示配對的括號"
           }
         }
       }
@@ -944,6 +998,12 @@
             "state" : "translated",
             "value" : "包含只有空格的行"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包括只有空白字元的行"
+          }
         }
       }
     },
@@ -1037,6 +1097,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用Tab鍵對選擇進行縮排"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用Tab鍵進行縮排選擇"
           }
         }
       }
@@ -1132,6 +1198,12 @@
             "state" : "translated",
             "value" : "以"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "縮排闊度："
+          }
         }
       }
     },
@@ -1222,6 +1294,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "縮排："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "縮排："
@@ -1320,6 +1398,12 @@
             "state" : "translated",
             "value" : "在縮排後插入註解分界符"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在縮排後插入註解分隔符號"
+          }
         }
       }
     },
@@ -1410,6 +1494,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連結文件中的URL"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "連結文件中的URL"
@@ -1508,6 +1598,12 @@
             "state" : "translated",
             "value" : "縮進專用字元:"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "偏好使用"
+          }
         }
       }
     },
@@ -1599,6 +1695,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "秒"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "秒"
@@ -1698,6 +1800,12 @@
             "state" : "translated",
             "value" : "個空格縮排"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個空格"
+          }
         }
       }
     },
@@ -1789,6 +1897,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空格"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "空格"
@@ -1888,6 +2002,12 @@
             "state" : "translated",
             "value" : "定位符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定位符號"
+          }
         }
       }
     },
@@ -1981,6 +2101,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空格："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白字元："
           }
         }
       }

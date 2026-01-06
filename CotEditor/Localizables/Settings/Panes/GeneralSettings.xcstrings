@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "編輯檔案時自動覆蓋儲存檔案的系統特性。即使被禁用，CotEditor也會在程式退出時自動儲存備份。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯時可以自動覆寫檔案的系統功能。即使關閉此功能，CotEditor亦會秘密製作一個備份，以備程式意外結束。"
+          }
         }
       }
     },
@@ -186,6 +192,12 @@
             "state" : "translated",
             "value" : "自動檢查更新"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動檢查更新項目"
+          }
         }
       }
     },
@@ -276,6 +288,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "命令列工具："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "命令列工具："
@@ -381,6 +399,12 @@
             "state" : "translated",
             "value" : "當前的`cot`符號鏈接沒有指向正在運行的CotEditor。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前`cot`符號連結的目標不是正在執行的CotEditor。"
+          }
         }
       }
     },
@@ -482,6 +506,12 @@
             "state" : "translated",
             "value" : "當前的`cot`符號鏈接可能指向無效路徑。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前`cot`符號連結的目標可能是無效路徑。"
+          }
         }
       }
     },
@@ -576,6 +606,12 @@
             "state" : "translated",
             "value" : "警示窗："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "對話框警告："
+          }
         }
       }
     },
@@ -669,6 +705,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件儲存："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存文件："
           }
         }
       }
@@ -767,6 +809,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保留CotEditor的版本"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "保留CotEditor的版本"
@@ -872,6 +920,12 @@
             "state" : "translated",
             "value" : "詢問如何更新"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "詢問如何解決"
+          }
         }
       }
     },
@@ -973,6 +1027,12 @@
             "state" : "translated",
             "value" : "更新到被更改的版本"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新至變更的版本"
+          }
         }
       }
     },
@@ -1066,6 +1126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開啟帶有版本的自動儲存"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟用包括版本的自動儲存"
           }
         }
       }
@@ -1161,6 +1227,12 @@
             "state" : "translated",
             "value" : "不一致的行尾字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不一致的每行結尾"
+          }
         }
       }
     },
@@ -1255,6 +1327,12 @@
             "state" : "translated",
             "value" : "已安裝於%@"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已安装於%@"
+          }
         }
       }
     },
@@ -1346,6 +1424,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "稍後"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "稍後"
@@ -1444,6 +1528,12 @@
             "state" : "translated",
             "value" : "瞭解更多⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進一步了解⋯"
+          }
         }
       }
     },
@@ -1537,6 +1627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "管理警示窗⋯"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理警告⋯"
           }
         }
       }
@@ -1639,6 +1735,12 @@
             "state" : "translated",
             "value" : "現在就重啟CotEditor嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要立即重新啟動CotEditor嗎？"
+          }
         }
       }
     },
@@ -1739,6 +1841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "App的行為將在之後的下一次啟動時生效。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App的行為將在之後的下次啟動時更改。"
           }
         }
       }
@@ -1841,6 +1949,12 @@
             "state" : "translated",
             "value" : "變更將在下次啟動時生效。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改將在下次啟󠄁動時首先套用。"
+          }
         }
       }
     },
@@ -1938,6 +2052,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不執行任何動作"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "不執行任何動作"
@@ -2043,6 +2163,12 @@
             "state" : "translated",
             "value" : "顯示開啟對話方塊"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示開啟󠄁對話框"
+          }
         }
       }
     },
@@ -2144,6 +2270,12 @@
             "state" : "translated",
             "value" : "建立新文件"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製作新文件"
+          }
         }
       }
     },
@@ -2237,6 +2369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "啟動時："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在開啟󠄁時："
           }
         }
       }
@@ -2332,6 +2470,12 @@
             "state" : "translated",
             "value" : "在預釋出版本中，無論該選項如何設定，總是會更新到新的預釋出版本。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無論此設定如何，使用預先發佈版本時永遠都會包括新的預先發佈版本。"
+          }
         }
       }
     },
@@ -2425,6 +2569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重新打開最後打開的視窗"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新開啟最後開啟的視窗"
           }
         }
       }
@@ -2521,6 +2671,12 @@
             "state" : "translated",
             "value" : "現在重啟"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即重新啟動"
+          }
         }
       }
     },
@@ -2614,6 +2770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "軟體更新："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "軟件更新："
           }
         }
       }
@@ -2709,6 +2871,12 @@
             "state" : "translated",
             "value" : "停用下述警示窗："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱藏以下警告："
+          }
         }
       }
     },
@@ -2802,6 +2970,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "包含預釋出版本"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如可用，更新到預先發佈版本"
           }
         }
       }
@@ -2897,6 +3071,12 @@
             "state" : "translated",
             "value" : "當文件被其他應用更改時："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當文件被另一個應用程式更改時："
+          }
         }
       }
     },
@@ -2991,6 +3171,12 @@
             "state" : "translated",
             "value" : "當沒有可以開啟的檔案時："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當沒有其他檔案開啟時："
+          }
         }
       }
     },
@@ -3084,6 +3270,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "`cot`命令列工具可以讓您使用命令列來啟動CotEditor並開啟檔案。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用`cot`命令列工具，你可以啟動CotEditor，並讓它透過命令列開啟檔案。"
           }
         }
       }

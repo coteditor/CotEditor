@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "刪除規則"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除規則"
+          }
         }
       }
     },
@@ -184,6 +190,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯規則"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯規則"
@@ -290,6 +302,12 @@
             "state" : "translated",
             "value" : "選取承載了CotEditor取代定義或定位符號分隔值的檔案。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇CotEditor取代定義檔或TSV（定位符號分隔值）檔案。"
+          }
         }
       }
     },
@@ -381,6 +399,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入規則"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "插入規則"
@@ -480,6 +504,12 @@
             "state" : "translated",
             "value" : "移動規則"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移動規則"
+          }
         }
       }
     },
@@ -571,6 +601,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "多重取代"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "多重取代"
@@ -675,6 +711,12 @@
             "state" : "translated",
             "value" : "過載全部定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新載入全部定義"
+          }
         }
       }
     },
@@ -766,6 +808,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "側邊欄"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "側邊欄"

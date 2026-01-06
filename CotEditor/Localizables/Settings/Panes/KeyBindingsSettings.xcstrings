@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "如欲修改鍵盤熱鍵，請點一下熱鍵欄目，再敲下新的熱鍵。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如要更改快捷鍵，請按一下按鍵欄，然後輸入新的按鍵。"
+          }
         }
       }
     }

@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "（%@）"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（%@）"
+          }
         }
       }
     },
@@ -184,6 +190,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@："
@@ -289,6 +301,12 @@
             "state" : "translated",
             "value" : "%1$@：%2$@"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@：%2$@"
+          }
         }
       }
     },
@@ -386,6 +404,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "加入"
@@ -491,6 +515,12 @@
             "state" : "translated",
             "value" : "加入新項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入新項目"
+          }
         }
       }
     },
@@ -588,6 +618,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
@@ -693,6 +729,12 @@
             "state" : "translated",
             "value" : "刪除所選項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除已選擇的項目"
+          }
         }
       }
     },
@@ -793,6 +835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "複製"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製作副本"
           }
         }
       }
@@ -895,6 +943,12 @@
             "state" : "translated",
             "value" : "拷貝「%@」"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製作「%@」的副本"
+          }
         }
       }
     },
@@ -992,6 +1046,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯"
@@ -1097,6 +1157,12 @@
             "state" : "translated",
             "value" : "輸出⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸出⋯"
+          }
         }
       }
     },
@@ -1194,6 +1260,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸出「%@」⋯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸出「%@」⋯"
@@ -1299,6 +1371,12 @@
             "state" : "translated",
             "value" : "輸入⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入⋯"
+          }
         }
       }
     },
@@ -1396,6 +1474,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸入"
@@ -1501,6 +1585,12 @@
             "state" : "translated",
             "value" : "重新命名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新命名"
+          }
         }
       }
     },
@@ -1602,6 +1692,12 @@
             "state" : "translated",
             "value" : "給「%@」重新命名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新命名「%@」"
+          }
         }
       }
     },
@@ -1699,6 +1795,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取代"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取代"
@@ -1804,6 +1906,12 @@
             "state" : "translated",
             "value" : "還原"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原"
+          }
         }
       }
     },
@@ -1901,6 +2009,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原「%@」"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "還原「%@」"
@@ -2006,6 +2120,12 @@
             "state" : "translated",
             "value" : "回復預設值"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原預設值"
+          }
         }
       }
     },
@@ -2106,6 +2226,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示於Finder"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在Finder中顯示"
           }
         }
       }
@@ -2208,6 +2334,12 @@
             "state" : "translated",
             "value" : "顯示「%@」於Finder"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在Finder中顯示「%@」"
+          }
         }
       }
     },
@@ -2309,6 +2441,12 @@
             "state" : "translated",
             "value" : "不可見的咖啡"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱藏的咖啡"
+          }
         }
       }
     },
@@ -2406,6 +2544,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "咖啡杯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "咖啡杯"
@@ -2512,6 +2656,12 @@
             "state" : "translated",
             "value" : "動作"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "動作"
+          }
         }
       }
     },
@@ -2609,6 +2759,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
@@ -2715,6 +2871,12 @@
             "state" : "translated",
             "value" : "此動作無法還原。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此動作無法還原。"
+          }
         }
       }
     },
@@ -2812,6 +2974,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定要刪除「%@」嗎？"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "確定要刪除「%@」嗎？"
@@ -2917,6 +3085,12 @@
             "state" : "translated",
             "value" : "檔案「%@」已被其它視窗所開啟。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案「%@」已在另一個視窗中開啟。"
+          }
         }
       }
     },
@@ -3019,6 +3193,12 @@
             "state" : "translated",
             "value" : "請先將其它開啟了該檔案的視窗關閉、再嘗試用當前視窗開啟該檔案。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如要在此視窗中開啟它，請先關閉現有視窗。"
+          }
         }
       }
     },
@@ -3117,6 +3297,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不儲存"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "不儲存"
@@ -3223,6 +3409,12 @@
             "state" : "translated",
             "value" : "若不儲存，將會遺失所作的更動。存檔時會自動置換或刪除不相容的字元。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如不儲存，將會遺失所作的變更。不相容的字元在儲存時被替代或移除。"
+          }
         }
       }
     },
@@ -3325,6 +3517,12 @@
             "state" : "translated",
             "value" : "你要儲存對文件「%@」所作的更動嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要儲存對文件「%@」所作的變更嗎？"
+          }
         }
       }
     },
@@ -3425,6 +3623,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "該文件無法編輯。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法編輯文件。"
           }
         }
       }
@@ -3527,6 +3731,12 @@
             "state" : "translated",
             "value" : "若要修改文件，請先允許編輯。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如要更改文件，請先允許編輯。"
+          }
         }
       }
     },
@@ -3627,6 +3837,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案「%@」不是文字資料"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案「%@」似乎不是文字資料。"
           }
         }
       }
@@ -3730,6 +3946,12 @@
             "state" : "translated",
             "value" : "該檔案看起來是%@。\n\n確定要開啟該檔案？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案似乎是%@。\n\n確定要開啟󠄁檔案嗎？"
+          }
         }
       }
     },
@@ -3831,6 +4053,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未知類型"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知的類型"
           }
         }
       }
@@ -3934,6 +4162,12 @@
             "state" : "translated",
             "value" : "開啟"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟󠄁"
+          }
         }
       }
     },
@@ -4035,6 +4269,12 @@
             "state" : "translated",
             "value" : "「%1$@」檔案尺寸為%2$@。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案「%1$@」的大小為%2$@。"
+          }
         }
       }
     },
@@ -4135,6 +4375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開啟大型檔案可能導致應用速度變慢。\n\n確定要開啟該檔案？"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟󠄁此大型檔案可能會令應用程式執行緩慢或無回應。\n\n確定要開啟󠄁檔案嗎？"
           }
         }
       }
@@ -4238,6 +4484,12 @@
             "state" : "translated",
             "value" : "檢查不兼容字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢視不相容的字元"
+          }
         }
       }
     },
@@ -4339,6 +4591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "儲存有效文字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存可用的文字"
           }
         }
       }
@@ -4442,6 +4700,12 @@
             "state" : "translated",
             "value" : "存檔時會自動置換或刪除不相容的字元。確定要儲存嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不相容的字元在儲存時被替代或移除。你要強制儲存嗎？"
+          }
         }
       }
     },
@@ -4539,6 +4803,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "完成"
@@ -4644,6 +4914,12 @@
             "state" : "translated",
             "value" : "轉換"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "轉換"
+          }
         }
       }
     },
@@ -4744,6 +5020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "再次解釋"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新解讀"
           }
         }
       }
@@ -4846,6 +5128,12 @@
             "state" : "translated",
             "value" : "要使用「%@」進行轉換或者再次解釋這份文件嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要使用「%@」來轉換或重新解讀此文件嗎？"
+          }
         }
       }
     },
@@ -4946,6 +5234,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "變更文字編碼"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改文字編碼"
           }
         }
       }
@@ -5049,6 +5343,12 @@
             "state" : "translated",
             "value" : "%1$@拷貝 %2$lld"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@的複製%2$lld"
+          }
         }
       }
     },
@@ -5151,6 +5451,12 @@
             "state" : "translated",
             "value" : "%@拷貝"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@的複製"
+          }
         }
       }
     },
@@ -5251,6 +5557,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖拽的檔案絕對路徑"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的絕對路徑。"
           }
         }
       }
@@ -5353,6 +5665,12 @@
             "state" : "translated",
             "value" : "拖拽的檔案的上級目錄"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的上層目錄名稱。"
+          }
         }
       }
     },
@@ -5453,6 +5771,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案內容（如果拖拽檔案是文字檔案）"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案內容（如拖放檔案是文字檔案）。"
           }
         }
       }
@@ -5555,6 +5879,12 @@
             "state" : "translated",
             "value" : "拖拽的檔案的擴展名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的副檔名。"
+          }
         }
       }
     },
@@ -5655,6 +5985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖拽的檔案的擴展名（轉換為小寫）"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的副檔名（轉換成小寫）。"
           }
         }
       }
@@ -5757,6 +6093,12 @@
             "state" : "translated",
             "value" : "拖拽的檔案的擴展名（轉換為大寫）"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的副檔名（轉換成大寫）。"
+          }
         }
       }
     },
@@ -5857,6 +6199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖拽的檔案的檔案名以及擴展名（如果存在）"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的名稱，包括副檔名（如存在）。"
           }
         }
       }
@@ -5959,6 +6307,12 @@
             "state" : "translated",
             "value" : "不帶擴展名的檔案名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的名稱，不包括副檔名。"
+          }
         }
       }
     },
@@ -6059,6 +6413,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "圖片高度（如果拖拽檔案是圖像）"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "影像高度（如拖放檔案是影像）。"
           }
         }
       }
@@ -6161,6 +6521,12 @@
             "state" : "translated",
             "value" : "圖片寬度（如果拖拽檔案是圖像）"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "影像闊度（如拖放檔案是影像）。"
+          }
         }
       }
     },
@@ -6261,6 +6627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖拽的文件與編輯中檔案的相對路徑"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案與文件之間的相對路徑。"
           }
         }
       }
@@ -6363,6 +6735,12 @@
             "state" : "translated",
             "value" : "濾波器"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "過濾"
+          }
         }
       }
     },
@@ -6463,6 +6841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "清除最近記錄"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近的過濾條件"
           }
         }
       }
@@ -6565,6 +6949,12 @@
             "state" : "translated",
             "value" : "最近的過濾"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近的過濾條件"
+          }
         }
       }
     },
@@ -6665,6 +7055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "沒有最近的過濾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無最近的過濾條件"
           }
         }
       }
@@ -6768,6 +7164,12 @@
             "state" : "translated",
             "value" : "開啟原始位置以授予CotEditor存取權限。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟原始位置以授予CotEditor取用權限。"
+          }
         }
       }
     },
@@ -6866,6 +7268,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」已存在。要取代嗎？"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "「%@」已存在。要取代嗎？"
@@ -6972,6 +7380,12 @@
             "state" : "translated",
             "value" : "已存在同名的自訂設定。取代它將覆寫其當前內容。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "相同名稱的自訂設定已經存在。如取代，將會覆寫目前的內容。"
+          }
         }
       }
     },
@@ -7069,6 +7483,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "轉換"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "轉換"
@@ -7174,6 +7594,12 @@
             "state" : "translated",
             "value" : "忽略"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略"
+          }
         }
       }
     },
@@ -7274,6 +7700,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檢查"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢視"
           }
         }
       }
@@ -7376,6 +7808,12 @@
             "state" : "translated",
             "value" : "需要將所有換行符都取代為文件中最常使用的%@嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要將所有每行結尾轉換成%@（此文件中最常用的每行結尾）嗎？"
+          }
         }
       }
     },
@@ -7477,6 +7915,12 @@
             "state" : "translated",
             "value" : "此文件中的最常見換行符號為%@。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文件中最常用的每行結尾是%@。"
+          }
         }
       }
     },
@@ -7577,6 +8021,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件包含不一致的換行符。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文件的每行結尾不一致。"
           }
         }
       }
@@ -7680,6 +8130,12 @@
             "state" : "translated",
             "value" : "對該文件不再詢問"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不要再詢問此文件"
+          }
         }
       }
     },
@@ -7781,6 +8237,12 @@
             "state" : "translated",
             "value" : "「%@」已經在使用中。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱「%@」已經被使用。"
+          }
         }
       }
     },
@@ -7881,6 +8343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱不能為空。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱不能留空。"
           }
         }
       }
@@ -7984,6 +8452,12 @@
             "state" : "translated",
             "value" : "名稱不能含有「%@」。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱不能包括「%@」。"
+          }
         }
       }
     },
@@ -8084,6 +8558,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱不得出現換行符號。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱不能包括新行。"
           }
         }
       }
@@ -8186,6 +8666,12 @@
             "state" : "translated",
             "value" : "輸入其他名稱。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請選擇其他名稱。"
+          }
         }
       }
     },
@@ -8286,6 +8772,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱「%@」已被保留。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱「%@」已被保留使用。"
           }
         }
       }
@@ -8388,6 +8880,12 @@
             "state" : "translated",
             "value" : "名稱不能含有「.」。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱不能以「.」開頭。"
+          }
         }
       }
     },
@@ -8488,6 +8986,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱太長了。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱太長。"
           }
         }
       }
@@ -8591,6 +9095,12 @@
             "state" : "translated",
             "value" : "按照示例進行填寫，並將它釋出到%1$@上或是透過郵件傳送到%2$@。請注意，透過郵件傳送的內容也會被共享至Issue頁面。請使用英文或者日文書寫報告內容。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "依循以下模板填寫，然後將其發佈至%1$@或傳送至%2$@。請注意，可能會在問題頁面上分享你的電子郵件內容。請用英文或日文填寫你的訊息。"
+          }
         }
       }
     },
@@ -8688,6 +9198,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "環境"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "環境"
@@ -8793,6 +9309,12 @@
             "state" : "translated",
             "value" : "期待結果"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預期結果"
+          }
         }
       }
     },
@@ -8894,6 +9416,12 @@
             "state" : "translated",
             "value" : "簡單描述"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "簡短描述"
+          }
         }
       }
     },
@@ -8994,6 +9522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重現問題步驟"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重現問題的步驟"
           }
         }
       }
@@ -9097,6 +9631,12 @@
             "state" : "translated",
             "value" : "問題報告"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回報問題"
+          }
         }
       }
     },
@@ -9197,6 +9737,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇了多個條目"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已選擇多個項目"
           }
         }
       }
@@ -9299,6 +9845,12 @@
             "state" : "translated",
             "value" : "未選擇任何條目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未選擇項目"
+          }
         }
       }
     },
@@ -9393,6 +9945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "近期修改於：%@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上次修改時間：%@"
           }
         }
       }
@@ -9496,6 +10054,12 @@
             "state" : "translated",
             "value" : "跳轉到URL"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳去URL"
+          }
         }
       }
     },
@@ -9597,6 +10161,12 @@
             "state" : "translated",
             "value" : "該文件包含與「%@」編碼不相容的字元。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文件包括與「%@」不相容的字元。"
+          }
         }
       }
     },
@@ -9695,6 +10265,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改編碼"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "更改編碼"
@@ -9800,6 +10376,12 @@
             "state" : "translated",
             "value" : "存檔時會自動置換或刪除不相容的字元。您真的要修改文字編碼、檢閱不相容的字元嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不相容的字元在儲存時被替代或移除。你要更改文字編碼並檢視不相容的字元嗎？"
+          }
         }
       }
     },
@@ -9901,6 +10483,12 @@
             "state" : "translated",
             "value" : "無"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無"
+          }
         }
       }
     },
@@ -9998,6 +10586,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CMYK"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CMYK"
@@ -10104,6 +10698,12 @@
             "state" : "translated",
             "value" : "DeviceN"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceN"
+          }
         }
       }
     },
@@ -10201,6 +10801,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "灰色"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "灰色"
@@ -10307,6 +10913,12 @@
             "state" : "translated",
             "value" : "已製作索引"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已製作索引"
+          }
         }
       }
     },
@@ -10404,6 +11016,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lab"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lab"
@@ -10510,6 +11128,12 @@
             "state" : "translated",
             "value" : "模式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式"
+          }
         }
       }
     },
@@ -10607,6 +11231,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RGB"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RGB"
@@ -10712,6 +11342,12 @@
             "state" : "translated",
             "value" : "好"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "好"
+          }
         }
       }
     },
@@ -10806,6 +11442,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "列印：%@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列印日期：%@"
           }
         }
       }
@@ -10908,6 +11550,12 @@
             "state" : "translated",
             "value" : "該文件沒有要用來再次解釋的檔案。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文件沒有檔案可以重新解讀。"
+          }
         }
       }
     },
@@ -11008,6 +11656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件無法使用「%@」編碼再次解釋。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法使用文字編碼「%@」重新解讀文件。"
           }
         }
       }
@@ -11110,6 +11764,12 @@
             "state" : "translated",
             "value" : "該文件可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文件可能使用了不同的文字編碼儲存，或可能不是文字檔案。"
+          }
         }
       }
     },
@@ -11210,6 +11870,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "沒有要輸入的文件。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有文件可以用作輸入。"
           }
         }
       }
@@ -11312,6 +11978,12 @@
             "state" : "translated",
             "value" : "沒有要輸出的文件。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有文件可以用作輸出。"
+          }
         }
       }
     },
@@ -11412,6 +12084,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "該文件無法編輯。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法編輯文件。"
           }
         }
       }
@@ -11514,6 +12192,12 @@
             "state" : "translated",
             "value" : "腳本「%@」不存在。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "程式碼「%@」不存在。"
+          }
         }
       }
     },
@@ -11614,6 +12298,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法開啟腳本檔案「%@」。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法開啟程式碼檔案「%@」。"
           }
         }
       }
@@ -11716,6 +12406,12 @@
             "state" : "translated",
             "value" : "由於沒有執行許可權，無法執行腳本「%@」。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法執行程式碼「%@」，因為你沒有執行它的權限。"
+          }
         }
       }
     },
@@ -11816,6 +12512,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "請確認腳本檔案的許可權。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢查程式碼檔案的權限。"
           }
         }
       }
@@ -11918,6 +12620,12 @@
             "state" : "translated",
             "value" : "無法讀取腳本「%@」。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法讀取程式碼「%@」。"
+          }
         }
       }
     },
@@ -12018,6 +12726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "請確認腳本檔案。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢查程式碼檔案。"
           }
         }
       }
@@ -12120,6 +12834,12 @@
             "state" : "translated",
             "value" : "「%@」無法刪除。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法刪除「%@」。"
+          }
         }
       }
     },
@@ -12220,6 +12940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「%@」無法輸入。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法輸入「%@」。"
           }
         }
       }
@@ -12322,6 +13048,12 @@
             "state" : "translated",
             "value" : "「%@」無法加載。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法載入「%@」。"
+          }
         }
       }
     },
@@ -12422,6 +13154,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "解碼錯誤: %@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解碼錯誤：%@"
           }
         }
       }
@@ -12524,6 +13262,12 @@
             "state" : "translated",
             "value" : "無法找到「%@」的源檔案。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法找到「%@」的原始檔。"
+          }
         }
       }
     },
@@ -12624,6 +13368,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「%@」已被「%@」命令使用。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%1$@」已經被「%2$@」命令使用。"
           }
         }
       }
@@ -12726,6 +13476,12 @@
             "state" : "translated",
             "value" : "Shift鍵只能配合其他修飾鍵使用。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shift鍵只可以與其他變更鍵搭配使用。"
+          }
         }
       }
     },
@@ -12826,6 +13582,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "單獨的按鍵類型不能被用作快捷鍵。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "單個按鍵類型無法用作快捷鍵。"
           }
         }
       }
@@ -12928,6 +13690,12 @@
             "state" : "translated",
             "value" : "組合鍵「%@」無法用作自訂綁定熱鍵。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自訂快捷鍵不支援組合「%@」。"
+          }
         }
       }
     },
@@ -13028,6 +13796,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "插入片段後的遊標位置"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入摘錄之後的插入點。"
           }
         }
       }
@@ -13130,6 +13904,12 @@
             "state" : "translated",
             "value" : "所選的文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所選的文字。"
+          }
         }
       }
     },
@@ -13227,6 +14007,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "無"
@@ -13333,6 +14119,12 @@
             "state" : "translated",
             "value" : "未知的"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知"
+          }
         }
       }
     },
@@ -13433,6 +14225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "捨棄所作更動"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捨棄變更"
           }
         }
       }
@@ -13536,6 +14334,12 @@
             "state" : "translated",
             "value" : "這將捨棄對當前檔案的更動、且使用「%@」編碼重新載入當前檔案。您確定要這麼做嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定要捨棄你所作的更改並使用「%@」重新開啟文件嗎？"
+          }
         }
       }
     },
@@ -13637,6 +14441,12 @@
             "state" : "translated",
             "value" : "該文件中含有未儲存的修改。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此文件有未儲存的變更。"
+          }
         }
       }
     },
@@ -13728,6 +14538,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "未命名"
@@ -13826,6 +14642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未命名檔案夾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名資料夾"
           }
         }
       }
@@ -13928,6 +14750,12 @@
             "state" : "translated",
             "value" : "保留CotEditor編輯的內容"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保留CotEditor編輯的版本"
+          }
         }
       }
     },
@@ -14025,6 +14853,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新"
@@ -14130,6 +14964,12 @@
             "state" : "translated",
             "value" : "保留CotEditor的版本還是更新至被編輯過的版本？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要保留CotEditor的版本，還是將其更新到修改後的版本？"
+          }
         }
       }
     },
@@ -14227,6 +15067,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他應用程式已對此檔案進行修改。"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他應用程式已對此檔案進行修改。"
@@ -14331,6 +15177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他應用程式已對此檔案進行修改。CotEditor中還有未儲存的變更。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他應用程式已對此檔案進行修改。CotEditor中亦有尚未儲存的變更。"
           }
         }
       }

@@ -303,6 +303,18 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld*個字元"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -397,6 +409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "進階字元統計⋯"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進階字元量計數⋯"
           }
         }
       }
@@ -500,6 +518,12 @@
             "state" : "translated",
             "value" : "以文本自身的編碼、來統計該文本的位元組數量。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計算使用指定編碼方式編碼的文字的Byte數。"
+          }
         }
       }
     },
@@ -601,6 +625,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "位元組"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         }
       }
@@ -704,6 +734,12 @@
             "state" : "translated",
             "value" : "以萬國碼的直觀方式來統計文字數量。哪怕像是繪文字這樣的高萬字，也都按照單個文字來計算。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以Unicode中定義的直覺方式計數。由多個Unicode代碼位（如表情符號）組成的字元以一個字元計算。"
+          }
         }
       }
     },
@@ -805,6 +841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書寫元素集"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字位聚類"
           }
         }
       }
@@ -908,6 +950,12 @@
             "state" : "translated",
             "value" : "統計萬國碼碼點數量（以 UTF-32 的方式）。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計數Unicode代碼位（與計數UTF-32相同）。"
+          }
         }
       }
     },
@@ -1009,6 +1057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode 純量"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode純量"
           }
         }
       }
@@ -1112,6 +1166,12 @@
             "state" : "translated",
             "value" : "統計萬國碼碼點數量，但將代理配對分別統計成兩個碼點。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計數Unicode代碼位，但將代理配對計算為兩個字元。"
+          }
         }
       }
     },
@@ -1214,6 +1274,12 @@
             "state" : "translated",
             "value" : "UTF-16"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
         }
       }
     },
@@ -1305,6 +1371,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "複製"
@@ -1404,6 +1476,12 @@
             "state" : "translated",
             "value" : "編碼："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編碼："
+          }
         }
       }
     },
@@ -1498,6 +1576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已失敗"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失敗"
           }
         }
       }
@@ -1594,6 +1678,12 @@
             "state" : "translated",
             "value" : "忽略行尾"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略每行結尾"
+          }
         }
       }
     },
@@ -1685,6 +1775,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略空白字元"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "忽略空白字元"
@@ -1784,6 +1880,12 @@
             "state" : "translated",
             "value" : "標準化："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準化："
+          }
         }
       }
     },
@@ -1875,6 +1977,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示選項"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示選項"
@@ -1974,6 +2082,12 @@
             "state" : "translated",
             "value" : "開始"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始"
+          }
         }
       }
     },
@@ -2068,6 +2182,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "停止進階字元統計"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止進階字元量計數"
           }
         }
       }
@@ -2164,6 +2284,12 @@
             "state" : "translated",
             "value" : "停止統計"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止計數"
+          }
         }
       }
     },
@@ -2258,6 +2384,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "將多個空白字元視為同一個"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將連續的空格視為一個空格"
           }
         }
       }
@@ -2354,6 +2486,12 @@
             "state" : "translated",
             "value" : "單位："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "單位："
+          }
         }
       }
     },
@@ -2445,6 +2583,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白字元："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白字元："
