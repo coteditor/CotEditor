@@ -100,6 +100,12 @@
             "state" : "translated",
             "value" : "列印背景"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列印背景"
+          }
         }
       }
     },
@@ -202,6 +208,12 @@
             "state" : "translated",
             "value" : "字體大小"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字大小"
+          }
         }
       }
     },
@@ -300,6 +312,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標頭"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "標頭"
@@ -406,6 +424,12 @@
             "state" : "translated",
             "value" : "列印標頭和註腳"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列印標頭與註腳"
+          }
         }
       }
     },
@@ -504,6 +528,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列印行號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "列印行號"
@@ -609,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "列印不可見元素"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列印隱形符號"
           }
         }
       }
@@ -725,6 +761,12 @@
             "state" : "translated",
             "value" : "註腳"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "註腳"
+          }
         }
       }
     },
@@ -823,6 +865,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "黑白"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "黑白"
@@ -938,6 +986,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "點"
@@ -1066,6 +1120,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顏色"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "顏色"

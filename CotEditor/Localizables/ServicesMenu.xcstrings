@@ -94,6 +94,12 @@
             "state" : "translated",
             "value" : "使用選中的內容創建新的CotEditor文件"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增包括所選範圍的CotEditor視窗"
+          }
         }
       }
     },
@@ -185,6 +191,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在CotEditor中開啟"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "在CotEditor中開啟"

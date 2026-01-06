@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "一杯美味的咖啡"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一杯美味的咖啡"
+          }
         }
       }
     },
@@ -196,6 +202,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "濃縮咖啡"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "濃縮咖啡"
@@ -301,6 +313,12 @@
             "state" : "translated",
             "value" : "以咖啡資助軟體研發"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用咖啡支持日常關發"
+          }
         }
       }
     },
@@ -398,6 +416,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "咖啡豆"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "咖啡豆"

@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "清除最近項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近項目"
+          }
         }
       }
     },
@@ -187,6 +193,12 @@
             "state" : "translated",
             "value" : "列"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欄"
+          }
         }
       }
     },
@@ -280,6 +292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分界符："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分隔符號："
           }
         }
       }
@@ -376,6 +394,12 @@
             "state" : "translated",
             "value" : "空白範式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式為空"
+          }
         }
       }
     },
@@ -471,6 +495,12 @@
             "state" : "translated",
             "value" : "整行"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整個行"
+          }
         }
       }
     },
@@ -565,6 +595,12 @@
             "state" : "translated",
             "value" : "忽略大小寫"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略大小寫"
+          }
         }
       }
     },
@@ -655,6 +691,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "降序"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "降序"
@@ -754,6 +796,12 @@
             "state" : "translated",
             "value" : "不合法的範式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無效的模式"
+          }
         }
       }
     },
@@ -847,6 +895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "首行置頂"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保持第一行顯示在最上方"
           }
         }
       }
@@ -942,6 +996,12 @@
             "state" : "translated",
             "value" : "模式："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式："
+          }
         }
       }
     },
@@ -1032,6 +1092,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置："
@@ -1131,6 +1197,12 @@
             "state" : "translated",
             "value" : "最近"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近"
+          }
         }
       }
     },
@@ -1222,6 +1294,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常規表示式"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "常規表示式"
@@ -1321,6 +1399,12 @@
             "state" : "translated",
             "value" : "常規表示式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常規表示式"
+          }
         }
       }
     },
@@ -1414,6 +1498,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "遵守語言規則"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遵循語言規則"
           }
         }
       }
@@ -1510,6 +1600,12 @@
             "state" : "translated",
             "value" : "檢查行中哪個部分將被用於比較排序的示例行。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範例行，用來檢查行中的甚麼部分將用於排序比較。"
+          }
         }
       }
     },
@@ -1604,6 +1700,12 @@
             "state" : "translated",
             "value" : "示例："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範例："
+          }
         }
       }
     },
@@ -1695,6 +1797,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "排序"
@@ -1793,6 +1901,12 @@
             "state" : "translated",
             "value" : "排序鍵："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序關鍵字："
+          }
         }
       }
     },
@@ -1883,6 +1997,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序選項："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "排序選項："
@@ -1981,6 +2101,12 @@
             "state" : "translated",
             "value" : "將陣列視為數值"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將數字視為數值"
+          }
         }
       }
     },
@@ -2074,6 +2200,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用捕獲組："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用捕捉組："
           }
         }
       }

@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "阿德拉姆文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿德拉姆文"
+          }
         }
       }
     },
@@ -182,6 +188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "愛琴海數字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "愛琴海數字"
@@ -280,6 +292,12 @@
             "state" : "translated",
             "value" : "阿洪姆文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿洪姆文"
+          }
         }
       }
     },
@@ -370,6 +388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鍊金術符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "鍊金術符號"
@@ -468,6 +492,12 @@
             "state" : "translated",
             "value" : "字母顯示形式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字母顯示形式"
+          }
         }
       }
     },
@@ -558,6 +588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安納托利亞象形文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "安納托利亞象形文字"
@@ -656,6 +692,12 @@
             "state" : "translated",
             "value" : "古希臘樂譜符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古希臘樂譜符號"
+          }
         }
       }
     },
@@ -746,6 +788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古希臘數字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "古希臘數字"
@@ -844,6 +892,12 @@
             "state" : "translated",
             "value" : "古代符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古代符號"
+          }
         }
       }
     },
@@ -934,6 +988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯文"
@@ -1032,6 +1092,12 @@
             "state" : "translated",
             "value" : "阿拉伯文延伸-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯文延伸-A"
+          }
         }
       }
     },
@@ -1122,6 +1188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯文延伸-B"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯文延伸-B"
@@ -1220,6 +1292,12 @@
             "state" : "translated",
             "value" : "阿拉伯文延伸-C"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯文延伸-C"
+          }
         }
       }
     },
@@ -1310,6 +1388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯文數學字母符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯文數學字母符號"
@@ -1408,6 +1492,12 @@
             "state" : "translated",
             "value" : "阿拉伯顯示形式-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯顯示形式-A"
+          }
         }
       }
     },
@@ -1498,6 +1588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯顯示形式-B"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯顯示形式-B"
@@ -1596,6 +1692,12 @@
             "state" : "translated",
             "value" : "阿拉伯文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿拉伯文補充"
+          }
         }
       }
     },
@@ -1686,6 +1788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "亞美尼亞文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "亞美尼亞文"
@@ -1784,6 +1892,12 @@
             "state" : "translated",
             "value" : "箭頭"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "箭嘴"
+          }
         }
       }
     },
@@ -1874,6 +1988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阿維斯陀文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿維斯陀文"
@@ -1972,6 +2092,12 @@
             "state" : "translated",
             "value" : "峇里文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "峇里文"
+          }
         }
       }
     },
@@ -2062,6 +2188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴姆穆文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴姆穆文"
@@ -2160,6 +2292,12 @@
             "state" : "translated",
             "value" : "巴姆穆文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴姆穆文補充"
+          }
         }
       }
     },
@@ -2250,6 +2388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基本拉丁文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "基本拉丁文"
@@ -2348,6 +2492,12 @@
             "state" : "translated",
             "value" : "巴薩文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴薩文"
+          }
         }
       }
     },
@@ -2438,6 +2588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴塔克文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴塔克文"
@@ -2536,6 +2692,12 @@
             "state" : "translated",
             "value" : "孟加拉文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "孟加拉文"
+          }
         }
       }
     },
@@ -2626,6 +2788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拜克舒基文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "拜克舒基文"
@@ -2724,6 +2892,12 @@
             "state" : "translated",
             "value" : "區塊元件"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區塊元件"
+          }
         }
       }
     },
@@ -2814,6 +2988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "漢語注音符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "漢語注音符號"
@@ -2912,6 +3092,12 @@
             "state" : "translated",
             "value" : "漢語注音符號延伸"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "漢語注音符號延伸"
+          }
         }
       }
     },
@@ -3002,6 +3188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製表符"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "製表符"
@@ -3100,6 +3292,12 @@
             "state" : "translated",
             "value" : "婆羅米文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "婆羅米文"
+          }
         }
       }
     },
@@ -3190,6 +3388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點字模式"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "點字模式"
@@ -3288,6 +3492,12 @@
             "state" : "translated",
             "value" : "布吉文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "布吉文"
+          }
         }
       }
     },
@@ -3378,6 +3588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "布錫文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "布錫文"
@@ -3476,6 +3692,12 @@
             "state" : "translated",
             "value" : "拜占庭音樂符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拜占庭音樂符號"
+          }
         }
       }
     },
@@ -3566,6 +3788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "卡里亞文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "卡里亞文"
@@ -3664,6 +3892,12 @@
             "state" : "translated",
             "value" : "高加索阿爾巴尼亞語"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高加索阿爾巴尼亞語"
+          }
         }
       }
     },
@@ -3754,6 +3988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查克馬文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "查克馬文"
@@ -3852,6 +4092,12 @@
             "state" : "translated",
             "value" : "占文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "占文"
+          }
         }
       }
     },
@@ -3942,6 +4188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "柴羅基文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "柴羅基文"
@@ -4040,6 +4292,12 @@
             "state" : "translated",
             "value" : "柴羅基文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "柴羅基文補充"
+          }
         }
       }
     },
@@ -4133,6 +4391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西洋棋符號"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "棋符號"
           }
         }
       }
@@ -4228,6 +4492,12 @@
             "state" : "translated",
             "value" : "花剌子模語"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "花剌子模文"
+          }
         }
       }
     },
@@ -4318,6 +4588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓相容"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓相容"
@@ -4416,6 +4692,12 @@
             "state" : "translated",
             "value" : "中日韓相容格式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓相容格式"
+          }
         }
       }
     },
@@ -4506,6 +4788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓相容表意文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓相容表意文字"
@@ -4604,6 +4892,12 @@
             "state" : "translated",
             "value" : "中日韓相容表意文字補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓相容表意文字補充"
+          }
         }
       }
     },
@@ -4694,6 +4988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓部首補充"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓部首補充"
@@ -4792,6 +5092,12 @@
             "state" : "translated",
             "value" : "中日韓筆畫"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓筆劃"
+          }
         }
       }
     },
@@ -4882,6 +5188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓符號和標點符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓符號和標點符號"
@@ -4980,6 +5292,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字"
+          }
         }
       }
     },
@@ -5070,6 +5388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸A"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸A"
@@ -5168,6 +5492,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸B"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸B"
+          }
         }
       }
     },
@@ -5258,6 +5588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸C"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸C"
@@ -5356,6 +5692,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸D"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸D"
+          }
         }
       }
     },
@@ -5446,6 +5788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸E"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸E"
@@ -5544,6 +5892,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸F"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸F"
+          }
         }
       }
     },
@@ -5634,6 +5988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸G"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸G"
@@ -5732,6 +6092,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸H"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸H"
+          }
         }
       }
     },
@@ -5822,6 +6188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸I"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸I"
@@ -5920,6 +6292,12 @@
             "state" : "translated",
             "value" : "組合的變音符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "組合的變音符號"
+          }
         }
       }
     },
@@ -6010,6 +6388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "組合的變音符號延伸"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "組合的變音符號延伸"
@@ -6108,6 +6492,12 @@
             "state" : "translated",
             "value" : "組合的變音符號標記"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "組合的變音符號標記"
+          }
         }
       }
     },
@@ -6198,6 +6588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "組合的變音符號補充"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "組合的變音符號補充"
@@ -6296,6 +6692,12 @@
             "state" : "translated",
             "value" : "組合的半標記"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "組合的半標記"
+          }
         }
       }
     },
@@ -6386,6 +6788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般印度數字形式"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般印度數字形式"
@@ -6484,6 +6892,12 @@
             "state" : "translated",
             "value" : "控制圖片"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制圖片"
+          }
         }
       }
     },
@@ -6574,6 +6988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "科普特文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "科普特文"
@@ -6672,6 +7092,12 @@
             "state" : "translated",
             "value" : "科普特文閏餘數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "科普特文閏餘數字"
+          }
         }
       }
     },
@@ -6762,6 +7188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "算籌數字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "算籌數字"
@@ -6860,6 +7292,12 @@
             "state" : "translated",
             "value" : "楔形文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "楔形文字"
+          }
         }
       }
     },
@@ -6950,6 +7388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "楔形文字數字和標點符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "楔形文字數字和標點符號"
@@ -7048,6 +7492,12 @@
             "state" : "translated",
             "value" : "貨幣符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貨幣符號"
+          }
         }
       }
     },
@@ -7138,6 +7588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "賽浦雷特字音表"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "賽浦雷特字音表"
@@ -7236,6 +7692,12 @@
             "state" : "translated",
             "value" : "賽普勒斯-米諾斯文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "塞浦路斯-米諾斯文"
+          }
         }
       }
     },
@@ -7329,6 +7791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西里爾文字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西里爾字母"
           }
         }
       }
@@ -7424,6 +7892,12 @@
             "state" : "translated",
             "value" : "西里爾文字延伸-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西里爾字母延伸-A"
+          }
         }
       }
     },
@@ -7517,6 +7991,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西里爾文字延伸-B"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西里爾字母延伸-B"
           }
         }
       }
@@ -7612,6 +8092,12 @@
             "state" : "translated",
             "value" : "西里爾文字延伸-C"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西里爾字母延伸-C"
+          }
         }
       }
     },
@@ -7705,6 +8191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西里爾文字延伸-D"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西里爾字母延伸-D"
           }
         }
       }
@@ -7800,6 +8292,12 @@
             "state" : "translated",
             "value" : "西里爾文字補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西里爾字母補充"
+          }
         }
       }
     },
@@ -7890,6 +8388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "德瑟雷特文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "德瑟雷特文"
@@ -7988,6 +8492,12 @@
             "state" : "translated",
             "value" : "天城文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "天城文"
+          }
         }
       }
     },
@@ -8078,6 +8588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "天城文延伸"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "天城文延伸"
@@ -8176,6 +8692,12 @@
             "state" : "translated",
             "value" : "天城文延伸-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "天城文延伸-A"
+          }
         }
       }
     },
@@ -8266,6 +8788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dingbats"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dingbats"
@@ -8364,6 +8892,12 @@
             "state" : "translated",
             "value" : "迪維斯阿庫魯文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "迪維斯阿庫魯文"
+          }
         }
       }
     },
@@ -8454,6 +8988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "多格拉文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "多格拉文"
@@ -8552,6 +9092,12 @@
             "state" : "translated",
             "value" : "西洋骨牌牌面"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西洋骨牌牌面"
+          }
         }
       }
     },
@@ -8642,6 +9188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "杜普盧耶速記符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "杜普盧耶速記符號"
@@ -8740,6 +9292,12 @@
             "state" : "translated",
             "value" : "古王朝楔形文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古王朝楔形文字"
+          }
         }
       }
     },
@@ -8834,6 +9392,12 @@
             "state" : "translated",
             "value" : "埃及象形文字格式控制"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "埃及象形文字格式控制項目"
+          }
         }
       }
     },
@@ -8924,6 +9488,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "埃及象形文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "埃及象形文字"
@@ -9022,6 +9592,12 @@
             "state" : "translated",
             "value" : "埃及象形文字延伸-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "埃及象形文字延伸-A"
+          }
         }
       }
     },
@@ -9112,6 +9688,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "愛爾巴桑文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "愛爾巴桑文"
@@ -9210,6 +9792,12 @@
             "state" : "translated",
             "value" : "埃利邁文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "埃利邁文"
+          }
         }
       }
     },
@@ -9300,6 +9888,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "表情符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "表情符號"
@@ -9398,6 +9992,12 @@
             "state" : "translated",
             "value" : "框住的英數補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "框住的英數補充"
+          }
         }
       }
     },
@@ -9488,6 +10088,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "框住的英數字元"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "框住的英數字元"
@@ -9586,6 +10192,12 @@
             "state" : "translated",
             "value" : "框住的中日韓字母和月份"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "框住的中日韓字母和月份"
+          }
         }
       }
     },
@@ -9676,6 +10288,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "框住的表意文字補充"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "框住的表意文字補充"
@@ -9774,6 +10392,12 @@
             "state" : "translated",
             "value" : "衣索比亞文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "衣索比亞文"
+          }
         }
       }
     },
@@ -9864,6 +10488,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "衣索比亞文延伸"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "衣索比亞文延伸"
@@ -9962,6 +10592,12 @@
             "state" : "translated",
             "value" : "衣索比亞文延伸-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "衣索比亞文延伸-A"
+          }
         }
       }
     },
@@ -10052,6 +10688,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "衣索比亞文延伸-B"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "衣索比亞文延伸-B"
@@ -10150,6 +10792,12 @@
             "state" : "translated",
             "value" : "衣索比亞文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "衣索比亞文補充"
+          }
         }
       }
     },
@@ -10240,6 +10888,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加雷字母"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "加雷字母"
@@ -10338,6 +10992,12 @@
             "state" : "translated",
             "value" : "一般標點符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般標點符號"
+          }
         }
       }
     },
@@ -10428,6 +11088,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "幾何形狀"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "幾何形狀"
@@ -10526,6 +11192,12 @@
             "state" : "translated",
             "value" : "幾何形狀延伸"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "幾何形狀延伸"
+          }
         }
       }
     },
@@ -10619,6 +11291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "喬治亞文"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "格魯吉亞文"
           }
         }
       }
@@ -10714,6 +11392,12 @@
             "state" : "translated",
             "value" : "喬治亞文延伸"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "格魯吉亞文擴充"
+          }
         }
       }
     },
@@ -10808,6 +11492,12 @@
             "state" : "translated",
             "value" : "喬治亞文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "格魯吉亞文補充"
+          }
         }
       }
     },
@@ -10898,6 +11588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "格拉哥里文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "格拉哥里文"
@@ -10996,6 +11692,12 @@
             "state" : "translated",
             "value" : "格拉哥里文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "格拉哥里文補充"
+          }
         }
       }
     },
@@ -11086,6 +11788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歌德文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "歌德文"
@@ -11184,6 +11892,12 @@
             "state" : "translated",
             "value" : "帕拉瓦文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "帕拉瓦文"
+          }
         }
       }
     },
@@ -11274,6 +11988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "希臘和科普替文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "希臘和科普替文"
@@ -11372,6 +12092,12 @@
             "state" : "translated",
             "value" : "希臘文延伸"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "希臘文延伸"
+          }
         }
       }
     },
@@ -11462,6 +12188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古吉拉特文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "古吉拉特文"
@@ -11560,6 +12292,12 @@
             "state" : "translated",
             "value" : "貢賈拉貢德文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貢賈拉貢德文"
+          }
         }
       }
     },
@@ -11654,6 +12392,12 @@
             "state" : "translated",
             "value" : "古爾穆奇文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古木基文"
+          }
         }
       }
     },
@@ -11744,6 +12488,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古隆凱瑪文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "古隆凱瑪文"
@@ -11842,6 +12592,12 @@
             "state" : "translated",
             "value" : "半形與全形格式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "半形與全形格式"
+          }
         }
       }
     },
@@ -11932,6 +12688,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "韓文相容字母"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "韓文相容字母"
@@ -12030,6 +12792,12 @@
             "state" : "translated",
             "value" : "韓文字母"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "韓文字母"
+          }
         }
       }
     },
@@ -12120,6 +12888,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "韓文字母延伸-A"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "韓文字母延伸-A"
@@ -12218,6 +12992,12 @@
             "state" : "translated",
             "value" : "韓文字母延伸-B"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "韓文字母延伸-B"
+          }
         }
       }
     },
@@ -12312,6 +13092,12 @@
             "state" : "translated",
             "value" : "韓文音節"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "韓文聲調"
+          }
         }
       }
     },
@@ -12402,6 +13188,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "哈乃斐羅興亞文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "哈乃斐羅興亞文"
@@ -12500,6 +13292,12 @@
             "state" : "translated",
             "value" : "漢奴奴"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "漢奴奴"
+          }
         }
       }
     },
@@ -12590,6 +13388,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "哈拉特文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "哈拉特文"
@@ -12688,6 +13492,12 @@
             "state" : "translated",
             "value" : "希伯來文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "希伯來文"
+          }
         }
       }
     },
@@ -12778,6 +13588,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高位專用代理"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "高位專用代理"
@@ -12876,6 +13692,12 @@
             "state" : "translated",
             "value" : "高位代理"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高位代理"
+          }
         }
       }
     },
@@ -12966,6 +13788,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平假名"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "平假名"
@@ -13064,6 +13892,12 @@
             "state" : "translated",
             "value" : "表意文字描述字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "表意文字描述字元"
+          }
         }
       }
     },
@@ -13154,6 +13988,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "表意文字符號和標點符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "表意文字符號和標點符號"
@@ -13252,6 +14092,12 @@
             "state" : "translated",
             "value" : "皇室阿拉姆文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "皇室阿拉姆文"
+          }
         }
       }
     },
@@ -13346,6 +14192,12 @@
             "state" : "translated",
             "value" : "印度西亞克數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "印度西亞格數字"
+          }
         }
       }
     },
@@ -13436,6 +14288,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴拉維碑銘體"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴拉維碑銘體"
@@ -13534,6 +14392,12 @@
             "state" : "translated",
             "value" : "帕提亞碑銘體"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "帕提亞碑銘體"
+          }
         }
       }
     },
@@ -13624,6 +14488,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IPA延伸"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IPA延伸"
@@ -13722,6 +14592,12 @@
             "state" : "translated",
             "value" : "爪哇文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "爪哇文"
+          }
         }
       }
     },
@@ -13812,6 +14688,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "凱提體"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "凱提體"
@@ -13910,6 +14792,12 @@
             "state" : "translated",
             "value" : "卡克托維克數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "卡克托維克數字"
+          }
         }
       }
     },
@@ -14000,6 +14888,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "假名延伸-A"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "假名延伸-A"
@@ -14098,6 +14992,12 @@
             "state" : "translated",
             "value" : "假名延伸-B"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "假名延伸-B"
+          }
         }
       }
     },
@@ -14188,6 +15088,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "假名補充"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "假名補充"
@@ -14286,6 +15192,12 @@
             "state" : "translated",
             "value" : "漢字批註"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "漢字批註"
+          }
         }
       }
     },
@@ -14376,6 +15288,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "康熙部首"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "康熙部首"
@@ -14474,6 +15392,12 @@
             "state" : "translated",
             "value" : "坎那達文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "坎納達文"
+          }
         }
       }
     },
@@ -14564,6 +15488,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "片假名"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "片假名"
@@ -14662,6 +15592,12 @@
             "state" : "translated",
             "value" : "片假名語音延伸"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "片假名語音延伸"
+          }
         }
       }
     },
@@ -14752,6 +15688,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "卡維文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "卡維文"
@@ -14850,6 +15792,12 @@
             "state" : "translated",
             "value" : "克耶李文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "克耶李文字"
+          }
         }
       }
     },
@@ -14940,6 +15888,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "佉盧文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "佉盧文"
@@ -15038,6 +15992,12 @@
             "state" : "translated",
             "value" : "契丹小字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "契丹小字"
+          }
         }
       }
     },
@@ -15128,6 +16088,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高棉文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "高棉文"
@@ -15226,6 +16192,12 @@
             "state" : "translated",
             "value" : "高棉符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高棉符號"
+          }
         }
       }
     },
@@ -15316,6 +16288,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "和卓文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "和卓文"
@@ -15414,11 +16392,24 @@
             "state" : "translated",
             "value" : "胡達巴德文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "胡達巴德文"
+          }
         }
       }
     },
     "Kirat Rai" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基拉特拉伊文"
+          }
+        }
+      }
     },
     "Lao" : {
       "localizations" : {
@@ -15511,6 +16502,12 @@
             "state" : "translated",
             "value" : "寮文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "老撾文"
+          }
         }
       }
     },
@@ -15601,6 +16598,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸附加文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸附加文字"
@@ -15699,6 +16702,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸-A"
+          }
         }
       }
     },
@@ -15789,6 +16798,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸-B"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸-B"
@@ -15887,6 +16902,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-C"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸-C"
+          }
         }
       }
     },
@@ -15977,6 +16998,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸-D"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸-D"
@@ -16075,6 +17102,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-E"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸-E"
+          }
         }
       }
     },
@@ -16165,6 +17198,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸-F"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸-F"
@@ -16263,6 +17302,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-G"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拉丁延伸-G"
+          }
         }
       }
     },
@@ -16353,6 +17398,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin-1補充"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin-1補充"
@@ -16451,6 +17502,12 @@
             "state" : "translated",
             "value" : "雷布查語"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "雷布查語"
+          }
         }
       }
     },
@@ -16541,6 +17598,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "類字母符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "類字母符號"
@@ -16639,6 +17702,12 @@
             "state" : "translated",
             "value" : "林布文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "林布文"
+          }
         }
       }
     },
@@ -16733,6 +17802,12 @@
             "state" : "translated",
             "value" : "線性文字A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "線性A"
+          }
         }
       }
     },
@@ -16823,6 +17898,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "線性B表意文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "線性B表意文字"
@@ -16921,6 +18002,12 @@
             "state" : "translated",
             "value" : "線性B音節"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "線性B音節"
+          }
         }
       }
     },
@@ -17011,6 +18098,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僳語"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "僳語"
@@ -17109,6 +18202,12 @@
             "state" : "translated",
             "value" : "僳語補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傈僳文補充"
+          }
         }
       }
     },
@@ -17199,6 +18298,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低位代理"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "低位代理"
@@ -17297,6 +18402,12 @@
             "state" : "translated",
             "value" : "呂基亞文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "呂基亞文"
+          }
         }
       }
     },
@@ -17387,6 +18498,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利底安文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "利底安文"
@@ -17485,6 +18602,12 @@
             "state" : "translated",
             "value" : "馬拉加尼文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "馬拉加尼文"
+          }
         }
       }
     },
@@ -17575,6 +18698,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "麻將牌面"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "麻將牌面"
@@ -17673,6 +18802,12 @@
             "state" : "translated",
             "value" : "錫江"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錫江"
+          }
         }
       }
     },
@@ -17766,6 +18901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "馬來亞拉姆文"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "馬拉雅拉姆文"
           }
         }
       }
@@ -17861,6 +19002,12 @@
             "state" : "translated",
             "value" : "曼底安文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "曼達安文"
+          }
         }
       }
     },
@@ -17951,6 +19098,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "摩尼字母"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "摩尼字母"
@@ -18049,6 +19202,12 @@
             "state" : "translated",
             "value" : "瑪欽文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "瑪欽文"
+          }
         }
       }
     },
@@ -18139,6 +19298,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "馬薩拉姆貢德文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "馬薩拉姆貢德文"
@@ -18237,6 +19402,12 @@
             "state" : "translated",
             "value" : "數學英數符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "數學英數符號"
+          }
         }
       }
     },
@@ -18327,6 +19498,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "數學運算子"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "數學運算子"
@@ -18425,6 +19602,12 @@
             "state" : "translated",
             "value" : "馬雅數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "馬雅數字"
+          }
         }
       }
     },
@@ -18515,6 +19698,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "梅德法伊德林文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "梅德法伊德林文"
@@ -18613,6 +19802,12 @@
             "state" : "translated",
             "value" : "曼尼普爾文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "曼尼普爾文"
+          }
         }
       }
     },
@@ -18703,6 +19898,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "曼尼普爾文延伸"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "曼尼普爾文延伸"
@@ -18801,6 +20002,12 @@
             "state" : "translated",
             "value" : "圖拉伊門德字母"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "圖拉伊門德字母"
+          }
         }
       }
     },
@@ -18891,6 +20098,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "麥羅埃文草體"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "麥羅埃文草體"
@@ -18989,6 +20202,12 @@
             "state" : "translated",
             "value" : "麥羅埃文象形文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "麥羅埃文象形文字"
+          }
         }
       }
     },
@@ -19079,6 +20298,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "苗文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "苗文"
@@ -19177,6 +20402,12 @@
             "state" : "translated",
             "value" : "混合數學符號 -A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "混合數學符號-A"
+          }
         }
       }
     },
@@ -19271,6 +20502,12 @@
             "state" : "translated",
             "value" : "混合數學符號 -B"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "混合數學符號-B"
+          }
         }
       }
     },
@@ -19361,6 +20598,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他符號"
@@ -19459,6 +20702,12 @@
             "state" : "translated",
             "value" : "其他符號和箭頭"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他符號和箭嘴"
+          }
         }
       }
     },
@@ -19549,6 +20798,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他符號和象形文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他符號和象形文字"
@@ -19647,6 +20902,12 @@
             "state" : "translated",
             "value" : "其他技術"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他技術"
+          }
         }
       }
     },
@@ -19737,6 +20998,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "摩迪文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "摩迪文"
@@ -19835,6 +21102,12 @@
             "state" : "translated",
             "value" : "聲調修飾字母"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "聲調修飾字母"
+          }
         }
       }
     },
@@ -19925,6 +21198,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "蒙古文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "蒙古文"
@@ -20023,6 +21302,12 @@
             "state" : "translated",
             "value" : "蒙古文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "蒙古文補充"
+          }
         }
       }
     },
@@ -20113,6 +21398,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繆文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "繆文"
@@ -20211,6 +21502,12 @@
             "state" : "translated",
             "value" : "穆塔尼文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "穆塔尼文"
+          }
         }
       }
     },
@@ -20301,6 +21598,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音樂符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "音樂符號"
@@ -20399,6 +21702,12 @@
             "state" : "translated",
             "value" : "緬甸文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緬甸文"
+          }
         }
       }
     },
@@ -20489,6 +21798,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緬甸文延伸-A"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "緬甸文延伸-A"
@@ -20587,6 +21902,12 @@
             "state" : "translated",
             "value" : "緬甸文延伸-B"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緬甸文延伸-B"
+          }
         }
       }
     },
@@ -20677,6 +21998,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緬甸文延伸-C"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "緬甸文延伸-C"
@@ -20775,6 +22102,12 @@
             "state" : "translated",
             "value" : "曼德文字（N’Ko）"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西非書面語言"
+          }
         }
       }
     },
@@ -20865,6 +22198,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "納巴泰字母"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "納巴泰字母"
@@ -20963,6 +22302,12 @@
             "state" : "translated",
             "value" : "蒙達里文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "蒙達里文"
+          }
         }
       }
     },
@@ -21057,6 +22402,12 @@
             "state" : "translated",
             "value" : "南迪城文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "南迪那嘎黎文"
+          }
         }
       }
     },
@@ -21147,6 +22498,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新傣仂文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "新傣仂文"
@@ -21245,6 +22602,12 @@
             "state" : "translated",
             "value" : "尼瓦文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尼瓦爾文"
+          }
         }
       }
     },
@@ -21335,6 +22698,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "數字形式"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "數字形式"
@@ -21433,6 +22802,12 @@
             "state" : "translated",
             "value" : "女書"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "女書"
+          }
         }
       }
     },
@@ -21523,6 +22898,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "創世紀苗文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "創世紀苗文"
@@ -21621,6 +23002,12 @@
             "state" : "translated",
             "value" : "歐甘文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歐甘文"
+          }
         }
       }
     },
@@ -21715,11 +23102,24 @@
             "state" : "translated",
             "value" : "桑塔利文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "桑塔利文"
+          }
         }
       }
     },
     "Ol Onal" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "奧爾奧納爾文"
+          }
+        }
+      }
     },
     "Old Hungarian" : {
       "localizations" : {
@@ -21808,6 +23208,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古匈牙利文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "古匈牙利文"
@@ -21906,6 +23312,12 @@
             "state" : "translated",
             "value" : "古義大利文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古意大利文"
+          }
         }
       }
     },
@@ -21996,6 +23408,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古北阿拉伯文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "古北阿拉伯文"
@@ -22094,6 +23512,12 @@
             "state" : "translated",
             "value" : "古彼爾姆文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古彼爾姆文"
+          }
         }
       }
     },
@@ -22184,6 +23608,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古波斯文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "古波斯文"
@@ -22282,6 +23712,12 @@
             "state" : "translated",
             "value" : "古粟特文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古粟特文"
+          }
         }
       }
     },
@@ -22372,6 +23808,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古南阿拉伯文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "古南阿拉伯文"
@@ -22470,6 +23912,12 @@
             "state" : "translated",
             "value" : "突厥語"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "突厥語"
+          }
         }
       }
     },
@@ -22564,6 +24012,12 @@
             "state" : "translated",
             "value" : "回鶻文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古維吾爾文"
+          }
         }
       }
     },
@@ -22654,6 +24108,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "光學字元辨識"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "光學字元辨識"
@@ -22752,6 +24212,12 @@
             "state" : "translated",
             "value" : "歐利亞文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歐利亞文"
+          }
         }
       }
     },
@@ -22842,6 +24308,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "修飾性Dingbats"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "修飾性Dingbats"
@@ -22940,6 +24412,12 @@
             "state" : "translated",
             "value" : "歐塞奇文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "奧塞奇文"
+          }
         }
       }
     },
@@ -23030,6 +24508,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "奧斯曼亞文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "奧斯曼亞文"
@@ -23128,6 +24612,12 @@
             "state" : "translated",
             "value" : "奧斯曼西亞克數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "奧斯曼西亞格數字"
+          }
         }
       }
     },
@@ -23218,6 +24708,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "楊松錄苗文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "楊松錄苗文"
@@ -23316,6 +24812,12 @@
             "state" : "translated",
             "value" : "帕爾米拉字母"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "帕爾米拉字母"
+          }
         }
       }
     },
@@ -23406,6 +24908,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "袍清豪文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "袍清豪文"
@@ -23504,6 +25012,12 @@
             "state" : "translated",
             "value" : "八思巴文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "八思巴文"
+          }
         }
       }
     },
@@ -23594,6 +25108,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "費斯托斯泥圓盤文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "費斯托斯泥圓盤文字"
@@ -23692,6 +25212,12 @@
             "state" : "translated",
             "value" : "腓尼基文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "腓尼基文"
+          }
         }
       }
     },
@@ -23782,6 +25308,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語音延伸"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "語音延伸"
@@ -23880,6 +25412,12 @@
             "state" : "translated",
             "value" : "語音擴展補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語音擴展補充"
+          }
         }
       }
     },
@@ -23974,6 +25512,12 @@
             "state" : "translated",
             "value" : "紙牌"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啤牌"
+          }
         }
       }
     },
@@ -24064,6 +25608,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "專用區域"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "專用區域"
@@ -24162,6 +25712,12 @@
             "state" : "translated",
             "value" : "巴列維文詩篇體"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴列維文詩篇體"
+          }
         }
       }
     },
@@ -24256,6 +25812,12 @@
             "state" : "translated",
             "value" : "雷姜文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "勒姜文"
+          }
         }
       }
     },
@@ -24346,6 +25908,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "魯米數字符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "魯米數字符號"
@@ -24444,6 +26012,12 @@
             "state" : "translated",
             "value" : "古北歐文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "古北歐文"
+          }
         }
       }
     },
@@ -24534,6 +26108,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "薩馬利亞文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "薩馬利亞文"
@@ -24632,6 +26212,12 @@
             "state" : "translated",
             "value" : "索拉什特拉文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "索拉什特拉文"
+          }
         }
       }
     },
@@ -24722,6 +26308,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沙拉達文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "沙拉達文"
@@ -24820,6 +26412,12 @@
             "state" : "translated",
             "value" : "簫伯納文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "簫伯納文字"
+          }
         }
       }
     },
@@ -24910,6 +26508,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "速記符號格式控制"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "速記符號格式控制"
@@ -25008,6 +26612,12 @@
             "state" : "translated",
             "value" : "悉曇字母"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "悉曇字母"
+          }
         }
       }
     },
@@ -25098,6 +26708,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僧伽羅文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "僧伽羅文"
@@ -25196,6 +26812,12 @@
             "state" : "translated",
             "value" : "僧伽羅古數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僧伽羅古數字"
+          }
         }
       }
     },
@@ -25286,6 +26908,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小寫格式變體"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "小寫格式變體"
@@ -25384,6 +27012,12 @@
             "state" : "translated",
             "value" : "小型假名延伸"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小型假名擴充"
+          }
         }
       }
     },
@@ -25474,6 +27108,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "粟特文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "粟特文"
@@ -25572,6 +27212,12 @@
             "state" : "translated",
             "value" : "索拉桑朋文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "索拉桑朋文"
+          }
         }
       }
     },
@@ -25662,6 +27308,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "索永布文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "索永布文"
@@ -25760,6 +27412,12 @@
             "state" : "translated",
             "value" : "間隔修飾字母"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間隔修飾字母"
+          }
         }
       }
     },
@@ -25850,6 +27508,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "特殊文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "特殊文"
@@ -25948,6 +27612,12 @@
             "state" : "translated",
             "value" : "巽他文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巽他文"
+          }
         }
       }
     },
@@ -26038,6 +27708,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巽他文補充"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "巽他文補充"
@@ -26136,6 +27812,12 @@
             "state" : "translated",
             "value" : "松瓦爾文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "蘇努瓦爾文"
+          }
         }
       }
     },
@@ -26226,6 +27908,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上標和下標"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "上標和下標"
@@ -26324,6 +28012,12 @@
             "state" : "translated",
             "value" : "補充箭號 -A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充箭嘴-A"
+          }
         }
       }
     },
@@ -26417,6 +28111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充箭號 -B"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充箭嘴-B"
           }
         }
       }
@@ -26512,6 +28212,12 @@
             "state" : "translated",
             "value" : "補充箭號 -C"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充箭嘴-C"
+          }
         }
       }
     },
@@ -26602,6 +28308,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充數學運算子"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充數學運算子"
@@ -26700,6 +28412,12 @@
             "state" : "translated",
             "value" : "補充性標點符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充性標點符號"
+          }
         }
       }
     },
@@ -26790,6 +28508,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充符號和象形文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充符號和象形文字"
@@ -26888,6 +28612,12 @@
             "state" : "translated",
             "value" : "補充專用區域 -A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充專用區域-A"
+          }
         }
       }
     },
@@ -26982,6 +28712,12 @@
             "state" : "translated",
             "value" : "補充專用區域 -B"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補充專用區域-B"
+          }
         }
       }
     },
@@ -27072,6 +28808,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "薩頓書寫符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "薩頓書寫符號"
@@ -27170,6 +28912,12 @@
             "state" : "translated",
             "value" : "希洛弟納格里文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "希洛弟納格里文"
+          }
         }
       }
     },
@@ -27260,6 +29008,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "符號和象形文字延伸-A"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "符號和象形文字延伸-A"
@@ -27358,11 +29112,24 @@
             "state" : "translated",
             "value" : "傳統運算符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳統運算符號"
+          }
         }
       }
     },
     "Symbols for Legacy Computing Supplement" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳統運算符號補充"
+          }
+        }
+      }
     },
     "Syriac" : {
       "localizations" : {
@@ -27451,6 +29218,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "敘利亞文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "敘利亞文"
@@ -27549,6 +29322,12 @@
             "state" : "translated",
             "value" : "敘利亞文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "敘利亞字母補充"
+          }
         }
       }
     },
@@ -27643,6 +29422,12 @@
             "state" : "translated",
             "value" : "塔加拉文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "菲律賓文"
+          }
         }
       }
     },
@@ -27733,6 +29518,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "塔加班瓦文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "塔加班瓦文"
@@ -27831,6 +29622,12 @@
             "state" : "translated",
             "value" : "標籤"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標籤"
+          }
         }
       }
     },
@@ -27921,6 +29718,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "台樂文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "台樂文"
@@ -28019,6 +29822,12 @@
             "state" : "translated",
             "value" : "蘭納文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "蘭納文"
+          }
         }
       }
     },
@@ -28109,6 +29918,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "越南傣文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "越南傣文"
@@ -28207,6 +30022,12 @@
             "state" : "translated",
             "value" : "太玄經符號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "太玄經符號"
+          }
         }
       }
     },
@@ -28297,6 +30118,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "塔克里文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "塔克里文"
@@ -28395,6 +30222,12 @@
             "state" : "translated",
             "value" : "坦米爾文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "泰米爾文"
+          }
         }
       }
     },
@@ -28489,6 +30322,12 @@
             "state" : "translated",
             "value" : "坦米爾文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "泰米爾文補充"
+          }
         }
       }
     },
@@ -28579,6 +30418,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "唐薩文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "唐薩文"
@@ -28677,6 +30522,12 @@
             "state" : "translated",
             "value" : "西夏文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西夏文"
+          }
         }
       }
     },
@@ -28767,6 +30618,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西夏文組件"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "西夏文組件"
@@ -28865,6 +30722,12 @@
             "state" : "translated",
             "value" : "西夏文補充"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西夏文補充"
+          }
         }
       }
     },
@@ -28955,6 +30818,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "泰盧固文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "泰盧固文"
@@ -29053,6 +30922,12 @@
             "state" : "translated",
             "value" : "塔安那文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "塔安那文"
+          }
         }
       }
     },
@@ -29143,6 +31018,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "泰文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "泰文"
@@ -29241,6 +31122,12 @@
             "state" : "translated",
             "value" : "藏文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "藏文"
+          }
         }
       }
     },
@@ -29331,6 +31218,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提非納文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "提非納文"
@@ -29429,6 +31322,12 @@
             "state" : "translated",
             "value" : "邁蒂利文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "邁蒂利文"
+          }
         }
       }
     },
@@ -29523,11 +31422,24 @@
             "state" : "translated",
             "value" : "托德瑞文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "托德里字母"
+          }
         }
       }
     },
     "Toto" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toto"
+          }
+        }
+      }
     },
     "Transport And Map Symbols" : {
       "localizations" : {
@@ -29616,6 +31528,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "交通工具和地圖符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "交通工具和地圖符號"
@@ -29714,6 +31632,12 @@
             "state" : "translated",
             "value" : "圖盧提加拉文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "圖盧-提加拉文"
+          }
         }
       }
     },
@@ -29804,6 +31728,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "烏加列文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "烏加列文"
@@ -29902,6 +31832,12 @@
             "state" : "translated",
             "value" : "統一加拿大原住民音符"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "統一加拿大原住民音符"
+          }
         }
       }
     },
@@ -29992,6 +31928,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "統一加拿大原住民音符延伸"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "統一加拿大原住民音符延伸"
@@ -30090,6 +32032,12 @@
             "state" : "translated",
             "value" : "統一加拿大原住民音符延伸-A"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "統一加拿大原住民音符延伸-A"
+          }
         }
       }
     },
@@ -30180,6 +32128,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "瓦伊文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "瓦伊文"
@@ -30278,6 +32232,12 @@
             "state" : "translated",
             "value" : "變體選擇器"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "變體選擇器"
+          }
         }
       }
     },
@@ -30368,6 +32328,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "變體選擇器補充"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "變體選擇器補充"
@@ -30466,6 +32432,12 @@
             "state" : "translated",
             "value" : "吠陀梵文延伸"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "吠陀梵文延伸"
+          }
         }
       }
     },
@@ -30556,6 +32528,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直書形式"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "直書形式"
@@ -30654,6 +32632,12 @@
             "state" : "translated",
             "value" : "維斯庫奇文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "維斯庫奇文"
+          }
         }
       }
     },
@@ -30748,6 +32732,12 @@
             "state" : "translated",
             "value" : "文喬文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "萬秋文"
+          }
         }
       }
     },
@@ -30838,6 +32828,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "瓦蘭齊地文"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "瓦蘭齊地文"
@@ -30936,6 +32932,12 @@
             "state" : "translated",
             "value" : "雅兹迪文"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "雅茲迪文"
+          }
         }
       }
     },
@@ -31026,6 +33028,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yi部首"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yi部首"
@@ -31124,6 +33132,12 @@
             "state" : "translated",
             "value" : "Yi音節"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yi音節"
+          }
         }
       }
     },
@@ -31214,6 +33228,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "八卦符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "八卦符號"
@@ -31312,6 +33332,12 @@
             "state" : "translated",
             "value" : "札那巴札爾方形字母"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "札那巴札爾方形字母"
+          }
         }
       }
     },
@@ -31405,6 +33431,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "贊玫尼聖歌音樂符號"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "贊玫尼聖歌樂譜符號"
           }
         }
       }

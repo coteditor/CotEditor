@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "%@ with BOM"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ with BOM"
+          }
         }
       }
     }

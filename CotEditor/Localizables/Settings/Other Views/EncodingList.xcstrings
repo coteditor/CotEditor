@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "拖拽以改變編碼順序："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖移編碼以更改次序："
+          }
         }
       }
     },
@@ -192,6 +198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定為預設的編碼無法被移除。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法移除設定為預設的編碼。"
           }
         }
       }
@@ -295,6 +307,12 @@
             "state" : "translated",
             "value" : "%@無法被移除。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法移除%@。"
+          }
         }
       }
     },
@@ -389,6 +407,12 @@
             "state" : "translated",
             "value" : "分隔線"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分隔符號"
+          }
         }
       }
     },
@@ -479,6 +503,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字編碼"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字編碼"
@@ -576,6 +606,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此順序適用於編碼選單和編碼偵測。偵測過程僅考慮此處列出的條目，排列順序靠前的條目擁有更高的優先權。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此次序適用於編碼選單與編碼偵測。偵測程序只考慮此處列出的項目，且次序更高的項目會優先考慮。"
           }
         }
       }

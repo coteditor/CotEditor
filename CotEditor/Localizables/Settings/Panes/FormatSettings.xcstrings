@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "可用的文法定義："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可用語法："
+          }
         }
       }
     },
@@ -185,6 +191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "自訂文法"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自訂語法"
           }
         }
       }
@@ -280,6 +292,12 @@
             "state" : "translated",
             "value" : "預設行尾："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設每行結尾："
+          }
         }
       }
     },
@@ -374,6 +392,12 @@
             "state" : "translated",
             "value" : "預設的文法定義："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設語法："
+          }
         }
       }
     },
@@ -464,6 +488,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設文字編碼："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "預設文字編碼："
@@ -562,6 +592,12 @@
             "state" : "translated",
             "value" : "編輯列表⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯列表⋯"
+          }
         }
       }
     },
@@ -655,6 +691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯選定項目"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯所選項目"
           }
         }
       }
@@ -756,6 +798,12 @@
             "state" : "translated",
             "value" : "編輯⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯⋯"
+          }
         }
       }
     },
@@ -850,6 +898,12 @@
             "state" : "translated",
             "value" : "編碼優先順序："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編碼優先次序："
+          }
         }
       }
     },
@@ -943,6 +997,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "參考文件中的編碼宣告"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "參考文件中的編碼聲明"
           }
         }
       }
@@ -1044,6 +1104,12 @@
             "state" : "translated",
             "value" : "重新載入全部的文法定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新載入所有語法"
+          }
         }
       }
     },
@@ -1144,6 +1210,12 @@
             "state" : "translated",
             "value" : "顯示檔案對映衝突"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示檔案對映衝突"
+          }
         }
       }
     },
@@ -1235,6 +1307,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此語法不存在"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "此語法不存在"
@@ -1338,6 +1416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "該文法定義已被自訂。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此語法是自訂的。"
           }
         }
       }

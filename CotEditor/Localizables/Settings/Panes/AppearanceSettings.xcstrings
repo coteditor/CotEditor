@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "%@點"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@點"
+          }
         }
       }
     },
@@ -184,6 +190,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@倍"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@倍"
@@ -282,6 +294,12 @@
             "state" : "translated",
             "value" : "抗鋸齒"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "柔邊處理"
+          }
         }
       }
     },
@@ -372,6 +390,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外觀："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "外觀："
@@ -477,6 +501,12 @@
             "state" : "translated",
             "value" : "匹配系統"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配合系統"
+          }
         }
       }
     },
@@ -574,6 +604,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "深色"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "深色"
@@ -679,6 +715,12 @@
             "state" : "translated",
             "value" : "淺色"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "淺色"
+          }
         }
       }
     },
@@ -769,6 +811,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯器透明度："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯器透明度："
@@ -867,6 +915,12 @@
             "state" : "translated",
             "value" : "字體大小"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字體大小"
+          }
         }
       }
     },
@@ -957,6 +1011,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "連字"
@@ -1055,6 +1115,12 @@
             "state" : "translated",
             "value" : "行高："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行高："
+          }
         }
       }
     },
@@ -1145,6 +1211,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等寬字體："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "等寬字體："
@@ -1251,6 +1323,12 @@
             "state" : "translated",
             "value" : "您真的要將這個字體作為等寬字體來使用嗎？"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要將它用作等寬字體嗎？"
+          }
         }
       }
     },
@@ -1351,6 +1429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "當前選中的字體似乎並非等寬字體。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇的字體可能不是等寬字體。"
           }
         }
       }
@@ -1453,6 +1537,12 @@
             "state" : "translated",
             "value" : "不透明"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透明"
+          }
         }
       }
     },
@@ -1554,6 +1644,12 @@
             "state" : "translated",
             "value" : "透明"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不透明"
+          }
         }
       }
     },
@@ -1645,6 +1741,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇⋯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇⋯"
@@ -1743,6 +1845,12 @@
             "state" : "translated",
             "value" : "標準字體："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準字體："
+          }
         }
       }
     },
@@ -1834,6 +1942,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "倍"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "倍"

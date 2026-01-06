@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "全部"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部"
+          }
         }
       }
     },
@@ -183,6 +189,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "指令"
@@ -282,6 +294,12 @@
             "state" : "translated",
             "value" : "描述"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述"
+          }
         }
       }
     },
@@ -373,6 +391,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "副檔名"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "副檔名"
@@ -472,6 +496,12 @@
             "state" : "translated",
             "value" : "檔案拖拽"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案拖移項目"
+          }
         }
       }
     },
@@ -567,6 +597,12 @@
             "state" : "translated",
             "value" : "拖拽檔案的副檔名 (逗號分隔)。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的副檔名（逗號分隔）。"
+          }
         }
       }
     },
@@ -658,6 +694,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入變數"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "插入變數"
@@ -756,6 +798,12 @@
             "state" : "translated",
             "value" : "按格式插入："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入格式："
+          }
         }
       }
     },
@@ -853,6 +901,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按鍵"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "按鍵"
@@ -958,6 +1012,12 @@
             "state" : "translated",
             "value" : "名稱"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱"
+          }
         }
       }
     },
@@ -1052,6 +1112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文法定義"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法"
           }
         }
       }
@@ -1148,6 +1214,12 @@
             "state" : "translated",
             "value" : "該檔案拽入設定所使用的文法定義。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此檔案拖移項目設定所使用的語法。"
+          }
         }
       }
     },
@@ -1242,6 +1314,12 @@
             "state" : "translated",
             "value" : "欲藉由選單命令或鍵盤熱鍵插入的文字:"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選單命令或鍵盤快捷鍵插入的文字："
+          }
         }
       }
     },
@@ -1335,6 +1413,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "欲藉由將檔案拽入至編輯器的方式插入的文字:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透過將檔案拖放至编辑器中插入的文字："
           }
         }
       }

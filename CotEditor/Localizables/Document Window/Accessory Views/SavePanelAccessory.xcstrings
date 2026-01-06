@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "製作執行檔"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使檔案可執行"
+          }
         }
       }
     }

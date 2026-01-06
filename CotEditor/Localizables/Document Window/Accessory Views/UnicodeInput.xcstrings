@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "清除最近項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近項目"
+          }
         }
       }
     },
@@ -183,6 +189,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無效的代碼"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "無效的代碼"
@@ -281,6 +293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近項目"
           }
         }
       }
