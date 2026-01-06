@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -321,10 +321,10 @@ struct MultipleReplaceListView: View {
 private struct TransferableReplacement: Transferable {
     
     var name: String
-    var data: @Sendable () -> Data?
+    var data: @MainActor () -> Data?
     
     
-    init(name: String, data: @autoclosure @escaping @Sendable () -> Data?) {
+    init(name: String, data: @autoclosure @escaping @MainActor () -> Data?) {
         
         self.name = name
         self.data = data
@@ -334,7 +334,7 @@ private struct TransferableReplacement: Transferable {
     static var transferRepresentation: some TransferRepresentation {
         
         DataRepresentation(exportedContentType: .cotReplacement) { item in
-            guard let data = item.data() else { throw CocoaError(.fileNoSuchFile) }
+            guard let data = await item.data() else { throw CocoaError(.fileNoSuchFile) }
             return data
         }
         .suggestedFileName(\.name)

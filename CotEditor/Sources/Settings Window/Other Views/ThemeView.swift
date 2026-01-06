@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -645,10 +645,10 @@ private struct TransferableTheme: Transferable {
     
     var name: String
     var canExport: Bool
-    var data: @Sendable () -> Data?
+    var data: @MainActor () -> Data?
     
     
-    init(name: String, canExport: Bool = true, data: @autoclosure @escaping @Sendable () -> Data?) {
+    init(name: String, canExport: Bool = true, data: @autoclosure @escaping @MainActor () -> Data?) {
         
         self.name = name
         self.canExport = canExport
@@ -659,7 +659,7 @@ private struct TransferableTheme: Transferable {
     static var transferRepresentation: some TransferRepresentation {
         
         DataRepresentation(exportedContentType: .cotTheme) { item in
-            guard let data = item.data() else { throw CocoaError(.fileNoSuchFile) }
+            guard let data = await item.data() else { throw CocoaError(.fileNoSuchFile) }
             return data
         }
         .suggestedFileName(\.name)

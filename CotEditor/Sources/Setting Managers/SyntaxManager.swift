@@ -41,7 +41,7 @@ enum SyntaxName {
 }
 
 
-final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
+@MainActor final class SyntaxManager: SettingFileManaging {
     
     typealias Setting = Syntax
     
@@ -116,6 +116,9 @@ final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     
     
     /// Returns the syntax name corresponding to the given filename.
+    ///
+    /// - Note: Despite the manager’s @MainActor annotation, this method can be invoked from
+    ///  a background thread in `DocumentController.checkOpeningSafetyOfDocument(at:type:)`.
     ///
     /// - Parameters:
     ///   - fileName: The filename of the document to detect the corresponding syntax name.

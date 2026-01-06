@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -541,11 +541,11 @@ private struct SyntaxListView: View {
 private struct TransferableSyntax: Transferable {
     
     var name: String
-    var data: @Sendable () -> Data?
+    var data: @MainActor () -> Data?
     var canExport: Bool
     
     
-    init(name: String, canExport: Bool = true, data: @autoclosure @escaping @Sendable () -> Data?) {
+    init(name: String, canExport: Bool = true, data: @autoclosure @escaping @MainActor () -> Data?) {
         
         self.name = name
         self.data = data
@@ -556,7 +556,7 @@ private struct TransferableSyntax: Transferable {
     static var transferRepresentation: some TransferRepresentation {
         
         DataRepresentation(exportedContentType: .yaml) { item in
-            guard let data = item.data() else { throw CocoaError(.fileNoSuchFile) }
+            guard let data = await item.data() else { throw CocoaError(.fileNoSuchFile) }
             return data
         }
         .suggestedFileName(\.name)

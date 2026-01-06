@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import TextFind
 import UniformTypeIdentifiers
 import URLUtils
 
-final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
+@MainActor final class ReplacementManager: SettingFileManaging {
     
     typealias Setting = MultipleReplace
     
