@@ -22,9 +22,9 @@ jobs:
     - name: Unit Test for MacUI
       run: |
         swift test --package-path Packages/MacUI
-    - name: Unit Test for SyntaxMap
+    - name: Unit Test for Syntax
       run: |
-        swift test --package-path Packages/SyntaxMap
+        swift test --package-path Packages/Syntax
     - name: Unit Test for CotEditor
       run: |
         xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
