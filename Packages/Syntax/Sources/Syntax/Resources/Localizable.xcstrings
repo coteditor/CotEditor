@@ -100,6 +100,12 @@
             "state" : "translated",
             "value" : "程式碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "程式碼"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
@@ -303,6 +315,12 @@
             "state" : "translated",
             "value" : "標記"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "屬性"
+          }
         }
       }
     },
@@ -400,6 +418,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字元"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "字元"
@@ -505,6 +529,12 @@
             "state" : "translated",
             "value" : "命令"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
+          }
         }
       }
     },
@@ -606,6 +636,12 @@
             "state" : "translated",
             "value" : "註釋"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "註解"
+          }
         }
       }
     },
@@ -703,6 +739,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關鍵字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "關鍵字"
@@ -808,6 +850,12 @@
             "state" : "translated",
             "value" : "數字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "數字"
+          }
         }
       }
     },
@@ -908,6 +956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字元串"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字串"
           }
         }
       }
@@ -1010,6 +1064,12 @@
             "state" : "translated",
             "value" : "類型"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "種類"
+          }
         }
       }
     },
@@ -1111,6 +1171,12 @@
             "state" : "translated",
             "value" : "值"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "值"
+          }
         }
       }
     },
@@ -1208,6 +1274,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "變數"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "變數"
