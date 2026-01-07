@@ -78,7 +78,7 @@ import URLUtils
     
     
     /// The default setting by taking the appearance state into consideration.
-    @MainActor var defaultSettingName: String {
+    var defaultSettingName: String {
         
         let defaultSettingName = DefaultSettings.defaults[.theme] as! String
         let forDark = self.usesDarkAppearance
@@ -88,7 +88,7 @@ import URLUtils
     
     
     /// The user default setting by taking the appearance state into consideration.
-    @MainActor var userDefaultSettingName: String {
+    var userDefaultSettingName: String {
         
         let settingName = UserDefaults.standard[.theme]
         
@@ -107,7 +107,7 @@ import URLUtils
     
     
     /// Whether document windows currently use the dark appearance.
-    @MainActor var usesDarkAppearance: Bool {
+    var usesDarkAppearance: Bool {
         
         switch UserDefaults.standard[.documentAppearance] {
             case .default: NSApp.effectiveAppearance.isDark
