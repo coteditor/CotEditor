@@ -117,8 +117,8 @@ enum SyntaxName {
     
     /// Returns the syntax name corresponding to the given filename.
     ///
-    /// - Note: Despite the manager’s @MainActor annotation, this method can be invoked from
-    ///  a background thread in `DocumentController.checkOpeningSafetyOfDocument(at:type:)`.
+    /// - Note: Despite being @MainActor, this method can be invoked from a background thread
+    ///         in `DocumentController.checkOpeningSafetyOfDocument(at:type:)`.
     ///
     /// - Parameters:
     ///   - fileName: The filename of the document to detect the corresponding syntax name.
@@ -256,6 +256,8 @@ enum SyntaxName {
     
     
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
+    ///
+    /// - Note: Despite being @MainActor, this method can be invoked from a background thread in `Document.init()`.
     ///
     /// - Parameter name: The setting name.
     /// - Returns: A Setting instance.
