@@ -62,18 +62,14 @@ import URLUtils
     
     // MARK: Public Methods
     
-    /// Saves the given setting file.
+    /// Saves the given setting file to the user domain.
     ///
     /// - Parameters:
     ///   - setting: The setting to save.
     ///   - name: The name of the setting to save.
     func save(setting: Setting, name: String) throws {
         
-        let persistence = try Self.persistence(from: setting)
-        let fileURL = self.preparedURLForUserSetting(name: name)
-        
-        try FileManager.default.createIntermediateDirectories(to: fileURL)
-        try persistence.write(to: fileURL)
+        try self.write(setting: setting, name: name)
         
         self.cachedSettings[name] = setting
         
@@ -143,7 +139,6 @@ import URLUtils
     nonisolated func loadUserSettings() -> [String] {
         
         self.userSettingFileURLs
-            .filter { (try? self.loadSetting(at: $0)) != nil }  // just try loading but not store
             .map(Self.settingName(from:))
             .sorted(using: .localizedStandard)
     }

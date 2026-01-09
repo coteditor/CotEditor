@@ -92,7 +92,7 @@ extension Data: Persistable {
 
 @MainActor protocol SettingFileManaging: AnyObject, Sendable {
     
-    associatedtype Setting: Sendable
+    associatedtype Setting: Equatable, Sendable
     associatedtype PersistentSetting: Persistable
     
     
@@ -115,6 +115,9 @@ extension Data: Persistable {
     var cachedSettings: [String: Setting] { get set }
     
     
+    /// Returns a built-in constant setting for the given name, if available.
+    nonisolated static func constantSetting(name: String) -> Setting?
+    
     /// Loads the persistence at the given URL.
     nonisolated static func persistence(at url: URL) throws -> PersistentSetting
     
@@ -123,9 +126,6 @@ extension Data: Persistable {
     
     /// Loads the setting from a persisted representation.
     nonisolated static func loadSetting(from persistent: any Persistable, type: UTType) throws -> sending Setting
-    
-    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
-    func setting(name: String) throws(SettingFileError) -> Setting
     
     /// Loads settings from the user domain.
     nonisolated func loadUserSettings() -> [String]
@@ -139,43 +139,10 @@ extension SettingFileManaging {
     
     // MARK: Default implementation
     
-    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
-    ///
-    /// - Parameter name: The setting name.
-    /// - Returns: A Setting instance.
-    func setting(name: String) throws(SettingFileError) -> Setting {
+    /// Returns a built-in constant setting for the given name, if available.
+    nonisolated static func constantSetting(name: String) -> Setting? {
         
-        if let setting = self.cachedSettings[name] {
-            return setting
-        }
-        
-        guard let url = self.urlForUsedSetting(name: name) else {
-            throw SettingFileError(.noSourceFile, name: name)
-        }
-        
-        let setting: Setting
-        
-        do {
-            setting = try self.loadSetting(at: url)
-        } catch {
-            throw SettingFileError(.loadFailed, name: name, underlyingError: error as NSError)
-        }
-        self.cachedSettings[name] = setting
-        
-        return setting
-    }
-    
-    
-    /// Returns the bundled version of the setting if it exists.
-    ///
-    /// - Parameters:
-    ///   - name: The setting name.
-    /// Returns: The setting or `nil` if not found.
-    func bundledSetting(name: String) -> Setting? {
-        
-        guard let url = self.urlForBundledSetting(name: name) else { return nil }
-        
-        return try? self.loadSetting(at: url)
+        nil
     }
     
     
@@ -219,28 +186,6 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns a valid file URL for a setting name if it exists.
-    ///
-    /// - Parameters:
-    ///   - name: The setting name.
-    /// - Returns: The URL for the setting file.
-    func urlForUsedSetting(name: String) -> URL? {
-        
-        self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
-    }
-    
-    
-    /// Returns a setting file URL in the application's Resources domain if it exists.
-    ///
-    /// - Parameters:
-    ///   - name: The setting name.
-    /// - Returns: The bundled setting URL, or `nil` if not found.
-    nonisolated func urlForBundledSetting(name: String) -> URL? {
-        
-        Bundle.main.url(forResource: name, withExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
-    }
-    
-    
     /// Returns a setting file URL in the user's Application Support domain if it exists.
     ///
     /// - Parameters:
@@ -266,17 +211,6 @@ extension SettingFileManaging {
         guard let url = self.urlForUserSetting(name: name) else { return nil }
         
         return try? Self.persistence(at: url)
-    }
-    
-    
-    /// Returns the user setting file URL for the given name (exists or not).
-    ///
-    /// - Parameters:
-    ///   - name: The setting name.
-    /// - Returns: A file URL.
-    nonisolated func preparedURLForUserSetting(name: String) -> URL {
-        
-        self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: Self.fileType)
     }
     
     
@@ -337,6 +271,50 @@ extension SettingFileManaging {
         if let reservedName = self.reservedNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
             throw .reserved(name: reservedName)
         }
+    }
+    
+    
+    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
+    ///
+    /// - Parameter name: The setting name.
+    /// - Returns: A Setting instance.
+    func setting(name: String) throws(SettingFileError) -> Setting {
+        
+        if let setting = Self.constantSetting(name: name) {
+            return setting
+        }
+        
+        if let setting = self.cachedSettings[name] {
+            return setting
+        }
+        
+        guard let url = self.urlForUsedSetting(name: name) else {
+            throw SettingFileError(.noSourceFile, name: name)
+        }
+        
+        let setting: Setting
+        
+        do {
+            setting = try self.loadSetting(at: url)
+        } catch {
+            throw SettingFileError(.loadFailed, name: name, underlyingError: error as NSError)
+        }
+        self.cachedSettings[name] = setting
+        
+        return setting
+    }
+    
+    
+    /// Returns the bundled version of the setting if it exists.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// Returns: The setting or `nil` if not found.
+    func bundledSetting(name: String) -> Setting? {
+        
+        guard let url = self.urlForBundledSetting(name: name) else { return nil }
+        
+        return try? self.loadSetting(at: url)
     }
     
     
@@ -494,6 +472,32 @@ extension SettingFileManaging {
     }
     
     
+    /// Writes a setting to the user domain.
+    ///
+    /// - Parameters:
+    ///   - setting: The setting instance to persist.
+    ///   - name: The name used to determine the destination file URL.
+    /// - Throws: An error if writing or file operations fail.
+    func write(setting: Setting, name: String) throws {
+        
+        let fileURL = self.preparedURLForUserSetting(name: name)
+        
+        // just remove the current custom setting file in the user domain
+        // if the new setting is the same as bundled one
+        if setting == self.bundledSetting(name: name) {
+            if fileURL.isReachable {
+                try FileManager.default.removeItem(at: fileURL)
+            }
+        } else {
+            // save file to the user domain
+            let persistence = try Self.persistence(from: setting)
+            
+            try FileManager.default.createIntermediateDirectories(to: fileURL)
+            try persistence.write(to: fileURL)
+        }
+    }
+    
+    
     /// Updates the managed setting list by applying the given change.
     ///
     /// - Parameter change: The change to apply.
@@ -524,27 +528,60 @@ extension SettingFileManaging {
     }
     
     
-    /// Loads the setting from the file at the given URL.
-    ///
-    /// - Parameters:
-    ///   - fileURL: The URL of the file to load.
-    /// - Returns: A Setting instance.
-    nonisolated func loadSetting(at fileURL: URL) throws -> sending Setting {
-        
-        guard let type = UTType(filenameExtension: fileURL.pathExtension) else { throw CocoaError(.fileReadUnsupportedScheme) }
-        
-        let persistence = try Self.persistence(at: fileURL)
-        
-        return try Self.loadSetting(from: persistence, type: type)
-    }
-    
-    
     // MARK: Private Methods
     
     /// The user setting directory URL in Application Support.
     private nonisolated var userSettingDirectoryURL: URL {
         
         .applicationSupportDirectory(component: Self.directoryName)
+    }
+    
+    
+    /// Returns a valid file URL for a setting name if it exists.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: The URL for the setting file.
+    private func urlForUsedSetting(name: String) -> URL? {
+        
+        self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
+    }
+    
+    
+    /// Returns a setting file URL in the application's Resources domain if it exists.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: The bundled setting URL, or `nil` if not found.
+    private nonisolated func urlForBundledSetting(name: String) -> URL? {
+        
+        Bundle.main.url(forResource: name, withExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
+    }
+    
+    
+    /// Returns the user setting file URL for the given name (exists or not).
+    ///
+    /// - Parameters:
+    ///   - name: The setting name.
+    /// - Returns: A file URL.
+    private nonisolated func preparedURLForUserSetting(name: String) -> URL {
+        
+        self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: Self.fileType)
+    }
+    
+    
+    /// Loads the setting from the file at the given URL.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The URL of the file to load.
+    /// - Returns: A Setting instance.
+    private nonisolated func loadSetting(at fileURL: URL) throws -> sending Setting {
+        
+        guard let type = UTType(filenameExtension: fileURL.pathExtension) else { throw CocoaError(.fileReadUnsupportedScheme) }
+        
+        let persistence = try Self.persistence(at: fileURL)
+        
+        return try Self.loadSetting(from: persistence, type: type)
     }
 }
 

@@ -183,8 +183,6 @@ enum SyntaxName {
     ///   - oldName: The old setting name if any exists.
     func save(setting: Setting, name: SettingName, oldName: SettingName?) throws {
         
-        let fileURL = self.preparedURLForUserSetting(name: name)
-        
         // move old file to new place to overwrite when syntax name is also changed
         if let oldName, name != oldName {
             try self.renameSetting(name: oldName, to: name)
@@ -192,25 +190,13 @@ enum SyntaxName {
         
         let setting = setting.sanitized
         
-        // just remove the current custom setting file in the user domain
-        // if the new setting is the same as bundled one
-        if setting == self.bundledSetting(name: name) {
-            if fileURL.isReachable {
-                try FileManager.default.removeItem(at: fileURL)
-            }
-        } else {
-            // save file to user domain
-            let persistence = try Self.persistence(from: setting)
-            
-            try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try persistence.write(to: fileURL)
-        }
+        try self.write(setting: setting, name: name)
         
         // invalidate current cache
-        self.$cachedSettings.mutate { $0[name] = nil }
         if let oldName {
             self.$cachedSettings.mutate { $0[oldName] = nil }
         }
+        self.$cachedSettings.mutate { $0[name] = setting }
         
         // update internal cache
         let change: SettingChange = oldName.map { .updated(from: $0, to: name) } ?? .added(name)
@@ -231,6 +217,21 @@ enum SyntaxName {
     
     
     // MARK: Setting File Managing
+    
+    /// Returns a built-in constant setting for the given name, if available.
+    ///
+    /// - Parameter name: The setting name.
+    /// - Returns: A `Setting` when the name matches a constant setting, otherwise `nil`.
+    nonisolated static func constantSetting(name: String) -> Setting? {
+        
+        switch name {
+            case SyntaxName.none:
+                Setting.none
+            default:
+                nil
+        }
+    }
+    
     
     /// Loads the persistence at the given URL.
     nonisolated static func persistence(at url: URL) throws -> PersistentSetting {
@@ -266,41 +267,6 @@ enum SyntaxName {
     }
     
     
-    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
-    ///
-    /// - Note: Despite being @MainActor, this method can be invoked from a background thread in `Document.init()`.
-    ///
-    /// - Parameter name: The setting name.
-    /// - Returns: A Setting instance.
-    /// - Throws: `SettingFileError`
-    func setting(name: SettingName) throws -> Setting {
-        
-        if name == SyntaxName.none {
-            return Syntax.none
-        }
-        
-        return try {
-            if let setting = self.cachedSettings[name] {
-                return setting
-            }
-            
-            guard let url = self.urlForUsedSetting(name: name) else {
-                throw SettingFileError(.noSourceFile, name: name)
-            }
-            
-            let setting: Setting
-            do {
-                setting = try self.loadSetting(at: url)
-            } catch {
-                throw SettingFileError(.loadFailed, name: name, underlyingError: error as NSError)
-            }
-            self.$cachedSettings.mutate { $0[name] = setting }
-            
-            return setting
-        }()
-    }
-    
-    
     /// Loads setting lineup in the user domain.
     nonisolated func loadUserSettings() -> [SettingName] {
         
@@ -319,6 +285,15 @@ enum SyntaxName {
         return settingNames
     }
     
+    
+    /// Tells that a setting did update.
+    func didUpdateSetting(change: SettingChange) {
+        
+        self.updateMappingTable()
+    }
+    
+    
+    // MARK: Private Methods
     
     /// Updates the file mapping table.
     private func updateMappingTable() {
@@ -340,15 +315,6 @@ enum SyntaxName {
         }
     }
     
-    
-    /// Tells that a setting did update.
-    func didUpdateSetting(change: SettingChange) {
-        
-        self.updateMappingTable()
-    }
-    
-    
-    // MARK: Private Methods
     
     /// Standardizes the file extensions of user setting files.
     ///

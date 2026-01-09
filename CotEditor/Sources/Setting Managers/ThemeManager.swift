@@ -125,20 +125,7 @@ import URLUtils
     ///   - name: The name of the setting to save.
     func save(setting: Setting, name: String) throws {
         
-        let fileURL = self.preparedURLForUserSetting(name: name)
-        
-        // just remove the current custom setting file in the user domain
-        // if the new setting is the same as bundled one
-        if setting == self.bundledSetting(name: name) {
-            if fileURL.isReachable {
-                try FileManager.default.removeItem(at: fileURL)
-            }
-        } else {
-            let persistence = try Self.persistence(from: setting)
-            
-            try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try persistence.write(to: fileURL)
-        }
+        try self.write(setting: setting, name: name)
         
         self.cachedSettings[name] = setting
         
