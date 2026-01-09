@@ -160,7 +160,7 @@ enum SyntaxName {
     /// - Returns: A setting name, or `nil` if not exists.
     func settingName(documentContent content: String) -> SettingName? {
         
-        if let interpreter = content.scanInterpreterInShebang(),
+        if let interpreter = Syntax.FileMap.scanInterpreterInShebang(content),
            let settingName = self.mappingTable[\.interpreters]?[interpreter]?.first
         {
             return settingName
@@ -330,33 +330,5 @@ enum SyntaxName {
             
             try FileManager.default.moveItem(at: url, to: newURL)
         }
-    }
-}
-
-
-private extension StringProtocol {
-    
-    /// Extracts interpreter from the shebang line.
-    func scanInterpreterInShebang() -> String? {
-        
-        guard self.hasPrefix("#!") else { return nil }
-        
-        // get first line
-        let firstLineRange = self.lineContentsRange(at: self.startIndex)
-        let shebang = self[firstLineRange]
-            .dropFirst("#!".count)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // find interpreter
-        let components = shebang.split(separator: " ", maxSplits: 2)
-        
-        guard let interpreter = components.first?.split(separator: "/").last else { return nil }
-        
-        // use first arg if the path targets env
-        if interpreter == "env", let interpreter = components[safe: 1] {
-            return String(interpreter)
-        }
-        
-        return String(interpreter)
     }
 }
