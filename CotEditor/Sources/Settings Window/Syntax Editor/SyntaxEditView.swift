@@ -170,10 +170,6 @@ struct SyntaxEditView: View {
                 Divider()
                 
                 HStack {
-                    if self.isBundled {
-                        Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.restore)
-                            .fixedSize()
-                    }
                     Spacer()
                     SubmitButtonGroup(action: self.submit) {
                         self.dismiss()
@@ -261,19 +257,6 @@ struct SyntaxEditView: View {
         }
         
         self.dismiss()
-    }
-    
-    
-    /// Restores the current settings in editor to the user default.
-    private func restore() {
-        
-        guard
-            self.isBundled,
-            let syntax = self.manager.bundledSetting(name: self.name)
-        else { return }
-        
-        self.syntax.update(with: syntax)
-        self.errors = self.syntax.value.validate()
     }
     
     

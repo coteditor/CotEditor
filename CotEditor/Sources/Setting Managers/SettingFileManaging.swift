@@ -305,19 +305,6 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns the bundled version of the setting if it exists.
-    ///
-    /// - Parameters:
-    ///   - name: The setting name.
-    /// Returns: The setting or `nil` if not found.
-    func bundledSetting(name: String) -> Setting? {
-        
-        guard let url = self.urlForBundledSetting(name: name) else { return nil }
-        
-        return try? self.loadSetting(at: url)
-    }
-    
-    
     /// Deletes the user setting file for the given name.
     ///
     /// - Parameters:
@@ -484,10 +471,14 @@ extension SettingFileManaging {
         
         // just remove the current custom setting file in the user domain
         // if the new setting is the same as bundled one
-        if setting == self.bundledSetting(name: name) {
+        if let bundledURL = self.urlForBundledSetting(name: name),
+           let bundledSetting = try? self.loadSetting(at: bundledURL),
+           setting == bundledSetting
+        {
             if fileURL.isReachable {
                 try FileManager.default.removeItem(at: fileURL)
             }
+            
         } else {
             // save file to the user domain
             let persistence = try Self.persistence(from: setting)

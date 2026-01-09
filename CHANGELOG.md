@@ -6,6 +6,7 @@
 ### Improvements
 
 - [trivial] Adjust the About view.
+- [trivial] Remove the Restore Defaults button in the syntax editor.
 
 
 

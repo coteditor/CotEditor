@@ -97,34 +97,13 @@ extension SyntaxObject {
     typealias Value = Syntax
     
     
-    convenience init(value: Value? = nil) {
+    convenience init(value: Value?) {
         
         self.init()
         
         if let value {
             self.update(with: value)
         }
-    }
-    
-    
-    /// Updates the content with the given value.
-    ///
-    /// - Parameter value: The new value.
-    func update(with value: Value) {
-        
-        self.kind = value.kind
-        
-        self.highlights.update(with: value.highlights)
-        
-        self.outlines = value.outlines.map { .init(value: $0) }
-        self.commentDelimiters = value.commentDelimiters
-        self.completions = value.completions.map { .init(value: $0) }
-        
-        self.extensions = value.fileMap.extensions?.map { .init(value: $0) } ?? []
-        self.filenames = value.fileMap.filenames?.map { .init(value: $0) } ?? []
-        self.interpreters = value.fileMap.interpreters?.map { .init(value: $0) } ?? []
-        
-        self.metadata = value.metadata
     }
     
     
@@ -148,6 +127,27 @@ extension SyntaxObject {
               completions: self.completions.map(\.value),
               
               metadata: self.metadata)
+    }
+    
+    
+    /// Updates the content with the given value.
+    ///
+    /// - Parameter value: The new value.
+    private func update(with value: Value) {
+        
+        self.kind = value.kind
+        
+        self.highlights.update(with: value.highlights)
+        
+        self.outlines = value.outlines.map { .init(value: $0) }
+        self.commentDelimiters = value.commentDelimiters
+        self.completions = value.completions.map { .init(value: $0) }
+        
+        self.extensions = value.fileMap.extensions?.map { .init(value: $0) } ?? []
+        self.filenames = value.fileMap.filenames?.map { .init(value: $0) } ?? []
+        self.interpreters = value.fileMap.interpreters?.map { .init(value: $0) } ?? []
+        
+        self.metadata = value.metadata
     }
 }
 
