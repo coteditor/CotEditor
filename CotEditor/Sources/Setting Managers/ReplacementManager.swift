@@ -116,21 +116,17 @@ import URLUtils
     /// Loads the setting from a persisted representation.
     nonisolated static func loadSetting(from persistence: any Persistable, type: UTType) throws -> sending Setting {
         
-        if type.conforms(to: Self.fileType) {
-            guard let data = persistence as? Data else { throw CocoaError(.fileReadCorruptFile) }
-            
-            return try JSONDecoder().decode(Setting.self, from: data)
-            
-        } else if type.conforms(to: .tabSeparatedText) {
-            guard
-                let data = persistence as? Data,
-                let string = String(data: data, encoding: .utf8)
-            else { throw CocoaError(.fileReadCorruptFile) }
-            
-            return try MultipleReplace(tabSeparatedText: string)
-            
-        } else {
-            throw CocoaError(.fileReadUnsupportedScheme)
+        switch persistence {
+            case let data as Data where type.conforms(to: Self.fileType):
+                return try JSONDecoder().decode(Setting.self, from: data)
+                
+            case let data as Data where type.conforms(to: .tabSeparatedText):
+                guard let string = String(data: data, encoding: .utf8) else { throw CocoaError(.fileReadInapplicableStringEncoding) }
+                
+                return try MultipleReplace(tabSeparatedText: string)
+                
+            default:
+                throw CocoaError(.fileReadUnsupportedScheme)
         }
     }
     
