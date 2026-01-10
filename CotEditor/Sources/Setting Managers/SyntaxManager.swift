@@ -27,7 +27,6 @@
 import Foundation
 import Combine
 import UniformTypeIdentifiers
-import Yams
 import Defaults
 import Syntax
 import URLUtils
@@ -43,7 +42,6 @@ enum SyntaxName {
 @MainActor final class SyntaxManager: SettingFileManaging {
     
     typealias Setting = Syntax
-    typealias PersistentSetting = Data
     
     typealias SettingName = String
     typealias MappingTable = [KeyPath<Syntax.FileMap, [String]?>: [String: [SettingName]]]
@@ -57,7 +55,6 @@ enum SyntaxName {
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Syntaxes"
-    static let fileType: UTType = .yaml
     let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]
     
     let bundledSettingNames: [SettingName]
@@ -226,39 +223,6 @@ enum SyntaxName {
         switch name {
             case SyntaxName.none: Setting.none
             default: nil
-        }
-    }
-    
-    
-    /// Loads the persisted representation at the given URL.
-    nonisolated static func persistence(at url: URL) throws -> PersistentSetting {
-        
-        try Data(contentsOf: url)
-    }
-    
-    
-    /// Encodes the provided setting into a persistable representation to store.
-    nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting {
-        
-        let encoder = YAMLEncoder()
-        encoder.options.allowUnicode = true
-        encoder.options.sortKeys = true
-        
-        let yamlString = try encoder.encode(setting)
-        
-        return Data(yamlString.utf8)
-    }
-    
-    
-    /// Loads a setting from a persisted representation.
-    nonisolated static func loadSetting(from persistence: any Persistable, type: UTType) throws -> sending Setting {
-        
-        switch persistence {
-            case let data as Data where type.conforms(to: Self.fileType):
-                return try YAMLDecoder().decode(Setting.self, from: data)
-                
-            default:
-                throw CocoaError(.fileReadUnsupportedScheme)
         }
     }
     

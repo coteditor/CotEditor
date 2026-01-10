@@ -73,15 +73,11 @@ extension URL {
 
 @MainActor protocol SettingFileManaging: AnyObject, Sendable {
     
-    associatedtype Setting: Equatable, Sendable
-    associatedtype PersistentSetting: Persistable
+    associatedtype Setting: PersistableConvertible, Equatable, Sendable
     
     
     /// The directory name used in both Application Support and the app bundle’s Resources.
     nonisolated static var directoryName: String { get }
-    
-    /// The UTType for user setting files.
-    nonisolated static var fileType: UTType { get }
     
     /// The list of reserved names that cannot be used for user settings.
     nonisolated var reservedNames: [String] { get }
@@ -98,15 +94,6 @@ extension URL {
     
     /// Returns a built-in constant setting for the given name, if available.
     nonisolated static func constantSetting(name: String) -> Setting?
-    
-    /// Loads the persisted representation at the given URL.
-    nonisolated static func persistence(at url: URL) throws -> PersistentSetting
-    
-    /// Encodes the provided setting into a persistable representation to store.
-    nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting
-    
-    /// Loads a setting from a persisted representation.
-    nonisolated static func loadSetting(from persistent: any Persistable, type: UTType) throws -> sending Setting
     
     /// Builds the list of available settings by considering both user and bundled settings.
     nonisolated func listAvailableSettings() -> [String]
@@ -145,7 +132,7 @@ extension SettingFileManaging {
         (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
                                                       includingPropertiesForKeys: nil,
                                                       options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
-            .filter { $0.conforms(to: Self.fileType) } ?? []
+            .filter { $0.conforms(to: Setting.fileType) } ?? []
     }
     
     
@@ -187,11 +174,11 @@ extension SettingFileManaging {
     /// - Parameters:
     ///   - name: The setting name.
     /// - Returns: The corresponding persistable representation of the user setting, or `nil` if the file doesn't exist or can't be read.
-    func persistenceForUserSetting(name: String) -> PersistentSetting? {
+    func persistenceForUserSetting(name: String) -> Setting.Persistence? {
         
         guard let url = self.urlForUserSetting(name: name) else { return nil }
         
-        return try? Self.persistence(at: url)
+        return try? Setting.persistence(at: url)
     }
     
     
@@ -225,7 +212,7 @@ extension SettingFileManaging {
             throw .empty
         }
         
-        if (settingName + (Self.fileType.preferredFilenameExtension.map({ "." + $0 }) ?? "")).utf16.count > Int(NAME_MAX) {
+        if (settingName + (Setting.fileType.preferredFilenameExtension.map({ "." + $0 }) ?? "")).utf16.count > Int(NAME_MAX) {
             throw .tooLong
         }
         
@@ -276,7 +263,7 @@ extension SettingFileManaging {
         let setting: Setting
         
         do {
-            setting = try self.loadSetting(at: url)
+            setting = try Setting(contentsOf: url)
         } catch {
             throw SettingFileError(.loadFailed, name: name, underlyingError: error as NSError)
         }
@@ -398,15 +385,16 @@ extension SettingFileManaging {
         }
         
         // test if the setting file can be read correctly
-        let type = type ?? Self.fileType
-        let setting = try Self.loadSetting(from: persistence, type: type)
-        let persistenceToStore = type.conforms(to: Self.fileType) ? persistence : try Self.persistence(from: setting)
+        let type = type ?? Setting.fileType
+        
+        let setting = try Setting(persistence: persistence, type: type)
+        let persistenceToStore = type.conforms(to: Setting.fileType) ? persistence : try setting.makePersistable()
         
         // write file
         let destURL = self.preparedURLForUserSetting(name: name)
         do {
             try FileManager.default.createIntermediateDirectories(to: destURL)
-            try persistenceToStore.write(to: destURL)
+            try persistenceToStore.persist(to: destURL)
         } catch {
             throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
         }
@@ -426,7 +414,7 @@ extension SettingFileManaging {
     func exportSettings() -> [String: some Persistable] {
         
         self.userSettingFileURLs.reduce(into: [:]) { dictionary, url in
-            dictionary[url.lastPathComponent] = try? Self.persistence(at: url)
+            dictionary[url.lastPathComponent] = try? Setting.persistence(at: url)
         }
     }
     
@@ -454,7 +442,7 @@ extension SettingFileManaging {
         // just remove the current custom setting file in the user domain
         // if the new setting is the same as bundled one
         if let bundledURL = self.urlForBundledSetting(name: name),
-           let bundledSetting = try? self.loadSetting(at: bundledURL),
+           let bundledSetting = try? Setting(contentsOf: bundledURL),
            setting == bundledSetting
         {
             if fileURL.isReachable {
@@ -463,10 +451,10 @@ extension SettingFileManaging {
             
         } else {
             // save the file to the user domain
-            let persistence = try Self.persistence(from: setting)
+            let persistence = try setting.makePersistable()
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try persistence.write(to: fileURL)
+            try persistence.persist(to: fileURL)
         }
     }
     
@@ -528,7 +516,7 @@ extension SettingFileManaging {
     /// - Returns: The bundled setting URL, or `nil` if not found.
     private nonisolated func urlForBundledSetting(name: String) -> URL? {
         
-        Bundle.main.url(forResource: name, withExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
+        Bundle.main.url(forResource: name, withExtension: Setting.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
     }
     
     
@@ -539,22 +527,7 @@ extension SettingFileManaging {
     /// - Returns: A file URL.
     private nonisolated func preparedURLForUserSetting(name: String) -> URL {
         
-        self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: Self.fileType)
-    }
-    
-    
-    /// Loads the setting from the file at the given URL.
-    ///
-    /// - Parameters:
-    ///   - fileURL: The URL of the file to load.
-    /// - Returns: A Setting instance.
-    private nonisolated func loadSetting(at fileURL: URL) throws -> sending Setting {
-        
-        guard let type = UTType(filenameExtension: fileURL.pathExtension) else { throw CocoaError(.fileReadUnsupportedScheme) }
-        
-        let persistence = try Self.persistence(at: fileURL)
-        
-        return try Self.loadSetting(from: persistence, type: type)
+        self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: Setting.fileType)
     }
 }
 

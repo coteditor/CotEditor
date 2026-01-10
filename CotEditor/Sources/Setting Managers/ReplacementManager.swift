@@ -26,13 +26,11 @@
 import Foundation
 import Combine
 import TextFind
-import UniformTypeIdentifiers
 import URLUtils
 
 @MainActor final class ReplacementManager: SettingFileManaging {
     
     typealias Setting = MultipleReplace
-    typealias PersistentSetting = Data
     
     
     // MARK: Public Properties
@@ -43,7 +41,6 @@ import URLUtils
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Replacements"
-    static let fileType: UTType = .cotReplacement
     let reservedNames: [String] = []
     
     let bundledSettingNames: [String] = []
@@ -94,41 +91,6 @@ import URLUtils
     
     
     // MARK: Setting File Managing
-    
-    /// Loads the persisted representation at the given URL.
-    nonisolated static func persistence(at url: URL) throws -> PersistentSetting {
-        
-        try Data(contentsOf: url)
-    }
-    
-    
-    /// Encodes the provided setting into a persistable representation to store.
-    nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting {
-        
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        
-        return try encoder.encode(setting)
-    }
-    
-    
-    /// Loads a setting from a persisted representation.
-    nonisolated static func loadSetting(from persistence: any Persistable, type: UTType) throws -> sending Setting {
-        
-        switch persistence {
-            case let data as Data where type.conforms(to: Self.fileType):
-                return try JSONDecoder().decode(Setting.self, from: data)
-                
-            case let data as Data where type.conforms(to: .tabSeparatedText):
-                guard let string = String(data: data, encoding: .utf8) else { throw CocoaError(.fileReadInapplicableStringEncoding) }
-                
-                return try MultipleReplace(tabSeparatedText: string)
-                
-            default:
-                throw CocoaError(.fileReadUnsupportedScheme)
-        }
-    }
-    
     
     /// Builds the list of available settings by considering both user and bundled settings.
     nonisolated func listAvailableSettings() -> [String] {

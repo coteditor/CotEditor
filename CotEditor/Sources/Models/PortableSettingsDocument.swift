@@ -27,6 +27,12 @@ import SwiftUI
 import UniformTypeIdentifiers
 import SemanticVersioning
 
+extension UTType {
+    
+    static let cotSettings = UTType(exportedAs: "com.coteditor.CotEditor.settings")
+}
+
+
 struct PortableSettingsDocument: FileDocument {
     
     struct Info: Equatable, Codable {
