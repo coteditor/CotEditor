@@ -87,7 +87,7 @@ enum SyntaxName {
         try? self.sanitizeUserSettings()
         
         // cache user syntaxes
-        self.settingNames = self.loadUserSettings()
+        self.settingNames = self.listAvailableSettings()
         self.updateMappingTable()
     }
     
@@ -263,8 +263,8 @@ enum SyntaxName {
     }
     
     
-    /// Loads the list of settings in the user domain.
-    nonisolated func loadUserSettings() -> [SettingName] {
+    /// Builds the list of available settings by considering both user and bundled settings.
+    nonisolated func listAvailableSettings() -> [SettingName] {
         
         let userSettingNames = self.userSettingFileURLs
             .map(Self.settingName(from:))

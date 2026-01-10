@@ -108,8 +108,8 @@ extension URL {
     /// Loads a setting from a persisted representation.
     nonisolated static func loadSetting(from persistent: any Persistable, type: UTType) throws -> sending Setting
     
-    /// Loads the list of settings in the user domain.
-    nonisolated func loadUserSettings() -> [String]
+    /// Builds the list of available settings by considering both user and bundled settings.
+    nonisolated func listAvailableSettings() -> [String]
     
     /// Notifies the manager that a setting was updated.
     func didUpdateSetting(change: SettingChange)
@@ -436,7 +436,7 @@ extension SettingFileManaging {
         
         self.cachedSettings.removeAll()
         self.settingNames = await Task.detached {
-            self.loadUserSettings()
+            self.listAvailableSettings()
         }.value
     }
     

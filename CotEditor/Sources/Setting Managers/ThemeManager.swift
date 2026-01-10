@@ -62,7 +62,7 @@ import URLUtils
             .sorted(using: .localizedStandard)
         
         // cache user setting names
-        self.settingNames = self.loadUserSettings()
+        self.settingNames = self.listAvailableSettings()
     }
     
     
@@ -205,8 +205,8 @@ import URLUtils
     }
     
     
-    /// Loads the list of settings in the user domain.
-    nonisolated func loadUserSettings() -> [String] {
+    /// Builds the list of available settings by considering both user and bundled settings.
+    nonisolated func listAvailableSettings() -> [String] {
         
         let userSettingNames = self.userSettingFileURLs
             .map(Self.settingName(from:))
