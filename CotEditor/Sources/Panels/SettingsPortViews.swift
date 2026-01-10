@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -123,10 +123,10 @@ struct ImportSettingsView: View {
             }
             .padding(.top)
         }
-        .onChange(of: self.document, initial: true) { _, newValue in
+        .onAppear {
             self.documentError = nil
             do throws(PortableSettingsDocument.Error) {
-                try newValue.checkVersion()
+                try self.document.checkVersion()
             } catch {
                 self.documentError = error
             }

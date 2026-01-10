@@ -27,7 +27,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 import SemanticVersioning
 
-struct PortableSettingsDocument: FileDocument, Equatable {
+struct PortableSettingsDocument: FileDocument {
     
     struct Info: Equatable, Codable {
         
@@ -75,9 +75,9 @@ struct PortableSettingsDocument: FileDocument, Equatable {
     
     var defaults: [String: PropertyListValue]
     var keyBindings: Data?
-    var replacements: [String: Data]
-    var syntaxes: [String: Data]
-    var themes: [String: Data]
+    var replacements: [String: any Persistable]
+    var syntaxes: [String: any Persistable]
+    var themes: [String: any Persistable]
     
     
     init(contentsOf fileURL: URL) throws {
@@ -143,17 +143,17 @@ struct PortableSettingsDocument: FileDocument, Equatable {
         }
         
         if !self.syntaxes.isEmpty {
-            let childDict = self.syntaxes.mapValues(FileWrapper.init(regularFileWithContents:))
+            let childDict = self.syntaxes.mapValues(\.fileWrapper)
             dictionary[WrapperKey.syntaxes] = FileWrapper(directoryWithFileWrappers: childDict)
         }
         
         if !self.themes.isEmpty {
-            let childDict = self.themes.mapValues(FileWrapper.init(regularFileWithContents:))
+            let childDict = self.themes.mapValues(\.fileWrapper)
             dictionary[WrapperKey.themes] = FileWrapper(directoryWithFileWrappers: childDict)
         }
         
         if !self.replacements.isEmpty {
-            let childDict = self.replacements.mapValues(FileWrapper.init(regularFileWithContents:))
+            let childDict = self.replacements.mapValues(\.fileWrapper)
             dictionary[WrapperKey.replacements] = FileWrapper(directoryWithFileWrappers: childDict)
         }
         

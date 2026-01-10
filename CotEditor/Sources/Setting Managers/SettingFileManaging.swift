@@ -69,25 +69,6 @@ extension URL {
 }
 
 
-protocol Persistable: Equatable, Sendable {
-    
-    /// Write the contents  to a location.
-    ///
-    /// - parameters:
-    ///   - fileURL: The location to write the data into.
-    func write(to fileURL: URL) throws
-}
-
-
-extension Data: Persistable {
-    
-    func write(to fileURL: URL) throws {
-        
-        try self.write(to: fileURL, options: [])
-    }
-}
-
-
 // MARK: -
 
 @MainActor protocol SettingFileManaging: AnyObject, Sendable {
@@ -441,7 +422,7 @@ extension SettingFileManaging {
     /// Exports all user setting files as a dictionary mapping each file's name to its persistable representation.
     ///
     /// - Returns: A dictionary where the key is the file name of each user setting and the value is the persistable content of that file.
-    func exportSettings() -> [String: PersistentSetting] {
+    func exportSettings() -> [String: some Persistable] {
         
         self.userSettingFileURLs.reduce(into: [:]) { dictionary, url in
             dictionary[url.lastPathComponent] = try? Self.persistence(at: url)
