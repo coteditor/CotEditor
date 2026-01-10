@@ -95,7 +95,7 @@ enum SyntaxName {
     
     // MARK: Public Methods
     
-    /// The map for the conflicted settings.
+    /// A map of items that are associated with more than one syntax setting.
     var mappingConflicts: MappingTable {
         
         self.mappingTable
@@ -104,35 +104,35 @@ enum SyntaxName {
     }
     
     
-    /// Returns the syntax name corresponding to the given document.
+    /// Returns the syntax name that corresponds to the given document.
     ///
     /// - Parameters:
-    ///   - fileName: The filename of the document to detect the corresponding syntax name.
+    ///   - filename: The filename of the document used to detect the corresponding syntax.
     ///   - content: The content of the document.
-    /// - Returns: A setting name.
-    func settingName(documentName fileName: String, content: String) -> SettingName? {
+    /// - Returns: A setting name, or `nil` if no match is found.
+    func settingName(documentName filename: String, content: String) -> SettingName? {
         
-        self.settingName(documentName: fileName) ?? self.settingName(documentContent: content)
+        self.settingName(documentName: filename) ?? self.settingName(documentContent: content)
     }
     
     
-    /// Returns the syntax name corresponding to the given filename.
+    /// Returns the syntax name that corresponds to the given filename.
     ///
     /// - Note: Despite being @MainActor, this method can be invoked from a background thread
     ///         in `DocumentController.checkOpeningSafetyOfDocument(at:type:)`.
     ///
     /// - Parameters:
-    ///   - fileName: The filename of the document to detect the corresponding syntax name.
-    /// - Returns: A setting name, or `nil` if not exists.
-    func settingName(documentName fileName: String) -> SettingName? {
+    ///   - filename: The filename used to detect the corresponding syntax.
+    /// - Returns: A setting name, or `nil` if no match is found.
+    func settingName(documentName filename: String) -> SettingName? {
         
         let mappingTable = self.mappingTable
         
-        if let settingName = mappingTable[\.filenames]?[fileName]?.first {
+        if let settingName = mappingTable[\.filenames]?[filename]?.first {
             return settingName
         }
         
-        if let pathExtension = fileName.split(separator: ".").last,
+        if let pathExtension = filename.split(separator: ".").last,
            let extensionTable = mappingTable[\.extensions]
         {
             if let settingName = extensionTable[String(pathExtension)]?.first {
@@ -153,11 +153,11 @@ enum SyntaxName {
     }
     
     
-    /// Returns the syntax name scanning the shebang in the content.
+    /// Returns the syntax name by scanning the shebang in the content.
     ///
     /// - Parameters:
     ///   - content: The content of the document.
-    /// - Returns: A setting name, or `nil` if not exists.
+    /// - Returns: A setting name, or `nil` if no match is found.
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = Syntax.FileMap.scanInterpreterInShebang(content),
@@ -175,12 +175,12 @@ enum SyntaxName {
     }
     
     
-    /// Saves the given setting file to the user domain.
+    /// Saves the given setting to the user domain.
     ///
     /// - Parameters:
     ///   - setting: The setting to save.
-    ///   - name: The setting name to save.
-    ///   - oldName: The old setting name if any exists.
+    ///   - name: The name under which to save the setting.
+    ///   - oldName: The previous setting name, if any.
     func save(setting: Setting, name: SettingName, oldName: SettingName?) throws {
         
         // move old file to new place to overwrite when syntax name is also changed
@@ -204,9 +204,9 @@ enum SyntaxName {
     }
     
     
-    /// Adds the given setting to recent syntaxes list.
+    /// Adds the given setting to the list of recent syntaxes.
     ///
-    /// - Parameter name: The setting name to note.
+    /// - Parameter name: The setting name to record.
     func noteRecentSetting(name: String) {
         
         guard name != SyntaxName.none else { return }
@@ -221,7 +221,7 @@ enum SyntaxName {
     /// Returns a built-in constant setting for the given name, if available.
     ///
     /// - Parameter name: The setting name.
-    /// - Returns: A `Setting` when the name matches a constant setting, otherwise `nil`.
+    /// - Returns: A `Setting` if the name matches a constant setting; otherwise, `nil`.
     nonisolated static func constantSetting(name: String) -> Setting? {
         
         switch name {
@@ -233,14 +233,14 @@ enum SyntaxName {
     }
     
     
-    /// Loads the persistence at the given URL.
+    /// Loads the persisted representation at the given URL.
     nonisolated static func persistence(at url: URL) throws -> PersistentSetting {
         
         try Data(contentsOf: url)
     }
     
     
-    /// Encodes the provided setting into persistable representation to store.
+    /// Encodes the provided setting into a persistable representation to store.
     nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting {
         
         let encoder = YAMLEncoder()
@@ -253,7 +253,7 @@ enum SyntaxName {
     }
     
     
-    /// Loads the setting from a persisted representation.
+    /// Loads a setting from a persisted representation.
     nonisolated static func loadSetting(from persistence: any Persistable, type: UTType) throws -> sending Setting {
         
         switch persistence {
@@ -266,7 +266,7 @@ enum SyntaxName {
     }
     
     
-    /// Loads setting lineup in the user domain.
+    /// Loads the list of settings in the user domain.
     nonisolated func loadUserSettings() -> [SettingName] {
         
         let userSettingNames = self.userSettingFileURLs
@@ -285,7 +285,10 @@ enum SyntaxName {
     }
     
     
-    /// Tells that a setting did update.
+    /// Notifies the manager that a setting was updated.
+    ///
+    /// - Parameters:
+    ///   - change: The change to report.
     func didUpdateSetting(change: SettingChange) {
         
         self.updateMappingTable()
@@ -294,17 +297,17 @@ enum SyntaxName {
     
     // MARK: Private Methods
     
-    /// Updates the file mapping table.
+    /// Updates the file mapping table used for syntax detection.
     private func updateMappingTable() {
         
-        // postpone bundled syntaxes
+        // defer bundled syntaxes so user syntaxes take precedence
         let sortedSettingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames
         
         // load mapping definitions from syntax files in the user domain
         let userMaps = try! Syntax.FileMap.loadMaps(at: self.userSettingFileURLs, ignoresInvalidData: true)
         let maps = self.bundledMaps.merging(userMaps) { _, new in new }
         
-        // update file mapping table
+        // update the file mapping table
         self.mappingTable = self.mappingTable.keys.reduce(into: [:]) { tables, keyPath in
             tables[keyPath] = sortedSettingNames.reduce(into: [String: [SettingName]]()) { table, settingName in
                 for item in maps[settingName]?[keyPath: keyPath] ?? [] {
@@ -317,7 +320,7 @@ enum SyntaxName {
     
     /// Standardizes the file extensions of user setting files.
     ///
-    /// - Note: The file extension for syntax definition files are changed from `.yaml` to `.yml` in CotEditor 4.2.0 released in 2022-05.
+    /// - Note: The file extension for syntax definition files changed from `.yaml` to `.yml` in CotEditor 4.2.0 (released in 2022-05).
     private func sanitizeUserSettings() throws {
         
         let urls = self.userSettingFileURLs.filter { $0.pathExtension == "yaml" }

@@ -49,16 +49,16 @@ extension SettingState: Identifiable {
 
 extension NSNotification.Name {
     
-    /// Notification posted when a setting file is updated with new or previous setting names.
+    /// A notification posted when a setting file is updated, with the new and/or previous setting names.
     static let didUpdateSettingNotification = Notification.Name("SettingFileManaging.didUpdateSettingNotification")
 }
 
 
 extension URL {
     
-    /// Returns the URL for a given subdirectory in the user's Application Support directory.
+    /// Returns the URL for the given subdirectory in the user's Application Support directory.
     ///
-    /// - Parameter subDirectory: The name of the subdirectory in the Application Support.
+    /// - Parameter subDirectory: The name of the subdirectory in Application Support.
     /// - Returns: A directory URL.
     static func applicationSupportDirectory(component subDirectory: String) -> URL {
         
@@ -77,13 +77,13 @@ extension URL {
     associatedtype PersistentSetting: Persistable
     
     
-    /// The directory name in both Application Support and bundled Resources.
+    /// The directory name used in both Application Support and the app bundle’s Resources.
     nonisolated static var directoryName: String { get }
     
-    /// The UTType of user setting files.
+    /// The UTType for user setting files.
     nonisolated static var fileType: UTType { get }
     
-    /// The list of names reserved and cannot be used for user setting names.
+    /// The list of reserved names that cannot be used for user settings.
     nonisolated var reservedNames: [String] { get }
     
     /// The list of bundled setting names (without extensions).
@@ -92,26 +92,26 @@ extension URL {
     /// The list of available setting names (without extensions).
     var settingNames: [String] { get set }
     
-    /// Stored settings to avoid loading frequently-used setting files multiple times.
+    /// A cache of settings to avoid loading frequently used files multiple times.
     var cachedSettings: [String: Setting] { get set }
     
     
     /// Returns a built-in constant setting for the given name, if available.
     nonisolated static func constantSetting(name: String) -> Setting?
     
-    /// Loads the persistence at the given URL.
+    /// Loads the persisted representation at the given URL.
     nonisolated static func persistence(at url: URL) throws -> PersistentSetting
     
-    /// Encodes the provided setting into persistable representation to store.
+    /// Encodes the provided setting into a persistable representation to store.
     nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting
     
-    /// Loads the setting from a persisted representation.
+    /// Loads a setting from a persisted representation.
     nonisolated static func loadSetting(from persistent: any Persistable, type: UTType) throws -> sending Setting
     
-    /// Loads settings from the user domain.
+    /// Loads the list of settings in the user domain.
     nonisolated func loadUserSettings() -> [String]
     
-    /// Tells that a setting did update.
+    /// Notifies the manager that a setting was updated.
     func didUpdateSetting(change: SettingChange)
 }
 
@@ -127,10 +127,10 @@ extension SettingFileManaging {
     }
     
     
-    /// Notifies that a setting was updated.
+    /// Notifies the manager that a setting was updated.
     ///
     /// - Parameters:
-    ///   - change: The change to notify.
+    ///   - change: The change to report.
     func didUpdateSetting(change: SettingChange) {
         
         // do nothing by default
@@ -149,14 +149,14 @@ extension SettingFileManaging {
     }
     
     
-    /// The names of the setting user customized.
+    /// The names of settings customized by the user.
     nonisolated var userSettingNames: [String] {
     
         self.userSettingFileURLs.map(Self.settingName(from:))
     }
     
     
-    /// Creates a setting name from a file URL (exists or not).
+    /// Creates a setting name from a file URL (whether the file exists or not).
     ///
     /// - Parameters:
     ///   - fileURL: The file URL.
@@ -167,7 +167,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns a setting file URL in the user's Application Support domain if it exists.
+    /// Returns the URL for a user setting in Application Support if it exists.
     ///
     /// - Parameters:
     ///   - name: The setting name.
@@ -186,7 +186,7 @@ extension SettingFileManaging {
     ///
     /// - Parameters:
     ///   - name: The setting name.
-    /// - Returns: The correspondent persistable representation of the user setting, or `nil` if the file doesn't exist or can't be read.
+    /// - Returns: The corresponding persistable representation of the user setting, or `nil` if the file doesn't exist or can't be read.
     func persistenceForUserSetting(name: String) -> PersistentSetting? {
         
         guard let url = self.urlForUserSetting(name: name) else { return nil }
@@ -195,7 +195,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns the state of a setting.
+    /// Returns the state for a setting.
     ///
     /// - Parameters:
     ///   - name: The setting name.
@@ -208,11 +208,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Validates whether the setting name is valid (for a filename) and throw an error if not.
+    /// Validates whether the setting name is valid for use as a filename and throws an error if not.
     ///
     /// - Parameters:
     ///   - settingName: The setting name to validate.
-    ///   - originalName: The original name of the setting file if it was renamed.
+    ///   - originalName: The original name of the setting file, if it was renamed.
     /// - Throws: `InvalidNameError` if the name is invalid.
     func validate(settingName: String, originalName: String?) throws(InvalidNameError) {
         
@@ -255,7 +255,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
+    /// Returns the setting instance for the given setting name, or throws an error if a valid one cannot be found.
     ///
     /// - Parameter name: The setting name.
     /// - Returns: A Setting instance.
@@ -308,11 +308,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Restores a bundled setting by removing a customized version.
+    /// Restores a bundled setting by removing its customized version.
     ///
     /// - Parameters:
     ///   - name: The setting name.
-    /// - Throws: An error if the file deletion fails.
+    /// - Throws: An error if file deletion fails.
     func restoreSetting(name: String) throws {
         
         guard self.state(of: name)?.isRestorable == true else { return }  // only bundled setting can be restored
@@ -328,11 +328,11 @@ extension SettingFileManaging {
     }
     
     
-    /// Duplicates the setting with a unique name.
+    /// Duplicates a setting with a unique name.
     ///
     /// - Parameters:
     ///   - name: The original setting name.
-    /// - Returns: The name of the created setting.
+    /// - Returns: The name of the newly created setting.
     @discardableResult func duplicateSetting(name: String) throws -> String {
         
         let newName = name.appendingUniqueNumber(in: self.settingNames)
@@ -376,13 +376,14 @@ extension SettingFileManaging {
     }
     
     
-    /// Imports the setting.
+    /// Imports a setting.
     ///
     /// - Parameters:
     ///   - persistence: The persistable representation to import.
     ///   - name: The name of the setting to import.
-    ///   - overwrite: Whether overwrites the existing setting if exists.
-    /// - Throws: `ImportDuplicationError` (only when the `overwrite` flag is `true`), or `any Error`
+    ///   - type: The UTType of the provided persistence. If `nil`, defaults to the manager’s file type.
+    ///   - overwrite: Whether to overwrite an existing setting if one exists.
+    /// - Throws: `ImportDuplicationError` (only when `overwrite` is `false` and a duplicate exists), or any other error that occurs.
     func importSetting(persistence: any Persistable, name: String, type: UTType? = nil, overwrite: Bool) throws {
         
         // check duplication
@@ -421,7 +422,7 @@ extension SettingFileManaging {
     
     /// Exports all user setting files as a dictionary mapping each file's name to its persistable representation.
     ///
-    /// - Returns: A dictionary where the key is the file name of each user setting and the value is the persistable content of that file.
+    /// - Returns: A dictionary mapping each user setting file’s name to its persistable content.
     func exportSettings() -> [String: some Persistable] {
         
         self.userSettingFileURLs.reduce(into: [:]) { dictionary, url in
@@ -461,7 +462,7 @@ extension SettingFileManaging {
             }
             
         } else {
-            // save file to the user domain
+            // save the file to the user domain
             let persistence = try Self.persistence(from: setting)
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
@@ -520,7 +521,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns a setting file URL in the application's Resources domain if it exists.
+    /// Returns the setting file URL in the application's Resources domain if it exists.
     ///
     /// - Parameters:
     ///   - name: The setting name.
@@ -531,7 +532,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Returns the user setting file URL for the given name (exists or not).
+    /// Returns the user setting file URL for the given name (whether it exists or not).
     ///
     /// - Parameters:
     ///   - name: The setting name.

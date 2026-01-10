@@ -122,11 +122,11 @@ import Syntax
     }
     
     
-    /// Saves the given setting file.
+    /// Saves the given setting to the user domain.
     ///
     /// - Parameters:
     ///   - setting: The setting to save.
-    ///   - mode: The mode of the setting to save.
+    ///   - name: The name under which to save the setting.
     func save(setting: Setting, mode: Mode) {
         
         if case .kind(let kind) = mode, setting == kind.defaultOptions {

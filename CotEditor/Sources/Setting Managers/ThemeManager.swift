@@ -68,17 +68,17 @@ import URLUtils
     
     // MARK: Public Methods
     
-    /// Returns whether given setting name is dark theme.
+    /// Returns whether the given setting name is a dark theme.
     ///
     /// - Parameter name: The setting name to test.
-    /// - Returns: A bool value.
+    /// - Returns: A Boolean value.
     nonisolated static func isDark(name: String) -> Bool {
         
         name.hasSuffix("(Dark)")
     }
     
     
-    /// The default setting by taking the appearance state into consideration.
+    /// The default setting name, taking the current appearance into account.
     var defaultSettingName: String {
         
         let defaultSettingName = DefaultSettings.defaults[.theme] as! String
@@ -88,7 +88,7 @@ import URLUtils
     }
     
     
-    /// The user default setting by taking the appearance state into consideration.
+    /// The user’s default setting name, taking the current appearance into account.
     var userDefaultSettingName: String {
         
         let settingName = UserDefaults.standard[.theme]
@@ -107,7 +107,7 @@ import URLUtils
     }
     
     
-    /// Whether document windows currently use the dark appearance.
+    /// Whether document windows currently use dark appearance.
     var usesDarkAppearance: Bool {
         
         switch UserDefaults.standard[.documentAppearance] {
@@ -118,11 +118,11 @@ import URLUtils
     }
     
     
-    /// Saves the given setting file to the user domain.
+    /// Saves the given setting to the user domain.
     ///
     /// - Parameters:
     ///   - setting: The setting to save.
-    ///   - name: The name of the setting to save.
+    ///   - name: The name under which to save the setting.
     func save(setting: Setting, name: String) throws {
         
         try self.write(setting: setting, name: name)
@@ -138,7 +138,7 @@ import URLUtils
     
     /// Creates a new untitled setting.
     ///
-    /// - Returns: The setting name created.
+    /// - Returns: The name of the created setting.
     @discardableResult func createUntitledSetting() throws -> String {
         
         let name = String(localized: "Untitled", comment: "initial setting filename")
@@ -150,12 +150,12 @@ import URLUtils
     }
     
     
-    /// Returns the setting name of dark/light version of given one if any exists.
+    /// Returns the setting name for the dark or light variant of the given setting, if available.
     ///
     /// - Parameters:
     ///   - name: The base setting name.
     ///   - forDark: `true` when the dark mode version should be returned.
-    /// - Returns: A setting name or `nil`, if not exists.
+    /// - Returns: A setting name, or `nil` if none exists.
     func equivalentSettingName(to name: String, forDark: Bool) -> String? {
         
         let baseName = name.replacing(/\ \((Dark|Light)\)$/, with: "", maxReplacements: 1)
@@ -175,14 +175,14 @@ import URLUtils
     
     // MARK: Setting File Managing
     
-    /// Loads the persistence at the given URL.
+    /// Loads the persisted representation at the given URL.
     nonisolated static func persistence(at url: URL) throws -> PersistentSetting {
         
         try Data(contentsOf: url)
     }
     
     
-    /// Encodes the provided setting into persistable representation to store.
+    /// Encodes the provided setting into a persistable representation to store.
     nonisolated static func persistence(from setting: Setting) throws -> PersistentSetting {
         
         let encoder = JSONEncoder()
@@ -192,7 +192,7 @@ import URLUtils
     }
     
     
-    /// Loads the setting from a persisted representation.
+    /// Loads a setting from a persisted representation.
     nonisolated static func loadSetting(from persistence: any Persistable, type: UTType) throws -> sending Setting {
         
         switch persistence {
@@ -205,7 +205,7 @@ import URLUtils
     }
     
     
-    /// Loads setting lineup in the user domain.
+    /// Loads the list of settings in the user domain.
     nonisolated func loadUserSettings() -> [String] {
         
         let userSettingNames = self.userSettingFileURLs
