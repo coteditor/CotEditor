@@ -29,7 +29,6 @@ import Combine
 import UniformTypeIdentifiers
 import Yams
 import Defaults
-import StringUtils
 import Syntax
 import URLUtils
 
@@ -225,10 +224,8 @@ enum SyntaxName {
     nonisolated static func constantSetting(name: String) -> Setting? {
         
         switch name {
-            case SyntaxName.none:
-                Setting.none
-            default:
-                nil
+            case SyntaxName.none: Setting.none
+            default: nil
         }
     }
     

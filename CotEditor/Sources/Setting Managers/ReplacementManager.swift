@@ -25,7 +25,6 @@
 
 import Foundation
 import Combine
-import Observation
 import TextFind
 import UniformTypeIdentifiers
 import URLUtils
