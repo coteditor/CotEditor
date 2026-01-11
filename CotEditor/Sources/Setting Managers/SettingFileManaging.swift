@@ -394,7 +394,7 @@ extension SettingFileManaging {
         let destURL = self.preparedURLForUserSetting(name: name)
         do {
             try FileManager.default.createIntermediateDirectories(to: destURL)
-            try persistenceToStore.persist(to: destURL)
+            try persistenceToStore.write(to: destURL)
         } catch {
             throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
         }
@@ -454,7 +454,7 @@ extension SettingFileManaging {
             let persistence = try setting.makePersistable()
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try persistence.persist(to: fileURL)
+            try persistence.write(to: fileURL)
         }
     }
     

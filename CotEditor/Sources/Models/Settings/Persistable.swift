@@ -73,7 +73,7 @@ protocol Persistable: Equatable, Sendable {
     ///
     /// - Parameter fileURL: The destination URL to write the persisted data to.
     /// - Throws: An error if writing the contents fails.
-    func persist(to fileURL: URL) throws
+    func write(to fileURL: URL) throws
 }
 
 
@@ -85,8 +85,8 @@ extension Data: Persistable {
     }
     
     
-    func persist(to fileURL: URL) throws {
+    func write(to fileURL: URL) throws {
         
-        try self.write(to: fileURL)
+        try self.write(to: fileURL, options: [])
     }
 }
