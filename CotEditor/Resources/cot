@@ -31,6 +31,7 @@ import os
 import sys
 import time
 from subprocess import Popen, PIPE, CalledProcessError
+from typing import Optional
 
 
 # meta data
@@ -50,17 +51,17 @@ class Style:
     """
 
     @staticmethod
-    def bold(string):
+    def bold(string: str) -> str:
         return '\033[1m' + string + '\033[0m'
 
     @staticmethod
-    def warning(string):
+    def warning(string: str) -> str:
         return '\033[31;1m' + string + '\033[0m'
 
 
 # MARK: Bundle
 
-def bundle_path():
+def bundle_path() -> Optional[str]:
     """Return application path if this script is bundled in an application.
 
     Returns:
@@ -80,7 +81,7 @@ def bundle_path():
 
 # MARK: OSA Script
 
-def run_osascript(script, is_async=False):
+def run_osascript(script: str, is_async: bool = False) -> str:
     """Run OSA script.
 
     Args:
@@ -112,10 +113,10 @@ class ScriptableApplication(object):
     """OSA-Scriptable macOS application object.
     """
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
 
-    def is_running(self):
+    def is_running(self) -> bool:
         """Check if the app is running.
 
         Returns:
@@ -128,7 +129,7 @@ class ScriptableApplication(object):
             self._attempt_recovery(error)
             raise error
 
-    def tell(self, script, is_async=False):
+    def tell(self, script: str, is_async: bool = False) -> str:
         """Tell OSA command to the application.
 
         Args:
@@ -144,7 +145,7 @@ class ScriptableApplication(object):
             self._attempt_recovery(error)
             raise error
 
-    def launch(self, background=False):
+    def launch(self, background: bool = False) -> None:
         """Launch application.
 
         Args:
@@ -155,7 +156,7 @@ class ScriptableApplication(object):
         else:
             self.tell('activate')
 
-    def open(self, path):
+    def open(self, path: str) -> None:
         """Open given file path in the application.
 
         Args:
@@ -164,7 +165,7 @@ class ScriptableApplication(object):
         path = path.replace('\\', '\\\\').replace('"', '\\"')
         self.tell('open POSIX file "{}"'.format(path))
 
-    def tell_document(self, script, index=1):
+    def tell_document(self, script: str, index: int = 1) -> str:
         """Tell OSA command to a document of the application.
 
         Args:
@@ -175,7 +176,7 @@ class ScriptableApplication(object):
         """
         return self.tell('tell document {} to {}'.format(index, script))
 
-    def window_id(self, index=1):
+    def window_id(self, index: int = 1) -> Optional[str]:
         """Get window identifier.
 
         Args:
@@ -189,7 +190,7 @@ class ScriptableApplication(object):
             pass
         return None
 
-    def window_exists(self, window_id):
+    def window_exists(self, window_id: Optional[str]) -> bool:
         """Check if window exists.
 
         Args:
@@ -197,6 +198,8 @@ class ScriptableApplication(object):
         Returns:
             result (bool): Window exists?
         """
+        if window_id is None:
+            return False
         script = '(first window whose id is {}) is visible'.format(window_id)
         result = None
         try:
@@ -205,7 +208,7 @@ class ScriptableApplication(object):
             pass
         return result == 'true'
 
-    def _attempt_recovery(self, error):
+    def _attempt_recovery(self, error: CalledProcessError) -> None:
         """Attempt recovery from CalledProcessError.
 
         Args:
@@ -230,7 +233,7 @@ class ScriptableApplication(object):
 
 # MARK: Args Parse
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """Parse command line arguments.
 
     Returns:
@@ -348,7 +351,7 @@ def parse_args():
     return args
 
 
-def parse_goto(value):
+def parse_goto(value: str) -> tuple[str, Optional[int], Optional[int]]:
     """Parse FILE[:LINE[:COLUMN]] format.
 
     Returns:
@@ -381,7 +384,7 @@ def parse_goto(value):
 
 # MARK: - Main
 
-def main(args, stdin):
+def main(args: argparse.Namespace, stdin: Optional[str]) -> None:
     # store the client app and window
     client = None
     client_window_id = None
