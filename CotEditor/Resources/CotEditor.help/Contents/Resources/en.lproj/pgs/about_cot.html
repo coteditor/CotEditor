@@ -77,12 +77,16 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 			<td><p>Set a specific syntax for the opened document.</p></td>
 		</tr>
 		<tr>
-			<th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th>
-			<td><p>Jump to a specific line in the opened document. <code>&lt;line&gt;</code> is an integer specifying the line</p></td>
+			<th><code>-l</code>, <code>--line</code> <code><var>&lt;line&gt;</var></code></th>
+			<td><p>Jump to a specific line in the opened document. <code><var>&lt;line&gt;</var></code> is an integer specifying the line.</p></td>
 		</tr>
 		<tr>
-			<th><code>-c</code>, <code>--column</code> <code>&lt;column&gt;</code></th>
-			<td><p>Jump to a specific column in the opened document. <code>&lt;column&gt;</code> is an integer specifying the column</p></td>
+			<th><code>-c</code>, <code>--column</code> <code><var>&lt;column&gt;</var></code></th>
+			<td><p>Jump to a specific column in the opened document. <code><var>&lt;column&gt;</var></code> is an integer specifying the column.</p></td>
+		</tr>
+		<tr>
+			<th><code>--goto <var>&lt;file[:line[:column]]&gt;</var></code></th>
+			<td><p>Open <code><var>FILE</var></code> and move the insertion point to <code><var>LINE</var></code> and <code><var>COLUMN</var></code> (a syntactic sugar of the <code>--line</code> and <code>--column</code> options).</p></td>
 		</tr>
 		<tr>
 			<th><code>-b</code>, <code>--background</code></th>
@@ -99,7 +103,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	</tbody>
 </table>
 
-<p>For the <code>--line</code> and <code>--column</code> options, you can specify a negative number to count from the end of the document (<code>--line</code>) or from the end of a line (<code>--column</code>).</p>
+<p>For the <code>--line</code>, <code>--column</code>, and <code>--goto</code> options, you can specify a negative number to count from the end of the document (<code>--line</code>) or from the end of a line (<code>--column</code>).</p>
 </section>
 
 
@@ -117,6 +121,10 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>The following command opens the foo.txt file in CotEditor and moves the insertion point to the end of the document:</p>
 
 <pre class="shell"><code>cot --line -1 --column -1 foo.txt</code></pre>
+
+<p>With the <code>--goto</code> option, you can specify where to move the insertion point using the shortened notation commonly found in compiler error messages. The following command opens the foo.txt file in CotEditor and moves the insertion point to line 200, column 4:</p>
+
+<pre class="shell"><code>cot --goto foo.txt:200:4</code></pre>
 
 <p>Passing a dash (<code>-</code>) in place of a filename enters a mode to receive standard input. The text received is opened as a new document.</p>
 

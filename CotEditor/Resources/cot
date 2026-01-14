@@ -9,7 +9,7 @@ Created by 1024jp on 2015-08-12.
 
 ------------------------------------------------------------------------------
 
-© 2015-2025 1024jp
+© 2015-2026 1024jp
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -31,10 +31,11 @@ import os
 import sys
 import time
 from subprocess import Popen, PIPE, CalledProcessError
+from typing import Optional
 
 
 # meta data
-__version__ = '6.2.0'
+__version__ = '6.2.2'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -50,17 +51,17 @@ class Style:
     """
 
     @staticmethod
-    def bold(string):
+    def bold(string: str) -> str:
         return '\033[1m' + string + '\033[0m'
 
     @staticmethod
-    def warning(string):
+    def warning(string: str) -> str:
         return '\033[31;1m' + string + '\033[0m'
 
 
 # MARK: Bundle
 
-def bundle_path():
+def bundle_path() -> Optional[str]:
     """Return application path if this script is bundled in an application.
 
     Returns:
@@ -80,7 +81,7 @@ def bundle_path():
 
 # MARK: OSA Script
 
-def run_osascript(script, is_async=False):
+def run_osascript(script: str, is_async: bool = False) -> str:
     """Run OSA script.
 
     Args:
@@ -112,10 +113,10 @@ class ScriptableApplication(object):
     """OSA-Scriptable macOS application object.
     """
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
 
-    def is_running(self):
+    def is_running(self) -> bool:
         """Check if the app is running.
 
         Returns:
@@ -128,7 +129,7 @@ class ScriptableApplication(object):
             self._attempt_recovery(error)
             raise error
 
-    def tell(self, script, is_async=False):
+    def tell(self, script: str, is_async: bool = False) -> str:
         """Tell OSA command to the application.
 
         Args:
@@ -144,7 +145,7 @@ class ScriptableApplication(object):
             self._attempt_recovery(error)
             raise error
 
-    def launch(self, background=False):
+    def launch(self, background: bool = False) -> None:
         """Launch application.
 
         Args:
@@ -155,7 +156,7 @@ class ScriptableApplication(object):
         else:
             self.tell('activate')
 
-    def open(self, path):
+    def open(self, path: str) -> None:
         """Open given file path in the application.
 
         Args:
@@ -164,7 +165,7 @@ class ScriptableApplication(object):
         path = path.replace('\\', '\\\\').replace('"', '\\"')
         self.tell('open POSIX file "{}"'.format(path))
 
-    def tell_document(self, script, index=1):
+    def tell_document(self, script: str, index: int = 1) -> str:
         """Tell OSA command to a document of the application.
 
         Args:
@@ -175,7 +176,7 @@ class ScriptableApplication(object):
         """
         return self.tell('tell document {} to {}'.format(index, script))
 
-    def window_id(self, index=1):
+    def window_id(self, index: int = 1) -> Optional[str]:
         """Get window identifier.
 
         Args:
@@ -189,7 +190,7 @@ class ScriptableApplication(object):
             pass
         return None
 
-    def window_exists(self, window_id):
+    def window_exists(self, window_id: Optional[str]) -> bool:
         """Check if window exists.
 
         Args:
@@ -197,6 +198,8 @@ class ScriptableApplication(object):
         Returns:
             result (bool): Window exists?
         """
+        if window_id is None:
+            return False
         script = '(first window whose id is {}) is visible'.format(window_id)
         result = None
         try:
@@ -205,7 +208,7 @@ class ScriptableApplication(object):
             pass
         return result == 'true'
 
-    def _attempt_recovery(self, error):
+    def _attempt_recovery(self, error: CalledProcessError) -> None:
         """Attempt recovery from CalledProcessError.
 
         Args:
@@ -230,7 +233,7 @@ class ScriptableApplication(object):
 
 # MARK: Args Parse
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """Parse command line arguments.
 
     Returns:
@@ -239,53 +242,81 @@ def parse_args():
     # create parser instance
     parser = argparse.ArgumentParser(description=__description__)
 
-    # set positional argument
-    parser.add_argument('files',
-                        type=str,
-                        metavar='FILE',
-                        nargs='*',  # allow wildcard
-                        help="path to file to open"
-                        )
+    # set positional arguments
+    parser.add_argument(
+        'files',
+        type=str,
+        metavar='FILE',
+        nargs='*',  # allow wildcard
+        help="path to file to open"
+    )
 
     # set optional arguments
-    parser.add_argument('-v', '--version',
-                        action='version',
-                        version=__version__
-                        )
-    parser.add_argument('-w', '--wait',
-                        action='store_true',
-                        default=False,
-                        help="wait for opened file to be closed"
-                        )
-    parser.add_argument('-g', '--background',
-                        action='store_true',
-                        default=False,
-                        help="do not bring the application to the foreground"
-                        )
-    parser.add_argument('-r', '--readonly',
-                        action='store_true',
-                        default=False,
-                        help="open the document as read-only"
-                        )
-    parser.add_argument('-n', '--new',
-                        action='store_true',
-                        default=False,
-                        help="create a new blank document"
-                        )
-    parser.add_argument('-s', '--syntax',
-                        type=str,
-                        help="set specific syntax to opened document"
-                        )
-    parser.add_argument('-l', '--line',
-                        type=int,
-                        help="jump to specific line in opened document"
-                        )
-    parser.add_argument('-c', '--column',
-                        type=int,
-                        help="jump to specific column in opened document"
-                        )
+    parser.add_argument(
+        '-v', '--version',
+        action='version',
+        version=__version__
+    )
+    parser.add_argument(
+        '-w', '--wait',
+        action='store_true',
+        default=False,
+        help="wait for opened file to be closed"
+    )
+    parser.add_argument(
+        '-g', '--background',
+        action='store_true',
+        default=False,
+        help="do not bring the application to the foreground"
+    )
+    parser.add_argument(
+        '-r', '--readonly',
+        action='store_true',
+        default=False,
+        help="open the document as read-only"
+    )
+    parser.add_argument(
+        '-n', '--new',
+        action='store_true',
+        default=False,
+        help="create a new blank document"
+    )
+    parser.add_argument(
+        '-s', '--syntax',
+        type=str,
+        help="set specific syntax to opened document"
+    )
+    parser.add_argument(
+        '-l', '--line',
+        type=int,
+        help="jump to specific line in opened document"
+    )
+    parser.add_argument(
+        '-c', '--column',
+        type=int,
+        help="jump to specific column in opened document"
+    )
+    parser.add_argument(
+        '--goto',  # no short form
+        metavar='FILE[:LINE[:COLUMN]]',
+        type=parse_goto,
+        help="open FILE and move the insertion point to LINE and COLUMN"
+    )
 
     args = parser.parse_args()
+
+    # expand --goto
+    if args.goto:
+        # check conflict
+        if args.line is not None or args.column is not None:
+            parser.error("--goto cannot be used together with --line or --column")
+        if args.files:
+            parser.error("--goto cannot be used together with FILE")
+        # expand --goto into files / line / column
+        path, line, column = args.goto
+        args.files = [path]
+        args.line = line
+        args.column = column
 
     # create a flag specifying if create a new blank window or file
     args.new_window = args.new and not args.files
@@ -320,9 +351,40 @@ def parse_args():
     return args
 
 
+def parse_goto(value: str) -> tuple[str, Optional[int], Optional[int]]:
+    """Parse FILE[:LINE[:COLUMN]] format.
+
+    Returns:
+        (path, line, column)
+    """
+    parts = value.rsplit(":", 2)
+
+    path = parts[0]
+    line = None
+    column = None
+
+    if len(parts) >= 2:
+        try:
+            line = int(parts[1])
+        except ValueError:
+            raise argparse.ArgumentTypeError(
+                "invalid line number: {}".format(repr(parts[1]))
+            )
+
+    if len(parts) == 3:
+        try:
+            column = int(parts[2])
+        except ValueError:
+            raise argparse.ArgumentTypeError(
+                "invalid column number: {}".format(repr(parts[2]))
+            )
+
+    return path, line, column
+
+
 # MARK: - Main
 
-def main(args, stdin):
+def main(args: argparse.Namespace, stdin: Optional[str]) -> None:
     # store the client app and window
     client = None
     client_window_id = None
