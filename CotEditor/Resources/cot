@@ -9,7 +9,7 @@ Created by 1024jp on 2015-08-12.
 
 ------------------------------------------------------------------------------
 
-© 2015-2025 1024jp
+© 2015-2026 1024jp
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -239,51 +239,60 @@ def parse_args():
     # create parser instance
     parser = argparse.ArgumentParser(description=__description__)
 
-    # set positional argument
-    parser.add_argument('files',
-                        type=str,
-                        metavar='FILE',
-                        nargs='*',  # allow wildcard
-                        help="path to file to open"
-                        )
+    # set positional arguments
+    parser.add_argument(
+        'files',
+        type=str,
+        metavar='FILE',
+        nargs='*',  # allow wildcard
+        help="path to file to open"
+    )
 
     # set optional arguments
-    parser.add_argument('-v', '--version',
-                        action='version',
-                        version=__version__
-                        )
-    parser.add_argument('-w', '--wait',
-                        action='store_true',
-                        default=False,
-                        help="wait for opened file to be closed"
-                        )
-    parser.add_argument('-g', '--background',
-                        action='store_true',
-                        default=False,
-                        help="do not bring the application to the foreground"
-                        )
-    parser.add_argument('-r', '--readonly',
-                        action='store_true',
-                        default=False,
-                        help="open the document as read-only"
-                        )
-    parser.add_argument('-n', '--new',
-                        action='store_true',
-                        default=False,
-                        help="create a new blank document"
-                        )
-    parser.add_argument('-s', '--syntax',
-                        type=str,
-                        help="set specific syntax to opened document"
-                        )
-    parser.add_argument('-l', '--line',
-                        type=int,
-                        help="jump to specific line in opened document"
-                        )
-    parser.add_argument('-c', '--column',
-                        type=int,
-                        help="jump to specific column in opened document"
-                        )
+    parser.add_argument(
+        '-v', '--version',
+        action='version',
+        version=__version__
+    )
+    parser.add_argument(
+        '-w', '--wait',
+        action='store_true',
+        default=False,
+        help="wait for opened file to be closed"
+    )
+    parser.add_argument(
+        '-g', '--background',
+        action='store_true',
+        default=False,
+        help="do not bring the application to the foreground"
+    )
+    parser.add_argument(
+        '-r', '--readonly',
+        action='store_true',
+        default=False,
+        help="open the document as read-only"
+    )
+    parser.add_argument(
+        '-n', '--new',
+        action='store_true',
+        default=False,
+        help="create a new blank document"
+    )
+    parser.add_argument(
+        '-s', '--syntax',
+        type=str,
+        help="set specific syntax to opened document"
+    )
+    parser.add_argument(
+        '-l', '--line',
+        type=int,
+        help="jump to specific line in opened document"
+    )
+    parser.add_argument(
+        '-c', '--column',
+        type=int,
+        help="jump to specific column in opened document"
+    )
 
     args = parser.parse_args()
 
