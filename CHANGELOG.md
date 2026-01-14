@@ -7,6 +7,7 @@
 
 - [trivial] Adjust the About view.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
+- [trivial] Tweak the background color of the default Anura theme.
 
 
 
