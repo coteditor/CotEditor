@@ -34,7 +34,7 @@ from subprocess import Popen, PIPE, CalledProcessError
 
 
 # meta data
-__version__ = '6.2.0'
+__version__ = '6.2.2'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -293,8 +293,27 @@ def parse_args():
         type=int,
         help="jump to specific column in opened document"
     )
+    parser.add_argument(
+        '--goto',  # no short form
+        metavar='FILE[:LINE[:COLUMN]]',
+        type=parse_goto,
+        help="open FILE and move the insertion point to LINE and COLUMN"
+    )
 
     args = parser.parse_args()
+
+    # expand --goto
+    if args.goto:
+        # check conflict
+        if args.line is not None or args.column is not None:
+            parser.error("--goto cannot be used together with --line or --column")
+        if args.files:
+            parser.error("--goto cannot be used together with FILE")
+        # expand --goto into files / line / column
+        path, line, column = args.goto
+        args.files = [path]
+        args.line = line
+        args.column = column
 
     # create a flag specifying if create a new blank window or file
     args.new_window = args.new and not args.files
@@ -327,6 +346,37 @@ def parse_args():
                 parser.error("argument FILE: {}".format(err))
 
     return args
+
+
+def parse_goto(value):
+    """Parse FILE[:LINE[:COLUMN]] format.
+
+    Returns:
+        (path, line, column)
+    """
+    parts = value.rsplit(":", 2)
+
+    path = parts[0]
+    line = None
+    column = None
+
+    if len(parts) >= 2:
+        try:
+            line = int(parts[1])
+        except ValueError:
+            raise argparse.ArgumentTypeError(
+                "invalid line number: {}".format(repr(parts[1]))
+            )
+
+    if len(parts) == 3:
+        try:
+            column = int(parts[2])
+        except ValueError:
+            raise argparse.ArgumentTypeError(
+                "invalid column number: {}".format(repr(parts[2]))
+            )
+
+    return path, line, column
 
 
 # MARK: - Main

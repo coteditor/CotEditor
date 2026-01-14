@@ -76,12 +76,16 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 			<td><p>開いた書類に任意のシンタックスをセットします。</p></td>
 		</tr>
 		<tr>
-			<th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th>
-			<td><p>開いた書類の指定した行に移動します。<code>&lt;line&gt;</code>は行を指定する整数型です。</p></td>
+			<th><code>-l</code>, <code>--line</code> <code><var>&lt;line&gt;</var></code></th>
+			<td><p>開いた書類の指定した行に移動します。<code><var>&lt;line&gt;</var></code>は行を指定する整数型です。</p></td>
 		</tr>
 		<tr>
-			<th><code>-c</code>, <code>--column</code> <code>&lt;column&gt;</code></th>
-			<td><p>開いた書類の指定した列に移動します。<code>&lt;column&gt;</code>は列を指定する整数型です。</p></td>
+			<th><code>-c</code>, <code>--column</code> <code><var>&lt;column&gt;</var></code></th>
+			<td><p>開いた書類の指定した列に移動します。<code><var>&lt;column&gt;</var></code>は列を指定する整数型です。</p></td>
+		</tr>
+		<tr>
+			<th><code>--goto <var>&lt;file[:line[:column]]&gt;</var></code></th>
+			<td><p><code><var>FILE</var></code>にある書類を開き、<code><var>LINE</var></code>と<code><var>COLUMN</var></code>で指定した箇所に移動します（<code>--line</code>と<code>--column</code>オプションのシンタックスシュガー）。</p></td>
 		</tr>
 		<tr>
 			<th><code>-b</code>, <code>--background</code></th>
@@ -98,7 +102,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	</tbody>
 </table>
 
-<p><code>--line</code>オプションと<code>--column</code>は負の値を指定することもできます。そのとき、<code>--line</code>オプションの場合は書類の末尾から、<code>--column</code>オプションの場合は行の末尾からカウントされます。</p>
+<p><code>--line</code>と<code>--column</code>、<code>--goto</code>オプションは負の値を指定することもできます。そのとき、<code>--line</code>オプションの場合は書類の末尾から、<code>--column</code>オプションの場合は行の末尾からカウントされます。</p>
 </section>
 
 
@@ -109,13 +113,17 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <pre class="shell"><code>cot</code></pre>
 
-<p>以下のコマンドは、foo.txtファイルをCotEditorで開き200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しないときは、<code>cot</code>コマンドは何も行いません。</p>
+<p>以下のコマンドは、foo.txtファイルをCotEditorで開き、200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しないときは、<code>cot</code>コマンドは何も行いません。</p>
 
 <pre class="shell"><code>cot --line 200 foo.txt</code></pre>
 
 <p>以下のコマンドは、foo.txtファイルをCotEditorで開き、書類末尾に挿入ポイントを移動します。</p>
 
 <pre class="shell"><code>cot --line -1 --column -1 foo.txt</code></pre>
+
+<p><code>--goto</code>オプションを使うと、移動する先の行と列をコンパイラメッセージなどでよく使われる短縮記法で指定することもできます。以下のコマンドは、foo.txtファイルをCotEditorで開き、200行4列目に挿入ポイントを移動します。</p>
+
+<pre class="shell"><code>cot --goto foo.txt:200:4</code></pre>
 
 <p>ファイル名の代わりにダッシュ（<code>-</code>）を渡すと、標準入力を受け取るモードになります。受け取った入力は新規書類として開かれます。</p>
 
