@@ -11,7 +11,8 @@
 
 ### Improvements
 
-- Update the C++ syntax to include .cu and .cuh filename extensions.
+- Improve the algorithm to scan encoding decralations.
+- Update the C++ syntax to include the .cu and .cuh filename extensions.
 
 
 

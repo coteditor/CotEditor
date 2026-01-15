@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -174,15 +174,27 @@ struct EncodingDetectionTests {
     
     @Test func scanEncodingDeclaration() throws {
         
-        let string = "<meta charset=\"Shift_JIS\"/>"
-        #expect(string.scanEncodingDeclaration(upTo: 16) == nil)
-        #expect(string.scanEncodingDeclaration(upTo: 128) == String.Encoding(cfEncodings: .shiftJIS))
+        #expect(Data("coding: utf-8".utf8).scanEncodingDeclaration() == .utf8)
+        #expect(Data("coding: utf8".utf8).scanEncodingDeclaration() == .utf8)
+        #expect(Data("coding: sjis".utf8).scanEncodingDeclaration() == .shiftJIS)
+        #expect(Data("coding: shift-jis".utf8).scanEncodingDeclaration() == .shiftJIS)
+        #expect(Data("coding: Shift_JIS".utf8).scanEncodingDeclaration() == String.Encoding(cfEncodings: .shiftJIS))
         
-        #expect("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128) == .utf8)
+        #expect(Data("fileencoding: utf8".utf8).scanEncodingDeclaration() == .utf8)  // Vim
+        #expect(Data("encoding=utf8".utf8).scanEncodingDeclaration() == .utf8)  // Python
         
-        // Swift.Regex with non-simple word boundaries never returns when the given string contains a specific pattern of letters (2023-12, Swift 5.9).
-        #expect("ﾀﾏｺﾞ,1,".scanEncodingDeclaration(upTo: 128) == nil)
-        #expect(try /\ba/.wordBoundaryKind(.simple).firstMatch(in: "ﾀﾏｺﾞ,1,") == nil)
+        // HTML (1024 bytes)
+        let data = Data("<meta charset=\"utf-8\">".utf8)
+        #expect((Data(repeating: 0, count: 512) + data).scanEncodingDeclaration() == .utf8)
+        #expect((Data(repeating: 0, count: 1024) + data).scanEncodingDeclaration() == nil)
+        #expect(Data("<meta charset=\"utf-8\" 犬".utf8).scanEncodingDeclaration() == .utf8)
+        #expect(Data("犬<meta charset=\"utf-8\"".utf8).scanEncodingDeclaration() == nil)
+        #expect(Data("<meta charset=utf-8".utf8).scanEncodingDeclaration() == nil)
+        
+        // CSS (@charset)
+        #expect(Data("@charset \"utf-8\";".utf8).scanEncodingDeclaration() == .utf8)
+        #expect(Data("a\n@charset \"utf-8\";".utf8).scanEncodingDeclaration() == nil)
+        #expect(Data(" @charset \"utf-8\";".utf8).scanEncodingDeclaration() == nil)
     }
     
     

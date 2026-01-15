@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -373,7 +373,7 @@ extension NSTextView: EditorCounter.Source { }
             
             return .automatic(.init(candidates: encodingCandidates,
                                     xattrEncoding: extendedAttributes.encoding,
-                                    tagScanLength: UserDefaults.standard[.referToEncodingTag] ? 2000 : nil))
+                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag]))
         }()
         
         let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
