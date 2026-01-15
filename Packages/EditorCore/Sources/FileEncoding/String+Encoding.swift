@@ -38,7 +38,7 @@ public extension String {
     
     struct DetectionOptions: Sendable {
         
-        /// The list of encodings to test the encoding.
+        /// The list of encodings to test decoding.
         public var candidates: [String.Encoding]
         
         /// The text encoding read from the file's extended attributes.
@@ -115,13 +115,24 @@ public extension String {
 
 extension String {
     
-    /// Reads string from data by detecting the text encoding automatically.
+    /// Reads string from data by detecting the text encoding based on the detection options.
     ///
     /// - Parameters:
     ///   - data: The data to encode.
     ///   - options: The options for encoding detection.
     /// - Returns: The decoded string and used encoding.
+    /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
     static func string(data: Data, options: String.DetectionOptions) throws(CocoaError) -> (String, String.Encoding) {
+        
+        // check BOMs
+        for bom in Unicode.BOM.allCases {
+            if options.candidates.contains(bom.encoding),
+               data.starts(with: bom.sequence),
+               let string = String(bomCapableData: data, encoding: bom.encoding)
+            {
+                return (string, bom.encoding)
+            }
+        }
         
         // try interpreting with xattr encoding
         if let xattrEncoding = options.xattrEncoding {
@@ -140,45 +151,11 @@ extension String {
             return (string, encoding)
         }
         
-        // detect encoding from data
-        var usedEncoding: String.Encoding?
-        let string = try String(data: data, suggestedEncodings: options.candidates, usedEncoding: &usedEncoding)
-        if let encoding = usedEncoding {
-            return (string, encoding)
-        }
-        
-        throw CocoaError(.fileReadUnknownStringEncoding)
-    }
-    
-    
-    /// Returns a  `String` initialized by converting given `data` into Unicode characters using an intelligent encoding detection.
-    ///
-    /// - Parameters:
-    ///   - data: The data object containing the string data.
-    ///   - suggestedEncodings: The prioritized list of encoding candidates.
-    ///   - usedEncoding: The encoding used to interpret the data.
-    /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
-    init(data: Data, suggestedEncodings: [String.Encoding], usedEncoding: inout String.Encoding?) throws(CocoaError) {
-        
-        // check BOMs
-        for bom in Unicode.BOM.allCases {
-            guard
-                data.starts(with: bom.sequence),
-                let string = String(bomCapableData: data, encoding: bom.encoding)
-            else { continue }
-            
-            usedEncoding = bom.encoding
-            self = string
-            return
-        }
-        
-        // try encodings in order from the top of the encoding list
-        for encoding in suggestedEncodings {
-            guard let string = String(data: data, encoding: encoding) else { continue }
-            
-            usedEncoding = encoding
-            self = string
-            return
+        // try applying encodings in order from the top of the candidates
+        for encoding in options.candidates {
+            if let string = String(data: data, encoding: encoding) {
+                return (string, encoding)
+            }
         }
         
         throw CocoaError(.fileReadUnknownStringEncoding)

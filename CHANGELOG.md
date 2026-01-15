@@ -11,7 +11,7 @@
 
 ### Improvements
 
-- Improve the algorithm to scan encoding decralations.
+- Improve the algorithm of text encoding detection.
 - Update the C++ syntax to include the .cu and .cuh filename extensions.
 
 

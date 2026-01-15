@@ -46,8 +46,7 @@ struct EncodingDetectionTests {
         }
         #expect(String(bomCapableData: data, encoding: .utf8) == "0")
         
-        var encoding: String.Encoding?
-        let string = try self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encoding)
+        let (string, encoding) = try self.encodedStringForFileName("UTF-8 BOM")
         
         #expect(string == "0")
         #expect(encoding == .utf8)
@@ -89,8 +88,7 @@ struct EncodingDetectionTests {
     
     @Test func utf16() throws {
         
-        var encoding: String.Encoding?
-        let string = try self.encodedStringForFileName("UTF-16", usedEncoding: &encoding)
+        let (string, encoding) = try self.encodedStringForFileName("UTF-16")
         
         #expect(string == "0")
         #expect(encoding == .utf16)
@@ -99,8 +97,7 @@ struct EncodingDetectionTests {
     
     @Test func utf32() throws {
         
-        var encoding: String.Encoding?
-        let string = try self.encodedStringForFileName("UTF-32", usedEncoding: &encoding)
+        let (string, encoding) = try self.encodedStringForFileName("UTF-32")
         
         #expect(string == "0")
         #expect(encoding == .utf32)
@@ -112,11 +109,20 @@ struct EncodingDetectionTests {
         let data = try self.dataForFileName("ISO 2022-JP")
         let encodings: [String.Encoding] = [.iso2022JP, .utf16]
         
-        var encoding: String.Encoding?
-        let string = try String(data: data, suggestedEncodings: encodings, usedEncoding: &encoding)
+        let (string, encoding) = try String.string(data: data, options: .init(candidates: encodings))
         
         #expect(string == "dog犬")
         #expect(encoding == .iso2022JP)
+    }
+    
+    
+    @Test func emptySuggestion() throws {
+        
+        let data = try self.dataForFileName("UTF-8")
+        
+        #expect(throws: CocoaError(.fileReadUnknownStringEncoding)) {
+            try String.string(data: data, options: .init(candidates: []))
+        }
     }
     
     
@@ -124,40 +130,21 @@ struct EncodingDetectionTests {
         
         let data = try self.dataForFileName("UTF-8")
         
-        var encoding: String.Encoding?
-        #expect(throws: CocoaError(.fileReadUnknownStringEncoding)) {
-            try String(data: data, suggestedEncodings: [], usedEncoding: &encoding)
-        }
-        #expect(encoding == nil)
-    }
-    
-    
-    @Test func suggestedEncoding() throws {
-        
-        let data = try self.dataForFileName("UTF-8")
-        
-        var encoding: String.Encoding?
         let invalidEncoding = String.Encoding(cfEncoding: kCFStringEncodingInvalidId)
-        let string = try String(data: data, suggestedEncodings: [invalidEncoding, .utf8], usedEncoding: &encoding)
+        let (string, encoding) = try String.string(data: data, options: .init(candidates: [invalidEncoding, .utf8, .utf16]))
         
         #expect(string == "0")
         #expect(encoding == .utf8)
     }
     
     
-    @Test func emptyData() {
+    @Test func emptyData() throws {
         
         let data = Data()
+        let (string, encoding) = try String.string(data: data, options: .init(candidates: [.shiftJIS]))
         
-        var encoding: String.Encoding?
-        var string: String?
-        
-        #expect(throws: CocoaError(.fileReadUnknownStringEncoding)) {
-            string = try String(data: data, suggestedEncodings: [], usedEncoding: &encoding)
-        }
-        
-        #expect(string == nil)
-        #expect(encoding == nil)
+        #expect(string.isEmpty)
+        #expect(encoding == .shiftJIS)
         #expect(!data.starts(with: Unicode.BOM.utf8.sequence))
     }
     
@@ -291,11 +278,19 @@ private extension String.Encoding {
 
 private extension EncodingDetectionTests {
     
-    func encodedStringForFileName(_ fileName: String, usedEncoding: inout String.Encoding?) throws -> String {
+    func encodedStringForFileName(_ fileName: String) throws -> (String, String.Encoding) {
         
-        let data = try self.dataForFileName(fileName)
-        
-        return try String(data: data, suggestedEncodings: [], usedEncoding: &usedEncoding)
+        try String.string(
+            data: try self.dataForFileName(fileName),
+            options: .init(candidates: [
+                .utf8,
+                .utf16,
+                .utf16BigEndian,
+                .utf16LittleEndian,
+                .utf32,
+                .utf32BigEndian,
+                .utf32LittleEndian,
+            ]))
     }
     
     
