@@ -22,7 +22,8 @@
 
 ### Improvements
 
-- Update the C++ syntax to include .cu and .cuh filename extensions.
+- Improve the algorithm of text encoding detection.
+- Update the C++ syntax to include the .cu and .cuh filename extensions.
 
 
 

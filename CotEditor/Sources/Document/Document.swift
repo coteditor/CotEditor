@@ -373,7 +373,7 @@ extension NSTextView: EditorCounter.Source { }
             
             return .automatic(.init(candidates: encodingCandidates,
                                     xattrEncoding: extendedAttributes.encoding,
-                                    tagScanLength: UserDefaults.standard[.referToEncodingTag] ? 2000 : nil))
+                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag]))
         }()
         
         let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)

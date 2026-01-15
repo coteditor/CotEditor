@@ -10,7 +10,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,21 +38,21 @@ public extension String {
     
     struct DetectionOptions: Sendable {
         
-        /// The list of encodings to test the encoding.
+        /// The list of encodings to test decoding.
         public var candidates: [String.Encoding]
         
         /// The text encoding read from the file's extended attributes.
         public var xattrEncoding: String.Encoding?
         
-        /// Maximal length to scan encoding declaration, or `nil` it not refer to encoding tag in the file content.
-        public var tagScanLength: Int?
+        /// Whether to scan for and prioritize an encoding declaration in the contents.
+        public var considersDeclaration: Bool
         
         
-        public init(candidates: [String.Encoding], xattrEncoding: String.Encoding? = nil, tagScanLength: Int? = nil) {
+        public init(candidates: [String.Encoding], xattrEncoding: String.Encoding? = nil, considersDeclaration: Bool = false) {
             
             self.candidates = candidates
             self.xattrEncoding = xattrEncoding
-            self.tagScanLength = tagScanLength
+            self.considersDeclaration = considersDeclaration
         }
     }
     
@@ -115,13 +115,24 @@ public extension String {
 
 extension String {
     
-    /// Reads string from data by detecting the text encoding automatically.
+    /// Reads string from data by detecting the text encoding based on the detection options.
     ///
     /// - Parameters:
     ///   - data: The data to encode.
     ///   - options: The options for encoding detection.
     /// - Returns: The decoded string and used encoding.
+    /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
     static func string(data: Data, options: String.DetectionOptions) throws(CocoaError) -> (String, String.Encoding) {
+        
+        // check BOMs
+        for bom in Unicode.BOM.allCases {
+            if options.candidates.contains(bom.encoding),
+               data.starts(with: bom.sequence),
+               let string = String(bomCapableData: data, encoding: bom.encoding)
+            {
+                return (string, bom.encoding)
+            }
+        }
         
         // try interpreting with xattr encoding
         if let xattrEncoding = options.xattrEncoding {
@@ -131,56 +142,20 @@ extension String {
             }
         }
         
-        // detect encoding from data
-        var usedEncoding: String.Encoding?
-        let string = try String(data: data, suggestedEncodings: options.candidates, usedEncoding: &usedEncoding)
-        
         // try reading encoding declaration and take priority of it if it seems well
-        if let scanLength = options.tagScanLength,
-           let scannedEncoding = string.scanEncodingDeclaration(upTo: scanLength),
-           options.candidates.contains(scannedEncoding),
-           scannedEncoding != usedEncoding,
-           let string = String(bomCapableData: data, encoding: scannedEncoding)
+        if options.considersDeclaration,
+           let encoding = data.scanEncodingDeclaration(),
+           options.candidates.contains(encoding),
+           let string = String(bomCapableData: data, encoding: encoding)
         {
-            return (string, scannedEncoding)
+            return (string, encoding)
         }
         
-        guard let encoding = usedEncoding else {
-            throw CocoaError(.fileReadUnknownStringEncoding)
-        }
-        
-        return (string, encoding)
-    }
-    
-    
-    /// Returns a  `String` initialized by converting given `data` into Unicode characters using an intelligent encoding detection.
-    ///
-    /// - Parameters:
-    ///   - data: The data object containing the string data.
-    ///   - suggestedEncodings: The prioritized list of encoding candidates.
-    ///   - usedEncoding: The encoding used to interpret the data.
-    /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
-    init(data: Data, suggestedEncodings: [String.Encoding], usedEncoding: inout String.Encoding?) throws(CocoaError) {
-        
-        // detect encoding from so-called "magic numbers"
-        for bom in Unicode.BOM.allCases {
-            guard
-                data.starts(with: bom.sequence),
-                let string = String(bomCapableData: data, encoding: bom.encoding)
-            else { continue }
-            
-            usedEncoding = bom.encoding
-            self = string
-            return
-        }
-        
-        // try encodings in order from the top of the encoding list
-        for encoding in suggestedEncodings {
-            guard let string = String(data: data, encoding: encoding) else { continue }
-            
-            usedEncoding = encoding
-            self = string
-            return
+        // try applying encodings in order from the top of the candidates
+        for encoding in options.candidates {
+            if let string = String(data: data, encoding: encoding) {
+                return (string, encoding)
+            }
         }
         
         throw CocoaError(.fileReadUnknownStringEncoding)
@@ -204,28 +179,57 @@ extension String {
         
         self.init(data: bomFreeData, encoding: encoding)
     }
+}
+
+
+extension Data {
     
-    
-    /// Scans an possible encoding declaration in the string.
+    /// Scans for a text encoding declaration.
     ///
-    /// - Parameters:
-    ///   - maxLength: The number of forward characters to be scanned.
-    /// - Returns: A string encoding, or `nil` if not found.
-    func scanEncodingDeclaration(upTo maxLength: Int) -> String.Encoding? {
+    /// Supported declaration styles and their typical contexts:
+    /// - CSS: `@charset`
+    ///   - At the very beginning of the file.
+    ///   - Uses an IANA charset name.
+    /// - HTML: `charset=`
+    ///   - Within the first 1,024 bytes.
+    ///   - Uses an IANA charset name.
+    /// - XML: `encoding=`
+    ///   - Inside the `<?xml ...?>` declaration, which must appear at the beginning of the file.
+    ///   - Uses an IANA charset name.
+    /// - Python: `coding:`, `encoding:`, `coding=`
+    ///   - Within the first 2 lines.
+    ///   - Defined in PEP 263.
+    ///   - `^[ \t\f]*#.*?coding[:=][ \t]*([-_.a-zA-Z0-9]+)`
+    /// - Ruby: `coding: `  or `encoding: `
+    ///   - Within the first 2 lines.
+    /// - Emacs: `-*- ... coding: `
+    ///   - Within the first 2 lines.
+    /// - Vim: `fileencoding=`
+    ///   - Within the first or last 5 lines (Only the first 2 lines are supported here).
+    ///
+    /// - Returns: The detected string encoding, or `nil` if none is found.
+    func scanEncodingDeclaration() -> String.Encoding? {
         
-        assert(maxLength > 0)
+        guard
+            !self.isEmpty,
+            // scan only the first 1024 bytes to fulfill the largest spec (HTML)
+            let string = String(data: self.prefix(1024), encoding: .isoLatin1),
+            let match = string.prefixMatch(of: /@charset "(?<encoding>[-_.a-zA-Z0-9]+)";/)
+                ?? string
+                    .split(separator: /\R/, maxSplits: 3, omittingEmptySubsequences: false)
+                    .prefix(2)  // first 2 lines
+                    .lazy
+                    .compactMap({ $0.firstMatch(of: /coding[:=] *["']? *(?<encoding>[-_.a-zA-Z0-9]+)/) }).first
+                ?? string.firstMatch(of: /^[\x00-\x7F]*\scharset\s*= *["'](?<encoding>[-_.a-zA-Z0-9]+)["']/.ignoresCase())
+        else { return nil }
         
-        guard !self.isEmpty else { return nil }
+        let encodingName = match.encoding
         
-        let regex = /\b(charset=|encoding=|@charset|encoding:|coding:) *["']? *(?<encoding>[-_a-zA-Z0-9]+)/
-            .wordBoundaryKind(.simple)
+        let cfEncoding = CFStringConvertIANACharSetNameToEncoding(encodingName as CFString)
+        if cfEncoding != kCFStringEncodingInvalidId {
+            return String.Encoding(cfEncoding: cfEncoding)
+        }
         
-        guard let ianaCharSetName = try? regex.firstMatch(in: self.prefix(maxLength))?.encoding else { return nil }
-        
-        let cfEncoding = CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
-        
-        guard cfEncoding != kCFStringEncodingInvalidId else { return nil }
-        
-        return String.Encoding(cfEncoding: cfEncoding)
+        return nil
     }
 }
