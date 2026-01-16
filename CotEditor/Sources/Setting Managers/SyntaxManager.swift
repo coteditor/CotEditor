@@ -59,15 +59,15 @@ enum SyntaxName {
     
     let bundledSettingNames: [SettingName]
     @Published var settingNames: [SettingName] = []
-    @Atomic var cachedSettings: [SettingName: Setting] = [:]
+    var cachedSettings: [SettingName: Setting] = [:]
     
     
     // MARK: Private Properties
     
     private let bundledMaps: [SettingName: Syntax.FileMap]
-    @Atomic private var mappingTable: MappingTable = [\.extensions: [:],
-                                                      \.filenames: [:],
-                                                      \.interpreters: [:]]
+    private var mappingTable: MappingTable = [\.extensions: [:],
+                                              \.filenames: [:],
+                                              \.interpreters: [:]]
     
     
     // MARK: Lifecycle
@@ -190,9 +190,9 @@ enum SyntaxName {
         
         // invalidate current cache
         if let oldName {
-            self.$cachedSettings.mutate { $0[oldName] = nil }
+            self.cachedSettings[oldName] = nil
         }
-        self.$cachedSettings.mutate { $0[name] = setting }
+        self.cachedSettings[name] = setting
         
         // update internal cache
         let change: SettingChange = oldName.map { .updated(from: $0, to: name) } ?? .added(name)
