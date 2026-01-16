@@ -69,6 +69,13 @@ extension URL {
 }
 
 
+enum ImportingItem {
+    
+    case url(URL)
+    case payload(any Persistable)
+}
+
+
 // MARK: -
 
 @MainActor protocol SettingFileManaging: AnyObject, Sendable {
@@ -166,19 +173,6 @@ extension SettingFileManaging {
         let url = self.preparedURLForUserSetting(name: name)
         
         return url.isReachable ? url : nil
-    }
-    
-    
-    /// Returns the persistent user setting for the given name, if available.
-    ///
-    /// - Parameters:
-    ///   - name: The setting name.
-    /// - Returns: The corresponding persistable representation of the user setting, or `nil` if the file doesn't exist or can't be read.
-    func payloadForUserSetting(name: String) -> Setting.Payload? {
-        
-        guard let url = self.urlForUserSetting(name: name) else { return nil }
-        
-        return try? Setting.payload(at: url)
     }
     
     
@@ -366,12 +360,12 @@ extension SettingFileManaging {
     /// Imports a setting.
     ///
     /// - Parameters:
-    ///   - payload: The persistable representation to import.
+    ///   - item: The representation to import.
     ///   - name: The name of the setting to import.
     ///   - type: The UTType of the provided payload. If `nil`, defaults to the manager’s file type.
     ///   - overwrite: Whether to overwrite an existing setting if one exists.
     /// - Throws: `ImportDuplicationError` (only when `overwrite` is `false` and a duplicate exists), or any other error that occurs.
-    func importSetting(payload: any Persistable, name: String, type: UTType? = nil, overwrite: Bool) throws {
+    func importSetting(_ item: ImportingItem, name: String, type: UTType? = nil, overwrite: Bool) throws {
         
         // check duplication
         if !overwrite {
@@ -379,22 +373,34 @@ extension SettingFileManaging {
                 guard existingName.caseInsensitiveCompare(name) == .orderedSame else { continue }
                 
                 guard self.urlForUserSetting(name: existingName) == nil else {  // duplicated
-                    throw ImportDuplicationError(name: existingName, payload: payload)
+                    throw ImportDuplicationError(name: existingName, item: item)
                 }
             }
         }
         
         // test if the setting file can be read correctly
         let type = type ?? Setting.fileType
-        
-        let setting = try Setting(payload: payload, type: type)
-        let payloadToStore = type.conforms(to: Setting.fileType) ? payload : try setting.makePayload()
+        let setting: Setting = switch item {
+            case .url(let url): try Setting(contentsOf: url)
+            case .payload(let payload): try Setting(payload: payload, type: type)
+        }
         
         // write file
         let destURL = self.preparedURLForUserSetting(name: name)
         do {
             try FileManager.default.createIntermediateDirectories(to: destURL)
-            try payloadToStore.write(to: destURL)
+            switch item {
+                case .url(let url) where type.conforms(to: Setting.fileType):
+                    try FileManager.default.copyItem(at: url, to: destURL)
+                    
+                case .url:
+                    let payload = try setting.makePayload()  // transform to native format
+                    try payload.write(to: destURL)
+                    
+                case .payload(let payload):
+                    try payload.write(to: destURL)
+            }
+            
         } catch {
             throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
         }
@@ -402,8 +408,8 @@ extension SettingFileManaging {
         self.cachedSettings[name] = setting
         
         let change: SettingChange = self.settingNames.contains(name)
-            ? .updated(from: name, to: name)
-            : .added(name)
+        ? .updated(from: name, to: name)
+        : .added(name)
         self.updateSettingList(change: change)
     }
     
@@ -640,7 +646,7 @@ struct SettingFileError: LocalizedError {
 struct ImportDuplicationError: LocalizedError {
     
     var name: String
-    var payload: any Persistable
+    var item: ImportingItem
     
     
     var errorDescription: String {

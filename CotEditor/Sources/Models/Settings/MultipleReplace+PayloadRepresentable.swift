@@ -35,9 +35,6 @@ extension UTType {
 
 extension MultipleReplace: PayloadRepresentable {
     
-    typealias Payload = Data
-    
-    
     nonisolated static let fileType: UTType = .cotReplacement
     
     
@@ -58,7 +55,7 @@ extension MultipleReplace: PayloadRepresentable {
     }
     
     
-    nonisolated static func payload(at fileURL: URL) throws -> Payload {
+    nonisolated static func payload(at fileURL: URL) throws -> some Persistable {
         
         try Data(contentsOf: fileURL)
     }

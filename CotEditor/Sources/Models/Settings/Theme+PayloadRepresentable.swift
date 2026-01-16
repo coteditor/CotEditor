@@ -34,9 +34,6 @@ extension UTType {
 
 extension Theme: PayloadRepresentable, @unchecked Sendable {
     
-    typealias Payload = Data
-    
-    
     nonisolated static let fileType: UTType = .cotTheme
     
     
@@ -52,7 +49,7 @@ extension Theme: PayloadRepresentable, @unchecked Sendable {
     }
     
     
-    nonisolated static func payload(at fileURL: URL) throws -> Payload {
+    nonisolated static func payload(at fileURL: URL) throws -> some Persistable {
         
         try Data(contentsOf: fileURL)
     }

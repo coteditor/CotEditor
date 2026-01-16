@@ -231,20 +231,20 @@ struct PortableSettingsDocument: FileDocument {
         }
         
         if types.contains(.replacements) {
-            for (name, data) in self.replacements {
-                try ReplacementManager.shared.importSetting(payload: data, name: name, overwrite: true)
+            for (name, payload) in self.replacements {
+                try ReplacementManager.shared.importSetting(.payload(payload), name: name, overwrite: true)
             }
         }
         
         if types.contains(.syntaxes) {
-            for (name, data) in self.syntaxes {
-                try SyntaxManager.shared.importSetting(payload: data, name: name, overwrite: true)
+            for (name, payload) in self.syntaxes {
+                try SyntaxManager.shared.importSetting(.payload(payload), name: name, overwrite: true)
             }
         }
         
         if types.contains(.themes) {
-            for (name, data) in self.themes {
-                try ThemeManager.shared.importSetting(payload: data, name: name, overwrite: true)
+            for (name, payload) in self.themes {
+                try ThemeManager.shared.importSetting(.payload(payload), name: name, overwrite: true)
             }
         }
     }

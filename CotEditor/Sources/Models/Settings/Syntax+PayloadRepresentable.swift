@@ -30,9 +30,6 @@ import Yams
 
 extension Syntax: PayloadRepresentable {
     
-    typealias Payload = Data
-    
-    
     nonisolated static let fileType: UTType = .yaml
     
     
@@ -48,7 +45,7 @@ extension Syntax: PayloadRepresentable {
     }
     
     
-    nonisolated static func payload(at fileURL: URL) throws -> Payload {
+    nonisolated static func payload(at fileURL: URL) throws -> some Persistable {
         
         try Data(contentsOf: fileURL)
     }

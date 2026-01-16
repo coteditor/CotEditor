@@ -249,7 +249,7 @@ private struct SyntaxListView: View {
             .tag(state)
             .frame(height: self.rowHeight)
             .listRowSeparator(.hidden)
-            .draggable(TransferableSyntax(name: state.name, canExport: !state.isBundled, data: self.manager.payloadForUserSetting(name: state.name))) {
+            .draggable(TransferableSyntax(name: state.name, url: self.manager.urlForUserSetting(name: state.name))) {
                 Label {
                     Text(state.name)
                 } icon: {
@@ -307,8 +307,7 @@ private struct SyntaxListView: View {
                         
                         let name = url.deletingPathExtension().lastPathComponent
                         do {
-                            let data = try Data(contentsOf: url)
-                            try self.manager.importSetting(payload: data, name: name, overwrite: false)
+                            try self.manager.importSetting(.url(url), name: name, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -331,7 +330,7 @@ private struct SyntaxListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(payload: item.payload, name: item.name, overwrite: true)
+                    try self.manager.importSetting(item.item, name: item.name, overwrite: true)
                 } catch {
                     self.error = error
                 }
@@ -490,7 +489,7 @@ private struct SyntaxListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableSyntax(name: selection.name, data: self.manager.payloadForUserSetting(name: selection.name))
+                self.exportingItem = TransferableSyntax(name: selection.name, url: self.manager.urlForUserSetting(name: selection.name))
                 self.isExporterPresented = true
             }
             .modifierKeyAlternate(.option) {
@@ -538,36 +537,12 @@ private struct SyntaxListView: View {
 }
 
 
-private struct TransferableSyntax: Transferable {
+private struct TransferableSyntax: TransferableFile {
+    
+    static let fileType: UTType = .yaml
     
     var name: String
-    var data: @MainActor () -> Data?
-    var canExport: Bool
-    
-    
-    init(name: String, canExport: Bool = true, data: @autoclosure @escaping @MainActor () -> Data?) {
-        
-        self.name = name
-        self.data = data
-        self.canExport = canExport
-    }
-    
-    
-    static var transferRepresentation: some TransferRepresentation {
-        
-        DataRepresentation(exportedContentType: .yaml) { item in
-            guard let data = await item.data() else { throw CocoaError(.fileNoSuchFile) }
-            return data
-        }
-        .suggestedFileName(\.name)
-        .exportingCondition(\.canExport)
-        
-        FileRepresentation(importedContentType: .yaml) { received in
-            let name = received.file.deletingPathExtension().lastPathComponent
-            let data = try Data(contentsOf: received.file)
-            return Self(name: name, data: data)
-        }
-    }
+    var url: URL?
 }
 
 

@@ -60,7 +60,7 @@ struct MultipleReplaceListView: View {
                     return true
                 }
                 .focused($editingItem, equals: name)
-                .draggable(TransferableReplacement(name: name, data: self.manager.payloadForUserSetting(name: name))) {
+                .draggable(TransferableReplacement(name: name, url: self.manager.urlForUserSetting(name: name))) {
                     Label {
                         Text(name)
                     } icon: {
@@ -115,8 +115,7 @@ struct MultipleReplaceListView: View {
                         let name = url.deletingPathExtension().lastPathComponent
                         let type = UTType(filenameExtension: url.pathExtension)
                         do {
-                            let data = try Data(contentsOf: url)
-                            try self.manager.importSetting(payload: data, name: name, type: type, overwrite: false)
+                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -142,7 +141,7 @@ struct MultipleReplaceListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(payload: item.payload, name: item.name, overwrite: true)
+                    try self.manager.importSetting(item.item, name: item.name, overwrite: true)
                 } catch {
                     self.error = error
                 }
@@ -268,7 +267,7 @@ struct MultipleReplaceListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableReplacement(name: selection, data: self.manager.payloadForUserSetting(name: selection))
+                self.exportingItem = TransferableReplacement(name: selection, url: self.manager.urlForUserSetting(name: selection))
                 self.isExporterPresented = true
             }
             .modifierKeyAlternate(.option) {
@@ -318,33 +317,12 @@ struct MultipleReplaceListView: View {
 }
 
 
-private struct TransferableReplacement: Transferable {
+private struct TransferableReplacement: TransferableFile {
+    
+    static var fileType: UTType { .cotReplacement }
     
     var name: String
-    var data: @MainActor () -> Data?
-    
-    
-    init(name: String, data: @autoclosure @escaping @MainActor () -> Data?) {
-        
-        self.name = name
-        self.data = data
-    }
-    
-    
-    static var transferRepresentation: some TransferRepresentation {
-        
-        DataRepresentation(exportedContentType: .cotReplacement) { item in
-            guard let data = await item.data() else { throw CocoaError(.fileNoSuchFile) }
-            return data
-        }
-        .suggestedFileName(\.name)
-        
-        FileRepresentation(importedContentType: .cotReplacement) { received in
-            let name = received.file.deletingPathExtension().lastPathComponent
-            let data = try Data(contentsOf: received.file)
-            return Self(name: name, data: data)
-        }
-    }
+    var url: URL?
 }
 
 

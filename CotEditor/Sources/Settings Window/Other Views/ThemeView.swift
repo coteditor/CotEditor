@@ -28,6 +28,7 @@ import AppKit.NSColor
 import Combine
 import Defaults
 import Syntax
+import UniformTypeIdentifiers
 
 struct ThemeView: View {
     
@@ -152,7 +153,7 @@ private struct ThemeListView: View {
                     }
                     .editDisabled(state?.isBundled == true)
                     .focused($editingItem, equals: name)
-                    .draggable(TransferableTheme(name: name, canExport: state?.isCustomized == true, data: self.manager.payloadForUserSetting(name: name))) {
+                    .draggable(TransferableTheme(name: name, url: self.manager.urlForUserSetting(name: name))) {
                         Label {
                             Text(name)
                         } icon: {
@@ -188,9 +189,9 @@ private struct ThemeListView: View {
         .dropDestination(for: TransferableTheme.self) { items, _ in
             var succeed = false
             for item in items {
-                guard let data = item.data() else { continue }
+                guard let url = item.url else { continue }
                 do {
-                    try self.manager.importSetting(payload: data, name: item.name, overwrite: false)
+                    try self.manager.importSetting(.url(url), name: item.name, overwrite: false)
                     succeed = true
                 } catch let error as ImportDuplicationError {
                     self.importingError = error
@@ -218,8 +219,7 @@ private struct ThemeListView: View {
                         
                         let name = url.deletingPathExtension().lastPathComponent
                         do {
-                            let data = try Data(contentsOf: url)
-                            try self.manager.importSetting(payload: data, name: name, overwrite: false)
+                            try self.manager.importSetting(.url(url), name: name, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -242,7 +242,7 @@ private struct ThemeListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(payload: item.payload, name: item.name, overwrite: true)
+                    try self.manager.importSetting(item.item, name: item.name, overwrite: true)
                 } catch {
                     self.error = error
                 }
@@ -388,7 +388,7 @@ private struct ThemeListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableTheme(name: selection.name, data: self.manager.payloadForUserSetting(name: selection.name))
+                self.exportingItem = TransferableTheme(name: selection.name, url: self.manager.urlForUserSetting(name: selection.name))
                 self.isExporterPresented = true
             }
             .modifierKeyAlternate(.option) {
@@ -641,36 +641,12 @@ private extension Theme.SystemDefaultStyle {
 }
 
 
-private struct TransferableTheme: Transferable {
+private struct TransferableTheme: TransferableFile {
+    
+    static let fileType: UTType = .cotTheme
     
     var name: String
-    var canExport: Bool
-    var data: @MainActor () -> Data?
-    
-    
-    init(name: String, canExport: Bool = true, data: @autoclosure @escaping @MainActor () -> Data?) {
-        
-        self.name = name
-        self.canExport = canExport
-        self.data = data
-    }
-    
-    
-    static var transferRepresentation: some TransferRepresentation {
-        
-        DataRepresentation(exportedContentType: .cotTheme) { item in
-            guard let data = await item.data() else { throw CocoaError(.fileNoSuchFile) }
-            return data
-        }
-        .suggestedFileName(\.name)
-        .exportingCondition(\.canExport)
-        
-        FileRepresentation(importedContentType: .cotTheme) { received in
-            let name = received.file.deletingPathExtension().lastPathComponent
-            let data = try Data(contentsOf: received.file)
-            return Self(name: name, data: data)
-        }
-    }
+    var url: URL?
 }
 
 
