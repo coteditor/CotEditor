@@ -23,13 +23,12 @@
 //  limitations under the License.
 //
 
-import Combine
 import Foundation
 import UniformTypeIdentifiers
 import Defaults
 import URLUtils
 
-@MainActor final class ThemeManager: SettingFileManaging {
+@MainActor @Observable final class ThemeManager: SettingFileManaging {
     
     typealias Setting = Theme
     
@@ -46,7 +45,7 @@ import URLUtils
     let reservedNames: [String] = []
     
     let bundledSettingNames: [String]
-    @Published var settingNames: [String] = []
+    var settingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     
     

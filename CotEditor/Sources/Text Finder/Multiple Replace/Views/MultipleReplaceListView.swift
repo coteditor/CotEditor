@@ -79,7 +79,7 @@ struct MultipleReplaceListView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Sidebar", table: "MultipleReplace", comment: "accessibility label"))
-        .onReceive(self.manager.$settingNames) { self.settingNames = $0 }
+        .onChange(of: self.manager.settingNames, initial: true) { _, newValue in self.settingNames = newValue }
         .onAppear {
             // separate from `.onChange(of: self.settingNames.isEmpty)`
             // to avoid evaluating before initializing settingNames

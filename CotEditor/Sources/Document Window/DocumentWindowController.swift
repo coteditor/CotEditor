@@ -72,7 +72,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var documentsObserver: AnyCancellable?
     
     private var documentSyntaxObserver: Task<Void, Never>?
-    private var syntaxListObserver: AnyCancellable?
+    private var syntaxNamesObserver: Task<Void, Never>?
+    private var recentSyntaxNamesObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
     
@@ -151,8 +152,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .assign(to: \.appearance, on: window)
         
         // observe for syntax line-up change
-        self.syntaxListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
-                                                   UserDefaults.standard.publisher(for: .recentSyntaxNames))
+        self.syntaxNamesObserver = Task { [weak self] in
+            for await _ in Observations({ SyntaxManager.shared.settingNames }) {
+                self?.buildSyntaxPopUpButton()
+            }
+        }
+        self.recentSyntaxNamesObserver = UserDefaults.standard.publisher(for: .recentSyntaxNames)
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
         
         // observe documents to update window title
@@ -173,6 +178,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     isolated deinit {
         self.documentSyntaxObserver?.cancel()
+        self.syntaxNamesObserver?.cancel()
     }
     
     

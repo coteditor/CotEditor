@@ -24,11 +24,10 @@
 //
 
 import Foundation
-import Combine
 import TextFind
 import URLUtils
 
-@MainActor final class ReplacementManager: SettingFileManaging {
+@MainActor @Observable final class ReplacementManager: SettingFileManaging {
     
     typealias Setting = MultipleReplace
     
@@ -45,7 +44,7 @@ import URLUtils
     let reservedNames: [String] = []
     
     let bundledSettingNames: [String] = []
-    @Published var settingNames: [String] = []
+    var settingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     
     

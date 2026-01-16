@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import Combine
 import Synchronization
 import UniformTypeIdentifiers
 import Defaults
@@ -40,7 +39,7 @@ enum SyntaxName {
 }
 
 
-@MainActor final class SyntaxManager: SettingFileManaging {
+@MainActor @Observable final class SyntaxManager: SettingFileManaging {
     
     typealias Setting = Syntax
     
@@ -58,7 +57,7 @@ enum SyntaxName {
     let reservedNames: [String] = [SyntaxName.none, "General", "Code"] + TreeSitterSyntax.aliasedSyntaxes.map(\.rawValue)
     
     let bundledSettingNames: [String]
-    @Published var settingNames: [String] = []
+    var settingNames: [String] = []
     
     var cachedSettings: [String: Setting] {
         

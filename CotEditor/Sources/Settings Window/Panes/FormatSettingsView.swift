@@ -194,7 +194,7 @@ struct FormatSettingsView: View {
                 HelpLink(anchor: "settings_format")
             }
         }
-        .onReceive(self.syntaxManager.$settingNames) { self.syntaxNames = $0 }
+        .onChange(of: self.syntaxManager.settingNames, initial: true) { _, newValue in self.syntaxNames = newValue }
         .onChange(of: self.presentation.encodingListRequestID, initial: true) { _, requestID in
             guard
                 let requestID,
