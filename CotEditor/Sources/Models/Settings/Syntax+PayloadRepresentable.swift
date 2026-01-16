@@ -1,14 +1,14 @@
 //
-//  Syntax+Persistable.swift
+//  Syntax+PayloadRepresentable.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by imanishi on 1/10/26.
+//  Created by 1024jp on 2026-01-10.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2026 CotEditor Project
+//  © 2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,17 +28,17 @@ import UniformTypeIdentifiers
 import Syntax
 import Yams
 
-extension Syntax: PersistableConvertible {
+extension Syntax: PayloadRepresentable {
     
-    typealias Persistent = Data
+    typealias Payload = Data
     
     
     nonisolated static let fileType: UTType = .yaml
     
     
-    init(persistence: any Persistable, type: UTType) throws {
+    init(payload: any Persistable, type: UTType) throws {
         
-        switch persistence {
+        switch payload {
             case let data as Data where type.conforms(to: .yaml):
                 self = try YAMLDecoder().decode(Self.self, from: data)
                 
@@ -48,13 +48,13 @@ extension Syntax: PersistableConvertible {
     }
     
     
-    nonisolated static func persistence(at fileURL: URL) throws -> Persistent {
+    nonisolated static func payload(at fileURL: URL) throws -> Payload {
         
         try Data(contentsOf: fileURL)
     }
     
     
-    func makePersistable() throws -> any Persistable {
+    func makePayload() throws -> any Persistable {
         
         let encoder = YAMLEncoder()
         encoder.options.allowUnicode = true

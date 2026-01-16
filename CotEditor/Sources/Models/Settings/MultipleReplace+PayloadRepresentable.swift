@@ -1,14 +1,14 @@
 //
-//  Theme+Persistable.swift
+//  MultipleReplace+PayloadRepresentable.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by imanishi on 1/10/26.
+//  Created by 1024jp on 2026-01-10.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2026 CotEditor Project
+//  © 2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,26 +25,32 @@
 
 import Foundation
 import UniformTypeIdentifiers
+import TextFind
 
 extension UTType {
     
-    static let cotTheme = UTType(exportedAs: "com.coteditor.CotEditor.theme")
+    static let cotReplacement = UTType(exportedAs: "com.coteditor.CotEditor.replacement")
 }
 
 
-extension Theme: PersistableConvertible, @unchecked Sendable {
+extension MultipleReplace: PayloadRepresentable {
     
-    typealias Persistent = Data
-    
-    
-    nonisolated static let fileType: UTType = .cotTheme
+    typealias Payload = Data
     
     
-    init(persistence: any Persistable, type: UTType) throws {
+    nonisolated static let fileType: UTType = .cotReplacement
+    
+    
+    init(payload: any Persistable, type: UTType) throws {
         
-        switch persistence {
-            case let data as Data where type.conforms(to: UTType.cotTheme):
+        switch payload {
+            case let data as Data where type.conforms(to: .cotReplacement):
                 self = try JSONDecoder().decode(Self.self, from: data)
+                
+            case let data as Data where type.conforms(to: .tabSeparatedText):
+                guard let string = String(data: data, encoding: .utf8) else { throw CocoaError(.fileReadInapplicableStringEncoding) }
+                
+                try self.init(tabSeparatedText: string)
                 
             default:
                 throw CocoaError(.fileReadUnsupportedScheme)
@@ -52,13 +58,13 @@ extension Theme: PersistableConvertible, @unchecked Sendable {
     }
     
     
-    nonisolated static func persistence(at fileURL: URL) throws -> Persistent {
+    nonisolated static func payload(at fileURL: URL) throws -> Payload {
         
         try Data(contentsOf: fileURL)
     }
     
     
-    func makePersistable() throws -> any Persistable {
+    func makePayload() throws -> any Persistable {
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]

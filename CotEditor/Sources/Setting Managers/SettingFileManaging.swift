@@ -73,7 +73,7 @@ extension URL {
 
 @MainActor protocol SettingFileManaging: AnyObject, Sendable {
     
-    associatedtype Setting: PersistableConvertible, Equatable, Sendable
+    associatedtype Setting: PayloadRepresentable, Equatable, Sendable
     
     
     /// The directory name used in both Application Support and the app bundle’s Resources.
@@ -174,11 +174,11 @@ extension SettingFileManaging {
     /// - Parameters:
     ///   - name: The setting name.
     /// - Returns: The corresponding persistable representation of the user setting, or `nil` if the file doesn't exist or can't be read.
-    func persistenceForUserSetting(name: String) -> Setting.Persistence? {
+    func payloadForUserSetting(name: String) -> Setting.Payload? {
         
         guard let url = self.urlForUserSetting(name: name) else { return nil }
         
-        return try? Setting.persistence(at: url)
+        return try? Setting.payload(at: url)
     }
     
     
@@ -366,12 +366,12 @@ extension SettingFileManaging {
     /// Imports a setting.
     ///
     /// - Parameters:
-    ///   - persistence: The persistable representation to import.
+    ///   - payload: The persistable representation to import.
     ///   - name: The name of the setting to import.
-    ///   - type: The UTType of the provided persistence. If `nil`, defaults to the manager’s file type.
+    ///   - type: The UTType of the provided payload. If `nil`, defaults to the manager’s file type.
     ///   - overwrite: Whether to overwrite an existing setting if one exists.
     /// - Throws: `ImportDuplicationError` (only when `overwrite` is `false` and a duplicate exists), or any other error that occurs.
-    func importSetting(persistence: any Persistable, name: String, type: UTType? = nil, overwrite: Bool) throws {
+    func importSetting(payload: any Persistable, name: String, type: UTType? = nil, overwrite: Bool) throws {
         
         // check duplication
         if !overwrite {
@@ -379,7 +379,7 @@ extension SettingFileManaging {
                 guard existingName.caseInsensitiveCompare(name) == .orderedSame else { continue }
                 
                 guard self.urlForUserSetting(name: existingName) == nil else {  // duplicated
-                    throw ImportDuplicationError(name: existingName, persistence: persistence)
+                    throw ImportDuplicationError(name: existingName, payload: payload)
                 }
             }
         }
@@ -387,14 +387,14 @@ extension SettingFileManaging {
         // test if the setting file can be read correctly
         let type = type ?? Setting.fileType
         
-        let setting = try Setting(persistence: persistence, type: type)
-        let persistenceToStore = type.conforms(to: Setting.fileType) ? persistence : try setting.makePersistable()
+        let setting = try Setting(payload: payload, type: type)
+        let payloadToStore = type.conforms(to: Setting.fileType) ? payload : try setting.makePayload()
         
         // write file
         let destURL = self.preparedURLForUserSetting(name: name)
         do {
             try FileManager.default.createIntermediateDirectories(to: destURL)
-            try persistenceToStore.write(to: destURL)
+            try payloadToStore.write(to: destURL)
         } catch {
             throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
         }
@@ -414,7 +414,7 @@ extension SettingFileManaging {
     func exportSettings() -> [String: some Persistable] {
         
         self.userSettingFileURLs.reduce(into: [:]) { dictionary, url in
-            dictionary[url.lastPathComponent] = try? Setting.persistence(at: url)
+            dictionary[url.lastPathComponent] = try? Setting.payload(at: url)
         }
     }
     
@@ -451,10 +451,10 @@ extension SettingFileManaging {
             
         } else {
             // save the file to the user domain
-            let persistence = try setting.makePersistable()
+            let payload = try setting.makePayload()
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try persistence.write(to: fileURL)
+            try payload.write(to: fileURL)
         }
     }
     
@@ -640,7 +640,7 @@ struct SettingFileError: LocalizedError {
 struct ImportDuplicationError: LocalizedError {
     
     var name: String
-    var persistence: any Persistable
+    var payload: any Persistable
     
     
     var errorDescription: String {

@@ -26,9 +26,9 @@
 import Foundation
 import UniformTypeIdentifiers
 
-protocol PersistableConvertible: Sendable {
+protocol PayloadRepresentable: Sendable {
     
-    associatedtype Persistence: Persistable
+    associatedtype Payload: Persistable
     
     
     /// The default uniform type identifier for files representing this type.
@@ -36,17 +36,17 @@ protocol PersistableConvertible: Sendable {
     
     
     /// Creates an instance from a persistable payload and file type.
-    init(persistence: any Persistable, type: UTType) throws
+    init(payload: any Persistable, type: UTType) throws
     
     /// Loads the persisted payload from a file.
-    nonisolated static func persistence(at fileURL: URL) throws -> Persistence
+    nonisolated static func payload(at fileURL: URL) throws -> Payload
     
     /// Produces a persistable payload that represents the current value.
-    func makePersistable() throws -> any Persistable
+    func makePayload() throws -> any Persistable
 }
 
 
-extension PersistableConvertible {
+extension PayloadRepresentable {
     
     /// Creates an instance by loading contents from a file.
     ///
@@ -54,9 +54,9 @@ extension PersistableConvertible {
     /// - Throws: An error if reading or decoding the file fails.
     init(contentsOf fileURL: URL) throws {
         
-        let persistence = try Self.persistence(at: fileURL)
+        let payload = try Self.payload(at: fileURL)
         
-        try self.init(persistence: persistence, type: UTType(filenameExtension: fileURL.pathExtension) ?? Self.fileType)
+        try self.init(payload: payload, type: UTType(filenameExtension: fileURL.pathExtension) ?? Self.fileType)
     }
 }
 
