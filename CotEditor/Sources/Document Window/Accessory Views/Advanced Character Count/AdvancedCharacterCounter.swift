@@ -189,3 +189,13 @@ private extension UserDefaults {
             encoding: .init(rawValue: UInt(self[.countEncoding])))
     }
 }
+
+
+private extension Publisher {
+    
+    /// Wraps this publisher with a type eraser.
+    func eraseToVoid() -> AnyPublisher<Void, Failure> {
+        
+        self.map { _ in () }.eraseToAnyPublisher()
+    }
+}
