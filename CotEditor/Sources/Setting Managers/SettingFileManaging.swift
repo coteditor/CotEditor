@@ -86,8 +86,8 @@ enum ImportingItem {
     /// The directory name used in both Application Support and the app bundle’s Resources.
     nonisolated static var directoryName: String { get }
     
-    /// The list of reserved names that cannot be used for user settings.
-    nonisolated var reservedNames: [String] { get }
+    /// Built-in constant settings for the given name, if available.
+    nonisolated static var constantSettings: [String: Setting] { get }
     
     /// The list of bundled setting names (without extensions).
     nonisolated var bundledSettingNames: [String] { get }
@@ -98,9 +98,6 @@ enum ImportingItem {
     /// A cache of settings to avoid loading frequently used files multiple times.
     var cachedSettings: [String: Setting] { get set }
     
-    
-    /// Returns a built-in constant setting for the given name, if available.
-    nonisolated static func constantSetting(name: String) -> Setting?
     
     /// Builds the list of available settings by considering both user and bundled settings.
     nonisolated func listAvailableSettings() -> [String]
@@ -113,13 +110,6 @@ enum ImportingItem {
 extension SettingFileManaging {
     
     // MARK: Default implementation
-    
-    /// Returns a built-in constant setting for the given name, if available.
-    nonisolated static func constantSetting(name: String) -> Setting? {
-        
-        nil
-    }
-    
     
     /// Notifies the manager that a setting was updated.
     ///
@@ -230,7 +220,7 @@ extension SettingFileManaging {
             throw .duplicated(name: duplicateName)
         }
         
-        if let reservedName = self.reservedNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+        if let reservedName = Self.constantSettings.keys.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
             throw .reserved(name: reservedName)
         }
     }
@@ -242,11 +232,7 @@ extension SettingFileManaging {
     /// - Returns: A Setting instance.
     func setting(name: String) throws(SettingFileError) -> Setting {
         
-        if let setting = Self.constantSetting(name: name) {
-            return setting
-        }
-        
-        if let setting = self.cachedSettings[name] {
+        if let setting = Self.constantSettings[name] ?? self.cachedSettings[name] {
             return setting
         }
         

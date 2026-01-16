@@ -41,7 +41,7 @@ import URLUtils
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Replacements"
-    let reservedNames: [String] = []
+    static let constantSettings: [String: Setting] = [:]
     
     let bundledSettingNames: [String] = []
     @Published var settingNames: [String] = []

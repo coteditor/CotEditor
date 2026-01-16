@@ -55,7 +55,7 @@ enum SyntaxName {
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Syntaxes"
-    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]
+    static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
     
     let bundledSettingNames: [SettingName]
     @Published var settingNames: [SettingName] = []
@@ -213,19 +213,6 @@ enum SyntaxName {
     
     
     // MARK: Setting File Managing
-    
-    /// Returns a built-in constant setting for the given name, if available.
-    ///
-    /// - Parameter name: The setting name.
-    /// - Returns: A `Setting` if the name matches a constant setting; otherwise, `nil`.
-    nonisolated static func constantSetting(name: String) -> Setting? {
-        
-        switch name {
-            case SyntaxName.none: Setting.none
-            default: nil
-        }
-    }
-    
     
     /// Builds the list of available settings by considering both user and bundled settings.
     nonisolated func listAvailableSettings() -> [SettingName] {
