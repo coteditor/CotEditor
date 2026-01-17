@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -82,8 +82,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     var lineEnding: LineEnding = .lf
     var defaultFontType: FontType = .standard
-    
-    var syntaxName: String = SyntaxName.none
     
     var theme: Theme?  { didSet { self.applyTheme() } }
     

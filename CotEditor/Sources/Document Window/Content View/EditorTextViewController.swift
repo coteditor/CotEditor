@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -415,10 +415,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Applies syntax to the inner text view.
     private func applySyntax() {
         
-        let parser = self.document.syntaxParser
-        self.textView.syntaxName = parser.name
-        self.textView.commentDelimiters = parser.syntax.commentDelimiters
-        self.textView.syntaxCompletionWords = parser.syntax.completionWords
+        let syntax = self.document.syntaxParser.syntax
+        self.textView.commentDelimiters = syntax.commentDelimiters
+        self.textView.syntaxCompletionWords = syntax.completionWords
     }
     
     
@@ -532,7 +531,7 @@ extension EditorTextViewController: EditorTextView.Delegate {
                 return
             }
             
-            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: textView.syntaxName) }) {
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: self.document.syntaxParser.name) }) {
                 string += fileDropItem.dropText(forFileURL: url, documentURL: self.document.fileURL)
                 return
             }
