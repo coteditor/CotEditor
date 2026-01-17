@@ -41,7 +41,6 @@ extension NSAttributedString.Key {
     
     // MARK: Public Properties
     
-    private(set) var name: String
     private(set) var syntax: Syntax
     
     var theme: Theme?
@@ -65,11 +64,10 @@ extension NSAttributedString.Key {
     
     // MARK: Lifecycle
     
-    init(textStorage: NSTextStorage, syntax: Syntax, name: String) {
+    init(textStorage: NSTextStorage, syntax: Syntax) {
         
         self.textStorage = textStorage
         self.syntax = syntax
-        self.name = name
         
         self.outlineExtractors = syntax.outlineExtractors
         self.highlightParser = syntax.highlightParser
@@ -97,8 +95,7 @@ extension NSAttributedString.Key {
     ///
     /// - Parameters:
     ///   - syntax: The syntax.
-    ///   - name: The name of the syntax.
-    func update(syntax: Syntax, name: String) {
+    func update(syntax: Syntax) {
         
         self.cancel()
         
@@ -106,7 +103,6 @@ extension NSAttributedString.Key {
         self.highlightParser = syntax.highlightParser
         
         self.syntax = syntax
-        self.name = name
         self.invalidRanges.clear()
     }
 }

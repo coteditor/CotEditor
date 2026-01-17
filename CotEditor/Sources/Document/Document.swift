@@ -131,7 +131,7 @@ extension NSTextView: EditorCounter.Source { }
         var syntaxName = UserDefaults.standard[.syntax]
         let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
-        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
+        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none)
         self.syntaxFileExtension = syntax?.fileMap.extensions?.first
         self.syntaxName = syntaxName
         
@@ -164,7 +164,7 @@ extension NSTextView: EditorCounter.Source { }
         // observe syntax update
         self.syntaxUpdateObserver = NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: SyntaxManager.shared)
             .map { $0.userInfo!["change"] as! SettingChange }
-            .filter { [weak self] change in change.old == self?.syntaxParser.name }
+            .filter { [weak self] change in change.old == self?.syntaxName }
             .sink { [weak self] change in self?.setSyntax(name: change.new ?? SyntaxName.none) }
     }
     
@@ -178,7 +178,7 @@ extension NSTextView: EditorCounter.Source { }
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
-        coder.encode(self.syntaxParser.name, forKey: SerializationKey.syntax)
+        coder.encode(self.syntaxName, forKey: SerializationKey.syntax)
         
         // store unencoded string but only when incompatible
         if !self.canBeConverted() {
@@ -342,7 +342,7 @@ extension NSTextView: EditorCounter.Source { }
         
         let document = try super.duplicate() as! Document
         
-        document.setSyntax(name: self.syntaxParser.name)
+        document.setSyntax(name: self.syntaxName)
         document.lineEnding = self.lineEnding
         document.fileEncoding = self.fileEncoding
         document.isVerticalText = self.isVerticalText
@@ -419,7 +419,7 @@ extension NSTextView: EditorCounter.Source { }
             // determine syntax (only on the first file open)
             if !self.isInitialized {
                 let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
-                self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
+                self.setSyntax(name: syntaxName ?? SyntaxName.none)
             }
             self.isInitialized = true
             
@@ -687,7 +687,7 @@ extension NSTextView: EditorCounter.Source { }
             name: self.displayName,
             fileURL: self.fileURL,
             lastModifiedDate: lastModifiedDate,
-            syntaxName: self.syntaxParser.name
+            syntaxName: self.syntaxName
         )
         let textStorage = NSTextStorage(string: self.textStorage.string)
         let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info)
@@ -882,7 +882,7 @@ extension NSTextView: EditorCounter.Source { }
                 
             case #selector(changeSyntax(_:)):
                 if let item = item as? NSMenuItem {
-                    item.state = (item.representedObject as? String == self.syntaxParser.name) ? .on : .off
+                    item.state = (item.representedObject as? String == self.syntaxName) ? .on : .off
                 }
                 
             case #selector(toggleEditable):
@@ -1069,8 +1069,7 @@ extension NSTextView: EditorCounter.Source { }
     ///
     /// - Parameters:
     ///   - name: The name of the syntax to change with.
-    ///   - isInitial: Whether the setting is initial.
-    func setSyntax(name: String, isInitial: Bool = false) {
+    func setSyntax(name: String) {
         
         let syntax: Syntax
         do {
@@ -1087,7 +1086,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // update
         self.syntaxFileExtension = syntax.fileMap.extensions?.first
-        self.syntaxParser.update(syntax: syntax, name: name)
+        self.syntaxParser.update(syntax: syntax)
         self.syntaxName = name
         
         self.invalidateMode()
@@ -1103,7 +1102,7 @@ extension NSTextView: EditorCounter.Source { }
         
         guard
             let syntaxName = SyntaxManager.shared.settingName(documentName: filename, content: self.textStorage.string),
-            syntaxName != self.syntaxParser.name
+            syntaxName != self.syntaxName
         else { return }
         
         self.setSyntax(name: syntaxName)
@@ -1477,7 +1476,7 @@ extension NSTextView: EditorCounter.Source { }
     /// Updates the receiver's mode based on the current syntax.
     private func invalidateMode() {
         
-        self.mode = ModeManager.shared.mode(for: self.syntaxParser.name)
+        self.mode = ModeManager.shared.mode(for: self.syntaxName)
     }
     
     

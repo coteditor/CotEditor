@@ -531,7 +531,7 @@ extension EditorTextViewController: EditorTextView.Delegate {
                 return
             }
             
-            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: self.document.syntaxParser.name) }) {
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: self.document.syntaxName) }) {
                 string += fileDropItem.dropText(forFileURL: url, documentURL: self.document.fileURL)
                 return
             }
