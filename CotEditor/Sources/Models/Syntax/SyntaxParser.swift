@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,8 +55,8 @@ extension NSAttributedString.Key {
     
     private let textStorage: NSTextStorage
     
-    private lazy var outlineExtractors: [OutlineExtractor] = self.syntax.outlineExtractors
-    private lazy var highlightParser: HighlightParser = self.syntax.highlightParser
+    private var outlineExtractors: [OutlineExtractor]
+    private var highlightParser: HighlightParser
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
@@ -71,7 +71,15 @@ extension NSAttributedString.Key {
         self.syntax = syntax
         self.name = name
         
+        self.outlineExtractors = syntax.outlineExtractors
+        self.highlightParser = syntax.highlightParser
+        
         self.invalidRanges = EditedRangeSet(range: textStorage.range)
+    }
+    
+    
+    isolated deinit {
+        self.cancel()
     }
     
     
