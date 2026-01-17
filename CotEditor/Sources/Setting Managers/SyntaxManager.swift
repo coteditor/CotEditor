@@ -26,6 +26,7 @@
 
 import Foundation
 import Combine
+import Synchronization
 import UniformTypeIdentifiers
 import Defaults
 import Syntax
@@ -59,7 +60,14 @@ enum SyntaxName {
     
     let bundledSettingNames: [SettingName]
     @Published var settingNames: [SettingName] = []
-    var cachedSettings: [SettingName: Setting] = [:]
+    
+    var cachedSettings: [SettingName: Setting] {
+        
+        // protect with Mutex since SyntaxManager's cached settings can be accessed from a background thread
+        get { self._cachedSettings.withLock(\.self) }
+        set { self._cachedSettings.withLock { $0 = newValue } }
+    }
+    private let _cachedSettings: Mutex<[SettingName: Setting]> = .init([:])
     
     
     // MARK: Private Properties
