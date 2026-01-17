@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,7 +120,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // set first editor view
         self.addEditorView()
-        self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
+        
+        // set theme
+        let isDark = NSApp.effectiveAppearance.isDark
+        let themeName = ThemeManager.shared.userDefaultSettingName(inDarkMode: isDark)
+        self.setTheme(name: themeName)
         
         // detect indent style
         if UserDefaults.standard[.detectsIndentStyle],

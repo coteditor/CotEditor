@@ -34,6 +34,8 @@ struct ThemeView: View {
     
     private var manager: ThemeManager = .shared
     
+    @Environment(\.colorScheme) private var colorScheme
+    
     @AppStorage(.theme) private var themeName
     @AppStorage(.pinsThemeAppearance) private var pinsThemeAppearance
     @AppStorage(.documentAppearance) private var documentAppearance
@@ -66,7 +68,7 @@ struct ThemeView: View {
             self.selection = self.themeName
         }
         .onChange(of: self.documentAppearance) {
-            self.themeName = self.manager.userDefaultSettingName
+            self.themeName = self.manager.userDefaultSettingName(inDarkMode: self.colorScheme == .dark)
         }
         .onChange(of: self.selection) { _, newValue in
             self.setTheme(name: newValue)
@@ -104,7 +106,7 @@ struct ThemeView: View {
         
         // update default theme setting
         let isDarkTheme = ThemeManager.isDark(name: name)
-        let usesDarkAppearance = self.manager.usesDarkAppearance
+        let usesDarkAppearance = self.manager.usesDarkAppearance(inDarkMode: self.colorScheme == .dark)
         self.pinsThemeAppearance = (isDarkTheme != usesDarkAppearance)
         self.themeName = name
         

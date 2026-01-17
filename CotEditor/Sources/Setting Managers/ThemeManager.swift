@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import AppKit.NSApplication
 import Combine
 import Foundation
 import UniformTypeIdentifiers
@@ -76,18 +75,12 @@ import URLUtils
     }
     
     
-    /// The default setting name, taking the current appearance into account.
-    var defaultSettingName: String {
-        
-        let defaultSettingName = DefaultSettings.defaults[.theme] as! String
-        let forDark = self.usesDarkAppearance
-        
-        return self.equivalentSettingName(to: defaultSettingName, forDark: forDark)!
-    }
-    
-    
-    /// The user’s default setting name, taking the current appearance into account.
-    var userDefaultSettingName: String {
+    /// Returns the user's effective default theme name for the specified system appearance.
+    ///
+    /// - Parameters:
+    ///   - inDarkMode: The system appearance to evaluate.
+    /// - Returns: The resolved theme name.
+    func userDefaultSettingName(inDarkMode: Bool) -> String {
         
         let settingName = UserDefaults.standard[.theme]
         
@@ -95,21 +88,54 @@ import URLUtils
             return settingName
         }
         
-        if let equivalentSettingName = self.equivalentSettingName(to: settingName, forDark: self.usesDarkAppearance) {
+        let usesDark = self.usesDarkAppearance(inDarkMode: inDarkMode)
+        
+        if let equivalentSettingName = self.equivalentSettingName(to: settingName, forDark: usesDark) {
             return equivalentSettingName
         }
         
-        guard self.settingNames.contains(settingName) else { return self.defaultSettingName }
+        if self.settingNames.contains(settingName) {
+            return settingName
+        }
         
-        return settingName
+        let defaultSettingName = DefaultSettings.defaults[.theme] as! String
+        
+        return self.equivalentSettingName(to: defaultSettingName, forDark: usesDark)!
     }
     
     
-    /// Whether document windows currently use dark appearance.
-    var usesDarkAppearance: Bool {
+    /// Returns the setting name for the dark or light variant of the given setting, if available.
+    ///
+    /// - Parameters:
+    ///   - name: The base setting name.
+    ///   - forDark: `true` when the dark mode version should be returned.
+    /// - Returns: A setting name, or `nil` if none exists.
+    func equivalentSettingName(to name: String, forDark: Bool) -> String? {
+        
+        let baseName = name.replacing(/\ \((Dark|Light)\)$/, with: "", maxReplacements: 1)
+        
+        let settingName = baseName + " " + (forDark ? "(Dark)" : "(Light)")
+        if self.settingNames.contains(settingName) {
+            return settingName
+        }
+        
+        if !forDark, self.settingNames.contains(baseName) {
+            return baseName
+        }
+        
+        return nil
+    }
+    
+    
+    /// Returns whether document windows use the dark appearance under the specified system appearance.
+    ///
+    /// - Parameters:
+    ///   - inDarkMode: The system appearance to evaluate.
+    /// - Returns: `true` if document windows should use the dark appearance; otherwise, `false`.
+    func usesDarkAppearance(inDarkMode: Bool) -> Bool {
         
         switch UserDefaults.standard[.documentAppearance] {
-            case .default: NSApp.effectiveAppearance.isDark
+            case .default: inDarkMode
             case .light: false
             case .dark: true
         }
@@ -145,29 +171,6 @@ import URLUtils
         try self.save(setting: Setting(), name: name)
         
         return name
-    }
-    
-    
-    /// Returns the setting name for the dark or light variant of the given setting, if available.
-    ///
-    /// - Parameters:
-    ///   - name: The base setting name.
-    ///   - forDark: `true` when the dark mode version should be returned.
-    /// - Returns: A setting name, or `nil` if none exists.
-    func equivalentSettingName(to name: String, forDark: Bool) -> String? {
-        
-        let baseName = name.replacing(/\ \((Dark|Light)\)$/, with: "", maxReplacements: 1)
-        
-        let settingName = baseName + " " + (forDark ? "(Dark)" : "(Light)")
-        if self.settingNames.contains(settingName) {
-            return settingName
-        }
-        
-        if !forDark, self.settingNames.contains(baseName) {
-            return baseName
-        }
-        
-        return nil
     }
     
     
