@@ -1,23 +1,47 @@
 //
-//  Syntax+Regex.swift
-//  EditorCore
+//  Syntax+RegexParser.swift
+//  Syntax
+
+//  CotEditor
+//  https://coteditor.com
 //
-//  Created by imanishi on 1/1/26.
+//  Created by 1024jp on 2026-01-01.
 //
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2026 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 
 import Foundation
 
 extension Syntax {
     
-    /// The valid outline extractors.
-    public var outlineExtractors: [OutlineExtractor] {
+    /// The parser for the syntax highlighting and outline extraction.
+    public var parser: any SyntaxParsing {
         
-        self.outlines.compactMap { try? OutlineExtractor(definition: $0) }
+        let highlightParser = self.highlightParser
+        
+        return RegexParser(
+            outlineExtractors: self.outlines.compactMap { try? OutlineExtractor(definition: $0) },
+            highlightExtractors: highlightParser.extractors,
+            nestables: highlightParser.nestables
+        )
     }
     
-    
     /// The highlight parser.
-    public var highlightParser: HighlightParser {
+    private var highlightParser: (extractors: [SyntaxType: [any HighlightExtractable]], nestables: [NestableToken: SyntaxType]) {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = SyntaxType.allCases
@@ -71,7 +95,7 @@ extension Syntax {
             nestables[.inline(inlineCommentDelimiter)] = .comments
         }
         
-        return .init(extractors: extractors, nestables: nestables)
+        return (extractors: extractors, nestables: nestables)
     }
 }
 

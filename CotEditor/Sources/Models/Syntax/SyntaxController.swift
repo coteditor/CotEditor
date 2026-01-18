@@ -53,9 +53,7 @@ extension NSAttributedString.Key {
     private let minimumParseLength = 5_000
     
     private let textStorage: NSTextStorage
-    
-    private var outlineExtractors: [OutlineExtractor]
-    private var highlightParser: HighlightParser
+    private var parser: any SyntaxParsing
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
@@ -67,12 +65,10 @@ extension NSAttributedString.Key {
     init(textStorage: NSTextStorage, syntax: Syntax) {
         
         self.textStorage = textStorage
-        self.syntax = syntax
-        
-        self.outlineExtractors = syntax.outlineExtractors
-        self.highlightParser = syntax.highlightParser
-        
         self.invalidRanges = EditedRangeSet(range: textStorage.range)
+        
+        self.syntax = syntax
+        self.parser = syntax.parser
     }
     
     
@@ -100,9 +96,7 @@ extension NSAttributedString.Key {
         self.cancel()
         
         self.syntax = syntax
-        
-        self.outlineExtractors = syntax.outlineExtractors
-        self.highlightParser = syntax.highlightParser
+        self.parser = syntax.parser
         
         self.invalidateAllHighlight()
     }
@@ -119,28 +113,17 @@ extension SyntaxController {
         self.outlineParseTask?.cancel()
         
         guard
-            !self.outlineExtractors.isEmpty,
+            self.parser.hasOutlineRules,
             !self.textStorage.range.isEmpty
         else {
             self.outlineItems = []
             return
         }
         
-        self.outlineItems = nil
-        
-        let extractors = self.outlineExtractors
-        let string = self.textStorage.string.immutable
         self.outlineParseTask = Task {
-            self.outlineItems = try await Task.detached {
-                try await withThrowingTaskGroup { group in
-                    for extractor in extractors {
-                        group.addTask { try extractor.items(in: string, range: string.range) }
-                    }
-                    
-                    return try await group.reduce(into: []) { $0 += $1 }
-                        .sorted(using: KeyPathComparator(\.range.location))
-                }
-            }.value
+            self.outlineItems = nil
+            let string = self.textStorage.string.immutable
+            self.outlineItems = try await self.parser.parseOutline(in: string)
         }
     }
 }
@@ -201,8 +184,8 @@ extension SyntaxController {
             return nil
         }
         
-        // just clear current highlight and return if no coloring required
-        guard !self.highlightParser.isEmpty else {
+        // just clear current highlight when no coloring required
+        guard self.parser.hasHighlightRules else {
             return ([], self.textStorage.range)
         }
         
@@ -250,7 +233,7 @@ extension SyntaxController {
         let string = self.textStorage.string.immutable
         
         // parse in background
-        let highlights = try await self.highlightParser.parse(string: string, range: highlightRange)
+        let highlights = try await self.parser.parseHighlights(in: string, range: highlightRange)
         
         return (highlights, highlightRange)
     }

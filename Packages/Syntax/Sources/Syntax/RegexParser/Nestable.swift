@@ -1,16 +1,16 @@
 //
-//  HighlightParser.swift
+//  Nestable.swift
 //  Syntax
-//
+
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-01-06.
+//  Created by 1024jp on 2025-11-16.
 //
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,54 +25,48 @@
 //  limitations under the License.
 //
 
-public import Foundation
-public import ValueRange
+import Foundation
+import ValueRange
 import StringUtils
 
-public struct HighlightParser: Sendable {
+enum NestableToken: Equatable, Hashable, Sendable {
     
-    // MARK: Internal Properties
-    
-    var extractors: [SyntaxType: [any HighlightExtractable]]
-    var nestables: [NestableToken: SyntaxType]
+    case inline(String)
+    case pair(Pair<String>)
     
     
-    // MARK: Public Methods
-    
-    /// Whether the receiver has highlight rules.
-    public var isEmpty: Bool {
+    init?(highlight: Syntax.Highlight) {
         
-        self.extractors.isEmpty && self.nestables.isEmpty
-    }
-    
-    
-    /// Extracts all highlight ranges in the parse range.
-    ///
-    /// - Parameters:
-    ///   - string: The string to parse.
-    ///   - range: The range where to parse.
-    /// - Returns: A dictionary of ranges to highlight per syntax types.
-    /// - Throws: CancellationError.
-    @concurrent public func parse(string: String, range: NSRange) async throws -> [Highlight] {
+        guard
+            !highlight.isRegularExpression,
+            let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
+            pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
+        else { return nil }
         
-        try await withThrowingTaskGroup { group in
-            for (type, extractors) in self.extractors {
-                for extractor in extractors {
-                    group.addTask { [type: try extractor.ranges(in: string, range: range)] }
-                }
-            }
-            group.addTask { try self.extractNestables(string: string, range: range) }
-            
-            let dictionary = try await group.reduce(into: [SyntaxType: [NSRange]]()) {
-                $0.merge($1, uniquingKeysWith: +)
-            }
-            
-            return try Highlight.highlights(dictionary: dictionary)
-        }
+        self = .pair(pair)
     }
+}
+
+
+private struct NestableItem {
+    
+    var type: SyntaxType
+    var token: NestableToken
+    var role: Role
+    var range: NSRange
     
     
-    // MARK: Private Methods
+    struct Role: OptionSet {
+        
+        var rawValue: Int
+        
+        static let begin = Self(rawValue: 1 << 0)
+        static let end   = Self(rawValue: 1 << 1)
+    }
+}
+
+
+extension [NestableToken: SyntaxType] {
     
     /// Extracts ranges of nestable items such as comments and quotes in the parse range.
     ///
@@ -80,9 +74,9 @@ public struct HighlightParser: Sendable {
     ///   - string: The string to parse.
     ///   - range: The range where to parse.
     /// - Throws: CancellationError.
-    private func extractNestables(string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
+    func parseHighlights(in string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
         
-        let positions: [NestableItem] = try self.nestables.flatMap { token, type -> [NestableItem] in
+        let positions: [NestableItem] = try self.flatMap { token, type -> [NestableItem] in
             try Task.checkCancellation()
             
             switch token {

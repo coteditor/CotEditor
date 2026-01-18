@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-public import Foundation
+import Foundation
 import StringUtils
 
 public struct OutlineExtractor: Sendable {
@@ -59,7 +59,7 @@ public struct OutlineExtractor: Sendable {
     ///   - parseRange: The range of the string to parse.
     /// - Throws: `CancellationError`
     /// - Returns: An array of `OutlineItem`.
-    public func items(in string: String, range parseRange: NSRange) throws -> [OutlineItem] {
+    func items(in string: String, range parseRange: NSRange) throws -> [OutlineItem] {
         
         try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy
             .compactMap { result in
