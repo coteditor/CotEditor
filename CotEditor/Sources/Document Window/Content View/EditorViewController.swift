@@ -45,7 +45,8 @@ final class EditorViewController: NSSplitViewController {
     private lazy var textViewController = EditorTextViewController(document: self.document)
     @ViewLoading private var navigationBarItem: NSSplitViewItem
     
-    private var observers: Set<AnyCancellable> = []
+    private var outlineObserver: AnyCancellable?
+    private var defaultObservers: Set<AnyCancellable> = []
     
     
     // MARK: Lifecycle
@@ -92,10 +93,10 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewWillAppear()
         
-        self.observers = [
-            self.document.syntaxParser.$outlineItems
+        self.outlineObserver = self.document.syntaxParser.$outlineItems
                 .removeDuplicates()
-                .assign(to: \.items, on: self.outlineNavigator),
+                .assign(to: \.items, on: self.outlineNavigator)
+        self.defaultObservers = [
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
         ]
@@ -106,7 +107,8 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewDidDisappear()
         
-        self.observers.removeAll()
+        self.outlineObserver?.cancel()
+        self.defaultObservers.removeAll()
     }
     
     
