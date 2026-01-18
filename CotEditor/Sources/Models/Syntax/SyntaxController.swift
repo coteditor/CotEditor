@@ -98,7 +98,7 @@ extension NSAttributedString.Key {
         self.syntax = syntax
         self.parser = syntax.parser
         
-        self.invalidateAllHighlight()
+        self.invalidateAll()
     }
 }
 
@@ -108,7 +108,7 @@ extension NSAttributedString.Key {
 extension SyntaxController {
     
     /// Parses outline.
-    func invalidateOutline() {
+    func updateOutline() {
         
         self.outlineParseTask?.cancel()
         
@@ -138,7 +138,7 @@ extension SyntaxController {
     /// - Parameters:
     ///   - editedRange: The edited range.
     ///   - delta: The change in length.
-    func invalidateHighlight(in editedRange: NSRange, changeInLength delta: Int) {
+    func invalidate(in editedRange: NSRange, changeInLength delta: Int) {
         
         self.highlightParseTask?.cancel()
         self.highlightParseTask = nil
@@ -148,7 +148,7 @@ extension SyntaxController {
     
     
     /// Make the entire text dirty for syntax highlighting.
-    func invalidateAllHighlight() {
+    func invalidateAll() {
         
         self.highlightParseTask?.cancel()
         self.highlightParseTask = nil
