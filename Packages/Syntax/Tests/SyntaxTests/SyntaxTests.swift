@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,8 +34,11 @@ struct SyntaxTests {
         let syntax = Syntax.none
         
         #expect(syntax.kind == .code)
-        #expect(syntax.highlightParser.isEmpty)
         #expect(syntax.commentDelimiters.inline == nil)
         #expect(syntax.commentDelimiters.block == nil)
+        
+        let parser = syntax.parser
+        #expect(!parser.hasOutlineRules)
+        #expect(!parser.hasHighlightRules)
     }
 }
