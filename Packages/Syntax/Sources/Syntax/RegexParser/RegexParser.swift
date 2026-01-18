@@ -29,20 +29,27 @@ import StringUtils
 
 final class RegexParser: SyntaxParsing, Sendable {
     
+    struct HighlightRuleSet {
+        
+        var extractors: [SyntaxType: [any HighlightExtractable]]
+        var nestables: [NestableToken: SyntaxType]
+        
+        var isEmpty: Bool { self.extractors.isEmpty && self.nestables.isEmpty }
+    }
+    
+    
     // MARK: Private Properties
     
     private let outlineExtractors: [OutlineExtractor]
-    private let highlightExtractors: [SyntaxType: [any HighlightExtractable]]
-    private let nestables: [NestableToken: SyntaxType]
+    private let highlightRuleSet: HighlightRuleSet
     
     
     // MARK: Lifecycle
     
-    init(outlineExtractors: [OutlineExtractor], highlightExtractors: [SyntaxType: [any HighlightExtractable]], nestables: [NestableToken: SyntaxType]) {
+    init(outlineExtractors: [OutlineExtractor], highlightRuleSet: HighlightRuleSet) {
         
         self.outlineExtractors = outlineExtractors
-        self.highlightExtractors = highlightExtractors
-        self.nestables = nestables
+        self.highlightRuleSet = highlightRuleSet
     }
     
     
@@ -58,7 +65,7 @@ final class RegexParser: SyntaxParsing, Sendable {
     /// Indicates whether any syntax highlighting rules are available.
     var hasHighlightRules: Bool {
         
-        !self.highlightExtractors.isEmpty || !self.nestables.isEmpty
+        !self.highlightRuleSet.isEmpty
     }
     
     
@@ -90,13 +97,13 @@ final class RegexParser: SyntaxParsing, Sendable {
     /// - Throws: `CancellationError`.
     @concurrent func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
         
-        try await withThrowingTaskGroup { [extractors = self.highlightExtractors, nestables = self.nestables] group in
-            for (type, extractors) in extractors {
+        try await withThrowingTaskGroup { [ruleSet = self.highlightRuleSet] group in
+            for (type, extractors) in ruleSet.extractors {
                 for extractor in extractors {
                     group.addTask { [type: try extractor.ranges(in: string, range: range)] }
                 }
             }
-            group.addTask { try nestables.parseHighlights(in: string, range: range) }
+            group.addTask { try ruleSet.nestables.parseHighlights(in: string, range: range) }
             
             let dictionary = try await group.reduce(into: [SyntaxType: [NSRange]]()) {
                 $0.merge($1, uniquingKeysWith: +)

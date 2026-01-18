@@ -31,17 +31,14 @@ extension Syntax {
     /// The parser for the syntax highlighting and outline extraction.
     public var parser: any SyntaxParsing {
         
-        let highlightParser = self.highlightParser
-        
-        return RegexParser(
+        RegexParser(
             outlineExtractors: self.outlines.compactMap { try? OutlineExtractor(definition: $0) },
-            highlightExtractors: highlightParser.extractors,
-            nestables: highlightParser.nestables
+            highlightRuleSet: self.highlightRuleSet
         )
     }
     
-    /// The highlight parser.
-    private var highlightParser: (extractors: [SyntaxType: [any HighlightExtractable]], nestables: [NestableToken: SyntaxType]) {
+    /// The rule set for syntax highlighting.
+    private var highlightRuleSet: RegexParser.HighlightRuleSet {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = SyntaxType.allCases
@@ -95,7 +92,7 @@ extension Syntax {
             nestables[.inline(inlineCommentDelimiter)] = .comments
         }
         
-        return (extractors: extractors, nestables: nestables)
+        return .init(extractors: extractors, nestables: nestables)
     }
 }
 
