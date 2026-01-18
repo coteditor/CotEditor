@@ -146,7 +146,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self.document.$syntaxName
                 .sink { [weak self] _ in
                     self?.outlineParseDebouncer.perform()
-                    self?.document.syntaxParser.highlightAll()
+                    self?.document.syntaxParser.highlightIfNeeded()
                 },
             
             // observe theme change
@@ -621,7 +621,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Recolors whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.document.syntaxParser.highlightAll()
+        self.document.syntaxParser.invalidateAllHighlight()
+        self.document.syntaxParser.highlightIfNeeded()
     }
     
     

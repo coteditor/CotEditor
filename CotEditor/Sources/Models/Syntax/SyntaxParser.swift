@@ -99,11 +99,12 @@ extension NSAttributedString.Key {
         
         self.cancel()
         
+        self.syntax = syntax
+        
         self.outlineExtractors = syntax.outlineExtractors
         self.highlightParser = syntax.highlightParser
         
-        self.syntax = syntax
-        self.invalidRanges.clear()
+        self.invalidateAllHighlight()
     }
 }
 
@@ -163,11 +164,13 @@ extension SyntaxParser {
     }
     
     
-    /// Updates highlights of the entire range.
-    func highlightAll() {
+    /// Make the entire text dirty for syntax highlighting.
+    func invalidateAllHighlight() {
+        
+        self.highlightParseTask?.cancel()
+        self.highlightParseTask = nil
         
         self.invalidRanges.update(editedRange: self.textStorage.range)
-        self.highlightIfNeeded()
     }
     
     
@@ -229,9 +232,9 @@ extension SyntaxParser {
         guard !highlightRange.isEmpty else { return }
         
         // make sure the string is immutable
-        // -> `string` of NSTextStorage is actually a mutable object
-        //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
-        //    (2016-11, macOS 10.12.1)
+        // -> The `string` of NSTextStorage is actually a mutable object,
+        //    and it can lead to a crash when a mutable string is passed to
+        //    an NSRegularExpression instance (2016-11, macOS 10.12.1).
         let string = self.textStorage.string.immutable
         
         // parse in background
