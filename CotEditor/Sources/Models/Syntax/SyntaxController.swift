@@ -180,27 +180,41 @@ extension SyntaxController {
         guard let invalidRange = self.invalidRanges.range else { return }
         
         self.highlightParseTask?.cancel()
+        self.highlightParseTask = Task {
+            guard let (highlights, range) = try await self.parseHighlights(around: invalidRange) else { return }
+            
+            self.invalidRanges.clear()
+            
+            for layoutManager in self.textStorage.layoutManagers {
+                layoutManager.apply(highlights: highlights, theme: self.theme, in: range)
+            }
+        }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Updates highlights around the invalid ranges.
+    private func parseHighlights(around invalidRange: NSRange) async throws -> (highlights: [Highlight], range: NSRange)? {
         
         guard !self.textStorage.string.isEmpty else {
-            self.invalidRanges.clear()
-            return
+            return nil
         }
         
         // just clear current highlight and return if no coloring required
         guard !self.highlightParser.isEmpty else {
-            self.invalidRanges.clear()
-            self.apply(highlights: [], in: self.textStorage.range)
-            return
+            return ([], self.textStorage.range)
         }
         
-        let wholeRange = self.textStorage.range
-        
         // in case that wholeRange length becomes shorter than invalidRange
-        guard invalidRange.upperBound <= wholeRange.upperBound else {
-            return Logger.app.debug("Invalid range \(invalidRange.description) for \(wholeRange.upperBound) length textStorage is passed in to \(#function)")
+        guard invalidRange.upperBound <= self.textStorage.length else {
+            Logger.app.debug("Invalid range \(invalidRange.description) for \(self.textStorage.length) length textStorage is passed to \(#function)")
+            return nil
         }
         
         let highlightRange: NSRange = {
+            let wholeRange = self.textStorage.range
+            
             if invalidRange == wholeRange || wholeRange.length <= self.minimumParseLength {
                 return wholeRange
             }
@@ -229,8 +243,6 @@ extension SyntaxController {
             }
         }()
         
-        guard !highlightRange.isEmpty else { return }
-        
         // make sure the string is immutable
         // -> The `string` of NSTextStorage is actually a mutable object,
         //    and it can lead to a crash when a mutable string is passed to
@@ -238,27 +250,8 @@ extension SyntaxController {
         let string = self.textStorage.string.immutable
         
         // parse in background
-        self.highlightParseTask?.cancel()
-        self.highlightParseTask = Task {
-            let highlights = try await self.highlightParser.parse(string: string, range: highlightRange)
-            
-            self.apply(highlights: highlights, in: highlightRange)
-            self.invalidRanges.clear()
-        }
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Applies highlights to all the layout managers.
-    ///
-    /// - Parameters:
-    ///   - highlights: The syntax highlights to apply.
-    ///   - range: The character range where updates highlights.
-    private func apply(highlights: [Highlight], in range: NSRange) {
+        let highlights = try await self.highlightParser.parse(string: string, range: highlightRange)
         
-        for layoutManager in self.textStorage.layoutManagers {
-            layoutManager.apply(highlights: highlights, theme: self.theme, in: range)
-        }
+        return (highlights, highlightRange)
     }
 }
