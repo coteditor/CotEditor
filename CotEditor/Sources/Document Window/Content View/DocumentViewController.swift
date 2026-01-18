@@ -74,7 +74,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var observers: Set<AnyCancellable> = []
     private var defaultsObservers: Set<AnyCancellable> = []
     
-    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.document.syntaxParser.invalidateOutline() }
+    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.document.syntaxController.invalidateOutline() }
     
     
     // MARK: Lifecycle
@@ -146,7 +146,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self.document.$syntaxName
                 .sink { [weak self] _ in
                     self?.outlineParseDebouncer.perform()
-                    self?.document.syntaxParser.highlightIfNeeded()
+                    self?.document.syntaxController.highlightIfNeeded()
                 },
             
             // observe theme change
@@ -446,7 +446,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         MainActor.assumeIsolated { [range = textStorage.editedRange, length = textStorage.changeInLength] in
             // tell the parser that text was changed
-            self.document.syntaxParser.invalidateHighlight(in: range, changeInLength: length)
+            self.document.syntaxController.invalidateHighlight(in: range, changeInLength: length)
             
             guard self.focusedTextView?.hasMarkedText() != true else { return }
             
@@ -455,7 +455,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             
             // -> Perform in the next run loop to give layoutManagers time to update their values.
             DispatchQueue.main.async { [weak self] in
-                self?.document.syntaxParser.highlightIfNeeded()
+                self?.document.syntaxController.highlightIfNeeded()
             }
         }
     }
@@ -621,8 +621,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Recolors whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.document.syntaxParser.invalidateAllHighlight()
-        self.document.syntaxParser.highlightIfNeeded()
+        self.document.syntaxController.invalidateAllHighlight()
+        self.document.syntaxController.highlightIfNeeded()
     }
     
     
@@ -963,7 +963,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         }
         
         self.themeName = name
-        self.document.syntaxParser.theme = theme
+        self.document.syntaxController.theme = theme
         
         for textView in self.textViews {
             textView.theme = theme

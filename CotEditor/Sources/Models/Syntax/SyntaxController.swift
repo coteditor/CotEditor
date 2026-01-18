@@ -1,5 +1,5 @@
 //
-//  SyntaxParser.swift
+//  SyntaxController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -37,7 +37,7 @@ extension NSAttributedString.Key {
 }
 
 
-@MainActor final class SyntaxParser {
+@MainActor final class SyntaxController {
     
     // MARK: Public Properties
     
@@ -111,7 +111,7 @@ extension NSAttributedString.Key {
 
 // MARK: Outline
 
-extension SyntaxParser {
+extension SyntaxController {
     
     /// Parses outline.
     func invalidateOutline() {
@@ -148,7 +148,7 @@ extension SyntaxParser {
 
 // MARK: Syntax Highlight
 
-extension SyntaxParser {
+extension SyntaxController {
     
     /// Updates the ranges to update the syntax highlight.
     ///

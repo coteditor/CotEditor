@@ -415,7 +415,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Applies syntax to the inner text view.
     private func applySyntax() {
         
-        let syntax = self.document.syntaxParser.syntax
+        let syntax = self.document.syntaxController.syntax
         self.textView.commentDelimiters = syntax.commentDelimiters
         self.textView.syntaxCompletionWords = syntax.completionWords
     }

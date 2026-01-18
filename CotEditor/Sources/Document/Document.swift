@@ -79,7 +79,7 @@ extension NSTextView: EditorCounter.Source { }
     // MARK: Readonly Properties
     
     let textStorage = NSTextStorage()
-    let syntaxParser: SyntaxParser
+    let syntaxController: SyntaxController
     @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
     @ObservationIgnored @Published private(set) var syntaxName: String
@@ -131,7 +131,7 @@ extension NSTextView: EditorCounter.Source { }
         var syntaxName = UserDefaults.standard[.syntax]
         let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
-        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none)
+        self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: syntax ?? Syntax.none)
         self.syntaxFileExtension = syntax?.fileMap.extensions?.first
         self.syntaxName = syntaxName
         
@@ -667,7 +667,7 @@ extension NSTextView: EditorCounter.Source { }
         self.textStorageObserver?.cancel()
         self.defaultObservers.removeAll()
         self.counter.cancel()
-        self.syntaxParser.cancel()
+        self.syntaxController.cancel()
         self.urlDetector?.cancel()
         self.lineEndingScanner.cancel()
     }
@@ -1080,13 +1080,13 @@ extension NSTextView: EditorCounter.Source { }
             return
         }
         
-        guard syntax != self.syntaxParser.syntax else { return }
+        guard syntax != self.syntaxController.syntax else { return }
         
         SyntaxManager.shared.noteRecentSetting(name: name)
         
         // update
         self.syntaxFileExtension = syntax.fileMap.extensions?.first
-        self.syntaxParser.update(syntax: syntax)
+        self.syntaxController.update(syntax: syntax)
         self.syntaxName = name
         
         self.invalidateMode()
