@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import Combine
 import AppKit.NSTextStorage
 import OSLog
 import StringUtils
@@ -38,7 +37,7 @@ extension NSAttributedString.Key {
 }
 
 
-@MainActor final class SyntaxController {
+@MainActor @Observable final class SyntaxController {
     
     // MARK: Public Properties
     
@@ -47,7 +46,7 @@ extension NSAttributedString.Key {
     
     var theme: Theme?
     
-    @Published private(set) var outlineItems: [OutlineItem]?
+    private(set) var outlineItems: [OutlineItem]?
     
     
     // MARK: Private Properties

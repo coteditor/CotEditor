@@ -46,7 +46,6 @@ import StringUtils
     
     private var isOwnSelectionChange = false
     private var documentObserver: Task<Void, Never>?
-    private var syntaxObserver: AnyCancellable?
     private var selectionObserver: AnyCancellable?
     
     
@@ -73,19 +72,14 @@ import StringUtils
     private func invalidateObservation() {
         
         self.documentObserver?.cancel()
-        self.syntaxObserver = nil
         self.selectionObserver = nil
         self.items.removeAll()
         
         if let document, self.isPresented {
             self.documentObserver = Task { [weak self] in
-                for await _ in Observations({ document.syntaxName }) {
-                    self?.syntaxObserver = document.syntaxController.$outlineItems
-                        .compactMap(\.self)
-                        .sink { [weak self] in
-                            self?.items = $0
-                            self?.invalidateCurrentItem()
-                        }
+                for await items in Observations({ document.syntaxController.outlineItems }).compactMap(\.self) {
+                    self?.items = items
+                    self?.invalidateCurrentItem()
                 }
             }
             
