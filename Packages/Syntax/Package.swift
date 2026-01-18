@@ -30,6 +30,13 @@ let package = Package(
                 "Syntax",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
+    
+        .executableTarget(
+            name: "SyntaxMigrator",
+            dependencies: [
+                "Syntax",
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ]),
     ],
     swiftLanguageModes: [.v6]
 )

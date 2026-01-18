@@ -39,11 +39,12 @@ public extension Syntax {
     /// - Throws: An error if reading the directory contents fails or if any individual file migration throws.
     static func migrateFormat(in directoryURL: URL, deletingOriginal: Bool = true) throws {
         
-        try FileManager.default.contentsOfDirectory(at: directoryURL,
-                                                    includingPropertiesForKeys: [.contentTypeKey],
-                                                    options: .skipsSubdirectoryDescendants)
-        .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType == .yaml }
-        .forEach { url in
+        let urls = try FileManager.default.contentsOfDirectory(at: directoryURL,
+                                                               includingPropertiesForKeys: [.contentTypeKey],
+                                                               options: .skipsSubdirectoryDescendants)
+            .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType == .yaml }
+        
+        for url in urls {
             try self.migrate(fileURL: url, deletingOriginal: deletingOriginal)
         }
     }
