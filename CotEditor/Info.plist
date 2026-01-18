@@ -85,6 +85,22 @@
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).DirectoryDocument</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<true/>
+			<key>CFBundleTypeName</key>
+			<string>CotEditor Syntax</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.CotEditor.syntax</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -230,6 +246,30 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>cottheme</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>CotEditor Syntax</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>Syntax-image</string>
+				<key>UTTypeIconText</key>
+				<string>syntax</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.CotEditor.syntax</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cotsyntax</string>
 				</array>
 			</dict>
 		</dict>
