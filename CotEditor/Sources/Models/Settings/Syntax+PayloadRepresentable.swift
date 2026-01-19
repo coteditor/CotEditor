@@ -26,18 +26,25 @@
 import Foundation
 import UniformTypeIdentifiers
 import Syntax
-import Yams
+
+extension UTType {
+    
+    static let cotSyntax = UTType(exportedAs: "com.coteditor.CotEditor.syntax")
+}
+
 
 extension Syntax: PayloadRepresentable {
     
-    nonisolated static let fileType: UTType = .yaml
+    nonisolated static let fileType: UTType = .cotSyntax
     
     
     init(payload: any Persistable, type: UTType) throws {
         
         switch payload {
+            case let fileWrapper as FileWrapper where type.conforms(to: .cotSyntax):
+                try self.init(fileWrapper: fileWrapper)
             case let data as Data where type.conforms(to: .yaml):
-                self = try YAMLDecoder().decode(Self.self, from: data)
+                try self.init(yamlData: data)
                 
             default:
                 throw CocoaError(.fileReadUnsupportedScheme)
@@ -47,18 +54,12 @@ extension Syntax: PayloadRepresentable {
     
     nonisolated static func payload(at fileURL: URL) throws -> some Persistable {
         
-        try Data(contentsOf: fileURL)
+        try FileWrapper(url: fileURL, options: .immediate)
     }
     
     
     func makePayload() throws -> any Persistable {
         
-        let encoder = YAMLEncoder()
-        encoder.options.allowUnicode = true
-        encoder.options.sortKeys = true
-        
-        let yamlString = try encoder.encode(self)
-        
-        return Data(yamlString.utf8)
+        try self.fileWrapper
     }
 }

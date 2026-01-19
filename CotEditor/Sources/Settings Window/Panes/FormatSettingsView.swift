@@ -28,6 +28,7 @@ import UniformTypeIdentifiers
 import Defaults
 import FileEncoding
 import LineEnding
+import Syntax
 
 @MainActor @objc protocol EncodingsListHolder: AnyObject {
     
@@ -253,7 +254,7 @@ private struct SyntaxListView: View {
                 Label {
                     Text(state.name)
                 } icon: {
-                    Image(nsImage: NSWorkspace.shared.icon(for: .yaml))
+                    Image(nsImage: NSWorkspace.shared.icon(for: .cotSyntax))
                 }
             }
         }
@@ -296,7 +297,7 @@ private struct SyntaxListView: View {
             // update for the "customized" dots
             self.settingStates = self.manager.settingNames.compactMap(self.manager.state(of:))
         }
-        .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.yaml], allowsMultipleSelection: true) { result in
+        .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotSyntax, .yaml], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
                     for url in urls {
@@ -342,7 +343,7 @@ private struct SyntaxListView: View {
             Text(error.recoverySuggestion)
         }
         // place fileExporter after `fileDialogConfirmationLabel(_:)` for the import action to use the default label for the export.
-        .fileExporter(isPresented: $isExporterPresented, item: self.exportingItem, contentTypes: [.yaml], defaultFilename: self.exportingItem?.name) { result in
+        .fileExporter(isPresented: $isExporterPresented, item: self.exportingItem, contentTypes: [.cotSyntax], defaultFilename: self.exportingItem?.name) { result in
             switch result {
                 case .success:
                     break
@@ -539,7 +540,7 @@ private struct SyntaxListView: View {
 
 private struct TransferableSyntax: TransferableFile {
     
-    static let fileType: UTType = .yaml
+    static let fileType: UTType = .cotSyntax
     
     var name: String
     var url: URL?

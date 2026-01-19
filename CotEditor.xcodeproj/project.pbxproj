@@ -21,7 +21,6 @@
 /* Begin PBXBuildFile section */
 		2A1380092C22E9B500093BF3 /* EditorCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2A1380082C22E9B500093BF3 /* EditorCore */; };
 		2A644BC92F0665A700E1975F /* Syntax in Frameworks */ = {isa = PBXBuildFile; productRef = 2A644BC82F0665A700E1975F /* Syntax */; };
-		2AA2C6FC24399A920017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FB24399A920017D1EC /* Yams */; };
 		2ABB27D22C38268300AFCD0B /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27CD2C3824DE00AFCD0B /* Numerics */; };
 		2ABB27D62C382AD400AFCD0B /* MacUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27D52C382AD400AFCD0B /* MacUI */; };
 		2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BE22A87F0400893051 /* ColorCode */; };
@@ -142,7 +141,6 @@
 				2ABB27D62C382AD400AFCD0B /* MacUI in Frameworks */,
 				2AE863CF2CA2E3BE00D47837 /* Sparkle in Frameworks */,
 				2A644BC92F0665A700E1975F /* Syntax in Frameworks */,
-				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
 			);
 		};
 		2ABB27CE2C38250A00AFCD0B /* Frameworks */ = {
@@ -227,7 +225,6 @@
 			name = CotEditor;
 			packageProductDependencies = (
 				2ACD02BE22A87F0400893051 /* ColorCode */,
-				2AA2C6FB24399A920017D1EC /* Yams */,
 				2A1380082C22E9B500093BF3 /* EditorCore */,
 				2ABB27D52C382AD400AFCD0B /* MacUI */,
 				2AE863CE2CA2E3BE00D47837 /* Sparkle */,
@@ -330,7 +327,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
-				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
 				2AAAE6E326DB82F800C5F0AC /* XCRemoteSwiftPackageReference "Sparkle" */,
 				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */,
@@ -1017,14 +1013,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jpsim/Yams";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.0;
-			};
-		};
 		2AAAE6E326DB82F800C5F0AC /* XCRemoteSwiftPackageReference "Sparkle" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
@@ -1071,11 +1059,6 @@
 		2A644BCA2F0665C300E1975F /* SyntaxMapBuilder */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SyntaxMapBuilder;
-		};
-		2AA2C6FB24399A920017D1EC /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
 		};
 		2AB756B02C25BBB9005E04C3 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

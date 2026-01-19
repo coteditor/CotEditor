@@ -32,8 +32,8 @@ struct SyntaxMapTests {
     
     @Test func testMapLoad() throws {
         
-        let urls = try #require(Bundle.module.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
-        let maps = try Syntax.FileMap.loadMaps(at: urls)
+        let urls = try #require(Bundle.module.urls(forResourcesWithExtension: "cotsyntax", subdirectory: "Syntaxes"))
+        let maps = try Syntax.FileMap.load(at: urls)
         
         #expect(maps == [
             "Apache": Syntax.FileMap(extensions: ["conf"],

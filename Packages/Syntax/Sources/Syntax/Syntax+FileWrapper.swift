@@ -150,7 +150,14 @@ extension Syntax {
 }
 
 
-extension Syntax.FileMap {
+public extension Syntax.FileMap {
+    
+    struct InvalidError: Error {
+        
+        var filename: String
+        var underlyingError: any Error
+    }
+    
     
     /// Creates a `Syntax.FileMap` by reading a `.cotsyntax` package on disk.
     ///

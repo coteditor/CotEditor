@@ -255,7 +255,7 @@ enum SyntaxName {
         let sortedSettingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames
         
         // load mapping definitions from syntax files in the user domain
-        let userMaps = try! Syntax.FileMap.loadMaps(at: self.userSettingFileURLs, ignoresInvalidData: true)
+        let userMaps = try! Syntax.FileMap.load(at: self.userSettingFileURLs, ignoresInvalidData: true)
         let maps = self.bundledMaps.merging(userMaps) { _, new in new }
         
         // update the file mapping table

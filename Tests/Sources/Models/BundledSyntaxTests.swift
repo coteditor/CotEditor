@@ -26,7 +26,6 @@
 
 import Foundation
 import Testing
-import Yams
 import Syntax
 import StringUtils
 @testable import CotEditor
@@ -38,15 +37,13 @@ actor BundledSyntaxTests {
     
     init() throws {
         
-        let urls = try #require(Bundle.main.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
+        let urls = try #require(Bundle.main.urls(forResourcesWithExtension: "cotsyntax", subdirectory: "Syntaxes"))
         
         // load syntaxes
-        let decoder = YAMLDecoder()
         self.syntaxes = try urls.reduce(into: [:]) { dict, url in
-            let data = try Data(contentsOf: url)
             let name = url.deletingPathExtension().lastPathComponent
             
-            dict[name] = try decoder.decode(Syntax.self, from: data)
+            dict[name] = try Syntax(contentsOf: url)
         }
     }
     
