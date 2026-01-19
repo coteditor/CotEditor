@@ -88,9 +88,6 @@ enum SyntaxName {
         self.bundledMaps = try! JSONDecoder().decode([SettingName: Syntax.FileMap].self, from: data)
         self.bundledSettingNames = self.bundledMaps.keys.sorted(using: .localizedStandard)
         
-        // sanitize user setting file extensions
-        try? self.sanitizeUserSettings()
-        
         // cache user syntaxes
         self.settingNames = self.listAvailableSettings()
         self.updateMappingTable()
@@ -270,23 +267,6 @@ enum SyntaxName {
                     table[item, default: []].append(settingName)
                 }
             }
-        }
-    }
-    
-    
-    /// Standardizes the file extensions of user setting files.
-    ///
-    /// - Note: The file extension for syntax definition files changed from `.yaml` to `.yml` in CotEditor 4.2.0 (released in 2022-05).
-    private func sanitizeUserSettings() throws {
-        
-        let urls = self.userSettingFileURLs.filter { $0.pathExtension == "yaml" }
-        
-        guard !urls.isEmpty else { return }
-        
-        for url in urls {
-            let newURL = url.deletingPathExtension().appendingPathExtension(for: .yaml)
-            
-            try FileManager.default.moveItem(at: url, to: newURL)
         }
     }
 }
