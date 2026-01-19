@@ -1,0 +1,20 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "py"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "python",
+      "python2",
+      "python3"
+    ]
+  },
+  "kind" : "general",
+  "metadata" : {
+    "distributionURL" : "https:\/\/coteditor.com",
+    "license" : "Same as CotEditor"
+  }
+}
