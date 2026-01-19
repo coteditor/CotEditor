@@ -55,8 +55,9 @@ extension PayloadRepresentable {
     init(contentsOf fileURL: URL) throws {
         
         let payload = try Self.payload(at: fileURL)
+        let fileType = try fileURL.resourceValues(forKeys: [.contentTypeKey]).contentType
         
-        try self.init(payload: payload, type: UTType(filenameExtension: fileURL.pathExtension) ?? Self.fileType)
+        try self.init(payload: payload, type: fileType ?? Self.fileType)
     }
 }
 
