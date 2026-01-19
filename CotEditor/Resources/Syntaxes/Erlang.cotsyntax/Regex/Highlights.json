@@ -1,0 +1,179 @@
+{
+  "attributes" : [
+    {
+      "beginString" : "\\-[a-z][a-zA-Z0-9_@]*(?=\\()",
+      "regularExpression" : true
+    }
+  ],
+  "characters" : [
+    {
+      "beginString" : "\\$\\S{1,10}",
+      "regularExpression" : true
+    }
+  ],
+  "commands" : [
+    {
+      "beginString" : "\\w+(?=\\()",
+      "regularExpression" : true
+    }
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "after"
+    },
+    {
+      "beginString" : "and"
+    },
+    {
+      "beginString" : "andalso"
+    },
+    {
+      "beginString" : "band"
+    },
+    {
+      "beginString" : "begin"
+    },
+    {
+      "beginString" : "big"
+    },
+    {
+      "beginString" : "binary"
+    },
+    {
+      "beginString" : "bnot"
+    },
+    {
+      "beginString" : "bor"
+    },
+    {
+      "beginString" : "bsl"
+    },
+    {
+      "beginString" : "bxor"
+    },
+    {
+      "beginString" : "case"
+    },
+    {
+      "beginString" : "catch"
+    },
+    {
+      "beginString" : "cond"
+    },
+    {
+      "beginString" : "div"
+    },
+    {
+      "beginString" : "end"
+    },
+    {
+      "beginString" : "float"
+    },
+    {
+      "beginString" : "fun"
+    },
+    {
+      "beginString" : "if"
+    },
+    {
+      "beginString" : "integer"
+    },
+    {
+      "beginString" : "let"
+    },
+    {
+      "beginString" : "little"
+    },
+    {
+      "beginString" : "native"
+    },
+    {
+      "beginString" : "not"
+    },
+    {
+      "beginString" : "of"
+    },
+    {
+      "beginString" : "or"
+    },
+    {
+      "beginString" : "orelse"
+    },
+    {
+      "beginString" : "receive"
+    },
+    {
+      "beginString" : "rem"
+    },
+    {
+      "beginString" : "signed"
+    },
+    {
+      "beginString" : "try"
+    },
+    {
+      "beginString" : "unit"
+    },
+    {
+      "beginString" : "unsigned"
+    },
+    {
+      "beginString" : "when"
+    },
+    {
+      "beginString" : "xor"
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "\\b(\\d{1,2}#)?\\d+\\b",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b1\\d#[0-9a-f]+\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b\\d+\\.\\d+([eE][-+]?\\d+)?",
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    },
+    {
+      "beginString" : "'",
+      "endString" : "'"
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "(?<=-module\\().*(?=\\))",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b\\w+(?=:)",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "false"
+    },
+    {
+      "beginString" : "true"
+    }
+  ],
+  "variables" : [
+    {
+      "beginString" : "\\b[A-Z_]\\w*\\b",
+      "regularExpression" : true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "beginString" : "^(#.+)$",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "^([\\t ]*)(.*)\\(\\)[\\r\\n\\t ]*\\{",
+    "keyString" : "$1$2 ()"
+  }
+]

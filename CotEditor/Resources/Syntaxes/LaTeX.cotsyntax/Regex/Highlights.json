@@ -1,0 +1,113 @@
+{
+  "attributes" : [
+    {
+      "beginString" : "[",
+      "endString" : "]"
+    }
+  ],
+  "characters" : [
+    {
+      "beginString" : "!'",
+      "description" : "inverted exclamation mark (¡)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "''",
+      "description" : "opening double quotation mark (“)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<!\\\\)\\\\[!,:>; ]",
+      "description" : "spaces",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<!\\\\)\\\\[&%$#_{}~^]",
+      "description" : "escaped characters",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "---?",
+      "description" : "en\/em dash",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\?'",
+      "description" : "inverted question mark (¿)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "``",
+      "description" : "closing double quotation mark (”)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "~",
+      "description" : "non-breaking space",
+      "regularExpression" : true
+    }
+  ],
+  "commands" : [
+    {
+      "beginString" : "[\\\\¥][a-zA-Z0-9]+\\*?",
+      "regularExpression" : true
+    }
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "(?<!\\\\)&",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<!\\\\)\\^",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=\\w)_(?=\\{)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\\\\\",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+
+  ],
+  "strings" : [
+
+  ],
+  "types" : [
+    {
+      "beginString" : "{",
+      "endString" : "}"
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "[\\\\¥](La)?TeXe?",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\$.+?\\$",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\(",
+      "endString" : "\\)"
+    },
+    {
+      "beginString" : "\\[",
+      "endString" : "\\]"
+    }
+  ],
+  "variables" : [
+    {
+      "beginString" : "(?<!\\\\)##?[0-9]",
+      "regularExpression" : true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "beginString" : "\\b(kernel|vertex|fragment|compute)\\s+\\w+\\s+(\\w+)\\s*\\(",
+    "keyString" : "$1 function: $2"
+  },
+  {
+    "beginString" : "\\bstruct\\s+(\\w+)",
+    "keyString" : "struct: $1"
+  },
+  {
+    "beginString" : "\\btypedef\\s+.*\\s+(\\w+)\\s*;",
+    "keyString" : "typedef: $1"
+  }
+]

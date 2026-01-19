@@ -1,0 +1,24 @@
+[
+  {
+    "beginString" : "^([\\t ]*)\\(define-library[[:space:]\\(\\[]+(\\S+)",
+    "bold" : true,
+    "description" : "library",
+    "keyString" : "$1library: $2"
+  },
+  {
+    "beginString" : "^([\\t ]*)\\(define-record-type[[:space:]\\(\\[]+(\\S+)",
+    "description" : "record type",
+    "keyString" : "$1record type: $2"
+  },
+  {
+    "beginString" : "^([\\t ]*)\\(define-syntax[[:space:]\\(\\[]+(\\S+)",
+    "description" : "syntax",
+    "italic" : true,
+    "keyString" : "$1syntax: $2"
+  },
+  {
+    "beginString" : "^([\\t ]*)\\(define[[:space:]\\(\\[]+(\\S+)",
+    "description" : "general define",
+    "keyString" : "$1$2"
+  }
+]

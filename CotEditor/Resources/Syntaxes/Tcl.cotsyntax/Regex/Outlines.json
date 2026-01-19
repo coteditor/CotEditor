@@ -1,0 +1,30 @@
+[
+  {
+    "beginString" : "^([\\t ]*)(constructor|destructor)",
+    "description" : "constructor\/deconstructor",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([\\t ]*)method\\s+(\\w+)",
+    "description" : "method",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([\\t ]*)proc\\s+(\\S+)",
+    "description" : "procedure",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "class\\s+create\\s+(\\w+)",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "package\\s+provide\\s+(\\w+)",
+    "bold" : true,
+    "description" : "package",
+    "keyString" : "$1",
+    "underline" : true
+  }
+]

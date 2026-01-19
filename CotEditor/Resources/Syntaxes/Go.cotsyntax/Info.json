@@ -1,0 +1,21 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "go"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2025-08-18",
+    "license" : "Same as CotEditor",
+    "version" : "1.2.0"
+  }
+}

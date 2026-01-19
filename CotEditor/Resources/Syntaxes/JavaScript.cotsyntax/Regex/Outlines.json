@@ -1,0 +1,25 @@
+[
+  {
+    "beginString" : "^([\\t ]*)(function)([^{]*)\\{",
+    "description" : "function",
+    "keyString" : "$1$2 : $3"
+  },
+  {
+    "beginString" : "^([\\t ]*)(static +)(\\w+\\(.*\\))[\\t ]*(?=\\{)",
+    "description" : "method",
+    "keyString" : "$1$3"
+  },
+  {
+    "beginString" : "^([\\t ]*)class +(\\w+)[\\t ]*(?=\\{)",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([\\t ]*)class +(\\w+)[\\t ]+extends[\\t ]+(\\w+)",
+    "bold" : true,
+    "description" : "extended class",
+    "italic" : true,
+    "keyString" : "$1$2 extends $3"
+  }
+]

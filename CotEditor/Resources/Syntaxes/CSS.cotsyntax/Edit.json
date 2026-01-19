@@ -1,0 +1,16 @@
+{
+  "comment" : {
+    "blocks" : [
+      {
+        "begin" : "\/*",
+        "end" : "*\/"
+      }
+    ],
+    "inlines" : [
+
+    ]
+  },
+  "completions" : [
+
+  ]
+}

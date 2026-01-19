@@ -1,0 +1,21 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "rtf"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "general",
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2015-10-15",
+    "license" : "Same as CotEditor",
+    "version" : "1.0.0"
+  }
+}

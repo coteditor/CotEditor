@@ -1,0 +1,22 @@
+{
+  "fileMap" : {
+    "extensions" : [
+
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "general",
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "https:\/\/www.bbcode.org",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2023-04-02",
+    "license" : "Same as CotEditor",
+    "version" : "1.0.0"
+  }
+}

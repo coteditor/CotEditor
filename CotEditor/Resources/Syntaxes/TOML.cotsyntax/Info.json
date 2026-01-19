@@ -1,0 +1,21 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "toml"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2024-04-28",
+    "license" : "Same as CotEditor",
+    "version" : "1.0.2"
+  }
+}

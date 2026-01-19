@@ -1,0 +1,13 @@
+[
+  {
+    "beginString" : "\\bfunction\\s+\\w+\\(.*\\)",
+    "description" : "function",
+    "keyString" : ""
+  },
+  {
+    "beginString" : "\\bmacro\\s+\\w+\\(.+\\)",
+    "description" : "macro",
+    "italic" : true,
+    "keyString" : ""
+  }
+]

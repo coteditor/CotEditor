@@ -1,0 +1,23 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "metal",
+      "msl"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "aybarsnazlica",
+    "description" : "Metal Shading Language syntax based on Apple's MSL",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2025-06-21",
+    "license" : "Same as CotEditor",
+    "version" : "1.0.0"
+  }
+}

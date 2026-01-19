@@ -1,0 +1,27 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "php",
+      "php3",
+      "php4",
+      "php5",
+      "phps",
+      "phtml"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "php"
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "kaz",
+    "description" : "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013.",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2025-02-21",
+    "license" : "Same as CotEditor",
+    "version" : "2.6.1"
+  }
+}

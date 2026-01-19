@@ -1,0 +1,21 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "textile"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "general",
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2022-06-01",
+    "license" : "Same as CotEditor",
+    "version" : "1.1.5"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "jq"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2024-05-27",
+    "license" : "Same as CotEditor",
+    "version" : "1.0.0"
+  }
+}

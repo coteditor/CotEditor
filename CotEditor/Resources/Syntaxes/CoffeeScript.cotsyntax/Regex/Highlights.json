@@ -1,0 +1,200 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+    {
+      "beginString" : "'",
+      "endString" : "'"
+    },
+    {
+      "beginString" : "'''",
+      "endString" : "'''"
+    },
+    {
+      "beginString" : "\/\/\/",
+      "endString" : "\/\/\/"
+    }
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "and"
+    },
+    {
+      "beginString" : "break"
+    },
+    {
+      "beginString" : "by"
+    },
+    {
+      "beginString" : "catch"
+    },
+    {
+      "beginString" : "class"
+    },
+    {
+      "beginString" : "continue"
+    },
+    {
+      "beginString" : "do"
+    },
+    {
+      "beginString" : "else"
+    },
+    {
+      "beginString" : "extends"
+    },
+    {
+      "beginString" : "finally"
+    },
+    {
+      "beginString" : "for"
+    },
+    {
+      "beginString" : "if"
+    },
+    {
+      "beginString" : "in"
+    },
+    {
+      "beginString" : "inst"
+    },
+    {
+      "beginString" : "instanceof"
+    },
+    {
+      "beginString" : "is"
+    },
+    {
+      "beginString" : "loop"
+    },
+    {
+      "beginString" : "new"
+    },
+    {
+      "beginString" : "not"
+    },
+    {
+      "beginString" : "of"
+    },
+    {
+      "beginString" : "or"
+    },
+    {
+      "beginString" : "return"
+    },
+    {
+      "beginString" : "super"
+    },
+    {
+      "beginString" : "switch"
+    },
+    {
+      "beginString" : "then"
+    },
+    {
+      "beginString" : "this"
+    },
+    {
+      "beginString" : "throw"
+    },
+    {
+      "beginString" : "try"
+    },
+    {
+      "beginString" : "typeof"
+    },
+    {
+      "beginString" : "unless"
+    },
+    {
+      "beginString" : "until"
+    },
+    {
+      "beginString" : "when"
+    },
+    {
+      "beginString" : "while"
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "\\b0[bB][01][01_]*n?\\b",
+      "description" : "binary",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b0[oO][0-7][0-7_]*n?\\b",
+      "description" : "octal",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b0[xX][0-9a-fA-F][0-9a-fA-F_]*n?\\b",
+      "description" : "hexadecimal",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b[0-9][0-9_]*(\\.[0-9]*)?([eE][-+]?[1-9][0-9_]*)?\\b",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b\\.[0-9]*?([eE][-+]?[1-9][0-9_]*)?\\b",
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "@[a-zA-Z0-9$_]*",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "false"
+    },
+    {
+      "beginString" : "Infinity"
+    },
+    {
+      "beginString" : "NaN"
+    },
+    {
+      "beginString" : "no"
+    },
+    {
+      "beginString" : "null"
+    },
+    {
+      "beginString" : "off"
+    },
+    {
+      "beginString" : "on"
+    },
+    {
+      "beginString" : "true"
+    },
+    {
+      "beginString" : "undefined"
+    },
+    {
+      "beginString" : "yes"
+    }
+  ],
+  "variables" : [
+    {
+      "beginString" : "this"
+    }
+  ]
+}

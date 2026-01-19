@@ -1,0 +1,23 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "pas",
+      "pp"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "cbnbg",
+    "description" : "Pascal\/Object Pascal\n\nv1.1.0\n- some optimizations to structures\n- added some keywords\n",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2023-05-05",
+    "license" : "Same as CotEditor",
+    "version" : "1.2.0"
+  }
+}

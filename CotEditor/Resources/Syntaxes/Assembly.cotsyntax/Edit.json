@@ -1,0 +1,15 @@
+{
+  "comment" : {
+    "blocks" : [
+
+    ],
+    "inlines" : [
+      {
+        "begin" : ";"
+      }
+    ]
+  },
+  "completions" : [
+
+  ]
+}

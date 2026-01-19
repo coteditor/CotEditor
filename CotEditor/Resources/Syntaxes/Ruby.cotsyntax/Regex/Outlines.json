@@ -1,0 +1,20 @@
+[
+  {
+    "beginString" : "(^[\\t ]*class)[\\t ]+(\\w*)",
+    "description" : "class",
+    "keyString" : "$1 $2",
+    "underline" : true
+  },
+  {
+    "beginString" : "(^[\\t ]*def)[\\t ]+([^\\s(]*)",
+    "description" : "method",
+    "italic" : true,
+    "keyString" : "$1 $2"
+  },
+  {
+    "beginString" : "(^[\\t ]*module)[\\t ]+(\\w*)",
+    "bold" : true,
+    "description" : "module",
+    "keyString" : "$1 $2"
+  }
+]

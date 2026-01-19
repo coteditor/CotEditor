@@ -1,0 +1,49 @@
+{
+  "comment" : {
+    "blocks" : [
+
+    ],
+    "inlines" : [
+      {
+        "begin" : "%"
+      }
+    ]
+  },
+  "completions" : [
+    "@article",
+    "@book",
+    "@booklet",
+    "@conference",
+    "@inbook",
+    "@incollection",
+    "@inproceedings",
+    "@manual",
+    "@masterthesis",
+    "@misc",
+    "@phdthesis",
+    "@proceedings",
+    "@techreport",
+    "@unpublished",
+    "address",
+    "author",
+    "booktitle",
+    "chapter",
+    "edition",
+    "editor",
+    "howpublished",
+    "institution",
+    "journal",
+    "month",
+    "note",
+    "number",
+    "organization",
+    "pages",
+    "publisher",
+    "school",
+    "series",
+    "title",
+    "type",
+    "volume",
+    "year"
+  ]
+}

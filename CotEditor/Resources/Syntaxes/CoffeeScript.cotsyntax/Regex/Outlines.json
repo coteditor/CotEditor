@@ -1,0 +1,23 @@
+[
+  {
+    "beginString" : "^([\\t ]*\\w+): (.*)->",
+    "description" : "function",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "^([\\t ]*\\w+)[\\t ]= (.*)->",
+    "description" : "function",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "^(\\w*::\\w*) (.*)->",
+    "description" : "function",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "^class (.*)",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1"
+  }
+]

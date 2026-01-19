@@ -1,0 +1,7 @@
+[
+  {
+    "beginString" : "beginchar\\((.*?),",
+    "description" : "character",
+    "keyString" : "character: $1"
+  }
+]

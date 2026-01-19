@@ -1,0 +1,22 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "lua"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "lua",
+      "luajit"
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2025-11-16",
+    "license" : "Same as CotEditor",
+    "version" : "1.3.0"
+  }
+}

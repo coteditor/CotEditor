@@ -1,0 +1,23 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "rb",
+      "erb"
+    ],
+    "filenames" : [
+      "Gemfile"
+    ],
+    "interpreters" : [
+      "ruby"
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "Y.Tokutomi",
+    "description" : "Maintained by CotEditor Project.",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2023-05-05",
+    "license" : "Same as CotEditor",
+    "version" : "2.5.0"
+  }
+}

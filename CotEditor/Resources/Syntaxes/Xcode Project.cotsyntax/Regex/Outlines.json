@@ -1,0 +1,6 @@
+[
+  {
+    "beginString" : "^\/\\* Begin (.+) section \\*\/$",
+    "keyString" : "$1"
+  }
+]

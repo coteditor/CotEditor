@@ -1,0 +1,15 @@
+[
+  {
+    "beginString" : "BEGIN",
+    "keyString" : ""
+  },
+  {
+    "beginString" : "END",
+    "keyString" : ""
+  },
+  {
+    "beginString" : "function[ \\t]+(\\w+)[ \\t]*\\(([^\\)]*)\\)",
+    "description" : "function",
+    "keyString" : "$1 ($2)"
+  }
+]

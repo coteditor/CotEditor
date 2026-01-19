@@ -1,0 +1,16 @@
+[
+  {
+    "beginString" : "(?<= )id=\"([^\"]+?)\"",
+    "description" : "id",
+    "ignoreCase" : true,
+    "italic" : true,
+    "keyString" : "#$1"
+  },
+  {
+    "beginString" : "<title[^>]*>([^<]*)<\/title[^>]*>",
+    "bold" : true,
+    "description" : "title",
+    "ignoreCase" : true,
+    "keyString" : "$1"
+  }
+]

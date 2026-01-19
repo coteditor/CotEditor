@@ -1,0 +1,49 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+    {
+      "beginString" : "\\\\$",
+      "regularExpression" : true
+    }
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+    {
+      "beginString" : "^!.*",
+      "regularExpression" : true
+    }
+  ],
+  "keywords" : [
+    {
+      "beginString" : "^\\S+[ \\t\\f]+(?=\\w)",
+      "description" : "Key without symbols (= or :)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^\\S.*?(?=[=:])",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+
+  ],
+  "strings" : [
+
+  ],
+  "types" : [
+
+  ],
+  "values" : [
+
+  ],
+  "variables" : [
+    {
+      "beginString" : "${",
+      "endString" : "}"
+    }
+  ]
+}

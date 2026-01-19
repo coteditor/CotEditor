@@ -1,0 +1,103 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+    {
+      "beginString" : "<pre(\\s[^<>]*)?>",
+      "endString" : "<\/pre>",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "@.*@",
+      "regularExpression" : true
+    }
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "(?<![\\\\*])\\*[^ \\t*]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\*",
+      "description" : "bold",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<![\\_])_[^ \\t*]((?!\\R{2})(?:.|\\R)).*?(?<![\\\\ ])_",
+      "description" : "italic",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^#+[\\t ]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^\\*+[\\t ]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^bq([\\[{()=>]\\S*)?\\.[\\t ]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^fn\\d+\\.[\\t ]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^p([\\[{()=>]\\S*)?\\.[\\t ]",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "![<>]?\\S*!",
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "(?<=!):\\S*",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=\"):\\S*",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "<\/[a-zA-Z]+>",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "<[a-zA-Z]+([^<>]*)?>",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^\\[\\S+\\]\\S",
+      "endString" : "$",
+      "regularExpression" : true
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "^h[1-6]([\\[{()=>]\\S*)?\\.[\\t ]",
+      "endString" : "$",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "\\[\\d+\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\s\".*?\"(?>:)",
+      "regularExpression" : true
+    }
+  ],
+  "variables" : [
+
+  ]
+}

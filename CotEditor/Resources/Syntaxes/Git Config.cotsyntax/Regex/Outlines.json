@@ -1,0 +1,8 @@
+[
+  {
+    "beginString" : "^\\[(.+)\\]",
+    "bold" : true,
+    "description" : "section",
+    "keyString" : "$1"
+  }
+]

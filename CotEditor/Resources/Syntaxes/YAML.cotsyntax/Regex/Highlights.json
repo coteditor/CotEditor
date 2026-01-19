@@ -1,0 +1,177 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+    {
+      "beginString" : "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{4}-[0-9]{2}?-[0-9]{2}?([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([ \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?\\b",
+      "description" : "time",
+      "regularExpression" : true
+    }
+  ],
+  "commands" : [
+    {
+      "beginString" : "%TAG"
+    },
+    {
+      "beginString" : "%YAML [0-9.]+",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^---( |$)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "^\\.\\.\\.$",
+      "regularExpression" : true
+    }
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "(?<=[-\\[{,]|^)[ \\t]*[^-:\\[\\]\\r\\n ][^:\\[\\]\\r\\n ]*[\\t ]*(?=:\\s)",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\r\\n\\}\\]])",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "0x[0-9a-fA-F]+",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "[-+]?\\.(inf|Inf|INF)\\b",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\.(nan|NaN|NAN)\\b",
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    },
+    {
+      "beginString" : "'.*?'",
+      "regularExpression" : true
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "!"
+    },
+    {
+      "beginString" : "!!"
+    },
+    {
+      "beginString" : "!!binary"
+    },
+    {
+      "beginString" : "!!bool"
+    },
+    {
+      "beginString" : "!!float"
+    },
+    {
+      "beginString" : "!!int"
+    },
+    {
+      "beginString" : "!!map"
+    },
+    {
+      "beginString" : "!!merge"
+    },
+    {
+      "beginString" : "!!null"
+    },
+    {
+      "beginString" : "!!omap"
+    },
+    {
+      "beginString" : "!!pairs"
+    },
+    {
+      "beginString" : "!!seq"
+    },
+    {
+      "beginString" : "!!set"
+    },
+    {
+      "beginString" : "!!str"
+    },
+    {
+      "beginString" : "!!timestamp"
+    },
+    {
+      "beginString" : "!!value"
+    },
+    {
+      "beginString" : "!!yaml"
+    },
+    {
+      "beginString" : "!<",
+      "endString" : ">"
+    },
+    {
+      "beginString" : "(?<!!)!\\w+(!(\\w+)?)?",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\btag:\\S+",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "(?<!!)(?:null|Null|NULL)\\b",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=:)\\s*on\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "false",
+      "ignoreCase" : true
+    },
+    {
+      "beginString" : "no",
+      "ignoreCase" : true
+    },
+    {
+      "beginString" : "off",
+      "ignoreCase" : true
+    },
+    {
+      "beginString" : "true",
+      "ignoreCase" : true
+    },
+    {
+      "beginString" : "yes",
+      "ignoreCase" : true
+    },
+    {
+      "beginString" : "~"
+    }
+  ],
+  "variables" : [
+    {
+      "beginString" : "(?<!\\w)&[^ \\t\\r\\n]+\\b",
+      "description" : "anchor",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<!\\w)\\*[^ \\t\\r\\n]+\\b",
+      "description" : "reference",
+      "regularExpression" : true
+    }
+  ]
+}

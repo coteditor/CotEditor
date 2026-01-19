@@ -1,0 +1,22 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "ini",
+      "url"
+    ],
+    "filenames" : [
+      ".editorconfig"
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2023-05-05",
+    "license" : "Same as CotEditor",
+    "version" : "1.5.0"
+  }
+}

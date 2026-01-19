@@ -1,0 +1,12 @@
+[
+  {
+    "beginString" : "^([^\\r\\n -].*?):",
+    "description" : "top level element",
+    "keyString" : "$1:"
+  },
+  {
+    "beginString" : "^---",
+    "description" : "block",
+    "keyString" : "-"
+  }
+]

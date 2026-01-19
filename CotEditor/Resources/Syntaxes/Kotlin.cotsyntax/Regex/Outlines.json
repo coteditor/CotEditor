@@ -1,0 +1,19 @@
+[
+  {
+    "beginString" : "^([ \\t]*)(?:[a-z]+ ){0,3}(class|object) +([a-zA-Z0-9_]+)",
+    "bold" : true,
+    "description" : "class or object",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:[a-z]+ ){0,3}fun +([a-zA-Z0-9_]+\\([^\\)]*\\))",
+    "description" : "function",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:[a-z]+ ){0,3}interface +([a-zA-Z0-9_]+)",
+    "description" : "interface",
+    "italic" : true,
+    "keyString" : "$1$2"
+  }
+]
