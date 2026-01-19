@@ -91,3 +91,18 @@ extension Data: Persistable {
         try self.write(to: fileURL, options: [])
     }
 }
+
+
+extension FileWrapper: Persistable {
+    
+    var fileWrapper: FileWrapper {
+        
+        self
+    }
+    
+    
+    func write(to fileURL: URL) throws {
+        
+        try self.write(to: fileURL, options: .atomic, originalContentsURL: nil)
+    }
+}
