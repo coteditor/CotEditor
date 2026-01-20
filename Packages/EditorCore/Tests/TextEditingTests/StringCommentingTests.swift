@@ -278,11 +278,12 @@ private struct Editor {
     
     struct Delimiters: CommentDelimiters {
         
-        var inline: String?
+        var inlines: [String]
         var blocks: [Pair<String>]
+        var isEmpty: Bool { self.inlines.isEmpty && self.blocks.isEmpty }
     }
     
-    private let delimiters = Delimiters(inline: "//", blocks: [Pair("<-", "->")])
+    private let delimiters = Delimiters(inlines: ["//"], blocks: [Pair("<-", "->")])
     
     var string: String
     var selectedRanges: [NSRange] = []

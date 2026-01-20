@@ -239,7 +239,7 @@ private extension Syntax.Comment {
     var legacyDictionary: [String: String] {
         
         var dict: [String: String] = [:]
-        dict[LegacyKey.inline] = self.inline
+        dict[LegacyKey.inline] = self.inlines.first
         dict[LegacyKey.blockBegin] = self.blocks.first?.begin
         dict[LegacyKey.blockEnd] = self.blocks.first?.end
         
@@ -248,8 +248,8 @@ private extension Syntax.Comment {
     
     init(legacyDictionary dictionary: [String: String]) {
         
-        self.inline = dictionary[LegacyKey.inline]
-        
+        self.inlines = dictionary[LegacyKey.inline].flatMap { [$0] } ?? []
+ 
         if let blockBegin = dictionary[LegacyKey.blockBegin],
            let blockEnd = dictionary[LegacyKey.blockEnd]
         {

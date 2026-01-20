@@ -1221,13 +1221,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 (item as? NSMenuItem)?.title = self.canUncomment(partly: false)
                     ? String(localized: "Uncomment", table: "MainMenu")
                     : String(localized: "Comment Out", table: "MainMenu")
-                return self.isEditable && ((self.commentDelimiters.inline != nil) || !self.commentDelimiters.blocks.isEmpty)
+                return self.isEditable && (!self.commentDelimiters.inlines.isEmpty || !self.commentDelimiters.blocks.isEmpty)
             
             case #selector(commentOut):
                 return self.isEditable
                 
             case #selector(inlineCommentOut):
-                return self.isEditable && (self.commentDelimiters.inline != nil)
+                return self.isEditable && !self.commentDelimiters.inlines.isEmpty
                 
             case #selector(blockCommentOut):
                 return self.isEditable && !self.commentDelimiters.blocks.isEmpty

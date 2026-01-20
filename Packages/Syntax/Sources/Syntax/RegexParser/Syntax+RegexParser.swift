@@ -88,8 +88,8 @@ extension Syntax {
         for delimiter in self.commentDelimiters.blocks {
             nestables[.pair(delimiter)] = .comments
         }
-        if let inlineCommentDelimiter = self.commentDelimiters.inline {
-            nestables[.inline(inlineCommentDelimiter)] = .comments
+        for delimiter in self.commentDelimiters.inlines {
+            nestables[.inline(delimiter)] = .comments
         }
         
         return .init(extractors: extractors, nestables: nestables)

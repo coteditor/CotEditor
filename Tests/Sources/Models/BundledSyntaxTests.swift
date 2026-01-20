@@ -99,7 +99,7 @@ actor BundledSyntaxTests {
         let syntax = try #require(self.syntaxes["HTML"])
         
         #expect(syntax.parser.hasHighlightRules)
-        #expect(syntax.commentDelimiters.inline == nil)
+        #expect(syntax.commentDelimiters.inlines.isEmpty)
         #expect(syntax.commentDelimiters.blocks == [Pair("<!--", "-->")])
     }
     

@@ -86,7 +86,7 @@ import StringUtils
         
         init(value: Value? = nil) {
             
-            self.inline = value?.inline
+            self.inline = value?.inlines.first
             self.blockBegin = value?.blocks.first?.begin
             self.blockEnd = value?.blocks.first?.end
         }
@@ -101,7 +101,7 @@ import StringUtils
             }
             
             return Value(
-                inline: self.inline,
+                inlines: self.inline.map { [$0] } ?? [],
                 blocks: blocks
             )
         }
