@@ -108,22 +108,17 @@ public extension String {
         
         guard !delimiters.isEmpty else { return nil }
         
-        let deletionRanges: [NSRange] = {
-            
-            if let delimiters = delimiters.blocks.first {
+        let deletionRanges: [NSRange] = delimiters.blocks.lazy
+            .compactMap { delimiters in
                 let targetRanges = selectedRanges.map { $0.isEmpty ? self.lineContentsRange(for: $0) : $0 }.uniqued
-                if let ranges = self.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges) {
-                    return ranges
-                }
-            }
-            if let delimiter = delimiters.inlines.first {
+                return self.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges)
+            }.first
+        ?? delimiters.inlines.lazy
+            .compactMap { delimiter in
                 let targetRanges = selectedRanges.map(self.lineContentsRange(for:)).uniqued
-                if let ranges = self.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges) {
-                    return ranges
-                }
-            }
-            return []
-        }()
+                return self.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges)
+            }.first
+        ?? []
         
         guard !deletionRanges.isEmpty else { return nil }
         
@@ -153,17 +148,17 @@ public extension String {
         
         guard !targetRanges.isEmpty else { return false }
         
-        if let delimiters = delimiters.blocks.first,
-           let ranges = self.rangesOfBlockDelimiters(delimiters, spacer: "", ranges: targetRanges)
-        {
-            return partly ? true : (ranges.count == (2 * targetRanges.count))
+        for delimiters in delimiters.blocks {
+            if let ranges = self.rangesOfBlockDelimiters(delimiters, spacer: "", ranges: targetRanges) {
+                return partly ? true : (ranges.count == (2 * targetRanges.count))
+            }
         }
         
-        if let delimiter = delimiters.inlines.first,
-           let ranges = self.rangesOfInlineDelimiter(delimiter, spacer: "", ranges: targetRanges)
-        {
-            let lineRanges = targetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
-            return partly ? true : (ranges.count == lineRanges.count)
+        for delimiter in delimiters.inlines {
+            if let ranges = self.rangesOfInlineDelimiter(delimiter, spacer: "", ranges: targetRanges) {
+                let lineRanges = targetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
+                return partly ? true : (ranges.count == lineRanges.count)
+            }
         }
         
         return false
