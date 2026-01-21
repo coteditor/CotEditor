@@ -211,7 +211,7 @@ struct SyntaxEditView: View {
             case .characters:
                 SyntaxHighlightEditView(items: $syntax.highlights.characters)
             case .comments:
-                SyntaxCommentEditView(comment: $syntax.commentDelimiters, highlights: $syntax.highlights.comments)
+                SyntaxCommentEditView(inlineComments: $syntax.inlineComments, blockComments: $syntax.blockComments, highlights: $syntax.highlights.comments)
             case .outline:
                 SyntaxOutlineEditView(items: $syntax.outlines)
             case .completion:

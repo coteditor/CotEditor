@@ -3,6 +3,11 @@
 7.0.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Enable registering multiple comment delimiters to a syntax definition.
+
+
 ### Improvements
 
 - [trivial] Adjust the About view.

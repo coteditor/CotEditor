@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,11 +24,13 @@
 //
 
 import SwiftUI
+import StringUtils
 import Syntax
 
 struct SyntaxCommentEditView: View {
     
-    @Binding var comment: SyntaxObject.Comment
+    @Binding var inlineComments: [SyntaxObject.Item<String>]
+    @Binding var blockComments: [SyntaxObject.Item<Pair<String>>]
     @Binding var highlights: [SyntaxObject.Highlight]
     
     
@@ -36,47 +38,86 @@ struct SyntaxCommentEditView: View {
     
     var body: some View {
         
-        VStack {
-            CommentDelimitersEditView(comment: $comment)
+        VStack(alignment: .leading) {
+            HStack(alignment: .firstTextBaseline, spacing: 20) {
+                InlineCommentsEditView(items: $inlineComments)
+                BlockCommentsEditView(items: $blockComments)
+            }
+            Text("The first delimiter is used for commenting out.", tableName: "SyntaxEditor")
+                .foregroundColor(.secondary)
+                .padding(.top, 4)
                 .padding(.bottom)
+            
+            Text("Highlighting:", tableName: "SyntaxEditor", comment: "label")
             SyntaxHighlightEditView(items: $highlights, helpAnchor: "syntax_comment_settings")
         }
     }
 }
 
 
-private struct CommentDelimitersEditView: View {
+private struct InlineCommentsEditView: View {
     
-    @Binding var comment: SyntaxObject.Comment
+    typealias Item = SyntaxObject.Item<String>
+    
+    @Binding var items: [Item]
+    
+    @State private var selection: Set<Item.ID> = []
+    @FocusState private var focusedField: Item.ID?
     
     
     var body: some View {
         
-        HStack(alignment: .firstTextBaseline, spacing: 32) {
-            VStack(alignment: .leading) {
-                Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
-                Form {
-                    TextField(String(localized: "Begin with:", table: "SyntaxEditor", comment: "label"),
-                              text: $comment.inline ?? "", prompt: Self.placeholder)
-                }
-            }
+        VStack(alignment: .leading) {
+            Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
+                .accessibilityAddTraits(.isHeader)
             
-            VStack(alignment: .leading) {
-                Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
-                Form {
-                    TextField(String(localized: "Begin with:", table: "SyntaxEditor", comment: "label"),
-                              text: $comment.blockBegin ?? "", prompt: Self.placeholder)
-                    TextField(String(localized: "End with:", table: "SyntaxEditor", comment: "label"),
-                              text: $comment.blockEnd ?? "", prompt: Self.placeholder)
+            Table($items, selection: $selection) {
+                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
+                    TextField(text: item.value, label: EmptyView.init)
                 }
             }
-        }
+            .tableStyle(.bordered)
+            .border(Color(nsColor: .gridColor))
+            
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+        }.accessibilityElement(children: .contain)
     }
+}
+
+
+private struct BlockCommentsEditView: View {
+    
+    typealias Item = SyntaxObject.Item<Pair<String>>
+    
+    @Binding var items: [Item]
+    
+    @State private var selection: Set<Item.ID> = []
+    @FocusState private var focusedField: Item.ID?
     
     
-    private static var placeholder: Text {
+    var body: some View {
         
-        Text("Not defined", tableName: "SyntaxEditor", comment: "placeholder")
+        VStack(alignment: .leading) {
+            Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
+                .accessibilityAddTraits(.isHeader)
+            
+            Table($items, selection: $selection) {
+                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
+                    TextField(text: item.value.begin, label: EmptyView.init)
+                }
+                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { item in
+                    TextField(text: item.value.end, label: EmptyView.init)
+                }
+            }
+            .tableStyle(.bordered)
+            .border(Color(nsColor: .gridColor))
+            
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+        }.accessibilityElement(children: .contain)
     }
 }
 
@@ -84,9 +125,10 @@ private struct CommentDelimitersEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var comment = SyntaxObject.Comment()
+    @Previewable @State var inlineComments: [SyntaxObject.Item<String>] = [.init(value: "//")]
+    @Previewable @State var blockComments: [SyntaxObject.Item<Pair<String>>] = [.init(value: Pair("<!--", "-->"))]
     @Previewable @State var highlights: [SyntaxObject.Highlight] = []
     
-    SyntaxCommentEditView(comment: $comment, highlights: $highlights)
+    SyntaxCommentEditView(inlineComments: $inlineComments, blockComments: $blockComments, highlights: $highlights)
         .padding()
 }

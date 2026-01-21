@@ -74,46 +74,14 @@ import StringUtils
     }
     
     
-    struct Comment {
-        
-        typealias Value = Syntax.Comment
-        
-        
-        var inline: String?
-        var blockBegin: String?
-        var blockEnd: String?
-        
-        
-        init(value: Value? = nil) {
-            
-            self.inline = value?.inlines.first
-            self.blockBegin = value?.blocks.first?.begin
-            self.blockEnd = value?.blocks.first?.end
-        }
-        
-        
-        var value: Value {
-            
-            let blocks: [Pair<String>] = if let begin = self.blockBegin, let end = self.blockEnd {
-                [Pair(begin, end)]
-            } else {
-                []
-            }
-            
-            return Value(
-                inlines: self.inline.map { [$0] } ?? [],
-                blocks: blocks
-            )
-        }
-    }
-    
-    
     var kind: Syntax.Kind = .general
     
     var highlights: Highlights = Highlights()
     
+    var inlineComments: [Item<String>] = []
+    var blockComments: [Item<Pair<String>>] = []
+    
     var outlines: [Outline] = []
-    var commentDelimiters: Comment = Comment()
     var completions: [KeyString] = []
     
     var filenames: [KeyString] = []
@@ -157,7 +125,12 @@ extension SyntaxObject {
               },
               
               outlines: self.outlines.map(\.value),
-              commentDelimiters: self.commentDelimiters.value,
+              
+              commentDelimiters: Syntax.Comment(
+                inlines: self.inlineComments.map(\.value),
+                blocks: self.blockComments.map(\.value)
+              ),
+              
               completions: self.completions.map(\.value),
               
               metadata: self.metadata)
@@ -174,7 +147,10 @@ extension SyntaxObject {
         self.highlights.update(with: value.highlights)
         
         self.outlines = value.outlines.map { .init(value: $0) }
-        self.commentDelimiters = Comment(value: value.commentDelimiters)
+        
+        self.inlineComments = value.commentDelimiters.inlines.map { .init(value: $0) }
+        self.blockComments = value.commentDelimiters.blocks.map { .init(value: $0) }
+        
         self.completions = value.completions.map { .init(value: $0) }
         
         self.extensions = value.fileMap.extensions?.map { .init(value: $0) } ?? []
@@ -233,5 +209,14 @@ extension SyntaxObject.Item<String> {
     init() {
         
         self.value = .init()
+    }
+}
+
+
+extension SyntaxObject.Item<Pair<String>> {
+    
+    init() {
+        
+        self.value = .init("", "")
     }
 }
