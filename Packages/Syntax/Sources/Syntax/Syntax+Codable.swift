@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import StringUtils
 
 extension Syntax: Codable {
     
@@ -80,8 +81,10 @@ extension Syntax: Codable {
         highlights[.comments] = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
         self.highlights = highlights
         
+        self.commentDelimiters = (try values.decodeIfPresent([String: String].self, forKey: .commentDelimiters))
+            .flatMap(Comment.init(legacyDictionary:)) ?? .init()
+        
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
-        self.commentDelimiters = try values.decodeIfPresent(Comment.self, forKey: .commentDelimiters) ?? .init()
         self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.compactMap(\.keyString) ?? []
         
         var fileMap = FileMap()
@@ -111,8 +114,9 @@ extension Syntax: Codable {
         try container.encode(self.highlights[.characters], forKey: .characters)
         try container.encode(self.highlights[.comments], forKey: .comments)
         
+        try container.encode(self.commentDelimiters.legacyDictionary, forKey: .commentDelimiters)
+        
         try container.encode(self.outlines, forKey: .outlines)
-        try container.encode(self.commentDelimiters, forKey: .commentDelimiters)
         try container.encode(self.completions.map(KeyString.init(keyString:)), forKey: .completions)
         
         try container.encode(self.fileMap.extensions?.map(KeyString.init(keyString:)), forKey: .extensions)
@@ -217,6 +221,39 @@ extension Syntax.Outline: Codable {
         }
         if let description = self.description {
             try container.encode(description, forKey: .description)
+        }
+    }
+}
+
+
+private extension Syntax.Comment {
+    
+    private enum LegacyKey {
+        
+        static let inline = "inlineDelimiter"
+        static let blockBegin = "beginDelimiter"
+        static let blockEnd = "endDelimiter"
+    }
+    
+    
+    var legacyDictionary: [String: String] {
+        
+        var dict: [String: String] = [:]
+        dict[LegacyKey.inline] = self.inline
+        dict[LegacyKey.blockBegin] = self.blocks.first?.begin
+        dict[LegacyKey.blockEnd] = self.blocks.first?.end
+        
+        return dict
+    }
+    
+    init(legacyDictionary dictionary: [String: String]) {
+        
+        self.inline = dictionary[LegacyKey.inline]
+        
+        if let blockBegin = dictionary[LegacyKey.blockBegin],
+           let blockEnd = dictionary[LegacyKey.blockEnd]
+        {
+            self.blocks = [.init(blockBegin, blockEnd)]
         }
     }
 }

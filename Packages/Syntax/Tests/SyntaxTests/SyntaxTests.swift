@@ -35,7 +35,7 @@ struct SyntaxTests {
         
         #expect(syntax.kind == .code)
         #expect(syntax.commentDelimiters.inline == nil)
-        #expect(syntax.commentDelimiters.block == nil)
+        #expect(syntax.commentDelimiters.blocks.isEmpty)
         
         let parser = syntax.parser
         #expect(!parser.hasOutlineRules)

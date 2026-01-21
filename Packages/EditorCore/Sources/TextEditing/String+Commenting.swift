@@ -30,7 +30,7 @@ public import StringUtils
 public protocol CommentDelimiters {
     
     var inline: String? { get }
-    var block: Pair<String>? { get }
+    var blocks: [Pair<String>] { get }
 }
 
 
@@ -82,7 +82,7 @@ public extension String {
             if types.contains(.inline), let delimiter = delimiters.inline {
                 return self.inlineCommentOut(delimiter: delimiter, spacer: spacer, ranges: selectedRanges, at: location)
             }
-            if types.contains(.block), let delimiters = delimiters.block {
+            if types.contains(.block), let delimiters = delimiters.blocks.first {
                 return self.blockCommentOut(delimiters: delimiters, spacer: spacer, ranges: selectedRanges, at: location)
             }
             return []
@@ -109,7 +109,7 @@ public extension String {
         
         let deletionRanges: [NSRange] = {
             
-            if let delimiters = delimiters.block {
+            if let delimiters = delimiters.blocks.first {
                 let targetRanges = selectedRanges.map { $0.isEmpty ? self.lineContentsRange(for: $0) : $0 }.uniqued
                 if let ranges = self.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges) {
                     return ranges
@@ -152,7 +152,7 @@ public extension String {
         
         guard !targetRanges.isEmpty else { return false }
         
-        if let delimiters = delimiters.block,
+        if let delimiters = delimiters.blocks.first,
            let ranges = self.rangesOfBlockDelimiters(delimiters, spacer: "", ranges: targetRanges)
         {
             return partly ? true : (ranges.count == (2 * targetRanges.count))
@@ -172,7 +172,7 @@ public extension String {
 
 extension CommentDelimiters {
     
-    var isEmpty: Bool { self.inline == nil && self.block == nil }
+    var isEmpty: Bool { self.inline == nil && self.blocks.isEmpty }
 }
 
 

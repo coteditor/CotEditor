@@ -100,7 +100,7 @@ actor BundledSyntaxTests {
         
         #expect(syntax.parser.hasHighlightRules)
         #expect(syntax.commentDelimiters.inline == nil)
-        #expect(syntax.commentDelimiters.block == Pair("<!--", "-->"))
+        #expect(syntax.commentDelimiters.blocks == [Pair("<!--", "-->")])
     }
     
     

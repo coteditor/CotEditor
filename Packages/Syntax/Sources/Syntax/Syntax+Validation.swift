@@ -26,6 +26,7 @@
 //
 
 import Foundation
+internal import StringUtils
 
 public extension Syntax {
     
@@ -112,12 +113,16 @@ public extension Syntax {
             }
         }
         
-        // validate block comment delimiter pair
-        let delimiters = self.commentDelimiters
-        let beginDelimiterExists = !(delimiters.blockBegin?.isEmpty ?? true)
-        let endDelimiterExists = !(delimiters.blockEnd?.isEmpty ?? true)
-        if beginDelimiterExists != endDelimiterExists {
-            errors.append(Error(.blockComment, scope: .blockComment, value: delimiters.blockBegin ?? delimiters.blockEnd!))
+        // validate block comment delimiter pairs
+        for delimiter in self.commentDelimiters.blocks {
+            guard !delimiter.begin.isEmpty || !delimiter.end.isEmpty else { continue }
+            
+            if delimiter.begin.isEmpty {
+                errors.append(Error(.blockComment, scope: .blockComment, value: delimiter.end))
+            }
+            if delimiter.end.isEmpty {
+                errors.append(Error(.blockComment, scope: .blockComment, value: delimiter.begin))
+            }
         }
         
         return errors

@@ -85,8 +85,8 @@ extension Syntax {
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
         
-        if let blockCommentDelimiters = self.commentDelimiters.block {
-            nestables[.pair(blockCommentDelimiters)] = .comments
+        for delimiter in self.commentDelimiters.blocks {
+            nestables[.pair(delimiter)] = .comments
         }
         if let inlineCommentDelimiter = self.commentDelimiters.inline {
             nestables[.inline(inlineCommentDelimiter)] = .comments

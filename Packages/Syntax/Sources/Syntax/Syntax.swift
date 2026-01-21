@@ -93,34 +93,16 @@ public struct Syntax: Equatable, Sendable {
     
     public struct Comment: Equatable, Sendable, Codable {
         
-        private enum CodingKeys: String, CodingKey {
-            
-            case inline = "inlineDelimiter"
-            case blockBegin = "beginDelimiter"
-            case blockEnd = "endDelimiter"
-        }
-        
-        
         public var inline: String?
-        public var blockBegin: String?
-        public var blockEnd: String?
+        public var blocks: [Pair<String>] = []
         
-        public var block: Pair<String>? {
-            
-            if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
-        }
-        
-        public var isEmpty: Bool {
-            
-            self.block == nil && self.inline == nil
-        }
+        public var isEmpty: Bool { self.blocks.isEmpty && self.inline == nil }
         
         
-        public init(inline: String? = nil, blockBegin: String? = nil, blockEnd: String? = nil) {
+        public init(inline: String? = nil, blocks: [Pair<String>] = []) {
             
             self.inline = inline
-            self.blockBegin = blockBegin
-            self.blockEnd = blockEnd
+            self.blocks = blocks
         }
     }
     
@@ -209,6 +191,8 @@ public struct Syntax: Equatable, Sendable {
         }
         syntax.outlines.removeAll(where: \.isEmpty)
         syntax.outlines.caseInsensitiveSort(\.pattern)
+        syntax.commentDelimiters.blocks.removeAll(where: \.begin.isEmpty)
+        syntax.commentDelimiters.blocks.removeAll(where: \.end.isEmpty)
         syntax.completions.removeAll(where: \.isEmpty)
         syntax.completions.caseInsensitiveSort(\.self)
         syntax.fileMap.extensions?.removeAll(where: \.isEmpty)

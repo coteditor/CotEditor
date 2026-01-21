@@ -25,6 +25,7 @@
 
 import Foundation
 import Syntax
+import StringUtils
 
 @Observable final class SyntaxObject {
     
@@ -38,7 +39,6 @@ import Syntax
     typealias Highlight = Item<Syntax.Highlight>
     typealias Outline = Item<Syntax.Outline>
     typealias KeyString = Item<String>
-    typealias Comment = Syntax.Comment
     typealias Metadata = Syntax.Metadata
     
     
@@ -70,6 +70,40 @@ import Syntax
                 case .characters: self.characters.map(\.value)
                 case .comments: self.comments.map(\.value)
             }
+        }
+    }
+    
+    
+    struct Comment {
+        
+        typealias Value = Syntax.Comment
+        
+        
+        var inline: String?
+        var blockBegin: String?
+        var blockEnd: String?
+        
+        
+        init(value: Value? = nil) {
+            
+            self.inline = value?.inline
+            self.blockBegin = value?.blocks.first?.begin
+            self.blockEnd = value?.blocks.first?.end
+        }
+        
+        
+        var value: Value {
+            
+            let blocks: [Pair<String>] = if let begin = self.blockBegin, let end = self.blockEnd {
+                [Pair(begin, end)]
+            } else {
+                []
+            }
+            
+            return Value(
+                inline: self.inline,
+                blocks: blocks
+            )
         }
     }
     
@@ -123,7 +157,7 @@ extension SyntaxObject {
               },
               
               outlines: self.outlines.map(\.value),
-              commentDelimiters: self.commentDelimiters,
+              commentDelimiters: self.commentDelimiters.value,
               completions: self.completions.map(\.value),
               
               metadata: self.metadata)
@@ -140,7 +174,7 @@ extension SyntaxObject {
         self.highlights.update(with: value.highlights)
         
         self.outlines = value.outlines.map { .init(value: $0) }
-        self.commentDelimiters = value.commentDelimiters
+        self.commentDelimiters = Comment(value: value.commentDelimiters)
         self.completions = value.completions.map { .init(value: $0) }
         
         self.extensions = value.fileMap.extensions?.map { .init(value: $0) } ?? []
