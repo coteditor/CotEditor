@@ -242,7 +242,10 @@ struct SyntaxEditView: View {
             return
         }
         
-        self.errors = self.syntax.value.validate()
+        let syntax = self.syntax.value.sanitized
+        
+        // syntax validation
+        self.errors = syntax.validate()
         if !self.errors.isEmpty {
             self.pane = .validation
             NSSound.beep()
@@ -250,7 +253,7 @@ struct SyntaxEditView: View {
         }
         
         do {
-            try self.saveAction(self.syntax.value, self.name)
+            try self.saveAction(syntax, self.name)
         } catch {
             self.error = error
             return

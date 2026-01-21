@@ -189,8 +189,6 @@ enum SyntaxName {
             try self.renameSetting(name: oldName, to: name)
         }
         
-        let setting = setting.sanitized
-        
         try self.write(setting: setting, name: name)
         
         // invalidate current cache
