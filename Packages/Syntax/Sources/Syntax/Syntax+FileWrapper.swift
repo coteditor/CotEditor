@@ -129,11 +129,11 @@ extension Syntax {
             let editData = try encoder.encode(edit)
             fileWrapper.addRegularFile(withContents: editData, preferredFilename: Filename.edit)
             
-            if !self.highlights.isEmpty || !self.outlines.isEmpty {
+            if !self.highlights.flatMap(\.value).isEmpty || !self.outlines.isEmpty {
                 let regexWrapper = FileWrapper(directoryWithFileWrappers: [:])
                 regexWrapper.preferredFilename = Filename.regex
                 
-                if !self.highlights.isEmpty {
+                if !self.highlights.flatMap(\.value).isEmpty {
                     let data = try encoder.encode(self.highlights)
                     regexWrapper.addRegularFile(withContents: data, preferredFilename: Filename.highlights)
                 }
