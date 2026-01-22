@@ -130,6 +130,9 @@ struct SyntaxHighlightEditView: View {
                     .monospacedDigit()
                     .foregroundStyle(.secondary)
                     .controlSize(.small)
+            }
+            
+            HStack {
                 Spacer()
                 HelpLink(anchor: "syntax_highlight_settings")
             }

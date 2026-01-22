@@ -42,9 +42,6 @@ struct SyntaxCompletionEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
-                .foregroundStyle(.secondary)
-            
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header"), value: \.value) { wrappedItem in
@@ -68,6 +65,12 @@ struct SyntaxCompletionEditView: View {
                     .monospacedDigit()
                     .foregroundStyle(.secondary)
                     .controlSize(.small)
+            }
+            
+            Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
+                .foregroundStyle(.secondary)
+            
+            HStack {
                 Spacer()
                 HelpLink(anchor: "syntax_highlight_settings")
             }

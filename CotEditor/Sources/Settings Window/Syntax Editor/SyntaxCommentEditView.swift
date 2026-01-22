@@ -37,7 +37,7 @@ struct SyntaxCommentEditView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading) {
             HStack(alignment: .firstTextBaseline, spacing: 20) {
                 VStack(alignment: .leading) {
                     Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
@@ -54,6 +54,7 @@ struct SyntaxCommentEditView: View {
                 }.accessibilityElement(children: .contain)
             }
             .frame(maxHeight: 180)
+            .padding(.bottom, 10)
             
             VStack(alignment: .leading) {
                 Text("The first delimiter is used for commenting out.", tableName: "SyntaxEditor")

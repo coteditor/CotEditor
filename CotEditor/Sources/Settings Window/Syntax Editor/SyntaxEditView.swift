@@ -48,6 +48,11 @@ struct SyntaxEditView: View {
     
     enum Pane {
         
+        case fileMapping
+        case commentDelimiters
+        case outline
+        case completion
+        
         case keywords
         case commands
         case types
@@ -59,17 +64,12 @@ struct SyntaxEditView: View {
         case characters
         case comments
         
-        case commentDelimiters
-        case outline
-        case completion
-        case fileMapping
-        
         case syntaxInfo
         case validation
         
         
+        static let features: [Self] = [.fileMapping, .commentDelimiters, .outline, .completion]
         static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
-        static let others: [Self] = [.commentDelimiters, .outline, .completion, .fileMapping]
         static let syntaxData: [Self] = [.syntaxInfo, .validation]
     }
     
@@ -87,7 +87,7 @@ struct SyntaxEditView: View {
     @State private var name: String = ""
     @State private var message: String?
     
-    @State private var pane: Pane = .keywords
+    @State private var pane: Pane = .fileMapping
     @State private var errors: [Syntax.Error] = []
     @State private var error: (any Error)?
     
@@ -113,13 +113,13 @@ struct SyntaxEditView: View {
         
         NavigationSplitView(columnVisibility: .constant(.all)) {
             List(selection: $pane) {
-                Section(String(localized: "Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
-                    ForEach(Pane.highlights, id: \.self) { pane in
+                Section(String(localized: "Features", table: "SyntaxEditor", comment: "section header in sidebar")) {
+                    ForEach(Pane.features, id: \.self) { pane in
                         Text(pane.label)
                     }
                 }
-                Section(String(localized: "Features", table: "SyntaxEditor", comment: "section header in sidebar")) {
-                    ForEach(Pane.others, id: \.self) { pane in
+                Section(String(localized: "Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
+                    ForEach(Pane.highlights, id: \.self) { pane in
                         Text(pane.label)
                     }
                 }
@@ -193,6 +193,15 @@ struct SyntaxEditView: View {
     @ViewBuilder private var detailView: some View {
         
         switch self.pane {
+            case .fileMapping:
+                SyntaxFileMappingEditView(extensions: $syntax.extensions, filenames: $syntax.filenames, interpreters: $syntax.interpreters)
+            case .commentDelimiters:
+                SyntaxCommentEditView(inlineComments: $syntax.inlineComments, blockComments: $syntax.blockComments)
+            case .outline:
+                SyntaxOutlineEditView(items: $syntax.outlines)
+            case .completion:
+                SyntaxCompletionEditView(items: $syntax.completions)
+                
             case .keywords:
                 SyntaxHighlightEditView(items: $syntax.highlights.keywords)
             case .commands:
@@ -213,14 +222,7 @@ struct SyntaxEditView: View {
                 SyntaxHighlightEditView(items: $syntax.highlights.characters)
             case .comments:
                 SyntaxHighlightEditView(items: $syntax.highlights.comments)
-            case .commentDelimiters:
-                SyntaxCommentEditView(inlineComments: $syntax.inlineComments, blockComments: $syntax.blockComments)
-            case .outline:
-                SyntaxOutlineEditView(items: $syntax.outlines)
-            case .completion:
-                SyntaxCompletionEditView(items: $syntax.completions)
-            case .fileMapping:
-                SyntaxFileMappingEditView(extensions: $syntax.extensions, filenames: $syntax.filenames, interpreters: $syntax.interpreters)
+                
             case .syntaxInfo:
                 SyntaxMetadataEditView(metadata: $syntax.metadata)
             case .validation:
@@ -314,6 +316,10 @@ extension SyntaxEditView.Pane {
             case .comments:
                 SyntaxType.comments.label
                 
+            case .fileMapping:
+                String(localized: "File Mapping",
+                       table: "SyntaxEditor",
+                       comment: "menu item in sidebar")
             case .commentDelimiters:
                 String(localized: "Syntax.key.commentDelimiters.label",
                        defaultValue: "Commenting",
@@ -330,10 +336,6 @@ extension SyntaxEditView.Pane {
                        defaultValue: "Completion",
                        table: "SyntaxEditor",
                        comment: "syntax definition type")
-            case .fileMapping:
-                String(localized: "File Mapping",
-                       table: "SyntaxEditor",
-                       comment: "menu item in sidebar")
                 
             case .syntaxInfo:
                 String(localized: "Information",
