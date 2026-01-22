@@ -1,0 +1,23 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "mojo",
+      "🔥"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "mojo"
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "Based on the official Mojo programming manual on 2023-05-03",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2026-01-22",
+    "license" : "Same as CotEditor",
+    "version" : "2.0.0"
+  }
+}

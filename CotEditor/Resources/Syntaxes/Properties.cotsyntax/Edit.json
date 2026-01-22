@@ -1,0 +1,19 @@
+{
+  "comment" : {
+    "blocks" : [
+
+    ],
+    "inlines" : [
+      {
+        "begin" : "#"
+      },
+      {
+        "begin" : "!",
+        "leadingOnly": true
+      }
+    ]
+  },
+  "completions" : [
+
+  ]
+}

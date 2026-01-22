@@ -1,0 +1,19 @@
+[
+  {
+    "beginString" : "^([\\t ]*)fn[\\t ]+(\\w+)",
+    "description" : "function",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([\\t ]*)impl[\\t ]+(\\w+)",
+    "bold" : true,
+    "description" : "impl",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([\\t ]*)struct[\\t ]+(\\w+)",
+    "description" : "struct",
+    "italic" : true,
+    "keyString" : "$1struct $2"
+  }
+]

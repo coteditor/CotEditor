@@ -41,8 +41,8 @@ struct Command: ParsableCommand {
     func run() throws {
         
         let urls = try FileManager.default.contentsOfDirectory(at: self.input, includingPropertiesForKeys: nil)
-            .filter { $0.pathExtension == "yml" }
-        let syntaxMap = try Syntax.FileMap.loadMaps(at: urls)
+            .filter { $0.pathExtension == "cotsyntax" }
+        let syntaxMap = try Syntax.FileMap.load(at: urls)
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]

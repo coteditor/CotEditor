@@ -31,7 +31,6 @@ struct SyntaxCommentEditView: View {
     
     @Binding var inlineComments: [SyntaxObject.InlineComment]
     @Binding var blockComments: [SyntaxObject.BlockComment]
-    @Binding var highlights: [SyntaxObject.Highlight]
     
     
     // MARK: View
@@ -40,21 +39,35 @@ struct SyntaxCommentEditView: View {
         
         VStack(alignment: .leading) {
             HStack(alignment: .firstTextBaseline, spacing: 20) {
-                InlineCommentsEditView(items: $inlineComments)
-                BlockCommentsEditView(items: $blockComments)
+                VStack(alignment: .leading) {
+                    Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
+                        .accessibilityAddTraits(.isHeader)
+                    
+                    InlineCommentsEditView(items: $inlineComments)
+                }.accessibilityElement(children: .contain)
+                
+                VStack(alignment: .leading) {
+                    Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
+                        .accessibilityAddTraits(.isHeader)
+                    
+                    BlockCommentsEditView(items: $blockComments)
+                }.accessibilityElement(children: .contain)
             }
             .frame(maxHeight: 180)
+            .padding(.bottom, 10)
             
             VStack(alignment: .leading) {
                 Text("The first delimiter is used for commenting out.", tableName: "SyntaxEditor")
                 Text("The comment delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
             }
             .foregroundColor(.secondary)
-            .padding(.top, 4)
-            .padding(.bottom)
             
-            Text("Highlighting:", tableName: "SyntaxEditor", comment: "label")
-            SyntaxHighlightEditView(items: $highlights, helpAnchor: "syntax_comment_settings")
+            Spacer()
+            
+            HStack {
+                Spacer()
+                HelpLink(anchor: "syntax_comment_settings")
+            }
         }
     }
 }
@@ -72,26 +85,21 @@ private struct InlineCommentsEditView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
-                .accessibilityAddTraits(.isHeader)
-            
-            Table($items, selection: $selection) {
-                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.value.begin, label: EmptyView.init)
-                }
-                TableColumn(String(localized: "Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { item in
-                    Toggle(isOn: item.value.leadingOnly, label: EmptyView.init)
-                }
-                .alignment(.center)
+        Table($items, selection: $selection) {
+            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
+                TextField(text: item.value.begin, label: EmptyView.init)
             }
-            .tableStyle(.bordered)
-            .border(Color(nsColor: .gridColor))
-            
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
+            TableColumn(String(localized: "Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { item in
+                Toggle(isOn: item.value.leadingOnly, label: EmptyView.init)
             }
-        }.accessibilityElement(children: .contain)
+            .alignment(.center)
+        }
+        .tableStyle(.bordered)
+        .border(Color(nsColor: .gridColor))
+        
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
+        }
     }
 }
 
@@ -108,25 +116,20 @@ private struct BlockCommentsEditView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
-                .accessibilityAddTraits(.isHeader)
-            
-            Table($items, selection: $selection) {
-                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.value.begin, label: EmptyView.init)
-                }
-                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.value.end, label: EmptyView.init)
-                }
+        Table($items, selection: $selection) {
+            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
+                TextField(text: item.value.begin, label: EmptyView.init)
             }
-            .tableStyle(.bordered)
-            .border(Color(nsColor: .gridColor))
-            
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
+            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { item in
+                TextField(text: item.value.end, label: EmptyView.init)
             }
-        }.accessibilityElement(children: .contain)
+        }
+        .tableStyle(.bordered)
+        .border(Color(nsColor: .gridColor))
+        
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
+        }
     }
 }
 
@@ -136,8 +139,7 @@ private struct BlockCommentsEditView: View {
 #Preview {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: Pair("/*", "*/"))]
-    @Previewable @State var highlights: [SyntaxObject.Highlight] = []
     
-    SyntaxCommentEditView(inlineComments: $inlineComments, blockComments: $blockComments, highlights: $highlights)
+    SyntaxCommentEditView(inlineComments: $inlineComments, blockComments: $blockComments)
         .padding()
 }

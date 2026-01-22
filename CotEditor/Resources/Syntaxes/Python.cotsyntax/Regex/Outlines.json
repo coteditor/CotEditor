@@ -1,0 +1,13 @@
+[
+  {
+    "beginString" : "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$",
+    "description" : "function",
+    "keyString" : "$1$2"
+  }
+]

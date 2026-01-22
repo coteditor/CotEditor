@@ -1,0 +1,26 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "lisp",
+      "lsp",
+      "el",
+      "clj",
+      "edn"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "sbcl"
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "general Lisp syntax for common Lisp and other Lisp dialects",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2026-01-22",
+    "license" : "Same as CotEditor",
+    "version" : "2.0.0"
+  }
+}

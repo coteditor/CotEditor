@@ -1,0 +1,28 @@
+[
+  {
+    "beginString" : "[\\\\¥]chapter\\*?\\{(.*)\\}",
+    "description" : "chapter",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "[\\\\¥]part\\*?\\{(.*)\\}",
+    "bold" : true,
+    "description" : "part",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "[\\\\¥]section\\*?\\{(.*)\\}",
+    "description" : "section",
+    "keyString" : "    $1"
+  },
+  {
+    "beginString" : "[\\\\¥]subsection\\*?\\{(.*)\\}",
+    "description" : "subsection",
+    "keyString" : "        $1"
+  },
+  {
+    "beginString" : "[\\\\¥]subsubsection\\*?\\{(.*)\\}",
+    "description" : "subsubsection",
+    "keyString" : "            $1"
+  }
+]

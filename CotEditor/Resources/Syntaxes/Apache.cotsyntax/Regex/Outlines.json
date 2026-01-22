@@ -1,0 +1,22 @@
+[
+  {
+    "beginString" : "^([\\t ]*)<Directory(?:Match)?[\\t ]+\"?(.*?)\"?>",
+    "description" : "directory",
+    "keyString" : "$1Directory:  $2"
+  },
+  {
+    "beginString" : "^([\\t ]*)<Files(?:Match)?[\\t ]+\"?(.*?)\"?>",
+    "description" : "files",
+    "keyString" : "$1Files:  $2"
+  },
+  {
+    "beginString" : "^([\\t ]*)<Location(?:Match)[\\t ]+\"?(.*?)\"?>",
+    "description" : "location",
+    "keyString" : "$1Location:  $2"
+  },
+  {
+    "beginString" : "^([\\t ]*)<VirtualHost[\\t ]+\"?(.*?)\"?>",
+    "description" : "virtualHost",
+    "keyString" : "$1VirtualHost:  $2"
+  }
+]

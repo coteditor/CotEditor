@@ -1,0 +1,254 @@
+{
+  "attributes" : [
+    {
+      "beginString" : "\\s+alt(?==[^\\[\\]]*\\])",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\s+color(?==[^\\[\\]]*\\])",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\s+height(?==[^\\[\\]]*\\])",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\s+size(?==[^\\[\\]]*\\])",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\s+title(?==[^\\[\\]]*\\])",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\s+width(?==[^\\[\\]]*\\])",
+      "regularExpression" : true
+    }
+  ],
+  "characters" : [
+
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "[*]"
+    },
+    {
+      "beginString" : "[\/b]"
+    },
+    {
+      "beginString" : "[\/center]"
+    },
+    {
+      "beginString" : "[\/code]"
+    },
+    {
+      "beginString" : "[\/color]"
+    },
+    {
+      "beginString" : "[\/email]"
+    },
+    {
+      "beginString" : "[\/i]"
+    },
+    {
+      "beginString" : "[\/img]"
+    },
+    {
+      "beginString" : "[\/left]"
+    },
+    {
+      "beginString" : "[\/li]"
+    },
+    {
+      "beginString" : "[\/list]"
+    },
+    {
+      "beginString" : "[\/ol]"
+    },
+    {
+      "beginString" : "[\/pre]"
+    },
+    {
+      "beginString" : "[\/quote]"
+    },
+    {
+      "beginString" : "[\/right]"
+    },
+    {
+      "beginString" : "[\/s]"
+    },
+    {
+      "beginString" : "[\/size]"
+    },
+    {
+      "beginString" : "[\/spoiler]"
+    },
+    {
+      "beginString" : "[\/style]"
+    },
+    {
+      "beginString" : "[\/table]"
+    },
+    {
+      "beginString" : "[\/td]"
+    },
+    {
+      "beginString" : "[\/th]"
+    },
+    {
+      "beginString" : "[\/tr]"
+    },
+    {
+      "beginString" : "[\/u]"
+    },
+    {
+      "beginString" : "[\/ul]"
+    },
+    {
+      "beginString" : "[\/url]"
+    },
+    {
+      "beginString" : "[\/youtube]"
+    },
+    {
+      "beginString" : "[b]"
+    },
+    {
+      "beginString" : "[center]"
+    },
+    {
+      "beginString" : "[code]"
+    },
+    {
+      "beginString" : "[email]"
+    },
+    {
+      "beginString" : "[i]"
+    },
+    {
+      "beginString" : "[img]"
+    },
+    {
+      "beginString" : "[left]"
+    },
+    {
+      "beginString" : "[li]"
+    },
+    {
+      "beginString" : "[line]"
+    },
+    {
+      "beginString" : "[list]"
+    },
+    {
+      "beginString" : "[ol]"
+    },
+    {
+      "beginString" : "[pre]"
+    },
+    {
+      "beginString" : "[quote]"
+    },
+    {
+      "beginString" : "[right]"
+    },
+    {
+      "beginString" : "[s]"
+    },
+    {
+      "beginString" : "[spoiler]"
+    },
+    {
+      "beginString" : "[table]"
+    },
+    {
+      "beginString" : "[td]"
+    },
+    {
+      "beginString" : "[th]"
+    },
+    {
+      "beginString" : "[tr]"
+    },
+    {
+      "beginString" : "[u]"
+    },
+    {
+      "beginString" : "[ul]"
+    },
+    {
+      "beginString" : "[url]"
+    },
+    {
+      "beginString" : "[youtube]"
+    },
+    {
+      "beginString" : "\\[code=.+?\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[color=.+?\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[img[=[:space:]].+?\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[list(=.+?)?\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[quote=\".+?\"\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[size=[0-9]+\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[spoiler=.+?\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[style\\s+color=.+?\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[style\\s+size=.+?\\]",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\[url=.+?\\]",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    },
+    {
+      "beginString" : "(?<=[a-z]=)[^[:space:]\\]]+(?=[^\\[\\]]*\\])",
+      "regularExpression" : true
+    }
+  ],
+  "types" : [
+
+  ],
+  "values" : [
+
+  ],
+  "variables" : [
+
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "conf"
+    ],
+    "filenames" : [
+      ".htaccess"
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "general",
+  "metadata" : {
+    "license" : "Same as CotEditor"
+  }
+}

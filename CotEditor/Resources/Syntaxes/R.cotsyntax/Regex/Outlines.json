@@ -1,0 +1,13 @@
+[
+  {
+    "beginString" : "^#+[\\t ]*(.*?)[\\t ]*(-|=|#){4,}",
+    "bold" : true,
+    "description" : "section",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function",
+    "description" : "function",
+    "keyString" : "function: $1"
+  }
+]

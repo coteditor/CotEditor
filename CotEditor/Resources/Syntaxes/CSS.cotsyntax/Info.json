@@ -1,0 +1,22 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "css"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "CotEditor Project",
+    "description" : "Support CSS3 partly.",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2026-01-22",
+    "license" : "Same as CotEditor",
+    "version" : "3.0.0"
+  }
+}

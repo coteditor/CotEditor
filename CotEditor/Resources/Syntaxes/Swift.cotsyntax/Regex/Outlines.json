@@ -1,0 +1,81 @@
+[
+  {
+    "beginString" : "\/\/[ \\t]*(TODO:|FIXME:)[ \\t](.+)",
+    "bold" : true,
+    "description" : "TODO\/FIXME",
+    "keyString" : "$1 $2"
+  },
+  {
+    "beginString" : "\/\/[ \\t]*MARK:[ \\t]*(?:-[\\t ]+)?(.*)",
+    "bold" : true,
+    "description" : "MARK",
+    "keyString" : "$1"
+  },
+  {
+    "beginString" : "\/\/[ \\t]*MARK:[ \\t]*-",
+    "description" : "separator",
+    "keyString" : "-"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*((?:class|static)[ \\t]+)?func[ \\t]*(\\w*)(?:<[^>]+>)?\\((.*)\\)",
+    "description" : "function",
+    "keyString" : "$1$2func $3($4)"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*(class )?subscript[ \\t]*\\((.*)\\)",
+    "description" : "subscript",
+    "keyString" : "$1$2subscript($3)"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*(class )?var[ \\t]*(\\w*)(?=[ \\t]*:[ \\t]*\\w*\\s*\\{)",
+    "description" : "var",
+    "keyString" : "$1$2var $3"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*actor[ \\t]+(\\w+)(?=[\\s:][^\\w])",
+    "bold" : true,
+    "description" : "actor",
+    "keyString" : "$1actor $2"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*class[ \\t]+(\\w+)(?=[\\s:][^\\w])",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1class $2"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*deinit\\b",
+    "description" : "deinitializer",
+    "keyString" : "$1deinit"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*enum[ \\t]+(\\w+)",
+    "bold" : true,
+    "description" : "enum",
+    "keyString" : "$1enum $2"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*extension[ \\t]+(\\w+)",
+    "bold" : true,
+    "description" : "extension",
+    "italic" : true,
+    "keyString" : "$"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*init(\\??)[\\t ]*\\((.*)\\)",
+    "description" : "initializer",
+    "keyString" : "$1init$2($3)"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*protocol[ \\t]+(\\w+)",
+    "description" : "protocol",
+    "italic" : true,
+    "keyString" : "$1protocol $2"
+  },
+  {
+    "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*struct[ \\t]+(\\w+)",
+    "bold" : true,
+    "description" : "struct",
+    "keyString" : "$1struct $2"
+  }
+]

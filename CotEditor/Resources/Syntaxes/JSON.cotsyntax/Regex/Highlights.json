@@ -1,0 +1,50 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+    {
+      "beginString" : "\"[^\\r\\n\"]++\"\\s*+(?=:)",
+      "description" : "Key",
+      "regularExpression" : true
+    }
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+
+  ],
+  "numbers" : [
+    {
+      "beginString" : "(?<=[:,\\[])[\\r\\n\\t ]*-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b",
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    }
+  ],
+  "types" : [
+
+  ],
+  "values" : [
+    {
+      "beginString" : "false"
+    },
+    {
+      "beginString" : "null"
+    },
+    {
+      "beginString" : "true"
+    }
+  ],
+  "variables" : [
+
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comment" : {
+    "blocks" : [
+
+    ],
+    "inlines" : [
+      {
+        "begin" : "%"
+      }
+    ]
+  },
+  "completions" : [
+    "begin",
+    "chapter",
+    "end",
+    "equation",
+    "section",
+    "subsection",
+    "subsubsection"
+  ]
+}

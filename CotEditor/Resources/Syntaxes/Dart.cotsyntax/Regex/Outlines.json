@@ -1,0 +1,13 @@
+[
+  {
+    "beginString" : "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{",
+    "description" : "function",
+    "keyString" : "$1$2 $3"
+  },
+  {
+    "beginString" : "^([\\t ]*)class (.+)\\s\\{",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1class $2"
+  }
+]

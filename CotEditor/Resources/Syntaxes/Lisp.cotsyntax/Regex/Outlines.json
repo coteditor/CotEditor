@@ -1,0 +1,12 @@
+[
+  {
+    "beginString" : "([\\t ]*)\\(defmacro\\S+(\\S+)",
+    "description" : "macro",
+    "keyString" : "$1macro: $2"
+  },
+  {
+    "beginString" : "([\\t ]*)\\(defun\\S+(\\S+)",
+    "description" : "function",
+    "keyString" : "$1$2"
+  }
+]

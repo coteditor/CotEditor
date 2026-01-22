@@ -59,14 +59,15 @@ struct SyntaxFileMappingEditView: View {
                 
                 VStack {
                     Text("The interpreters are used to determine the syntax from the #! header in the document.", tableName: "SyntaxEditor", comment: "description")
-                        .controlSize(.small)
+                        .foregroundStyle(.secondary)
                         .padding(.top, 20)
                     Spacer()
-                    HStack {
-                        Spacer()
-                        HelpLink(anchor: "syntax_file_mapping")
-                    }
                 }
+            }
+            
+            HStack {
+                Spacer()
+                HelpLink(anchor: "syntax_file_mapping")
             }
         }
     }

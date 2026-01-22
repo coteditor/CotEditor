@@ -1,0 +1,15 @@
+[
+  {
+    "beginString" : "^([\\t ]*)(extended)[\\t ]+(\\w+)",
+    "italic" : true,
+    "keyString" : "$1$2 $3"
+  },
+  {
+    "beginString" : "^([\\t ]*)(message|enum|service)[\\t ]+(\\w+)",
+    "keyString" : "$1$2 $3"
+  },
+  {
+    "beginString" : "^([\\t ]*)(oneof)[\\t ]+(\\w+)",
+    "keyString" : "$1$2 $3"
+  }
+]

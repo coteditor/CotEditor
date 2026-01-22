@@ -1,0 +1,249 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+    {
+      "beginString" : "'",
+      "endString" : "'"
+    }
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "#"
+    },
+    {
+      "beginString" : ":"
+    },
+    {
+      "beginString" : "<%"
+    },
+    {
+      "beginString" : "<-"
+    },
+    {
+      "beginString" : "<:"
+    },
+    {
+      "beginString" : "="
+    },
+    {
+      "beginString" : "=>"
+    },
+    {
+      "beginString" : ">:"
+    },
+    {
+      "beginString" : "@"
+    },
+    {
+      "beginString" : "_"
+    },
+    {
+      "beginString" : "abstract"
+    },
+    {
+      "beginString" : "case"
+    },
+    {
+      "beginString" : "catch"
+    },
+    {
+      "beginString" : "class"
+    },
+    {
+      "beginString" : "def"
+    },
+    {
+      "beginString" : "do"
+    },
+    {
+      "beginString" : "else"
+    },
+    {
+      "beginString" : "eq"
+    },
+    {
+      "beginString" : "extends"
+    },
+    {
+      "beginString" : "final"
+    },
+    {
+      "beginString" : "finally"
+    },
+    {
+      "beginString" : "for"
+    },
+    {
+      "beginString" : "forSome"
+    },
+    {
+      "beginString" : "if"
+    },
+    {
+      "beginString" : "implicit"
+    },
+    {
+      "beginString" : "import"
+    },
+    {
+      "beginString" : "lazy"
+    },
+    {
+      "beginString" : "match"
+    },
+    {
+      "beginString" : "ne"
+    },
+    {
+      "beginString" : "new"
+    },
+    {
+      "beginString" : "object"
+    },
+    {
+      "beginString" : "override"
+    },
+    {
+      "beginString" : "package"
+    },
+    {
+      "beginString" : "private"
+    },
+    {
+      "beginString" : "protected"
+    },
+    {
+      "beginString" : "return"
+    },
+    {
+      "beginString" : "sealed"
+    },
+    {
+      "beginString" : "super"
+    },
+    {
+      "beginString" : "this"
+    },
+    {
+      "beginString" : "throw"
+    },
+    {
+      "beginString" : "trait"
+    },
+    {
+      "beginString" : "try"
+    },
+    {
+      "beginString" : "type"
+    },
+    {
+      "beginString" : "val"
+    },
+    {
+      "beginString" : "var"
+    },
+    {
+      "beginString" : "while"
+    },
+    {
+      "beginString" : "with"
+    },
+    {
+      "beginString" : "yield"
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[fd]?",
+      "description" : "float",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b0x[0-9a-f]+l?\\b",
+      "description" : "hexadecimal",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b\\d+l?\\b",
+      "description" : "integer",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    },
+    {
+      "beginString" : "\"\"\"",
+      "endString" : "\"\"\""
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "Array"
+    },
+    {
+      "beginString" : "Boolean"
+    },
+    {
+      "beginString" : "Byte"
+    },
+    {
+      "beginString" : "Char"
+    },
+    {
+      "beginString" : "Double"
+    },
+    {
+      "beginString" : "Float"
+    },
+    {
+      "beginString" : "Int"
+    },
+    {
+      "beginString" : "Long"
+    },
+    {
+      "beginString" : "Short"
+    },
+    {
+      "beginString" : "String"
+    },
+    {
+      "beginString" : "Unit"
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "false"
+    },
+    {
+      "beginString" : "null"
+    },
+    {
+      "beginString" : "true"
+    }
+  ],
+  "variables" : [
+    {
+      "beginString" : "super(?=\\.)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "this(?=\\.)",
+      "regularExpression" : true
+    }
+  ]
+}

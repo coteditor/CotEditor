@@ -81,7 +81,6 @@ struct SyntaxOutlineEditView: View {
                     .monospacedDigit()
                     .foregroundStyle(.secondary)
                     .controlSize(.small)
-                Spacer()
             }
             .padding(.bottom, 8)
             

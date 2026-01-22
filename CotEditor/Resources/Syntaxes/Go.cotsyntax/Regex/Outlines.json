@@ -1,0 +1,19 @@
+[
+  {
+    "beginString" : "([\\t ]*)type[\\t ]+(\\w+)[\\t ]+interface",
+    "description" : "interface",
+    "italic" : true,
+    "keyString" : "$1interface $2"
+  },
+  {
+    "beginString" : "([\\t ]*)type[\\t ]+(\\w+)[\\t ]+struct",
+    "bold" : true,
+    "description" : "struct",
+    "keyString" : "$1struct $2"
+  },
+  {
+    "beginString" : "[\\t ]*func +\\w+\\(.*?\\)",
+    "description" : "function",
+    "keyString" : ""
+  }
+]

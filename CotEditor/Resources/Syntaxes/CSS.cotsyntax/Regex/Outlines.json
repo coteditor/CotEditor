@@ -1,0 +1,7 @@
+[
+  {
+    "beginString" : "\\@(media|page)\\b(.+?)(?=($|\\{))",
+    "description" : "at-rule block",
+    "keyString" : "@$1 $2"
+  }
+]

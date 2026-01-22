@@ -1,0 +1,391 @@
+{
+  "attributes" : [
+    {
+      "beginString" : "abstract"
+    },
+    {
+      "beginString" : "add"
+    },
+    {
+      "beginString" : "alias"
+    },
+    {
+      "beginString" : "as"
+    },
+    {
+      "beginString" : "async"
+    },
+    {
+      "beginString" : "await"
+    },
+    {
+      "beginString" : "const"
+    },
+    {
+      "beginString" : "event"
+    },
+    {
+      "beginString" : "explicit"
+    },
+    {
+      "beginString" : "extern"
+    },
+    {
+      "beginString" : "get"
+    },
+    {
+      "beginString" : "global"
+    },
+    {
+      "beginString" : "implicit"
+    },
+    {
+      "beginString" : "internal"
+    },
+    {
+      "beginString" : "is"
+    },
+    {
+      "beginString" : "new"
+    },
+    {
+      "beginString" : "operator"
+    },
+    {
+      "beginString" : "out"
+    },
+    {
+      "beginString" : "override"
+    },
+    {
+      "beginString" : "params"
+    },
+    {
+      "beginString" : "partial"
+    },
+    {
+      "beginString" : "private"
+    },
+    {
+      "beginString" : "protected"
+    },
+    {
+      "beginString" : "public"
+    },
+    {
+      "beginString" : "readonly"
+    },
+    {
+      "beginString" : "ref"
+    },
+    {
+      "beginString" : "remove"
+    },
+    {
+      "beginString" : "sealed"
+    },
+    {
+      "beginString" : "set"
+    },
+    {
+      "beginString" : "sizeof"
+    },
+    {
+      "beginString" : "static"
+    },
+    {
+      "beginString" : "typeof"
+    },
+    {
+      "beginString" : "unsafe"
+    },
+    {
+      "beginString" : "value"
+    },
+    {
+      "beginString" : "virtual"
+    },
+    {
+      "beginString" : "volatile"
+    }
+  ],
+  "characters" : [
+    {
+      "beginString" : "'",
+      "endString" : "'"
+    }
+  ],
+  "commands" : [
+    {
+      "beginString" : "ascending"
+    },
+    {
+      "beginString" : "by"
+    },
+    {
+      "beginString" : "descending"
+    },
+    {
+      "beginString" : "equals"
+    },
+    {
+      "beginString" : "from"
+    },
+    {
+      "beginString" : "group"
+    },
+    {
+      "beginString" : "into"
+    },
+    {
+      "beginString" : "join"
+    },
+    {
+      "beginString" : "let"
+    },
+    {
+      "beginString" : "on"
+    },
+    {
+      "beginString" : "orderby"
+    },
+    {
+      "beginString" : "select"
+    },
+    {
+      "beginString" : "where"
+    }
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "#define"
+    },
+    {
+      "beginString" : "#elif"
+    },
+    {
+      "beginString" : "#else"
+    },
+    {
+      "beginString" : "#endif"
+    },
+    {
+      "beginString" : "#endregion"
+    },
+    {
+      "beginString" : "#error"
+    },
+    {
+      "beginString" : "#if"
+    },
+    {
+      "beginString" : "#line"
+    },
+    {
+      "beginString" : "#pragma"
+    },
+    {
+      "beginString" : "#region"
+    },
+    {
+      "beginString" : "#undef"
+    },
+    {
+      "beginString" : "#warning"
+    },
+    {
+      "beginString" : "break"
+    },
+    {
+      "beginString" : "case"
+    },
+    {
+      "beginString" : "catch"
+    },
+    {
+      "beginString" : "checked"
+    },
+    {
+      "beginString" : "continue"
+    },
+    {
+      "beginString" : "default"
+    },
+    {
+      "beginString" : "do"
+    },
+    {
+      "beginString" : "else"
+    },
+    {
+      "beginString" : "finally"
+    },
+    {
+      "beginString" : "fixed"
+    },
+    {
+      "beginString" : "for"
+    },
+    {
+      "beginString" : "foreach"
+    },
+    {
+      "beginString" : "goto"
+    },
+    {
+      "beginString" : "if"
+    },
+    {
+      "beginString" : "in"
+    },
+    {
+      "beginString" : "lock"
+    },
+    {
+      "beginString" : "namespace"
+    },
+    {
+      "beginString" : "return"
+    },
+    {
+      "beginString" : "stackalloc"
+    },
+    {
+      "beginString" : "switch"
+    },
+    {
+      "beginString" : "throw"
+    },
+    {
+      "beginString" : "try"
+    },
+    {
+      "beginString" : "unchecked"
+    },
+    {
+      "beginString" : "using"
+    },
+    {
+      "beginString" : "while"
+    },
+    {
+      "beginString" : "yield"
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "\\b(\\d+\\.?\\d*|\\.\\d+)(e[-+]\\d+)?[dfm]?\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b0x[0-9a-f]+\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\b\\d+[lu]{0,2}\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "bool"
+    },
+    {
+      "beginString" : "byte"
+    },
+    {
+      "beginString" : "char"
+    },
+    {
+      "beginString" : "class"
+    },
+    {
+      "beginString" : "decimal"
+    },
+    {
+      "beginString" : "delegate"
+    },
+    {
+      "beginString" : "double"
+    },
+    {
+      "beginString" : "dynamic"
+    },
+    {
+      "beginString" : "enum"
+    },
+    {
+      "beginString" : "float"
+    },
+    {
+      "beginString" : "int"
+    },
+    {
+      "beginString" : "interface"
+    },
+    {
+      "beginString" : "long"
+    },
+    {
+      "beginString" : "object"
+    },
+    {
+      "beginString" : "sbyte"
+    },
+    {
+      "beginString" : "short"
+    },
+    {
+      "beginString" : "string"
+    },
+    {
+      "beginString" : "struct"
+    },
+    {
+      "beginString" : "uint"
+    },
+    {
+      "beginString" : "ulong"
+    },
+    {
+      "beginString" : "ushort"
+    },
+    {
+      "beginString" : "var"
+    },
+    {
+      "beginString" : "void"
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "false"
+    },
+    {
+      "beginString" : "null"
+    },
+    {
+      "beginString" : "true"
+    }
+  ],
+  "variables" : [
+    {
+      "beginString" : "base"
+    },
+    {
+      "beginString" : "this"
+    }
+  ]
+}

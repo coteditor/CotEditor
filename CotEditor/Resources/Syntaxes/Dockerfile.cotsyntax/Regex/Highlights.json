@@ -1,0 +1,94 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+    {
+      "beginString" : "\\"
+    }
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "ADD"
+    },
+    {
+      "beginString" : "ARG"
+    },
+    {
+      "beginString" : "CMD"
+    },
+    {
+      "beginString" : "COPY"
+    },
+    {
+      "beginString" : "ENTRYPOINT"
+    },
+    {
+      "beginString" : "ENV"
+    },
+    {
+      "beginString" : "EXPOSE"
+    },
+    {
+      "beginString" : "FROM"
+    },
+    {
+      "beginString" : "HEALTHCHECK"
+    },
+    {
+      "beginString" : "LABEL"
+    },
+    {
+      "beginString" : "MAINTAINER"
+    },
+    {
+      "beginString" : "ONBUILD"
+    },
+    {
+      "beginString" : "RUN"
+    },
+    {
+      "beginString" : "SHELL"
+    },
+    {
+      "beginString" : "STOPSIGNAL"
+    },
+    {
+      "beginString" : "USER"
+    },
+    {
+      "beginString" : "VOLUME"
+    },
+    {
+      "beginString" : "WORKDIR"
+    }
+  ],
+  "numbers" : [
+
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    },
+    {
+      "beginString" : "'",
+      "endString" : "'"
+    }
+  ],
+  "types" : [
+
+  ],
+  "values" : [
+
+  ],
+  "variables" : [
+
+  ]
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "beginString" : "@(\\w+)\\s*\\{\\s*([^,=]+)",
+    "description" : "entry",
+    "keyString" : "@$1 $2"
+  }
+]

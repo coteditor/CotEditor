@@ -1,0 +1,34 @@
+[
+  {
+    "beginString" : "^h1([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "bold" : true,
+    "description" : "h1",
+    "keyString" : "$2"
+  },
+  {
+    "beginString" : "^h2([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "bold" : true,
+    "description" : "h2",
+    "keyString" : "    $2"
+  },
+  {
+    "beginString" : "^h3([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "description" : "h3",
+    "keyString" : "        $2"
+  },
+  {
+    "beginString" : "^h4([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "description" : "h4",
+    "keyString" : "            $2"
+  },
+  {
+    "beginString" : "^h5([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "description" : "h5",
+    "keyString" : "                $2"
+  },
+  {
+    "beginString" : "^h6([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "description" : "h6",
+    "keyString" : "                    $2"
+  }
+]

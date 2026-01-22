@@ -1,0 +1,121 @@
+{
+  "attributes" : [
+    {
+      "beginString" : "(?<=\\\\)[a-z0-9]+",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "characters" : [
+    {
+      "beginString" : "\\\\'[0-9a-f]{2}",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\-",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\\\\\",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\_",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\u[0-9]+",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\uc[0-9]+",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\~",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\bullet"
+    },
+    {
+      "beginString" : "\\emdash"
+    },
+    {
+      "beginString" : "\\emspace"
+    },
+    {
+      "beginString" : "\\endash"
+    },
+    {
+      "beginString" : "\\enspace"
+    },
+    {
+      "beginString" : "\\ldblquote"
+    },
+    {
+      "beginString" : "\\lquote"
+    },
+    {
+      "beginString" : "\\rdblquote"
+    },
+    {
+      "beginString" : "\\rquote"
+    },
+    {
+      "beginString" : "\\tab"
+    }
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "(?<!\\\\);",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<!\\\\)\\{",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<!\\\\)\\}",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\\\",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "{\\*"
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "(?<=\\\\[a-zA-Z]{1,16})-?[0-9]+",
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "(?<=HYPERLINK )\"",
+      "endString" : "\"",
+      "regularExpression" : true
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "(?<=\\\\fldinst[ {]) *[A-Z][A-Z0-9]*",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+
+  ],
+  "variables" : [
+
+  ]
+}

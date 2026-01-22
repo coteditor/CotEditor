@@ -1,0 +1,19 @@
+[
+  {
+    "beginString" : "^([\\t ]*)classdef[\\t ]+(\\(.+\\)[\\t ]+)?(\\w+)",
+    "bold" : true,
+    "keyString" : "$1$3"
+  },
+  {
+    "beginString" : "^([\\t ]*)function[\\t ]+(\\w+)\\(",
+    "keyString" : "$1$2"
+  },
+  {
+    "beginString" : "^([\\t ]*)methods(?:[\\t ]+(\\(.+\\)))?",
+    "keyString" : "$1methods $2"
+  },
+  {
+    "beginString" : "^([\\t ]*)properties(?:[\\t ]+(\\(.+\\)))?",
+    "keyString" : "$1properties $2"
+  }
+]

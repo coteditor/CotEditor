@@ -1,0 +1,23 @@
+[
+  {
+    "beginString" : "^([\\t ]*)(class)(.*?)(?=(\\{|$))",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1$2 : $3"
+  },
+  {
+    "beginString" : "^([\\t ]*)(private)[\\t ]+(.*)(?=\\{)",
+    "description" : "private",
+    "keyString" : ""
+  },
+  {
+    "beginString" : "^([\\t ]*)(protected)[\\t ]+(.*)(?=\\{)",
+    "description" : "protected",
+    "keyString" : ""
+  },
+  {
+    "beginString" : "^([\\t ]*)(public)[\\t ]+(.*)(?=\\{)",
+    "description" : "public",
+    "keyString" : ""
+  }
+]

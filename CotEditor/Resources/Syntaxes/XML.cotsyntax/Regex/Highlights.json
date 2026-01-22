@@ -1,0 +1,70 @@
+{
+  "attributes" : [
+    {
+      "beginString" : "\\s[[:alnum:]_\\-.:]+\\s*(?==)",
+      "regularExpression" : true
+    }
+  ],
+  "characters" : [
+    {
+      "beginString" : "&\\S+?;",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "<![CDATA[",
+      "endString" : "]]>"
+    }
+  ],
+  "commands" : [
+    {
+      "beginString" : "(?<=<)\\?[[:alnum:]_\\-.:]+",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\?(?=>)",
+      "regularExpression" : true
+    }
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "(?<=<\/?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t \/>])",
+      "description" : "element",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    },
+    {
+      "beginString" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
+      "regularExpression" : true
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "(?<=<)![A-Z]*",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+
+  ],
+  "variables" : [
+    {
+      "beginString" : "(?<=<\/?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
+      "regularExpression" : true
+    }
+  ]
+}

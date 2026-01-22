@@ -8,11 +8,22 @@
 - Enable registering multiple comment delimiters to a syntax definition.
 
 
+### Compatibility changes
+
+- Introduce the CotEditor Syntax format, a new syntax definition format.
+
+
 ### Improvements
 
 - [trivial] Adjust the About view.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
 - [trivial] Tweak the background color of the default Anura theme.
+
+
+### TODO
+
+- Localize updated strings.
+- Update the migration directories for user syntax definitions.
 
 
 

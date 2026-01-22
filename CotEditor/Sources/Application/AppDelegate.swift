@@ -141,6 +141,15 @@ extension Logger {
             ProcessInfo.processInfo.enableSuddenTermination()
         }
         
+        // migrate syntax definitions to the format in CotEditor 7.0.0 (2026)
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion < 801 {
+            do {
+                try SyntaxManager.shared.migrateUserSettings()
+            } catch {
+                Logger.app.error("Failed syntax definition migration: \(error)")
+            }
+        }
+        
         _ = DocumentController.shared
         
         self.prepareMainMenu()

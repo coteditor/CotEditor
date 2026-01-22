@@ -1,0 +1,43 @@
+[
+  {
+    "beginString" : "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])",
+    "description" : "function",
+    "keyString" : "   $3: $4"
+  },
+  {
+    "beginString" : "^([\\t ]*)(abstract (public|protected|private)[\\t ]+function)\\s*([^{;]*)(?=[{;])",
+    "description" : "abstract function",
+    "italic" : true,
+    "keyString" : "   abstract $3: $4"
+  },
+  {
+    "beginString" : "^([\\t ]*)(function)\\s*([^{]*)(?=\\{)",
+    "description" : "function",
+    "keyString" : "   $3"
+  },
+  {
+    "beginString" : "^[\\t ]*((?:final[\\t ]+)?class)[\\t ]+(.*)\\{",
+    "bold" : true,
+    "description" : "class",
+    "keyString" : "$1: $2"
+  },
+  {
+    "beginString" : "^[\\t ]*(abstract class)[\\t ]+(.*)\\{",
+    "bold" : true,
+    "description" : "abstract class",
+    "italic" : true,
+    "keyString" : "$1: $2"
+  },
+  {
+    "beginString" : "^[\\t ]*(interface)[\\t ]+(.*)\\{",
+    "description" : "interface",
+    "italic" : true,
+    "keyString" : "$1: $2"
+  },
+  {
+    "beginString" : "^[\\t ]*(trait)[\\t ]+(.*)\\{",
+    "description" : "trait",
+    "italic" : true,
+    "keyString" : "$1: $2"
+  }
+]

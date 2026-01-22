@@ -1,0 +1,22 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "properties"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "Properties file format mainly used in Java",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2026-01-22",
+    "license" : "Same as CotEditor",
+    "version" : "2.0.0"
+  }
+}

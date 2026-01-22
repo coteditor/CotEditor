@@ -1,0 +1,28 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "f",
+      "f08",
+      "f03",
+      "f95",
+      "f90",
+      "for",
+      "cuf"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "Support from Fortran 90 to Fortran 2008",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2026-01-22",
+    "license" : "Same as CotEditor",
+    "version" : "2.0.0"
+  }
+}

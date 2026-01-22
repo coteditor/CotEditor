@@ -1,0 +1,54 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "^[\\t ]*\\w+[\\t ]*(?<=)",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "(?<!\\w)[0-9.][0-9.]*(e-?[0-9.]+)?\\b",
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    },
+    {
+      "beginString" : "'",
+      "endString" : "'"
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "^\\[",
+      "endString" : "\\]",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "false"
+    },
+    {
+      "beginString" : "true"
+    }
+  ],
+  "variables" : [
+
+  ]
+}

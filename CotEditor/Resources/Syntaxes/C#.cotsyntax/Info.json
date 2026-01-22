@@ -1,0 +1,22 @@
+{
+  "fileMap" : {
+    "extensions" : [
+      "cs"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "csharp"
+    ]
+  },
+  "kind" : "code",
+  "metadata" : {
+    "author" : "usami-k",
+    "description" : "C# 5.0\nkeywords: Statement,Namespace,Preprocessor\ncommands: Query(LINQ)\ntypes: Types\nattributes: Modifiers,MethodParameters,Operator,Conversion,Contextual\nvariables: Access\nvalues: Literal",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "lastModified" : "2026-01-22",
+    "license" : "Same as CotEditor",
+    "version" : "2.0.0"
+  }
+}

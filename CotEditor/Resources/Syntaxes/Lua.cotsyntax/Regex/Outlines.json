@@ -1,0 +1,7 @@
+[
+  {
+    "beginString" : "([\\t ]*)(function +.+\\(.*?\\))",
+    "description" : "function",
+    "keyString" : "$1$2"
+  }
+]

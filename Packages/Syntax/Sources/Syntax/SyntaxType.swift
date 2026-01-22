@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-public enum SyntaxType: String, Sendable, CaseIterable {
+public enum SyntaxType: String, Sendable, CaseIterable, Codable, CodingKeyRepresentable {
     
     case keywords
     case commands

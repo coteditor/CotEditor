@@ -27,107 +27,6 @@
 import Foundation
 import StringUtils
 
-extension Syntax: Codable {
-    
-    private enum CodingKeys: String, CodingKey {
-        
-        case kind
-        
-        case keywords
-        case commands
-        case types
-        case attributes
-        case variables
-        case values
-        case numbers
-        case strings
-        case characters
-        case comments
-        
-        case outlines = "outlineMenu"
-        case commentDelimiters
-        case completions
-        
-        case filenames
-        case extensions
-        case interpreters
-        
-        case metadata
-    }
-    
-    
-    private struct KeyString: Codable {
-        
-        var keyString: String?
-    }
-    
-    
-    public init(from decoder: any Decoder) throws {
-        
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.kind = try values.decodeIfPresent(Kind.self, forKey: .kind) ?? .general
-        
-        var highlights: [SyntaxType: [Highlight]] = [:]
-        highlights[.keywords] = try values.decodeIfPresent([Highlight].self, forKey: .keywords) ?? []
-        highlights[.commands] = try values.decodeIfPresent([Highlight].self, forKey: .commands) ?? []
-        highlights[.types] = try values.decodeIfPresent([Highlight].self, forKey: .types) ?? []
-        highlights[.attributes] = try values.decodeIfPresent([Highlight].self, forKey: .attributes) ?? []
-        highlights[.variables] = try values.decodeIfPresent([Highlight].self, forKey: .variables) ?? []
-        highlights[.values] = try values.decodeIfPresent([Highlight].self, forKey: .values) ?? []
-        highlights[.numbers] = try values.decodeIfPresent([Highlight].self, forKey: .numbers) ?? []
-        highlights[.strings] = try values.decodeIfPresent([Highlight].self, forKey: .strings) ?? []
-        highlights[.characters] = try values.decodeIfPresent([Highlight].self, forKey: .characters) ?? []
-        highlights[.comments] = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
-        self.highlights = highlights
-        
-        self.commentDelimiters = (try values.decodeIfPresent([String: String].self, forKey: .commentDelimiters))
-            .flatMap(Comment.init(legacyDictionary:)) ?? .init()
-        
-        self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
-        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.compactMap(\.keyString) ?? []
-        
-        var fileMap = FileMap()
-        fileMap.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.compactMap(\.keyString) ?? []
-        fileMap.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.compactMap(\.keyString) ?? []
-        fileMap.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.compactMap(\.keyString) ?? []
-        self.fileMap = fileMap
-        
-        self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
-    }
-    
-    
-    public func encode(to encoder: any Encoder) throws {
-        
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(self.kind, forKey: .kind)
-        
-        try container.encode(self.highlights[.keywords], forKey: .keywords)
-        try container.encode(self.highlights[.commands], forKey: .commands)
-        try container.encode(self.highlights[.types], forKey: .types)
-        try container.encode(self.highlights[.attributes], forKey: .attributes)
-        try container.encode(self.highlights[.variables], forKey: .variables)
-        try container.encode(self.highlights[.values], forKey: .values)
-        try container.encode(self.highlights[.numbers], forKey: .numbers)
-        try container.encode(self.highlights[.strings], forKey: .strings)
-        try container.encode(self.highlights[.characters], forKey: .characters)
-        try container.encode(self.highlights[.comments], forKey: .comments)
-        
-        try container.encode(self.commentDelimiters.legacyDictionary, forKey: .commentDelimiters)
-        
-        try container.encode(self.outlines, forKey: .outlines)
-        try container.encode(self.completions.map(KeyString.init(keyString:)), forKey: .completions)
-        
-        try container.encode(self.fileMap.extensions?.map(KeyString.init(keyString:)), forKey: .extensions)
-        try container.encode(self.fileMap.filenames?.map(KeyString.init(keyString:)), forKey: .filenames)
-        try container.encode(self.fileMap.interpreters?.map(KeyString.init(keyString:)), forKey: .interpreters)
-        
-        try container.encode(self.metadata, forKey: .metadata)
-    }
-}
-
-
 extension Syntax.Highlight: Codable {
     
     private enum CodingKeys: String, CodingKey {
@@ -226,40 +125,6 @@ extension Syntax.Outline: Codable {
 }
 
 
-private extension Syntax.Comment {
-    
-    private enum LegacyKey {
-        
-        static let inline = "inlineDelimiter"
-        static let blockBegin = "beginDelimiter"
-        static let blockEnd = "endDelimiter"
-    }
-    
-    
-    var legacyDictionary: [String: String] {
-        
-        var dict: [String: String] = [:]
-        dict[LegacyKey.inline] = self.inlines.first?.begin
-        dict[LegacyKey.blockBegin] = self.blocks.first?.begin
-        dict[LegacyKey.blockEnd] = self.blocks.first?.end
-        
-        return dict
-    }
-    
-    init(legacyDictionary dictionary: [String: String]) {
-        
-        if let inline = dictionary[LegacyKey.inline] {
-            self.inlines = [.init(begin: inline)]
-        }
-        if let blockBegin = dictionary[LegacyKey.blockBegin],
-           let blockEnd = dictionary[LegacyKey.blockEnd]
-        {
-            self.blocks = [.init(blockBegin, blockEnd)]
-        }
-    }
-}
-
-
 extension Syntax.Comment.Inline: Codable {
     
     private enum CodingKeys: String, CodingKey {
@@ -274,7 +139,7 @@ extension Syntax.Comment.Inline: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.begin = try container.decode(String.self, forKey: .begin)
-        self.leadingOnly = try container.decodeIfPresent(Bool.self, forKey: .leadingOnly) ?? true
+        self.leadingOnly = try container.decodeIfPresent(Bool.self, forKey: .leadingOnly) ?? false
     }
     
     

@@ -1,0 +1,80 @@
+{
+  "attributes" : [
+
+  ],
+  "characters" : [
+
+  ],
+  "commands" : [
+
+  ],
+  "comments" : [
+
+  ],
+  "keywords" : [
+    {
+      "beginString" : "^[ \\t]*\\w[^=:\\r\\n]*(?=[=:])",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+    {
+      "beginString" : "(?<![-0-9a-z$])-?[0-9.][0-9.]*(e-?[0-9.]+)?\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "beginString" : "\"",
+      "endString" : "\""
+    }
+  ],
+  "types" : [
+    {
+      "beginString" : "^[ \\t]*\\[",
+      "endString" : "\\]",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+    {
+      "beginString" : "(?<=[:=])\\s*false\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=[:=])\\s*no\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=[:=])\\s*none\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=[:=])\\s*off\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=[:=])\\s*on\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=[:=])\\s*true\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "(?<=[:=])\\s*yes\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "variables" : [
+
+  ]
+}
