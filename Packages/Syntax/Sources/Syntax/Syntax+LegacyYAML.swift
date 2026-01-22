@@ -79,7 +79,7 @@ public extension Syntax {
         if let directoryURL, (try? directoryURL.checkResourceIsReachable()) != true {
             try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
         }
-        try fileWrapper.write(to: newURL, options: .withNameUpdating, originalContentsURL: nil)
+        try fileWrapper.write(to: newURL, options: .atomic, originalContentsURL: nil)
         
         if deletingOriginal {
             try FileManager.default.removeItem(at: fileURL)
