@@ -43,10 +43,14 @@ struct SyntaxCommentEditView: View {
                 InlineCommentsEditView(items: $inlineComments)
                 BlockCommentsEditView(items: $blockComments)
             }
-            Text("The first delimiter is used for commenting out.", tableName: "SyntaxEditor")
-                .foregroundColor(.secondary)
-                .padding(.top, 4)
-                .padding(.bottom)
+            
+            VStack(alignment: .leading) {
+                Text("The first delimiter is used for commenting out.", tableName: "SyntaxEditor")
+                Text("The comment delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
+            }
+            .foregroundColor(.secondary)
+            .padding(.top, 4)
+            .padding(.bottom)
             
             Text("Highlighting:", tableName: "SyntaxEditor", comment: "label")
             SyntaxHighlightEditView(items: $highlights, helpAnchor: "syntax_comment_settings")

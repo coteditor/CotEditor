@@ -4848,6 +4848,46 @@
         }
       }
     },
+    "The comment delimiters defined here are used for syntax highlighting as well." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die hier definierten Kommentar-Trennzeichen werden auch für die Syntaxhervorhebung verwendet."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The comment delimiters defined here are used for syntax highlighting as well."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Los delimitadores de comentario definidos aquí también se usan para el resaltado de sintaxis."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les symboles de commentaire définis ici sont également utilisés pour le surlignage syntaxique."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ここで定義したコメント記号はシンタックスハイライトにも使用されます。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De commentaar-scheidingstekens die hier zijn gedefinieerd, worden ook gebruikt voor syntaxmarkering."
+          }
+        }
+      }
+    },
     "The first delimiter is used for commenting out." : {
       "localizations" : {
         "de" : {
