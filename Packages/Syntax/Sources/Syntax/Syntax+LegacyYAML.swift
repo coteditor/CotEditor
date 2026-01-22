@@ -31,21 +31,27 @@ import StringUtils
 
 public extension Syntax {
     
-    /// Migrates all legacy YAML-based syntax definitions in the given directory to the `.cotSyntax` package format.
+    /// Migrates all legacy YAML-based syntax definitions within a directory to the `.cotSyntax` package format.
     ///
     /// - Parameters:
-    ///   - directoryURL: The directory to scan for legacy YAML syntax definition files.
-    ///   - deletingOriginal: Whether to remove each original YAML file after its successful migration.
-    /// - Throws: An error if reading the directory contents fails or if any individual file migration throws.
-    static func migrateFormat(in directoryURL: URL, deletingOriginal: Bool = true) throws {
+    ///   - directoryURL: The directory to scan (non-recursively) for legacy YAML syntax definition files.
+    ///   - destinationURL: Optional destination directory where converted `.cotsyntax` packages will be written.
+    ///   - deletingOriginal: If `true`, remove each original YAML file after its successful migration.
+    /// - Throws: An error if reading the directory contents fails.
+    static func migrateFormat(in directoryURL: URL, to destinationURL: URL? = nil, deletingOriginal: Bool = true) throws {
         
         let urls = try FileManager.default.contentsOfDirectory(at: directoryURL,
                                                                includingPropertiesForKeys: [.contentTypeKey],
                                                                options: .skipsSubdirectoryDescendants)
             .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType == .yaml }
         
+        var performed = false
         for url in urls {
-            try self.migrate(fileURL: url, deletingOriginal: deletingOriginal)
+            do {
+                try self.migrate(fileURL: url, to: destinationURL, deletingOriginal: deletingOriginal)
+            } catch {
+                continue
+            }
         }
     }
     
@@ -54,13 +60,15 @@ public extension Syntax {
     ///
     /// - Parameters:
     ///   - fileURL: The file URL of the legacy YAML syntax definition to migrate.
-    ///   - deletingOriginal: Whether to remove the original YAML file after a successful migration.
+    ///   - directoryURL: Optional destination directory to write the converted `.cotsyntax` package.
+    ///   - deletingOriginal: If `true`, delete the original YAML file after a successful migration.
     /// - Throws: An error if reading, decoding, writing the converted syntax, or deleting the original file fails.
-    static func migrate(fileURL: URL, deletingOriginal: Bool = true) throws {
+    static func migrate(fileURL: URL, to directoryURL: URL? = nil, deletingOriginal: Bool = true) throws {
         
         guard try fileURL.checkResourceIsReachable() else { return }
         
-        let newURL = fileURL.deletingPathExtension().appendingPathExtension("cotsyntax")
+        let newURL = (directoryURL?.appendingPathComponent(fileURL.lastPathComponent) ?? fileURL)
+            .deletingPathExtension().appendingPathExtension("cotsyntax")
         
         guard (try? newURL.checkResourceIsReachable()) != true else { return }
         
@@ -69,6 +77,9 @@ public extension Syntax {
         let syntax = try decoder.decode(Syntax.self, from: yamlData)
         let fileWrapper = try syntax.fileWrapper
         
+        if let directoryURL, (try? directoryURL.checkResourceIsReachable()) != true {
+            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+        }
         try fileWrapper.write(to: newURL, options: .withNameUpdating, originalContentsURL: nil)
         
         if deletingOriginal {

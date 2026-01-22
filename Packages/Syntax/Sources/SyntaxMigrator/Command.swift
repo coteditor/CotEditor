@@ -38,6 +38,9 @@ struct Command: ParsableCommand {
     @Argument(help: "A path to a legacy syntax file or a directory containing legacy syntax files.", transform: { URL(filePath: $0) })
     var path: URL
     
+    @Option(name: .customLong("out"), help: "The path to the output directory.", transform: { URL(filePath: $0) })
+    var destinationURL: URL?
+    
     @Flag(help: "whether to keep the original.")
     var keep: Bool = false
     
@@ -45,9 +48,9 @@ struct Command: ParsableCommand {
     func run() throws {
         
         if try self.path.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true {
-            try Syntax.migrateFormat(in: self.path, deletingOriginal: !self.keep)
+            try Syntax.migrateFormat(in: self.path, to: self.destinationURL, deletingOriginal: !self.keep)
         } else {
-            try Syntax.migrate(fileURL: self.path, deletingOriginal: !self.keep)
+            try Syntax.migrate(fileURL: self.path, to: self.destinationURL, deletingOriginal: !self.keep)
         }
     }
 }
