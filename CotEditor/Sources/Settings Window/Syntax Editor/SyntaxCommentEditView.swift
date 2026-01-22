@@ -29,8 +29,8 @@ import Syntax
 
 struct SyntaxCommentEditView: View {
     
-    @Binding var inlineComments: [SyntaxObject.Item<Syntax.Comment.Inline>]
-    @Binding var blockComments: [SyntaxObject.Item<Pair<String>>]
+    @Binding var inlineComments: [SyntaxObject.InlineComment]
+    @Binding var blockComments: [SyntaxObject.BlockComment]
     @Binding var highlights: [SyntaxObject.Highlight]
     
     
@@ -43,6 +43,7 @@ struct SyntaxCommentEditView: View {
                 InlineCommentsEditView(items: $inlineComments)
                 BlockCommentsEditView(items: $blockComments)
             }
+            .frame(maxHeight: 180)
             
             VStack(alignment: .leading) {
                 Text("The first delimiter is used for commenting out.", tableName: "SyntaxEditor")
@@ -61,7 +62,7 @@ struct SyntaxCommentEditView: View {
 
 private struct InlineCommentsEditView: View {
     
-    typealias Item = SyntaxObject.Item<Syntax.Comment.Inline>
+    typealias Item = SyntaxObject.InlineComment
     
     @Binding var items: [Item]
     
@@ -97,7 +98,7 @@ private struct InlineCommentsEditView: View {
 
 private struct BlockCommentsEditView: View {
     
-    typealias Item = SyntaxObject.Item<Pair<String>>
+    typealias Item = SyntaxObject.BlockComment
     
     @Binding var items: [Item]
     
@@ -133,8 +134,8 @@ private struct BlockCommentsEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var inlineComments: [SyntaxObject.Item<Syntax.Comment.Inline>] = [.init(value: .init(begin: "//"))]
-    @Previewable @State var blockComments: [SyntaxObject.Item<Pair<String>>] = [.init(value: Pair("<!--", "-->"))]
+    @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
+    @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: Pair("/*", "*/"))]
     @Previewable @State var highlights: [SyntaxObject.Highlight] = []
     
     SyntaxCommentEditView(inlineComments: $inlineComments, blockComments: $blockComments, highlights: $highlights)

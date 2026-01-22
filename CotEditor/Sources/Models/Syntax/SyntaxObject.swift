@@ -39,6 +39,8 @@ import StringUtils
     typealias Highlight = Item<Syntax.Highlight>
     typealias Outline = Item<Syntax.Outline>
     typealias KeyString = Item<String>
+    typealias InlineComment = Item<Syntax.Comment.Inline>
+    typealias BlockComment = Item<Pair<String>>
     typealias Metadata = Syntax.Metadata
     
     
@@ -78,8 +80,8 @@ import StringUtils
     
     var highlights: Highlights = Highlights()
     
-    var inlineComments: [Item<Syntax.Comment.Inline>] = []
-    var blockComments: [Item<Pair<String>>] = []
+    var inlineComments: [InlineComment] = []
+    var blockComments: [BlockComment] = []
     
     var outlines: [Outline] = []
     var completions: [KeyString] = []
@@ -213,7 +215,7 @@ extension SyntaxObject.Item<String> {
 }
 
 
-extension SyntaxObject.Item<Syntax.Comment.Inline> {
+extension SyntaxObject.InlineComment {
     
     init() {
         
@@ -222,7 +224,7 @@ extension SyntaxObject.Item<Syntax.Comment.Inline> {
 }
 
 
-extension SyntaxObject.Item<Pair<String>> {
+extension SyntaxObject.BlockComment {
     
     init() {
         
