@@ -1,48 +1,48 @@
 [
   {
-    "beginString" : "<(h1)[^>]*>(.*)<\/\\1[^>]*>",
+    "beginString" : "<(h1)[^>]*>(.*)</\\1[^>]*>",
     "description" : "h1",
     "ignoreCase" : true,
     "keyString" : "$1: $2"
   },
   {
-    "beginString" : "<(h2)[^>]*>(.*)<\/\\1[^>]*>",
+    "beginString" : "<(h2)[^>]*>(.*)</\\1[^>]*>",
     "description" : "h2",
     "ignoreCase" : true,
     "keyString" : "   $1: $2"
   },
   {
-    "beginString" : "<(h3)[^>]*>(.*)<\/\\1[^>]*>",
+    "beginString" : "<(h3)[^>]*>(.*)</\\1[^>]*>",
     "description" : "h3",
     "ignoreCase" : true,
     "keyString" : "      $1: $2"
   },
   {
-    "beginString" : "<(h4)[^>]*>(.*)<\/\\1[^>]*>",
+    "beginString" : "<(h4)[^>]*>(.*)</\\1[^>]*>",
     "description" : "h4",
     "ignoreCase" : true,
     "keyString" : "         $1: $2"
   },
   {
-    "beginString" : "<(h5)[^>]*>(.*)<\/\\1[^>]*>",
+    "beginString" : "<(h5)[^>]*>(.*)</\\1[^>]*>",
     "description" : "h5",
     "ignoreCase" : true,
     "keyString" : "            $1: $2"
   },
   {
-    "beginString" : "<(h6)[^>]*>(.*)<\/\\1[^>]*>",
+    "beginString" : "<(h6)[^>]*>(.*)</\\1[^>]*>",
     "description" : "h6",
     "ignoreCase" : true,
     "keyString" : "               $1: $2"
   },
   {
-    "beginString" : "<(title)[^>]*>([^<]*)<\/\\1[^>]*>",
+    "beginString" : "<(title)[^>]*>([^<]*)</\\1[^>]*>",
     "description" : "title",
     "ignoreCase" : true,
     "keyString" : "$1: $2"
   },
   {
-    "beginString" : "<hr *\/?>",
+    "beginString" : "<hr */?>",
     "bold" : true,
     "description" : "hr",
     "ignoreCase" : true,

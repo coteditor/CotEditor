@@ -193,16 +193,16 @@
   ],
   "characters" : [
     {
-      "beginString" : "#\/",
-      "endString" : "\/#"
+      "beginString" : "#/",
+      "endString" : "/#"
     },
     {
       "beginString" : "'",
       "endString" : "'"
     },
     {
-      "beginString" : "\/",
-      "endString" : "\/"
+      "beginString" : "/",
+      "endString" : "/"
     },
     {
       "beginString" : "\\bU+[0-9a-fA-F]{4,5}\\b",

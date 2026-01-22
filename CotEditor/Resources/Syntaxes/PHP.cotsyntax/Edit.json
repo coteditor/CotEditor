@@ -2,13 +2,13 @@
   "comment" : {
     "blocks" : [
       {
-        "begin" : "\/*",
-        "end" : "*\/"
+        "begin" : "/*",
+        "end" : "*/"
       }
     ],
     "inlines" : [
       {
-        "begin" : "\/\/"
+        "begin" : "//"
       },
       {
         "begin" : "#"
@@ -1785,7 +1785,7 @@
     "mysql_list_tables(string database, int [link_identifier])",
     "mysql_num_fields(int result)",
     "mysql_num_rows(int result)",
-    "mysql_pconnect(string [hostname [:port] [:\/path\/to\/socket]] , string [username], string [password])",
+    "mysql_pconnect(string [hostname [:port] [:/path/to/socket]] , string [username], string [password])",
     "mysql_ping([int link_identifier])",
     "mysql_query(string query, int [link_identifier])",
     "mysql_real_escape_string(string unescaped_string [, int link_identifier])",

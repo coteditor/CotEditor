@@ -1178,379 +1178,379 @@
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=<\/?)(svg:)?a\\b",
+      "beginString" : "(?<=</?)(svg:)?a\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?altGlyph\\b",
+      "beginString" : "(?<=</?)(svg:)?altGlyph\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?altGlyphDef\\b",
+      "beginString" : "(?<=</?)(svg:)?altGlyphDef\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?altGlyphItem\\b",
+      "beginString" : "(?<=</?)(svg:)?altGlyphItem\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?animate\\b",
+      "beginString" : "(?<=</?)(svg:)?animate\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?animateColor\\b",
+      "beginString" : "(?<=</?)(svg:)?animateColor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?animateMotion\\b",
+      "beginString" : "(?<=</?)(svg:)?animateMotion\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?animateTransform\\b",
+      "beginString" : "(?<=</?)(svg:)?animateTransform\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?circle\\b",
+      "beginString" : "(?<=</?)(svg:)?circle\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?clipPath\\b",
+      "beginString" : "(?<=</?)(svg:)?clipPath\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?color-profile\\b",
+      "beginString" : "(?<=</?)(svg:)?color-profile\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?cursor\\b",
+      "beginString" : "(?<=</?)(svg:)?cursor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?defs\\b",
+      "beginString" : "(?<=</?)(svg:)?defs\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?desc\\b",
+      "beginString" : "(?<=</?)(svg:)?desc\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?ellipse\\b",
+      "beginString" : "(?<=</?)(svg:)?ellipse\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feBlend\\b",
+      "beginString" : "(?<=</?)(svg:)?feBlend\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feColorMatrix\\b",
+      "beginString" : "(?<=</?)(svg:)?feColorMatrix\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feComponentTransfer\\b",
+      "beginString" : "(?<=</?)(svg:)?feComponentTransfer\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feComposite\\b",
+      "beginString" : "(?<=</?)(svg:)?feComposite\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feConvolveMatrix\\b",
+      "beginString" : "(?<=</?)(svg:)?feConvolveMatrix\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feDiffuseLighting\\b",
+      "beginString" : "(?<=</?)(svg:)?feDiffuseLighting\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feDisplacementMap\\b",
+      "beginString" : "(?<=</?)(svg:)?feDisplacementMap\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feDistantLight\\b",
+      "beginString" : "(?<=</?)(svg:)?feDistantLight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feFlood\\b",
+      "beginString" : "(?<=</?)(svg:)?feFlood\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feFuncA\\b",
+      "beginString" : "(?<=</?)(svg:)?feFuncA\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feFuncB\\b",
+      "beginString" : "(?<=</?)(svg:)?feFuncB\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feFuncG\\b",
+      "beginString" : "(?<=</?)(svg:)?feFuncG\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feFuncR\\b",
+      "beginString" : "(?<=</?)(svg:)?feFuncR\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feGaussianBlur\\b",
+      "beginString" : "(?<=</?)(svg:)?feGaussianBlur\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feImage\\b",
+      "beginString" : "(?<=</?)(svg:)?feImage\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feMerge\\b",
+      "beginString" : "(?<=</?)(svg:)?feMerge\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feMergeNode\\b",
+      "beginString" : "(?<=</?)(svg:)?feMergeNode\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feMorphology\\b",
+      "beginString" : "(?<=</?)(svg:)?feMorphology\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feOffset\\b",
+      "beginString" : "(?<=</?)(svg:)?feOffset\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?fePointLight\\b",
+      "beginString" : "(?<=</?)(svg:)?fePointLight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feSpecularLighting\\b",
+      "beginString" : "(?<=</?)(svg:)?feSpecularLighting\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feSpotLight\\b",
+      "beginString" : "(?<=</?)(svg:)?feSpotLight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feTile\\b",
+      "beginString" : "(?<=</?)(svg:)?feTile\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?feTurbulence\\b",
+      "beginString" : "(?<=</?)(svg:)?feTurbulence\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?filter\\b",
+      "beginString" : "(?<=</?)(svg:)?filter\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?font-face-format\\b",
+      "beginString" : "(?<=</?)(svg:)?font-face-format\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?font-face-name\\b",
+      "beginString" : "(?<=</?)(svg:)?font-face-name\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?font-face-src\\b",
+      "beginString" : "(?<=</?)(svg:)?font-face-src\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?font-face-uri\\b",
+      "beginString" : "(?<=</?)(svg:)?font-face-uri\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?font-face\\b",
+      "beginString" : "(?<=</?)(svg:)?font-face\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?font\\b",
+      "beginString" : "(?<=</?)(svg:)?font\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?foreignObject\\b",
+      "beginString" : "(?<=</?)(svg:)?foreignObject\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?g\\b",
+      "beginString" : "(?<=</?)(svg:)?g\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?glyph\\b",
+      "beginString" : "(?<=</?)(svg:)?glyph\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?glyphRef\\b",
+      "beginString" : "(?<=</?)(svg:)?glyphRef\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?hkern\\b",
+      "beginString" : "(?<=</?)(svg:)?hkern\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?image\\b",
+      "beginString" : "(?<=</?)(svg:)?image\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?line\\b",
+      "beginString" : "(?<=</?)(svg:)?line\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?linearGradient\\b",
+      "beginString" : "(?<=</?)(svg:)?linearGradient\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?marker\\b",
+      "beginString" : "(?<=</?)(svg:)?marker\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?mask\\b",
+      "beginString" : "(?<=</?)(svg:)?mask\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?metadata\\b",
+      "beginString" : "(?<=</?)(svg:)?metadata\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?missing-glyph\\b",
+      "beginString" : "(?<=</?)(svg:)?missing-glyph\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?mpath\\b",
+      "beginString" : "(?<=</?)(svg:)?mpath\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?path\\b",
+      "beginString" : "(?<=</?)(svg:)?path\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?pattern\\b",
+      "beginString" : "(?<=</?)(svg:)?pattern\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?polygon\\b",
+      "beginString" : "(?<=</?)(svg:)?polygon\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?polyline\\b",
+      "beginString" : "(?<=</?)(svg:)?polyline\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?radialGradient\\b",
+      "beginString" : "(?<=</?)(svg:)?radialGradient\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?rect\\b",
+      "beginString" : "(?<=</?)(svg:)?rect\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?script\\b",
+      "beginString" : "(?<=</?)(svg:)?script\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?set\\b",
+      "beginString" : "(?<=</?)(svg:)?set\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?stop\\b",
+      "beginString" : "(?<=</?)(svg:)?stop\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?style\\b",
+      "beginString" : "(?<=</?)(svg:)?style\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?svg\\b",
+      "beginString" : "(?<=</?)(svg:)?svg\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?switch\\b",
+      "beginString" : "(?<=</?)(svg:)?switch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?symbol\\b",
+      "beginString" : "(?<=</?)(svg:)?symbol\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?text\\b",
+      "beginString" : "(?<=</?)(svg:)?text\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?textPath\\b",
+      "beginString" : "(?<=</?)(svg:)?textPath\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?title\\b",
+      "beginString" : "(?<=</?)(svg:)?title\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?tref\\b",
+      "beginString" : "(?<=</?)(svg:)?tref\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?tspan\\b",
+      "beginString" : "(?<=</?)(svg:)?tspan\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?use\\b",
+      "beginString" : "(?<=</?)(svg:)?use\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?view\\b",
+      "beginString" : "(?<=</?)(svg:)?view\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)(svg:)?vkern\\b",
+      "beginString" : "(?<=</?)(svg:)?vkern\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)contributor\\b",
+      "beginString" : "(?<=</?dc:)contributor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)creator\\b",
+      "beginString" : "(?<=</?dc:)creator\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)date\\b",
+      "beginString" : "(?<=</?dc:)date\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)description\\b",
+      "beginString" : "(?<=</?dc:)description\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)format\\b",
+      "beginString" : "(?<=</?dc:)format\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)identifier\\b",
+      "beginString" : "(?<=</?dc:)identifier\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)language\\b",
+      "beginString" : "(?<=</?dc:)language\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)publisher\\b",
+      "beginString" : "(?<=</?dc:)publisher\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)relation\\b",
+      "beginString" : "(?<=</?dc:)relation\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)rights\\b",
+      "beginString" : "(?<=</?dc:)rights\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)source\\b",
+      "beginString" : "(?<=</?dc:)source\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)subject\\b",
+      "beginString" : "(?<=</?dc:)subject\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)title\\b",
+      "beginString" : "(?<=</?dc:)title\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?dc:)type\\b",
+      "beginString" : "(?<=</?dc:)type\\b",
       "regularExpression" : true
     }
   ],

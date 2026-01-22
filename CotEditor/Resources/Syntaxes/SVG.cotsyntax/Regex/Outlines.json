@@ -7,7 +7,7 @@
     "keyString" : "#$1"
   },
   {
-    "beginString" : "<title[^>]*>([^<]*)<\/title[^>]*>",
+    "beginString" : "<title[^>]*>([^<]*)</title[^>]*>",
     "bold" : true,
     "description" : "title",
     "ignoreCase" : true,

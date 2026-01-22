@@ -3257,83 +3257,83 @@
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=<\/?)AuthnProviderAlias\\b",
+      "beginString" : "(?<=</?)AuthnProviderAlias\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)AuthzProviderAlias\\b",
+      "beginString" : "(?<=</?)AuthzProviderAlias\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)Directory\\b",
+      "beginString" : "(?<=</?)Directory\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)DirectoryMatch\\b",
+      "beginString" : "(?<=</?)DirectoryMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)Else\\b",
+      "beginString" : "(?<=</?)Else\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)ElseIf\\b",
+      "beginString" : "(?<=</?)ElseIf\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)Files\\b",
+      "beginString" : "(?<=</?)Files\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)FilesMatch\\b",
+      "beginString" : "(?<=</?)FilesMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)If\\b",
+      "beginString" : "(?<=</?)If\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)IfDefine\\b",
+      "beginString" : "(?<=</?)IfDefine\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)IfModule\\b",
+      "beginString" : "(?<=</?)IfModule\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)IfVersion\\b",
+      "beginString" : "(?<=</?)IfVersion\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)Location\\b",
+      "beginString" : "(?<=</?)Location\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)LocationMatch\\b",
+      "beginString" : "(?<=</?)LocationMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)Proxy\\b",
+      "beginString" : "(?<=</?)Proxy\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)ProxyMatch\\b",
+      "beginString" : "(?<=</?)ProxyMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)RequireAll\\b",
+      "beginString" : "(?<=</?)RequireAll\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)RequireAny\\b",
+      "beginString" : "(?<=</?)RequireAny\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)RequireNone\\b",
+      "beginString" : "(?<=</?)RequireNone\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)VirtualHost\\b",
+      "beginString" : "(?<=</?)VirtualHost\\b",
       "regularExpression" : true
     }
   ],

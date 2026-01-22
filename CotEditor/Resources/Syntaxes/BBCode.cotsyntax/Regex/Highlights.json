@@ -39,82 +39,82 @@
       "beginString" : "[*]"
     },
     {
-      "beginString" : "[\/b]"
+      "beginString" : "[/b]"
     },
     {
-      "beginString" : "[\/center]"
+      "beginString" : "[/center]"
     },
     {
-      "beginString" : "[\/code]"
+      "beginString" : "[/code]"
     },
     {
-      "beginString" : "[\/color]"
+      "beginString" : "[/color]"
     },
     {
-      "beginString" : "[\/email]"
+      "beginString" : "[/email]"
     },
     {
-      "beginString" : "[\/i]"
+      "beginString" : "[/i]"
     },
     {
-      "beginString" : "[\/img]"
+      "beginString" : "[/img]"
     },
     {
-      "beginString" : "[\/left]"
+      "beginString" : "[/left]"
     },
     {
-      "beginString" : "[\/li]"
+      "beginString" : "[/li]"
     },
     {
-      "beginString" : "[\/list]"
+      "beginString" : "[/list]"
     },
     {
-      "beginString" : "[\/ol]"
+      "beginString" : "[/ol]"
     },
     {
-      "beginString" : "[\/pre]"
+      "beginString" : "[/pre]"
     },
     {
-      "beginString" : "[\/quote]"
+      "beginString" : "[/quote]"
     },
     {
-      "beginString" : "[\/right]"
+      "beginString" : "[/right]"
     },
     {
-      "beginString" : "[\/s]"
+      "beginString" : "[/s]"
     },
     {
-      "beginString" : "[\/size]"
+      "beginString" : "[/size]"
     },
     {
-      "beginString" : "[\/spoiler]"
+      "beginString" : "[/spoiler]"
     },
     {
-      "beginString" : "[\/style]"
+      "beginString" : "[/style]"
     },
     {
-      "beginString" : "[\/table]"
+      "beginString" : "[/table]"
     },
     {
-      "beginString" : "[\/td]"
+      "beginString" : "[/td]"
     },
     {
-      "beginString" : "[\/th]"
+      "beginString" : "[/th]"
     },
     {
-      "beginString" : "[\/tr]"
+      "beginString" : "[/tr]"
     },
     {
-      "beginString" : "[\/u]"
+      "beginString" : "[/u]"
     },
     {
-      "beginString" : "[\/ul]"
+      "beginString" : "[/ul]"
     },
     {
-      "beginString" : "[\/url]"
+      "beginString" : "[/url]"
     },
     {
-      "beginString" : "[\/youtube]"
+      "beginString" : "[/youtube]"
     },
     {
       "beginString" : "[b]"

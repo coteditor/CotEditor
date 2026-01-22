@@ -1285,652 +1285,652 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)a\\b",
+      "beginString" : "(?<=</?)a\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)abbr\\b",
+      "beginString" : "(?<=</?)abbr\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)acronym\\b",
+      "beginString" : "(?<=</?)acronym\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)address\\b",
+      "beginString" : "(?<=</?)address\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)applet\\b",
+      "beginString" : "(?<=</?)applet\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)area\\b",
+      "beginString" : "(?<=</?)area\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)article\\b",
+      "beginString" : "(?<=</?)article\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)aside\\b",
+      "beginString" : "(?<=</?)aside\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)audio\\b",
+      "beginString" : "(?<=</?)audio\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)b\\b",
+      "beginString" : "(?<=</?)b\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)base\\b",
+      "beginString" : "(?<=</?)base\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)basefont\\b",
+      "beginString" : "(?<=</?)basefont\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)bdi\\b",
+      "beginString" : "(?<=</?)bdi\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)bdo\\b",
+      "beginString" : "(?<=</?)bdo\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)bgsound\\b",
+      "beginString" : "(?<=</?)bgsound\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)big\\b",
+      "beginString" : "(?<=</?)big\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)blink\\b",
+      "beginString" : "(?<=</?)blink\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)blockquote\\b",
+      "beginString" : "(?<=</?)blockquote\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)body\\b",
+      "beginString" : "(?<=</?)body\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)br\\b",
+      "beginString" : "(?<=</?)br\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)button\\b",
+      "beginString" : "(?<=</?)button\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)canvas\\b",
+      "beginString" : "(?<=</?)canvas\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)caption\\b",
+      "beginString" : "(?<=</?)caption\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)center\\b",
+      "beginString" : "(?<=</?)center\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)cite\\b",
+      "beginString" : "(?<=</?)cite\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)code\\b",
+      "beginString" : "(?<=</?)code\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)col\\b",
+      "beginString" : "(?<=</?)col\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)colgroup\\b",
+      "beginString" : "(?<=</?)colgroup\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)command\\b",
+      "beginString" : "(?<=</?)command\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)data\\b",
+      "beginString" : "(?<=</?)data\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)datalist\\b",
+      "beginString" : "(?<=</?)datalist\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)dd\\b",
+      "beginString" : "(?<=</?)dd\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)del\\b",
+      "beginString" : "(?<=</?)del\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)details\\b",
+      "beginString" : "(?<=</?)details\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)dfn\\b",
+      "beginString" : "(?<=</?)dfn\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)dialog\\b",
+      "beginString" : "(?<=</?)dialog\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)dir\\b",
+      "beginString" : "(?<=</?)dir\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)div\\b",
+      "beginString" : "(?<=</?)div\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)dl\\b",
+      "beginString" : "(?<=</?)dl\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)dt\\b",
+      "beginString" : "(?<=</?)dt\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)em\\b",
+      "beginString" : "(?<=</?)em\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)embed\\b",
+      "beginString" : "(?<=</?)embed\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)fieldset\\b",
+      "beginString" : "(?<=</?)fieldset\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)figcaption\\b",
+      "beginString" : "(?<=</?)figcaption\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)figure\\b",
+      "beginString" : "(?<=</?)figure\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)font\\b",
+      "beginString" : "(?<=</?)font\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)footer\\b",
+      "beginString" : "(?<=</?)footer\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)form\\b",
+      "beginString" : "(?<=</?)form\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)frame\\b",
+      "beginString" : "(?<=</?)frame\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)frameset\\b",
+      "beginString" : "(?<=</?)frameset\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)h[1-6]\\b",
+      "beginString" : "(?<=</?)h[1-6]\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)head\\b",
+      "beginString" : "(?<=</?)head\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)header\\b",
+      "beginString" : "(?<=</?)header\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)hgroup\\b",
+      "beginString" : "(?<=</?)hgroup\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)hr\\b",
+      "beginString" : "(?<=</?)hr\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)html\\b",
+      "beginString" : "(?<=</?)html\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)i\\b",
+      "beginString" : "(?<=</?)i\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)iframe\\b",
+      "beginString" : "(?<=</?)iframe\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)img\\b",
+      "beginString" : "(?<=</?)img\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)input\\b",
+      "beginString" : "(?<=</?)input\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)ins\\b",
+      "beginString" : "(?<=</?)ins\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)isindex\\b",
+      "beginString" : "(?<=</?)isindex\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)kbd\\b",
+      "beginString" : "(?<=</?)kbd\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)keygen\\b",
+      "beginString" : "(?<=</?)keygen\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)label\\b",
+      "beginString" : "(?<=</?)label\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)legend\\b",
+      "beginString" : "(?<=</?)legend\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)li\\b",
+      "beginString" : "(?<=</?)li\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)link\\b",
+      "beginString" : "(?<=</?)link\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)main\\b",
+      "beginString" : "(?<=</?)main\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)map\\b",
+      "beginString" : "(?<=</?)map\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)mark\\b",
+      "beginString" : "(?<=</?)mark\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)marquee\\b",
+      "beginString" : "(?<=</?)marquee\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)menu\\b",
+      "beginString" : "(?<=</?)menu\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)menuitem\\b",
+      "beginString" : "(?<=</?)menuitem\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)meta\\b",
+      "beginString" : "(?<=</?)meta\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)meter\\b",
+      "beginString" : "(?<=</?)meter\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)nav\\b",
+      "beginString" : "(?<=</?)nav\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)nobr\\b",
+      "beginString" : "(?<=</?)nobr\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)noembed\\b",
+      "beginString" : "(?<=</?)noembed\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)noframes\\b",
+      "beginString" : "(?<=</?)noframes\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)noscript\\b",
+      "beginString" : "(?<=</?)noscript\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)object\\b",
+      "beginString" : "(?<=</?)object\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)ol\\b",
+      "beginString" : "(?<=</?)ol\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)optgroup\\b",
+      "beginString" : "(?<=</?)optgroup\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)option\\b",
+      "beginString" : "(?<=</?)option\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)output\\b",
+      "beginString" : "(?<=</?)output\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)p\\b",
+      "beginString" : "(?<=</?)p\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)param\\b",
+      "beginString" : "(?<=</?)param\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)picture\\b",
+      "beginString" : "(?<=</?)picture\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)pre\\b",
+      "beginString" : "(?<=</?)pre\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)progress\\b",
+      "beginString" : "(?<=</?)progress\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)q\\b",
+      "beginString" : "(?<=</?)q\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)rb\\b",
+      "beginString" : "(?<=</?)rb\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)rp\\b",
+      "beginString" : "(?<=</?)rp\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)rt\\b",
+      "beginString" : "(?<=</?)rt\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)rtc\\b",
+      "beginString" : "(?<=</?)rtc\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)ruby\\b",
+      "beginString" : "(?<=</?)ruby\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)s\\b",
+      "beginString" : "(?<=</?)s\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)samp\\b",
+      "beginString" : "(?<=</?)samp\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)script\\b",
+      "beginString" : "(?<=</?)script\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)search\\b",
+      "beginString" : "(?<=</?)search\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)section\\b",
+      "beginString" : "(?<=</?)section\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)select\\b",
+      "beginString" : "(?<=</?)select\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)small\\b",
+      "beginString" : "(?<=</?)small\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)source\\b",
+      "beginString" : "(?<=</?)source\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)span\\b",
+      "beginString" : "(?<=</?)span\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)strike\\b",
+      "beginString" : "(?<=</?)strike\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)strong\\b",
+      "beginString" : "(?<=</?)strong\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)style\\b",
+      "beginString" : "(?<=</?)style\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)sub\\b",
+      "beginString" : "(?<=</?)sub\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)summary\\b",
+      "beginString" : "(?<=</?)summary\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)sup\\b",
+      "beginString" : "(?<=</?)sup\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)table\\b",
+      "beginString" : "(?<=</?)table\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)tbody\\b",
+      "beginString" : "(?<=</?)tbody\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)td\\b",
+      "beginString" : "(?<=</?)td\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)template\\b",
+      "beginString" : "(?<=</?)template\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)textarea\\b",
+      "beginString" : "(?<=</?)textarea\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)tfoot\\b",
+      "beginString" : "(?<=</?)tfoot\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)th\\b",
+      "beginString" : "(?<=</?)th\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)thead\\b",
+      "beginString" : "(?<=</?)thead\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)time\\b",
+      "beginString" : "(?<=</?)time\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)title\\b",
+      "beginString" : "(?<=</?)title\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)tr\\b",
+      "beginString" : "(?<=</?)tr\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)track\\b",
+      "beginString" : "(?<=</?)track\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)tt\\b",
+      "beginString" : "(?<=</?)tt\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)u\\b",
+      "beginString" : "(?<=</?)u\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)ul\\b",
+      "beginString" : "(?<=</?)ul\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)var\\b",
+      "beginString" : "(?<=</?)var\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)video\\b",
+      "beginString" : "(?<=</?)video\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)wbr\\b",
+      "beginString" : "(?<=</?)wbr\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     }

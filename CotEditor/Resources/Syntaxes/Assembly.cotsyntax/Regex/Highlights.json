@@ -144,7 +144,7 @@
   "numbers" : [
     {
       "beginString" : "(\\b|[-+])(0[dt])?[0-9][0-9_]*[dt]?\\b",
-      "description" : "decimal with pre\/suf-fix",
+      "description" : "decimal with pre/suf-fix",
       "ignoreCase" : true,
       "regularExpression" : true
     },

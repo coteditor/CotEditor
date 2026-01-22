@@ -15,7 +15,7 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "^(--?|\/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}",
+      "beginString" : "^(--?|/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}",
       "description" : "option lists",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -153,12 +153,12 @@
   ],
   "values" : [
     {
-      "beginString" : "(?:https?|ftp):\\\/\\\/[-_.!~*\\'a-zA-Z0-9;\\\/?:\\@&=+\\$,%#]+",
+      "beginString" : "(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+",
       "description" : "url link",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?:https?|ftp):\\\/\\\/[-_.!~*\\'a-zA-Z0-9;\\\/?:\\@&=+\\$,%#]+\\([-_.!~*\\'a-zA-Z0-9;\\\/?:\\@&=+\\$,%#]+\\)",
+      "beginString" : "(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\([-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\)",
       "description" : "url link with bracket",
       "regularExpression" : true
     },

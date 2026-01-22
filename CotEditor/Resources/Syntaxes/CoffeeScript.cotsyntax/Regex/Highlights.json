@@ -12,8 +12,8 @@
       "endString" : "'''"
     },
     {
-      "beginString" : "\/\/\/",
-      "endString" : "\/\/\/"
+      "beginString" : "///",
+      "endString" : "///"
     }
   ],
   "commands" : [

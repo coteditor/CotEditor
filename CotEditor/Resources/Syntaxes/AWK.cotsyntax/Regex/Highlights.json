@@ -4,9 +4,9 @@
   ],
   "characters" : [
     {
-      "beginString" : "\/",
+      "beginString" : "/",
       "description" : "regular expression",
-      "endString" : "\/"
+      "endString" : "/"
     }
   ],
   "commands" : [

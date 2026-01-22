@@ -34,7 +34,7 @@
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=<\/?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t \/>])",
+      "beginString" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
       "regularExpression" : true
     },
     {
@@ -127,7 +127,7 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<\/?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "beginString" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
       "regularExpression" : true
     },
     {

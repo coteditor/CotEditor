@@ -119,7 +119,7 @@ extension Syntax {
             let fileWrapper = FileWrapper(directoryWithFileWrappers: [:])
             
             let encoder = JSONEncoder()
-            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
             
             let info = Info(kind: self.kind, fileMap: self.fileMap, metadata: self.metadata)
             let infoData = try encoder.encode(info)

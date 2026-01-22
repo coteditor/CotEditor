@@ -2,8 +2,8 @@
   "comment" : {
     "blocks" : [
       {
-        "begin" : "\/*",
-        "end" : "*\/"
+        "begin" : "/*",
+        "end" : "*/"
       }
     ],
     "inlines" : [

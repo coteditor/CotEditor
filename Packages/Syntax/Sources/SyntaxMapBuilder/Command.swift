@@ -45,7 +45,7 @@ struct Command: ParsableCommand {
         let syntaxMap = try Syntax.FileMap.load(at: urls)
         
         let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         
         let data = try encoder.encode(syntaxMap)
         try data.write(to: self.output)

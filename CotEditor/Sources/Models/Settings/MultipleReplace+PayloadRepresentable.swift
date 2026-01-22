@@ -64,7 +64,7 @@ extension MultipleReplace: PayloadRepresentable {
     func makePayload() throws -> any Persistable {
         
         let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         
         return try encoder.encode(self)
     }

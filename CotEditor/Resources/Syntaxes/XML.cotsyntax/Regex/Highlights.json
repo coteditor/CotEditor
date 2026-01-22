@@ -30,7 +30,7 @@
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=<\/?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t \/>])",
+      "beginString" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
       "description" : "element",
       "regularExpression" : true
     }
@@ -59,7 +59,7 @@
   ],
   "variables" : [
     {
-      "beginString" : "(?<=<\/?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "beginString" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
       "regularExpression" : true
     },
     {

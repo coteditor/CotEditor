@@ -28,7 +28,7 @@
     },
     {
       "beginString" : "---?",
-      "description" : "en\/em dash",
+      "description" : "en/em dash",
       "regularExpression" : true
     },
     {

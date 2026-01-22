@@ -12,8 +12,8 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bq\/",
-      "endString" : "\/",
+      "beginString" : "\\bq/",
+      "endString" : "/",
       "regularExpression" : true
     }
   ],
@@ -796,12 +796,12 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "\/[^\\r\\n\/]*\/[^\\r\\n\/]*\/[a-z]*\\b",
+      "beginString" : "/[^\\r\\n/]*/[^\\r\\n/]*/[a-z]*\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "qq\/",
-      "endString" : "\/"
+      "beginString" : "qq/",
+      "endString" : "/"
     }
   ],
   "types" : [
@@ -1026,7 +1026,7 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\/",
+      "beginString" : "\\$/",
       "regularExpression" : true
     },
     {

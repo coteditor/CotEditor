@@ -110,7 +110,7 @@
   ],
   "strings" : [
     {
-      "beginString" : "(?<!\\\\)<\/[a-zA-Z][a-zA-Z1-6]*>",
+      "beginString" : "(?<!\\\\)</[a-zA-Z][a-zA-Z1-6]*>",
       "description" : "HTML tag",
       "regularExpression" : true
     },
@@ -177,7 +177,7 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "<(https?|ftp)(:\\\/\\\/[-_.!~*\\'()a-zA-Z0-9;\\\/?:\\@&=+\\$,%#]+)>",
+      "beginString" : "<(https?|ftp)(:\\/\\/[-_.!~*\\'()a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+)>",
       "description" : "a",
       "regularExpression" : true
     },

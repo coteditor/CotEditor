@@ -12,7 +12,7 @@
   },
   {
     "beginString" : "^[0-9,adc]+$",
-    "description" : "added\/deleted\/changed",
+    "description" : "added/deleted/changed",
     "keyString" : "    $0"
   }
 ]

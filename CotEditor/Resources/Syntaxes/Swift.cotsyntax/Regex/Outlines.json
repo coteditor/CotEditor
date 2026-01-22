@@ -1,18 +1,18 @@
 [
   {
-    "beginString" : "\/\/[ \\t]*(TODO:|FIXME:)[ \\t](.+)",
+    "beginString" : "//[ \\t]*(TODO:|FIXME:)[ \\t](.+)",
     "bold" : true,
-    "description" : "TODO\/FIXME",
+    "description" : "TODO/FIXME",
     "keyString" : "$1 $2"
   },
   {
-    "beginString" : "\/\/[ \\t]*MARK:[ \\t]*(?:-[\\t ]+)?(.*)",
+    "beginString" : "//[ \\t]*MARK:[ \\t]*(?:-[\\t ]+)?(.*)",
     "bold" : true,
     "description" : "MARK",
     "keyString" : "$1"
   },
   {
-    "beginString" : "\/\/[ \\t]*MARK:[ \\t]*-",
+    "beginString" : "//[ \\t]*MARK:[ \\t]*-",
     "description" : "separator",
     "keyString" : "-"
   },

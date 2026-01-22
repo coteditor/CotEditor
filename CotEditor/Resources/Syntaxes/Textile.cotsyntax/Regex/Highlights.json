@@ -5,7 +5,7 @@
   "characters" : [
     {
       "beginString" : "<pre(\\s[^<>]*)?>",
-      "endString" : "<\/pre>",
+      "endString" : "</pre>",
       "regularExpression" : true
     },
     {
@@ -67,7 +67,7 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "<\/[a-zA-Z]+>",
+      "beginString" : "</[a-zA-Z]+>",
       "regularExpression" : true
     },
     {

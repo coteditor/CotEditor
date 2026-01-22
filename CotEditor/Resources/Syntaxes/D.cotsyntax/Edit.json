@@ -2,17 +2,17 @@
   "comment" : {
     "blocks" : [
       {
-        "begin" : "\/*",
-        "end" : "*\/"
+        "begin" : "/*",
+        "end" : "*/"
       },
       {
-        "begin" : "\/+",
-        "end" : "+\/"
+        "begin" : "/+",
+        "end" : "+/"
       }
     ],
     "inlines" : [
       {
-        "begin" : "\/\/"
+        "begin" : "//"
       }
     ]
   },

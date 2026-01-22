@@ -75,7 +75,7 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])[0-9][0-9.\/_]*([ed][-+]?\\d+)?\\b",
+      "beginString" : "(\\b|[-+])[0-9][0-9./_]*([ed][-+]?\\d+)?\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     }

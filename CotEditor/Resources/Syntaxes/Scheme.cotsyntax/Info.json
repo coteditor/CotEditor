@@ -19,7 +19,7 @@
   "metadata" : {
     "author" : "1024jp",
     "description" : "support R5RS and R6RS",
-    "distributionURL" : "https:\/\/coteditor.com",
+    "distributionURL" : "https://coteditor.com",
     "lastModified" : "2026-01-22",
     "license" : "Same as CotEditor",
     "version" : "2.0.0"

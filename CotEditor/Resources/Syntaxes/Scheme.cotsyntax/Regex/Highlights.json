@@ -62,7 +62,7 @@
       "beginString" : "-"
     },
     {
-      "beginString" : "\/"
+      "beginString" : "/"
     },
     {
       "beginString" : "<"
@@ -179,7 +179,7 @@
       "beginString" : "call-with-values"
     },
     {
-      "beginString" : "call\/cc"
+      "beginString" : "call/cc"
     },
     {
       "beginString" : "car"
@@ -398,7 +398,7 @@
       "beginString" : "floor-remainder"
     },
     {
-      "beginString" : "floor\/"
+      "beginString" : "floor/"
     },
     {
       "beginString" : "flush-output-port"
@@ -899,7 +899,7 @@
       "beginString" : "truncate-remainder"
     },
     {
-      "beginString" : "truncate\/"
+      "beginString" : "truncate/"
     },
     {
       "beginString" : "u8-ready"
@@ -1148,12 +1148,12 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b(#x(#[ie])?|(#[ie])?#x)([-+]?[0-9a-f][-+0-9a-f\/|@.iesfdl]*)\\b",
+      "beginString" : "\\b(#x(#[ie])?|(#[ie])?#x)([-+]?[0-9a-f][-+0-9a-f/|@.iesfdl]*)\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b((#[bod])?(#[ie])?|(#[ie])?(#[bod])?)([-+]?[0-9][-+0-9\/|@.iesfdl]*)\\b",
+      "beginString" : "\\b((#[bod])?(#[ie])?|(#[ie])?(#[bod])?)([-+]?[0-9][-+0-9/|@.iesfdl]*)\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },

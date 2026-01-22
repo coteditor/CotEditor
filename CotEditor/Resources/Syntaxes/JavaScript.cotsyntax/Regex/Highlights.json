@@ -1260,7 +1260,7 @@
   ],
   "characters" : [
     {
-      "beginString" : "\/\\S+\/[gimy]*\\b",
+      "beginString" : "/\\S+/[gimy]*\\b",
       "regularExpression" : true
     },
     {
