@@ -3,12 +3,6 @@
     "extensions" : [
       "v",
       "sv"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

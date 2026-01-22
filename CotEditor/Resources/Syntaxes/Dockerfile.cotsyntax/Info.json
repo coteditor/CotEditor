@@ -1,13 +1,7 @@
 {
   "fileMap" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       "Dockerfile"
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

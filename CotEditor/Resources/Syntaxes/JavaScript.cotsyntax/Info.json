@@ -4,12 +4,6 @@
       "js",
       "mjs",
       "pac"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

@@ -5,9 +5,6 @@
       "cgi",
       "pm"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "perl"
     ]

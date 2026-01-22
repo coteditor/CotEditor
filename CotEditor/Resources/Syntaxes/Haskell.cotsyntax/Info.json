@@ -4,9 +4,6 @@
       "hs",
       "lhs"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "runhaskell"
     ]

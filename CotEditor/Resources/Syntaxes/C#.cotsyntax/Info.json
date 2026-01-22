@@ -3,9 +3,6 @@
     "extensions" : [
       "cs"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "csharp"
     ]

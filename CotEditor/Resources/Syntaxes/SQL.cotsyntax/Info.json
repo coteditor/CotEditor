@@ -4,12 +4,6 @@
       "sql",
       "mysql",
       "pgsql"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

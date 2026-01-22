@@ -2,12 +2,6 @@
   "fileMap" : {
     "extensions" : [
       "erl"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

@@ -2,12 +2,6 @@
   "fileMap" : {
     "extensions" : [
       "vhd"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

@@ -8,12 +8,6 @@
       "f90",
       "for",
       "cuf"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

@@ -1,15 +1,9 @@
 {
   "fileMap" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       ".gitconfig",
       ".gitmodules",
       "gitconfig"
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

@@ -3,9 +3,6 @@
     "extensions" : [
       "proto"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "protoc"
     ]

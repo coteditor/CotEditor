@@ -3,12 +3,6 @@
     "extensions" : [
       "ics",
       "ifb"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

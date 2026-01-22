@@ -4,9 +4,6 @@
       "scm",
       "ss"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "chicken-scheme",
       "csi",

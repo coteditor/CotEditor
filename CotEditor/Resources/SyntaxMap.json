@@ -3,9 +3,6 @@
     "extensions" : [
       "awk"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "awk"
     ]
@@ -16,75 +13,37 @@
     ],
     "filenames" : [
       ".htaccess"
-    ],
-    "interpreters" : [
-
     ]
   },
   "AppleScript" : {
     "extensions" : [
       "applescript"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Assembly" : {
     "extensions" : [
       "s",
       "asm"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "BBCode" : {
-    "extensions" : [
 
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
-    ]
   },
   "BibTeX" : {
     "extensions" : [
       "bib",
       "bibtex"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "C" : {
     "extensions" : [
       "c",
       "h"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "C#" : {
     "extensions" : [
       "cs"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "csharp"
@@ -105,31 +64,16 @@
       "ipp",
       "cu",
       "cuh"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "CSS" : {
     "extensions" : [
       "css"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "CoffeeScript" : {
     "extensions" : [
       "coffee"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "coffee"
@@ -138,9 +82,6 @@
   "D" : {
     "extensions" : [
       "d"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "rdmd"

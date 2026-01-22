@@ -3,9 +3,6 @@
     "extensions" : [
       "coffee"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "coffee"
     ]

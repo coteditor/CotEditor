@@ -2,12 +2,6 @@
   "fileMap" : {
     "extensions" : [
       "jq"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

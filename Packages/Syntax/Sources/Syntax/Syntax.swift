@@ -213,9 +213,19 @@ public struct Syntax: Equatable, Sendable {
         syntax.commentDelimiters.blocks.removeAll(where: \.end.isEmpty)
         syntax.completions.removeAll(where: \.isEmpty)
         syntax.completions.caseInsensitiveSort(\.self)
+        
         syntax.fileMap.extensions?.removeAll(where: \.isEmpty)
+        if syntax.fileMap.extensions?.isEmpty == true {
+            syntax.fileMap.extensions = nil
+        }
         syntax.fileMap.filenames?.removeAll(where: \.isEmpty)
+        if syntax.fileMap.filenames?.isEmpty == true {
+            syntax.fileMap.filenames = nil
+        }
         syntax.fileMap.interpreters?.removeAll(where: \.isEmpty)
+        if syntax.fileMap.interpreters?.isEmpty == true {
+            syntax.fileMap.interpreters = nil
+        }
         
         return syntax
     }

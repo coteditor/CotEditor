@@ -2,12 +2,6 @@
   "fileMap" : {
     "extensions" : [
       "toml"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

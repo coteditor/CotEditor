@@ -2,12 +2,6 @@
   "fileMap" : {
     "extensions" : [
       "textile"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "general",

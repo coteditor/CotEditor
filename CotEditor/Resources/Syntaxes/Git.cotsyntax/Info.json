@@ -1,14 +1,8 @@
 {
   "fileMap" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       "git-rebase-todo",
       "COMMIT_EDITMSG"
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

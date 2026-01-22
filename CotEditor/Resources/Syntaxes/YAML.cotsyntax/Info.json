@@ -3,12 +3,6 @@
     "extensions" : [
       "yml",
       "yaml"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

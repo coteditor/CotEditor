@@ -3,9 +3,6 @@
     "extensions" : [
       "lua"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "lua",
       "luajit"

@@ -7,12 +7,6 @@
       "xsd",
       "rlx",
       "rdf"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

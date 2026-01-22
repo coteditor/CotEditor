@@ -5,12 +5,6 @@
       "tsx",
       "mts",
       "cts"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

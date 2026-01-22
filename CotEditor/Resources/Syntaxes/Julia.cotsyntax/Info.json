@@ -3,9 +3,6 @@
     "extensions" : [
       "jl"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "julia"
     ]

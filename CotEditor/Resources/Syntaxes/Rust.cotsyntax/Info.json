@@ -4,9 +4,6 @@
       "rs",
       "rc"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "rustx"
     ]

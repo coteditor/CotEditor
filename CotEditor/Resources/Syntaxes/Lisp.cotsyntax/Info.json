@@ -7,9 +7,6 @@
       "clj",
       "edn"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "sbcl"
     ]

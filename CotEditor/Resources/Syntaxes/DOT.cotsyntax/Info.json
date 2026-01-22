@@ -3,12 +3,6 @@
     "extensions" : [
       "dot",
       "gv"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

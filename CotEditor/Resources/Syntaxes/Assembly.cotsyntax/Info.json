@@ -3,12 +3,6 @@
     "extensions" : [
       "s",
       "asm"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",

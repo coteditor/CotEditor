@@ -2,12 +2,6 @@
   "fileMap" : {
     "extensions" : [
       "go"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "kind" : "code",
