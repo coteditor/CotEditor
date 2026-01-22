@@ -28,6 +28,10 @@
     {
       "beginString" : "\"",
       "endString" : "\""
+    },
+    {
+      "beginString" : "'",
+      "endString" : "'"
     }
   ],
   "types" : [
