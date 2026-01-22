@@ -15,8 +15,8 @@
     "author" : "CotEditor Project",
     "description" : "Support CSS3 partly.",
     "distributionURL" : "https:\/\/coteditor.com",
-    "lastModified" : "2025-08-19",
+    "lastModified" : "2026-01-22",
     "license" : "Same as CotEditor",
-    "version" : "2.9.0"
+    "version" : "3.0.0"
   }
 }

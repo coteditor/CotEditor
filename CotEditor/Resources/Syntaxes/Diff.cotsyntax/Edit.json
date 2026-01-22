@@ -4,7 +4,22 @@
 
     ],
     "inlines" : [
-
+      {
+        "begin" : "*** ",
+        "leadingOnly" : true
+      },
+      {
+        "begin" : "--- ",
+        "leadingOnly" : true
+      },
+      {
+        "begin" : "+++ ",
+        "leadingOnly" : true
+      },
+      {
+        "begin" : "***************",
+        "leadingOnly" : true
+      }
     ]
   },
   "completions" : [

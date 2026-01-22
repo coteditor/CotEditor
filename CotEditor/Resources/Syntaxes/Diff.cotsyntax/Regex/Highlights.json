@@ -27,18 +27,7 @@
     }
   ],
   "comments" : [
-    {
-      "beginString" : "^[*]{3} .*",
-      "regularExpression" : true
-    },
-    {
-      "beginString" : "^[-+]{3} .*",
-      "regularExpression" : true
-    },
-    {
-      "beginString" : "^\\*+",
-      "regularExpression" : true
-    }
+
   ],
   "keywords" : [
     {

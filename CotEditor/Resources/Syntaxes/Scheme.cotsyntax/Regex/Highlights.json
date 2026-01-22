@@ -984,14 +984,7 @@
     }
   ],
   "comments" : [
-    {
-      "beginString" : "#;(",
-      "endString" : ")"
-    },
-    {
-      "beginString" : "#;[",
-      "endString" : "]"
-    }
+
   ],
   "keywords" : [
     {

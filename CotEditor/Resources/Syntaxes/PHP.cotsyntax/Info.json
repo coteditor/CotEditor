@@ -20,8 +20,8 @@
     "author" : "kaz",
     "description" : "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013.",
     "distributionURL" : "https:\/\/coteditor.com",
-    "lastModified" : "2025-02-21",
+    "lastModified" : "2026-01-22",
     "license" : "Same as CotEditor",
-    "version" : "2.6.1"
+    "version" : "3.0.0"
   }
 }

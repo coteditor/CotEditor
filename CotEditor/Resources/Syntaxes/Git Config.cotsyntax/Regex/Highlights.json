@@ -9,10 +9,7 @@
 
   ],
   "comments" : [
-    {
-      "beginString" : ";.*",
-      "regularExpression" : true
-    }
+
   ],
   "keywords" : [
     {

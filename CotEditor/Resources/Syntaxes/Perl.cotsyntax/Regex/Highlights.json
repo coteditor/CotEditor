@@ -644,10 +644,7 @@
     }
   ],
   "comments" : [
-    {
-      "beginString" : "=pod",
-      "endString" : "=cut"
-    }
+
   ],
   "keywords" : [
     {

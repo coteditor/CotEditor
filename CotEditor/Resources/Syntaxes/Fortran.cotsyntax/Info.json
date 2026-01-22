@@ -21,8 +21,8 @@
     "author" : "1024jp",
     "description" : "Support from Fortran 90 to Fortran 2008",
     "distributionURL" : "https:\/\/coteditor.com",
-    "lastModified" : "2025-03-01",
+    "lastModified" : "2026-01-22",
     "license" : "Same as CotEditor",
-    "version" : "1.2.0"
+    "version" : "2.0.0"
   }
 }

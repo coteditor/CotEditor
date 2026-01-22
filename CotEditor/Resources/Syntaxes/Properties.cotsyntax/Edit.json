@@ -6,6 +6,10 @@
     "inlines" : [
       {
         "begin" : "#"
+      },
+      {
+        "begin" : "!",
+        "leadingOnly": true
       }
     ]
   },

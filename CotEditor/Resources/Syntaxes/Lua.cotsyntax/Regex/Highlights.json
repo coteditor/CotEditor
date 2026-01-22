@@ -561,18 +561,7 @@
     }
   ],
   "comments" : [
-    {
-      "beginString" : "--[===[",
-      "endString" : "]===]"
-    },
-    {
-      "beginString" : "--[==[",
-      "endString" : "]==]"
-    },
-    {
-      "beginString" : "--[=[",
-      "endString" : "]=]"
-    }
+
   ],
   "keywords" : [
     {

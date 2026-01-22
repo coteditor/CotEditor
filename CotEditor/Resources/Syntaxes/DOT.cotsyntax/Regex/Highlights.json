@@ -239,11 +239,7 @@
 
   ],
   "comments" : [
-    {
-      "beginString" : "^#",
-      "endString" : "\\n",
-      "regularExpression" : true
-    }
+
   ],
   "keywords" : [
     {

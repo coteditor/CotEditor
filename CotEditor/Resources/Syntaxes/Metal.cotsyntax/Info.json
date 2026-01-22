@@ -16,8 +16,8 @@
     "author" : "aybarsnazlica",
     "description" : "Metal Shading Language syntax based on Apple's MSL",
     "distributionURL" : "https:\/\/coteditor.com",
-    "lastModified" : "2025-06-21",
+    "lastModified" : "2026-01-22",
     "license" : "Same as CotEditor",
-    "version" : "1.0.0"
+    "version" : "2.0.0"
   }
 }

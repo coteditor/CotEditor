@@ -1,7 +1,10 @@
 {
   "comment" : {
     "blocks" : [
-
+      {
+        "begin" : "=pod",
+        "cut" : "end"
+      }
     ],
     "inlines" : [
       {

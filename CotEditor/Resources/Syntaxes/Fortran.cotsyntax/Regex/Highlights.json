@@ -993,14 +993,7 @@
     }
   ],
   "comments" : [
-    {
-      "beginString" : "^\\*.+",
-      "regularExpression" : true
-    },
-    {
-      "beginString" : "^C\\b.+",
-      "regularExpression" : true
-    }
+
   ],
   "keywords" : [
     {
