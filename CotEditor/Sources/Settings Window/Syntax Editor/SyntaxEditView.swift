@@ -59,6 +59,7 @@ struct SyntaxEditView: View {
         case characters
         case comments
         
+        case commentDelimiters
         case outline
         case completion
         case fileMapping
@@ -68,7 +69,7 @@ struct SyntaxEditView: View {
         
         
         static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
-        static let others: [Self] = [.outline, .completion, .fileMapping]
+        static let others: [Self] = [.commentDelimiters, .outline, .completion, .fileMapping]
         static let syntaxData: [Self] = [.syntaxInfo, .validation]
     }
     
@@ -211,7 +212,9 @@ struct SyntaxEditView: View {
             case .characters:
                 SyntaxHighlightEditView(items: $syntax.highlights.characters)
             case .comments:
-                SyntaxCommentEditView(inlineComments: $syntax.inlineComments, blockComments: $syntax.blockComments, highlights: $syntax.highlights.comments)
+                SyntaxHighlightEditView(items: $syntax.highlights.comments)
+            case .commentDelimiters:
+                SyntaxCommentEditView(inlineComments: $syntax.inlineComments, blockComments: $syntax.blockComments)
             case .outline:
                 SyntaxOutlineEditView(items: $syntax.outlines)
             case .completion:
@@ -310,6 +313,12 @@ extension SyntaxEditView.Pane {
                 SyntaxType.characters.label
             case .comments:
                 SyntaxType.comments.label
+                
+            case .commentDelimiters:
+                String(localized: "Syntax.key.commentDelimiters.label",
+                       defaultValue: "Commenting",
+                       table: "SyntaxEditor",
+                       comment: "syntax definition type")
                 
             case .outline:
                 String(localized: "Syntax.key.outlines.label",

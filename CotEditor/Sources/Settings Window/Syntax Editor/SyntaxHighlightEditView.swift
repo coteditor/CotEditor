@@ -32,7 +32,6 @@ struct SyntaxHighlightEditView: View {
     
     
     @Binding var items: [Item]
-    var helpAnchor: String = "syntax_highlight_settings"
     
     @State private var selection: Set<Item.ID> = []
     @State private var sortOrder: [KeyPathComparator<Item>] = []
@@ -132,7 +131,7 @@ struct SyntaxHighlightEditView: View {
                     .foregroundStyle(.secondary)
                     .controlSize(.small)
                 Spacer()
-                HelpLink(anchor: self.helpAnchor)
+                HelpLink(anchor: "syntax_highlight_settings")
             }
         }
     }

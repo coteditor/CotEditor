@@ -22,6 +22,7 @@
 
 ### TODO
 
+- Localize updated strings.
 - Migrate customized syntax definitions.
 
 
