@@ -40,18 +40,18 @@ public import Foundation
 /// ```
 extension Syntax {
     
-    private struct Info: Equatable, Sendable, Codable {
+    struct Info: Equatable, Sendable, Codable {
         
-        var kind: Kind
-        var fileMap: FileMap
-        var metadata: Metadata
+        var kind: Kind?
+        var fileMap: FileMap?
+        var metadata: Metadata?
     }
     
     
-    private struct Edit: Equatable, Sendable, Codable {
+    struct Edit: Equatable, Sendable, Codable {
         
-        var comment: Comment
-        var completions: [String]
+        var comment: Comment?
+        var completions: [String]?
     }
     
     
@@ -80,17 +80,17 @@ extension Syntax {
         let decoder = JSONDecoder()
         
         let info = try decoder.decode(Info.self, from: infoData)
-        self.kind = info.kind
-        self.fileMap = info.fileMap
-        self.metadata = info.metadata
+        self.kind = info.kind ?? .general
+        self.fileMap = info.fileMap ?? .init()
+        self.metadata = info.metadata ?? .init()
         
         guard let editData = fileWrapper.fileWrappers?[Filename.edit]?.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
         
         let edit = try decoder.decode(Edit.self, from: editData)
-        self.commentDelimiters = edit.comment
-        self.completions = edit.completions
+        self.commentDelimiters = edit.comment ?? .init()
+        self.completions = edit.completions ?? []
         
         // load regex-based definition
         if let wrapper = fileWrapper.fileWrappers?[Filename.regex] {
