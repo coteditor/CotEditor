@@ -5,9 +5,6 @@
       "regularExpression" : true
     }
   ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "aaa",
@@ -126,9 +123,6 @@
       "beginString" : "xor",
       "ignoreCase" : true
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -417,8 +411,5 @@
     {
       "beginString" : "__?SNaN?__"
     }
-  ],
-  "variables" : [
-
   ]
 }

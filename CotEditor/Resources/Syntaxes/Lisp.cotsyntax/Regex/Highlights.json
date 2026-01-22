@@ -46,12 +46,6 @@
       "ignoreCase" : true
     }
   ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<=\\()[^[:space:],)]+",
@@ -86,9 +80,6 @@
       "endString" : "\""
     }
   ],
-  "types" : [
-
-  ],
   "values" : [
     {
       "beginString" : "f",
@@ -106,8 +97,5 @@
       "beginString" : "t",
       "ignoreCase" : true
     }
-  ],
-  "variables" : [
-
   ]
 }

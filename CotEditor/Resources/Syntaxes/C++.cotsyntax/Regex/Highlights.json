@@ -52,12 +52,6 @@
       "endString" : "'"
     }
   ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "alignas"

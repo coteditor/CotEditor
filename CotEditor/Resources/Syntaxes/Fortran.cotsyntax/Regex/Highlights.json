@@ -1,10 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "\\babs(?=\\()",
@@ -992,9 +986,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : ".AND.",
@@ -1507,11 +1498,5 @@
       "ignoreCase" : true,
       "regularExpression" : true
     }
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

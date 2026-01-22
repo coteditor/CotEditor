@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "'",
@@ -550,9 +547,6 @@
       "beginString" : "zsh"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "break"
@@ -648,9 +642,6 @@
       "beginString" : "<<-?[\\t ]*(\\S+)\\s(?:.|\\R)*?\\R\\1$",
       "regularExpression" : true
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {

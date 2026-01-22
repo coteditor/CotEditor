@@ -1,18 +1,9 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "\\\\$",
       "regularExpression" : true
     }
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -24,18 +15,6 @@
       "beginString" : "^\\S.*?(?=[=:])",
       "regularExpression" : true
     }
-  ],
-  "numbers" : [
-
-  ],
-  "strings" : [
-
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
   ],
   "variables" : [
     {

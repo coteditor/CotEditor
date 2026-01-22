@@ -1,10 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "abbreviate"
@@ -2926,9 +2920,6 @@
       "beginString" : "zapsmall"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "break"
@@ -3096,8 +3087,5 @@
     {
       "beginString" : "TRUE"
     }
-  ],
-  "variables" : [
-
   ]
 }

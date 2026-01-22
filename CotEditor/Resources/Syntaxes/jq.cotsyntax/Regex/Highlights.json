@@ -564,9 +564,6 @@
       "beginString" : "yn"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "and"
@@ -664,9 +661,6 @@
       "beginString" : "\"",
       "endString" : "\""
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {

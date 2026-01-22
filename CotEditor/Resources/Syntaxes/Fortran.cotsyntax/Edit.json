@@ -6,18 +6,7 @@
     "inlines" : [
       {
         "begin" : "!"
-      },
-      {
-        "begin" : "*",
-        "leadingOnly": true
-      },
-      {
-        "begin" : "C ",
-        "leadingOnly": true
       }
     ]
-  },
-  "completions" : [
-
-  ]
+  }
 }

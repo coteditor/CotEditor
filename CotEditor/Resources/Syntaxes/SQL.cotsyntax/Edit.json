@@ -9,13 +9,7 @@
     "inlines" : [
       {
         "begin" : "--"
-      },
-      {
-        "begin" : "#"
       }
     ]
-  },
-  "completions" : [
-
-  ]
+  }
 }

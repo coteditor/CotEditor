@@ -74,7 +74,7 @@ public extension Syntax {
         let yamlData = try Data(contentsOf: fileURL)
         let decoder = YAMLDecoder()
         let syntax = try decoder.decode(Syntax.self, from: yamlData)
-        let fileWrapper = try syntax.fileWrapper
+        let fileWrapper = try syntax.sanitized.fileWrapper
         
         if let directoryURL, (try? directoryURL.checkResourceIsReachable()) != true {
             try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)

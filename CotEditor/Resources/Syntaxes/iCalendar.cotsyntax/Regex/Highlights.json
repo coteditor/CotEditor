@@ -143,9 +143,6 @@
       "regularExpression" : true
     }
   ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "BINARY"
@@ -189,9 +186,6 @@
     {
       "beginString" : "UTC-OFFSET"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {

@@ -17,9 +17,6 @@
       "beginString" : "@staticmethod"
     }
   ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "\\bprint(?![\\t ]*(\\w|['\"]))",
@@ -947,9 +944,6 @@
       "beginString" : "zip"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "and"
@@ -1109,9 +1103,6 @@
       "beginString" : "`",
       "endString" : "`"
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {

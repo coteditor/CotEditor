@@ -25,15 +25,6 @@
       "regularExpression" : true
     }
   ],
-  "characters" : [
-
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "[*]"
@@ -229,9 +220,6 @@
       "regularExpression" : true
     }
   ],
-  "numbers" : [
-
-  ],
   "strings" : [
     {
       "beginString" : "\"",
@@ -241,14 +229,5 @@
       "beginString" : "(?<=[a-z]=)[^[:space:]\\]]+(?=[^\\[\\]]*\\])",
       "regularExpression" : true
     }
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

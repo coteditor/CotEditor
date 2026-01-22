@@ -1,16 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "^[\\t ]*\\w+[\\t ]*(?<=)",
@@ -47,8 +35,5 @@
     {
       "beginString" : "true"
     }
-  ],
-  "variables" : [
-
   ]
 }

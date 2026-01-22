@@ -76,9 +76,6 @@
       "beginString" : "zscaled"
     }
   ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "addto"
@@ -224,9 +221,6 @@
     {
       "beginString" : "withweight"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {

@@ -85,9 +85,6 @@
       "beginString" : "write"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "aligna"
@@ -345,9 +342,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-
-  ],
   "types" : [
     {
       "beginString" : "bool"
@@ -399,8 +393,5 @@
     {
       "beginString" : "true"
     }
-  ],
-  "variables" : [
-
   ]
 }

@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "'.'",
@@ -631,9 +628,6 @@
       "beginString" : "zipWith3"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "_"
@@ -880,8 +874,5 @@
     {
       "beginString" : "True"
     }
-  ],
-  "variables" : [
-
   ]
 }

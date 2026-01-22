@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "^! .*",
@@ -26,9 +23,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "^-.*",
@@ -50,12 +44,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-
-  ],
-  "types" : [
-
-  ],
   "values" : [
     {
       "beginString" : "^< .*",
@@ -65,8 +53,5 @@
       "beginString" : "^\\+.*",
       "regularExpression" : true
     }
-  ],
-  "variables" : [
-
   ]
 }

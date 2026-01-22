@@ -8,9 +8,6 @@
       "beginString" : "--"
     }
   ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "(?<=slave) +alias\\b",
@@ -2998,12 +2995,6 @@
       "beginString" : "zlib"
     }
   ],
-  "comments" : [
-
-  ],
-  "keywords" : [
-
-  ],
   "numbers" : [
     {
       "beginString" : "(?<![-_.[:alnum:]])\\-?\\d+(\\.\\d+)?\\b",
@@ -3041,9 +3032,6 @@
       "beginString" : "(?<=object create )\\w+",
       "regularExpression" : true
     }
-  ],
-  "values" : [
-
   ],
   "variables" : [
     {

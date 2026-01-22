@@ -156,9 +156,6 @@
       "beginString" : "where"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "#define"

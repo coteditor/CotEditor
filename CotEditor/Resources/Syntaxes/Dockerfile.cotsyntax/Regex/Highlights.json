@@ -1,17 +1,8 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "\\"
     }
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -69,9 +60,6 @@
       "beginString" : "WORKDIR"
     }
   ],
-  "numbers" : [
-
-  ],
   "strings" : [
     {
       "beginString" : "\"",
@@ -81,14 +69,5 @@
       "beginString" : "'",
       "endString" : "'"
     }
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

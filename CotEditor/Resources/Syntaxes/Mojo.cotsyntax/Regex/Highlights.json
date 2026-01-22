@@ -33,9 +33,6 @@
       "description" : "Mojo decorator"
     }
   ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "\\bprint(?![\\t ]*(\\w|['\"]))",
@@ -971,9 +968,6 @@
       "beginString" : "zip"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "alias",
@@ -1157,9 +1151,6 @@
       "beginString" : "`",
       "endString" : "`"
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {

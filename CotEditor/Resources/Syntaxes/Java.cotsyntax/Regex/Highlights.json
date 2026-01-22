@@ -56,9 +56,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "abstract"

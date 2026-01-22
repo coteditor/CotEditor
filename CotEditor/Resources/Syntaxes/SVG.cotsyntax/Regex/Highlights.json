@@ -1173,9 +1173,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<=</?)(svg:)?a\\b",
@@ -1554,9 +1551,6 @@
       "regularExpression" : true
     }
   ],
-  "numbers" : [
-
-  ],
   "strings" : [
     {
       "beginString" : "\"",
@@ -1579,9 +1573,6 @@
       "endString" : "\"",
       "regularExpression" : true
     }
-  ],
-  "values" : [
-
   ],
   "variables" : [
     {

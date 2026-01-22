@@ -1,10 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "^(pick|reword|edit|squash|fixup|exec|drop)\\b",
@@ -12,29 +6,11 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
-  "keywords" : [
-
-  ],
   "numbers" : [
     {
       "beginString" : "\\b[0-9a-f]{6,10}\\b",
       "description" : "hex",
       "regularExpression" : true
     }
-  ],
-  "strings" : [
-
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

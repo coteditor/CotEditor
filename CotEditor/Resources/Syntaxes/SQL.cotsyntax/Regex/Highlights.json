@@ -1,18 +1,9 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "\\\\u[0-9a-f]{4}\\b",
       "regularExpression" : true
     }
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {

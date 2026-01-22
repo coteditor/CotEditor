@@ -1,22 +1,10 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "\"[^\\r\\n\"]++\"\\s*+(?=:)",
       "description" : "Key",
       "regularExpression" : true
     }
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
-  "keywords" : [
-
   ],
   "numbers" : [
     {
@@ -28,14 +16,7 @@
     {
       "beginString" : "\"",
       "endString" : "\""
-    },
-    {
-      "beginString" : "'",
-      "endString" : "'"
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {
@@ -47,8 +28,5 @@
     {
       "beginString" : "true"
     }
-  ],
-  "variables" : [
-
   ]
 }

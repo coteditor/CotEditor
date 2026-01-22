@@ -125,7 +125,8 @@ extension Syntax {
             let infoData = try encoder.encode(info)
             fileWrapper.addRegularFile(withContents: infoData, preferredFilename: Filename.info)
             
-            let edit = Edit(comment: self.commentDelimiters, completions: self.completions)
+            let edit = Edit(comment: self.commentDelimiters,
+                            completions: self.completions.isEmpty ? nil : self.completions)
             let editData = try encoder.encode(edit)
             fileWrapper.addRegularFile(withContents: editData, preferredFilename: Filename.edit)
             

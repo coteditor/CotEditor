@@ -5,15 +5,6 @@
       "regularExpression" : true
     }
   ],
-  "characters" : [
-
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "abstract"
@@ -197,9 +188,6 @@
       "beginString" : "@'",
       "endString" : "'"
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {

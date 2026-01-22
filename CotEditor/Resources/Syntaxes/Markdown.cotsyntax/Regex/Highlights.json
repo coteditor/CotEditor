@@ -45,9 +45,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<!\\\\)~~[^ \\t~]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])~~",
@@ -186,8 +183,5 @@
       "description" : "a",
       "regularExpression" : true
     }
-  ],
-  "variables" : [
-
   ]
 }

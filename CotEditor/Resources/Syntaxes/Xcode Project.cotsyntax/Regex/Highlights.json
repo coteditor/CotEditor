@@ -58,15 +58,6 @@
       "beginString" : "XCConfigurationList"
     }
   ],
-  "characters" : [
-
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "\\b[a-z0-9_.]+(?= \\= )",
@@ -86,9 +77,6 @@
       "endString" : "\""
     }
   ],
-  "types" : [
-
-  ],
   "values" : [
     {
       "beginString" : "NO"
@@ -102,8 +90,5 @@
     {
       "beginString" : "YES_ERROR"
     }
-  ],
-  "variables" : [
-
   ]
 }

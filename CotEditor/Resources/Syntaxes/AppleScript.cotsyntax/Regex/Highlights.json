@@ -1,10 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "\\b(abort|begin|end) transaction\\b",
@@ -341,9 +335,6 @@
     {
       "beginString" : "write"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {

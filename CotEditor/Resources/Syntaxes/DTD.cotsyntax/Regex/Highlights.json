@@ -29,9 +29,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
@@ -41,9 +38,6 @@
       "beginString" : "(?<=[\\r\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\r\\n\\t )|,]?[^<>\\[]*[>\\[])",
       "regularExpression" : true
     }
-  ],
-  "numbers" : [
-
   ],
   "strings" : [
     {

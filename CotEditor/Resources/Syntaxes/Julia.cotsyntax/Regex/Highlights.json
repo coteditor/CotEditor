@@ -2959,9 +2959,6 @@
       "beginString" : "zip"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "abstract"
@@ -3488,8 +3485,5 @@
     {
       "beginString" : "WORD_SIZE"
     }
-  ],
-  "variables" : [
-
   ]
 }

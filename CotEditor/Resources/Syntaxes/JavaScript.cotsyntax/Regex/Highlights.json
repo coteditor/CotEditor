@@ -2823,9 +2823,6 @@
       "beginString" : "writeln"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "break"

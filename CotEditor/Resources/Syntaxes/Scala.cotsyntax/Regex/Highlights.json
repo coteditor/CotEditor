@@ -1,18 +1,9 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "'",
       "endString" : "'"
     }
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {

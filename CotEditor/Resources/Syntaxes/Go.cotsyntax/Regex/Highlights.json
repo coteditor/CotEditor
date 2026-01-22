@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "'",
@@ -87,9 +84,6 @@
     {
       "beginString" : "Sprintln"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -287,8 +281,5 @@
     {
       "beginString" : "true"
     }
-  ],
-  "variables" : [
-
   ]
 }

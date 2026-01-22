@@ -121,9 +121,6 @@
       "regularExpression" : true
     }
   ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "\\emph"
@@ -137,9 +134,6 @@
     {
       "beginString" : "\\verb"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -203,22 +197,10 @@
       "ignoreCase" : true
     }
   ],
-  "numbers" : [
-
-  ],
   "strings" : [
     {
       "beginString" : "\"",
       "endString" : "\""
     }
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

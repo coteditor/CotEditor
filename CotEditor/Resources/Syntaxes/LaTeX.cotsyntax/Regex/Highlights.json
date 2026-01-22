@@ -53,9 +53,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<!\\\\)&",
@@ -73,12 +70,6 @@
       "beginString" : "\\\\\\\\",
       "regularExpression" : true
     }
-  ],
-  "numbers" : [
-
-  ],
-  "strings" : [
-
   ],
   "types" : [
     {

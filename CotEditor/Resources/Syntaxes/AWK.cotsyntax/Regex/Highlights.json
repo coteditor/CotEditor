@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "/",
@@ -80,9 +77,6 @@
       "beginString" : "toupper"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "BEGIN"
@@ -151,12 +145,6 @@
       "beginString" : "\"",
       "endString" : "\""
     }
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
   ],
   "variables" : [
     {

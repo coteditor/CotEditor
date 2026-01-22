@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "[0-9]*'s?[bdh](?=[0-9a-f])",
@@ -440,9 +437,6 @@
     {
       "beginString" : "$warning"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -1232,17 +1226,5 @@
       "description" : "decimal",
       "regularExpression" : true
     }
-  ],
-  "strings" : [
-
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

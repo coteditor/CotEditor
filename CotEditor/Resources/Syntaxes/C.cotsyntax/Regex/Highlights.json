@@ -1440,9 +1440,6 @@
       "beginString" : "wscanf"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "auto"
@@ -2037,8 +2034,5 @@
     {
       "beginString" : "WINT_MIN"
     }
-  ],
-  "variables" : [
-
   ]
 }

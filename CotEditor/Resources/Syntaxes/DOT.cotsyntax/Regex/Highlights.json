@@ -232,15 +232,6 @@
       "beginString" : "z"
     }
   ],
-  "characters" : [
-
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(<-|->|--)",
@@ -265,20 +256,11 @@
       "beginString" : "subgraph"
     }
   ],
-  "numbers" : [
-
-  ],
   "strings" : [
     {
       "beginString" : "\"",
       "endString" : "\""
     }
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
   ],
   "variables" : [
     {

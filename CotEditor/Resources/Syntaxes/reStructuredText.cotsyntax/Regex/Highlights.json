@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "(?<!\\\\)``(?![ \\t`])(?:(?!\\R{2})(?:.|\\R))+?(?<![\\\\\\t ])``",
@@ -20,9 +17,6 @@
       "ignoreCase" : true,
       "regularExpression" : true
     }
-  ],
-  "commands" : [
-
   ],
   "comments" : [
     {
@@ -192,8 +186,5 @@
       "description" : "multi-words link",
       "regularExpression" : true
     }
-  ],
-  "variables" : [
-
   ]
 }

@@ -1,10 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "^\\s*AcceptFilter\\s",
@@ -3252,9 +3246,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<=</?)AuthnProviderAlias\\b",
@@ -3337,9 +3328,6 @@
       "regularExpression" : true
     }
   ],
-  "numbers" : [
-
-  ],
   "strings" : [
     {
       "beginString" : "\"",
@@ -3349,9 +3337,6 @@
       "beginString" : "'",
       "endString" : "'"
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {
@@ -3446,8 +3431,5 @@
       "beginString" : "unset",
       "ignoreCase" : true
     }
-  ],
-  "variables" : [
-
   ]
 }

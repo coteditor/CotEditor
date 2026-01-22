@@ -25,18 +25,12 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
       "description" : "element",
       "regularExpression" : true
     }
-  ],
-  "numbers" : [
-
   ],
   "strings" : [
     {
@@ -53,9 +47,6 @@
       "beginString" : "(?<=<)![A-Z]*",
       "regularExpression" : true
     }
-  ],
-  "values" : [
-
   ],
   "variables" : [
     {

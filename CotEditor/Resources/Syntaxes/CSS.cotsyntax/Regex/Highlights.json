@@ -522,9 +522,6 @@
       "beginString" : "@supports"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "-(webkit|moz|ms|o)-[-a-z]+(?=\\s*:)",

@@ -202,6 +202,9 @@ public struct Syntax: Equatable, Sendable {
         for type in SyntaxType.allCases {
             syntax.highlights[type]?.removeAll(where: \.isEmpty)
             syntax.highlights[type]?.caseInsensitiveSort(\.begin)
+            if syntax.highlights[type]?.isEmpty == true {
+                syntax.highlights[type] = nil
+            }
         }
         syntax.outlines.removeAll(where: \.isEmpty)
         syntax.outlines.caseInsensitiveSort(\.pattern)

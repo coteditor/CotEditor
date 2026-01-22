@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "'",
@@ -643,9 +640,6 @@
       "beginString" : "write"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "__DATA__"
@@ -803,9 +797,6 @@
       "beginString" : "qq/",
       "endString" : "/"
     }
-  ],
-  "types" : [
-
   ],
   "values" : [
     {

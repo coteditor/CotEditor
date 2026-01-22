@@ -1,10 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "(?<=\\.)class\\b",
@@ -361,9 +355,6 @@
     {
       "beginString" : "warn"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {

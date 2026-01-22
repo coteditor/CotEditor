@@ -1,10 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
   "commands" : [
     {
       "beginString" : "AR"
@@ -67,9 +61,6 @@
       "beginString" : "YACCR"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "^[^ ]+(?= *:[^=])",
@@ -121,20 +112,11 @@
       "beginString" : "while"
     }
   ],
-  "numbers" : [
-
-  ],
   "strings" : [
     {
       "beginString" : "\"",
       "endString" : "\""
     }
-  ],
-  "types" : [
-
-  ],
-  "values" : [
-
   ],
   "variables" : [
     {

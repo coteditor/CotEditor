@@ -66,12 +66,6 @@
       "beginString" : "\\tab"
     }
   ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<!\\\\);",
@@ -111,11 +105,5 @@
       "beginString" : "(?<=\\\\fldinst[ {]) *[A-Z][A-Z0-9]*",
       "regularExpression" : true
     }
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

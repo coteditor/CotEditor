@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "'",
@@ -2260,9 +2257,6 @@
       "beginString" : "zoom"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "case"
@@ -2345,9 +2339,6 @@
       "endString" : "\""
     }
   ],
-  "types" : [
-
-  ],
   "values" : [
     {
       "beginString" : "eps"
@@ -2376,8 +2367,5 @@
     {
       "beginString" : "true"
     }
-  ],
-  "variables" : [
-
   ]
 }

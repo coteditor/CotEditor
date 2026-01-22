@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "'",
@@ -7263,9 +7260,6 @@
     {
       "beginString" : "zlib_get_coding_type"
     }
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {

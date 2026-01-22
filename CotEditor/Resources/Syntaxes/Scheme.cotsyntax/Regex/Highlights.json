@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "#\\"
@@ -983,9 +980,6 @@
       "beginString" : "zero?"
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "=>"
@@ -1276,8 +1270,5 @@
     {
       "beginString" : "x86-64"
     }
-  ],
-  "variables" : [
-
   ]
 }

@@ -1,7 +1,4 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "<pre(\\s[^<>]*)?>",
@@ -12,12 +9,6 @@
       "beginString" : "@.*@",
       "regularExpression" : true
     }
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -96,8 +87,5 @@
       "beginString" : "\\s\".*?\"(?>:)",
       "regularExpression" : true
     }
-  ],
-  "variables" : [
-
   ]
 }

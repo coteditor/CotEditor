@@ -1,16 +1,4 @@
 {
-  "attributes" : [
-
-  ],
-  "characters" : [
-
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "^[ \\t]*\\w[^=:\\r\\n]*(?=[=:])",
@@ -73,8 +61,5 @@
       "ignoreCase" : true,
       "regularExpression" : true
     }
-  ],
-  "variables" : [
-
   ]
 }

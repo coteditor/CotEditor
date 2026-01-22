@@ -6,13 +6,7 @@
     "inlines" : [
       {
         "begin" : "#"
-      },
-      {
-        "begin" : ";"
       }
     ]
-  },
-  "completions" : [
-
-  ]
+  }
 }

@@ -162,12 +162,6 @@
       "regularExpression" : true
     }
   ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "abs",
@@ -606,9 +600,6 @@
       "regularExpression" : true
     }
   ],
-  "types" : [
-
-  ],
   "values" : [
     {
       "beginString" : "false"
@@ -619,8 +610,5 @@
     {
       "beginString" : "true"
     }
-  ],
-  "variables" : [
-
   ]
 }

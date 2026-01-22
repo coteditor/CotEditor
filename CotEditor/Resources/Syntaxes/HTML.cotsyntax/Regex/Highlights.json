@@ -1275,9 +1275,6 @@
       "regularExpression" : true
     }
   ],
-  "comments" : [
-
-  ],
   "keywords" : [
     {
       "beginString" : "(?<=<!DOCTYPE)\\s+html(?=>)",
@@ -1960,11 +1957,5 @@
       "beginString" : "\\?(?=>)",
       "regularExpression" : true
     }
-  ],
-  "values" : [
-
-  ],
-  "variables" : [
-
   ]
 }

@@ -1,19 +1,10 @@
 {
-  "attributes" : [
-
-  ],
   "characters" : [
     {
       "beginString" : "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}(([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([ \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?)?\\b",
       "description" : "date-time",
       "regularExpression" : true
     }
-  ],
-  "commands" : [
-
-  ],
-  "comments" : [
-
   ],
   "keywords" : [
     {
@@ -78,9 +69,6 @@
       "endString" : "'''"
     }
   ],
-  "types" : [
-
-  ],
   "values" : [
     {
       "beginString" : "false"
@@ -88,8 +76,5 @@
     {
       "beginString" : "true"
     }
-  ],
-  "variables" : [
-
   ]
 }
