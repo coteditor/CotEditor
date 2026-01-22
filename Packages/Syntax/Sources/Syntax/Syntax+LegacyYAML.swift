@@ -88,7 +88,7 @@ public extension Syntax {
 }
 
 
-extension Syntax: Codable {
+extension Syntax: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -155,65 +155,18 @@ extension Syntax: Codable {
         
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
     }
-    
-    
-    public func encode(to encoder: any Encoder) throws {
-        
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(self.kind, forKey: .kind)
-        
-        try container.encode(self.highlights[.keywords], forKey: .keywords)
-        try container.encode(self.highlights[.commands], forKey: .commands)
-        try container.encode(self.highlights[.types], forKey: .types)
-        try container.encode(self.highlights[.attributes], forKey: .attributes)
-        try container.encode(self.highlights[.variables], forKey: .variables)
-        try container.encode(self.highlights[.values], forKey: .values)
-        try container.encode(self.highlights[.numbers], forKey: .numbers)
-        try container.encode(self.highlights[.strings], forKey: .strings)
-        try container.encode(self.highlights[.characters], forKey: .characters)
-        try container.encode(self.highlights[.comments], forKey: .comments)
-        
-        try container.encode(self.outlines, forKey: .outlines)
-        try container.encode(self.commentDelimiters.legacyDictionary, forKey: .commentDelimiters)
-        try container.encode(self.completions.map(KeyString.init(keyString:)), forKey: .completions)
-        
-        try container.encode(self.fileMap.extensions?.map(KeyString.init(keyString:)), forKey: .extensions)
-        try container.encode(self.fileMap.filenames?.map(KeyString.init(keyString:)), forKey: .filenames)
-        try container.encode(self.fileMap.interpreters?.map(KeyString.init(keyString:)), forKey: .interpreters)
-        
-        try container.encode(self.metadata, forKey: .metadata)
-    }
 }
 
 
 private extension Syntax.Comment {
     
-    private enum LegacyKey {
-        
-        static let inline = "inlineDelimiter"
-        static let blockBegin = "beginDelimiter"
-        static let blockEnd = "endDelimiter"
-    }
-    
-    
-    var legacyDictionary: [String: String] {
-        
-        var dict: [String: String] = [:]
-        dict[LegacyKey.inline] = self.inlines.first?.begin
-        dict[LegacyKey.blockBegin] = self.blocks.first?.begin
-        dict[LegacyKey.blockEnd] = self.blocks.first?.end
-        
-        return dict
-    }
-    
     init(legacyDictionary dictionary: [String: String]) {
         
-        if let inline = dictionary[LegacyKey.inline] {
+        if let inline = dictionary["inlineDelimiter"] {
             self.inlines = [.init(begin: inline)]
         }
-        if let blockBegin = dictionary[LegacyKey.blockBegin],
-           let blockEnd = dictionary[LegacyKey.blockEnd]
+        if let blockBegin = dictionary["beginDelimiter"],
+           let blockEnd = dictionary["endDelimiter"]
         {
             self.blocks = [.init(blockBegin, blockEnd)]
         }
