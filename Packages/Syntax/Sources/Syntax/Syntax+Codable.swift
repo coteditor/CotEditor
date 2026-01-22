@@ -239,7 +239,7 @@ private extension Syntax.Comment {
     var legacyDictionary: [String: String] {
         
         var dict: [String: String] = [:]
-        dict[LegacyKey.inline] = self.inlines.first
+        dict[LegacyKey.inline] = self.inlines.first?.begin
         dict[LegacyKey.blockBegin] = self.blocks.first?.begin
         dict[LegacyKey.blockEnd] = self.blocks.first?.end
         
@@ -248,12 +248,44 @@ private extension Syntax.Comment {
     
     init(legacyDictionary dictionary: [String: String]) {
         
-        self.inlines = dictionary[LegacyKey.inline].flatMap { [$0] } ?? []
- 
+        if let inline = dictionary[LegacyKey.inline] {
+            self.inlines = [.init(begin: inline)]
+        }
         if let blockBegin = dictionary[LegacyKey.blockBegin],
            let blockEnd = dictionary[LegacyKey.blockEnd]
         {
             self.blocks = [.init(blockBegin, blockEnd)]
+        }
+    }
+}
+
+
+extension Syntax.Comment.Inline: Codable {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case begin
+        case leadingOnly
+    }
+    
+    
+    public init(from decoder: any Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.begin = try container.decode(String.self, forKey: .begin)
+        self.leadingOnly = try container.decodeIfPresent(Bool.self, forKey: .leadingOnly) ?? true
+    }
+    
+    
+    public func encode(to encoder: any Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.begin, forKey: .begin)
+        
+        if self.leadingOnly {
+            try container.encode(true, forKey: .leadingOnly)
         }
     }
 }

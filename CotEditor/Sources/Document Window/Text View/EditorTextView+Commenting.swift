@@ -80,7 +80,10 @@ extension EditorTextView: Commenting {
 }
 
 
-extension Syntax.Comment: @retroactive CommentDelimiters { }
+extension Syntax.Comment: @retroactive CommentDelimiters {
+    
+    var inlineDelimiters: [String]  { self.inlines.map(\.begin) }
+}
 
 
 extension Commenting {

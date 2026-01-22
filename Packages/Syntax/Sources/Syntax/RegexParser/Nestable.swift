@@ -31,7 +31,7 @@ import StringUtils
 
 enum NestableToken: Equatable, Hashable, Sendable {
     
-    case inline(String)
+    case inline(String, leadingOnly: Bool = false)
     case pair(Pair<String>)
     
     
@@ -80,8 +80,10 @@ extension [NestableToken: SyntaxType] {
             try Task.checkCancellation()
             
             switch token {
-                case .inline(let delimiter):
-                    return string.ranges(of: delimiter, range: parseRange)
+                case .inline(let delimiter, let leadingOnly):
+                    return (leadingOnly
+                            ? string.ranges(of: "^ *" + NSRegularExpression.escapedPattern(for: delimiter), options: .regularExpression, range: parseRange)
+                            : string.ranges(of: delimiter, range: parseRange))
                         .filter { range in
                             // ignore single-character delimiter just after a non-whitespace character
                             range.length > 1 ||

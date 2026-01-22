@@ -93,13 +93,27 @@ public struct Syntax: Equatable, Sendable {
     
     public struct Comment: Equatable, Sendable, Codable {
         
-        public var inlines: [String] = []
+        public struct Inline: Equatable, Sendable {
+            
+            public var begin: String
+            public var leadingOnly: Bool
+            
+            
+            public init(begin: String = "", leadingOnly: Bool = false) {
+                
+                self.begin = begin
+                self.leadingOnly = leadingOnly
+            }
+        }
+        
+        
+        public var inlines: [Inline] = []
         public var blocks: [Pair<String>] = []
         
         public var isEmpty: Bool { self.blocks.isEmpty && self.inlines.isEmpty }
         
         
-        public init(inlines: [String] = [], blocks: [Pair<String>] = []) {
+        public init(inlines: [Inline] = [], blocks: [Pair<String>] = []) {
             
             self.inlines = inlines
             self.blocks = blocks
@@ -191,7 +205,7 @@ public struct Syntax: Equatable, Sendable {
         }
         syntax.outlines.removeAll(where: \.isEmpty)
         syntax.outlines.caseInsensitiveSort(\.pattern)
-        syntax.commentDelimiters.inlines.removeAll(where: \.isEmpty)
+        syntax.commentDelimiters.inlines.removeAll(where: \.begin.isEmpty)
         syntax.commentDelimiters.blocks.removeAll(where: \.begin.isEmpty)
         syntax.commentDelimiters.blocks.removeAll(where: \.end.isEmpty)
         syntax.completions.removeAll(where: \.isEmpty)

@@ -78,7 +78,7 @@ import StringUtils
     
     var highlights: Highlights = Highlights()
     
-    var inlineComments: [Item<String>] = []
+    var inlineComments: [Item<Syntax.Comment.Inline>] = []
     var blockComments: [Item<Pair<String>>] = []
     
     var outlines: [Outline] = []
@@ -205,6 +205,15 @@ extension SyntaxObject.Item<Syntax.Outline> {
 
 
 extension SyntaxObject.Item<String> {
+    
+    init() {
+        
+        self.value = .init()
+    }
+}
+
+
+extension SyntaxObject.Item<Syntax.Comment.Inline> {
     
     init() {
         

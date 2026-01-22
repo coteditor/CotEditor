@@ -29,7 +29,7 @@ import Syntax
 
 struct SyntaxCommentEditView: View {
     
-    @Binding var inlineComments: [SyntaxObject.Item<String>]
+    @Binding var inlineComments: [SyntaxObject.Item<Syntax.Comment.Inline>]
     @Binding var blockComments: [SyntaxObject.Item<Pair<String>>]
     @Binding var highlights: [SyntaxObject.Highlight]
     
@@ -57,7 +57,7 @@ struct SyntaxCommentEditView: View {
 
 private struct InlineCommentsEditView: View {
     
-    typealias Item = SyntaxObject.Item<String>
+    typealias Item = SyntaxObject.Item<Syntax.Comment.Inline>
     
     @Binding var items: [Item]
     
@@ -73,8 +73,12 @@ private struct InlineCommentsEditView: View {
             
             Table($items, selection: $selection) {
                 TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.value, label: EmptyView.init)
+                    TextField(text: item.value.begin, label: EmptyView.init)
                 }
+                TableColumn(String(localized: "Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { item in
+                    Toggle(isOn: item.value.leadingOnly, label: EmptyView.init)
+                }
+                .alignment(.center)
             }
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
@@ -125,7 +129,7 @@ private struct BlockCommentsEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var inlineComments: [SyntaxObject.Item<String>] = [.init(value: "//")]
+    @Previewable @State var inlineComments: [SyntaxObject.Item<Syntax.Comment.Inline>] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.Item<Pair<String>>] = [.init(value: Pair("<!--", "-->"))]
     @Previewable @State var highlights: [SyntaxObject.Highlight] = []
     

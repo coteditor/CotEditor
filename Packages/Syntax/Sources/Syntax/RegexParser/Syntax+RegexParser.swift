@@ -89,7 +89,7 @@ extension Syntax {
             nestables[.pair(delimiter)] = .comments
         }
         for delimiter in self.commentDelimiters.inlines {
-            nestables[.inline(delimiter)] = .comments
+            nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
         }
         
         return .init(extractors: extractors, nestables: nestables)

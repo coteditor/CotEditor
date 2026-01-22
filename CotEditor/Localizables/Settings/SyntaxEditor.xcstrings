@@ -3765,6 +3765,47 @@
         }
       }
     },
+    "Line Start Only" : {
+      "comment" : "table column header, keep short",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur am Zeilenanfang"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line Start Only"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Solo al inicio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Uniquement début"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行頭のみ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Alleen regelbegin"
+          }
+        }
+      }
+    },
     "No error found." : {
       "comment" : "message in the Validation pane",
       "localizations" : {
