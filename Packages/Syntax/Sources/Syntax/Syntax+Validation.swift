@@ -114,14 +114,11 @@ public extension Syntax {
         }
         
         // validate block comment delimiter pairs
-        for delimiter in self.commentDelimiters.blocks {
-            guard !delimiter.begin.isEmpty || !delimiter.end.isEmpty else { continue }
-            
-            if delimiter.begin.isEmpty {
-                errors.append(Error(.blockComment, scope: .blockComment, value: delimiter.end))
-            }
-            if delimiter.end.isEmpty {
-                errors.append(Error(.blockComment, scope: .blockComment, value: delimiter.begin))
+        errors += self.commentDelimiters.blocks.compactMap { delimiter in
+            switch (delimiter.begin.isEmpty, delimiter.end.isEmpty) {
+                case (false, false), (true, true): nil
+                case (true, false): Error(.blockComment, scope: .blockComment, value: delimiter.end)
+                case (false, true): Error(.blockComment, scope: .blockComment, value: delimiter.begin)
             }
         }
         
