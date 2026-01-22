@@ -3,7 +3,7 @@
     "blocks" : [
       {
         "begin" : "=pod",
-        "end" : "cut"
+        "end" : "=cut"
       }
     ],
     "inlines" : [
