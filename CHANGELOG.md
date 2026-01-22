@@ -23,7 +23,7 @@
 ### TODO
 
 - Localize updated strings.
-- Migrate customized syntax definitions.
+- Update the migration directories for user syntax definitions.
 
 
 
