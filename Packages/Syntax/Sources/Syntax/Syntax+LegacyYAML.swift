@@ -45,7 +45,6 @@ public extension Syntax {
                                                                options: .skipsSubdirectoryDescendants)
             .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType == .yaml }
         
-        var performed = false
         for url in urls {
             do {
                 try self.migrate(fileURL: url, to: destinationURL, deletingOriginal: deletingOriginal)
