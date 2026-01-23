@@ -185,7 +185,7 @@ struct SyntaxEditView: View {
             self.errors = self.syntax.value.validate()
         }
         .alert(error: $error)
-        .frame(minWidth: 400, idealWidth: 680, minHeight: 525, idealHeight: 525)
+        .frame(minWidth: 400, idealWidth: 720, minHeight: 525, idealHeight: 525)
         .presentationSizing(.fitted)
     }
     
