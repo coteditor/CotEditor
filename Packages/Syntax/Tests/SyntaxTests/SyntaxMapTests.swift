@@ -38,9 +38,9 @@ struct SyntaxMapTests {
         #expect(maps == [
             "Apache": Syntax.FileMap(extensions: ["conf"],
                                      filenames: [".htaccess"],
-                                     interpreters: []),
+                                     interpreters: nil),
             "Python": Syntax.FileMap(extensions: ["py"],
-                                     filenames: [],
+                                     filenames: nil,
                                      interpreters: ["python", "python2", "python3"]),
         ])
     }
