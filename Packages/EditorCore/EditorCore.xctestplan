@@ -1,0 +1,101 @@
+{
+  "configurations" : [
+    {
+      "id" : "E0277075-EF3B-4D41-A088-162A7C43C521",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "LineEndingTests",
+        "name" : "LineEndingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DefaultsTests",
+        "name" : "DefaultsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "SemanticVersioningTests",
+        "name" : "SemanticVersioningTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "CharacterInfoTests",
+        "name" : "CharacterInfoTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "TextEditingTests",
+        "name" : "TextEditingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "StringUtilsTests",
+        "name" : "StringUtilsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "LineSortTests",
+        "name" : "LineSortTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "URLUtilsTests",
+        "name" : "URLUtilsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FileEncodingTests",
+        "name" : "FileEncodingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "TextFindTests",
+        "name" : "TextFindTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FilePermissionsTests",
+        "name" : "FilePermissionsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "TextClippingTests",
+        "name" : "TextClippingTests"
+      }
+    }
+  ],
+  "version" : 1
+}

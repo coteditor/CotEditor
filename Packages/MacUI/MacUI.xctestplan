@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "7532C73E-127B-41B2-8E00-D1639EC52CEC",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "RegexHighlightingTests",
+        "name" : "RegexHighlightingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ShortcutTests",
+        "name" : "ShortcutTests"
+      }
+    }
+  ],
+  "version" : 1
+}
