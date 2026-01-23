@@ -7864,20 +7864,24 @@
     {
       "beginString" : "\"",
       "endString" : "\"",
-      "isMultiline": true
-    },
-    {
-      "beginString" : "\"\"\"",
-      "endString" : "\"\"\""
+      "isMultiline" : true
     },
     {
       "beginString" : "'",
       "endString" : "'",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
-      "beginString" : "'''",
-      "endString" : "'''"
+      "beginString" : "@\"$",
+      "endString" : "^\"@$",
+      "isMultiline" : true,
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "@'$",
+      "endString" : "^'@$",
+      "isMultiline" : true,
+      "regularExpression" : true
     },
     {
       "beginString" : "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]",
@@ -7886,8 +7890,7 @@
     },
     {
       "beginString" : "`",
-      "endString" : "`",
-      "isMultiline": true
+      "endString" : "`"
     }
   ],
   "types" : [
