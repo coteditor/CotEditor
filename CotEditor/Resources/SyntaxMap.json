@@ -91,31 +91,16 @@
     "extensions" : [
       "dot",
       "gv"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "DTD" : {
     "extensions" : [
       "dtd"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Dart" : {
     "extensions" : [
       "dart"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "dart"
@@ -126,34 +111,16 @@
       "diff",
       "patch",
       "dif"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Dockerfile" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       "Dockerfile"
-    ],
-    "interpreters" : [
-
     ]
   },
   "Erlang" : {
     "extensions" : [
       "erl"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Fortran" : {
@@ -165,59 +132,29 @@
       "f90",
       "for",
       "cuf"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Git" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       "git-rebase-todo",
       "COMMIT_EDITMSG"
-    ],
-    "interpreters" : [
-
     ]
   },
   "Git Config" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       ".gitconfig",
       ".gitmodules",
       "gitconfig"
-    ],
-    "interpreters" : [
-
     ]
   },
   "Git Ignore" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       ".gitignore"
-    ],
-    "interpreters" : [
-
     ]
   },
   "Go" : {
     "extensions" : [
       "go"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "HTML" : {
@@ -225,21 +162,12 @@
       "html",
       "htm",
       "shtml"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Haskell" : {
     "extensions" : [
       "hs",
       "lhs"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "runhaskell"
@@ -252,9 +180,6 @@
     ],
     "filenames" : [
       ".editorconfig"
-    ],
-    "interpreters" : [
-
     ]
   },
   "JSON" : {
@@ -266,24 +191,12 @@
       "cottheme",
       "cotrpl",
       "xcstrings"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Java" : {
     "extensions" : [
       "java",
       "jav"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "JavaScript" : {
@@ -291,20 +204,11 @@
       "js",
       "mjs",
       "pac"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Julia" : {
     "extensions" : [
       "jl"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "julia"
@@ -314,9 +218,6 @@
     "extensions" : [
       "kt",
       "kts"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "kotlin",
@@ -329,12 +230,6 @@
       "TEX",
       "sty",
       "cls"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Lisp" : {
@@ -345,9 +240,6 @@
       "clj",
       "edn"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "sbcl"
     ]
@@ -355,9 +247,6 @@
   "Lua" : {
     "extensions" : [
       "lua"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "lua",
@@ -367,29 +256,14 @@
   "MATLAB" : {
     "extensions" : [
       "m"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "METAFONT" : {
     "extensions" : [
       "mf"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Makefile" : {
-    "extensions" : [
-
-    ],
     "filenames" : [
       "Makefile",
       "makefile",
@@ -406,33 +280,18 @@
       "mkd",
       "mdown",
       "mkdn"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Metal" : {
     "extensions" : [
       "metal",
       "msl"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Mojo" : {
     "extensions" : [
       "mojo",
       "🔥"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "mojo"
@@ -447,9 +306,6 @@
       "phps",
       "phtml"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "php"
     ]
@@ -458,12 +314,6 @@
     "extensions" : [
       "pas",
       "pp"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Perl" : {
@@ -472,9 +322,6 @@
       "cgi",
       "pm"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "perl"
     ]
@@ -482,21 +329,12 @@
   "Plain Text" : {
     "extensions" : [
       "txt"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "PowerShell" : {
     "extensions" : [
       "ps1",
       "psm1"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "pwsh"
@@ -505,20 +343,11 @@
   "Properties" : {
     "extensions" : [
       "properties"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Protocol Buffers" : {
     "extensions" : [
       "proto"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "protoc"
@@ -529,9 +358,6 @@
       "py",
       "pyw",
       "pyi"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "python",
@@ -553,12 +379,6 @@
   "Rich Text Format" : {
     "extensions" : [
       "rtf"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Ruby" : {
@@ -578,9 +398,6 @@
       "rs",
       "rc"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "rustx"
     ]
@@ -590,31 +407,16 @@
       "sql",
       "mysql",
       "pgsql"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "SVG" : {
     "extensions" : [
       "svg"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Scala" : {
     "extensions" : [
       "scala"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "scala"
@@ -624,9 +426,6 @@
     "extensions" : [
       "scm",
       "ss"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "chicken-scheme",
@@ -666,9 +465,6 @@
       "swift",
       "swiftinterface"
     ],
-    "filenames" : [
-
-    ],
     "interpreters" : [
       "swift"
     ]
@@ -676,20 +472,11 @@
   "TOML" : {
     "extensions" : [
       "toml"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Tcl" : {
     "extensions" : [
       "tcl"
-    ],
-    "filenames" : [
-
     ],
     "interpreters" : [
       "jimsh",
@@ -700,12 +487,6 @@
   "Textile" : {
     "extensions" : [
       "textile"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "TypeScript" : {
@@ -714,35 +495,17 @@
       "tsx",
       "mts",
       "cts"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "VHDL" : {
     "extensions" : [
       "vhd"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Verilog" : {
     "extensions" : [
       "v",
       "sv"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "XML" : {
@@ -753,70 +516,34 @@
       "xsd",
       "rlx",
       "rdf"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "Xcode Project" : {
     "extensions" : [
       "pbxproj"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "YAML" : {
     "extensions" : [
       "yml",
       "yaml"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "iCalendar" : {
     "extensions" : [
       "ics",
       "ifb"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "jq" : {
     "extensions" : [
       "jq"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   },
   "reStructuredText" : {
     "extensions" : [
       "rest",
       "rst"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
     ]
   }
 }
