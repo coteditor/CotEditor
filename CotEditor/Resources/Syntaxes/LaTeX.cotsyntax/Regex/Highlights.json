@@ -2,7 +2,8 @@
   "attributes" : [
     {
       "beginString" : "[",
-      "endString" : "]"
+      "endString" : "]",
+      "isMultiline": true
     }
   ],
   "characters" : [
@@ -74,7 +75,8 @@
   "types" : [
     {
       "beginString" : "{",
-      "endString" : "}"
+      "endString" : "}",
+      "isMultiline": true
     }
   ],
   "values" : [
@@ -88,11 +90,13 @@
     },
     {
       "beginString" : "\\(",
-      "endString" : "\\)"
+      "endString" : "\\)",
+      "isMultiline": true
     },
     {
       "beginString" : "\\[",
-      "endString" : "\\]"
+      "endString" : "\\]",
+      "isMultiline": true
     }
   ],
   "variables" : [

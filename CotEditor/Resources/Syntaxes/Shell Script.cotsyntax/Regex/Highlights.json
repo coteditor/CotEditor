@@ -2,7 +2,8 @@
   "characters" : [
     {
       "beginString" : "'",
-      "endString" : "'"
+      "endString" : "'",
+      "isMultiline": true
     },
     {
       "beginString" : "<<-?[\\t ]*\"(\\S+)\"\\s(?:.|\\R)*?\\R\\1$",
@@ -630,13 +631,15 @@
   "numbers" : [
     {
       "beginString" : "`",
-      "endString" : "`"
+      "endString" : "`",
+      "isMultiline": true
     }
   ],
   "strings" : [
     {
       "beginString" : "\"",
-      "endString" : "\""
+      "endString" : "\"",
+      "isMultiline": true
     },
     {
       "beginString" : "<<-?[\\t ]*(\\S+)\\s(?:.|\\R)*?\\R\\1$",

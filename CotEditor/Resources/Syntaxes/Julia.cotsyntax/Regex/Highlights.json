@@ -3112,11 +3112,13 @@
   "strings" : [
     {
       "beginString" : "\"",
-      "endString" : "\""
+      "endString" : "\"",
+      "isMultiline": true
     },
     {
       "beginString" : "\"\"\"",
-      "endString" : "\"\"\""
+      "endString" : "\"\"\"",
+      "isMultiline": true
     },
     {
       "beginString" : "b\""

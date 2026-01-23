@@ -200,7 +200,8 @@
   "strings" : [
     {
       "beginString" : "\"",
-      "endString" : "\""
+      "endString" : "\"",
+      "isMultiline": true
     }
   ]
 }

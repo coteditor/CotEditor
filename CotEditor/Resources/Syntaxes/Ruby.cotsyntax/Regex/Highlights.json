@@ -498,7 +498,8 @@
     },
     {
       "beginString" : "`",
-      "endString" : "`"
+      "endString" : "`",
+      "isMultiline": true
     }
   ],
   "strings" : [

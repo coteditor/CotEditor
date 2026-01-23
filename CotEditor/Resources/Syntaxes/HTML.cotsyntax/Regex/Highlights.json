@@ -1935,13 +1935,15 @@
   "numbers" : [
     {
       "beginString" : "<?php",
-      "endString" : "?>"
+      "endString" : "?>",
+      "isMultiline": true
     }
   ],
   "strings" : [
     {
       "beginString" : "\"",
-      "endString" : "\""
+      "endString" : "\"",
+      "isMultiline": true
     },
     {
       "beginString" : "(?<==)\\s*'.+'",

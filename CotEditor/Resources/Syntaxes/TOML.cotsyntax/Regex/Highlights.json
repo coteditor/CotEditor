@@ -58,7 +58,8 @@
     },
     {
       "beginString" : "\"\"\"",
-      "endString" : "\"\"\""
+      "endString" : "\"\"\"",
+      "isMultiline": true
     },
     {
       "beginString" : "'",
@@ -66,7 +67,8 @@
     },
     {
       "beginString" : "'''",
-      "endString" : "'''"
+      "endString" : "'''",
+      "isMultiline": true
     }
   ],
   "values" : [

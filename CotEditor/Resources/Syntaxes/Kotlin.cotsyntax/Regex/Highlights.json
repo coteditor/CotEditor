@@ -309,7 +309,8 @@
     },
     {
       "beginString" : "\"\"\"",
-      "endString" : "\"\"\""
+      "endString" : "\"\"\"",
+      "isMultiline": true
     }
   ],
   "types" : [
