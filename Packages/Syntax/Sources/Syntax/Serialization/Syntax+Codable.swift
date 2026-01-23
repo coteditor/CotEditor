@@ -35,6 +35,7 @@ extension Syntax.Highlight: Codable {
         case end = "endString"
         case isRegularExpression = "regularExpression"
         case ignoreCase
+        case isMultiline
         case description
     }
     
@@ -47,6 +48,7 @@ extension Syntax.Highlight: Codable {
         self.end = try container.decodeIfPresent(String.self, forKey: .end)
         self.isRegularExpression = try container.decodeIfPresent(Bool.self, forKey: .isRegularExpression) ?? false
         self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
+        self.isMultiline = try container.decodeIfPresent(Bool.self, forKey: .isMultiline) ?? false
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
     }
     
@@ -64,6 +66,9 @@ extension Syntax.Highlight: Codable {
         }
         if self.ignoreCase {
             try container.encode(true, forKey: .ignoreCase)
+        }
+        if self.isMultiline {
+            try container.encode(true, forKey: .isMultiline)
         }
         if let description = self.description {
             try container.encode(description, forKey: .description)

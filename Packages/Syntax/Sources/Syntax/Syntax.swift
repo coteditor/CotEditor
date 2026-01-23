@@ -43,6 +43,7 @@ public struct Syntax: Equatable, Sendable {
         public var end: String?
         public var isRegularExpression: Bool
         public var ignoreCase: Bool
+        public var isMultiline: Bool
         public var description: String?
         
         public var isEmpty: Bool {
@@ -51,12 +52,13 @@ public struct Syntax: Equatable, Sendable {
         }
         
         
-        public init(begin: String = "", end: String? = nil, isRegularExpression: Bool = false, ignoreCase: Bool = false, description: String? = nil) {
+        public init(begin: String = "", end: String? = nil, isRegularExpression: Bool = false, ignoreCase: Bool = false, isMultiline: Bool = false, description: String? = nil) {
             
             self.begin = begin
             self.end = end
             self.isRegularExpression = isRegularExpression
             self.ignoreCase = ignoreCase
+            self.isMultiline = isMultiline
             self.description = description
         }
     }

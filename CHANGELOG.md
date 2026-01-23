@@ -6,6 +6,7 @@
 ### New Features
 
 - Enable registering multiple comment delimiters to a syntax definition.
+- Add the Multiline option to syntax highlighting rules.
 
 
 ### Compatibility changes

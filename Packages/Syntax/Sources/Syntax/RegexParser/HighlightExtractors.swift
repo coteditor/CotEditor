@@ -40,13 +40,13 @@ extension Syntax.Highlight {
         get throws {
             switch (self.isRegularExpression, self.end) {
                 case (true, .some(let end)):
-                    try BeginEndRegularExpressionExtractor(beginPattern: self.begin, endPattern: end, ignoresCase: self.ignoreCase)
+                    try BeginEndRegularExpressionExtractor(beginPattern: self.begin, endPattern: end, ignoresCase: self.ignoreCase, isMultiline: self.isMultiline)
                     
                 case (true, .none):
-                    try RegularExpressionExtractor(pattern: self.begin, ignoresCase: self.ignoreCase)
+                    try RegularExpressionExtractor(pattern: self.begin, ignoresCase: self.ignoreCase, isMultiline: self.isMultiline)
                     
                 case (false, .some(let end)):
-                    BeginEndStringExtractor(begin: self.begin, end: end, ignoresCase: self.ignoreCase)
+                    BeginEndStringExtractor(begin: self.begin, end: end, ignoresCase: self.ignoreCase, isMultiline: self.isMultiline)
                     
                 case (false, .none):
                     preconditionFailure("non-regex words should be preprocessed at Syntax.init()")
@@ -61,13 +61,15 @@ private struct BeginEndStringExtractor: HighlightExtractable {
     var begin: String
     var end: String
     var options: String.CompareOptions
+    var isMultiline: Bool
     
     
-    init(begin: String, end: String, ignoresCase: Bool) {
+    init(begin: String, end: String, ignoresCase: Bool, isMultiline: Bool) {
         
         self.begin = begin
         self.end = end
         self.options = ignoresCase ? [.literal, .caseInsensitive] : [.literal]
+        self.isMultiline = isMultiline
     }
     
     
@@ -84,7 +86,10 @@ private struct BeginEndStringExtractor: HighlightExtractable {
             guard beginRange.location != NSNotFound else { break }
             
             // find end string
-            let endRange = (string as NSString).range(of: self.end, options: self.options, range: NSRange(location..<range.upperBound))
+            let upperBound = self.isMultiline
+                ? range.upperBound
+                : min(range.upperBound, (string as NSString).lineContentsEndIndex(at: beginRange.upperBound))
+            let endRange = (string as NSString).range(of: self.end, options: self.options, range: NSRange(location..<upperBound))
             location = endRange.upperBound
             
             guard endRange.location != NSNotFound else { continue }
@@ -104,10 +109,11 @@ private struct RegularExpressionExtractor: HighlightExtractable {
     private var regex: NSRegularExpression
     
     
-    init(pattern: String, ignoresCase: Bool) throws {
+    init(pattern: String, ignoresCase: Bool, isMultiline: Bool) throws {
         
         let options: NSRegularExpression.Options = .anchorsMatchLines
             .union(ignoresCase ? .caseInsensitive : [])
+            .union(isMultiline ? .dotMatchesLineSeparators : [])
         
         self.regex = try NSRegularExpression(pattern: pattern, options: options)
     }
@@ -125,15 +131,17 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     
     var beginRegex: NSRegularExpression
     var endRegex: NSRegularExpression
+    var isMultiline: Bool
     
     
-    init(beginPattern: String, endPattern: String, ignoresCase: Bool) throws {
+    init(beginPattern: String, endPattern: String, ignoresCase: Bool, isMultiline: Bool) throws {
         
         let options: NSRegularExpression.Options = .anchorsMatchLines
             .union(ignoresCase ? .caseInsensitive : [])
         
         self.beginRegex = try NSRegularExpression(pattern: beginPattern, options: options)
         self.endRegex = try NSRegularExpression(pattern: endPattern, options: options)
+        self.isMultiline = isMultiline
     }
     
     
@@ -142,8 +150,11 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
         try self.beginRegex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
             .map(\.range)
             .compactMap { beginRange in
+                let upperBound = self.isMultiline
+                    ? range.upperBound
+                    : min(range.upperBound, (string as NSString).lineContentsEndIndex(at: beginRange.upperBound))
                 let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],
-                                                               range: NSRange(beginRange.upperBound..<range.upperBound))
+                                                               range: NSRange(beginRange.upperBound..<upperBound))
                 
                 guard endRange.location != NSNotFound else { return nil }
                 

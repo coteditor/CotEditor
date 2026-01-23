@@ -110,6 +110,21 @@ struct SyntaxHighlightEditView: View {
                     }
                 }
                 
+                TableColumn(String(localized: "Multiline", table: "SyntaxEditor", comment: "table column header, keep short"), value: \.value.isMultiline, comparator: BoolComparator()) { wrappedItem in
+                    if let item = $items[id: wrappedItem.id] {
+                        Toggle(isOn: item.value.isMultiline, label: EmptyView.init)
+                            .onChange(of: item.value.isMultiline.wrappedValue) { _, newValue in
+                                guard self.selection.contains(item.id) else { return }
+                                $items
+                                    .filter(with: self.selection)
+                                    .filter { $0.id != item.id }
+                                    .forEach { $0.value.isMultiline.wrappedValue = newValue }
+                            }
+                    }
+                }
+                .width(56)
+                .alignment(.center)
+                
                 TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.description)) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         TextField(text: item.value.description ?? "", label: EmptyView.init)

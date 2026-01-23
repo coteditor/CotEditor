@@ -86,7 +86,7 @@ extension Syntax {
             .filter { !$0.value.isEmpty }
         
         for delimiter in self.commentDelimiters.blocks {
-            nestables[.pair(delimiter)] = .comments
+            nestables[.pair(delimiter, isMultiline: true)] = .comments
         }
         for delimiter in self.commentDelimiters.inlines {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
@@ -118,5 +118,6 @@ private extension Syntax.Highlight {
         self.end = nil
         self.isRegularExpression = true
         self.ignoreCase = ignoreCase
+        self.isMultiline = false
     }
 }

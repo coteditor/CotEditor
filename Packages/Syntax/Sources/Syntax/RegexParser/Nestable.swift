@@ -32,7 +32,7 @@ import StringUtils
 enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
-    case pair(Pair<String>)
+    case pair(Pair<String>, isMultiline: Bool)
     
     
     init?(highlight: Syntax.Highlight) {
@@ -43,7 +43,19 @@ enum NestableToken: Equatable, Hashable, Sendable {
             pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
         else { return nil }
         
-        self = .pair(pair)
+        self = .pair(pair, isMultiline: highlight.isMultiline)
+    }
+}
+
+
+private extension NestableToken {
+    
+    var allowsMultiline: Bool {
+        
+        switch self {
+            case .inline: false
+            case .pair(_, let isMultiline): isMultiline
+        }
     }
 }
 
@@ -98,7 +110,7 @@ extension [NestableToken: SyntaxType] {
                                     NestableItem(type: type, token: token, role: .end, range: endRange)]
                         }
                     
-                case .pair(let pair):
+                case .pair(let pair, _):
                     if pair.begin == pair.end {
                         return string.ranges(of: pair.begin, range: parseRange)
                             .map { NestableItem(type: type, token: token, role: [.begin, .end], range: $0) }
@@ -134,8 +146,17 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
+                let searchUpperBound = beginPosition.token.allowsMultiline
+                    ? parseRange.upperBound
+                    : string.lineContentsEndIndex(at: beginPosition.range.upperBound)
+                
                 var nestDepth = 0
                 for (offset, position) in positions[index...].enumerated() where position.token == beginPosition.token {
+                    // stop searching at the end of the current line when multiline is disabled
+                    if position.range.location > searchUpperBound {
+                        return nil
+                    }
+                    
                     if position.role.contains(.end) {
                         if nestDepth == 0 { return index + offset }  // found
                         nestDepth -= 1
