@@ -147,18 +147,39 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     
     func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
-        try self.beginRegex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
-            .map(\.range)
-            .compactMap { beginRange in
-                let upperBound = self.isMultiline
-                    ? range.upperBound
-                    : min(range.upperBound, (string as NSString).lineContentsEndIndex(at: beginRange.upperBound))
-                let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],
-                                                               range: NSRange(beginRange.upperBound..<upperBound))
-                
-                guard endRange.location != NSNotFound else { return nil }
-                
-                return beginRange.union(endRange)
+        let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
+        
+        var ranges: [NSRange] = []
+        var location = range.lowerBound
+        
+        while location < range.upperBound {
+            // find start pattern
+            let beginRange = self.beginRegex.rangeOfFirstMatch(in: string, options: options, range: NSRange(location..<range.upperBound))
+            
+            guard beginRange.location != NSNotFound else { break }
+            
+            // -> forwarding-guarantee in case beginRegex may match zero characters
+            let searchStartIndex = max(beginRange.upperBound, beginRange.location + 1)
+            
+            let upperBound = self.isMultiline
+                ? range.upperBound
+                : min(range.upperBound, (string as NSString).lineContentsEndIndex(at: beginRange.upperBound))
+            
+            // find end pattern
+            let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: options, range: NSRange(searchStartIndex..<upperBound))
+            
+            guard endRange.location != NSNotFound else {
+                location = searchStartIndex
+                continue
             }
+            
+            location = max(endRange.upperBound, endRange.location + 1)
+            
+            ranges.append(beginRange.union(endRange))
+            
+            try Task.checkCancellation()
+        }
+        
+        return ranges
     }
 }
