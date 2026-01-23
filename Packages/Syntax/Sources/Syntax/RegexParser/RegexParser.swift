@@ -98,12 +98,13 @@ final class RegexParser: SyntaxParsing, Sendable {
     @concurrent func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
         
         try await withThrowingTaskGroup { [ruleSet = self.highlightRuleSet] group in
+            group.addTask { try ruleSet.nestables.parseHighlights(in: string, range: range) }
+            
             for (type, extractors) in ruleSet.extractors {
                 for extractor in extractors {
                     group.addTask { [type: try extractor.ranges(in: string, range: range)] }
                 }
             }
-            group.addTask { try ruleSet.nestables.parseHighlights(in: string, range: range) }
             
             let dictionary = try await group.reduce(into: [SyntaxType: [NSRange]]()) {
                 $0.merge($1, uniquingKeysWith: +)
