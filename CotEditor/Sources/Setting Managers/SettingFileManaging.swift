@@ -86,6 +86,9 @@ enum ImportingItem {
     /// The directory name used in both Application Support and the app bundle’s Resources.
     nonisolated static var directoryName: String { get }
     
+    /// The directory name used in both Application Support and the app bundle’s Resources.
+    nonisolated static var userDirectoryName: String? { get }
+    
     /// Built-in constant settings for the given name, if available.
     nonisolated static var constantSettings: [String: Setting] { get }
     
@@ -110,6 +113,9 @@ enum ImportingItem {
 extension SettingFileManaging {
     
     // MARK: Default implementation
+    
+    static var userDirectoryName: String? { nil }
+    
     
     /// Notifies the manager that a setting was updated.
     ///
@@ -484,9 +490,9 @@ extension SettingFileManaging {
     // MARK: Private Methods
     
     /// The user setting directory URL in Application Support.
-    private nonisolated var userSettingDirectoryURL: URL {
+    nonisolated var userSettingDirectoryURL: URL {
         
-        .applicationSupportDirectory(component: Self.directoryName)
+        .applicationSupportDirectory(component: Self.userDirectoryName ?? Self.directoryName)
     }
     
     

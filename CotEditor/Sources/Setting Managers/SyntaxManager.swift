@@ -56,6 +56,7 @@ enum SyntaxName {
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Syntaxes"
+    static let userDirectoryName: String? = "Syntaxes (Upcoming)"
     static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
     
     let bundledSettingNames: [SettingName]
@@ -218,20 +219,15 @@ enum SyntaxName {
     /// Migrates user syntax setting files from legacy format (YAML) to the current CotEditor Syntax format (CotEditor 7.0.0, 2026).
     func migrateUserSettings() throws {
         
+        // before releasing the stable CotEditor 7.0.0:
+        // - Remove `userDirectoryName` in SettingFileMapping and SyntaxManager.
+        // - Prepend `private` to SettingFileMapping.userSettingDirectoryURL.
+        
         let legacyURL = self.userSettingDirectoryURL.deletingLastPathComponent().appending(path: Self.directoryName)
         
         guard legacyURL.isReachable else { return }
         
         try Syntax.migrateFormat(in: legacyURL, to: self.userSettingDirectoryURL, deletingOriginal: false)
-    }
-    
-    
-    /// The user setting directory URL in Application Support.
-    ///
-    /// - Note: Used only while prerelease versions for CotEditor 7.0.0).
-    private nonisolated var userSettingDirectoryURL: URL {
-        
-        .applicationSupportDirectory(component: "Syntaxes (Upcoming)")
     }
     
     
