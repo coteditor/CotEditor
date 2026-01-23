@@ -34,7 +34,7 @@
   "metadata" : {
     "author" : "1024jp",
     "description" : "CotEditor built-in theme.",
-    "distributionURL" : "https:\/\/coteditor.com",
+    "distributionURL" : "https://coteditor.com",
     "license" : "Same as CotEditor (Apache, ver.2)"
   },
   "name" : "Note",
