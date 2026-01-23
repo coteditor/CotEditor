@@ -380,6 +380,11 @@
     },
     {
       "beginString" : "L\""
+    },
+    {
+      "beginString" : "R\"",
+      "endString" : "\"",
+      "isMultiline" : true
     }
   ],
   "types" : [

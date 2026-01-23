@@ -177,16 +177,18 @@
       "endString" : "\""
     },
     {
+      "beginString" : "\"\"\"",
+      "endString" : "\"\"\"",
+      "isMultiline" : true
+    },
+    {
       "beginString" : "'",
       "endString" : "'"
     },
     {
-      "beginString" : "@\"",
-      "endString" : "\""
-    },
-    {
-      "beginString" : "@'",
-      "endString" : "'"
+      "beginString" : "'''",
+      "endString" : "'''",
+      "isMultiline" : true
     }
   ],
   "values" : [

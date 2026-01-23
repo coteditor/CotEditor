@@ -293,6 +293,11 @@
     {
       "beginString" : "\"",
       "endString" : "\""
+    },
+    {
+      "beginString" : "\"\"\"",
+      "endString" : "\"\"\"",
+      "isMultiline" : true
     }
   ],
   "types" : [

@@ -653,6 +653,11 @@
       "endString" : "\""
     },
     {
+      "beginString" : "\"\"\"",
+      "endString" : "\"\"\"",
+      "isMultiline" : true
+    },
+    {
       "beginString" : "#\"",
       "endString" : "\"#"
     },
