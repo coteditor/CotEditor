@@ -1700,37 +1700,41 @@ extension EditorTextView {
     
     override func completions(forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>) -> [String]? {
         
-        // do nothing if completion is not suggested by the typed characters
-        guard !charRange.isEmpty else { return nil }
+        guard
+            !charRange.isEmpty,
+            !self.completionWordTypes.isEmpty
+        else { return nil }
+        
+        let string = self.string as NSString
+        let partialWord = string.substring(with: charRange)
         
         var candidateWords: [String] = []
-        let partialWord = (self.string as NSString).substring(with: charRange)
         
         // add words in document
-        if self.completionWordTypes.contains(.document) {
-            let documentWords: [String] = {
-                // do nothing if the particle word is a symbol
-                guard charRange.length > 1 || CharacterSet.alphanumerics.contains(partialWord.unicodeScalars.first!) else { return [] }
-                
-                let pattern = "\\b" + NSRegularExpression.escapedPattern(for: partialWord) + "\\w+\\b"
-                let regex = try! NSRegularExpression(pattern: pattern)
-                
-                return regex.matches(in: self.string, range: self.string.range).map { (self.string as NSString).substring(with: $0.range) }
-            }()
-            candidateWords.append(contentsOf: documentWords)
+        if self.completionWordTypes.contains(.document),
+           // do nothing if the partial word is a symbol
+           charRange.length > 1 || partialWord.first?.isLetter == true
+        {
+            let pattern = "\\b" + NSRegularExpression.escapedPattern(for: partialWord) + "\\w+\\b"
+            
+            candidateWords += try! NSRegularExpression(pattern: pattern)
+                .matches(in: self.string, range: self.string.range)
+                .map(\.range)
+                .map(string.substring(with:))
         }
         
         // add words defined in syntax
         if self.completionWordTypes.contains(.syntax) {
-            let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: partialWord, options: [.caseInsensitive, .anchored]) != nil }
-            candidateWords.append(contentsOf: syntaxWords)
+            candidateWords += self.syntaxCompletionWords
+                .filter { $0.range(of: partialWord, options: [.caseInsensitive, .anchored]) != nil }
         }
         
         // add the standard words from default completion words
         if self.completionWordTypes.contains(.standard) {
-            let words = super.completions(forPartialWordRange: charRange, indexOfSelectedItem: index) ?? []
-            candidateWords.append(contentsOf: words)
+            candidateWords += super.completions(forPartialWordRange: charRange, indexOfSelectedItem: index) ?? []
         }
+        
+        candidateWords.unique()
         
         // provide nothing if there is only a candidate which is same as input word
         if let word = candidateWords.first,
@@ -1740,7 +1744,7 @@ extension EditorTextView {
             return []
         }
         
-        return candidateWords.uniqued
+        return candidateWords
     }
     
     
@@ -1759,7 +1763,10 @@ extension EditorTextView {
         // raise a flag to proceed word completion again if a normal key input occurs while the completion list is shown.
         // -> The flag will be used in `didChangeText()`.
         var movement = movement
-        if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),
+        if flag,
+           let event = self.window?.currentEvent,
+           event.type == .keyDown,
+           !event.modifierFlags.contains(.command),
            event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
         {
             // fix that underscore is treated as the right arrow key
