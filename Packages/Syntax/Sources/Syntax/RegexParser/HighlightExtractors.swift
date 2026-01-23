@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -83,17 +83,13 @@ private struct BeginEndStringExtractor: HighlightExtractable {
             
             guard beginRange.location != NSNotFound else { break }
             
-            while location != NSNotFound {
-                // find end string
-                let endRange = (string as NSString).range(of: self.end, options: self.options, range: NSRange(location..<range.upperBound))
-                location = endRange.upperBound
-                
-                guard endRange.location != NSNotFound else { break }
-                
-                ranges.append(NSRange(beginRange.lowerBound..<endRange.upperBound))
-                
-                break
-            }
+            // find end string
+            let endRange = (string as NSString).range(of: self.end, options: self.options, range: NSRange(location..<range.upperBound))
+            location = endRange.upperBound
+            
+            guard endRange.location != NSNotFound else { continue }
+            
+            ranges.append(NSRange(beginRange.lowerBound..<endRange.upperBound))
             
             try Task.checkCancellation()
         }
