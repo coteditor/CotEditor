@@ -45,6 +45,11 @@
 - Update the C++ syntax to include the .cu and .cuh filename extensions.
 
 
+### Fixes
+
+- Update the Swift syntax to fix the outline extraction.
+
+
 
 6.2.1 (787)
 --------------------------
