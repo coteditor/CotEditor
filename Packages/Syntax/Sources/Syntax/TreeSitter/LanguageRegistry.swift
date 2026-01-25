@@ -28,6 +28,7 @@ import Foundation
 import Synchronization
 import SwiftTreeSitter
 
+import TreeSitterCSS
 import TreeSitterHTML
 import TreeSitterSwift
 
@@ -36,6 +37,7 @@ public final class LanguageRegistry: Sendable {
     /// Supported languages.
     public enum Language: String, Sendable {
         
+        case css = "CSS"
         case html = "HTML"
         case swift = "Swift"
         
@@ -127,6 +129,7 @@ private extension LanguageRegistry.Language {
     init?(providerName: String) {
         
         switch providerName.lowercased() {
+            case "css": self = .css
             case "html": self = .html
             case "swift": self = .swift
             default: return nil
@@ -138,6 +141,7 @@ private extension LanguageRegistry.Language {
     var providerName: String {
         
         switch self {
+            case .css: "css"
             case .html: "html"
             case .swift: "swift"
         }
@@ -147,6 +151,7 @@ private extension LanguageRegistry.Language {
     var language: OpaquePointer {
         
         switch self {
+            case .css: unsafe tree_sitter_css()
             case .html: unsafe tree_sitter_html()
             case .swift: unsafe tree_sitter_swift()
         }

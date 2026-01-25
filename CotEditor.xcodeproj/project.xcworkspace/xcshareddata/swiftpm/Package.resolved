@@ -56,6 +56,15 @@
       }
     },
     {
+      "identity" : "tree-sitter-css",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/1024jp/tree-sitter-css",
+      "state" : {
+        "branch" : "swiftPackage",
+        "revision" : "c094c8650aebcb653b51152f6cc13853b8db1a6f"
+      }
+    },
+    {
       "identity" : "tree-sitter-html",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tree-sitter/tree-sitter-html",
