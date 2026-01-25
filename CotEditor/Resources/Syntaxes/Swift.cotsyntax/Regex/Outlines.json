@@ -59,7 +59,7 @@
     "bold" : true,
     "description" : "extension",
     "italic" : true,
-    "keyString" : "$"
+    "keyString" : "$0extension $1"
   },
   {
     "beginString" : "^([ \\t]*)(?:@?[a-zA-Z_]+ )*init(\\??)[\\t ]*\\((.*)\\)",
