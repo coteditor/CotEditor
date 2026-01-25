@@ -44,13 +44,6 @@ final class RegexOutlineParser: OutlineParsing, Sendable {
     
     // MARK: Public Methods
     
-    /// Indicates whether any outline extraction rules are available.
-    var hasRules: Bool {
-        
-        !self.extractors.isEmpty
-    }
-    
-    
     /// Parses and returns outline items from the given source string using all configured outline extractors.
     ///
     /// - Parameters:

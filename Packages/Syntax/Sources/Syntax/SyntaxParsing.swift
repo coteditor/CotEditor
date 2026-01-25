@@ -32,9 +32,6 @@ public typealias Highlight = ValueRange<SyntaxType>
 
 public protocol HighlightParsing: AnyObject, Sendable {
     
-    /// Indicates whether any syntax highlighting rules are available.
-    var hasRules: Bool { get }
-    
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
     /// - Parameters:
@@ -47,10 +44,6 @@ public protocol HighlightParsing: AnyObject, Sendable {
 
 
 public protocol OutlineParsing: AnyObject, Sendable {
-    
-    /// Indicates whether any outline extraction rules are available.
-    var hasRules: Bool { get }
-    
     
     /// Parses and returns outline items from the given source string using all configured outline extractors.
     ///

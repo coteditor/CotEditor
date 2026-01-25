@@ -37,7 +37,7 @@ struct SyntaxTests {
         #expect(syntax.commentDelimiters.inlines.isEmpty)
         #expect(syntax.commentDelimiters.blocks.isEmpty)
         
-        #expect(!syntax.outlineParser.hasRules)
-        #expect(!syntax.highlightParser.hasRules)
+        #expect(syntax.outlineParser == nil)
+        #expect(syntax.highlightParser == nil)
     }
 }

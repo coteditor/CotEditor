@@ -53,8 +53,8 @@ extension NSAttributedString.Key {
     private let minimumParseLength = 5_000
     
     private let textStorage: NSTextStorage
-    private var highlightParser: any HighlightParsing
-    private var outlineParser: any OutlineParsing
+    private var highlightParser: (any HighlightParsing)?
+    private var outlineParser: (any OutlineParsing)?
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
@@ -116,7 +116,7 @@ extension SyntaxController {
         self.outlineParseTask?.cancel()
         
         guard
-            self.outlineParser.hasRules,
+            let parser = self.outlineParser,
             !self.textStorage.range.isEmpty
         else {
             self.outlineItems = []
@@ -126,7 +126,7 @@ extension SyntaxController {
         self.outlineParseTask = Task {
             self.outlineItems = nil
             let string = self.textStorage.string.immutable
-            self.outlineItems = try await self.outlineParser.parseOutline(in: string)
+            self.outlineItems = try await parser.parseOutline(in: string)
         }
     }
 }
@@ -188,7 +188,7 @@ extension SyntaxController {
         }
         
         // just clear current highlight when no coloring required
-        guard self.highlightParser.hasRules else {
+        guard let parser = self.highlightParser else {
             return ([], self.textStorage.range)
         }
         
@@ -236,7 +236,7 @@ extension SyntaxController {
         let string = self.textStorage.string.immutable
         
         // parse in background
-        let highlights = try await self.highlightParser.parseHighlights(in: string, range: highlightRange)
+        let highlights = try await parser.parseHighlights(in: string, range: highlightRange)
         
         return (highlights, highlightRange)
     }

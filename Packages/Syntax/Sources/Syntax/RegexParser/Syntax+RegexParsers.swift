@@ -29,14 +29,18 @@ import Foundation
 extension Syntax {
     
     /// The parser for the outline extraction.
-    public var outlineParser: any OutlineParsing {
+    public var outlineParser: (any OutlineParsing)? {
         
-        RegexOutlineParser(extractors: self.outlines.compactMap { try? OutlineExtractor(definition: $0) })
+        let extractors = self.outlines.compactMap { try? OutlineExtractor(definition: $0) }
+        
+        guard !extractors.isEmpty else { return nil }
+        
+        return RegexOutlineParser(extractors: extractors)
     }
     
     
     /// The parser for the syntax highlighting.
-    public var highlightParser: any HighlightParsing {
+    public var highlightParser: (any HighlightParsing)? {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = SyntaxType.allCases
@@ -89,6 +93,8 @@ extension Syntax {
         for delimiter in self.commentDelimiters.inlines {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
         }
+        
+        guard !extractors.isEmpty || !nestables.isEmpty else { return nil }
         
         return RegexHighlightParser(extractors: extractors, nestables: nestables)
     }

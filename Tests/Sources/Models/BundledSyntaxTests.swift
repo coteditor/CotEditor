@@ -95,7 +95,8 @@ actor BundledSyntaxTests {
         
         let syntax = try #require(self.syntaxes["HTML"])
         
-        #expect(syntax.parser.hasRules)
+        #expect(syntax.highlightParser != nil)
+        #expect(syntax.outlineParser != nil)
         #expect(syntax.commentDelimiters.inlines.isEmpty)
         #expect(syntax.commentDelimiters.blocks == [Pair("<!--", "-->")])
     }
@@ -110,7 +111,8 @@ actor BundledSyntaxTests {
         let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "html"))
         let source = try String(contentsOf: sourceURL, encoding: .utf8)
         
-        let outlineItems = try await syntax.parser.parseOutline(in: source)
+        let parser = try #require(syntax.outlineParser)
+        let outlineItems = try await parser.parseOutline(in: source)
         #expect(outlineItems.count == 3)
         
         let item = outlineItems[1]

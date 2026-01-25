@@ -46,13 +46,6 @@ final class RegexHighlightParser: HighlightParsing, Sendable {
     
     // MARK: Public Methods
     
-    /// Indicates whether any syntax highlighting rules are available.
-    var hasRules: Bool {
-        
-        !self.extractors.isEmpty || !self.nestables.isEmpty
-    }
-    
-    
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
     /// - Parameters:
