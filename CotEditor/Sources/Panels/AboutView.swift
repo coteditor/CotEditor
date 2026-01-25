@@ -374,6 +374,7 @@ private struct LicenseView: View {
                                     © 2014 C.W. Betts.
                                     © 2014 Petroules Corporation.
                                     © 2014 Big Nerd Ranch.
+                                    All rights reserved.
                                     """,
                          license: .custom("Sparkle"),
                          description: String(localized: "only on non-AppStore version", table: "About",
