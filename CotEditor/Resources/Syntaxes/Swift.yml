@@ -230,9 +230,9 @@ metadata:
   author: 1024jp
   description: Based on Swift 6.2
   distributionURL: https://coteditor.com
-  lastModified: '2025-10-29'
+  lastModified: '2026-01-25'
   license: Same as CotEditor
-  version: 4.13.0
+  version: 4.13.1
 numbers:
 - beginString: (?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\b
   ignoreCase: true
@@ -283,7 +283,7 @@ outlineMenu:
   bold: true
   description: extension
   italic: true
-  keyString: $
+  keyString: $1extension $2
 - beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*init(\??)[\t ]*\((.*)\)
   description: initializer
   keyString: $1init$2($3)
