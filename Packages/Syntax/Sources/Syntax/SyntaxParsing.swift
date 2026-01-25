@@ -39,7 +39,7 @@ public protocol HighlightParsing: AnyObject, Sendable {
     ///   - range: The range where to parse.
     /// - Returns: A dictionary of ranges to highlight per syntax types.
     /// - Throws: `CancellationError`.
-    @concurrent func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight]
+    func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight]
 }
 
 
@@ -51,5 +51,5 @@ public protocol OutlineParsing: AnyObject, Sendable {
     ///   - string: The full source text to analyze.
     /// - Returns: An array of `OutlineItem`.
     /// - Throws: `CancellationError`.
-    @concurrent func parseOutline(in string: String) async throws -> [OutlineItem]
+    func parseOutline(in string: String) async throws -> [OutlineItem]
 }

@@ -27,7 +27,7 @@
 import Foundation
 import StringUtils
 
-final class RegexOutlineParser: OutlineParsing, Sendable {
+actor RegexOutlineParser: OutlineParsing {
     
     // MARK: Private Properties
     
@@ -52,7 +52,7 @@ final class RegexOutlineParser: OutlineParsing, Sendable {
     /// - Throws: `CancellationError`.
     @concurrent func parseOutline(in string: String) async throws -> [OutlineItem] {
         
-        try await withThrowingTaskGroup { [extractors = self.extractors] group in
+        try await withThrowingTaskGroup { [extractors] group in
             for extractor in extractors {
                 group.addTask { try extractor.items(in: string, range: string.range) }
             }

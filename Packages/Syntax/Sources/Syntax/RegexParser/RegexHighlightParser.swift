@@ -27,7 +27,7 @@
 import Foundation
 import StringUtils
 
-final class RegexHighlightParser: HighlightParsing, Sendable {
+actor RegexHighlightParser: HighlightParsing {
     
     // MARK: Private Properties
     
