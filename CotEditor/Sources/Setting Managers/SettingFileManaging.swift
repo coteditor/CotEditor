@@ -114,7 +114,7 @@ extension SettingFileManaging {
     
     // MARK: Default implementation
     
-    static var userDirectoryName: String? { nil }
+    nonisolated static var userDirectoryName: String? { nil }
     
     
     /// Notifies the manager that a setting was updated.
