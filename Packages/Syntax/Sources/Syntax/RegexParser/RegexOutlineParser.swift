@@ -1,5 +1,5 @@
 //
-//  SyntaxParsing.swift
+//  RegexOutlineParser.swift
 //  Syntax
 //
 //  CotEditor
@@ -24,32 +24,31 @@
 //  limitations under the License.
 //
 
-public import Foundation
-public import ValueRange
+import Foundation
+import StringUtils
 
-public typealias Highlight = ValueRange<SyntaxType>
-
-
-public protocol HighlightParsing: AnyObject, Sendable {
+final class RegexOutlineParser: OutlineParsing, Sendable {
     
-    /// Indicates whether any syntax highlighting rules are available.
-    var hasRules: Bool { get }
+    // MARK: Private Properties
     
-    /// Parses and returns syntax highlighting for a substring of the given source string.
-    ///
-    /// - Parameters:
-    ///   - string: The full source text to analyze.
-    ///   - range: The range where to parse.
-    /// - Returns: A dictionary of ranges to highlight per syntax types.
-    /// - Throws: `CancellationError`.
-    @concurrent func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight]
-}
-
-
-public protocol OutlineParsing: AnyObject, Sendable {
+    private let extractors: [OutlineExtractor]
+    
+    
+    // MARK: Lifecycle
+    
+    init(extractors: [OutlineExtractor]) {
+        
+        self.extractors = extractors
+    }
+    
+    
+    // MARK: Public Methods
     
     /// Indicates whether any outline extraction rules are available.
-    var hasRules: Bool { get }
+    var hasRules: Bool {
+        
+        !self.extractors.isEmpty
+    }
     
     
     /// Parses and returns outline items from the given source string using all configured outline extractors.
@@ -58,5 +57,15 @@ public protocol OutlineParsing: AnyObject, Sendable {
     ///   - string: The full source text to analyze.
     /// - Returns: An array of `OutlineItem`.
     /// - Throws: `CancellationError`.
-    @concurrent func parseOutline(in string: String) async throws -> [OutlineItem]
+    @concurrent func parseOutline(in string: String) async throws -> [OutlineItem] {
+        
+        try await withThrowingTaskGroup { [extractors = self.extractors] group in
+            for extractor in extractors {
+                group.addTask { try extractor.items(in: string, range: string.range) }
+            }
+            
+            return try await group.reduce(into: []) { $0 += $1 }
+                .sorted(using: KeyPathComparator(\.range.location))
+        }
+    }
 }

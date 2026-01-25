@@ -1,5 +1,5 @@
 //
-//  Syntax+RegexParser.swift
+//  Syntax+RegexParsers.swift
 //  Syntax
 
 //  CotEditor
@@ -28,17 +28,15 @@ import Foundation
 
 extension Syntax {
     
-    /// The parser for the syntax highlighting and outline extraction.
-    public var parser: any SyntaxParsing {
+    /// The parser for the outline extraction.
+    public var outlineParser: any OutlineParsing {
         
-        RegexParser(
-            outlineExtractors: self.outlines.compactMap { try? OutlineExtractor(definition: $0) },
-            highlightRuleSet: self.highlightRuleSet
-        )
+        RegexOutlineParser(extractors: self.outlines.compactMap { try? OutlineExtractor(definition: $0) })
     }
     
-    /// The rule set for syntax highlighting.
-    private var highlightRuleSet: RegexParser.HighlightRuleSet {
+    
+    /// The parser for the syntax highlighting.
+    public var highlightParser: any HighlightParsing {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = SyntaxType.allCases
@@ -92,7 +90,7 @@ extension Syntax {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
         }
         
-        return .init(extractors: extractors, nestables: nestables)
+        return RegexHighlightParser(extractors: extractors, nestables: nestables)
     }
 }
 

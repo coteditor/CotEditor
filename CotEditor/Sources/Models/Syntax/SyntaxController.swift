@@ -53,7 +53,8 @@ extension NSAttributedString.Key {
     private let minimumParseLength = 5_000
     
     private let textStorage: NSTextStorage
-    private var parser: any SyntaxParsing
+    private var highlightParser: any HighlightParsing
+    private var outlineParser: any OutlineParsing
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
@@ -68,7 +69,8 @@ extension NSAttributedString.Key {
         self.invalidRanges = EditedRangeSet(range: textStorage.range)
         
         self.syntax = syntax
-        self.parser = syntax.parser
+        self.highlightParser = syntax.highlightParser
+        self.outlineParser = syntax.outlineParser
     }
     
     
@@ -96,7 +98,8 @@ extension NSAttributedString.Key {
         self.cancel()
         
         self.syntax = syntax
-        self.parser = syntax.parser
+        self.highlightParser = syntax.highlightParser
+        self.outlineParser = syntax.outlineParser
         
         self.invalidateAll()
     }
@@ -113,7 +116,7 @@ extension SyntaxController {
         self.outlineParseTask?.cancel()
         
         guard
-            self.parser.hasOutlineRules,
+            self.outlineParser.hasRules,
             !self.textStorage.range.isEmpty
         else {
             self.outlineItems = []
@@ -123,7 +126,7 @@ extension SyntaxController {
         self.outlineParseTask = Task {
             self.outlineItems = nil
             let string = self.textStorage.string.immutable
-            self.outlineItems = try await self.parser.parseOutline(in: string)
+            self.outlineItems = try await self.outlineParser.parseOutline(in: string)
         }
     }
 }
@@ -185,7 +188,7 @@ extension SyntaxController {
         }
         
         // just clear current highlight when no coloring required
-        guard self.parser.hasHighlightRules else {
+        guard self.highlightParser.hasRules else {
             return ([], self.textStorage.range)
         }
         
@@ -233,7 +236,7 @@ extension SyntaxController {
         let string = self.textStorage.string.immutable
         
         // parse in background
-        let highlights = try await self.parser.parseHighlights(in: string, range: highlightRange)
+        let highlights = try await self.highlightParser.parseHighlights(in: string, range: highlightRange)
         
         return (highlights, highlightRange)
     }

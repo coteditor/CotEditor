@@ -1,5 +1,5 @@
 //
-//  RegexParser.swift
+//  RegexHighlightParser.swift
 //  Syntax
 //
 //  CotEditor
@@ -27,64 +27,29 @@
 import Foundation
 import StringUtils
 
-final class RegexParser: SyntaxParsing, Sendable {
-    
-    struct HighlightRuleSet {
-        
-        var extractors: [SyntaxType: [any HighlightExtractable]]
-        var nestables: [NestableToken: SyntaxType]
-        
-        var isEmpty: Bool { self.extractors.isEmpty && self.nestables.isEmpty }
-    }
-    
+final class RegexHighlightParser: HighlightParsing, Sendable {
     
     // MARK: Private Properties
     
-    private let outlineExtractors: [OutlineExtractor]
-    private let highlightRuleSet: HighlightRuleSet
+    private let extractors: [SyntaxType: [any HighlightExtractable]]
+    private let nestables: [NestableToken: SyntaxType]
     
     
     // MARK: Lifecycle
     
-    init(outlineExtractors: [OutlineExtractor], highlightRuleSet: HighlightRuleSet) {
+    init(extractors: [SyntaxType: [any HighlightExtractable]], nestables: [NestableToken: SyntaxType]) {
         
-        self.outlineExtractors = outlineExtractors
-        self.highlightRuleSet = highlightRuleSet
+        self.extractors = extractors
+        self.nestables = nestables
     }
     
     
     // MARK: Public Methods
     
-    /// Indicates whether any outline extraction rules are available.
-    var hasOutlineRules: Bool {
-        
-        !self.outlineExtractors.isEmpty
-    }
-    
-    
     /// Indicates whether any syntax highlighting rules are available.
-    var hasHighlightRules: Bool {
+    var hasRules: Bool {
         
-        !self.highlightRuleSet.isEmpty
-    }
-    
-    
-    /// Parses and returns outline items from the given source string using all configured outline extractors.
-    ///
-    /// - Parameters:
-    ///   - string: The full source text to analyze.
-    /// - Returns: An array of `OutlineItem`.
-    /// - Throws: `CancellationError`.
-    @concurrent func parseOutline(in string: String) async throws -> [OutlineItem] {
-        
-        try await withThrowingTaskGroup { [extractors = self.outlineExtractors] group in
-            for extractor in extractors {
-                group.addTask { try extractor.items(in: string, range: string.range) }
-            }
-            
-            return try await group.reduce(into: []) { $0 += $1 }
-                .sorted(using: KeyPathComparator(\.range.location))
-        }
+        !self.extractors.isEmpty || !self.nestables.isEmpty
     }
     
     
@@ -97,10 +62,10 @@ final class RegexParser: SyntaxParsing, Sendable {
     /// - Throws: `CancellationError`.
     @concurrent func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
         
-        try await withThrowingTaskGroup { [ruleSet = self.highlightRuleSet] group in
-            group.addTask { try ruleSet.nestables.parseHighlights(in: string, range: range) }
+        try await withThrowingTaskGroup { [extractors, nestables] group in
+            group.addTask { try nestables.parseHighlights(in: string, range: range) }
             
-            for (type, extractors) in ruleSet.extractors {
+            for (type, extractors) in extractors {
                 for extractor in extractors {
                     group.addTask { [type: try extractor.ranges(in: string, range: range)] }
                 }
