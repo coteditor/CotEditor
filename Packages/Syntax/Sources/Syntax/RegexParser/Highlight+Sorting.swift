@@ -24,14 +24,11 @@
 //  limitations under the License.
 //
 
-public import ValueRange
 import Foundation
 import StringUtils
+import ValueRange
 
-public typealias Highlight = ValueRange<SyntaxType>
-
-
-extension Highlight {
+extension ValueRange<SyntaxType> {
     
     /// Converts a syntax highlight dictionary to sorted Highlights.
     ///
@@ -40,7 +37,7 @@ extension Highlight {
     /// - Parameter dictionary: The syntax highlight dictionary.
     /// - Returns: An array of sorted Highlight structs.
     /// - Throws: CancellationError
-    static func highlights(dictionary: [SyntaxType: [NSRange]]) throws -> [Highlight] {
+    static func highlights(dictionary: [SyntaxType: [NSRange]]) throws -> [ValueRange<SyntaxType>] {
         
         try SyntaxType.allCases.reversed()
             .reduce(into: [SyntaxType: IndexSet]()) { dict, type in

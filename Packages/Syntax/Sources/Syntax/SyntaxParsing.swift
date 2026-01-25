@@ -25,6 +25,10 @@
 //
 
 public import Foundation
+public import ValueRange
+
+public typealias Highlight = ValueRange<SyntaxType>
+
 
 public protocol SyntaxParsing: AnyObject, Sendable {
     
