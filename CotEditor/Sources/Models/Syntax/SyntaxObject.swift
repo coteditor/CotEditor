@@ -41,6 +41,7 @@ import StringUtils
     typealias KeyString = Item<String>
     typealias InlineComment = Item<Syntax.Comment.Inline>
     typealias BlockComment = Item<Pair<String>>
+    typealias CompletionWord = Item<Syntax.CompletionWord>
     typealias Metadata = Syntax.Metadata
     
     
@@ -84,7 +85,7 @@ import StringUtils
     var blockComments: [BlockComment] = []
     
     var outlines: [Outline] = []
-    var completions: [KeyString] = []
+    var completions: [CompletionWord] = []
     
     var filenames: [KeyString] = []
     var extensions: [KeyString] = []
@@ -229,5 +230,14 @@ extension SyntaxObject.BlockComment {
     init() {
         
         self.value = .init("", "")
+    }
+}
+
+
+extension SyntaxObject.CompletionWord {
+    
+    init() {
+        
+        self.value = .init()
     }
 }

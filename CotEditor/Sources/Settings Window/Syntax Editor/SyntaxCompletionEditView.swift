@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,10 +24,11 @@
 //
 
 import SwiftUI
+import Syntax
 
 struct SyntaxCompletionEditView: View {
     
-    typealias Item = SyntaxObject.KeyString
+    typealias Item = SyntaxObject.CompletionWord
     
     
     @Binding var items: [Item]
@@ -44,12 +45,31 @@ struct SyntaxCompletionEditView: View {
         VStack(alignment: .leading) {
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header"), value: \.value) { wrappedItem in
+                TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header"), value: \.value.text) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        TextField(text: item.value, label: EmptyView.init)
+                        TextField(text: item.value.text, label: EmptyView.init)
                             .focused($focusedField, equals: item.id)
                     }
                 }
+                
+                TableColumn(String(localized: "Type", table: "SyntaxEditor", comment: "table column header"), value: \.value.type.sortValue) { wrappedItem in
+                    if let item = $items[id: wrappedItem.id] {
+                        Picker(selection: item.value.type) {
+                            Text("None")
+                                .foregroundStyle(.tertiary)
+                                .tag(Optional<SyntaxType>.none)
+                            Divider()
+                            ForEach(SyntaxType.allCases, id: \.self) { type in
+                                Text(type.label)
+                                    .tag(Optional(type))
+                            }
+                        } label: {
+                            EmptyView()
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .width(100)
             }
             .onChange(of: self.sortOrder) { _, newValue in
                 self.items.sort(using: newValue)
@@ -79,10 +99,25 @@ struct SyntaxCompletionEditView: View {
 }
 
 
+private extension SyntaxType? {
+    
+    // The value for column sorting.
+    var sortValue: Int {
+        
+        switch self {
+            case .none:
+                99
+            case .some(let type):
+                SyntaxType.allCases.firstIndex(of: type) ?? 99
+        }
+    }
+}
+
+
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var items: [SyntaxObject.KeyString] = [.init(value: "abc")]
+    @Previewable @State var items: [SyntaxObject.CompletionWord] = [.init(value: .init(text: "abc"))]
     
     SyntaxCompletionEditView(items: $items)
         .padding()

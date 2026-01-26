@@ -139,6 +139,20 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
+    public struct CompletionWord: Equatable, Sendable, Codable {
+        
+        public var text: String
+        public var type: SyntaxType?
+        
+        
+        public init(text: String = "", type: SyntaxType? = nil) {
+            
+            self.text = text
+            self.type = type
+        }
+    }
+    
+    
     public struct Metadata: Equatable, Sendable, Codable {
         
         public var version: String?
@@ -170,7 +184,7 @@ public struct Syntax: Equatable, Sendable {
     public var outlines: [Outline]
     
     public var commentDelimiters: Comment
-    public var completions: [String]
+    public var completions: [CompletionWord]
     
     public var metadata: Metadata
     
@@ -183,7 +197,7 @@ public struct Syntax: Equatable, Sendable {
         highlights: [SyntaxType: [Highlight]] = [:],
         outlines: [Outline] = [],
         commentDelimiters: Comment = .init(),
-        completions: [String] = [],
+        completions: [CompletionWord] = [],
         metadata: Metadata = .init()
     ) {
         
@@ -229,17 +243,17 @@ public struct Syntax: Equatable, Sendable {
         syntax.commentDelimiters.blocks.removeAll(where: \.begin.isEmpty)
         syntax.commentDelimiters.blocks.removeAll(where: \.end.isEmpty)
         
-        syntax.completions.removeAll(where: \.isEmpty)
-        syntax.completions.caseInsensitiveSort(\.self)
+        syntax.completions.removeAll(where: \.text.isEmpty)
+        syntax.completions.caseInsensitiveSort(\.text)
         
         return syntax
     }
     
     
     /// The completion words.
-    public var completionWords: [String] {
+    public var completionWords: [CompletionWord] {
         
-        let completions = self.completions.filter { !$0.isEmpty }
+        let completions = self.completions.filter { !$0.text.isEmpty }
         
         return if !completions.isEmpty {
             // from completion definition
@@ -247,11 +261,16 @@ public struct Syntax: Equatable, Sendable {
         } else {
             // from normal highlighting words
             SyntaxType.allCases
-                .flatMap { self.highlights[$0] ?? [] }
-                .filter { $0.end == nil && !$0.isRegularExpression }
-                .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }
-                .filter { !$0.isEmpty }
-                .sorted()
+                .flatMap { type -> [CompletionWord] in
+                    guard let highlights = self.highlights[type] else { return [] }
+                    
+                    return highlights
+                        .filter { $0.end == nil && !$0.isRegularExpression }
+                        .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }
+                        .filter { !$0.isEmpty }
+                        .map { CompletionWord(text: $0, type: type) }
+                }
+                .sorted(using: KeyPathComparator(\.text))
         }
     }
 }

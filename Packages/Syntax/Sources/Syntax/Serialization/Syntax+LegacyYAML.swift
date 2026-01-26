@@ -162,7 +162,9 @@ extension Syntax: Decodable {
         
         self.commentDelimiters = (try values.decodeIfPresent([String: String].self, forKey: .commentDelimiters))
             .flatMap(Comment.init(legacyDictionary:)) ?? .init()
-        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.compactMap(\.keyString) ?? []
+        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?
+            .compactMap(\.keyString)
+            .compactMap { CompletionWord(text: $0) } ?? []
         
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
     }

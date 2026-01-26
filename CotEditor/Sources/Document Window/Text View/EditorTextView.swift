@@ -98,7 +98,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
     var commentsOutAfterIndent: Bool = false
     var commentSpacer: String = ""
-    var syntaxCompletionWords: [String] = []
+    var syntaxCompletionWords: [Syntax.CompletionWord] = []
     var completionWordTypes: CompletionWordTypes = []
     
     var showsPageGuide = false  { didSet { self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) } }
@@ -1685,7 +1685,7 @@ extension EditorTextView {
         
         guard !self.string.isEmpty else { return range }
         
-        let firstSyntaxLetters = self.syntaxCompletionWords.compactMap(\.unicodeScalars.first)
+        let firstSyntaxLetters = self.syntaxCompletionWords.map(\.text).compactMap(\.unicodeScalars.first)
         let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters).union(.init(["_"]))
         
         // expand range until hitting a character that isn't in the word completion candidates
@@ -1726,6 +1726,7 @@ extension EditorTextView {
         // add words defined in syntax
         if self.completionWordTypes.contains(.syntax) {
             candidateWords += self.syntaxCompletionWords
+                .map(\.text)
                 .filter { $0.range(of: partialWord, options: [.caseInsensitive, .anchored]) != nil }
         }
         

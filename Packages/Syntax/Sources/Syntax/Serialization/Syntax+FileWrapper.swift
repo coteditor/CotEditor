@@ -51,7 +51,7 @@ extension Syntax {
     struct Edit: Equatable, Sendable, Codable {
         
         var comment: Comment?
-        var completions: [String]?
+        var completions: [CompletionWord]?
     }
     
     

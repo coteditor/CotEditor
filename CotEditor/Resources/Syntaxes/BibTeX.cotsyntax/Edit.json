@@ -10,40 +10,110 @@
     ]
   },
   "completions" : [
-    "@article",
-    "@book",
-    "@booklet",
-    "@conference",
-    "@inbook",
-    "@incollection",
-    "@inproceedings",
-    "@manual",
-    "@masterthesis",
-    "@misc",
-    "@phdthesis",
-    "@proceedings",
-    "@techreport",
-    "@unpublished",
-    "address",
-    "author",
-    "booktitle",
-    "chapter",
-    "edition",
-    "editor",
-    "howpublished",
-    "institution",
-    "journal",
-    "month",
-    "note",
-    "number",
-    "organization",
-    "pages",
-    "publisher",
-    "school",
-    "series",
-    "title",
-    "type",
-    "volume",
-    "year"
+    {
+      "text" : "@article",
+    },
+    {
+      "text" : "@book",
+    },
+    {
+      "text" : "@booklet",
+    },
+    {
+      "text" : "@conference",
+    },
+    {
+      "text" : "@inbook",
+    },
+    {
+      "text" : "@incollection",
+    },
+    {
+      "text" : "@inproceedings",
+    },
+    {
+      "text" : "@manual",
+    },
+    {
+      "text" : "@masterthesis",
+    },
+    {
+      "text" : "@misc",
+    },
+    {
+      "text" : "@phdthesis",
+    },
+    {
+      "text" : "@proceedings",
+    },
+    {
+      "text" : "@techreport",
+    },
+    {
+      "text" : "@unpublished",
+    },
+    {
+      "text" : "address",
+    },
+    {
+      "text" : "author",
+    },
+    {
+      "text" : "booktitle",
+    },
+    {
+      "text" : "chapter",
+    },
+    {
+      "text" : "edition",
+    },
+    {
+      "text" : "editor",
+    },
+    {
+      "text" : "howpublished",
+    },
+    {
+      "text" : "institution",
+    },
+    {
+      "text" : "journal",
+    },
+    {
+      "text" : "month",
+    },
+    {
+      "text" : "note",
+    },
+    {
+      "text" : "number",
+    },
+    {
+      "text" : "organization",
+    },
+    {
+      "text" : "pages",
+    },
+    {
+      "text" : "publisher",
+    },
+    {
+      "text" : "school",
+    },
+    {
+      "text" : "series",
+    },
+    {
+      "text" : "title",
+    },
+    {
+      "text" : "type",
+    },
+    {
+      "text" : "volume",
+    },
+    {
+      "text" : "year",
+    }
   ]
 }
