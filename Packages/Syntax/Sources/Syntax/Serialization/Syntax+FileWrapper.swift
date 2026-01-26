@@ -84,27 +84,17 @@ extension Syntax {
         self.fileMap = info.fileMap ?? .init()
         self.metadata = info.metadata ?? .init()
         
-        guard let editData = fileWrapper.fileWrappers?[Filename.edit]?.regularFileContents else {
-            throw CocoaError(.fileReadCorruptFile)
-        }
-        
-        let edit = try decoder.decode(Edit.self, from: editData)
-        self.commentDelimiters = edit.comment ?? .init()
-        self.completions = edit.completions ?? []
+        let edit = try fileWrapper.fileWrappers?[Filename.edit]?.regularFileContents
+            .map { try decoder.decode(Edit.self, from: $0) }
+        self.commentDelimiters = edit?.comment ?? .init()
+        self.completions = edit?.completions ?? []
         
         // load regex-based definition
         if let wrapper = fileWrapper.fileWrappers?[Filename.regex] {
-            self.highlights = if let data = wrapper.fileWrappers?[Filename.highlights]?.regularFileContents {
-                try decoder.decode([SyntaxType: [Highlight]].self, from: data)
-            } else {
-                [:]
-            }
-            
-            self.outlines = if let data = wrapper.fileWrappers?[Filename.outlines]?.regularFileContents {
-                try decoder.decode([Outline].self, from: data)
-            } else {
-                []
-            }
+            self.highlights = try wrapper.fileWrappers?[Filename.highlights]?.regularFileContents
+                .map { try decoder.decode([SyntaxType: [Highlight]].self, from: $0) } ?? [:]
+            self.outlines = try wrapper.fileWrappers?[Filename.outlines]?.regularFileContents
+                .map { try decoder.decode([Outline].self, from: $0) } ?? []
         } else {
             self.highlights = [:]
             self.outlines = []
@@ -125,10 +115,12 @@ extension Syntax {
             let infoData = try encoder.encode(info)
             fileWrapper.addRegularFile(withContents: infoData, preferredFilename: Filename.info)
             
-            let edit = Edit(comment: self.commentDelimiters,
-                            completions: self.completions.isEmpty ? nil : self.completions)
-            let editData = try encoder.encode(edit)
-            fileWrapper.addRegularFile(withContents: editData, preferredFilename: Filename.edit)
+            if !self.commentDelimiters.isEmpty || !self.completions.isEmpty {
+                let edit = Edit(comment: self.commentDelimiters,
+                                completions: self.completions.isEmpty ? nil : self.completions)
+                let data = try encoder.encode(edit)
+                fileWrapper.addRegularFile(withContents: data, preferredFilename: Filename.edit)
+            }
             
             if !self.highlights.flatMap(\.value).isEmpty || !self.outlines.isEmpty {
                 let regexWrapper = FileWrapper(directoryWithFileWrappers: [:])
