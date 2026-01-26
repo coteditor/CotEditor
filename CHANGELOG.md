@@ -19,7 +19,7 @@
 ### Improvements
 
 - Improve the syntax highlighting algorithm.
-- Migrate the built-in CSS, HTML, and Swift syntaxes to use tree-sitter for syntax highlighting.
+- Migrate the built-in CSS, HTML, JavaScript, and Swift syntaxes to use tree-sitter for syntax highlighting.
 - Update built-in syntaxes.
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move to the Format menu.
@@ -31,7 +31,7 @@
 
 - Localize updated strings.
 - Update the migration directories for user syntax definitions.
-- Switch back to upstream tree-sitter-css after PR is merged.
+- Switch back to upstream tree-sitter-css and -javascript after PRs are merged.
 
 
 

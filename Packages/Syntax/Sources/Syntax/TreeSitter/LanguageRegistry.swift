@@ -30,6 +30,7 @@ import SwiftTreeSitter
 
 import TreeSitterCSS
 import TreeSitterHTML
+import TreeSitterJavaScript
 import TreeSitterSwift
 
 public final class LanguageRegistry: Sendable {
@@ -39,6 +40,7 @@ public final class LanguageRegistry: Sendable {
         
         case css = "CSS"
         case html = "HTML"
+        case javaScript = "JavaScript"
         case swift = "Swift"
         
         
@@ -131,6 +133,7 @@ private extension LanguageRegistry.Language {
         switch providerName.lowercased() {
             case "css": self = .css
             case "html": self = .html
+            case "javascript": self = .javaScript
             case "swift": self = .swift
             default: return nil
         }
@@ -143,6 +146,7 @@ private extension LanguageRegistry.Language {
         switch self {
             case .css: "css"
             case .html: "html"
+            case .javaScript: "javascript"
             case .swift: "swift"
         }
     }
@@ -153,6 +157,7 @@ private extension LanguageRegistry.Language {
         switch self {
             case .css: unsafe tree_sitter_css()
             case .html: unsafe tree_sitter_html()
+            case .javaScript: unsafe tree_sitter_javascript()
             case .swift: unsafe tree_sitter_swift()
         }
     }
