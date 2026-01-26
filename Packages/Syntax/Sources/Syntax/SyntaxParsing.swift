@@ -30,7 +30,7 @@ public import ValueRange
 public typealias Highlight = ValueRange<SyntaxType>
 
 
-public protocol HighlightParsing: AnyObject, Sendable {
+public protocol HighlightParsing: Actor {
     
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
@@ -43,7 +43,7 @@ public protocol HighlightParsing: AnyObject, Sendable {
 }
 
 
-public protocol OutlineParsing: AnyObject, Sendable {
+public protocol OutlineParsing: Actor {
     
     /// Parses and returns outline items from the given source string using all configured outline extractors.
     ///
