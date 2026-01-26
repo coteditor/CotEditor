@@ -94,7 +94,9 @@ extension [NestableToken: SyntaxType] {
             switch token {
                 case .inline(let delimiter, let leadingOnly):
                     return (leadingOnly
-                            ? string.ranges(of: "^ *" + NSRegularExpression.escapedPattern(for: delimiter), options: .regularExpression, range: parseRange)
+                            ? try! NSRegularExpression(pattern: "^ *" + NSRegularExpression.escapedPattern(for: delimiter), options: .anchorsMatchLines)
+                                .matches(in: string, range: parseRange)
+                                .map(\.range)
                             : string.ranges(of: delimiter, range: parseRange))
                         .filter { range in
                             // ignore single-character delimiter just after a non-whitespace character
