@@ -362,6 +362,10 @@ private struct LicenseView: View {
                      url: "https://github.com/tree-sitter/tree-sitter",
                      copyright: "© 2018-2024 Max Brunsfeld",
                      license: .mit)
+            ItemView(name: "tree-sitter-html",
+                     url: "https://github.com/tree-sitter/tree-sitter-html",
+                     copyright: "© 2014 Max Brunsfeld",
+                     license: .mit)
             ItemView(name: "tree-sitter-swift",
                      url: "https://github.com/alex-pinkus/tree-sitter-swift",
                      copyright: "© 2021 alex-pinkus",

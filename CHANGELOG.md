@@ -19,7 +19,7 @@
 ### Improvements
 
 - Improve the syntax highlighting algorithm.
-- Migrate the built-in Swift syntax to use tree-sitter for syntax highlighting.
+- Migrate the built-in HTML and Swift syntaxes to use tree-sitter for syntax highlighting.
 - Update built-in syntaxes.
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move to the Format menu.

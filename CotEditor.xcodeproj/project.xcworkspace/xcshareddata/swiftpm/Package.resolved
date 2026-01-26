@@ -56,6 +56,15 @@
       }
     },
     {
+      "identity" : "tree-sitter-html",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tree-sitter/tree-sitter-html",
+      "state" : {
+        "revision" : "5a5ca8551a179998360b4a4ca2c0f366a35acc03",
+        "version" : "0.23.2"
+      }
+    },
+    {
       "identity" : "tree-sitter-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alex-pinkus/tree-sitter-swift",
