@@ -40,15 +40,19 @@ actor BundledSyntaxTests {
         let urls = try #require(Bundle.main.urls(forResourcesWithExtension: "cotsyntax", subdirectory: "Syntaxes"))
         
         // load syntaxes
-        self.syntaxes = try urls.reduce(into: [:]) { dict, url in
+        self.syntaxes = urls.reduce(into: [:]) { dict, url in
             let name = url.deletingPathExtension().lastPathComponent
             
-            dict[name] = try Syntax(contentsOf: url)
+            #expect(throws: Never.self, "The bundled \(name) syntax is invalid.") {
+                dict[name] = try Syntax(contentsOf: url)
+            }
         }
     }
     
     
     @Test func validateAllSyntaxes() {
+        
+        #expect(!self.syntaxes.isEmpty)
         
         for (name, syntax) in self.syntaxes {
             let errors = syntax.validate()
