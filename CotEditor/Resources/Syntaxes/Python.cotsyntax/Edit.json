@@ -8,5 +8,1651 @@
         "begin" : "#"
       }
     ]
-  }
+  },
+  "completions" : [
+    {
+      "text" : "@abstractmethod",
+      "type" : "attributes"
+    },
+    {
+      "text" : "@classmethod",
+      "type" : "attributes"
+    },
+    {
+      "text" : "@property",
+      "type" : "attributes"
+    },
+    {
+      "text" : "@staticmethod",
+      "type" : "attributes"
+    },
+    {
+      "text" : "__abs__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__add__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__aenter__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__aexit__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__aiter__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__all__",
+      "type" : "values"
+    },
+    {
+      "text" : "__and__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__anext__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__annotations__",
+      "type" : "values"
+    },
+    {
+      "text" : "__await__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__bases__",
+      "type" : "values"
+    },
+    {
+      "text" : "__bool__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__builtins__",
+      "type" : "values"
+    },
+    {
+      "text" : "__bytes__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__cached__",
+      "type" : "values"
+    },
+    {
+      "text" : "__call__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__callback__",
+      "type" : "values"
+    },
+    {
+      "text" : "__cause__",
+      "type" : "values"
+    },
+    {
+      "text" : "__class__",
+      "type" : "values"
+    },
+    {
+      "text" : "__closure__",
+      "type" : "values"
+    },
+    {
+      "text" : "__cmp__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__code__",
+      "type" : "values"
+    },
+    {
+      "text" : "__coerce__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__complex__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__concat__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__contains__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__context__",
+      "type" : "values"
+    },
+    {
+      "text" : "__copy__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__debug__",
+      "type" : "values"
+    },
+    {
+      "text" : "__deepcopy__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__defaults__",
+      "type" : "values"
+    },
+    {
+      "text" : "__del__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__delattr__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__delete__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__delitem__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__delslice__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__dict__",
+      "type" : "values"
+    },
+    {
+      "text" : "__dir__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__displayhook__",
+      "type" : "values"
+    },
+    {
+      "text" : "__div__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__divmod__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__doc__",
+      "type" : "values"
+    },
+    {
+      "text" : "__enter__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__eq__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__excepthook__",
+      "type" : "values"
+    },
+    {
+      "text" : "__exit__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__file__",
+      "type" : "values"
+    },
+    {
+      "text" : "__float__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__floordiv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__func__",
+      "type" : "values"
+    },
+    {
+      "text" : "__future__",
+      "type" : "values"
+    },
+    {
+      "text" : "__ge__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__get__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__getattr__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__getattribute__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__getitem__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__getnewargs__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__getnewargs_ex__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__getslice__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__getstate__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__globals__",
+      "type" : "values"
+    },
+    {
+      "text" : "__gt__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__hash__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__hex__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__iadd__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__iand__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__iconcat__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__idiv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__ifloordiv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__ilshift__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__imatmul__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__imod__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__import__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__imul__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__index__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__init__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__init_subclass__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__instancecheck__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__int__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__interactivehook__",
+      "type" : "values"
+    },
+    {
+      "text" : "__inv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__invert__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__ior__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__ipow__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__irshift__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__isub__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__iter__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__itruediv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__ixor__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__kwdefaults__",
+      "type" : "values"
+    },
+    {
+      "text" : "__le__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__len__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__length_hint__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__loader__",
+      "type" : "values"
+    },
+    {
+      "text" : "__long__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__lshift__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__lt__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__main__",
+      "type" : "values"
+    },
+    {
+      "text" : "__matmul__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__metaclass__",
+      "type" : "values"
+    },
+    {
+      "text" : "__missing__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__mod__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__module__",
+      "type" : "values"
+    },
+    {
+      "text" : "__mro__",
+      "type" : "values"
+    },
+    {
+      "text" : "__mul__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__name__",
+      "type" : "values"
+    },
+    {
+      "text" : "__ne__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__neg__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__new__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__next__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__nonzero__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__not__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__oct__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__or__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__package__",
+      "type" : "values"
+    },
+    {
+      "text" : "__path__",
+      "type" : "values"
+    },
+    {
+      "text" : "__pos__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__pow__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__qualname__",
+      "type" : "values"
+    },
+    {
+      "text" : "__radd__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rand__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rcmp__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rdiv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rdivmod__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__reduce__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__reduce_ex__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__repr__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__reversed__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rfloordiv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rlshift__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rmatmul__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rmod__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rmul__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__ror__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__round__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rpow__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rrshift__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rshift__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rsub__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rtruediv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__rxor__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__self__",
+      "type" : "values"
+    },
+    {
+      "text" : "__set__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__set_name__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__setattr__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__setitem__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__setslice__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__setstate__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__slots__",
+      "type" : "values"
+    },
+    {
+      "text" : "__spec__",
+      "type" : "values"
+    },
+    {
+      "text" : "__stderr__",
+      "type" : "values"
+    },
+    {
+      "text" : "__stdin__",
+      "type" : "values"
+    },
+    {
+      "text" : "__stdout__",
+      "type" : "values"
+    },
+    {
+      "text" : "__str__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__sub__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__subclasscheck__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__subclasses__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__suppress_context__",
+      "type" : "values"
+    },
+    {
+      "text" : "__traceback__",
+      "type" : "values"
+    },
+    {
+      "text" : "__truediv__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__unicode__",
+      "type" : "commands"
+    },
+    {
+      "text" : "__wrapped__",
+      "type" : "values"
+    },
+    {
+      "text" : "__xor__",
+      "type" : "commands"
+    },
+    {
+      "text" : "abs",
+      "type" : "commands"
+    },
+    {
+      "text" : "add",
+      "type" : "commands"
+    },
+    {
+      "text" : "all",
+      "type" : "commands"
+    },
+    {
+      "text" : "and",
+      "type" : "keywords"
+    },
+    {
+      "text" : "any",
+      "type" : "commands"
+    },
+    {
+      "text" : "append",
+      "type" : "commands"
+    },
+    {
+      "text" : "as",
+      "type" : "keywords"
+    },
+    {
+      "text" : "as_integer_ratio",
+      "type" : "commands"
+    },
+    {
+      "text" : "ascii",
+      "type" : "commands"
+    },
+    {
+      "text" : "assert",
+      "type" : "keywords"
+    },
+    {
+      "text" : "async",
+      "type" : "keywords"
+    },
+    {
+      "text" : "await",
+      "type" : "keywords"
+    },
+    {
+      "text" : "basestring",
+      "type" : "values"
+    },
+    {
+      "text" : "bin",
+      "type" : "commands"
+    },
+    {
+      "text" : "bit_length",
+      "type" : "commands"
+    },
+    {
+      "text" : "bool",
+      "type" : "commands"
+    },
+    {
+      "text" : "break",
+      "type" : "keywords"
+    },
+    {
+      "text" : "breakpoint",
+      "type" : "commands"
+    },
+    {
+      "text" : "bytearray",
+      "type" : "commands"
+    },
+    {
+      "text" : "bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "callable",
+      "type" : "commands"
+    },
+    {
+      "text" : "capitalize",
+      "type" : "commands"
+    },
+    {
+      "text" : "case",
+      "type" : "keywords"
+    },
+    {
+      "text" : "casefold",
+      "type" : "commands"
+    },
+    {
+      "text" : "cast",
+      "type" : "commands"
+    },
+    {
+      "text" : "center",
+      "type" : "commands"
+    },
+    {
+      "text" : "chr",
+      "type" : "commands"
+    },
+    {
+      "text" : "class",
+      "type" : "keywords"
+    },
+    {
+      "text" : "classmethod",
+      "type" : "commands"
+    },
+    {
+      "text" : "clear",
+      "type" : "commands"
+    },
+    {
+      "text" : "close",
+      "type" : "commands"
+    },
+    {
+      "text" : "closed",
+      "type" : "values"
+    },
+    {
+      "text" : "cls",
+      "type" : "variables"
+    },
+    {
+      "text" : "cmp",
+      "type" : "commands"
+    },
+    {
+      "text" : "compile",
+      "type" : "commands"
+    },
+    {
+      "text" : "complex",
+      "type" : "commands"
+    },
+    {
+      "text" : "conjugate",
+      "type" : "commands"
+    },
+    {
+      "text" : "continue",
+      "type" : "keywords"
+    },
+    {
+      "text" : "copy",
+      "type" : "commands"
+    },
+    {
+      "text" : "count",
+      "type" : "commands"
+    },
+    {
+      "text" : "decode",
+      "type" : "commands"
+    },
+    {
+      "text" : "def",
+      "type" : "keywords"
+    },
+    {
+      "text" : "del",
+      "type" : "keywords"
+    },
+    {
+      "text" : "delattr",
+      "type" : "commands"
+    },
+    {
+      "text" : "dict",
+      "type" : "commands"
+    },
+    {
+      "text" : "difference",
+      "type" : "commands"
+    },
+    {
+      "text" : "difference_update",
+      "type" : "commands"
+    },
+    {
+      "text" : "dir",
+      "type" : "commands"
+    },
+    {
+      "text" : "discard",
+      "type" : "commands"
+    },
+    {
+      "text" : "divmod",
+      "type" : "commands"
+    },
+    {
+      "text" : "elif",
+      "type" : "keywords"
+    },
+    {
+      "text" : "Ellipsis",
+      "type" : "values"
+    },
+    {
+      "text" : "else",
+      "type" : "keywords"
+    },
+    {
+      "text" : "encode",
+      "type" : "commands"
+    },
+    {
+      "text" : "encoding",
+      "type" : "values"
+    },
+    {
+      "text" : "endswith",
+      "type" : "commands"
+    },
+    {
+      "text" : "enumerate",
+      "type" : "commands"
+    },
+    {
+      "text" : "eval",
+      "type" : "commands"
+    },
+    {
+      "text" : "except",
+      "type" : "keywords"
+    },
+    {
+      "text" : "exec",
+      "type" : "commands"
+    },
+    {
+      "text" : "execfile",
+      "type" : "commands"
+    },
+    {
+      "text" : "expandtabs",
+      "type" : "commands"
+    },
+    {
+      "text" : "extend",
+      "type" : "commands"
+    },
+    {
+      "text" : "False",
+      "type" : "values"
+    },
+    {
+      "text" : "file",
+      "type" : "commands"
+    },
+    {
+      "text" : "fileno",
+      "type" : "commands"
+    },
+    {
+      "text" : "filter",
+      "type" : "commands"
+    },
+    {
+      "text" : "finally",
+      "type" : "keywords"
+    },
+    {
+      "text" : "find",
+      "type" : "commands"
+    },
+    {
+      "text" : "float",
+      "type" : "commands"
+    },
+    {
+      "text" : "flush",
+      "type" : "commands"
+    },
+    {
+      "text" : "for",
+      "type" : "keywords"
+    },
+    {
+      "text" : "format",
+      "type" : "commands"
+    },
+    {
+      "text" : "format_map",
+      "type" : "commands"
+    },
+    {
+      "text" : "from",
+      "type" : "keywords"
+    },
+    {
+      "text" : "from_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "fromhex",
+      "type" : "commands"
+    },
+    {
+      "text" : "fromkeys",
+      "type" : "commands"
+    },
+    {
+      "text" : "frozenset",
+      "type" : "commands"
+    },
+    {
+      "text" : "func_closure",
+      "type" : "values"
+    },
+    {
+      "text" : "func_code",
+      "type" : "values"
+    },
+    {
+      "text" : "func_defaults",
+      "type" : "values"
+    },
+    {
+      "text" : "func_dict",
+      "type" : "values"
+    },
+    {
+      "text" : "func_doc",
+      "type" : "values"
+    },
+    {
+      "text" : "func_globals",
+      "type" : "values"
+    },
+    {
+      "text" : "func_name",
+      "type" : "values"
+    },
+    {
+      "text" : "get",
+      "type" : "commands"
+    },
+    {
+      "text" : "getattr",
+      "type" : "commands"
+    },
+    {
+      "text" : "getboolean",
+      "type" : "commands"
+    },
+    {
+      "text" : "getfloat",
+      "type" : "commands"
+    },
+    {
+      "text" : "getint",
+      "type" : "commands"
+    },
+    {
+      "text" : "global",
+      "type" : "keywords"
+    },
+    {
+      "text" : "globals",
+      "type" : "commands"
+    },
+    {
+      "text" : "has_key",
+      "type" : "commands"
+    },
+    {
+      "text" : "hasattr",
+      "type" : "commands"
+    },
+    {
+      "text" : "hash",
+      "type" : "commands"
+    },
+    {
+      "text" : "help",
+      "type" : "commands"
+    },
+    {
+      "text" : "hex",
+      "type" : "commands"
+    },
+    {
+      "text" : "id",
+      "type" : "commands"
+    },
+    {
+      "text" : "if",
+      "type" : "keywords"
+    },
+    {
+      "text" : "im_class",
+      "type" : "values"
+    },
+    {
+      "text" : "im_func",
+      "type" : "values"
+    },
+    {
+      "text" : "im_self",
+      "type" : "values"
+    },
+    {
+      "text" : "imag",
+      "type" : "values"
+    },
+    {
+      "text" : "import",
+      "type" : "keywords"
+    },
+    {
+      "text" : "in",
+      "type" : "keywords"
+    },
+    {
+      "text" : "index",
+      "type" : "commands"
+    },
+    {
+      "text" : "indices",
+      "type" : "commands"
+    },
+    {
+      "text" : "input",
+      "type" : "commands"
+    },
+    {
+      "text" : "insert",
+      "type" : "commands"
+    },
+    {
+      "text" : "int",
+      "type" : "commands"
+    },
+    {
+      "text" : "intersection",
+      "type" : "commands"
+    },
+    {
+      "text" : "intersection_update",
+      "type" : "commands"
+    },
+    {
+      "text" : "is",
+      "type" : "keywords"
+    },
+    {
+      "text" : "is_integer",
+      "type" : "commands"
+    },
+    {
+      "text" : "isalnum",
+      "type" : "commands"
+    },
+    {
+      "text" : "isalpha",
+      "type" : "commands"
+    },
+    {
+      "text" : "isatty",
+      "type" : "commands"
+    },
+    {
+      "text" : "isdecimal",
+      "type" : "commands"
+    },
+    {
+      "text" : "isdigit",
+      "type" : "commands"
+    },
+    {
+      "text" : "isdisjoint",
+      "type" : "commands"
+    },
+    {
+      "text" : "isinstance",
+      "type" : "commands"
+    },
+    {
+      "text" : "islower",
+      "type" : "commands"
+    },
+    {
+      "text" : "isnumeric",
+      "type" : "commands"
+    },
+    {
+      "text" : "isspace",
+      "type" : "commands"
+    },
+    {
+      "text" : "issubclass",
+      "type" : "commands"
+    },
+    {
+      "text" : "issubset",
+      "type" : "commands"
+    },
+    {
+      "text" : "issuperset",
+      "type" : "commands"
+    },
+    {
+      "text" : "istitle",
+      "type" : "commands"
+    },
+    {
+      "text" : "isupper",
+      "type" : "commands"
+    },
+    {
+      "text" : "items",
+      "type" : "commands"
+    },
+    {
+      "text" : "iter",
+      "type" : "commands"
+    },
+    {
+      "text" : "iteritems",
+      "type" : "commands"
+    },
+    {
+      "text" : "iterkeys",
+      "type" : "commands"
+    },
+    {
+      "text" : "itervalues",
+      "type" : "commands"
+    },
+    {
+      "text" : "join",
+      "type" : "commands"
+    },
+    {
+      "text" : "keys",
+      "type" : "commands"
+    },
+    {
+      "text" : "lambda",
+      "type" : "keywords"
+    },
+    {
+      "text" : "len",
+      "type" : "commands"
+    },
+    {
+      "text" : "list",
+      "type" : "commands"
+    },
+    {
+      "text" : "ljust",
+      "type" : "commands"
+    },
+    {
+      "text" : "locals",
+      "type" : "commands"
+    },
+    {
+      "text" : "long",
+      "type" : "commands"
+    },
+    {
+      "text" : "lower",
+      "type" : "commands"
+    },
+    {
+      "text" : "lstrip",
+      "type" : "commands"
+    },
+    {
+      "text" : "maketrans",
+      "type" : "commands"
+    },
+    {
+      "text" : "map",
+      "type" : "commands"
+    },
+    {
+      "text" : "match",
+      "type" : "keywords"
+    },
+    {
+      "text" : "max",
+      "type" : "commands"
+    },
+    {
+      "text" : "memoryview",
+      "type" : "commands"
+    },
+    {
+      "text" : "min",
+      "type" : "commands"
+    },
+    {
+      "text" : "mode",
+      "type" : "values"
+    },
+    {
+      "text" : "mro",
+      "type" : "commands"
+    },
+    {
+      "text" : "newlines",
+      "type" : "values"
+    },
+    {
+      "text" : "next",
+      "type" : "commands"
+    },
+    {
+      "text" : "None",
+      "type" : "values"
+    },
+    {
+      "text" : "nonlocal",
+      "type" : "keywords"
+    },
+    {
+      "text" : "not",
+      "type" : "keywords"
+    },
+    {
+      "text" : "NotImplemented",
+      "type" : "values"
+    },
+    {
+      "text" : "object",
+      "type" : "commands"
+    },
+    {
+      "text" : "oct",
+      "type" : "commands"
+    },
+    {
+      "text" : "open",
+      "type" : "commands"
+    },
+    {
+      "text" : "or",
+      "type" : "keywords"
+    },
+    {
+      "text" : "ord",
+      "type" : "commands"
+    },
+    {
+      "text" : "partition",
+      "type" : "commands"
+    },
+    {
+      "text" : "pass",
+      "type" : "keywords"
+    },
+    {
+      "text" : "pop",
+      "type" : "commands"
+    },
+    {
+      "text" : "popitem",
+      "type" : "commands"
+    },
+    {
+      "text" : "pow",
+      "type" : "commands"
+    },
+    {
+      "text" : "print",
+      "type" : "keywords"
+    },
+    {
+      "text" : "property",
+      "type" : "commands"
+    },
+    {
+      "text" : "raise",
+      "type" : "keywords"
+    },
+    {
+      "text" : "range",
+      "type" : "commands"
+    },
+    {
+      "text" : "raw_input",
+      "type" : "commands"
+    },
+    {
+      "text" : "read",
+      "type" : "commands"
+    },
+    {
+      "text" : "readline",
+      "type" : "commands"
+    },
+    {
+      "text" : "readlines",
+      "type" : "commands"
+    },
+    {
+      "text" : "reduce",
+      "type" : "commands"
+    },
+    {
+      "text" : "release",
+      "type" : "commands"
+    },
+    {
+      "text" : "reload",
+      "type" : "commands"
+    },
+    {
+      "text" : "remove",
+      "type" : "commands"
+    },
+    {
+      "text" : "removeprefix",
+      "type" : "commands"
+    },
+    {
+      "text" : "removesuffix",
+      "type" : "commands"
+    },
+    {
+      "text" : "replace",
+      "type" : "commands"
+    },
+    {
+      "text" : "repr",
+      "type" : "commands"
+    },
+    {
+      "text" : "return",
+      "type" : "keywords"
+    },
+    {
+      "text" : "reverse",
+      "type" : "commands"
+    },
+    {
+      "text" : "reversed",
+      "type" : "commands"
+    },
+    {
+      "text" : "rfind",
+      "type" : "commands"
+    },
+    {
+      "text" : "rindex",
+      "type" : "commands"
+    },
+    {
+      "text" : "rjust",
+      "type" : "commands"
+    },
+    {
+      "text" : "round",
+      "type" : "commands"
+    },
+    {
+      "text" : "rpartition",
+      "type" : "commands"
+    },
+    {
+      "text" : "rsplit",
+      "type" : "commands"
+    },
+    {
+      "text" : "rstrip",
+      "type" : "commands"
+    },
+    {
+      "text" : "seek",
+      "type" : "commands"
+    },
+    {
+      "text" : "self",
+      "type" : "variables"
+    },
+    {
+      "text" : "set",
+      "type" : "commands"
+    },
+    {
+      "text" : "setattr",
+      "type" : "commands"
+    },
+    {
+      "text" : "setdefault",
+      "type" : "commands"
+    },
+    {
+      "text" : "slice",
+      "type" : "commands"
+    },
+    {
+      "text" : "softspace",
+      "type" : "values"
+    },
+    {
+      "text" : "sort",
+      "type" : "commands"
+    },
+    {
+      "text" : "sorted",
+      "type" : "commands"
+    },
+    {
+      "text" : "split",
+      "type" : "commands"
+    },
+    {
+      "text" : "splitlines",
+      "type" : "commands"
+    },
+    {
+      "text" : "startswith",
+      "type" : "commands"
+    },
+    {
+      "text" : "staticmethod",
+      "type" : "commands"
+    },
+    {
+      "text" : "str",
+      "type" : "commands"
+    },
+    {
+      "text" : "strip",
+      "type" : "commands"
+    },
+    {
+      "text" : "sum",
+      "type" : "commands"
+    },
+    {
+      "text" : "super",
+      "type" : "commands"
+    },
+    {
+      "text" : "swapcase",
+      "type" : "commands"
+    },
+    {
+      "text" : "symmetric_difference",
+      "type" : "commands"
+    },
+    {
+      "text" : "symmetric_difference_update",
+      "type" : "commands"
+    },
+    {
+      "text" : "tell",
+      "type" : "commands"
+    },
+    {
+      "text" : "title",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "tolist",
+      "type" : "commands"
+    },
+    {
+      "text" : "translate",
+      "type" : "commands"
+    },
+    {
+      "text" : "True",
+      "type" : "values"
+    },
+    {
+      "text" : "truncate",
+      "type" : "commands"
+    },
+    {
+      "text" : "try",
+      "type" : "keywords"
+    },
+    {
+      "text" : "tuple",
+      "type" : "commands"
+    },
+    {
+      "text" : "type",
+      "type" : "commands"
+    },
+    {
+      "text" : "unichr",
+      "type" : "commands"
+    },
+    {
+      "text" : "unicode",
+      "type" : "commands"
+    },
+    {
+      "text" : "union",
+      "type" : "commands"
+    },
+    {
+      "text" : "update",
+      "type" : "commands"
+    },
+    {
+      "text" : "upper",
+      "type" : "commands"
+    },
+    {
+      "text" : "values",
+      "type" : "commands"
+    },
+    {
+      "text" : "vars",
+      "type" : "commands"
+    },
+    {
+      "text" : "viewitems",
+      "type" : "commands"
+    },
+    {
+      "text" : "viewkeys",
+      "type" : "commands"
+    },
+    {
+      "text" : "viewvalues",
+      "type" : "commands"
+    },
+    {
+      "text" : "while",
+      "type" : "keywords"
+    },
+    {
+      "text" : "with",
+      "type" : "keywords"
+    },
+    {
+      "text" : "write",
+      "type" : "commands"
+    },
+    {
+      "text" : "writelines",
+      "type" : "commands"
+    },
+    {
+      "text" : "xrange",
+      "type" : "commands"
+    },
+    {
+      "text" : "xreadlines",
+      "type" : "commands"
+    },
+    {
+      "text" : "yield",
+      "type" : "keywords"
+    },
+    {
+      "text" : "zfill",
+      "type" : "commands"
+    },
+    {
+      "text" : "zip",
+      "type" : "commands"
+    }
+  ]
 }
