@@ -56,6 +56,40 @@ actor TreeSitterOutlineTests {
     }
     
     
+    @Test func formatMarkdown() {
+        
+        let formatter = TreeSitterSyntax.markdown.outlinePolicy.titleFormatter
+        
+        #expect(formatter(.heading, "Setext H1\n========") == "Setext H1")
+        #expect(formatter(.heading, "Setext H2\n--------") == "Setext H2")
+        #expect(formatter(.heading, "ATX H1") == "ATX H1")
+    }
+    
+    
+    @Test func parseMarkdownOutlineCapturesATXAndSetextHeadings() async throws {
+        
+        let source = """
+                     # Top
+                     
+                     ## Section
+                     
+                     Setext One
+                     ==========
+                     
+                     Setext Two
+                     ----------
+                     
+                     ---
+                     """
+        
+        let outline = try await self.parseOutline(in: source, syntax: .markdown)
+        
+        #expect(outline.map(\.title) == ["Top", "Section", "Setext One", "Setext Two"])
+        #expect(outline.map(\.kind) == [.heading, .heading, .heading, .heading])
+        #expect(outline.map(\.indent.level) == [0, 1, 0, 1])
+    }
+    
+    
     @Test func parseSwiftOutlineAppliesMarkFormattingAndSectionDepth() async throws {
         
         let source = #"""

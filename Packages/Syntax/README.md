@@ -16,6 +16,7 @@ The following languages are currently supported by tree-sitter in this package:
 - JavaScript
 - Lua
 - Makefile
+- Markdown (outline extraction only)
 - PHP
 - Python
 - Ruby

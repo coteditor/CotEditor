@@ -14,6 +14,7 @@
     - JavaScript
     - Lua
     - Makefile
+    - Markdown (only for outline extraction)
     - PHP
     - Python
     - Ruby

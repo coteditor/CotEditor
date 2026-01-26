@@ -95,6 +95,7 @@ private extension TreeSitterSyntax {
             case .javaScript: "test.js"
             case .lua: "test.lua"
             case .makefile: "Makefile"
+            case .markdown: "test.md"
             case .php: "test.php"
             case .python: "test.py"
             case .ruby: "test.rb"

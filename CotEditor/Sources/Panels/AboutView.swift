@@ -405,6 +405,10 @@ private struct LicenseView: View {
                                 © 2019 Max Brunsfeld, Amaan Qureshi, Christian Frøystad, Caleb White
                                 """,
                      license: .mit)
+            ItemView(name: "tree-sitter-markdown",
+                     url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+                     copyright: "© 2021 2021 Matthias Deiml",
+                     license: .mit)
             ItemView(name: "tree-sitter-python",
                      url: "https://github.com/tree-sitter/tree-sitter-python",
                      copyright: "© 2016 Max Brunsfeld",

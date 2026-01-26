@@ -48,6 +48,8 @@ extension TreeSitterSyntax {
                 ])
             case .python:
                 .init(ignoredDepthNodeTypes: ["decorated_definition"])
+            case .markdown:
+                .init(titleFormatter: Self.markdownOutlineTitleFormatter)
             case .sql:
                 .init(normalization: .init(flattenLevels: true))
             case .swift:
@@ -89,5 +91,23 @@ extension TreeSitterSyntax {
         let comment = trimmed.replacing(/^MARK:\s*-?\s*/, with: "")
         
         return comment.isEmpty ? nil : comment
+    }
+    
+    
+    /// Formats Markdown outline titles with setext heading handling.
+    private static let markdownOutlineTitleFormatter: OutlinePolicy.TitleFormatter = { kind, title in
+        
+        guard kind == .heading else { return title }
+        
+        // Setext headings include the underline on following lines.
+        let firstLine = title.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
+            .first.map(String.init) ?? title
+        
+        let normalized = firstLine
+            .replacing(/^#{1,6}[ \t]*/, with: "")  // ATX prefix
+            .replacing(/[ \t]*#+[ \t]*$/, with: "")  // optional ATX closing
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return normalized.isEmpty ? nil : normalized
     }
 }
