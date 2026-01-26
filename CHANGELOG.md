@@ -5,11 +5,12 @@
 
 ### New Features
 
-- Enable registering multiple comment delimiters to a syntax definition.
+- Introduce a new parser, tree-sitter, for syntax highlighting for some built-in syntaxes.
+- Enable registering multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
 
 
-### Compatibility changes
+### Compatibility Changes
 
 - Introduce the CotEditor Syntax format, a new syntax definition format.
 
