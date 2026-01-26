@@ -37,6 +37,22 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
+    public struct FileMap: Equatable, Sendable, Codable {
+        
+        public var extensions: [String]?
+        public var filenames: [String]?
+        public var interpreters: [String]?
+        
+        
+        public init(extensions: [String]? = nil, filenames: [String]? = nil, interpreters: [String]? = nil) {
+            
+            self.filenames = filenames
+            self.extensions = extensions
+            self.interpreters = interpreters
+        }
+    }
+    
+    
     public struct Highlight: Equatable, Sendable {
         
         public var begin: String
@@ -123,22 +139,6 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
-    public struct FileMap: Equatable, Sendable, Codable {
-        
-        public var extensions: [String]?
-        public var filenames: [String]?
-        public var interpreters: [String]?
-        
-        
-        public init(extensions: [String]? = nil, filenames: [String]? = nil, interpreters: [String]? = nil) {
-            
-            self.filenames = filenames
-            self.extensions = extensions
-            self.interpreters = interpreters
-        }
-    }
-    
-    
     public struct Metadata: Equatable, Sendable, Codable {
         
         public var version: String?
@@ -201,20 +201,6 @@ public struct Syntax: Equatable, Sendable {
     public var sanitized: Self {
         
         var syntax = self
-        for type in SyntaxType.allCases {
-            syntax.highlights[type]?.removeAll(where: \.isEmpty)
-            syntax.highlights[type]?.caseInsensitiveSort(\.begin)
-            if syntax.highlights[type]?.isEmpty == true {
-                syntax.highlights[type] = nil
-            }
-        }
-        syntax.outlines.removeAll(where: \.isEmpty)
-        syntax.outlines.caseInsensitiveSort(\.pattern)
-        syntax.commentDelimiters.inlines.removeAll(where: \.begin.isEmpty)
-        syntax.commentDelimiters.blocks.removeAll(where: \.begin.isEmpty)
-        syntax.commentDelimiters.blocks.removeAll(where: \.end.isEmpty)
-        syntax.completions.removeAll(where: \.isEmpty)
-        syntax.completions.caseInsensitiveSort(\.self)
         
         syntax.fileMap.extensions?.removeAll(where: \.isEmpty)
         if syntax.fileMap.extensions?.isEmpty == true {
@@ -228,6 +214,23 @@ public struct Syntax: Equatable, Sendable {
         if syntax.fileMap.interpreters?.isEmpty == true {
             syntax.fileMap.interpreters = nil
         }
+        
+        for type in SyntaxType.allCases {
+            syntax.highlights[type]?.removeAll(where: \.isEmpty)
+            syntax.highlights[type]?.caseInsensitiveSort(\.begin)
+            if syntax.highlights[type]?.isEmpty == true {
+                syntax.highlights[type] = nil
+            }
+        }
+        syntax.outlines.removeAll(where: \.isEmpty)
+        syntax.outlines.caseInsensitiveSort(\.pattern)
+        
+        syntax.commentDelimiters.inlines.removeAll(where: \.begin.isEmpty)
+        syntax.commentDelimiters.blocks.removeAll(where: \.begin.isEmpty)
+        syntax.commentDelimiters.blocks.removeAll(where: \.end.isEmpty)
+        
+        syntax.completions.removeAll(where: \.isEmpty)
+        syntax.completions.caseInsensitiveSort(\.self)
         
         return syntax
     }

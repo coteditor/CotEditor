@@ -139,6 +139,12 @@ extension Syntax: Decodable {
         
         self.kind = try values.decodeIfPresent(Kind.self, forKey: .kind) ?? .general
         
+        var fileMap = FileMap()
+        fileMap.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.compactMap(\.keyString) ?? []
+        fileMap.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.compactMap(\.keyString) ?? []
+        fileMap.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.compactMap(\.keyString) ?? []
+        self.fileMap = fileMap
+        
         var highlights: [SyntaxType: [Highlight]] = [:]
         highlights[.keywords] = try values.decodeIfPresent([Highlight].self, forKey: .keywords) ?? []
         highlights[.commands] = try values.decodeIfPresent([Highlight].self, forKey: .commands) ?? []
@@ -153,15 +159,10 @@ extension Syntax: Decodable {
         self.highlights = highlights
         
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
+        
         self.commentDelimiters = (try values.decodeIfPresent([String: String].self, forKey: .commentDelimiters))
             .flatMap(Comment.init(legacyDictionary:)) ?? .init()
         self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.compactMap(\.keyString) ?? []
-        
-        var fileMap = FileMap()
-        fileMap.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.compactMap(\.keyString) ?? []
-        fileMap.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.compactMap(\.keyString) ?? []
-        fileMap.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.compactMap(\.keyString) ?? []
-        self.fileMap = fileMap
         
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
     }
