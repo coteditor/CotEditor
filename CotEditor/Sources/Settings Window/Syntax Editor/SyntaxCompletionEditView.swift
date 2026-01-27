@@ -55,8 +55,7 @@ struct SyntaxCompletionEditView: View {
                 TableColumn(String(localized: "Type", table: "SyntaxEditor", comment: "table column header"), value: \.value.type.sortValue) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         Picker(selection: item.value.type) {
-                            Text("None")
-                                .foregroundStyle(.tertiary)
+                            Text("None", tableName: "SyntaxEditor")
                                 .tag(Optional<SyntaxType>.none)
                             Divider()
                             ForEach(SyntaxType.allCases, id: \.self) { type in
@@ -64,7 +63,14 @@ struct SyntaxCompletionEditView: View {
                                     .tag(Optional(type))
                             }
                         } label: {
-                            EmptyView()
+                            Text("Type", tableName: "SyntaxEditor")
+                        } currentValueLabel: {
+                            if let type = wrappedItem.value.type {
+                                Text(type.label)
+                            } else {
+                                Text("None", tableName: "SyntaxEditor")
+                                    .foregroundStyle(.tertiary)
+                            }
                         }
                         .buttonStyle(.plain)
                     }
