@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -99,9 +99,9 @@ struct SyntaxFileMappingEditView: View {
                     .accessibilityAddTraits(.isHeader)
                 
                 List(selection: $selection) {
-                    ForEach($items) {
-                        TextField(text: $0.value, label: EmptyView.init)
-                            .focused($focusedField, equals: $0.id)
+                    ForEach($items) { $item in
+                        TextField(text: $item.value, label: EmptyView.init)
+                            .focused($focusedField, equals: item.id)
                     }
                     .onMove { indexes, index in
                         withAnimation {

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -84,24 +84,24 @@ private struct CommandSnippetsView: View {
             Text("Text to be inserted by a command in the menu or by keyboard shortcut:", tableName: "SnippetsSettings")
             
             Table(of: Binding<Item>.self, selection: $selection) {
-                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { item in
-                    SyntaxPicker(syntaxes: self.syntaxes, selection: item.scope)
+                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { $item in
+                    SyntaxPicker(syntaxes: self.syntaxes, selection: $item.scope)
                         .buttonStyle(.borderless)
                         .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
                 }.width(160)
                 
-                TableColumn(String(localized: "Name", table: "SnippetsSettings", comment: "table column header")) { item in
-                    TextField(text: item.name, label: EmptyView.init)
+                TableColumn(String(localized: "Name", table: "SnippetsSettings", comment: "table column header")) { $item in
+                    TextField(text: $item.name, label: EmptyView.init)
                 }
                 
-                TableColumn(String(localized: "Key", table: "SnippetsSettings", comment: "table column header")) { item in
-                    ShortcutField(value: item.shortcut, error: $error)
+                TableColumn(String(localized: "Key", table: "SnippetsSettings", comment: "table column header")) { $item in
+                    ShortcutField(value: $item.shortcut, error: $error)
                 }
                 .width(80)
                 
             } rows: {
-                ForEach($items) { item in
-                    TableRow(item)
+                ForEach($items) { $item in
+                    TableRow($item)
                         .draggable(item.id)
                 }
                 .dropDestination(for: UUID.self) { index, ids in
@@ -179,23 +179,23 @@ private struct FileDropView: View {
             Text("Text to be inserted by dropping files to the editor:", tableName: "SnippetsSettings")
             
             Table(of: Binding<Item>.self, selection: $selection) {
-                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { item in
-                    SyntaxPicker(syntaxes: self.syntaxes, selection: item.scope)
+                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { $item in
+                    SyntaxPicker(syntaxes: self.syntaxes, selection: $item.scope)
                         .buttonStyle(.borderless)
                         .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
                 }.width(160)
                 
-                TableColumn(String(localized: "Extensions", table: "SnippetsSettings", comment: "table column header")) { item in
-                    TextField(value: item.extensions, format: .csv(omittingEmptyItems: true), prompt: Text("All", tableName: "SnippetsSettings"), label: EmptyView.init)
+                TableColumn(String(localized: "Extensions", table: "SnippetsSettings", comment: "table column header")) { $item in
+                    TextField(value: $item.extensions, format: .csv(omittingEmptyItems: true), prompt: Text("All", tableName: "SnippetsSettings"), label: EmptyView.init)
                         .help(String(localized: "File extensions of dropped file (comma separated).", table: "SnippetsSettings", comment: "tooltip"))
                 }
                 
-                TableColumn(String(localized: "Description", table: "SnippetsSettings", comment: "table column header")) { item in
-                    TextField(text: item.description ?? "", label: EmptyView.init)
+                TableColumn(String(localized: "Description", table: "SnippetsSettings", comment: "table column header")) { $item in
+                    TextField(text: $item.description ?? "", label: EmptyView.init)
                 }
             } rows: {
-                ForEach($items) { item in
-                    TableRow(item)
+                ForEach($items) { $item in
+                    TableRow($item)
                         .draggable(item.id)
                 }
                 .dropDestination(for: UUID.self) { index, ids in

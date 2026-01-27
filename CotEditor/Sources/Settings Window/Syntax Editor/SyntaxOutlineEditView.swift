@@ -46,19 +46,19 @@ struct SyntaxOutlineEditView: View {
             Text("Outline extraction rules:", tableName: "SyntaxEditor", comment: "label")
             
             Table($items, selection: $selection) {
-                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
-                    Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
+                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
+                    Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
                         .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                 }
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in
+                TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
                     HStack {
-                        RegexTextField(text: item.value.pattern)
+                        RegexTextField(text: $item.value.pattern)
                             .style(.table)
                             .focused($focusedField, equals: item.id)
-                        if (try? NSRegularExpression(pattern: item.wrappedValue.value.pattern)) == nil {
+                        if (try? NSRegularExpression(pattern: item.value.pattern)) == nil {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .symbolRenderingMode(.multicolor)
                                 .help(Syntax.Error.Code.regularExpression.localizedDescription)
@@ -66,8 +66,8 @@ struct SyntaxOutlineEditView: View {
                     }
                 }
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.value.description ?? "", label: EmptyView.init)
+                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+                    TextField(text: $item.value.description ?? "", label: EmptyView.init)
                 }
             }
             .tableStyle(.bordered)

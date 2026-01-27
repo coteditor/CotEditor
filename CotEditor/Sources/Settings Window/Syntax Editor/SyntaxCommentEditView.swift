@@ -86,11 +86,11 @@ private struct InlineCommentsEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
-            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
-                TextField(text: item.value.begin, label: EmptyView.init)
+            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.begin, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { item in
-                Toggle(isOn: item.value.leadingOnly, label: EmptyView.init)
+            TableColumn(String(localized: "Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
+                Toggle(isOn: $item.value.leadingOnly, label: EmptyView.init)
             }
             .alignment(.center)
         }
@@ -117,11 +117,11 @@ private struct BlockCommentsEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
-            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
-                TextField(text: item.value.begin, label: EmptyView.init)
+            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.begin, label: EmptyView.init)
             }
-            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { item in
-                TextField(text: item.value.end, label: EmptyView.init)
+            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.end, label: EmptyView.init)
             }
         }
         .tableStyle(.bordered)
