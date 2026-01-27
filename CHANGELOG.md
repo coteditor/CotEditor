@@ -5,7 +5,6 @@
 
 ### New Features
 
-- Introduce a new parser, tree-sitter, for syntax highlighting for some built-in syntaxes.
 - Enable registering multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
 
