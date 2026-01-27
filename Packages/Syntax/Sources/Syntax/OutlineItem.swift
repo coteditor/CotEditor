@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,15 +48,17 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     
     public var title: String
     public var range: NSRange
+    public var kind: Syntax.Outline.Kind?
     public var style: Style
     
     public var isSeparator: Bool  { self.title == .separator }
     
     
-    public init(title: String, range: NSRange, style: Style = []) {
+    public init(title: String, range: NSRange, kind: Syntax.Outline.Kind? = nil, style: Style = []) {
         
         self.title = title
         self.range = range
+        self.kind = kind
         self.style = style
     }
     

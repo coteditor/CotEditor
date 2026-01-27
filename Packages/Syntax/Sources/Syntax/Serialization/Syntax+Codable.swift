@@ -84,6 +84,7 @@ extension Syntax.Outline: Codable {
         case pattern = "beginString"
         case template = "keyString"
         case ignoreCase
+        case kind
         case bold
         case italic
         case underline
@@ -98,6 +99,7 @@ extension Syntax.Outline: Codable {
         self.pattern = try container.decodeIfPresent(String.self, forKey: .pattern) ?? ""
         self.template = try container.decodeIfPresent(String.self, forKey: .template) ?? ""
         self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
+        self.kind = try container.decodeIfPresent(Kind.self, forKey: .kind)
         self.bold = try container.decodeIfPresent(Bool.self, forKey: .bold) ?? false
         self.italic = try container.decodeIfPresent(Bool.self, forKey: .italic) ?? false
         self.underline = try container.decodeIfPresent(Bool.self, forKey: .underline) ?? false
@@ -113,6 +115,9 @@ extension Syntax.Outline: Codable {
         try container.encode(self.template, forKey: .template)
         if self.ignoreCase {
             try container.encode(true, forKey: .ignoreCase)
+        }
+        if let kind = self.kind {
+            try container.encode(kind, forKey: .kind)
         }
         if self.bold {
             try container.encode(true, forKey: .bold)

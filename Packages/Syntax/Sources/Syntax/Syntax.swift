@@ -82,9 +82,22 @@ public struct Syntax: Equatable, Sendable {
     
     public struct Outline: Equatable, Sendable {
         
+        public enum Kind: String, Sendable, CaseIterable, Codable {
+            
+            case container
+            case function
+            case value
+            case heading
+            case mark
+            case reference
+            case separator
+        }
+        
+        
         public var pattern: String
         public var template: String
         public var ignoreCase: Bool
+        public var kind: Kind?
         public var bold: Bool
         public var italic: Bool
         public var underline: Bool
@@ -96,11 +109,12 @@ public struct Syntax: Equatable, Sendable {
         }
         
         
-        public init(pattern: String = "", template: String = "", ignoreCase: Bool = false, bold: Bool = false, italic: Bool = false, underline: Bool = false, description: String? = nil) {
+        public init(pattern: String = "", template: String = "", ignoreCase: Bool = false, kind: Kind? = nil, bold: Bool = false, italic: Bool = false, underline: Bool = false, description: String? = nil) {
             
             self.pattern = pattern
             self.template = template
             self.ignoreCase = ignoreCase
+            self.kind = kind
             self.bold = bold
             self.italic = italic
             self.underline = underline

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -90,6 +90,44 @@ public extension SyntaxType {
             case .comments:
                 String(localized: "SyntaxType.comments.label",
                        defaultValue: "Comments",
+                       bundle: .module)
+        }
+    }
+}
+
+
+public extension Syntax.Outline.Kind {
+    
+    var label: String {
+        
+        switch self {
+            case .container:
+                String(localized: "Syntax.Outline.Kind.container.label",
+                       defaultValue: "Container",
+                       bundle: .module)
+            case .function:
+                String(localized: "Syntax.Outline.Kind.function.label",
+                       defaultValue: "Function",
+                       bundle: .module)
+            case .value:
+                String(localized: "Syntax.Outline.Kind.value.label",
+                       defaultValue: "Value",
+                       bundle: .module)
+            case .heading:
+                String(localized: "Syntax.Outline.Kind.heading.label",
+                       defaultValue: "Heading",
+                       bundle: .module)
+            case .mark:
+                String(localized: "Syntax.Outline.Kind.mark.label",
+                       defaultValue: "Mark",
+                       bundle: .module)
+            case .reference:
+                String(localized: "Syntax.Outline.Kind.reference.label",
+                       defaultValue: "Reference",
+                       bundle: .module)
+            case .separator:
+                String(localized: "Syntax.Outline.Kind.separator.label",
+                       defaultValue: "Separator",
                        bundle: .module)
         }
     }

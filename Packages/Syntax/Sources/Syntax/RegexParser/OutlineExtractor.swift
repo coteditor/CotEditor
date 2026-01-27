@@ -31,6 +31,7 @@ public struct OutlineExtractor: Sendable {
     
     var regex: NSRegularExpression
     var template: String
+    var kind: Syntax.Outline.Kind?
     var style: OutlineItem.Style
     
     
@@ -44,6 +45,7 @@ public struct OutlineExtractor: Sendable {
         self.regex = try NSRegularExpression(pattern: definition.pattern, options: options)
         
         self.template = definition.template
+        self.kind = definition.kind
         
         self.style = OutlineItem.Style()
             .union(definition.bold ? .bold : [])
@@ -76,7 +78,7 @@ public struct OutlineExtractor: Sendable {
                 
                 guard !title.isEmpty else { return nil }
                 
-                return OutlineItem(title: title, range: result.range, style: self.style)
+                return OutlineItem(title: title, range: result.range, kind: self.kind, style: self.style)
             }
     }
 }
