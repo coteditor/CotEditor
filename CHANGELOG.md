@@ -17,6 +17,7 @@
 
 ### Fixes
 
+- Fix an issue in the syntax editor where the outline title field occasionally becomes uneditable.
 - Update the Swift syntax to fix the outline extraction.
 
 
