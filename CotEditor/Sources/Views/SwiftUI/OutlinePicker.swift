@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ struct OutlinePicker: NSViewRepresentable {
                 menuItem.target = context.coordinator
                 menuItem.action = #selector(Coordinator.itemSelected)
                 menuItem.representedObject = item
-                menuItem.attributedTitle = NSAttributedString(string: item.title, attributes: item.attributes(baseFont: font))
+                menuItem.attributedTitle = NSAttributedString(string: item.title, attributes: item.style.attributes(baseFont: font))
                 return menuItem
             }
         }

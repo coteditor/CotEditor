@@ -236,7 +236,7 @@ private struct OutlineRowView: View {
                                      with: AttributeContainer
                     .backgroundColor(.findHighlightColor)
                     .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
-                .mergingAttributes(self.item.value.attributes(fontSize: self.fontSize), mergePolicy: .keepCurrent)
+                .mergingAttributes(self.item.value.style.attributes(fontSize: self.fontSize), mergePolicy: .keepCurrent)
             )
             .lineLimit(1)
         }

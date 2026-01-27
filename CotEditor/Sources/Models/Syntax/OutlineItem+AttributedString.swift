@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,25 +28,25 @@ import SwiftUI
 import AppKit.NSFont
 import Syntax
 
-extension OutlineItem {
+extension OutlineItem.Style {
     
-    /// Returns styled title for a view in AppKit.
+    /// Returns string attributes for a title in a view in AppKit.
     ///
     /// - Parameters:
     ///   - baseFont: The base font of change.
-    /// - Returns: An AttributedString.
+    /// - Returns: An attributes dictionary.
     func attributes(baseFont: NSFont) -> [NSAttributedString.Key: Any] {
         
         var attributes: [NSAttributedString.Key: Any] = [:]
         var traits: NSFontDescriptor.SymbolicTraits = []
         
-        if self.style.contains(.bold) {
+        if self.contains(.bold) {
             traits.insert(.bold)
         }
-        if self.style.contains(.italic) {
+        if self.contains(.italic) {
             traits.insert(.italic)
         }
-        if self.style.contains(.underline) {
+        if self.contains(.underline) {
             attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
         
@@ -58,22 +58,22 @@ extension OutlineItem {
     }
     
     
-    /// Returns styled title applying the filter match highlight for a view in SwiftUI.
+    /// Returns string attributes for a title in a view in SwiftUI.
     ///
     /// - Parameter fontSize: The size of the font.
-    /// - Returns: An AttributedString.
+    /// - Returns: An AttributeContainer.
     func attributes(fontSize: Double = 0) -> AttributeContainer {
         
         var attributes = AttributeContainer()
         var font: Font = .system(size: fontSize)
         
-        if self.style.contains(.bold) {
+        if self.contains(.bold) {
             font = font.bold()
         }
-        if self.style.contains(.italic) {
+        if self.contains(.italic) {
             font = font.italic()
         }
-        if self.style.contains(.underline) {
+        if self.contains(.underline) {
             attributes.underlineStyle = .single
         }
         
