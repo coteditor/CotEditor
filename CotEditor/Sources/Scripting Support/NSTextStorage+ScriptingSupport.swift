@@ -34,7 +34,7 @@ extension NSTextStorage {
     
     /// Observes text storage update for in case when a part of the content is directly edited from AppleScript.
     ///
-    /// example:
+    /// Example:
     /// ```AppleScript
     /// tell first document of application "CotEditor"
     ///     set first paragraph of contents to "foo bar"

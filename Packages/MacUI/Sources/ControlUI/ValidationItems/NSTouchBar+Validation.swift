@@ -34,7 +34,7 @@ public protocol TouchBarItemValidations: AnyObject {
 
 public extension NSTouchBar {
     
-    /// Flag to enable automatic touch bar item validation
+    /// Flag to enable automatic touch bar item validation.
     static var isAutomaticValidationEnabled = false {
         
         didSet {
@@ -43,7 +43,7 @@ public extension NSTouchBar {
     }
     
     
-    /// Validates currently visible touch bar items
+    /// Validates currently visible touch bar items.
     final func validateVisibleItems() {
         
         guard self.isVisible else { return }

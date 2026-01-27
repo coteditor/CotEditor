@@ -42,7 +42,6 @@ extension NSTextView {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textStorage.range)
             }
         }
-        
     }
     
     

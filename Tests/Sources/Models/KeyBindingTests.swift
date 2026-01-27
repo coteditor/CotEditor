@@ -59,10 +59,10 @@ import AppKit.NSEvent
         Shortcut(.leftArrow, modifiers: [.control]),
         Shortcut(.rightArrow, modifiers: [.control]),
         
-        /// showing accessibility shortcut panel
+        // showing accessibility shortcut panel
         Shortcut(.f5, modifiers: [.option, .command]),
         
-        /// toggling VoiceOver
+        // toggling VoiceOver
         Shortcut(.f5, modifiers: [.command]),
     ]
     
