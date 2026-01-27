@@ -124,7 +124,11 @@ struct RegexTextField: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSTextField, context: Context) {
         
-        nsView.stringValue = self.text
+        context.coordinator.updateBinding($text)
+        
+        if nsView.stringValue != self.text {
+            nsView.stringValue = self.text
+        }
         (nsView as! RegularExpressionTextField).isRegexHighlighted = self.isHighlighted
         (nsView as! RegularExpressionTextField).mode = self.mode
     }
@@ -142,6 +146,11 @@ struct RegexTextField: NSViewRepresentable {
         
         
         init(text: Binding<String>) {
+            
+            self._text = text
+        }
+
+        func updateBinding(_ text: Binding<String>) {
             
             self._text = text
         }
