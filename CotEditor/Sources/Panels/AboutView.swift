@@ -354,6 +354,18 @@ private struct LicenseView: View {
             Text("CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work.", tableName: "About")
                 .lineSpacing(2)
             
+            ItemView(name: "swift-tree-sitter",
+                     url: "https://github.com/tree-sitter/swift-tree-sitter",
+                     copyright: "© 2021, Chime\nAll rights reserved.",
+                     license: .bsd3Clause)
+            ItemView(name: "tree-sitter",
+                     url: "https://github.com/tree-sitter/tree-sitter",
+                     copyright: "© 2018-2024 Max Brunsfeld",
+                     license: .mit)
+            ItemView(name: "tree-sitter-swift",
+                     url: "https://github.com/alex-pinkus/tree-sitter-swift",
+                     copyright: "© 2021 alex-pinkus",
+                     license: .mit)
             ItemView(name: "Yams",
                      url: "https://github.com/jpsim/Yams",
                      copyright: "© 2016 JP Simard",

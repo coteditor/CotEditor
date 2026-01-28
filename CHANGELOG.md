@@ -5,6 +5,7 @@
 
 ### New Features
 
+- Introduce a new parser, tree-sitter, for syntax highlighting in some built-in syntaxes.
 - Prepend a symbolic icon to extracted outline items.
 - Enable registering multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
@@ -18,6 +19,7 @@
 ### Improvements
 
 - Improve the syntax highlighting algorithm.
+- Migrate the built-in Swift syntax to use tree-sitter for syntax highlighting.
 - Update built-in syntaxes.
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move to the Format menu.
