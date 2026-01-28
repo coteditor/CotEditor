@@ -53,6 +53,23 @@ struct SyntaxOutlineEditView: View {
                 .width(24)
                 .alignment(.center)
                 
+                TableColumn(String(localized: "Kind", table: "SyntaxEditor", comment: "table column header")) { $item in
+                    Picker(String(localized: "Kind", table: "SyntaxEditor"), selection: $item.value.kind) {
+                        Text("None", tableName: "SyntaxEditor")
+                            .tag(Optional<Syntax.Outline.Kind>.none)
+                            .foregroundStyle(.tertiary)
+                        
+                        Divider()
+                        
+                        ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in
+                            Text(kind.label)
+                                .tag(Optional(kind))
+                        }
+                    }
+                    .labelsHidden()
+                    .buttonStyle(.borderless)
+                }
+                
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
                     HStack {
                         RegexTextField(text: $item.value.pattern)
@@ -164,7 +181,7 @@ enum SelectionError: Error {
 #Preview {
     @Previewable @State var items: [SyntaxObject.Outline] = [
         .init(value: .init(pattern: "abc")),
-        .init(value: .init(pattern: "def", ignoreCase: true, italic: true)),
+        .init(value: .init(pattern: "def", ignoreCase: true, kind: .heading)),
     ]
     
     SyntaxOutlineEditView(items: $items)
