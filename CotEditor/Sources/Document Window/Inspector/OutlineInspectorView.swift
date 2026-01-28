@@ -232,7 +232,7 @@ private struct OutlineRowView: View {
             
         } else {
             Text(self.item.attributedString
-                .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized),
+                .replacingAttributes(AttributeContainer.inlinePresentationIntent(.stronglyEmphasized),
                                      with: AttributeContainer
                     .backgroundColor(.findHighlightColor)
                     .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode

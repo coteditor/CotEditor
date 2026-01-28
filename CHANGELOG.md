@@ -18,6 +18,7 @@
 ### Fixes
 
 - Fix an issue in the syntax editor where the outline title field occasionally becomes uneditable.
+- Fix an issue in the Outline inspector where matches filtered by the filter field were not highlighted.
 - Update the Swift syntax to fix the outline extraction.
 
 
