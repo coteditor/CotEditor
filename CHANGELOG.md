@@ -6,20 +6,20 @@
 ### New Features
 
 - Add the `--goto` option to the `cot` command-line tool as syntactic sugar for the `--line` and `--column` options. See `--help` or the user guide for details.
-- Add Chinese (Hong Kong) localization (Thanks to changanmoon!).
+- Add Chinese (Hong Kong) localization (thanks to changanmoon!).
 
 
 ### Improvements
 
-- Improve the algorithm of text encoding detection.
+- Improve the text encoding detection algorithm.
 - Update the C++ syntax to include the .cu and .cuh filename extensions.
 
 
 ### Fixes
 
-- Fix an issue in the syntax editor where the outline title field occasionally becomes uneditable.
+- Fix an issue in the syntax editor where the outline title field occasionally became uneditable.
 - Fix an issue in the Outline inspector where matches filtered by the filter field were not highlighted.
-- Update the Swift syntax to fix the outline extraction.
+- Update the Swift syntax to fix outline extraction.
 
 
 
