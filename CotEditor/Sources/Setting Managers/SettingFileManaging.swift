@@ -92,6 +92,9 @@ enum ImportingItem {
     /// Built-in constant settings for the given name, if available.
     nonisolated static var constantSettings: [String: Setting] { get }
     
+    /// The list of reserved names that cannot be used for user settings.
+    nonisolated var reservedNames: [String] { get }
+    
     /// The list of bundled setting names (without extensions).
     nonisolated var bundledSettingNames: [String] { get }
     
@@ -226,7 +229,7 @@ extension SettingFileManaging {
             throw .duplicated(name: duplicateName)
         }
         
-        if let reservedName = Self.constantSettings.keys.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+        if let reservedName = self.reservedNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
             throw .reserved(name: reservedName)
         }
     }

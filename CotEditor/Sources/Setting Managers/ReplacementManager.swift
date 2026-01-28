@@ -42,6 +42,7 @@ import URLUtils
     
     static let directoryName: String = "Replacements"
     static let constantSettings: [String: Setting] = [:]
+    let reservedNames: [String] = []
     
     let bundledSettingNames: [String] = []
     @Published var settingNames: [String] = []
