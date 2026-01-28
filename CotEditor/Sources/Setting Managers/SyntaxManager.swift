@@ -178,6 +178,17 @@ enum SyntaxName {
     }
     
     
+    /// Returns whether the given syntax can be customized by the user for highlighting.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name to check.
+    /// - Returns: `true` if the syntax is user-customizable (i.e., not a built-in language), otherwise `false`.
+    func canCustomizeHighlighting(name: SettingName) -> Bool {
+        
+        LanguageRegistry.Language(rawValue: name) == nil
+    }
+    
+    
     /// Saves the given setting to the user domain.
     ///
     /// - Parameters:

@@ -1140,6 +1140,47 @@
         }
       }
     },
+    "Built-in" : {
+      "comment" : "menu item in sidebar",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integriert"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Built-in"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Integrado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Intégré"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内蔵"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ingebouwd"
+          }
+        }
+      }
+    },
     "Built-in syntaxes can’t be renamed." : {
       "comment" : "tooltip for name field for bundled syntax",
       "localizations" : {
@@ -3544,6 +3585,46 @@
         }
       }
     },
+    "Managed by the app" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von der App verwaltet"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Managed by the app"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gestionado por la app"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Géré par l’app\n"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリによる管理"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Beheerd door de app\n"
+          }
+        }
+      }
+    },
     "Multiline" : {
       "comment" : "table column header, keep short",
       "localizations" : {
@@ -4794,6 +4875,53 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "大綱"
+          }
+        }
+      }
+    },
+    "SyntaxBuiltInView.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Sprache verwendet für die Syntaxanalyse einen struktur­basierten, allgemeinen Parser namens tree-sitter.\\nDa die Extraktionsregeln von der App verwaltet werden, kannst du sie nicht anpassen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This language uses a structure-based, general-purpose parser called tree-sitter for syntax analysis.\nBecause the extraction rules are managed by the app, you can’t customize them."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This language uses a structure-based, general-purpose parser called tree-sitter for syntax analysis.\\nBecause the extraction rules are managed by the app, you can’t customise them."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Este lenguaje utiliza un analizador de propósito general basado en la estructura, llamado tree-sitter, para el análisis sintáctico.\\nDado que las reglas de extracción están gestionadas por la app, no puedes personalizarlas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ce langage utilise un analyseur générique basé sur la structure, appelé tree-sitter, pour l’analyse syntaxique.\\nLes règles d’extraction étant gérées par l’app, vous ne pouvez pas les personnaliser."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この言語のシンタックス解析には、tree-sitterという構造ベースの汎用パーサを使っています。\\n抽出ルールはアプリによって管理されているため、カスタマイズはできません。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
           }
         }
       }

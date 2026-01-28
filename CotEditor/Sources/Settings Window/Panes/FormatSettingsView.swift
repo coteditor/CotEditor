@@ -389,8 +389,9 @@ private struct SyntaxListView: View {
         .sheet(item: $editingMode) { mode in
             let state: SettingState? = if case .edit(let state) = mode { state } else { nil }
             let syntax = state.flatMap { try? self.manager.setting(name: $0.name) }
+            let canCustomizeHighlight = state.flatMap { self.manager.canCustomizeHighlighting(name: $0.name) } ?? false
             
-            SyntaxEditView(syntax: syntax, name: state?.name, isBundled: state?.isBundled ?? false) { syntax, name in
+            SyntaxEditView(syntax: syntax, name: state?.name, isBundled: state?.isBundled ?? false, canCustomizeHighlight: canCustomizeHighlight) { syntax, name in
                 try self.manager.save(setting: syntax, name: name, oldName: state?.name)
             } validationAction: { name in
                 try self.manager.validate(settingName: name, originalName: state?.name)
