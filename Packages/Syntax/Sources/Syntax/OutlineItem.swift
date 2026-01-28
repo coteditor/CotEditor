@@ -46,6 +46,7 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     public let id = UUID()
     
     public var title: String
+    public var indent: String
     public var range: NSRange
     public var kind: Syntax.Outline.Kind?
     
@@ -54,9 +55,10 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     public var isSeparator: Bool  { self.kind == .separator }
     
     
-    public init(title: String, range: NSRange, kind: Syntax.Outline.Kind? = nil) {
+    public init(title: String, indent: String = "", range: NSRange, kind: Syntax.Outline.Kind? = nil) {
         
         self.title = title
+        self.indent = indent
         self.range = range
         self.kind = kind
     }

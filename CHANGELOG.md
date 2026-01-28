@@ -5,6 +5,7 @@
 
 ### New Features
 
+- Prepend a symbolic icon to extracted outline items.
 - Enable registering multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
 

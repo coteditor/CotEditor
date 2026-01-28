@@ -231,14 +231,22 @@ private struct OutlineRowView: View {
             Divider().selectionDisabled()
             
         } else {
-            Text(self.item.attributedString
-                .replacingAttributes(AttributeContainer.inlinePresentationIntent(.stronglyEmphasized),
-                                     with: AttributeContainer
-                    .backgroundColor(.findHighlightColor)
-                    .foregroundColor(.black.withAlphaComponent(0.9))))  // for legibility in Dark Mode
-            .fontWeight(self.item.value.style.contains(.bold) ? .semibold : .regular)
-            .italic(self.item.value.style.contains(.italic))
-            .lineLimit(1)
+            HStack(alignment: .firstTextBaseline, spacing: 0) {
+                Text(self.item.value.indent)
+                if let kind = self.item.value.kind {
+                    kind.icon(mode: .hierarchical)
+                        .padding(.trailing, 4)
+                }
+                Text(self.item.attributedString
+                    .replacingAttributes(AttributeContainer.inlinePresentationIntent(.stronglyEmphasized),
+                                         with: AttributeContainer
+                        .backgroundColor(.findHighlightColor)
+                        .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
+                )
+                .fontWeight(self.item.value.style.contains(.bold) ? .semibold : .regular)
+                .italic(self.item.value.style.contains(.italic))
+                .lineLimit(1)
+            }
         }
     }
 }

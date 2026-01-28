@@ -55,20 +55,38 @@ struct SyntaxOutlineEditView: View {
                 
                 TableColumn(String(localized: "Kind", table: "SyntaxEditor", comment: "table column header")) { $item in
                     Picker(String(localized: "Kind", table: "SyntaxEditor"), selection: $item.value.kind) {
-                        Text("None", tableName: "SyntaxEditor")
-                            .tag(Optional<Syntax.Outline.Kind>.none)
-                            .foregroundStyle(.tertiary)
+                        Label {
+                            Text("None", tableName: "SyntaxEditor")
+                        } icon: {
+                            Image(systemName: "square")
+                                .symbolRenderingMode(.palette)
+                                .foregroundStyle(.tertiary)
+                        }
+                        .tag(Optional<Syntax.Outline.Kind>.none)
                         
                         Divider()
                         
                         ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in
-                            Text(kind.label)
-                                .tag(Optional(kind))
+                            Label {
+                                Text(kind.label)
+                            } icon: {
+                                kind.icon(mode: .palette)  // workaroud
+                            }
+                            .tag(Optional(kind))
+                        }
+                    } currentValueLabel: {
+                        if let selection = item.value.kind {
+                            selection.icon(mode: .palette)  // workaroud
+                        } else {
+                            Image(systemName: "square")
+                                .symbolRenderingMode(.palette)
+                                .foregroundStyle(.tertiary)
                         }
                     }
                     .labelsHidden()
                     .buttonStyle(.borderless)
                 }
+                .width(48)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
                     HStack {

@@ -70,9 +70,12 @@ public struct OutlineExtractor: Sendable {
                              : self.regex.replacementString(for: result, in: string, offset: 0, template: self.template))
                     .replacing(/(\S)\s+/) { "\($0.1) " }
                 
-                guard !title.isEmpty else { return nil }
+                guard
+                    let match = title.firstMatch(of: /^(?<indent>\s*)(?<title>.+)$/),
+                    !match.title.isEmpty
+                else { return nil }
                 
-                return OutlineItem(title: title, range: result.range, kind: self.kind)
+                return OutlineItem(title: String(match.title), indent: String(match.indent), range: result.range, kind: self.kind)
             }
     }
 }

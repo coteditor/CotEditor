@@ -145,7 +145,17 @@ private extension OutlineItem {
     
     var attributedTitle: NSAttributedString {
         
-        let title = NSMutableAttributedString(string: self.title)
+        let title = NSMutableAttributedString(string: self.indent)
+        
+        if let kind = self.kind {
+            let attachment = NSTextAttachment()
+            attachment.image = kind.iconImage
+            
+            title.append(.init(attachment: attachment))
+            title.append(NSAttributedString(string: " "))
+        }
+        
+        title.append(.init(string: self.title))
         title.applyFontTraits(self.style.fontTraits, range: title.range)
         
         return title

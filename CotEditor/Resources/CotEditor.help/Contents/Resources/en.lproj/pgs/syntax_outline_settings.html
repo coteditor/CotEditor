@@ -32,6 +32,7 @@
 	<tbody>
 		<tr><th>Regular Expression Pattern</th><td><p>The strings in the document matched by the regular expressions you set here appear in the outline menu. This setting is required to search the items to be listed.</p></td></tr>
 		<tr><th>IC</th><td><p>If selected, the case is ignored for searching. For example, the expression “abc” matches “ABC” or “abc” or “Abc” in your document (IC stands for Ignore Case).</p></td></tr>
+		<tr><th>Kind</th><td><p>The kind of the outline item. Used for the icon displayed in front of the title.</p></td></tr>
 		<tr><th>Title Pattern</th><td><p>Here, you can format the titles of the Outline items. Both the Regular Expression Pattern setting and the setting here determine how the corresponding item is titled in the list.</p></td></tr>
 	</tbody>
 </table>
@@ -46,11 +47,73 @@
 		<tr><th>(blank)</th><td><p>The whole string matched by your regular expression pattern.</p></td></tr>
 		<tr><th><code>$0</code></th><td><p>The whole string matched by your regular expression pattern.</p></td></tr>
 		<tr><th><code>$1</code> ... <code>$9</code></th><td><p>The string matched by the first through ninth parenthesized subexpression in your regular expression pattern.</p></td></tr>
-		<tr><th><code>-</code></th><td><p>A separator of the menu (invalid when other letters than “-” are included).</p></td></tr>
 	</tbody>
 </table>
 
 <p>To show a metacharacter such as “$0” in the menu, you need to put a backslash (&#x005C;) in front of it. You won’t see that backslash (&#x005C;) in the menu.</p>
+</section>
+
+
+<section>
+<h2>Add an icon to an outline item</h2>
+
+<p>You can assign an icon to display next to an outline title by selecting one for a rule.</p>
+
+<table>
+	<col/>
+	<col/>
+	<col width="25%"/>
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Description</th>
+			<th>Examples</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th>Container</th>
+			<td>A named structural block that can contain other items.</td>
+			<td><code>class</code>, <code>struct</code>, <code>enum</code>, <code>protocol</code>, <code>extension</code>, <code>namespace</code></td>
+		</tr>
+		<tr>
+			<th>Function</th>
+			<td>A callable symbol such as a function, method, or similar invocable member.</td>
+			<td>function, method, <code>def</code>, <code>init</code></td>
+		</tr>
+		<tr>
+			<th>Value</th>
+			<td>A value-like symbol such as a property, field, variable, constant, or comparable entry.</td>
+			<td><code>property</code>, <code>enum case</code>, <code>const</code></td>
+		</tr>
+		<tr>
+			<th>Heading</th>
+			<td>A document heading that defines the hierarchy of sections.</td>
+			<td><code>h1</code>–<code>h6</code>, <code>section{}</code>/<code>subsection{}</code> (LaTeX)</td>
+		</tr>
+		<tr>
+			<th>Mark</th>
+			<td>A human-authored marker used to visually group or annotate sections without being a formal heading.</td>
+			<td><code>MARK:</code>, <code>#pragma mark</code>, <code>region</code>/<code>endregion</code></td>
+		</tr>
+		<tr>
+			<th>Reference</th>
+			<td>A named anchor or reference target that is useful as a jump destination.</td>
+			<td><code>id</code> (HTML), <code>\label{}</code>/<code>\bibitem{}</code> (LaTeX), footnote (Markdown), reference anchor</td>
+		</tr>
+		<tr>
+			<th>Separator</th>
+			<td>A separator is a non-selectable divider that visually groups outline items.</td>
+			<td><code>&lt;hr&gt;</code>, <code>---</code>, <code>MARK: -</code></td>
+		</tr>
+		<tr>
+			<th><span class="na">None</span></th>
+			<td>Unclassified item with no semantic kind assigned.</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
 </section>
 
 
