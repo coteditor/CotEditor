@@ -43,8 +43,6 @@ struct SyntaxOutlineEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Outline extraction rules:", tableName: "SyntaxEditor", comment: "label")
-            
             Table($items, selection: $selection) {
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
                     Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
@@ -70,13 +68,13 @@ struct SyntaxOutlineEditView: View {
                             Label {
                                 Text(kind.label)
                             } icon: {
-                                kind.icon(mode: .palette)  // workaroud
+                                kind.icon(mode: .palette)  // workaround
                             }
                             .tag(Optional(kind))
                         }
                     } currentValueLabel: {
                         if let selection = item.value.kind {
-                            selection.icon(mode: .palette)  // workaroud
+                            selection.icon(mode: .palette)  // workaround
                         } else {
                             Image(systemName: "square")
                                 .symbolRenderingMode(.palette)
@@ -86,7 +84,7 @@ struct SyntaxOutlineEditView: View {
                     .labelsHidden()
                     .buttonStyle(.borderless)
                 }
-                .width(48)
+                .width(40)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
                     HStack {
@@ -100,10 +98,21 @@ struct SyntaxOutlineEditView: View {
                         }
                     }
                 }
+                .width(min: 180, ideal: 240)
+                
+                TableColumn(String(localized: "Display Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
+                    RegexTextField(text: $item.value.template,
+                                   mode: .replacement(unescapes: false),
+                                   prompt: (item.value.kind == .separator) ? "–" : String(localized: "Entire match", table: "SyntaxEditor", comment: "placeholder for outline item table"))
+                    .style(.table)
+                    .disabled(item.value.kind == .separator)
+                }
+                .width(min: 40, ideal: 140)
                 
                 TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
                     TextField(text: $item.value.description ?? "", label: EmptyView.init)
                 }
+                .width(min: 40, ideal: 100)
             }
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
@@ -117,15 +126,6 @@ struct SyntaxOutlineEditView: View {
                     .foregroundStyle(.secondary)
                     .controlSize(.small)
             }
-            .padding(.bottom, 8)
-            
-            if self.selection.count > 1 {
-                PatternView(outline: .constant(.init()), error: .multipleSelection)
-            } else if let outline = $items[id: self.selection.first] {
-                PatternView(outline: outline)
-            } else {
-                PatternView(outline: .constant(.init()), error: .noSelection)
-            }
             
             HStack {
                 Spacer()
@@ -133,55 +133,6 @@ struct SyntaxOutlineEditView: View {
             }
         }
     }
-    
-    
-    private struct PatternView: View {
-        
-        @Binding var outline: Item
-        var error: SelectionError?
-        
-        @Namespace private var accessibility
-        
-        
-        var body: some View {
-            
-            VStack(alignment: .leading) {
-                HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text("Title pattern:", tableName: "SyntaxEditor", comment: "label")
-                        .accessibilityLabeledPair(role: .label, id: "titlePattern", in: self.accessibility)
-                    Text("(Blank uses the entire match.)", tableName: "SyntaxEditor", comment: "label")
-                        .controlSize(.small)
-                        .foregroundStyle(.secondary)
-                }
-                
-                RegexTextField(text: $outline.value.template, mode: .replacement(unescapes: false), prompt: self.prompt)
-                    .accessibilityLabeledPair(role: .content, id: "titlePattern", in: self.accessibility)
-            }.disabled(self.error != nil)
-        }
-        
-        
-        private var prompt: String {
-            
-            switch self.error {
-                case .noSelection:
-                    String(localized: "ItemSelection.zero.message",
-                           defaultValue: "No item selected")
-                case .multipleSelection:
-                    String(localized: "ItemSelection.multiple.message",
-                           defaultValue: "Multiple items selected")
-                case .none:
-                    String(localized: "Entire match", table: "SyntaxEditor",
-                           comment: "placeholder for outline item table")
-            }
-        }
-    }
-}
-
-
-enum SelectionError: Error {
-    
-    case noSelection
-    case multipleSelection
 }
 
 
