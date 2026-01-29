@@ -3,6 +3,10 @@
 6.2.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- [trivial] Fix the position of the Sidebar toolbar item.
+
 
 
 6.2.2 (789)
