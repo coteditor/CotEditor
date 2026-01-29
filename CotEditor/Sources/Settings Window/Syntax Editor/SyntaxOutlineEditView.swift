@@ -138,15 +138,6 @@ struct SyntaxOutlineEditView: View {
                 
                 RegexTextField(text: $outline.value.template, mode: .replacement(unescapes: false), prompt: self.prompt)
                     .accessibilityLabeledPair(role: .content, id: "titlePattern", in: self.accessibility)
-                
-                HStack(alignment: .firstTextBaseline) {
-                    Toggle(String(localized: "Bold", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.value.bold)
-                        .bold()
-                    Toggle(String(localized: "Italic", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.value.italic)
-                        .italic()
-                    Toggle(String(localized: "Underline", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.value.underline)
-                        .underline()
-                }.controlSize(.small)
             }.disabled(self.error != nil)
         }
         

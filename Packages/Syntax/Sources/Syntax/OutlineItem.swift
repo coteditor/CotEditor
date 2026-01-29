@@ -32,9 +32,8 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
         
         public var rawValue: Int
         
-        public static let bold      = Self(rawValue: 1 << 0)
-        public static let italic    = Self(rawValue: 1 << 1)
-        public static let underline = Self(rawValue: 1 << 2)
+        public static let bold   = Self(rawValue: 1 << 0)
+        public static let italic = Self(rawValue: 1 << 1)
         
         
         public init(rawValue: Int) {
@@ -49,23 +48,41 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     public var title: String
     public var range: NSRange
     public var kind: Syntax.Outline.Kind?
-    public var style: Style
+    
+    public var style: Style  { self.kind?.style ?? [] }
     
     public var isSeparator: Bool  { self.kind == .separator }
     
     
-    public init(title: String, range: NSRange, kind: Syntax.Outline.Kind? = nil, style: Style = []) {
+    public init(title: String, range: NSRange, kind: Syntax.Outline.Kind? = nil) {
         
         self.title = title
         self.range = range
         self.kind = kind
-        self.style = style
     }
     
     
     public static func separator(range: NSRange) -> Self {
         
         self.init(title: "", range: range, kind: .separator)
+    }
+}
+
+
+extension Syntax.Outline.Kind {
+    
+    /// The text style for the displayed title.
+    var style: OutlineItem.Style {
+        
+        switch self {
+            case .container: [.bold]
+            case .function: []
+            case .value: []
+            case .heading: []
+            case .mark: [.bold]
+            case .reference: []
+            case .separator: []
+        }
     }
 }
 

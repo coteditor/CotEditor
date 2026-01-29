@@ -98,9 +98,6 @@ public struct Syntax: Equatable, Sendable {
         public var template: String
         public var ignoreCase: Bool
         public var kind: Kind?
-        public var bold: Bool
-        public var italic: Bool
-        public var underline: Bool
         public var description: String?
         
         public var isEmpty: Bool {
@@ -109,15 +106,12 @@ public struct Syntax: Equatable, Sendable {
         }
         
         
-        public init(pattern: String = "", template: String = "", ignoreCase: Bool = false, kind: Kind? = nil, bold: Bool = false, italic: Bool = false, underline: Bool = false, description: String? = nil) {
+        public init(pattern: String = "", template: String = "", ignoreCase: Bool = false, kind: Kind? = nil, description: String? = nil) {
             
             self.pattern = pattern
             self.template = template
             self.ignoreCase = ignoreCase
             self.kind = kind
-            self.bold = bold
-            self.italic = italic
-            self.underline = underline
             self.description = description
         }
     }

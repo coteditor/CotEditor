@@ -153,7 +153,8 @@ struct OutlineInspectorView: View, HostedPaneView {
                 .compactMap { $0.filter(self.filterString, keyPath: \.title) }
             
             List(items, selection: $model.selection) { item in
-                OutlineRowView(item: item, fontSize: self.fontSize)
+                OutlineRowView(item: item)
+                    .font(.system(size: self.fontSize))
                     .listRowSeparator(.hidden)
             }
             .overlay {
@@ -222,7 +223,6 @@ struct OutlineInspectorView: View, HostedPaneView {
 private struct OutlineRowView: View {
     
     var item: FilteredItem<OutlineItem>
-    var fontSize: Double = 0
     
     
     var body: some View {
@@ -235,9 +235,9 @@ private struct OutlineRowView: View {
                 .replacingAttributes(AttributeContainer.inlinePresentationIntent(.stronglyEmphasized),
                                      with: AttributeContainer
                     .backgroundColor(.findHighlightColor)
-                    .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
-                .mergingAttributes(self.item.value.style.attributes(fontSize: self.fontSize), mergePolicy: .keepCurrent)
-            )
+                    .foregroundColor(.black.withAlphaComponent(0.9))))  // for legibility in Dark Mode
+            .fontWeight(self.item.value.style.contains(.bold) ? .semibold : .regular)
+            .italic(self.item.value.style.contains(.italic))
             .lineLimit(1)
         }
     }
@@ -258,10 +258,10 @@ private struct OutlineRowView: View {
     }
     
     @Previewable @State var model = MockedModel(items: [
-        OutlineItem(title: "Hallo", range: .notFound),
-        OutlineItem(title: "Guten Tag!", range: .notFound, style: [.bold]),
+        OutlineItem(title: "Hallo", range: .notFound, kind: .container),
+        OutlineItem(title: "Guten Tag!", range: .notFound, kind: .function),
         OutlineItem.separator(range: .notFound),
-        OutlineItem(title: "Hund", range: .notFound, style: [.underline]),
+        OutlineItem(title: "Hund", range: .notFound),
     ])
     
     return OutlineInspectorView(isPresented: true, model: model)

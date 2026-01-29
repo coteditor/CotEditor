@@ -32,7 +32,6 @@ public struct OutlineExtractor: Sendable {
     var regex: NSRegularExpression
     var template: String
     var kind: Syntax.Outline.Kind?
-    var style: OutlineItem.Style
     
     
     init(definition: Syntax.Outline) throws {
@@ -46,11 +45,6 @@ public struct OutlineExtractor: Sendable {
         
         self.template = definition.template
         self.kind = definition.kind
-        
-        self.style = OutlineItem.Style()
-            .union(definition.bold ? .bold : [])
-            .union(definition.italic ? .italic : [])
-            .union(definition.underline ? .underline : [])
     }
     
     
@@ -78,7 +72,7 @@ public struct OutlineExtractor: Sendable {
                 
                 guard !title.isEmpty else { return nil }
                 
-                return OutlineItem(title: title, range: result.range, kind: self.kind, style: self.style)
+                return OutlineItem(title: title, range: result.range, kind: self.kind)
             }
     }
 }

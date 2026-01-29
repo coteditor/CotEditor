@@ -51,7 +51,6 @@ struct OutlinePicker: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSPopUpButton, context: Context) {
         
-        let font = (nsView.font ?? .systemFont(ofSize: 0)).withSize(NSFont.systemFontSize(for: nsView.controlSize))
         nsView.menu?.items = self.items.map { item in
             if item.isSeparator {
                 return .separator()
@@ -60,7 +59,7 @@ struct OutlinePicker: NSViewRepresentable {
                 menuItem.target = context.coordinator
                 menuItem.action = #selector(Coordinator.itemSelected)
                 menuItem.representedObject = item
-                menuItem.attributedTitle = NSAttributedString(string: item.title, attributes: item.style.attributes(baseFont: font))
+                menuItem.attributedTitle = item.attributedTitle
                 return menuItem
             }
         }
@@ -138,5 +137,17 @@ private final class OutlinePopUpButtonCell: NSPopUpButtonCell {
         set {
             super.attributedTitle = newValue
         }
+    }
+}
+
+
+private extension OutlineItem {
+    
+    var attributedTitle: NSAttributedString {
+        
+        let title = NSMutableAttributedString(string: self.title)
+        title.applyFontTraits(self.style.fontTraits, range: title.range)
+        
+        return title
     }
 }
