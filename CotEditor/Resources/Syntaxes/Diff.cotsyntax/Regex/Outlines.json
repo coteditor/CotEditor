@@ -1,7 +1,6 @@
 [
   {
     "beginString" : "(.+)(?=\\R\\=+[\\t ]*$)",
-    "bold" : true,
     "description" : "header",
     "keyString" : ""
   },

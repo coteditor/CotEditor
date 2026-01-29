@@ -3,13 +3,14 @@
     "beginString" : "^([\\t ]*)(function|filter|configuration|workflow)[\\t ]+((?:global|local|script|private):)?((?:\\p{L}|\\d|_|-|\\.)+)",
     "description" : "function",
     "ignoreCase" : true,
-    "keyString" : "$1$3$4"
+    "keyString" : "$1$3$4",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)class[\\t ]+((?:\\p{L}|\\d|_|-|\\.)+)\\b",
-    "bold" : true,
     "description" : "class",
     "ignoreCase" : true,
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   }
 ]

@@ -2,30 +2,25 @@
   {
     "beginString" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)[\\t ]*(?=\\{|//|$)",
     "description" : "function",
-    "keyString" : "$1 $3($4)"
+    "keyString" : "$1 $3($4)",
+    "kind" : "function"
   },
   {
     "beginString" : "^enum[\\t ]+(\\w+)",
     "description" : "enum",
-    "italic" : true,
-    "keyString" : "enum $1"
+    "keyString" : "enum $1",
+    "kind" : "container"
   },
   {
     "beginString" : "^struct[\\t ]+(\\w+)",
     "description" : "struct",
-    "italic" : true,
-    "keyString" : "struct $1"
-  },
-  {
-    "beginString" : "^typedef (enum|struct|union)\\s*\\{[^}]*\\}[\\\\t ]*(\\w+);",
-    "description" : "typedef enum/struct/union",
-    "italic" : true,
-    "keyString" : "$1 $2"
+    "keyString" : "struct $1",
+    "kind" : "container"
   },
   {
     "beginString" : "^union[\\t ]+(\\w+)",
     "description" : "union",
-    "italic" : true,
-    "keyString" : "union $1"
+    "keyString" : "union $1",
+    "kind" : "container"
   }
 ]

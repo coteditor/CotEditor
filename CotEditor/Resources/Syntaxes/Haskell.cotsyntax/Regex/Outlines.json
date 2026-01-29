@@ -1,36 +1,26 @@
 [
   {
     "beginString" : "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)",
-    "keyString" : ""
+    "description" : "equation / binding",
+    "keyString" : "",
+    "kind" : "value"
   },
   {
     "beginString" : "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)",
-    "bold" : true,
-    "italic" : true,
-    "keyString" : "$1"
+    "description" : "type signature",
+    "keyString" : "$1",
+    "kind" : "value"
   },
   {
     "beginString" : "^[\\t ]*class\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)",
     "description" : "class",
     "keyString" : "",
-    "underline" : true
+    "kind" : "container"
   },
   {
     "beginString" : "^[\\t ]*data[\\t ]+([A-Z][\\w']*)(?=[\\t ]*\\=)",
-    "bold" : true,
     "description" : "data",
-    "keyString" : "data $1"
-  },
-  {
-    "beginString" : "^[\\t ]*instance\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)",
-    "description" : "instance",
-    "keyString" : "",
-    "underline" : true
-  },
-  {
-    "beginString" : "^[\\t ]*type[\\t ]+([A-Z][\\w']*)((?:[\\t ]+[a-z][\\w']*)*)(?=[¥t ]*\\=)",
-    "bold" : true,
-    "description" : "type",
-    "keyString" : "type $1$2"
+    "keyString" : "data $1",
+    "kind" : "container"
   }
 ]

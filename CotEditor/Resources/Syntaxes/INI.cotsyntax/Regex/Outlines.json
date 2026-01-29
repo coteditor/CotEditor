@@ -2,6 +2,7 @@
   {
     "beginString" : "^([ \\t]*)\\[(.+)\\]",
     "description" : "section",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   }
 ]

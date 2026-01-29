@@ -2,42 +2,43 @@
   {
     "beginString" : "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])",
     "description" : "function",
-    "keyString" : "   $3: $4"
+    "keyString" : "   $3: $4",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)(abstract (public|protected|private)[\\t ]+function)\\s*([^{;]*)(?=[{;])",
     "description" : "abstract function",
-    "italic" : true,
-    "keyString" : "   abstract $3: $4"
+    "keyString" : "   abstract $3: $4",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)(function)\\s*([^{]*)(?=\\{)",
     "description" : "function",
-    "keyString" : "   $3"
+    "keyString" : "   $3",
+    "kind" : "function"
   },
   {
     "beginString" : "^[\\t ]*((?:final[\\t ]+)?class)[\\t ]+(.*)\\{",
-    "bold" : true,
     "description" : "class",
-    "keyString" : "$1: $2"
+    "keyString" : "$1: $2",
+    "kind" : "container"
   },
   {
     "beginString" : "^[\\t ]*(abstract class)[\\t ]+(.*)\\{",
-    "bold" : true,
     "description" : "abstract class",
-    "italic" : true,
-    "keyString" : "$1: $2"
+    "keyString" : "$1: $2",
+    "kind" : "container"
   },
   {
     "beginString" : "^[\\t ]*(interface)[\\t ]+(.*)\\{",
     "description" : "interface",
-    "italic" : true,
-    "keyString" : "$1: $2"
+    "keyString" : "$1: $2",
+    "kind" : "container"
   },
   {
     "beginString" : "^[\\t ]*(trait)[\\t ]+(.*)\\{",
     "description" : "trait",
-    "italic" : true,
-    "keyString" : "$1: $2"
+    "keyString" : "$1: $2",
+    "kind" : "container"
   }
 ]

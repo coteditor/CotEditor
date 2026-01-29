@@ -3,13 +3,14 @@
     "beginString" : "^([\\t ]*)((const|immutable|shared|static) )?struct +([a-z][a-z0-9_]*)",
     "description" : "struct",
     "ignoreCase" : true,
-    "keyString" : "$1$2struct $4"
+    "keyString" : "$1$2struct $4",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)((scope|final) )?class +([a-z][a-z0-9_]*)",
-    "bold" : true,
     "description" : "class",
     "ignoreCase" : true,
-    "keyString" : "$1$2class $4"
+    "keyString" : "$1$2class $4",
+    "kind" : "container"
   }
 ]

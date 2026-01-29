@@ -2,12 +2,13 @@
   {
     "beginString" : "(?<![-=`:.'\"~^_*+#]{2}\\R)^(.+)(?=\\R([-=`:.'\"~^_*+#])\\2{2,}$)",
     "description" : "section",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "heading"
   },
   {
     "beginString" : "(?<=[-=`:.'\"~^_*+#]{3}\\R)(.+)(?=\\R([-=`:.'\"~^_*+#])\\2{2,}+$)",
-    "bold" : true,
     "description" : "section",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "heading"
   }
 ]

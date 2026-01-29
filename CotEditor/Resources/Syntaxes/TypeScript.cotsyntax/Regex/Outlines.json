@@ -1,26 +1,26 @@
 [
   {
     "beginString" : "^([\\t ]*)abstract +class +(\\w+(?:<\\w+>)?)",
-    "bold" : true,
     "description" : "abstract class",
-    "italic" : true,
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)class +(\\w+(?:<\\w+>)?)",
-    "bold" : true,
     "description" : "class",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)function([^{]*)\\{",
     "description" : "function",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)interface +(\\w+)",
     "description" : "interface",
-    "italic" : true,
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   }
 ]

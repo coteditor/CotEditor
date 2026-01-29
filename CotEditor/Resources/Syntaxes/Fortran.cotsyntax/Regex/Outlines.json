@@ -2,23 +2,25 @@
   {
     "beginString" : "^[\\t ]*(elemental )?(pure )?([a-z]+ )?function[\\t ]+[a-z][a-z0-9_]*\\([^)]*\\)",
     "ignoreCase" : true,
-    "keyString" : ""
+    "keyString" : "",
+    "kind" : "function"
   },
   {
     "beginString" : "^[\\t ]*(elemental )?(pure )?subroutine[\\t ]+[a-z].*",
     "ignoreCase" : true,
-    "keyString" : ""
+    "keyString" : "",
+    "kind" : "function"
   },
   {
     "beginString" : "^[\\t ]*module[\\t ]+[a-z].*",
-    "bold" : true,
     "ignoreCase" : true,
-    "keyString" : ""
+    "keyString" : "",
+    "kind" : "container"
   },
   {
     "beginString" : "^[\\t ]*program[\\t ]+[a-z].*",
     "ignoreCase" : true,
     "keyString" : "",
-    "underline" : true
+    "kind" : "container"
   }
 ]

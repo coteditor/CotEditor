@@ -1,23 +1,14 @@
 [
   {
-    "beginString" : "^([\\t ]*)(class)(.*?)(?=(\\{|$))",
-    "bold" : true,
+    "beginString" : "^(([\\t ]*)([a-z]+ )*class +(\\w+)) +(?=(\\{|$))",
     "description" : "class",
-    "keyString" : "$1$2 : $3"
+    "keyString" : "$1",
+    "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)(private)[\\t ]+(.*)(?=\\{)",
-    "description" : "private",
-    "keyString" : ""
-  },
-  {
-    "beginString" : "^([\\t ]*)(protected)[\\t ]+(.*)(?=\\{)",
-    "description" : "protected",
-    "keyString" : ""
-  },
-  {
-    "beginString" : "^([\\t ]*)(public)[\\t ]+(.*)(?=\\{)",
-    "description" : "public",
-    "keyString" : ""
+    "beginString" : "^([\\t ]*)([a-z]+ )*([a-z]+)(?=\\()",
+    "description" : "method",
+    "keyString" : "",
+    "kind" : "function"
   }
 ]

@@ -2,50 +2,55 @@
   {
     "beginString" : "(?<=\\R{2}|\\A)([*-_] ?)\\1{2,}$",
     "description" : "horizontal line",
-    "keyString" : "-"
+    "keyString" : "",
+    "kind" : "separator"
   },
   {
     "beginString" : "^#[\\t ]?([^#].*?)#*$",
-    "bold" : true,
     "description" : "h1",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "heading"
   },
   {
     "beginString" : "^#{2}[\\t ]?([^#].*?)#*$",
-    "bold" : true,
     "description" : "h2",
-    "keyString" : "    $1"
+    "keyString" : "    $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "^#{3}[\\t ]?([^#].*?)#*$",
     "description" : "h3",
-    "keyString" : "        $1"
+    "keyString" : "        $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "^#{4}[\\t ]?([^#].*?)#*$",
     "description" : "h4",
-    "keyString" : "            $1"
+    "keyString" : "            $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "^#{5}[\\t ]?([^#].*?)#*$",
     "description" : "h5",
-    "keyString" : "                $1"
+    "keyString" : "                $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "^#{6}[\\t ]?([^#].*?)#*$",
     "description" : "h6",
-    "keyString" : "                    $1"
+    "keyString" : "                    $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "^(.+)(?=\\R\\-+[\\t ]*$)",
-    "bold" : true,
     "description" : "h2",
-    "keyString" : "    $1"
+    "keyString" : "    $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "^(.+)(?=\\R\\=+[\\t ]*$)",
-    "bold" : true,
     "description" : "h1",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "heading"
   }
 ]

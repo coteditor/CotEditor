@@ -2,12 +2,13 @@
   {
     "beginString" : "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))",
     "description" : "handler",
-    "keyString" : "$1on $2"
+    "keyString" : "$1on $2",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)script[\\t ]+(\\S+)",
-    "bold" : true,
     "description" : "script",
-    "keyString" : "$1script $2"
+    "keyString" : "$1script $2",
+    "kind" : "container"
   }
 ]

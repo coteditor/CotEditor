@@ -2,6 +2,7 @@
   {
     "beginString" : "^[ /t]*def +([a-zA-Z0-9]+)[^:]+(?=:)",
     "description" : "function",
-    "keyString" : ""
+    "keyString" : "",
+    "kind" : "function"
   }
 ]

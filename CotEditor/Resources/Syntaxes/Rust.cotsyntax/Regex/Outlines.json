@@ -2,18 +2,19 @@
   {
     "beginString" : "^([\\t ]*)fn[\\t ]+(\\w+)",
     "description" : "function",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)impl[\\t ]+(\\w+)",
-    "bold" : true,
     "description" : "impl",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)struct[\\t ]+(\\w+)",
     "description" : "struct",
-    "italic" : true,
-    "keyString" : "$1struct $2"
+    "keyString" : "$1struct $2",
+    "kind" : "container"
   }
 ]

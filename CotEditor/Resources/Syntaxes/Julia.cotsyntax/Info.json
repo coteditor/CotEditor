@@ -12,7 +12,7 @@
     "author" : "1024jp",
     "description" : "Based on Julia 0.4.5",
     "distributionURL" : "https://coteditor.com",
-    "lastModified" : "2026-01-22",
+    "lastModified" : "2026-01-29",
     "license" : "Same as CotEditor",
     "version" : "2.0.0"
   }

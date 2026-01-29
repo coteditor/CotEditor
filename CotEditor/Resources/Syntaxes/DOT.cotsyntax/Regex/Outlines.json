@@ -1,11 +1,12 @@
 [
   {
     "beginString" : "\\b(graph|digraph)\\s+([^\\s\\{]+)\\s*\\{",
-    "bold" : true,
-    "keyString" : "$2"
+    "keyString" : "$2",
+    "kind" : "container"
   },
   {
     "beginString" : "\\bsubgraph\\s+([^\\s]+)",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "container"
   }
 ]

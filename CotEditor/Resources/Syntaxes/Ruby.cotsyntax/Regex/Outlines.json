@@ -3,18 +3,18 @@
     "beginString" : "(^[\\t ]*class)[\\t ]+(\\w*)",
     "description" : "class",
     "keyString" : "$1 $2",
-    "underline" : true
+    "kind" : "container"
   },
   {
     "beginString" : "(^[\\t ]*def)[\\t ]+([^\\s(]*)",
     "description" : "method",
-    "italic" : true,
-    "keyString" : "$1 $2"
+    "keyString" : "$1 $2",
+    "kind" : "function"
   },
   {
     "beginString" : "(^[\\t ]*module)[\\t ]+(\\w*)",
-    "bold" : true,
     "description" : "module",
-    "keyString" : "$1 $2"
+    "keyString" : "$1 $2",
+    "kind" : "container"
   }
 ]

@@ -2,25 +2,25 @@
   {
     "beginString" : "^([\\t ]*)(?:(final|protected|private|override)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)",
     "description" : "method",
-    "keyString" : "$1$4"
+    "keyString" : "$1$4",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)",
-    "bold" : true,
     "description" : "class/obj/trait",
-    "keyString" : "$1$3 $4"
+    "keyString" : "$1$3 $4",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)",
     "description" : "abstract method",
-    "italic" : true,
-    "keyString" : "$1$4"
+    "keyString" : "$1$4",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)",
-    "bold" : true,
     "description" : "abstract class/obj/trait",
-    "italic" : true,
-    "keyString" : "$1$3 $4"
+    "keyString" : "$1$3 $4",
+    "kind" : "container"
   }
 ]

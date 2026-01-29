@@ -2,6 +2,7 @@
   {
     "beginString" : "beginchar\\((.*?),",
     "description" : "character",
-    "keyString" : "character: $1"
+    "keyString" : "character: $1",
+    "kind" : "container"
   }
 ]

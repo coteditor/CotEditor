@@ -2,6 +2,7 @@
   {
     "beginString" : "^SUMMARY:(.*)$",
     "description" : "summary",
-    "keyString" : ""
+    "keyString" : "",
+    "kind" : "heading"
   }
 ]

@@ -1,71 +1,65 @@
 [
   {
     "beginString" : "(^\\s*)(?:\\T)(?:.*)(?<!\\:)\\=(?:.*)",
-    "bold" : true,
     "description" : "Types (start with T)",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "type $0"
+    "keyString" : "type $0",
+    "kind" : "container"
   },
   {
     "beginString" : "\\{(?:.*)\\$(?:.*)(?:region)(?:.*)\\'(.*)\\'\\}",
-    "bold" : true,
     "description" : "Region",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "($1)"
+    "keyString" : "($1)",
+    "kind" : "mark"
   },
   {
     "beginString" : "^([ \\t]*)(?:[a-z]* )*function(.*)(?:\\;|\\()",
     "description" : "Function",
     "ignoreCase" : true,
-    "keyString" : "$2"
+    "keyString" : "$2",
+    "kind" : "function"
   },
   {
     "beginString" : "^([ \\t]*)(?:[a-z]* )*procedure(.*)(?:\\;|\\()",
     "description" : "Procedure",
     "ignoreCase" : true,
-    "keyString" : "$2"
+    "keyString" : "$2",
+    "kind" : "function"
   },
   {
     "beginString" : "^\\s*(implementation)",
-    "bold" : true,
     "description" : "Implementation",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "---- $1"
+    "keyString" : "---- $1",
+    "kind" : "container"
   },
   {
     "beginString" : "^\\s*(interface)",
-    "bold" : true,
     "description" : "Interface",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "---- $1"
+    "keyString" : "---- $1",
+    "kind" : "container"
   },
   {
     "beginString" : "^\\s*(type)",
-    "bold" : true,
     "description" : "Type",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "---- $1"
+    "keyString" : "---- $1",
+    "kind" : "container"
   },
   {
     "beginString" : "^\\s*(uses)",
-    "bold" : true,
     "description" : "Uses",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "---- $1"
+    "keyString" : "---- $1",
+    "kind" : "reference"
   },
   {
     "beginString" : "unit\\W(.*)(?:\\;)$",
-    "bold" : true,
     "description" : "Unit",
     "ignoreCase" : true,
-    "italic" : true,
     "keyString" : "$1",
-    "underline" : true
+    "kind" : "container"
   }
 ]

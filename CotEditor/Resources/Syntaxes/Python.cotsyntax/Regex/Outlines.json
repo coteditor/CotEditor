@@ -1,13 +1,14 @@
 [
   {
     "beginString" : "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$",
-    "bold" : true,
     "description" : "class",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$",
     "description" : "function",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "function"
   }
 ]

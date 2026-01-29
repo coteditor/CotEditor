@@ -1,10 +1,13 @@
 [
   {
     "beginString" : "^(#.+)$",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "mark"
   },
   {
-    "beginString" : "^([\\t ]*)(.*)\\(\\)[\\r\\n\\t ]*\\{",
-    "keyString" : "$1$2 ()"
+    "beginString" : "^([\\t ]*)([A-Za-z_][A-Za-z0-9_]*)[\\t ]*\\(\\)\\s*\\{",
+    "description" : "function",
+    "keyString" : "$1$2",
+    "kind" : "function"
   }
 ]

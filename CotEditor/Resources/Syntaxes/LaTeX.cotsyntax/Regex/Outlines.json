@@ -2,27 +2,31 @@
   {
     "beginString" : "[\\\\¥]chapter\\*?\\{(.*)\\}",
     "description" : "chapter",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "heading"
   },
   {
     "beginString" : "[\\\\¥]part\\*?\\{(.*)\\}",
-    "bold" : true,
     "description" : "part",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "heading"
   },
   {
     "beginString" : "[\\\\¥]section\\*?\\{(.*)\\}",
     "description" : "section",
-    "keyString" : "    $1"
+    "keyString" : "    $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "[\\\\¥]subsection\\*?\\{(.*)\\}",
     "description" : "subsection",
-    "keyString" : "        $1"
+    "keyString" : "        $1",
+    "kind" : "heading"
   },
   {
     "beginString" : "[\\\\¥]subsubsection\\*?\\{(.*)\\}",
     "description" : "subsubsection",
-    "keyString" : "            $1"
+    "keyString" : "            $1",
+    "kind" : "heading"
   }
 ]

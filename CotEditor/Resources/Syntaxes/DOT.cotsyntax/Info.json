@@ -10,7 +10,7 @@
     "author" : "usr-sse2",
     "description" : "Graphviz DOT language, based on https://github.com/textmate/graphviz.tmbundle",
     "distributionURL" : "https://coteditor.com",
-    "lastModified" : "2026-01-22",
+    "lastModified" : "2026-01-29",
     "license" : "Same as CotEditor",
     "version" : "4.0.0"
   }

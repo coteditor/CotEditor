@@ -3,20 +3,21 @@
     "beginString" : "^([\\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\\{",
     "description" : "sub-routine",
     "ignoreCase" : true,
-    "keyString" : "$1$2 $3 {}"
+    "keyString" : "$1$2 $3 {}",
+    "kind" : "function"
   },
   {
     "beginString" : "^[ ]*(\\@ISA)([^;]*);",
     "description" : "@ISA",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "$1 $2"
+    "keyString" : "$1 $2",
+    "kind" : "value"
   },
   {
     "beginString" : "^[ ]*(package)[ ]*([a-z][a-z0-9_]*).*$",
     "description" : "package",
     "ignoreCase" : true,
-    "italic" : true,
-    "keyString" : "$1 $2"
+    "keyString" : "$1 $2",
+    "kind" : "container"
   }
 ]

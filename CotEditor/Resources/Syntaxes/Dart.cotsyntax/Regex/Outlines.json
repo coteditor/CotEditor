@@ -2,12 +2,13 @@
   {
     "beginString" : "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{",
     "description" : "function",
-    "keyString" : "$1$2 $3"
+    "keyString" : "$1$2 $3",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)class (.+)\\s\\{",
-    "bold" : true,
     "description" : "class",
-    "keyString" : "$1class $2"
+    "keyString" : "$1class $2",
+    "kind" : "container"
   }
 ]

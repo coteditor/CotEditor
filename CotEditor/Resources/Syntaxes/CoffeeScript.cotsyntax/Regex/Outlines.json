@@ -2,22 +2,25 @@
   {
     "beginString" : "^([\\t ]*\\w+): (.*)->",
     "description" : "function",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*\\w+)[\\t ]= (.*)->",
     "description" : "function",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "function"
   },
   {
     "beginString" : "^(\\w*::\\w*) (.*)->",
     "description" : "function",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "function"
   },
   {
     "beginString" : "^class (.*)",
-    "bold" : true,
     "description" : "class",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "container"
   }
 ]

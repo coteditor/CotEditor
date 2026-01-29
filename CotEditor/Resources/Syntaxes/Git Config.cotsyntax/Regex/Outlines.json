@@ -1,8 +1,8 @@
 [
   {
     "beginString" : "^\\[(.+)\\]",
-    "bold" : true,
     "description" : "section",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "container"
   }
 ]

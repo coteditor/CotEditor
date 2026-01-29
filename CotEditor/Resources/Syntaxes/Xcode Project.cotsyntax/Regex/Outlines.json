@@ -1,6 +1,7 @@
 [
   {
     "beginString" : "^/\\* Begin (.+) section \\*/$",
-    "keyString" : "$1"
+    "keyString" : "$1",
+    "kind" : "mark"
   }
 ]

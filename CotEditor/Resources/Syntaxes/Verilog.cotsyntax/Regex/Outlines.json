@@ -2,6 +2,7 @@
   {
     "beginString" : "^([ \\t]*)module[ \\t]+([a-zA-Z0-9_]+)(?=\\s|\\()",
     "description" : "module",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   }
 ]

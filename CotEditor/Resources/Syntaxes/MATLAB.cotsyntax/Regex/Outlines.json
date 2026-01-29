@@ -1,19 +1,22 @@
 [
   {
     "beginString" : "^([\\t ]*)classdef[\\t ]+(\\(.+\\)[\\t ]+)?(\\w+)",
-    "bold" : true,
-    "keyString" : "$1$3"
+    "keyString" : "$1$3",
+    "kind" : "container"
   },
   {
     "beginString" : "^([\\t ]*)function[\\t ]+(\\w+)\\(",
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)methods(?:[\\t ]+(\\(.+\\)))?",
-    "keyString" : "$1methods $2"
+    "keyString" : "$1methods $2",
+    "kind" : "function"
   },
   {
     "beginString" : "^([\\t ]*)properties(?:[\\t ]+(\\(.+\\)))?",
-    "keyString" : "$1properties $2"
+    "keyString" : "$1properties $2",
+    "kind" : "value"
   }
 ]

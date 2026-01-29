@@ -2,12 +2,13 @@
   {
     "beginString" : "\\bfunction\\s+\\w+\\(.*\\)",
     "description" : "function",
-    "keyString" : ""
+    "keyString" : "",
+    "kind" : "function"
   },
   {
     "beginString" : "\\bmacro\\s+\\w+\\(.+\\)",
     "description" : "macro",
-    "italic" : true,
-    "keyString" : ""
+    "keyString" : "",
+    "kind" : "function"
   }
 ]

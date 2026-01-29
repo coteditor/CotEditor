@@ -1,22 +1,23 @@
 [
   {
     "beginString" : "\\b(\\s*)architecture\\s+(\\S+)",
-    "bold" : true,
     "description" : "architecture",
     "ignoreCase" : true,
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   },
   {
     "beginString" : "\\b(\\s*)component\\s+(\\S+)",
     "description" : "component",
     "ignoreCase" : true,
-    "keyString" : "$1$2"
+    "keyString" : "$1$2",
+    "kind" : "container"
   },
   {
     "beginString" : "\\b(\\s*)entity\\s+(\\S+)",
     "description" : "entity",
     "ignoreCase" : true,
     "keyString" : "$1$2",
-    "underline" : true
+    "kind" : "container"
   }
 ]
