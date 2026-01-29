@@ -66,8 +66,8 @@ public struct OutlineExtractor: Sendable {
         try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy
             .compactMap { result in
                 // separator
-                if self.template == .separator {
-                    return OutlineItem(title: self.template, range: result.range)
+                if self.kind == .separator {
+                    return OutlineItem.separator(range: result.range)
                 }
                 
                 // standard outline

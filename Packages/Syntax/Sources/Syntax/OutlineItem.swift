@@ -51,7 +51,7 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     public var kind: Syntax.Outline.Kind?
     public var style: Style
     
-    public var isSeparator: Bool  { self.title == .separator }
+    public var isSeparator: Bool  { self.kind == .separator }
     
     
     public init(title: String, range: NSRange, kind: Syntax.Outline.Kind? = nil, style: Style = []) {
@@ -65,7 +65,7 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     
     public static func separator(range: NSRange) -> Self {
         
-        self.init(title: .separator, range: range)
+        self.init(title: "", range: range, kind: .separator)
     }
 }
 

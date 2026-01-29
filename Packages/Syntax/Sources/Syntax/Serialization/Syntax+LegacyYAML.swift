@@ -158,7 +158,16 @@ extension Syntax: Decodable {
         highlights[.comments] = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
         self.highlights = highlights
         
-        self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
+        self.outlines = (try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? [])
+            .map { outline in  // migrate separator
+                if outline.template == "–" {
+                    var outline = outline
+                    outline.template = ""
+                    outline.kind = .separator
+                    return outline
+                }
+               return outline
+            }
         
         self.commentDelimiters = (try values.decodeIfPresent([String: String].self, forKey: .commentDelimiters))
             .flatMap(Comment.init(legacyDictionary:)) ?? .init()
@@ -184,4 +193,11 @@ private extension Syntax.Comment {
             self.blocks = [.init(blockBegin, blockEnd)]
         }
     }
+}
+
+
+private extension String {
+    
+    /// Constant string representing a separator.
+    static let separator = "-"
 }
