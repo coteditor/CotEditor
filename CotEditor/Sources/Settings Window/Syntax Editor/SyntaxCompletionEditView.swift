@@ -73,6 +73,7 @@ struct SyntaxCompletionEditView: View {
                             }
                         }
                         .buttonStyle(.plain)
+                        .labelsHidden()
                     }
                 }
                 .width(100)
