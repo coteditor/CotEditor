@@ -499,6 +499,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     private var directoryIdentifiers: [NSToolbarItem.Identifier] {
         
         self.isDirectoryDocument ? [
+            .flexibleSpace,
             .toggleSidebar,
             .sidebarTrackingSeparator,
         ] : []
