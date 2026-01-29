@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ struct OutlineTests {
     
     private let items: [OutlineItem] = [
         OutlineItem(title: "dog", range: NSRange(location: 10, length: 5)),         // 0
-        OutlineItem(title: .separator, range: NSRange(location: 20, length: 5)),
-        OutlineItem(title: .separator, range: NSRange(location: 30, length: 5)),
+        OutlineItem.separator(range: NSRange(location: 20, length: 5)),
+        OutlineItem.separator(range: NSRange(location: 30, length: 5)),
         OutlineItem(title: "dogcow", range: NSRange(location: 40, length: 5)),      // 3
-        OutlineItem(title: .separator, range: NSRange(location: 50, length: 5)),
+        OutlineItem.separator(range: NSRange(location: 50, length: 5)),
         OutlineItem(title: "cow", range: NSRange(location: 60, length: 5)),         // 5
-        OutlineItem(title: .separator, range: NSRange(location: 70, length: 5)),
+        OutlineItem.separator(range: NSRange(location: 70, length: 5)),
     ]
     
     private let emptyItems: [OutlineItem] = []
