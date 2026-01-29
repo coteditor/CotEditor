@@ -73,3 +73,19 @@ extension Syntax.Outline.Kind {
         }
     }
 }
+
+
+// MARK: -
+
+#Preview {
+    VStack(alignment: .leading) {
+        ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in
+            Label {
+                Text(kind.label)
+            } icon: {
+                kind.icon(mode: .hierarchical)
+            }
+        }
+    }
+    .scenePadding()
+}
