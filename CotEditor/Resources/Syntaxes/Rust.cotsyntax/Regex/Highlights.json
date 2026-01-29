@@ -1562,7 +1562,7 @@
     {
       "beginString" : "b?r#+\"",
       "endString" : "\"#+",
-      "isMultiline": true,
+      "isMultiline" : true,
       "regularExpression" : true
     },
     {
@@ -1788,12 +1788,12 @@
     {
       "beginString" : "#![",
       "endString" : "]",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "#[",
       "endString" : "]",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "AcqRel"

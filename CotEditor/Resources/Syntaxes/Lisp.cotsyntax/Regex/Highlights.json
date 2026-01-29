@@ -78,7 +78,7 @@
     {
       "beginString" : "\"",
       "endString" : "\"",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "values" : [

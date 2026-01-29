@@ -3,7 +3,7 @@
     {
       "beginString" : "'",
       "endString" : "'",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "<<-?[\\t ]*\"(\\S+)\"\\s(?:.|\\R)*?\\R\\1$",
@@ -632,14 +632,14 @@
     {
       "beginString" : "`",
       "endString" : "`",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "strings" : [
     {
       "beginString" : "\"",
       "endString" : "\"",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "<<-?[\\t ]*(\\S+)\\s(?:.|\\R)*?\\R\\1$",

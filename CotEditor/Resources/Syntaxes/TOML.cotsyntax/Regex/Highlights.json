@@ -59,7 +59,7 @@
     {
       "beginString" : "\"\"\"",
       "endString" : "\"\"\"",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "'",
@@ -68,7 +68,7 @@
     {
       "beginString" : "'''",
       "endString" : "'''",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "values" : [

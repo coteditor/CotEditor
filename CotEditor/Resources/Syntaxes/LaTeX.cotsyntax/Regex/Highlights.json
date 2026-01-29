@@ -3,7 +3,7 @@
     {
       "beginString" : "[",
       "endString" : "]",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "characters" : [
@@ -76,7 +76,7 @@
     {
       "beginString" : "{",
       "endString" : "}",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "values" : [
@@ -91,12 +91,12 @@
     {
       "beginString" : "\\(",
       "endString" : "\\)",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "\\[",
       "endString" : "\\]",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "variables" : [

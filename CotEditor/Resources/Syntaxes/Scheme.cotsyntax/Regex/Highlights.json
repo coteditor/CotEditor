@@ -1164,7 +1164,7 @@
     {
       "beginString" : "\"",
       "endString" : "\"",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "types" : [
@@ -1183,7 +1183,7 @@
     {
       "beginString" : "#(",
       "endString" : ")",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "#f",
@@ -1196,7 +1196,7 @@
     {
       "beginString" : "#u8(",
       "endString" : ")",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "bsd"

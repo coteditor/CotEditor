@@ -2197,7 +2197,7 @@
     {
       "beginString" : "q{",
       "endString" : "}",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "r\""

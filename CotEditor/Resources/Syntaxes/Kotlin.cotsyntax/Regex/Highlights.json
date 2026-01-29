@@ -310,7 +310,7 @@
     {
       "beginString" : "\"\"\"",
       "endString" : "\"\"\"",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "types" : [

@@ -17,7 +17,7 @@
     {
       "beginString" : "<![CDATA[",
       "endString" : "]]>",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "commands" : [

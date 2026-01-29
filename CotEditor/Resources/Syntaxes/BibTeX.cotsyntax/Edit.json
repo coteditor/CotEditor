@@ -11,109 +11,109 @@
   },
   "completions" : [
     {
-      "text" : "@article",
+      "text" : "@article"
     },
     {
-      "text" : "@book",
+      "text" : "@book"
     },
     {
-      "text" : "@booklet",
+      "text" : "@booklet"
     },
     {
-      "text" : "@conference",
+      "text" : "@conference"
     },
     {
-      "text" : "@inbook",
+      "text" : "@inbook"
     },
     {
-      "text" : "@incollection",
+      "text" : "@incollection"
     },
     {
-      "text" : "@inproceedings",
+      "text" : "@inproceedings"
     },
     {
-      "text" : "@manual",
+      "text" : "@manual"
     },
     {
-      "text" : "@masterthesis",
+      "text" : "@masterthesis"
     },
     {
-      "text" : "@misc",
+      "text" : "@misc"
     },
     {
-      "text" : "@phdthesis",
+      "text" : "@phdthesis"
     },
     {
-      "text" : "@proceedings",
+      "text" : "@proceedings"
     },
     {
-      "text" : "@techreport",
+      "text" : "@techreport"
     },
     {
-      "text" : "@unpublished",
+      "text" : "@unpublished"
     },
     {
-      "text" : "address",
+      "text" : "address"
     },
     {
-      "text" : "author",
+      "text" : "author"
     },
     {
-      "text" : "booktitle",
+      "text" : "booktitle"
     },
     {
-      "text" : "chapter",
+      "text" : "chapter"
     },
     {
-      "text" : "edition",
+      "text" : "edition"
     },
     {
-      "text" : "editor",
+      "text" : "editor"
     },
     {
-      "text" : "howpublished",
+      "text" : "howpublished"
     },
     {
-      "text" : "institution",
+      "text" : "institution"
     },
     {
-      "text" : "journal",
+      "text" : "journal"
     },
     {
-      "text" : "month",
+      "text" : "month"
     },
     {
-      "text" : "note",
+      "text" : "note"
     },
     {
-      "text" : "number",
+      "text" : "number"
     },
     {
-      "text" : "organization",
+      "text" : "organization"
     },
     {
-      "text" : "pages",
+      "text" : "pages"
     },
     {
-      "text" : "publisher",
+      "text" : "publisher"
     },
     {
-      "text" : "school",
+      "text" : "school"
     },
     {
-      "text" : "series",
+      "text" : "series"
     },
     {
-      "text" : "title",
+      "text" : "title"
     },
     {
-      "text" : "type",
+      "text" : "type"
     },
     {
-      "text" : "volume",
+      "text" : "volume"
     },
     {
-      "text" : "year",
+      "text" : "year"
     }
   ]
 }

@@ -12,856 +12,856 @@
   },
   "completions" : [
     {
-      "text" : "accent-height",
+      "text" : "accent-height"
     },
     {
-      "text" : "accumulate",
+      "text" : "accumulate"
     },
     {
-      "text" : "additive",
+      "text" : "additive"
     },
     {
-      "text" : "alignment-baseline",
+      "text" : "alignment-baseline"
     },
     {
-      "text" : "alphabetic",
+      "text" : "alphabetic"
     },
     {
-      "text" : "amplitude",
+      "text" : "amplitude"
     },
     {
-      "text" : "arabic-form",
+      "text" : "arabic-form"
     },
     {
-      "text" : "ascent",
+      "text" : "ascent"
     },
     {
-      "text" : "attributeName",
+      "text" : "attributeName"
     },
     {
-      "text" : "attributeType",
+      "text" : "attributeType"
     },
     {
-      "text" : "azimuth",
+      "text" : "azimuth"
     },
     {
-      "text" : "baseFrequency",
+      "text" : "baseFrequency"
     },
     {
-      "text" : "baseline-shift",
+      "text" : "baseline-shift"
     },
     {
-      "text" : "baseProfile",
+      "text" : "baseProfile"
     },
     {
-      "text" : "bbox",
+      "text" : "bbox"
     },
     {
-      "text" : "begin",
+      "text" : "begin"
     },
     {
-      "text" : "bias",
+      "text" : "bias"
     },
     {
-      "text" : "by",
+      "text" : "by"
     },
     {
-      "text" : "calcMode",
+      "text" : "calcMode"
     },
     {
-      "text" : "cap-height",
+      "text" : "cap-height"
     },
     {
-      "text" : "class",
+      "text" : "class"
     },
     {
-      "text" : "clip",
+      "text" : "clip"
     },
     {
-      "text" : "clip-path",
+      "text" : "clip-path"
     },
     {
-      "text" : "clip-rule",
+      "text" : "clip-rule"
     },
     {
-      "text" : "clipPathUnits",
+      "text" : "clipPathUnits"
     },
     {
-      "text" : "color",
+      "text" : "color"
     },
     {
-      "text" : "color-interpolation",
+      "text" : "color-interpolation"
     },
     {
-      "text" : "color-interpolation-filters",
+      "text" : "color-interpolation-filters"
     },
     {
-      "text" : "color-profile",
+      "text" : "color-profile"
     },
     {
-      "text" : "color-rendering",
+      "text" : "color-rendering"
     },
     {
-      "text" : "contentScriptType",
+      "text" : "contentScriptType"
     },
     {
-      "text" : "contentStyleType",
+      "text" : "contentStyleType"
     },
     {
-      "text" : "cursor",
+      "text" : "cursor"
     },
     {
-      "text" : "cx",
+      "text" : "cx"
     },
     {
-      "text" : "cy",
+      "text" : "cy"
     },
     {
-      "text" : "d",
+      "text" : "d"
     },
     {
-      "text" : "descent",
+      "text" : "descent"
     },
     {
-      "text" : "diffuseConstant",
+      "text" : "diffuseConstant"
     },
     {
-      "text" : "direction",
+      "text" : "direction"
     },
     {
-      "text" : "display",
+      "text" : "display"
     },
     {
-      "text" : "divisor",
+      "text" : "divisor"
     },
     {
-      "text" : "dominant-baseline",
+      "text" : "dominant-baseline"
     },
     {
-      "text" : "dur",
+      "text" : "dur"
     },
     {
-      "text" : "dx",
+      "text" : "dx"
     },
     {
-      "text" : "dy",
+      "text" : "dy"
     },
     {
-      "text" : "edgeMode",
+      "text" : "edgeMode"
     },
     {
-      "text" : "elevation",
+      "text" : "elevation"
     },
     {
-      "text" : "enable-background",
+      "text" : "enable-background"
     },
     {
-      "text" : "end",
+      "text" : "end"
     },
     {
-      "text" : "exponent",
+      "text" : "exponent"
     },
     {
-      "text" : "externalResourcesRequired",
+      "text" : "externalResourcesRequired"
     },
     {
-      "text" : "fill",
+      "text" : "fill"
     },
     {
-      "text" : "fill",
+      "text" : "fill"
     },
     {
-      "text" : "fill-opacity",
+      "text" : "fill-opacity"
     },
     {
-      "text" : "fill-rule",
+      "text" : "fill-rule"
     },
     {
-      "text" : "filter",
+      "text" : "filter"
     },
     {
-      "text" : "filterRes",
+      "text" : "filterRes"
     },
     {
-      "text" : "filterUnits",
+      "text" : "filterUnits"
     },
     {
-      "text" : "flood-color",
+      "text" : "flood-color"
     },
     {
-      "text" : "flood-opacity",
+      "text" : "flood-opacity"
     },
     {
-      "text" : "font-family",
+      "text" : "font-family"
     },
     {
-      "text" : "font-family",
+      "text" : "font-family"
     },
     {
-      "text" : "font-size",
+      "text" : "font-size"
     },
     {
-      "text" : "font-size",
+      "text" : "font-size"
     },
     {
-      "text" : "font-size-adjust",
+      "text" : "font-size-adjust"
     },
     {
-      "text" : "font-stretch",
+      "text" : "font-stretch"
     },
     {
-      "text" : "font-stretch",
+      "text" : "font-stretch"
     },
     {
-      "text" : "font-style",
+      "text" : "font-style"
     },
     {
-      "text" : "font-style",
+      "text" : "font-style"
     },
     {
-      "text" : "font-variant",
+      "text" : "font-variant"
     },
     {
-      "text" : "font-variant",
+      "text" : "font-variant"
     },
     {
-      "text" : "font-weight",
+      "text" : "font-weight"
     },
     {
-      "text" : "font-weight",
+      "text" : "font-weight"
     },
     {
-      "text" : "format",
+      "text" : "format"
     },
     {
-      "text" : "from",
+      "text" : "from"
     },
     {
-      "text" : "fx",
+      "text" : "fx"
     },
     {
-      "text" : "fy",
+      "text" : "fy"
     },
     {
-      "text" : "g1",
+      "text" : "g1"
     },
     {
-      "text" : "g2",
+      "text" : "g2"
     },
     {
-      "text" : "glyph-name",
+      "text" : "glyph-name"
     },
     {
-      "text" : "glyph-orientation-horizontal",
+      "text" : "glyph-orientation-horizontal"
     },
     {
-      "text" : "glyph-orientation-vertical",
+      "text" : "glyph-orientation-vertical"
     },
     {
-      "text" : "glyphRef",
+      "text" : "glyphRef"
     },
     {
-      "text" : "gradientTransform",
+      "text" : "gradientTransform"
     },
     {
-      "text" : "gradientUnits",
+      "text" : "gradientUnits"
     },
     {
-      "text" : "hanging",
+      "text" : "hanging"
     },
     {
-      "text" : "height",
+      "text" : "height"
     },
     {
-      "text" : "horiz-adv-x",
+      "text" : "horiz-adv-x"
     },
     {
-      "text" : "horiz-origin-x",
+      "text" : "horiz-origin-x"
     },
     {
-      "text" : "horiz-origin-y",
+      "text" : "horiz-origin-y"
     },
     {
-      "text" : "id",
+      "text" : "id"
     },
     {
-      "text" : "ideographic",
+      "text" : "ideographic"
     },
     {
-      "text" : "image-rendering",
+      "text" : "image-rendering"
     },
     {
-      "text" : "in",
+      "text" : "in"
     },
     {
-      "text" : "in2",
+      "text" : "in2"
     },
     {
-      "text" : "intercept",
+      "text" : "intercept"
     },
     {
-      "text" : "k",
+      "text" : "k"
     },
     {
-      "text" : "k1",
+      "text" : "k1"
     },
     {
-      "text" : "k2",
+      "text" : "k2"
     },
     {
-      "text" : "k3",
+      "text" : "k3"
     },
     {
-      "text" : "k4",
+      "text" : "k4"
     },
     {
-      "text" : "kernelMatrix",
+      "text" : "kernelMatrix"
     },
     {
-      "text" : "kernelUnitLength",
+      "text" : "kernelUnitLength"
     },
     {
-      "text" : "kerning",
+      "text" : "kerning"
     },
     {
-      "text" : "keyPoints",
+      "text" : "keyPoints"
     },
     {
-      "text" : "keySplines",
+      "text" : "keySplines"
     },
     {
-      "text" : "keyTimes",
+      "text" : "keyTimes"
     },
     {
-      "text" : "lang",
+      "text" : "lang"
     },
     {
-      "text" : "lengthAdjust",
+      "text" : "lengthAdjust"
     },
     {
-      "text" : "letter-spacing",
+      "text" : "letter-spacing"
     },
     {
-      "text" : "lighting-color",
+      "text" : "lighting-color"
     },
     {
-      "text" : "limitingConeAngle",
+      "text" : "limitingConeAngle"
     },
     {
-      "text" : "local",
+      "text" : "local"
     },
     {
-      "text" : "marker-end",
+      "text" : "marker-end"
     },
     {
-      "text" : "marker-mid",
+      "text" : "marker-mid"
     },
     {
-      "text" : "marker-start",
+      "text" : "marker-start"
     },
     {
-      "text" : "markerHeight",
+      "text" : "markerHeight"
     },
     {
-      "text" : "markerUnits",
+      "text" : "markerUnits"
     },
     {
-      "text" : "markerWidth",
+      "text" : "markerWidth"
     },
     {
-      "text" : "mask",
+      "text" : "mask"
     },
     {
-      "text" : "maskContentUnits",
+      "text" : "maskContentUnits"
     },
     {
-      "text" : "maskUnits",
+      "text" : "maskUnits"
     },
     {
-      "text" : "mathematical",
+      "text" : "mathematical"
     },
     {
-      "text" : "max",
+      "text" : "max"
     },
     {
-      "text" : "media",
+      "text" : "media"
     },
     {
-      "text" : "method",
+      "text" : "method"
     },
     {
-      "text" : "min",
+      "text" : "min"
     },
     {
-      "text" : "mode",
+      "text" : "mode"
     },
     {
-      "text" : "name",
+      "text" : "name"
     },
     {
-      "text" : "numOctaves",
+      "text" : "numOctaves"
     },
     {
-      "text" : "offset",
+      "text" : "offset"
     },
     {
-      "text" : "onabort",
+      "text" : "onabort"
     },
     {
-      "text" : "onactivate",
+      "text" : "onactivate"
     },
     {
-      "text" : "onbegin",
+      "text" : "onbegin"
     },
     {
-      "text" : "onclick",
+      "text" : "onclick"
     },
     {
-      "text" : "onend",
+      "text" : "onend"
     },
     {
-      "text" : "onerror",
+      "text" : "onerror"
     },
     {
-      "text" : "onfocusin",
+      "text" : "onfocusin"
     },
     {
-      "text" : "onfocusout",
+      "text" : "onfocusout"
     },
     {
-      "text" : "onload",
+      "text" : "onload"
     },
     {
-      "text" : "onload",
+      "text" : "onload"
     },
     {
-      "text" : "onmousedown",
+      "text" : "onmousedown"
     },
     {
-      "text" : "onmousemove",
+      "text" : "onmousemove"
     },
     {
-      "text" : "onmouseout",
+      "text" : "onmouseout"
     },
     {
-      "text" : "onmouseover",
+      "text" : "onmouseover"
     },
     {
-      "text" : "onmouseup",
+      "text" : "onmouseup"
     },
     {
-      "text" : "onrepeat",
+      "text" : "onrepeat"
     },
     {
-      "text" : "onresize",
+      "text" : "onresize"
     },
     {
-      "text" : "onscroll",
+      "text" : "onscroll"
     },
     {
-      "text" : "onunload",
+      "text" : "onunload"
     },
     {
-      "text" : "onzoom",
+      "text" : "onzoom"
     },
     {
-      "text" : "opacity",
+      "text" : "opacity"
     },
     {
-      "text" : "operator",
+      "text" : "operator"
     },
     {
-      "text" : "order",
+      "text" : "order"
     },
     {
-      "text" : "orient",
+      "text" : "orient"
     },
     {
-      "text" : "orientation",
+      "text" : "orientation"
     },
     {
-      "text" : "origin",
+      "text" : "origin"
     },
     {
-      "text" : "overflow",
+      "text" : "overflow"
     },
     {
-      "text" : "overline-position",
+      "text" : "overline-position"
     },
     {
-      "text" : "overline-thickness",
+      "text" : "overline-thickness"
     },
     {
-      "text" : "panose-1",
+      "text" : "panose-1"
     },
     {
-      "text" : "path",
+      "text" : "path"
     },
     {
-      "text" : "pathLength",
+      "text" : "pathLength"
     },
     {
-      "text" : "patternContentUnits",
+      "text" : "patternContentUnits"
     },
     {
-      "text" : "patternTransform",
+      "text" : "patternTransform"
     },
     {
-      "text" : "patternUnits",
+      "text" : "patternUnits"
     },
     {
-      "text" : "pointer-events",
+      "text" : "pointer-events"
     },
     {
-      "text" : "points",
+      "text" : "points"
     },
     {
-      "text" : "pointsAtX",
+      "text" : "pointsAtX"
     },
     {
-      "text" : "pointsAtY",
+      "text" : "pointsAtY"
     },
     {
-      "text" : "pointsAtZ",
+      "text" : "pointsAtZ"
     },
     {
-      "text" : "preserveAlpha",
+      "text" : "preserveAlpha"
     },
     {
-      "text" : "preserveAspectRatio",
+      "text" : "preserveAspectRatio"
     },
     {
-      "text" : "primitiveUnits",
+      "text" : "primitiveUnits"
     },
     {
-      "text" : "r",
+      "text" : "r"
     },
     {
-      "text" : "radius",
+      "text" : "radius"
     },
     {
-      "text" : "refX",
+      "text" : "refX"
     },
     {
-      "text" : "refY",
+      "text" : "refY"
     },
     {
-      "text" : "rendering-intent",
+      "text" : "rendering-intent"
     },
     {
-      "text" : "repeatCount",
+      "text" : "repeatCount"
     },
     {
-      "text" : "repeatDur",
+      "text" : "repeatDur"
     },
     {
-      "text" : "requiredExtensions",
+      "text" : "requiredExtensions"
     },
     {
-      "text" : "requiredFeatures",
+      "text" : "requiredFeatures"
     },
     {
-      "text" : "restart",
+      "text" : "restart"
     },
     {
-      "text" : "result",
+      "text" : "result"
     },
     {
-      "text" : "rotate",
+      "text" : "rotate"
     },
     {
-      "text" : "rx",
+      "text" : "rx"
     },
     {
-      "text" : "ry",
+      "text" : "ry"
     },
     {
-      "text" : "scale",
+      "text" : "scale"
     },
     {
-      "text" : "seed",
+      "text" : "seed"
     },
     {
-      "text" : "shape-rendering",
+      "text" : "shape-rendering"
     },
     {
-      "text" : "slope",
+      "text" : "slope"
     },
     {
-      "text" : "spacing",
+      "text" : "spacing"
     },
     {
-      "text" : "specularConstant",
+      "text" : "specularConstant"
     },
     {
-      "text" : "specularExponent",
+      "text" : "specularExponent"
     },
     {
-      "text" : "spreadMethod",
+      "text" : "spreadMethod"
     },
     {
-      "text" : "startOffset",
+      "text" : "startOffset"
     },
     {
-      "text" : "stdDeviation",
+      "text" : "stdDeviation"
     },
     {
-      "text" : "stemh",
+      "text" : "stemh"
     },
     {
-      "text" : "stemv",
+      "text" : "stemv"
     },
     {
-      "text" : "stitchTiles",
+      "text" : "stitchTiles"
     },
     {
-      "text" : "stop-color",
+      "text" : "stop-color"
     },
     {
-      "text" : "stop-opacity",
+      "text" : "stop-opacity"
     },
     {
-      "text" : "strikethrough-position",
+      "text" : "strikethrough-position"
     },
     {
-      "text" : "strikethrough-thickness",
+      "text" : "strikethrough-thickness"
     },
     {
-      "text" : "string",
+      "text" : "string"
     },
     {
-      "text" : "stroke",
+      "text" : "stroke"
     },
     {
-      "text" : "stroke-dasharray",
+      "text" : "stroke-dasharray"
     },
     {
-      "text" : "stroke-dashoffset",
+      "text" : "stroke-dashoffset"
     },
     {
-      "text" : "stroke-linecap",
+      "text" : "stroke-linecap"
     },
     {
-      "text" : "stroke-linejoin",
+      "text" : "stroke-linejoin"
     },
     {
-      "text" : "stroke-miterlimit",
+      "text" : "stroke-miterlimit"
     },
     {
-      "text" : "stroke-opacity",
+      "text" : "stroke-opacity"
     },
     {
-      "text" : "stroke-width",
+      "text" : "stroke-width"
     },
     {
-      "text" : "style",
+      "text" : "style"
     },
     {
-      "text" : "surfaceScale",
+      "text" : "surfaceScale"
     },
     {
-      "text" : "svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"",
+      "text" : "svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\""
     },
     {
-      "text" : "systemLanguage",
+      "text" : "systemLanguage"
     },
     {
-      "text" : "tableValues",
+      "text" : "tableValues"
     },
     {
-      "text" : "target",
+      "text" : "target"
     },
     {
-      "text" : "targetX",
+      "text" : "targetX"
     },
     {
-      "text" : "targetY",
+      "text" : "targetY"
     },
     {
-      "text" : "text-anchor",
+      "text" : "text-anchor"
     },
     {
-      "text" : "text-decoration",
+      "text" : "text-decoration"
     },
     {
-      "text" : "text-rendering",
+      "text" : "text-rendering"
     },
     {
-      "text" : "textLength",
+      "text" : "textLength"
     },
     {
-      "text" : "textLength",
+      "text" : "textLength"
     },
     {
-      "text" : "title",
+      "text" : "title"
     },
     {
-      "text" : "to",
+      "text" : "to"
     },
     {
-      "text" : "transform",
+      "text" : "transform"
     },
     {
-      "text" : "transform=\"matrix(1,0,0,1,0,0)\"",
+      "text" : "transform=\"matrix(1,0,0,1,0,0)\""
     },
     {
-      "text" : "transform=\"rotate(0)\"",
+      "text" : "transform=\"rotate(0)\""
     },
     {
-      "text" : "transform=\"scale(1,1)\"",
+      "text" : "transform=\"scale(1,1)\""
     },
     {
-      "text" : "transform=\"skewX(0)\"",
+      "text" : "transform=\"skewX(0)\""
     },
     {
-      "text" : "transform=\"skewY(0)\"",
+      "text" : "transform=\"skewY(0)\""
     },
     {
-      "text" : "transform=\"translate(0,0)\"",
+      "text" : "transform=\"translate(0,0)\""
     },
     {
-      "text" : "type",
+      "text" : "type"
     },
     {
-      "text" : "u1",
+      "text" : "u1"
     },
     {
-      "text" : "u2",
+      "text" : "u2"
     },
     {
-      "text" : "underline-position",
+      "text" : "underline-position"
     },
     {
-      "text" : "underline-thickness",
+      "text" : "underline-thickness"
     },
     {
-      "text" : "unicode",
+      "text" : "unicode"
     },
     {
-      "text" : "unicode-bidi",
+      "text" : "unicode-bidi"
     },
     {
-      "text" : "unicode-range",
+      "text" : "unicode-range"
     },
     {
-      "text" : "units-per-em",
+      "text" : "units-per-em"
     },
     {
-      "text" : "v-alphabetic",
+      "text" : "v-alphabetic"
     },
     {
-      "text" : "v-hanging",
+      "text" : "v-hanging"
     },
     {
-      "text" : "v-ideographic",
+      "text" : "v-ideographic"
     },
     {
-      "text" : "v-mathematical",
+      "text" : "v-mathematical"
     },
     {
-      "text" : "values",
+      "text" : "values"
     },
     {
-      "text" : "version",
+      "text" : "version"
     },
     {
-      "text" : "vert-adv-y",
+      "text" : "vert-adv-y"
     },
     {
-      "text" : "vert-origin-x",
+      "text" : "vert-origin-x"
     },
     {
-      "text" : "vert-origin-y",
+      "text" : "vert-origin-y"
     },
     {
-      "text" : "viewBox",
+      "text" : "viewBox"
     },
     {
-      "text" : "viewTarget",
+      "text" : "viewTarget"
     },
     {
-      "text" : "visibility",
+      "text" : "visibility"
     },
     {
-      "text" : "width",
+      "text" : "width"
     },
     {
-      "text" : "widths",
+      "text" : "widths"
     },
     {
-      "text" : "word-spacing",
+      "text" : "word-spacing"
     },
     {
-      "text" : "writing-mode",
+      "text" : "writing-mode"
     },
     {
-      "text" : "x",
+      "text" : "x"
     },
     {
-      "text" : "x-height",
+      "text" : "x-height"
     },
     {
-      "text" : "x1",
+      "text" : "x1"
     },
     {
-      "text" : "x2",
+      "text" : "x2"
     },
     {
-      "text" : "xChannelSelector",
+      "text" : "xChannelSelector"
     },
     {
-      "text" : "xlink:actuate",
+      "text" : "xlink:actuate"
     },
     {
-      "text" : "xlink:href",
+      "text" : "xlink:href"
     },
     {
-      "text" : "xlink:role",
+      "text" : "xlink:role"
     },
     {
-      "text" : "xlink:show",
+      "text" : "xlink:show"
     },
     {
-      "text" : "xlink:title",
+      "text" : "xlink:title"
     },
     {
-      "text" : "xlink:type",
+      "text" : "xlink:type"
     },
     {
-      "text" : "xml:base",
+      "text" : "xml:base"
     },
     {
-      "text" : "xml:lang",
+      "text" : "xml:lang"
     },
     {
-      "text" : "xml:space",
+      "text" : "xml:space"
     },
     {
-      "text" : "xmlns:dc=\"http://purl.org/dc/elements/1.1/\"",
+      "text" : "xmlns:dc=\"http://purl.org/dc/elements/1.1/\""
     },
     {
-      "text" : "xmlns:xlink=\"http://www.w3.org/1999/xlink\"",
+      "text" : "xmlns:xlink=\"http://www.w3.org/1999/xlink\""
     },
     {
-      "text" : "xmlns=\"http://www.w3.org/2000/svg\"",
+      "text" : "xmlns=\"http://www.w3.org/2000/svg\""
     },
     {
-      "text" : "y",
+      "text" : "y"
     },
     {
-      "text" : "y1",
+      "text" : "y1"
     },
     {
-      "text" : "y2",
+      "text" : "y2"
     },
     {
-      "text" : "yChannelSelector",
+      "text" : "yChannelSelector"
     },
     {
-      "text" : "z",
+      "text" : "z"
     },
     {
-      "text" : "zoomAndPan",
+      "text" : "zoomAndPan"
     }
   ]
 }

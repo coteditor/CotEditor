@@ -13,7 +13,7 @@
     {
       "beginString" : "<![CDATA[",
       "endString" : "]]>",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "commands" : [
@@ -37,7 +37,7 @@
     {
       "beginString" : "\"",
       "endString" : "\"",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",

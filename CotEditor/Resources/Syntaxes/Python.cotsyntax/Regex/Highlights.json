@@ -1085,7 +1085,7 @@
     {
       "beginString" : "\"\"\"",
       "endString" : "\"\"\"",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "'",
@@ -1094,7 +1094,7 @@
     {
       "beginString" : "'''",
       "endString" : "'''",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]",

@@ -12,7 +12,7 @@
       },
       {
         "begin" : "#",
-        "leadingOnly": true
+        "leadingOnly" : true
       }
     ]
   }

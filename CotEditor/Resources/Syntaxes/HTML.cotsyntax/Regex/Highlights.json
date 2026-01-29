@@ -1936,14 +1936,14 @@
     {
       "beginString" : "<?php",
       "endString" : "?>",
-      "isMultiline": true
+      "isMultiline" : true
     }
   ],
   "strings" : [
     {
       "beginString" : "\"",
       "endString" : "\"",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "(?<==)\\s*'.+'",

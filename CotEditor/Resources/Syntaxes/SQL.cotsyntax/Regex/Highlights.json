@@ -861,7 +861,7 @@
     {
       "beginString" : "'",
       "endString" : "'",
-      "isMultiline": true
+      "isMultiline" : true
     },
     {
       "beginString" : "b'",
