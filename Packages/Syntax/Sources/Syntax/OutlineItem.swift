@@ -78,8 +78,8 @@ extension Syntax.Outline.Kind {
         
         switch self {
             case .container: [.bold]
-            case .function: []
             case .value: []
+            case .function: []
             case .heading: []
             case .mark: [.bold]
             case .reference: []

@@ -234,7 +234,8 @@ private struct OutlineRowView: View {
             HStack(alignment: .firstTextBaseline, spacing: 0) {
                 Text(self.item.value.indent)
                 if let kind = self.item.value.kind {
-                    kind.icon(mode: .hierarchical)
+                    kind.icon()
+                        .accessibilityLabel(kind.label)
                         .padding(.trailing, 4)
                 }
                 Text(self.item.attributedString

@@ -85,12 +85,15 @@ public struct Syntax: Equatable, Sendable {
         public enum Kind: String, Sendable, CaseIterable, Codable {
             
             case container
-            case function
             case value
+            case function
             case heading
             case mark
             case reference
+            
             case separator
+            
+            public static let iconCases: [Self] = Self.allCases.dropLast()
         }
         
         

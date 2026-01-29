@@ -62,9 +62,19 @@ struct SyntaxOutlineEditView: View {
                         }
                         .tag(Optional<Syntax.Outline.Kind>.none)
                         
-                        Divider()
+                        Section {
+                            ForEach(Syntax.Outline.Kind.iconCases, id: \.self) { kind in
+                                Label {
+                                    Text(kind.label)
+                                } icon: {
+                                    kind.icon(mode: .palette)  // workaround
+                                }
+                                .tag(Optional(kind))
+                            }
+                        }
                         
-                        ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in
+                        Section {
+                            let kind = Syntax.Outline.Kind.separator
                             Label {
                                 Text(kind.label)
                             } icon: {
@@ -72,9 +82,11 @@ struct SyntaxOutlineEditView: View {
                             }
                             .tag(Optional(kind))
                         }
+                        
                     } currentValueLabel: {
                         if let selection = item.value.kind {
                             selection.icon(mode: .palette)  // workaround
+                                .accessibilityLabel(selection.label)
                         } else {
                             Image(systemName: "square")
                                 .symbolRenderingMode(.palette)
@@ -101,11 +113,17 @@ struct SyntaxOutlineEditView: View {
                 .width(min: 180, ideal: 240)
                 
                 TableColumn(String(localized: "Display Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
-                    RegexTextField(text: $item.value.template,
-                                   mode: .replacement(unescapes: false),
-                                   prompt: (item.value.kind == .separator) ? "–" : String(localized: "Entire match", table: "SyntaxEditor", comment: "placeholder for outline item table"))
+                    let isSeparator = (item.value.kind == .separator)
+                    
+                    RegexTextField(
+                        text: isSeparator ? .constant("") : $item.value.template,
+                        mode: .replacement(unescapes: false),
+                        prompt: isSeparator
+                            ? "–"
+                            : String(localized: "Entire match", table: "SyntaxEditor", comment: "placeholder for outline item table")
+                    )
                     .style(.table)
-                    .disabled(item.value.kind == .separator)
+                    .disabled(isSeparator)
                 }
                 .width(min: 40, ideal: 140)
                 

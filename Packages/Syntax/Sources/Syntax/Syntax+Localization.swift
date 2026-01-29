@@ -105,13 +105,13 @@ public extension Syntax.Outline.Kind {
                 String(localized: "Syntax.Outline.Kind.container.label",
                        defaultValue: "Container",
                        bundle: .module)
-            case .function:
-                String(localized: "Syntax.Outline.Kind.function.label",
-                       defaultValue: "Function",
-                       bundle: .module)
             case .value:
                 String(localized: "Syntax.Outline.Kind.value.label",
                        defaultValue: "Value",
+                       bundle: .module)
+            case .function:
+                String(localized: "Syntax.Outline.Kind.function.label",
+                       defaultValue: "Function",
                        bundle: .module)
             case .heading:
                 String(localized: "Syntax.Outline.Kind.heading.label",

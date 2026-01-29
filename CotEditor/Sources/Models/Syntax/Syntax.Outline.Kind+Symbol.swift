@@ -29,13 +29,12 @@ import Syntax
 
 extension Syntax.Outline.Kind {
     
-    func icon(mode: SymbolRenderingMode) -> some View {
+    func icon(mode: SymbolRenderingMode = .hierarchical) -> some View {
         
         Image(systemName: self.symbolName)
-            .symbolVariant(.square.fill)
+            .symbolVariant(self == .separator ? .none : .square.fill)
             .symbolRenderingMode(mode)
             .foregroundStyle(Color(nsColor: self.color))
-            .accessibilityLabel(self.label)
     }
     
     
@@ -50,9 +49,9 @@ extension Syntax.Outline.Kind {
         
         switch self {
             case .container: .systemBlue
-            case .function: .systemOrange
             case .value: .systemGreen
-            case .heading: .systemTeal
+            case .function: .systemOrange
+            case .heading: .systemBrown
             case .mark: .systemRed
             case .reference: .systemPurple
             case .separator: .systemGray
@@ -63,11 +62,11 @@ extension Syntax.Outline.Kind {
     private var symbolName: String {
         
         switch self {
-            case .container: "c"
-            case .function: "f"
+            case .container: "chevron.forward"
             case .value: "v"
-            case .heading: "arrowtriangle.forward"
-            case .mark: "dot"
+            case .function: "f"
+            case .heading: "bookmark"
+            case .mark: "flag"
             case .reference: "arrow.uturn.backward"
             case .separator: "minus"
         }
@@ -83,7 +82,7 @@ extension Syntax.Outline.Kind {
             Label {
                 Text(kind.label)
             } icon: {
-                kind.icon(mode: .hierarchical)
+                kind.icon()
             }
         }
     }
