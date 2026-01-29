@@ -42,7 +42,7 @@ actor RegexOutlineParser: OutlineParsing {
     }
     
     
-    // MARK: Public Methods
+    // MARK: OutlineParsing Methods
     
     /// Parses and returns outline items from the given source string using all configured outline extractors.
     ///
@@ -50,7 +50,7 @@ actor RegexOutlineParser: OutlineParsing {
     ///   - string: The full source text to analyze.
     /// - Returns: An array of `OutlineItem`.
     /// - Throws: `CancellationError`.
-    @concurrent func parseOutline(in string: String) async throws -> [OutlineItem] {
+    func parseOutline(in string: String) async throws -> [OutlineItem] {
         
         try await withThrowingTaskGroup { [extractors] group in
             for extractor in extractors {

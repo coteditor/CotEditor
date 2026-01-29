@@ -44,7 +44,7 @@ actor RegexHighlightParser: HighlightParsing {
     }
     
     
-    // MARK: Public Methods
+    // MARK: HighlightParsing Methods
     
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
@@ -53,7 +53,7 @@ actor RegexHighlightParser: HighlightParsing {
     ///   - range: The range where to parse.
     /// - Returns: A dictionary of ranges to highlight per syntax types.
     /// - Throws: `CancellationError`.
-    @concurrent func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
+    func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
         
         try await withThrowingTaskGroup { [extractors, nestables] group in
             group.addTask { try nestables.parseHighlights(in: string, range: range) }
