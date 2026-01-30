@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ public import Foundation
 /// This is similar to the IndexSet but preserving zero-width edited ranges.
 public struct EditedRangeSet: Sendable {
     
-    public private(set) var ranges: [NSRange] = []
+    private(set) var ranges: [NSRange] = []
     
     
     public init(range: NSRange? = nil) {
@@ -39,6 +39,13 @@ public struct EditedRangeSet: Sendable {
         if let range {
             self.ranges = [range]
         }
+    }
+    
+    
+    /// A Boolean value indicating whether the collection is empty.
+    public var isEmpty: Bool {
+        
+        self.ranges.isEmpty
     }
     
     

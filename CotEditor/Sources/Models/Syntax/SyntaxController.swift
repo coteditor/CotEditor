@@ -39,6 +39,17 @@ extension NSAttributedString.Key {
 
 @MainActor final class SyntaxController {
     
+    struct ParseTargets: OptionSet {
+        
+        var rawValue: Int
+        
+        static let highlight = Self(rawValue: 1 << 0)
+        static let outline   = Self(rawValue: 1 << 1)
+        
+        static let all: Self = [.highlight, .outline]
+    }
+    
+    
     // MARK: Public Properties
     
     private(set) var syntax: Syntax
@@ -50,19 +61,22 @@ extension NSAttributedString.Key {
     
     // MARK: Private Properties
     
-    private let minimumParseLength = 5_000
-    
     private let textStorage: NSTextStorage
     private var highlightParser: (any HighlightParsing)?
     private var outlineParser: (any OutlineParsing)?
     
-    private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
+    private var outlineParseTask: Task<Void, any Error>?
     private var invalidRanges: EditedRangeSet
     
     
     // MARK: Lifecycle
     
+    /// Creates a controller to manage syntax parsing for the given text storage and syntax.
+    ///
+    /// - Parameters:
+    ///   - textStorage: The text storage to modify with highlight attributes.
+    ///   - syntax: The syntax definition that provides parsers.
     init(textStorage: NSTextStorage, syntax: Syntax) {
         
         self.textStorage = textStorage
@@ -79,23 +93,30 @@ extension NSAttributedString.Key {
     }
     
     
-    /// Cancels all remaining tasks.
+    // MARK: Public Methods
+    
+    /// Cancels all remaining parsing tasks.
     func cancel() {
         
-        self.outlineParseTask?.cancel()
-        self.outlineParseTask = nil
         self.highlightParseTask?.cancel()
         self.highlightParseTask = nil
+        self.outlineParseTask?.cancel()
+        self.outlineParseTask = nil
     }
     
     
-    /// Updates the syntax definition for parsing.
+    /// Updates the syntax definition and resets parsing state.
     ///
     /// - Parameters:
-    ///   - syntax: The syntax.
+    ///   - syntax: The new syntax.
     func update(syntax: Syntax) {
         
         self.cancel()
+        
+        // clear current highlight
+        if self.highlightParser != nil {
+            self.textStorage.highlight([], theme: nil, in: self.textStorage.range)
+        }
         
         self.syntax = syntax
         self.highlightParser = syntax.highlightParser
@@ -103,40 +124,9 @@ extension NSAttributedString.Key {
         
         self.invalidateAll()
     }
-}
-
-
-// MARK: Outline
-
-extension SyntaxController {
     
-    /// Parses outline.
-    func updateOutline() {
-        
-        self.outlineParseTask?.cancel()
-        
-        guard
-            let parser = self.outlineParser,
-            !self.textStorage.range.isEmpty
-        else {
-            self.outlineItems = []
-            return
-        }
-        
-        self.outlineParseTask = Task {
-            self.outlineItems = nil
-            let string = self.textStorage.string.immutable
-            self.outlineItems = try await parser.parseOutline(in: string)
-        }
-    }
-}
-
-
-// MARK: Syntax Highlight
-
-extension SyntaxController {
     
-    /// Updates the ranges to update the syntax highlight.
+    /// Marks a range as needing re-highlighting, coalescing with prior edits.
     ///
     /// - Parameters:
     ///   - editedRange: The edited range.
@@ -150,7 +140,7 @@ extension SyntaxController {
     }
     
     
-    /// Make the entire text dirty for syntax highlighting.
+    /// Marks the entire text as dirty for syntax highlighting.
     func invalidateAll() {
         
         self.highlightParseTask?.cancel()
@@ -160,84 +150,139 @@ extension SyntaxController {
     }
     
     
-    /// Updates highlights around the invalid ranges.
-    func highlightIfNeeded() {
+    /// Triggers parsing for the requested targets, optionally debounced.
+    ///
+    /// - Parameters:
+    ///   - targets: The parsing tasks to perform.
+    ///   - withDelay: If `true`, applies a short debounce before parsing.
+    func parse(_ targets: ParseTargets = .all, withDelay: Bool = false) {
         
-        guard let invalidRange = self.invalidRanges.range else { return }
-        
-        self.highlightParseTask?.cancel()
-        self.highlightParseTask = Task {
-            guard let (highlights, range) = try await self.parseHighlights(around: invalidRange) else { return }
-            
-            self.invalidRanges.clear()
-            
-            for layoutManager in self.textStorage.layoutManagers {
-                layoutManager.apply(highlights: highlights, theme: self.theme, in: range)
-            }
+        if targets.contains(.outline) {
+            self.updateOutline(withDelay: withDelay)
+        }
+        if targets.contains(.highlight) {
+            self.highlightIfNeeded(withDelay: withDelay)
         }
     }
     
     
     // MARK: Private Methods
     
-    /// Updates highlights around the invalid ranges.
-    private func parseHighlights(around invalidRange: NSRange) async throws -> (highlights: [Highlight], range: NSRange)? {
+    /// Updates highlights around the invalid ranges if needed.
+    ///
+    /// - Parameters:
+    ///   - withDelay: If `true`, applies a short debounce before parsing.
+    private func highlightIfNeeded(withDelay: Bool = false) {
         
-        guard !self.textStorage.string.isEmpty else {
-            return nil
-        }
+        self.highlightParseTask?.cancel()
         
-        // just clear current highlight when no coloring required
-        guard let parser = self.highlightParser else {
-            return ([], self.textStorage.range)
-        }
+        guard !self.invalidRanges.isEmpty else { return }
         
-        // in case that wholeRange length becomes shorter than invalidRange
-        guard invalidRange.upperBound <= self.textStorage.length else {
-            Logger.app.debug("Invalid range \(invalidRange.description) for \(self.textStorage.length) length textStorage is passed to \(#function)")
-            return nil
-        }
-        
-        let highlightRange: NSRange = {
-            let wholeRange = self.textStorage.range
-            
-            if invalidRange == wholeRange || wholeRange.length <= self.minimumParseLength {
-                return wholeRange
+        self.highlightParseTask = Task { [unowned self] in
+            if withDelay {
+                // -> Perform not in the same run loop at least to give layoutManagers time to update their values.
+                try await Task.sleep(for: .seconds(0.02))  // debounce
             }
             
-            var highlightRange = (self.textStorage.string as NSString).lineRange(for: invalidRange)
+            guard
+                !self.textStorage.range.isEmpty,
+                let parser = self.highlightParser,
+                let invalidRange = self.invalidRanges.range
+            else { return }
             
-            // expand highlight range if the characters just before/after it is the same syntax type
-            if let layoutManager = self.textStorage.layoutManagers.first {
-                if highlightRange.lowerBound > 0,
-                   let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
-                {
-                    highlightRange = NSRange(effectiveRange.lowerBound..<highlightRange.upperBound)
-                }
-                
-                if highlightRange.upperBound < wholeRange.upperBound,
-                   let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
-                {
-                    highlightRange = NSRange(highlightRange.lowerBound..<effectiveRange.upperBound)
-                }
+            // in case that wholeRange length becomes shorter than invalidRange
+            guard invalidRange.upperBound <= self.textStorage.length else {
+                Logger.app.debug("Invalid range \(invalidRange.description) for \(self.textStorage.length) length textStorage is passed to \(#function)")
+                return
             }
             
-            return if highlightRange.upperBound < self.minimumParseLength {
-                NSRange(0..<highlightRange.upperBound)
-            } else {
-                highlightRange
+            let highlightRange = self.textStorage.expandHighlightRange(for: invalidRange, bufferLength: 2_000)
+            
+            // parse in background
+            let string = self.textStorage.string.immutable
+            let highlights = try await parser.parseHighlights(in: string, range: highlightRange)
+            
+            self.textStorage.highlight(highlights, theme: self.theme, in: highlightRange)
+            self.invalidRanges.clear()
+        }
+    }
+    
+    
+    /// Parses the document outline and publishes the result.
+    ///
+    /// - Parameters:
+    ///   - withDelay: If `true`, applies a short debounce before parsing.
+    private func updateOutline(withDelay: Bool = false) {
+        
+        self.outlineParseTask?.cancel()
+        
+        guard
+            !self.textStorage.range.isEmpty,
+            let parser = self.outlineParser
+        else {
+            self.outlineItems = []
+            return
+        }
+        
+        self.outlineParseTask = Task {
+            if withDelay {
+                try await Task.sleep(for: .seconds(0.4))  // debounce
             }
-        }()
+            self.outlineItems = nil
+            let string = self.textStorage.string.immutable
+            self.outlineItems = try await parser.parseOutline(in: string)
+        }
+    }
+}
+
+
+// MARK: -
+
+private extension NSTextStorage {
+    
+    /// Applies temporary highlight attributes for the given highlights to all layout managers.
+    ///
+    /// - Parameters:
+    ///   - highlights: The highlights to apply.
+    ///   - theme: The theme used to convert highlight types to visual attributes.
+    ///   - range: The target range to update.
+    @MainActor func highlight(_ highlights: [Highlight], theme: Theme?, in range: NSRange) {
         
-        // make sure the string is immutable
-        // -> The `string` of NSTextStorage is actually a mutable object,
-        //    and it can lead to a crash when a mutable string is passed to
-        //    an NSRegularExpression instance (2016-11, macOS 10.12.1).
-        let string = self.textStorage.string.immutable
+        for layoutManager in self.layoutManagers {
+            layoutManager.apply(highlights: highlights, theme: theme, in: range)
+        }
+    }
+    
+    
+    /// Expands a dirty range to a safe highlighting range.
+    ///
+    /// - Parameters:
+    ///   - invalidRange: The range that was edited or invalidated.
+    ///   - bufferLength: The number of characters to extend on both sides.
+    /// - Returns: A range expanded to include entire lines and adjacent tokens of the same syntax type.
+    @MainActor func expandHighlightRange(for invalidRange: NSRange, bufferLength: Int = 0) -> NSRange {
         
-        // parse in background
-        let highlights = try await parser.parseHighlights(in: string, range: highlightRange)
+        let lowerBound = max(invalidRange.lowerBound - bufferLength, 0)
+        let upperBound = min(invalidRange.upperBound + bufferLength, self.length)
+        var range = (self.string as NSString).lineRange(for: NSRange(lowerBound..<upperBound))
         
-        return (highlights, highlightRange)
+        guard
+            range.length != self.length,
+            let layoutManager = self.layoutManagers.first
+        else { return range }
+        
+        // expand the range if the characters just before/after it is the same syntax type
+        if range.lowerBound > 0,
+           let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: range.lowerBound)
+        {
+            range = NSRange(effectiveRange.lowerBound..<range.upperBound)
+        }
+        if range.upperBound < self.length,
+           let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: range.upperBound)
+        {
+            range = NSRange(range.lowerBound..<effectiveRange.upperBound)
+        }
+        
+        return range
     }
 }
