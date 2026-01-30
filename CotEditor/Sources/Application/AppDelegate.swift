@@ -482,26 +482,21 @@ extension Logger {
         
         SyntaxManager.shared.$settingNames
             .map { names in
-                names.map { name in
-                    let item = NSMenuItem(title: name, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                let action = #selector((any SyntaxChanging).changeSyntax)
+                let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: action, keyEquivalent: "")
+                noneItem.representedObject = SyntaxName.none
+                let items = names.map { name in
+                    let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
                     item.representedObject = name
                     return item
                 }
-            }
-            .sink { [weak self] items in
-                guard let menu = self?.syntaxesMenu else { return }
                 
-                let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
-                let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
-                noneItem.representedObject = SyntaxName.none
-                
-                menu.removeAllItems()
-                menu.addItem(noneItem)
-                menu.addItem(.separator())
-                menu.items += items
-                menu.addItem(.separator())
-                menu.addItem(recolorItem!)
+                return [
+                    noneItem,
+                    .separator()
+                ] + items
             }
+            .assign(to: \.items, on: self.syntaxesMenu!)
             .store(in: &self.menuUpdateObservers)
         
         ThemeManager.shared.$settingNames

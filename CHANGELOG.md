@@ -20,6 +20,7 @@
 - Improve the syntax highlighting algorithm.
 - Update built-in syntaxes.
 - [trivial] Adjust the About CotEditor window.
+- [trivial] Move the Recolor All command from the Format > Syntax submenu to the Format menu.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
 - [trivial] Tweak the background color of the default Anura theme.
 
