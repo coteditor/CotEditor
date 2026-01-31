@@ -32,6 +32,9 @@ public typealias Highlight = ValueRange<SyntaxType>
 
 public protocol HighlightParsing: Actor {
     
+    nonisolated var needsHighlightBuffer: Bool { get }
+    
+    
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
     /// - Parameters:

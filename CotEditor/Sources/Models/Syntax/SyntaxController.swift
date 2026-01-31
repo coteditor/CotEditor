@@ -202,7 +202,9 @@ extension NSAttributedString.Key {
                 return
             }
             
-            let highlightRange = self.textStorage.expandHighlightRange(for: invalidRange, bufferLength: 2_000)
+            let highlightRange = parser.needsHighlightBuffer
+                ? self.textStorage.expandHighlightRange(for: invalidRange, bufferLength: 2_000)
+                : invalidRange
             
             // parse in background
             let string = self.textStorage.string.immutable

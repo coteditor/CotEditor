@@ -29,6 +29,11 @@ import StringUtils
 
 actor RegexHighlightParser: HighlightParsing {
     
+    // MARK: Internal Properties
+    
+    nonisolated let needsHighlightBuffer: Bool = true
+    
+    
     // MARK: Private Properties
     
     private let extractors: [SyntaxType: [any HighlightExtractable]]

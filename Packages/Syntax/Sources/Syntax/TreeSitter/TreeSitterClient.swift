@@ -32,6 +32,11 @@ import SwiftTreeSitterLayer
 
 actor TreeSitterClient: HighlightParsing {
     
+    // MARK: Internal Properties
+    
+    nonisolated let needsHighlightBuffer: Bool = false
+    
+    
     // MARK: Private Properties
     
     private let layer: LanguageLayer
