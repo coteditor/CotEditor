@@ -48,7 +48,7 @@ actor TreeSitterClient: HighlightParsing {
         
         try Task.checkCancellation()
         
-        return try self.layer.highlights(in: range, provider: string.predicateTextProvider)
+        return try self.layer.highlights(in: range, provider: (string as NSString).predicateNSStringProvider)
             .compactMap { namedRange in
                 guard
                     let baseName = namedRange.nameComponents.first,
@@ -59,5 +59,14 @@ actor TreeSitterClient: HighlightParsing {
             }
             .sorted(using: [KeyPathComparator(\.range.location),
                             KeyPathComparator(\.range.length)])
+    }
+}
+
+
+private extension NSString {
+    
+    var predicateNSStringProvider: SwiftTreeSitter.Predicate.TextProvider {
+        
+        { nsRange, _ in self.substring(with: nsRange) }
     }
 }
