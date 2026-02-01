@@ -196,13 +196,13 @@ extension SettingFileManaging {
     /// - Throws: `InvalidNameError` if the name is invalid.
     func validate(settingName: String, originalName: String?) throws(InvalidNameError) {
         
+        if settingName.isEmpty {
+            throw .empty
+        }
+        
         // just case difference is allowed
         if originalName?.caseInsensitiveCompare(settingName) == .orderedSame {
             return
-        }
-        
-        if settingName.isEmpty {
-            throw .empty
         }
         
         if (settingName + (Setting.fileType.preferredFilenameExtension.map({ "." + $0 }) ?? "")).utf16.count > Int(NAME_MAX) {

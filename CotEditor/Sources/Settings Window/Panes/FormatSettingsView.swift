@@ -214,6 +214,22 @@ struct FormatSettingsView: View {
 
 private struct SyntaxListView: View {
     
+    private enum EditingMode: Identifiable {
+        
+        case new
+        case edit(SettingState)
+        
+        
+        var id: String? {
+            
+            switch self {
+                case .new: nil
+                case .edit(let state): state.name
+            }
+        }
+    }
+    
+    
     var settingNames: [String]
     var manager: SyntaxManager
     
@@ -223,7 +239,7 @@ private struct SyntaxListView: View {
     @State private var selection: SettingState?
     @State private var exportingItem: TransferableSyntax?
     @State private var deletingItem: String?
-    @State private var editingMode: SyntaxEditView.Mode?
+    @State private var editingMode: EditingMode?
     
     @State private var isExporterPresented = false
     @State private var isImporterPresented = false
@@ -374,8 +390,10 @@ private struct SyntaxListView: View {
             let state: SettingState? = if case .edit(let state) = mode { state } else { nil }
             let syntax = state.flatMap { try? self.manager.setting(name: $0.name) }
             
-            SyntaxEditView(mode: mode, syntax: syntax, manager: self.manager) { syntax, name in
+            SyntaxEditView(syntax: syntax, name: state?.name, isBundled: state?.isBundled ?? false) { syntax, name in
                 try self.manager.save(setting: syntax, name: name, oldName: state?.name)
+            } validationAction: { name in
+                try self.manager.validate(settingName: name, originalName: state?.name)
             }
         }
         .sheet(isPresented: $isFileMappingConflictPresented) {

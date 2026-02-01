@@ -29,21 +29,7 @@ import Syntax
 struct SyntaxEditView: View {
     
     typealias SaveAction = (_ syntax: Syntax, _ name: String) throws -> Void
-    
-    enum Mode: Identifiable {
-        
-        case new
-        case edit(SettingState)
-        
-        
-        var id: String? {
-            
-            switch self {
-                case .new: nil
-                case .edit(let state): state.name
-            }
-        }
-    }
+    typealias NameValidationAction = (_ name: String) throws -> Void
     
     
     enum Pane {
@@ -74,16 +60,13 @@ struct SyntaxEditView: View {
     }
     
     
-    @State var syntax: SyntaxObject
-    var originalName: String?
-    var isBundled: Bool = false
-    var saveAction: SaveAction
-    
-    
-    private var manager: SyntaxManager
-    
     @Environment(\.dismiss) private var dismiss
+    
+    private var isBundled: Bool = false
+    private var saveAction: SaveAction
+    private var validationAction: NameValidationAction
 
+    @State private var syntax: SyntaxObject
     @State private var name: String = ""
     @State private var message: String?
     
@@ -94,18 +77,13 @@ struct SyntaxEditView: View {
     @FocusState private var isNameFieldFocused: Bool
     
     
-    init(mode: Mode, syntax: Syntax? = nil, manager: SyntaxManager, saveAction: @escaping SaveAction) {
+    init(syntax: Syntax? = nil, name: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction, validationAction: @escaping NameValidationAction = { _ in }) {
         
-        switch mode {
-            case .new:
-                break
-            case .edit(let state):
-                self.originalName = state.name
-                self.isBundled = state.isBundled
-        }
         self.syntax = SyntaxObject(value: syntax)
-        self.manager = manager
+        self.name = name ?? ""
+        self.isBundled = isBundled
         self.saveAction = saveAction
+        self.validationAction = validationAction
     }
     
     
@@ -139,7 +117,7 @@ struct SyntaxEditView: View {
                             .help(String(localized: "Built-in syntaxes can’t be renamed.", table: "SyntaxEditor",
                                          comment: "tooltip for name field for bundled syntax"))
                     } else {
-                        TextField(text: $name, label: EmptyView.init)
+                        TextField(String(localized: "Syntax name", table: "SyntaxEditor"), text: $name)
                             .focused($isNameFieldFocused)
                             .fontWeight(.medium)
                             .frame(minWidth: 80, maxWidth: 160)
@@ -177,9 +155,6 @@ struct SyntaxEditView: View {
                     }
                 }.scenePadding(.horizontal)
             }.scenePadding(.vertical)
-        }
-        .onAppear {
-            self.name = self.originalName ?? ""
         }
         .onChange(of: self.pane) {
             self.errors = self.syntax.value.validate()
@@ -277,7 +252,7 @@ struct SyntaxEditView: View {
         if self.isBundled { return true }  // cannot edit syntax name
         
         do {
-            try self.manager.validate(settingName: name, originalName: self.originalName)
+            try self.validationAction(name)
         } catch {
             self.message = error.localizedDescription
             return false
@@ -353,5 +328,5 @@ extension SyntaxEditView.Pane {
 // MARK: - Preview
 
 #Preview {
-    SyntaxEditView(mode: .new, manager: .shared) { _, _ in }
+    SyntaxEditView { _, _ in }
 }
