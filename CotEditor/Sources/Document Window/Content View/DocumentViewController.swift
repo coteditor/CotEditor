@@ -142,7 +142,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.observers = [
             // observe syntax change
             self.document.$syntaxName
-                .sink { [weak self] _ in self?.document.syntaxController.parse() },
+                .sink { [weak self] _ in self?.document.syntaxController.parseIfNeeded() },
             
             // observe theme change
             UserDefaults.standard.publisher(for: .theme, initial: false)
@@ -446,7 +446,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             guard self.focusedTextView?.hasMarkedText() != true else { return }
             
             self.document.counter.invalidateContent()
-            self.document.syntaxController.parse(withDelay: true)
+            self.document.syntaxController.parseIfNeeded(withDelay: true)
         }
     }
     
@@ -612,7 +612,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @IBAction func recolorAll(_ sender: Any?) {
         
         self.document.syntaxController.invalidateAll()
-        self.document.syntaxController.parse()
+        self.document.syntaxController.parseIfNeeded()
     }
     
     

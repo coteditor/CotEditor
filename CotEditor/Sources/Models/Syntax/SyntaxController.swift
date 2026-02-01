@@ -143,7 +143,7 @@ extension NSAttributedString.Key {
     ///
     /// - Parameters:
     ///   - withDelay: If `true`, applies a short debounce before parsing.
-    func parse(withDelay: Bool = false) {
+    func parseIfNeeded(withDelay: Bool = false) {
         
         self.updateOutline(withDelay: withDelay)
         self.highlightIfNeeded(withDelay: withDelay)
