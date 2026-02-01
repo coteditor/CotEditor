@@ -119,4 +119,42 @@ struct RegexHighlightExtractorsTests {
             _ = try await task.value
         }
     }
+    
+    
+    @Suite struct WordInitializer {
+        
+        let source = """
+                     for format form if gift before
+                     for. (form) ifs
+                     LET Let let
+                     """
+        
+        
+        @Test func caseSensitive() async throws {
+            
+            let words = [
+                "for",
+                "form",  // longer word should take precedence
+                "if",
+            ]
+            let extractor = try Syntax.Highlight(words: words, ignoreCase: false).extractor
+            let matches = try extractor.ranges(in: source, range: source.nsRange)
+                .map { (self.source as NSString).substring(with: $0) }
+            
+            #expect(matches == ["for", "form", "if", "for", "form"])
+        }
+        
+        
+        @Test func wordsInitializer() async throws {
+            
+            let words = [
+                "let",
+            ]
+            let extractor = try Syntax.Highlight(words: words, ignoreCase: true).extractor
+            let matches = try extractor.ranges(in: self.source, range: source.nsRange)
+                .map { (source as NSString).substring(with: $0) }
+            
+            #expect(matches == ["LET", "Let", "let"])
+        }
+    }
 }

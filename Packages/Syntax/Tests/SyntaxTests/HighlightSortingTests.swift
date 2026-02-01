@@ -49,11 +49,10 @@ struct HighlightSortingTests {
         ]
         let result = try Highlight.highlights(dictionary: dict)
         
-        #expect(result == [
-            Highlight(value: .strings, range: NSRange(location: 0, length: 3)),
-            Highlight(value: .comments, range: NSRange(location: 5, length: 2)),
-            Highlight(value: .keywords, range: NSRange(location: 10, length: 2)),
-        ])
+        #expect(result.count == 3)
+        #expect(result[0] == Highlight(value: .strings, range: NSRange(location: 0, length: 3)))
+        #expect(result[1] == Highlight(value: .comments, range: NSRange(location: 5, length: 2)))
+        #expect(result[2] == Highlight(value: .keywords, range: NSRange(location: 10, length: 2)))
     }
     
     
@@ -67,26 +66,21 @@ struct HighlightSortingTests {
         ]
         let result = try Highlight.highlights(dictionary: dict)
         
-        // 1) No overlaps among output
+        // no overlaps among output
         for (index, range) in result.map(\.range).enumerated() {
             for nextRange in result[(index + 1)...].map(\.range) {
                 #expect(!(range.lowerBound < nextRange.upperBound && nextRange.lowerBound < range.upperBound))
             }
         }
         
-        // 2) Coverage equals union of inputs
-        func union(_ ranges: [NSRange]) -> IndexSet {
-            ranges.reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
-        }
-        let inputUnion = union(dict.values.flatMap(\.self))
-        let outputUnion = union(result.map(\.range))
-        #expect(inputUnion == outputUnion)
+        // coverage equals union of inputs
+        #expect(result.map(\.range).union == dict.flatMap(\.value).union)
         
-        // 3) Deterministic order by location
+        // deterministic order by location
         let sortedByLocation = result.sorted(using: KeyPathComparator(\.range.location))
         #expect(result == sortedByLocation)
         
-        // 4) Sanity check that some portion near 5..9 is attributed to exactly one type
+        // sanity check that some portion near 5..9 is attributed to exactly one type
         let coveredAt6 = result.filter { $0.range.contains(6) }
         #expect(coveredAt6.count == 1)
     }
@@ -143,5 +137,16 @@ struct HighlightSortingTests {
         await #expect(throws: CancellationError.self) {
             _ = try await task.value
         }
+    }
+}
+
+
+// MARK: -
+
+private extension [NSRange] {
+    
+    var union: IndexSet {
+        
+        self.reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
     }
 }

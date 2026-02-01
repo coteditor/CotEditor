@@ -100,7 +100,7 @@ extension Syntax {
 }
 
 
-private extension Syntax.Highlight {
+extension Syntax.Highlight {
     
     /// Creates a regex type definition from simple words by considering non-word characters around words.
     init(words: [String], ignoreCase: Bool) {
