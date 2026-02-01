@@ -104,7 +104,7 @@ extension NSAttributedString.Key {
         
         // clear current highlight
         if self.highlightParser != nil {
-            self.textStorage.highlight([], theme: nil, in: self.textStorage.range)
+            self.textStorage.apply(highlights: [], theme: nil, in: self.textStorage.range)
         }
         
         self.syntax = syntax
@@ -186,7 +186,7 @@ extension NSAttributedString.Key {
             let string = self.textStorage.string.immutable
             let highlights = try await parser.parseHighlights(in: string, range: highlightRange)
             
-            self.textStorage.highlight(highlights, theme: self.theme, in: highlightRange)
+            self.textStorage.apply(highlights: highlights, theme: self.theme, in: highlightRange)
             self.invalidRanges.clear()
         }
     }
@@ -223,20 +223,6 @@ extension NSAttributedString.Key {
 // MARK: -
 
 private extension NSTextStorage {
-    
-    /// Applies temporary highlight attributes for the given highlights to all layout managers.
-    ///
-    /// - Parameters:
-    ///   - highlights: The highlights to apply.
-    ///   - theme: The theme used to convert highlight types to visual attributes.
-    ///   - range: The target range to update.
-    @MainActor func highlight(_ highlights: [Highlight], theme: Theme?, in range: NSRange) {
-        
-        for layoutManager in self.layoutManagers {
-            layoutManager.apply(highlights: highlights, theme: theme, in: range)
-        }
-    }
-    
     
     /// Expands a dirty range to a safe highlighting range.
     ///

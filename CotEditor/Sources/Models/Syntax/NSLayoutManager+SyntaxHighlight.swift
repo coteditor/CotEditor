@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,10 +24,27 @@
 //
 
 import Foundation
-import AppKit.NSLayoutManager
+import AppKit
 import StringUtils
 import Syntax
 import ValueRange
+
+extension NSTextStorage {
+    
+    /// Applies highlights as temporary attributes to all layout managers.
+    ///
+    /// - Parameters:
+    ///   - highlights: The highlight definitions to apply.
+    ///   - theme: The theme to apply, or `nil` to add just `syntaxType` attributes.
+    ///   - range: The range to update syntax highlight.   
+    @MainActor func apply(highlights: [Highlight], theme: Theme?, in range: NSRange) {
+        
+        for layoutManager in self.layoutManagers {
+            layoutManager.apply(highlights: highlights, theme: theme, in: range)
+        }
+    }
+}
+
 
 extension NSLayoutManager {
     
