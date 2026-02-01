@@ -430,6 +430,12 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Syntax" id="304"/>
                                         </menuItem>
+                                        <menuItem title="Reset Syntax Analysis" secondaryImage="paintbrush" catalog="system" keyEquivalent="r" id="458">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="recolorAll:" target="Ady-hI-5gd" id="ma3-X0-tjk"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="453"/>
                                         <menuItem title="Font" secondaryImage="textformat" catalog="system" id="410">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -492,12 +498,6 @@ Gw
                                         <menuItem title="Theme" secondaryImage="paintpalette" catalog="system" id="8z7-Jc-agP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Theme" id="165-HJ-Xty"/>
-                                        </menuItem>
-                                        <menuItem title="Recolor All" secondaryImage="paintbrush" catalog="system" keyEquivalent="r" id="458">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="recolorAll:" target="Ady-hI-5gd" id="ma3-X0-tjk"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="9GY-M7-uHl"/>
                                         <menuItem title="Tab Width" secondaryImage="tab.forward" id="djM-fI-MkN">

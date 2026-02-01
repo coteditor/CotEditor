@@ -608,11 +608,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Action Messages
     
-    /// Recolors whole document.
+    /// Reset the syntax parse for the entire document.
     @IBAction func recolorAll(_ sender: Any?) {
         
         self.document.syntaxController.invalidateAll()
-        self.document.syntaxController.parse(.highlight)
+        self.document.syntaxController.parse()
     }
     
     

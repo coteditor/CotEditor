@@ -9722,108 +9722,108 @@
       }
     },
     "458.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Recolor All\"; ObjectID = \"458\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Reset Syntax Analysis\"; ObjectID = \"458\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Přebarvit vše"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alles umfärben"
+            "value" : "Syntaxanalyse zurücksetzen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Recolor All"
+            "value" : "Reset Syntax Analysis"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recolour All"
+            "value" : "Reset Syntax Analysis"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Colorear todo"
+            "state" : "needs_review",
+            "value" : "Restablecer el análisis de sintaxis"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tout recolorer"
+            "state" : "needs_review",
+            "value" : "Réinitialiser l’analyse syntaxique"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Ricolora tutto"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "再カラーリング"
+            "value" : "シンタックス解析をリセット"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "다시 칠하기"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Herkleur alles"
+            "state" : "needs_review",
+            "value" : "Stel syntaxisanalyse opnieuw in"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Ponownie pokoloruj wszystko"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Recolorir Tudo"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Изменить цвета"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tümünü Yeniden Renklendir"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "全部重新着色"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "全部重新著色"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "全部重新著色"
           }
         }

@@ -39,17 +39,6 @@ extension NSAttributedString.Key {
 
 @MainActor final class SyntaxController {
     
-    struct ParseTargets: OptionSet {
-        
-        var rawValue: Int
-        
-        static let highlight = Self(rawValue: 1 << 0)
-        static let outline   = Self(rawValue: 1 << 1)
-        
-        static let all: Self = [.highlight, .outline]
-    }
-    
-    
     // MARK: Public Properties
     
     private(set) var syntax: Syntax
@@ -150,21 +139,16 @@ extension NSAttributedString.Key {
     }
     
     
-    /// Triggers parsing for the requested targets, optionally debounced.
+    /// Triggers parsing, optionally debounced.
     ///
     /// - Parameters:
-    ///   - targets: The parsing tasks to perform.
     ///   - withDelay: If `true`, applies a short debounce before parsing.
-    func parse(_ targets: ParseTargets = .all, withDelay: Bool = false) {
+    func parse(withDelay: Bool = false) {
         
-        if targets.contains(.outline) {
-            self.updateOutline(withDelay: withDelay)
-        }
-        if targets.contains(.highlight) {
-            self.highlightIfNeeded(withDelay: withDelay)
-        }
+        self.updateOutline(withDelay: withDelay)
+        self.highlightIfNeeded(withDelay: withDelay)
     }
-    
+
     
     // MARK: Private Methods
     
