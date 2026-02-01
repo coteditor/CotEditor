@@ -345,11 +345,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         let syntaxNames = SyntaxManager.shared.settingNames
         let recentSyntaxNames = UserDefaults.standard[.recentSyntaxNames]
-        let action = #selector(Document.changeSyntax)
+        let action = #selector((any SyntaxChanging).changeSyntax)
         
         menu.removeAllItems()
         
-        let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+        let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: action, keyEquivalent: "")
         noneItem.representedObject = SyntaxName.none
         
         menu.addItem(noneItem)
