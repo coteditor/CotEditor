@@ -53,25 +53,23 @@ extension Syntax {
                 var caseInsensitiveWords: [String] = []
                 
                 for highlight in item.value {
-                    // extract paired delimiters such as quotes
-                    if let token = NestableToken(highlight: highlight),
-                       !nestables.keys.contains(token)  // not registered yet
+                    if // extract paired delimiters such as quotes
+                        let token = NestableToken(highlight: highlight),
+                        !nestables.keys.contains(token)  // not registered yet
                     {
                         nestables[token] = item.key
-                        continue
-                    }
-                    
-                    // extract simple words
-                    if !highlight.isRegularExpression, highlight.end == nil {
+                        
+                    } else if // extract simple words
+                        !highlight.isRegularExpression, highlight.end == nil
+                    {
                         if highlight.ignoreCase {
                             caseInsensitiveWords.append(highlight.begin)
                         } else {
                             words.append(highlight.begin)
                         }
-                        continue
+                    } else {
+                        highlights.append(highlight)
                     }
-                    
-                    highlights.append(highlight)
                 }
                 
                 // transform simple word highlights to single regex for performance reasons
@@ -81,8 +79,9 @@ extension Syntax {
                 if !caseInsensitiveWords.isEmpty {
                     highlights.append(Syntax.Highlight(words: caseInsensitiveWords, ignoreCase: true))
                 }
-                
-                dict[item.key] = highlights
+                if !highlights.isEmpty {
+                    dict[item.key] = highlights
+                }
             }
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
