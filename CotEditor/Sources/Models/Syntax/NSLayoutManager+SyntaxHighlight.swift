@@ -36,7 +36,7 @@ extension NSTextStorage {
     /// - Parameters:
     ///   - highlights: The highlight definitions to apply.
     ///   - theme: The theme to apply, or `nil` to add just `syntaxType` attributes.
-    ///   - range: The range to update syntax highlight.   
+    ///   - range: The range to update syntax highlight. 
     @MainActor func apply(highlights: [Highlight], theme: Theme?, in range: NSRange) {
         
         for layoutManager in self.layoutManagers {
