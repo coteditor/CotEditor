@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ import AppKit.NSEvent
     
     
     /// Tests .defaultKeyBindings expectedly contains key bindings determined in CotEditor.
-    @Test func defaultKeyBindings() async throws {
+    @Test func defaultKeyBindings() throws {
         
         let shortcut = try #require(Shortcut("k", modifiers: .command))
         let shortcuts = self.keyBindings.compactMap(\.shortcut)
@@ -79,7 +79,7 @@ import AppKit.NSEvent
     }
     
     
-    @Test func reservedShortcuts() async {
+    @Test func reservedShortcuts() {
         
         for keyBinding in self.keyBindings {
             guard let shortcut = keyBinding.shortcut else { continue }
