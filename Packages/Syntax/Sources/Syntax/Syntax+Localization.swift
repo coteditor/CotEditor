@@ -34,13 +34,11 @@ public extension Syntax.Kind {
             case .general:
                 String(localized: "Syntax.Kind.general.label",
                        defaultValue: "General",
-                       bundle: .module,
-                       comment: "syntax kind")
+                       bundle: .module)
             case .code:
                 String(localized: "Syntax.Kind.code.label",
                        defaultValue: "Code",
-                       bundle: .module,
-                       comment: "syntax kind")
+                       bundle: .module)
         }
     }
 }

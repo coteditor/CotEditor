@@ -2,7 +2,6 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Syntax.Kind.code.label" : {
-      "comment" : "syntax kind",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -110,7 +109,6 @@
       }
     },
     "Syntax.Kind.general.label" : {
-      "comment" : "syntax kind",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
