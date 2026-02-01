@@ -27,7 +27,7 @@
 import Foundation
 import StringUtils
 
-protocol HighlightExtractable: Sendable {
+protocol HighlightExtractable: Sendable, Equatable {
     
     func ranges(in string: String, range: NSRange) throws -> [NSRange]
 }
@@ -56,12 +56,12 @@ extension Syntax.Highlight {
 }
 
 
-private struct BeginEndStringExtractor: HighlightExtractable {
+struct BeginEndStringExtractor: HighlightExtractable {
     
-    var begin: String
-    var end: String
-    var options: String.CompareOptions
-    var isMultiline: Bool
+    private var begin: String
+    private var end: String
+    private var options: String.CompareOptions
+    private var isMultiline: Bool
     
     
     init(begin: String, end: String, ignoresCase: Bool, isMultiline: Bool) {
@@ -104,7 +104,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
 }
 
 
-private struct RegularExpressionExtractor: HighlightExtractable {
+struct RegularExpressionExtractor: HighlightExtractable {
     
     private var regex: NSRegularExpression
     
@@ -127,11 +127,11 @@ private struct RegularExpressionExtractor: HighlightExtractable {
 }
 
 
-private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
+struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     
-    var beginRegex: NSRegularExpression
-    var endRegex: NSRegularExpression
-    var isMultiline: Bool
+    private var beginRegex: NSRegularExpression
+    private var endRegex: NSRegularExpression
+    private var isMultiline: Bool
     
     
     init(beginPattern: String, endPattern: String, ignoresCase: Bool, isMultiline: Bool) throws {
