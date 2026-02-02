@@ -29,23 +29,34 @@ import Syntax
 
 extension Syntax.Outline.Kind {
     
+    /// Returns a SwiftUI view representing the kind as an SF Symbol.
+    ///
+    /// - Parameters:
+    ///   - mode: The symbol rendering mode to apply.
+    /// - Returns: A view that renders the symbol.
     func icon(mode: SymbolRenderingMode = .hierarchical) -> some View {
         
-        Image(systemName: self.symbolName)
+        self.symbol.image
             .symbolVariant(self == .separator ? .none : .square.fill)
             .symbolRenderingMode(mode)
             .foregroundStyle(Color(nsColor: self.color))
     }
     
     
+    /// Produces an AppKit `NSImage` for the kind symbol.
     var iconImage: NSImage {
         
-        NSImage(systemSymbolName: self.symbolName + ".square.fill", accessibilityDescription: self.label)!
+        self.symbol.nsImage(variant: self == .separator ? "" : ".square.fill",
+                            accessibilityDescription: self.label)!
             .withSymbolConfiguration(.init(hierarchicalColor: self.color))!
     }
+}
+
+
+private extension Syntax.Outline.Kind {
     
-    
-    private var color: NSColor {
+    /// The color for the symbol.
+    var color: NSColor {
         
         switch self {
             case .container: .systemBlue
@@ -59,16 +70,17 @@ extension Syntax.Outline.Kind {
     }
     
     
-    private var symbolName: String {
+    /// The base symbol used to represent the kind.
+    var symbol: SymbolResource {
         
         switch self {
-            case .container: "chevron.forward"
-            case .value: "v"
-            case .function: "f"
-            case .heading: "bookmark"
-            case .mark: "flag"
-            case .reference: "arrow.uturn.backward"
-            case .separator: "minus"
+            case .container: .system("chevron.forward")
+            case .value: .system("v")
+            case .function: .system("f")
+            case .heading: .resource(.listBulletSquareFill)
+            case .mark: .system("flag")
+            case .reference: .system("arrow.uturn.backward")
+            case .separator: .system("minus")
         }
     }
 }
