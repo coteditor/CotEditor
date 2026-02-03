@@ -3,6 +3,11 @@
 6.2.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve the stability.
+
+
 ### Fixes
 
 - [trivial] Fix the position of the Sidebar toolbar item.

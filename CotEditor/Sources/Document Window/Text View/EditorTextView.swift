@@ -1590,7 +1590,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         let string = self.string.immutable
         let selectedRange = self.selectedRange
-        let ranges: [NSRange] = try await Task.detached {
+        let task: Task<[NSRange], any Error> = .detached {
             guard (try! NSRegularExpression(pattern: #"\A\b\w.*\w\b\z"#))
                 .firstMatch(in: string, options: [.withTransparentBounds], range: selectedRange) != nil
             else { return [] }
@@ -1602,7 +1602,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             return try regex.cancellableMatches(in: string, range: string.range)
                 .map(\.range)
                 .filter { $0 != selectedRange }
-        }.value
+        }
+        let ranges: [NSRange] = try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
         
         guard
             let lower = ranges.first?.lowerBound,

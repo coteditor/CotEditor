@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -216,7 +216,7 @@ private extension IncompatibleCharactersView.Model {
     ///
     /// - Returns: An array of Item.
     /// - Throws: `CancellationError`
-    private func scan() async throws -> [ValueRange<IncompatibleCharacter>] {
+    private func scan() async throws -> [Item] {
         
         assert(Thread.isMainThread)
         
@@ -230,9 +230,15 @@ private extension IncompatibleCharactersView.Model {
         self.isScanning = true
         defer { self.isScanning = false }
         
-        return try await Task.detached { [string = string.immutable] in
+        let task: Task<[Item], any Error> = .detached { [string = string.immutable] in
             try string.charactersIncompatible(with: encoding)
-        }.value
+        }
+        
+        return try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
     }
 }
 
