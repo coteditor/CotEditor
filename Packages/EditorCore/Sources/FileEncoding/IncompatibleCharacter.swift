@@ -109,7 +109,7 @@ private extension NSString {
         
         try Task.checkCancellation()
         
-        let converted = self.roundTripLossy(in: range, encoding: encoding)
+        let converted = self.roundTrip(in: range, encoding: encoding)
         
         if let converted {
             let originalChunk = self.substring(with: range)
@@ -145,21 +145,22 @@ private extension NSString {
     
     /// Attempts a lossy round-trip conversion of the substring in `range` using the given encoding, without using `Data`.
     ///
+    /// Encode range -> bytes (lossy allowed), then decode bytes -> String (same encoding).
+    ///
     /// - Parameters:
     ///   - range: The range of the string to convert.
     ///   - encoding: The encoding to use.
     /// - Returns: The decoded string after round-trip, or `nil` if it could not be produced.
-    func roundTripLossy(in range: NSRange, encoding: String.Encoding) -> String? {
+    func roundTrip(in range: NSRange, encoding: String.Encoding) -> String? {
         
-        // encode range -> bytes (lossy allowed), then decode bytes -> String (same encoding).
-        // avoid Data by reusing a byte buffer, growing if needed.
         var capacity = max(256, range.length * 8)  // heuristic
         let maxCapacity = 4 * 1024 * 1024  // 4MB cap for a single chunk
         
         while capacity <= maxCapacity {
+            // avoid Data by reusing a byte buffer, growing if needed
             var buffer = [UInt8](repeating: 0, count: capacity)
             var usedLength = 0
-            var remaining: NSRange = .notFound
+            var remaining = NSRange(location: NSNotFound, length: 0)
             
             let ok = unsafe buffer.withUnsafeMutableBytes { raw -> Bool in
                 guard let base = raw.baseAddress else { return false }
@@ -186,8 +187,7 @@ private extension NSString {
             }
         }
         
-        // -> Buffer growth cap was reached.
-        return nil
+        return nil  // -> Buffer growth cap was reached.
     }
     
     
@@ -200,9 +200,9 @@ private extension NSString {
         
         guard range.length > 0 else { return false }
         
-        let single = self.rangeOfComposedCharacterSequence(at: range.location)
+        let singleRange = self.rangeOfComposedCharacterSequence(at: range.location)
         
-        return single == range
+        return singleRange == range
     }
     
     
@@ -233,7 +233,7 @@ private extension NSString {
             split = midChar.lowerBound
         }
         
-        // If still degenerate, force a 1-code-unit split (should be rare due to composed normalization).
+        // if still degenerate, force a 1-code-unit split (should be rare due to composed normalization).
         if split <= range.location || split >= range.upperBound {
             split = range.location + max(1, range.length / 2)
         }
@@ -244,11 +244,4 @@ private extension NSString {
         return (self.rangeOfComposedCharacterSequences(for: left),
                 self.rangeOfComposedCharacterSequences(for: right))
     }
-}
-
-
-private extension NSRange {
-    
-    /// A not-found value for NSRange.
-    static let notFound = NSRange(location: NSNotFound, length: 0)
 }
