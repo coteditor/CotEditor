@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -135,11 +135,16 @@ extension NSTextStorage {
         let string = self.string.immutable
         let range = range ?? self.range
         
-        let links: [ValueRange<URL>] = try await Task.detached {
+        let task: Task<[ValueRange<URL>], any Error> = .detached {
             try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
                 .cancellableMatches(in: string, range: range)
                 .compactMap { match in match.url.map { ValueRange(value: $0, range: match.range) } }
-        }.value
+        }
+        let links: [ValueRange<URL>] = try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
         
         try Task.checkCancellation()
         

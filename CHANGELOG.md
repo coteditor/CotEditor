@@ -35,8 +35,14 @@
 6.2.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Optimize the performance of incompatible characters scan.
+
+
 ### Fixes
 
+- Fix an issue where the app could crash when opening a large file while the Warnings inspector is open.
 - [trivial] Fix the position of the Sidebar toolbar item.
 
 

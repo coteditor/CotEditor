@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,7 +58,11 @@ extension NSTextView {
         self.viewControllerForSheet?.presentAsSheet(indicator)
         
         // perform
-        let ranges = try await task.value
+        let ranges = try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
         
         self.isEditable = true
         
@@ -106,7 +110,11 @@ extension NSTextView {
         self.viewControllerForSheet?.presentAsSheet(indicator)
         
         // perform
-        let result = try await task.value
+        let result = try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
         
         self.isEditable = true
         
