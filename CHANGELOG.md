@@ -37,7 +37,8 @@
 
 ### Improvements
 
-- Optimize the performance of incompatible characters scan.
+- Optimize the performance of scanning incompatible characters.
+- Improve stability.
 
 
 ### Fixes

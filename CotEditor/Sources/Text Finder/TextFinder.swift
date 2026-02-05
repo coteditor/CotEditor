@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -430,7 +430,11 @@ struct FindAllMatch: Identifiable {
             let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
             return (matches, result)
         }
-        let (matches, result) = try await task.value
+        let (matches, result) = try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
         
         // mark all matches
         if isIncremental {
