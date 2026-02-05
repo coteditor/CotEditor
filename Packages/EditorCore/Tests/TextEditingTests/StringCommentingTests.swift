@@ -152,6 +152,49 @@ struct StringCommentingTests {
     }
     
     
+    @Test func commentOutWithEmptyDelimiters() {
+        
+        let delimiters = Delimiters()
+        
+        let string = "foo"
+        let context = string.commentOut(types: .inline, delimiters: delimiters, spacer: "", in: [NSRange(0..<3)], at: .selection)
+        
+        #expect(context == nil)
+    }
+    
+    
+    @Test func commentOutPrefersInline() throws {
+        
+        let string = "foo"
+        let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
+        let context = try #require(string.commentOut(types: .both, delimiters: delimiters, spacer: " ", in: [NSRange(0..<3)], at: .selection))
+        
+        #expect(context.strings == ["// "])
+        #expect(context.ranges == [NSRange(location: 0, length: 0)])
+        #expect(context.selectedRanges == [NSRange(location: 0, length: 6)])
+    }
+    
+    
+    @Test func uncommentPrefersBlock() throws {
+        
+        let string = "<-foo->"
+        let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
+        let context = try #require(string.uncomment(delimiters: delimiters, spacer: "", in: [NSRange(0..<7)]))
+        
+        #expect(context.strings == ["", ""])
+        #expect(context.ranges == [NSRange(0..<2), NSRange(5..<7)])
+        #expect(context.selectedRanges == [NSRange(0..<3)])
+    }
+    
+    
+    @Test func canUncommentWithEmptyDelimiters() {
+        
+        let delimiters = Delimiters()
+        
+        #expect(!"// foo".canUncomment(partly: false, delimiters: delimiters, in: [NSRange(0..<6)]))
+    }
+    
+    
     @Test func inlineUncomment() {
         
         #expect("foo".rangesOfInlineDelimiter("//", spacer: "", ranges: [])?.isEmpty == true)
@@ -273,15 +316,19 @@ struct StringCommentingTests {
 }
 
 
+// MARK: - Mocks
+
+private struct Delimiters: CommentDelimiters {
+    
+    var inlineDelimiters: [String] = []
+    var blocks: [Pair<String>] = []
+    
+    var isEmpty: Bool { self.inlineDelimiters.isEmpty && self.blocks.isEmpty }
+}
+
+
 /// TextView mock
 private struct Editor {
-    
-    struct Delimiters: CommentDelimiters {
-        
-        var inlineDelimiters: [String]
-        var blocks: [Pair<String>]
-        var isEmpty: Bool { self.inlineDelimiters.isEmpty && self.blocks.isEmpty }
-    }
     
     private let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
     

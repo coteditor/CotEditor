@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,7 +61,75 @@ struct StringIndentationTests {
     }
     
     
-    // MARK: Other Tests
+    // MARK: Text Editing Tests
+    
+    @Test func indent() {
+        
+        let string = "foo\nbar\nbaz"
+        let range = NSRange(location: 4, length: 3)
+        
+        let context = string.indent(style: .space, indentWidth: 2, in: [range])
+        
+        #expect(context.strings == ["  bar\n"])
+        #expect(context.ranges == [NSRange(location: 4, length: 4)])
+        #expect(context.selectedRanges == [NSRange(location: 6, length: 3)])
+    }
+    
+    
+    @Test func outdent() throws {
+        
+        let string = "  foo\n\tbar\nbaz"
+        let range = NSRange(location: 0, length: string.utf16.count)
+        
+        let context = try #require(string.outdent(style: .space, indentWidth: 2, in: [range]))
+        
+        #expect(context.strings == ["foo\n", "bar\n", "baz"])
+        #expect(context.ranges == [
+            NSRange(location: 0, length: 6),
+            NSRange(location: 6, length: 5),
+            NSRange(location: 11, length: 3),
+        ])
+        #expect(context.selectedRanges == [NSRange(location: 0, length: range.length - 3)])
+    }
+    
+    
+    @Test func outdentNoChange() {
+        
+        let string = "foo\nbar"
+        let range = NSRange(location: 0, length: string.utf16.count)
+        
+        #expect(string.outdent(style: .space, indentWidth: 2, in: [range]) == nil)
+    }
+    
+    
+    @Test func convertIndentation() throws {
+        
+        #expect("".convertIndentation(to: .space, indentWidth: 2, in: [NSRange(0..<0)]) == nil)
+        
+        let string = "\tfoo\n\tbar"
+        let range = NSRange(location: 0, length: 0)
+        let context = try #require(string.convertIndentation(to: .space, indentWidth: 2, in: [range]))
+        
+        #expect(context.strings == ["  foo\n  bar"])
+        #expect(context.ranges == [NSRange(location: 0, length: string.utf16.count)])
+        #expect(context.selectedRanges == nil)
+    }
+    
+    
+    // MARK: Editing Range Detection Tests
+    
+    @Test func rangeOfIndent() {
+        
+        let string = "  foo\n\tbar\nbaz"
+        
+        #expect(string.rangeOfIndent(at: 0) == NSRange(location: 0, length: 2))
+        #expect(string.rangeOfIndent(at: 3) == NSRange(location: 0, length: 2))
+        #expect(string.rangeOfIndent(at: 7) == NSRange(location: 6, length: 1))
+        #expect(string.rangeOfIndent(at: 11) == nil)
+        
+        let index = string.index(string.startIndex, offsetBy: 7)
+        #expect(string.rangeOfIndent(at: index) == string.index(string.startIndex, offsetBy: 6)..<string.index(string.startIndex, offsetBy: 7))
+    }
     
     @Test func detectIndentLevel() {
         
@@ -75,6 +143,14 @@ struct StringIndentationTests {
         
         // multiline
         #expect("    foo\n  bar".indentLevel(at: 10, tabWidth: 2) == 1)
+    }
+    
+    
+    @Test func softTab() {
+        
+        #expect("abc".softTab(at: 0, tabWidth: 4) == "    ")
+        #expect("abc".softTab(at: 2, tabWidth: 4) == "  ")
+        #expect("\t".softTab(at: 1, tabWidth: 4) == "    ")
     }
     
     
