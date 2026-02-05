@@ -64,7 +64,7 @@ struct NSRegularExpressionTests {
     @Test func cancellableMatchesCancellation() async throws {
         
         let regex = try NSRegularExpression(pattern: "a")
-        let string = String(repeating: "a", count: 1024)
+        let string = String(repeating: "a", count: 100_000_000)
         
         let task = Task {
             _ = try regex.cancellableMatches(in: string, range: string.nsRange)
