@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -118,6 +118,91 @@ struct NSAttributedStringTests {
         let singleJoined = single.joined(separator: space)
         #expect(!(singleJoined is NSMutableAttributedString))
         #expect(singleJoined.string == "foo")
+    }
+    
+    
+    @Test func rangeAndMutable() {
+        
+        let string = NSAttributedString(string: "abc")
+        #expect(string.range == NSRange(0..<3))
+        
+        let mutable = string.mutable
+        mutable.append(NSAttributedString(string: "d"))
+        #expect(mutable.string == "abcd")
+    }
+    
+    
+    @Test func enumerateAttribute() {
+        
+        let string = NSMutableAttributedString(string: "ababa")
+        string.addAttribute(.test, value: "hit", range: NSRange(0..<2))
+        string.addAttribute(.test, value: "hit", range: NSRange(3..<5))
+        
+        var ranges: [NSRange] = []
+        unsafe string.enumerateAttribute(.test, type: String.self, in: string.range) { value, range, _ in
+            ranges.append(range)
+            #expect(value == "hit")
+        }
+        
+        #expect(ranges == [NSRange(0..<2), NSRange(3..<5)])
+    }
+    
+    
+    @Test func longestEffectiveRange() {
+        
+        let string = NSMutableAttributedString(string: "ababa")
+        string.addAttribute(.test, value: "hit", range: NSRange(1..<4))
+        
+        #expect(string.longestEffectiveRange(of: .test, at: 2) == NSRange(1..<4))
+        #expect(string.longestEffectiveRange(of: .test, at: 0) == nil)
+    }
+    
+    
+    @Test func hasAttribute() {
+        
+        let string = NSMutableAttributedString(string: "ababa")
+        string.addAttribute(.test, value: "hit", range: NSRange(1..<4))
+        
+        #expect(string.hasAttribute(.test))
+        #expect(!string.hasAttribute(.test, in: NSRange(0..<1)))
+        #expect(string.hasAttribute(.test, in: NSRange(2..<3)))
+        
+        let empty = NSAttributedString(string: "")
+        #expect(!empty.hasAttribute(.test))
+    }
+    
+    
+    @Test func truncatedHead() {
+        
+        let original = NSAttributedString(string: "0123456")
+        let truncated = original.truncatedHead(until: 5, offset: 2)
+        
+        #expect(truncated.string == "…3456")
+        #expect(original.string == "0123456")
+    }
+    
+    
+    @Test func mutableAddEqual() {
+        
+        var string = NSMutableAttributedString(string: "foo")
+        string += NSAttributedString(string: "bar", attributes: [.test: "test"])
+        
+        #expect(string.string == "foobar")
+        #expect(unsafe string.attribute(.test, at: 1, effectiveRange: nil) == nil)
+        #expect(unsafe string.attribute(.test, at: 5, effectiveRange: nil) as? String == "test")
+    }
+    
+    
+    @Test func joinWithStringSeparator() {
+        
+        let items: [NSAttributedString] = [
+            NSAttributedString(string: "foo"),
+            NSAttributedString(string: "bar", attributes: [.test: "test"]),
+            NSAttributedString(string: "buz"),
+        ]
+        
+        let joined = items.joined(separator: ",")
+        #expect(joined.string == "foo,bar,buz")
     }
 }
 

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -151,5 +151,45 @@ struct NSStringTests {
         #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 2) == 0)
         #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 1) == 0)
         #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 0) == 1)
+    }
+    
+    
+    @Test func nsRangeAndLength() {
+        
+        let string = "a🐕"
+        #expect(string.length == string.utf16.count)
+        #expect(string.nsRange == NSRange(location: 0, length: string.utf16.count))
+        
+        let substring = string.dropFirst()
+        #expect(substring.length == substring.utf16.count)
+        #expect(substring.nsRange == NSRange(location: 0, length: substring.utf16.count))
+    }
+    
+    
+    @Test func nsStringRange() {
+        
+        let string = "abc" as NSString
+        #expect(string.range == NSRange(0..<3))
+    }
+    
+    
+    @Test func rangesOfString() {
+        
+        let string = "ababa" as NSString
+        #expect(string.ranges(of: "aba") == [NSRange(0..<3)])
+        
+        let string2 = "aAaA" as NSString
+        #expect(string2.ranges(of: "aa", options: .caseInsensitive) == [NSRange(0..<2), NSRange(2..<4)])
+        #expect(string2.ranges(of: "aa", options: .caseInsensitive, range: NSRange(1..<4)) == [NSRange(1..<3)])
+    }
+    
+    
+    @Test(arguments: [0x000A, 0x000B, 0x000C, 0x000D, 0x0085, 0x2028, 0x2029])
+    func unicharIsNewline(char: UInt16) throws {
+        
+        let scalar = try #require(Unicode.Scalar(char))
+        
+        #expect(unichar(char).isNewline)
+        #expect(Character(scalar).isNewline)
     }
 }

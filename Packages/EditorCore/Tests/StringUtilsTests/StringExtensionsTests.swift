@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -73,34 +73,5 @@ struct StringExtensionsTests {
         #expect("I am a “dog.”".straighteningQuotes == "I am a \"dog.\"")
         #expect("I am a ‘dog.’".straighteningQuotes == "I am a 'dog.'")
         #expect("type `echo`".straighteningQuotes == "type `echo`")
-    }
-    
-    
-    @Test func abbreviatedMatch() throws {
-        
-        let string = "The fox jumps over the lazy dogcow."
-        
-        #expect(string.abbreviatedMatch(with: "quick") == nil)
-        
-        let dogcow = try #require(string.abbreviatedMatch(with: "dogcow"))
-        #expect(dogcow.score == 6)
-        #expect(dogcow.ranges.count == 6)
-        #expect(dogcow.remaining.isEmpty)
-        
-        let ow = try #require(string.abbreviatedMatch(with: "ow"))
-        #expect(ow.score == 29)
-        #expect(ow.ranges.count == 2)
-        #expect(ow.remaining.isEmpty)
-        
-        let lazyTanuki = try #require(string.abbreviatedMatch(with: "lazy tanuki"))
-        #expect(lazyTanuki.score == 5)
-        #expect(lazyTanuki.ranges.count == 5)
-        #expect(lazyTanuki.remaining == "tanuki")
-        
-        #expect(string.abbreviatedMatchedRanges(with: "lazy tanuki") == nil)
-        #expect(string.abbreviatedMatchedRanges(with: "lazy tanuki", incomplete: true)?.count == 5)
-        
-        #expect(string.abbreviatedMatchedRanges(with: "lazy w")?.count == 6)
-        #expect(string.abbreviatedMatchedRanges(with: "lazy w", incomplete: true)?.count == 6)
     }
 }

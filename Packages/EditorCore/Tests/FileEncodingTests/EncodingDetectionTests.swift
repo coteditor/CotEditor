@@ -46,7 +46,7 @@ struct EncodingDetectionTests {
         }
         #expect(String(bomCapableData: data, encoding: .utf8) == "0")
         
-        let (string, encoding) = try self.encodedStringForFileName("UTF-8 BOM")
+        let (string, encoding) = try String.string(data: data, options: .init(candidates: String.Encoding.utfEncodings))
         
         #expect(string == "0")
         #expect(encoding == .utf8)
@@ -56,39 +56,10 @@ struct EncodingDetectionTests {
     }
     
     
-    /// Tests if the U+FEFF omitting bug on Swift 5 still exists.
-    @Test(.bug("https://bugs.swift.org/browse/SR-10896"))
-    func feff() {
-        
-        let bom = "\u{feff}"
-        #expect(bom.count == 1)
-        #expect(("\(bom)abc").count == 4)
-        
-        #expect(NSString(string: "a\(bom)bc").length == 4)
-        withKnownIssue {
-            #expect(NSString(string: bom) as String == bom)
-            #expect(NSString(string: bom).length == 1)
-            #expect(NSString(string: "\(bom)\(bom)").length == 2)
-            #expect(NSString(string: "\(bom)abc").length == 4)
-        }
-        
-        // -> These test cases must fail if the bug fixed.
-        #expect(NSString(string: bom).length == 0)
-        #expect(NSString(string: "\(bom)\(bom)").length == 1)
-        #expect(NSString(string: "\(bom)abc").length == 3)
-        
-        let string = "\(bom)abc"
-        
-        // Implicit NSString cast is fixed.
-        // -> However, still crashes when `string.immutable.enumerateSubstrings(in:)`
-        let middleIndex = string.index(string.startIndex, offsetBy: 2)
-        string.enumerateSubstrings(in: middleIndex..<string.endIndex, options: .byLines) { _, _, _, _ in }
-    }
-    
-    
     @Test func utf16() throws {
         
-        let (string, encoding) = try self.encodedStringForFileName("UTF-16")
+        let data = try self.dataForFileName("UTF-16")
+        let (string, encoding) = try String.string(data: data, options: .init(candidates: String.Encoding.utfEncodings))
         
         #expect(string == "0")
         #expect(encoding == .utf16)
@@ -97,7 +68,8 @@ struct EncodingDetectionTests {
     
     @Test func utf32() throws {
         
-        let (string, encoding) = try self.encodedStringForFileName("UTF-32")
+        let data = try self.dataForFileName("UTF-32")
+        let (string, encoding) = try String.string(data: data, options: .init(candidates: String.Encoding.utfEncodings))
         
         #expect(string == "0")
         #expect(encoding == .utf32)
@@ -185,61 +157,6 @@ struct EncodingDetectionTests {
     }
     
     
-    @Test func initializeEncoding() {
-        
-        #expect(String.Encoding(cfEncodings: .dosJapanese) == .shiftJIS)
-        #expect(String.Encoding(cfEncodings: .shiftJIS) != .shiftJIS)
-        #expect(String.Encoding(cfEncodings: .shiftJIS_X0213) != .shiftJIS)
-        
-        #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)) == .shiftJIS)
-        #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)) != .shiftJIS)
-        #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)) != .shiftJIS)
-    }
-    
-    
-    /// Makes sure the behaviors around Shift-JIS.
-    @Test func shiftJIS() {
-        
-        let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
-        let shiftJIS_X0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
-        let dosJapanese = CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)
-        
-        // IANA charset name conversion
-        // CFStringEncoding -> IANA charset name
-        #expect(CFStringConvertEncodingToIANACharSetName(shiftJIS) as String == "shift_jis")
-        #expect(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String == "Shift_JIS")
-        
-        #expect(CFStringConvertEncodingToIANACharSetName(dosJapanese) as String == "cp932")
-        // IANA charset name -> CFStringEncoding
-        #expect(CFStringConvertIANACharSetNameToEncoding("SHIFT_JIS" as CFString) == shiftJIS)
-        #expect(CFStringConvertIANACharSetNameToEncoding("shift_jis" as CFString) == shiftJIS)
-        #expect(CFStringConvertIANACharSetNameToEncoding("cp932" as CFString) == dosJapanese)
-        #expect(CFStringConvertIANACharSetNameToEncoding("sjis" as CFString) == dosJapanese)
-        #expect(CFStringConvertIANACharSetNameToEncoding("shiftjis" as CFString) == dosJapanese)
-        #expect(CFStringConvertIANACharSetNameToEncoding("shift_jis" as CFString) != shiftJIS_X0213)
-        
-        // `String.Encoding.shiftJIS` is "Japanese (Windows, DOS)."
-        #expect(CFStringConvertNSStringEncodingToEncoding(String.Encoding.shiftJIS.rawValue) == dosJapanese)
-    }
-    
-    
-    @Test func encodeXattr() {
-        
-        let utf8Data = Data("utf-8;134217984".utf8)
-        
-        #expect(String.Encoding.utf8.xattrEncodingData == utf8Data)
-        #expect(utf8Data.decodingXattrEncoding == .utf8)
-        #expect(Data("utf-8".utf8).decodingXattrEncoding == .utf8)
-        
-        
-        let eucJPData = Data("euc-jp;2336".utf8)
-        
-        #expect(String.Encoding.japaneseEUC.xattrEncodingData == eucJPData)
-        #expect(eucJPData.decodingXattrEncoding == .japaneseEUC)
-        #expect(Data("euc-jp".utf8).decodingXattrEncoding == .japaneseEUC)
-    }
-    
-    
     @Test func convertYen() {
         
         #expect("¥".canBeConverted(to: .utf8))
@@ -257,10 +174,74 @@ struct EncodingDetectionTests {
     }
     
     
-    @Test func ianaCharsetName() {
+    @Test func decodingStrategySpecific() throws {
         
-        #expect(String.Encoding.utf8.ianaCharSetName == "utf-8")
-        #expect(String.Encoding.isoLatin1.ianaCharSetName == "iso-8859-1")
+        let data = Data("🐕".utf8)
+        let result = try String.string(data: data, decodingStrategy: .specific(.utf8))
+        
+        #expect(result.0 == "🐕")
+        #expect(result.1 == FileEncoding(encoding: .utf8))
+        
+        let error = #expect(throws: CocoaError.self) {
+            try String.string(data: data, decodingStrategy: .specific(.ascii))
+        }
+        #expect(error?.code == .fileReadInapplicableStringEncoding)
+    }
+    
+    
+    @Test func decodingStrategyAutomaticBOM() throws {
+        
+        let data = Data(Unicode.BOM.utf8.sequence + [0x61])
+        let options = String.DetectionOptions(candidates: [.utf8])
+        let result = try String.string(data: data, decodingStrategy: .automatic(options))
+        
+        #expect(result.0 == "a")
+        #expect(result.1.withUTF8BOM)
+    }
+    
+    
+    @Test func detectionOptionsXattrEncoding() throws {
+        
+        let data = Data()
+        let options = String.DetectionOptions(candidates: [], xattrEncoding: .utf8)
+        let (string, encoding) = try String.string(data: data, options: options)
+        
+        #expect(string.isEmpty)
+        #expect(encoding == .utf8)
+    }
+    
+    
+    @Test func detectionOptionsDeclarationPriority() throws {
+        
+        let data = Data("# coding: utf-8".utf8)
+        let options = String.DetectionOptions(candidates: [.utf16, .utf8], considersDeclaration: true)
+        let (string, encoding) = try String.string(data: data, options: options)
+        
+        #expect(string == "# coding: utf-8")
+        #expect(encoding == .utf8)
+    }
+    
+    
+    @Test func sortedAvailableStringEncodings() {
+        
+        let encodings = String.sortedAvailableStringEncodings
+        let compact = encodings.compactMap(\.self)
+        
+        #expect(encodings.contains(nil))
+        #expect(compact.count == String.availableStringEncodings.count)
+    }
+    
+    
+    /// Tests testing helper APIs.
+    @Test func initializeEncoding() {
+        
+        #expect(String.Encoding(cfEncodings: .dosJapanese) == .shiftJIS)
+        #expect(String.Encoding(cfEncodings: .shiftJIS) != .shiftJIS)
+        #expect(String.Encoding(cfEncodings: .shiftJIS_X0213) != .shiftJIS)
+        
+        #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)) == .shiftJIS)
+        #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)) != .shiftJIS)
+        #expect(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)) != .shiftJIS)
     }
 }
 
@@ -268,6 +249,17 @@ struct EncodingDetectionTests {
 // MARK: Private Methods
 
 private extension String.Encoding {
+    
+    static let utfEncodings: [String.Encoding] = [
+        .utf8,
+        .utf16,
+        .utf16BigEndian,
+        .utf16LittleEndian,
+        .utf32,
+        .utf32BigEndian,
+        .utf32LittleEndian,
+    ]
+    
     
     init(cfEncodings: CFStringEncodings) {
         
@@ -277,22 +269,6 @@ private extension String.Encoding {
    
 
 private extension EncodingDetectionTests {
-    
-    func encodedStringForFileName(_ fileName: String) throws -> (String, String.Encoding) {
-        
-        try String.string(
-            data: try self.dataForFileName(fileName),
-            options: .init(candidates: [
-                .utf8,
-                .utf16,
-                .utf16BigEndian,
-                .utf16LittleEndian,
-                .utf32,
-                .utf32BigEndian,
-                .utf32LittleEndian,
-            ]))
-    }
-    
     
     func dataForFileName(_ fileName: String) throws -> Data {
         

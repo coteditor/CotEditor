@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -92,5 +92,78 @@ struct URLExtensionsTests {
         #expect(URL(string: "Dog/Cow/file copy.txt")!.firstUniqueDirectoryURL(in: urls) == nil)
         #expect(URL(string: "Cat/Cow/file.txt")!.firstUniqueDirectoryURL(in: urls) == URL(string: "Cat/"))
         #expect(URL(string: "Dog/Pig/file.txt")!.firstUniqueDirectoryURL(in: urls) == URL(string: "Dog/Pig/"))
+    }
+    
+    
+    @Test func appendingUniqueNumber() throws {
+        
+        let directory = try TemporaryDirectory()
+        defer { directory.cleanup() }
+        
+        let base = directory.url.appending(component: "file.txt")
+        
+        #expect(base.appendingUniqueNumber().lastPathComponent == "file.txt")
+        
+        try Data().write(to: base)
+        #expect(base.appendingUniqueNumber().lastPathComponent == "file 2.txt")
+        
+        let numbered = directory.url.appending(component: "file 2.txt")
+        try Data().write(to: numbered)
+        #expect(base.appendingUniqueNumber().lastPathComponent == "file 3.txt")
+        #expect(numbered.appendingUniqueNumber().lastPathComponent == "file 3.txt")
+    }
+    
+    
+    @Test func appendingUniqueNumberWithFormat() throws {
+        
+        let directory = try TemporaryDirectory()
+        defer { directory.cleanup() }
+        
+        let format = NumberingFormat({ "\($0) copy" }, numbered: { "\($0) copy \($1)" })
+        let base = directory.url.appending(component: "doc.txt")
+        let baseCopy = directory.url.appending(component: "doc copy.txt")
+        
+        #expect(base.appendingUniqueNumber(format: format).lastPathComponent == "doc copy.txt")
+        
+        try Data().write(to: baseCopy)
+        #expect(base.appendingUniqueNumber(format: format).lastPathComponent == "doc copy 2.txt")
+    }
+    
+    
+    @Test func createIntermediateDirectories() throws {
+        
+        let directory = try TemporaryDirectory()
+        defer { directory.cleanup() }
+        
+        let fileURL = directory.url.appending(path: "a/b/c/file.txt")
+        let directoryURL = directory.url.appending(path: "a/b/c", directoryHint: .isDirectory)
+        
+        try FileManager.default.createIntermediateDirectories(to: fileURL)
+        
+        #expect(FileManager.default.fileExists(atPath: directoryURL.path))
+        #expect(!FileManager.default.fileExists(atPath: fileURL.path))
+    }
+}
+
+
+private struct TemporaryDirectory {
+    
+    let url: URL
+    
+    
+    init() throws {
+        
+        let url = FileManager.default.temporaryDirectory
+            .appending(component: "coteditor-tests-\(UUID().uuidString)", directoryHint: .isDirectory)
+        
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        
+        self.url = url
+    }
+    
+    
+    func cleanup() {
+        
+        try? FileManager.default.removeItem(at: self.url)
     }
 }

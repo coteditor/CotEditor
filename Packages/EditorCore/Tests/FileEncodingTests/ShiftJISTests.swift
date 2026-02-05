@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,6 +29,32 @@ import Testing
 @testable import FileEncoding
 
 struct ShiftJISTests {
+    
+    /// Makes sure the behaviors around Shift-JIS.
+    @Test func shiftJIS() {
+        
+        let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
+        let shiftJIS_X0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
+        let dosJapanese = CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)
+        
+        // IANA charset name conversion
+        // CFStringEncoding -> IANA charset name
+        #expect(CFStringConvertEncodingToIANACharSetName(shiftJIS) as String == "shift_jis")
+        #expect(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String == "Shift_JIS")
+        
+        #expect(CFStringConvertEncodingToIANACharSetName(dosJapanese) as String == "cp932")
+        // IANA charset name -> CFStringEncoding
+        #expect(CFStringConvertIANACharSetNameToEncoding("SHIFT_JIS" as CFString) == shiftJIS)
+        #expect(CFStringConvertIANACharSetNameToEncoding("shift_jis" as CFString) == shiftJIS)
+        #expect(CFStringConvertIANACharSetNameToEncoding("cp932" as CFString) == dosJapanese)
+        #expect(CFStringConvertIANACharSetNameToEncoding("sjis" as CFString) == dosJapanese)
+        #expect(CFStringConvertIANACharSetNameToEncoding("shiftjis" as CFString) == dosJapanese)
+        #expect(CFStringConvertIANACharSetNameToEncoding("shift_jis" as CFString) != shiftJIS_X0213)
+        
+        // `String.Encoding.shiftJIS` is "Japanese (Windows, DOS)."
+        #expect(CFStringConvertNSStringEncodingToEncoding(String.Encoding.shiftJIS.rawValue) == dosJapanese)
+    }
+    
     
     @Test func ianaCharSetNames() {
         

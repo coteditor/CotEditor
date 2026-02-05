@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,6 +59,7 @@ struct VersionTests {
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta") < Version(5, 0, 1, prereleaseIdentifier: "beta.1"))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.1") < Version(5, 0, 1, prereleaseIdentifier: "beta.2"))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.1") < Version(5, 0, 1, prereleaseIdentifier: "rc"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.10") < Version(5, 0, 1, prereleaseIdentifier: "beta.2"))
         
         #expect(Version(5, 0, 1, prerelease: .beta) < Version(5, 0, 1))
         #expect(Version(5, 0, 1, prerelease: .alpha) < Version(5, 0, 1, prerelease: .beta))
@@ -85,6 +86,11 @@ struct VersionTests {
         
         #expect(Version.Prerelease.beta(2).rawValue == "beta.2")
         #expect(Version.Prerelease.other("dogcow").rawValue == "dogcow")
+        
+        #expect(Version.Prerelease(rawValue: "alpha.2") == .alpha(2))
+        #expect(Version.Prerelease(rawValue: "beta.0") == .beta(0))
+        #expect(Version.Prerelease(rawValue: "rc.3") == .rc(3))
+        #expect(Version.Prerelease(rawValue: "alpha.beta") == .other("alpha.beta"))
     }
     
     
@@ -106,6 +112,8 @@ struct VersionTests {
         #expect(Version(5, 0, 1, prerelease: .beta(1)).formatted(.version(part: .minor)) == "5.0")
         #expect(Version(5, 0, 1, prerelease: .beta(1)).formatted(.version(part: .patch)) == "5.0.1")
         #expect(Version(5, 0, 1, prerelease: .beta(1)).formatted(.version(part: .prerelease)) == "5.0.1-beta.1")
+        
+        #expect(Version(5, 0, 1).formatted(.version(part: .prerelease)) == "5.0.1")
     }
     
     
@@ -120,5 +128,32 @@ struct VersionTests {
         
         #expect(throws: Version.ParseStrategy.ParseError.invalidValue) { try parser.parse("") }
         #expect(throws: Version.ParseStrategy.ParseError.invalidValue) { try parser.parse("5.0") }
+    }
+    
+    
+    @Test func failableInit() {
+        
+        #expect(Version("5.0.1") != nil)
+        #expect(Version("") == nil)
+        #expect(Version("5.0") == nil)
+        #expect(Version("5.0.1-ABC") == nil)
+        #expect(Version("5.0.1+build") == nil)
+    }
+    
+    
+    @Test func isPrerelease() {
+        
+        #expect(Version(5, 0, 1).isPrerelease == false)
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta").isPrerelease == true)
+    }
+    
+    
+    @Test func decodeInvalidValue() throws {
+        
+        let data = try JSONEncoder().encode("5.0")
+        
+        #expect(throws: DecodingError.self) {
+            try JSONDecoder().decode(Version.self, from: data)
+        }
     }
 }

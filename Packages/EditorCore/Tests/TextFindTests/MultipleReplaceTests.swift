@@ -206,5 +206,22 @@ struct MultipleReplaceTests {
             #expect(definition.replacements[2] == .init(findString: "c", replacementString: "C"))
             #expect(definition.settings == .init())
         }
+        
+        
+        @Test func invalidTSV() throws {
+            
+            let tsv = """
+                      cow
+                      cat\tdog
+                      """
+            let definition = try MultipleReplace(tabSeparatedText: tsv)
+            
+            #expect(definition.replacements.count == 1)
+            #expect(definition.replacements[0] == .init(findString: "cat", replacementString: "dog"))
+            
+            #expect(throws: MultipleReplace.Replacement.TSVParseError.invalidFormat.self) {
+                _ = try MultipleReplace(tabSeparatedText: "dog", options: .failsOnInvalidValue)
+            }
+        }
     }
 }

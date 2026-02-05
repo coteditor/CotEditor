@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ struct StringCountingTests {
     }
     
     
-    @Test func countLines() {
+    @Test func numberOfLines() {
         
         #expect("".numberOfLines == 0)
         #expect("a".numberOfLines == 1)
@@ -61,20 +61,47 @@ struct StringCountingTests {
         #expect("\n\n".numberOfLines == 2)
         #expect("\u{feff}".numberOfLines == 1)
         #expect("ab\r\ncd".numberOfLines == 2)
+        #expect("a\u{FEFF}\nb".numberOfLines == 2)
+        #expect("\u{FEFF}\nb".numberOfLines == 2)
+        #expect("\u{FEFF}0000000000000000".numberOfLines == 1)
         
         let testString = "a\nb c\n\n"
         #expect(testString.numberOfLines == 3)
+    }
+    
+    
+    @Test func numberOfLinesInNSRange() {
+        
+        let testString = "a\nb c\n\n"
+        
         #expect(testString.numberOfLines(in: NSRange(0..<0)) == 0)   // ""
         #expect(testString.numberOfLines(in: NSRange(0..<1)) == 1)   // "a"
         #expect(testString.numberOfLines(in: NSRange(0..<2)) == 1)   // "a\n"
         #expect(testString.numberOfLines(in: NSRange(0..<6)) == 2)   // "a\nb c\n"
         #expect(testString.numberOfLines(in: NSRange(0..<7)) == 3)   // "a\nb c\n\n"
         
+        #expect("\u{FEFF}".numberOfLines(in: NSRange(0..<1)) == 1)  // "\u{FEFF}"
+        #expect("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3)) == 2)  // "\u{FEFF}\nb"
+        #expect("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4)) == 2)  // "\u{FEFF}\nb"
+        #expect("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5)) == 2)  // "\u{FEFF}\nb"
+    }
+    
+    
+    @Test func numberOfLinesInNSRangeIncludingLastBreak() {
+        
+        let testString = "a\nb c\n\n"
+        
         #expect(testString.numberOfLines(in: NSRange(0..<0), includesLastBreak: true) == 0)   // ""
         #expect(testString.numberOfLines(in: NSRange(0..<1), includesLastBreak: true) == 1)   // "a"
         #expect(testString.numberOfLines(in: NSRange(0..<2), includesLastBreak: true) == 2)   // "a\n"
         #expect(testString.numberOfLines(in: NSRange(0..<6), includesLastBreak: true) == 3)   // "a\nb c\n"
         #expect(testString.numberOfLines(in: NSRange(0..<7), includesLastBreak: true) == 4)   // "a\nb c\n\n"
+    }
+    
+    
+    @Test func lineNumberAtLocation() {
+        
+        let testString = "a\nb c\n\n"
         
         #expect(testString.lineNumber(at: 0) == 1)
         #expect(testString.lineNumber(at: 1) == 1)
@@ -90,23 +117,10 @@ struct StringCountingTests {
         #expect(nsString.lineNumber(at: 5) == testString.lineNumber(at: 5))
         #expect(nsString.lineNumber(at: 6) == testString.lineNumber(at: 6))
         #expect(nsString.lineNumber(at: 7) == testString.lineNumber(at: 7))
-        
-        #expect("\u{FEFF}".numberOfLines(in: NSRange(0..<1)) == 1)  // "\u{FEFF}"
-        #expect("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3)) == 2)  // "\u{FEFF}\nb"
-        #expect("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4)) == 2)  // "\u{FEFF}\nb"
-        #expect("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5)) == 2)  // "\u{FEFF}\nb"
-        
-        #expect("a\u{FEFF}\nb".numberOfLines == 2)
-        #expect("\u{FEFF}\nb".numberOfLines == 2)
-        #expect("\u{FEFF}0000000000000000".numberOfLines == 1)
-        
-        let bomString = "\u{FEFF}\nb"
-        let range = bomString.startIndex..<bomString.index(bomString.startIndex, offsetBy: 2)
-        #expect(bomString.numberOfLines(in: [range, range]) == 1)  // "\u{FEFF}\n"
     }
     
     
-    @Test func countColumns() {
+    @Test func columnNumberAtIndex() {
         
         let string = "aaa \r\n🐱 "
         
@@ -115,5 +129,32 @@ struct StringCountingTests {
         #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 5)) == 0)
         #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 6)) == 1)
         #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 7)) == 2)
+    }
+    
+    
+    @Test func numberOfLinesInRanges() {
+        
+        let string = "a\nb\n\nc\n"
+        let range1 = string.startIndex..<string.index(string.startIndex, offsetBy: 2)  // "a\n"
+        let range2 = string.index(string.startIndex, offsetBy: 2)..<string.index(string.startIndex, offsetBy: 4)  // "b\n"
+        let range3 = string.index(string.startIndex, offsetBy: 4)..<string.index(string.startIndex, offsetBy: 5)  // "\n"
+        
+        #expect(string.numberOfLines(in: [range1, range2, range3]) == 3)
+        #expect(string.numberOfLines(in: [range1, range2], includesLastBreak: true) == 4)
+        
+        let bomString = "\u{FEFF}\nb"
+        let bomRange = bomString.startIndex..<bomString.index(bomString.startIndex, offsetBy: 2)
+        #expect(bomString.numberOfLines(in: [bomRange, bomRange]) == 1)  // "\u{FEFF}\n"
+    }
+    
+    
+    @Test func lineNumberAtIndex() {
+        
+        let string = "a\n\n b"
+        
+        #expect(string.lineNumber(at: string.startIndex) == 1)
+        #expect(string.lineNumber(at: string.index(string.startIndex, offsetBy: 1)) == 1)
+        #expect(string.lineNumber(at: string.index(string.startIndex, offsetBy: 2)) == 2)
+        #expect(string.lineNumber(at: string.index(string.startIndex, offsetBy: 3)) == 3)
     }
 }

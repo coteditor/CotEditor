@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -134,6 +134,26 @@ struct StringLineProcessingTests {
         #expect(context.strings == ["bbbb\naa"])
         #expect(context.ranges == [NSRange(0, 7)])
         #expect(context.selectedRanges == [NSRange(0, 7)])
+    }
+    
+    
+    @Test func shuffleLines() throws {
+        
+        let string = """
+            aa
+            bbbb
+            ccc
+            """
+        
+        #expect(string.shuffleLines(in: NSRange(4, 1)) == nil)
+        
+        let context = try #require(string.shuffleLines(in: string.range))
+        let shuffledLines = context.strings[0].components(separatedBy: .newlines)
+        let originalLines = string.components(separatedBy: .newlines)
+        
+        #expect(shuffledLines.sorted() == originalLines.sorted())
+        #expect(context.ranges == [NSRange(0, 11)])
+        #expect(context.selectedRanges == [NSRange(0, 11)])
     }
     
     

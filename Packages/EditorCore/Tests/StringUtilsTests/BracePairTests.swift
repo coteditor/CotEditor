@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -82,6 +82,46 @@ struct BracePairTests {
         
         let string3 = #"foo (\\\() )"#
         #expect(string3.rangeOfEnclosingBracePair(at: string3.range(9..<9), candidates: pairs) == string3.range(4..<10))
+    }
+    
+    
+    @Test func pairIndex() {
+        
+        let string = "()"
+        let begin: BracePair.PairIndex = .begin(string.startIndex)
+        let end: BracePair.PairIndex = .end(string.index(1))
+        
+        #expect(begin.index == string.startIndex)
+        #expect(end.index == string.index(1))
+    }
+    
+    
+    @Test func rangeOfBracePair() {
+        
+        let string = "(a[b]c)"
+        let index = string.index(0)
+        let range = string.rangeOfBracePair(at: index, candidates: BracePair.braces)
+        
+        #expect(range == string.index(0)...string.index(6))
+        
+        let endIndex = string.index(6)
+        let endRange = string.rangeOfBracePair(at: endIndex, candidates: BracePair.braces)
+        
+        #expect(endRange == string.index(0)...string.index(6))
+    }
+    
+    
+    @Test func ignorePair() {
+        
+        let string = "( [ ( ] )"
+        let pair = BracePair("(", ")")
+        let brackets = BracePair("[", "]")
+        
+        let endIndex = string.indexOfBracePair(beginIndex: string.index(0), pair: pair)
+        let ignoredEndIndex = string.indexOfBracePair(beginIndex: string.index(0), pair: pair, ignoring: brackets)
+        
+        #expect(endIndex == nil)
+        #expect(ignoredEndIndex == string.index(8))
     }
 }
 

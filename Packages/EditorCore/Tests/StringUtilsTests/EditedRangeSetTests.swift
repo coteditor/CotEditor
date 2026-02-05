@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,6 +30,15 @@ import Testing
 @testable import StringUtils
 
 struct EditedRangeSetTests {
+    
+    @Test func emptySet() {
+        
+        let set = EditedRangeSet()
+        
+        #expect(set.isEmpty)
+        #expect(set.range == nil)
+    }
+    
     
     @Test func rangeSet() throws {
         
@@ -101,6 +110,38 @@ struct EditedRangeSetTests {
         set.append(editedRange: NSRange(location: 2, length: 2), changeInLength: 0)
         
         #expect(set.ranges == [NSRange(location: 0, length: 6)])
+    }
+    
+    
+    @Test func initWithRange() {
+        
+        var set = EditedRangeSet(range: NSRange(location: 3, length: 2))
+        #expect(!set.isEmpty)
+        #expect(set.range == NSRange(location: 3, length: 2))
+        
+        set.append(editedRange: NSRange(location: 10, length: 1), changeInLength: 0)
+        #expect(set.range == NSRange(location: 3, length: 8))
+    }
+    
+    
+    @Test func update() {
+        
+        var set = EditedRangeSet(range: NSRange(location: 2, length: 3))
+        set.update(editedRange: NSRange(location: 10, length: 0))
+        
+        #expect(set.ranges == [NSRange(location: 10, length: 0)])
+    }
+    
+    
+    @Test func appendInsertsSortedAndShifts() {
+        
+        var set = EditedRangeSet(range: NSRange(location: 5, length: 2))
+        
+        set.append(editedRange: NSRange(location: 1, length: 1), changeInLength: 0)
+        #expect(set.ranges == [NSRange(location: 1, length: 1), NSRange(location: 5, length: 2)])
+        
+        set.append(editedRange: NSRange(location: 2, length: 3), changeInLength: 2)
+        #expect(set.ranges == [NSRange(location: 1, length: 4), NSRange(location: 7, length: 2)])
     }
     
     
