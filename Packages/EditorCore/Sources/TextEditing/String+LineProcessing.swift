@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -355,7 +355,10 @@ public extension String {
         guard !whitespaceRanges.isEmpty else { return nil }
         
         let trimmingRanges: [NSRange] = keepingEditingPoint
-            ? whitespaceRanges.filter { range in editingRanges.allSatisfy { !$0.touches(range) } }
+            ? whitespaceRanges.filter { range in
+                let lineRange = (self as NSString).lineRange(for: range)
+                return editingRanges.allSatisfy { !$0.touches(lineRange) }
+            }
             : whitespaceRanges
         
         guard !trimmingRanges.isEmpty else { return nil }

@@ -279,6 +279,50 @@ struct StringTrimmingTests {
             """
         #expect(trimmedIgnoringEmptyLines == expectedTrimmedIgnoringEmptyLines)
     }
+    
+    
+    @Test func trimTrailingWhitespace() throws {
+        
+        let string = "a  \n b\t\nc  \n"
+        let context = try #require(string.trimTrailingWhitespace(ignoringEmptyLines: false, in: []))
+        let trimmed = try string.trim(ranges: context.ranges)
+        
+        #expect(trimmed == "a\n b\nc\n")
+        #expect(context.selectedRanges?.isEmpty == true)
+    }
+    
+    
+    @Test func trimTrailingWhitespaceKeepingEditingPoint() throws {
+        
+        let string = "a  \n b\t\nc  \n"
+        let tabRange = (string as NSString).range(of: "\t")
+        let context = try #require(string.trimTrailingWhitespace(ignoringEmptyLines: false, keepingEditingPoint: true, in: [tabRange]))
+        let trimmed = try string.trim(ranges: context.ranges)
+        
+        #expect(trimmed == "a\n b\t\nc\n")
+        #expect(context.selectedRanges == [NSRange(location: 4, length: 1)])
+    }
+    
+    
+    @Test func trimTrailingWhitespaceKeepingEditingPointNoChanges() {
+        
+        let string = "a  \n"
+        let range = NSRange(location: 2, length: 0)
+        
+        #expect(string.trimTrailingWhitespace(ignoringEmptyLines: false, keepingEditingPoint: true, in: [range]) == nil)
+    }
+    
+    
+    @Test func trimTrailingWhitespaceKeepingEditingPointSkipsLine() throws {
+        
+        let string = "a  \n b  \n"
+        let editRange = NSRange(location: 0, length: 0)
+        let context = try #require(string.trimTrailingWhitespace(ignoringEmptyLines: false, keepingEditingPoint: true, in: [editRange]))
+        let trimmed = try string.trim(ranges: context.ranges)
+        
+        #expect(trimmed == "a  \n b\n")
+        #expect(context.selectedRanges == [editRange])
+    }
 }
 
 
