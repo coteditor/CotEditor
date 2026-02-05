@@ -38,6 +38,7 @@
 ### Improvements
 
 - Optimize the performance of scanning incompatible characters.
+- Improve the behavior of trailing whitespace trimming.
 - Improve stability.
 
 
