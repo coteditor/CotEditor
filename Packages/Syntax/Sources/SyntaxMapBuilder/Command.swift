@@ -31,6 +31,10 @@ import Syntax
 @main
 struct Command: ParsableCommand {
     
+    static let configuration = CommandConfiguration(
+        abstract: "A command-line tool for CotEditor to build SyntaxMap.json from CotEditor Syntax files."
+    )
+    
     @Argument(help: "A path to the Syntaxes directory.", transform: { URL(filePath: $0) })
     var input: URL
     
