@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ extension SyntaxParser {
         let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
         self.outlineParseTask = Task {
-            self.outlineItems = try await Task.detached {
+            let task = try await Task.detached {
                 try await withThrowingTaskGroup { group in
                     for extractor in extractors {
                         group.addTask { try extractor.items(in: string, range: string.range) }
@@ -135,7 +135,12 @@ extension SyntaxParser {
                     return try await group.reduce(into: []) { $0 += $1 }
                         .sorted(using: KeyPathComparator(\.range.location))
                 }
-            }.value
+            }
+            self.outlineItems = try await withTaskCancellationHandler {
+                try await task.value
+            } onCancel: {
+                task.cancel()
+            }
         }
     }
 }
