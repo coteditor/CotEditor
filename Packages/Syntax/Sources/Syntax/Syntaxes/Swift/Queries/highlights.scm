@@ -113,6 +113,12 @@
 
 (shebang_line) @keywords
 
+; self/super
+[
+  (self_expression)
+  (super_expression)
+] @keywords
+
 
 ; MARK: Types
 ; ----------------------------
@@ -182,12 +188,6 @@
 (navigation_expression
   (navigation_suffix
     (simple_identifier) @variables))
-
-; self/super
-[
-  (self_expression)
-  (super_expression)
-] @variables
 
 
 ; MARK: Commands
