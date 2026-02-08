@@ -53,6 +53,8 @@ struct SyntaxEditView: View {
         case syntaxInfo
         case validation
         
+        case builtIn
+        
         
         static let features: [Self] = [.fileMapping, .commentDelimiters, .outline, .completion]
         static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
@@ -63,6 +65,7 @@ struct SyntaxEditView: View {
     @Environment(\.dismiss) private var dismiss
     
     private var isBundled: Bool = false
+    private var canCustomizeHighlight: Bool = true
     private var saveAction: SaveAction
     private var validationAction: NameValidationAction
 
@@ -77,11 +80,12 @@ struct SyntaxEditView: View {
     @FocusState private var isNameFieldFocused: Bool
     
     
-    init(syntax: Syntax? = nil, name: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction, validationAction: @escaping NameValidationAction = { _ in }) {
+    init(syntax: Syntax? = nil, name: String? = nil, isBundled: Bool = false, canCustomizeHighlight: Bool = false, saveAction: @escaping SaveAction, validationAction: @escaping NameValidationAction = { _ in }) {
         
         self.syntax = SyntaxObject(value: syntax)
         self.name = name ?? ""
         self.isBundled = isBundled
+        self.canCustomizeHighlight = canCustomizeHighlight
         self.saveAction = saveAction
         self.validationAction = validationAction
     }
@@ -97,8 +101,13 @@ struct SyntaxEditView: View {
                     }
                 }
                 Section(String(localized: "Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
-                    ForEach(Pane.highlights, id: \.self) { pane in
-                        Text(pane.label)
+                    if self.canCustomizeHighlight {
+                        ForEach(Pane.highlights, id: \.self) { pane in
+                            Text(pane.label)
+                        }
+                    } else {
+                        Text(Pane.builtIn.label)
+                            .id(Pane.builtIn)
                     }
                 }
                 Section(String(localized: "Definition File", table: "SyntaxEditor", comment: "section header in sidebar")) {
@@ -202,6 +211,9 @@ struct SyntaxEditView: View {
                 SyntaxMetadataEditView(metadata: $syntax.metadata)
             case .validation:
                 SyntaxValidationView(errors: self.errors)
+                
+            case .builtIn:
+                SyntaxBuiltInView()
         }
     }
     
@@ -318,6 +330,11 @@ extension SyntaxEditView.Pane {
                        comment: "menu item in sidebar")
             case .validation:
                 String(localized: "Validation",
+                       table: "SyntaxEditor",
+                       comment: "menu item in sidebar")
+                
+            case .builtIn:
+                String(localized: "Built-in",
                        table: "SyntaxEditor",
                        comment: "menu item in sidebar")
         }

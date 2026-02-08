@@ -58,7 +58,7 @@ enum SyntaxName {
     static let directoryName: String = "Syntaxes"
     static let userDirectoryName: String? = "Syntaxes (Upcoming)"
     static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
-    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]
+    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"] + LanguageRegistry.Language.internalLanguages.map(\.name)
     
     let bundledSettingNames: [SettingName]
     @Published var settingNames: [SettingName] = []
@@ -175,6 +175,17 @@ enum SyntaxName {
         }
         
         return nil
+    }
+    
+    
+    /// Returns whether the given syntax can be customized by the user for highlighting.
+    ///
+    /// - Parameters:
+    ///   - name: The setting name to check.
+    /// - Returns: `true` if the syntax is user-customizable (i.e., not a built-in language), otherwise `false`.
+    func canCustomizeHighlighting(name: SettingName) -> Bool {
+        
+        LanguageRegistry.Language(rawValue: name) == nil
     }
     
     
