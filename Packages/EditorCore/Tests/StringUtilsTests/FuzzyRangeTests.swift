@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,6 +45,16 @@ struct FuzzyRangeTests {
     }
     
     
+    @Test func fuzzyCharacterRangeOutOfBounds() {
+        
+        let string = "0123"
+        
+        #expect(string.range(in: FuzzyRange(location: 5, length: 1)) == nil)
+        #expect(string.range(in: FuzzyRange(location: -6, length: 1)) == nil)
+        #expect(string.range(in: FuzzyRange(location: 2, length: -10)) == nil)
+    }
+    
+    
     @Test func fuzzyLineRange() throws {
         
         let string = "1\r\n2\r\n3\r\n4"  // 1 based
@@ -76,31 +86,14 @@ struct FuzzyRangeTests {
     }
     
     
-    @Test func formatFuzzyRange() {
+    @Test func fuzzyLineRangeSpecialCases() throws {
         
-        #expect(FuzzyRange(location: 0, length: 0).formatted() == "0")
-        #expect(FuzzyRange(location: 1, length: 0).formatted() == "1")
-        #expect(FuzzyRange(location: 1, length: 1).formatted() == "1")
-        #expect(FuzzyRange(location: 1, length: 2).formatted() == "1:2")
-        #expect(FuzzyRange(location: -1, length: 0).formatted() == "-1")
-        #expect(FuzzyRange(location: -1, length: -1).formatted() == "-1:-1")
-    }
-    
-    
-    @Test func parseFuzzyRange() throws {
+        let string = "a\nb\nc"
+        let length = (string as NSString).length
         
-        let parser = FuzzyRange.ParseStrategy()
-        
-        #expect(try parser.parse("0") == FuzzyRange(location: 0, length: 0))
-        #expect(try parser.parse("1") == FuzzyRange(location: 1, length: 0))
-        #expect(try parser.parse("1:2") == FuzzyRange(location: 1, length: 2))
-        #expect(try parser.parse("-1") == FuzzyRange(location: -1, length: 0))
-        #expect(try parser.parse("-1:-1") == FuzzyRange(location: -1, length: -1))
-        
-        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("") }
-        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("abc") }
-        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:a") }
-        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:1:1") }
+        #expect(string.rangeForLine(in: FuzzyRange(location: 0, length: 1)) == NSRange(0..<0))
+        #expect(string.rangeForLine(in: FuzzyRange(location: 4, length: 1)) == NSRange(location: length, length: 0))
+        #expect(string.rangeForLine(in: FuzzyRange(location: 2, length: 3)) == nil)
     }
     
     
@@ -135,5 +128,53 @@ struct FuzzyRangeTests {
         #expect(throws: FuzzyLocationError.invalidColumn(4)) { try string.fuzzyLocation(line: 5, column: 4) }
         #expect(try string.fuzzyLocation(line: 5, column: -1) == 16)
         #expect(try string.fuzzyLocation(line: 5, column: -2) == 15)
+    }
+    
+    
+    // MARK: Format Style Tests
+    
+    @Test func formatFuzzyRange() {
+        
+        #expect(FuzzyRange(location: 0, length: 0).formatted() == "0")
+        #expect(FuzzyRange(location: 1, length: 0).formatted() == "1")
+        #expect(FuzzyRange(location: 1, length: 1).formatted() == "1")
+        #expect(FuzzyRange(location: 1, length: 2).formatted() == "1:2")
+        #expect(FuzzyRange(location: -1, length: 0).formatted() == "-1")
+        #expect(FuzzyRange(location: -1, length: -1).formatted() == "-1:-1")
+    }
+    
+    
+    @Test func formatStyleFuzzyRange() {
+        
+        let style = FuzzyRange.FormatStyle()
+        
+        #expect(style.format(FuzzyRange(location: 2, length: 1)) == "2")
+        #expect(style.format(FuzzyRange(location: 2, length: 3)) == "2:3")
+        #expect(FuzzyRange(location: -3, length: -2).formatted(.fuzzyRange) == "-3:-2")
+    }
+    
+    
+    @Test func formatStyleParseStrategy() throws {
+        
+        let parsed = try FuzzyRange.FormatStyle().parseStrategy.parse("4:5")
+        
+        #expect(parsed == FuzzyRange(location: 4, length: 5))
+    }
+    
+    
+    @Test func parseFuzzyRange() throws {
+        
+        let parser = FuzzyRange.ParseStrategy()
+        
+        #expect(try parser.parse("0") == FuzzyRange(location: 0, length: 0))
+        #expect(try parser.parse("1") == FuzzyRange(location: 1, length: 0))
+        #expect(try parser.parse("1:2") == FuzzyRange(location: 1, length: 2))
+        #expect(try parser.parse("-1") == FuzzyRange(location: -1, length: 0))
+        #expect(try parser.parse("-1:-1") == FuzzyRange(location: -1, length: -1))
+        
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("abc") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:a") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:1:1") }
     }
 }

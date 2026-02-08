@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,6 +30,54 @@ import Testing
 @testable import TextFind
 
 struct TextFindTests {
+    
+    @Test func initializationErrors() {
+        
+        #expect(throws: TextFind.Error.emptyFindString) {
+            try TextFind(for: "abc", findString: "", mode: .textual(options: [], fullWord: false))
+        }
+        
+        #expect(throws: TextFind.Error.emptyInSelectionSearch) {
+            try TextFind(for: "abc", findString: "a", mode: .textual(options: [], fullWord: false), inSelection: true, selectedRanges: [NSRange()])
+        }
+        
+        let regexError = #expect(throws: TextFind.Error.self) {
+            try TextFind(for: "abc", findString: "[", mode: .regularExpression(options: [], unescapesReplacement: false))
+        }
+        if case .regularExpression(let reason) = regexError {
+            #expect(!reason.isEmpty)
+        } else {
+            Issue.record()
+        }
+    }
+    
+    
+    @Test func scopeRangeInSelection() throws {
+        
+        let textFind = try TextFind(for: "abcdef", findString: "a",
+                                    mode: .textual(options: [], fullWord: false),
+                                    inSelection: true,
+                                    selectedRanges: [NSRange(location: 1, length: 2),
+                                                     NSRange(location: 4, length: 1)])
+        
+        #expect(textFind.scopeRange == 1..<5)
+    }
+    
+    
+    @Test func findIncludingSelection() throws {
+        
+        let textFind = try TextFind(for: "abc abc", findString: "abc",
+                                    mode: .textual(options: [], fullWord: false),
+                                    selectedRanges: [NSRange(location: 0, length: 3)])
+        
+        let matches = try textFind.matches
+        let included = try #require(textFind.find(in: matches, forward: true, includingSelection: true, wraps: false))
+        #expect(included.range == NSRange(location: 0, length: 3))
+        
+        let excluded = try #require(textFind.find(in: matches, forward: true, includingSelection: false, wraps: false))
+        #expect(excluded.range == NSRange(location: 4, length: 3))
+    }
+    
     
     @Test func countCaptureGroup() throws {
         
