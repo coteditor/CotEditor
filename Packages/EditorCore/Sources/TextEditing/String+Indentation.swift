@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public extension String {
     /// Increases the indentation level of each line that intersects the given selections.
     ///
     /// - Parameters:
-    ///   - style: The indent style to covert to.
+    ///   - style: The indent style to convert to.
     ///   - indentWidth: The number of characters for the indentation.
     ///   - selectedRanges: The selection in the editor.
     /// - Returns: An `EditingContext`.
@@ -85,7 +85,7 @@ public extension String {
     /// Decreases the indentation level of each line that intersects the given selections.
     ///
     /// - Parameters:
-    ///   - style: The indent style to covert to.
+    ///   - style: The indent style to convert to.
     ///   - indentWidth: The number of characters for the indentation.
     ///   - selectedRanges: The selection in the editor.
     /// - Returns: An `EditingContext`, or `nil` if no changes were necessary.
