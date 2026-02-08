@@ -449,10 +449,10 @@ private struct LicenseView: View {
                 
                 DisclosureGroup(self.license.name ?? String(localized: "License", table: "About")) {
                     Text(self.content)
-                        .foregroundStyle(.secondary)
                         .environment(\.locale, Locale(languageCode: .english))
                         .environment(\.layoutDirection, .leftToRight)
                 }
+                .foregroundStyle(.secondary)
             }
             .onAppear {
                 guard self.content.isEmpty else { return }
