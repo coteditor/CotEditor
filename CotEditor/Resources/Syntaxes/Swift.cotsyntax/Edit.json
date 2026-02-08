@@ -12,8 +12,80 @@
   },
   "completions" : [
     {
-      "text" : "_Incrementable",
-      "type" : "types"
+      "text" : "#available",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#colorLiteral",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#column",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#else",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#elseif",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#endif",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#error",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#file",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#fileLiteral",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#filePath",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#function",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#if",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#imageLiteral",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#keyPath",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#line",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#selector",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#sourceLocation",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#unavailable",
+      "type" : "keywords"
+    },
+    {
+      "text" : "#warning",
+      "type" : "keywords"
     },
     {
       "text" : "@AppStorage",
@@ -264,83 +336,7 @@
       "type" : "attributes"
     },
     {
-      "text" : "#available",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#colorLiteral",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#column",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#else",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#elseif",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#endif",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#error",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#file",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#fileLiteral",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#filePath",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#function",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#if",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#imageLiteral",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#keyPath",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#line",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#selector",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#sourceLocation",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#unavailable",
-      "type" : "keywords"
-    },
-    {
-      "text" : "#warning",
-      "type" : "keywords"
-    },
-    {
-      "text" : "~Copyable",
+      "text" : "_Incrementable",
       "type" : "types"
     },
     {
@@ -956,7 +952,7 @@
       "type" : "types"
     },
     {
-      "text" : "Int8",
+      "text" : "Int128",
       "type" : "types"
     },
     {
@@ -972,7 +968,7 @@
       "type" : "types"
     },
     {
-      "text" : "Int128",
+      "text" : "Int8",
       "type" : "types"
     },
     {
@@ -1404,6 +1400,10 @@
       "type" : "types"
     },
     {
+      "text" : "SIMD16",
+      "type" : "types"
+    },
+    {
       "text" : "SIMD2",
       "type" : "types"
     },
@@ -1412,23 +1412,19 @@
       "type" : "types"
     },
     {
-      "text" : "SIMD4",
-      "type" : "types"
-    },
-    {
-      "text" : "SIMD8",
-      "type" : "types"
-    },
-    {
-      "text" : "SIMD16",
-      "type" : "types"
-    },
-    {
       "text" : "SIMD32",
       "type" : "types"
     },
     {
+      "text" : "SIMD4",
+      "type" : "types"
+    },
+    {
       "text" : "SIMD64",
+      "type" : "types"
+    },
+    {
+      "text" : "SIMD8",
       "type" : "types"
     },
     {
@@ -1576,7 +1572,7 @@
       "type" : "types"
     },
     {
-      "text" : "UInt8",
+      "text" : "UInt128",
       "type" : "types"
     },
     {
@@ -1592,7 +1588,7 @@
       "type" : "types"
     },
     {
-      "text" : "UInt128",
+      "text" : "UInt8",
       "type" : "types"
     },
     {
@@ -1672,15 +1668,15 @@
       "type" : "types"
     },
     {
-      "text" : "UTF8",
-      "type" : "types"
-    },
-    {
       "text" : "UTF16",
       "type" : "types"
     },
     {
       "text" : "UTF32",
+      "type" : "types"
+    },
+    {
+      "text" : "UTF8",
       "type" : "types"
     },
     {
@@ -1737,6 +1733,10 @@
     },
     {
       "text" : "Zip2Sequence",
+      "type" : "types"
+    },
+    {
+      "text" : "~Copyable",
       "type" : "types"
     }
   ]
