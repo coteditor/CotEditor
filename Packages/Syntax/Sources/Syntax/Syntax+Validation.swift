@@ -30,9 +30,9 @@ internal import StringUtils
 
 public extension Syntax {
     
-    struct Error: Swift.Error {
+    struct Error: Swift.Error, Equatable {
         
-        public enum Code: Sendable {
+        public enum Code: Equatable, Sendable {
             
             case duplicated
             case regularExpression
@@ -40,7 +40,7 @@ public extension Syntax {
         }
         
         
-        public enum Scope: Sendable {
+        public enum Scope: Equatable, Sendable {
             
             case highlight(SyntaxType)
             case outline
