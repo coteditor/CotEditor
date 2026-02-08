@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -376,10 +376,14 @@ extension FileNode {
             // async read files in background
             if self.cachedChildren == nil {
                 let fileURL = self.file.fileURL
-                self.cachedChildren = try await Task.detached(priority: .userInitiated) { @Sendable in  // explicit @Sendable for a Swift-side bug (2025-10, Xcode 26.1, Swift 6.2.1)
+                let task = try await Task.detached(priority: .userInitiated) { @Sendable in  // explicit @Sendable for a Swift-side bug (2025-10, Xcode 26.1, Swift 6.2.1)
                     try Self.readChildFiles(at: fileURL)
                 }
-                .value
+                self.cachedChildren = try await withTaskCancellationHandler {
+                    try await task.value
+                } onCancel: {
+                    task.cancel()
+                }
                 .map { FileNode(file: $0, parent: self) }
             }
             
