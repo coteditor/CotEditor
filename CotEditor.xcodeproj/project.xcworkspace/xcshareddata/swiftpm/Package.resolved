@@ -1,5 +1,5 @@
 {
-  "originHash" : "c0307efe4159d223ccc14474268041dbd238ad24e6a5a7a60dca9bbb82d50105",
+  "originHash" : "b715ef16ceacfd77a7fad53e1979659c29f008b762e7abd3da01c62f6f4a9572",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -80,6 +80,15 @@
       "state" : {
         "branch" : "swiftPackage",
         "revision" : "0f459c8e007c8ab6488577e0877ee27df0ddcdfc"
+      }
+    },
+    {
+      "identity" : "tree-sitter-ruby",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tree-sitter/tree-sitter-ruby",
+      "state" : {
+        "revision" : "71bd32fb7607035768799732addba884a37a6210",
+        "version" : "0.23.1"
       }
     },
     {
