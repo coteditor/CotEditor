@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -149,5 +149,17 @@ struct ShortcutTests {
         #expect(Shortcut(symbolRepresentation: "⌥ ⌘ B")?.keySpecChars == "~@b")
         #expect(Shortcut(symbolRepresentation: "⌘ F10")?.keySpecChars == "@" + f10)
         #expect(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars == "@" + deleteForward)
+    }
+    
+    
+    @Test func modifierKeyBasics() {
+        
+        #expect(ModifierKey.validCases == [.control, .option, .shift, .command])
+        #expect([.control, .shift].mask == [.control, .shift])
+        
+        #expect(ModifierKey.control.keySpecChar == "^")
+        #expect(ModifierKey.option.keySpecChar == "~")
+        #expect(ModifierKey.shift.keySpecChar == "$")
+        #expect(ModifierKey.command.keySpecChar == "@")
     }
 }
