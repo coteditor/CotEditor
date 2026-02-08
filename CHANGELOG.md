@@ -24,7 +24,7 @@
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move to the Format menu.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
-- [trivial] Tweak the background color of the default Anura theme.
+- [trivial] Tweak colors of the default Anura theme.
 
 
 ### TODO

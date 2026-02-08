@@ -9,14 +9,14 @@
     "color" : "#639808"
   },
   "commands" : {
-    "color" : "#947231"
+    "color" : "#806126"
   },
   "comments" : {
     "color" : "#66747a"
   },
   "highlight" : {
-      "color" : "#5da810",
-      "usesSystemSetting" : true
+    "color" : "#5da810",
+    "usesSystemSetting" : true
   },
   "insertionPoint" : {
     "color" : "#6c6c6c",
@@ -37,7 +37,6 @@
     "distributionURL" : "https://coteditor.com",
     "license" : "Same as CotEditor (Apache, ver.2)"
   },
-  "name" : "Anura",
   "numbers" : {
     "color" : "#683a91"
   },
@@ -46,18 +45,18 @@
     "usesSystemSetting" : true
   },
   "strings" : {
-    "color" : "#526e2a"
+    "color" : "#4d6629"
   },
   "text" : {
     "color" : "#313131"
   },
   "types" : {
-    "color" : "#ae3d16"
+    "color" : "#ad4315"
   },
   "values" : {
-    "color" : "#b22729"
+    "color" : "#ad263d"
   },
   "variables" : {
-    "color" : "#348986"
+    "color" : "#2d807d"
   }
 }
