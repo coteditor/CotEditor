@@ -1342,11 +1342,11 @@
       "type" : "commands"
     },
     {
-      "text" : "getInt8",
+      "text" : "getInt16",
       "type" : "commands"
     },
     {
-      "text" : "getInt16",
+      "text" : "getInt8",
       "type" : "commands"
     },
     {
@@ -1438,11 +1438,11 @@
       "type" : "commands"
     },
     {
-      "text" : "getUint8",
+      "text" : "getUint16",
       "type" : "commands"
     },
     {
-      "text" : "getUint16",
+      "text" : "getUint8",
       "type" : "commands"
     },
     {
@@ -1722,15 +1722,15 @@
       "type" : "keywords"
     },
     {
-      "text" : "Int8Array",
-      "type" : "types"
-    },
-    {
       "text" : "Int16Array",
       "type" : "types"
     },
     {
       "text" : "Int32Array",
+      "type" : "types"
+    },
+    {
+      "text" : "Int8Array",
       "type" : "types"
     },
     {
@@ -1966,11 +1966,11 @@
       "type" : "attributes"
     },
     {
-      "text" : "LN2",
+      "text" : "LN10",
       "type" : "values"
     },
     {
-      "text" : "LN10",
+      "text" : "LN2",
       "type" : "values"
     },
     {
@@ -2014,6 +2014,14 @@
       "type" : "commands"
     },
     {
+      "text" : "log10",
+      "type" : "commands"
+    },
+    {
+      "text" : "LOG10E",
+      "type" : "values"
+    },
+    {
       "text" : "log1p",
       "type" : "commands"
     },
@@ -2023,14 +2031,6 @@
     },
     {
       "text" : "LOG2E",
-      "type" : "values"
-    },
-    {
-      "text" : "log10",
-      "type" : "commands"
-    },
-    {
-      "text" : "LOG10E",
       "type" : "values"
     },
     {
@@ -3786,19 +3786,19 @@
       "type" : "keywords"
     },
     {
-      "text" : "Uint8Array",
-      "type" : "types"
-    },
-    {
-      "text" : "Uint8ClampedArray",
-      "type" : "types"
-    },
-    {
       "text" : "Uint16Array",
       "type" : "types"
     },
     {
       "text" : "Uint32Array",
+      "type" : "types"
+    },
+    {
+      "text" : "Uint8Array",
+      "type" : "types"
+    },
+    {
+      "text" : "Uint8ClampedArray",
       "type" : "types"
     },
     {
