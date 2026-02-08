@@ -66,13 +66,14 @@ extension NSAttributedString.Key {
     /// - Parameters:
     ///   - textStorage: The text storage to modify with highlight attributes.
     ///   - syntax: The syntax definition that provides parsers.
-    init(textStorage: NSTextStorage, syntax: Syntax) {
-        
+    ///   - name: The of the syntax.
+    init(textStorage: NSTextStorage, syntax: Syntax, name: String) {
+         
         self.textStorage = textStorage
         self.invalidRanges = EditedRangeSet(range: textStorage.range)
         
         self.syntax = syntax
-        self.highlightParser = syntax.highlightParser
+        self.highlightParser = try? LanguageRegistry.shared.highlightParser(name: name) ?? syntax.highlightParser
         self.outlineParser = syntax.outlineParser
     }
     
@@ -98,7 +99,8 @@ extension NSAttributedString.Key {
     ///
     /// - Parameters:
     ///   - syntax: The new syntax.
-    func update(syntax: Syntax) {
+    ///   - name: The of the syntax.
+    func update(syntax: Syntax, name: String) {
         
         self.cancel()
         
@@ -108,7 +110,7 @@ extension NSAttributedString.Key {
         }
         
         self.syntax = syntax
-        self.highlightParser = syntax.highlightParser
+        self.highlightParser = try? LanguageRegistry.shared.highlightParser(name: name) ?? syntax.highlightParser
         self.outlineParser = syntax.outlineParser
         
         self.invalidateAll()

@@ -37,6 +37,9 @@ public final class LanguageRegistry: Sendable {
         
         case swift = "Swift"
         
+        
+        public static let internalLanguages: [Self] = []
+        
         public var name: String { self.rawValue }
     }
     

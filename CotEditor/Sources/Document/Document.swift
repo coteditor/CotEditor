@@ -131,7 +131,7 @@ extension NSTextView: EditorCounter.Source { }
         var syntaxName = UserDefaults.standard[.syntax]
         let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
-        self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: syntax ?? Syntax.none)
+        self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
         self.syntaxFileExtension = syntax?.fileMap.extensions?.first
         self.syntaxName = syntaxName
         
@@ -1086,7 +1086,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // update
         self.syntaxFileExtension = syntax.fileMap.extensions?.first
-        self.syntaxController.update(syntax: syntax)
+        self.syntaxController.update(syntax: syntax, name: name)
         self.syntaxName = name
         
         self.invalidateMode()
