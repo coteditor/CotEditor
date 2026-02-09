@@ -134,6 +134,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             }
         }
         
+        // start parsing
+        self.document.syntaxController.setupParser()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
                                                object: self.document.textStorage)
