@@ -28,6 +28,12 @@
   "subscript"
   "let"
   "var"
+  "enum"
+  "struct"
+  "class"
+  "typealias"
+  "async"
+  "await"
   (throws)
   (where_keyword)
   (getter_specifier)
@@ -39,18 +45,6 @@
 
 (if_statement
   "if" @keywords)
-
-[
-  "enum"
-  "struct"
-  "class"
-  "typealias"
-] @keywords
-
-[
-  "async"
-  "await"
-] @keywords
 
 (import_declaration
   "import" @keywords)
@@ -120,20 +114,51 @@
 ] @keywords
 
 
+; MARK: Commands
+; ----------------------------
+
+; function declarations
+(function_declaration
+  (simple_identifier) @commands)
+
+(protocol_function_declaration
+  name: (simple_identifier) @commands)
+
+; foo(...): only () calls are commands
+(call_expression
+  (simple_identifier) @commands
+  (call_suffix
+    (value_arguments
+      "(" (_)? ")" )))
+
+; foo.bar.baz(): highlight baz only when it's a () call
+(call_expression
+  (navigation_expression
+    (navigation_suffix (simple_identifier) @commands))
+  (call_suffix
+    (value_arguments
+      "(" (_)? ")" )))
+
+; .foo()
+(call_expression
+  (prefix_expression (simple_identifier) @commands)
+)
+
+
 ; MARK: Types
 ; ----------------------------
 
 (type_identifier) @types
 
+; Type-like initializer calls: String(...), URL(...), Foo(...)
+(call_expression
+  (simple_identifier) @types
+  (#match? @types "^[A-Z]"))
+  
 ; Self
 (user_type (type_identifier) @types
   (#eq? @types "Self")
 )
-
-; SomeType.method(): highlight SomeType as a type
-((navigation_expression
-  (simple_identifier) @types)
-  (#match? @types "^[A-Z]"))
 
 
 ; Attributes
@@ -185,37 +210,9 @@
   (pattern
     (simple_identifier) @variables))
 
-(navigation_expression
-  (navigation_suffix
-    (simple_identifier) @variables))
-
-
-; MARK: Commands
-; ----------------------------
-
-; function declarations
-(function_declaration
-  (simple_identifier) @commands)
-
-(protocol_function_declaration
-  name: (simple_identifier) @commands)
-
-; foo()
-(call_expression
-  (simple_identifier) @commands
-)
-
-; foo.bar.baz(): highlight the baz()
-(call_expression
-  (navigation_expression
-    (navigation_suffix (simple_identifier) @commands)
-  )
-)
-
-; .foo()
-(call_expression
-  (prefix_expression (simple_identifier) @commands)
-)
+; closure shorthand arguments: $0, $1, ...
+((simple_identifier) @variables
+  (#match? @variables "^\\$[0-9]+$"))
 
 
 ; MARK: Values

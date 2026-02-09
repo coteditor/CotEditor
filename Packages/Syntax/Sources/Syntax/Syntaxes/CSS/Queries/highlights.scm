@@ -25,7 +25,7 @@
   "or"
   "not"
   "only"
-] @keywords.operator
+] @keywords
 
 
 ; Commands
@@ -109,7 +109,7 @@
 (attribute_selector (plain_value) @strings)
 
 (string_value) @strings
-(color_value) @strings.special
+(color_value) @strings
 
 
 ; Comments

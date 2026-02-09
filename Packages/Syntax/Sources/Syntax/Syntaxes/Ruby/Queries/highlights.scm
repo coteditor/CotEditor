@@ -8,7 +8,8 @@
 ; © 2026 1024jp
 ;
 
-(identifier) @variables
+; set variables at first
+; (identifier) @variables
 
 
 ; MARK: Keywords
@@ -22,6 +23,7 @@
   "case"
   "class"
   "def"
+  "defined?"
   "do"
   "else"
   "elsif"
@@ -51,21 +53,13 @@
 ; MARK: Commands
 ; ----------------------------
 
-((identifier) @commands.method
- (#is-not? local))
-
-; Function calls
-
-"defined?" @commands.method.builtin
-
+; function calls
 (call
   method: [(identifier) (constant)] @commands.method)
+(call method: (identifier) @commands.method
+  (#any-of? @commands.method "require"))
 
-((identifier) @commands.method.builtin
- (#eq? @commands.method.builtin "require"))
-
-; Function definitions
-
+; function definitions
 (alias (identifier) @commands.method)
 (setter (identifier) @commands.method)
 (method name: [(identifier) (constant)] @commands.method)
@@ -75,13 +69,11 @@
 ; MARK: Types
 ; ----------------------------
 
-(constant) @types.constructor
+(constant) @types
 
 
 ; MARK: Attributes
 ; ----------------------------
-
-; Identifiers
 
 [
   (class_variable)
@@ -92,6 +84,8 @@
 
 ; MARK: Variables
 ; ----------------------------
+
+(global_variable) @variables
 
 [
   (self)
@@ -152,14 +146,15 @@
   (heredoc_beginning)
 ] @strings
 
+; special symbols
 [
   (simple_symbol)
   (delimited_symbol)
   (hash_key_symbol)
   (bare_symbol)
-] @strings.special.symbol
+] @strings
 
-(regex) @strings.special.regex
+(regex) @strings
 
 
 ; MARK: Characters

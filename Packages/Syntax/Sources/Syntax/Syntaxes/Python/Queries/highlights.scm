@@ -57,21 +57,25 @@
   "or"
   "is not"
   "not in"
-] @keywords.operators
+] @keywords
 
 
 ; Commands
 ; ----------------------------
 
+; general attribute access: obj.attr / pkg.mod.name
+; Attributes: intentionally placed *before* @commands.
+(attribute
+  attribute: (identifier) @attributes)
+  
+  
 ; function calls
-
 (call
   function: (attribute attribute: (identifier) @commands.method))
 (call
   function: (identifier) @commands)
 
 ; builtin functions
-
 ((call
   function: (identifier) @commands.builtin)
  (#match?
@@ -79,9 +83,13 @@
    "^(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|__import__)$"))
 
 ; function definitions
-
 (function_definition
   name: (identifier) @commands)
+
+; call of dunder methods
+(call
+  function: (identifier) @commands
+  (#match? @commands "^__\\w+__$"))
 
 
 ; Types
@@ -96,10 +104,8 @@
  (#match? @types.constructor "^[A-Z]"))
 
 
-; Attributes
+; Attributes (decorators)
 ; ----------------------------
-
-; decorators
 
 ; @name
 (decorator
@@ -145,9 +151,20 @@
   (false)
 ] @values.builtin
 
-; dunder identifiers: __name__, __future__, __annotations__, etc.
+; dunder constants / meta identifiers
 ((identifier) @values
-  (#match? @values "^__\\w+__$"))
+  (#any-of? @values
+    "__name__"
+    "__main__"
+    "__file__"
+    "__package__"
+    "__spec__"
+    "__doc__"
+    "__all__"
+    "__annotations__"
+    "__debug__"
+    "__author__"
+    "__copyright__"))
 (future_import_statement
   "__future__" @values)
 
