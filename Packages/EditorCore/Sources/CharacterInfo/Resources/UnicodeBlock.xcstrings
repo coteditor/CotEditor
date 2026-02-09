@@ -16402,7 +16402,14 @@
       }
     },
     "Kirat Rai" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基拉特拉伊文"
+          }
+        }
+      }
     },
     "Lao" : {
       "localizations" : {
@@ -23105,7 +23112,14 @@
       }
     },
     "Ol Onal" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "奧爾奧納爾文"
+          }
+        }
+      }
     },
     "Old Hungarian" : {
       "localizations" : {
@@ -29108,7 +29122,14 @@
       }
     },
     "Symbols for Legacy Computing Supplement" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳統運算符號補充"
+          }
+        }
+      }
     },
     "Syriac" : {
       "localizations" : {
@@ -31411,7 +31432,14 @@
       }
     },
     "Toto" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toto"
+          }
+        }
+      }
     },
     "Transport And Map Symbols" : {
       "localizations" : {
