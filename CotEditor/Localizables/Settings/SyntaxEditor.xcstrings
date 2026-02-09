@@ -1178,6 +1178,12 @@
             "state" : "needs_review",
             "value" : "Ingebouwd"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內置"
+          }
         }
       }
     },
@@ -1723,6 +1729,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Weergavepatroon"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示模式"
           }
         }
       }
@@ -3582,6 +3594,12 @@
             "state" : "needs_review",
             "value" : "Alleen regelbegin"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "只限行開頭"
+          }
         }
       }
     },
@@ -3621,6 +3639,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheerd door de app\n"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由應用程式管理"
           }
         }
       }
@@ -4660,6 +4684,12 @@
             "state" : "needs_review",
             "value" : "Commentaar"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "註解"
+          }
         }
       }
     },
@@ -4923,6 +4953,12 @@
             "state" : "needs_review",
             "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此語言使用一個基於結構的通用剖析器，稱為「tree-sitter」，用於語法分析。\n由於截取規則是由應用程式管理的，你無法自訂它們。"
+          }
         }
       }
     },
@@ -4963,6 +4999,12 @@
             "state" : "needs_review",
             "value" : "De commentaar-scheidingstekens die hier zijn gedefinieerd, worden ook gebruikt voor syntaxmarkering."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此處定義的註解分隔符號亦會用於語法重點標示。"
+          }
         }
       }
     },
@@ -5002,6 +5044,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het eerste scheidingsteken wordt gebruikt om commentaar te maken."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第一個分隔符號用於註解。"
           }
         }
       }
@@ -5144,6 +5192,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Type"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "類型"
           }
         }
       }

@@ -1337,6 +1337,12 @@
             "state" : "needs_review",
             "value" : "CotEditor-syntaxis"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor語法"
+          }
         }
       }
     },

@@ -259,6 +259,12 @@
             "state" : "translated",
             "value" : "Container"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "容器"
+          }
         }
       }
     },
@@ -305,6 +311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Functie"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "函數"
           }
         }
       }
@@ -353,6 +365,12 @@
             "state" : "translated",
             "value" : "Kop"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標題"
+          }
         }
       }
     },
@@ -400,6 +418,12 @@
             "state" : "translated",
             "value" : "Markering"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標示"
+          }
         }
       }
     },
@@ -446,6 +470,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verwijzing"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "參考"
           }
         }
       }
@@ -600,6 +630,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Waarde"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "值"
           }
         }
       }
