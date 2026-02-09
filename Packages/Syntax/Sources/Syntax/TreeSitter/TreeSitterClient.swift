@@ -33,13 +33,6 @@ import SwiftTreeSitterLayer
 
 actor TreeSitterClient: HighlightParsing {
     
-    private enum InputEditError: Error {
-        
-        case invalidRange
-        case pointCalculationFailed
-    }
-    
-    
     // MARK: Internal Properties
     
     nonisolated let needsHighlightBuffer: Bool = false
@@ -50,7 +43,7 @@ actor TreeSitterClient: HighlightParsing {
     private let layer: LanguageLayer
     
     /// The current mirrored document content.
-    private var content: String = ""
+    private var content: Content = .init()
     
     /// The ranges affected by pending edits, in UTF-16 units.
     private var pendingAffectedRanges: EditedRangeSet = .init()
@@ -69,10 +62,10 @@ actor TreeSitterClient: HighlightParsing {
     
     func update(content: String) {
         
-        guard content != self.content else { return }
+        guard content != self.content.string else { return }
         
         do {
-            try self.noteEdit(editedRange: content.nsRange, delta: content.length - self.content.length, insertedText: content)
+            try self.noteEdit(editedRange: content.nsRange, delta: content.length - self.content.string.length, insertedText: content)
         } catch {
             assertionFailure()
             self.resetContent(content)
@@ -82,39 +75,7 @@ actor TreeSitterClient: HighlightParsing {
     
     func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws {
         
-        guard insertedText.length == editedRange.length else {
-            throw InputEditError.invalidRange
-        }
-        
-        let oldLength = editedRange.length - delta
-        
-        guard oldLength >= 0 else { throw InputEditError.invalidRange }
-        
-        let preEditRange = NSRange(location: editedRange.location, length: oldLength)
-        let preEditString = self.content as NSString
-        
-        guard preEditRange.upperBound <= preEditString.length else {
-            throw InputEditError.invalidRange
-        }
-        
-        let postEditContent = preEditString.replacingCharacters(in: preEditRange, with: insertedText)
-        let postEditString = postEditContent as NSString
-        
-        guard
-            let startPoint = preEditString.point(at: preEditRange.location),
-            let oldEndPoint = preEditString.point(at: preEditRange.upperBound),
-            let newEndPoint = postEditString.point(at: editedRange.upperBound)
-        else { throw InputEditError.pointCalculationFailed }
-        
-        self.content = postEditContent
-        
-        
-        let edit = InputEdit(startByte: preEditRange.location * 2,
-                             oldEndByte: preEditRange.upperBound * 2,
-                             newEndByte: editedRange.upperBound * 2,
-                             startPoint: startPoint,
-                             oldEndPoint: oldEndPoint,
-                             newEndPoint: newEndPoint)
+        let edit = try self.content.applyEdit(editedRange: editedRange, delta: delta, insertedText: insertedText)
         
         self.layer.applyEdit(edit)
         self.pendingAffectedRanges.append(editedRange: editedRange, changeInLength: delta)
@@ -123,7 +84,7 @@ actor TreeSitterClient: HighlightParsing {
     
     func parseHighlights(in string: String, range: NSRange) async throws -> (highlights: [Highlight], updateRange: NSRange)? {
         
-        if string != self.content {
+        if string != self.content.string {
             self.resetContent(string)
         }
         
@@ -155,7 +116,7 @@ actor TreeSitterClient: HighlightParsing {
     ///   - content: The content to apply.
     private func resetContent(_ content: String) {
         
-        self.content = content
+        self.content.reset(content)
         self.layer.replaceContent(with: content)
         self.pendingAffectedRanges.clear()
     }
@@ -179,22 +140,6 @@ private extension NamedRange {
 
 
 private extension NSString {
-    
-    /// Returns the tree-sitter point (row/column) at the given UTF-16 location.
-    ///
-    /// - Parameter location: The UTF-16 offset in the string.
-    /// - Returns: The corresponding point, or `nil` if the location is out of bounds.
-    func point(at location: Int) -> Point? {
-        
-        guard (0...self.length).contains(location) else { return nil }
-        
-        let lineNumber = self.lineNumber(at: location)
-        let lineStart = self.lineStartIndex(at: location)
-        let column = location - lineStart
-        
-        return Point(row: lineNumber - 1, column: column)
-    }
-    
     
     var predicateNSStringProvider: SwiftTreeSitter.Predicate.TextProvider {
         
