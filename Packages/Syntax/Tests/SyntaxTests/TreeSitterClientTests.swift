@@ -44,43 +44,62 @@ actor TreeSitterClientTests {
     
     @Test func highlightSwift() async throws {
         
-        let source = """
-            /// Parses provided string.
-            @concurrent func parseHighlights(in string: String, range: NSRange) async throws -> [NamedRange] {
+        let source = #"""
+            /// Tests highlighting.
+            @concurrent private func doSomething(in string: String, range: NSRange) async throws -> [SomeItem] {
                 
-                self.layer.replaceContent(with: string)
+                guard #available(macOS 26, *) else { return }
                 
-                let textProvider = string.predicateTextProvider
+                let item = Registry.items.first { $0.name = "with \(string)" }
                 
-                return try self.layer.highlights(in: range, provider: textProvider)
+                return try self.storage.replace(item, in: range)
             }
-        """
+        """#
         
         let config = try #require(try self.registry.configuration(for: .swift))
         let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
-        let highlights = try await client.parseHighlights(in: source, range: source.nsRange)
+        let captures = try await client.parseHighlights(in: source, range: source.nsRange)
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
         
-        #expect(highlights.count == 21)
-        #expect(highlights[0] == ValueRange(value: .comments, range: NSRange(location: 4, length: 27)))
-        #expect(highlights[1] == ValueRange(value: .attributes, range: NSRange(location: 36, length: 1)))
-        #expect(highlights[2] == ValueRange(value: .types, range: NSRange(location: 37, length: 10)))
-        #expect(highlights[3] == ValueRange(value: .attributes, range: NSRange(location: 37, length: 10)))
-        #expect(highlights[4] == ValueRange(value: .keywords, range: NSRange(location: 48, length: 4)))
-        #expect(highlights[5] == ValueRange(value: .commands, range: NSRange(location: 53, length: 15)))
-        #expect(highlights[6] == ValueRange(value: .variables, range: NSRange(location: 69, length: 2)))
-        #expect(highlights[7] == ValueRange(value: .variables, range: NSRange(location: 72, length: 6)))
-        #expect(highlights[8] == ValueRange(value: .types, range: NSRange(location: 80, length: 6)))
-        #expect(highlights[9] == ValueRange(value: .variables, range: NSRange(location: 88, length: 5)))
-        #expect(highlights[10] == ValueRange(value: .types, range: NSRange(location: 95, length: 7)))
-        #expect(highlights[11] == ValueRange(value: .keywords, range: NSRange(location: 104, length: 5)))
-        #expect(highlights[12] == ValueRange(value: .keywords, range: NSRange(location: 110, length: 6)))
-        #expect(highlights[13] == ValueRange(value: .types, range: NSRange(location: 121, length: 10)))
-        #expect(highlights[14] == ValueRange(value: .keywords, range: NSRange(location: 152, length: 4)))
-        #expect(highlights[15] == ValueRange(value: .commands, range: NSRange(location: 163, length: 14)))
-        #expect(highlights[16] == ValueRange(value: .keywords, range: NSRange(location: 209, length: 3)))
-        #expect(highlights[17] == ValueRange(value: .keywords, range: NSRange(location: 274, length: 6)))
-        #expect(highlights[18] == ValueRange(value: .keywords, range: NSRange(location: 281, length: 3)))
-        #expect(highlights[19] == ValueRange(value: .keywords, range: NSRange(location: 285, length: 4)))
-        #expect(highlights[20] == ValueRange(value: .commands, range: NSRange(location: 296, length: 10)))
+        #expect(captures.count == 32)
+        #expect(captures[0] == Capture(type: .comments, text: "/// Tests highlighting."))
+        #expect(captures[1] == Capture(type: .attributes, text: "@"))
+        #expect(captures[2] == Capture(type: .types, text: "concurrent"))
+        #expect(captures[3] == Capture(type: .attributes, text: "concurrent"))
+        #expect(captures[4] == Capture(type: .keywords, text: "private"))
+        #expect(captures[5] == Capture(type: .keywords, text: "func"))
+        #expect(captures[6] == Capture(type: .commands, text: "doSomething"))
+        #expect(captures[7] == Capture(type: .variables, text: "in"))
+        #expect(captures[8] == Capture(type: .variables, text: "string"))
+        #expect(captures[9] == Capture(type: .types, text: "String"))
+        #expect(captures[10] == Capture(type: .variables, text: "range"))
+        #expect(captures[11] == Capture(type: .types, text: "NSRange"))
+        #expect(captures[12] == Capture(type: .keywords, text: "async"))
+        #expect(captures[13] == Capture(type: .keywords, text: "throws"))
+        #expect(captures[14] == Capture(type: .types, text: "SomeItem"))
+        #expect(captures[15] == Capture(type: .keywords, text: "guard"))
+        #expect(captures[16] == Capture(type: .attributes, text: "#available(macOS 26, *)"))
+        #expect(captures[17] == Capture(type: .numbers, text: "26"))
+        #expect(captures[18] == Capture(type: .keywords, text: "else"))
+        #expect(captures[19] == Capture(type: .keywords, text: "return"))
+        #expect(captures[20] == Capture(type: .keywords, text: "let"))
+        #expect(captures[21] == Capture(type: .types, text: "Registry"))
+        #expect(captures[22] == Capture(type: .variables, text: "$0"))
+        #expect(captures[23] == Capture(type: .strings, text: "\""))
+        #expect(captures[24] == Capture(type: .strings, text: "with "))
+        #expect(captures[25] == Capture(type: .characters, text: #"\("#))
+        #expect(captures[26] == Capture(type: .characters, text: ")"))
+        #expect(captures[27] == Capture(type: .strings, text: #"""#))
+        #expect(captures[28] == Capture(type: .keywords, text: "return"))
+        #expect(captures[29] == Capture(type: .keywords, text: "try"))
+        #expect(captures[30] == Capture(type: .keywords, text: "self"))
+        #expect(captures[31] == Capture(type: .commands, text: "replace"))
     }
+}
+
+
+private struct Capture: Equatable {
+    
+    var type: SyntaxType
+    var text: String
 }
