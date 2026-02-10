@@ -41,10 +41,27 @@
   (modify_specifier)
   (else)
   (as_operator)
+  
+  "while"
+  "repeat"
+  "continue"
+  "break"
+  
+  "func"
+  "deinit"
+  "return"
+  
+  (try_operator)
+  "do"
+  (throw_keyword)
+  (catch_keyword)
 ] @keywords
 
+; statements
 (if_statement
   "if" @keywords)
+(guard_statement
+  "guard" @keywords)
 
 (import_declaration
   "import" @keywords)
@@ -52,23 +69,12 @@
 (enum_entry
   "case" @keywords)
 
-; statements
 (for_statement
   "for" @keywords)
 (for_statement
   "in" @keywords)
 (lambda_literal
   "in" @keywords)
-
-[
-  "while"
-  "repeat"
-  "continue"
-  "break"
-] @keywords
-
-(guard_statement
-  "guard" @keywords)
 
 (switch_statement
   "switch" @keywords)
@@ -81,18 +87,6 @@
 
 (init_declaration
   "init" @keywords)
-[
-  "func"
-  "deinit"
-  "return"
-] @keywords
-
-[
-  (try_operator)
-  "do"
-  (throw_keyword)
-  (catch_keyword)
-] @keywords
 
 ; modifiers (public/private, mutating, override, weak…)
 [
@@ -105,13 +99,13 @@
   (mutation_modifier)
 ] @keywords
 
-(shebang_line) @keywords
-
 ; self/super
 [
   (self_expression)
   (super_expression)
 ] @keywords
+
+(shebang_line) @keywords
 
 
 ; MARK: Commands
@@ -144,11 +138,21 @@
   (prefix_expression (simple_identifier) @commands)
 )
 
+; #macro(...)
+(macro_invocation
+  "#" @commands
+  (simple_identifier) @commands)
+
 
 ; MARK: Types
 ; ----------------------------
 
 (type_identifier) @types
+
+; Type-like member access in expressions: Foo.shared...
+(navigation_expression
+  target: (simple_identifier) @types
+  (#match? @types "^[A-Z]"))
 
 ; Type-like initializer calls: String(...), URL(...), Foo(...)
 (call_expression
@@ -241,15 +245,11 @@
   (line_str_text)
   (multi_line_str_text)
   (raw_str_part)
+  (raw_str_continuing_indicator)
   (raw_str_end_part)
 ] @strings
 
 (regex_literal) @strings
-
-; string interpolations
-(line_string_literal [ "\\(" ")" ]) @keywords
-(multi_line_string_literal [ "\\(" ")" ]) @keywords
-(raw_str_interpolation [ (raw_str_interpolation_start) ")" ]) @keywords
 
 ; string delimiters
 [
@@ -265,6 +265,11 @@
 (str_escaped_char) @characters
 
 (wildcard_pattern) @characters
+
+; delimiters for string interpolation
+(line_string_literal [ "\\(" ")" ] @characters)
+(multi_line_string_literal [ "\\(" ")" ] @characters)
+(raw_str_interpolation [ (raw_str_interpolation_start) ")" ] @characters)
 
 
 ; MARK: Comments
