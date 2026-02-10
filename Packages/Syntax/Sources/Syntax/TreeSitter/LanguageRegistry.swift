@@ -37,8 +37,7 @@ import TreeSitterSwift
 
 public final class LanguageRegistry: Sendable {
     
-    /// Supported languages.
-    public enum Language: String, Sendable {
+    public enum Language: String, CaseIterable, Sendable {
         
         case css = "CSS"
         case html = "HTML"
@@ -47,10 +46,7 @@ public final class LanguageRegistry: Sendable {
         case ruby = "Ruby"
         case swift = "Swift"
         
-        
-        public static let internalLanguages: [Self] = []
-        
-        public var name: String { self.rawValue }
+        var name: String { self.rawValue }
     }
     
     
@@ -134,15 +130,13 @@ private extension LanguageRegistry.Language {
     /// Resolves from provider/injection name.
     init?(providerName: String) {
         
-        switch providerName.lowercased() {
-            case "css": self = .css
-            case "html": self = .html
-            case "javascript": self = .javaScript
-            case "python": self = .python
-            case "ruby": self = .ruby
-            case "swift": self = .swift
-            default: return nil
-        }
+        let lowercased = providerName.lowercased()
+        
+        guard
+            let language = Self.allCases.first(where: { $0.providerName == lowercased })
+        else { return nil }
+        
+        self = language
     }
     
     
@@ -158,6 +152,7 @@ private extension LanguageRegistry.Language {
             case .swift: "swift"
         }
     }
+    
     
     /// The tree-sitter language pointer.
     var language: OpaquePointer {
