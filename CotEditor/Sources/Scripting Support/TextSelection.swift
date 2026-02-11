@@ -92,9 +92,9 @@ private enum OSAUnicodeNormalizationType: String {
     
     
     /// Returns object name which is determined in the sdef file.
-     override var objectSpecifier: NSScriptObjectSpecifier? {
+    override var objectSpecifier: NSScriptObjectSpecifier? {
         
-         NSNameSpecifier(containerSpecifier: self.documentSpecifier, key: "text selection")
+        NSPropertySpecifier(containerSpecifier: self.documentSpecifier, key: "selection")
     }
     
     
