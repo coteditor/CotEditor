@@ -42,7 +42,9 @@ extension MultipleReplace: PayloadRepresentable {
         
         switch payload {
             case let data as Data where type.conforms(to: .cotReplacement):
-                self = try JSONDecoder().decode(Self.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.allowsJSON5 = true
+                self = try decoder.decode(Self.self, from: data)
                 
             case let data as Data where type.conforms(to: .tabSeparatedText):
                 guard let string = String(data: data, encoding: .utf8) else { throw CocoaError(.fileReadInapplicableStringEncoding) }

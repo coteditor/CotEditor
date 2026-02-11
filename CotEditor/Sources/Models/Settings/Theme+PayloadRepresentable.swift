@@ -41,7 +41,9 @@ extension Theme: PayloadRepresentable, @unchecked Sendable {
         
         switch payload {
             case let data as Data where type.conforms(to: UTType.cotTheme):
-                self = try JSONDecoder().decode(Self.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.allowsJSON5 = true
+                self = try decoder.decode(Self.self, from: data)
                 
             default:
                 throw CocoaError(.fileReadUnsupportedScheme)
