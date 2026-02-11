@@ -51,6 +51,8 @@ struct OutlinePicker: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSPopUpButton, context: Context) {
         
+        let fontSize = NSFont.systemFontSize(for: nsView.controlSize)
+        let font = nsView.font?.withSize(fontSize) ?? .menuFont(ofSize: fontSize)
         nsView.menu?.items = self.items.map { item in
             if item.isSeparator {
                 return .separator()
@@ -59,7 +61,7 @@ struct OutlinePicker: NSViewRepresentable {
                 menuItem.target = context.coordinator
                 menuItem.action = #selector(Coordinator.itemSelected)
                 menuItem.representedObject = item
-                menuItem.attributedTitle = item.attributedTitle
+                menuItem.attributedTitle = item.attributedTitle(font: font)
                 return menuItem
             }
         }
@@ -143,8 +145,12 @@ private final class OutlinePopUpButtonCell: NSPopUpButtonCell {
 
 @MainActor private extension OutlineItem {
     
-    /// The attributed title for the outline picker menu item.
-    var attributedTitle: NSAttributedString {
+    /// Returns the attributed title for the outline picker menu item.
+    ///
+    /// - Parameters:
+    ///   - font: The font for text.
+    /// - Returns: The attributed title.
+    func attributedTitle(font: NSFont) -> NSAttributedString {
         
         let title = NSMutableAttributedString(string: self.indent)
         
@@ -153,7 +159,7 @@ private final class OutlinePopUpButtonCell: NSPopUpButtonCell {
             title.append(NSAttributedString(string: " "))
         }
         
-        title.append(.init(string: self.title))
+        title.append(.init(string: self.title, attributes: [.font: font]))
         title.applyFontTraits(self.style.fontTraits, range: title.range)
         
         return title
