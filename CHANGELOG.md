@@ -10,6 +10,7 @@
 - Improve the behavior of trailing whitespace trimming.
 - Update the JSON syntax to highlight comments in the JSON5 format.
 - Improve stability.
+- [dev] Update the build environment to Xcode 26.3-rc.
 
 
 ### Fixes
