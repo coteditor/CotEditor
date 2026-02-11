@@ -141,17 +141,15 @@ private final class OutlinePopUpButtonCell: NSPopUpButtonCell {
 }
 
 
-private extension OutlineItem {
+@MainActor private extension OutlineItem {
     
+    /// The attributed title for the outline picker menu item.
     var attributedTitle: NSAttributedString {
         
         let title = NSMutableAttributedString(string: self.indent)
         
         if let kind = self.kind {
-            let attachment = NSTextAttachment()
-            attachment.image = kind.iconImage
-            
-            title.append(.init(attachment: attachment))
+            title.append(.init(attachment: kind.cachedAttachment))
             title.append(NSAttributedString(string: " "))
         }
         
@@ -159,5 +157,26 @@ private extension OutlineItem {
         title.applyFontTraits(self.style.fontTraits, range: title.range)
         
         return title
+    }
+}
+
+
+@MainActor private extension Syntax.Outline.Kind {
+    
+    private static var cachedAttachments: [Self: NSTextAttachment] = [:]
+    
+    
+    /// A shared attachment for the outline kind icon.
+    var cachedAttachment: NSTextAttachment {
+        
+        if let cached = Self.cachedAttachments[self] {
+            return cached
+        }
+        
+        let attachment = NSTextAttachment()
+        attachment.image = self.iconImage
+        Self.cachedAttachments[self] = attachment
+        
+        return attachment
     }
 }
