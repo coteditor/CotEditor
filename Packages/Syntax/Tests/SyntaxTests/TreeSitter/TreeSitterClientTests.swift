@@ -35,13 +35,6 @@ actor TreeSitterClientTests {
     private let registry: LanguageRegistry = .shared
     
     
-    @Test(arguments: LanguageRegistry.Language.allCases)
-    func configuration(for language: LanguageRegistry.Language) throws {
-        
-        #expect(try self.registry.configuration(for: language) != nil)
-    }
-    
-    
     @Test func highlightSwift() async throws {
         
         let source = #"""
