@@ -34,9 +34,10 @@ public extension LanguageRegistry {
     /// - Throws: Any error that occurs while resolving the language layer.
     func highlightParser(name: String) throws -> (any HighlightParsing)? {
         
-        guard let language = Language(rawValue: name) else { return nil }
-        
-        guard let config = try self.configuration(for: language) else { return nil }
+        guard
+            let language = Language(rawValue: name),
+            let config = try self.configuration(for: language)
+        else { return nil }
         
         return try TreeSitterClient(languageConfig: config, languageProvider: self.languageProvider)
     }
