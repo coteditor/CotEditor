@@ -6,6 +6,7 @@
 ### Improvements
 
 - Optimize the performance of scanning incompatible characters.
+- Accept the JSON5 format when importing custom themes and multiple replace definitions.
 - Improve the behavior of trailing whitespace trimming.
 - Improve stability.
 

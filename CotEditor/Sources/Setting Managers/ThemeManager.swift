@@ -201,7 +201,11 @@ final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     nonisolated static func loadSetting(from data: Data, type: UTType) throws -> sending Setting {
         
         if type.conforms(to: Self.fileType) {
-            try JSONDecoder().decode(Setting.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.allowsJSON5 = true
+            
+            return try decoder.decode(Setting.self, from: data)
+            
         } else {
             throw CocoaError(.fileReadUnsupportedScheme)
         }
