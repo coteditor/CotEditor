@@ -126,7 +126,7 @@ extension SyntaxParser {
         let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
         self.outlineParseTask = Task {
-            let task = try await Task.detached {
+            let task = Task.detached {
                 try await withThrowingTaskGroup { group in
                     for extractor in extractors {
                         group.addTask { try extractor.items(in: string, range: string.range) }
