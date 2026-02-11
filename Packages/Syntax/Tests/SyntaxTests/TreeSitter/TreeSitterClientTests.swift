@@ -51,7 +51,8 @@ actor TreeSitterClientTests {
         
         let config = try #require(try self.registry.configuration(for: .swift))
         let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
-        let captures = try await client.parseHighlights(in: source, range: source.nsRange)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
             .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
         
         #expect(captures.count == 32)

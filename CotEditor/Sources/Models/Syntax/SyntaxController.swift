@@ -95,7 +95,13 @@ extension NSAttributedString.Key {
         self.outlineParser = self.syntax.outlineParser
         self.isReady = true
         
-        self.parseAll()
+        Task {
+            if let parser = self.highlightParser {
+                let content = self.textStorage.string.immutable
+                await parser.update(content: content)
+            }
+            self.parseAll()
+        }
     }
     
     
@@ -145,6 +151,18 @@ extension NSAttributedString.Key {
         self.highlightParseTask = nil
         
         self.invalidRanges.append(editedRange: editedRange, changeInLength: delta)
+        
+        guard let parser = self.highlightParser else { return }
+        
+        let insertedText = (self.textStorage.string as NSString).substring(with: editedRange)
+        Task {
+            do {
+                try await parser.noteEdit(editedRange: editedRange, delta: delta, insertedText: insertedText)
+            } catch {
+                Logger.app.debug("failed noting edit: \(error.localizedDescription) in \(#function)")
+                await parser.update(content: self.textStorage.string)
+            }
+        }
     }
     
     
@@ -208,9 +226,12 @@ extension NSAttributedString.Key {
             
             // parse in background
             let string = self.textStorage.string.immutable
-            let highlights = try await parser.parseHighlights(in: string, range: highlightRange)
+            let result = try await parser.parseHighlights(in: string, range: highlightRange)
+           
+            if let result {
+                self.textStorage.apply(highlights: result.highlights, theme: self.theme, in: result.updateRange)
+            }
             
-            self.textStorage.apply(highlights: highlights, theme: self.theme, in: highlightRange)
             self.invalidRanges.clear()
         }
     }

@@ -51,14 +51,28 @@ actor RegexHighlightParser: HighlightParsing {
     
     // MARK: HighlightParsing Methods
     
+    /// Updates the entire content and resets the parser state.
+    func update(content: String) {
+        
+        // do nothing
+    }
+    
+    
+    /// Notifies the parser about a text edit so it can update its incremental parse state.
+    func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws {
+        
+        // do nothing
+    }
+    
+    
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
     /// - Parameters:
     ///   - string: The full source text to analyze.
-    ///   - range: The range where to parse.
-    /// - Returns: A dictionary of ranges to highlight per syntax types.
+    ///   - range: The requested range to update.
+    /// - Returns: The highlights and the range that should be updated, or `nil` if nothing needs updating.
     /// - Throws: `CancellationError`.
-    func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
+    func parseHighlights(in string: String, range: NSRange) async throws -> (highlights: [Highlight], updateRange: NSRange)? {
         
         try await withThrowingTaskGroup { [extractors, nestables] group in
             group.addTask { try nestables.parseHighlights(in: string, range: range) }
@@ -73,7 +87,9 @@ actor RegexHighlightParser: HighlightParsing {
                 $0.merge($1, uniquingKeysWith: +)
             }
             
-            return try Highlight.highlights(dictionary: dictionary)
+            let highlights = try Highlight.highlights(dictionary: dictionary)
+            
+            return (highlights, range)
         }
     }
 }

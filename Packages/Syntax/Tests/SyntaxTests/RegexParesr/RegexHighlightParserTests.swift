@@ -44,9 +44,9 @@ struct RegexHighlightParserTests {
     @Test func returnsEmptyWhenNoParsers() async throws {
         
         let parser = RegexHighlightParser(extractors: [:], nestables: [:])
-        let highlights = try await parser.parseHighlights(in: "", range: NSRange(0..<0))
+        let result = try #require(await parser.parseHighlights(in: "", range: NSRange(0..<0)))
         
-        #expect(highlights.isEmpty)
+        #expect(result.highlights.isEmpty)
     }
     
     
@@ -66,7 +66,8 @@ struct RegexHighlightParserTests {
                      
                      """
         
-        let highlights = try await parser.parseHighlights(in: source, range: source.nsRange)
+        let result = try #require(await parser.parseHighlights(in: source, range: source.nsRange))
+        let highlights = result.highlights
         
         #expect(highlights.count >= 3)
         #expect(highlights == highlights.sorted(using: KeyPathComparator(\.range.location)))
@@ -89,7 +90,8 @@ struct RegexHighlightParserTests {
         let parser = RegexHighlightParser(extractors: extractors, nestables: [:])
         let source = String(repeating: "x", count: 10)
         
-        let highlights = try await parser.parseHighlights(in: source, range: source.nsRange)
+        let result = try #require(await parser.parseHighlights(in: source, range: source.nsRange))
+        let highlights = result.highlights
         
         #expect(highlights.map(\.range).union == [valueRange, numberRange].union)
         
@@ -111,7 +113,7 @@ struct RegexHighlightParserTests {
         let parser = RegexHighlightParser(extractors: extractors, nestables: [:])
         let source = String(repeating: "a", count: 5000)
         
-        let task = Task<[Highlight], any Error> {
+        let task = Task {
             try Task.checkCancellation()
             return try await parser.parseHighlights(in: source, range: source.nsRange)
         }
