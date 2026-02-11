@@ -14,13 +14,13 @@
 - Accept the JSON5 format when importing custom themes and multiple replace definitions.
 - Improve the behavior of trailing whitespace trimming.
 - Update the JSON syntax to highlight comments in the JSON5 format.
-- Improve stability.
+- Improve overall stability.
 - [dev] Update the build environment to Xcode 26.3-rc.
 
 
 ### Fixes
 
-- Fix an issue where the app could crash when opening a large file while the Warnings inspector is open.
+- Fix an issue where the app could crash when opening a large file while the Warnings inspector was open.
 - [trivial] Fix the position of the Sidebar toolbar item.
 
 
