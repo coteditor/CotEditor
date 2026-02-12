@@ -221,7 +221,7 @@
             <parameter name="RE" code="rEex" type="boolean" optional="yes" description="Is the search text regular expression?">
                 <cocoa key="regularExpression"/>
             </parameter>
-            <parameter name="wrap" code="wRsc" type="boolean" optional="yes" description="Should the search wrapped?">
+            <parameter name="wrap" code="wRsc" type="boolean" optional="yes" description="Should the search wrap?">
                 <cocoa key="wrapSearch"/>
             </parameter>
             <result type="boolean" description="Did the text found?"/>
@@ -248,7 +248,7 @@
             <parameter name="all" code="aLl " type="boolean" optional="yes" description="Should all of the references be replaced?">
                 <cocoa key="all"/>
             </parameter>
-            <parameter name="backwards" code="bKwd" type="boolean" optional="yes" description="Should the replacement be performed backwards? Can not use with RE.">
+            <parameter name="backwards" code="bKwd" type="boolean" optional="yes" description="Should the replacement be performed backwards? This option can’t be used with the RE option.">
                 <cocoa key="backwardsSearch"/>
             </parameter>
             <parameter name="ignore case" code="iGcs" type="boolean" optional="yes" description="Should case be ignored (case insensitive) on search?">
@@ -257,7 +257,7 @@
             <parameter name="RE" code="rEex" type="boolean" optional="yes" description="Is the search text regular expression?">
                 <cocoa key="regularExpression"/>
             </parameter>
-            <parameter name="wrap" code="wRsc" type="boolean" optional="yes" description="Should the search wrapped?">
+            <parameter name="wrap" code="wRsc" type="boolean" optional="yes" description="Should the search wrap?">
                 <cocoa key="wrapSearch"/>
             </parameter>
             <result type="integer" description="The number of replaced texts."/>
@@ -291,32 +291,32 @@
         
         <command name="move line up" code="cEd1SLup" description="Swap selected lines with the line just above.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <direct-parameter type="text selection" description="The selection to move"/>
+            <direct-parameter type="text selection" description="The selection to move."/>
         </command>
         
-        <command name="move line down" code="cEd1SLdw" description="Swap selected lines with the line just below">
+        <command name="move line down" code="cEd1SLdw" description="Swap selected lines with the line just below.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <direct-parameter type="text selection" description="The selection to move"/>
+            <direct-parameter type="text selection" description="The selection to move."/>
         </command>
         
-        <command name="sort lines" code="cEd1Sort" description="Sort selected lines ascending">
+        <command name="sort lines" code="cEd1Sort" description="Sort selected lines in ascending order.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <direct-parameter type="text selection" description="The selection to sort"/>
+            <direct-parameter type="text selection" description="The selection to sort."/>
         </command>
         
-        <command name="reverse lines" code="cEd1Revl" description="Reverse selected lines">
+        <command name="reverse lines" code="cEd1Revl" description="Reverse selected lines.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <direct-parameter type="text selection" description="The selection to reverse"/>
+            <direct-parameter type="text selection" description="The selection to reverse."/>
         </command>
         
-        <command name="delete duplicate line" code="cEd1Dldp" description="Delete duplicate lines in selection">
+        <command name="delete duplicate line" code="cEd1Dldp" description="Delete duplicate lines in the selection.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <direct-parameter type="text selection" description="The selection to check duplication"/>
+            <direct-parameter type="text selection" description="The selection to check duplication."/>
         </command>
         
         <command name="comment out" code="cEd1Cout" description="Append comment delimiters to the selected text.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <direct-parameter type="text selection" description="The selection to comment out"/>
+            <direct-parameter type="text selection" description="The selection to comment out."/>
         </command>
         
         <command name="uncomment" code="cEd1Uncm" description="Remove comment delimiters from the selected text.">
