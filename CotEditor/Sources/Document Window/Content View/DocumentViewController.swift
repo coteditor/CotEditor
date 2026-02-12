@@ -134,16 +134,15 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             }
         }
         
+        // start parsing
+        self.document.syntaxController.setupParser()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
                                                object: self.document.textStorage)
         
         // observe
         self.observers = [
-            // observe syntax change
-            self.document.$syntaxName
-                .sink { [weak self] _ in self?.document.syntaxController.parseIfNeeded() },
-            
             // observe theme change
             UserDefaults.standard.publisher(for: .theme, initial: false)
                 .sink { [weak self] in self?.setTheme(name: $0) },
@@ -446,7 +445,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             guard self.focusedTextView?.hasMarkedText() != true else { return }
             
             self.document.counter.invalidateContent()
-            self.document.syntaxController.parseIfNeeded(withDelay: true)
+            self.document.syntaxController.parseIfNeeded()
         }
     }
     
@@ -611,8 +610,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Reset the syntax parse for the entire document.
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.document.syntaxController.invalidateAll()
-        self.document.syntaxController.parseIfNeeded()
+        self.document.syntaxController.parseAll()
     }
     
     

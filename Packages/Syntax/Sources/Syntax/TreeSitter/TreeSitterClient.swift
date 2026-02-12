@@ -32,8 +32,12 @@ import SwiftTreeSitterLayer
 
 actor TreeSitterClient: HighlightParsing {
     
+    // MARK: Private Properties
+    
     private let layer: LanguageLayer
     
+    
+    // MARK: Lifecycle
     
     init(languageConfig: LanguageConfiguration, languageProvider: @escaping LanguageLayer.LanguageProvider) throws {
         
@@ -42,6 +46,8 @@ actor TreeSitterClient: HighlightParsing {
     }
     
     
+    // MARK: HighlightParsing Methods
+    
     func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
         
         self.layer.replaceContent(with: string)
@@ -49,16 +55,25 @@ actor TreeSitterClient: HighlightParsing {
         try Task.checkCancellation()
         
         return try self.layer.highlights(in: range, provider: (string as NSString).predicateNSStringProvider)
-            .compactMap { namedRange in
-                guard
-                    let baseName = namedRange.nameComponents.first,
-                    let type = SyntaxType(rawValue: baseName)
-                else { return nil }
-                
-                return ValueRange(value: type, range: namedRange.range)
-            }
+            .compactMap(\.highlight)
             .sorted(using: [KeyPathComparator(\.range.location),
                             KeyPathComparator(\.range.length)])
+    }
+}
+
+
+// MARK: -
+
+private extension NamedRange {
+    
+    var highlight: Highlight? {
+        
+        guard
+            let baseName = self.nameComponents.first,
+            let type = SyntaxType(rawValue: baseName)
+        else { return nil }
+        
+        return ValueRange(value: type, range: self.range)
     }
 }
 

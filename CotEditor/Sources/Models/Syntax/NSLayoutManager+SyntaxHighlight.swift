@@ -39,6 +39,8 @@ extension NSTextStorage {
     ///   - range: The range to update syntax highlight. 
     @MainActor func apply(highlights: [Highlight], theme: Theme?, in range: NSRange) {
         
+        guard self.length > 0 else { return }
+        
         for layoutManager in self.layoutManagers {
             layoutManager.apply(highlights: highlights, theme: theme, in: range)
         }

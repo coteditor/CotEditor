@@ -376,7 +376,7 @@ extension FileNode {
             // async read files in background
             if self.cachedChildren == nil {
                 let fileURL = self.file.fileURL
-                let task = try await Task.detached(priority: .userInitiated) { @Sendable in  // explicit @Sendable for a Swift-side bug (2025-10, Xcode 26.1, Swift 6.2.1)
+                let task = Task.detached(priority: .userInitiated) { @Sendable in  // explicit @Sendable for a Swift-side bug (2025-10, Xcode 26.1, Swift 6.2.1)
                     try Self.readChildFiles(at: fileURL)
                 }
                 self.cachedChildren = try await withTaskCancellationHandler {

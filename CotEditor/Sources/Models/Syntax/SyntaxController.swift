@@ -42,6 +42,7 @@ extension NSAttributedString.Key {
     // MARK: Public Properties
     
     private(set) var syntax: Syntax
+    private(set) var syntaxName: String
     
     var theme: Theme?
     
@@ -57,6 +58,7 @@ extension NSAttributedString.Key {
     private var highlightParseTask: Task<Void, any Error>?
     private var outlineParseTask: Task<Void, any Error>?
     private var invalidRanges: EditedRangeSet
+    private var isReady = false
     
     
     // MARK: Lifecycle
@@ -70,11 +72,10 @@ extension NSAttributedString.Key {
     init(textStorage: NSTextStorage, syntax: Syntax, name: String) {
          
         self.textStorage = textStorage
-        self.invalidRanges = EditedRangeSet(range: textStorage.range)
-        
         self.syntax = syntax
-        self.highlightParser = try? LanguageRegistry.shared.highlightParser(name: name) ?? syntax.highlightParser
-        self.outlineParser = syntax.outlineParser
+        self.syntaxName = name
+        
+        self.invalidRanges = EditedRangeSet(range: textStorage.range)
     }
     
     
@@ -84,6 +85,19 @@ extension NSAttributedString.Key {
     
     
     // MARK: Public Methods
+    
+    /// Sets up parsers and starts the initial parse.
+    func setupParser() {
+        
+        self.cancel()
+        
+        self.highlightParser = try? LanguageRegistry.shared.highlightParser(name: self.syntaxName) ?? self.syntax.highlightParser
+        self.outlineParser = self.syntax.outlineParser
+        self.isReady = true
+        
+        self.parseAll()
+    }
+    
     
     /// Cancels all remaining parsing tasks.
     func cancel() {
@@ -104,16 +118,17 @@ extension NSAttributedString.Key {
         
         self.cancel()
         
+        self.syntax = syntax
+        self.syntaxName = name
+        
+        guard self.isReady else { return }
+        
         // clear current highlight
         if self.highlightParser != nil {
             self.textStorage.apply(highlights: [], theme: nil, in: self.textStorage.range)
         }
         
-        self.syntax = syntax
-        self.highlightParser = try? LanguageRegistry.shared.highlightParser(name: name) ?? syntax.highlightParser
-        self.outlineParser = syntax.outlineParser
-        
-        self.invalidateAll()
+        self.setupParser()
     }
     
     
@@ -124,6 +139,8 @@ extension NSAttributedString.Key {
     ///   - delta: The change in length.
     func invalidate(in editedRange: NSRange, changeInLength delta: Int) {
         
+        assert(self.isReady)
+        
         self.highlightParseTask?.cancel()
         self.highlightParseTask = nil
         
@@ -131,24 +148,27 @@ extension NSAttributedString.Key {
     }
     
     
-    /// Marks the entire text as dirty for syntax highlighting.
-    func invalidateAll() {
+    /// Triggers parsing for the minimal invalidated scope.
+    ///
+    /// Applies a short debounce before parsing to allow the text system to settle.
+    func parseIfNeeded() {
         
-        self.highlightParseTask?.cancel()
-        self.highlightParseTask = nil
+        assert(self.isReady)
         
-        self.invalidRanges.update(editedRange: self.textStorage.range)
+        self.updateOutline(withDelay: true)
+        self.highlightIfNeeded(withDelay: true)
     }
     
     
-    /// Triggers parsing, optionally debounced.
-    ///
-    /// - Parameters:
-    ///   - withDelay: If `true`, applies a short debounce before parsing.
-    func parseIfNeeded(withDelay: Bool = false) {
+    /// Re-parses the entire document immediately.
+    func parseAll() {
         
-        self.updateOutline(withDelay: withDelay)
-        self.highlightIfNeeded(withDelay: withDelay)
+        assert(self.isReady)
+        
+        self.invalidRanges.update(editedRange: self.textStorage.range)
+        
+        self.updateOutline(withDelay: false)
+        self.highlightIfNeeded(withDelay: false)
     }
 
     

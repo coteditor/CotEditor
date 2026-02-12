@@ -58,7 +58,7 @@ enum SyntaxName {
     static let directoryName: String = "Syntaxes"
     static let userDirectoryName: String? = "Syntaxes (Upcoming)"
     static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
-    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"] + LanguageRegistry.Language.internalLanguages.map(\.name)
+    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]
     
     let bundledSettingNames: [SettingName]
     @Published var settingNames: [SettingName] = []

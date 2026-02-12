@@ -28,6 +28,12 @@
   "subscript"
   "let"
   "var"
+  "enum"
+  "struct"
+  "class"
+  "typealias"
+  "async"
+  "await"
   (throws)
   (where_keyword)
   (getter_specifier)
@@ -35,22 +41,27 @@
   (modify_specifier)
   (else)
   (as_operator)
+  
+  "while"
+  "repeat"
+  "continue"
+  "break"
+  
+  "func"
+  "deinit"
+  "return"
+  
+  (try_operator)
+  "do"
+  (throw_keyword)
+  (catch_keyword)
 ] @keywords
 
+; statements
 (if_statement
   "if" @keywords)
-
-[
-  "enum"
-  "struct"
-  "class"
-  "typealias"
-] @keywords
-
-[
-  "async"
-  "await"
-] @keywords
+(guard_statement
+  "guard" @keywords)
 
 (import_declaration
   "import" @keywords)
@@ -58,23 +69,12 @@
 (enum_entry
   "case" @keywords)
 
-; statements
 (for_statement
   "for" @keywords)
 (for_statement
   "in" @keywords)
 (lambda_literal
   "in" @keywords)
-
-[
-  "while"
-  "repeat"
-  "continue"
-  "break"
-] @keywords
-
-(guard_statement
-  "guard" @keywords)
 
 (switch_statement
   "switch" @keywords)
@@ -87,18 +87,6 @@
 
 (init_declaration
   "init" @keywords)
-[
-  "func"
-  "deinit"
-  "return"
-] @keywords
-
-[
-  (try_operator)
-  "do"
-  (throw_keyword)
-  (catch_keyword)
-] @keywords
 
 ; modifiers (public/private, mutating, override, weak…)
 [
@@ -111,13 +99,49 @@
   (mutation_modifier)
 ] @keywords
 
-(shebang_line) @keywords
-
 ; self/super
 [
   (self_expression)
   (super_expression)
 ] @keywords
+
+(shebang_line) @keywords
+
+
+; MARK: Commands
+; ----------------------------
+
+; function declarations
+(function_declaration
+  (simple_identifier) @commands)
+
+(protocol_function_declaration
+  name: (simple_identifier) @commands)
+
+; foo(...): only () calls are commands
+(call_expression
+  (simple_identifier) @commands
+  (call_suffix
+    (value_arguments
+      "(" (_)? ")" )))
+
+; foo.bar.baz(): highlight baz only when it's a () call
+(call_expression
+  (navigation_expression
+    (navigation_suffix (simple_identifier) @commands))
+  (call_suffix
+    (value_arguments
+      "(" (_)? ")" )))
+
+; .foo()
+(call_expression
+  (prefix_expression (simple_identifier) @commands)
+)
+
+; #macro(...)
+(macro_invocation
+  "#" @commands
+  (simple_identifier) @commands)
 
 
 ; MARK: Types
@@ -125,15 +149,20 @@
 
 (type_identifier) @types
 
+; Type-like member access in expressions: Foo.shared...
+(navigation_expression
+  target: (simple_identifier) @types
+  (#match? @types "^[A-Z]"))
+
+; Type-like initializer calls: String(...), URL(...), Foo(...)
+(call_expression
+  (simple_identifier) @types
+  (#match? @types "^[A-Z]"))
+  
 ; Self
 (user_type (type_identifier) @types
   (#eq? @types "Self")
 )
-
-; SomeType.method(): highlight SomeType as a type
-((navigation_expression
-  (simple_identifier) @types)
-  (#match? @types "^[A-Z]"))
 
 
 ; Attributes
@@ -185,37 +214,9 @@
   (pattern
     (simple_identifier) @variables))
 
-(navigation_expression
-  (navigation_suffix
-    (simple_identifier) @variables))
-
-
-; MARK: Commands
-; ----------------------------
-
-; function declarations
-(function_declaration
-  (simple_identifier) @commands)
-
-(protocol_function_declaration
-  name: (simple_identifier) @commands)
-
-; foo()
-(call_expression
-  (simple_identifier) @commands
-)
-
-; foo.bar.baz(): highlight the baz()
-(call_expression
-  (navigation_expression
-    (navigation_suffix (simple_identifier) @commands)
-  )
-)
-
-; .foo()
-(call_expression
-  (prefix_expression (simple_identifier) @commands)
-)
+; closure shorthand arguments: $0, $1, ...
+((simple_identifier) @variables
+  (#match? @variables "^\\$[0-9]+$"))
 
 
 ; MARK: Values
@@ -244,15 +245,11 @@
   (line_str_text)
   (multi_line_str_text)
   (raw_str_part)
+  (raw_str_continuing_indicator)
   (raw_str_end_part)
 ] @strings
 
 (regex_literal) @strings
-
-; string interpolations
-(line_string_literal [ "\\(" ")" ]) @keywords
-(multi_line_string_literal [ "\\(" ")" ]) @keywords
-(raw_str_interpolation [ (raw_str_interpolation_start) ")" ]) @keywords
 
 ; string delimiters
 [
@@ -268,6 +265,11 @@
 (str_escaped_char) @characters
 
 (wildcard_pattern) @characters
+
+; delimiters for string interpolation
+(line_string_literal [ "\\(" ")" ] @characters)
+(multi_line_string_literal [ "\\(" ")" ] @characters)
+(raw_str_interpolation [ (raw_str_interpolation_start) ")" ] @characters)
 
 
 ; MARK: Comments

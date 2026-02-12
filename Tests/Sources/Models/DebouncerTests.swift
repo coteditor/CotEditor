@@ -28,17 +28,18 @@ import Testing
 
 struct DebouncerTests {
     
-    @Test func debounce() async throws {
+    @MainActor @Test func debounce() async throws {
         
-        try await confirmation("Debouncer executed", expectedCount: 1) { @MainActor confirm in
-            let debouncer = Debouncer(delay: .seconds(0.5)) {
+        let delay: ContinuousClock.Duration = .seconds(0.5)
+        try await confirmation("Debouncer executed", expectedCount: 1) { confirm in
+            let debouncer = Debouncer(delay: delay) {
                 confirm()
             }
             
             debouncer.schedule()
             debouncer.schedule()
             
-            try await Task.sleep(for: .seconds(1))
+            try await Task.sleep(for: delay + .seconds(2))
         }
     }
     
