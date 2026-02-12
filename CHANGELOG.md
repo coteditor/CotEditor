@@ -38,6 +38,11 @@
 6.2.3 (unreleased)
 --------------------------
 
+### New Features
+
+- Add AppleScript support for `folder document`, including the `current document` property and forwarding of `document` commands.
+
+
 ### Improvements
 
 - Optimize the performance of scanning incompatible characters.

@@ -82,6 +82,49 @@
 
 <section>
 <p class="type">クラス</p>
+<h2><code>folder document</code></h2>
+
+<p>CotEditorフォルダ書類</p>
+
+<dl>
+	<dt>プロパティ</dt>
+	<dd><ul>
+		<li><p><em><code>current document</code>:</em>
+		現在表示されている書類（document型）</p></li>
+	</ul></dd>
+</dl>
+
+<p>フォルダを開いた書類は<code>folder document</code>クラスとして扱われ、<code>current document</code>プロパティからフォルダ書類で現在開いている書類を取得できます。さらに、<code>folder document</code>に対して直接送った<code>document</code>のAPIは、そのまま<code>current document</code>に転送されます。ただし、<code>current document</code>が存在しない場合、<code>document</code>を対象とするコマンドはエラーになります。</p>
+
+
+<h3>例</h3>
+
+<p>以下の2つのコマンドは同じ結果になります。</p>
+
+<figure>
+	<pre class="source"><code class="AppleScript">if front document is folder document then
+	set theDocument to front document's current document
+else
+	set theDocument to front document
+end if
+
+tell theDocument
+	set theText to contents of selection
+end tell</code></pre>
+	<figcaption>最前面のテキスト書類を取得して、その選択部分をセットします。</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">tell front document
+	set theText to contents of selection
+end tell</code></pre>
+	<figcaption>最前面の書類の選択部分をセットします。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<p class="type">クラス</p>
 <h2><code>text selection</code></h2>
 
 <p>選択部分オブジェクト</p>
