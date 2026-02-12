@@ -83,6 +83,49 @@
 
 <section>
 <p class="type">class</p>
+<h2><code>folder document</code></h2>
+
+<p>CotEditor folder document</p>
+
+<dl>
+	<dt>Properties</dt>
+	<dd><ul>
+		<li><p><em><code>current document</code>:</em>
+		The currently displayed document (document).</p></li>
+	</ul></dd>
+</dl>
+
+<p>A document opened by opening a folder is treated as an instance of the <code>folder document</code> class. You can obtain the currently open document in that folder document via the <code>current document</code> property. In addition, any <code>document</code> API sent directly to a <code>folder document</code> is forwarded to its <code>current document</code>. If no <code>current document</code> exists, commands that target <code>document</code> will return an error.</p>
+
+
+<h3>Example</h3>
+
+<p>The following two commands produce the same result:</p>
+
+<figure>
+	<pre class="source"><code class="AppleScript">if front document is folder document then
+	set theDocument to front document's current document
+else
+	set theDocument to front document
+end if
+
+tell theDocument
+	set theText to contents of selection
+end tell</code></pre>
+	<figcaption>Gets the front text document and sets its selection contents.</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">tell front document
+	set theText to contents of selection
+end tell</code></pre>
+	<figcaption>Sets the selection contents of the front document.</figcaption>
+</figure>
+</section>
+
+
+<section>
+<p class="type">class</p>
 <h2><code>text selection</code></h2>
 
 <p>The current selection.</p>
