@@ -9823,8 +9823,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "全部重新著色"
+            "state" : "translated",
+            "value" : "重設語法分析"
           }
         }
       }

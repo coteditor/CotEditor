@@ -898,6 +898,12 @@
             "state" : "translated",
             "value" : "許可證"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "許可證"
+          }
         }
       }
     },
