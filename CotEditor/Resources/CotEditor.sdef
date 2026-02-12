@@ -104,6 +104,13 @@
             </responds-to>
         </class-extension>
         
+        <class name="folder document" plural="folder documents" code="dDoc" inherits="document" description="A CotEditor folder document.">
+            <cocoa class="CotEditor.DirectoryDocument"/>
+            <property name="current document" code="cDoc" type="document" access="r" optional="yes" description="The current document in the folder document.">
+                <cocoa key="scriptCurrentDocument"/>
+            </property>
+        </class>
+        
         <class name="text selection" plural="text selections" code="tSel" description="A way to refer to the state of the current selection.">
             <cocoa class="CotEditor.TextSelection"/>
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
