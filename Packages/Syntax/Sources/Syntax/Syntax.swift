@@ -222,45 +222,6 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
-    /// Sorted and removed empty items for saving.
-    public var sanitized: Self {
-        
-        var syntax = self
-        
-        syntax.fileMap.extensions?.removeAll(where: \.isEmpty)
-        if syntax.fileMap.extensions?.isEmpty == true {
-            syntax.fileMap.extensions = nil
-        }
-        syntax.fileMap.filenames?.removeAll(where: \.isEmpty)
-        if syntax.fileMap.filenames?.isEmpty == true {
-            syntax.fileMap.filenames = nil
-        }
-        syntax.fileMap.interpreters?.removeAll(where: \.isEmpty)
-        if syntax.fileMap.interpreters?.isEmpty == true {
-            syntax.fileMap.interpreters = nil
-        }
-        
-        for type in SyntaxType.allCases {
-            syntax.highlights[type]?.removeAll(where: \.isEmpty)
-            syntax.highlights[type]?.caseInsensitiveSort(\.begin)
-            if syntax.highlights[type]?.isEmpty == true {
-                syntax.highlights[type] = nil
-            }
-        }
-        syntax.outlines.removeAll(where: \.isEmpty)
-        syntax.outlines.caseInsensitiveSort(\.pattern)
-        
-        syntax.commentDelimiters.inlines.removeAll(where: \.begin.isEmpty)
-        syntax.commentDelimiters.blocks.removeAll(where: \.begin.isEmpty)
-        syntax.commentDelimiters.blocks.removeAll(where: \.end.isEmpty)
-        
-        syntax.completions.removeAll(where: \.text.isEmpty)
-        syntax.completions.caseInsensitiveSort(\.text)
-        
-        return syntax
-    }
-    
-    
     /// The completion words.
     public var completionWords: [CompletionWord] {
         
@@ -283,18 +244,5 @@ public struct Syntax: Equatable, Sendable {
                 }
                 .sorted(using: KeyPathComparator(\.text))
         }
-    }
-}
-
-
-private extension MutableCollection where Self: RandomAccessCollection {
-    
-    /// Sorts the collection in place, using the string value that the given key path refers as the comparison between elements.
-    ///
-    /// - Parameters:
-    ///   - keyPath: The key path to the string to compare.
-    mutating func caseInsensitiveSort(_ keyPath: KeyPath<Element, String>) {
-        
-        self.sort { $0[keyPath: keyPath].caseInsensitiveCompare($1[keyPath: keyPath]) == .orderedAscending }
     }
 }
