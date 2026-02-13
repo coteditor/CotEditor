@@ -21,6 +21,7 @@
 ### Fixes
 
 - Fix an issue where the app could crash when opening a large file while the Warnings inspector was open.
+- Address an issue where the Save dialog for documents ignored the current syntax for the default file extension.
 - [trivial] Fix the position of the Sidebar toolbar item.
 
 
