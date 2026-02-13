@@ -150,6 +150,20 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
+    public struct Indentation: Equatable, Sendable, Codable {
+        
+        public var blockDelimiters: [Pair<String>] = []
+        
+        public var isEmpty: Bool { self.blockDelimiters.isEmpty }
+        
+        
+        public init(blockDelimiters: [Pair<String>] = []) {
+            
+            self.blockDelimiters = blockDelimiters
+        }
+    }
+    
+    
     public struct LexicalRules: Equatable, Sendable {
         
         public var delimiterEscapeRule: DelimiterEscapeRule
@@ -209,6 +223,7 @@ public struct Syntax: Equatable, Sendable {
     public var outlines: [Outline]
     
     public var commentDelimiters: Comment
+    public var indentation: Indentation
     public var lexicalRules: LexicalRules
     public var completions: [CompletionWord]
     
@@ -223,6 +238,7 @@ public struct Syntax: Equatable, Sendable {
         highlights: [SyntaxType: [Highlight]] = [:],
         outlines: [Outline] = [],
         commentDelimiters: Comment = .init(),
+        indentation: Indentation = .init(),
         lexicalRules: LexicalRules = .default,
         completions: [CompletionWord] = [],
         metadata: Metadata = .init()
@@ -233,6 +249,7 @@ public struct Syntax: Equatable, Sendable {
         self.highlights = highlights
         self.outlines = outlines
         self.commentDelimiters = commentDelimiters
+        self.indentation = indentation
         self.lexicalRules = lexicalRules
         self.completions = completions
         self.metadata = metadata

@@ -35,6 +35,7 @@ extension Syntax {
         
         syntax.fileMap.sanitize()
         syntax.commentDelimiters.sanitize()
+        syntax.indentation.sanitize()
         
         for type in SyntaxType.allCases {
             syntax.highlights[type]?.removeAll(where: \.isEmpty)
@@ -63,6 +64,15 @@ extension Syntax.Comment {
         self.inlines.removeAll(where: \.begin.isEmpty)
         self.blocks.removeAll(where: \.begin.isEmpty)
         self.blocks.removeAll(where: \.end.isEmpty)
+    }
+}
+
+
+extension Syntax.Indentation {
+    
+    mutating func sanitize() {
+        
+        self.blockDelimiters.removeAll(where: \.begin.isEmpty)
     }
 }
 

@@ -171,6 +171,7 @@ extension Syntax: Decodable {
         
         self.commentDelimiters = (try values.decodeIfPresent([String: String].self, forKey: .commentDelimiters))
             .flatMap(Comment.init(legacyDictionary:)) ?? .init()
+        self.indentation = Indentation()
         self.lexicalRules = .default
         self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?
             .compactMap(\.keyString)
