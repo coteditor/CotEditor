@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,6 +47,8 @@ public struct FileEncoding: Equatable, Hashable, Sendable {
     ///
     /// The `withUTF8BOM` flag is just ignored when `encoding` is other than UTF-8.
     public var localizedName: String {
+        
+        assert(self.encoding == .utf8 || !self.withUTF8BOM)
         
         let localizedName = String.localizedName(of: self.encoding)
         
