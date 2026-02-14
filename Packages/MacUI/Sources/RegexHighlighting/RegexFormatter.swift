@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,6 +104,7 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
         // replace invisible characters with visible symbols
         if !self.invisibles.isEmpty {
             let attributes = (attrs ?? [:]).merging([.foregroundColor: self.theme.invisible]) { $1 }
+            var targets: [(range: NSRange, symbol: Character)] = []
             
             for (index, codeUnit) in string.utf16.enumerated() {
                 guard
@@ -111,8 +112,12 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
                     self.invisibles.contains(invisible)
                 else { continue }
                 
-                let attributedInvisible = NSAttributedString(string: String(invisible.symbol), attributes: attributes)
-                attributedString.replaceCharacters(in: NSRange(location: index, length: 1), with: attributedInvisible)
+                targets.append((NSRange(location: index, length: 1), invisible.symbol))
+            }
+            
+            for target in targets.reversed() {
+                let attributedInvisible = NSAttributedString(string: String(target.symbol), attributes: attributes)
+                attributedString.replaceCharacters(in: target.range, with: attributedInvisible)
             }
         }
         
