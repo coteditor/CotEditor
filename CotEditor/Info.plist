@@ -1169,7 +1169,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.text</string>
+				<string>public.plain-text</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Markdown document</string>
@@ -1186,10 +1186,16 @@
 			<string>http://daringfireball.net/projects/markdown/</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/markdown</string>
+					<string>text/x-markdown</string>
+					<string>text/x-web-markdown</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
-					<string>mkd</string>
 					<string>md</string>
+					<string>mkd</string>
 					<string>markdown</string>
 					<string>mdown</string>
 					<string>mkdn</string>
