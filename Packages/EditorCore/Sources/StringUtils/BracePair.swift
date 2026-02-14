@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -282,7 +282,10 @@ private final class BracePairScanner {
         for character in self.string[index...] {
             index = self.string.index(after: index)
             
-            guard !isEscaped else { continue }
+            if isEscaped {
+                isEscaped = false
+                continue
+            }
             
             if let pair = self.candidates.first(where: { $0.begin == character }) {
                 nestDepths[pair, default: 0] += 1
@@ -298,7 +301,7 @@ private final class BracePairScanner {
             }
             
             if character == "\\" {
-                isEscaped.toggle()
+                isEscaped = true
             } else {
                 isEscaped = false
             }

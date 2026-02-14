@@ -82,6 +82,9 @@ struct BracePairTests {
         
         let string3 = #"foo (\\\() )"#
         #expect(string3.rangeOfEnclosingBracePair(at: string3.range(9..<9), candidates: pairs) == string3.range(4..<10))
+        
+        let string4 = #"foo \(\) (bar)"#
+        #expect(string4.rangeOfEnclosingBracePair(at: string4.range(10..<10), candidates: pairs) == string4.range(9..<14))
     }
     
     
