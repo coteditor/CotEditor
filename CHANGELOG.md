@@ -1,6 +1,6 @@
 # Change Log
 
-6.2.3 (unreleased)
+6.2.3 (792)
 --------------------------
 
 ### New Features
