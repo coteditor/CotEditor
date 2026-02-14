@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -114,6 +114,29 @@ struct LazyLineEndingCachingTests {
                 #expect(counter.lineContentsRange(for: range) == result,
                         "At \(index) with string \"\(string)\"")
             }
+        }
+    }
+    
+    
+    @Test func mixedLineEndings() {
+        
+        let string = "a\r\nb\nc\rd\u{2028}e\u{2029}f\u{0085}g"
+        let counter = LineCounter(string: string)
+        let nsString = string as NSString
+        
+        for index in 0...string.length {
+            // skip the CRLF gap (LF side) where we don't request line numbers in practice
+            guard index == 0
+                    || nsString.character(at: index - 1) != 0x0D
+                    || nsString.character(at: index) != 0x0A
+            else { continue }
+            
+            #expect(counter.lineNumber(at: index) == nsString.lineNumber(at: index),
+                    "At \(index) with string \"\(string)\"")
+            #expect(counter.lineRange(at: index) == nsString.lineRange(at: index),
+                    "At \(index) with string \"\(string)\"")
+            #expect(counter.lineStartIndex(at: index) == nsString.lineStartIndex(at: index),
+                    "At \(index) with string \"\(string)\"")
         }
     }
 }

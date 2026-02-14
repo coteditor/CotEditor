@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,6 +40,8 @@ public protocol LineRangeCalculating {
 public extension LineRangeCalculating {
     
     /// Returns the 1-based line number at the given character index.
+    ///
+    /// - Note: If the LF-side index of a CRLF pair is passed, it is treated as part of the previous line.
     ///
     /// - Parameter characterIndex: The character index.
     /// - Returns: The 1-based line number.
