@@ -35,14 +35,14 @@ struct StringCommentingTests {
     
     @Test func inlineCommentOut() {
         
-        #expect("foo".inlineCommentOut(delimiter: "//", spacer: "", ranges: [], at: .selection).isEmpty)
+        #expect("foo".inlineCommentOut(delimiter: "//", appendsSpacer: false, ranges: [], at: .selection).isEmpty)
         
-        #expect("foo".inlineCommentOut(delimiter: "//", spacer: "", ranges: [NSRange(0..<0)], at: .selection) ==
+        #expect("foo".inlineCommentOut(delimiter: "//", appendsSpacer: false, ranges: [NSRange(0..<0)], at: .selection) ==
                 [.init(string: "//", location: 0, forward: true)])
         
-        #expect("foo".inlineCommentOut(delimiter: "//", spacer: " ", ranges: [NSRange(0..<0)], at: .selection) ==
+        #expect("foo".inlineCommentOut(delimiter: "//", appendsSpacer: true, ranges: [NSRange(0..<0)], at: .selection) ==
                 [.init(string: "// ", location: 0, forward: true)])
-        #expect("foo".inlineCommentOut(delimiter: "//", spacer: "", ranges: [NSRange(1..<2)], at: .selection) ==
+        #expect("foo".inlineCommentOut(delimiter: "//", appendsSpacer: false, ranges: [NSRange(1..<2)], at: .selection) ==
                 [.init(string: "//", location: 1, forward: true)])
     }
     
@@ -79,7 +79,7 @@ struct StringCommentingTests {
           a
           b
         """
-        #expect(text3.inlineCommentOut(delimiter: "//", spacer: " ", ranges: [text3.nsRange], at: .afterIndent(tabWidth: 2)) == [
+        #expect(text3.inlineCommentOut(delimiter: "//", appendsSpacer: true, ranges: [text3.nsRange], at: .afterIndent(tabWidth: 2)) == [
             .init(string: "// ", location: 2, forward: true),
             .init(string: "// ", location: 6, forward: true),
         ])
@@ -89,7 +89,7 @@ struct StringCommentingTests {
               a
         \t  b
         """
-        #expect(text4.inlineCommentOut(delimiter: "//", spacer: " ", ranges: [text4.nsRange], at: .afterIndent(tabWidth: 2)) == [
+        #expect(text4.inlineCommentOut(delimiter: "//", appendsSpacer: true, ranges: [text4.nsRange], at: .afterIndent(tabWidth: 2)) == [
             .init(string: "// ", location: 4, forward: true),
             .init(string: "// ", location: 11, forward: true),
         ])
@@ -98,14 +98,14 @@ struct StringCommentingTests {
     
     @Test func blockCommentOut() {
         
-        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), spacer: "", ranges: [], at: .selection).isEmpty)
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: false, ranges: [], at: .selection).isEmpty)
         
-        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<0)], at: .selection) ==
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<0)], at: .selection) ==
                 [.init(string: "<-", location: 0, forward: true), .init(string: "->", location: 0, forward: false)])
         
-        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), spacer: " ", ranges: [NSRange(0..<3)], at: .selection) ==
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(0..<3)], at: .selection) ==
                        [.init(string: "<- ", location: 0, forward: true), .init(string: " ->", location: 3, forward: false)])
-        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), spacer: " ", ranges: [NSRange(1..<2)], at: .selection) ==
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(1..<2)], at: .selection) ==
                        [.init(string: "<- ", location: 1, forward: true), .init(string: " ->", location: 2, forward: false)])
     }
     
@@ -139,7 +139,7 @@ struct StringCommentingTests {
           a
           b
         """
-        #expect(text3.blockCommentOut(delimiters: Pair("<-", "->"), spacer: " ", ranges: [text3.nsRange], at: .afterIndent(tabWidth: 2)) ==
+        #expect(text3.blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: true, ranges: [text3.nsRange], at: .afterIndent(tabWidth: 2)) ==
                 [.init(string: "<- ", location: 2, forward: true), .init(string: " ->", location: 7, forward: false)])
         
         // inset at level 1 with tab
@@ -147,7 +147,7 @@ struct StringCommentingTests {
               a
         \t  b
         """
-        #expect(text4.blockCommentOut(delimiters: Pair("<-", "->"), spacer: " ", ranges: [text4.nsRange], at: .afterIndent(tabWidth: 2)) ==
+        #expect(text4.blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: true, ranges: [text4.nsRange], at: .afterIndent(tabWidth: 2)) ==
                 [.init(string: "<- ", location: 6, forward: true), .init(string: " ->", location: 12, forward: false)])
     }
     
@@ -157,7 +157,7 @@ struct StringCommentingTests {
         let delimiters = Delimiters()
         
         let string = "foo"
-        let context = string.commentOut(types: .inline, delimiters: delimiters, spacer: "", in: [NSRange(0..<3)], at: .selection)
+        let context = string.commentOut(types: .inline, delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<3)], at: .selection)
         
         #expect(context == nil)
     }
@@ -167,7 +167,7 @@ struct StringCommentingTests {
         
         let string = "foo"
         let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
-        let context = try #require(string.commentOut(types: .both, delimiters: delimiters, spacer: " ", in: [NSRange(0..<3)], at: .selection))
+        let context = try #require(string.commentOut(types: .both, delimiters: delimiters, appendsSpacer: true, in: [NSRange(0..<3)], at: .selection))
         
         #expect(context.strings == ["// "])
         #expect(context.ranges == [NSRange(location: 0, length: 0)])
@@ -179,7 +179,7 @@ struct StringCommentingTests {
         
         let string = "<-foo->"
         let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
-        let context = try #require(string.uncomment(delimiters: delimiters, spacer: "", in: [NSRange(0..<7)]))
+        let context = try #require(string.uncomment(delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<7)]))
         
         #expect(context.strings == ["", ""])
         #expect(context.ranges == [NSRange(0..<2), NSRange(5..<7)])
@@ -197,45 +197,45 @@ struct StringCommentingTests {
     
     @Test func inlineUncomment() {
         
-        #expect("foo".rangesOfInlineDelimiter("//", spacer: "", ranges: [])?.isEmpty == true)
-        #expect("foo".rangesOfInlineDelimiter("//", spacer: "", ranges: [NSRange(0..<0)])?.isEmpty == true)
+        #expect("foo".rangesOfInlineDelimiter("//", appendsSpacer: false, ranges: [])?.isEmpty == true)
+        #expect("foo".rangesOfInlineDelimiter("//", appendsSpacer: false, ranges: [NSRange(0..<0)])?.isEmpty == true)
         
-        #expect("//foo".rangesOfInlineDelimiter("//", spacer: "", ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
-        #expect("//foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
-        #expect("// foo".rangesOfInlineDelimiter("//", spacer: "", ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
-        #expect("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<5)]) == [NSRange(0..<3)])
+        #expect("//foo".rangesOfInlineDelimiter("//", appendsSpacer: false, ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
+        #expect("//foo".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
+        #expect("// foo".rangesOfInlineDelimiter("//", appendsSpacer: false, ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
+        #expect("// foo".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<5)]) == [NSRange(0..<3)])
         
-        #expect("  //foo".rangesOfInlineDelimiter("//", spacer: "", ranges: [NSRange(0..<7)]) == [NSRange(2..<4)])
-        #expect("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<1)]) == nil)
-        #expect("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(1..<3)]) == nil)
-        #expect("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<2)]) == [NSRange(0..<2)])
+        #expect("  //foo".rangesOfInlineDelimiter("//", appendsSpacer: false, ranges: [NSRange(0..<7)]) == [NSRange(2..<4)])
+        #expect("// foo".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<1)]) == nil)
+        #expect("// foo".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(1..<3)]) == nil)
+        #expect("// foo".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<2)]) == [NSRange(0..<2)])
         
-        #expect("// foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<12)]) == [NSRange(0..<3), NSRange(7..<9)])
-        #expect(" //foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<12)]) == [NSRange(1..<3), NSRange(7..<9)])
-        #expect(" //foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<3), NSRange(0..<6)]) == [NSRange(1..<3)])
+        #expect("// foo\n//bar".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<12)]) == [NSRange(0..<3), NSRange(7..<9)])
+        #expect(" //foo\n//bar".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<12)]) == [NSRange(1..<3), NSRange(7..<9)])
+        #expect(" //foo\n//bar".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<3), NSRange(0..<6)]) == [NSRange(1..<3)])
         
-        #expect("// foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<5), NSRange(7..<12)]) == [NSRange(0..<3), NSRange(7..<9)])
+        #expect("// foo\n//bar".rangesOfInlineDelimiter("//", appendsSpacer: true, ranges: [NSRange(0..<5), NSRange(7..<12)]) == [NSRange(0..<3), NSRange(7..<9)])
     }
     
     
     @Test func blockUncomment() {
         
-        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [])?.isEmpty == true)
-        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<0)])?.isEmpty == true)
+        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [])?.isEmpty == true)
+        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<0)])?.isEmpty == true)
         
-        #expect("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
-        #expect("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: " ", ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
-        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<9)]) == [NSRange(0..<2), NSRange(7..<9)])
-        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: " ", ranges: [NSRange(0..<9)]) == [NSRange(0..<3), NSRange(6..<9)])
+        #expect("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
+        #expect("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
+        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<9)]) == [NSRange(0..<2), NSRange(7..<9)])
+        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(0..<9)]) == [NSRange(0..<3), NSRange(6..<9)])
         
-        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<9)]) == [NSRange(1..<3), NSRange(6..<8)])
-        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(1..<7)]) == nil)
+        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<9)]) == [NSRange(1..<3), NSRange(6..<8)])
+        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(1..<7)]) == nil)
         
         // ok, this is currently in spec, but not a good one...
-        #expect("<-foo-><-bar->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<14)]) == [NSRange(0..<2), NSRange(12..<14)])
-        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: " ", ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
+        #expect("<-foo-><-bar->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<14)]) == [NSRange(0..<2), NSRange(12..<14)])
+        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
         
-        #expect("a<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
+        #expect("a<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
     }
     
     
@@ -336,17 +336,17 @@ private struct Editor {
     var selectedRanges: [NSRange] = []
     
     
-    mutating func commentOut(types: CommentTypes, spacer: String = "", at location: CommentOutLocation) {
+    mutating func commentOut(types: CommentTypes, appendsSpacer: Bool = false, at location: CommentOutLocation) {
         
-        guard let context = self.string.commentOut(types: types, delimiters: self.delimiters, spacer: spacer, in: self.selectedRanges, at: location) else { return }
+        guard let context = self.string.commentOut(types: types, delimiters: self.delimiters, appendsSpacer: appendsSpacer, in: self.selectedRanges, at: location) else { return }
         
         self.edit(with: context)
     }
     
     
-    mutating func uncomment(spacer: String = "") {
+    mutating func uncomment(appendsSpacer: Bool = false) {
         
-        guard let context = self.string.uncomment(delimiters: self.delimiters, spacer: spacer, in: self.selectedRanges) else { return }
+        guard let context = self.string.uncomment(delimiters: self.delimiters, appendsSpacer: appendsSpacer, in: self.selectedRanges) else { return }
         
         self.edit(with: context)
     }

@@ -72,19 +72,19 @@ public extension String {
     /// - Parameters:
     ///   - types: The commenting style to apply. If `.both` is specified, inline comments take precedence over block comments.
     ///   - delimiters: The comment delimiters to apply.
-    ///   - spacer: The spacer between delimiter and string.
+    ///   - appendsSpacer: Whether to insert a single space between delimiter and string.
     ///   - selectedRanges: The current selected ranges in the editor.
     ///   - location: The location type to insert comment delimiters.
-    func commentOut(types: CommentTypes, delimiters: any CommentDelimiters, spacer: String, in selectedRanges: [NSRange], at location: CommentOutLocation) -> EditingContext? {
+    func commentOut(types: CommentTypes, delimiters: any CommentDelimiters, appendsSpacer: Bool, in selectedRanges: [NSRange], at location: CommentOutLocation) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
         
         let items: [NSRange.InsertionItem] = {
             if types.contains(.inline), let delimiter = delimiters.inlineDelimiters.first {
-                return self.inlineCommentOut(delimiter: delimiter, spacer: spacer, ranges: selectedRanges, at: location)
+                return self.inlineCommentOut(delimiter: delimiter, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
             if types.contains(.block), let delimiters = delimiters.blocks.first {
-                return self.blockCommentOut(delimiters: delimiters, spacer: spacer, ranges: selectedRanges, at: location)
+                return self.blockCommentOut(delimiters: delimiters, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
             return []
         }()
@@ -103,20 +103,21 @@ public extension String {
     ///
     /// - Parameters:
     ///   - delimiters: The comment delimiters to remove.
+    ///   - appendsSpacer: Whether a single space is expected between delimiter and string.
     ///   - selectedRanges: The current selected ranges in the editor.
-    func uncomment(delimiters: any CommentDelimiters, spacer: String, in selectedRanges: [NSRange]) -> EditingContext? {
+    func uncomment(delimiters: any CommentDelimiters, appendsSpacer: Bool, in selectedRanges: [NSRange]) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
         
         let deletionRanges: [NSRange] = delimiters.blocks.lazy
             .compactMap { delimiters in
                 let targetRanges = selectedRanges.map { $0.isEmpty ? self.lineContentsRange(for: $0) : $0 }.uniqued
-                return self.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges)
+                return self.rangesOfBlockDelimiters(delimiters, appendsSpacer: appendsSpacer, ranges: targetRanges)
             }.first
         ?? delimiters.inlineDelimiters.lazy
             .compactMap { delimiter in
                 let targetRanges = selectedRanges.map(self.lineContentsRange(for:)).uniqued
-                return self.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges)
+                return self.rangesOfInlineDelimiter(delimiter, appendsSpacer: appendsSpacer, ranges: targetRanges)
             }.first
         ?? []
         
@@ -149,13 +150,13 @@ public extension String {
         guard !targetRanges.isEmpty else { return false }
         
         for delimiters in delimiters.blocks {
-            if let ranges = self.rangesOfBlockDelimiters(delimiters, spacer: "", ranges: targetRanges) {
+            if let ranges = self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: targetRanges) {
                 return partly ? true : (ranges.count == (2 * targetRanges.count))
             }
         }
         
         for delimiter in delimiters.inlineDelimiters {
-            if let ranges = self.rangesOfInlineDelimiter(delimiter, spacer: "", ranges: targetRanges) {
+            if let ranges = self.rangesOfInlineDelimiter(delimiter, appendsSpacer: false, ranges: targetRanges) {
                 let lineRanges = targetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
                 return partly ? true : (ranges.count == lineRanges.count)
             }
@@ -172,11 +173,11 @@ extension String {
     ///
     /// - Parameters:
     ///   - delimiter: The inline comment delimiter to insert.
-    ///   - spacer: The spacer between delimiter and string.
+    ///   - appendsSpacer: Whether to insert a single space between delimiter and string.
     ///   - ranges: The ranges whose lines should be commented out.
     ///   - location: The location type to insert comment delimiters.
     /// - Returns: Items that contain editing information to insert comment delimiters.
-    func inlineCommentOut(delimiter: String, spacer: String = "", ranges: [NSRange], at location: CommentOutLocation) -> [NSRange.InsertionItem] {
+    func inlineCommentOut(delimiter: String, appendsSpacer: Bool = false, ranges: [NSRange], at location: CommentOutLocation) -> [NSRange.InsertionItem] {
         
         let locations = switch location {
             case .selection:
@@ -192,6 +193,7 @@ extension String {
             case .afterIndent(let tabWidth):
                 self.minimumCommonIndentationLocations(for: ranges, tabWidth: tabWidth)
         }
+        let spacer = appendsSpacer ? " " : ""
         
         return locations.map { NSRange.InsertionItem(string: delimiter + spacer, location: $0, forward: true) }
     }
@@ -201,11 +203,11 @@ extension String {
     ///
     /// - Parameters:
     ///   - delimiters: The pair of block comment delimiters to insert.
-    ///   - spacer: The spacer between delimiter and string.
+    ///   - appendsSpacer: Whether to insert a single space between delimiter and string.
     ///   - ranges: The ranges where to comment out.
     ///   - location: The location type to insert comment delimiters.
     /// - Returns: Items that contain editing information to insert comment delimiters.
-    func blockCommentOut(delimiters: Pair<String>, spacer: String = "", ranges: [NSRange], at location: CommentOutLocation) -> [NSRange.InsertionItem] {
+    func blockCommentOut(delimiters: Pair<String>, appendsSpacer: Bool = false, ranges: [NSRange], at location: CommentOutLocation) -> [NSRange.InsertionItem] {
         
         let targetRanges = switch location {
             case .selection:
@@ -223,6 +225,7 @@ extension String {
                     }
                     .merged
         }
+        let spacer = appendsSpacer ? " " : ""
         
         return targetRanges.flatMap {
             [NSRange.InsertionItem(string: delimiters.begin + spacer, location: $0.lowerBound, forward: true),
@@ -235,17 +238,17 @@ extension String {
     ///
     /// - Parameters:
     ///   - delimiter: The inline delimiter to find.
-    ///   - spacer: The spacer between delimiter and string.
+    ///   - appendsSpacer: Whether a single space is expected between delimiter and string.
     ///   - ranges: The ranges where to find.
     /// - Returns: Ranges where delimiters and spacers are, or `nil` when no delimiters was found.
-    func rangesOfInlineDelimiter(_ delimiter: String, spacer: String, ranges: [NSRange]) -> [NSRange]? {
+    func rangesOfInlineDelimiter(_ delimiter: String, appendsSpacer: Bool, ranges: [NSRange]) -> [NSRange]? {
         
         let ranges = ranges.filter { !$0.isEmpty }
         
         guard !ranges.isEmpty, !self.isEmpty else { return [] }
         
         let delimiterPattern = NSRegularExpression.escapedPattern(for: delimiter)
-        let spacerPattern = spacer.isEmpty ? "" : "(?:\(spacer))?"
+        let spacerPattern = appendsSpacer ? " ?" : ""
         let pattern = "^[ \t]*(\(delimiterPattern + spacerPattern))"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines])
         
@@ -264,10 +267,10 @@ extension String {
     ///
     /// - Parameters:
     ///   - delimiters: The pair of block delimiters to find.
-    ///   - spacer: The spacer between delimiter and string.
+    ///   - appendsSpacer: Whether a single space is expected between delimiter and string.
     ///   - ranges: The ranges where to find.
     /// - Returns: Ranges where delimiters and spacers are, or `nil` when no delimiters was found.
-    func rangesOfBlockDelimiters(_ delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange]? {
+    func rangesOfBlockDelimiters(_ delimiters: Pair<String>, appendsSpacer: Bool, ranges: [NSRange]) -> [NSRange]? {
         
         let ranges = ranges.filter { !$0.isEmpty }
         
@@ -275,7 +278,7 @@ extension String {
         
         let beginPattern = NSRegularExpression.escapedPattern(for: delimiters.begin)
         let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
-        let spacerPattern = spacer.isEmpty ? "" : "(?:\(spacer))?"
+        let spacerPattern = appendsSpacer ? " ?" : ""
         let pattern = "\\A[ \t]*(\(beginPattern + spacerPattern)).*?(\(spacerPattern + endPattern))[ \t]*\\Z"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         
