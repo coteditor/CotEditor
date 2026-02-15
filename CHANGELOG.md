@@ -21,7 +21,7 @@
 - Improve the syntax highlighting algorithm.
 - Migrate the built-in CSS, HTML, JavaScript, Python, Ruby, and Swift syntaxes to use tree-sitter for syntax highlighting.
 - Update built-in syntaxes.
-- Improve the performance general text editing.
+- Improve the performance of general text editing.
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move to the Format menu.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
