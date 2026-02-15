@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -178,8 +178,13 @@ extension MultipleReplace {
             guard progress?.state != .cancelled else { throw CancellationError() }
             
             // update string
-            for item in replacementItems.reversed() {
-                result.string = (result.string as NSString).replacingCharacters(in: item.range, with: item.value)
+            if !replacementItems.isEmpty {
+                // use NSMutableString for performance
+                let mutableString = NSMutableString(string: result.string)
+                for item in replacementItems.reversed() {
+                    mutableString.replaceCharacters(in: item.range, with: item.value)
+                }
+                result.string = mutableString as String
             }
             
             // update selected ranges

@@ -41,7 +41,7 @@ public extension String {
         // cannot perform Move Line Up if one of the selections is already in the first line
         guard !lineRanges.isEmpty, lineRanges.first!.lowerBound != 0 else { return nil }
         
-        var string = self as NSString
+        let string = NSMutableString(string: self)
         var replacementRange = NSRange()
         var selectedRanges: [NSRange] = []
         
@@ -58,7 +58,7 @@ public extension String {
             
             // swap
             let editRange = lineRange.union(upperLineRange)
-            string = string.replacingCharacters(in: editRange, with: lineString + upperLineString) as NSString
+            string.replaceCharacters(in: editRange, with: lineString + upperLineString)
             replacementRange.formUnion(editRange)
             
             // move selected ranges in the line to move
@@ -94,7 +94,7 @@ public extension String {
             lineRanges.last!.upperBound != self.length || self.last?.isNewline == true
         else { return nil }
         
-        var string = self as NSString
+        let string = NSMutableString(string: self)
         var replacementRange = NSRange()
         var selectedRanges: [NSRange] = []
         
@@ -111,7 +111,7 @@ public extension String {
             
             // swap
             let editRange = lineRange.union(lowerLineRange)
-            string = string.replacingCharacters(in: editRange, with: lowerLineString + lineString) as NSString
+            string.replaceCharacters(in: editRange, with: lowerLineString + lineString)
             replacementRange.formUnion(editRange)
             
             // move selected ranges in the line to move
@@ -149,14 +149,14 @@ public extension String {
             .sorted(using: KeyPathComparator(\.location))
         
         var replacementRanges: [NSRange] = []
-        var uniqueLines: [String] = []
+        var uniqueLines = Set<String>()
         for lineContentsRange in lineContentsRanges {
             let line = string.substring(with: lineContentsRange)
             
             if uniqueLines.contains(line) {
                 replacementRanges.append(string.lineRange(for: lineContentsRange))
             } else {
-                uniqueLines.append(line)
+                uniqueLines.insert(line)
             }
         }
         

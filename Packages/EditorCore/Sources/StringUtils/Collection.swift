@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -69,6 +69,7 @@ public extension Sequence {
     func compareCount(with number: Int) -> QuantityComparisonResult {
         
         assert(number >= 0, "The count number to compare should be a natural number.")
+        assert(number < 5, "This method should be used only for a small number comparison.")
         
         guard number >= 0 else { return .greater }
         
