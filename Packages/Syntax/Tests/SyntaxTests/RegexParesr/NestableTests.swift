@@ -121,6 +121,32 @@ struct NestableTests {
         }
         
         
+        @Test func pairDoesNotCrossLinesWithMixedTokens() throws {
+            
+            let source = """
+                         /* a
+                         'x' 'y
+                         */ b
+                         /* ok */
+                         z'
+                         """
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("/*", "*/"), isMultiline: false): .comments,
+                .pair(Pair("'", "'"), isMultiline: false): .strings,
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let commentRanges = try #require(dict[.comments])
+            let stringRanges = try #require(dict[.strings])
+            let commentMatches = commentRanges.map((source as NSString).substring(with:))
+            let stringMatches = stringRanges.map((source as NSString).substring(with:))
+            
+            #expect(commentMatches.count == 1)
+            #expect(commentMatches[0] == "/* ok */")
+            #expect(stringMatches.count == 1)
+            #expect(stringMatches[0] == "'x'")
+        }
+        
+        
         @Test func pairDifferentDelimiters() throws {
             
             let source = "/* a /* b */ c */ d */"  // last '*/' unmatched should be ignored

@@ -136,6 +136,7 @@ extension [NestableToken: SyntaxType] {
         var highlights: [SyntaxType: [NSRange]] = [:]
         var seekLocation = parseRange.location
         var index = 0
+        var lastLineEnd: Int?
         
         while index < positions.endIndex {
             let beginPosition = positions[index]
@@ -148,13 +149,19 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
-                let searchUpperBound = beginPosition.token.allowsMultiline
-                    ? parseRange.upperBound
-                    : string.lineContentsEndIndex(at: beginPosition.range.upperBound)
-                
                 var nestDepth = 0
                 for (offset, position) in positions[index...].enumerated() where position.token == beginPosition.token {
                     // stop searching at the end of the current line when multiline is disabled
+                    // -> cache lastLineEnd to avoid high-cost .lineContentsEndIndex(at:) as much as possible
+                    let searchUpperBound: Int
+                    if beginPosition.token.allowsMultiline {
+                        searchUpperBound = parseRange.upperBound
+                    } else if let lastLineEnd, beginPosition.range.upperBound <= lastLineEnd {
+                        searchUpperBound = lastLineEnd
+                    } else {
+                        searchUpperBound = string.lineContentsEndIndex(at: beginPosition.range.upperBound)
+                        lastLineEnd = searchUpperBound
+                    }
                     if position.range.location > searchUpperBound {
                         return nil
                     }
