@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2014-2025 1024jp
+ © 2014-2026 1024jp
 */
 
 @import "common.css";
@@ -236,7 +236,7 @@ pre.source {
 	max-inline-size: 50rem;
 	padding-block: 0.4rem;
 	padding-inline: 0.8rem;
-	overflow: scroll;
+	overflow: auto;
 }
 
 code.AppleScript {
