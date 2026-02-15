@@ -124,8 +124,6 @@ extension String {
     /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
     static func string(data: Data, options: String.DetectionOptions) throws(CocoaError) -> (String, String.Encoding) {
         
-        assert(!options.candidates.isEmpty)
-        
         // check BOMs
         for bom in Unicode.BOM.allCases {
             if options.candidates.contains(bom.encoding),
