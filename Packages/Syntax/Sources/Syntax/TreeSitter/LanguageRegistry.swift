@@ -31,6 +31,7 @@ import SwiftTreeSitter
 import TreeSitterCSS
 import TreeSitterHTML
 import TreeSitterJavaScript
+import TreeSitterPHP
 import TreeSitterPython
 import TreeSitterRuby
 import TreeSitterSwift
@@ -42,6 +43,7 @@ public final class LanguageRegistry: Sendable {
         case css = "CSS"
         case html = "HTML"
         case javaScript = "JavaScript"
+        case php = "PHP"
         case python = "Python"
         case ruby = "Ruby"
         case swift = "Swift"
@@ -147,6 +149,7 @@ private extension LanguageRegistry.Language {
             case .css: "css"
             case .html: "html"
             case .javaScript: "javascript"
+            case .php: "php"
             case .python: "python"
             case .ruby: "ruby"
             case .swift: "swift"
@@ -161,6 +164,7 @@ private extension LanguageRegistry.Language {
             case .css: unsafe tree_sitter_css()
             case .html: unsafe tree_sitter_html()
             case .javaScript: unsafe tree_sitter_javascript()
+            case .php: unsafe tree_sitter_php()
             case .python: unsafe tree_sitter_python()
             case .ruby: unsafe tree_sitter_ruby()
             case .swift: unsafe tree_sitter_swift()
