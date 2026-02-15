@@ -430,7 +430,7 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Syntax" id="304"/>
                                         </menuItem>
-                                        <menuItem title="Reset Syntax Analysis" secondaryImage="paintbrush" catalog="system" keyEquivalent="r" id="458">
+                                        <menuItem title="Reset Syntax Analysis" secondaryImage="arrow.clockwise" catalog="system" keyEquivalent="r" id="458">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="recolorAll:" target="Ady-hI-5gd" id="ma3-X0-tjk"/>
@@ -495,7 +495,7 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Theme" secondaryImage="paintpalette" catalog="system" id="8z7-Jc-agP">
+                                        <menuItem title="Theme" secondaryImage="paintbrush" catalog="system" id="8z7-Jc-agP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Theme" id="165-HJ-Xty"/>
                                         </menuItem>
@@ -1301,6 +1301,7 @@ CA
         <image name="apple.terminal" catalog="system" width="18" height="14"/>
         <image name="applescript.fill" catalog="system" width="14" height="18"/>
         <image name="arrow.2.squarepath" catalog="system" width="19" height="14"/>
+        <image name="arrow.clockwise" catalog="system" width="14" height="16"/>
         <image name="arrow.down.to.line" catalog="system" width="13" height="16"/>
         <image name="arrow.forward.circle" catalog="system" width="15" height="15"/>
         <image name="arrow.left.arrow.right" catalog="system" width="16" height="17"/>
@@ -1431,7 +1432,6 @@ AAAAFBk
         <image name="number" catalog="system" width="15" height="15"/>
         <image name="numbers.rectangle" catalog="system" width="18" height="14"/>
         <image name="paintbrush" catalog="system" width="17" height="18"/>
-        <image name="paintpalette" catalog="system" width="18" height="15"/>
         <image name="paperplane" catalog="system" width="16" height="16"/>
         <image name="paragraphsign" catalog="system" width="13" height="14"/>
         <image name="pencil.slash" catalog="system" width="13" height="13"/>
