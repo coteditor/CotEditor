@@ -18,7 +18,7 @@
 
 ### Improvements
 
-- Improve the syntax highlighting algorithm.
+- Improve the syntax highlighting algorithm for the legacy regex-based highlighting.
 - Migrate the built-in CSS, HTML, JavaScript, PHP, Python, Ruby, and Swift syntaxes to use tree-sitter for syntax highlighting.
 - Update built-in syntaxes.
 - Improve the performance of general text editing.
