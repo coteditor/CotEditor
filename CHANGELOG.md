@@ -3,6 +3,11 @@
 6.2.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the Find window where syntax highlighting for regular expression patterns could break with certain patterns.
+- Fix an issue where the editor incorrectly highlighted paired symbols when an escaped symbol was nearby.
+
 
 
 6.2.3 (792)
