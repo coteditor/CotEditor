@@ -124,6 +124,23 @@ struct EditedRangeSetTests {
     }
     
     
+    @Test func indexSet() {
+        
+        var set = EditedRangeSet()
+        
+        #expect(set.indexSet.isEmpty)
+        
+        set.append(editedRange: NSRange(location: 2, length: 3), changeInLength: 0)
+        set.append(editedRange: NSRange(location: 8, length: 2), changeInLength: 0)
+        
+        var expected = IndexSet()
+        expected.insert(integersIn: 2..<5)
+        expected.insert(integersIn: 8..<10)
+        
+        #expect(set.indexSet == expected)
+    }
+    
+    
     @Test func update() {
         
         var set = EditedRangeSet(range: NSRange(location: 2, length: 3))

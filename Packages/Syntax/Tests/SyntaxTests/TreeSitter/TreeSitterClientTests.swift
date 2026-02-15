@@ -35,6 +35,42 @@ actor TreeSitterClientTests {
     private let registry: LanguageRegistry = .shared
     
     
+    @Test func incrementalParseUpdatesRange() async throws {
+        
+        let source = #"""
+            /// Tests highlighting.
+            @concurrent private func doSomething(in string: String, range: NSRange) async throws -> [SomeItem] {
+                
+                guard #available(macOS 26, *) else { return }
+                
+                let item = Registry.items.first { $0.name = "with \(string)" }
+                
+                return try self.storage.replace(item, in: range)
+            }
+        """#
+        
+        let config = try #require(try self.registry.configuration(for: .swift))
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
+        _ = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+        
+        let locationRange = (source as NSString).range(of: "doSomething")
+        let insertLocation = locationRange.location
+        let insertedText = "/*x*/"
+        let editedRange = NSRange(location: insertLocation, length: insertedText.length)
+        let editedSource = (source as NSString).replacingCharacters(in: NSRange(location: insertLocation, length: 0), with: insertedText)
+        
+        try await client.noteEdit(editedRange: editedRange, delta: insertedText.length, insertedText: insertedText)
+        let requestedRange = NSRange(location: 0, length: 0)
+        let result = try #require(await client.parseHighlights(in: editedSource, range: requestedRange))
+        let updateRange = result.updateRange
+        
+        #expect(updateRange.lowerBound <= editedRange.lowerBound)
+        #expect(updateRange.upperBound >= editedRange.upperBound)
+        #expect(updateRange.upperBound > requestedRange.upperBound)
+        #expect(!result.highlights.isEmpty)
+    }
+    
+    
     @Test func highlightSwift() async throws {
         
         let source = #"""
@@ -51,7 +87,8 @@ actor TreeSitterClientTests {
         
         let config = try #require(try self.registry.configuration(for: .swift))
         let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
-        let captures = try await client.parseHighlights(in: source, range: source.nsRange)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
             .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
         
         #expect(captures.count == 32)

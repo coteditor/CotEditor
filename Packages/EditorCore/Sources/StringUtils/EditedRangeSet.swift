@@ -56,6 +56,15 @@ public struct EditedRangeSet: Sendable {
     }
     
     
+    /// The ranges as an `IndexSet`.
+    public var indexSet: IndexSet {
+        
+        self.ranges.reduce(into: IndexSet()) { set, range in
+            set.insert(integersIn: range.lowerBound..<range.upperBound)
+        }
+    }
+    
+    
     /// Clears all stored ranges.
     public mutating func clear() {
         

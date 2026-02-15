@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 7, 0)),
         .package(url: "https://github.com/jpsim/Yams", from: Version(6, 2, 0)),
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
-        .package(url: "https://github.com/tree-sitter/swift-tree-sitter", from: Version(0, 9, 0)),
+        .package(url: "https://github.com/tree-sitter/swift-tree-sitter", branch: "main"),
         
         .package(url: "https://github.com/1024jp/tree-sitter-css", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter/tree-sitter-html", from: Version(0, 23, 2)),

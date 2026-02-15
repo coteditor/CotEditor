@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import StringUtils
 import ValueRange
 
 import SwiftTreeSitter
@@ -32,9 +33,20 @@ import SwiftTreeSitterLayer
 
 actor TreeSitterClient: HighlightParsing {
     
+    // MARK: Internal Properties
+    
+    nonisolated let needsHighlightBuffer: Bool = false
+    
+    
     // MARK: Private Properties
     
     private let layer: LanguageLayer
+    
+    /// The current mirrored document content.
+    private var content: Content = .init()
+    
+    /// The ranges affected by pending edits, in UTF-16 units.
+    private var pendingAffectedRanges: EditedRangeSet = .init()
     
     
     // MARK: Lifecycle
@@ -48,16 +60,65 @@ actor TreeSitterClient: HighlightParsing {
     
     // MARK: HighlightParsing Methods
     
-    func parseHighlights(in string: String, range: NSRange) async throws -> [Highlight] {
+    func update(content: String) {
         
-        self.layer.replaceContent(with: string)
+        guard content != self.content.string else { return }
+        
+        do {
+            try self.noteEdit(editedRange: content.nsRange, delta: content.length - self.content.string.length, insertedText: content)
+        } catch {
+            assertionFailure()
+            self.resetContent(content)
+        }
+    }
+    
+    
+    func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws {
+        
+        let edit = try self.content.applyEdit(editedRange: editedRange, delta: delta, insertedText: insertedText)
+        
+        self.layer.applyEdit(edit)
+        self.pendingAffectedRanges.append(editedRange: editedRange, changeInLength: delta)
+    }
+    
+    
+    func parseHighlights(in string: String, range: NSRange) async throws -> (highlights: [Highlight], updateRange: NSRange)? {
+        
+        if string != self.content.string {
+            self.resetContent(string)
+        }
         
         try Task.checkCancellation()
         
-        return try self.layer.highlights(in: range, provider: (string as NSString).predicateNSStringProvider)
+        let content = LanguageLayer.Content(string: string)
+        let affectedSet = self.pendingAffectedRanges.indexSet
+        let invalidations = self.layer.parse(with: content, affecting: affectedSet, resolveSublayers: true)
+        self.pendingAffectedRanges.clear()
+        
+        try Task.checkCancellation()
+
+        let updateRange = invalidations.unionRange()?.union(range) ?? range
+        
+        let highlights = try self.layer.highlights(in: updateRange, provider: string.predicateNSStringProvider)
             .compactMap(\.highlight)
             .sorted(using: [KeyPathComparator(\.range.location),
                             KeyPathComparator(\.range.length)])
+
+        return (highlights, updateRange)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Resets the stored content and the tree-sitter layer when incremental edits cannot be applied.
+    ///
+    /// - Parameters:
+    ///   - content: The content to apply.
+    private func resetContent(_ content: String) {
+        
+        self.content.reset(content)
+        self.layer.replaceContent(with: content)
+        self.pendingAffectedRanges.clear()
     }
 }
 
@@ -83,5 +144,19 @@ private extension NSString {
     var predicateNSStringProvider: SwiftTreeSitter.Predicate.TextProvider {
         
         { nsRange, _ in self.substring(with: nsRange) }
+    }
+}
+
+
+private extension IndexSet {
+    
+    func unionRange() -> NSRange? {
+        
+        guard
+            let lower = self.rangeView.first?.lowerBound,
+            let upper = self.rangeView.last?.upperBound
+        else { return nil }
+        
+        return NSRange(location: lower, length: upper - lower)
     }
 }
