@@ -1,5 +1,5 @@
 //
-//  SringMatchTests.swift
+//  StringMatchTests.swift
 //  StringUtilsTests
 //
 //  CotEditor
@@ -28,7 +28,7 @@ import Foundation
 import Testing
 @testable import StringUtils
 
-struct SringMatchTests {
+struct StringMatchTests {
     
     private struct Item: Identifiable, Sendable {
         
@@ -117,5 +117,17 @@ struct SringMatchTests {
             let attributedRange = try #require(Range(range, in: attributed))
             #expect(attributed[attributedRange].inlinePresentationIntent == .stronglyEmphasized)
         }
+    }
+    
+    
+    @Test func attributedStringNoFilter() throws {
+        
+        let item = Item(name: "tanuki")
+        let noFilter = try #require(item.filter("", keyPath: \.name))
+        let attributed = noFilter.attributedString
+        
+        #expect(String(attributed.characters) == "tanuki")
+        #expect(attributed.inlinePresentationIntent == nil)
+        #expect(attributed.runs.allSatisfy { $0.inlinePresentationIntent == nil })
     }
 }
