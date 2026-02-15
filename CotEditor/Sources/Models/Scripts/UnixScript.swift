@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -91,11 +91,10 @@ struct UnixScript: Script {
         
         weak let document = await (DocumentController.shared as! DocumentController).currentPlainTextDocument
         
-        let input: String?
-        if let inputType = InputType(scanning: script) {
-            input = try await self.readInput(type: inputType, editor: document?.textView)
+        let input: String? = if let inputType = InputType(scanning: script) {
+            try await self.readInput(type: inputType, editor: document?.textView)
         } else {
-            input = nil
+            nil
         }
         
         let outputType = OutputType(scanning: script)
