@@ -1,14 +1,14 @@
 [
   {
-    "beginString" : "//[ \\t]*(TODO:|FIXME:)[ \\t](.+)",
+    "beginString" : "//([ \\t]*)(TODO:|FIXME:)[ \\t](.+)",
     "description" : "TODO/FIXME",
-    "keyString" : "$1 $2",
+    "keyString" : "$1$2 $3",
     "kind" : "mark"
   },
   {
-    "beginString" : "//[ \\t]*MARK:[ \\t]*(?:-[\\t ]+)?(.*)",
+    "beginString" : "//([ \\t]*)MARK:[ \\t]*(?:-[\\t ]+)?(.*)",
     "description" : "MARK",
-    "keyString" : "$1",
+    "keyString" : "$1$2",
     "kind" : "mark"
   },
   {
