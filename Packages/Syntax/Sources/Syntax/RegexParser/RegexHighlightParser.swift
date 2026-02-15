@@ -31,7 +31,7 @@ actor RegexHighlightParser: HighlightParsing {
     
     // MARK: Internal Properties
     
-    nonisolated let needsHighlightBuffer: Bool = true
+    nonisolated let highlightBuffer = 2_000
     
     
     // MARK: Private Properties

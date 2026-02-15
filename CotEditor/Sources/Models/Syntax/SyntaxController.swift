@@ -220,9 +220,7 @@ extension NSAttributedString.Key {
                 return
             }
             
-            let highlightRange = parser.needsHighlightBuffer
-                ? self.textStorage.expandHighlightRange(for: invalidRange, bufferLength: 2_000)
-                : invalidRange
+            let highlightRange = self.textStorage.expandHighlightRange(for: invalidRange, bufferLength: parser.highlightBuffer)
             
             // parse in background
             let string = self.textStorage.string.immutable
@@ -275,13 +273,14 @@ private extension NSTextStorage {
     ///   - invalidRange: The range that was edited or invalidated.
     ///   - bufferLength: The number of characters to extend on both sides.
     /// - Returns: A range expanded to include entire lines and adjacent tokens of the same syntax type.
-    @MainActor func expandHighlightRange(for invalidRange: NSRange, bufferLength: Int = 0) -> NSRange {
+    @MainActor func expandHighlightRange(for invalidRange: NSRange, bufferLength: Int) -> NSRange {
         
         let lowerBound = max(invalidRange.lowerBound - bufferLength, 0)
         let upperBound = min(invalidRange.upperBound + bufferLength, self.length)
         var range = (self.string as NSString).lineRange(for: NSRange(lowerBound..<upperBound))
         
         guard
+            bufferLength > 0,
             range.length != self.length,
             let layoutManager = self.layoutManagers.first
         else { return range }

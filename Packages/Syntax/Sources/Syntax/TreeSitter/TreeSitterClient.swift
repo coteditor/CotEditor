@@ -35,7 +35,7 @@ actor TreeSitterClient: HighlightParsing {
     
     // MARK: Internal Properties
     
-    nonisolated let needsHighlightBuffer: Bool = false
+    nonisolated let highlightBuffer = 0
     
     
     // MARK: Private Properties

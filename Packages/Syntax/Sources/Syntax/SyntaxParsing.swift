@@ -32,7 +32,7 @@ public typealias Highlight = ValueRange<SyntaxType>
 
 public protocol HighlightParsing: Actor {
     
-    nonisolated var needsHighlightBuffer: Bool { get }
+    nonisolated var highlightBuffer: Int { get }
     
     
     /// Updates the entire content and resets the parser state.
