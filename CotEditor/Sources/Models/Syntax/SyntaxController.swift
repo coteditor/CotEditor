@@ -57,7 +57,7 @@ extension NSAttributedString.Key {
     
     private var highlightParseTask: Task<Void, any Error>?
     private var outlineParseTask: Task<Void, any Error>?
-    private var invalidRanges: EditedRangeSet
+    private var invalidRanges: EditedRangeSet = .init()
     private var isReady = false
     
     
@@ -74,8 +74,6 @@ extension NSAttributedString.Key {
         self.textStorage = textStorage
         self.syntax = syntax
         self.syntaxName = name
-        
-        self.invalidRanges = EditedRangeSet(range: textStorage.range)
     }
     
     
@@ -94,13 +92,15 @@ extension NSAttributedString.Key {
         self.highlightParser = try? LanguageRegistry.shared.highlightParser(name: self.syntaxName) ?? self.syntax.highlightParser
         self.outlineParser = self.syntax.outlineParser
         self.isReady = true
+        self.invalidRanges.clear()
         
         Task {
             if let parser = self.highlightParser {
                 let content = self.textStorage.string.immutable
                 await parser.update(content: content)
             }
-            self.parseAll()
+            self.updateOutline(withDelay: false)
+            self.performInitialHighlight()
         }
     }
     
@@ -205,32 +205,67 @@ extension NSAttributedString.Key {
         self.highlightParseTask = Task { [unowned self] in
             if withDelay {
                 // -> Perform not in the same run loop at least to give layoutManagers time to update their values.
-                try await Task.sleep(for: .seconds(0.02))  // debounce
+                try await Task.sleep(for: .seconds(0.05))  // debounce
             }
             
-            guard
-                !self.textStorage.range.isEmpty,
-                let parser = self.highlightParser,
-                let invalidRange = self.invalidRanges.range
-            else { return }
+            guard let invalidRange = self.invalidRanges.range else { return }
             
-            // in case that wholeRange length becomes shorter than invalidRange
-            guard invalidRange.upperBound <= self.textStorage.length else {
-                Logger.app.debug("Invalid range \(invalidRange.description) for \(self.textStorage.length) length textStorage is passed to \(#function)")
-                return
-            }
+            try await self.performHighlight(in: invalidRange)
             
-            let highlightRange = self.textStorage.expandHighlightRange(for: invalidRange, bufferLength: parser.highlightBuffer)
-            
-            // parse in background
-            let string = self.textStorage.string.immutable
-            let result = try await parser.parseHighlights(in: string, range: highlightRange)
-           
-            if let result {
-                self.textStorage.apply(highlights: result.highlights, theme: self.theme, in: result.updateRange)
-            }
+            // avoid clearing newer invalid ranges if this task was canceled mid-parse.
+            guard !Task.isCancelled else { return }
             
             self.invalidRanges.clear()
+        }
+    }
+
+    
+    /// Performs initial highlight in two phases for large documents.
+    private func performInitialHighlight() {
+        
+        self.highlightParseTask?.cancel()
+        
+        guard
+            self.highlightParser != nil,
+            !self.textStorage.range.isEmpty
+        else { return }
+        
+        self.highlightParseTask = Task { [unowned self] in
+            let initialLength = 2_000
+            if self.textStorage.length > initialLength {
+                try await self.performHighlight(in: NSRange(0..<initialLength))
+            }
+            
+            try await self.performHighlight(in: self.textStorage.range)
+        }
+    }
+    
+    
+    /// Performs highlight parsing and applies results for the given range.
+    ///
+    /// - Parameters:
+    ///   - invalidRange: The range to highlight.
+    private func performHighlight(in invalidRange: NSRange) async throws {
+        
+        guard
+            !self.textStorage.range.isEmpty,
+            let parser = self.highlightParser
+        else { return }
+        
+        // in case that wholeRange length becomes shorter than invalidRange
+        guard invalidRange.upperBound <= self.textStorage.length else {
+            Logger.app.debug("Invalid range \(invalidRange.description) for \(self.textStorage.length) length textStorage is passed to \(#function)")
+            return
+        }
+        
+        let highlightRange = self.textStorage.expandHighlightRange(for: invalidRange, bufferLength: parser.highlightBuffer)
+        
+        // parse in background
+        let string = self.textStorage.string.immutable
+        let result = try await parser.parseHighlights(in: string, range: highlightRange)
+        
+        if let result {
+            self.textStorage.apply(highlights: result.highlights, theme: self.theme, in: result.updateRange)
         }
     }
     
