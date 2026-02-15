@@ -105,7 +105,7 @@ public struct Syntax: Equatable, Sendable {
         
         public var isEmpty: Bool {
             
-            self.pattern.isEmpty && self.pattern.isEmpty && self.description?.isEmpty != false
+            self.pattern.isEmpty && self.description?.isEmpty != false
         }
         
         
