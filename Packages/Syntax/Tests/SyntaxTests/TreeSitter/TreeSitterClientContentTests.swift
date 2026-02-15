@@ -92,7 +92,7 @@ struct TreeSitterClientContentTests {
         
         var content = TreeSitterClient.Content("abc")
         
-        #expect(throws: TreeSitterClient.Content.InputEditError.invalidRange) {
+        #expect(throws: TreeSitterClient.Content.EditError.invalidRange) {
             try content.applyEdit(editedRange: NSRange(location: 1, length: 1),
                                   delta: 0,
                                   insertedText: "xx")
@@ -104,7 +104,7 @@ struct TreeSitterClientContentTests {
         
         var content = TreeSitterClient.Content("abc")
         
-        #expect(throws: TreeSitterClient.Content.InputEditError.invalidRange) {
+        #expect(throws: TreeSitterClient.Content.EditError.invalidRange) {
             try content.applyEdit(editedRange: NSRange(location: 5, length: 0),
                                   delta: 0,
                                   insertedText: "")
