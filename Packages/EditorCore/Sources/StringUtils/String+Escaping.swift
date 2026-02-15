@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
 
 public extension String {
     
@@ -58,22 +58,30 @@ public extension StringProtocol {
     /// - Returns: `true` when the character at the given index is escaped.
     func isEscaped(at index: Index) -> Bool {
         
-        let escapes = self[..<index].suffix(maxEscapesCheckLength).reversed().prefix { $0 == "\\" }
+        let count = self[..<index].suffix(maxEscapesCheckLength)
+            .reversed()
+            .prefix { $0 == "\\" }
+            .count
         
-        return !escapes.count.isMultiple(of: 2)
+        return !count.isMultiple(of: 2)
     }
+}
+
+
+public extension NSString {
     
-    
-    /// Checks if character at the location in UTF16 is escaped with backslash.
+    /// Checks if character at the location is escaped with backslash.
     ///
     /// - Parameter location: The UTF16-based location of the character to check.
     /// - Returns: `true` when the character at the given index is escaped.
-    func isEscaped(at location: Int) -> Bool {
+    final func isEscaped(at location: Int) -> Bool {
         
-        let escape = 0x005C
-        let index = UTF16View.Index(utf16Offset: location, in: self)
-        let escapes = self.utf16[..<index].suffix(maxEscapesCheckLength).reversed().prefix { $0 == escape }
+        let lowerBound = max(location - maxEscapesCheckLength, 0)
+        let count = (lowerBound..<location)
+            .reversed()
+            .prefix { self.character(at: $0) == 0x005C }
+            .count
         
-        return !escapes.count.isMultiple(of: 2)
+        return !count.isMultiple(of: 2)
     }
 }
