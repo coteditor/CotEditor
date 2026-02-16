@@ -23,6 +23,7 @@
     - CSS
     - Go
     - HTML
+    - Java
     - JavaScript
     - PHP
     - Python

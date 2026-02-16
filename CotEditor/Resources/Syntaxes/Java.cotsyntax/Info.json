@@ -7,10 +7,9 @@
   },
   "kind" : "code",
   "metadata" : {
-    "author" : "nakamuxu",
-    "description" : "Maintained by CotEditor Project.",
+    "author" : "1024jp",
     "distributionURL" : "https://coteditor.com",
-    "lastModified" : "2026-01-29",
+    "lastModified" : "2026-02-16",
     "license" : "Same as CotEditor",
     "version" : "3.0.0"
   }

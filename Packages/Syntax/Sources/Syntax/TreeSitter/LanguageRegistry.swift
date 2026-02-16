@@ -31,6 +31,7 @@ import SwiftTreeSitter
 import TreeSitterCSS
 import TreeSitterGo
 import TreeSitterHTML
+import TreeSitterJava
 import TreeSitterJavaScript
 import TreeSitterPHP
 import TreeSitterPython
@@ -46,6 +47,7 @@ public final class LanguageRegistry: Sendable {
         case css = "CSS"
         case go = "Go"
         case html = "HTML"
+        case java = "Java"
         case javaScript = "JavaScript"
         case php = "PHP"
         case python = "Python"
@@ -162,6 +164,7 @@ private extension LanguageRegistry.Language {
             case .css: unsafe tree_sitter_css()
             case .go: unsafe tree_sitter_go()
             case .html: unsafe tree_sitter_html()
+            case .java: unsafe tree_sitter_java()
             case .javaScript: unsafe tree_sitter_javascript()
             case .php: unsafe tree_sitter_php()
             case .python: unsafe tree_sitter_python()
