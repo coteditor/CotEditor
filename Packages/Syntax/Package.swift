@@ -26,6 +26,7 @@ let package = Package(
         .package(url: "https://github.com/1024jp/tree-sitter-python", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter/tree-sitter-ruby", from: Version(0, 23, 1)),
         .package(url: "https://github.com/alex-pinkus/tree-sitter-swift", branch: "with-generated-files"),
+        .package(url: "https://github.com/tree-sitter/tree-sitter-typescript", from: Version(0, 23, 2)),
     ],
     targets: [
         .target(
@@ -41,6 +42,7 @@ let package = Package(
                 .product(name: "TreeSitterPython", package: "tree-sitter-python"),
                 .product(name: "TreeSitterRuby", package: "tree-sitter-ruby"),
                 .product(name: "TreeSitterSwift", package: "tree-sitter-swift"),
+                .product(name: "TreeSitterTypeScript", package: "tree-sitter-typescript"),
             ],
             resources: [.process("Resources"), .copy("Syntaxes")]),
         .testTarget(name: "SyntaxTests", dependencies: ["Syntax", "EditorCore"], resources: [.copy("Syntaxes")]),
