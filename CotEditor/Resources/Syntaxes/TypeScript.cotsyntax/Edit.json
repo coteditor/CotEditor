@@ -1126,15 +1126,15 @@
       "type" : "keywords"
     },
     {
-      "text" : "Int8Array",
-      "type" : "types"
-    },
-    {
       "text" : "Int16Array",
       "type" : "types"
     },
     {
       "text" : "Int32Array",
+      "type" : "types"
+    },
+    {
+      "text" : "Int8Array",
       "type" : "types"
     },
     {
@@ -2238,19 +2238,19 @@
       "type" : "types"
     },
     {
-      "text" : "Uint8Array",
-      "type" : "types"
-    },
-    {
-      "text" : "Uint8ClampedArray",
-      "type" : "types"
-    },
-    {
       "text" : "Uint16Array",
       "type" : "types"
     },
     {
       "text" : "Uint32Array",
+      "type" : "types"
+    },
+    {
+      "text" : "Uint8Array",
+      "type" : "types"
+    },
+    {
+      "text" : "Uint8ClampedArray",
       "type" : "types"
     },
     {

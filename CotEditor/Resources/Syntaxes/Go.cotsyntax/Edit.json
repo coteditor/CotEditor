@@ -54,11 +54,11 @@
       "type" : "commands"
     },
     {
-      "text" : "complex64",
+      "text" : "complex128",
       "type" : "types"
     },
     {
-      "text" : "complex128",
+      "text" : "complex64",
       "type" : "types"
     },
     {
@@ -174,10 +174,6 @@
       "type" : "types"
     },
     {
-      "text" : "int8",
-      "type" : "types"
-    },
-    {
       "text" : "int16",
       "type" : "types"
     },
@@ -187,6 +183,10 @@
     },
     {
       "text" : "int64",
+      "type" : "types"
+    },
+    {
+      "text" : "int8",
       "type" : "types"
     },
     {
@@ -306,10 +306,6 @@
       "type" : "types"
     },
     {
-      "text" : "uint8",
-      "type" : "types"
-    },
-    {
       "text" : "uint16",
       "type" : "types"
     },
@@ -319,6 +315,10 @@
     },
     {
       "text" : "uint64",
+      "type" : "types"
+    },
+    {
+      "text" : "uint8",
       "type" : "types"
     },
     {

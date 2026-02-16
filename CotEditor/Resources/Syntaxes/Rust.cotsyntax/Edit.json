@@ -118,11 +118,11 @@
       "type" : "keywords"
     },
     {
-      "text" : "assert_eq!",
+      "text" : "assert!",
       "type" : "attributes"
     },
     {
-      "text" : "assert!",
+      "text" : "assert_eq!",
       "type" : "attributes"
     },
     {
@@ -722,11 +722,11 @@
       "type" : "commands"
     },
     {
-      "text" : "concat_idents!",
+      "text" : "concat!",
       "type" : "attributes"
     },
     {
-      "text" : "concat!",
+      "text" : "concat_idents!",
       "type" : "attributes"
     },
     {
@@ -798,10 +798,6 @@
       "type" : "values"
     },
     {
-      "text" : "ctlz8",
-      "type" : "commands"
-    },
-    {
       "text" : "ctlz16",
       "type" : "commands"
     },
@@ -814,7 +810,7 @@
       "type" : "commands"
     },
     {
-      "text" : "ctpop8",
+      "text" : "ctlz8",
       "type" : "commands"
     },
     {
@@ -830,7 +826,7 @@
       "type" : "commands"
     },
     {
-      "text" : "cttz8",
+      "text" : "ctpop8",
       "type" : "commands"
     },
     {
@@ -846,6 +842,10 @@
       "type" : "commands"
     },
     {
+      "text" : "cttz8",
+      "type" : "commands"
+    },
+    {
       "text" : "current_guard_page",
       "type" : "commands"
     },
@@ -858,7 +858,7 @@
       "type" : "values"
     },
     {
-      "text" : "debug_assert_eq!",
+      "text" : "debug!",
       "type" : "attributes"
     },
     {
@@ -866,7 +866,7 @@
       "type" : "attributes"
     },
     {
-      "text" : "debug!",
+      "text" : "debug_assert_eq!",
       "type" : "attributes"
     },
     {
@@ -1166,12 +1166,12 @@
       "type" : "commands"
     },
     {
-      "text" : "fail_fmt",
-      "type" : "commands"
-    },
-    {
       "text" : "fail!",
       "type" : "attributes"
+    },
+    {
+      "text" : "fail_fmt",
+      "type" : "commands"
     },
     {
       "text" : "false",
@@ -1278,11 +1278,11 @@
       "type" : "commands"
     },
     {
-      "text" : "format_args!",
+      "text" : "format!",
       "type" : "attributes"
     },
     {
-      "text" : "format!",
+      "text" : "format_args!",
       "type" : "attributes"
     },
     {
@@ -1370,10 +1370,6 @@
       "type" : "commands"
     },
     {
-      "text" : "from_i8",
-      "type" : "commands"
-    },
-    {
       "text" : "from_i16",
       "type" : "commands"
     },
@@ -1383,6 +1379,10 @@
     },
     {
       "text" : "from_i64",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_i8",
       "type" : "commands"
     },
     {
@@ -1522,22 +1522,6 @@
       "type" : "commands"
     },
     {
-      "text" : "i8",
-      "type" : "types"
-    },
-    {
-      "text" : "i8_add_with_overflow",
-      "type" : "commands"
-    },
-    {
-      "text" : "i8_mul_with_overflow",
-      "type" : "commands"
-    },
-    {
-      "text" : "i8_sub_with_overflow",
-      "type" : "commands"
-    },
-    {
       "text" : "i16",
       "type" : "types"
     },
@@ -1583,6 +1567,22 @@
     },
     {
       "text" : "i64_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i8",
+      "type" : "types"
+    },
+    {
+      "text" : "i8_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i8_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i8_sub_with_overflow",
       "type" : "commands"
     },
     {
@@ -1886,11 +1886,11 @@
       "type" : "attributes"
     },
     {
-      "text" : "LN_2",
+      "text" : "LN_10",
       "type" : "values"
     },
     {
-      "text" : "LN_10",
+      "text" : "LN_2",
       "type" : "values"
     },
     {
@@ -1906,16 +1906,20 @@
       "type" : "values"
     },
     {
-      "text" : "log_enabled",
-      "type" : "attributes"
-    },
-    {
-      "text" : "log_enabled!",
-      "type" : "attributes"
-    },
-    {
       "text" : "log!",
       "type" : "attributes"
+    },
+    {
+      "text" : "LOG10_E",
+      "type" : "values"
+    },
+    {
+      "text" : "log10f32",
+      "type" : "commands"
+    },
+    {
+      "text" : "log10f64",
+      "type" : "commands"
     },
     {
       "text" : "LOG2_E",
@@ -1930,16 +1934,12 @@
       "type" : "commands"
     },
     {
-      "text" : "LOG10_E",
-      "type" : "values"
+      "text" : "log_enabled",
+      "type" : "attributes"
     },
     {
-      "text" : "log10f32",
-      "type" : "commands"
-    },
-    {
-      "text" : "log10f64",
-      "type" : "commands"
+      "text" : "log_enabled!",
+      "type" : "attributes"
     },
     {
       "text" : "logf32",
@@ -2510,24 +2510,24 @@
       "type" : "commands"
     },
     {
-      "text" : "print_args",
-      "type" : "commands"
-    },
-    {
       "text" : "print!",
       "type" : "attributes"
+    },
+    {
+      "text" : "print_args",
+      "type" : "commands"
     },
     {
       "text" : "println",
       "type" : "commands"
     },
     {
-      "text" : "println_args",
-      "type" : "commands"
-    },
-    {
       "text" : "println!",
       "type" : "attributes"
+    },
+    {
+      "text" : "println_args",
+      "type" : "commands"
     },
     {
       "text" : "priv",
@@ -2794,15 +2794,15 @@
       "type" : "values"
     },
     {
-      "text" : "SEP_BYTE",
-      "type" : "values"
-    },
-    {
       "text" : "SEP2",
       "type" : "values"
     },
     {
       "text" : "SEP2_BYTE",
+      "type" : "values"
+    },
+    {
+      "text" : "SEP_BYTE",
       "type" : "values"
     },
     {
@@ -3162,16 +3162,16 @@
       "type" : "commands"
     },
     {
+      "text" : "try!",
+      "type" : "attributes"
+    },
+    {
       "text" : "try_finally",
       "type" : "commands"
     },
     {
       "text" : "try_unwrap",
       "type" : "commands"
-    },
-    {
-      "text" : "try!",
-      "type" : "attributes"
     },
     {
       "text" : "tuple",
@@ -3212,22 +3212,6 @@
     {
       "text" : "tzset",
       "type" : "attributes"
-    },
-    {
-      "text" : "u8",
-      "type" : "types"
-    },
-    {
-      "text" : "u8_add_with_overflow",
-      "type" : "commands"
-    },
-    {
-      "text" : "u8_mul_with_overflow",
-      "type" : "commands"
-    },
-    {
-      "text" : "u8_sub_with_overflow",
-      "type" : "commands"
     },
     {
       "text" : "u16",
@@ -3287,6 +3271,22 @@
     },
     {
       "text" : "u64_to_le_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "u8",
+      "type" : "types"
+    },
+    {
+      "text" : "u8_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u8_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u8_sub_with_overflow",
       "type" : "commands"
     },
     {
@@ -3498,16 +3498,16 @@
       "type" : "values"
     },
     {
+      "text" : "write!",
+      "type" : "attributes"
+    },
+    {
       "text" : "write_5_number_summary",
       "type" : "commands"
     },
     {
       "text" : "write_boxplot",
       "type" : "commands"
-    },
-    {
-      "text" : "write!",
-      "type" : "attributes"
     },
     {
       "text" : "WriteError",
