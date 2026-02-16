@@ -13,8 +13,7 @@
   },
   "kind" : "code",
   "metadata" : {
-    "author" : "1024jp, nanasiya",
-    "description" : "Support both Python2 and Python3 (<= 3.10).\n\nMaintained by 1024jp since 2013.",
+    "author" : "1024jp",
     "distributionURL" : "https://coteditor.com",
     "lastModified" : "2026-02-19",
     "license" : "Same as CotEditor",

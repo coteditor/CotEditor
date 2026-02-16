@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Introduce a new parser, tree-sitter, for syntax highlighting in some built-in syntaxes.
+- Introduce a new parser, tree-sitter, for syntax highlighting and outline extraction in several built-in syntaxes.
 - Prepend a symbolic icon to extracted outline items.
 - Enable registering multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.

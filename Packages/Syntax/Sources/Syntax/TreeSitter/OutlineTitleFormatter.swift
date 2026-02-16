@@ -37,9 +37,26 @@ extension TreeSitterSyntax {
     var outlineTitleFormatter: OutlineTitleFormatter {
         
         switch self {
+            case .css: Self.cssOutlineTitleFormatter
             case .swift: Self.swiftOutlineTitleFormatter
             default: { _, title in title }
         }
+    }
+    
+    
+    /// Formats CSS outline titles to keep only the at-rule header.
+    private static let cssOutlineTitleFormatter: OutlineTitleFormatter = { _, title in
+        
+        let header = if let index = title.firstIndex(of: "{") ?? title.firstIndex(of: ";") {
+            title[..<index]
+        } else {
+            title[...]
+        }
+        
+        let normalized = header.replacing(/\s+/, with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return normalized.isEmpty ? nil : normalized
     }
     
     
