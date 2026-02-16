@@ -42,24 +42,6 @@ import TreeSitterTypeScript
 
 public final class LanguageRegistry: Sendable {
     
-    public enum Language: String, CaseIterable, Sendable {
-        
-        case css = "CSS"
-        case go = "Go"
-        case html = "HTML"
-        case java = "Java"
-        case javaScript = "JavaScript"
-        case php = "PHP"
-        case python = "Python"
-        case ruby = "Ruby"
-        case rust = "Rust"
-        case swift = "Swift"
-        case typeScript = "TypeScript"
-        
-        var name: String { self.rawValue }
-    }
-    
-    
     // MARK: Public Properties
     
     public static let shared: LanguageRegistry = .init()
@@ -68,7 +50,7 @@ public final class LanguageRegistry: Sendable {
     // MARK: Private Properties
     
     private let directoryURL: URL
-    private let cachedConfiguration: Mutex<[Language: LanguageConfiguration]> = .init([:])
+    private let cachedConfiguration: Mutex<[TreeSitterSyntax: LanguageConfiguration]> = .init([:])
     
     
     // MARK: Lifecycle
@@ -88,44 +70,44 @@ public final class LanguageRegistry: Sendable {
     /// - Returns: A cached or newly created `LanguageConfiguration` if the language is supported, otherwise `nil`.
     nonisolated func languageProvider(name: String) -> LanguageConfiguration? {
         
-        guard let language = Language(providerName: name) else { return nil }
+        guard let syntax = TreeSitterSyntax(providerName: name) else { return nil }
         
-        return try? self.configuration(for: language)
+        return try? self.configuration(for: syntax)
     }
     
     
-    /// Returns (and caches) a `LanguageConfiguration` for the given language.
+    /// Returns (and caches) a `LanguageConfiguration` for the given syntax.
     ///
     /// - Parameters:
-    ///   - language: The target language.
+    ///   - syntax: The target syntax.
     /// - Returns: A configuration if the language can be initialized.
-    nonisolated func configuration(for language: Language) throws -> LanguageConfiguration? {
+    nonisolated func configuration(for syntax: TreeSitterSyntax) throws -> LanguageConfiguration? {
         
-        if let cache = self.cachedConfiguration.withLock({ $0[language] }) {
+        if let cache = self.cachedConfiguration.withLock({ $0[syntax] }) {
             return cache
         }
         
-        let queriesURL = self.queriesURL(for: language)
+        let queriesURL = self.queriesURL(for: syntax)
         
         guard (try? queriesURL.checkResourceIsReachable()) == true else { return nil }
         
-        let config = try unsafe LanguageConfiguration(language.language, name: language.name, queriesURL: queriesURL)
-        self.cachedConfiguration.withLock { $0[language] = config }
+        let config = try unsafe LanguageConfiguration(syntax.language, name: syntax.name, queriesURL: queriesURL)
+        self.cachedConfiguration.withLock { $0[syntax] = config }
         
         return config
     }
     
     
-    /// Returns the file URL to the queries directory for the given language.
+    /// Returns the file URL to the queries directory for the given syntax.
     ///
     /// - Parameters:
-    ///   - language: The target language.
+    ///   - syntax: The target syntax.
     /// - Returns: A file URL.
-    nonisolated func queriesURL(for language: Language) -> URL {
+    nonisolated func queriesURL(for syntax: TreeSitterSyntax) -> URL {
         
-        switch language {
+        switch syntax {
             default:
-                self.directoryURL.appending(components: language.name, "Queries")
+                self.directoryURL.appending(components: syntax.name, "Queries")
         }
     }
 }
@@ -133,7 +115,7 @@ public final class LanguageRegistry: Sendable {
 
 // MARK: -
 
-private extension LanguageRegistry.Language {
+private extension TreeSitterSyntax {
     
     /// Resolves from provider/injection name.
     init?(providerName: String) {
@@ -141,10 +123,10 @@ private extension LanguageRegistry.Language {
         let lowercased = providerName.lowercased()
         
         guard
-            let language = Self.allCases.first(where: { $0.providerName == lowercased })
+            let syntax = Self.allCases.first(where: { $0.providerName == lowercased })
         else { return nil }
         
-        self = language
+        self = syntax
     }
     
     

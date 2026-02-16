@@ -35,8 +35,8 @@ public extension LanguageRegistry {
     func highlightParser(name: String) throws -> (any HighlightParsing)? {
         
         guard
-            let language = Language(rawValue: name),
-            let config = try self.configuration(for: language)
+            let syntax = TreeSitterSyntax(rawValue: name),
+            let config = try self.configuration(for: syntax)
         else { return nil }
         
         return try TreeSitterClient(languageConfig: config, languageProvider: self.languageProvider)

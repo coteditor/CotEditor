@@ -185,7 +185,7 @@ enum SyntaxName {
     /// - Returns: `true` if the syntax is user-customizable (i.e., not a built-in language), otherwise `false`.
     func canCustomizeHighlighting(name: SettingName) -> Bool {
         
-        LanguageRegistry.Language(rawValue: name) == nil
+        TreeSitterSyntax(rawValue: name) == nil
     }
     
     

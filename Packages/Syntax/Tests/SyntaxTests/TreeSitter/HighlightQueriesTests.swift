@@ -30,10 +30,10 @@ import Testing
 
 struct HighlightQueriesTests {
     
-    @Test(arguments: LanguageRegistry.Language.allCases)
-    func highlightsCaptureRootsAreAllowed(language: LanguageRegistry.Language) throws {
+    @Test(arguments: TreeSitterSyntax.allCases)
+    func highlightsCaptureRootsAreAllowed(syntax: TreeSitterSyntax) throws {
         
-        let highlightsURL = LanguageRegistry.shared.queriesURL(for: language)
+        let highlightsURL = LanguageRegistry.shared.queriesURL(for: syntax)
             .appending(component: "highlights.scm")
         let lines = try String(contentsOf: highlightsURL, encoding: .utf8)
             .components(separatedBy: .newlines)

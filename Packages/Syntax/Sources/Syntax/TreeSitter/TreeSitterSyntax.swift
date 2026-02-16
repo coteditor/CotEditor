@@ -1,11 +1,11 @@
 //
-//  LanguageRegistryTests.swift
-//  SyntaxTests
+//  TreeSitterSyntax.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2026-02-10.
+//  Created by 1024jp on 2026-01-23.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -24,20 +24,19 @@
 //  limitations under the License.
 //
 
-import Foundation
-import Testing
-import StringUtils
-import ValueRange
-@testable import Syntax
-
-actor LanguageRegistryTests {
+public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     
-    private let registry: LanguageRegistry = .shared
+    case css = "CSS"
+    case go = "Go"
+    case html = "HTML"
+    case java = "Java"
+    case javaScript = "JavaScript"
+    case php = "PHP"
+    case python = "Python"
+    case ruby = "Ruby"
+    case rust = "Rust"
+    case swift = "Swift"
+    case typeScript = "TypeScript"
     
-    
-    @Test(arguments: TreeSitterSyntax.allCases)
-    func configuration(for syntax: TreeSitterSyntax) throws {
-        
-        #expect(try self.registry.configuration(for: syntax) != nil)
-    }
+    var name: String { self.rawValue }
 }
