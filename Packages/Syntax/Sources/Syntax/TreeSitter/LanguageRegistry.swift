@@ -42,6 +42,12 @@ import TreeSitterTypeScript
 
 public final class LanguageRegistry: Sendable {
     
+    enum RegistryError: Error {
+        
+        case noQueriesDirectory
+    }
+    
+    
     // MARK: Public Properties
     
     public static let shared: LanguageRegistry = .init()
@@ -81,7 +87,7 @@ public final class LanguageRegistry: Sendable {
     /// - Parameters:
     ///   - syntax: The target syntax.
     /// - Returns: A configuration if the language can be initialized.
-    nonisolated func configuration(for syntax: TreeSitterSyntax) throws -> LanguageConfiguration? {
+    nonisolated func configuration(for syntax: TreeSitterSyntax) throws -> LanguageConfiguration {
         
         if let cache = self.cachedConfiguration.withLock({ $0[syntax] }) {
             return cache
@@ -89,7 +95,7 @@ public final class LanguageRegistry: Sendable {
         
         let queriesURL = self.queriesURL(for: syntax)
         
-        guard (try? queriesURL.checkResourceIsReachable()) == true else { return nil }
+        guard (try? queriesURL.checkResourceIsReachable()) == true else { throw RegistryError.noQueriesDirectory }
         
         let config = try unsafe LanguageConfiguration(syntax.language, name: syntax.name, queriesURL: queriesURL)
         self.cachedConfiguration.withLock { $0[syntax] = config }
@@ -105,10 +111,7 @@ public final class LanguageRegistry: Sendable {
     /// - Returns: A file URL.
     nonisolated func queriesURL(for syntax: TreeSitterSyntax) -> URL {
         
-        switch syntax {
-            default:
-                self.directoryURL.appending(components: syntax.name, "Queries")
-        }
+        self.directoryURL.appending(components: syntax.name, "Queries")
     }
 }
 

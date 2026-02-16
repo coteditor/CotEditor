@@ -38,6 +38,6 @@ actor LanguageRegistryTests {
     @Test(arguments: TreeSitterSyntax.allCases)
     func configuration(for syntax: TreeSitterSyntax) throws {
         
-        #expect(try self.registry.configuration(for: syntax) != nil)
+        #expect(throws: Never.self) { try self.registry.configuration(for: syntax) }
     }
 }

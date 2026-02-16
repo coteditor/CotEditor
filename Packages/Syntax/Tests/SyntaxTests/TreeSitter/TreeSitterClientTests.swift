@@ -49,7 +49,7 @@ actor TreeSitterClientTests {
             }
         """#
         
-        let config = try #require(try self.registry.configuration(for: .swift))
+        let config = try self.registry.configuration(for: .swift)
         let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
         _ = try #require(await client.parseHighlights(in: source, range: source.nsRange))
         
@@ -85,7 +85,7 @@ actor TreeSitterClientTests {
             }
         """#
         
-        let config = try #require(try self.registry.configuration(for: .swift))
+        let config = try self.registry.configuration(for: .swift)
         let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
         let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
             .highlights
