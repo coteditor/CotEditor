@@ -164,7 +164,7 @@
 
 (interpolation
   "#{" @characters.special
-  "}" @characters.special) @embedded
+  "}" @characters.special) @characters
 
 
 ; MARK: Comments

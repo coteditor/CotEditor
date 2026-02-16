@@ -88,6 +88,9 @@
 (init_declaration
   "init" @keywords)
 
+(deinit_declaration
+  "deinit" @keywords)
+
 ; modifiers (public/private, mutating, override, weak…)
 [
   (visibility_modifier)

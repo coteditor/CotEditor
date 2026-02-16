@@ -8,7 +8,7 @@
 ; © 2026 1024jp
 ;
 
-(declaration) @css.constant
+(declaration) @values
 
 ; Keywords
 ; ----------------------------

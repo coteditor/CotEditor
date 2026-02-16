@@ -116,14 +116,12 @@ public final class LanguageRegistry: Sendable {
     }
     
     
-    // MARK: Private Methods
-    
     /// Returns the file URL to the queries directory for the given language.
     ///
     /// - Parameters:
     ///   - language: The target language.
     /// - Returns: A file URL.
-    private nonisolated func queriesURL(for language: Language) -> URL {
+    nonisolated func queriesURL(for language: Language) -> URL {
         
         switch language {
             default:
