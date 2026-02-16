@@ -91,19 +91,20 @@ actor TreeSitterClient: HighlightParsing {
         try Task.checkCancellation()
         
         let content = LanguageLayer.Content(string: string)
-        let affectedSet = self.pendingAffectedRanges.indexSet
-        let invalidations = self.layer.parse(with: content, affecting: affectedSet, resolveSublayers: true)
+        let invalidations = !self.pendingAffectedRanges.isEmpty
+            ? self.layer.parse(with: content, affecting: self.pendingAffectedRanges.indexSet, resolveSublayers: true)
+            : []
         self.pendingAffectedRanges.clear()
         
         try Task.checkCancellation()
-
+        
         let updateRange = invalidations.unionRange()?.union(range) ?? range
         
         let highlights = try self.layer.highlights(in: updateRange, provider: string.predicateNSStringProvider)
             .compactMap(\.highlight)
             .sorted(using: [KeyPathComparator(\.range.location),
                             KeyPathComparator(\.range.length)])
-
+        
         return (highlights, updateRange)
     }
     
@@ -118,7 +119,7 @@ actor TreeSitterClient: HighlightParsing {
         
         self.content.reset(content)
         self.layer.replaceContent(with: content)
-        self.pendingAffectedRanges.clear()
+        self.pendingAffectedRanges.update(editedRange: content.nsRange)
     }
 }
 

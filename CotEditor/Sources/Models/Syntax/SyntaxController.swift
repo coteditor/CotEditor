@@ -99,8 +99,8 @@ extension NSAttributedString.Key {
                 let content = self.textStorage.string.immutable
                 await parser.update(content: content)
             }
-            self.updateOutline(withDelay: false)
             self.performInitialHighlight()
+            self.updateOutline(withDelay: false)
         }
     }
     
@@ -173,8 +173,8 @@ extension NSAttributedString.Key {
         
         assert(self.isReady)
         
-        self.updateOutline(withDelay: true)
         self.highlightIfNeeded(withDelay: true)
+        self.updateOutline(withDelay: true)
     }
     
     
@@ -185,8 +185,8 @@ extension NSAttributedString.Key {
         
         self.invalidRanges.update(editedRange: self.textStorage.range)
         
-        self.updateOutline(withDelay: false)
         self.highlightIfNeeded(withDelay: false)
+        self.updateOutline(withDelay: false)
     }
 
     
