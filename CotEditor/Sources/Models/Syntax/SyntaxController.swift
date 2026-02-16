@@ -70,7 +70,7 @@ extension NSAttributedString.Key {
     ///   - syntax: The syntax definition that provides parsers.
     ///   - name: The of the syntax.
     init(textStorage: NSTextStorage, syntax: Syntax, name: String) {
-         
+        
         self.textStorage = textStorage
         self.syntax = syntax
         self.syntaxName = name
@@ -89,8 +89,10 @@ extension NSAttributedString.Key {
         
         self.cancel()
         
-        self.highlightParser = try? LanguageRegistry.shared.highlightParser(name: self.syntaxName) ?? self.syntax.highlightParser
-        self.outlineParser = self.syntax.outlineParser
+        let parsers = try? LanguageRegistry.shared.parsers(name: self.syntaxName)
+        self.highlightParser = parsers?.highlight ?? self.syntax.highlightParser
+        self.outlineParser = parsers?.outline ?? self.syntax.outlineParser
+        
         self.isReady = true
         self.invalidRanges.clear()
         
@@ -188,7 +190,7 @@ extension NSAttributedString.Key {
         self.highlightIfNeeded(withDelay: false)
         self.updateOutline(withDelay: false)
     }
-
+    
     
     // MARK: Private Methods
     
@@ -218,7 +220,7 @@ extension NSAttributedString.Key {
             self.invalidRanges.clear()
         }
     }
-
+    
     
     /// Performs initial highlight in two phases for large documents.
     private func performInitialHighlight() {
@@ -290,6 +292,8 @@ extension NSAttributedString.Key {
             if withDelay {
                 try await Task.sleep(for: .seconds(0.4))  // debounce
             }
+            // Highlight parsing is expected to run first to provide accurate invalidation ranges.
+            _ = try? await self.highlightParseTask?.value
             self.outlineItems = nil
             let string = self.textStorage.string.immutable
             self.outlineItems = try await parser.parseOutline(in: string)

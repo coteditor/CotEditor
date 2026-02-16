@@ -50,7 +50,7 @@ actor TreeSitterClientTests {
         """#
         
         let config = try self.registry.configuration(for: .swift)
-        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .swift)
         _ = try #require(await client.parseHighlights(in: source, range: source.nsRange))
         
         let locationRange = (source as NSString).range(of: "doSomething")
@@ -86,7 +86,7 @@ actor TreeSitterClientTests {
         """#
         
         let config = try self.registry.configuration(for: .swift)
-        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .swift)
         let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
             .highlights
             .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
