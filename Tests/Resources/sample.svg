@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 200 120">
+    <title>Sample SVG</title>
+    <g id="dogcow">
+        <rect id="frame" x="30" y="30" width="140" height="60" fill="#cccccc"/>
+    </g>
+</svg>

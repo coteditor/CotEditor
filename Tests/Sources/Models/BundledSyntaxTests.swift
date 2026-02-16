@@ -97,10 +97,10 @@ actor BundledSyntaxTests {
     
     @Test func xmlSyntax() throws {
         
-        let syntax = try #require(self.syntaxes["HTML"])
+        let syntax = try #require(self.syntaxes["XML"])
         
         #expect(syntax.highlightParser != nil)
-        #expect(syntax.outlineParser != nil)
+        #expect(syntax.outlineParser == nil)
         #expect(syntax.commentDelimiters.inlines.isEmpty)
         #expect(syntax.commentDelimiters.blocks == [Pair("<!--", "-->")])
     }
@@ -108,11 +108,11 @@ actor BundledSyntaxTests {
     
     @Test func parseOutline() async throws {
         
-        let syntax = try #require(self.syntaxes["HTML"])
+        let syntax = try #require(self.syntaxes["SVG"])
         
         // load test file
         let bundle = Bundle(for: type(of: self))
-        let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "html"))
+        let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "svg"))
         let source = try String(contentsOf: sourceURL, encoding: .utf8)
         
         let parser = try #require(syntax.outlineParser)
@@ -120,10 +120,9 @@ actor BundledSyntaxTests {
         #expect(outlineItems.count == 3)
         
         let item = outlineItems[1]
-        #expect(item.indent == "   ")
-        #expect(item.title == "h2: 🐕 🐄")
-        #expect(item.range.location == 354)
-        #expect(item.range.length == 15)
+        #expect(item.indent.isEmpty)
+        #expect(item.title == "#dogcow")
+        #expect(item.range == NSRange(location: 164, length: 11))
         #expect(item.style.isEmpty)
     }
 }
