@@ -29,6 +29,7 @@ import Synchronization
 import SwiftTreeSitter
 
 import TreeSitterCSS
+import TreeSitterGo
 import TreeSitterHTML
 import TreeSitterJavaScript
 import TreeSitterPHP
@@ -42,6 +43,7 @@ public final class LanguageRegistry: Sendable {
     public enum Language: String, CaseIterable, Sendable {
         
         case css = "CSS"
+        case go = "Go"
         case html = "HTML"
         case javaScript = "JavaScript"
         case php = "PHP"
@@ -147,16 +149,7 @@ private extension LanguageRegistry.Language {
     /// The provider/injection name.
     var providerName: String {
         
-        switch self {
-            case .css: "css"
-            case .html: "html"
-            case .javaScript: "javascript"
-            case .php: "php"
-            case .python: "python"
-            case .ruby: "ruby"
-            case .swift: "swift"
-            case .typeScript: "typescript"
-        }
+        self.rawValue.lowercased()
     }
     
     
@@ -165,6 +158,7 @@ private extension LanguageRegistry.Language {
         
         switch self {
             case .css: unsafe tree_sitter_css()
+            case .go: unsafe tree_sitter_go()
             case .html: unsafe tree_sitter_html()
             case .javaScript: unsafe tree_sitter_javascript()
             case .php: unsafe tree_sitter_php()

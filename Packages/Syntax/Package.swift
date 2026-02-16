@@ -20,6 +20,7 @@ let package = Package(
         .package(url: "https://github.com/tree-sitter/swift-tree-sitter", branch: "main"),
         
         .package(url: "https://github.com/1024jp/tree-sitter-css", branch: "swiftPackage"),
+        .package(url: "https://github.com/tree-sitter/tree-sitter-go", from: Version(0, 25, 0)),
         .package(url: "https://github.com/tree-sitter/tree-sitter-html", from: Version(0, 23, 2)),
         .package(url: "https://github.com/1024jp/tree-sitter-javascript", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter/tree-sitter-php", from: Version(0, 24, 2)),
@@ -36,6 +37,7 @@ let package = Package(
                 "Yams",
                 .product(name: "SwiftTreeSitterLayer", package: "swift-tree-sitter"),
                 .product(name: "TreeSitterCSS", package: "tree-sitter-css"),
+                .product(name: "TreeSitterGo", package: "tree-sitter-go"),
                 .product(name: "TreeSitterHTML", package: "tree-sitter-html"),
                 .product(name: "TreeSitterJavaScript", package: "tree-sitter-javascript"),
                 .product(name: "TreeSitterPHP", package: "tree-sitter-php"),
