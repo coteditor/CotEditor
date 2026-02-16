@@ -232,7 +232,7 @@ private struct OutlineRowView: View {
             
         } else {
             HStack(alignment: .firstTextBaseline, spacing: 0) {
-                Text(self.item.value.indent)
+                Text(self.item.value.displayIndent)
                 if let kind = self.item.value.kind {
                     kind.icon()
                         .accessibilityLabel(kind.label)

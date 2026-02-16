@@ -152,7 +152,7 @@ private final class OutlinePopUpButtonCell: NSPopUpButtonCell {
     /// - Returns: The attributed title.
     func attributedTitle(font: NSFont) -> NSAttributedString {
         
-        let title = NSMutableAttributedString(string: self.indent)
+        let title = NSMutableAttributedString(string: self.displayIndent)
         
         if let kind = self.kind {
             title.append(.init(attachment: kind.cachedAttachment))
