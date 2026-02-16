@@ -11,5 +11,3535 @@
         "begin" : "//"
       }
     ]
-  }
+  },
+  "completions" : [
+    {
+      "text" : "abort",
+      "type" : "commands"
+    },
+    {
+      "text" : "abs",
+      "type" : "commands"
+    },
+    {
+      "text" : "abs_sub",
+      "type" : "commands"
+    },
+    {
+      "text" : "AcqRel",
+      "type" : "values"
+    },
+    {
+      "text" : "Acquire",
+      "type" : "values"
+    },
+    {
+      "text" : "AddrConfig",
+      "type" : "values"
+    },
+    {
+      "text" : "AF_INET",
+      "type" : "values"
+    },
+    {
+      "text" : "AF_INET6",
+      "type" : "values"
+    },
+    {
+      "text" : "AF_UNIX",
+      "type" : "values"
+    },
+    {
+      "text" : "align_of",
+      "type" : "commands"
+    },
+    {
+      "text" : "align_of_val",
+      "type" : "commands"
+    },
+    {
+      "text" : "AlignCenter",
+      "type" : "values"
+    },
+    {
+      "text" : "AlignLeft",
+      "type" : "values"
+    },
+    {
+      "text" : "AlignRight",
+      "type" : "values"
+    },
+    {
+      "text" : "AlignUnknown",
+      "type" : "values"
+    },
+    {
+      "text" : "All",
+      "type" : "values"
+    },
+    {
+      "text" : "all_names",
+      "type" : "commands"
+    },
+    {
+      "text" : "ALL_PERMISSIONS",
+      "type" : "values"
+    },
+    {
+      "text" : "AllArch",
+      "type" : "values"
+    },
+    {
+      "text" : "AlwaysColor",
+      "type" : "values"
+    },
+    {
+      "text" : "AnyLines",
+      "type" : "types"
+    },
+    {
+      "text" : "Append",
+      "type" : "values"
+    },
+    {
+      "text" : "ARCH",
+      "type" : "values"
+    },
+    {
+      "text" : "Archs",
+      "type" : "values"
+    },
+    {
+      "text" : "Arm",
+      "type" : "values"
+    },
+    {
+      "text" : "as",
+      "type" : "keywords"
+    },
+    {
+      "text" : "assert_eq!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "assert!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "assume",
+      "type" : "commands"
+    },
+    {
+      "text" : "at",
+      "type" : "attributes"
+    },
+    {
+      "text" : "at_exit",
+      "type" : "attributes"
+    },
+    {
+      "text" : "at_utc",
+      "type" : "attributes"
+    },
+    {
+      "text" : "atomic_and",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_and_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_and_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_and_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_and_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_cxchg",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_cxchg_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_cxchg_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_cxchg_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_cxchg_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_fence",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_fence_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_fence_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_fence_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_load",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_load_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_load_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_max",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_max_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_max_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_max_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_max_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_min",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_min_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_min_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_min_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_min_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_nand",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_nand_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_nand_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_nand_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_nand_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_or",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_or_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_or_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_or_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_or_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_store",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_store_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_store_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umax",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umax_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umax_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umax_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umax_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umin",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umin_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umin_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umin_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_umin_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xadd",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xadd_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xadd_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xadd_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xadd_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xchg",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xchg_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xchg_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xchg_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xchg_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xor",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xor_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xor_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xor_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xor_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xsub",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xsub_acq",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xsub_acqrel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xsub_rel",
+      "type" : "commands"
+    },
+    {
+      "text" : "atomic_xsub_relaxed",
+      "type" : "commands"
+    },
+    {
+      "text" : "AutoColor",
+      "type" : "values"
+    },
+    {
+      "text" : "b\"",
+      "type" : "strings"
+    },
+    {
+      "text" : "BackgroundColor",
+      "type" : "values"
+    },
+    {
+      "text" : "begin_unwind",
+      "type" : "commands"
+    },
+    {
+      "text" : "begin_unwind",
+      "type" : "attributes"
+    },
+    {
+      "text" : "begin_unwind_fmt",
+      "type" : "commands"
+    },
+    {
+      "text" : "begin_unwind_fmt",
+      "type" : "attributes"
+    },
+    {
+      "text" : "benchmark",
+      "type" : "commands"
+    },
+    {
+      "text" : "bitflags!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "BITS",
+      "type" : "values"
+    },
+    {
+      "text" : "BLACK",
+      "type" : "values"
+    },
+    {
+      "text" : "black_box",
+      "type" : "commands"
+    },
+    {
+      "text" : "Blink",
+      "type" : "values"
+    },
+    {
+      "text" : "BLUE",
+      "type" : "values"
+    },
+    {
+      "text" : "Bold",
+      "type" : "values"
+    },
+    {
+      "text" : "bool",
+      "type" : "types"
+    },
+    {
+      "text" : "box",
+      "type" : "keywords"
+    },
+    {
+      "text" : "br\"",
+      "type" : "strings"
+    },
+    {
+      "text" : "break",
+      "type" : "keywords"
+    },
+    {
+      "text" : "breakpoint",
+      "type" : "commands"
+    },
+    {
+      "text" : "BRIGHT_BLACK",
+      "type" : "values"
+    },
+    {
+      "text" : "BRIGHT_BLUE",
+      "type" : "values"
+    },
+    {
+      "text" : "BRIGHT_CYAN",
+      "type" : "values"
+    },
+    {
+      "text" : "BRIGHT_MAGENTA",
+      "type" : "values"
+    },
+    {
+      "text" : "BRIGHT_RED",
+      "type" : "values"
+    },
+    {
+      "text" : "BRIGHT_WHITE",
+      "type" : "values"
+    },
+    {
+      "text" : "BRIGHT_YELLOW",
+      "type" : "values"
+    },
+    {
+      "text" : "BrokenPipe",
+      "type" : "values"
+    },
+    {
+      "text" : "bswap16",
+      "type" : "commands"
+    },
+    {
+      "text" : "bswap32",
+      "type" : "commands"
+    },
+    {
+      "text" : "bswap64",
+      "type" : "commands"
+    },
+    {
+      "text" : "Bytes",
+      "type" : "types"
+    },
+    {
+      "text" : "BYTES",
+      "type" : "values"
+    },
+    {
+      "text" : "bytes!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "c_char",
+      "type" : "types"
+    },
+    {
+      "text" : "c_double",
+      "type" : "types"
+    },
+    {
+      "text" : "c_float",
+      "type" : "types"
+    },
+    {
+      "text" : "c_int",
+      "type" : "types"
+    },
+    {
+      "text" : "c_long",
+      "type" : "types"
+    },
+    {
+      "text" : "c_longlong",
+      "type" : "types"
+    },
+    {
+      "text" : "c_schar",
+      "type" : "types"
+    },
+    {
+      "text" : "c_short",
+      "type" : "types"
+    },
+    {
+      "text" : "c_uchar",
+      "type" : "types"
+    },
+    {
+      "text" : "c_uint",
+      "type" : "types"
+    },
+    {
+      "text" : "c_ulong",
+      "type" : "types"
+    },
+    {
+      "text" : "c_ulonglong",
+      "type" : "types"
+    },
+    {
+      "text" : "c_ushort",
+      "type" : "types"
+    },
+    {
+      "text" : "Callback",
+      "type" : "types"
+    },
+    {
+      "text" : "canonical_combining_class",
+      "type" : "commands"
+    },
+    {
+      "text" : "CanonName",
+      "type" : "values"
+    },
+    {
+      "text" : "cast",
+      "type" : "commands"
+    },
+    {
+      "text" : "ceilf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "ceilf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "cfg!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "change_file_times",
+      "type" : "commands"
+    },
+    {
+      "text" : "channel",
+      "type" : "commands"
+    },
+    {
+      "text" : "char",
+      "type" : "types"
+    },
+    {
+      "text" : "check_for_errors_in",
+      "type" : "commands"
+    },
+    {
+      "text" : "checked_next_power_of_two",
+      "type" : "commands"
+    },
+    {
+      "text" : "chmod",
+      "type" : "commands"
+    },
+    {
+      "text" : "chomod",
+      "type" : "commands"
+    },
+    {
+      "text" : "chown",
+      "type" : "commands"
+    },
+    {
+      "text" : "cleanup",
+      "type" : "attributes"
+    },
+    {
+      "text" : "clock_t",
+      "type" : "types"
+    },
+    {
+      "text" : "clone",
+      "type" : "attributes"
+    },
+    {
+      "text" : "clone_ref",
+      "type" : "commands"
+    },
+    {
+      "text" : "close",
+      "type" : "commands"
+    },
+    {
+      "text" : "CloseAsynchronously",
+      "type" : "values"
+    },
+    {
+      "text" : "Closed",
+      "type" : "values"
+    },
+    {
+      "text" : "CloseSynchronously",
+      "type" : "values"
+    },
+    {
+      "text" : "cmp",
+      "type" : "commands"
+    },
+    {
+      "text" : "col!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "Color",
+      "type" : "types"
+    },
+    {
+      "text" : "Components",
+      "type" : "types"
+    },
+    {
+      "text" : "compose",
+      "type" : "commands"
+    },
+    {
+      "text" : "concat_idents!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "concat!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "ConnectionAborted",
+      "type" : "values"
+    },
+    {
+      "text" : "ConnectionFailed",
+      "type" : "values"
+    },
+    {
+      "text" : "ConnectionRefused",
+      "type" : "values"
+    },
+    {
+      "text" : "ConnectionReset",
+      "type" : "values"
+    },
+    {
+      "text" : "continue",
+      "type" : "keywords"
+    },
+    {
+      "text" : "copy",
+      "type" : "commands"
+    },
+    {
+      "text" : "copy_lifetime",
+      "type" : "commands"
+    },
+    {
+      "text" : "copy_memory",
+      "type" : "commands"
+    },
+    {
+      "text" : "copy_mut_lifetime",
+      "type" : "commands"
+    },
+    {
+      "text" : "copy_nonoverlapping_memory",
+      "type" : "commands"
+    },
+    {
+      "text" : "copysignf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "copysignf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "cosf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "cosf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "count",
+      "type" : "commands"
+    },
+    {
+      "text" : "crate",
+      "type" : "keywords"
+    },
+    {
+      "text" : "CreatePipe",
+      "type" : "values"
+    },
+    {
+      "text" : "ctlz8",
+      "type" : "commands"
+    },
+    {
+      "text" : "ctlz16",
+      "type" : "commands"
+    },
+    {
+      "text" : "ctlz32",
+      "type" : "commands"
+    },
+    {
+      "text" : "ctlz64",
+      "type" : "commands"
+    },
+    {
+      "text" : "ctpop8",
+      "type" : "commands"
+    },
+    {
+      "text" : "ctpop16",
+      "type" : "commands"
+    },
+    {
+      "text" : "ctpop32",
+      "type" : "commands"
+    },
+    {
+      "text" : "ctpop64",
+      "type" : "commands"
+    },
+    {
+      "text" : "cttz8",
+      "type" : "commands"
+    },
+    {
+      "text" : "cttz16",
+      "type" : "commands"
+    },
+    {
+      "text" : "cttz32",
+      "type" : "commands"
+    },
+    {
+      "text" : "cttz64",
+      "type" : "commands"
+    },
+    {
+      "text" : "current_guard_page",
+      "type" : "commands"
+    },
+    {
+      "text" : "CYAN",
+      "type" : "values"
+    },
+    {
+      "text" : "Datagram",
+      "type" : "values"
+    },
+    {
+      "text" : "debug_assert_eq!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "debug_assert!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "debug!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "declare_lint!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "DecodeResult",
+      "type" : "types"
+    },
+    {
+      "text" : "decompose_canonical",
+      "type" : "commands"
+    },
+    {
+      "text" : "decompose_compatible",
+      "type" : "commands"
+    },
+    {
+      "text" : "decrement",
+      "type" : "attributes"
+    },
+    {
+      "text" : "default_sched_threads",
+      "type" : "attributes"
+    },
+    {
+      "text" : "DeviceNSPrefix",
+      "type" : "values"
+    },
+    {
+      "text" : "DigAll",
+      "type" : "values"
+    },
+    {
+      "text" : "DigExact",
+      "type" : "values"
+    },
+    {
+      "text" : "DIGITS",
+      "type" : "values"
+    },
+    {
+      "text" : "DigMax",
+      "type" : "values"
+    },
+    {
+      "text" : "Dim",
+      "type" : "values"
+    },
+    {
+      "text" : "Disconnected",
+      "type" : "values"
+    },
+    {
+      "text" : "DiskPrefix",
+      "type" : "values"
+    },
+    {
+      "text" : "div_rem",
+      "type" : "commands"
+    },
+    {
+      "text" : "DLL_EXTENSION",
+      "type" : "values"
+    },
+    {
+      "text" : "DLL_PREFIX",
+      "type" : "values"
+    },
+    {
+      "text" : "DLL_SUFFIX",
+      "type" : "values"
+    },
+    {
+      "text" : "DontClose",
+      "type" : "values"
+    },
+    {
+      "text" : "drop",
+      "type" : "commands"
+    },
+    {
+      "text" : "DynBenchFn",
+      "type" : "values"
+    },
+    {
+      "text" : "DynMetricFn",
+      "type" : "values"
+    },
+    {
+      "text" : "DynTestFn",
+      "type" : "values"
+    },
+    {
+      "text" : "DynTestName",
+      "type" : "values"
+    },
+    {
+      "text" : "E",
+      "type" : "values"
+    },
+    {
+      "text" : "Edges",
+      "type" : "types"
+    },
+    {
+      "text" : "else",
+      "type" : "keywords"
+    },
+    {
+      "text" : "Empty",
+      "type" : "values"
+    },
+    {
+      "text" : "empty_tm",
+      "type" : "attributes"
+    },
+    {
+      "text" : "EncodeResult",
+      "type" : "types"
+    },
+    {
+      "text" : "EndOfFile",
+      "type" : "values"
+    },
+    {
+      "text" : "enum",
+      "type" : "keywords"
+    },
+    {
+      "text" : "env!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "EnvMap",
+      "type" : "types"
+    },
+    {
+      "text" : "EPSILON",
+      "type" : "values"
+    },
+    {
+      "text" : "eq",
+      "type" : "commands"
+    },
+    {
+      "text" : "Equal",
+      "type" : "values"
+    },
+    {
+      "text" : "equals",
+      "type" : "commands"
+    },
+    {
+      "text" : "Err",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrAlreadyExists",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrCreateFileMappingW",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrFdNotAvail",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrInvalidFd",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrMapViewOfFile",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrNoMapSupport",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrNoMem",
+      "type" : "values"
+    },
+    {
+      "text" : "error!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "ErrUnaligned",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrUnknown",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrUnsupOffset",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrUnsupProt",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrVirtualAlloc",
+      "type" : "values"
+    },
+    {
+      "text" : "ErrZeroLength",
+      "type" : "values"
+    },
+    {
+      "text" : "escape_default",
+      "type" : "commands"
+    },
+    {
+      "text" : "escape_defaults",
+      "type" : "commands"
+    },
+    {
+      "text" : "escape_unicode",
+      "type" : "commands"
+    },
+    {
+      "text" : "EXE_EXTENSION",
+      "type" : "values"
+    },
+    {
+      "text" : "EXE_SUFFIX",
+      "type" : "values"
+    },
+    {
+      "text" : "ExitSignal",
+      "type" : "values"
+    },
+    {
+      "text" : "ExitStatus",
+      "type" : "values"
+    },
+    {
+      "text" : "exp2f32",
+      "type" : "commands"
+    },
+    {
+      "text" : "exp2f64",
+      "type" : "commands"
+    },
+    {
+      "text" : "expand",
+      "type" : "commands"
+    },
+    {
+      "text" : "ExpBin",
+      "type" : "values"
+    },
+    {
+      "text" : "ExpDec",
+      "type" : "values"
+    },
+    {
+      "text" : "expf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "expf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "ExpNone",
+      "type" : "values"
+    },
+    {
+      "text" : "extern",
+      "type" : "keywords"
+    },
+    {
+      "text" : "f32",
+      "type" : "types"
+    },
+    {
+      "text" : "f64",
+      "type" : "types"
+    },
+    {
+      "text" : "fabsf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "fabsf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "fail",
+      "type" : "commands"
+    },
+    {
+      "text" : "fail_fmt",
+      "type" : "commands"
+    },
+    {
+      "text" : "fail!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "false",
+      "type" : "values"
+    },
+    {
+      "text" : "FAMILY",
+      "type" : "values"
+    },
+    {
+      "text" : "fd_t",
+      "type" : "types"
+    },
+    {
+      "text" : "fence",
+      "type" : "commands"
+    },
+    {
+      "text" : "file!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "FileNotFound",
+      "type" : "values"
+    },
+    {
+      "text" : "filter_tests",
+      "type" : "commands"
+    },
+    {
+      "text" : "FlagAlternate",
+      "type" : "values"
+    },
+    {
+      "text" : "FlagSignAwareZeroPad",
+      "type" : "values"
+    },
+    {
+      "text" : "FlagSignMinus",
+      "type" : "values"
+    },
+    {
+      "text" : "FlagSignPlus",
+      "type" : "values"
+    },
+    {
+      "text" : "float_to_str_bytes_common",
+      "type" : "commands"
+    },
+    {
+      "text" : "float_to_str_common",
+      "type" : "commands"
+    },
+    {
+      "text" : "floorf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "floorf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "flush",
+      "type" : "commands"
+    },
+    {
+      "text" : "fmaf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "fmaf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "fmt_bench_samples",
+      "type" : "commands"
+    },
+    {
+      "text" : "fmt_metrics",
+      "type" : "commands"
+    },
+    {
+      "text" : "fn",
+      "type" : "keywords"
+    },
+    {
+      "text" : "fold",
+      "type" : "commands"
+    },
+    {
+      "text" : "for",
+      "type" : "keywords"
+    },
+    {
+      "text" : "ForeguroundColor",
+      "type" : "values"
+    },
+    {
+      "text" : "forget",
+      "type" : "commands"
+    },
+    {
+      "text" : "format",
+      "type" : "commands"
+    },
+    {
+      "text" : "format_args!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "format!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "FPInfinite",
+      "type" : "values"
+    },
+    {
+      "text" : "FPNaN",
+      "type" : "values"
+    },
+    {
+      "text" : "FPNormal",
+      "type" : "values"
+    },
+    {
+      "text" : "FPSubnormal",
+      "type" : "values"
+    },
+    {
+      "text" : "FPZero",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_1_PI",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_1_SQRT2",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_2_PI",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_2_SQRTPI",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_PI_2",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_PI_3",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_PI_4",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_PI_6",
+      "type" : "values"
+    },
+    {
+      "text" : "FRAC_PI_8",
+      "type" : "values"
+    },
+    {
+      "text" : "freq_count",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_c_multistring",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_digit",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_f32",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_f64",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_fn",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_i8",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_i16",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_i32",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_i64",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_int",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_str",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_str_bytes_common",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_str_common",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_str_hex",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_u16",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_u32",
+      "type" : "commands"
+    },
+    {
+      "text" : "from_u64",
+      "type" : "commands"
+    },
+    {
+      "text" : "Full",
+      "type" : "values"
+    },
+    {
+      "text" : "ge",
+      "type" : "commands"
+    },
+    {
+      "text" : "get_dbpath_for_term",
+      "type" : "commands"
+    },
+    {
+      "text" : "get_host_addresses",
+      "type" : "commands"
+    },
+    {
+      "text" : "get_mut",
+      "type" : "commands"
+    },
+    {
+      "text" : "get_sp_limit",
+      "type" : "commands"
+    },
+    {
+      "text" : "get_time",
+      "type" : "attributes"
+    },
+    {
+      "text" : "get_tydesc",
+      "type" : "commands"
+    },
+    {
+      "text" : "getsockopt",
+      "type" : "commands"
+    },
+    {
+      "text" : "Global",
+      "type" : "values"
+    },
+    {
+      "text" : "GlueFn",
+      "type" : "types"
+    },
+    {
+      "text" : "Greater",
+      "type" : "values"
+    },
+    {
+      "text" : "GREEN",
+      "type" : "values"
+    },
+    {
+      "text" : "GREEN_BLOCKED",
+      "type" : "values"
+    },
+    {
+      "text" : "GROUP_EXECUTE",
+      "type" : "values"
+    },
+    {
+      "text" : "GROUP_READ",
+      "type" : "values"
+    },
+    {
+      "text" : "GROUP_RWX",
+      "type" : "values"
+    },
+    {
+      "text" : "GROUP_WRITE",
+      "type" : "values"
+    },
+    {
+      "text" : "GroupExecute",
+      "type" : "values"
+    },
+    {
+      "text" : "GroupRead",
+      "type" : "values"
+    },
+    {
+      "text" : "GroupRWX",
+      "type" : "values"
+    },
+    {
+      "text" : "GroupWrite",
+      "type" : "values"
+    },
+    {
+      "text" : "gt",
+      "type" : "commands"
+    },
+    {
+      "text" : "hash",
+      "type" : "commands"
+    },
+    {
+      "text" : "hash_with_keys",
+      "type" : "commands"
+    },
+    {
+      "text" : "htons",
+      "type" : "commands"
+    },
+    {
+      "text" : "i8",
+      "type" : "types"
+    },
+    {
+      "text" : "i8_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i8_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i8_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i16",
+      "type" : "types"
+    },
+    {
+      "text" : "i16_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i16_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i16_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i32",
+      "type" : "types"
+    },
+    {
+      "text" : "i32_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i32_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i32_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i64",
+      "type" : "types"
+    },
+    {
+      "text" : "i64_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i64_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "i64_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "if",
+      "type" : "keywords"
+    },
+    {
+      "text" : "Ignored",
+      "type" : "values"
+    },
+    {
+      "text" : "impl",
+      "type" : "keywords"
+    },
+    {
+      "text" : "Improvement",
+      "type" : "values"
+    },
+    {
+      "text" : "in",
+      "type" : "keywords"
+    },
+    {
+      "text" : "include_bin!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "include_str!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "increment",
+      "type" : "attributes"
+    },
+    {
+      "text" : "INFINITY",
+      "type" : "values"
+    },
+    {
+      "text" : "info!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "InheritFd",
+      "type" : "values"
+    },
+    {
+      "text" : "init",
+      "type" : "commands"
+    },
+    {
+      "text" : "init",
+      "type" : "attributes"
+    },
+    {
+      "text" : "INIT_ATOMIC_BOOL",
+      "type" : "values"
+    },
+    {
+      "text" : "INIT_ATOMIC_INT",
+      "type" : "values"
+    },
+    {
+      "text" : "INIT_ATOMIC_UINT",
+      "type" : "values"
+    },
+    {
+      "text" : "int",
+      "type" : "types"
+    },
+    {
+      "text" : "intmax_t",
+      "type" : "types"
+    },
+    {
+      "text" : "intptr_t",
+      "type" : "types"
+    },
+    {
+      "text" : "InvalidDay",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidDayOfMonth",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidDayOfWeek",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidDayOfYear",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidFormatSpecifier",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidHour",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidInput",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidMinute",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidMonth",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidSecond",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidTime",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidYear",
+      "type" : "values"
+    },
+    {
+      "text" : "InvalidZoneOffset",
+      "type" : "values"
+    },
+    {
+      "text" : "IoResult",
+      "type" : "types"
+    },
+    {
+      "text" : "IoUnavailable",
+      "type" : "values"
+    },
+    {
+      "text" : "Ipv4Addr",
+      "type" : "values"
+    },
+    {
+      "text" : "Ipv6Addr",
+      "type" : "values"
+    },
+    {
+      "text" : "is_alphabetic",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_alphanumeric",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_control",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_cwd_relative",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_digit",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_digit_radix",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_lowercase",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_match",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_sep",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_sep_byte",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_sep_byte_verbatim",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_sep_verbatim",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_unique",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_uppercase",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_verbatim",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_vol_relative",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_whitespace",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_XID_continue",
+      "type" : "commands"
+    },
+    {
+      "text" : "is_XID_start",
+      "type" : "commands"
+    },
+    {
+      "text" : "Italic",
+      "type" : "values"
+    },
+    {
+      "text" : "Items",
+      "type" : "types"
+    },
+    {
+      "text" : "iterate",
+      "type" : "commands"
+    },
+    {
+      "text" : "Iterate",
+      "type" : "types"
+    },
+    {
+      "text" : "Keys",
+      "type" : "types"
+    },
+    {
+      "text" : "KeyValueKey",
+      "type" : "values"
+    },
+    {
+      "text" : "lang_start",
+      "type" : "commands"
+    },
+    {
+      "text" : "last_error",
+      "type" : "commands"
+    },
+    {
+      "text" : "Lazy",
+      "type" : "values"
+    },
+    {
+      "text" : "le",
+      "type" : "commands"
+    },
+    {
+      "text" : "len",
+      "type" : "commands"
+    },
+    {
+      "text" : "len_utf8_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "len_utf8_types",
+      "type" : "commands"
+    },
+    {
+      "text" : "Less",
+      "type" : "values"
+    },
+    {
+      "text" : "let",
+      "type" : "keywords"
+    },
+    {
+      "text" : "LikelyNoise",
+      "type" : "values"
+    },
+    {
+      "text" : "line!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "link",
+      "type" : "commands"
+    },
+    {
+      "text" : "lint_array!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "lint_initializer!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "LN_2",
+      "type" : "values"
+    },
+    {
+      "text" : "LN_10",
+      "type" : "values"
+    },
+    {
+      "text" : "Local",
+      "type" : "values"
+    },
+    {
+      "text" : "local_data_key!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "LOCKED",
+      "type" : "values"
+    },
+    {
+      "text" : "log_enabled",
+      "type" : "attributes"
+    },
+    {
+      "text" : "log_enabled!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "log!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "LOG2_E",
+      "type" : "values"
+    },
+    {
+      "text" : "log2f32",
+      "type" : "commands"
+    },
+    {
+      "text" : "log2f64",
+      "type" : "commands"
+    },
+    {
+      "text" : "LOG10_E",
+      "type" : "values"
+    },
+    {
+      "text" : "log10f32",
+      "type" : "commands"
+    },
+    {
+      "text" : "log10f64",
+      "type" : "commands"
+    },
+    {
+      "text" : "logf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "logf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "LoneSurrogate",
+      "type" : "values"
+    },
+    {
+      "text" : "lookup",
+      "type" : "commands"
+    },
+    {
+      "text" : "loop",
+      "type" : "keywords"
+    },
+    {
+      "text" : "lstat",
+      "type" : "commands"
+    },
+    {
+      "text" : "lt",
+      "type" : "commands"
+    },
+    {
+      "text" : "MAGENTA",
+      "type" : "values"
+    },
+    {
+      "text" : "main",
+      "type" : "commands"
+    },
+    {
+      "text" : "main_guard_page",
+      "type" : "commands"
+    },
+    {
+      "text" : "make_non_verbatim",
+      "type" : "commands"
+    },
+    {
+      "text" : "MANTISSA_DIGITS",
+      "type" : "values"
+    },
+    {
+      "text" : "match",
+      "type" : "keywords"
+    },
+    {
+      "text" : "max",
+      "type" : "commands"
+    },
+    {
+      "text" : "MAX",
+      "type" : "values"
+    },
+    {
+      "text" : "MAX_10_EXP",
+      "type" : "values"
+    },
+    {
+      "text" : "MAX_EXP",
+      "type" : "values"
+    },
+    {
+      "text" : "MAX_VALUE",
+      "type" : "values"
+    },
+    {
+      "text" : "maybe_inject_crates_ref",
+      "type" : "commands"
+    },
+    {
+      "text" : "maybe_inject_prelude",
+      "type" : "commands"
+    },
+    {
+      "text" : "memcmp",
+      "type" : "commands"
+    },
+    {
+      "text" : "memcpy",
+      "type" : "commands"
+    },
+    {
+      "text" : "memmove",
+      "type" : "commands"
+    },
+    {
+      "text" : "memset",
+      "type" : "commands"
+    },
+    {
+      "text" : "MetricAdded",
+      "type" : "values"
+    },
+    {
+      "text" : "MetricDiff",
+      "type" : "types"
+    },
+    {
+      "text" : "MetricRemoved",
+      "type" : "values"
+    },
+    {
+      "text" : "min",
+      "type" : "commands"
+    },
+    {
+      "text" : "MIN",
+      "type" : "values"
+    },
+    {
+      "text" : "MIN_10_EXP",
+      "type" : "values"
+    },
+    {
+      "text" : "min_align_of",
+      "type" : "commands"
+    },
+    {
+      "text" : "min_align_of_val",
+      "type" : "commands"
+    },
+    {
+      "text" : "MIN_EXP",
+      "type" : "values"
+    },
+    {
+      "text" : "MIN_POS_VALUE",
+      "type" : "values"
+    },
+    {
+      "text" : "min_stack",
+      "type" : "attributes"
+    },
+    {
+      "text" : "MIN_VALUE",
+      "type" : "values"
+    },
+    {
+      "text" : "MinMax",
+      "type" : "values"
+    },
+    {
+      "text" : "Mips",
+      "type" : "values"
+    },
+    {
+      "text" : "Mipsel",
+      "type" : "values"
+    },
+    {
+      "text" : "MismatchedFileTypeForOperation",
+      "type" : "values"
+    },
+    {
+      "text" : "MissingFormatConverter",
+      "type" : "values"
+    },
+    {
+      "text" : "mkdir",
+      "type" : "commands"
+    },
+    {
+      "text" : "mkdir_recursive",
+      "type" : "commands"
+    },
+    {
+      "text" : "mod",
+      "type" : "keywords"
+    },
+    {
+      "text" : "modify_for_testing",
+      "type" : "commands"
+    },
+    {
+      "text" : "module_path!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "MonitorMsg",
+      "type" : "types"
+    },
+    {
+      "text" : "move_val_init",
+      "type" : "commands"
+    },
+    {
+      "text" : "MoveItems",
+      "type" : "types"
+    },
+    {
+      "text" : "msys_terminfo",
+      "type" : "commands"
+    },
+    {
+      "text" : "MustDieSignal",
+      "type" : "values"
+    },
+    {
+      "text" : "mut",
+      "type" : "keywords"
+    },
+    {
+      "text" : "mut_ref_slice",
+      "type" : "commands"
+    },
+    {
+      "text" : "MUTEX_INIT",
+      "type" : "values"
+    },
+    {
+      "text" : "NAN",
+      "type" : "values"
+    },
+    {
+      "text" : "NATIVE_BLOCKED",
+      "type" : "values"
+    },
+    {
+      "text" : "ne",
+      "type" : "commands"
+    },
+    {
+      "text" : "nearbyintf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "nearbyintf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "needs_drop",
+      "type" : "commands"
+    },
+    {
+      "text" : "NEG_INFINITY",
+      "type" : "values"
+    },
+    {
+      "text" : "NeverColor",
+      "type" : "values"
+    },
+    {
+      "text" : "new",
+      "type" : "commands"
+    },
+    {
+      "text" : "NewTimer",
+      "type" : "values"
+    },
+    {
+      "text" : "next_test_ip4",
+      "type" : "commands"
+    },
+    {
+      "text" : "next_test_ip6",
+      "type" : "commands"
+    },
+    {
+      "text" : "next_test_port",
+      "type" : "commands"
+    },
+    {
+      "text" : "next_test_unix",
+      "type" : "commands"
+    },
+    {
+      "text" : "Nodes",
+      "type" : "types"
+    },
+    {
+      "text" : "NoElements",
+      "type" : "values"
+    },
+    {
+      "text" : "None",
+      "type" : "values"
+    },
+    {
+      "text" : "NoProgress",
+      "type" : "values"
+    },
+    {
+      "text" : "NotConnected",
+      "type" : "values"
+    },
+    {
+      "text" : "NotNull",
+      "type" : "values"
+    },
+    {
+      "text" : "now",
+      "type" : "commands"
+    },
+    {
+      "text" : "now",
+      "type" : "attributes"
+    },
+    {
+      "text" : "Now",
+      "type" : "values"
+    },
+    {
+      "text" : "now_utc",
+      "type" : "attributes"
+    },
+    {
+      "text" : "ntohs",
+      "type" : "commands"
+    },
+    {
+      "text" : "null",
+      "type" : "commands"
+    },
+    {
+      "text" : "Null",
+      "type" : "values"
+    },
+    {
+      "text" : "null_mut",
+      "type" : "commands"
+    },
+    {
+      "text" : "NumericHost",
+      "type" : "values"
+    },
+    {
+      "text" : "NumericServ",
+      "type" : "values"
+    },
+    {
+      "text" : "Occupied",
+      "type" : "values"
+    },
+    {
+      "text" : "offset",
+      "type" : "commands"
+    },
+    {
+      "text" : "Ok",
+      "type" : "values"
+    },
+    {
+      "text" : "ONCE_INIT",
+      "type" : "values"
+    },
+    {
+      "text" : "one",
+      "type" : "commands"
+    },
+    {
+      "text" : "OneElement",
+      "type" : "values"
+    },
+    {
+      "text" : "open",
+      "type" : "commands"
+    },
+    {
+      "text" : "Open",
+      "type" : "values"
+    },
+    {
+      "text" : "open_external",
+      "type" : "commands"
+    },
+    {
+      "text" : "open_internal",
+      "type" : "commands"
+    },
+    {
+      "text" : "opt_shard",
+      "type" : "commands"
+    },
+    {
+      "text" : "option_env!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "OptRes",
+      "type" : "types"
+    },
+    {
+      "text" : "OsAndroid",
+      "type" : "values"
+    },
+    {
+      "text" : "OsDragonfly",
+      "type" : "values"
+    },
+    {
+      "text" : "OsFreebsd",
+      "type" : "values"
+    },
+    {
+      "text" : "OsiOS",
+      "type" : "values"
+    },
+    {
+      "text" : "OsLinux",
+      "type" : "values"
+    },
+    {
+      "text" : "OsMacos",
+      "type" : "values"
+    },
+    {
+      "text" : "OsWindows",
+      "type" : "values"
+    },
+    {
+      "text" : "OTHER_EXECUTE",
+      "type" : "values"
+    },
+    {
+      "text" : "OTHER_READ",
+      "type" : "values"
+    },
+    {
+      "text" : "OTHER_RWX",
+      "type" : "values"
+    },
+    {
+      "text" : "OTHER_WRITE",
+      "type" : "values"
+    },
+    {
+      "text" : "OtherExecute",
+      "type" : "values"
+    },
+    {
+      "text" : "OtherIoError",
+      "type" : "values"
+    },
+    {
+      "text" : "OtherRead",
+      "type" : "values"
+    },
+    {
+      "text" : "OtherRWX",
+      "type" : "values"
+    },
+    {
+      "text" : "OtherWrite",
+      "type" : "values"
+    },
+    {
+      "text" : "Owned",
+      "type" : "values"
+    },
+    {
+      "text" : "owns_managed",
+      "type" : "commands"
+    },
+    {
+      "text" : "parse",
+      "type" : "commands"
+    },
+    {
+      "text" : "parse_opts",
+      "type" : "commands"
+    },
+    {
+      "text" : "partial_cmp",
+      "type" : "commands"
+    },
+    {
+      "text" : "partial_max",
+      "type" : "commands"
+    },
+    {
+      "text" : "partial_min",
+      "type" : "commands"
+    },
+    {
+      "text" : "Passive",
+      "type" : "values"
+    },
+    {
+      "text" : "PathAlreadyExists",
+      "type" : "values"
+    },
+    {
+      "text" : "PathDoesntExist",
+      "type" : "values"
+    },
+    {
+      "text" : "PERLD",
+      "type" : "values"
+    },
+    {
+      "text" : "PERLS",
+      "type" : "values"
+    },
+    {
+      "text" : "PERLW",
+      "type" : "values"
+    },
+    {
+      "text" : "PermissionDenied",
+      "type" : "values"
+    },
+    {
+      "text" : "PI",
+      "type" : "values"
+    },
+    {
+      "text" : "PI_2",
+      "type" : "values"
+    },
+    {
+      "text" : "pipe",
+      "type" : "commands"
+    },
+    {
+      "text" : "PleaseExitSignal",
+      "type" : "values"
+    },
+    {
+      "text" : "Port",
+      "type" : "types"
+    },
+    {
+      "text" : "pow",
+      "type" : "commands"
+    },
+    {
+      "text" : "powf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "powf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "powif32",
+      "type" : "commands"
+    },
+    {
+      "text" : "powif64",
+      "type" : "commands"
+    },
+    {
+      "text" : "precise_time_ns",
+      "type" : "attributes"
+    },
+    {
+      "text" : "precise_time_s",
+      "type" : "attributes"
+    },
+    {
+      "text" : "pref_align_of",
+      "type" : "commands"
+    },
+    {
+      "text" : "prefix",
+      "type" : "commands"
+    },
+    {
+      "text" : "print",
+      "type" : "commands"
+    },
+    {
+      "text" : "print_args",
+      "type" : "commands"
+    },
+    {
+      "text" : "print!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "println",
+      "type" : "commands"
+    },
+    {
+      "text" : "println_args",
+      "type" : "commands"
+    },
+    {
+      "text" : "println!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "priv",
+      "type" : "keywords"
+    },
+    {
+      "text" : "proc",
+      "type" : "keywords"
+    },
+    {
+      "text" : "ptrdiff_t",
+      "type" : "types"
+    },
+    {
+      "text" : "pub",
+      "type" : "keywords"
+    },
+    {
+      "text" : "put",
+      "type" : "attributes"
+    },
+    {
+      "text" : "quote",
+      "type" : "commands"
+    },
+    {
+      "text" : "r\"",
+      "type" : "strings"
+    },
+    {
+      "text" : "radix",
+      "type" : "commands"
+    },
+    {
+      "text" : "RADIX",
+      "type" : "values"
+    },
+    {
+      "text" : "raise_fd_limit",
+      "type" : "commands"
+    },
+    {
+      "text" : "random",
+      "type" : "commands"
+    },
+    {
+      "text" : "range",
+      "type" : "commands"
+    },
+    {
+      "text" : "range_inclusive",
+      "type" : "commands"
+    },
+    {
+      "text" : "range_step",
+      "type" : "commands"
+    },
+    {
+      "text" : "range_step_inclusive",
+      "type" : "commands"
+    },
+    {
+      "text" : "Raw",
+      "type" : "values"
+    },
+    {
+      "text" : "read",
+      "type" : "commands"
+    },
+    {
+      "text" : "Read",
+      "type" : "values"
+    },
+    {
+      "text" : "read_and_zero",
+      "type" : "commands"
+    },
+    {
+      "text" : "readdir",
+      "type" : "commands"
+    },
+    {
+      "text" : "readlink",
+      "type" : "commands"
+    },
+    {
+      "text" : "ReadWrite",
+      "type" : "values"
+    },
+    {
+      "text" : "record_os_managed_stack_bounds",
+      "type" : "commands"
+    },
+    {
+      "text" : "record_rust_managed_stack_bounds",
+      "type" : "commands"
+    },
+    {
+      "text" : "record_sp_limit",
+      "type" : "commands"
+    },
+    {
+      "text" : "RecvDisconnected",
+      "type" : "values"
+    },
+    {
+      "text" : "RED",
+      "type" : "values"
+    },
+    {
+      "text" : "ref",
+      "type" : "keywords"
+    },
+    {
+      "text" : "ref_slice",
+      "type" : "commands"
+    },
+    {
+      "text" : "regex!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "register",
+      "type" : "commands"
+    },
+    {
+      "text" : "register_diagnostic!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "register_diagnostics!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "Regression",
+      "type" : "values"
+    },
+    {
+      "text" : "Relaxed",
+      "type" : "values"
+    },
+    {
+      "text" : "Release",
+      "type" : "values"
+    },
+    {
+      "text" : "RemoveTimer",
+      "type" : "values"
+    },
+    {
+      "text" : "rename",
+      "type" : "commands"
+    },
+    {
+      "text" : "replace",
+      "type" : "commands"
+    },
+    {
+      "text" : "ResourceUnavailable",
+      "type" : "values"
+    },
+    {
+      "text" : "Result",
+      "type" : "types"
+    },
+    {
+      "text" : "return",
+      "type" : "keywords"
+    },
+    {
+      "text" : "return_address",
+      "type" : "commands"
+    },
+    {
+      "text" : "Reverse",
+      "type" : "values"
+    },
+    {
+      "text" : "rintf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "rintf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "rmdir",
+      "type" : "commands"
+    },
+    {
+      "text" : "rmdir_recursive",
+      "type" : "commands"
+    },
+    {
+      "text" : "roundf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "roundf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "run",
+      "type" : "commands"
+    },
+    {
+      "text" : "run_test",
+      "type" : "commands"
+    },
+    {
+      "text" : "run_tests_console",
+      "type" : "commands"
+    },
+    {
+      "text" : "running_on_valgrind",
+      "type" : "attributes"
+    },
+    {
+      "text" : "rust_begin_unwind",
+      "type" : "commands"
+    },
+    {
+      "text" : "RustArch",
+      "type" : "values"
+    },
+    {
+      "text" : "sample",
+      "type" : "commands"
+    },
+    {
+      "text" : "ScalarValue",
+      "type" : "values"
+    },
+    {
+      "text" : "Secure",
+      "type" : "values"
+    },
+    {
+      "text" : "SeekCur",
+      "type" : "values"
+    },
+    {
+      "text" : "SeekEnd",
+      "type" : "values"
+    },
+    {
+      "text" : "SeekSet",
+      "type" : "values"
+    },
+    {
+      "text" : "select!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "self",
+      "type" : "variables"
+    },
+    {
+      "text" : "SendStr",
+      "type" : "types"
+    },
+    {
+      "text" : "SEP",
+      "type" : "values"
+    },
+    {
+      "text" : "SEP_BYTE",
+      "type" : "values"
+    },
+    {
+      "text" : "SEP2",
+      "type" : "values"
+    },
+    {
+      "text" : "SEP2_BYTE",
+      "type" : "values"
+    },
+    {
+      "text" : "SeqCst",
+      "type" : "values"
+    },
+    {
+      "text" : "set_logger",
+      "type" : "commands"
+    },
+    {
+      "text" : "set_memory",
+      "type" : "commands"
+    },
+    {
+      "text" : "set_stderr",
+      "type" : "commands"
+    },
+    {
+      "text" : "set_stdout",
+      "type" : "commands"
+    },
+    {
+      "text" : "SetAlgebraItems",
+      "type" : "types"
+    },
+    {
+      "text" : "SetItems",
+      "type" : "types"
+    },
+    {
+      "text" : "SetMoveItems",
+      "type" : "types"
+    },
+    {
+      "text" : "Shared",
+      "type" : "values"
+    },
+    {
+      "text" : "ShortWrite",
+      "type" : "values"
+    },
+    {
+      "text" : "SignAll",
+      "type" : "values"
+    },
+    {
+      "text" : "SignNeg",
+      "type" : "values"
+    },
+    {
+      "text" : "SignNone",
+      "type" : "values"
+    },
+    {
+      "text" : "signum",
+      "type" : "commands"
+    },
+    {
+      "text" : "sinf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "sinf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "size_of",
+      "type" : "commands"
+    },
+    {
+      "text" : "size_of_val",
+      "type" : "commands"
+    },
+    {
+      "text" : "size_t",
+      "type" : "types"
+    },
+    {
+      "text" : "sleep",
+      "type" : "commands"
+    },
+    {
+      "text" : "slice",
+      "type" : "types"
+    },
+    {
+      "text" : "Slice",
+      "type" : "values"
+    },
+    {
+      "text" : "sockaddr_to_addr",
+      "type" : "commands"
+    },
+    {
+      "text" : "Some",
+      "type" : "values"
+    },
+    {
+      "text" : "span_err!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "span_note!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "span_warn!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "SQRT2",
+      "type" : "values"
+    },
+    {
+      "text" : "sqrtf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "sqrtf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "standard_error",
+      "type" : "commands"
+    },
+    {
+      "text" : "Standout",
+      "type" : "values"
+    },
+    {
+      "text" : "start",
+      "type" : "commands"
+    },
+    {
+      "text" : "stat",
+      "type" : "commands"
+    },
+    {
+      "text" : "static",
+      "type" : "keywords"
+    },
+    {
+      "text" : "StaticBenchFn",
+      "type" : "values"
+    },
+    {
+      "text" : "StaticMetricFn",
+      "type" : "values"
+    },
+    {
+      "text" : "StaticTestFn",
+      "type" : "values"
+    },
+    {
+      "text" : "StaticTestName",
+      "type" : "values"
+    },
+    {
+      "text" : "stderr",
+      "type" : "commands"
+    },
+    {
+      "text" : "stderr_raw",
+      "type" : "commands"
+    },
+    {
+      "text" : "stdin",
+      "type" : "commands"
+    },
+    {
+      "text" : "stdin_raw",
+      "type" : "commands"
+    },
+    {
+      "text" : "stdout",
+      "type" : "commands"
+    },
+    {
+      "text" : "stdout_raw",
+      "type" : "commands"
+    },
+    {
+      "text" : "stock_t",
+      "type" : "types"
+    },
+    {
+      "text" : "str",
+      "type" : "types"
+    },
+    {
+      "text" : "StrComponents",
+      "type" : "types"
+    },
+    {
+      "text" : "Stream",
+      "type" : "values"
+    },
+    {
+      "text" : "strftime",
+      "type" : "attributes"
+    },
+    {
+      "text" : "stringify!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "strptime",
+      "type" : "attributes"
+    },
+    {
+      "text" : "struct",
+      "type" : "keywords"
+    },
+    {
+      "text" : "super",
+      "type" : "variables"
+    },
+    {
+      "text" : "suseconds_t",
+      "type" : "types"
+    },
+    {
+      "text" : "swap",
+      "type" : "commands"
+    },
+    {
+      "text" : "symbol",
+      "type" : "commands"
+    },
+    {
+      "text" : "symlink",
+      "type" : "commands"
+    },
+    {
+      "text" : "sync_channel",
+      "type" : "commands"
+    },
+    {
+      "text" : "SYSNAME",
+      "type" : "values"
+    },
+    {
+      "text" : "take",
+      "type" : "attributes"
+    },
+    {
+      "text" : "task_rng",
+      "type" : "commands"
+    },
+    {
+      "text" : "TCP",
+      "type" : "values"
+    },
+    {
+      "text" : "test_main",
+      "type" : "commands"
+    },
+    {
+      "text" : "test_main_static",
+      "type" : "commands"
+    },
+    {
+      "text" : "time_t",
+      "type" : "types"
+    },
+    {
+      "text" : "TimedOut",
+      "type" : "values"
+    },
+    {
+      "text" : "to_digit",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_lowercase",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_str_digits",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_str_exact",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_str_exp_digits",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_str_exp_exact",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_str_hex",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_str_radix_special",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_string",
+      "type" : "commands"
+    },
+    {
+      "text" : "to_uppercase",
+      "type" : "commands"
+    },
+    {
+      "text" : "trait",
+      "type" : "keywords"
+    },
+    {
+      "text" : "transmute",
+      "type" : "commands"
+    },
+    {
+      "text" : "transmute_copy",
+      "type" : "commands"
+    },
+    {
+      "text" : "TrBench",
+      "type" : "values"
+    },
+    {
+      "text" : "TrFailed",
+      "type" : "values"
+    },
+    {
+      "text" : "TrIgnored",
+      "type" : "values"
+    },
+    {
+      "text" : "TrMetrics",
+      "type" : "values"
+    },
+    {
+      "text" : "TrOk",
+      "type" : "values"
+    },
+    {
+      "text" : "true",
+      "type" : "values"
+    },
+    {
+      "text" : "Truncate",
+      "type" : "values"
+    },
+    {
+      "text" : "truncf32",
+      "type" : "commands"
+    },
+    {
+      "text" : "truncf64",
+      "type" : "commands"
+    },
+    {
+      "text" : "try_finally",
+      "type" : "commands"
+    },
+    {
+      "text" : "try_unwrap",
+      "type" : "commands"
+    },
+    {
+      "text" : "try!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "tuple",
+      "type" : "types"
+    },
+    {
+      "text" : "type",
+      "type" : "keywords"
+    },
+    {
+      "text" : "type_id",
+      "type" : "commands"
+    },
+    {
+      "text" : "TypeBlockSpecial",
+      "type" : "values"
+    },
+    {
+      "text" : "TypeDirectory",
+      "type" : "values"
+    },
+    {
+      "text" : "TypeFile",
+      "type" : "values"
+    },
+    {
+      "text" : "TypeNamedPipe",
+      "type" : "values"
+    },
+    {
+      "text" : "TypeSymlink",
+      "type" : "values"
+    },
+    {
+      "text" : "TypeUnknown",
+      "type" : "values"
+    },
+    {
+      "text" : "tzset",
+      "type" : "attributes"
+    },
+    {
+      "text" : "u8",
+      "type" : "types"
+    },
+    {
+      "text" : "u8_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u8_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u8_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u16",
+      "type" : "types"
+    },
+    {
+      "text" : "u16_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u16_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u16_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u32",
+      "type" : "types"
+    },
+    {
+      "text" : "u32_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u32_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u32_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u64",
+      "type" : "types"
+    },
+    {
+      "text" : "u64_add_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u64_from_be_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "u64_mul_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u64_sub_with_overflow",
+      "type" : "commands"
+    },
+    {
+      "text" : "u64_to_be_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "u64_to_le_bytes",
+      "type" : "commands"
+    },
+    {
+      "text" : "UDP",
+      "type" : "values"
+    },
+    {
+      "text" : "uint",
+      "type" : "types"
+    },
+    {
+      "text" : "uintmax_t",
+      "type" : "types"
+    },
+    {
+      "text" : "uintptr_t",
+      "type" : "types"
+    },
+    {
+      "text" : "UNCPrefix",
+      "type" : "values"
+    },
+    {
+      "text" : "Underline",
+      "type" : "values"
+    },
+    {
+      "text" : "UnexpectedCharacter",
+      "type" : "values"
+    },
+    {
+      "text" : "UNICODE_CLASSES",
+      "type" : "values"
+    },
+    {
+      "text" : "UNICODE_VERSION",
+      "type" : "values"
+    },
+    {
+      "text" : "unimplemented!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "uninit",
+      "type" : "commands"
+    },
+    {
+      "text" : "unlink",
+      "type" : "commands"
+    },
+    {
+      "text" : "unreachable",
+      "type" : "commands"
+    },
+    {
+      "text" : "unreachable!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "unsafe",
+      "type" : "keywords"
+    },
+    {
+      "text" : "use",
+      "type" : "keywords"
+    },
+    {
+      "text" : "USER_DIR",
+      "type" : "values"
+    },
+    {
+      "text" : "USER_EXEC",
+      "type" : "values"
+    },
+    {
+      "text" : "USER_EXECUTE",
+      "type" : "values"
+    },
+    {
+      "text" : "USER_FILE",
+      "type" : "values"
+    },
+    {
+      "text" : "USER_READ",
+      "type" : "values"
+    },
+    {
+      "text" : "USER_RWX",
+      "type" : "values"
+    },
+    {
+      "text" : "USER_WRITE",
+      "type" : "values"
+    },
+    {
+      "text" : "UserExecute",
+      "type" : "values"
+    },
+    {
+      "text" : "UserRead",
+      "type" : "values"
+    },
+    {
+      "text" : "UserRWX",
+      "type" : "values"
+    },
+    {
+      "text" : "UserWrite",
+      "type" : "values"
+    },
+    {
+      "text" : "utime",
+      "type" : "commands"
+    },
+    {
+      "text" : "V4Mapped",
+      "type" : "values"
+    },
+    {
+      "text" : "Vacant",
+      "type" : "values"
+    },
+    {
+      "text" : "Values",
+      "type" : "types"
+    },
+    {
+      "text" : "vec!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "VerbatimDiskPrefix",
+      "type" : "values"
+    },
+    {
+      "text" : "VerbatimPrefix",
+      "type" : "values"
+    },
+    {
+      "text" : "VerbatimUNCPrefix",
+      "type" : "values"
+    },
+    {
+      "text" : "volatile_copy_memory",
+      "type" : "commands"
+    },
+    {
+      "text" : "volatile_copy_nonoverlapping_memory",
+      "type" : "commands"
+    },
+    {
+      "text" : "volatile_load",
+      "type" : "commands"
+    },
+    {
+      "text" : "volatile_set_memory",
+      "type" : "commands"
+    },
+    {
+      "text" : "volatile_store",
+      "type" : "commands"
+    },
+    {
+      "text" : "wait_for_other_tasks",
+      "type" : "attributes"
+    },
+    {
+      "text" : "walk_dir",
+      "type" : "commands"
+    },
+    {
+      "text" : "warn!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "wchar_t",
+      "type" : "types"
+    },
+    {
+      "text" : "weak_rng",
+      "type" : "commands"
+    },
+    {
+      "text" : "while",
+      "type" : "keywords"
+    },
+    {
+      "text" : "WHITE",
+      "type" : "values"
+    },
+    {
+      "text" : "width",
+      "type" : "commands"
+    },
+    {
+      "text" : "winsorize",
+      "type" : "commands"
+    },
+    {
+      "text" : "Words",
+      "type" : "types"
+    },
+    {
+      "text" : "write",
+      "type" : "commands"
+    },
+    {
+      "text" : "Write",
+      "type" : "values"
+    },
+    {
+      "text" : "write_5_number_summary",
+      "type" : "commands"
+    },
+    {
+      "text" : "write_boxplot",
+      "type" : "commands"
+    },
+    {
+      "text" : "write!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "WriteError",
+      "type" : "values"
+    },
+    {
+      "text" : "writeln!",
+      "type" : "attributes"
+    },
+    {
+      "text" : "X86",
+      "type" : "values"
+    },
+    {
+      "text" : "X86_64",
+      "type" : "values"
+    },
+    {
+      "text" : "YELLOW",
+      "type" : "values"
+    },
+    {
+      "text" : "zero",
+      "type" : "commands"
+    },
+    {
+      "text" : "zero_memory",
+      "type" : "commands"
+    },
+    {
+      "text" : "zeroed",
+      "type" : "commands"
+    }
+  ]
 }

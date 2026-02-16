@@ -27,6 +27,7 @@
     - PHP
     - Python
     - Ruby
+    - Rust
     - Swift
     - TypeScript
 - Update built-in syntaxes.

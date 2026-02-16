@@ -35,6 +35,7 @@ import TreeSitterJavaScript
 import TreeSitterPHP
 import TreeSitterPython
 import TreeSitterRuby
+import TreeSitterRust
 import TreeSitterSwift
 import TreeSitterTypeScript
 
@@ -49,6 +50,7 @@ public final class LanguageRegistry: Sendable {
         case php = "PHP"
         case python = "Python"
         case ruby = "Ruby"
+        case rust = "Rust"
         case swift = "Swift"
         case typeScript = "TypeScript"
         
@@ -164,6 +166,7 @@ private extension LanguageRegistry.Language {
             case .php: unsafe tree_sitter_php()
             case .python: unsafe tree_sitter_python()
             case .ruby: unsafe tree_sitter_ruby()
+            case .rust: unsafe tree_sitter_rust()
             case .swift: unsafe tree_sitter_swift()
             case .typeScript: unsafe tree_sitter_typescript()
         }
