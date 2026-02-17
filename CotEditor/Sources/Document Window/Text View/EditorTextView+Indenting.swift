@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -96,7 +96,7 @@ extension EditorTextView: Indenting {
 
 extension Indenting {
     
-    private var indentStyle: IndentStyle  { self.isAutomaticTabExpansionEnabled ? .space : .tab }
+    var indentStyle: IndentStyle  { self.isAutomaticTabExpansionEnabled ? .space : .tab }
     
     
     /// Increases indent level of the selected ranges.

@@ -58,10 +58,7 @@ public extension String {
         let string = self as NSString
         
         // create indent string to prepend
-        let indent = switch style {
-            case .tab: "\t"
-            case .space: String(repeating: " ", count: indentWidth)
-        }
+        let indent = style.string(width: indentWidth)
         let indentLength = indent.length
         
         // create shifted string
@@ -166,6 +163,74 @@ public extension String {
         }
         
         return EditingContext(strings: replacementStrings, ranges: replacementRanges)
+    }
+    
+    
+    /// Computes auto-indentation strings and insertion positions for newline insertion.
+    ///
+    /// - Note:
+    /// This calculation is expected to be performed before the actual newline insertion and
+    /// returns results intended to be applied after the newline insertion.
+    ///
+    /// - Parameters:
+    ///   - style: The indentation style to apply.
+    ///   - indentWidth: The number of characters for the indentation.
+    ///   - lineEnding: The line ending string to insert.
+    ///   - selectedRanges: The selection in the editor.
+    /// - Returns: An `EditingContext` that inserts line endings and indentation, or `nil` if no indentation is required.
+    func smartIndent(style: IndentStyle, indentWidth: Int, lineEnding: String, in selectedRanges: [NSRange]) -> EditingContext? {
+        
+        assert(indentWidth > 0)
+        
+        // -> Currently, the tokens must be a single character.
+        let increaseTokens = [":", "{"]
+        let expandPairs = [Pair("{", "}")]
+        
+        let tab = style.string(width: indentWidth)
+        let string = self as NSString
+        
+        var indents: [String] = []
+        var replacementRanges: [NSRange] = []
+        var newSelectedRanges: [NSRange] = []
+        var offset = 0
+        
+        for selectedRange in selectedRanges {
+            let baseIndent = if let indentRange = self.rangeOfIndent(at: selectedRange.location) {
+                string.substring(with: NSRange(indentRange.lowerBound..<min(selectedRange.location, indentRange.upperBound)))
+            } else {
+                ""
+            }
+            var indent = baseIndent
+            var cursorMove = baseIndent.count
+            
+            // smart indent
+            if let lastCharacter = string.character(before: selectedRange) {
+                if let nextCharacter = string.character(after: selectedRange),
+                   expandPairs.contains(where: { $0.begin == lastCharacter && $0.end == nextCharacter })
+                {
+                    indent += tab + lineEnding + baseIndent
+                    cursorMove += tab.count
+                    
+                } else if increaseTokens.contains(lastCharacter) {
+                    indent += tab
+                    cursorMove += tab.count
+                }
+            }
+            
+            // calculate insertion
+            let range = NSRange(location: selectedRange.lowerBound + lineEnding.length + offset, length: 0)
+            if !indent.isEmpty {
+                indents.append(indent)
+                replacementRanges.append(range)
+            }
+            newSelectedRanges.append(range.shifted(by: cursorMove))
+            
+            offset += -selectedRange.length + lineEnding.length + indent.length
+        }
+        
+        guard !indents.isEmpty else { return nil }
+        
+        return EditingContext(strings: indents, ranges: replacementRanges, selectedRanges: newSelectedRanges)
     }
     
     
@@ -377,5 +442,47 @@ public extension String {
         return self[lineStartIndex..<index].lazy
             .map { $0 == "\t" ? tabWidth : $0.utf16.count }
             .reduce(0, +)
+    }
+}
+
+
+private extension NSString {
+    
+    /// Returns the character just before the given range.
+    func character(before range: NSRange) -> String? {
+        
+        guard range.lowerBound > 0 else { return nil }
+        
+        let index = self.index(before: range.lowerBound)
+        let characterRange = self.rangeOfComposedCharacterSequence(at: index)
+        
+        return self.substring(with: characterRange)
+    }
+    
+    
+    /// Returns the character just after the given range.
+    func character(after range: NSRange) -> String? {
+        
+        guard range.upperBound < self.length else { return nil }
+        
+        let characterRange = self.rangeOfComposedCharacterSequence(at: range.upperBound)
+        
+        return self.substring(with: characterRange)
+    }
+}
+
+
+private extension IndentStyle {
+    
+    /// Returns the indentation string for the given width.
+    ///
+    /// - Parameter width: The number of characters for the indentation.
+    /// - Returns: A tab or spaces string according to the style.
+    func string(width: Int) -> String {
+        
+        switch self {
+            case .tab: "\t"
+            case .space: String(repeating: " ", count: width)
+        }
     }
 }

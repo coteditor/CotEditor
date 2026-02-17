@@ -561,59 +561,20 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     override func insertNewline(_ sender: Any?) {
         
-        guard
-            self.isEditable,
-            self.isAutomaticIndentEnabled
-        else { return self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange) }
+        guard self.isEditable else { return super.insertNewline(sender) }
         
-        let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        let ranges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
-        
-        let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
-            .map { range in
-                guard
-                    let indentRange = self.string.rangeOfIndent(at: range.location),
-                    !indentRange.isEmpty,
-                    let autoIndentRange = indentRange.intersection(NSRange(location: 0, length: range.location))
-                else { return (range, "", 0) }
-                
-                var indent = (self.string as NSString).substring(with: autoIndentRange)
-                var insertion = indent.count
-                
-                // smart indent
-                let lastCharacter = self.string.character(before: range)
-                let nextCharacter = self.string.character(after: range)
-                let indentBase = indent
-                
-                // increase indent level
-                if lastCharacter == ":" || lastCharacter == "{" {
-                    indent += tab
-                    insertion += tab.count
-                }
-                
-                // expand block
-                if lastCharacter == "{", nextCharacter == "}" {
-                    indent += self.lineEnding.string + indentBase
-                }
-                
-                return (range, indent, insertion)
-            }
+        // calculate auto indentation before editing
+        let textEditing: EditingContext? = if self.isAutomaticIndentEnabled, let ranges = self.rangesForUserTextChange {
+            self.string.smartIndent(style: self.indentStyle, indentWidth: self.tabWidth, lineEnding: self.lineEnding.string, in: ranges.map(\.rangeValue))
+        } else { nil }
         
         // insert newline
         self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange)
         
-        // auto indent
-        var locations: [Int] = []
-        var offset = 0
-        for (range, indent, insertion) in indents {
-            let location = range.lowerBound + self.lineEnding.length + offset
-            
-            super.insertText(indent, replacementRange: NSRange(location: location, length: 0))
-            
-            offset += -range.length + self.lineEnding.length + indent.count
-            locations.append(location + insertion)
+        // apply auto indentation
+        if let textEditing {
+            self.edit(with: textEditing)
         }
-        self.setSelectedRangesWithUndo(locations.map { NSRange(location: $0, length: 0) })
     }
     
     
