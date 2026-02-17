@@ -476,8 +476,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 }
                 
                 // insert a bracket pair if the insertion point is not in a word
-                if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
-                   !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
+                if !CharacterSet.alphanumerics.contains(self.string.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
+                   !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.string.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
                 {
                     // raise a flag to adjust the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
                     if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
@@ -494,7 +494,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             
             // just move cursor if closing bracket is already typed
             if self.matchingBracketPairs.contains(where: { String($0.end) == plainString }),
-               plainString.unicodeScalars.first == self.character(after: self.rangeForUserTextChange),
+               plainString.unicodeScalars.first == self.string.character(after: self.rangeForUserTextChange),
                self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool == true
             {
                 self.textStorage?.removeAttribute(.autoBalancedClosingBracket, range: NSRange(location: self.selectedRange.location, length: 1))
@@ -597,8 +597,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 var insertion = indent.count
                 
                 // smart indent
-                let lastCharacter = self.character(before: range)
-                let nextCharacter = self.character(after: range)
+                let lastCharacter = self.string.character(before: range)
+                let nextCharacter = self.string.character(after: range)
                 let indentBase = indent
                 
                 // increase indent level
@@ -650,8 +650,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // balance brackets
         if self.isAutomaticSymbolBalancingEnabled,
            self.rangeForUserTextChange.isEmpty,
-           let lastCharacter = self.character(before: self.rangeForUserTextChange),
-           let nextCharacter = self.character(after: self.rangeForUserTextChange),
+           let lastCharacter = self.string.character(before: self.rangeForUserTextChange),
+           let nextCharacter = self.string.character(after: self.rangeForUserTextChange),
            self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
             self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
@@ -1825,10 +1825,10 @@ extension EditorTextView {
         guard
             !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.isEmpty,  // selected
-            let lastCharacter = self.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
+            let lastCharacter = self.string.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
         else { return }
         
-        if let nextCharacter = self.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // cursor is (probably) at the middle of a word
+        if let nextCharacter = self.string.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // cursor is (probably) at the middle of a word
         
         self.complete(self)
     }

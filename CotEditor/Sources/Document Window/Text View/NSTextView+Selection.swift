@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,26 +41,6 @@ extension NSTextView {
         self.selectedRanges
             .map(\.rangeValue)
             .map { (self.string as NSString).substring(with: $0) }
-    }
-    
-    
-    /// Returns the character just before the given range.
-    final func character(before range: NSRange) -> Unicode.Scalar? {
-        
-        guard range.lowerBound > 0 else { return nil }
-        
-        let index = String.UnicodeScalarIndex(utf16Offset: range.lowerBound - 1, in: self.string)
-        
-        return self.string.unicodeScalars[safe: index]
-    }
-    
-    
-    /// Returns the character just after the given range.
-    final func character(after range: NSRange) -> Unicode.Scalar? {
-        
-        let index = String.UnicodeScalarIndex(utf16Offset: range.upperBound, in: self.string)
-        
-        return self.string.unicodeScalars[safe: index]
     }
     
     
@@ -98,5 +78,28 @@ extension NSTextView {
         self.selectedRange = range
         self.scrollRangeToVisible(range)
         self.window?.makeFirstResponder(self)
+    }
+}
+
+
+extension String {
+    
+    /// Returns the character just before the given range.
+    func character(before range: NSRange) -> Unicode.Scalar? {
+        
+        guard range.lowerBound > 0 else { return nil }
+        
+        let index = String.UnicodeScalarIndex(utf16Offset: range.lowerBound - 1, in: self)
+        
+        return self.unicodeScalars[safe: index]
+    }
+    
+    
+    /// Returns the character just after the given range.
+    func character(after range: NSRange) -> Unicode.Scalar? {
+        
+        let index = String.UnicodeScalarIndex(utf16Offset: range.upperBound, in: self)
+        
+        return self.unicodeScalars[safe: index]
     }
 }
