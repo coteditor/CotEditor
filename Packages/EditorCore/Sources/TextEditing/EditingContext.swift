@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public struct EditingContext: Equatable, Sendable {
     /// - Parameters:
     ///   - strings: The strings to replace with.
     ///   - ranges: The ranges where replace with `strings`.
-    ///   - selectedRanges: The new selected ranges, or `nil` to let the editor set them.
+    ///   - selectedRanges: The new selected ranges after applying the replacements, or `nil` to let the editor set them.
     public init(strings: [String], ranges: [NSRange], selectedRanges: [NSRange]? = nil) {
         
         assert(strings.count == ranges.count)
