@@ -1565,13 +1565,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     /// Validates whether turns the non-contiguous layout on.
     private func invalidateNonContiguousLayout() {
         
-        self.layoutManager?.allowsNonContiguousLayout = if self.layoutOrientation == .vertical {
-            // disable non-contiguous layout on vertical layout (2016-06, OS X 10.11 - macOS 15)
-            // -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
-            false
-        } else {
-            self.string.length > self.minimumNonContiguousLayoutLength
-        }
+        // disable non-contiguous layout on vertical layout (2016-06, OS X 10.11 - macOS 26)
+        // -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
+        self.layoutManager?.allowsNonContiguousLayout = (self.layoutOrientation == .vertical)
+            ? false
+            : self.string.length > self.minimumNonContiguousLayoutLength
     }
     
     
