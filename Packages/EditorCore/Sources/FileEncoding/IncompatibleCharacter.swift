@@ -218,19 +218,19 @@ private extension NSString {
         
         // ensure mid is within bounds
         let clampedMid = min(max(mid, range.location), range.upperBound - 1)
-        let midChar = self.rangeOfComposedCharacterSequence(at: clampedMid)
+        let midRange = self.rangeOfComposedCharacterSequence(at: clampedMid)
         
         // prefer splitting at the start of the composed character that contains mid
-        var split = midChar.location
+        var split = midRange.location
         
         // avoid empty left
         if split <= range.lowerBound {
-            split = midChar.upperBound
+            split = midRange.upperBound
         }
         
         // avoid empty right
         if split >= range.upperBound {
-            split = midChar.lowerBound
+            split = midRange.lowerBound
         }
         
         // if still degenerate, force a 1-code-unit split (should be rare due to composed normalization).
