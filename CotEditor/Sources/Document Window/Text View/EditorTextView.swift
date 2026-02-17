@@ -1527,16 +1527,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         let string = self.string.immutable
         let selectedRange = self.selectedRange
         let task: Task<[NSRange], any Error> = .detached {
-            guard (try! NSRegularExpression(pattern: #"\A\b\w.*\w\b\z"#))
-                .firstMatch(in: string, options: [.withTransparentBounds], range: selectedRange) != nil
-            else { return [] }
-            
-            let substring = (string as NSString).substring(with: selectedRange)
-            let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
-            let regex = try! NSRegularExpression(pattern: pattern)
-            
-            return try regex.cancellableMatches(in: string, range: string.range)
-                .map(\.range)
+            try string.instanceRangesOfWord(at: selectedRange)
                 .filter { $0 != selectedRange }
         }
         let ranges: [NSRange] = try await withTaskCancellationHandler {

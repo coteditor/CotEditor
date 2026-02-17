@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -134,5 +134,28 @@ public extension String {
         }
         
         return ranges.isEmpty ? nil : ranges
+    }
+}
+
+    
+public extension String {
+    
+    /// Returns word-instance ranges that match the word at the given range.
+    ///
+    /// - Parameter range: The word range in the receiver's UTF-16 based `NSRange`.
+    /// - Returns: The ranges of word instances in the receiver, or an empty array if the range is not a word.
+    /// - Throws: A cancellation error if the underlying match operation is cancelled.
+    func instanceRangesOfWord(at range: NSRange) throws -> [NSRange] {
+        
+        guard
+            (try! NSRegularExpression(pattern: #"\A\b\w.*\w\b\z"#))
+                .firstMatch(in: self, options: [.withTransparentBounds], range: range) != nil
+        else { return [] }
+        
+        let substring = (self as NSString).substring(with: range)
+        let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        
+        return try regex.cancellableMatches(in: self, range: self.range).map(\.range)
     }
 }

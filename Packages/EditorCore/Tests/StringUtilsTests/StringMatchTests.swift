@@ -130,4 +130,40 @@ struct StringMatchTests {
         #expect(attributed.inlinePresentationIntent == nil)
         #expect(attributed.runs.allSatisfy { $0.inlinePresentationIntent == nil })
     }
+    
+    
+    @Test func instanceRangesOfWord() throws {
+        
+        let string = "dog cow dog dogcow"
+        let nsString = string as NSString
+        
+        let first = nsString.range(of: "dog")
+        let ranges = try string.instanceRangesOfWord(at: first)
+        
+        #expect(ranges == [
+            NSRange(location: 0, length: 3),
+            NSRange(location: 8, length: 3),
+        ])
+        
+        let nonWord = NSRange(location: 0, length: 4)
+        #expect(try string.instanceRangesOfWord(at: nonWord).isEmpty)
+        
+        let insideWord = NSRange(location: 12, length: 3)
+        #expect(try string.instanceRangesOfWord(at: insideWord).isEmpty)
+    }
+    
+    
+    @Test func instanceRangesOfWordCancellation() async throws {
+        
+        let string = String(repeating: "aa ", count: 50_000_000)
+        let range = NSRange(location: 0, length: 2)
+        
+        let task = Task {
+            _ = try string.instanceRangesOfWord(at: range)
+        }
+        await Task.yield()
+        task.cancel()
+        
+        await #expect(throws: CancellationError.self) { try await task.value }
+    }
 }
