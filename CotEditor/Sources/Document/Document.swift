@@ -148,6 +148,10 @@ extension NSTextView: EditorCounter.Source { }
         
         super.init()
         
+        if let syntaxFileExtension, let type = UTType(filenameExtension: syntaxFileExtension) {
+            self.fileType = type.identifier
+        }
+        
         self.counter.source = { [weak self] in self?.textView }
         
         self.defaultObservers = [
@@ -315,6 +319,8 @@ extension NSTextView: EditorCounter.Source { }
     
     
     override nonisolated func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
+        
+        // -> This API is currently used only for autosave and saving via script (2026-02, macOS 26.2)
         
         if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
             return pathExtension
@@ -566,14 +572,18 @@ extension NSTextView: EditorCounter.Source { }
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
         savePanel.allowsOtherFileTypes = true
-        savePanel.allowedContentTypes = self.fileType
-            .flatMap { self.fileNameExtension(forType: $0, saveOperation: .saveOperation) }
-            .flatMap { UTType(filenameExtension: $0) }
-            .map { [$0] } ?? []
         
-        // avoid the Hide Extension option removes actual filename extension (2024-05, macOS 14)
-        savePanel.canSelectHiddenExtension = false
-        savePanel.isExtensionHidden = false
+        // -> At least in macOS 26.2, the default filename is already set
+        if #unavailable(macOS 26.2) {
+            savePanel.allowedContentTypes = self.fileType
+                .flatMap { self.fileNameExtension(forType: $0, saveOperation: .saveOperation) }
+                .flatMap { UTType(filenameExtension: $0) }
+                .map { [$0] } ?? []
+            
+            // avoid the Hide Extension option removes actual filename extension (2024-05, macOS 14)
+            savePanel.canSelectHiddenExtension = false
+            savePanel.isExtensionHidden = false
+        }
         
         // set accessory view
         let saveOptions = SaveOptions(isExecutable: self.isExecutable)
@@ -586,8 +596,10 @@ extension NSTextView: EditorCounter.Source { }
         // let save panel accept any file extension
         // -> Otherwise, the file extension for `.allowedContentTypes` is automatically added
         //    even when the user specifies another one (2023-09, macOS 14).
-        DispatchQueue.main.async { [weak savePanel] in
-            savePanel?.allowedContentTypes = []
+        if #unavailable(macOS 26.2) {
+            DispatchQueue.main.async { [weak savePanel] in
+                savePanel?.allowedContentTypes = []
+            }
         }
         
         return true
@@ -1088,6 +1100,11 @@ extension NSTextView: EditorCounter.Source { }
         self.syntaxFileExtension = syntax.fileMap.extensions?.first
         self.syntaxController.update(syntax: syntax, name: name)
         self.syntaxName = name
+        
+        // keep fileType in sync with the selected syntax so the Save panel suggests the right extension
+        // (2026-02, macOS 26.2)
+        let type = self.syntaxFileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
+        self.fileType = type.identifier
         
         self.invalidateMode()
         self.invalidateRestorableState()
