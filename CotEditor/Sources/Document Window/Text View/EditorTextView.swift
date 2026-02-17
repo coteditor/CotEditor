@@ -589,29 +589,29 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
             .map { range in
-                guard
-                    let indentRange = self.string.rangeOfIndent(at: range.location),
-                    !indentRange.isEmpty,
-                    let autoIndentRange = indentRange.intersection(NSRange(location: 0, length: range.location))
-                else { return (range, "", 0) }
-                
-                var indent = (self.string as NSString).substring(with: autoIndentRange)
+                let baseIndent = if let indentRange = self.string.rangeOfIndent(at: range.location) {
+                    (self.string as NSString).substring(with: NSRange(indentRange.lowerBound..<min(range.location, indentRange.upperBound)))
+                } else {
+                    ""
+                }
+                var indent = baseIndent
                 var insertion = indent.count
                 
                 // smart indent
-                let lastCharacter = self.character(before: range)
-                let nextCharacter = self.character(after: range)
-                let indentBase = indent
-                
-                // increase indent level
-                if lastCharacter == ":" || lastCharacter == "{" {
-                    indent += tab
-                    insertion += tab.count
-                }
-                
-                // expand block
-                if lastCharacter == "{", nextCharacter == "}" {
-                    indent += self.lineEnding.string + indentBase
+                if let lastCharacter = self.character(before: range) {
+                    let nextCharacter = self.character(after: range)
+                    let indentBase = indent
+                    
+                    // increase indent level
+                    if lastCharacter == ":" || lastCharacter == "{" {
+                        indent += tab
+                        insertion += tab.count
+                    }
+                    
+                    // expand block
+                    if lastCharacter == "{", nextCharacter == "}" {
+                        indent += self.lineEnding.string + indentBase
+                    }
                 }
                 
                 return (range, indent, insertion)
@@ -621,17 +621,20 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange)
         
         // auto indent
-        var locations: [Int] = []
-        var offset = 0
-        for (range, indent, insertion) in indents {
-            let location = range.lowerBound + self.lineEnding.length + offset
-            
-            super.insertText(indent, replacementRange: NSRange(location: location, length: 0))
-            
-            offset += -range.length + self.lineEnding.length + indent.count
-            locations.append(location + insertion)
+        if indents.contains(where: { !$0.indent.isEmpty }) {
+            var newSelectedRanges: [NSRange] = []
+            var offset = 0
+            for (range, indent, insertion) in indents {
+                let location = range.lowerBound + self.lineEnding.length + offset
+                
+                if !indent.isEmpty {
+                    super.insertText(indent, replacementRange: NSRange(location: location, length: 0))
+                }
+                offset += -range.length + self.lineEnding.length + indent.count
+                newSelectedRanges.append(NSRange(location: location + insertion, length: 0))
+            }
+            self.setSelectedRangesWithUndo(newSelectedRanges)
         }
-        self.setSelectedRangesWithUndo(locations.map { NSRange(location: $0, length: 0) })
     }
     
     
