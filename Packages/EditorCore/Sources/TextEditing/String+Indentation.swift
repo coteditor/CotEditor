@@ -167,6 +167,38 @@ public extension String {
         
         return EditingContext(strings: replacementStrings, ranges: replacementRanges)
     }
+    
+    
+    /// Returns how many indent levels should be reduced when inserting a closing token.
+    ///
+    /// - Parameters:
+    ///   - string: The inserted string to evaluate.
+    ///   - indentWidth: The number of characters for the indentation.
+    ///   - range: The insertion range in the receiver.
+    /// - Returns: The number of indent levels to reduce.
+    func smartOutdentLevel(with string: String, indentWidth: Int, in range: NSRange) -> Int {
+        
+        assert(indentWidth > 0)
+        
+        let outdentPairs = [BracePair("{", "}")]
+        
+        guard let pair = outdentPairs.first(where: { String($0.end) == string }) else { return 0 }
+        
+        let insertionIndex = String.Index(utf16Offset: range.upperBound, in: self)
+        let lineRange = self.lineRange(at: insertionIndex)
+        
+        // decrease indent level if the line is consists of only whitespace
+        guard
+            self[lineRange].starts(with: /[ \t]+\R?$/),
+            let precedingIndex = self.indexOfBracePair(endIndex: insertionIndex, pair: pair)
+        else { return 0 }
+        
+        let desiredLevel = self.indentLevel(at: precedingIndex, tabWidth: indentWidth)
+        let currentLevel = self.indentLevel(at: insertionIndex, tabWidth: indentWidth)
+        let levelToReduce = currentLevel - desiredLevel
+        
+        return max(levelToReduce, 0)
+    }
 }
 
     
@@ -219,7 +251,7 @@ public extension String {
     ///   - indentStyle: The desired indentation style.
     ///   - tabWidth: The number of spaces that represent one tab stop.
     /// - Returns: A new string with standardized indentation.
-    func standardizingIndent(to indentStyle: IndentStyle, tabWidth: Int) -> String {
+    internal func standardizingIndent(to indentStyle: IndentStyle, tabWidth: Int) -> String {
         
         let spaces = String(repeating: " ", count: tabWidth)
         
@@ -240,7 +272,7 @@ public extension String {
     ///   - index: A character index within the string.
     ///   - tabWidth: The number of spaces that represent one tab stop.
     /// - Returns: The number of indent levels.
-    func indentLevel(at index: String.Index, tabWidth: Int) -> Int {
+    internal func indentLevel(at index: String.Index, tabWidth: Int) -> Int {
         
         assert(tabWidth > 0)
         

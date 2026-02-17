@@ -503,26 +503,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             }
         }
         
-        // smart outdent with '}'
-        if self.isAutomaticIndentEnabled, replacementRange.isEmpty,
-           plainString == "}"
-        {
-            let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
-            let lineRange = self.string.lineRange(at: insertionIndex)
-            
-            // decrease indent level if the line is consists of only whitespace
-            if self.string[lineRange].starts(with: /[ \t]+\R?$/),
-               let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}"))
-            {
-                let desiredLevel = self.string.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
-                let currentLevel = self.string.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
-                let levelToReduce = currentLevel - desiredLevel
-                
-                if levelToReduce > 0 {
-                    for _ in 0..<levelToReduce {
-                        self.deleteBackward(nil)
-                    }
-                }
+        // smart outdent with a certain symbol
+        if self.isAutomaticIndentEnabled, replacementRange.isEmpty {
+            let levelToReduce = self.string.smartOutdentLevel(with: plainString, indentWidth: self.tabWidth, in: self.rangeForUserTextChange)
+            for _ in 0..<levelToReduce {
+                self.deleteBackward(nil)
             }
         }
         
