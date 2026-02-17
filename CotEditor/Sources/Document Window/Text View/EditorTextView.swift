@@ -549,12 +549,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         // insert a soft tab
-        if self.isAutomaticTabExpansionEnabled {
-            let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
-            let softTabs = insertionRanges
-                .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
-            
-            self.replace(with: softTabs, ranges: insertionRanges, selectedRanges: nil)
+        if self.isAutomaticTabExpansionEnabled,
+           let ranges = self.rangesForUserTextChange?.map(\.rangeValue)
+        {
+            let softTabs = ranges.map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
+            self.replace(with: softTabs, ranges: ranges, selectedRanges: nil)
             return
         }
         
