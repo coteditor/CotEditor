@@ -168,17 +168,14 @@ public extension String {
     
     /// Computes auto-indentation strings and insertion positions for newline insertion.
     ///
-    /// - Note:
-    /// This calculation is expected to be performed before the actual newline insertion and
-    /// returns results intended to be applied after the newline insertion.
+    /// - Note: Ranges without a line ending immediately before them are ignored.
     ///
     /// - Parameters:
     ///   - style: The indentation style to apply.
     ///   - indentWidth: The number of characters for the indentation.
-    ///   - lineEnding: The line ending string to insert.
     ///   - selectedRanges: The selection in the editor.
     /// - Returns: An `EditingContext` that inserts line endings and indentation, or `nil` if no indentation is required.
-    func smartIndent(style: IndentStyle, indentWidth: Int, lineEnding: String, in selectedRanges: [NSRange]) -> EditingContext? {
+    func smartIndent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
         
         assert(indentWidth > 0)
         
@@ -195,8 +192,16 @@ public extension String {
         var offset = 0
         
         for selectedRange in selectedRanges {
-            let baseIndent = if let indentRange = self.rangeOfIndent(at: selectedRange.location) {
-                string.substring(with: NSRange(indentRange.lowerBound..<min(selectedRange.location, indentRange.upperBound)))
+            guard let lineEnding = self.lineEndingString(before: selectedRange.location) else {
+                let range = NSRange(location: selectedRange.lowerBound + offset, length: 0)
+                newSelectedRanges.append(range)
+                assertionFailure()
+                continue
+            }
+            
+            let lastLocation = selectedRange.location - lineEnding.length
+            let baseIndent = if let indentRange = self.rangeOfIndent(at: lastLocation) {
+                string.substring(with: indentRange)
             } else {
                 ""
             }
@@ -204,8 +209,8 @@ public extension String {
             var cursorMove = baseIndent.count
             
             // smart indent
-            if let lastCharacter = string.character(before: selectedRange) {
-                if let nextCharacter = string.character(after: selectedRange),
+            if let lastCharacter = string.character(before: lastLocation) {
+                if let nextCharacter = string.character(after: selectedRange.upperBound),
                    expandPairs.contains(where: { $0.begin == lastCharacter && $0.end == nextCharacter })
                 {
                     indent += tab + lineEnding + baseIndent
@@ -218,14 +223,14 @@ public extension String {
             }
             
             // calculate insertion
-            let range = NSRange(location: selectedRange.lowerBound + lineEnding.length + offset, length: 0)
+            let range = NSRange(location: selectedRange.lowerBound, length: 0)
             if !indent.isEmpty {
                 indents.append(indent)
                 replacementRanges.append(range)
             }
-            newSelectedRanges.append(range.shifted(by: cursorMove))
+            newSelectedRanges.append(range.shifted(by: cursorMove + offset))
             
-            offset += -selectedRange.length + lineEnding.length + indent.length
+            offset += indent.length
         }
         
         guard !indents.isEmpty else { return nil }
@@ -448,12 +453,36 @@ public extension String {
 
 private extension NSString {
     
+    /// Returns the line ending string immediately before the given character index.
+    ///
+    /// - Parameter location: The UTF-16 location just after the line ending.
+    /// - Returns: The line ending string, or `nil` if not found.
+    func lineEndingString(before location: Int) -> String? {
+        
+        guard location > 0 else { return nil }
+        
+        let character = self.character(at: location - 1)
+        
+        return switch character {
+            case 0xA:
+                (location >= 2 && self.character(at: location - 2) == 0xD) ? "\r\n" : "\n"
+            case 0xD, 0x85, 0x2028, 0x2029:
+                UnicodeScalar(character).map(String.init)
+            default:
+                nil
+        }
+    }
+    
+    
     /// Returns the character just before the given range.
-    func character(before range: NSRange) -> String? {
+    ///
+    /// - Parameter location: The UTF-16 location just after the target character.
+    /// - Returns: The character string, or `nil` if not found.
+    func character(before location: Int) -> String? {
         
-        guard range.lowerBound > 0 else { return nil }
+        guard location > 0 else { return nil }
         
-        let index = self.index(before: range.lowerBound)
+        let index = self.index(before: location)
         let characterRange = self.rangeOfComposedCharacterSequence(at: index)
         
         return self.substring(with: characterRange)
@@ -461,11 +490,14 @@ private extension NSString {
     
     
     /// Returns the character just after the given range.
-    func character(after range: NSRange) -> String? {
+    ///
+    /// - Parameter location: The UTF-16 location just before the target character.
+    /// - Returns: The character string, or `nil` if not found.
+    func character(after location: Int) -> String? {
         
-        guard range.upperBound < self.length else { return nil }
+        guard location < self.length else { return nil }
         
-        let characterRange = self.rangeOfComposedCharacterSequence(at: range.upperBound)
+        let characterRange = self.rangeOfComposedCharacterSequence(at: location)
         
         return self.substring(with: characterRange)
     }

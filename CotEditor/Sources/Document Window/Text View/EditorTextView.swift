@@ -563,17 +563,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         guard self.isEditable else { return super.insertNewline(sender) }
         
-        // calculate auto indentation before editing
-        let textEditing: EditingContext? = if self.isAutomaticIndentEnabled, let ranges = self.rangesForUserTextChange {
-            self.string.smartIndent(style: self.indentStyle, indentWidth: self.tabWidth, lineEnding: self.lineEnding.string, in: ranges.map(\.rangeValue))
-        } else { nil }
-        
         // insert newline
         self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange)
         
         // apply auto indentation
-        if let textEditing {
-            self.edit(with: textEditing)
+        if self.isAutomaticIndentEnabled {
+            self.smartIndent()
         }
     }
     

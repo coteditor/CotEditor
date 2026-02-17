@@ -104,22 +104,20 @@ struct StringIndentationTests {
     
     @Test func smartIndent() throws {
         
-        let lineEnding = "\n"
-        
         do {
             // no indent
-            let string = "foo"
-            let range = NSRange(location: 3, length: 0)
-            let context = string.smartIndent(style: .space, indentWidth: 2, lineEnding: lineEnding, in: [range])
+            let string = "foo\n"
+            let range = NSRange(location: 4, length: 0)
+            let context = string.smartIndent(style: .space, indentWidth: 2, in: [range])
             
             #expect(context == nil)
         }
         
         do {
             // normal indentation at the same level
-            let string = "    foo"
-            let range = NSRange(location: 7, length: 0)
-            let context = try #require(string.smartIndent(style: .space, indentWidth: 2, lineEnding: lineEnding, in: [range]))
+            let string = "    foo\n"
+            let range = NSRange(location: 8, length: 0)
+            let context = try #require(string.smartIndent(style: .space, indentWidth: 2, in: [range]))
             
             #expect(context.strings == ["    "])
             #expect(context.ranges == [NSRange(location: 8, length: 0)])
@@ -128,9 +126,9 @@ struct StringIndentationTests {
         
         do {
             // increasing the level with `:`
-            let string = "    if foo:"
-            let range = NSRange(location: 11, length: 0)
-            let context = try #require(string.smartIndent(style: .space, indentWidth: 2, lineEnding: lineEnding, in: [range]))
+            let string = "    if foo:\n"
+            let range = NSRange(location: 12, length: 0)
+            let context = try #require(string.smartIndent(style: .space, indentWidth: 2, in: [range]))
             
             #expect(context.strings == ["      "])
             #expect(context.ranges == [NSRange(location: 12, length: 0)])
@@ -139,9 +137,9 @@ struct StringIndentationTests {
         
         do {
             // increasing the level with `{` and `}`
-            let string = "    {}"
-            let range = NSRange(location: 5, length: 0)
-            let context = try #require(string.smartIndent(style: .space, indentWidth: 2, lineEnding: lineEnding, in: [range]))
+            let string = "    {\n}"
+            let range = NSRange(location: 6, length: 0)
+            let context = try #require(string.smartIndent(style: .space, indentWidth: 2, in: [range]))
             
             #expect(context.strings == ["      \n    "])
             #expect(context.ranges == [NSRange(location: 6, length: 0)])

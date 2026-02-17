@@ -96,7 +96,7 @@ extension EditorTextView: Indenting {
 
 extension Indenting {
     
-    var indentStyle: IndentStyle  { self.isAutomaticTabExpansionEnabled ? .space : .tab }
+    private var indentStyle: IndentStyle  { self.isAutomaticTabExpansionEnabled ? .space : .tab }
     
     
     /// Increases indent level of the selected ranges.
@@ -120,6 +120,19 @@ extension Indenting {
             self.tabWidth > 0,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
             let textEditing = self.string.outdent(style: self.indentStyle, indentWidth: self.tabWidth, in: selectedRanges)
+        else { return false }
+        
+        return self.edit(with: textEditing)
+    }
+    
+    
+    /// Applies automatic indentation smartly.
+    @discardableResult func smartIndent() -> Bool {
+        
+        guard
+            self.tabWidth > 0,
+            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
+            let textEditing = self.string.smartIndent(style: self.indentStyle, indentWidth: self.tabWidth, in: selectedRanges)
         else { return false }
         
         return self.edit(with: textEditing)
