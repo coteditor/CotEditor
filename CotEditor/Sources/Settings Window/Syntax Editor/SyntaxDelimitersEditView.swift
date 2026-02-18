@@ -31,6 +31,7 @@ struct SyntaxDelimitersEditView: View {
     
     @Binding var inlineComments: [SyntaxObject.InlineComment]
     @Binding var blockComments: [SyntaxObject.BlockComment]
+    @Binding var indentations: [SyntaxObject.BlockIndent]
     @Binding var lexicalRules: Syntax.LexicalRules
     
     var canCustomizeHighlight: Bool = true
@@ -65,6 +66,20 @@ struct SyntaxDelimitersEditView: View {
                         .controlSize(.small)
                         .padding(.top, 2)
                 }
+            }
+            .padding(.bottom)
+            
+            VStack(alignment: .leading) {
+                Text("Indentations", tableName: "SyntaxEditor")
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 2)
+                
+                Text("Block delimiters:", tableName: "SyntaxEditor", comment: "label")
+                    .accessibilityAddTraits(.isHeader)
+                BlockEditView(items: $indentations)
+                Text("The block delimiters are used for automatic indentation while typing.", tableName: "SyntaxEditor")
+                    .controlSize(.small)
+                    .padding(.top, 2)
             }
             .padding(.bottom)
             
@@ -161,6 +176,39 @@ private struct BlockCommentsEditView: View {
 }
 
 
+// MARK: - Indentations
+
+private struct BlockEditView: View {
+    
+    typealias Item = SyntaxObject.BlockIndent
+    
+    @Binding var items: [Item]
+    
+    @State private var selection: Set<Item.ID> = []
+    @FocusState private var focusedField: Item.ID?
+    
+    
+    var body: some View {
+        
+        Table($items, selection: $selection) {
+            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.begin, label: EmptyView.init)
+            }
+            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.end, label: EmptyView.init)
+            }
+        }
+        .tableStyle(.bordered)
+        .border(Color(nsColor: .gridColor))
+        .frame(minHeight: 80, maxHeight: 120)
+        
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
+        }
+    }
+}
+
+
 // MARK: - Localizations
 
 private extension DelimiterEscapeRule {
@@ -186,8 +234,9 @@ private extension DelimiterEscapeRule {
 #Preview {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: Pair("/*", "*/"))]
+    @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: Pair("{", "}"))]
     @Previewable @State var rules: Syntax.LexicalRules = .default
     
-    SyntaxDelimitersEditView(inlineComments: $inlineComments, blockComments: $blockComments, lexicalRules: $rules)
+    SyntaxDelimitersEditView(inlineComments: $inlineComments, blockComments: $blockComments, indentations: $indentations, lexicalRules: $rules)
         .padding()
 }

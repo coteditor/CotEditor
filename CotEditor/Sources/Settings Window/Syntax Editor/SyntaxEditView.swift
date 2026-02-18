@@ -169,7 +169,7 @@ struct SyntaxEditView: View {
             self.errors = self.syntax.value.validate()
         }
         .alert(error: $error)
-        .frame(minWidth: 400, idealWidth: 740, minHeight: 525, idealHeight: 525)
+        .frame(minWidth: 400, idealWidth: 740, minHeight: 620, idealHeight: 620)
         .presentationSizing(.fitted)
     }
     
@@ -183,6 +183,7 @@ struct SyntaxEditView: View {
                 SyntaxDelimitersEditView(
                     inlineComments: $syntax.inlineComments,
                     blockComments: $syntax.blockComments,
+                    indentations: $syntax.indentations,
                     lexicalRules: $syntax.lexicalRules,
                     canCustomizeHighlight: self.customizableFeatures.contains(.highlight)
                 )
