@@ -34,9 +34,40 @@ struct StringIndentationTests {
     
     @Test func detectIndentStyle() {
         
-        let string = "\t\tfoo\tbar"
+        #expect("\t\tfoo\tbar".detectedIndentStyle == nil)
         
-        #expect(string.detectedIndentStyle == nil)
+        #expect("""
+                \tfoo
+                \tbar
+                \tbaz
+                """.detectedIndentStyle == .tab)
+        
+        #expect("""
+                  foo
+                  bar
+                  baz
+                """.detectedIndentStyle == .space)
+        
+        #expect("""
+                \tfoo
+                  bar
+                """.detectedIndentStyle == nil)
+        
+        #expect("""
+                \tfoo
+                  bar
+                \tbaz
+                  qux
+                """.detectedIndentStyle == nil)
+        
+        #expect("""
+                \tfoo
+                  bar
+                \tbaz
+                  qux
+                  baz
+                \tqux
+                """.detectedIndentStyle == nil)
     }
     
     
