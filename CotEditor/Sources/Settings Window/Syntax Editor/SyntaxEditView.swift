@@ -122,7 +122,7 @@ struct SyntaxEditView: View {
                 HStack(alignment: .firstTextBaseline) {
                     if self.isBundled {
                         Text(self.name)
-                            .fontWeight(.medium)
+                            .fontWeight(.semibold)
                             .help(String(localized: "Built-in syntaxes can’t be renamed.", table: "SyntaxEditor",
                                          comment: "tooltip for name field for bundled syntax"))
                     } else {
@@ -180,11 +180,14 @@ struct SyntaxEditView: View {
             case .fileMapping:
                 SyntaxFileMappingEditView(extensions: $syntax.extensions, filenames: $syntax.filenames, interpreters: $syntax.interpreters)
             case .commentDelimiters:
-                SyntaxCommentEditView(inlineComments: $syntax.inlineComments, blockComments: $syntax.blockComments)
+                SyntaxCommentEditView(inlineComments: $syntax.inlineComments,
+                                      blockComments: $syntax.blockComments,
+                                      canCustomizeHighlight: self.canCustomizeHighlight)
             case .outline:
                 SyntaxOutlineEditView(items: $syntax.outlines)
             case .completion:
-                SyntaxCompletionEditView(items: $syntax.completions)
+                SyntaxCompletionEditView(items: $syntax.completions,
+                                         canCustomizeHighlight: self.canCustomizeHighlight)
                 
             case .keywords:
                 SyntaxHighlightEditView(items: $syntax.highlights.keywords)

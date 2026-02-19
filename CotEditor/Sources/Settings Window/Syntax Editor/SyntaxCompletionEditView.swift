@@ -33,6 +33,8 @@ struct SyntaxCompletionEditView: View {
     
     @Binding var items: [Item]
     
+    var canCustomizeHighlight: Bool = true
+    
     @State private var selection: Set<Item.ID> = []
     @State private var sortOrder: [KeyPathComparator<Item>] = []
     @FocusState private var focusedField: Item.ID?
@@ -94,8 +96,11 @@ struct SyntaxCompletionEditView: View {
                     .controlSize(.small)
             }
             
-            Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
-                .foregroundStyle(.secondary)
+            if self.canCustomizeHighlight {
+                Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
+                    .controlSize(.small)
+                    .padding(.top, 4)
+            }
             
             HStack {
                 Spacer()

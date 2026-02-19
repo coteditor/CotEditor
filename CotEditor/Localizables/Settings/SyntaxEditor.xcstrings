@@ -5008,149 +5008,103 @@
         }
       }
     },
-    "The first delimiter is used for commenting out." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Das erste Trennzeichen wird zum Auskommentieren verwendet."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The first delimiter is used for commenting out."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "El primer delimitador se usa para comentar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Le premier symbole est utilisé pour commenter."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最初の記号がコメントアウトに使われます。"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Het eerste scheidingsteken wordt gebruikt om commentaar te maken."
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "第一個分隔符號用於註解。"
-          }
-        }
-      }
-    },
-    "The interpreters are used to determine the syntax from the #! header in the document." : {
+    "The interpreters are used to determine the syntax from the `#!` header in the document." : {
       "comment" : "description",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interpretery se používají k určení syntaxe z hlavičky #! v dokumentu."
+            "value" : "Interpretery se používají k určení syntaxe z hlavičky `#!` v dokumentu."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Interpreter werden benutzt, um die Syntax vom #!-Header im Dokument zu bestimmen."
+            "value" : "Die Interpreter werden benutzt, um die Syntax vom `#!`-Header im Dokument zu bestimmen."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The interpreters are used to determine the syntax from the #! header in the document."
+            "value" : "The interpreters are used to determine the syntax from the `#!` header in the document."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del encabezado #! en el documento."
+            "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del encabezado `#!` en el documento."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir du en-tête #! du document."
+            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir du en-tête `#!` du document."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gli interpreti sono usati per determinare la sintassi in base all'intestazione #! header del documento."
+            "value" : "Gli interpreti sono usati per determinare la sintassi in base all'intestazione `#!` header del documento."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "インタープリタは書類内の#!ヘッダからシンタックスを特定するときに使用されます。"
+            "value" : "インタープリタは書類内の`#!`ヘッダからシンタックスを特定するときに使用されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "인터프리터는 문서의 #! 헤더에서 구문을 판별하는 데 사용됩니다."
+            "value" : "인터프리터는 문서의 `#!` 헤더에서 구문을 판별하는 데 사용됩니다."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "De interpreters worden gebruikt om de syntaxis te bepalen uit de #!-koptekst in het document."
+            "value" : "De interpreters worden gebruikt om de syntaxis te bepalen uit de `#!`-koptekst in het document."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interpretery są wykorzystywane do wykrycia składni na podstawie nagłówka #! w dokumencie."
+            "value" : "Interpretery są wykorzystywane do wykrycia składni na podstawie nagłówka `#!` w dokumencie."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Os interpretadores são usados para determinar o estilo da sintaxe a partir do cabeçalho #! do documento."
+            "value" : "Os interpretadores são usados para determinar o estilo da sintaxe a partir do cabeçalho `#!` do documento."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Интерпретаторы используются для определения синтаксиса из заголовка #! в документе."
+            "value" : "Интерпретаторы используются для определения синтаксиса из заголовка `#!` в документе."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yorumlayıcılar, belgedeki #! üstbilgisinden sözdizimi belirlemek için kullanılır."
+            "value" : "Yorumlayıcılar, belgedeki `#!` üstbilgisinden sözdizimi belirlemek için kullanılır."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解释器被用于根据文档中的“#!”标头判断语法。"
+            "value" : "解释器被用于根据文档中的“`#!`”标头判断语法。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解譯器用於根據文件中#!標頭確定文法。"
+            "value" : "解譯器用於根據文件中`#!`標頭確定文法。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解譯器用於在文件中透過「#!」確定語法的標頭。"
+            "value" : "解譯器用於在文件中透過「`#!`」確定語法的標頭。"
           }
         }
       }

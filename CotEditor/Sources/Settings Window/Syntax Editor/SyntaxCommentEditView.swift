@@ -32,6 +32,8 @@ struct SyntaxCommentEditView: View {
     @Binding var inlineComments: [SyntaxObject.InlineComment]
     @Binding var blockComments: [SyntaxObject.BlockComment]
     
+    var canCustomizeHighlight: Bool = true
+    
     
     // MARK: View
     
@@ -56,11 +58,10 @@ struct SyntaxCommentEditView: View {
             .frame(maxHeight: 180)
             .padding(.bottom, 10)
             
-            VStack(alignment: .leading) {
-                Text("The first delimiter is used for commenting out.", tableName: "SyntaxEditor")
+            if self.canCustomizeHighlight {
                 Text("The comment delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
+                    .controlSize(.small)
             }
-            .foregroundColor(.secondary)
             
             Spacer()
             
