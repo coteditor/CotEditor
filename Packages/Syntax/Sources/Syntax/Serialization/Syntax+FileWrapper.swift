@@ -34,6 +34,7 @@ public import Foundation
 /// Swift.cotsyntax/
 /// ├─ Info.json
 /// ├─ Edit.json
+/// ├─ Completion.json
 /// └─ Regex/
 ///     ├─ Highlights.json
 ///     └─ Outlines.json
@@ -51,7 +52,6 @@ extension Syntax {
     struct Edit: Equatable, Sendable, Codable {
         
         var comment: Comment?
-        var completions: [CompletionWord]?
     }
     
     
@@ -59,6 +59,7 @@ extension Syntax {
         
         static let info = "Info.json"
         static let edit = "Edit.json"
+        static let completion = "Completion.json"
         
         static let regex = "Regex"
         static let highlights = "Highlights.json"
@@ -87,7 +88,9 @@ extension Syntax {
         let edit = try fileWrapper.fileWrappers?[Filename.edit]?.regularFileContents
             .map { try decoder.decode(Edit.self, from: $0) }
         self.commentDelimiters = edit?.comment ?? .init()
-        self.completions = edit?.completions ?? []
+        
+        self.completions = try fileWrapper.fileWrappers?[Filename.completion]?.regularFileContents
+            .map { try decoder.decode([CompletionWord].self, from: $0) } ?? []
         
         // load regex-based definition
         if let wrapper = fileWrapper.fileWrappers?[Filename.regex] {
@@ -115,11 +118,15 @@ extension Syntax {
             let infoData = try encoder.encode(info)
             fileWrapper.addRegularFile(withContents: infoData, preferredFilename: Filename.info)
             
-            if !self.commentDelimiters.isEmpty || !self.completions.isEmpty {
-                let edit = Edit(comment: self.commentDelimiters,
-                                completions: self.completions.isEmpty ? nil : self.completions)
+            if !self.commentDelimiters.isEmpty {
+                let edit = Edit(comment: self.commentDelimiters)
                 let data = try encoder.encode(edit)
                 fileWrapper.addRegularFile(withContents: data, preferredFilename: Filename.edit)
+            }
+            
+            if !self.completions.isEmpty {
+                let data = try encoder.encode(self.completions)
+                fileWrapper.addRegularFile(withContents: data, preferredFilename: Filename.completion)
             }
             
             if !self.highlights.flatMap(\.value).isEmpty || !self.outlines.isEmpty {

@@ -1,0 +1,3510 @@
+[
+  {
+    "text" : "!important",
+    "type" : "types"
+  },
+  {
+    "text" : "@-moz-keyframes",
+    "type" : "commands"
+  },
+  {
+    "text" : "@-o-keyframes",
+    "type" : "commands"
+  },
+  {
+    "text" : "@-webkit-keyframes",
+    "type" : "commands"
+  },
+  {
+    "text" : "@charset",
+    "type" : "commands"
+  },
+  {
+    "text" : "@color-profile",
+    "type" : "commands"
+  },
+  {
+    "text" : "@counter-style",
+    "type" : "commands"
+  },
+  {
+    "text" : "@document",
+    "type" : "commands"
+  },
+  {
+    "text" : "@font-face",
+    "type" : "commands"
+  },
+  {
+    "text" : "@font-feature-values",
+    "type" : "commands"
+  },
+  {
+    "text" : "@import",
+    "type" : "commands"
+  },
+  {
+    "text" : "@keyframes",
+    "type" : "commands"
+  },
+  {
+    "text" : "@media",
+    "type" : "commands"
+  },
+  {
+    "text" : "@namespace",
+    "type" : "commands"
+  },
+  {
+    "text" : "@page",
+    "type" : "commands"
+  },
+  {
+    "text" : "@phonetic-alphabet",
+    "type" : "commands"
+  },
+  {
+    "text" : "@supports",
+    "type" : "commands"
+  },
+  {
+    "text" : "absolute",
+    "type" : "values"
+  },
+  {
+    "text" : "accent-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "accumulate",
+    "type" : "values"
+  },
+  {
+    "text" : "add",
+    "type" : "values"
+  },
+  {
+    "text" : "aliceblue",
+    "type" : "values"
+  },
+  {
+    "text" : "align-content",
+    "type" : "keywords"
+  },
+  {
+    "text" : "align-items",
+    "type" : "keywords"
+  },
+  {
+    "text" : "align-self",
+    "type" : "keywords"
+  },
+  {
+    "text" : "all",
+    "type" : "keywords"
+  },
+  {
+    "text" : "all-petite-caps",
+    "type" : "values"
+  },
+  {
+    "text" : "all-small-caps",
+    "type" : "values"
+  },
+  {
+    "text" : "allow-end",
+    "type" : "values"
+  },
+  {
+    "text" : "alternate",
+    "type" : "values"
+  },
+  {
+    "text" : "always",
+    "type" : "values"
+  },
+  {
+    "text" : "animation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-composition",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-delay",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-direction",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-duration",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-fill-mode",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-iteration-count",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-name",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-play-state",
+    "type" : "keywords"
+  },
+  {
+    "text" : "animation-timing-function",
+    "type" : "keywords"
+  },
+  {
+    "text" : "annotation",
+    "type" : "values"
+  },
+  {
+    "text" : "antialiased",
+    "type" : "values"
+  },
+  {
+    "text" : "antiquewhite",
+    "type" : "values"
+  },
+  {
+    "text" : "any",
+    "type" : "values"
+  },
+  {
+    "text" : "appearance",
+    "type" : "keywords"
+  },
+  {
+    "text" : "aqua",
+    "type" : "values"
+  },
+  {
+    "text" : "aquamarine",
+    "type" : "values"
+  },
+  {
+    "text" : "armenian",
+    "type" : "values"
+  },
+  {
+    "text" : "aspect-ratio",
+    "type" : "keywords"
+  },
+  {
+    "text" : "auto",
+    "type" : "values"
+  },
+  {
+    "text" : "avoid",
+    "type" : "values"
+  },
+  {
+    "text" : "avoid-column",
+    "type" : "values"
+  },
+  {
+    "text" : "avoid-page",
+    "type" : "values"
+  },
+  {
+    "text" : "avoid-region",
+    "type" : "values"
+  },
+  {
+    "text" : "azure",
+    "type" : "values"
+  },
+  {
+    "text" : "backface-visibility",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-attachment",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-blend-mode",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-clip",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-image",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-origin",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-repeat",
+    "type" : "keywords"
+  },
+  {
+    "text" : "background-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "backwards",
+    "type" : "values"
+  },
+  {
+    "text" : "balance",
+    "type" : "values"
+  },
+  {
+    "text" : "baseline",
+    "type" : "values"
+  },
+  {
+    "text" : "beige",
+    "type" : "values"
+  },
+  {
+    "text" : "bidi-override",
+    "type" : "values"
+  },
+  {
+    "text" : "bisque",
+    "type" : "values"
+  },
+  {
+    "text" : "black",
+    "type" : "values"
+  },
+  {
+    "text" : "blanchedalmond",
+    "type" : "values"
+  },
+  {
+    "text" : "blink",
+    "type" : "values"
+  },
+  {
+    "text" : "block",
+    "type" : "values"
+  },
+  {
+    "text" : "block-end",
+    "type" : "values"
+  },
+  {
+    "text" : "block-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "block-start",
+    "type" : "values"
+  },
+  {
+    "text" : "blue",
+    "type" : "values"
+  },
+  {
+    "text" : "blueviolet",
+    "type" : "values"
+  },
+  {
+    "text" : "bold",
+    "type" : "values"
+  },
+  {
+    "text" : "bolder",
+    "type" : "values"
+  },
+  {
+    "text" : "border",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-end-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-end-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-end-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-start-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-start-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-start-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-block-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-bottom",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-bottom-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-bottom-left-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-bottom-right-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-bottom-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-bottom-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-box",
+    "type" : "values"
+  },
+  {
+    "text" : "border-collapse",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-end-end-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-end-start-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-image",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-image-outset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-image-repeat",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-image-slice",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-image-source",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-image-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-end-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-end-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-end-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-start-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-start-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-start-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-inline-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-left-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-left-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-left-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-right-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-right-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-right-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-spacing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-start-end-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-start-start-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-top",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-top-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-top-left-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-top-right-radius",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-top-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-top-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "border-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "both",
+    "type" : "values"
+  },
+  {
+    "text" : "box-decoration",
+    "type" : "values"
+  },
+  {
+    "text" : "box-decoration-break",
+    "type" : "keywords"
+  },
+  {
+    "text" : "box-shadow",
+    "type" : "keywords"
+  },
+  {
+    "text" : "box-sizing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "break-after",
+    "type" : "keywords"
+  },
+  {
+    "text" : "break-all",
+    "type" : "values"
+  },
+  {
+    "text" : "break-before",
+    "type" : "keywords"
+  },
+  {
+    "text" : "break-inside",
+    "type" : "keywords"
+  },
+  {
+    "text" : "break-word",
+    "type" : "values"
+  },
+  {
+    "text" : "brown",
+    "type" : "values"
+  },
+  {
+    "text" : "burywood",
+    "type" : "values"
+  },
+  {
+    "text" : "cadetblue",
+    "type" : "values"
+  },
+  {
+    "text" : "capitalize",
+    "type" : "values"
+  },
+  {
+    "text" : "caption",
+    "type" : "values"
+  },
+  {
+    "text" : "caption-side",
+    "type" : "keywords"
+  },
+  {
+    "text" : "caret-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "center",
+    "type" : "values"
+  },
+  {
+    "text" : "character-variant",
+    "type" : "values"
+  },
+  {
+    "text" : "chartreuse",
+    "type" : "values"
+  },
+  {
+    "text" : "chocolate",
+    "type" : "values"
+  },
+  {
+    "text" : "circle",
+    "type" : "values"
+  },
+  {
+    "text" : "clear",
+    "type" : "keywords"
+  },
+  {
+    "text" : "clip-path",
+    "type" : "keywords"
+  },
+  {
+    "text" : "close-quote",
+    "type" : "values"
+  },
+  {
+    "text" : "closest-corner",
+    "type" : "values"
+  },
+  {
+    "text" : "closest-side",
+    "type" : "values"
+  },
+  {
+    "text" : "collapse",
+    "type" : "values"
+  },
+  {
+    "text" : "color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "color-burn",
+    "type" : "values"
+  },
+  {
+    "text" : "color-dodge",
+    "type" : "values"
+  },
+  {
+    "text" : "color-scheme",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column",
+    "type" : "values"
+  },
+  {
+    "text" : "column-count",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-fill",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-gap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-reverse",
+    "type" : "values"
+  },
+  {
+    "text" : "column-rule",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-rule-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-rule-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-rule-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-span",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "columns",
+    "type" : "keywords"
+  },
+  {
+    "text" : "condensed",
+    "type" : "values"
+  },
+  {
+    "text" : "contain",
+    "type" : "values"
+  },
+  {
+    "text" : "container",
+    "type" : "keywords"
+  },
+  {
+    "text" : "container-name",
+    "type" : "keywords"
+  },
+  {
+    "text" : "container-type",
+    "type" : "keywords"
+  },
+  {
+    "text" : "content",
+    "type" : "keywords"
+  },
+  {
+    "text" : "content-box",
+    "type" : "values"
+  },
+  {
+    "text" : "content-visibility",
+    "type" : "keywords"
+  },
+  {
+    "text" : "coral",
+    "type" : "values"
+  },
+  {
+    "text" : "cornflowerblue",
+    "type" : "values"
+  },
+  {
+    "text" : "cornsilk",
+    "type" : "values"
+  },
+  {
+    "text" : "counter-increment",
+    "type" : "keywords"
+  },
+  {
+    "text" : "counter-reset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "counter-set",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cover",
+    "type" : "values"
+  },
+  {
+    "text" : "crimson",
+    "type" : "values"
+  },
+  {
+    "text" : "crosshair",
+    "type" : "values"
+  },
+  {
+    "text" : "cue",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cue-after",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cue-before",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cursive",
+    "type" : "values"
+  },
+  {
+    "text" : "cursor",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cyan",
+    "type" : "values"
+  },
+  {
+    "text" : "dark",
+    "type" : "values"
+  },
+  {
+    "text" : "darkblue",
+    "type" : "values"
+  },
+  {
+    "text" : "darkcyan",
+    "type" : "values"
+  },
+  {
+    "text" : "darken",
+    "type" : "values"
+  },
+  {
+    "text" : "darkgoldenrod",
+    "type" : "values"
+  },
+  {
+    "text" : "darkgray",
+    "type" : "values"
+  },
+  {
+    "text" : "darkgreen",
+    "type" : "values"
+  },
+  {
+    "text" : "darkgrey",
+    "type" : "values"
+  },
+  {
+    "text" : "darkkhaki",
+    "type" : "values"
+  },
+  {
+    "text" : "darkmagenta",
+    "type" : "values"
+  },
+  {
+    "text" : "darkolivegreen",
+    "type" : "values"
+  },
+  {
+    "text" : "darkorange",
+    "type" : "values"
+  },
+  {
+    "text" : "darkorchid",
+    "type" : "values"
+  },
+  {
+    "text" : "darkred",
+    "type" : "values"
+  },
+  {
+    "text" : "darksalmon",
+    "type" : "values"
+  },
+  {
+    "text" : "darkseagreen",
+    "type" : "values"
+  },
+  {
+    "text" : "darkslateblue",
+    "type" : "values"
+  },
+  {
+    "text" : "darkslategrey",
+    "type" : "values"
+  },
+  {
+    "text" : "darkturquise",
+    "type" : "values"
+  },
+  {
+    "text" : "darkviolet",
+    "type" : "values"
+  },
+  {
+    "text" : "dashed",
+    "type" : "values"
+  },
+  {
+    "text" : "decimal",
+    "type" : "values"
+  },
+  {
+    "text" : "decimal-leading-zero",
+    "type" : "values"
+  },
+  {
+    "text" : "deeppink",
+    "type" : "values"
+  },
+  {
+    "text" : "deepskyblue",
+    "type" : "values"
+  },
+  {
+    "text" : "default",
+    "type" : "values"
+  },
+  {
+    "text" : "didgerblue",
+    "type" : "values"
+  },
+  {
+    "text" : "difference",
+    "type" : "values"
+  },
+  {
+    "text" : "digits",
+    "type" : "values"
+  },
+  {
+    "text" : "dimgray",
+    "type" : "values"
+  },
+  {
+    "text" : "dimgrey",
+    "type" : "values"
+  },
+  {
+    "text" : "direction",
+    "type" : "keywords"
+  },
+  {
+    "text" : "disabled",
+    "type" : "values"
+  },
+  {
+    "text" : "disc",
+    "type" : "values"
+  },
+  {
+    "text" : "display",
+    "type" : "keywords"
+  },
+  {
+    "text" : "distribute",
+    "type" : "values"
+  },
+  {
+    "text" : "dot",
+    "type" : "values"
+  },
+  {
+    "text" : "dotted",
+    "type" : "values"
+  },
+  {
+    "text" : "double",
+    "type" : "values"
+  },
+  {
+    "text" : "double-circle",
+    "type" : "values"
+  },
+  {
+    "text" : "e-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "each-line",
+    "type" : "values"
+  },
+  {
+    "text" : "ease",
+    "type" : "values"
+  },
+  {
+    "text" : "ease-in",
+    "type" : "values"
+  },
+  {
+    "text" : "ease-in-out",
+    "type" : "values"
+  },
+  {
+    "text" : "ease-out",
+    "type" : "values"
+  },
+  {
+    "text" : "edges",
+    "type" : "values"
+  },
+  {
+    "text" : "embed",
+    "type" : "values"
+  },
+  {
+    "text" : "empty-cells",
+    "type" : "keywords"
+  },
+  {
+    "text" : "end",
+    "type" : "values"
+  },
+  {
+    "text" : "exclusion",
+    "type" : "values"
+  },
+  {
+    "text" : "expanded",
+    "type" : "values"
+  },
+  {
+    "text" : "extra-condensed",
+    "type" : "values"
+  },
+  {
+    "text" : "extra-expanded",
+    "type" : "values"
+  },
+  {
+    "text" : "fantasy",
+    "type" : "values"
+  },
+  {
+    "text" : "farthest-corner",
+    "type" : "values"
+  },
+  {
+    "text" : "farthest-side",
+    "type" : "values"
+  },
+  {
+    "text" : "fast",
+    "type" : "values"
+  },
+  {
+    "text" : "fill",
+    "type" : "values"
+  },
+  {
+    "text" : "filter",
+    "type" : "keywords"
+  },
+  {
+    "text" : "firebrick",
+    "type" : "values"
+  },
+  {
+    "text" : "first",
+    "type" : "values"
+  },
+  {
+    "text" : "fit-content",
+    "type" : "values"
+  },
+  {
+    "text" : "fixed",
+    "type" : "values"
+  },
+  {
+    "text" : "flat",
+    "type" : "values"
+  },
+  {
+    "text" : "flex",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flex",
+    "type" : "values"
+  },
+  {
+    "text" : "flex-basis",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flex-direction",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flex-end",
+    "type" : "values"
+  },
+  {
+    "text" : "flex-flow",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flex-grow",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flex-shrink",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flex-start",
+    "type" : "values"
+  },
+  {
+    "text" : "flex-wrap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "float",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flood-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "flood-opacity",
+    "type" : "keywords"
+  },
+  {
+    "text" : "floralwhite",
+    "type" : "values"
+  },
+  {
+    "text" : "font",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-family",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-feature-settings",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-kerning",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-language-override",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-optical-sizing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-size-adjust",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-stretch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-synthesis",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variant",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variant-alternates",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variant-caps",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variant-east-asian",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variant-ligatures",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variant-numeric",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variant-position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-variation-settings",
+    "type" : "keywords"
+  },
+  {
+    "text" : "font-weight",
+    "type" : "keywords"
+  },
+  {
+    "text" : "force-end",
+    "type" : "values"
+  },
+  {
+    "text" : "forestgreen",
+    "type" : "values"
+  },
+  {
+    "text" : "forward",
+    "type" : "values"
+  },
+  {
+    "text" : "forwards",
+    "type" : "values"
+  },
+  {
+    "text" : "fuchsia",
+    "type" : "values"
+  },
+  {
+    "text" : "full-width",
+    "type" : "values"
+  },
+  {
+    "text" : "gainsboro",
+    "type" : "values"
+  },
+  {
+    "text" : "gap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "geogian",
+    "type" : "values"
+  },
+  {
+    "text" : "geometricPrecision",
+    "type" : "values"
+  },
+  {
+    "text" : "ghostwhite",
+    "type" : "values"
+  },
+  {
+    "text" : "gold",
+    "type" : "values"
+  },
+  {
+    "text" : "goldenrod",
+    "type" : "values"
+  },
+  {
+    "text" : "gray",
+    "type" : "values"
+  },
+  {
+    "text" : "green",
+    "type" : "values"
+  },
+  {
+    "text" : "greenyellow",
+    "type" : "values"
+  },
+  {
+    "text" : "grey",
+    "type" : "values"
+  },
+  {
+    "text" : "grid",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid",
+    "type" : "values"
+  },
+  {
+    "text" : "grid-area",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-auto-columns",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-auto-flow",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-auto-rows",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-column",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-column-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-column-gap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-column-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-gap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-row",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-row-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-row-gap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-row-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-template",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-template-areas",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-template-columns",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grid-template-rows",
+    "type" : "keywords"
+  },
+  {
+    "text" : "groove",
+    "type" : "values"
+  },
+  {
+    "text" : "hanging",
+    "type" : "values"
+  },
+  {
+    "text" : "hanging-punctuation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "hard-light",
+    "type" : "values"
+  },
+  {
+    "text" : "height",
+    "type" : "keywords"
+  },
+  {
+    "text" : "help",
+    "type" : "values"
+  },
+  {
+    "text" : "hidden",
+    "type" : "values"
+  },
+  {
+    "text" : "hide",
+    "type" : "values"
+  },
+  {
+    "text" : "high",
+    "type" : "values"
+  },
+  {
+    "text" : "historical-forms",
+    "type" : "values"
+  },
+  {
+    "text" : "honeydew",
+    "type" : "values"
+  },
+  {
+    "text" : "horizontal",
+    "type" : "values"
+  },
+  {
+    "text" : "horizontal-tb",
+    "type" : "values"
+  },
+  {
+    "text" : "hotpink",
+    "type" : "values"
+  },
+  {
+    "text" : "hue",
+    "type" : "values"
+  },
+  {
+    "text" : "hyphenate-character",
+    "type" : "keywords"
+  },
+  {
+    "text" : "hyphens",
+    "type" : "keywords"
+  },
+  {
+    "text" : "icon",
+    "type" : "keywords"
+  },
+  {
+    "text" : "icon",
+    "type" : "values"
+  },
+  {
+    "text" : "image-orientation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "image-rendering",
+    "type" : "keywords"
+  },
+  {
+    "text" : "image-resolution",
+    "type" : "keywords"
+  },
+  {
+    "text" : "indianred",
+    "type" : "values"
+  },
+  {
+    "text" : "indigo",
+    "type" : "values"
+  },
+  {
+    "text" : "infinite",
+    "type" : "values"
+  },
+  {
+    "text" : "inherit",
+    "type" : "values"
+  },
+  {
+    "text" : "initial",
+    "type" : "values"
+  },
+  {
+    "text" : "ink",
+    "type" : "values"
+  },
+  {
+    "text" : "inline",
+    "type" : "values"
+  },
+  {
+    "text" : "inline-block",
+    "type" : "values"
+  },
+  {
+    "text" : "inline-end",
+    "type" : "values"
+  },
+  {
+    "text" : "inline-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inline-start",
+    "type" : "values"
+  },
+  {
+    "text" : "inline-table",
+    "type" : "values"
+  },
+  {
+    "text" : "inset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inset",
+    "type" : "values"
+  },
+  {
+    "text" : "inset-block",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inset-block-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inset-block-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inset-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inset-inline-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inset-inline-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inside",
+    "type" : "values"
+  },
+  {
+    "text" : "inter-word",
+    "type" : "values"
+  },
+  {
+    "text" : "invert",
+    "type" : "values"
+  },
+  {
+    "text" : "isolate",
+    "type" : "values"
+  },
+  {
+    "text" : "isolate-override",
+    "type" : "values"
+  },
+  {
+    "text" : "isolation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "italic",
+    "type" : "values"
+  },
+  {
+    "text" : "ivory",
+    "type" : "values"
+  },
+  {
+    "text" : "justify",
+    "type" : "values"
+  },
+  {
+    "text" : "justify-content",
+    "type" : "keywords"
+  },
+  {
+    "text" : "justify-items",
+    "type" : "keywords"
+  },
+  {
+    "text" : "justify-self",
+    "type" : "keywords"
+  },
+  {
+    "text" : "keep-all",
+    "type" : "values"
+  },
+  {
+    "text" : "khaki",
+    "type" : "values"
+  },
+  {
+    "text" : "large",
+    "type" : "values"
+  },
+  {
+    "text" : "last",
+    "type" : "values"
+  },
+  {
+    "text" : "lavender",
+    "type" : "values"
+  },
+  {
+    "text" : "lavenderblush",
+    "type" : "values"
+  },
+  {
+    "text" : "lawngreen",
+    "type" : "values"
+  },
+  {
+    "text" : "left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "leftwards",
+    "type" : "values"
+  },
+  {
+    "text" : "lemonchiffon",
+    "type" : "values"
+  },
+  {
+    "text" : "letter-spacing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "light",
+    "type" : "values"
+  },
+  {
+    "text" : "lightblue",
+    "type" : "values"
+  },
+  {
+    "text" : "lightcoral",
+    "type" : "values"
+  },
+  {
+    "text" : "lightcyan",
+    "type" : "values"
+  },
+  {
+    "text" : "lighten",
+    "type" : "values"
+  },
+  {
+    "text" : "lighter",
+    "type" : "values"
+  },
+  {
+    "text" : "lightgoldenrodyellow",
+    "type" : "values"
+  },
+  {
+    "text" : "lightgray",
+    "type" : "values"
+  },
+  {
+    "text" : "lightgreen",
+    "type" : "values"
+  },
+  {
+    "text" : "lightgrey",
+    "type" : "values"
+  },
+  {
+    "text" : "lightpink",
+    "type" : "values"
+  },
+  {
+    "text" : "lightsalmon",
+    "type" : "values"
+  },
+  {
+    "text" : "lightseagreen",
+    "type" : "values"
+  },
+  {
+    "text" : "lightskyblue",
+    "type" : "values"
+  },
+  {
+    "text" : "lightslategray",
+    "type" : "values"
+  },
+  {
+    "text" : "lightslategrey",
+    "type" : "values"
+  },
+  {
+    "text" : "lightsteelblue",
+    "type" : "values"
+  },
+  {
+    "text" : "lightyellow",
+    "type" : "values"
+  },
+  {
+    "text" : "lime",
+    "type" : "values"
+  },
+  {
+    "text" : "limegreen",
+    "type" : "values"
+  },
+  {
+    "text" : "line-break",
+    "type" : "keywords"
+  },
+  {
+    "text" : "line-height",
+    "type" : "keywords"
+  },
+  {
+    "text" : "line-height-step",
+    "type" : "keywords"
+  },
+  {
+    "text" : "line-through",
+    "type" : "values"
+  },
+  {
+    "text" : "linear",
+    "type" : "values"
+  },
+  {
+    "text" : "linearRGB",
+    "type" : "values"
+  },
+  {
+    "text" : "linen",
+    "type" : "values"
+  },
+  {
+    "text" : "list-item",
+    "type" : "values"
+  },
+  {
+    "text" : "list-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "list-style-image",
+    "type" : "keywords"
+  },
+  {
+    "text" : "list-style-position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "list-style-type",
+    "type" : "keywords"
+  },
+  {
+    "text" : "literal-punctuation",
+    "type" : "values"
+  },
+  {
+    "text" : "local",
+    "type" : "values"
+  },
+  {
+    "text" : "loose",
+    "type" : "values"
+  },
+  {
+    "text" : "loud",
+    "type" : "values"
+  },
+  {
+    "text" : "low",
+    "type" : "values"
+  },
+  {
+    "text" : "lower-alpha",
+    "type" : "values"
+  },
+  {
+    "text" : "lower-greek",
+    "type" : "values"
+  },
+  {
+    "text" : "lower-latin",
+    "type" : "values"
+  },
+  {
+    "text" : "lower-roman",
+    "type" : "values"
+  },
+  {
+    "text" : "lowercase",
+    "type" : "values"
+  },
+  {
+    "text" : "ltr",
+    "type" : "values"
+  },
+  {
+    "text" : "luminosity",
+    "type" : "values"
+  },
+  {
+    "text" : "magenta",
+    "type" : "values"
+  },
+  {
+    "text" : "manipulation",
+    "type" : "values"
+  },
+  {
+    "text" : "manual",
+    "type" : "values"
+  },
+  {
+    "text" : "margin",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-block",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-block-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-block-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-bottom",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-inline-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-inline-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "margin-top",
+    "type" : "keywords"
+  },
+  {
+    "text" : "maroon",
+    "type" : "values"
+  },
+  {
+    "text" : "marquee-block",
+    "type" : "values"
+  },
+  {
+    "text" : "marquee-direction",
+    "type" : "keywords"
+  },
+  {
+    "text" : "marquee-line",
+    "type" : "values"
+  },
+  {
+    "text" : "marquee-play-count",
+    "type" : "keywords"
+  },
+  {
+    "text" : "marquee-speed",
+    "type" : "keywords"
+  },
+  {
+    "text" : "marquee-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "mask",
+    "type" : "keywords"
+  },
+  {
+    "text" : "mask-border",
+    "type" : "keywords"
+  },
+  {
+    "text" : "mask-type",
+    "type" : "keywords"
+  },
+  {
+    "text" : "match-parent",
+    "type" : "values"
+  },
+  {
+    "text" : "max-block-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "max-content",
+    "type" : "values"
+  },
+  {
+    "text" : "max-height",
+    "type" : "keywords"
+  },
+  {
+    "text" : "max-inline-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "max-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "medium",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumaquamarine",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumblue",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumorchid",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumpurple",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumseagreen",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumslateblue",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumspringgreen",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumturquise",
+    "type" : "values"
+  },
+  {
+    "text" : "mediumvioletred",
+    "type" : "values"
+  },
+  {
+    "text" : "menu",
+    "type" : "values"
+  },
+  {
+    "text" : "message-box",
+    "type" : "values"
+  },
+  {
+    "text" : "middle",
+    "type" : "values"
+  },
+  {
+    "text" : "midnightblue",
+    "type" : "values"
+  },
+  {
+    "text" : "min-block-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "min-content",
+    "type" : "values"
+  },
+  {
+    "text" : "min-height",
+    "type" : "keywords"
+  },
+  {
+    "text" : "min-inline-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "min-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "mintcream",
+    "type" : "values"
+  },
+  {
+    "text" : "mistyrose",
+    "type" : "values"
+  },
+  {
+    "text" : "mix-blend-mode",
+    "type" : "keywords"
+  },
+  {
+    "text" : "mixed",
+    "type" : "values"
+  },
+  {
+    "text" : "moccasin",
+    "type" : "values"
+  },
+  {
+    "text" : "moderate",
+    "type" : "values"
+  },
+  {
+    "text" : "monospace",
+    "type" : "values"
+  },
+  {
+    "text" : "move",
+    "type" : "values"
+  },
+  {
+    "text" : "multiply",
+    "type" : "values"
+  },
+  {
+    "text" : "n-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "nav-down",
+    "type" : "keywords"
+  },
+  {
+    "text" : "nav-index",
+    "type" : "keywords"
+  },
+  {
+    "text" : "nav-left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "nav-right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "nav-up",
+    "type" : "keywords"
+  },
+  {
+    "text" : "navajowhite",
+    "type" : "values"
+  },
+  {
+    "text" : "navy",
+    "type" : "values"
+  },
+  {
+    "text" : "no-close-quote",
+    "type" : "values"
+  },
+  {
+    "text" : "no-open-quote",
+    "type" : "values"
+  },
+  {
+    "text" : "no-punctuation",
+    "type" : "values"
+  },
+  {
+    "text" : "no-repeat",
+    "type" : "values"
+  },
+  {
+    "text" : "no-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "none",
+    "type" : "values"
+  },
+  {
+    "text" : "normal",
+    "type" : "values"
+  },
+  {
+    "text" : "nowrap",
+    "type" : "values"
+  },
+  {
+    "text" : "nw-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "object-fit",
+    "type" : "keywords"
+  },
+  {
+    "text" : "object-position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "objects",
+    "type" : "values"
+  },
+  {
+    "text" : "oblique",
+    "type" : "values"
+  },
+  {
+    "text" : "oldlace",
+    "type" : "values"
+  },
+  {
+    "text" : "olive",
+    "type" : "values"
+  },
+  {
+    "text" : "olivedrab",
+    "type" : "values"
+  },
+  {
+    "text" : "only",
+    "type" : "values"
+  },
+  {
+    "text" : "opacity",
+    "type" : "keywords"
+  },
+  {
+    "text" : "open",
+    "type" : "values"
+  },
+  {
+    "text" : "open-quote",
+    "type" : "values"
+  },
+  {
+    "text" : "optimizeLegibility",
+    "type" : "values"
+  },
+  {
+    "text" : "optimizeSpeed",
+    "type" : "values"
+  },
+  {
+    "text" : "orange",
+    "type" : "values"
+  },
+  {
+    "text" : "orangered",
+    "type" : "values"
+  },
+  {
+    "text" : "orchid",
+    "type" : "values"
+  },
+  {
+    "text" : "order",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ordinal",
+    "type" : "values"
+  },
+  {
+    "text" : "ornaments",
+    "type" : "values"
+  },
+  {
+    "text" : "orphans",
+    "type" : "keywords"
+  },
+  {
+    "text" : "outline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "outline-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "outline-offset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "outline-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "outline-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "outset",
+    "type" : "values"
+  },
+  {
+    "text" : "outside",
+    "type" : "values"
+  },
+  {
+    "text" : "over",
+    "type" : "values"
+  },
+  {
+    "text" : "overflow",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-anchor",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-block",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-clip-margin",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-wrap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-x",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overflow-y",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overlay",
+    "type" : "values"
+  },
+  {
+    "text" : "overline",
+    "type" : "values"
+  },
+  {
+    "text" : "overscroll-behavior",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overscroll-behavior-block",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overscroll-behavior-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overscroll-behavior-x",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overscroll-behavior-y",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-block",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-block-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-block-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-bottom",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-box",
+    "type" : "values"
+  },
+  {
+    "text" : "padding-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-inline-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-inline-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "padding-top",
+    "type" : "keywords"
+  },
+  {
+    "text" : "page",
+    "type" : "values"
+  },
+  {
+    "text" : "page-break-after",
+    "type" : "keywords"
+  },
+  {
+    "text" : "page-break-before",
+    "type" : "keywords"
+  },
+  {
+    "text" : "page-break-inside",
+    "type" : "keywords"
+  },
+  {
+    "text" : "palegoldenrod",
+    "type" : "values"
+  },
+  {
+    "text" : "palegreen",
+    "type" : "values"
+  },
+  {
+    "text" : "paleturquise",
+    "type" : "values"
+  },
+  {
+    "text" : "palevioletred",
+    "type" : "values"
+  },
+  {
+    "text" : "pan-down",
+    "type" : "values"
+  },
+  {
+    "text" : "pan-left",
+    "type" : "values"
+  },
+  {
+    "text" : "pan-right",
+    "type" : "values"
+  },
+  {
+    "text" : "pan-up",
+    "type" : "values"
+  },
+  {
+    "text" : "pan-x",
+    "type" : "values"
+  },
+  {
+    "text" : "pan-y",
+    "type" : "values"
+  },
+  {
+    "text" : "papayawhip",
+    "type" : "values"
+  },
+  {
+    "text" : "pause",
+    "type" : "keywords"
+  },
+  {
+    "text" : "pause-after",
+    "type" : "keywords"
+  },
+  {
+    "text" : "pause-before",
+    "type" : "keywords"
+  },
+  {
+    "text" : "paused",
+    "type" : "values"
+  },
+  {
+    "text" : "peachpuff",
+    "type" : "values"
+  },
+  {
+    "text" : "perspective",
+    "type" : "keywords"
+  },
+  {
+    "text" : "perspective-origin",
+    "type" : "keywords"
+  },
+  {
+    "text" : "peru",
+    "type" : "values"
+  },
+  {
+    "text" : "petite-caps",
+    "type" : "values"
+  },
+  {
+    "text" : "pinch-zoom",
+    "type" : "values"
+  },
+  {
+    "text" : "pink",
+    "type" : "values"
+  },
+  {
+    "text" : "place-content",
+    "type" : "keywords"
+  },
+  {
+    "text" : "place-items",
+    "type" : "keywords"
+  },
+  {
+    "text" : "place-self",
+    "type" : "keywords"
+  },
+  {
+    "text" : "plaintext",
+    "type" : "values"
+  },
+  {
+    "text" : "plum",
+    "type" : "values"
+  },
+  {
+    "text" : "pointer",
+    "type" : "values"
+  },
+  {
+    "text" : "pointer-events",
+    "type" : "keywords"
+  },
+  {
+    "text" : "position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "powderblue",
+    "type" : "values"
+  },
+  {
+    "text" : "pre",
+    "type" : "values"
+  },
+  {
+    "text" : "pre-line",
+    "type" : "values"
+  },
+  {
+    "text" : "pre-wrap",
+    "type" : "values"
+  },
+  {
+    "text" : "preserve",
+    "type" : "values"
+  },
+  {
+    "text" : "preserve-3d",
+    "type" : "values"
+  },
+  {
+    "text" : "pretty",
+    "type" : "values"
+  },
+  {
+    "text" : "print-color-adjust",
+    "type" : "keywords"
+  },
+  {
+    "text" : "progress",
+    "type" : "values"
+  },
+  {
+    "text" : "purple",
+    "type" : "values"
+  },
+  {
+    "text" : "quotes",
+    "type" : "keywords"
+  },
+  {
+    "text" : "recto",
+    "type" : "values"
+  },
+  {
+    "text" : "red",
+    "type" : "values"
+  },
+  {
+    "text" : "reduced",
+    "type" : "values"
+  },
+  {
+    "text" : "region",
+    "type" : "values"
+  },
+  {
+    "text" : "relative",
+    "type" : "values"
+  },
+  {
+    "text" : "repeat",
+    "type" : "values"
+  },
+  {
+    "text" : "repeat-x",
+    "type" : "values"
+  },
+  {
+    "text" : "repeat-y",
+    "type" : "values"
+  },
+  {
+    "text" : "replace",
+    "type" : "values"
+  },
+  {
+    "text" : "reset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "reset-after",
+    "type" : "keywords"
+  },
+  {
+    "text" : "reset-before",
+    "type" : "keywords"
+  },
+  {
+    "text" : "resize",
+    "type" : "keywords"
+  },
+  {
+    "text" : "reverse",
+    "type" : "values"
+  },
+  {
+    "text" : "revert",
+    "type" : "values"
+  },
+  {
+    "text" : "revert-layer",
+    "type" : "values"
+  },
+  {
+    "text" : "ridge",
+    "type" : "values"
+  },
+  {
+    "text" : "right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "rightwards",
+    "type" : "values"
+  },
+  {
+    "text" : "rosybrown",
+    "type" : "values"
+  },
+  {
+    "text" : "rotate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "round",
+    "type" : "values"
+  },
+  {
+    "text" : "row",
+    "type" : "values"
+  },
+  {
+    "text" : "row-gap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "row-reverse",
+    "type" : "values"
+  },
+  {
+    "text" : "royalblue",
+    "type" : "values"
+  },
+  {
+    "text" : "rtl",
+    "type" : "values"
+  },
+  {
+    "text" : "ruby",
+    "type" : "values"
+  },
+  {
+    "text" : "ruby-again",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ruby-position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "running",
+    "type" : "values"
+  },
+  {
+    "text" : "s-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "saddlebrown",
+    "type" : "values"
+  },
+  {
+    "text" : "salmon",
+    "type" : "values"
+  },
+  {
+    "text" : "sandybrown",
+    "type" : "values"
+  },
+  {
+    "text" : "sans-serif",
+    "type" : "values"
+  },
+  {
+    "text" : "satuation",
+    "type" : "values"
+  },
+  {
+    "text" : "scale",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scale-down",
+    "type" : "values"
+  },
+  {
+    "text" : "screen",
+    "type" : "values"
+  },
+  {
+    "text" : "scroll",
+    "type" : "values"
+  },
+  {
+    "text" : "scroll-behavior",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-margin-bottom",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-margin-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-margin-inline-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-margin-left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-margin-right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-margin-top",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding-block-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding-block-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding-botom",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding-inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding-inline-end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding-inline-start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-padding-left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll-snap-type",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scrollbar-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scrollbar-width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "se-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "seagreen",
+    "type" : "values"
+  },
+  {
+    "text" : "seashell",
+    "type" : "values"
+  },
+  {
+    "text" : "semi-condensed",
+    "type" : "values"
+  },
+  {
+    "text" : "semi-expanded",
+    "type" : "values"
+  },
+  {
+    "text" : "separate",
+    "type" : "values"
+  },
+  {
+    "text" : "serif",
+    "type" : "values"
+  },
+  {
+    "text" : "sesame",
+    "type" : "values"
+  },
+  {
+    "text" : "shape-image-threshold",
+    "type" : "keywords"
+  },
+  {
+    "text" : "shape-margin",
+    "type" : "keywords"
+  },
+  {
+    "text" : "shape-outside",
+    "type" : "keywords"
+  },
+  {
+    "text" : "show",
+    "type" : "values"
+  },
+  {
+    "text" : "sideways",
+    "type" : "values"
+  },
+  {
+    "text" : "sideways-left",
+    "type" : "values"
+  },
+  {
+    "text" : "sideways-right",
+    "type" : "values"
+  },
+  {
+    "text" : "sienna",
+    "type" : "values"
+  },
+  {
+    "text" : "silent",
+    "type" : "values"
+  },
+  {
+    "text" : "silver",
+    "type" : "values"
+  },
+  {
+    "text" : "skyblue",
+    "type" : "values"
+  },
+  {
+    "text" : "slashed-zero",
+    "type" : "values"
+  },
+  {
+    "text" : "slateblue",
+    "type" : "values"
+  },
+  {
+    "text" : "slategray",
+    "type" : "values"
+  },
+  {
+    "text" : "slategrey",
+    "type" : "values"
+  },
+  {
+    "text" : "slide",
+    "type" : "values"
+  },
+  {
+    "text" : "slow",
+    "type" : "values"
+  },
+  {
+    "text" : "small",
+    "type" : "values"
+  },
+  {
+    "text" : "small-caps",
+    "type" : "values"
+  },
+  {
+    "text" : "small-caption",
+    "type" : "values"
+  },
+  {
+    "text" : "smooth",
+    "type" : "values"
+  },
+  {
+    "text" : "snap",
+    "type" : "values"
+  },
+  {
+    "text" : "snow",
+    "type" : "values"
+  },
+  {
+    "text" : "soft",
+    "type" : "values"
+  },
+  {
+    "text" : "soft-light",
+    "type" : "values"
+  },
+  {
+    "text" : "solid",
+    "type" : "values"
+  },
+  {
+    "text" : "space",
+    "type" : "values"
+  },
+  {
+    "text" : "space-around",
+    "type" : "values"
+  },
+  {
+    "text" : "space-between",
+    "type" : "values"
+  },
+  {
+    "text" : "span",
+    "type" : "values"
+  },
+  {
+    "text" : "speak",
+    "type" : "keywords"
+  },
+  {
+    "text" : "speak-as",
+    "type" : "keywords"
+  },
+  {
+    "text" : "spell-out",
+    "type" : "values"
+  },
+  {
+    "text" : "springgreen",
+    "type" : "values"
+  },
+  {
+    "text" : "square",
+    "type" : "values"
+  },
+  {
+    "text" : "src",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sRGB",
+    "type" : "values"
+  },
+  {
+    "text" : "stable",
+    "type" : "values"
+  },
+  {
+    "text" : "start",
+    "type" : "values"
+  },
+  {
+    "text" : "static",
+    "type" : "values"
+  },
+  {
+    "text" : "status-bar",
+    "type" : "values"
+  },
+  {
+    "text" : "steelblue",
+    "type" : "values"
+  },
+  {
+    "text" : "step-end",
+    "type" : "values"
+  },
+  {
+    "text" : "step-start",
+    "type" : "values"
+  },
+  {
+    "text" : "sticky",
+    "type" : "values"
+  },
+  {
+    "text" : "stretch",
+    "type" : "values"
+  },
+  {
+    "text" : "strict",
+    "type" : "values"
+  },
+  {
+    "text" : "strong",
+    "type" : "values"
+  },
+  {
+    "text" : "styleset",
+    "type" : "values"
+  },
+  {
+    "text" : "stylistic",
+    "type" : "values"
+  },
+  {
+    "text" : "sub",
+    "type" : "values"
+  },
+  {
+    "text" : "subpixel-antialiased",
+    "type" : "values"
+  },
+  {
+    "text" : "super",
+    "type" : "values"
+  },
+  {
+    "text" : "sw-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "swash",
+    "type" : "values"
+  },
+  {
+    "text" : "system-ui",
+    "type" : "values"
+  },
+  {
+    "text" : "tab-size",
+    "type" : "keywords"
+  },
+  {
+    "text" : "table",
+    "type" : "values"
+  },
+  {
+    "text" : "table-caption",
+    "type" : "values"
+  },
+  {
+    "text" : "table-cell",
+    "type" : "values"
+  },
+  {
+    "text" : "table-column",
+    "type" : "values"
+  },
+  {
+    "text" : "table-column-group",
+    "type" : "values"
+  },
+  {
+    "text" : "table-footer-group",
+    "type" : "values"
+  },
+  {
+    "text" : "table-header-group",
+    "type" : "values"
+  },
+  {
+    "text" : "table-layout",
+    "type" : "keywords"
+  },
+  {
+    "text" : "table-row",
+    "type" : "values"
+  },
+  {
+    "text" : "table-row-group",
+    "type" : "values"
+  },
+  {
+    "text" : "tan",
+    "type" : "values"
+  },
+  {
+    "text" : "teal",
+    "type" : "values"
+  },
+  {
+    "text" : "text",
+    "type" : "values"
+  },
+  {
+    "text" : "text-align",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-align-last",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-bottom",
+    "type" : "values"
+  },
+  {
+    "text" : "text-combine-upright",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-decoration",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-decoration-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-decoration-line",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-decoration-skip",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-decoration-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-emphasis",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-emphasis-color",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-emphasis-position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-emphasis-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-indent",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-justify",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-orientation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-overflow",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-rendering",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-shadow",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-top",
+    "type" : "values"
+  },
+  {
+    "text" : "text-transform",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-underline-offset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-underline-position",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-wrap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-wrap-mode",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text-wrap-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "thick",
+    "type" : "values"
+  },
+  {
+    "text" : "thin",
+    "type" : "values"
+  },
+  {
+    "text" : "thistle",
+    "type" : "values"
+  },
+  {
+    "text" : "titling-caps",
+    "type" : "values"
+  },
+  {
+    "text" : "tomato",
+    "type" : "values"
+  },
+  {
+    "text" : "touch-action",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transform",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transform-origin",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transform-style",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transition",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transition-delay",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transition-duration",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transition-property",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transition-timing-function",
+    "type" : "keywords"
+  },
+  {
+    "text" : "translate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transparent",
+    "type" : "values"
+  },
+  {
+    "text" : "triangle",
+    "type" : "values"
+  },
+  {
+    "text" : "turquise",
+    "type" : "values"
+  },
+  {
+    "text" : "ultra-condensed",
+    "type" : "values"
+  },
+  {
+    "text" : "ultra-expanded",
+    "type" : "values"
+  },
+  {
+    "text" : "under",
+    "type" : "values"
+  },
+  {
+    "text" : "underline",
+    "type" : "values"
+  },
+  {
+    "text" : "unicase",
+    "type" : "values"
+  },
+  {
+    "text" : "unicode-bidi",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unicode-range",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unset",
+    "type" : "values"
+  },
+  {
+    "text" : "upper-alpha",
+    "type" : "values"
+  },
+  {
+    "text" : "upper-latin",
+    "type" : "values"
+  },
+  {
+    "text" : "upper-roman",
+    "type" : "values"
+  },
+  {
+    "text" : "uppercase",
+    "type" : "values"
+  },
+  {
+    "text" : "upright",
+    "type" : "values"
+  },
+  {
+    "text" : "use-glyph-orientation",
+    "type" : "values"
+  },
+  {
+    "text" : "user-select",
+    "type" : "keywords"
+  },
+  {
+    "text" : "verso",
+    "type" : "values"
+  },
+  {
+    "text" : "vertical",
+    "type" : "values"
+  },
+  {
+    "text" : "vertical-align",
+    "type" : "keywords"
+  },
+  {
+    "text" : "vertical-lr",
+    "type" : "values"
+  },
+  {
+    "text" : "vertical-rl",
+    "type" : "values"
+  },
+  {
+    "text" : "violet",
+    "type" : "values"
+  },
+  {
+    "text" : "visibility",
+    "type" : "keywords"
+  },
+  {
+    "text" : "visible",
+    "type" : "values"
+  },
+  {
+    "text" : "voice-balance",
+    "type" : "keywords"
+  },
+  {
+    "text" : "voice-duration",
+    "type" : "keywords"
+  },
+  {
+    "text" : "voice-family",
+    "type" : "keywords"
+  },
+  {
+    "text" : "voice-pitch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "voice-range",
+    "type" : "keywords"
+  },
+  {
+    "text" : "voice-rate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "voice-stress",
+    "type" : "keywords"
+  },
+  {
+    "text" : "voice-volume",
+    "type" : "keywords"
+  },
+  {
+    "text" : "w-resize",
+    "type" : "values"
+  },
+  {
+    "text" : "wait",
+    "type" : "values"
+  },
+  {
+    "text" : "wavy",
+    "type" : "values"
+  },
+  {
+    "text" : "weak",
+    "type" : "values"
+  },
+  {
+    "text" : "wheat",
+    "type" : "values"
+  },
+  {
+    "text" : "white",
+    "type" : "values"
+  },
+  {
+    "text" : "white-space",
+    "type" : "keywords"
+  },
+  {
+    "text" : "whitesmoke",
+    "type" : "values"
+  },
+  {
+    "text" : "widows",
+    "type" : "keywords"
+  },
+  {
+    "text" : "width",
+    "type" : "keywords"
+  },
+  {
+    "text" : "will-change",
+    "type" : "keywords"
+  },
+  {
+    "text" : "word-break",
+    "type" : "keywords"
+  },
+  {
+    "text" : "word-spacing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "word-wrap",
+    "type" : "keywords"
+  },
+  {
+    "text" : "wrap",
+    "type" : "values"
+  },
+  {
+    "text" : "wrap-reverse",
+    "type" : "values"
+  },
+  {
+    "text" : "writing-mode",
+    "type" : "keywords"
+  },
+  {
+    "text" : "x-fast",
+    "type" : "values"
+  },
+  {
+    "text" : "x-high",
+    "type" : "values"
+  },
+  {
+    "text" : "x-large",
+    "type" : "values"
+  },
+  {
+    "text" : "x-loud",
+    "type" : "values"
+  },
+  {
+    "text" : "x-low",
+    "type" : "values"
+  },
+  {
+    "text" : "x-slow",
+    "type" : "values"
+  },
+  {
+    "text" : "x-small",
+    "type" : "values"
+  },
+  {
+    "text" : "x-soft",
+    "type" : "values"
+  },
+  {
+    "text" : "x-strong",
+    "type" : "values"
+  },
+  {
+    "text" : "x-weak",
+    "type" : "values"
+  },
+  {
+    "text" : "xx-large",
+    "type" : "values"
+  },
+  {
+    "text" : "xx-small",
+    "type" : "values"
+  },
+  {
+    "text" : "yellow",
+    "type" : "values"
+  },
+  {
+    "text" : "yellowgreen",
+    "type" : "values"
+  },
+  {
+    "text" : "z-index",
+    "type" : "keywords"
+  }
+  ]

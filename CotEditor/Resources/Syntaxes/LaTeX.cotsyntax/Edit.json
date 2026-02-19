@@ -8,28 +8,5 @@
         "begin" : "%"
       }
     ]
-  },
-  "completions" : [
-    {
-      "text" : "begin"
-    },
-    {
-      "text" : "chapter"
-    },
-    {
-      "text" : "end"
-    },
-    {
-      "text" : "equation"
-    },
-    {
-      "text" : "section"
-    },
-    {
-      "text" : "subsection"
-    },
-    {
-      "text" : "subsubsection"
-    }
-  ]
+  }
 }

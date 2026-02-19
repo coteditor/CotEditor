@@ -141,8 +141,8 @@ struct SyntaxFileWrapperTests {
     @Test func fileWrapperWithEditAndRegex() throws {
         
         let info = Syntax.Info(kind: Syntax.Kind.code, fileMap: .init(extensions: ["swift"]), metadata: .init(author: "me"))
-        let edit = Syntax.Edit(comment: .init(inlines: [.init(begin: "//")], blocks: [Pair("/*", "*/")]),
-                               completions: [.init(text: "print", type: SyntaxType.commands)])
+        let edit = Syntax.Edit(comment: .init(inlines: [.init(begin: "//")], blocks: [Pair("/*", "*/")]))
+        let completions: [Syntax.CompletionWord] = [.init(text: "print", type: SyntaxType.commands)]
         let highlights: [SyntaxType: [Syntax.Highlight]] = [
             SyntaxType.keywords: [.init(begin: "func")],
         ]
@@ -154,6 +154,7 @@ struct SyntaxFileWrapperTests {
         let wrapper = FileWrapper(directoryWithFileWrappers: [
             "Info.json": FileWrapper(regularFileWithContents: try encoder.encode(info)),
             "Edit.json": FileWrapper(regularFileWithContents: try encoder.encode(edit)),
+            "Completion.json": FileWrapper(regularFileWithContents: try encoder.encode(completions)),
             "Regex": FileWrapper(directoryWithFileWrappers: [
                 "Highlights.json": FileWrapper(regularFileWithContents: try encoder.encode(highlights)),
                 "Outlines.json": FileWrapper(regularFileWithContents: try encoder.encode(outlines)),

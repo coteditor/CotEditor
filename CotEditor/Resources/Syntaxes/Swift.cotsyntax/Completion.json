@@ -1,0 +1,1730 @@
+[
+  {
+    "text" : "#available",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#colorLiteral",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#column",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#elseif",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#endif",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#error",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#file",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#fileLiteral",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#filePath",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#function",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#imageLiteral",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#keyPath",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#line",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#selector",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#sourceLocation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#unavailable",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#warning",
+    "type" : "keywords"
+  },
+  {
+    "text" : "@AppStorage",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@asyncHandler",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@autoclosure",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@available",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@backDeployed",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Bindable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Binding",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@concurrent",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@convention",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@derivative",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@discardableResult",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@dynamicCallable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@dynamicMemberLookup",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Environment",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@EnvironmentObject",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@escaping",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@frozen",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@GKInspectable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@IBAction",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@IBDesignable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@IBInspectable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@IBOutlet",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@IBSegueAction",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@inlinable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@inline",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@main",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@MainActor",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@noescape",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@nonobjc",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@noreturn",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@NSApplicationMain",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@NSCopying",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@NSManaged",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@objc",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@objc_non_lazy_realization",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@objcMembers",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Observable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@ObservedObject",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@optional",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@preconcurrency",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@propertyWrapper",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Published",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@required",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@requires_stored_property_inits",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@retroactive",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@safe",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Sendable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@State",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@StateObject",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Suite",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Test",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@testable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@transpose",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@UIApplicationMain",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@unchecked",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@unknown",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@unsafe",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@usableFromInline",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@ViewLoading",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@warn_unqualified_access",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@warn_unused_result",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@WindowLoading",
+    "type" : "attributes"
+  },
+  {
+    "text" : "_Incrementable",
+    "type" : "types"
+  },
+  {
+    "text" : "abs",
+    "type" : "commands"
+  },
+  {
+    "text" : "AbsoluteValuable",
+    "type" : "types"
+  },
+  {
+    "text" : "actor",
+    "type" : "keywords"
+  },
+  {
+    "text" : "any",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Any",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyBidirectionalCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyBidirectionalIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyCollectionType",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyForwardCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyForwardIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyObject",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyRandomAccessCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyRandomAccessIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "AnyRegexOutput",
+    "type" : "types"
+  },
+  {
+    "text" : "AnySequence",
+    "type" : "types"
+  },
+  {
+    "text" : "Array",
+    "type" : "types"
+  },
+  {
+    "text" : "ArraySlice",
+    "type" : "types"
+  },
+  {
+    "text" : "as",
+    "type" : "keywords"
+  },
+  {
+    "text" : "assert",
+    "type" : "commands"
+  },
+  {
+    "text" : "assertionFailure",
+    "type" : "commands"
+  },
+  {
+    "text" : "assignment",
+    "type" : "keywords"
+  },
+  {
+    "text" : "associatedtype",
+    "type" : "keywords"
+  },
+  {
+    "text" : "associativity",
+    "type" : "keywords"
+  },
+  {
+    "text" : "async",
+    "type" : "keywords"
+  },
+  {
+    "text" : "AsyncStream",
+    "type" : "types"
+  },
+  {
+    "text" : "AsyncThrowingStream",
+    "type" : "types"
+  },
+  {
+    "text" : "AutoreleasingUnsafeMutablePointer",
+    "type" : "types"
+  },
+  {
+    "text" : "await",
+    "type" : "keywords"
+  },
+  {
+    "text" : "BidirectionalIndexType",
+    "type" : "types"
+  },
+  {
+    "text" : "Bit",
+    "type" : "types"
+  },
+  {
+    "text" : "BitwiseOperationsType",
+    "type" : "types"
+  },
+  {
+    "text" : "Bool",
+    "type" : "types"
+  },
+  {
+    "text" : "BooleanType",
+    "type" : "types"
+  },
+  {
+    "text" : "borrowing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "break",
+    "type" : "keywords"
+  },
+  {
+    "text" : "case",
+    "type" : "keywords"
+  },
+  {
+    "text" : "CaseIterable",
+    "type" : "types"
+  },
+  {
+    "text" : "catch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "CBool",
+    "type" : "types"
+  },
+  {
+    "text" : "CChar",
+    "type" : "types"
+  },
+  {
+    "text" : "CChar16",
+    "type" : "types"
+  },
+  {
+    "text" : "CChar32",
+    "type" : "types"
+  },
+  {
+    "text" : "CDouble",
+    "type" : "types"
+  },
+  {
+    "text" : "CFloat",
+    "type" : "types"
+  },
+  {
+    "text" : "CFloat16",
+    "type" : "types"
+  },
+  {
+    "text" : "Character",
+    "type" : "types"
+  },
+  {
+    "text" : "CheckedContinuation",
+    "type" : "types"
+  },
+  {
+    "text" : "CInt",
+    "type" : "types"
+  },
+  {
+    "text" : "class",
+    "type" : "keywords"
+  },
+  {
+    "text" : "CLong",
+    "type" : "types"
+  },
+  {
+    "text" : "CLongDouble",
+    "type" : "types"
+  },
+  {
+    "text" : "CLongLong",
+    "type" : "types"
+  },
+  {
+    "text" : "ClosedInterval",
+    "type" : "types"
+  },
+  {
+    "text" : "ClosedRange",
+    "type" : "types"
+  },
+  {
+    "text" : "Codable",
+    "type" : "types"
+  },
+  {
+    "text" : "CodingKey",
+    "type" : "types"
+  },
+  {
+    "text" : "CodingKeyRepresentable",
+    "type" : "types"
+  },
+  {
+    "text" : "CollectionOfOne",
+    "type" : "types"
+  },
+  {
+    "text" : "CollectionType",
+    "type" : "types"
+  },
+  {
+    "text" : "Comparable",
+    "type" : "types"
+  },
+  {
+    "text" : "consume",
+    "type" : "keywords"
+  },
+  {
+    "text" : "consuming",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ContiguousArray",
+    "type" : "types"
+  },
+  {
+    "text" : "continue",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ContinuousClock",
+    "type" : "types"
+  },
+  {
+    "text" : "convenience",
+    "type" : "keywords"
+  },
+  {
+    "text" : "COpaquePointer",
+    "type" : "types"
+  },
+  {
+    "text" : "Copyable",
+    "type" : "types"
+  },
+  {
+    "text" : "CShort",
+    "type" : "types"
+  },
+  {
+    "text" : "CSignedChar",
+    "type" : "types"
+  },
+  {
+    "text" : "CUnsignedChar",
+    "type" : "types"
+  },
+  {
+    "text" : "CUnsignedInt",
+    "type" : "types"
+  },
+  {
+    "text" : "CUnsignedLong",
+    "type" : "types"
+  },
+  {
+    "text" : "CUnsignedLongLong",
+    "type" : "types"
+  },
+  {
+    "text" : "CUnsignedShort",
+    "type" : "types"
+  },
+  {
+    "text" : "CustomDebugStringConvertible",
+    "type" : "types"
+  },
+  {
+    "text" : "CustomLeafReflectable",
+    "type" : "types"
+  },
+  {
+    "text" : "CustomPlaygroundQuickLookable",
+    "type" : "types"
+  },
+  {
+    "text" : "CustomReflectable",
+    "type" : "types"
+  },
+  {
+    "text" : "CustomStringConvertible",
+    "type" : "types"
+  },
+  {
+    "text" : "CVaListPointer",
+    "type" : "types"
+  },
+  {
+    "text" : "CVarArgType",
+    "type" : "types"
+  },
+  {
+    "text" : "CWideChar",
+    "type" : "types"
+  },
+  {
+    "text" : "debugPrint",
+    "type" : "commands"
+  },
+  {
+    "text" : "Decodable",
+    "type" : "types"
+  },
+  {
+    "text" : "defer",
+    "type" : "keywords"
+  },
+  {
+    "text" : "deinit",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Dictionary",
+    "type" : "types"
+  },
+  {
+    "text" : "DictionaryGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "DictionaryIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "didSet",
+    "type" : "keywords"
+  },
+  {
+    "text" : "discard",
+    "type" : "keywords"
+  },
+  {
+    "text" : "DiscardingTaskGroup",
+    "type" : "types"
+  },
+  {
+    "text" : "distributed",
+    "type" : "keywords"
+  },
+  {
+    "text" : "do",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Double",
+    "type" : "types"
+  },
+  {
+    "text" : "dump",
+    "type" : "commands"
+  },
+  {
+    "text" : "Duration",
+    "type" : "types"
+  },
+  {
+    "text" : "dynamic",
+    "type" : "keywords"
+  },
+  {
+    "text" : "each",
+    "type" : "keywords"
+  },
+  {
+    "text" : "else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "EmptyCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "EmptyGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "Encodable",
+    "type" : "types"
+  },
+  {
+    "text" : "enum",
+    "type" : "keywords"
+  },
+  {
+    "text" : "EnumerateGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "EnumerateSequence",
+    "type" : "types"
+  },
+  {
+    "text" : "Equatable",
+    "type" : "types"
+  },
+  {
+    "text" : "ErrorType",
+    "type" : "types"
+  },
+  {
+    "text" : "Escapable",
+    "type" : "types"
+  },
+  {
+    "text" : "ExecutorJob",
+    "type" : "types"
+  },
+  {
+    "text" : "ExpressibleByDictionaryLiteral",
+    "type" : "types"
+  },
+  {
+    "text" : "extension",
+    "type" : "keywords"
+  },
+  {
+    "text" : "fallthrough",
+    "type" : "keywords"
+  },
+  {
+    "text" : "false",
+    "type" : "values"
+  },
+  {
+    "text" : "fatalError",
+    "type" : "commands"
+  },
+  {
+    "text" : "fileprivate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "final",
+    "type" : "keywords"
+  },
+  {
+    "text" : "FlattenCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "FlattenCollectionIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "FlattenGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "FlattenSequence",
+    "type" : "types"
+  },
+  {
+    "text" : "Float",
+    "type" : "types"
+  },
+  {
+    "text" : "Float16",
+    "type" : "types"
+  },
+  {
+    "text" : "Float32",
+    "type" : "types"
+  },
+  {
+    "text" : "Float64",
+    "type" : "types"
+  },
+  {
+    "text" : "Float80",
+    "type" : "types"
+  },
+  {
+    "text" : "FloatingPointClassification",
+    "type" : "types"
+  },
+  {
+    "text" : "FloatingPointType",
+    "type" : "types"
+  },
+  {
+    "text" : "for",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ForwardIndexType",
+    "type" : "types"
+  },
+  {
+    "text" : "func",
+    "type" : "keywords"
+  },
+  {
+    "text" : "GeneratorOfOne",
+    "type" : "types"
+  },
+  {
+    "text" : "GeneratorSequence",
+    "type" : "types"
+  },
+  {
+    "text" : "GeneratorType",
+    "type" : "types"
+  },
+  {
+    "text" : "get",
+    "type" : "keywords"
+  },
+  {
+    "text" : "guard",
+    "type" : "keywords"
+  },
+  {
+    "text" : "HalfOpenInterval",
+    "type" : "types"
+  },
+  {
+    "text" : "Hashable",
+    "type" : "types"
+  },
+  {
+    "text" : "Hasher",
+    "type" : "types"
+  },
+  {
+    "text" : "higherThan­",
+    "type" : "keywords"
+  },
+  {
+    "text" : "if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ImplicitlyUnwrappedOptional",
+    "type" : "types"
+  },
+  {
+    "text" : "import",
+    "type" : "keywords"
+  },
+  {
+    "text" : "in",
+    "type" : "keywords"
+  },
+  {
+    "text" : "IndexingGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "indirect",
+    "type" : "keywords"
+  },
+  {
+    "text" : "infix",
+    "type" : "keywords"
+  },
+  {
+    "text" : "init",
+    "type" : "keywords"
+  },
+  {
+    "text" : "InlineArray",
+    "type" : "types"
+  },
+  {
+    "text" : "inout",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Int",
+    "type" : "types"
+  },
+  {
+    "text" : "Int128",
+    "type" : "types"
+  },
+  {
+    "text" : "Int16",
+    "type" : "types"
+  },
+  {
+    "text" : "Int32",
+    "type" : "types"
+  },
+  {
+    "text" : "Int64",
+    "type" : "types"
+  },
+  {
+    "text" : "Int8",
+    "type" : "types"
+  },
+  {
+    "text" : "IntegerArithmeticType",
+    "type" : "types"
+  },
+  {
+    "text" : "IntegerLiteralConvertible",
+    "type" : "types"
+  },
+  {
+    "text" : "IntegerType",
+    "type" : "types"
+  },
+  {
+    "text" : "internal",
+    "type" : "keywords"
+  },
+  {
+    "text" : "IntervalType",
+    "type" : "types"
+  },
+  {
+    "text" : "is",
+    "type" : "keywords"
+  },
+  {
+    "text" : "isKnownUniquelyReferenced",
+    "type" : "commands"
+  },
+  {
+    "text" : "isolated",
+    "type" : "keywords"
+  },
+  {
+    "text" : "JobPriority",
+    "type" : "types"
+  },
+  {
+    "text" : "JoinGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "JoinSequence",
+    "type" : "types"
+  },
+  {
+    "text" : "KeyValuePairs",
+    "type" : "types"
+  },
+  {
+    "text" : "lazy",
+    "type" : "keywords"
+  },
+  {
+    "text" : "LazyCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyCollectionType",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyFilterCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyFilterGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyFilterSequence",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyMapCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyMapGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyMapSequence",
+    "type" : "types"
+  },
+  {
+    "text" : "LazySequence",
+    "type" : "types"
+  },
+  {
+    "text" : "LazySequenceType",
+    "type" : "types"
+  },
+  {
+    "text" : "left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "let",
+    "type" : "keywords"
+  },
+  {
+    "text" : "lowerThan­",
+    "type" : "keywords"
+  },
+  {
+    "text" : "macro",
+    "type" : "keywords"
+  },
+  {
+    "text" : "MainActor",
+    "type" : "types"
+  },
+  {
+    "text" : "ManagedBuffer",
+    "type" : "types"
+  },
+  {
+    "text" : "ManagedBufferPointer",
+    "type" : "types"
+  },
+  {
+    "text" : "ManagedProtoBuffer",
+    "type" : "types"
+  },
+  {
+    "text" : "max",
+    "type" : "commands"
+  },
+  {
+    "text" : "min",
+    "type" : "commands"
+  },
+  {
+    "text" : "Mirror",
+    "type" : "types"
+  },
+  {
+    "text" : "MirrorPathType",
+    "type" : "types"
+  },
+  {
+    "text" : "MutableCollectionType",
+    "type" : "types"
+  },
+  {
+    "text" : "MutableSliceable",
+    "type" : "types"
+  },
+  {
+    "text" : "mutating",
+    "type" : "keywords"
+  },
+  {
+    "text" : "newValue",
+    "type" : "variables"
+  },
+  {
+    "text" : "nil",
+    "type" : "values"
+  },
+  {
+    "text" : "none",
+    "type" : "keywords"
+  },
+  {
+    "text" : "nonisolated",
+    "type" : "keywords"
+  },
+  {
+    "text" : "nonmutating",
+    "type" : "keywords"
+  },
+  {
+    "text" : "NonObjectiveCBase",
+    "type" : "types"
+  },
+  {
+    "text" : "numericCast",
+    "type" : "commands"
+  },
+  {
+    "text" : "ObjectIdentifier",
+    "type" : "types"
+  },
+  {
+    "text" : "oldValue",
+    "type" : "variables"
+  },
+  {
+    "text" : "open",
+    "type" : "keywords"
+  },
+  {
+    "text" : "operator",
+    "type" : "keywords"
+  },
+  {
+    "text" : "optional",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Optional",
+    "type" : "types"
+  },
+  {
+    "text" : "OptionSet",
+    "type" : "types"
+  },
+  {
+    "text" : "OptionSetType",
+    "type" : "types"
+  },
+  {
+    "text" : "OutputStreamType",
+    "type" : "types"
+  },
+  {
+    "text" : "override",
+    "type" : "keywords"
+  },
+  {
+    "text" : "package",
+    "type" : "keywords"
+  },
+  {
+    "text" : "PermutationGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "PlaygroundQuickLook",
+    "type" : "types"
+  },
+  {
+    "text" : "postfix",
+    "type" : "keywords"
+  },
+  {
+    "text" : "precedence",
+    "type" : "keywords"
+  },
+  {
+    "text" : "precedencegroup",
+    "type" : "keywords"
+  },
+  {
+    "text" : "precondition",
+    "type" : "commands"
+  },
+  {
+    "text" : "preconditionFailure",
+    "type" : "commands"
+  },
+  {
+    "text" : "prefix",
+    "type" : "keywords"
+  },
+  {
+    "text" : "print",
+    "type" : "commands"
+  },
+  {
+    "text" : "private",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Process",
+    "type" : "types"
+  },
+  {
+    "text" : "protocol",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Protocol",
+    "type" : "keywords"
+  },
+  {
+    "text" : "public",
+    "type" : "keywords"
+  },
+  {
+    "text" : "RandomAccessIndexType",
+    "type" : "types"
+  },
+  {
+    "text" : "Range",
+    "type" : "types"
+  },
+  {
+    "text" : "RangeGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "RangeReplaceableCollectionType",
+    "type" : "types"
+  },
+  {
+    "text" : "RawByte",
+    "type" : "types"
+  },
+  {
+    "text" : "RawRepresentable",
+    "type" : "types"
+  },
+  {
+    "text" : "readLine",
+    "type" : "commands"
+  },
+  {
+    "text" : "Regex",
+    "type" : "types"
+  },
+  {
+    "text" : "RegexRepetitionBehavior",
+    "type" : "types"
+  },
+  {
+    "text" : "RegexSemanticLevel",
+    "type" : "types"
+  },
+  {
+    "text" : "RegexWordBoundaryKind",
+    "type" : "types"
+  },
+  {
+    "text" : "repeat",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Repeat",
+    "type" : "types"
+  },
+  {
+    "text" : "repeatElement",
+    "type" : "commands"
+  },
+  {
+    "text" : "required",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Result",
+    "type" : "types"
+  },
+  {
+    "text" : "rethrows",
+    "type" : "keywords"
+  },
+  {
+    "text" : "return",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ReverseCollection",
+    "type" : "types"
+  },
+  {
+    "text" : "ReverseIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "ReverseIndexType",
+    "type" : "types"
+  },
+  {
+    "text" : "ReverseRandomAccessIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "safe",
+    "type" : "keywords"
+  },
+  {
+    "text" : "self",
+    "type" : "variables"
+  },
+  {
+    "text" : "Self",
+    "type" : "types"
+  },
+  {
+    "text" : "Sendable",
+    "type" : "types"
+  },
+  {
+    "text" : "sending",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sequence",
+    "type" : "commands"
+  },
+  {
+    "text" : "SequenceType",
+    "type" : "types"
+  },
+  {
+    "text" : "set",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Set",
+    "type" : "types"
+  },
+  {
+    "text" : "SetAlgebraType",
+    "type" : "types"
+  },
+  {
+    "text" : "SetGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "SetIndex",
+    "type" : "types"
+  },
+  {
+    "text" : "SignedIntegerType",
+    "type" : "types"
+  },
+  {
+    "text" : "SignedNumberType",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMD16",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMD2",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMD3",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMD32",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMD4",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMD64",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMD8",
+    "type" : "types"
+  },
+  {
+    "text" : "SIMDMask",
+    "type" : "types"
+  },
+  {
+    "text" : "Slice",
+    "type" : "types"
+  },
+  {
+    "text" : "some",
+    "type" : "keywords"
+  },
+  {
+    "text" : "static",
+    "type" : "keywords"
+  },
+  {
+    "text" : "StaticString",
+    "type" : "types"
+  },
+  {
+    "text" : "Streamable",
+    "type" : "types"
+  },
+  {
+    "text" : "stride",
+    "type" : "commands"
+  },
+  {
+    "text" : "Strideable",
+    "type" : "types"
+  },
+  {
+    "text" : "StrideThrough",
+    "type" : "types"
+  },
+  {
+    "text" : "StrideThroughGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "StrideTo",
+    "type" : "types"
+  },
+  {
+    "text" : "StrideToGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "String",
+    "type" : "types"
+  },
+  {
+    "text" : "StringLiteralConvertible",
+    "type" : "types"
+  },
+  {
+    "text" : "struct",
+    "type" : "keywords"
+  },
+  {
+    "text" : "subscript",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Substring",
+    "type" : "types"
+  },
+  {
+    "text" : "super",
+    "type" : "variables"
+  },
+  {
+    "text" : "SuspendingClock",
+    "type" : "types"
+  },
+  {
+    "text" : "swap",
+    "type" : "commands"
+  },
+  {
+    "text" : "switch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "SystemRandomNumberGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "Task",
+    "type" : "types"
+  },
+  {
+    "text" : "TaskGroup",
+    "type" : "types"
+  },
+  {
+    "text" : "TaskLocal",
+    "type" : "types"
+  },
+  {
+    "text" : "TaskPriority",
+    "type" : "types"
+  },
+  {
+    "text" : "throw",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ThrowingDiscardingTaskGroup",
+    "type" : "types"
+  },
+  {
+    "text" : "ThrowingTaskGroup",
+    "type" : "types"
+  },
+  {
+    "text" : "throws",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transcode",
+    "type" : "commands"
+  },
+  {
+    "text" : "true",
+    "type" : "values"
+  },
+  {
+    "text" : "try",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Type",
+    "type" : "keywords"
+  },
+  {
+    "text" : "typealias",
+    "type" : "keywords"
+  },
+  {
+    "text" : "UInt",
+    "type" : "types"
+  },
+  {
+    "text" : "UInt128",
+    "type" : "types"
+  },
+  {
+    "text" : "UInt16",
+    "type" : "types"
+  },
+  {
+    "text" : "UInt32",
+    "type" : "types"
+  },
+  {
+    "text" : "UInt64",
+    "type" : "types"
+  },
+  {
+    "text" : "UInt8",
+    "type" : "types"
+  },
+  {
+    "text" : "UnicodeCodecType",
+    "type" : "types"
+  },
+  {
+    "text" : "UnicodeDecodingResult",
+    "type" : "types"
+  },
+  {
+    "text" : "UnicodeScalar",
+    "type" : "types"
+  },
+  {
+    "text" : "Unmanaged",
+    "type" : "types"
+  },
+  {
+    "text" : "unowned",
+    "type" : "keywords"
+  },
+  {
+    "text" : "UnownedJob",
+    "type" : "types"
+  },
+  {
+    "text" : "UnownedSerialExecutor",
+    "type" : "types"
+  },
+  {
+    "text" : "unsafeBitCast",
+    "type" : "commands"
+  },
+  {
+    "text" : "UnsafeBufferPointer",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsafeBufferPointerGenerator",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsafeContinuation",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsafeCurrentTask",
+    "type" : "types"
+  },
+  {
+    "text" : "unsafeDowncast",
+    "type" : "commands"
+  },
+  {
+    "text" : "UnsafeMutableBufferPointer",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsafeMutablePointer",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsafeMutableRawBufferPointer",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsafePointer",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsafeRawBufferPointer",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsignedIntegerType",
+    "type" : "types"
+  },
+  {
+    "text" : "UTF16",
+    "type" : "types"
+  },
+  {
+    "text" : "UTF32",
+    "type" : "types"
+  },
+  {
+    "text" : "UTF8",
+    "type" : "types"
+  },
+  {
+    "text" : "VaListBuilder",
+    "type" : "types"
+  },
+  {
+    "text" : "var",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Void",
+    "type" : "types"
+  },
+  {
+    "text" : "weak",
+    "type" : "keywords"
+  },
+  {
+    "text" : "where",
+    "type" : "keywords"
+  },
+  {
+    "text" : "while",
+    "type" : "keywords"
+  },
+  {
+    "text" : "willSet",
+    "type" : "keywords"
+  },
+  {
+    "text" : "withExtendedLifetime",
+    "type" : "commands"
+  },
+  {
+    "text" : "withUnsafeMutablePointer",
+    "type" : "commands"
+  },
+  {
+    "text" : "withUnsafePointer",
+    "type" : "commands"
+  },
+  {
+    "text" : "withVaList",
+    "type" : "commands"
+  },
+  {
+    "text" : "zip",
+    "type" : "commands"
+  },
+  {
+    "text" : "Zip2Generator",
+    "type" : "types"
+  },
+  {
+    "text" : "Zip2Sequence",
+    "type" : "types"
+  },
+  {
+    "text" : "~Copyable",
+    "type" : "types"
+  }
+  ]

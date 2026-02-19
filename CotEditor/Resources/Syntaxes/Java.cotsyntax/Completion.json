@@ -1,0 +1,270 @@
+[
+  {
+    "text" : "@After",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@AfterClass",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Before",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@BeforeClass",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Deprecated",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Documented",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Inherited",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Override",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Retetion",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@SafeVarargs",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@SuppressWarnings",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Target",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Test",
+    "type" : "attributes"
+  },
+  {
+    "text" : "abstract",
+    "type" : "keywords"
+  },
+  {
+    "text" : "assert",
+    "type" : "keywords"
+  },
+  {
+    "text" : "boolean",
+    "type" : "types"
+  },
+  {
+    "text" : "break",
+    "type" : "keywords"
+  },
+  {
+    "text" : "byte",
+    "type" : "types"
+  },
+  {
+    "text" : "case",
+    "type" : "keywords"
+  },
+  {
+    "text" : "catch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "char",
+    "type" : "types"
+  },
+  {
+    "text" : "class",
+    "type" : "keywords"
+  },
+  {
+    "text" : "continue",
+    "type" : "keywords"
+  },
+  {
+    "text" : "default",
+    "type" : "keywords"
+  },
+  {
+    "text" : "do",
+    "type" : "keywords"
+  },
+  {
+    "text" : "double",
+    "type" : "types"
+  },
+  {
+    "text" : "else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "enum",
+    "type" : "keywords"
+  },
+  {
+    "text" : "extends",
+    "type" : "keywords"
+  },
+  {
+    "text" : "false",
+    "type" : "values"
+  },
+  {
+    "text" : "final",
+    "type" : "keywords"
+  },
+  {
+    "text" : "finally",
+    "type" : "keywords"
+  },
+  {
+    "text" : "float",
+    "type" : "types"
+  },
+  {
+    "text" : "for",
+    "type" : "keywords"
+  },
+  {
+    "text" : "if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "implements",
+    "type" : "keywords"
+  },
+  {
+    "text" : "import",
+    "type" : "keywords"
+  },
+  {
+    "text" : "instanceof",
+    "type" : "keywords"
+  },
+  {
+    "text" : "int",
+    "type" : "types"
+  },
+  {
+    "text" : "interface",
+    "type" : "keywords"
+  },
+  {
+    "text" : "long",
+    "type" : "types"
+  },
+  {
+    "text" : "NaN",
+    "type" : "values"
+  },
+  {
+    "text" : "native",
+    "type" : "keywords"
+  },
+  {
+    "text" : "new",
+    "type" : "keywords"
+  },
+  {
+    "text" : "null",
+    "type" : "values"
+  },
+  {
+    "text" : "package",
+    "type" : "keywords"
+  },
+  {
+    "text" : "private",
+    "type" : "keywords"
+  },
+  {
+    "text" : "protected",
+    "type" : "keywords"
+  },
+  {
+    "text" : "public",
+    "type" : "keywords"
+  },
+  {
+    "text" : "return",
+    "type" : "keywords"
+  },
+  {
+    "text" : "short",
+    "type" : "types"
+  },
+  {
+    "text" : "static",
+    "type" : "keywords"
+  },
+  {
+    "text" : "strictfp",
+    "type" : "keywords"
+  },
+  {
+    "text" : "String",
+    "type" : "types"
+  },
+  {
+    "text" : "super",
+    "type" : "variables"
+  },
+  {
+    "text" : "switch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "synchronized",
+    "type" : "keywords"
+  },
+  {
+    "text" : "this",
+    "type" : "variables"
+  },
+  {
+    "text" : "throw",
+    "type" : "keywords"
+  },
+  {
+    "text" : "throws",
+    "type" : "keywords"
+  },
+  {
+    "text" : "transient",
+    "type" : "keywords"
+  },
+  {
+    "text" : "true",
+    "type" : "values"
+  },
+  {
+    "text" : "try",
+    "type" : "keywords"
+  },
+  {
+    "text" : "var",
+    "type" : "types"
+  },
+  {
+    "text" : "void",
+    "type" : "types"
+  },
+  {
+    "text" : "volatile",
+    "type" : "keywords"
+  },
+  {
+    "text" : "while",
+    "type" : "keywords"
+  }
+  ]
