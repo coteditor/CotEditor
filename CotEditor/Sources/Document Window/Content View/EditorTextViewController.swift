@@ -35,6 +35,7 @@ import LineEnding
 import StringUtils
 import Syntax
 import TextClipping
+import TextEditing
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     
@@ -417,6 +418,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         let syntax = self.document.syntaxController.syntax
         self.textView.commentDelimiters = syntax.commentDelimiters
+        self.textView.indentTokens = syntax.indentation.blockDelimiters.compactMap(IndentToken.init(pair:))
         self.textView.delimiterEscapeRule = syntax.lexicalRules.delimiterEscapeRule
         self.textView.syntaxCompletionWords = syntax.completionWords
     }

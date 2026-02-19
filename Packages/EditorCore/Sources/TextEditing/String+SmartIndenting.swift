@@ -90,12 +90,6 @@ public enum IndentToken: Equatable, Sendable {
 
 public extension String {
     
-    private nonisolated static let indentTokens: [IndentToken] = [
-        .symbolPair(Pair("{", "}")),
-        .beginToken(":"),
-    ]
-    
-    
     /// Computes auto-indentation strings and insertion positions for newline insertion.
     ///
     /// - Note: Ranges without a line ending immediately before them are ignored.
@@ -110,7 +104,6 @@ public extension String {
         
         assert(indentWidth > 0)
         
-        let tokens = tokens.isEmpty ? Self.indentTokens : tokens
         var indents: [String] = []
         var replacementRanges: [NSRange] = []
         var newSelectedRanges: [NSRange] = []
@@ -177,8 +170,6 @@ public extension String {
     func smartOutdentLevel(with string: String, indentWidth: Int, tokens: [IndentToken] = [], in range: NSRange) -> Int {
         
         assert(indentWidth > 0)
-        
-        let tokens = tokens.isEmpty ? Self.indentTokens : tokens
         
         guard
             let pair = tokens.compactMap(\.characters).first(where: { String($0.end) == string })

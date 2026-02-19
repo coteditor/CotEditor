@@ -99,6 +99,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var delimiterEscapeRule: DelimiterEscapeRule = .backslash
     var commentsOutAfterIndent: Bool = false
     var appendsCommentSpacer: Bool = false
+    var indentTokens: [IndentToken] = []
     var syntaxCompletionWords: [Syntax.CompletionWord] = []
     var completionWordTypes: CompletionWordTypes = []
     
@@ -506,7 +507,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // smart outdent with a certain symbol
         if self.isAutomaticIndentEnabled, replacementRange.isEmpty {
-            let levelToReduce = self.string.smartOutdentLevel(with: plainString, indentWidth: self.tabWidth, in: self.rangeForUserTextChange)
+            let levelToReduce = self.string.smartOutdentLevel(with: plainString, indentWidth: self.tabWidth, tokens: self.indentTokens, in: self.rangeForUserTextChange)
             for _ in 0..<levelToReduce {
                 self.deleteBackward(nil)
             }
