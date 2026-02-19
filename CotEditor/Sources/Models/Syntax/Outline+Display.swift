@@ -43,7 +43,7 @@ extension OutlineItem {
     var displayIndent: String {
         
         if let level {
-            return String(repeating: "  ", count: max(level - 1, 0))
+            return String(repeating: "  ", count: level)
         }
         
         return self.indent

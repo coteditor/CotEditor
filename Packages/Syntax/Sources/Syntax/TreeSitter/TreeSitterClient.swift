@@ -139,7 +139,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
             .compactMap(OutlineCapture.init(capture:))
             .compactMap { capture -> OutlineItem? in
                 if capture.kind == .separator {
-                    return OutlineItem.separator(range: capture.range)
+                    return OutlineItem.separator(range: capture.range, level: capture.depth)
                 }
                 
                 let trimmedTitle = (string as NSString).substring(with: capture.range)
@@ -154,8 +154,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
                 
                 return OutlineItem(title: formattedTitle, indent: indent, range: capture.range, kind: capture.kind, level: capture.depth)
             }
-            .sorted(using: [KeyPathComparator(\.range.location),
-                            KeyPathComparator(\.range.length)])
+            .normalizedLevels()
     }
     
     

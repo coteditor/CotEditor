@@ -66,9 +66,9 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     }
     
     
-    public static func separator(range: NSRange) -> Self {
+    public static func separator(range: NSRange, level: Int? = nil) -> Self {
         
-        self.init(title: "", range: range, kind: .separator)
+        self.init(title: "", range: range, kind: .separator, level: level)
     }
 }
 
@@ -141,5 +141,42 @@ extension BidirectionalCollection<OutlineItem> {
     private func indexOfItem(at location: Int) -> Index? {
         
         self.lastIndex { $0.range.location <= location && !$0.isSeparator }
+    }
+    
+    
+    /// Normalizes outline levels to a stepwise hierarchy without skipped levels.
+    func normalizedLevels() -> [OutlineItem] {
+        
+        var depthStack: [Int] = []
+        var normalized: [OutlineItem] = []
+        normalized.reserveCapacity(self.count)
+        
+        for item in self {
+            guard let depth = item.level else {
+                normalized.append(item)
+                continue
+            }
+            
+            if depthStack.isEmpty {
+                depthStack.append(depth)
+            } else if let lastDepth = depthStack.last {
+                if depth > lastDepth {
+                    depthStack.append(depth)
+                } else if depth < lastDepth {
+                    if let index = depthStack.lastIndex(where: { $0 <= depth }) {
+                        depthStack = [Int](depthStack.prefix(index + 1))
+                        depthStack[index] = depth
+                    } else {
+                        depthStack = [depth]
+                    }
+                }
+            }
+            
+            var normalizedItem = item
+            normalizedItem.level = depthStack.count - 1
+            normalized.append(normalizedItem)
+        }
+        
+        return normalized
     }
 }

@@ -89,4 +89,24 @@ struct OutlineTests {
         #expect(self.items.compactMap { $0.filter("dog", keyPath: \.title) }.count == 2)
         #expect(self.items.compactMap { $0.filter("dow", keyPath: \.title) }.count == 1)
     }
+    
+    
+    @Test func normalizedLevels() throws {
+        
+        let items: [OutlineItem] = [
+            OutlineItem(title: "a", range: NSRange(location: 0, length: 1), level: 3),
+            OutlineItem(title: "b", range: NSRange(location: 1, length: 1), level: 5),
+            OutlineItem(title: "c", range: NSRange(location: 2, length: 1), level: 6),
+            OutlineItem(title: "d", range: NSRange(location: 3, length: 1), level: 4),
+            OutlineItem(title: "e", range: NSRange(location: 4, length: 1), level: 2),
+            OutlineItem(title: "f", range: NSRange(location: 5, length: 1), level: 2),
+            OutlineItem(title: "g", range: NSRange(location: 6, length: 1), level: 7),
+            OutlineItem.separator(range: NSRange(location: 7, length: 1), level: 2),
+            OutlineItem(title: "h", range: NSRange(location: 8, length: 1), level: nil),
+        ]
+        
+        let normalizedLevels = items.normalizedLevels().map(\.level)
+        
+        #expect(normalizedLevels == [0, 1, 2, 0, 0, 0, 1, 0, nil])
+    }
 }

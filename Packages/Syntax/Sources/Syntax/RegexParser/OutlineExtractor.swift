@@ -77,5 +77,6 @@ public struct OutlineExtractor: Sendable {
                 
                 return OutlineItem(title: String(match.title), indent: String(match.indent), range: result.range, kind: self.kind)
             }
+            .normalizedLevels()
     }
 }
