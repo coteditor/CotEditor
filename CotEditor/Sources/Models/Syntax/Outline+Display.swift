@@ -1,5 +1,5 @@
 //
-//  OutlineItem+Font.swift
+//  Outline+Display.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -34,5 +34,18 @@ extension OutlineItem.Style {
         NSFontTraitMask()
             .union(self.contains(.bold) ? .boldFontMask : [])
             .union(self.contains(.italic) ? .italicFontMask : [])
+    }
+}
+
+
+extension OutlineItem {
+    
+    var displayIndent: String {
+        
+        if let level {
+            return String(repeating: "  ", count: max(level - 1, 0))
+        }
+        
+        return self.indent
     }
 }

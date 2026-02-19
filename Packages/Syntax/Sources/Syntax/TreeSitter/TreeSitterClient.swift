@@ -31,7 +31,7 @@ import ValueRange
 import SwiftTreeSitter
 import SwiftTreeSitterLayer
 
-actor TreeSitterClient: HighlightParsing {
+actor TreeSitterClient: HighlightParsing, OutlineParsing {
     
     // MARK: Internal Properties
     
@@ -41,6 +41,7 @@ actor TreeSitterClient: HighlightParsing {
     // MARK: Private Properties
     
     private let layer: LanguageLayer
+    private let syntax: TreeSitterSyntax
     
     /// The current mirrored document content.
     private var content: Content = .init()
@@ -51,10 +52,11 @@ actor TreeSitterClient: HighlightParsing {
     
     // MARK: Lifecycle
     
-    init(languageConfig: LanguageConfiguration, languageProvider: @escaping LanguageLayer.LanguageProvider) throws {
+    init(languageConfig: LanguageConfiguration, languageProvider: @escaping LanguageLayer.LanguageProvider, syntax: TreeSitterSyntax) throws {
         
         self.layer = try LanguageLayer(languageConfig: languageConfig,
                                        configuration: .init(languageProvider: languageProvider))
+        self.syntax = syntax
     }
     
     
@@ -109,6 +111,54 @@ actor TreeSitterClient: HighlightParsing {
     }
     
     
+    // MARK: OutlineParsing Methods
+    
+    func parseOutline(in string: String) async throws -> [OutlineItem] {
+        
+        if string != self.content.string {
+            self.resetContent(string)
+        }
+        
+        try Task.checkCancellation()
+        
+        let content = LanguageLayer.Content(string: string)
+        if !self.pendingAffectedRanges.isEmpty {
+            // -> Outline parsing should not consume pending ranges; highlights are expected to run first.
+            _ = self.layer.parse(with: content, affecting: self.pendingAffectedRanges.indexSet, resolveSublayers: true)
+        }
+        
+        try Task.checkCancellation()
+        
+        let outlineRange = IndexSet(integersIn: Range(string.range)!)
+        let cursor = try self.layer.executeQuery(.outline, in: outlineRange)
+        let matches = cursor.resolve(with: SwiftTreeSitter.Predicate.Context(textProvider: string.predicateNSStringProvider))
+        let formatter = self.syntax.outlineTitleFormatter
+        
+        return matches
+            .flatMap(\.captures)
+            .compactMap(OutlineCapture.init(capture:))
+            .compactMap { capture -> OutlineItem? in
+                if capture.kind == .separator {
+                    return OutlineItem.separator(range: capture.range)
+                }
+                
+                let trimmedTitle = (string as NSString).substring(with: capture.range)
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                
+                guard
+                    !trimmedTitle.isEmpty,
+                    let formattedTitle = formatter(capture.kind, trimmedTitle)
+                else { return nil }
+                
+                let indent = (string as NSString).indentString(for: capture.range)
+                
+                return OutlineItem(title: formattedTitle, indent: indent, range: capture.range, kind: capture.kind, level: capture.headingLevel)
+            }
+            .sorted(using: [KeyPathComparator(\.range.location),
+                            KeyPathComparator(\.range.length)])
+    }
+    
+    
     // MARK: Private Methods
     
     /// Resets the stored content and the tree-sitter layer when incremental edits cannot be applied.
@@ -140,11 +190,67 @@ private extension NamedRange {
 }
 
 
+private struct OutlineCapture {
+    
+    var kind: Syntax.Outline.Kind
+    var range: NSRange
+    var headingLevel: Int?
+    
+    
+    init?(capture: QueryCapture) {
+        
+        let components = capture.nameComponents
+        
+        guard
+            components.first == "outline",
+            components.count > 1,
+            let kind = Syntax.Outline.Kind(rawValue: components[1])
+        else { return nil }
+        
+        self.kind = kind
+        self.range = capture.range
+        self.headingLevel = if components.count > 2, components[1] == "heading" {
+            Self.headingLevel(from: components[2])
+        } else {
+            nil
+        }
+    }
+    
+    
+    private static func headingLevel(from component: String) -> Int? {
+        
+        switch component {
+            case "h1": 1
+            case "h2": 2
+            case "h3": 3
+            case "h4": 4
+            case "h5": 5
+            case "h6": 6
+            case "title": 1
+            default: nil
+        }
+    }
+}
+
+
 private extension NSString {
     
     var predicateNSStringProvider: SwiftTreeSitter.Predicate.TextProvider {
         
         { nsRange, _ in self.substring(with: nsRange) }
+    }
+    
+    
+    func indentString(for range: NSRange) -> String {
+        
+        guard range.location < self.length else { return "" }
+        
+        let lineStart = self.lineStartIndex(at: range.location)
+        let indentRange = self.range(of: "[ \\t]+", options: [.anchored, .regularExpression], range: NSRange(lineStart..<self.length))
+        
+        guard !indentRange.isNotFound else { return "" }
+        
+        return self.substring(with: indentRange)
     }
 }
 

@@ -183,7 +183,7 @@ enum SyntaxName {
     /// - Parameters:
     ///   - name: The setting name to check.
     /// - Returns: `true` if the syntax is user-customizable (i.e., not a built-in language), otherwise `false`.
-    func canCustomizeHighlighting(name: SettingName) -> Bool {
+    func canCustomizeParser(name: SettingName) -> Bool {
         
         TreeSitterSyntax(rawValue: name) == nil
     }

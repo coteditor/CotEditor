@@ -40,11 +40,18 @@ import TreeSitterRust
 import TreeSitterSwift
 import TreeSitterTypeScript
 
+extension Query.Definition {
+    
+    static let outline = Self.custom("outline")
+}
+
+
 public final class LanguageRegistry: Sendable {
     
     enum RegistryError: Error {
         
         case noQueriesDirectory
+        case emptyQueries
     }
     
     
@@ -86,8 +93,8 @@ public final class LanguageRegistry: Sendable {
     ///
     /// - Parameters:
     ///   - syntax: The target syntax.
-    /// - Returns: A configuration if the language can be initialized.
-    nonisolated func configuration(for syntax: TreeSitterSyntax) throws -> LanguageConfiguration {
+    /// - Returns: A language configuration.
+    nonisolated func configuration(for syntax: TreeSitterSyntax) throws(RegistryError) -> LanguageConfiguration {
         
         if let cache = self.cachedConfiguration.withLock({ $0[syntax] }) {
             return cache
@@ -95,9 +102,13 @@ public final class LanguageRegistry: Sendable {
         
         let queriesURL = self.queriesURL(for: syntax)
         
-        guard (try? queriesURL.checkResourceIsReachable()) == true else { throw RegistryError.noQueriesDirectory }
+        guard (try? queriesURL.checkResourceIsReachable()) == true else { throw .noQueriesDirectory }
         
-        let config = try unsafe LanguageConfiguration(syntax.language, name: syntax.name, queriesURL: queriesURL)
+        let queries = syntax.loadQueries(at: queriesURL)
+        
+        guard !queries.isEmpty else { throw .emptyQueries }
+        
+        let config = unsafe LanguageConfiguration(syntax.language, name: syntax.name, queries: queries)
         self.cachedConfiguration.withLock { $0[syntax] = config }
         
         return config
@@ -156,5 +167,38 @@ private extension TreeSitterSyntax {
             case .swift: unsafe tree_sitter_swift()
             case .typeScript: unsafe tree_sitter_typescript()
         }
+    }
+    
+    
+    /// Loads query files from the given directory.
+    ///
+    /// - Parameters:
+    ///   - syntax: The target tree-sitter syntax.
+    ///   - queriesURL: The queries directory URL.
+    /// - Returns: The loaded queries keyed by their definition.
+    /// - Throws: Any error raised while compiling a query.
+    func loadQueries(at queriesURL: URL) -> [Query.Definition: Query] {
+        
+        let definitions: [Query.Definition] = [
+            .injections,
+            .highlights,
+            .outline,
+        ]
+        
+        var queries: [Query.Definition: Query] = [:]
+        for definition in definitions {
+            let queryURL = queriesURL.appending(path: definition.filename)
+            
+            guard (try? queryURL.resourceValues(forKeys: [.isReadableKey]))?.isReadable == true else { continue }
+            
+            let language = unsafe Language(self.language)
+            do {
+                queries[definition] = try Query(language: language, url: queryURL)
+            } catch {
+                assertionFailure("failed open \(self.name)'s \(queryURL.lastPathComponent): \(error.localizedDescription)")
+            }
+        }
+        
+        return queries
     }
 }
