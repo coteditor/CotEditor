@@ -152,7 +152,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
                 
                 let indent = (string as NSString).indentString(for: capture.range)
                 
-                return OutlineItem(title: formattedTitle, indent: indent, range: capture.range, kind: capture.kind, level: capture.headingLevel)
+                return OutlineItem(title: formattedTitle, indent: indent, range: capture.range, kind: capture.kind, level: capture.depth)
             }
             .sorted(using: [KeyPathComparator(\.range.location),
                             KeyPathComparator(\.range.length)])
@@ -194,7 +194,7 @@ private struct OutlineCapture {
     
     var kind: Syntax.Outline.Kind
     var range: NSRange
-    var headingLevel: Int?
+    var depth: Int
     
     
     init?(capture: QueryCapture) {
@@ -209,15 +209,15 @@ private struct OutlineCapture {
         
         self.kind = kind
         self.range = capture.range
-        self.headingLevel = if components.count > 2, components[1] == "heading" {
+        self.depth = if components.count > 2, components[1] == "heading" {
             Self.headingLevel(from: components[2])
         } else {
-            nil
+            Array(sequence(first: capture.node, next: \.parent)).count
         }
     }
     
     
-    private static func headingLevel(from component: String) -> Int? {
+    private static func headingLevel(from component: String) -> Int {
         
         switch component {
             case "h1": 1
@@ -227,7 +227,7 @@ private struct OutlineCapture {
             case "h5": 5
             case "h6": 6
             case "title": 1
-            default: nil
+            default: 1
         }
     }
 }
