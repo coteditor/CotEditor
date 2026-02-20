@@ -36,16 +36,3 @@ extension OutlineItem.Style {
             .union(self.contains(.italic) ? .italicFontMask : [])
     }
 }
-
-
-extension OutlineItem {
-    
-    var displayIndent: String {
-        
-        if let level {
-            return String(repeating: "  ", count: level)
-        }
-        
-        return self.indent
-    }
-}

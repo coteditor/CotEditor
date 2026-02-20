@@ -150,9 +150,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
                     let formattedTitle = formatter(capture.kind, trimmedTitle)
                 else { return nil }
                 
-                let indent = (string as NSString).indentString(for: capture.range)
-                
-                return OutlineItem(title: formattedTitle, indent: indent, range: capture.range, kind: capture.kind, level: capture.depth)
+                return OutlineItem(title: formattedTitle, indent: "", range: capture.range, kind: capture.kind, level: capture.depth)
             }
             .normalizedLevels()
     }
@@ -237,19 +235,6 @@ private extension NSString {
     var predicateNSStringProvider: SwiftTreeSitter.Predicate.TextProvider {
         
         { nsRange, _ in self.substring(with: nsRange) }
-    }
-    
-    
-    func indentString(for range: NSRange) -> String {
-        
-        guard range.location < self.length else { return "" }
-        
-        let lineStart = self.lineStartIndex(at: range.location)
-        let indentRange = self.range(of: "[ \\t]+", options: [.anchored, .regularExpression], range: NSRange(lineStart..<self.length))
-        
-        guard !indentRange.isNotFound else { return "" }
-        
-        return self.substring(with: indentRange)
     }
 }
 
