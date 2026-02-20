@@ -120,7 +120,7 @@ actor BundledSyntaxTests {
         #expect(outlineItems.count == 3)
         
         let item = outlineItems[1]
-        #expect(item.indent.isEmpty)
+        #expect(item.indent == .string(""))
         #expect(item.title == "#dogcow")
         #expect(item.range == NSRange(location: 164, length: 11))
         #expect(item.style.isEmpty)
