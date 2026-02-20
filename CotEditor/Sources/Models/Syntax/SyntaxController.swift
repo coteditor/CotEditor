@@ -294,7 +294,7 @@ extension NSAttributedString.Key {
         
         self.outlineParseTask = Task { [weak self] in
             if withDelay {
-                try await Task.sleep(for: .seconds(0.4))  // debounce
+                try await Task.sleep(for: .seconds(0.6))  // debounce
             }
             // Highlight parsing is expected to run first to provide accurate invalidation ranges.
             try? await self?.highlightParseTask?.value
