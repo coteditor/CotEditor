@@ -38,6 +38,7 @@ import TreeSitterPython
 import TreeSitterRuby
 import TreeSitterRust
 import TreeSitterSwift
+import TreeSitterScala
 import TreeSitterTypeScript
 
 extension Query.Definition {
@@ -164,6 +165,7 @@ private extension TreeSitterSyntax {
             case .python: unsafe tree_sitter_python()
             case .ruby: unsafe tree_sitter_ruby()
             case .rust: unsafe tree_sitter_rust()
+            case .scala: unsafe tree_sitter_scala()
             case .swift: unsafe tree_sitter_swift()
             case .typeScript: unsafe tree_sitter_typescript()
         }

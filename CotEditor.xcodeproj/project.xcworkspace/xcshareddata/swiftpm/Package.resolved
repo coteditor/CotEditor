@@ -1,5 +1,5 @@
 {
-  "originHash" : "d70a742de6de930e115a4caed024cf23a7c1c3642c75ffd439b3bddbcb2a8b46",
+  "originHash" : "f67fce0cce87060bb751aa81fc3868c0a0950b117013b382c292216c380a3700",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -133,6 +133,15 @@
       "location" : "https://github.com/tree-sitter/tree-sitter-rust",
       "state" : {
         "revision" : "18b0515fca567f5a10aee9978c6d2640e878671a",
+        "version" : "0.24.0"
+      }
+    },
+    {
+      "identity" : "tree-sitter-scala",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tree-sitter/tree-sitter-scala",
+      "state" : {
+        "revision" : "2d55e74b0485fe05058ffe5e8155506c9710c767",
         "version" : "0.24.0"
       }
     },

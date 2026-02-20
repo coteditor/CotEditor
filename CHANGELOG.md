@@ -29,6 +29,7 @@
     - Python
     - Ruby
     - Rust
+    - Scala
     - Swift
     - TypeScript
 - Update built-in syntaxes.
