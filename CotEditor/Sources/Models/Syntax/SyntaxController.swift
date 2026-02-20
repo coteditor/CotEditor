@@ -96,13 +96,13 @@ extension NSAttributedString.Key {
         self.isReady = true
         self.invalidRanges.clear()
         
-        Task {
-            if let parser = self.highlightParser {
+        Task { [weak self] in
+            if let self, let parser = self.highlightParser {
                 let content = self.textStorage.string.immutable
                 await parser.update(content: content)
             }
-            self.performInitialHighlight()
-            self.updateOutline(withDelay: false)
+            self?.performInitialHighlight()
+            self?.updateOutline(withDelay: false)
         }
     }
     
@@ -157,12 +157,14 @@ extension NSAttributedString.Key {
         guard let parser = self.highlightParser else { return }
         
         let insertedText = (self.textStorage.string as NSString).substring(with: editedRange)
-        Task {
+        Task { [weak self] in
             do {
                 try await parser.noteEdit(editedRange: editedRange, delta: delta, insertedText: insertedText)
             } catch {
                 Logger.app.debug("failed noting edit: \(error.localizedDescription) in \(#function)")
-                await parser.update(content: self.textStorage.string)
+                if let self {
+                    await parser.update(content: self.textStorage.string)
+                }
             }
         }
     }
@@ -204,20 +206,20 @@ extension NSAttributedString.Key {
         
         guard !self.invalidRanges.isEmpty else { return }
         
-        self.highlightParseTask = Task { [unowned self] in
+        self.highlightParseTask = Task { [weak self] in
             if withDelay {
                 // -> Perform not in the same run loop at least to give layoutManagers time to update their values.
                 try await Task.sleep(for: .seconds(0.05))  // debounce
             }
             
-            guard let invalidRange = self.invalidRanges.range else { return }
+            guard let invalidRange = self?.invalidRanges.range else { return }
             
-            try await self.performHighlight(in: invalidRange)
+            try await self?.performHighlight(in: invalidRange)
             
             // avoid clearing newer invalid ranges if this task was canceled mid-parse.
             guard !Task.isCancelled else { return }
             
-            self.invalidRanges.clear()
+            self?.invalidRanges.clear()
         }
     }
     
@@ -232,11 +234,13 @@ extension NSAttributedString.Key {
             !self.textStorage.range.isEmpty
         else { return }
         
-        self.highlightParseTask = Task { [unowned self] in
+        self.highlightParseTask = Task { [weak self] in
             let initialLength = 2_000
-            if self.textStorage.length > initialLength {
+            if let self, self.textStorage.length > initialLength {
                 try await self.performHighlight(in: NSRange(0..<initialLength))
             }
+            
+            guard let self else { return }
             
             try await self.performHighlight(in: self.textStorage.range)
         }
@@ -288,12 +292,15 @@ extension NSAttributedString.Key {
             return
         }
         
-        self.outlineParseTask = Task {
+        self.outlineParseTask = Task { [weak self] in
             if withDelay {
                 try await Task.sleep(for: .seconds(0.4))  // debounce
             }
             // Highlight parsing is expected to run first to provide accurate invalidation ranges.
-            _ = try? await self.highlightParseTask?.value
+            try? await self?.highlightParseTask?.value
+            
+            guard let self else { return }
+            
             self.outlineItems = nil
             let string = self.textStorage.string.immutable
             self.outlineItems = try await parser.parseOutline(in: string)
