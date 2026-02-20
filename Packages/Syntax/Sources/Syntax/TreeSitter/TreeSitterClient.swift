@@ -136,6 +136,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
         
         return matches
             .flatMap(\.captures)
+            .filter { $0.depth == 0 }  // ignore injection
             .compactMap(OutlineCapture.init(capture:))
             .compactMap { capture -> OutlineItem? in
                 if capture.kind == .separator {
