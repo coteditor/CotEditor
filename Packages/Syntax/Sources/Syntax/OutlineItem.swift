@@ -43,32 +43,37 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     }
     
     
+    public enum Indent: Hashable, Equatable, Sendable {
+        
+        case string(String)
+        case level(Int)
+    }
+    
+    
     public let id = UUID()
     
     public var title: String
-    public var indent: String
     public var range: NSRange
+    public var indent: Indent
     public var kind: Syntax.Outline.Kind?
-    public var level: Int?
     
     public var style: Style  { self.kind?.style ?? [] }
     
     public var isSeparator: Bool  { self.kind == .separator }
     
     
-    public init(title: String, indent: String = "", range: NSRange, kind: Syntax.Outline.Kind? = nil, level: Int? = nil) {
+    public init(title: String, range: NSRange, kind: Syntax.Outline.Kind? = nil, indent: Indent = .level(0)) {
         
         self.title = title
-        self.indent = indent
         self.range = range
+        self.indent = indent
         self.kind = kind
-        self.level = level
     }
     
     
-    public static func separator(range: NSRange, level: Int? = nil) -> Self {
+    public static func separator(range: NSRange, indent: Indent = .level(0)) -> Self {
         
-        self.init(title: "", range: range, kind: .separator, level: level)
+        self.init(title: "", range: range, kind: .separator, indent: indent)
     }
 }
 
@@ -152,7 +157,7 @@ extension BidirectionalCollection<OutlineItem> {
         normalized.reserveCapacity(self.count)
         
         for item in self {
-            guard let depth = item.level else {
+            guard case .level(let depth) = item.indent else {
                 normalized.append(item)
                 continue
             }
@@ -173,7 +178,7 @@ extension BidirectionalCollection<OutlineItem> {
             }
             
             var normalizedItem = item
-            normalizedItem.level = depthStack.count - 1
+            normalizedItem.indent = .level(depthStack.count - 1)
             normalized.append(normalizedItem)
         }
         

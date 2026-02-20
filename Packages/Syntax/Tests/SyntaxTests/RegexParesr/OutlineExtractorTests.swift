@@ -58,9 +58,9 @@ struct OutlineExtractorTests {
         
         #expect(items.count == 2)
         #expect(items[0].title == "alpha beta")
-        #expect(items[0].indent == " ")
+        #expect(items[0].indent == .string(" "))
         #expect(items[1].title == "gamma delta")
-        #expect(items[1].indent == "  ")
+        #expect(items[1].indent == .string("  "))
     }
     
     
@@ -92,7 +92,7 @@ struct OutlineExtractorTests {
         
         #expect(items.count == 1)
         #expect(items[0].title == "TITLE: Hello World")
-        #expect(items[0].indent == "  ")
+        #expect(items[0].indent == .string("  "))
         #expect(items[0].kind == .value)
     }
     

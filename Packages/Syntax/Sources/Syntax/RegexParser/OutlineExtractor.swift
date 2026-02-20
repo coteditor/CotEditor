@@ -75,7 +75,7 @@ public struct OutlineExtractor: Sendable {
                     !match.title.isEmpty
                 else { return nil }
                 
-                return OutlineItem(title: String(match.title), indent: String(match.indent), range: result.range, kind: self.kind)
+                return OutlineItem(title: String(match.title), range: result.range, kind: self.kind, indent: .string(String(match.indent)))
             }
             .normalizedLevels()
     }

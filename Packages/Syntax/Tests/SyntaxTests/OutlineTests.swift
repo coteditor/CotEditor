@@ -94,18 +94,23 @@ struct OutlineTests {
     @Test func normalizedLevels() throws {
         
         let items: [OutlineItem] = [
-            OutlineItem(title: "a", range: NSRange(location: 0, length: 1), level: 3),
-            OutlineItem(title: "b", range: NSRange(location: 1, length: 1), level: 5),
-            OutlineItem(title: "c", range: NSRange(location: 2, length: 1), level: 6),
-            OutlineItem(title: "d", range: NSRange(location: 3, length: 1), level: 4),
-            OutlineItem(title: "e", range: NSRange(location: 4, length: 1), level: 2),
-            OutlineItem(title: "f", range: NSRange(location: 5, length: 1), level: 2),
-            OutlineItem(title: "g", range: NSRange(location: 6, length: 1), level: 7),
-            OutlineItem.separator(range: NSRange(location: 7, length: 1), level: 2),
-            OutlineItem(title: "h", range: NSRange(location: 8, length: 1), level: nil),
+            OutlineItem(title: "a", range: NSRange(location: 0, length: 1), indent: .level(3)),
+            OutlineItem(title: "b", range: NSRange(location: 1, length: 1), indent: .level(5)),
+            OutlineItem(title: "c", range: NSRange(location: 2, length: 1), indent: .level(6)),
+            OutlineItem(title: "d", range: NSRange(location: 3, length: 1), indent: .level(4)),
+            OutlineItem(title: "e", range: NSRange(location: 4, length: 1), indent: .level(2)),
+            OutlineItem(title: "f", range: NSRange(location: 5, length: 1), indent: .level(2)),
+            OutlineItem(title: "g", range: NSRange(location: 6, length: 1), indent: .level(7)),
+            OutlineItem.separator(range: NSRange(location: 7, length: 1), indent: .level(2)),
+            OutlineItem(title: "h", range: NSRange(location: 8, length: 1), indent: .string("")),
         ]
         
-        let normalizedLevels = items.normalizedLevels().map(\.level)
+        let normalizedLevels = items.normalizedLevels().map { item -> Int? in
+            switch item.indent {
+                case .level(let level): level
+                case .string: nil
+            }
+        }
         
         #expect(normalizedLevels == [0, 1, 2, 0, 0, 0, 1, 0, nil])
     }

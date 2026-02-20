@@ -62,7 +62,7 @@ struct OutlinePicker: NSViewRepresentable {
                 menuItem.action = #selector(Coordinator.itemSelected)
                 menuItem.representedObject = item
                 menuItem.attributedTitle = item.attributedTitle(font: font)
-                menuItem.indentationLevel = item.level ?? 0
+                menuItem.indentationLevel = if case .level(let level) = item.indent { level } else { 0 }
                 return menuItem
             }
         }
@@ -153,7 +153,11 @@ private final class OutlinePopUpButtonCell: NSPopUpButtonCell {
     /// - Returns: The attributed title.
     func attributedTitle(font: NSFont) -> NSAttributedString {
         
-        let title = NSMutableAttributedString(string: (self.level == nil) ? self.indent : "")
+        let indent = switch self.indent {
+            case .level: ""
+            case .string(let string): string
+        }
+        let title = NSMutableAttributedString(string: indent)
         
         if let kind = self.kind {
             title.append(.init(attachment: kind.cachedAttachment))

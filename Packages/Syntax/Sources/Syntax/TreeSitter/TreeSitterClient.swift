@@ -139,18 +139,16 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
             .compactMap(OutlineCapture.init(capture:))
             .compactMap { capture -> OutlineItem? in
                 if capture.kind == .separator {
-                    return OutlineItem.separator(range: capture.range, level: capture.depth)
+                    return OutlineItem.separator(range: capture.range, indent: .level(capture.depth))
                 }
                 
-                let trimmedTitle = (string as NSString).substring(with: capture.range)
-                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !capture.range.isEmpty else { return nil }
                 
-                guard
-                    !trimmedTitle.isEmpty,
-                    let formattedTitle = formatter(capture.kind, trimmedTitle)
-                else { return nil }
+                let title = (string as NSString).substring(with: capture.range)
                 
-                return OutlineItem(title: formattedTitle, indent: "", range: capture.range, kind: capture.kind, level: capture.depth)
+                guard let formattedTitle = formatter(capture.kind, title) else { return nil }
+                
+                return OutlineItem(title: formattedTitle, range: capture.range, kind: capture.kind, indent: .level(capture.depth))
             }
             .normalizedLevels()
     }

@@ -232,7 +232,7 @@ private struct OutlineRowView: View {
             
         } else {
             HStack(alignment: .firstTextBaseline, spacing: 0) {
-                Text(self.item.value.displayIndent)
+                Text(self.item.value.indent.string)
                 
                 if let kind = self.item.value.kind {
                     kind.icon()
@@ -254,14 +254,15 @@ private struct OutlineRowView: View {
 }
 
 
-private extension OutlineItem {
+private extension OutlineItem.Indent {
     
-    var displayIndent: String {
+    var string: String {
         
-        if let level {
-            String(repeating: "   ", count: level)
-        } else {
-            self.indent
+        switch self {
+            case .level(let level):
+                String(repeating: "   ", count: level)
+            case .string(let string):
+                string
         }
     }
 }
