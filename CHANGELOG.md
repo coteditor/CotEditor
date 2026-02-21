@@ -3,6 +3,11 @@
 6.2.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 26.3-rc.2.
+
+
 ### Fixes
 
 - Fix an issue where smart indentation did not work under certain conditions.
