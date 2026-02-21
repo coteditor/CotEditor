@@ -72,7 +72,7 @@ public final class LanguageRegistry: Sendable {
     
     init() {
         
-        self.directoryURL = Bundle.module.url(forResource: "Syntaxes", withExtension: nil)!
+        self.directoryURL = Bundle.module.url(forResource: "Queries", withExtension: nil)!
     }
     
     
@@ -124,7 +124,7 @@ public final class LanguageRegistry: Sendable {
     /// - Returns: A file URL.
     nonisolated func queriesURL(for syntax: TreeSitterSyntax) -> URL {
         
-        self.directoryURL.appending(components: syntax.name, "Queries")
+        self.directoryURL.appending(component: syntax.name)
     }
 }
 

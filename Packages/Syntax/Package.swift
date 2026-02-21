@@ -54,7 +54,7 @@ let package = Package(
                 .product(name: "TreeSitterSwift", package: "tree-sitter-swift"),
                 .product(name: "TreeSitterTypeScript", package: "tree-sitter-typescript"),
             ],
-            resources: [.process("Resources"), .copy("Syntaxes")]),
+            resources: [.process("Resources"), .copy("Queries")]),
         .testTarget(
             name: "SyntaxTests",
             dependencies: ["Syntax", "EditorCore"],
