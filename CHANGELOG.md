@@ -52,11 +52,17 @@
 6.2.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 26.3-rc.2.
+
+
 ### Fixes
 
 - Fix an issue where smart indentation did not work under certain conditions.
 - Fix an issue in the Find window where syntax highlighting for regular expression patterns could break with certain patterns.
 - Fix an issue where the editor incorrectly highlighted paired symbols when an escaped symbol was nearby.
+- Fix an issue in the file browser where TypeScript documents were incorrectly displayed with a video icon.
 
 
 

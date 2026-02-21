@@ -183,7 +183,7 @@ extension File.Kind {
             self = .general
         } else if type.conforms(to: .image) {
             self = .image
-        } else if type.conforms(to: .movie) {
+        } else if type.conforms(to: .movie), type != .mpeg2TransportStream {  // .ts (possibly a TypeScript file) extension can be mapped to MPEG-2 transport stream.
             self = .movie
         } else if type.conforms(to: .audio) {
             self = .audio
