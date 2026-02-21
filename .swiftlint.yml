@@ -111,6 +111,7 @@ identifier_name:
     warning: 2
   excluded:
     - shiftJIS_X0213
+    - c
     - x
     - y
 

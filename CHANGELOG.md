@@ -20,6 +20,7 @@
 
 - Improve the syntax highlighting algorithm for the legacy regex-based highlighting.
 - Migrate the following built-in syntaxes to use tree-sitter for syntax highlighting:
+    - C
     - CSS
     - Go
     - HTML

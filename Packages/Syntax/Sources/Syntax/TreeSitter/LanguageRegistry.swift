@@ -28,6 +28,7 @@ import Foundation
 import Synchronization
 import SwiftTreeSitter
 
+import TreeSitterC
 import TreeSitterCSS
 import TreeSitterGo
 import TreeSitterHTML
@@ -156,6 +157,7 @@ private extension TreeSitterSyntax {
     var language: OpaquePointer {
         
         switch self {
+            case .c: unsafe tree_sitter_c()
             case .css: unsafe tree_sitter_css()
             case .go: unsafe tree_sitter_go()
             case .html: unsafe tree_sitter_html()

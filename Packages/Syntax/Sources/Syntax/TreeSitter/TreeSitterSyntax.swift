@@ -26,6 +26,7 @@
 
 public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     
+    case c = "C"
     case css = "CSS"
     case go = "Go"
     case html = "HTML"

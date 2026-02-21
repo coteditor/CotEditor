@@ -19,6 +19,7 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
         .package(url: "https://github.com/tree-sitter/swift-tree-sitter", branch: "main"),
         
+        .package(url: "https://github.com/1024jp/tree-sitter-c", branch: "swiftPackage"),
         .package(url: "https://github.com/1024jp/tree-sitter-css", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter/tree-sitter-go", from: Version(0, 25, 0)),
         .package(url: "https://github.com/tree-sitter/tree-sitter-html", from: Version(0, 23, 2)),
@@ -39,6 +40,7 @@ let package = Package(
                 "EditorCore",
                 "Yams",
                 .product(name: "SwiftTreeSitterLayer", package: "swift-tree-sitter"),
+                .product(name: "TreeSitterC", package: "tree-sitter-c"),
                 .product(name: "TreeSitterCSS", package: "tree-sitter-css"),
                 .product(name: "TreeSitterGo", package: "tree-sitter-go"),
                 .product(name: "TreeSitterHTML", package: "tree-sitter-html"),
@@ -53,7 +55,12 @@ let package = Package(
                 .product(name: "TreeSitterTypeScript", package: "tree-sitter-typescript"),
             ],
             resources: [.process("Resources"), .copy("Syntaxes")]),
-        .testTarget(name: "SyntaxTests", dependencies: ["Syntax", "EditorCore"], resources: [.copy("Syntaxes")]),
+        .testTarget(
+            name: "SyntaxTests",
+            dependencies: ["Syntax", "EditorCore"],
+            exclude: ["Samples"],
+            resources: [.copy("Syntaxes")]
+        ),
         
         .executableTarget(
             name: "SyntaxMapBuilder",
