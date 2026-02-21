@@ -5,21 +5,7 @@
 
 ### New Features
 
-- Introduce a new parser, tree-sitter, for syntax highlighting and outline extraction in several built-in syntaxes.
-- Prepend a symbolic icon to extracted outline items.
-- Enable registering multiple comment delimiters in a syntax definition.
-- Add the Multiline option to syntax highlighting rules.
-
-
-### Compatibility Changes
-
-- Introduce the CotEditor Syntax format, a new syntax definition format.
-
-
-### Improvements
-
-- Improve the syntax highlighting algorithm for the legacy regex-based highlighting.
-- Migrate the following built-in syntaxes to use tree-sitter for syntax highlighting:
+- Introduce a new parser, tree-sitter, for syntax highlighting and outline extraction in several built-in syntaxes:
     - C
     - CSS
     - Go
@@ -33,6 +19,19 @@
     - Scala
     - Swift
     - TypeScript
+- Prepend a symbolic icon to extracted outline items.
+- Enable registering multiple comment delimiters in a syntax definition.
+- Add the Multiline option to syntax highlighting rules.
+
+
+### Compatibility Changes
+
+- Introduce the CotEditor Syntax format, a new syntax definition format.
+
+
+### Improvements
+
+- Improve the syntax highlighting algorithm for the legacy regex-based highlighting.
 - Update built-in syntaxes.
 - Improve the performance of general text editing.
 - [trivial] Adjust the About CotEditor window.
