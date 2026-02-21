@@ -1102,7 +1102,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
             let strings = multipleTexts + blanks
             
-            return self.replace(with: strings, ranges: ranges, selectedRanges: nil)
+            if self.replace(with: strings, ranges: ranges, selectedRanges: nil) { return true }
         }
         
         return super.readSelection(from: pboard, type: type)
