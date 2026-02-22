@@ -34,8 +34,14 @@ import StringUtils
     var isPresented = false  { didSet { self.invalidateObservation() } }
     var document: Document?  { didSet { self.invalidateObservation() } }
     
-    var items: [Item] = []
+    var items: [Item] = []  { didSet { self.rebuildOutline() } }
     var selection: Item.ID?  { didSet { self.selectItem(id: selection) } }
+    var filterString: String = ""  { didSet { self.rebuildSnapshot() } }
+    
+    private(set) var outlineNodes: [OutlineNode] = []
+    private(set) var outlineAllIDs: [OutlineItem.ID] = []
+    
+    private var outlineRoots: [OutlineBuildNode] = []
     
     private var isOwnSelectionChange = false
     private var documentObserver: AnyCancellable?
@@ -110,6 +116,25 @@ import StringUtils
         self.selection = item.id
         self.isOwnSelectionChange = false
     }
+    
+    
+    /// Rebuilds the outline tree and updates the cached IDs.
+    private func rebuildOutline() {
+        
+        let (roots, allIDs) = OutlineBuildNode.build(from: self.items)
+        self.outlineRoots = roots
+        self.outlineAllIDs = allIDs
+        self.rebuildSnapshot()
+    }
+    
+    
+    /// Rebuilds the filtered snapshot from the cached outline tree.
+    private func rebuildSnapshot() {
+        
+        self.outlineNodes = self.outlineRoots.compactMap { $0.filteredNode(filter: self.filterString) }
+    }
+    
+    
 }
 
 
@@ -126,6 +151,9 @@ struct OutlineInspectorView: View, HostedPaneView {
         
         var items: [Item] { get }
         var selection: Item.ID? { get set }
+        var outlineNodes: [OutlineNode] { get }
+        var outlineAllIDs: [OutlineItem.ID] { get }
+        var filterString: String { get set }
     }
     
     
@@ -136,7 +164,7 @@ struct OutlineInspectorView: View, HostedPaneView {
     
     @AppStorage(.outlineViewFontSize) private var fontSize: Double
     
-    @State private var filterString: String = ""
+    @State private var expandedNodeIDs: Set<OutlineItem.ID> = []
     
     
     // MARK: View Methods
@@ -149,16 +177,19 @@ struct OutlineInspectorView: View, HostedPaneView {
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             
-            let items = self.model.items
-                .compactMap { $0.filter(self.filterString, keyPath: \.title) }
-            
-            List(items, selection: $model.selection) { item in
-                OutlineRowView(item: item)
+            List(selection: $model.selection) {
+                OutlineTreeView(nodes: self.model.outlineNodes, expandedNodeIDs: $expandedNodeIDs)
                     .font(.system(size: self.fontSize))
                     .listRowSeparator(.hidden)
             }
+            .onChange(of: self.model.outlineAllIDs, initial: true) { oldValue, newValue in
+                let newIDs = Set(newValue)
+                let freshIDs = newIDs.subtracting(oldValue)
+                self.expandedNodeIDs.formIntersection(newIDs)
+                self.expandedNodeIDs.formUnion(freshIDs)
+            }
             .overlay {
-                if !self.filterString.isEmpty, items.isEmpty {
+                if !self.model.filterString.isEmpty, self.model.outlineNodes.isEmpty {
                     Text("No Filter Results", tableName: "Document", comment: "filtering result message")
                         .foregroundStyle(.secondary)
                         .controlSize(.regular)
@@ -177,7 +208,7 @@ struct OutlineInspectorView: View, HostedPaneView {
             .border(.separator)
             .environment(\.defaultMinListRowHeight, self.fontSize)
             
-            FilterField(text: $filterString)
+            FilterField(text: $model.filterString)
                 .autosaveName("OutlineSearch")
                 .accessibilityAddTraits(.isSearchField)
                 .controlSize(.regular)
@@ -232,7 +263,9 @@ private struct OutlineRowView: View {
             
         } else {
             HStack(alignment: .firstTextBaseline, spacing: 0) {
-                Text(self.item.value.indent.string)
+                if case .string(let indent) = self.item.value.indent {
+                    Text(indent)
+                }
                 
                 if let kind = self.item.value.kind {
                     kind.icon()
@@ -254,16 +287,132 @@ private struct OutlineRowView: View {
 }
 
 
-private extension OutlineItem.Indent {
+private struct OutlineTreeView: View {
     
-    var string: String {
+    var nodes: [OutlineNode]
+    @Binding var expandedNodeIDs: Set<OutlineItem.ID>
+    
+    
+    var body: some View {
         
-        switch self {
-            case .level(let level):
-                String(repeating: "   ", count: level)
-            case .string(let string):
-                string
+        ForEach(nodes) { node in
+            if node.item.value.isSeparator {
+                Divider().selectionDisabled()
+                
+            } else if node.children.isEmpty {
+                OutlineRowView(item: node.item)
+                    .tag(node.id)
+                
+            } else {
+                DisclosureGroup(isExpanded: self.binding(for: node.id)) {
+                    OutlineTreeView(nodes: node.children, expandedNodeIDs: $expandedNodeIDs)
+                } label: {
+                    OutlineRowView(item: node.item)
+                }
+                .tag(node.id)
+            }
         }
+    }
+    
+    
+    /// Creates a binding that reflects whether the node is expanded.
+    ///
+    /// - Parameter id: The outline item ID.
+    /// - Returns: A binding to the expanded state.
+    private func binding(for id: OutlineItem.ID) -> Binding<Bool> {
+        
+        Binding(
+            get: { self.expandedNodeIDs.contains(id) },
+            set: { isExpanded in
+                if isExpanded {
+                    self.expandedNodeIDs.insert(id)
+                } else {
+                    self.expandedNodeIDs.remove(id)
+                }
+            }
+        )
+    }
+}
+
+
+// MARK: Models
+
+struct OutlineNode: Identifiable {
+    
+    var item: FilteredItem<OutlineItem>
+    var children: [OutlineNode] = []
+    
+    var id: OutlineItem.ID  { self.item.id }
+}
+
+
+/// A temporary, reference-type node used to build an outline tree from flat items.
+private final class OutlineBuildNode {
+    
+    var item: OutlineItem
+    var children: [OutlineBuildNode] = []
+    
+    
+    init(item: OutlineItem) {
+        
+        self.item = item
+    }
+    
+    
+    /// Builds a tree structure from flat outline items using level-based indent.
+    ///
+    /// - Parameter items: The flat outline items.
+    /// - Returns: Root nodes of the constructed tree and all node IDs in document order.
+    static func build(from items: [OutlineItem]) -> (roots: [OutlineBuildNode], allIDs: [OutlineItem.ID]) {
+        
+        var roots: [OutlineBuildNode] = []
+        var stack: [(level: Int, node: OutlineBuildNode)] = []
+        var allIDs: [OutlineItem.ID] = []
+        allIDs.reserveCapacity(items.count)
+        
+        for item in items {
+            guard case .level(let level) = item.indent else {
+                let node = OutlineBuildNode(item: item)
+                roots.append(node)
+                stack.removeAll()
+                allIDs.append(item.id)
+                continue
+            }
+            
+            let node = OutlineBuildNode(item: item)
+            while let last = stack.last, last.level >= level {
+                stack.removeLast()
+            }
+            
+            if let parent = stack.last {
+                parent.node.children.append(node)
+            } else {
+                roots.append(node)
+            }
+            
+            stack.append((level: level, node: node))
+            allIDs.append(item.id)
+        }
+        
+        return (roots, allIDs)
+    }
+    
+    
+    /// Returns a filtered node tree based on the given search string.
+    ///
+    /// - Parameter filter: The search string to match against item titles.
+    func filteredNode(filter: String) -> OutlineNode? {
+        
+        let filteredChildren = self.children.compactMap { $0.filteredNode(filter: filter) }
+        let filteredItem = self.item.filter(filter, keyPath: \.title)
+        
+        if filteredItem == nil, filteredChildren.isEmpty {
+            return nil
+        }
+        
+        let displayItem = filteredItem ?? self.item.filter("", keyPath: \.title)!
+        
+        return OutlineNode(item: displayItem, children: filteredChildren)
     }
 }
 
@@ -272,13 +421,16 @@ private extension OutlineItem.Indent {
 
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     
-    @MainActor struct MockedModel: OutlineInspectorView.ModelProtocol {
+    struct MockedModel: OutlineInspectorView.ModelProtocol {
         
         var document: Document?
         var isPresented: Bool = true
         
         var items: [Item] = []
         var selection: Item.ID?
+        var filterString: String = ""
+        var outlineNodes: [OutlineNode] = []
+        var outlineAllIDs: [OutlineItem.ID] = []
     }
     
     @Previewable @State var model = MockedModel(items: [
