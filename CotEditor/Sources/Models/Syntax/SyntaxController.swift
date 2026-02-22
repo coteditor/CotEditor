@@ -89,9 +89,10 @@ extension NSAttributedString.Key {
         
         self.cancel()
         
-        let parsers = try? LanguageRegistry.shared.parsers(name: self.syntaxName)
-        self.highlightParser = parsers?.highlight ?? self.syntax.highlightParser
-        self.outlineParser = parsers?.outline ?? self.syntax.outlineParser
+        let parser = TreeSitterSyntax(rawValue: self.syntaxName)
+            .flatMap { try? LanguageRegistry.shared.parser(syntax: $0) }
+        self.highlightParser = parser ?? self.syntax.highlightParser
+        self.outlineParser = parser ?? self.syntax.outlineParser
         
         self.isReady = true
         self.invalidRanges.clear()
