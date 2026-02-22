@@ -187,7 +187,6 @@ private extension TreeSitterSyntax {
     ///   - syntax: The target tree-sitter syntax.
     ///   - queriesURL: The queries directory URL.
     /// - Returns: The loaded queries keyed by their definition.
-    /// - Throws: Any error raised while compiling a query.
     func loadQueries(at queriesURL: URL) -> [Query.Definition: Query] {
         
         let definitions: [Query.Definition] = [
