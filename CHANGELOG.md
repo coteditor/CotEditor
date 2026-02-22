@@ -55,6 +55,7 @@
 
 ### Improvements
 
+- [non-AppStore ver.] Update Sparkle from 2.8.1 to 2.9.0.
 - [dev] Update the build environment to Xcode 26.3-rc.2.
 
 
