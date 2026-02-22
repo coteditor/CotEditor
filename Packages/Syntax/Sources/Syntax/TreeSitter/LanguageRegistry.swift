@@ -35,6 +35,7 @@ import TreeSitterGo
 import TreeSitterHTML
 import TreeSitterJava
 import TreeSitterJavaScript
+import TreeSitterMake
 import TreeSitterPHP
 import TreeSitterPython
 import TreeSitterRuby
@@ -150,7 +151,10 @@ private extension TreeSitterSyntax {
     /// The provider/injection name.
     var providerName: String {
         
-        self.rawValue.lowercased()
+        switch self {
+            case .makefile: "make"
+            default: self.rawValue.lowercased()
+        }
     }
     
     
@@ -165,6 +169,7 @@ private extension TreeSitterSyntax {
             case .html: unsafe tree_sitter_html()
             case .java: unsafe tree_sitter_java()
             case .javaScript: unsafe tree_sitter_javascript()
+            case .makefile: unsafe tree_sitter_make()
             case .php: unsafe tree_sitter_php()
             case .python: unsafe tree_sitter_python()
             case .ruby: unsafe tree_sitter_ruby()

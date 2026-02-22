@@ -1,5 +1,5 @@
 {
-  "originHash" : "ae70ba5ba8c4d5c49b728c223bbd93bcefcdd76ab924aa3ba35403d16621cc83",
+  "originHash" : "4ceb1b5023afb63efe44feb81bd2cd30bb6271220c6386f32d7f690b1929438e",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -116,6 +116,15 @@
       "state" : {
         "branch" : "swiftPackage",
         "revision" : "0f459c8e007c8ab6488577e0877ee27df0ddcdfc"
+      }
+    },
+    {
+      "identity" : "tree-sitter-make",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tree-sitter-grammars/tree-sitter-make",
+      "state" : {
+        "revision" : "5e9e8f8ff3387b0edcaa90f46ddf3629f4cfeb1d",
+        "version" : "1.1.1"
       }
     },
     {
