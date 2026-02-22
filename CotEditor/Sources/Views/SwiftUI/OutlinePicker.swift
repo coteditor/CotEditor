@@ -62,7 +62,7 @@ struct OutlinePicker: NSViewRepresentable {
                 menuItem.action = #selector(Coordinator.itemSelected)
                 menuItem.representedObject = item
                 menuItem.attributedTitle = item.attributedTitle(font: font)
-                menuItem.indentationLevel = if case .level(let level) = item.indent { level } else { 0 }
+                menuItem.indentationLevel = item.indent.level ?? 0
                 return menuItem
             }
         }

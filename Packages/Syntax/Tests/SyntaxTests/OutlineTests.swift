@@ -105,12 +105,7 @@ struct OutlineTests {
             OutlineItem(title: "h", range: NSRange(location: 8, length: 1), indent: .string("")),
         ]
         
-        let normalizedLevels = items.normalizedLevels().map { item -> Int? in
-            switch item.indent {
-                case .level(let level): level
-                case .string: nil
-            }
-        }
+        let normalizedLevels = items.normalizedLevels().map(\.indent.level)
         
         #expect(normalizedLevels == [0, 1, 2, 0, 0, 0, 1, 0, nil])
     }

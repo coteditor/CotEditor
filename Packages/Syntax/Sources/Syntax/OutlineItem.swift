@@ -47,6 +47,15 @@ public struct OutlineItem: Hashable, Equatable, Sendable {
         
         case string(String)
         case level(Int)
+        
+        
+        public var level: Int? {
+            
+            switch self {
+                case .string: nil
+                case .level(let level): level
+            }
+        }
     }
     
     
@@ -161,7 +170,7 @@ extension BidirectionalCollection<OutlineItem> {
         normalized.reserveCapacity(self.count)
         
         for item in self {
-            guard case .level(let depth) = item.indent else {
+            guard let depth = item.indent.level else {
                 normalized.append(item)
                 continue
             }
