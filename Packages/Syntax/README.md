@@ -7,6 +7,7 @@ This package provides syntax parsing/highlighting support for CotEditor.
 
 The following languages are currently supported by tree-sitter in this package:
 
+- Bash
 - C
 - CSS
 - Go

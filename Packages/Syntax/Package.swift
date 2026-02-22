@@ -19,6 +19,7 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
         .package(url: "https://github.com/tree-sitter/swift-tree-sitter", branch: "main"),
         
+        .package(url: "https://github.com/tree-sitter/tree-sitter-bash", from: Version(0, 25, 1)),
         .package(url: "https://github.com/1024jp/tree-sitter-c", branch: "swiftPackage"),
         .package(url: "https://github.com/1024jp/tree-sitter-css", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter/tree-sitter-go", from: Version(0, 25, 0)),
@@ -40,6 +41,7 @@ let package = Package(
                 "EditorCore",
                 "Yams",
                 .product(name: "SwiftTreeSitterLayer", package: "swift-tree-sitter"),
+                .product(name: "TreeSitterBash", package: "tree-sitter-bash"),
                 .product(name: "TreeSitterC", package: "tree-sitter-c"),
                 .product(name: "TreeSitterCSS", package: "tree-sitter-css"),
                 .product(name: "TreeSitterGo", package: "tree-sitter-go"),
