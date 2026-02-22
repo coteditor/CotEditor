@@ -132,6 +132,27 @@ struct OutlineTests {
     }
     
     
+    @Test func normalizedLevelsCanBeFlattened() throws {
+        
+        let items: [OutlineItem] = [
+            OutlineItem(title: "a", range: NSRange(location: 0, length: 1), indent: .level(3)),
+            OutlineItem(title: "b", range: NSRange(location: 1, length: 1), kind: .mark, indent: .level(5)),
+            OutlineItem.separator(range: NSRange(location: 2, length: 1), indent: .level(4)),
+            OutlineItem(title: "c", range: NSRange(location: 3, length: 1), indent: .string("")),
+        ]
+        
+        let policy = OutlineNormalizationPolicy(
+            sectionMarkerKinds: [.separator, .mark],
+            adjustSectionMarkerDepth: true,
+            flattenLevels: true
+        )
+        let normalizedLevels = items.normalizedLevels(policy: policy)
+            .map(\.indent.level)
+        
+        #expect(normalizedLevels == [0, 0, 0, nil])
+    }
+    
+    
     @Test func removingDuplicateIDs() throws {
         
         struct TestItem: Identifiable, Equatable {

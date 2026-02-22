@@ -172,6 +172,16 @@ extension [OutlineItem] {
     /// - Parameter policy: The normalization policy to apply.
     func normalizedLevels(policy: OutlineNormalizationPolicy = .standard) -> [OutlineItem] {
         
+        if policy.flattenLevels {
+            return self.map { item in
+                guard item.indent.level != nil else { return item }
+                
+                var normalizedItem = item
+                normalizedItem.indent = .level(0)
+                return normalizedItem
+            }
+        }
+        
         var nextNonSectionDepths = [Int?](repeating: nil, count: self.count)
         if policy.adjustSectionMarkerDepth {
             var nearestDepth: Int?

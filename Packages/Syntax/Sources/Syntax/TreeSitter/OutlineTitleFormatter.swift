@@ -31,10 +31,11 @@ typealias OutlineTitleFormatter = @Sendable (Syntax.Outline.Kind, String) -> Str
 
 struct OutlineNormalizationPolicy: Sendable {
     
-    var sectionMarkerKinds: Set<Syntax.Outline.Kind>
-    var adjustSectionMarkerDepth: Bool
+    var sectionMarkerKinds: Set<Syntax.Outline.Kind> = [.separator]
+    var adjustSectionMarkerDepth: Bool = false
+    var flattenLevels: Bool = false
     
-    static let standard = Self(sectionMarkerKinds: [.separator], adjustSectionMarkerDepth: false)
+    static let standard = Self()
     
     
     func isSectionMarker(kind: Syntax.Outline.Kind?) -> Bool {
@@ -63,10 +64,12 @@ extension TreeSitterSyntax {
     var outlineNormalizationPolicy: OutlineNormalizationPolicy {
         
         switch self {
+            case .sql:
+                .init(flattenLevels: true)
             case .swift:
                 .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true)
             default:
-                .standard
+                .init()
         }
     }
     
