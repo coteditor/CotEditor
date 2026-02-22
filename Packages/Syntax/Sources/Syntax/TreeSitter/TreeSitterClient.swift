@@ -151,6 +151,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
                 
                 return OutlineItem(title: formattedTitle, range: capture.range, kind: capture.kind, indent: .level(capture.depth))
             }
+            .removingDuplicateIDs
             .normalizedLevels()
     }
     

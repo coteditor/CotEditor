@@ -77,6 +77,7 @@ public struct OutlineExtractor: Sendable {
                 
                 return OutlineItem(title: String(match.title), range: result.range, kind: self.kind, indent: .string(String(match.indent)))
             }
+            .removingDuplicateIDs
             .normalizedLevels()
     }
 }

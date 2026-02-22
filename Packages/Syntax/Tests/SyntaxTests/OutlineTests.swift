@@ -114,4 +114,30 @@ struct OutlineTests {
         
         #expect(normalizedLevels == [0, 1, 2, 0, 0, 0, 1, 0, nil])
     }
+    
+    
+    @Test func removingDuplicateIDs() throws {
+        
+        struct TestItem: Identifiable, Equatable {
+            
+            var id: Int
+            var value: String
+        }
+        
+        let items: [TestItem] = [
+            TestItem(id: 1, value: "a"),
+            TestItem(id: 1, value: "b"),
+            TestItem(id: 2, value: "c"),
+            TestItem(id: 3, value: "d"),
+            TestItem(id: 3, value: "e"),
+        ]
+        
+        let uniqueItems = items.removingDuplicateIDs
+        
+        #expect(uniqueItems == [
+            TestItem(id: 1, value: "a"),
+            TestItem(id: 2, value: "c"),
+            TestItem(id: 3, value: "d"),
+        ])
+    }
 }

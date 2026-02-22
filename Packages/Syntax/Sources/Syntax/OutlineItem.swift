@@ -26,7 +26,7 @@
 
 public import Foundation
 
-public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
+public struct OutlineItem: Hashable, Equatable, Sendable {
     
     public struct Style: OptionSet, Hashable, Sendable {
         
@@ -49,8 +49,6 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
         case level(Int)
     }
     
-    
-    public let id = UUID()
     
     public var title: String
     public var range: NSRange
@@ -75,6 +73,12 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
         
         self.init(title: "", range: range, kind: .separator, indent: indent)
     }
+}
+
+
+extension OutlineItem: Identifiable {
+    
+    public var id: String  { self.title + self.range.description }
 }
 
 
@@ -183,5 +187,24 @@ extension BidirectionalCollection<OutlineItem> {
         }
         
         return normalized
+    }
+}
+
+
+extension BidirectionalCollection where Element: Identifiable {
+    
+    /// A new array by removing elements that share the same ID.
+    public var removingDuplicateIDs: [Element] {
+        
+        var seenIDs: Set<Element.ID> = []
+        var uniqueItems: [Element] = []
+        uniqueItems.reserveCapacity(self.count)
+        
+        for element in self {
+            guard seenIDs.insert(element.id).inserted else { continue }
+            uniqueItems.append(element)
+        }
+        
+        return uniqueItems
     }
 }
