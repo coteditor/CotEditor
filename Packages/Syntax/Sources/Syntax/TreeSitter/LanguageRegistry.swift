@@ -40,8 +40,8 @@ import TreeSitterPHP
 import TreeSitterPython
 import TreeSitterRuby
 import TreeSitterRust
-import TreeSitterSwift
 import TreeSitterScala
+import TreeSitterSwift
 import TreeSitterTypeScript
 
 extension Query.Definition {
