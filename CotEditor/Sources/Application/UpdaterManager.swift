@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import Sparkle
 import Defaults
 import SemanticVersioning
 
-@MainActor final class UpdaterManager: NSObject, @preconcurrency SPUUpdaterDelegate {
+@MainActor final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     // MARK: Public Properties
     
@@ -83,13 +83,13 @@ import SemanticVersioning
     
     // MARK: Sparkle Updater Delegate
     
-    nonisolated func feedURLString(for updater: SPUUpdater) -> String? {
+    func feedURLString(for updater: SPUUpdater) -> String? {
         
         Self.feedURLString
     }
     
     
-    nonisolated func allowedChannels(for updater: SPUUpdater) -> Set<String> {
+    func allowedChannels(for updater: SPUUpdater) -> Set<String> {
         
         let checksBeta = (Bundle.main.version!.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
         
