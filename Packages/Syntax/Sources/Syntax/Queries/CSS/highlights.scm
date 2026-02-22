@@ -8,8 +8,6 @@
 ;  © 2026 1024jp
 ;
 
-(declaration) @values
-
 ; Keywords
 ; ----------------------------
 
@@ -101,6 +99,10 @@
 ] @numbers
 
 (unit) @numbers
+
+; for like `16px/1.5`
+((plain_value) @numbers
+ (#match? @numbers "^(%|px|em|rem|ex|rex|ch|rch|ic|ric|cap|rcap|lh|rlh|cm|mm|Q|q|in|pt|pc)/[0-9]*\.?[0-9]+$"))
 
 
 ; Strings

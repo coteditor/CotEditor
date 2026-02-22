@@ -30,3 +30,19 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+.card {
+  /* horizontal radii / vertical radii */
+  border-radius: 12px 24px / 8px 16px;
+
+  /* slice / width / outset */
+  border-image: url("frame.png") 30/12px/0 round;
+
+  grid-area: 1/2/3/4;
+  aspect-ratio: 16/9;
+
+  color: hsla(220 15% 20%/0.9);
+
+  font: 16px/1.5 "Helvetica Neue", sans-serif;
+}
