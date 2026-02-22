@@ -89,7 +89,7 @@ extension NSAttributedString.Key {
         
         self.cancel()
         
-        let parser = TreeSitterSyntax(rawValue: self.syntaxName)
+        let parser = TreeSitterSyntax(name: self.syntaxName)
             .flatMap { try? LanguageRegistry.shared.parser(syntax: $0) }
         self.highlightParser = parser ?? self.syntax.highlightParser
         self.outlineParser = parser ?? self.syntax.outlineParser

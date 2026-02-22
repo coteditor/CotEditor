@@ -58,7 +58,7 @@ enum SyntaxName {
     static let directoryName: String = "Syntaxes"
     static let userDirectoryName: String? = "Syntaxes (Upcoming)"
     static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
-    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]
+    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"] + TreeSitterSyntax.aliasedSyntaxes.map(\.rawValue)
     
     let bundledSettingNames: [SettingName]
     @Published var settingNames: [SettingName] = []
@@ -185,7 +185,7 @@ enum SyntaxName {
     /// - Returns: `true` if the syntax is user-customizable (i.e., not a built-in language), otherwise `false`.
     func canCustomizeParser(name: SettingName) -> Bool {
         
-        TreeSitterSyntax(rawValue: name) == nil
+        TreeSitterSyntax(name: name) == nil
     }
     
     

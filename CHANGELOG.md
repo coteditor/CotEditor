@@ -17,6 +17,7 @@
     - Ruby
     - Rust
     - Scala
+    - Shell Script
     - Swift
     - TypeScript
 - Prepend a symbolic icon to extracted outline items.
