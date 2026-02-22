@@ -160,42 +160,88 @@ extension BidirectionalCollection<OutlineItem> {
         
         self.lastIndex { $0.range.location <= location && !$0.isSeparator }
     }
-    
+}
+
+
+extension [OutlineItem] {
     
     /// Normalizes outline levels to a stepwise hierarchy without skipped levels.
-    func normalizedLevels() -> [OutlineItem] {
+    ///
+    /// - Complexity: O(n), where n is the number of outline items.
+    ///
+    /// - Parameter policy: The normalization policy to apply.
+    func normalizedLevels(policy: OutlineNormalizationPolicy = .standard) -> [OutlineItem] {
+        
+        var nextNonSectionDepths = [Int?](repeating: nil, count: self.count)
+        if policy.adjustSectionMarkerDepth {
+            var nearestDepth: Int?
+            for (index, item) in self.enumerated().reversed() {
+                nextNonSectionDepths[index] = nearestDepth
+                if !policy.isSectionMarker(kind: item.kind) {
+                    nearestDepth = item.indent.level
+                }
+            }
+        }
         
         var depthStack: [Int] = []
-        var normalized: [OutlineItem] = []
-        normalized.reserveCapacity(self.count)
+        var normalizedItems: [OutlineItem] = []
+        normalizedItems.reserveCapacity(self.count)
         
-        for item in self {
+        for (item, nextNonSectionDepth) in zip(self, nextNonSectionDepths) {
             guard let depth = item.indent.level else {
-                normalized.append(item)
+                normalizedItems.append(item)
                 continue
             }
             
-            if depthStack.isEmpty {
-                depthStack.append(depth)
-            } else if let lastDepth = depthStack.last {
-                if depth > lastDepth {
-                    depthStack.append(depth)
-                } else if depth < lastDepth {
-                    if let index = depthStack.lastIndex(where: { $0 <= depth }) {
-                        depthStack = [Int](depthStack.prefix(index + 1))
-                        depthStack[index] = depth
-                    } else {
-                        depthStack = [depth]
-                    }
-                }
+            let isSectionMarker = policy.isSectionMarker(kind: item.kind)
+            
+            let effectiveDepth = if isSectionMarker, policy.adjustSectionMarkerDepth {
+                Swift.max(depthStack.last ?? depth, depth, nextNonSectionDepth ?? depth)
+            } else {
+                depth
             }
             
             var normalizedItem = item
-            normalizedItem.indent = .level(depthStack.count - 1)
-            normalized.append(normalizedItem)
+            if isSectionMarker {
+                // -> Section markers should not change the active nesting context.
+                var temporaryDepthStack = depthStack
+                normalizedItem.indent = .level(Self.normalizeDepth(effectiveDepth, with: &temporaryDepthStack))
+            } else {
+                normalizedItem.indent = .level(Self.normalizeDepth(effectiveDepth, with: &depthStack))
+            }
+            normalizedItems.append(normalizedItem)
         }
         
-        return normalized
+        return normalizedItems
+    }
+    
+    
+    /// Normalizes a raw indentation depth into a compact 0-based level using the current depth stack.
+    ///
+    /// - Parameters:
+    ///   - depth: The raw depth to normalize.
+    ///   - depthStack: The mutable stack that tracks active raw depths.
+    /// - Returns: The normalized 0-based indentation level.
+    private static func normalizeDepth(_ depth: Int, with depthStack: inout [Int]) -> Int {
+        
+        if depthStack.isEmpty {
+            depthStack.append(depth)
+        } else if let lastDepth = depthStack.last {
+            if depth > lastDepth {
+                depthStack.append(depth)
+            } else if depth < lastDepth {
+                while let last = depthStack.last, last > depth {
+                    depthStack.removeLast()
+                }
+                if depthStack.isEmpty {
+                    depthStack.append(depth)
+                } else {
+                    depthStack[depthStack.endIndex - 1] = depth
+                }
+            }
+        }
+        
+        return depthStack.count - 1
     }
 }
 

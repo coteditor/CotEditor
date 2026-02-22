@@ -125,6 +125,40 @@ actor TreeSitterClientTests {
         #expect(captures[30] == Capture(type: .keywords, text: "self"))
         #expect(captures[31] == Capture(type: .commands, text: "replace"))
     }
+    
+    
+    @Test func outlineSwift() async throws {
+        
+        let source = #"""
+            class Foo {
+                
+                func dog() { }
+                // MARK: - Cow
+                func cat() { }
+            }
+        """#
+        
+        let config = try self.registry.configuration(for: .swift)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .swift)
+        let outline = try await client.parseOutline(in: source)
+        
+        #expect(outline.count == 5)
+        #expect(outline[0].title == "Foo")
+        #expect(outline[0].kind == .container)
+        #expect(outline[0].indent == .level(0))
+        #expect(outline[1].title == "dog")
+        #expect(outline[1].kind == .function)
+        #expect(outline[1].indent == .level(1))
+        #expect(outline[2].title.isEmpty)
+        #expect(outline[2].kind == .separator)
+        #expect(outline[2].indent == .level(1))
+        #expect(outline[3].title == "Cow")
+        #expect(outline[3].kind == .mark)
+        #expect(outline[3].indent == .level(1))
+        #expect(outline[4].title == "cat")
+        #expect(outline[4].kind == .function)
+        #expect(outline[4].indent == .level(1))
+    }
 }
 
 

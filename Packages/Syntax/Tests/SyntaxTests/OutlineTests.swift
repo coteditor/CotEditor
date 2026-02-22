@@ -111,6 +111,27 @@ struct OutlineTests {
     }
     
     
+    @Test func normalizedLevelsSectionMarkersDoNotAffectFollowingHierarchy() throws {
+        
+        let items: [OutlineItem] = [
+            OutlineItem(title: "a", range: NSRange(location: 0, length: 1), indent: .level(3)),
+            OutlineItem(title: "b", range: NSRange(location: 1, length: 1), indent: .level(5)),
+            OutlineItem(title: "MARK", range: NSRange(location: 2, length: 1), kind: .mark, indent: .level(4)),
+            OutlineItem.separator(range: NSRange(location: 3, length: 1), indent: .level(4)),
+            OutlineItem(title: "c", range: NSRange(location: 4, length: 1), indent: .level(5)),
+        ]
+        
+        let policy = OutlineNormalizationPolicy(
+            sectionMarkerKinds: [.separator, .mark],
+            adjustSectionMarkerDepth: true
+        )
+        let normalizedLevels = items.normalizedLevels(policy: policy)
+            .map(\.indent.level)
+        
+        #expect(normalizedLevels == [0, 1, 1, 1, 1])
+    }
+    
+    
     @Test func removingDuplicateIDs() throws {
         
         struct TestItem: Identifiable, Equatable {

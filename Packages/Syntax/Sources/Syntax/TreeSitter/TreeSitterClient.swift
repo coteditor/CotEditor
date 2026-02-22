@@ -133,6 +133,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
         let cursor = try self.layer.executeQuery(.outline, in: outlineRange)
         let matches = cursor.resolve(with: SwiftTreeSitter.Predicate.Context(textProvider: string.predicateNSStringProvider))
         let formatter = self.syntax.outlineTitleFormatter
+        let normalizationPolicy = self.syntax.outlineNormalizationPolicy
         
         return matches
             .flatMap(\.captures)
@@ -152,7 +153,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
                 return OutlineItem(title: formattedTitle, range: capture.range, kind: capture.kind, indent: .level(capture.depth))
             }
             .removingDuplicateIDs
-            .normalizedLevels()
+            .normalizedLevels(policy: normalizationPolicy)
     }
     
     

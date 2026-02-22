@@ -29,6 +29,21 @@ import Foundation
 typealias OutlineTitleFormatter = @Sendable (Syntax.Outline.Kind, String) -> String?
 
 
+struct OutlineNormalizationPolicy: Sendable {
+    
+    var sectionMarkerKinds: Set<Syntax.Outline.Kind>
+    var adjustSectionMarkerDepth: Bool
+    
+    static let standard = Self(sectionMarkerKinds: [.separator], adjustSectionMarkerDepth: false)
+    
+    
+    func isSectionMarker(kind: Syntax.Outline.Kind?) -> Bool {
+        
+        kind.map(self.sectionMarkerKinds.contains) ?? false
+    }
+}
+
+
 extension TreeSitterSyntax {
     
     /// The outline title formatter for the syntax.
@@ -40,6 +55,18 @@ extension TreeSitterSyntax {
             case .css: Self.cssOutlineTitleFormatter
             case .swift: Self.swiftOutlineTitleFormatter
             default: { _, title in title }
+        }
+    }
+    
+    
+    /// The outline normalization policy for the syntax.
+    var outlineNormalizationPolicy: OutlineNormalizationPolicy {
+        
+        switch self {
+            case .swift:
+                .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true)
+            default:
+                .standard
         }
     }
     
