@@ -140,10 +140,17 @@ private extension TreeSitterSyntax {
         let lowercased = providerName.lowercased()
         
         guard
-            let syntax = Self.allCases.first(where: { $0.rawValue.lowercased() == lowercased })
+            let syntax = Self.allCases.first(where: { $0.providerName == lowercased })
         else { return nil }
         
         self = syntax
+    }
+    
+    
+    /// The provider/injection name.
+    var providerName: String {
+        
+        self.rawValue.lowercased()
     }
     
     
