@@ -1,0 +1,998 @@
+[
+  {
+    "text" : "add",
+    "type" : "keywords"
+  },
+  {
+    "text" : "all",
+    "type" : "keywords"
+  },
+  {
+    "text" : "allocate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "alter",
+    "type" : "keywords"
+  },
+  {
+    "text" : "and",
+    "type" : "keywords"
+  },
+  {
+    "text" : "any",
+    "type" : "keywords"
+  },
+  {
+    "text" : "are",
+    "type" : "keywords"
+  },
+  {
+    "text" : "array",
+    "type" : "types"
+  },
+  {
+    "text" : "as",
+    "type" : "keywords"
+  },
+  {
+    "text" : "asensitive",
+    "type" : "keywords"
+  },
+  {
+    "text" : "asymmetric",
+    "type" : "keywords"
+  },
+  {
+    "text" : "at",
+    "type" : "keywords"
+  },
+  {
+    "text" : "atomic",
+    "type" : "keywords"
+  },
+  {
+    "text" : "authorization",
+    "type" : "keywords"
+  },
+  {
+    "text" : "b'",
+    "type" : "strings"
+  },
+  {
+    "text" : "begin",
+    "type" : "keywords"
+  },
+  {
+    "text" : "between",
+    "type" : "keywords"
+  },
+  {
+    "text" : "bigint",
+    "type" : "types"
+  },
+  {
+    "text" : "binary",
+    "type" : "types"
+  },
+  {
+    "text" : "blob",
+    "type" : "types"
+  },
+  {
+    "text" : "boolean",
+    "type" : "types"
+  },
+  {
+    "text" : "both",
+    "type" : "keywords"
+  },
+  {
+    "text" : "by",
+    "type" : "keywords"
+  },
+  {
+    "text" : "call",
+    "type" : "keywords"
+  },
+  {
+    "text" : "called",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cascaded",
+    "type" : "keywords"
+  },
+  {
+    "text" : "case",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cast",
+    "type" : "keywords"
+  },
+  {
+    "text" : "char",
+    "type" : "types"
+  },
+  {
+    "text" : "character",
+    "type" : "types"
+  },
+  {
+    "text" : "check",
+    "type" : "keywords"
+  },
+  {
+    "text" : "clob",
+    "type" : "types"
+  },
+  {
+    "text" : "close",
+    "type" : "keywords"
+  },
+  {
+    "text" : "collate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "column",
+    "type" : "keywords"
+  },
+  {
+    "text" : "commit",
+    "type" : "keywords"
+  },
+  {
+    "text" : "condition",
+    "type" : "keywords"
+  },
+  {
+    "text" : "connect",
+    "type" : "keywords"
+  },
+  {
+    "text" : "constraint",
+    "type" : "keywords"
+  },
+  {
+    "text" : "continue",
+    "type" : "keywords"
+  },
+  {
+    "text" : "corresponding",
+    "type" : "keywords"
+  },
+  {
+    "text" : "create",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cross",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cube",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_date",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_default_transform_group",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_path",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_role",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_time",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_timestamp",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_transform_group_for_type",
+    "type" : "keywords"
+  },
+  {
+    "text" : "current_user",
+    "type" : "keywords"
+  },
+  {
+    "text" : "cursor",
+    "type" : "types"
+  },
+  {
+    "text" : "cycle",
+    "type" : "keywords"
+  },
+  {
+    "text" : "date",
+    "type" : "types"
+  },
+  {
+    "text" : "day",
+    "type" : "types"
+  },
+  {
+    "text" : "deallocate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "dec",
+    "type" : "types"
+  },
+  {
+    "text" : "decimal",
+    "type" : "types"
+  },
+  {
+    "text" : "declare",
+    "type" : "keywords"
+  },
+  {
+    "text" : "default",
+    "type" : "keywords"
+  },
+  {
+    "text" : "delete",
+    "type" : "keywords"
+  },
+  {
+    "text" : "deref",
+    "type" : "keywords"
+  },
+  {
+    "text" : "describe",
+    "type" : "keywords"
+  },
+  {
+    "text" : "deterministic",
+    "type" : "keywords"
+  },
+  {
+    "text" : "disconnect",
+    "type" : "keywords"
+  },
+  {
+    "text" : "distinct",
+    "type" : "keywords"
+  },
+  {
+    "text" : "do",
+    "type" : "keywords"
+  },
+  {
+    "text" : "double",
+    "type" : "types"
+  },
+  {
+    "text" : "drop",
+    "type" : "keywords"
+  },
+  {
+    "text" : "dynamic",
+    "type" : "keywords"
+  },
+  {
+    "text" : "each",
+    "type" : "keywords"
+  },
+  {
+    "text" : "element",
+    "type" : "keywords"
+  },
+  {
+    "text" : "else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "elseif",
+    "type" : "keywords"
+  },
+  {
+    "text" : "end",
+    "type" : "keywords"
+  },
+  {
+    "text" : "escape",
+    "type" : "keywords"
+  },
+  {
+    "text" : "except",
+    "type" : "keywords"
+  },
+  {
+    "text" : "exec",
+    "type" : "keywords"
+  },
+  {
+    "text" : "execute",
+    "type" : "keywords"
+  },
+  {
+    "text" : "exists",
+    "type" : "keywords"
+  },
+  {
+    "text" : "exit",
+    "type" : "keywords"
+  },
+  {
+    "text" : "external",
+    "type" : "keywords"
+  },
+  {
+    "text" : "false",
+    "type" : "values"
+  },
+  {
+    "text" : "fetch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "filter",
+    "type" : "keywords"
+  },
+  {
+    "text" : "float",
+    "type" : "keywords"
+  },
+  {
+    "text" : "float",
+    "type" : "types"
+  },
+  {
+    "text" : "for",
+    "type" : "keywords"
+  },
+  {
+    "text" : "foreign",
+    "type" : "keywords"
+  },
+  {
+    "text" : "free",
+    "type" : "keywords"
+  },
+  {
+    "text" : "from",
+    "type" : "keywords"
+  },
+  {
+    "text" : "full",
+    "type" : "keywords"
+  },
+  {
+    "text" : "function",
+    "type" : "keywords"
+  },
+  {
+    "text" : "get",
+    "type" : "keywords"
+  },
+  {
+    "text" : "global",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grant",
+    "type" : "keywords"
+  },
+  {
+    "text" : "group",
+    "type" : "keywords"
+  },
+  {
+    "text" : "grouping",
+    "type" : "keywords"
+  },
+  {
+    "text" : "handler",
+    "type" : "keywords"
+  },
+  {
+    "text" : "having",
+    "type" : "keywords"
+  },
+  {
+    "text" : "hold",
+    "type" : "keywords"
+  },
+  {
+    "text" : "hour",
+    "type" : "types"
+  },
+  {
+    "text" : "identity",
+    "type" : "keywords"
+  },
+  {
+    "text" : "if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "immediate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "in",
+    "type" : "keywords"
+  },
+  {
+    "text" : "indicator",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inner",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inout",
+    "type" : "keywords"
+  },
+  {
+    "text" : "input",
+    "type" : "keywords"
+  },
+  {
+    "text" : "insensitive",
+    "type" : "keywords"
+  },
+  {
+    "text" : "insert",
+    "type" : "keywords"
+  },
+  {
+    "text" : "int",
+    "type" : "types"
+  },
+  {
+    "text" : "integer",
+    "type" : "types"
+  },
+  {
+    "text" : "intersect",
+    "type" : "keywords"
+  },
+  {
+    "text" : "interval",
+    "type" : "types"
+  },
+  {
+    "text" : "into",
+    "type" : "keywords"
+  },
+  {
+    "text" : "is",
+    "type" : "keywords"
+  },
+  {
+    "text" : "iterate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "join",
+    "type" : "keywords"
+  },
+  {
+    "text" : "key",
+    "type" : "keywords"
+  },
+  {
+    "text" : "language",
+    "type" : "keywords"
+  },
+  {
+    "text" : "large",
+    "type" : "keywords"
+  },
+  {
+    "text" : "lateral",
+    "type" : "keywords"
+  },
+  {
+    "text" : "leading",
+    "type" : "keywords"
+  },
+  {
+    "text" : "leave",
+    "type" : "keywords"
+  },
+  {
+    "text" : "left",
+    "type" : "keywords"
+  },
+  {
+    "text" : "like",
+    "type" : "keywords"
+  },
+  {
+    "text" : "local",
+    "type" : "keywords"
+  },
+  {
+    "text" : "localtime",
+    "type" : "keywords"
+  },
+  {
+    "text" : "localtimestamp",
+    "type" : "keywords"
+  },
+  {
+    "text" : "loop",
+    "type" : "keywords"
+  },
+  {
+    "text" : "match",
+    "type" : "keywords"
+  },
+  {
+    "text" : "member",
+    "type" : "keywords"
+  },
+  {
+    "text" : "merge",
+    "type" : "keywords"
+  },
+  {
+    "text" : "method",
+    "type" : "keywords"
+  },
+  {
+    "text" : "minute",
+    "type" : "types"
+  },
+  {
+    "text" : "modifies",
+    "type" : "keywords"
+  },
+  {
+    "text" : "module",
+    "type" : "keywords"
+  },
+  {
+    "text" : "month",
+    "type" : "types"
+  },
+  {
+    "text" : "multiset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "national",
+    "type" : "types"
+  },
+  {
+    "text" : "natural",
+    "type" : "types"
+  },
+  {
+    "text" : "nchar",
+    "type" : "types"
+  },
+  {
+    "text" : "nclob",
+    "type" : "types"
+  },
+  {
+    "text" : "new",
+    "type" : "keywords"
+  },
+  {
+    "text" : "no",
+    "type" : "keywords"
+  },
+  {
+    "text" : "none",
+    "type" : "keywords"
+  },
+  {
+    "text" : "not",
+    "type" : "keywords"
+  },
+  {
+    "text" : "null",
+    "type" : "values"
+  },
+  {
+    "text" : "numeric",
+    "type" : "types"
+  },
+  {
+    "text" : "of",
+    "type" : "keywords"
+  },
+  {
+    "text" : "old",
+    "type" : "keywords"
+  },
+  {
+    "text" : "on",
+    "type" : "keywords"
+  },
+  {
+    "text" : "only",
+    "type" : "keywords"
+  },
+  {
+    "text" : "open",
+    "type" : "keywords"
+  },
+  {
+    "text" : "or",
+    "type" : "keywords"
+  },
+  {
+    "text" : "order",
+    "type" : "keywords"
+  },
+  {
+    "text" : "out",
+    "type" : "keywords"
+  },
+  {
+    "text" : "outer",
+    "type" : "keywords"
+  },
+  {
+    "text" : "output",
+    "type" : "keywords"
+  },
+  {
+    "text" : "over",
+    "type" : "keywords"
+  },
+  {
+    "text" : "overlaps",
+    "type" : "keywords"
+  },
+  {
+    "text" : "parameter",
+    "type" : "keywords"
+  },
+  {
+    "text" : "partition",
+    "type" : "keywords"
+  },
+  {
+    "text" : "precision",
+    "type" : "types"
+  },
+  {
+    "text" : "prepare",
+    "type" : "keywords"
+  },
+  {
+    "text" : "primary",
+    "type" : "keywords"
+  },
+  {
+    "text" : "procedure",
+    "type" : "keywords"
+  },
+  {
+    "text" : "range",
+    "type" : "keywords"
+  },
+  {
+    "text" : "reads",
+    "type" : "keywords"
+  },
+  {
+    "text" : "real",
+    "type" : "types"
+  },
+  {
+    "text" : "recursive",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ref",
+    "type" : "keywords"
+  },
+  {
+    "text" : "references",
+    "type" : "keywords"
+  },
+  {
+    "text" : "referencing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "release",
+    "type" : "keywords"
+  },
+  {
+    "text" : "repeat",
+    "type" : "keywords"
+  },
+  {
+    "text" : "resignal",
+    "type" : "keywords"
+  },
+  {
+    "text" : "result",
+    "type" : "keywords"
+  },
+  {
+    "text" : "return",
+    "type" : "keywords"
+  },
+  {
+    "text" : "returns",
+    "type" : "keywords"
+  },
+  {
+    "text" : "right",
+    "type" : "keywords"
+  },
+  {
+    "text" : "rollback",
+    "type" : "keywords"
+  },
+  {
+    "text" : "rollup",
+    "type" : "keywords"
+  },
+  {
+    "text" : "row",
+    "type" : "keywords"
+  },
+  {
+    "text" : "rows",
+    "type" : "keywords"
+  },
+  {
+    "text" : "savepoint",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scope",
+    "type" : "keywords"
+  },
+  {
+    "text" : "scroll",
+    "type" : "keywords"
+  },
+  {
+    "text" : "search",
+    "type" : "keywords"
+  },
+  {
+    "text" : "second",
+    "type" : "types"
+  },
+  {
+    "text" : "select",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sensitive",
+    "type" : "keywords"
+  },
+  {
+    "text" : "session_user",
+    "type" : "keywords"
+  },
+  {
+    "text" : "set",
+    "type" : "keywords"
+  },
+  {
+    "text" : "signal",
+    "type" : "keywords"
+  },
+  {
+    "text" : "similar",
+    "type" : "keywords"
+  },
+  {
+    "text" : "smallint",
+    "type" : "types"
+  },
+  {
+    "text" : "some",
+    "type" : "keywords"
+  },
+  {
+    "text" : "specific",
+    "type" : "keywords"
+  },
+  {
+    "text" : "specifictype",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sql",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sqlexception",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sqlstate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sqlwarning",
+    "type" : "keywords"
+  },
+  {
+    "text" : "start",
+    "type" : "keywords"
+  },
+  {
+    "text" : "static",
+    "type" : "keywords"
+  },
+  {
+    "text" : "submultiset",
+    "type" : "keywords"
+  },
+  {
+    "text" : "symmetric",
+    "type" : "keywords"
+  },
+  {
+    "text" : "system",
+    "type" : "keywords"
+  },
+  {
+    "text" : "system_user",
+    "type" : "keywords"
+  },
+  {
+    "text" : "table",
+    "type" : "keywords"
+  },
+  {
+    "text" : "tablesample",
+    "type" : "keywords"
+  },
+  {
+    "text" : "text",
+    "type" : "types"
+  },
+  {
+    "text" : "then",
+    "type" : "keywords"
+  },
+  {
+    "text" : "time",
+    "type" : "types"
+  },
+  {
+    "text" : "timestamp",
+    "type" : "types"
+  },
+  {
+    "text" : "timezone_hour",
+    "type" : "types"
+  },
+  {
+    "text" : "timezone_minute",
+    "type" : "types"
+  },
+  {
+    "text" : "to",
+    "type" : "keywords"
+  },
+  {
+    "text" : "trailing",
+    "type" : "keywords"
+  },
+  {
+    "text" : "translation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "treat",
+    "type" : "keywords"
+  },
+  {
+    "text" : "trigger",
+    "type" : "keywords"
+  },
+  {
+    "text" : "true",
+    "type" : "values"
+  },
+  {
+    "text" : "undo",
+    "type" : "keywords"
+  },
+  {
+    "text" : "union",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unique",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unknown",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unnest",
+    "type" : "keywords"
+  },
+  {
+    "text" : "until",
+    "type" : "keywords"
+  },
+  {
+    "text" : "update",
+    "type" : "keywords"
+  },
+  {
+    "text" : "user",
+    "type" : "keywords"
+  },
+  {
+    "text" : "using",
+    "type" : "keywords"
+  },
+  {
+    "text" : "values",
+    "type" : "keywords"
+  },
+  {
+    "text" : "varchar",
+    "type" : "types"
+  },
+  {
+    "text" : "varying",
+    "type" : "types"
+  },
+  {
+    "text" : "when",
+    "type" : "keywords"
+  },
+  {
+    "text" : "whenever",
+    "type" : "keywords"
+  },
+  {
+    "text" : "where",
+    "type" : "keywords"
+  },
+  {
+    "text" : "while",
+    "type" : "keywords"
+  },
+  {
+    "text" : "window",
+    "type" : "keywords"
+  },
+  {
+    "text" : "with",
+    "type" : "keywords"
+  },
+  {
+    "text" : "within",
+    "type" : "keywords"
+  },
+  {
+    "text" : "without",
+    "type" : "keywords"
+  },
+  {
+    "text" : "year",
+    "type" : "types"
+  }
+]

@@ -41,6 +41,7 @@ import TreeSitterPython
 import TreeSitterRuby
 import TreeSitterRust
 import TreeSitterScala
+import TreeSitterSql
 import TreeSitterSwift
 import TreeSitterTypeScript
 
@@ -175,6 +176,7 @@ private extension TreeSitterSyntax {
             case .ruby: unsafe tree_sitter_ruby()
             case .rust: unsafe tree_sitter_rust()
             case .scala: unsafe tree_sitter_scala()
+            case .sql: unsafe tree_sitter_sql()
             case .swift: unsafe tree_sitter_swift()
             case .typeScript: unsafe tree_sitter_typescript()
         }

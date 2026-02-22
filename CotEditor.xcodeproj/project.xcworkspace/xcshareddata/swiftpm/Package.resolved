@@ -1,5 +1,5 @@
 {
-  "originHash" : "4ceb1b5023afb63efe44feb81bd2cd30bb6271220c6386f32d7f690b1929438e",
+  "originHash" : "fa70373fe56c3a00b1c9afdaccfc18e7bf6c5f4f3c0f7f577c52770c12ea0886",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -170,6 +170,15 @@
       "state" : {
         "revision" : "2d55e74b0485fe05058ffe5e8155506c9710c767",
         "version" : "0.24.0"
+      }
+    },
+    {
+      "identity" : "tree-sitter-sql",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DerekStride/tree-sitter-sql",
+      "state" : {
+        "branch" : "gh-pages",
+        "revision" : "71f3c41ff9c99505b2bda30361baaefdc3fed2b2"
       }
     },
     {

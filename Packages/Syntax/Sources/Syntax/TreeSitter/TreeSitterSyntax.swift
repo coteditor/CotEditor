@@ -39,6 +39,7 @@ public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     case ruby = "Ruby"
     case rust = "Rust"
     case scala = "Scala"
+    case sql = "SQL"
     case swift = "Swift"
     case typeScript = "TypeScript"
     

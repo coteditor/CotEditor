@@ -20,5 +20,6 @@ The following languages are currently supported by tree-sitter in this package:
 - Ruby
 - Rust
 - Scala
+- SQL
 - Swift
 - TypeScript
