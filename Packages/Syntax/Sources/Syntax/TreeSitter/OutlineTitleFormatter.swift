@@ -26,10 +26,10 @@
 
 import Foundation
 
+typealias OutlineTitleFormatter = @Sendable (Syntax.Outline.Kind, String) -> String?
+
+
 extension TreeSitterSyntax {
-    
-    typealias OutlineTitleFormatter = @Sendable (Syntax.Outline.Kind, String) -> String?
-    
     
     /// The outline title formatter for the syntax.
     ///
