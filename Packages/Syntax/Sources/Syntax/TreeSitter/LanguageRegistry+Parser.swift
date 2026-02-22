@@ -28,18 +28,43 @@ import SwiftTreeSitter
 
 public extension LanguageRegistry {
     
-    /// Returns highlight and outline parsers for the given tree-sitter syntax when available.
+    /// Returns the parser and feature support for the given tree-sitter syntax.
     ///
     /// - Parameters:
     ///   - syntax: The tree-sitter syntax to look up in the registry.
-    /// - Returns: A tuple of optional parsers for highlights and outline.
+    /// - Returns: A tuple of the parser and the supported features derived from available queries.
     /// - Throws: Any error that occurs while resolving the language layer.
-    func parsers(syntax: TreeSitterSyntax) throws -> (highlight: (any HighlightParsing)?, outline: (any OutlineParsing)?) {
+    func parser(syntax: TreeSitterSyntax) throws -> (parser: (any HighlightParsing & OutlineParsing), support: TreeSitterSyntax.FeatureSupport) {
         
         let config = try self.configuration(for: syntax)
         let client = try TreeSitterClient(languageConfig: config, languageProvider: self.languageProvider, syntax: syntax)
         
-        return ((config.queries[.highlights] != nil) ? client : nil,
-                (config.queries[.outline] != nil) ? client : nil)
+        return (client, TreeSitterSyntax.FeatureSupport(queries: config.queries))
+    }
+}
+
+
+public extension TreeSitterSyntax {
+    
+    struct FeatureSupport: OptionSet, Sendable {
+        
+        public var rawValue: Int
+        
+        public static let highlight = Self(rawValue: 1 << 0)
+        public static let outline   = Self(rawValue: 1 << 1)
+        
+        
+        public init(rawValue: Int) {
+            
+            self.rawValue = rawValue
+        }
+        
+        
+        init(queries: [Query.Definition: Query]) {
+            
+            self = .init()
+                .union((queries[.highlights] != nil) ? .highlight : [])
+                .union((queries[.outline] != nil) ? .outline : [])
+        }
     }
 }
