@@ -28,16 +28,18 @@ import SwiftTreeSitter
 
 public extension LanguageRegistry {
     
-    /// Returns a parser for the given language name.
+    /// Returns highlight and outline parsers for the given tree-sitter syntax when available.
     ///
     /// - Parameters:
-    ///   - name: The syntax name to look up in the registry.
-    /// - Returns: A parser for highlights and outline.
+    ///   - syntax: The tree-sitter syntax to look up in the registry.
+    /// - Returns: A tuple of optional parsers for highlights and outline.
     /// - Throws: Any error that occurs while resolving the language layer.
-    func parser(syntax: TreeSitterSyntax) throws -> any HighlightParsing & OutlineParsing {
+    func parsers(syntax: TreeSitterSyntax) throws -> (highlight: (any HighlightParsing)?, outline: (any OutlineParsing)?) {
         
         let config = try self.configuration(for: syntax)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.languageProvider, syntax: syntax)
         
-        return try TreeSitterClient(languageConfig: config, languageProvider: self.languageProvider, syntax: syntax)
+        return ((config.queries[.highlights] != nil) ? client : nil,
+                (config.queries[.outline] != nil) ? client : nil)
     }
 }
