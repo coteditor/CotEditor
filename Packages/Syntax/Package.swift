@@ -64,8 +64,7 @@ let package = Package(
         .testTarget(
             name: "SyntaxTests",
             dependencies: ["Syntax", "EditorCore"],
-            exclude: ["Samples"],
-            resources: [.copy("Syntaxes")]
+            resources: [.copy("Syntaxes"), .copy("Samples")]
         ),
         
         .executableTarget(
