@@ -46,6 +46,11 @@
 - [trivial] Tweak colors of the default Anura theme.
 
 
+### Fixes
+
+- Fix issues with incorrect syntax highlighting in some built-in syntaxes.
+
+
 ### TODO
 
 - Localize updated strings.
