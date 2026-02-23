@@ -56,7 +56,6 @@
 
 - Localize updated strings.
 - Update the migration directories for user syntax definitions.
-- Switch back to upstream tree-sitter-css and -javascript after PRs are merged.
 
 
 

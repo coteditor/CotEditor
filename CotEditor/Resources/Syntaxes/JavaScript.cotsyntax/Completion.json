@@ -456,10 +456,6 @@
     "type" : "commands"
   },
   {
-    "text" : "contentEditable",
-    "type" : "attributes"
-  },
-  {
     "text" : "confirm",
     "type" : "commands"
   },
@@ -485,6 +481,10 @@
   },
   {
     "text" : "content",
+    "type" : "attributes"
+  },
+  {
+    "text" : "contentEditable",
     "type" : "attributes"
   },
   {
@@ -4059,4 +4059,4 @@
     "text" : "yield",
     "type" : "keywords"
   }
-  ]
+]

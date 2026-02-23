@@ -1233,10 +1233,6 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace ensemble\\b",
-      "regularExpression" : true
-    },
-    {
       "beginString" : "\\bnamespace ensemble configure\\b",
       "regularExpression" : true
     },
@@ -1246,6 +1242,10 @@
     },
     {
       "beginString" : "\\bnamespace ensemble exists\\b",
+      "regularExpression" : true
+    },
+    {
+      "beginString" : "\\bnamespace ensemble\\b",
       "regularExpression" : true
     },
     {
