@@ -34,6 +34,7 @@ struct OutlineNormalizationPolicy: Sendable {
     var sectionMarkerKinds: Set<Syntax.Outline.Kind> = [.separator]
     var adjustSectionMarkerDepth: Bool = false
     var flattenLevels: Bool = false
+    var ignoredDepthNodeTypes: Set<String> = []
     
     static let standard = Self()
     
@@ -64,6 +65,8 @@ extension TreeSitterSyntax {
     var outlineNormalizationPolicy: OutlineNormalizationPolicy {
         
         switch self {
+            case .python:
+                .init(ignoredDepthNodeTypes: ["decorated_definition"])
             case .sql:
                 .init(flattenLevels: true)
             case .swift:

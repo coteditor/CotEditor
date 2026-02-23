@@ -138,7 +138,9 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
         return matches
             .flatMap(\.captures)
             .filter { $0.depth == 0 }  // ignore injection
-            .compactMap(OutlineCapture.init(capture:))
+            .compactMap {
+                OutlineCapture(capture: $0, ignoredDepthNodeTypes: normalizationPolicy.ignoredDepthNodeTypes)
+            }
             .compactMap { capture -> OutlineItem? in
                 if capture.kind == .separator {
                     return OutlineItem.separator(range: capture.range, indent: .level(capture.depth))
@@ -195,7 +197,7 @@ private struct OutlineCapture {
     var depth: Int
     
     
-    init?(capture: QueryCapture) {
+    init?(capture: QueryCapture, ignoredDepthNodeTypes: Set<String>) {
         
         let components = capture.nameComponents
         
@@ -210,7 +212,7 @@ private struct OutlineCapture {
         self.depth = if components.count > 2, components[1] == "heading" {
             Self.headingLevel(from: components[2])
         } else {
-            Array(sequence(first: capture.node, next: \.parent)).count
+            Self.depth(of: capture.node, ignoringNodeTypes: ignoredDepthNodeTypes)
         }
     }
     
@@ -227,6 +229,16 @@ private struct OutlineCapture {
             case "title": 1
             default: 1
         }
+    }
+    
+    
+    private static func depth(of node: Node, ignoringNodeTypes ignoredNodeTypes: Set<String>) -> Int {
+        
+        Array(sequence(first: node, next: \.parent))
+            .reduce(into: 0) { depth, node in
+                guard !ignoredNodeTypes.contains(node.nodeType ?? "") else { return }
+                depth += 1
+            }
     }
 }
 
