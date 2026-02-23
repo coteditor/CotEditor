@@ -34,6 +34,18 @@ extension TreeSitterSyntax {
         switch self {
             case .css:
                 .init(titleFormatter: Self.cssOutlineTitleFormatter)
+            case .lua:
+                .init(ignoredDepthNodeTypes: [
+                    "identifier",
+                    "dot_index_expression",
+                    "method_index_expression",
+                    "function_declaration",
+                    "variable_list",
+                    "expression_list",
+                    "assignment_statement",
+                    "table_constructor",
+                    "field",
+                ])
             case .python:
                 .init(ignoredDepthNodeTypes: ["decorated_definition"])
             case .sql:

@@ -12,6 +12,7 @@
     - HTML
     - Java
     - JavaScript
+    - Lua
     - Makefile
     - PHP
     - Python

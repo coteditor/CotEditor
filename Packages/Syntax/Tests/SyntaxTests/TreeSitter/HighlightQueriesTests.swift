@@ -89,6 +89,7 @@ private extension TreeSitterSyntax {
             case .html: "test.html"
             case .java: "test.java"
             case .javaScript: "test.js"
+            case .lua: "test.lua"
             case .makefile: "Makefile"
             case .php: "test.php"
             case .python: "test.py"

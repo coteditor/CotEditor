@@ -32,6 +32,7 @@ actor TreeSitterOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
+    
     @Test func formatCSS() {
         
         let formatter = TreeSitterSyntax.css.outlinePolicy.titleFormatter
@@ -110,6 +111,51 @@ actor TreeSitterOutlineTests {
         #expect(outline.map(\.title) == ["chunked", "open_text", "timer"])
         #expect(outline.map(\.kind) == [.function, .function, .function])
         #expect(outline.map(\.indent.level) == [0, 0, 0])
+    }
+    
+    
+    @Test func parseLuaOutlineHandlesPseudoAndTrueNesting() async throws {
+        
+        let source = #"""
+            function M.sum(a, b)
+                return a + b
+            end
+            
+            function M:describe(name)
+                return name
+            end
+            
+            M.run = function(input)
+                return input
+            end
+            
+            M.pipeline = {
+                prepare = function(value)
+                    return value
+                end,
+                execute = function(value)
+                    return value
+                end,
+            }
+            
+            function M.pipeline:finalize(value)
+                return value
+            end
+            
+            local function outer(value)
+                local function inner(x)
+                    return x
+                end
+                
+                return inner(value)
+            end
+        """#
+        
+        let outline = try await self.parseOutline(in: source, syntax: .lua)
+        
+        #expect(outline.map(\.title) == ["sum", "describe", "run", "prepare", "execute", "finalize", "outer", "inner"])
+        #expect(outline.map(\.kind) == [.function, .function, .function, .function, .function, .function, .function, .function])
+        #expect(outline.map(\.indent.level) == [0, 0, 0, 0, 0, 0, 0, 1])
     }
     
     

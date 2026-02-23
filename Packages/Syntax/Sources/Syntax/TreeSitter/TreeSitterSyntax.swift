@@ -33,6 +33,7 @@ public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     case html = "HTML"
     case java = "Java"
     case javaScript = "JavaScript"
+    case lua = "Lua"
     case makefile = "Makefile"
     case php = "PHP"
     case python = "Python"

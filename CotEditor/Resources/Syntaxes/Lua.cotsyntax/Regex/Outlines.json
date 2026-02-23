@@ -1,8 +1,0 @@
-[
-  {
-    "beginString" : "([\\t ]*)(function +.+\\(.*?\\))",
-    "description" : "function",
-    "keyString" : "$1$2",
-    "kind" : "function"
-  }
-]
