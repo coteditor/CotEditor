@@ -152,13 +152,6 @@ public struct Syntax: Equatable, Sendable {
     
     public struct LexicalRules: Equatable, Sendable {
         
-        public enum DelimiterEscapeRule: String, Sendable, CaseIterable, Codable {
-            
-            case backslash
-            case none
-        }
-        
-        
         public var delimiterEscapeRule: DelimiterEscapeRule
         
         public static let `default` = Self()

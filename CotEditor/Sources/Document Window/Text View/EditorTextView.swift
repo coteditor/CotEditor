@@ -96,6 +96,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var indentsWithTabKey = false
     
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
+    var delimiterEscapeRule: DelimiterEscapeRule = .backslash
     var commentsOutAfterIndent: Bool = false
     var appendsCommentSpacer: Bool = false
     var syntaxCompletionWords: [Syntax.CompletionWord] = []
@@ -699,7 +700,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
             if self.highlightsBraces {
-                self.highlightMatchingBrace(candidates: BracePair.braces)
+                self.highlightMatchingBrace(candidates: BracePair.braces, escapeRule: self.delimiterEscapeRule)
             }
             
             // update instance highlights
@@ -767,7 +768,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         // select inside of brackets
-        if let pairRange = self.string.rangeOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
+        if let pairRange = self.string.rangeOfBracePair(
+            at: characterIndex,
+            candidates: BracePair.braces + [.ltgt],
+            escapeRule: self.delimiterEscapeRule
+        ) {
             return NSRange(pairRange, in: self.string)
         }
         
@@ -1365,7 +1370,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         guard
             let selectedRange = Range(self.selectedRange, in: self.string),
-            let enclosingRange = self.string.rangeOfEnclosingBracePair(at: selectedRange, candidates: BracePair.braces + [.ltgt])
+            let enclosingRange = self.string.rangeOfEnclosingBracePair(
+                at: selectedRange,
+                candidates: BracePair.braces + [.ltgt],
+                escapeRule: self.delimiterEscapeRule
+            )
         else { return }
         
         self.selectedRange = NSRange(enclosingRange, in: self.string)

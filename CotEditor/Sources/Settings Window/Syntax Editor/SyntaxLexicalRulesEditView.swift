@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import StringUtils
 import Syntax
 
 struct SyntaxLexicalRulesEditView: View {
@@ -38,7 +39,7 @@ struct SyntaxLexicalRulesEditView: View {
         VStack(alignment: .leading) {
             Form {
                 Picker(String(localized: "Delimiter escape style:", table: "SyntaxEditor"), selection: $rules.delimiterEscapeRule) {
-                    ForEach(Syntax.LexicalRules.DelimiterEscapeRule.allCases, id: \.self) { rule in
+                    ForEach(DelimiterEscapeRule.allCases, id: \.self) { rule in
                         Text(rule.label)
                     }
                 }
@@ -53,6 +54,24 @@ struct SyntaxLexicalRulesEditView: View {
                 Spacer()
                 HelpLink(anchor: "syntax_lexicalrules_settings")
             }
+        }
+    }
+}
+
+
+private extension DelimiterEscapeRule {
+    
+    var label: String {
+        
+        switch self {
+            case .backslash:
+                String(localized: "DelimiterEscapeRule.backslash.label",
+                       defaultValue: "Backslash",
+                       table: "SyntaxEditor")
+            case .none:
+                String(localized: "DelimiterEscapeRule.none.label",
+                       defaultValue: "None",
+                       table: "SyntaxEditor")
         }
     }
 }

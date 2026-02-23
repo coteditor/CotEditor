@@ -59,19 +59,26 @@ public extension Pair.PairIndex {
 }
 
 
+public enum DelimiterEscapeRule: String, Sendable, CaseIterable, Codable {
+    
+    case backslash
+    case none
+}
+
+
 public extension StringProtocol {
     
     /// Finds the range enclosed by one of given brace pairs.
     ///
-    /// - Note: Escaping character by `\` is not considered.
-    ///
     /// - Parameters:
     ///   - range: The character range on which to base the search.
     ///   - candidates: The pairs of symbols to search.
+    ///   - escapeRule: The delimiter escape rule.
     /// - Returns: The range of the enclosing brace pair, or `nil` if not found.
-    func rangeOfEnclosingBracePair(at range: Range<Index>, candidates: [BracePair]) -> Range<Index>? {
+    func rangeOfEnclosingBracePair(at range: Range<Index>, candidates: [BracePair], escapeRule: DelimiterEscapeRule = .backslash) -> Range<Index>? {
         
-        BracePairScanner(string: String(self), candidates: candidates, baseRange: range).scan()
+        BracePairScanner(string: String(self), candidates: candidates, baseRange: range, escapeRule: escapeRule)
+            .scan()
     }
     
     
@@ -81,9 +88,10 @@ public extension StringProtocol {
     ///   - index: The character index of the brace character to find the mate.
     ///   - candidates: Brace pairs to find.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
-    func rangeOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) -> ClosedRange<Index>? {
+    ///   - escapeRule: The delimiter escape rule.
+    func rangeOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> ClosedRange<Index>? {
         
-        guard let pairIndex = self.indexOfBracePair(at: index, candidates: candidates, ignoring: pairToIgnore) else { return nil }
+        guard let pairIndex = self.indexOfBracePair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
         
         return switch pairIndex {
             case .begin(let beginIndex): beginIndex...index
@@ -99,10 +107,11 @@ public extension StringProtocol {
     ///   - candidates: Brace pairs to find.
     ///   - range: The range of characters to find in.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - escapeRule: The delimiter escape rule.
     /// - Returns: The character index of the matched pair.
-    func indexOfBracePair(at index: Index, candidates: [BracePair], in range: Range<Index>? = nil, ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
+    func indexOfBracePair(at index: Index, candidates: [BracePair], in range: Range<Index>? = nil, ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> BracePair.PairIndex? {
         
-        guard !self.isEscaped(at: index) else { return nil }
+        guard escapeRule != .backslash || !self.isEscaped(at: index) else { return nil }
         
         let character = self[index]
         
@@ -110,11 +119,11 @@ public extension StringProtocol {
         
         switch character {
             case pair.begin:
-                guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore) else { return nil }
+                guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
                 return .end(endIndex)
                 
             case pair.end:
-                guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore) else { return nil }
+                guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
                 return .begin(beginIndex)
                 
             default: preconditionFailure()
@@ -131,8 +140,9 @@ public extension StringProtocol {
     ///   - pair: The brace pair to find.
     ///   - beginIndex: The lower boundary of the find range.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - escapeRule: The delimiter escape rule.
     /// - Returns: The character index of the matched opening brace, or `nil` if not found.
-    func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+    func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
         
         assert(endIndex <= self.endIndex)
         
@@ -149,20 +159,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.begin where ignoredNestDepth == 0:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.end where ignoredNestDepth == 0:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.begin:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.end:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -182,8 +192,9 @@ public extension StringProtocol {
     ///   - pair: The brace pair to find.
     ///   - endIndex: The upper boundary of the find range.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - escapeRule: The delimiter escape rule.
     /// - Returns: The character index of the matched closing brace, or `nil` if not found.
-    func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+    func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
         
         assert(beginIndex >= self.startIndex)
         
@@ -203,20 +214,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.end where ignoredNestDepth == 0:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.begin where ignoredNestDepth == 0:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.end:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.begin:
-                    guard !self.isEscaped(at: index) else { continue }
+                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -237,17 +248,19 @@ private final class BracePairScanner {
     
     private var scanningRange: Range<String.Index>
     private var scanningPair: BracePair?
+    private let escapeRule: DelimiterEscapeRule
     private var finished: Bool = false
     private var found: Bool = false
     
     
-    init(string: String, candidates: [BracePair], baseRange: Range<String.Index>) {
+    init(string: String, candidates: [BracePair], baseRange: Range<String.Index>, escapeRule: DelimiterEscapeRule) {
         
         assert(candidates.allSatisfy({ $0.begin != $0.end }))
         
         self.string = string
         self.candidates = candidates
         self.scanningRange = baseRange
+        self.escapeRule = escapeRule
     }
     
     
@@ -277,7 +290,9 @@ private final class BracePairScanner {
         
         var index = self.scanningRange.upperBound
         var nestDepths: [BracePair: Int] = [:]
-        var isEscaped = (index != self.string.startIndex) && self.string[self.string.index(before: index)] == "\\"
+        var isEscaped = self.escapeRule == .backslash &&
+            (index != self.string.startIndex) &&
+            self.string[self.string.index(before: index)] == "\\"
         
         for character in self.string[index...] {
             index = self.string.index(after: index)
@@ -300,7 +315,7 @@ private final class BracePairScanner {
                 }
             }
             
-            if character == "\\" {
+            if self.escapeRule == .backslash, character == "\\" {
                 isEscaped = true
             } else {
                 isEscaped = false
@@ -321,7 +336,7 @@ private final class BracePairScanner {
             index = self.string.index(before: index)
             
             if let pair = self.candidates.first(where: { $0.begin == character }) {
-                guard !self.string.isEscaped(at: index) else { continue }
+                guard self.escapeRule != .backslash || !self.string.isEscaped(at: index) else { continue }
                 
                 if nestDepths[pair, default: 0] > 0 {
                     nestDepths[pair, default: 0] -= 1
@@ -333,7 +348,7 @@ private final class BracePairScanner {
                 }
                 
             } else if let pair = self.candidates.first(where: { $0.end == character }) {
-                guard !self.string.isEscaped(at: index) else { continue }
+                guard self.escapeRule != .backslash || !self.string.isEscaped(at: index) else { continue }
                 
                 nestDepths[pair, default: 0] += 1
             }
