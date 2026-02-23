@@ -103,7 +103,7 @@ extension NSAttributedString.Key {
         self.invalidRanges.clear()
         
         Task { [weak self] in
-            if let self, let parser = self.highlightParser {
+            if let self, let parser = self.incrementalParser {
                 let content = self.textStorage.string.immutable
                 await parser.update(content: content)
             }
@@ -160,7 +160,7 @@ extension NSAttributedString.Key {
         
         self.invalidRanges.append(editedRange: editedRange, changeInLength: delta)
         
-        guard let parser = self.highlightParser else { return }
+        guard let parser = self.incrementalParser else { return }
         
         let insertedText = (self.textStorage.string as NSString).substring(with: editedRange)
         Task { [weak self] in
@@ -201,6 +201,21 @@ extension NSAttributedString.Key {
     
     
     // MARK: Private Methods
+    
+    /// Returns the parser instance that supports incremental edit updates.
+    private var incrementalParser: (any IncrementalParsing)? {
+        
+        let highlightParser = self.highlightParser as? any IncrementalParsing
+        let outlineParser = self.outlineParser as? any IncrementalParsing
+        
+        if let highlightParser, let outlineParser {
+            assert((highlightParser as AnyObject) === (outlineParser as AnyObject),
+                   "Multiple incremental parsers are not supported.")
+        }
+        
+        return highlightParser ?? outlineParser
+    }
+    
     
     /// Updates highlights around the invalid ranges if needed.
     ///

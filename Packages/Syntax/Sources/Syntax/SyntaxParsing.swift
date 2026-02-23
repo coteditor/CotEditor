@@ -30,11 +30,8 @@ public import ValueRange
 public typealias Highlight = ValueRange<SyntaxType>
 
 
-public protocol HighlightParsing: Actor {
-    
-    nonisolated var highlightBuffer: Int { get }
-    
-    
+public protocol IncrementalParsing: Actor {
+
     /// Updates the entire content and resets the parser state.
     ///
     /// Call this when the whole document changes or the parser falls out of sync.
@@ -53,8 +50,14 @@ public protocol HighlightParsing: Actor {
     ///   - delta: The change in length of the edited range.
     ///   - insertedText: The substring currently contained in `editedRange` in the post-edit string.
     func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws
-    
-    
+}
+
+
+public protocol HighlightParsing: Actor {
+
+    nonisolated var highlightBuffer: Int { get }
+
+
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
     /// - Parameters:

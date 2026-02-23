@@ -51,20 +51,6 @@ actor RegexHighlightParser: HighlightParsing {
     
     // MARK: HighlightParsing Methods
     
-    /// Updates the entire content and resets the parser state.
-    func update(content: String) {
-        
-        // do nothing
-    }
-    
-    
-    /// Notifies the parser about a text edit so it can update its incremental parse state.
-    func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws {
-        
-        // do nothing
-    }
-    
-    
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
     /// - Parameters:

@@ -31,7 +31,7 @@ import ValueRange
 import SwiftTreeSitter
 import SwiftTreeSitterLayer
 
-actor TreeSitterClient: HighlightParsing, OutlineParsing {
+actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     
     // MARK: Internal Properties
     
@@ -60,7 +60,7 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
     }
     
     
-    // MARK: HighlightParsing Methods
+    // MARK: IncrementalParsing Methods
     
     func update(content: String) {
         
@@ -83,6 +83,8 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
         self.pendingAffectedRanges.append(editedRange: editedRange, changeInLength: delta)
     }
     
+    
+    // MARK: HighlightParsing Methods
     
     func parseHighlights(in string: String, range: NSRange) async throws -> (highlights: [Highlight], updateRange: NSRange)? {
         
