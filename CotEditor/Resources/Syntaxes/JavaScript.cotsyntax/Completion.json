@@ -456,7 +456,7 @@
     "type" : "commands"
   },
   {
-    "text" : "conentEditable",
+    "text" : "contentEditable",
     "type" : "attributes"
   },
   {
@@ -1284,7 +1284,7 @@
     "type" : "commands"
   },
   {
-    "text" : "getDefaulComputedStyle",
+    "text" : "getDefaultComputedStyle",
     "type" : "commands"
   },
   {
@@ -3184,7 +3184,7 @@
     "type" : "commands"
   },
   {
-    "text" : "seletedStyleSheetSet",
+    "text" : "selectedStyleSheetSet",
     "type" : "attributes"
   },
   {

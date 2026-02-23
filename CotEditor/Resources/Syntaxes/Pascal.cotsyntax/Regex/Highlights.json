@@ -1181,7 +1181,7 @@
       "ignoreCase" : true
     },
     {
-      "beginString" : "substract",
+      "beginString" : "subtract",
       "ignoreCase" : true
     },
     {

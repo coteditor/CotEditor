@@ -169,7 +169,7 @@
       "beginString" : "::tk::mac::ShowPreferences"
     },
     {
-      "beginString" : "::tk::mac::standartAboutPanel"
+      "beginString" : "::tk::mac::standardAboutPanel"
     },
     {
       "beginString" : "::tk::mac::useCompatibilityMetrics"
@@ -1233,7 +1233,7 @@
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace enseble\\b",
+      "beginString" : "\\bnamespace ensemble\\b",
       "regularExpression" : true
     },
     {
