@@ -32,3 +32,6 @@
 
 ((setext_heading
   (setext_h2_underline)) @outline.heading.h2)
+
+; separators
+(thematic_break) @outline.separator
