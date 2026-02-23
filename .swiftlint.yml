@@ -121,7 +121,7 @@ type_name:
 custom_rules:
   inline_comment_spaces:
     name: "Spaces Before Inline Comment"
-    regex: '\S ?//'
+    regex: '[^\\/\s] ?//'
     match_kinds:
       - comment
     message: "There should be more than 2 spaces before an inline comment."
