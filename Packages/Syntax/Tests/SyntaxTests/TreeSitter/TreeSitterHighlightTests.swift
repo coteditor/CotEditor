@@ -1,11 +1,11 @@
 //
-//  TreeSitterClientTests.swift
+//  TreeSitterHighlightTests.swift
 //  SyntaxTests
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2026-01-23.
+//  Created by 1024jp on 2026-02-23.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -30,7 +30,7 @@ import StringUtils
 import ValueRange
 @testable import Syntax
 
-actor TreeSitterClientTests {
+actor TreeSitterHighlightTests {
     
     private let registry: LanguageRegistry = .shared
     
@@ -124,72 +124,6 @@ actor TreeSitterClientTests {
         #expect(captures[29] == Capture(type: .keywords, text: "try"))
         #expect(captures[30] == Capture(type: .keywords, text: "self"))
         #expect(captures[31] == Capture(type: .commands, text: "replace"))
-    }
-    
-    
-    @Test func outlineSwift() async throws {
-        
-        let source = #"""
-            class Foo {
-                
-                func dog() { }
-                // MARK: - Cow
-                func cat() { }
-            }
-        """#
-        
-        let config = try self.registry.configuration(for: .swift)
-        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .swift)
-        let outline = try await client.parseOutline(in: source)
-        
-        #expect(outline.count == 5)
-        #expect(outline[0].title == "Foo")
-        #expect(outline[0].kind == .container)
-        #expect(outline[0].indent == .level(0))
-        #expect(outline[1].title == "dog")
-        #expect(outline[1].kind == .function)
-        #expect(outline[1].indent == .level(1))
-        #expect(outline[2].title.isEmpty)
-        #expect(outline[2].kind == .separator)
-        #expect(outline[2].indent == .level(1))
-        #expect(outline[3].title == "Cow")
-        #expect(outline[3].kind == .mark)
-        #expect(outline[3].indent == .level(1))
-        #expect(outline[4].title == "cat")
-        #expect(outline[4].kind == .function)
-        #expect(outline[4].indent == .level(1))
-    }
-    
-    
-    @Test func outlinePythonDecoratedFunctionsRemainSiblings() async throws {
-        
-        let source = #"""
-            def chunked(items, size):
-                return []
-            
-            @contextmanager
-            def open_text(path):
-                yield path
-            
-            @asynccontextmanager
-            async def timer(label):
-                yield
-        """#
-        
-        let config = try self.registry.configuration(for: .python)
-        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .python)
-        let outline = try await client.parseOutline(in: source)
-        
-        #expect(outline.count == 3)
-        #expect(outline[0].title == "chunked")
-        #expect(outline[0].kind == .function)
-        #expect(outline[0].indent == .level(0))
-        #expect(outline[1].title == "open_text")
-        #expect(outline[1].kind == .function)
-        #expect(outline[1].indent == .level(0))
-        #expect(outline[2].title == "timer")
-        #expect(outline[2].kind == .function)
-        #expect(outline[2].indent == .level(0))
     }
 }
 

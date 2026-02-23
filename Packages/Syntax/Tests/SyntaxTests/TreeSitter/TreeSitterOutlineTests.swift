@@ -90,7 +90,7 @@ actor TreeSitterOutlineTests {
     }
     
     
-    @Test func parseSwiftOutlineAppliesMarkFormattingAndSectionDepth() async throws {
+    @Test func outlineSwift() async throws {
         
         let source = #"""
             class Foo {
@@ -103,9 +103,22 @@ actor TreeSitterOutlineTests {
         
         let outline = try await self.parseOutline(in: source, syntax: .swift)
         
-        #expect(outline.map(\.title) == ["Foo", "dog", "", "Cow", "cat"])
-        #expect(outline.map(\.kind) == [.container, .function, .separator, .mark, .function])
-        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1])
+        #expect(outline.count == 5)
+        #expect(outline[0].title == "Foo")
+        #expect(outline[0].kind == .container)
+        #expect(outline[0].indent == .level(0))
+        #expect(outline[1].title == "dog")
+        #expect(outline[1].kind == .function)
+        #expect(outline[1].indent == .level(1))
+        #expect(outline[2].title.isEmpty)
+        #expect(outline[2].kind == .separator)
+        #expect(outline[2].indent == .level(1))
+        #expect(outline[3].title == "Cow")
+        #expect(outline[3].kind == .mark)
+        #expect(outline[3].indent == .level(1))
+        #expect(outline[4].title == "cat")
+        #expect(outline[4].kind == .function)
+        #expect(outline[4].indent == .level(1))
     }
     
     
@@ -126,7 +139,7 @@ actor TreeSitterOutlineTests {
     }
     
     
-    @Test func parsePythonDecoratedFunctionsRemainSiblings() async throws {
+    @Test func outlinePythonDecoratedFunctionsRemainSiblings() async throws {
         
         let source = #"""
             def chunked(items, size):
@@ -143,9 +156,16 @@ actor TreeSitterOutlineTests {
         
         let outline = try await self.parseOutline(in: source, syntax: .python)
         
-        #expect(outline.map(\.title) == ["chunked", "open_text", "timer"])
-        #expect(outline.map(\.kind) == [.function, .function, .function])
-        #expect(outline.map(\.indent.level) == [0, 0, 0])
+        #expect(outline.count == 3)
+        #expect(outline[0].title == "chunked")
+        #expect(outline[0].kind == .function)
+        #expect(outline[0].indent == .level(0))
+        #expect(outline[1].title == "open_text")
+        #expect(outline[1].kind == .function)
+        #expect(outline[1].indent == .level(0))
+        #expect(outline[2].title == "timer")
+        #expect(outline[2].kind == .function)
+        #expect(outline[2].indent == .level(0))
     }
     
     
