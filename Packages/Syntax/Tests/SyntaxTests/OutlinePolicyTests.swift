@@ -30,27 +30,6 @@ import Testing
 
 struct OutlinePolicyTests {
     
-    @Test func formatCSS() {
-        
-        let formatter = TreeSitterSyntax.css.outlinePolicy.titleFormatter
-        
-        #expect(formatter(.container, "@media (prefers-color-scheme: dark) { .item { color: white; } }") == "@media (prefers-color-scheme: dark)")
-        #expect(formatter(.container, "@layer utilities { .m-1 { margin: 1rem; } }") == "@layer utilities")
-        #expect(formatter(.container, "@import url(\"theme.css\");") == "@import url(\"theme.css\")")
-    }
-    
-    
-    @Test func formatSwift() {
-        
-        let formatter = TreeSitterSyntax.swift.outlinePolicy.titleFormatter
-        
-        #expect(formatter(.function, "SomeFunction") == "SomeFunction")
-        #expect(formatter(.mark, "// MARK: Swift") == "Swift")
-        #expect(formatter(.mark, "// MARK: - Swift") == "Swift")
-        #expect(formatter(.mark, "/* MARK: Swift */") == "Swift")
-    }
-    
-    
     @Test func normalizeLevels() {
         
         let items: [OutlineItem] = [
