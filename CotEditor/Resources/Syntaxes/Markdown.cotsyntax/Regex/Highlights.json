@@ -30,7 +30,8 @@
     {
       "beginString" : "```",
       "description" : "[github] codeblock",
-      "endString" : "```"
+      "endString" : "```",
+      "isMultiline" : true
     }
   ],
   "commands" : [
