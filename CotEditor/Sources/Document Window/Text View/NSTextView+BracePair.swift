@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,8 @@ extension NSTextView {
     /// - Parameters:
     ///   - candidates: Brace pairs to find.
     ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
-    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
+    ///   - escapeRule: The delimiter escape rule.
+    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) {
         
         guard
             !self.string.isEmpty,
@@ -52,7 +53,7 @@ extension NSTextView {
         let range = Range(visibleRange, in: self.string)
         
         lastIndexes
-            .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore) }
+            .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore, escapeRule: escapeRule) }
             .compactMap(\.index)
             .map { NSRange($0...$0, in: self.string) }
             .forEach { self.showFindIndicator(for: $0) }

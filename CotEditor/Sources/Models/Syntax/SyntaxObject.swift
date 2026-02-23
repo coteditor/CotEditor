@@ -83,6 +83,7 @@ import StringUtils
     
     var inlineComments: [InlineComment] = []
     var blockComments: [BlockComment] = []
+    var lexicalRules: Syntax.LexicalRules = .default
     
     var outlines: [Outline] = []
     var completions: [CompletionWord] = []
@@ -133,6 +134,7 @@ extension SyntaxObject {
                 inlines: self.inlineComments.map(\.value),
                 blocks: self.blockComments.map(\.value)
               ),
+              lexicalRules: self.lexicalRules,
               
               completions: self.completions.map(\.value),
               
@@ -153,6 +155,7 @@ extension SyntaxObject {
         
         self.inlineComments = value.commentDelimiters.inlines.map { .init(value: $0) }
         self.blockComments = value.commentDelimiters.blocks.map { .init(value: $0) }
+        self.lexicalRules = value.lexicalRules
         
         self.completions = value.completions.map { .init(value: $0) }
         

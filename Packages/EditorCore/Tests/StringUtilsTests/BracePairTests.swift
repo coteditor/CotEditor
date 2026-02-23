@@ -114,6 +114,19 @@ struct BracePairTests {
     }
     
     
+    @Test func rangeOfBracePairWithoutBackslashEscaping() {
+        
+        let string = #"foo \(bar\) baz"#
+        let beginIndex = try! #require(string.firstIndex(of: "("))
+        
+        let defaultRange = string.rangeOfBracePair(at: beginIndex, candidates: BracePair.braces)
+        let unescapedRange = string.rangeOfBracePair(at: beginIndex, candidates: BracePair.braces, escapeRule: .none)
+        
+        #expect(defaultRange == nil)
+        #expect(unescapedRange == string.index(5)...string.index(10))
+    }
+    
+    
     @Test func ignorePair() {
         
         let string = "( [ ( ] )"

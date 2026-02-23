@@ -28,6 +28,7 @@
 - Make outline items in the Outline inspector collapsible when using a tree-sitter-based syntax.
 - Enable registering multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
+- Add the Lexical Rules pane to the syntax editor to customize parsing rules.
 
 
 ### Compatibility Changes

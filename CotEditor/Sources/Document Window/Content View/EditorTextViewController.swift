@@ -417,6 +417,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         let syntax = self.document.syntaxController.syntax
         self.textView.commentDelimiters = syntax.commentDelimiters
+        self.textView.delimiterEscapeRule = syntax.lexicalRules.delimiterEscapeRule
         self.textView.syntaxCompletionWords = syntax.completionWords
     }
     

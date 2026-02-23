@@ -9,5 +9,8 @@
     "inlines" : [
 
     ]
+  },
+  "lexicalRules" : {
+    "delimiterEscapeRule" : "none"
   }
 }

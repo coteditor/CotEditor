@@ -167,18 +167,37 @@ struct NestableTests {
         @Test func respectsEscapes() throws {
             
             let source = """
-                         \\# not a comment
-                         # real
+                         \\// not a comment
+                         // real
                          """
             let tokens: [NestableToken: SyntaxType] = [
-                .inline("#", leadingOnly: false): .comments
+                .inline("//", leadingOnly: false): .comments
             ]
             let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
             let ranges = try #require(dict[.comments])
             let matches = ranges.map((source as NSString).substring(with:))
             
             #expect(matches.count == 1)
-            #expect(matches[0].hasPrefix("#"))
+            #expect(matches[0].hasPrefix("//"))
+        }
+        
+        
+        @Test func ignoresEscapesWhenRuleIsNone() throws {
+            
+            let source = """
+                         \\// not a comment
+                         // real
+                         """
+            let tokens: [NestableToken: SyntaxType] = [
+                .inline("//", leadingOnly: false): .comments
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .none)
+            let ranges = try #require(dict[.comments])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 2)
+            #expect(matches[0].hasPrefix("//"))
+            #expect(matches[1].hasPrefix("//"))
         }
     }
 }

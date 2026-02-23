@@ -36,6 +36,7 @@ struct SyntaxEditView: View {
         
         case fileMapping
         case commentDelimiters
+        case lexicalRules
         case outline
         case completion
         
@@ -56,7 +57,7 @@ struct SyntaxEditView: View {
         case builtIn
         
         
-        static let features: [Self] = [.fileMapping, .commentDelimiters, .outline, .completion]
+        static let features: [Self] = [.fileMapping, .commentDelimiters, .lexicalRules, .outline, .completion]
         static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
         static let syntaxData: [Self] = [.syntaxInfo, .validation]
     }
@@ -183,6 +184,8 @@ struct SyntaxEditView: View {
                 SyntaxCommentEditView(inlineComments: $syntax.inlineComments,
                                       blockComments: $syntax.blockComments,
                                       canCustomizeHighlight: self.customizableFeatures.contains(.highlight))
+            case .lexicalRules:
+                SyntaxLexicalRulesEditView(rules: $syntax.lexicalRules)
             case .outline:
                 if self.customizableFeatures.contains(.outline) {
                     SyntaxOutlineEditView(items: $syntax.outlines)
@@ -317,6 +320,11 @@ extension SyntaxEditView.Pane {
             case .commentDelimiters:
                 String(localized: "Syntax.key.commentDelimiters.label",
                        defaultValue: "Commenting",
+                       table: "SyntaxEditor",
+                       comment: "syntax definition type")
+            case .lexicalRules:
+                String(localized: "Syntax.key.lexicalRules.label",
+                       defaultValue: "Lexical Rules",
                        table: "SyntaxEditor",
                        comment: "syntax definition type")
                 

@@ -95,7 +95,8 @@ extension Syntax {
         
         guard !extractors.isEmpty || !nestables.isEmpty else { return nil }
         
-        return RegexHighlightParser(extractors: extractors, nestables: nestables)
+        return RegexHighlightParser(extractors: extractors, nestables: nestables, lexicalRules: self.lexicalRules
+        )
     }
 }
 
