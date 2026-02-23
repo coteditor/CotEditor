@@ -132,6 +132,7 @@ struct SyntaxFileWrapperTests {
         #expect(syntax.fileMap == .init())
         #expect(syntax.metadata == .init())
         #expect(syntax.commentDelimiters.isEmpty)
+        #expect(syntax.lexicalRules == .default)
         #expect(syntax.completions.isEmpty)
         #expect(syntax.highlights.isEmpty)
         #expect(syntax.outlines.isEmpty)
@@ -141,7 +142,10 @@ struct SyntaxFileWrapperTests {
     @Test func fileWrapperWithEditAndRegex() throws {
         
         let info = Syntax.Info(kind: Syntax.Kind.code, fileMap: .init(extensions: ["swift"]), metadata: .init(author: "me"))
-        let edit = Syntax.Edit(comment: .init(inlines: [.init(begin: "//")], blocks: [Pair("/*", "*/")]))
+        let edit = Syntax.Edit(
+            comment: .init(inlines: [.init(begin: "//")], blocks: [Pair("/*", "*/")]),
+            lexicalRules: .init(delimiterEscapeRule: .none)
+        )
         let completions: [Syntax.CompletionWord] = [.init(text: "print", type: SyntaxType.commands)]
         let highlights: [SyntaxType: [Syntax.Highlight]] = [
             SyntaxType.keywords: [.init(begin: "func")],
@@ -168,6 +172,7 @@ struct SyntaxFileWrapperTests {
         #expect(syntax.metadata.author == "me")
         #expect(syntax.commentDelimiters.inlines.map { $0.begin } == ["//"])
         #expect(syntax.commentDelimiters.blocks == [Pair("/*", "*/")])
+        #expect(syntax.lexicalRules.delimiterEscapeRule == .none)
         #expect(syntax.completions.map { $0.text } == ["print"])
         #expect(syntax.highlights[SyntaxType.keywords]?.map { $0.begin } == ["func"])
         #expect(syntax.outlines.map { $0.pattern } == ["^func"])
@@ -182,6 +187,7 @@ struct SyntaxFileWrapperTests {
             highlights: [SyntaxType.keywords: [.init(begin: "todo")]],
             outlines: [.init(pattern: "^#", template: "header")],
             commentDelimiters: .init(inlines: [.init(begin: "#")]),
+            lexicalRules: .init(delimiterEscapeRule: .none),
             completions: [.init(text: "hello", type: SyntaxType.keywords)],
             metadata: .init(author: "tester")
         )
@@ -195,6 +201,20 @@ struct SyntaxFileWrapperTests {
         let regex = root["Regex"]?.fileWrappers ?? [:]
         #expect(regex["Highlights.json"] != nil)
         #expect(regex["Outlines.json"] != nil)
+        
+        let editData = try #require(root["Edit.json"]?.regularFileContents)
+        let edit = try JSONDecoder().decode(Syntax.Edit.self, from: editData)
+        #expect(try #require(edit.lexicalRules).delimiterEscapeRule == .none)
+    }
+    
+    
+    @Test func fileWrapperSerializationOmitsDefaultLexicalRules() throws {
+        
+        let syntax = Syntax()
+        
+        let wrapper = try syntax.fileWrapper
+        
+        #expect(wrapper.fileWrappers?["Edit.json"] == nil)
     }
     
     

@@ -85,8 +85,9 @@ extension [NestableToken: SyntaxType] {
     /// - Parameters:
     ///   - string: The string to parse.
     ///   - range: The range where to parse.
+    ///   - delimiterEscapeRule: The delimiter escaping rule.
     /// - Throws: CancellationError.
-    func parseHighlights(in string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
+    func parseHighlights(in string: String, range parseRange: NSRange, delimiterEscapeRule: Syntax.LexicalRules.DelimiterEscapeRule = Syntax.LexicalRules.default.delimiterEscapeRule) throws -> [SyntaxType: [NSRange]] {
         
         let positions: [NestableItem] = try self.flatMap { token, type -> [NestableItem] in
             try Task.checkCancellation()
@@ -124,7 +125,12 @@ extension [NestableToken: SyntaxType] {
                     }
             }
         }
-            .filter { !string.isEscaped(at: $0.range.location) }
+            .filter { item in
+                switch delimiterEscapeRule {
+                    case .backslash: !string.isEscaped(at: item.range.location)
+                    case .none: true
+                }
+            }
             .sorted(using: [KeyPathComparator(\.range.location),
                             KeyPathComparator(\.range.length, order: .reverse)])
         

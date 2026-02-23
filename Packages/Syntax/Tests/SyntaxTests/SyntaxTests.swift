@@ -36,6 +36,7 @@ struct SyntaxTests {
         #expect(syntax.kind == .code)
         #expect(syntax.commentDelimiters.inlines.isEmpty)
         #expect(syntax.commentDelimiters.blocks.isEmpty)
+        #expect(syntax.lexicalRules.delimiterEscapeRule == Syntax.LexicalRules.default.delimiterEscapeRule)
         
         #expect(syntax.outlineParser == nil)
         #expect(syntax.highlightParser == nil)

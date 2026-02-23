@@ -52,6 +52,7 @@ extension Syntax {
     struct Edit: Equatable, Sendable, Codable {
         
         var comment: Comment?
+        var lexicalRules: LexicalRules?
     }
     
     
@@ -88,6 +89,7 @@ extension Syntax {
         let edit = try fileWrapper.fileWrappers?[Filename.edit]?.regularFileContents
             .map { try decoder.decode(Edit.self, from: $0) }
         self.commentDelimiters = edit?.comment ?? .init()
+        self.lexicalRules = edit?.lexicalRules ?? .default
         
         self.completions = try fileWrapper.fileWrappers?[Filename.completion]?.regularFileContents
             .map { try decoder.decode([CompletionWord].self, from: $0) } ?? []
@@ -118,8 +120,11 @@ extension Syntax {
             let infoData = try encoder.encode(info)
             fileWrapper.addRegularFile(withContents: infoData, preferredFilename: Filename.info)
             
-            if !self.commentDelimiters.isEmpty {
-                let edit = Edit(comment: self.commentDelimiters)
+            if !self.commentDelimiters.isEmpty || self.lexicalRules != .default {
+                let edit = Edit(
+                    comment: self.commentDelimiters.isEmpty ? nil : self.commentDelimiters,
+                    lexicalRules: self.lexicalRules == .default ? nil : self.lexicalRules
+                )
                 let data = try encoder.encode(edit)
                 fileWrapper.addRegularFile(withContents: data, preferredFilename: Filename.edit)
             }

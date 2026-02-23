@@ -149,3 +149,30 @@ extension Syntax.Comment.Inline: Codable {
         }
     }
 }
+
+
+extension Syntax.LexicalRules: Codable {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case delimiterEscapeRule
+    }
+    
+    
+    public init(from decoder: any Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.delimiterEscapeRule = try container.decodeIfPresent(DelimiterEscapeRule.self, forKey: .delimiterEscapeRule) ?? Self.default.delimiterEscapeRule
+    }
+    
+    
+    public func encode(to encoder: any Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if self.delimiterEscapeRule != Self.default.delimiterEscapeRule {
+            try container.encode(self.delimiterEscapeRule, forKey: .delimiterEscapeRule)
+        }
+    }
+}
