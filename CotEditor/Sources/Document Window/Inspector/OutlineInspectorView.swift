@@ -189,12 +189,12 @@ struct OutlineInspectorView: View, HostedPaneView {
                     self.expandedNodeIDs.formIntersection(newIDs)
                     self.expandedNodeIDs.formUnion(freshIDs)
                 } else {
-                    self.expandedNodeIDs = self.model.outlineNodes.expandable​IDs
+                    self.expandedNodeIDs = self.model.outlineNodes.expandableIDs
                 }
             }
             .onChange(of: self.model.filterString) { _, newValue in
                 if !newValue.isEmpty {
-                    self.expandedNodeIDs = self.model.outlineNodes.expandable​IDs
+                    self.expandedNodeIDs = self.model.outlineNodes.expandableIDs
                 }
             }
             .overlay {
@@ -358,12 +358,12 @@ struct OutlineNode: Identifiable {
 private extension [OutlineNode] {
     
     /// Collects IDs of itself and descendant nodes that have children.
-    var expandable​IDs: Set<OutlineItem.ID> {
+    var expandableIDs: Set<OutlineItem.ID> {
         
         self.filter { !$0.children.isEmpty }
             .reduce(into: Set()) { ids, node in
                 ids.insert(node.id)
-                ids.formUnion(node.children.expandable​IDs)
+                ids.formUnion(node.children.expandableIDs)
             }
     }
 }
