@@ -130,3 +130,21 @@ public extension Syntax.Outline.Kind {
         }
     }
 }
+
+
+public extension Syntax.LexicalRules.DelimiterEscapeRule {
+    
+    var label: String {
+        
+        switch self {
+            case .backslash:
+                String(localized: "Syntax.LexicalRules.DelimiterEscapeRule.backslash.label",
+                       defaultValue: "Backslash",
+                       bundle: .module)
+            case .none:
+                String(localized: "Syntax.LexicalRules.DelimiterEscapeRule.none.label",
+                       defaultValue: "None",
+                       bundle: .module)
+        }
+    }
+}
