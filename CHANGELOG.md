@@ -23,6 +23,7 @@
     - Swift
     - TypeScript
 - Prepend a symbolic icon to extracted outline items.
+- Make outline items in the Outline inspector collapsible when using a tree-sitter-based syntax.
 - Enable registering multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
 
