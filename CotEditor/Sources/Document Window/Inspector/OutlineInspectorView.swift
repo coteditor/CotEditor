@@ -183,10 +183,19 @@ struct OutlineInspectorView: View, HostedPaneView {
                     .listRowSeparator(.hidden)
             }
             .onChange(of: self.model.outlineAllIDs, initial: true) { oldValue, newValue in
-                let newIDs = Set(newValue)
-                let freshIDs = newIDs.subtracting(oldValue)
-                self.expandedNodeIDs.formIntersection(newIDs)
-                self.expandedNodeIDs.formUnion(freshIDs)
+                if self.model.filterString.isEmpty {
+                    let newIDs = Set(newValue)
+                    let freshIDs = newIDs.subtracting(oldValue)
+                    self.expandedNodeIDs.formIntersection(newIDs)
+                    self.expandedNodeIDs.formUnion(freshIDs)
+                } else {
+                    self.expandedNodeIDs = self.model.outlineNodes.expandable​IDs
+                }
+            }
+            .onChange(of: self.model.filterString) { _, newValue in
+                if !newValue.isEmpty {
+                    self.expandedNodeIDs = self.model.outlineNodes.expandable​IDs
+                }
             }
             .overlay {
                 if !self.model.filterString.isEmpty, self.model.outlineNodes.isEmpty {
@@ -335,7 +344,7 @@ private struct OutlineTreeView: View {
 }
 
 
-// MARK: Models
+// MARK: - Models
 
 struct OutlineNode: Identifiable {
     
@@ -343,6 +352,20 @@ struct OutlineNode: Identifiable {
     var children: [OutlineNode] = []
     
     var id: OutlineItem.ID  { self.item.id }
+}
+
+
+private extension [OutlineNode] {
+    
+    /// Collects IDs of itself and descendant nodes that have children.
+    var expandable​IDs: Set<OutlineItem.ID> {
+        
+        self.filter { !$0.children.isEmpty }
+            .reduce(into: Set()) { ids, node in
+                ids.insert(node.id)
+                ids.formUnion(node.children.expandable​IDs)
+            }
+    }
 }
 
 
