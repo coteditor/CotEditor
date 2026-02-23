@@ -8,5 +8,8 @@
         "begin" : "!"
       }
     ]
+  },
+  "lexicalRules" : {
+    "delimiterEscapeRule" : "none"
   }
 }

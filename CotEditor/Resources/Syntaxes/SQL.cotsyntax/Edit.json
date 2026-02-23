@@ -11,5 +11,8 @@
         "begin" : "--"
       }
     ]
+  },
+  "lexicalRules" : {
+    "delimiterEscapeRule" : "none"
   }
 }
