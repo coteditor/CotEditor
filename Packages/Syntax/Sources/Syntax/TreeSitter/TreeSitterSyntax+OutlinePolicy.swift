@@ -1,5 +1,5 @@
 //
-//  OutlineTitleFormatter.swift
+//  TreeSitterSyntax+OutlinePolicy.swift
 //  Syntax
 //
 //  CotEditor
@@ -26,59 +26,28 @@
 
 import Foundation
 
-typealias OutlineTitleFormatter = @Sendable (Syntax.Outline.Kind, String) -> String?
-
-
-struct OutlineNormalizationPolicy: Sendable {
-    
-    var sectionMarkerKinds: Set<Syntax.Outline.Kind> = [.separator]
-    var adjustSectionMarkerDepth: Bool = false
-    var flattenLevels: Bool = false
-    var ignoredDepthNodeTypes: Set<String> = []
-    
-    static let standard = Self()
-    
-    
-    func isSectionMarker(kind: Syntax.Outline.Kind?) -> Bool {
-        
-        kind.map(self.sectionMarkerKinds.contains) ?? false
-    }
-}
-
-
 extension TreeSitterSyntax {
     
-    /// The outline title formatter for the syntax.
-    ///
-    /// The formatter receives a trimmed title string.
-    var outlineTitleFormatter: OutlineTitleFormatter {
+    /// The outline behavior policy for the syntax.
+    var outlinePolicy: OutlinePolicy {
         
         switch self {
-            case .css: Self.cssOutlineTitleFormatter
-            case .swift: Self.swiftOutlineTitleFormatter
-            default: { _, title in title }
-        }
-    }
-    
-    
-    /// The outline normalization policy for the syntax.
-    var outlineNormalizationPolicy: OutlineNormalizationPolicy {
-        
-        switch self {
+            case .css:
+                .init(titleFormatter: Self.cssOutlineTitleFormatter)
             case .python:
                 .init(ignoredDepthNodeTypes: ["decorated_definition"])
             case .sql:
-                .init(flattenLevels: true)
+                .init(normalization: .init(flattenLevels: true))
             case .swift:
-                .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true)
+                .init(titleFormatter: Self.swiftOutlineTitleFormatter,
+                      normalization: .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true))
             default:
                 .init()
         }
     }
     
-    
     /// Formats CSS outline titles to keep only the at-rule header.
-    private static let cssOutlineTitleFormatter: OutlineTitleFormatter = { _, title in
+    private static let cssOutlineTitleFormatter: OutlinePolicy.TitleFormatter = { _, title in
         
         let header = if let index = title.firstIndex(of: "{") ?? title.firstIndex(of: ";") {
             title[..<index]
@@ -94,7 +63,7 @@ extension TreeSitterSyntax {
     
     
     /// Formats Swift outline titles with MARK comment handling.
-    private static let swiftOutlineTitleFormatter: OutlineTitleFormatter = { kind, title in
+    private static let swiftOutlineTitleFormatter: OutlinePolicy.TitleFormatter = { kind, title in
         
         guard kind == .mark else { return title }
         

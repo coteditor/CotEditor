@@ -132,14 +132,13 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
         let outlineRange = IndexSet(integersIn: Range(string.range)!)
         let cursor = try self.layer.executeQuery(.outline, in: outlineRange)
         let matches = cursor.resolve(with: SwiftTreeSitter.Predicate.Context(textProvider: string.predicateNSStringProvider))
-        let formatter = self.syntax.outlineTitleFormatter
-        let normalizationPolicy = self.syntax.outlineNormalizationPolicy
+        let policy = self.syntax.outlinePolicy
         
-        return matches
+        let items = matches
             .flatMap(\.captures)
             .filter { $0.depth == 0 }  // ignore injection
             .compactMap {
-                OutlineCapture(capture: $0, ignoredDepthNodeTypes: normalizationPolicy.ignoredDepthNodeTypes)
+                OutlineCapture(capture: $0, policy: policy)
             }
             .compactMap { capture -> OutlineItem? in
                 if capture.kind == .separator {
@@ -150,12 +149,13 @@ actor TreeSitterClient: HighlightParsing, OutlineParsing {
                 
                 let title = (string as NSString).substring(with: capture.range)
                 
-                guard let formattedTitle = formatter(capture.kind, title) else { return nil }
+                guard let formattedTitle = policy.titleFormatter(capture.kind, title) else { return nil }
                 
                 return OutlineItem(title: formattedTitle, range: capture.range, kind: capture.kind, indent: .level(capture.depth))
             }
             .removingDuplicateIDs
-            .normalizedLevels(policy: normalizationPolicy)
+        
+        return policy.normalize(items)
     }
     
     
@@ -197,7 +197,7 @@ private struct OutlineCapture {
     var depth: Int
     
     
-    init?(capture: QueryCapture, ignoredDepthNodeTypes: Set<String>) {
+    init?(capture: QueryCapture, policy: OutlinePolicy) {
         
         let components = capture.nameComponents
         
@@ -207,38 +207,12 @@ private struct OutlineCapture {
             let kind = Syntax.Outline.Kind(rawValue: components[1])
         else { return nil }
         
+        let ancestorNodeTypes = sequence(first: capture.node, next: \.parent)
+            .map { $0.nodeType ?? "" }
+        
         self.kind = kind
         self.range = capture.range
-        self.depth = if components.count > 2, components[1] == "heading" {
-            Self.headingLevel(from: components[2])
-        } else {
-            Self.depth(of: capture.node, ignoringNodeTypes: ignoredDepthNodeTypes)
-        }
-    }
-    
-    
-    private static func headingLevel(from component: String) -> Int {
-        
-        switch component {
-            case "h1": 1
-            case "h2": 2
-            case "h3": 3
-            case "h4": 4
-            case "h5": 5
-            case "h6": 6
-            case "title": 1
-            default: 1
-        }
-    }
-    
-    
-    private static func depth(of node: Node, ignoringNodeTypes ignoredNodeTypes: Set<String>) -> Int {
-        
-        Array(sequence(first: node, next: \.parent))
-            .reduce(into: 0) { depth, node in
-                guard !ignoredNodeTypes.contains(node.nodeType ?? "") else { return }
-                depth += 1
-            }
+        self.depth = policy.depth(captureNameComponents: components, ancestorNodeTypes: ancestorNodeTypes)
     }
 }
 

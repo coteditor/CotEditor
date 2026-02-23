@@ -32,13 +32,15 @@ actor RegexOutlineParser: OutlineParsing {
     // MARK: Private Properties
     
     private let extractors: [OutlineExtractor]
+    private let policy: OutlinePolicy
     
     
     // MARK: Lifecycle
     
-    init(extractors: [OutlineExtractor]) {
+    init(extractors: [OutlineExtractor], policy: OutlinePolicy = .init()) {
         
         self.extractors = extractors
+        self.policy = policy
     }
     
     
@@ -52,13 +54,16 @@ actor RegexOutlineParser: OutlineParsing {
     /// - Throws: `CancellationError`.
     func parseOutline(in string: String) async throws -> [OutlineItem] {
         
-        try await withThrowingTaskGroup { [extractors] group in
+        try await withThrowingTaskGroup { [extractors, policy] group in
             for extractor in extractors {
                 group.addTask { try extractor.items(in: string, range: string.range) }
             }
             
-            return try await group.reduce(into: []) { $0 += $1 }
+            let items = try await group.reduce(into: []) { $0 += $1 }
                 .sorted(using: KeyPathComparator(\.range.location))
+                .removingDuplicateIDs
+            
+            return policy.normalize(items)
         }
     }
 }
