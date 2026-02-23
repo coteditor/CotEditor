@@ -365,7 +365,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unix Line Seperator"
+            "value" : "Unix Line Separator"
           }
         },
         "pl" : {
@@ -569,7 +569,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unix Paragraph Seperator"
+            "value" : "Unix Paragraph Separator"
           }
         },
         "pl" : {
