@@ -33,6 +33,8 @@ struct HighlightQueriesTests {
     @Test(arguments: TreeSitterSyntax.allCases)
     func highlightsCaptureRootsAreAllowed(syntax: TreeSitterSyntax) throws {
         
+        guard syntax.features.contains(.highlight) else { return }
+        
         let highlightsURL = LanguageRegistry.shared.queriesURL(for: syntax)
             .appending(component: "highlights.scm")
         let lines = try String(contentsOf: highlightsURL, encoding: .utf8)
@@ -53,6 +55,8 @@ struct HighlightQueriesTests {
     
     @Test(arguments: TreeSitterSyntax.allCases)
     func highlightsSampleFiles(syntax: TreeSitterSyntax) async throws {
+        
+        guard syntax.features.contains(.highlight) else { return }
         
         let samplesDirectoryURL = try #require(Bundle.module.url(forResource: "Samples", withExtension: nil))
         let sampleURL = samplesDirectoryURL
