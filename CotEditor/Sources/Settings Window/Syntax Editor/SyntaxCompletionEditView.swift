@@ -33,7 +33,7 @@ struct SyntaxCompletionEditView: View {
     
     @Binding var items: [Item]
     
-    var canCustomizeParser: Bool = true
+    var canCustomizeHighlight: Bool = true
     
     @State private var selection: Set<Item.ID> = []
     @State private var sortOrder: [KeyPathComparator<Item>] = []
@@ -96,7 +96,7 @@ struct SyntaxCompletionEditView: View {
                     .controlSize(.small)
             }
             
-            if self.canCustomizeParser {
+            if self.canCustomizeHighlight {
                 Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
                     .controlSize(.small)
                     .padding(.top, 4)

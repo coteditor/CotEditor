@@ -178,14 +178,14 @@ enum SyntaxName {
     }
     
     
-    /// Returns whether the given syntax can be customized by the user for highlighting.
+    /// Returns syntax features that are user-customizable for the given setting.
     ///
     /// - Parameters:
     ///   - name: The setting name to check.
-    /// - Returns: `true` if the syntax is user-customizable (i.e., not a built-in language), otherwise `false`.
-    func canCustomizeParser(name: SettingName) -> Bool {
+    /// - Returns: A set of customizable features.
+    func customizableFeatures(name: SettingName) -> ParserFeatures {
         
-        TreeSitterSyntax(name: name) == nil
+        .all.subtracting(TreeSitterSyntax(name: name)?.features ?? [])
     }
     
     

@@ -24,8 +24,6 @@
 //  limitations under the License.
 //
 
-import SwiftTreeSitter
-
 public extension LanguageRegistry {
     
     /// Returns the parser and feature support for the given tree-sitter syntax.
@@ -34,37 +32,10 @@ public extension LanguageRegistry {
     ///   - syntax: The tree-sitter syntax to look up in the registry.
     /// - Returns: A tuple of the parser and the supported features derived from available queries.
     /// - Throws: Any error that occurs while resolving the language layer.
-    func parser(syntax: TreeSitterSyntax) throws -> (parser: (any HighlightParsing & OutlineParsing), support: TreeSitterSyntax.FeatureSupport) {
+    func parser(syntax: TreeSitterSyntax) throws -> any HighlightParsing & OutlineParsing {
         
         let config = try self.configuration(for: syntax)
-        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.languageProvider, syntax: syntax)
         
-        return (client, TreeSitterSyntax.FeatureSupport(queries: config.queries))
-    }
-}
-
-
-public extension TreeSitterSyntax {
-    
-    struct FeatureSupport: OptionSet, Sendable {
-        
-        public var rawValue: Int
-        
-        public static let highlight = Self(rawValue: 1 << 0)
-        public static let outline   = Self(rawValue: 1 << 1)
-        
-        
-        public init(rawValue: Int) {
-            
-            self.rawValue = rawValue
-        }
-        
-        
-        init(queries: [Query.Definition: Query]) {
-            
-            self = .init()
-                .union((queries[.highlights] != nil) ? .highlight : [])
-                .union((queries[.outline] != nil) ? .outline : [])
-        }
+        return try TreeSitterClient(languageConfig: config, languageProvider: self.languageProvider, syntax: syntax)
     }
 }

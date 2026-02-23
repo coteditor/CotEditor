@@ -1,11 +1,11 @@
 //
-//  TreeSitterSyntax.swift
+//  ParserFeatures.swift
 //  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2026-01-23.
+//  Created by 1024jp on 2026-02-23.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -24,34 +24,18 @@
 //  limitations under the License.
 //
 
-public enum TreeSitterSyntax: String, CaseIterable, Sendable {
+public struct ParserFeatures: OptionSet, Sendable {
     
-    case bash = "Bash"
-    case c = "C"
-    case css = "CSS"
-    case go = "Go"
-    case html = "HTML"
-    case java = "Java"
-    case javaScript = "JavaScript"
-    case lua = "Lua"
-    case makefile = "Makefile"
-    case php = "PHP"
-    case python = "Python"
-    case ruby = "Ruby"
-    case rust = "Rust"
-    case scala = "Scala"
-    case sql = "SQL"
-    case swift = "Swift"
-    case typeScript = "TypeScript"
+    public var rawValue: Int
     
-    var name: String  { self.rawValue }
+    public static let highlight = Self(rawValue: 1 << 0)
+    public static let outline   = Self(rawValue: 1 << 1)
+    
+    public static let all: Self = [.highlight, .outline]
     
     
-    /// Supported features.
-    public var features: ParserFeatures {
+    public init(rawValue: Int) {
         
-        switch self {
-            default: [.highlight, .outline]
-        }
+        self.rawValue = rawValue
     }
 }

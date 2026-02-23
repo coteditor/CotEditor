@@ -65,7 +65,7 @@ struct SyntaxEditView: View {
     @Environment(\.dismiss) private var dismiss
     
     private var isBundled: Bool = false
-    private var canCustomizeParser: Bool = true
+    private var customizableFeatures: ParserFeatures = .all
     private var saveAction: SaveAction
     private var validationAction: NameValidationAction
 
@@ -80,12 +80,12 @@ struct SyntaxEditView: View {
     @FocusState private var isNameFieldFocused: Bool
     
     
-    init(syntax: Syntax? = nil, name: String? = nil, isBundled: Bool = false, canCustomizeParser: Bool = false, saveAction: @escaping SaveAction, validationAction: @escaping NameValidationAction = { _ in }) {
+    init(syntax: Syntax? = nil, name: String? = nil, isBundled: Bool = false, customizableFeatures: ParserFeatures = .all, saveAction: @escaping SaveAction, validationAction: @escaping NameValidationAction = { _ in }) {
         
         self.syntax = SyntaxObject(value: syntax)
         self.name = name ?? ""
         self.isBundled = isBundled
-        self.canCustomizeParser = canCustomizeParser
+        self.customizableFeatures = customizableFeatures
         self.saveAction = saveAction
         self.validationAction = validationAction
     }
@@ -101,7 +101,7 @@ struct SyntaxEditView: View {
                     }
                 }
                 Section(String(localized: "Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
-                    if self.canCustomizeParser {
+                    if self.customizableFeatures.contains(.highlight) {
                         ForEach(Pane.highlights, id: \.self) { pane in
                             Text(pane.label)
                         }
@@ -182,16 +182,16 @@ struct SyntaxEditView: View {
             case .commentDelimiters:
                 SyntaxCommentEditView(inlineComments: $syntax.inlineComments,
                                       blockComments: $syntax.blockComments,
-                                      canCustomizeParser: self.canCustomizeParser)
+                                      canCustomizeHighlight: self.customizableFeatures.contains(.highlight))
             case .outline:
-                if self.canCustomizeParser {
+                if self.customizableFeatures.contains(.outline) {
                     SyntaxOutlineEditView(items: $syntax.outlines)
                 } else {
                     SyntaxBuiltInView()
                 }
             case .completion:
                 SyntaxCompletionEditView(items: $syntax.completions,
-                                         canCustomizeParser: self.canCustomizeParser)
+                                         canCustomizeHighlight: self.customizableFeatures.contains(.highlight))
                 
             case .keywords:
                 SyntaxHighlightEditView(items: $syntax.highlights.keywords)

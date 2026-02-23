@@ -60,6 +60,7 @@ actor TreeSitterOutlineTests {
         
         let source = #"""
             class Foo {
+                
                 func dog() { }
                 // MARK: - Cow
                 func cat() { }

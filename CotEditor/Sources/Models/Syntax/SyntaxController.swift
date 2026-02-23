@@ -89,11 +89,11 @@ extension NSAttributedString.Key {
         
         self.cancel()
         
-        if let syntax = TreeSitterSyntax(name: self.syntaxName),
-           let (parser, support) = try? LanguageRegistry.shared.parser(syntax: syntax)
+        if let syntax = TreeSitterSyntax(name: self.syntaxName), !syntax.features.isEmpty,
+           let parser = try? LanguageRegistry.shared.parser(syntax: syntax)
         {
-            self.highlightParser = support.contains(.highlight) ? parser : nil
-            self.outlineParser = support.contains(.outline) ? parser : nil
+            self.highlightParser = syntax.features.contains(.highlight) ? parser : self.syntax.highlightParser
+            self.outlineParser = syntax.features.contains(.outline) ? parser : self.syntax.outlineParser
         } else {
             self.highlightParser = self.syntax.highlightParser
             self.outlineParser = self.syntax.outlineParser

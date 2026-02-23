@@ -59,7 +59,7 @@ struct HighlightQueriesTests {
             .appending(component: syntax.sampleFilename, directoryHint: .notDirectory)
         let source = try String(contentsOf: sampleURL, encoding: .utf8)
         
-        let parser = try LanguageRegistry.shared.parser(syntax: syntax).parser
+        let parser = try LanguageRegistry.shared.parser(syntax: syntax)
         let result = try #require(await parser.parseHighlights(in: source, range: NSRange(..<source.utf16.count)))
         
         #expect(result.highlights.count > 10)
