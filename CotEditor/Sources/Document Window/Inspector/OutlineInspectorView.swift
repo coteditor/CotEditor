@@ -71,6 +71,11 @@ import StringUtils
     /// Updates observations.
     private func invalidateObservation() {
         
+        self.documentObserver = nil
+        self.syntaxObserver = nil
+        self.selectionObserver = nil
+        self.items.removeAll()
+        
         if let document, self.isPresented {
             self.documentObserver = document.$syntaxName
                 .sink { [weak self] _ in
@@ -91,12 +96,6 @@ import StringUtils
             //    You can ignore text selection change at this time point because the outline selection will be updated when the parse finished.
                 .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
                 .sink { [weak self] in self?.invalidateCurrentItem(in: $0) }
-            
-        } else {
-            self.documentObserver = nil
-            self.syntaxObserver = nil
-            self.selectionObserver = nil
-            self.items.removeAll()
         }
     }
     
