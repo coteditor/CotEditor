@@ -35,8 +35,7 @@ struct SyntaxEditView: View {
     enum Pane {
         
         case fileMapping
-        case commentDelimiters
-        case lexicalRules
+        case delimiters
         case outline
         case completion
         
@@ -57,7 +56,7 @@ struct SyntaxEditView: View {
         case builtIn
         
         
-        static let features: [Self] = [.fileMapping, .commentDelimiters, .lexicalRules, .outline, .completion]
+        static let features: [Self] = [.fileMapping, .delimiters, .outline, .completion]
         static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
         static let syntaxData: [Self] = [.syntaxInfo, .validation]
     }
@@ -180,12 +179,13 @@ struct SyntaxEditView: View {
         switch self.pane {
             case .fileMapping:
                 SyntaxFileMappingEditView(extensions: $syntax.extensions, filenames: $syntax.filenames, interpreters: $syntax.interpreters)
-            case .commentDelimiters:
-                SyntaxCommentEditView(inlineComments: $syntax.inlineComments,
-                                      blockComments: $syntax.blockComments,
-                                      canCustomizeHighlight: self.customizableFeatures.contains(.highlight))
-            case .lexicalRules:
-                SyntaxLexicalRulesEditView(rules: $syntax.lexicalRules)
+            case .delimiters:
+                SyntaxDelimitersEditView(
+                    inlineComments: $syntax.inlineComments,
+                    blockComments: $syntax.blockComments,
+                    lexicalRules: $syntax.lexicalRules,
+                    canCustomizeHighlight: self.customizableFeatures.contains(.highlight)
+                )
             case .outline:
                 if self.customizableFeatures.contains(.outline) {
                     SyntaxOutlineEditView(items: $syntax.outlines)
@@ -317,17 +317,10 @@ extension SyntaxEditView.Pane {
                 String(localized: "File Mapping",
                        table: "SyntaxEditor",
                        comment: "menu item in sidebar")
-            case .commentDelimiters:
-                String(localized: "Syntax.key.commentDelimiters.label",
-                       defaultValue: "Commenting",
+            case .delimiters:
+                String(localized: "Delimiters",
                        table: "SyntaxEditor",
                        comment: "syntax definition type")
-            case .lexicalRules:
-                String(localized: "Syntax.key.lexicalRules.label",
-                       defaultValue: "Lexical Rules",
-                       table: "SyntaxEditor",
-                       comment: "syntax definition type")
-                
             case .outline:
                 String(localized: "Syntax.key.outlines.label",
                        defaultValue: "Outline",

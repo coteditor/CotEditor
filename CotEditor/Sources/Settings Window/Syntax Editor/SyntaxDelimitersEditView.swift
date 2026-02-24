@@ -1,5 +1,5 @@
 //
-//  SyntaxCommentEditView.swift
+//  SyntaxDelimitersEditView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,10 +27,11 @@ import SwiftUI
 import StringUtils
 import Syntax
 
-struct SyntaxCommentEditView: View {
+struct SyntaxDelimitersEditView: View {
     
     @Binding var inlineComments: [SyntaxObject.InlineComment]
     @Binding var blockComments: [SyntaxObject.BlockComment]
+    @Binding var lexicalRules: Syntax.LexicalRules
     
     var canCustomizeHighlight: Bool = true
     
@@ -39,40 +40,63 @@ struct SyntaxCommentEditView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            HStack(alignment: .firstTextBaseline, spacing: 20) {
-                VStack(alignment: .leading) {
-                    Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
-                        .accessibilityAddTraits(.isHeader)
-                    
-                    InlineCommentsEditView(items: $inlineComments)
-                }.accessibilityElement(children: .contain)
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading) {
+                Text("Comments", tableName: "SyntaxEditor")
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 2)
                 
-                VStack(alignment: .leading) {
-                    Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
-                        .accessibilityAddTraits(.isHeader)
+                HStack(alignment: .firstTextBaseline, spacing: 20) {
+                    VStack(alignment: .leading) {
+                        Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
+                            .accessibilityAddTraits(.isHeader)
+                        InlineCommentsEditView(items: $inlineComments)
+                    }.accessibilityElement(children: .contain)
                     
-                    BlockCommentsEditView(items: $blockComments)
-                }.accessibilityElement(children: .contain)
+                    VStack(alignment: .leading) {
+                        Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
+                            .accessibilityAddTraits(.isHeader)
+                        BlockCommentsEditView(items: $blockComments)
+                    }.accessibilityElement(children: .contain)
+                }
+                
+                if self.canCustomizeHighlight {
+                    Text("The comment delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
+                        .controlSize(.small)
+                        .padding(.top, 2)
+                }
             }
-            .frame(maxHeight: 180)
-            .padding(.bottom, 10)
+            .padding(.bottom)
             
-            if self.canCustomizeHighlight {
-                Text("The comment delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
-                    .controlSize(.small)
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Escaping", tableName: "SyntaxEditor")
+                    .fontWeight(.semibold)
+                    .padding(.top, 2)
+                
+                Form {
+                    Picker(String(localized: "Delimiter escape style:", table: "SyntaxEditor"), selection: $lexicalRules.delimiterEscapeRule) {
+                        ForEach(DelimiterEscapeRule.allCases, id: \.self) { rule in
+                            Text(rule.label)
+                        }
+                    }
+                    .pickerStyle(.radioGroup)
+                    .horizontalRadioGroupLayout()
+                    .fixedSize()
+                }
             }
             
-            Spacer()
+            Spacer(minLength: 0)
             
             HStack {
                 Spacer()
-                HelpLink(anchor: "syntax_comment_settings")
+                HelpLink(anchor: "syntax_delimiter_settings")
             }
         }
     }
 }
 
+
+// MARK: - Comments
 
 private struct InlineCommentsEditView: View {
     
@@ -97,6 +121,7 @@ private struct InlineCommentsEditView: View {
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))
+        .frame(minHeight: 80, maxHeight: 120)
         
         AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
             self.focusedField = item.id
@@ -127,9 +152,30 @@ private struct BlockCommentsEditView: View {
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))
+        .frame(minHeight: 80, maxHeight: 120)
         
         AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
             self.focusedField = item.id
+        }
+    }
+}
+
+
+// MARK: - Localizations
+
+private extension DelimiterEscapeRule {
+    
+    var label: String {
+        
+        switch self {
+            case .backslash:
+                String(localized: "DelimiterEscapeRule.backslash.label",
+                       defaultValue: "Backslash",
+                       table: "SyntaxEditor")
+            case .none:
+                String(localized: "DelimiterEscapeRule.none.label",
+                       defaultValue: "None",
+                       table: "SyntaxEditor")
         }
     }
 }
@@ -140,7 +186,8 @@ private struct BlockCommentsEditView: View {
 #Preview {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: Pair("/*", "*/"))]
+    @Previewable @State var rules: Syntax.LexicalRules = .default
     
-    SyntaxCommentEditView(inlineComments: $inlineComments, blockComments: $blockComments)
+    SyntaxDelimitersEditView(inlineComments: $inlineComments, blockComments: $blockComments, lexicalRules: $rules)
         .padding()
 }

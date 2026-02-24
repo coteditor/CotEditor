@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="comment, comment-out, uncomment, escape">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>Define delimiters in CotEditor on Mac</title>
+</head>
+
+<body>
+<a name="syntax_delimiter_settings"></a>
+
+<h1>Define delimiters in CotEditor on Mac</h1>
+
+<p>In CotEditor, you can configure how comment and other delimiters are handled for each syntax. These settings affect not only comment commands but also regular-expression-based syntax highlighting and paired-symbol matching in the editor.</p>
+
+<p>To define delimiters for a syntax, select Delimiters in the list on the left side of the syntax editor, then configure options on the right. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
+
+
+<section>
+<h2>Define comment delimiters</h2>
+
+<p>The following comment settings are used for the Comment Out and Uncomment commands. In regular-expression-based syntax definitions, they are also used for comment highlighting.</p>
+
+<table>
+	<thead>
+		<tr><th>Field</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>Inline comment</th><td><p>Text from the specified delimiter to the end of the line is treated as an inline comment.</p></td></tr>
+		<tr><th>Block comment</th><td><p>Text enclosed by the specified begin and end delimiters is treated as a block comment. You need to enter both Begin String and End String.</p></td></tr>
+	</tbody>
+</table>
+
+<p>In the standard Comment Out command, inline comment delimiters are preferred when both inline and block comment delimiters are defined. If multiple delimiters are defined, the first one is used.</p>
+</section>
+
+
+<section>
+<h2>Escape delimiters</h2>
+
+<p>Choose how CotEditor escapes delimiters in a document. This setting is used for regular-expression-based syntax highlighting and for matching paired symbols in the editor.</p>
+
+<table>
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+<tbody>
+	<tr>
+		<th>Delimiter escape style</th>
+		<td><p>The style applied to begin/end delimiter pairs.</p>
+			<ul>
+				<li><em>Backslash</em>: Treat a backslash (&#x005C;) as an escape character. A delimiter immediately preceded by a backslash is ignored.</li>
+				<li><em>None</em>: Do not treat any character as an escape. Every delimiter is matched.</li>
+			</ul></td>
+	</tr>
+</tbody>
+</table>
+
+<p>For example, if the escape style is Backslash and the string delimiter is <code>&quot;</code>, a sequence like <code>\&quot;</code> does not end the string.</p>
+</section>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="syntax_definition.html">Define a syntax in CotEditor on Mac</a></li>
+</ul>
+</section>
+
+</body>
+</html>
