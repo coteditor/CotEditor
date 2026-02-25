@@ -14,5 +14,13 @@
         "begin" : "#"
       }
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      }
+    ]
   }
 }

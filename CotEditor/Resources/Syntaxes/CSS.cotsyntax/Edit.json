@@ -9,5 +9,13 @@
     "inlines" : [
 
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      }
+    ]
   }
 }

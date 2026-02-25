@@ -18,5 +18,17 @@
   },
   "lexicalRules" : {
     "delimiterEscapeRule" : "none"
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "begin",
+        "end" : "end"
+      },
+      {
+        "begin" : "repeat",
+        "end" : "until"
+      }
+    ]
   }
 }

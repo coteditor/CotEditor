@@ -14,5 +14,13 @@
   },
   "lexicalRules" : {
     "delimiterEscapeRule" : "none"
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      }
+    ]
   }
 }

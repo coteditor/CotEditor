@@ -15,5 +15,13 @@
         "leadingOnly" : true
       }
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      }
+    ]
   }
 }

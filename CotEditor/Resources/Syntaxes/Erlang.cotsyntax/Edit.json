@@ -8,5 +8,29 @@
         "begin" : "%"
       }
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "of",
+        "end" : "end"
+      },
+      {
+        "begin" : "if",
+        "end" : "end"
+      },
+      {
+        "begin" : "receive",
+        "end" : "end"
+      },
+      {
+        "begin" : "begin",
+        "end" : "end"
+      },
+      {
+        "begin" : "try",
+        "end" : "end"
+      }
+    ]
   }
 }

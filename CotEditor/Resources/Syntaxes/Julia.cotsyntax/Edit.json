@@ -11,5 +11,17 @@
         "begin" : "#"
       }
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "begin",
+        "end" : "end"
+      },
+      {
+        "begin" : "try",
+        "end" : "end"
+      }
+    ]
   }
 }

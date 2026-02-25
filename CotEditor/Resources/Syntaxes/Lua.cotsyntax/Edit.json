@@ -23,5 +23,25 @@
         "begin" : "--"
       }
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      },
+      {
+        "begin" : "then",
+        "end" : "end"
+      },
+      {
+        "begin" : "do",
+        "end" : "end"
+      },
+      {
+        "begin" : "repeat",
+        "end" : "until"
+      }
+    ]
   }
 }

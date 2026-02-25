@@ -14,5 +14,29 @@
   },
   "lexicalRules" : {
     "delimiterEscapeRule" : "none"
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "try",
+        "end" : "end"
+      },
+      {
+        "begin" : "properties",
+        "end" : "end"
+      },
+      {
+        "begin" : "methods",
+        "end" : "end"
+      },
+      {
+        "begin" : "events",
+        "end" : "end"
+      },
+      {
+        "begin" : "enumeration",
+        "end" : "end"
+      }
+    ]
   }
 }

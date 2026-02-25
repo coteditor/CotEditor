@@ -11,5 +11,41 @@
         "begin" : "//"
       }
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "begin",
+        "end" : "end"
+      },
+      {
+        "begin" : "case",
+        "end" : "endcase"
+      },
+      {
+        "begin" : "module",
+        "end" : "endmodule"
+      },
+      {
+        "begin" : "function",
+        "end" : "endfunction"
+      },
+      {
+        "begin" : "task",
+        "end" : "endtask"
+      },
+      {
+        "begin" : "class",
+        "end" : "endclass"
+      },
+      {
+        "begin" : "interface",
+        "end" : "endinterface"
+      },
+      {
+        "begin" : "package",
+        "end" : "endpackage"
+      }
+    ]
   }
 }

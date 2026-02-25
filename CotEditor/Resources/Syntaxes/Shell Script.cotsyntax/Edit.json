@@ -8,5 +8,21 @@
         "begin" : "#"
       }
     ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      },
+      {
+        "begin" : "then",
+        "end" : "fi"
+      },
+      {
+        "begin" : "do",
+        "end" : "done"
+      }
+    ]
   }
 }
