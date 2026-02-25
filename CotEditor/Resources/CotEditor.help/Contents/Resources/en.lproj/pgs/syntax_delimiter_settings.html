@@ -15,7 +15,7 @@
 
 <h1>Define delimiters in CotEditor on Mac</h1>
 
-<p>In CotEditor, you can configure how comment and other delimiters are handled for each syntax. These settings affect not only comment commands but also regular-expression-based syntax highlighting and paired-symbol matching in the editor.</p>
+<p>In CotEditor, you can define delimiters for comments, automatic indentation, and delimiter escaping for each syntax. These settings are used by comment commands, smart indentation while typing, regular-expression-based syntax highlighting, and paired-symbol matching in the editor.</p>
 
 <p>To define delimiters for a syntax, select Delimiters in the list on the left side of the syntax editor, then configure options on the right. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
 
@@ -36,6 +36,33 @@
 </table>
 
 <p>In the standard Comment Out command, inline comment delimiters are preferred when both inline and block comment delimiters are defined. If multiple delimiters are defined, the first one is used.</p>
+</section>
+
+
+<section>
+<h2>Define indentation delimiters</h2>
+
+<p>Block delimiters are used for automatic indentation while typing. When the token at the end of a line matches a Begin String, pressing <kbd>Return</kbd> inserts one additional indentation level on the new line.</p>
+
+<table>
+	<thead>
+		<tr><th>Field</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Block delimiters</th>
+			<td>
+				<ul>
+					<li><strong>Begin String</strong>: Token that starts an indentation block.</li>
+					<li><strong>End String</strong>: Token that closes the block. You can leave this empty for begin-only rules (for example, a trailing <code>:</code>).</li>
+					<li><strong>IC</strong>: Ignore case. Enable this only for case-insensitive languages.</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>If both Begin String and End String are set and the End String is immediately after the insertion point, CotEditor inserts an extra blank line and keeps the closing line at the original indentation level.</p>
 </section>
 
 
