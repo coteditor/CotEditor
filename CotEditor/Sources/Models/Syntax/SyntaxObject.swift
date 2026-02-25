@@ -41,7 +41,7 @@ import StringUtils
     typealias KeyString = Item<String>
     typealias InlineComment = Item<Syntax.Comment.Inline>
     typealias BlockComment = Item<Pair<String>>
-    typealias BlockIndent = Item<Pair<String>>
+    typealias BlockIndent = Item<Syntax.Delimiter>
     typealias CompletionWord = Item<Syntax.CompletionWord>
     typealias Metadata = Syntax.Metadata
     
@@ -237,6 +237,15 @@ extension SyntaxObject.BlockComment {
     init() {
         
         self.value = .init("", "")
+    }
+}
+
+
+extension SyntaxObject.BlockIndent {
+    
+    init() {
+        
+        self.value = .init()
     }
 }
 

@@ -134,16 +134,18 @@ struct StringIndentationTests {
     
     @Test func smartOutdentLevel() {
         
+        let tokens: [IndentToken] = [IndentToken(begin: "{", end: "}")!]
+        
         let string = "{\n    foo\n    "
         let range = NSRange(location: string.utf16.count, length: 0)
         
-        #expect(string.smartOutdentLevel(with: "}", indentWidth: 4, in: range) == 1)
-        #expect(string.smartOutdentLevel(with: ")", indentWidth: 4, in: range) == 0)
+        #expect(string.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: range) == 1)
+        #expect(string.smartOutdentLevel(with: ")", indentWidth: 4, tokens: tokens, in: range) == 0)
         
         let noOutdentString = "{\n    foo\n    bar"
         let noOutdentRange = NSRange(location: noOutdentString.utf16.count, length: 0)
         
-        #expect(noOutdentString.smartOutdentLevel(with: "}", indentWidth: 4, in: noOutdentRange) == 0)
+        #expect(noOutdentString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: noOutdentRange) == 0)
     }
     
     

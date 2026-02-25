@@ -151,6 +151,44 @@ extension Syntax.Comment.Inline: Codable {
 }
 
 
+extension Syntax.Delimiter: Codable {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case begin
+        case end
+        case ignoreCase
+    }
+    
+    
+    public init(from decoder: any Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.begin = try container.decode(String.self, forKey: .begin)
+        self.end = try container.decodeIfPresent(String.self, forKey: .end)
+        self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
+        if self.end?.isEmpty == true {
+            self.end = nil
+        }
+    }
+    
+    
+    public func encode(to encoder: any Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.begin, forKey: .begin)
+        if let end = self.end, !end.isEmpty {
+            try container.encode(end, forKey: .end)
+        }
+        if self.ignoreCase {
+            try container.encode(true, forKey: .ignoreCase)
+        }
+    }
+}
+
+
 extension Syntax.LexicalRules: Codable {
     
     private enum CodingKeys: String, CodingKey {

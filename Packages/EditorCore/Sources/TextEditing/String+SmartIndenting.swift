@@ -29,30 +29,30 @@ public import StringUtils
 
 public enum IndentToken: Equatable, Sendable {
     
-    case tokenPair(Pair<String>)
+    case tokenPair(Pair<String>, ignoreCase: Bool)
     case symbolPair(Pair<Character>)
-    case beginToken(String)
+    case beginToken(String, ignoreCase: Bool)
     
     
-    public init?(pair: Pair<String>) {
+    public init?(begin: String, end: String?, ignoreCase: Bool = false) {
         
-        let begin = pair.begin.trimmingCharacters(in: .whitespacesAndNewlines)
-        let end = pair.end.trimmingCharacters(in: .whitespacesAndNewlines)
+        let begin = begin.trimmingCharacters(in: .whitespacesAndNewlines)
+        let end = end?.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if begin.isEmpty {
             return nil
             
-        } else if end.isEmpty {
-            self = .beginToken(begin)
+        } else if end?.isEmpty != false {
+            self = .beginToken(begin, ignoreCase: ignoreCase)
             
-        } else if begin.count == 1, end.count == 1,
+        } else if let end, begin.count == 1, end.count == 1,
                   let beginCharacter = begin.first, let endCharacter = end.first,
                   beginCharacter.isPunctuation, endCharacter.isPunctuation
         {
             self = .symbolPair(Pair(beginCharacter, endCharacter))
             
         } else {
-            self = .tokenPair(pair)
+            self = .tokenPair(Pair(begin, end ?? ""), ignoreCase: ignoreCase)
         }
     }
     
@@ -70,9 +70,9 @@ public enum IndentToken: Equatable, Sendable {
     var begin: String {
         
         switch self {
-            case .tokenPair(let pair): pair.begin
+            case .tokenPair(let pair, _): pair.begin
             case .symbolPair(let pair): String(pair.begin)
-            case .beginToken(let string): string
+            case .beginToken(let string, _): string
         }
     }
     
@@ -80,9 +80,19 @@ public enum IndentToken: Equatable, Sendable {
     var end: String? {
         
         switch self {
-            case .tokenPair(let pair): pair.end
+            case .tokenPair(let pair, _): pair.end
             case .symbolPair(let pair): String(pair.end)
             case .beginToken: nil
+        }
+    }
+    
+    
+    var ignoreCase: Bool {
+        
+        switch self {
+            case .tokenPair(_, let ignoreCase): ignoreCase
+            case .symbolPair: false
+            case .beginToken(_, let ignoreCase): ignoreCase
         }
     }
 }
@@ -127,13 +137,14 @@ public extension String {
             var cursorMove = baseIndent.count
             
             // smart indent
-            let candidates = tokens.filter { self.matches(token: $0.begin, before: lastLocation) }
+            let candidates = tokens.filter { self.matches(token: $0.begin, before: lastLocation, ignoreCase: $0.ignoreCase) }
             if !candidates.isEmpty {
                 let tab = style.string(width: indentWidth)
                 
-                if candidates.compactMap(\.end)
-                    .contains(where: { self.matches(token: $0, after: selectedRange.upperBound) })
-                {
+                if candidates.contains(where: {
+                    guard let end = $0.end else { return false }
+                    return self.matches(token: end, after: selectedRange.upperBound, ignoreCase: $0.ignoreCase)
+                }) {
                     indent += tab + lineEnding + baseIndent
                     cursorMove += tab.count
                 } else {
@@ -221,17 +232,20 @@ extension NSString {
     /// - Parameters:
     ///   - token: The token string to match.
     ///   - location: The UTF-16 location just after the target character.
+    ///   - ignoreCase: Whether to match token case-insensitively.
     /// - Returns: `true` if the token matches; otherwise `false`.
-    func matches(token: String, before location: Int) -> Bool {
+    func matches(token: String, before location: Int, ignoreCase: Bool = false) -> Bool {
         
         guard location > 0 else { return false }
         
         let range = NSRange(0..<location)
+        let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
+        let empty: NSString.CompareOptions = []
+        assert(empty.union([.anchored, .backwards]) == [.anchored, .backwards])
         let foundRange = if token.first?.isLetter == true {
-            self.range(of: "(?<![A-Za-z0-9_])\(NSRegularExpression.escapedPattern(for: token))$",
-                       options: .regularExpression, range: range)
+            self.range(of: "(?<![A-Za-z0-9_])\(NSRegularExpression.escapedPattern(for: token))$", options: options.union(.regularExpression), range: range)
         } else {
-            self.range(of: token, options: [.anchored, .backwards], range: range)
+            self.range(of: token, options: options.union([.anchored, .backwards]), range: range)
         }
         
         return !foundRange.isNotFound
@@ -243,17 +257,20 @@ extension NSString {
     /// - Parameters:
     ///   - token: The token string to match.
     ///   - location: The UTF-16 location just before the target character.
+    ///   - ignoreCase: Whether to match token case-insensitively.
     /// - Returns: `true` if the token matches; otherwise `false`.
-    func matches(token: String, after location: Int) -> Bool {
+    func matches(token: String, after location: Int, ignoreCase: Bool = false) -> Bool {
         
         guard location < self.length else { return false }
         
         let range = NSRange(location..<self.length)
+        let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
+        let empty: NSString.CompareOptions = []
+        assert(empty.union(.anchored) == [.anchored])
         let foundRange = if token.last?.isLetter == true {
-            self.range(of: "^\(NSRegularExpression.escapedPattern(for: token))(?![A-Za-z0-9_])",
-                       options: .regularExpression, range: range)
+            self.range(of: "^\(NSRegularExpression.escapedPattern(for: token))(?![A-Za-z0-9_])", options: options.union(.regularExpression), range: range)
         } else {
-            self.range(of: token, options: [.anchored], range: range)
+            self.range(of: token, options: options.union(.anchored), range: range)
         }
         
         return !foundRange.isNotFound

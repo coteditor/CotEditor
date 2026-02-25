@@ -72,6 +72,11 @@ extension Syntax.Indentation {
     
     mutating func sanitize() {
         
+        for index in self.blockDelimiters.indices {
+            if self.blockDelimiters[index].end?.isEmpty == true {
+                self.blockDelimiters[index].end = nil
+            }
+        }
         self.blockDelimiters.removeAll(where: \.begin.isEmpty)
     }
 }

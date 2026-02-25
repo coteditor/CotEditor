@@ -33,8 +33,8 @@ struct StringSmartIndentingTests {
     
     private nonisolated static let tokens: [IndentToken] = [
         .symbolPair(Pair("{", "}")),
-        .beginToken(":"),
-        .tokenPair(Pair("then", "end")),
+        .beginToken(":", ignoreCase: false),
+        .tokenPair(Pair("then", "end"), ignoreCase: false),
     ]
     
     
@@ -43,12 +43,12 @@ struct StringSmartIndentingTests {
         let symbols: [Character] = ["{", "[", "(", ":"]
         #expect(try symbols.allSatisfy(\.isPunctuation))
         
-        #expect(IndentToken(pair: Pair("", "")) == nil)
-        #expect(IndentToken(pair: Pair("", "}")) == nil)
-        #expect(IndentToken(pair: Pair("{", "")) == .beginToken("{"))
-        #expect(IndentToken(pair: Pair("\\", "")) == .beginToken("\\"))
-        #expect(IndentToken(pair: Pair("{", "}")) == .symbolPair(Pair("{", "}")))
-        #expect(IndentToken(pair: Pair("begin", "end")) == .tokenPair(Pair("begin", "end")))
+        #expect(IndentToken(begin: "", end: "") == nil)
+        #expect(IndentToken(begin: "", end: "}") == nil)
+        #expect(IndentToken(begin: "{", end: "") == .beginToken("{", ignoreCase: false))
+        #expect(IndentToken(begin: "\\", end: "") == .beginToken("\\", ignoreCase: false))
+        #expect(IndentToken(begin: "{", end: "}") == .symbolPair(Pair("{", "}")))
+        #expect(IndentToken(begin: "begin", end: "end") == .tokenPair(Pair("begin", "end"), ignoreCase: false))
     }
     
     
@@ -175,9 +175,17 @@ struct StringSmartIndentingTests {
     
     @Test func matchesTokenAfter() {
         
-        #expect("then".matches(token: "then", after: 0))
+        #expect("then".matches(token: "then", after: 0, ignoreCase: false))
         #expect(!"thens".matches(token: "then", after: 0))
         #expect("}".matches(token: "}", after: 0))
         #expect(!"}".matches(token: "}", after: "}".utf16.count))
+    }
+    
+    
+    @Test func matchesTokenIgnoreCase() {
+        
+        #expect("THEN\n".matches(token: "then", before: 4, ignoreCase: true))
+        #expect("End".matches(token: "end", after: 0, ignoreCase: true))
+        #expect(!"THEN\n".matches(token: "then", before: 4, ignoreCase: false))
     }
 }

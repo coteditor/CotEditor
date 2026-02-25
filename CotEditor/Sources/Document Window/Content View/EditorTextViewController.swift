@@ -418,7 +418,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         let syntax = self.document.syntaxController.syntax
         self.textView.commentDelimiters = syntax.commentDelimiters
-        self.textView.indentTokens = syntax.indentation.blockDelimiters.compactMap(IndentToken.init(pair:))
+        self.textView.indentTokens = syntax.indentation.blockDelimiters.compactMap {
+            IndentToken(begin: $0.begin, end: $0.end, ignoreCase: $0.ignoreCase)
+        }
         self.textView.delimiterEscapeRule = syntax.lexicalRules.delimiterEscapeRule
         self.textView.syntaxCompletionWords = syntax.completionWords
     }

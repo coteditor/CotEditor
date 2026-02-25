@@ -70,7 +70,7 @@ struct SyntaxDelimitersEditView: View {
             .padding(.bottom)
             
             VStack(alignment: .leading) {
-                Text("Indentations", tableName: "SyntaxEditor")
+                Text("Indentation", tableName: "SyntaxEditor")
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
@@ -191,11 +191,24 @@ private struct BlockEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
+            TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
+                Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
+                    .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                    .onChange(of: item.value.ignoreCase) { _, newValue in
+                        guard self.selection.contains(item.id) else { return }
+                        $items
+                            .filter(with: self.selection)
+                            .filter { $0.id != item.id }
+                            .forEach { $0.value.ignoreCase.wrappedValue = newValue }
+                    }
+            }
+            .width(34)
+            .alignment(.center)
             TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
             }
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
-                TextField(text: $item.value.end, label: EmptyView.init)
+                TextField(text: $item.value.end ?? "", label: EmptyView.init)
             }
         }
         .tableStyle(.bordered)
@@ -234,7 +247,7 @@ private extension DelimiterEscapeRule {
 #Preview {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: Pair("/*", "*/"))]
-    @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: Pair("{", "}"))]
+    @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: .init(begin: "{", end: "}"))]
     @Previewable @State var rules: Syntax.LexicalRules = .default
     
     SyntaxDelimitersEditView(inlineComments: $inlineComments, blockComments: $blockComments, indentations: $indentations, lexicalRules: $rules)

@@ -23,11 +23,13 @@
     "blockDelimiters" : [
       {
         "begin" : "begin",
-        "end" : "end"
+        "end" : "end",
+        "ignoreCase" : true
       },
       {
         "begin" : "repeat",
-        "end" : "until"
+        "end" : "until",
+        "ignoreCase" : true
       }
     ]
   }

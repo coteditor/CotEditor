@@ -13,19 +13,23 @@
     "blockDelimiters" : [
       {
         "begin" : "begin",
-        "end" : "end"
+        "end" : "end",
+        "ignoreCase" : true
       },
       {
         "begin" : "then",
-        "end" : "end"
+        "end" : "end",
+        "ignoreCase" : true
       },
       {
         "begin" : "loop",
-        "end" : "end"
+        "end" : "end",
+        "ignoreCase" : true
       },
       {
         "begin" : "record",
-        "end" : "end"
+        "end" : "end",
+        "ignoreCase" : true
       }
     ]
   }

@@ -152,14 +152,30 @@ public struct Syntax: Equatable, Sendable {
     
     public struct Indentation: Equatable, Sendable, Codable {
         
-        public var blockDelimiters: [Pair<String>] = []
+        public var blockDelimiters: [Delimiter] = []
         
         public var isEmpty: Bool { self.blockDelimiters.isEmpty }
         
         
-        public init(blockDelimiters: [Pair<String>] = []) {
+        public init(blockDelimiters: [Delimiter] = []) {
             
             self.blockDelimiters = blockDelimiters
+        }
+    }
+    
+    
+    public struct Delimiter: Equatable, Sendable {
+        
+        public var begin: String
+        public var end: String?
+        public var ignoreCase: Bool
+        
+        
+        public init(begin: String = "", end: String? = nil, ignoreCase: Bool = false) {
+            
+            self.begin = begin
+            self.end = end
+            self.ignoreCase = ignoreCase
         }
     }
     

@@ -19,11 +19,13 @@
     "blockDelimiters" : [
       {
         "begin" : "BEGIN",
-        "end" : "END"
+        "end" : "END",
+        "ignoreCase" : true
       },
       {
         "begin" : "CASE",
-        "end" : "END"
+        "end" : "END",
+        "ignoreCase" : true
       }
     ]
   }

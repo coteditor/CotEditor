@@ -16,11 +16,13 @@
     "blockDelimiters" : [
       {
         "begin" : "then",
-        "end" : "end"
+        "end" : "end",
+        "ignoreCase" : true
       },
       {
         "begin" : "try",
-        "end" : "end"
+        "end" : "end",
+        "ignoreCase" : true
       }
     ]
   }
