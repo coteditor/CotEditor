@@ -164,6 +164,17 @@ private struct BlockCommentsEditView: View {
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
+            TableColumn(String(localized: "Nest", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
+                Toggle(isOn: $item.value.isNestable, label: EmptyView.init)
+                    .onChange(of: item.value.isNestable) { _, newValue in
+                        guard self.selection.contains(item.id) else { return }
+                        $items
+                            .filter(with: self.selection)
+                            .filter { $0.id != item.id }
+                            .forEach { $0.value.isNestable.wrappedValue = newValue }
+                    }
+            }
+            .alignment(.center)
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))

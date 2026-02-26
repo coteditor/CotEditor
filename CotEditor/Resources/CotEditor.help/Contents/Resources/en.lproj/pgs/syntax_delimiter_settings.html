@@ -31,11 +31,18 @@
 	</thead>
 	<tbody>
 		<tr><th>Inline comment</th><td><p>Text from the specified delimiter to the end of the line is treated as an inline comment.</p></td></tr>
-		<tr><th>Block comment</th><td><p>Text enclosed by the specified begin and end delimiters is treated as a block comment. You need to enter both Begin String and End String.</p></td></tr>
+		<tr><th>Block comment</th>
+			<td>
+				<p>Text enclosed by the specified begin and end delimiters is treated as a block comment. You need to enter both Begin String and End String.</p>
+				<ul>
+					<li><em>Nest</em>: When enabled, CotEditor resolves block comment ranges with nesting. When disabled, a block comment closes at the first matching end delimiter.</li>
+				</ul>
+			</td>
+		</tr>
 	</tbody>
 </table>
 
-<p>In the standard Comment Out command, inline comment delimiters are preferred when both inline and block comment delimiters are defined. If multiple delimiters are defined, the first one is used.</p>
+<p>In the standard Comment Out command, inline comment delimiters are preferred when both inline and block comment delimiters are defined. If multiple delimiters are defined, the first one is used. The Nest setting is also used when CotEditor determines ranges for Uncomment and comment highlighting.</p>
 </section>
 
 
