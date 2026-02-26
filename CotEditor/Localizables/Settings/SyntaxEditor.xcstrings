@@ -1149,6 +1149,12 @@
             "value" : "Block-Trennzeichen:"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Block delimiters:"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5490,6 +5496,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die Block-Trennzeichen werden während der Texteingabe für die automatische Einrückung verwendet."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The block delimiters are used for automatic indentation while typing."
           }
         },
         "es" : {
