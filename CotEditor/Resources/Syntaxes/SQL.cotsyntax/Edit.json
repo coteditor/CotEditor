@@ -13,7 +13,7 @@
     ]
   },
   "lexicalRules" : {
-    "delimiterEscapeRule" : "none"
+    "delimiterEscapeRule" : "doubleDelimiter"
   },
   "indentation" : {
     "blockDelimiters" : [

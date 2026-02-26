@@ -121,6 +121,53 @@ struct NestableTests {
         }
         
         
+        @Test func pairSameDelimiterWithDoubleDelimiterEscaping() throws {
+            
+            let source = "a 'x''y' 'z'"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("'", "'"), isMultiline: false): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .doubleDelimiter)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 2)
+            #expect(matches[0] == "'x''y'")
+            #expect(matches[1] == "'z'")
+        }
+        
+        
+        @Test func pairSameDelimiterWithMultipleDoubleDelimiterRuns() throws {
+            
+            let source = "a 'x''''y''z' b"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("'", "'"), isMultiline: false): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .doubleDelimiter)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 1)
+            #expect(matches[0] == "'x''''y''z'")
+        }
+        
+        
+        @Test func pairSameDelimiterBackslashVsNone() throws {
+            
+            let source = "'a\\'b' 'c'"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("'", "'"), isMultiline: false): .strings
+            ]
+            let backslashDict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .backslash)
+            let noneDict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .none)
+            let backslashMatches = try #require(backslashDict[.strings]).map((source as NSString).substring(with:))
+            let noneMatches = try #require(noneDict[.strings]).map((source as NSString).substring(with:))
+            
+            #expect(backslashMatches == ["'a\\'b'", "'c'"])
+            #expect(noneMatches == ["'a\\'", "' '"])
+        }
+        
+        
         @Test func pairDoesNotCrossLinesWithMixedTokens() throws {
             
             let source = """

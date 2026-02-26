@@ -233,6 +233,10 @@ private extension DelimiterEscapeRule {
                 String(localized: "DelimiterEscapeRule.backslash.label",
                        defaultValue: "Backslash",
                        table: "SyntaxEditor")
+            case .doubleDelimiter:
+                String(localized: "DelimiterEscapeRule.doubleDelimiter.label",
+                       defaultValue: "Double delimiter",
+                       table: "SyntaxEditor")
             case .none:
                 String(localized: "DelimiterEscapeRule.none.label",
                        defaultValue: "None",

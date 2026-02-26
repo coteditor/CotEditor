@@ -62,6 +62,7 @@ public extension Pair.PairIndex {
 public enum DelimiterEscapeRule: String, Sendable, CaseIterable, Codable {
     
     case backslash
+    case doubleDelimiter
     case none
 }
 
@@ -117,6 +118,17 @@ public extension StringProtocol {
         
         guard let pair = candidates.first(where: { $0.begin == character || $0.end == character }) else { return nil }
         
+        if pair.begin == pair.end {
+            let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule)
+            let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule)
+            
+            return switch (beginIndex, endIndex) {
+                case let (beginIndex?, nil): .begin(beginIndex)
+                case let (nil, endIndex?): .end(endIndex)
+                default: nil
+            }
+        }
+        
         switch character {
             case pair.begin:
                 guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
@@ -149,6 +161,28 @@ public extension StringProtocol {
         let beginIndex = beginIndex ?? self.startIndex
         
         guard beginIndex < endIndex else { return nil }
+        
+        if escapeRule == .doubleDelimiter, pair.begin == pair.end {
+            var index = endIndex
+            
+            while index > beginIndex {
+                index = self.index(before: index)
+                
+                guard self[index] == pair.begin else { continue }
+                
+                if index > beginIndex {
+                    let previousIndex = self.index(before: index)
+                    if self[previousIndex] == pair.begin {
+                        index = previousIndex
+                        continue
+                    }
+                }
+                
+                return index
+            }
+            
+            return nil
+        }
         
         var index = endIndex
         var nestDepth = 0
@@ -204,6 +238,28 @@ public extension StringProtocol {
         let endIndex = self.index(before: endIndex ?? self.endIndex)
         
         guard beginIndex < endIndex else { return nil }
+        
+        if escapeRule == .doubleDelimiter, pair.begin == pair.end {
+            var index = beginIndex
+            
+            while index < endIndex {
+                index = self.index(after: index)
+                
+                guard self[index] == pair.end else { continue }
+                
+                if index < endIndex {
+                    let nextIndex = self.index(after: index)
+                    if self[nextIndex] == pair.end {
+                        index = nextIndex
+                        continue
+                    }
+                }
+                
+                return index
+            }
+            
+            return nil
+        }
         
         var index = beginIndex
         var nestDepth = 0
