@@ -3,7 +3,8 @@
     "blocks" : [
       {
         "begin" : "#|",
-        "end" : "|#"
+        "end" : "|#",
+        "isNestable" : true
       },
       {
         "begin" : "#;(",
