@@ -140,14 +140,16 @@ public struct Syntax: Equatable, Sendable {
             
             public var begin: String
             public var end: String
+            public var isNestable: Bool
             
             public var pair: Pair<String>  { .init(self.begin, self.end) }
             
             
-            public init(begin: String = "", end: String = "") {
+            public init(begin: String = "", end: String = "", isNestable: Bool = false) {
                 
                 self.begin = begin
                 self.end = end
+                self.isNestable = isNestable
             }
         }
         

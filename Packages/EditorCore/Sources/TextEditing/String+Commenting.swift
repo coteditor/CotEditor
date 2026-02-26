@@ -30,8 +30,26 @@ public import StringUtils
 public protocol CommentDelimiters {
     
     var inlineDelimiters: [String] { get }
-    var blockDelimiters: [Pair<String>] { get }
+    var blockDelimiters: [BlockCommentDelimiter] { get }
     var isEmpty: Bool { get }
+}
+
+
+public struct BlockCommentDelimiter: Equatable, Sendable {
+    
+    public var begin: String
+    public var end: String
+    public var isNestable: Bool
+    
+    public var pair: Pair<String> { .init(self.begin, self.end) }
+    
+    
+    public init(begin: String, end: String, isNestable: Bool = false) {
+        
+        self.begin = begin
+        self.end = end
+        self.isNestable = isNestable
+    }
 }
 
 
@@ -84,7 +102,7 @@ public extension String {
                 return self.inlineCommentOut(delimiter: delimiter, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
             if types.contains(.block), let delimiters = delimiters.blockDelimiters.first {
-                return self.blockCommentOut(delimiters: delimiters, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
+                return self.blockCommentOut(delimiters: delimiters.pair, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
             return []
         }()
@@ -266,11 +284,11 @@ extension String {
     /// - Note: This method matches a block only when one of the given `ranges` fits exactly.
     ///
     /// - Parameters:
-    ///   - delimiters: The pair of block delimiters to find.
+    ///   - delimiters: The block delimiters to find.
     ///   - appendsSpacer: Whether a single space is expected between delimiter and string.
     ///   - ranges: The ranges where to find.
     /// - Returns: Ranges where delimiters and spacers are, or `nil` when no delimiters was found.
-    func rangesOfBlockDelimiters(_ delimiters: Pair<String>, appendsSpacer: Bool, ranges: [NSRange]) -> [NSRange]? {
+    func rangesOfBlockDelimiters(_ delimiters: BlockCommentDelimiter, appendsSpacer: Bool, ranges: [NSRange]) -> [NSRange]? {
         
         let ranges = ranges.filter { !$0.isEmpty }
         

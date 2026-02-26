@@ -166,7 +166,7 @@ struct StringCommentingTests {
     @Test func commentOutPrefersInline() throws {
         
         let string = "foo"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [Pair("<-", "->")])
+        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
         let context = try #require(string.commentOut(types: .both, delimiters: delimiters, appendsSpacer: true, in: [NSRange(0..<3)], at: .selection))
         
         #expect(context.strings == ["// "])
@@ -178,7 +178,7 @@ struct StringCommentingTests {
     @Test func uncommentPrefersBlock() throws {
         
         let string = "<-foo->"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [Pair("<-", "->")])
+        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
         let context = try #require(string.uncomment(delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<7)]))
         
         #expect(context.strings == ["", ""])
@@ -220,22 +220,24 @@ struct StringCommentingTests {
     
     @Test func blockUncomment() {
         
-        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [])?.isEmpty == true)
-        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<0)])?.isEmpty == true)
+        let delimiter = BlockCommentDelimiter(begin: "<-", end: "->")
         
-        #expect("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
-        #expect("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
-        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<9)]) == [NSRange(0..<2), NSRange(7..<9)])
-        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(0..<9)]) == [NSRange(0..<3), NSRange(6..<9)])
+        #expect("foo".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [])?.isEmpty == true)
+        #expect("foo".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [NSRange(0..<0)])?.isEmpty == true)
         
-        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<9)]) == [NSRange(1..<3), NSRange(6..<8)])
-        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(1..<7)]) == nil)
+        #expect("<-foo->".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
+        #expect("<-foo->".rangesOfBlockDelimiters(delimiter, appendsSpacer: true, ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
+        #expect("<- foo ->".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [NSRange(0..<9)]) == [NSRange(0..<2), NSRange(7..<9)])
+        #expect("<- foo ->".rangesOfBlockDelimiters(delimiter, appendsSpacer: true, ranges: [NSRange(0..<9)]) == [NSRange(0..<3), NSRange(6..<9)])
+        
+        #expect(" <-foo-> ".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [NSRange(0..<9)]) == [NSRange(1..<3), NSRange(6..<8)])
+        #expect(" <-foo-> ".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [NSRange(1..<7)]) == nil)
         
         // ok, this is currently in spec, but not a good one...
-        #expect("<-foo-><-bar->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<14)]) == [NSRange(0..<2), NSRange(12..<14)])
-        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: true, ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
+        #expect("<-foo-><-bar->".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [NSRange(0..<14)]) == [NSRange(0..<2), NSRange(12..<14)])
+        #expect("<- foo ->".rangesOfBlockDelimiters(delimiter, appendsSpacer: true, ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
         
-        #expect("a<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), appendsSpacer: false, ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
+        #expect("a<- foo ->".rangesOfBlockDelimiters(delimiter, appendsSpacer: false, ranges: [NSRange(0..<3), NSRange(6..<9)]) == nil)
     }
     
     
@@ -321,7 +323,7 @@ struct StringCommentingTests {
 private struct Delimiters: CommentDelimiters {
     
     var inlineDelimiters: [String] = []
-    var blockDelimiters: [Pair<String>] = []
+    var blockDelimiters: [BlockCommentDelimiter] = []
     
     var isEmpty: Bool { self.inlineDelimiters.isEmpty && self.blockDelimiters.isEmpty }
 }
@@ -330,7 +332,7 @@ private struct Delimiters: CommentDelimiters {
 /// TextView mock
 private struct Editor {
     
-    private let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [Pair("<-", "->")])
+    private let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
     
     var string: String
     var selectedRanges: [NSRange] = []

@@ -151,6 +151,39 @@ extension Syntax.Comment.Inline: Codable {
 }
 
 
+extension Syntax.Comment.Block {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case begin
+        case end
+        case isNestable
+    }
+    
+    
+    public init(from decoder: any Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.begin = try container.decode(String.self, forKey: .begin)
+        self.end = try container.decode(String.self, forKey: .end)
+        self.isNestable = try container.decodeIfPresent(Bool.self, forKey: .isNestable) ?? false
+    }
+    
+    
+    public func encode(to encoder: any Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.begin, forKey: .begin)
+        try container.encode(self.end, forKey: .end)
+        if self.isNestable {
+            try container.encode(true, forKey: .isNestable)
+        }
+    }
+}
+
+
 extension Syntax.Delimiter: Codable {
     
     private enum CodingKeys: String, CodingKey {

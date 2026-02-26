@@ -32,7 +32,7 @@ import StringUtils
 enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
-    case pair(Pair<String>, isMultiline: Bool)
+    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool)
     
     
     init?(highlight: Syntax.Highlight) {
@@ -43,7 +43,7 @@ enum NestableToken: Equatable, Hashable, Sendable {
             pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
         else { return nil }
         
-        self = .pair(pair, isMultiline: highlight.isMultiline)
+        self = .pair(pair, isMultiline: highlight.isMultiline, isNestable: true)
     }
 }
 
@@ -54,14 +54,23 @@ private extension NestableToken {
         
         switch self {
             case .inline: false
-            case .pair(_, let isMultiline): isMultiline
+            case .pair(_, let isMultiline, _): isMultiline
+        }
+    }
+    
+    
+    var allowsNesting: Bool {
+        
+        switch self {
+            case .inline: false
+            case .pair(_, _, let isNestable): isNestable
         }
     }
     
     
     var isSingleSamePair: Bool {
         
-        guard case .pair(let pair, _) = self else { return false }
+        guard case .pair(let pair, _, _) = self else { return false }
         
         return pair.begin == pair.end && pair.begin.count == 1
     }
@@ -121,7 +130,7 @@ extension [NestableToken: SyntaxType] {
                                     NestableItem(type: type, token: token, role: .end, range: endRange)]
                         }
                     
-                case .pair(let pair, _):
+                case .pair(let pair, _, _):
                     if pair.begin == pair.end {
                         return string.ranges(of: pair.begin, range: parseRange)
                             .map { NestableItem(type: type, token: token, role: [.begin, .end], range: $0) }
@@ -209,7 +218,7 @@ extension [NestableToken: SyntaxType] {
                         
                         if nestDepth == 0 { return index + offset }  // found
                         nestDepth -= 1
-                    } else {
+                    } else if beginPosition.token.allowsNesting {
                         nestDepth += 1
                     }
                 }
