@@ -161,6 +161,18 @@ extension [NestableToken: SyntaxType] {
                 beginPosition.range.location >= seekLocation
             else { continue }
             
+            // stop searching at the end of the current line when multiline is disabled
+            // -> cache lastLineEnd to avoid high-cost .lineContentsEndIndex(at:) as much as possible
+            let searchUpperBound: Int
+            if beginPosition.token.allowsMultiline {
+                searchUpperBound = parseRange.upperBound
+            } else if let lastLineEnd, beginPosition.range.upperBound <= lastLineEnd {
+                searchUpperBound = lastLineEnd
+            } else {
+                searchUpperBound = string.lineContentsEndIndex(at: beginPosition.range.upperBound)
+                lastLineEnd = searchUpperBound
+            }
+            
             // search corresponding end delimiter
             let endIndex: Int? = {
                 let appliesDoubleDelimiter = delimiterEscapeRule == .doubleDelimiter && beginPosition.token.isSingleSamePair
@@ -171,18 +183,6 @@ extension [NestableToken: SyntaxType] {
                     guard skipCount == 0 else {
                         skipCount -= 1
                         continue
-                    }
-                    
-                    // stop searching at the end of the current line when multiline is disabled
-                    // -> cache lastLineEnd to avoid high-cost .lineContentsEndIndex(at:) as much as possible
-                    let searchUpperBound: Int
-                    if beginPosition.token.allowsMultiline {
-                        searchUpperBound = parseRange.upperBound
-                    } else if let lastLineEnd, beginPosition.range.upperBound <= lastLineEnd {
-                        searchUpperBound = lastLineEnd
-                    } else {
-                        searchUpperBound = string.lineContentsEndIndex(at: beginPosition.range.upperBound)
-                        lastLineEnd = searchUpperBound
                     }
                     if position.range.location > searchUpperBound {
                         return nil
