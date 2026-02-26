@@ -25,7 +25,6 @@
 //
 
 import Testing
-import StringUtils
 @testable import Syntax
 
 struct SyntaxSanitizationTests {
@@ -54,9 +53,9 @@ struct SyntaxSanitizationTests {
                     .init(begin: "//"),
                 ],
                 blocks: [
-                    Pair("", "*/"),
-                    Pair("/*", ""),
-                    Pair("/*", "*/"),
+                    .init(begin: "", end: "*/"),
+                    .init(begin: "/*", end: ""),
+                    .init(begin: "/*", end: "*/"),
                 ]
             ),
             completions: [
@@ -78,7 +77,7 @@ struct SyntaxSanitizationTests {
         #expect(sanitized.outlines.map(\.pattern) == ["A", "b"])
         
         #expect(sanitized.commentDelimiters.inlines.map(\.begin) == ["//"])
-        #expect(sanitized.commentDelimiters.blocks == [Pair("/*", "*/")])
+        #expect(sanitized.commentDelimiters.blocks == [.init(begin: "/*", end: "*/")])
         
         #expect(sanitized.completions.map(\.text) == ["apple", "Zoo"])
     }

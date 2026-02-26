@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import StringUtils
 import Syntax
 
 struct SyntaxDelimitersEditView: View {
@@ -246,7 +245,7 @@ private extension DelimiterEscapeRule {
 
 #Preview {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
-    @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: Pair("/*", "*/"))]
+    @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: .init(begin: "/*", end: "*/"))]
     @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: .init(begin: "{", end: "}"))]
     @Previewable @State var rules: Syntax.LexicalRules = .default
     

@@ -143,7 +143,7 @@ struct SyntaxFileWrapperTests {
         
         let info = Syntax.Info(kind: Syntax.Kind.code, fileMap: .init(extensions: ["swift"]), metadata: .init(author: "me"))
         let edit = Syntax.Edit(
-            comment: .init(inlines: [.init(begin: "//")], blocks: [Pair("/*", "*/")]),
+            comment: .init(inlines: [.init(begin: "//")], blocks: [.init(begin: "/*", end: "*/")]),
             lexicalRules: .init(delimiterEscapeRule: .none)
         )
         let completions: [Syntax.CompletionWord] = [.init(text: "print", type: SyntaxType.commands)]
@@ -171,7 +171,7 @@ struct SyntaxFileWrapperTests {
         #expect(syntax.fileMap.extensions == ["swift"])
         #expect(syntax.metadata.author == "me")
         #expect(syntax.commentDelimiters.inlines.map { $0.begin } == ["//"])
-        #expect(syntax.commentDelimiters.blocks == [Pair("/*", "*/")])
+        #expect(syntax.commentDelimiters.blocks == [.init(begin: "/*", end: "*/")])
         #expect(syntax.lexicalRules.delimiterEscapeRule == .none)
         #expect(syntax.completions.map { $0.text } == ["print"])
         #expect(syntax.highlights[SyntaxType.keywords]?.map { $0.begin } == ["func"])

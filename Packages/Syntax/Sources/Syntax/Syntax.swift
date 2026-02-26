@@ -136,13 +136,29 @@ public struct Syntax: Equatable, Sendable {
         }
         
         
+        public struct Block: Equatable, Sendable, Codable {
+            
+            public var begin: String
+            public var end: String
+            
+            public var pair: Pair<String>  { .init(self.begin, self.end) }
+            
+            
+            public init(begin: String = "", end: String = "") {
+                
+                self.begin = begin
+                self.end = end
+            }
+        }
+        
+        
         public var inlines: [Inline] = []
-        public var blocks: [Pair<String>] = []
+        public var blocks: [Block] = []
         
         public var isEmpty: Bool { self.blocks.isEmpty && self.inlines.isEmpty }
         
         
-        public init(inlines: [Inline] = [], blocks: [Pair<String>] = []) {
+        public init(inlines: [Inline] = [], blocks: [Block] = []) {
             
             self.inlines = inlines
             self.blocks = blocks

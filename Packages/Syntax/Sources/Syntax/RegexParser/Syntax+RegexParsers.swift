@@ -87,7 +87,7 @@ extension Syntax {
             .filter { !$0.value.isEmpty }
         
         for delimiter in self.commentDelimiters.blocks {
-            nestables[.pair(delimiter, isMultiline: true)] = .comments
+            nestables[.pair(delimiter.pair, isMultiline: true)] = .comments
         }
         for delimiter in self.commentDelimiters.inlines {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments

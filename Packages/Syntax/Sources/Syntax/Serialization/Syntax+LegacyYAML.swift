@@ -192,7 +192,7 @@ private extension Syntax.Comment {
         if let blockBegin = dictionary["beginDelimiter"],
            let blockEnd = dictionary["endDelimiter"]
         {
-            self.blocks = [.init(blockBegin, blockEnd)]
+            self.blocks = [.init(begin: blockBegin, end: blockEnd)]
         }
     }
 }

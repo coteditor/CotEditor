@@ -25,7 +25,6 @@
 //
 
 import Testing
-import StringUtils
 @testable import Syntax
 
 struct SyntaxValidationTests {
@@ -61,8 +60,8 @@ struct SyntaxValidationTests {
             ],
             commentDelimiters: .init(
                 blocks: [
-                    Pair("", "*/"),
-                    Pair("/*", ""),
+                    .init(begin: "", end: "*/"),
+                    .init(begin: "/*", end: ""),
                 ]
             )
         )

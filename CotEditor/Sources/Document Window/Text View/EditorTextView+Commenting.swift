@@ -83,6 +83,7 @@ extension EditorTextView: Commenting {
 extension Syntax.Comment: @retroactive CommentDelimiters {
     
     var inlineDelimiters: [String]  { self.inlines.map(\.begin) }
+    var blockDelimiters: [Pair<String>] { self.blocks.map(\.pair) }
 }
 
 

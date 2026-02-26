@@ -30,7 +30,7 @@ public import StringUtils
 public protocol CommentDelimiters {
     
     var inlineDelimiters: [String] { get }
-    var blocks: [Pair<String>] { get }
+    var blockDelimiters: [Pair<String>] { get }
     var isEmpty: Bool { get }
 }
 
@@ -83,7 +83,7 @@ public extension String {
             if types.contains(.inline), let delimiter = delimiters.inlineDelimiters.first {
                 return self.inlineCommentOut(delimiter: delimiter, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
-            if types.contains(.block), let delimiters = delimiters.blocks.first {
+            if types.contains(.block), let delimiters = delimiters.blockDelimiters.first {
                 return self.blockCommentOut(delimiters: delimiters, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
             return []
@@ -109,7 +109,7 @@ public extension String {
         
         guard !delimiters.isEmpty else { return nil }
         
-        let deletionRanges: [NSRange] = delimiters.blocks.lazy
+        let deletionRanges: [NSRange] = delimiters.blockDelimiters.lazy
             .compactMap { delimiters in
                 let targetRanges = selectedRanges.map { $0.isEmpty ? self.lineContentsRange(for: $0) : $0 }.uniqued
                 return self.rangesOfBlockDelimiters(delimiters, appendsSpacer: appendsSpacer, ranges: targetRanges)
@@ -149,7 +149,7 @@ public extension String {
         
         guard !targetRanges.isEmpty else { return false }
         
-        for delimiters in delimiters.blocks {
+        for delimiters in delimiters.blockDelimiters {
             if let ranges = self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: targetRanges) {
                 return partly ? true : (ranges.count == (2 * targetRanges.count))
             }

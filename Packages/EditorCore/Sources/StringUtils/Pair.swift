@@ -24,8 +24,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 public struct Pair<T> {
     
     public var begin: T
@@ -45,7 +43,6 @@ public struct Pair<T> {
 extension Pair: Equatable where T: Equatable { }
 extension Pair: Hashable where T: Hashable { }
 extension Pair: Sendable where T: Sendable { }
-extension Pair: Codable where T: Codable { }
 
 
 extension Pair: CustomDebugStringConvertible {

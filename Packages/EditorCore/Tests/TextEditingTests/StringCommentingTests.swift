@@ -166,7 +166,7 @@ struct StringCommentingTests {
     @Test func commentOutPrefersInline() throws {
         
         let string = "foo"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
+        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [Pair("<-", "->")])
         let context = try #require(string.commentOut(types: .both, delimiters: delimiters, appendsSpacer: true, in: [NSRange(0..<3)], at: .selection))
         
         #expect(context.strings == ["// "])
@@ -178,7 +178,7 @@ struct StringCommentingTests {
     @Test func uncommentPrefersBlock() throws {
         
         let string = "<-foo->"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
+        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [Pair("<-", "->")])
         let context = try #require(string.uncomment(delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<7)]))
         
         #expect(context.strings == ["", ""])
@@ -321,16 +321,16 @@ struct StringCommentingTests {
 private struct Delimiters: CommentDelimiters {
     
     var inlineDelimiters: [String] = []
-    var blocks: [Pair<String>] = []
+    var blockDelimiters: [Pair<String>] = []
     
-    var isEmpty: Bool { self.inlineDelimiters.isEmpty && self.blocks.isEmpty }
+    var isEmpty: Bool { self.inlineDelimiters.isEmpty && self.blockDelimiters.isEmpty }
 }
 
 
 /// TextView mock
 private struct Editor {
     
-    private let delimiters = Delimiters(inlineDelimiters: ["//"], blocks: [Pair("<-", "->")])
+    private let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [Pair("<-", "->")])
     
     var string: String
     var selectedRanges: [NSRange] = []

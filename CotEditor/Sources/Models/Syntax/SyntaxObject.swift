@@ -25,7 +25,6 @@
 
 import Foundation
 import Syntax
-import StringUtils
 
 @Observable final class SyntaxObject {
     
@@ -40,7 +39,7 @@ import StringUtils
     typealias Outline = Item<Syntax.Outline>
     typealias KeyString = Item<String>
     typealias InlineComment = Item<Syntax.Comment.Inline>
-    typealias BlockComment = Item<Pair<String>>
+    typealias BlockComment = Item<Syntax.Comment.Block>
     typealias BlockIndent = Item<Syntax.Delimiter>
     typealias CompletionWord = Item<Syntax.CompletionWord>
     typealias Metadata = Syntax.Metadata
@@ -236,7 +235,7 @@ extension SyntaxObject.BlockComment {
     
     init() {
         
-        self.value = .init("", "")
+        self.value = .init()
     }
 }
 
