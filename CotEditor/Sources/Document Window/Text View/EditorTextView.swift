@@ -96,9 +96,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var indentsWithTabKey = false
     
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
-    var delimiterEscapeRule: DelimiterEscapeRule = .backslash
     var commentsOutAfterIndent: Bool = false
     var appendsCommentSpacer: Bool = false
+    var delimiterEscapeRule: DelimiterEscapeRule = .backslash
     var indentTokens: [IndentToken] = []
     var syntaxCompletionWords: [Syntax.CompletionWord] = []
     var completionWordTypes: CompletionWordTypes = []

@@ -58,8 +58,8 @@ extension Syntax.Highlight: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(self.begin, forKey: .begin)
-        if self.end?.isEmpty == false {
-            try container.encode(self.end, forKey: .end)
+        if let end = self.end, !end.isEmpty {
+            try container.encode(end, forKey: .end)
         }
         if self.isRegularExpression {
             try container.encode(true, forKey: .isRegularExpression)
@@ -168,9 +168,6 @@ extension Syntax.Delimiter: Codable {
         self.begin = try container.decode(String.self, forKey: .begin)
         self.end = try container.decodeIfPresent(String.self, forKey: .end)
         self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
-        if self.end?.isEmpty == true {
-            self.end = nil
-        }
     }
     
     
