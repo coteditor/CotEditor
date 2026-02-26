@@ -1,4 +1,17 @@
 {
+  "comment" : {
+    "blocks" : [
+      {
+        "begin" : "/*",
+        "end" : "*/"
+      }
+    ],
+    "inlines" : [
+      {
+        "begin" : "//"
+      }
+    ]
+  },
   "indentation" : {
     "blockDelimiters" : [
       {
