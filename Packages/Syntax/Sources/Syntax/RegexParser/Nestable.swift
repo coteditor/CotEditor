@@ -57,6 +57,14 @@ private extension NestableToken {
             case .pair(_, let isMultiline): isMultiline
         }
     }
+    
+    
+    var isSingleSamePair: Bool {
+        
+        guard case .pair(let pair, _) = self else { return false }
+        
+        return pair.begin == pair.end && pair.begin.count == 1
+    }
 }
 
 
@@ -128,7 +136,7 @@ extension [NestableToken: SyntaxType] {
             .filter { item in
                 switch delimiterEscapeRule {
                     case .backslash: !string.isEscaped(at: item.range.location)
-                    case .none: true
+                    case .doubleDelimiter, .none: true
                 }
             }
             .sorted(using: [KeyPathComparator(\.range.location),
@@ -155,8 +163,16 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
+                let appliesDoubleDelimiter = delimiterEscapeRule == .doubleDelimiter && beginPosition.token.isSingleSamePair
+                
                 var nestDepth = 0
+                var skipCount = 0
                 for (offset, position) in positions[index...].enumerated() where position.token == beginPosition.token {
+                    guard skipCount == 0 else {
+                        skipCount -= 1
+                        continue
+                    }
+                    
                     // stop searching at the end of the current line when multiline is disabled
                     // -> cache lastLineEnd to avoid high-cost .lineContentsEndIndex(at:) as much as possible
                     let searchUpperBound: Int
@@ -173,6 +189,24 @@ extension [NestableToken: SyntaxType] {
                     }
                     
                     if position.role.contains(.end) {
+                        if appliesDoubleDelimiter, index < positions.count {
+                            for next in positions[(index + offset + 1)...] {
+                                guard
+                                    next.token == position.token,
+                                    next.range.location <= searchUpperBound,
+                                    next.range.location == position.range.location + 1 + skipCount
+                                else { break }
+                                skipCount += 1
+                            }
+                            
+                            // -> Single character pairs cannot be nested.
+                            if skipCount.isMultiple(of: 2) {
+                                return index + offset + skipCount
+                            } else {
+                                continue
+                            }
+                        }
+                        
                         if nestDepth == 0 { return index + offset }  // found
                         nestDepth -= 1
                     } else {

@@ -127,6 +127,21 @@ struct BracePairTests {
     }
     
     
+    @Test func rangeOfBracePairWithDoubleDelimiterEscaping() {
+        
+        let string = "'a''b'"
+        let quotes = BracePair.quotes
+        
+        let openingRange = string.rangeOfBracePair(at: string.index(0), candidates: quotes, escapeRule: .doubleDelimiter)
+        let closingRange = string.rangeOfBracePair(at: string.index(5), candidates: quotes, escapeRule: .doubleDelimiter)
+        let escapedRange = string.rangeOfBracePair(at: string.index(2), candidates: quotes, escapeRule: .doubleDelimiter)
+        
+        #expect(openingRange == string.index(0)...string.index(5))
+        #expect(closingRange == string.index(0)...string.index(5))
+        #expect(escapedRange == nil)
+    }
+    
+    
     @Test func ignorePair() {
         
         let string = "( [ ( ] )"

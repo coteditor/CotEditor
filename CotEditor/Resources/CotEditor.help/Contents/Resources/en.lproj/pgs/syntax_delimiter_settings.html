@@ -81,13 +81,14 @@
 		<td><p>The style applied to begin/end delimiter pairs.</p>
 			<ul>
 				<li><em>Backslash</em>: Treat a backslash (&#x005C;) as an escape character. A delimiter immediately preceded by a backslash is ignored.</li>
+				<li><em>Double delimiter</em>: Treat two consecutive delimiters as an escaped delimiter. This style is applied only when the begin and end delimiters are the same single character.</li>
 				<li><em>None</em>: Do not treat any character as an escape. Every delimiter is matched.</li>
 			</ul></td>
 	</tr>
 </tbody>
 </table>
 
-<p>For example, if the escape style is Backslash and the string delimiter is <code>&quot;</code>, a sequence like <code>\&quot;</code> does not end the string.</p>
+<p>For example, for the string delimiter is <code>&quot;</code>, a sequence like <code>\&quot;</code> does not end the string if the escape style is “Backslash.” With the “Double delimiter” style, a sequence like <code>&quot;&quot;</code> is treated as an escaped delimiter.</p>
 </section>
 
 

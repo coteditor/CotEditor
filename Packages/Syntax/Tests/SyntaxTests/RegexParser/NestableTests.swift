@@ -121,6 +121,37 @@ struct NestableTests {
         }
         
         
+        @Test func pairSameDelimiterWithDoubleDelimiterEscaping() throws {
+            
+            let source = "a 'x''y' 'z'"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("'", "'"), isMultiline: false): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .doubleDelimiter)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 2)
+            #expect(matches[0] == "'x''y'")
+            #expect(matches[1] == "'z'")
+        }
+        
+        
+        @Test func pairSameDelimiterWithMultipleDoubleDelimiterRuns() throws {
+            
+            let source = "a 'x''''y''z' b"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("'", "'"), isMultiline: false): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .doubleDelimiter)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 1)
+            #expect(matches[0] == "'x''''y''z'")
+        }
+        
+        
         @Test func pairDoesNotCrossLinesWithMixedTokens() throws {
             
             let source = """

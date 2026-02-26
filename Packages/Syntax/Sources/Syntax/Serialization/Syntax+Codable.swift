@@ -198,7 +198,7 @@ extension Syntax.LexicalRules: Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.delimiterEscapeRule = try container.decodeIfPresent(DelimiterEscapeRule.self, forKey: .delimiterEscapeRule) ?? Self.default.delimiterEscapeRule
+        self.delimiterEscapeRule = (try? container.decodeIfPresent(DelimiterEscapeRule.self, forKey: .delimiterEscapeRule)) ?? Self.default.delimiterEscapeRule
     }
     
     
