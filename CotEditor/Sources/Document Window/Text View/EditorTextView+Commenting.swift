@@ -25,6 +25,7 @@
 
 import AppKit
 import Syntax
+import StringUtils
 public import TextEditing
 
 extension EditorTextView: Commenting {

@@ -27,7 +27,6 @@
 import Foundation
 import Testing
 import Syntax
-import StringUtils
 @testable import CotEditor
 
 actor BundledSyntaxTests {
@@ -102,7 +101,7 @@ actor BundledSyntaxTests {
         #expect(syntax.highlightParser != nil)
         #expect(syntax.outlineParser == nil)
         #expect(syntax.commentDelimiters.inlines.isEmpty)
-        #expect(syntax.commentDelimiters.blocks == [Pair("<!--", "-->")])
+        #expect(syntax.commentDelimiters.blocks == [.init(begin: "<!--", end: "-->")])
     }
     
     

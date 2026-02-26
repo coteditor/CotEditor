@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import StringUtils
 import Syntax
 
 struct SyntaxDelimitersEditView: View {
