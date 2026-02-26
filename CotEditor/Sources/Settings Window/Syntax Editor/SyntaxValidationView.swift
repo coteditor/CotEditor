@@ -126,6 +126,10 @@ extension Syntax.Error.Code {
                 String(localized: "Syntax.Error.Code.blockComment",
                        defaultValue: "Block comment needs both begin and end delimiters.",
                        table: "SyntaxEditor")
+            case .nestableBlockComment:
+                String(localized: "Syntax.Error.Code.nestableBlockComment",
+                       defaultValue: "Nestable block comment must use different begin and end delimiters.",
+                       table: "SyntaxEditor")
         }
     }
 }
@@ -154,6 +158,7 @@ private extension Syntax.Error.Scope {
         .init(.duplicated, scope: .highlight(.values), value: "bb"),
         .init(.regularExpression, scope: .outline, value: "[]"),
         .init(.blockComment, scope: .blockComment, value: "bb"),
+        .init(.nestableBlockComment, scope: .blockComment, value: "/*"),
     ]
     
     return SyntaxValidationView(errors: errors)

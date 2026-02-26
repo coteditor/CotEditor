@@ -5202,6 +5202,53 @@
         }
       }
     },
+    "Syntax.Error.Code.nestableBlockComment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verschachtelbare Blockkommentare müssen unterschiedliche Start- und End-Trennzeichen verwenden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Nestable block comment must use different begin and end delimiters."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nestable block comment must use different begin and end delimiters."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Los comentarios de bloque anidables deben utilizar delimitadores de inicio y fin diferentes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les commentaires de bloc imbriqués doivent utiliser des délimiteurs de début et de fin différents."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ネスト可能なブロックコメントは開始と終了に異なる文字列が必要です。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Geneste blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
+          }
+        }
+      }
+    },
     "Syntax.Error.Code.regularExpression" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

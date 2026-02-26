@@ -37,6 +37,7 @@ public extension Syntax {
             case duplicated
             case regularExpression
             case blockComment
+            case nestableBlockComment
         }
         
         
@@ -116,9 +117,14 @@ public extension Syntax {
         // validate block comment delimiter pairs
         errors += self.commentDelimiters.blocks.compactMap { delimiter in
             switch (delimiter.begin.isEmpty, delimiter.end.isEmpty) {
-                case (false, false), (true, true): nil
-                case (true, false): Error(.blockComment, scope: .blockComment, value: delimiter.end)
-                case (false, true): Error(.blockComment, scope: .blockComment, value: delimiter.begin)
+                case (true, false):
+                    Error(.blockComment, scope: .blockComment, value: delimiter.end)
+                case (false, true):
+                    Error(.blockComment, scope: .blockComment, value: delimiter.begin)
+                case (false, false) where delimiter.isNestable && delimiter.begin == delimiter.end:
+                    Error(.nestableBlockComment, scope: .blockComment, value: delimiter.begin)
+                default:
+                    nil
             }
         }
         

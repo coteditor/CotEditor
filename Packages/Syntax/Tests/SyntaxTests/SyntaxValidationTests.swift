@@ -72,4 +72,22 @@ struct SyntaxValidationTests {
         #expect(errors.contains { $0.code == .blockComment && $0.scope == .blockComment && $0.value == "*/" })
         #expect(errors.contains { $0.code == .blockComment && $0.scope == .blockComment && $0.value == "/*" })
     }
+    
+    
+    @Test func nestableBlockCommentValidation() {
+        
+        let syntax = Syntax(
+            commentDelimiters: .init(
+                blocks: [
+                    .init(begin: "%%", end: "%%", isNestable: true),
+                    .init(begin: "##", end: "##", isNestable: false),
+                ]
+            )
+        )
+        
+        let errors = syntax.validate()
+        
+        #expect(errors.contains { $0.code == .nestableBlockComment && $0.scope == .blockComment && $0.value == "%%" })
+        #expect(!errors.contains { $0.code == .nestableBlockComment && $0.value == "##" })
+    }
 }
