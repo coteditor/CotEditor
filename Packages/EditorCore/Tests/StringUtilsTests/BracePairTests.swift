@@ -142,6 +142,19 @@ struct BracePairTests {
     }
     
     
+    @Test func samePairBackslashVsNone() {
+        
+        let string = "'a\\'b' 'c'"
+        let quotes = BracePair.quotes
+        
+        let backslashRange = string.rangeOfBracePair(at: string.index(0), candidates: quotes, escapeRule: .backslash)
+        let noneRange = string.rangeOfBracePair(at: string.index(0), candidates: quotes, escapeRule: .none)
+        
+        #expect(backslashRange == string.index(0)...string.index(5))
+        #expect(noneRange == string.index(0)...string.index(3))
+    }
+    
+    
     @Test func ignorePair() {
         
         let string = "( [ ( ] )"

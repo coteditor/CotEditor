@@ -152,6 +152,22 @@ struct NestableTests {
         }
         
         
+        @Test func pairSameDelimiterBackslashVsNone() throws {
+            
+            let source = "'a\\'b' 'c'"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("'", "'"), isMultiline: false): .strings
+            ]
+            let backslashDict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .backslash)
+            let noneDict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .none)
+            let backslashMatches = try #require(backslashDict[.strings]).map((source as NSString).substring(with:))
+            let noneMatches = try #require(noneDict[.strings]).map((source as NSString).substring(with:))
+            
+            #expect(backslashMatches == ["'a\\'b'", "'c'"])
+            #expect(noneMatches == ["'a\\'", "' '"])
+        }
+        
+        
         @Test func pairDoesNotCrossLinesWithMixedTokens() throws {
             
             let source = """
