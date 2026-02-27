@@ -648,7 +648,12 @@ extension NSTextView: EditorCounter.Source { }
             alert.buttons[1].hasDestructiveAction = true
             
             Task {
-                let returnCode = await alert.beginSheetModal(for: self.windowForSheet!)
+                let returnCode = if let window = self.windowForSheet {
+                    await alert.beginSheetModal(for: window)
+                } else {
+                    alert.runModal()
+                }
+                
                 switch returnCode {
                     case .alertFirstButtonReturn:  // Save
                         self.allowsLossySaving = true

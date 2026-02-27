@@ -16,6 +16,7 @@
 - Fix an issue where the editor incorrectly highlighted paired symbols when an escaped symbol was nearby.
 - Fix an issue in the file browser where TypeScript documents were incorrectly displayed with a video icon.
 - Address a potential crash when pasting multiline text into the editor under certain conditions.
+- Address a potential crash when closing a document.
 
 
 
