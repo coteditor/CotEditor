@@ -1,5 +1,5 @@
 {
-  "originHash" : "3a59369b7044328faa8ba4efc9c7ae84f5af8ef744d6dc733154f3a8f9c63e0b",
+  "originHash" : "e0fcd4196948e45581b732f1f5082f81131d1d20be708463e18b206105c4c2b4",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -141,8 +141,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
       "state" : {
-        "branch" : "split_parser",
-        "revision" : "cee71b8288f2ec09c29415219ac15a654bd571b9"
+        "revision" : "f969cd3ae3f9fbd4e43205431d0ae286014c05b5",
+        "version" : "0.5.3"
       }
     },
     {
