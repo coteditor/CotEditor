@@ -611,9 +611,9 @@ private extension NSLayoutManager {
     /// Returns the bounds between upper and lower bounds of the given `range` in horizontal axis.
     ///
     /// - Parameters:
-    ///   - characterRange: The glyph range for which to return the bounds.
+    ///   - glyphRange: The glyph range for which to return the bounds.
     ///   - container: The text container in which the glyphs are laid out.
-    /// - Returns: Actual bounds of the given `characterRange` or bounds between `.upperBound` and `.lowerBound`
+    /// - Returns: Actual bounds of the given `glyphRange` or bounds between `.upperBound` and `.lowerBound`
     ///            when the range extends across multiple lines.
     func minimumRowBounds(of glyphRange: NSRange, in container: NSTextContainer) -> (x: CGFloat, width: CGFloat) {
         
@@ -627,7 +627,7 @@ private extension NSLayoutManager {
     /// Returns all line fragment used rects including `extraLineFragmentUsedRect` or empty range at the end of given range.
     ///
     /// - Parameters:
-    ///   - glyphRange: The glyph range where to return line fragment rectangles.
+    ///   - glyphRanges: The glyph ranges where to return line fragment rectangles.
     /// - Returns: An array of the portions of the line fragment rectangles that actually contains glyphs or other marks that are drawn.
     func lineFragmentUsedRects(inSelectedGlyphRanges glyphRanges: [NSRange]) -> [NSRect] {
         

@@ -107,7 +107,7 @@ import FileEncoding
     
     /// Returns corresponding String.Encoding from an IANA charset name.
     ///
-    /// - Parameter encodingName: The IANA charset name of the encoding to find.
+    /// - Parameter ianaCharSetName: The IANA charset name of the encoding to find.
     /// - Returns: A string encoding or nil.
     func encoding(ianaCharSetName: String) -> String.Encoding? {
         

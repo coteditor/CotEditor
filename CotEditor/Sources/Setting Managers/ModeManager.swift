@@ -64,7 +64,7 @@ import Syntax
     
     /// Returns the mode corresponding to the given syntax.
     ///
-    /// - Parameter syntax: The syntax name.
+    /// - Parameter syntaxName: The syntax name.
     /// - Returns: A mode.
     func mode(for syntaxName: String) -> Mode {
         
@@ -126,7 +126,7 @@ import Syntax
     ///
     /// - Parameters:
     ///   - setting: The setting to save.
-    ///   - name: The name under which to save the setting.
+    ///   - mode: The mode under which to save the setting.
     func save(setting: Setting, mode: Mode) {
         
         if case .kind(let kind) = mode, setting == kind.defaultOptions {

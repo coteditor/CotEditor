@@ -113,7 +113,7 @@ extension BidirectionalCollection<OutlineItem> {
     
     /// Returns the element for the given range.
     ///
-    /// - Parameter range: The character range to refer.
+    /// - Parameter location: The character location to refer.
     /// - Returns: The corresponding outline item, or `nil` if not exist.
     public func item(at location: Int) -> Element? {
         
@@ -154,7 +154,7 @@ extension BidirectionalCollection<OutlineItem> {
     
     /// Returns the index of element for the given range.
     ///
-    /// - Parameter range: The character range to refer.
+    /// - Parameter location: The character location to refer.
     /// - Returns: The index of the corresponding outline item, or `nil` if not exist.
     private func indexOfItem(at location: Int) -> Index? {
         

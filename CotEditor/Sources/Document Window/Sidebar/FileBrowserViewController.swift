@@ -762,7 +762,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     /// Returns the target outline rows for the menu action.
     ///
-    /// - Parameter menuItem: The sender of the action.
+    /// - Parameter sender: The sender of the action.
     /// - Returns: The outline row indexes.
     private func targetRows(for sender: Any?) -> IndexSet {
         
@@ -784,7 +784,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     /// Returns the target file nodes to perform the for the menu action.
     ///
-    /// - Parameter menuItem: The sender of the action.
+    /// - Parameter sender: The sender of the action.
     /// - Returns: File nodes.
     private func targetNodes(for sender: Any?) -> [FileNode] {
         
@@ -795,7 +795,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     /// Returns the folder node to perform the menu item action.
     ///
-    /// - Parameter menuItem: The sender of the action.
+    /// - Parameter sender: The sender of the action.
     /// - Returns: A file node, or `nil` if the target is multiple nodes.
     private func targetFolderNode(for sender: NSMenuItem) -> FileNode? {
         

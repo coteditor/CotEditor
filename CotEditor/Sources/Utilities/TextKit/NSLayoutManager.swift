@@ -98,7 +98,7 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - attrName: The name of the temporary attribute to enumerate.
-    ///   - Type:The type of the value.
+    ///   - type: The type of the value.
     ///   - enumerationRange: The range over which the attribute values are enumerated.
     ///   - block: A closure to apply to ranges of the specified attribute in the receiver.
     ///   - value: The value for the specified attribute.

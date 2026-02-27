@@ -152,7 +152,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     /// Notifies the completion of the Find All command.
     ///
     /// - Parameters:
-    ///   - result: The all found matches.
+    ///   - matches: The all found matches.
     ///   - findString: The find string.
     ///   - client: The text view where searched.
     private func didFinishFindAll(_ matches: [FindAllMatch], for findString: String, in client: NSTextView?) {

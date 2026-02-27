@@ -159,7 +159,7 @@ public struct TextFind: Equatable, Sendable {
     /// - Parameters:
     ///   - matches: The matched ranges to find in.
     ///   - forward: Whether searches forward.
-    ///   - includingCurrentSelection: Whether includes the current selection to search.
+    ///   - includingSelection: Whether includes the current selection to search.
     ///   - wraps: Whether the search wraps around.
     /// - Returns: A character range and flag whether the search wrapped; or `nil` when not found.
     public func find(in matches: [NSRange], forward: Bool, includingSelection: Bool = false, wraps: Bool) -> (range: NSRange, wrapped: Bool)? {

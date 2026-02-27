@@ -190,7 +190,6 @@ private extension TreeSitterSyntax {
     /// Loads query files from the given directory.
     ///
     /// - Parameters:
-    ///   - syntax: The target tree-sitter syntax.
     ///   - queriesURL: The queries directory URL.
     /// - Returns: The loaded queries keyed by their definition.
     func loadQueries(at queriesURL: URL) -> [Query.Definition: Query] {

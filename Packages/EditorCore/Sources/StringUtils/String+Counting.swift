@@ -148,7 +148,7 @@ public extension String {
     /// Counts the number of lines in the given range.
     ///
     /// - Parameters:
-    ///   - ranges: The character range to count lines, or when `nil`, the entire range.
+    ///   - range: The character range to count lines, or when `nil`, the entire range.
     ///   - includesLastBreak: The flag to count the new line character at the end.
     /// - Returns: The number of lines.
     func numberOfLines(in range: NSRange? = nil, includesLastBreak: Bool = false) -> Int {

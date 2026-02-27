@@ -300,7 +300,7 @@ final class PrintTextView: NSTextView {
     
     /// Returns the attributed string for header/footer.
     ///
-    /// - Parameter type: Whether the string is for header or footer.
+    /// - Parameter location: Whether the string is for header or footer.
     /// - Returns: The attributed string for header/footer.
     private func headerFooter(for location: HeaderFooterLocation) -> NSAttributedString {
         

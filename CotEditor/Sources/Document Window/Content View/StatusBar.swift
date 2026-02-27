@@ -349,7 +349,7 @@ private extension Text {
     ///
     /// - Parameters:
     ///   - label: Localized label.
-    ///   - state: The content string.
+    ///   - value: The content string.
     init(_ label: String, value: String?) {
         
         let valueText = if let value {
