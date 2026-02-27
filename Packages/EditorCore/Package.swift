@@ -83,6 +83,7 @@ let package = Package(
         .testTarget(name: "URLUtilsTests", dependencies: ["URLUtils"]),
         
         .target(name: "ValueRange"),
+        .testTarget(name: "ValueRangeTests", dependencies: ["ValueRange"]),
     ],
     swiftLanguageModes: [.v6]
 )
