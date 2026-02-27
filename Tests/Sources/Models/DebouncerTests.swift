@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,24 +30,26 @@ struct DebouncerTests {
     
     @MainActor @Test func debounce() async throws {
         
-        let delay: ContinuousClock.Duration = .seconds(0.5)
+        let delay: ContinuousClock.Duration = .seconds(0.2)
         try await confirmation("Debouncer executed", expectedCount: 1) { confirm in
             let debouncer = Debouncer(delay: delay) {
                 confirm()
             }
             
             debouncer.schedule()
+            try await Task.sleep(for: .seconds(0.1))
             debouncer.schedule()
             
-            try await Task.sleep(for: delay + .seconds(2))
+            try await Task.sleep(for: delay + .seconds(0.2))
         }
     }
     
     
-    @MainActor @Test func immediateFire() {
+    @MainActor @Test func immediateFire() async throws {
         
+        let delay: ContinuousClock.Duration = .seconds(1)
         var value = 0
-        let debouncer = Debouncer {
+        let debouncer = Debouncer(delay: delay) {
             value += 1
         }
         
@@ -61,18 +63,24 @@ struct DebouncerTests {
         
         debouncer.fireNow()
         #expect(value == 1, "The scheduled action must be performed immediately.")
+        
+        try await Task.sleep(for: .seconds(0.1))
+        #expect(value == 1, "The scheduled task must be canceled after immediate firing.")
     }
     
     
-    @MainActor @Test func cancel() async {
+    @MainActor @Test func cancel() async throws {
         
-        await confirmation("Debouncer cancelled", expectedCount: 0) { confirm in
-            let debouncer = Debouncer {
+        let delay: ContinuousClock.Duration = .seconds(0.2)
+        try await confirmation("Debouncer cancelled", expectedCount: 0) { confirm in
+            let debouncer = Debouncer(delay: delay) {
                 confirm()
             }
             
             debouncer.schedule()
             debouncer.cancel()
+            
+            try await Task.sleep(for: delay + .seconds(0.2))
         }
     }
 }
