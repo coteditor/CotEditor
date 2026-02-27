@@ -153,10 +153,8 @@ public extension String {
         for lineContentsRange in lineContentsRanges {
             let line = string.substring(with: lineContentsRange)
             
-            if uniqueLines.contains(line) {
+            if !uniqueLines.insert(line).inserted {
                 replacementRanges.append(string.lineRange(for: lineContentsRange))
-            } else {
-                uniqueLines.insert(line)
             }
         }
         
