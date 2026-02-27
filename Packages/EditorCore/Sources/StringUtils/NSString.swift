@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -194,19 +194,18 @@ public extension NSString {
             return ranges
         }
         
+        let scopes = ranges
+            .map { self.lineRange(for: $0) }
+            .merged
         var lineRanges: [NSRange] = []
         
-        // get line ranges to process
-        for range in ranges {
-            let linesRange = self.lineRange(for: range)
-            
-            // store each line to process
-            unsafe self.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { _, _, enclosingRange, _ in
+        for scope in scopes {
+            unsafe self.enumerateSubstrings(in: scope, options: [.byLines, .substringNotRequired]) { _, _, enclosingRange, _ in
                 lineRanges.append(enclosingRange)
             }
         }
         
-        return lineRanges.uniqued
+        return lineRanges
     }
     
     

@@ -184,6 +184,16 @@ struct NSStringTests {
     }
     
     
+    @Test func nsStringLineRanges() {
+        
+        let string = "aa\nbb\ncc\n" as NSString
+        let ranges = [NSRange(location: 1, length: 5),
+                      NSRange(location: 3, length: 2)]
+        
+        #expect(string.lineRanges(for: ranges) == [NSRange(0..<3), NSRange(3..<6)])
+    }
+    
+    
     @Test(arguments: [0x000A, 0x000B, 0x000C, 0x000D, 0x0085, 0x2028, 0x2029])
     func unicharIsNewline(char: UInt16) throws {
         
