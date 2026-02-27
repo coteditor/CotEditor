@@ -136,11 +136,12 @@ extension Syntax {
                 fileWrapper.addRegularFile(withContents: data, preferredFilename: Filename.completion)
             }
             
-            if !self.highlights.flatMap(\.value).isEmpty || !self.outlines.isEmpty {
+            let hasHighlights = self.highlights.values.contains { !$0.isEmpty }
+            if hasHighlights || !self.outlines.isEmpty {
                 let regexWrapper = FileWrapper(directoryWithFileWrappers: [:])
                 regexWrapper.preferredFilename = Filename.regex
                 
-                if !self.highlights.flatMap(\.value).isEmpty {
+                if hasHighlights {
                     let data = try encoder.encode(self.highlights)
                     regexWrapper.addRegularFile(withContents: data, preferredFilename: Filename.highlights)
                 }
