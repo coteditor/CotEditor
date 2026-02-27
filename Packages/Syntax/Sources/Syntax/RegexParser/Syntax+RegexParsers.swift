@@ -55,7 +55,7 @@ extension Syntax {
                 for highlight in item.value {
                     if // extract paired delimiters such as quotes
                         let token = NestableToken(highlight: highlight),
-                        !nestables.keys.contains(token)  // not registered yet
+                        nestables[token] == nil  // not registered yet
                     {
                         nestables[token] = item.key
                         
