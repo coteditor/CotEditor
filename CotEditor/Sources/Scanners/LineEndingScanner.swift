@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ import ValueRange
     /// - Returns: A boolean indicating whether the character is an inconsistent line ending.
     func isInvalidLineEnding(at characterIndex: Int) -> Bool {
         
-        self.inconsistentLineEndings.contains { $0.lowerBound == characterIndex }
+        self.inconsistentLineEndings.contains(rangeStartingAt: characterIndex)
     }
     
     

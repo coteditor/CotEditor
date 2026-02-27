@@ -53,4 +53,17 @@ struct CollectionTests {
         #expect("abc\u{2029}def".lineEndingRanges().majorValue() == .paragraphSeparator)
         #expect("\rfoo\r\nbar\nbuz\u{2029}moin\r\n".lineEndingRanges().majorValue() == .crlf)
     }
+    
+    
+    @Test func containsRangeStartingAt() {
+        
+        let ranges = "a\r\nb\nc\r".lineEndingRanges()
+        
+        #expect(ranges.contains(rangeStartingAt: 1))
+        #expect(!ranges.contains(rangeStartingAt: 2))
+        #expect(ranges.contains(rangeStartingAt: 4))
+        #expect(!ranges.contains(rangeStartingAt: 5))
+        #expect(ranges.contains(rangeStartingAt: 6))
+        #expect(!"".lineEndingRanges().contains(rangeStartingAt: 0))
+    }
 }

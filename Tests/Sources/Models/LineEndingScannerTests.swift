@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,6 +75,23 @@ struct LineEndingScannerTests {
         #expect(scanner.inconsistentLineEndings ==
                 [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
                  ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
+    }
+    
+    
+    @Test func invalidLineEndingLookup() {
+        
+        let storage = NSTextStorage(string: "a\r\nb\nc\r")
+        let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
+        
+        #expect(scanner.isInvalidLineEnding(at: 1))
+        #expect(!scanner.isInvalidLineEnding(at: 2))
+        #expect(!scanner.isInvalidLineEnding(at: 4))
+        #expect(scanner.isInvalidLineEnding(at: 6))
+        
+        storage.replaceCharacters(in: NSRange(6..<7), with: "\n")
+        
+        #expect(scanner.isInvalidLineEnding(at: 1))
+        #expect(!scanner.isInvalidLineEnding(at: 6))
     }
 }
 

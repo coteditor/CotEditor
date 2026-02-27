@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,6 +52,20 @@ public extension RangeReplaceableCollection {
         }
         
         self.insert(contentsOf: items, at: lowerEditedIndex)
+    }
+    
+    
+    /// Returns whether the collection contains an element whose range starts at `location`.
+    ///
+    /// This API assumes the elements are sorted by range location.
+    ///
+    /// - Parameter location: The start location to look up.
+    /// - Returns: `true` if an element starts at `location`; otherwise `false`.
+    func contains<Value>(rangeStartingAt location: Int) -> Bool where Element == ValueRange<Value> {
+        
+        guard let index = self.binarySearchedFirstIndex(where: { $0.lowerBound >= location }) else { return false }
+        
+        return self[index].lowerBound == location
     }
 }
 
