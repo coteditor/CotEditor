@@ -299,16 +299,46 @@ extension String {
         let spacerPattern = appendsSpacer ? " ?" : ""
         let pattern = "\\A[ \t]*(\(beginPattern + spacerPattern)).*?(\(spacerPattern + endPattern))[ \t]*\\Z"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
-        
-        let delimiterRanges = ranges
+        var bounds = ranges
             .flatMap { regex.matches(in: self, range: $0) }
-            .flatMap { [$0.range(at: 1), $0.range(at: 2)] }
+            .map { Pair($0.range(at: 1), $0.range(at: 2)) }
         
-        return delimiterRanges.isEmpty ? nil : delimiterRanges
+        if delimiters.isNestable, delimiters.begin != delimiters.end {
+            bounds.removeAll { !self.isValidNestableBlock(delimiters, in: $0) }
+        }
+        
+        return bounds.isEmpty ? nil : bounds.flatMap(\.array)
     }
     
     
     // MARK: Private Methods
+    
+    /// Validates whether a candidate block delimiter pair is balanced for nestable delimiters.
+    ///
+    /// - Parameters:
+    ///   - delimiters: The block delimiters to evaluate.
+    ///   - bounds: The candidate begin/end delimiter ranges to validate.
+    /// - Returns: `true` when the matched range has properly balanced nested begin/end tokens; otherwise `false`.
+    private func isValidNestableBlock(_ delimiters: BlockCommentDelimiter, in bounds: Pair<NSRange>) -> Bool {
+        
+        let innerRange = NSRange(bounds.begin.upperBound..<bounds.end.lowerBound)
+        
+        guard !innerRange.isEmpty else { return true }
+        
+        let beginTokens = (self as NSString).ranges(of: delimiters.begin, range: innerRange).map { (isBegin: true, range: $0) }
+        let endTokens = (self as NSString).ranges(of: delimiters.end, range: innerRange).map { (isBegin: false, range: $0) }
+        let tokens = (beginTokens + endTokens).sorted(using: KeyPathComparator(\.range.location))
+        
+        var depth = 0
+        for (isBegin, _) in tokens {
+            guard isBegin || depth > 0 else { return false }
+            
+            depth += isBegin ? 1 : -1
+        }
+        
+        return depth == 0
+    }
+    
     
     /// Computes insertion locations at the minimal common visual indentation for the given ranges.
     ///

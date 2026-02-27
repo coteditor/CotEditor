@@ -241,6 +241,24 @@ struct StringCommentingTests {
     }
     
     
+    @Test func nestableBlockUncomment() {
+        
+        let nestable = BlockCommentDelimiter(begin: "/*", end: "*/", isNestable: true)
+        let plain = BlockCommentDelimiter(begin: "/*", end: "*/", isNestable: false)
+        let source = "/* a /* b */"
+        let balanced = "/* a /* b */ c */"
+        let tabbed = "/*\tfoo\t*/"
+        
+        #expect(source.rangesOfBlockDelimiters(nestable, appendsSpacer: false, ranges: [source.nsRange]) == nil)
+        #expect(balanced.rangesOfBlockDelimiters(nestable, appendsSpacer: false, ranges: [balanced.nsRange]) ==
+                [NSRange(0..<2), NSRange(15..<17)])
+        #expect(source.rangesOfBlockDelimiters(plain, appendsSpacer: false, ranges: [source.nsRange]) ==
+                [NSRange(0..<2), NSRange(10..<12)])
+        #expect(tabbed.rangesOfBlockDelimiters(nestable, appendsSpacer: true, ranges: [tabbed.nsRange]) ==
+                [NSRange(0..<2), NSRange(7..<9)])
+    }
+    
+    
     // MARK: TextView extension Tests
     
     @Test func textViewInlineComment() throws {
