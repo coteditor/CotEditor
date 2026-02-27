@@ -73,7 +73,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .inline("#", leadingOnly: false): .comments
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
             let ranges = try #require(dict[.comments])
             let matches = ranges.map((source as NSString).substring(with:))
             
@@ -94,7 +94,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .inline("#", leadingOnly: true): .comments
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
             let ranges = try #require(dict[.comments])
             
             #expect(ranges.count == 2)
@@ -111,7 +111,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .pair(Pair("'", "'"), isMultiline: false, isNestable: true): .strings
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
             let ranges = try #require(dict[.strings])
             let matches = ranges.map((source as NSString).substring(with:))
             
@@ -127,7 +127,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .pair(Pair("'", "'"), isMultiline: false, isNestable: true): .strings
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .doubleDelimiter)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .doubleDelimiter)
             let ranges = try #require(dict[.strings])
             let matches = ranges.map((source as NSString).substring(with:))
             
@@ -143,7 +143,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .pair(Pair("'", "'"), isMultiline: false, isNestable: true): .strings
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .doubleDelimiter)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .doubleDelimiter)
             let ranges = try #require(dict[.strings])
             let matches = ranges.map((source as NSString).substring(with:))
             
@@ -158,8 +158,8 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .pair(Pair("'", "'"), isMultiline: false, isNestable: true): .strings
             ]
-            let backslashDict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .backslash)
-            let noneDict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .none)
+            let backslashDict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
+            let noneDict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .none)
             let backslashMatches = try #require(backslashDict[.strings]).map((source as NSString).substring(with:))
             let noneMatches = try #require(noneDict[.strings]).map((source as NSString).substring(with:))
             
@@ -181,7 +181,7 @@ struct NestableTests {
                 .pair(Pair("/*", "*/"), isMultiline: false, isNestable: true): .comments,
                 .pair(Pair("'", "'"), isMultiline: false, isNestable: true): .strings,
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
             let commentRanges = try #require(dict[.comments])
             let stringRanges = try #require(dict[.strings])
             let commentMatches = commentRanges.map((source as NSString).substring(with:))
@@ -200,7 +200,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .pair(Pair("/*", "*/"), isMultiline: true, isNestable: true): .comments
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
             let ranges = try #require(dict[.comments])
             let matches = ranges.map((source as NSString).substring(with:))
             
@@ -217,7 +217,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .pair(Pair("/*", "*/"), isMultiline: true, isNestable: false): .comments
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
             let ranges = try #require(dict[.comments])
             let matches = ranges.map((source as NSString).substring(with:))
             
@@ -234,7 +234,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .inline("//", leadingOnly: false): .comments
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .backslash)
             let ranges = try #require(dict[.comments])
             let matches = ranges.map((source as NSString).substring(with:))
             
@@ -252,7 +252,7 @@ struct NestableTests {
             let tokens: [NestableToken: SyntaxType] = [
                 .inline("//", leadingOnly: false): .comments
             ]
-            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, delimiterEscapeRule: .none)
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange, escapeRule: .none)
             let ranges = try #require(dict[.comments])
             let matches = ranges.map((source as NSString).substring(with:))
             

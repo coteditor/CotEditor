@@ -67,7 +67,7 @@ actor RegexHighlightParser: HighlightParsing {
     func parseHighlights(in string: String, range: NSRange) async throws -> (highlights: [Highlight], updateRange: NSRange)? {
         
         try await withThrowingTaskGroup { [extractors, nestables, lexicalRules] group in
-            group.addTask { try nestables.parseHighlights(in: string, range: range, delimiterEscapeRule: lexicalRules.delimiterEscapeRule) }
+            group.addTask { try nestables.parseHighlights(in: string, range: range, escapeRule: lexicalRules.delimiterEscapeRule) }
             
             for (type, extractors) in extractors {
                 for extractor in extractors {
