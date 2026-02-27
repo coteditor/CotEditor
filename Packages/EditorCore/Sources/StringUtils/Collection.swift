@@ -40,7 +40,29 @@ public extension Sequence where Element: Equatable {
 }
 
 
+public extension Sequence where Element: Hashable {
+    
+    /// An array consists of unique elements of receiver by keeping ordering.
+    var uniqued: [Element] {
+        
+        var seen = Set<Element>()
+        
+        return self.filter { seen.insert($0).inserted }
+    }
+}
+
+
 public extension Array where Element: Equatable {
+    
+    /// Removes duplicated elements by keeping ordering.
+    mutating func unique() {
+        
+        self = self.uniqued
+    }
+}
+
+
+public extension Array where Element: Hashable {
     
     /// Removes duplicated elements by keeping ordering.
     mutating func unique() {

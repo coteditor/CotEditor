@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,6 +34,46 @@ struct CollectionTests {
         #expect([String]().uniqued.isEmpty)
         #expect(["dog"].uniqued == ["dog"])
         #expect(["dog", "dog", "cat", "cow", "cat", "dog"].uniqued == ["dog", "cat", "cow"])
+    }
+    
+    
+    @Test func uniqueHashableCollision() {
+        
+        struct HashCollision: Hashable {
+            
+            let value: Int
+            
+            func hash(into hasher: inout Hasher) {
+                
+                hasher.combine(0)
+            }
+        }
+        
+        let values = [HashCollision(value: 1), HashCollision(value: 2), HashCollision(value: 1)]
+        
+        #expect(values.uniqued == [HashCollision(value: 1), HashCollision(value: 2)])
+    }
+    
+    
+    @Test func uniqueEquatableFallback() {
+        
+        struct EquatableOnly: Equatable {
+            
+            let value: Int
+        }
+        
+        let values = [EquatableOnly(value: 1), EquatableOnly(value: 1), EquatableOnly(value: 2)]
+        
+        #expect(values.uniqued == [EquatableOnly(value: 1), EquatableOnly(value: 2)])
+    }
+    
+    
+    @Test func uniqueMutatingForHashableArray() {
+        
+        var values = ["dog", "dog", "cat", "dog", "cow"]
+        values.unique()
+        
+        #expect(values == ["dog", "cat", "cow"])
     }
     
     
