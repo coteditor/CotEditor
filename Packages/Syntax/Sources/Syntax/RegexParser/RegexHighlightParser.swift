@@ -75,10 +75,11 @@ actor RegexHighlightParser: HighlightParsing {
                 }
             }
             
-            let dictionary = try await group.reduce(into: [SyntaxType: [NSRange]]()) {
-                $0.merge($1, uniquingKeysWith: +)
+            let dictionary: [SyntaxType: [NSRange]] = try await group.reduce(into: [:]) { dictionary, partial in
+                for (type, ranges) in partial {
+                    dictionary[type, default: []].append(contentsOf: ranges)
+                }
             }
-            
             let highlights = try Highlight.highlights(dictionary: dictionary)
             
             return (highlights, range)

@@ -39,15 +39,19 @@ extension ValueRange<SyntaxType> {
     /// - Throws: CancellationError
     static func highlights(dictionary: [SyntaxType: [NSRange]]) throws -> [ValueRange<SyntaxType>] {
         
-        try SyntaxType.allCases.reversed()
-            .reduce(into: [SyntaxType: IndexSet]()) { dict, type in
+        var occupied = IndexSet()
+        
+        return try SyntaxType.allCases.reversed()
+            .reduce(into: [SyntaxType: IndexSet]()) { result, type in
                 guard let ranges = dictionary[type] else { return }
                 
                 try Task.checkCancellation()
                 
-                let indexes = IndexSet(integersIn: ranges)
+                var indexes = IndexSet(integersIn: ranges)
+                indexes.subtract(occupied)
                 
-                dict[type] = dict.values.reduce(into: indexes) { $0.subtract($1) }
+                result[type] = indexes
+                occupied.formUnion(indexes)
             }
             .mapValues { $0.rangeView.map(NSRange.init) }
             .flatMap { type, ranges in ranges.map { ValueRange(value: type, range: $0) } }
