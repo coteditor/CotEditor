@@ -44,7 +44,7 @@ public extension RangeReplaceableCollection {
             return
         }
         
-        if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.lowerBound >= editedRange.upperBound - delta }) {
+        if let upperEditedIndex = self.binarySearchedFirstIndex(in: lowerEditedIndex..<self.endIndex, where: { $0.lowerBound >= editedRange.upperBound - delta }) {
             let shiftedElements = self[upperEditedIndex...].map { $0.shifted(by: delta) }
             self.replaceSubrange(lowerEditedIndex..., with: shiftedElements)
         } else {
