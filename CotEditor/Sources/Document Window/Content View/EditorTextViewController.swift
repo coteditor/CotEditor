@@ -36,6 +36,7 @@ import StringUtils
 import Syntax
 import TextClipping
 import TextEditing
+import ValueRange
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     
@@ -283,7 +284,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         // standardize line endings to the document line ending
         if let replacementString,  // = only attributes changed
-           replacementString.lineEndingRanges().map(\.value).contains(where: { $0 != textView.lineEnding })
+           replacementString.lineEndingRanges().contains(where: { $0.value != textView.lineEnding })
         {
             return !textView.replace(with: replacementString.replacingLineEndings(with: textView.lineEnding),
                                      range: affectedCharRange, selectedRange: nil)
