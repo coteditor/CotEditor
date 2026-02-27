@@ -66,7 +66,7 @@
 ### Improvements
 
 - [non-AppStore ver.] Update Sparkle from 2.8.1 to 2.9.0.
-- [dev] Update the build environment to Xcode 26.3-rc.2.
+- [dev] Update the build environment to Xcode 26.3.
 
 
 ### Fixes
@@ -76,6 +76,7 @@
 - Fix an issue where the editor incorrectly highlighted paired symbols when an escaped symbol was nearby.
 - Fix an issue in the file browser where TypeScript documents were incorrectly displayed with a video icon.
 - Address a potential crash when pasting multiline text into the editor under certain conditions.
+- Address a potential crash when closing a document.
 
 
 

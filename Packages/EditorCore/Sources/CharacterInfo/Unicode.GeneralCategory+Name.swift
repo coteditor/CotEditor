@@ -101,7 +101,7 @@ public extension Unicode.GeneralCategory {
             case .otherPunctuation: "Po"
                 
             case .mathSymbol: "Sm"
-            case .currencySymbol: "sc"
+            case .currencySymbol: "Sc"
             case .modifierSymbol: "Sk"
             case .otherSymbol: "So"
                 
