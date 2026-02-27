@@ -300,5 +300,19 @@ struct TextFindTests {
         #expect(replacementItems[1].range == NSRange(location: 16, length: 7))
         #expect(selectedRanges?[0] == NSRange(location: 1, length: 12))
         #expect(selectedRanges?[1] == NSRange(location: 14, length: 5))
+        
+        
+        textFind = try TextFind(for: "abcx---def", findString: "abc",
+                                mode: .textual(options: [], fullWord: false),
+                                inSelection: true,
+                                selectedRanges: [NSRange(location: 0, length: 4),
+                                                 NSRange(location: 7, length: 3)])
+        
+        (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { _, _, _ in }
+        #expect(replacementItems.count == 1)
+        #expect(replacementItems[0].value == "_x")
+        #expect(replacementItems[0].range == NSRange(location: 0, length: 4))
+        #expect(selectedRanges?[0] == NSRange(location: 0, length: 2))
+        #expect(selectedRanges?[1] == NSRange(location: 5, length: 3))
     }
 }

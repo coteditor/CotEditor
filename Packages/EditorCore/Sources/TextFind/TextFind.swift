@@ -262,6 +262,7 @@ public struct TextFind: Equatable, Sendable {
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems: [ReplacementItem] = []
         var selectedRanges: [NSRange] = []
+        var locationOffset = 0
         
         for scopeRange in self.scopeRanges {
             let scopeString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
@@ -301,10 +302,9 @@ public struct TextFind: Equatable, Sendable {
             
             // build selectedRange
             if self.inSelection {
-                let location = zip(selectedRanges, self.selectedRanges)
-                    .map { $0.0.length - $0.1.length }
-                    .reduce(scopeRange.location, +)
+                let location = scopeRange.location + locationOffset
                 selectedRanges.append(NSRange(location: location, length: scopeString.length))
+                locationOffset += scopeString.length - scopeRange.length
             }
         }
         
@@ -376,10 +376,10 @@ public struct TextFind: Equatable, Sendable {
         var searchRange = range
         
         while searchRange.location != NSNotFound {
-            searchRange.length = string.length - searchRange.location
+            searchRange.length = range.upperBound - searchRange.location
             let foundRange = string.range(of: self.findString, options: options, range: searchRange)
             
-            guard foundRange.upperBound <= range.upperBound else { break }
+            guard !foundRange.isNotFound else { break }
             
             searchRange.location = foundRange.upperBound
             
