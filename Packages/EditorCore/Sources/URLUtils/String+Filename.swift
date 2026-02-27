@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,10 +52,11 @@ public extension String {
     func appendingUniqueNumber(in names: [String]) -> String {
         
         let (base, count) = self.numberingComponents
+        let usedNames = Set(names)
         
         return (count...).lazy
             .map { ($0 < 2) ? base : "\(base) \($0)" }
-            .first { !names.contains($0) }!
+            .first { !usedNames.contains($0) }!
     }
 }
 

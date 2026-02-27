@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -148,6 +148,7 @@ struct StringFilenameTests {
         #expect("foo".appendingUniqueNumber(in: names) == "foo 2")
         #expect("foo 2".appendingUniqueNumber(in: names) == "foo 2")
         #expect("foo 3".appendingUniqueNumber(in: names) == "foo 5")
+        #expect("foo".appendingUniqueNumber(in: names + ["foo 2", "foo 2"]) == "foo 5")
         
         #expect("foo".appendingUniqueNumber(in: []) == "foo")
     }
