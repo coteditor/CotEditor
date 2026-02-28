@@ -31,8 +31,8 @@ extension Syntax.Highlight: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
-        case begin = "beginString"
-        case end = "endString"
+        case begin
+        case end
         case isRegularExpression = "regularExpression"
         case ignoreCase
         case isMultiline
@@ -81,8 +81,8 @@ extension Syntax.Outline: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
-        case pattern = "beginString"
-        case template = "keyString"
+        case pattern
+        case template
         case ignoreCase
         case kind
         case description

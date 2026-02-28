@@ -34,7 +34,7 @@ struct SyntaxFileWrapperTests {
     @Test func highlightDecodingDefaults() throws {
         
         let data = try JSONSerialization.data(withJSONObject: [
-            "beginString": "abc",
+            "begin": "abc",
         ])
         
         let highlight = try JSONDecoder().decode(Syntax.Highlight.self, from: data)
@@ -54,8 +54,8 @@ struct SyntaxFileWrapperTests {
         let data = try JSONEncoder().encode(highlight)
         let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
         
-        #expect(object["beginString"] as? String == "abc")
-        #expect(object["endString"] == nil)
+        #expect(object["begin"] as? String == "abc")
+        #expect(object["end"] == nil)
         #expect(object["regularExpression"] == nil)
         #expect(object["ignoreCase"] == nil)
         #expect(object["isMultiline"] == nil)
@@ -66,8 +66,8 @@ struct SyntaxFileWrapperTests {
     @Test func outlineDecodingDefaults() throws {
         
         let data = try JSONSerialization.data(withJSONObject: [
-            "beginString": "pattern",
-            "keyString": "template",
+            "pattern": "pattern",
+            "template": "template",
         ])
         
         let outline = try JSONDecoder().decode(Syntax.Outline.self, from: data)
@@ -86,8 +86,8 @@ struct SyntaxFileWrapperTests {
         let data = try JSONEncoder().encode(outline)
         let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
         
-        #expect(object["beginString"] as? String == "pattern")
-        #expect(object["keyString"] as? String == "template")
+        #expect(object["pattern"] as? String == "pattern")
+        #expect(object["template"] as? String == "template")
         #expect(object["ignoreCase"] == nil)
         #expect(object["kind"] as? String == "function")
         #expect(object["description"] == nil)

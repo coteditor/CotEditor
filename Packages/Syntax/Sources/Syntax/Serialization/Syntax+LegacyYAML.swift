@@ -133,6 +133,68 @@ extension Syntax: Decodable {
     }
     
     
+    private struct LegacyHighlight: Decodable {
+        
+        private enum CodingKeys: String, CodingKey {
+            
+            case begin = "beginString"
+            case end = "endString"
+            case isRegularExpression = "regularExpression"
+            case ignoreCase
+            case isMultiline
+            case description
+        }
+        
+        
+        var highlight: Highlight
+        
+        
+        init(from decoder: any Decoder) throws {
+            
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            self.highlight = Highlight(
+                begin: try container.decodeIfPresent(String.self, forKey: .begin) ?? "",
+                end: try container.decodeIfPresent(String.self, forKey: .end),
+                isRegularExpression: try container.decodeIfPresent(Bool.self, forKey: .isRegularExpression) ?? false,
+                ignoreCase: try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false,
+                isMultiline: try container.decodeIfPresent(Bool.self, forKey: .isMultiline) ?? false,
+                description: try container.decodeIfPresent(String.self, forKey: .description)
+            )
+        }
+    }
+    
+    
+    private struct LegacyOutline: Decodable {
+        
+        private enum CodingKeys: String, CodingKey {
+            
+            case pattern = "beginString"
+            case template = "keyString"
+            case ignoreCase
+            case kind
+            case description
+        }
+        
+        
+        var outline: Outline
+        
+        
+        init(from decoder: any Decoder) throws {
+            
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            self.outline = Outline(
+                pattern: try container.decodeIfPresent(String.self, forKey: .pattern) ?? "",
+                template: try container.decodeIfPresent(String.self, forKey: .template) ?? "",
+                ignoreCase: try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false,
+                kind: try container.decodeIfPresent(Outline.Kind.self, forKey: .kind),
+                description: try container.decodeIfPresent(String.self, forKey: .description)
+            )
+        }
+    }
+    
+    
     public init(from decoder: any Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -146,19 +208,19 @@ extension Syntax: Decodable {
         self.fileMap = fileMap
         
         var highlights: [SyntaxType: [Highlight]] = [:]
-        highlights[.keywords] = try values.decodeIfPresent([Highlight].self, forKey: .keywords) ?? []
-        highlights[.commands] = try values.decodeIfPresent([Highlight].self, forKey: .commands) ?? []
-        highlights[.types] = try values.decodeIfPresent([Highlight].self, forKey: .types) ?? []
-        highlights[.attributes] = try values.decodeIfPresent([Highlight].self, forKey: .attributes) ?? []
-        highlights[.variables] = try values.decodeIfPresent([Highlight].self, forKey: .variables) ?? []
-        highlights[.values] = try values.decodeIfPresent([Highlight].self, forKey: .values) ?? []
-        highlights[.numbers] = try values.decodeIfPresent([Highlight].self, forKey: .numbers) ?? []
-        highlights[.strings] = try values.decodeIfPresent([Highlight].self, forKey: .strings) ?? []
-        highlights[.characters] = try values.decodeIfPresent([Highlight].self, forKey: .characters) ?? []
-        highlights[.comments] = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
+        highlights[.keywords] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .keywords)?.map(\.highlight) ?? []
+        highlights[.commands] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .commands)?.map(\.highlight) ?? []
+        highlights[.types] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .types)?.map(\.highlight) ?? []
+        highlights[.attributes] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .attributes)?.map(\.highlight) ?? []
+        highlights[.variables] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .variables)?.map(\.highlight) ?? []
+        highlights[.values] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .values)?.map(\.highlight) ?? []
+        highlights[.numbers] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .numbers)?.map(\.highlight) ?? []
+        highlights[.strings] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .strings)?.map(\.highlight) ?? []
+        highlights[.characters] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .characters)?.map(\.highlight) ?? []
+        highlights[.comments] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .comments)?.map(\.highlight) ?? []
         self.highlights = highlights
         
-        self.outlines = (try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? [])
+        self.outlines = (try values.decodeIfPresent([LegacyOutline].self, forKey: .outlines)?.map(\.outline) ?? [])
             .map { outline in  // migrate separator
                 if outline.template == "–" {
                     var outline = outline
