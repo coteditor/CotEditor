@@ -212,6 +212,7 @@
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
+				2BF32A522F06996600A1C703 /* Remove Tree-sitter Bundles */,
 			);
 			buildRules = (
 			);
@@ -380,6 +381,16 @@
 			shellPath = /bin/sh;
 			shellScript = (
 				"\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"",
+				"",
+			);
+		};
+		2BF32A522F06996600A1C703 /* Remove Tree-sitter Bundles */ = {
+			isa = PBXShellScriptBuildPhase;
+			name = "Remove Tree-sitter Bundles";
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = (
+				"\"$SRCROOT/Scripts/removeTreeSitterBundles.sh\"",
 				"",
 			);
 		};
