@@ -8,7 +8,9 @@
       }
     ],
     "inlines" : [
-
+      {
+        "begin" : "//"
+      }
     ]
   },
   "indentation" : {
@@ -16,6 +18,9 @@
       {
         "begin" : "{",
         "end" : "}"
+      },
+      {
+        "begin" : ":"
       }
     ]
   }
