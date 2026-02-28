@@ -72,6 +72,11 @@ enum SyntaxName {
     private let _cachedSettings: Mutex<[SettingName: Setting]> = .init([:])
     
     
+    // MARK: Public Properties
+    
+    private(set) var migratedSyntaxCount = 0
+    
+    
     // MARK: Private Properties
     
     private let bundledMaps: [SettingName: Syntax.FileMap]
@@ -239,7 +244,7 @@ enum SyntaxName {
         
         guard legacyURL.isReachable else { return }
         
-        try Syntax.migrateFormat(in: legacyURL, to: self.userSettingDirectoryURL, deletingOriginal: false)
+        self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: self.userSettingDirectoryURL, deletingOriginal: false)
     }
     
     

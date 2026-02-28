@@ -232,12 +232,66 @@ private extension NewFeature {
     }
     
     
-    @ViewBuilder var supplementalView: some View {
+    @MainActor @ViewBuilder var supplementalView: some View {
         
         switch self {
+            case .syntax:
+                let count = SyntaxManager.shared.migratedSyntaxCount
+                if count > 0 {
+                    MigrationReportView(count: count)
+                        .padding(.top, 6)
+                }
             default:
                 EmptyView()
         }
+    }
+}
+
+
+private struct MigrationReportView: View {
+    
+    var count: Int
+    
+    @State private var isVisible: Bool = false
+    
+    
+    var body: some View {
+        
+        Label {
+            Text(self.message)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
+                .opacity(self.isVisible ? 1 : 0)
+                .animation(.easeIn(duration: 0.2).delay(0.1), value: self.isVisible)
+        } icon: {
+            Image(systemName: "checkmark")
+                .symbolRenderingMode(.hierarchical)
+                .symbolVariant(.circle)
+                .modifier { content in
+                    if #available(macOS 26, *) {
+                        content
+                            .symbolEffect(.drawOn, isActive: !self.isVisible)
+                    } else {
+                        content
+                            .symbolEffect(.bounce, value: self.isVisible)
+                    }
+                }
+                .imageScale(.large)
+                .foregroundStyle(.accent)
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(0.5))
+            self.isVisible = true
+        }
+    }
+    
+    
+    private var message: String {
+        
+        String(localized: "NewFeature.syntax.supplementalView.message",
+               defaultValue: "Migrated \(self.count) custom syntaxes to the new format.",
+               table: "WhatsNew",
+               comment: "%lld is the number of syntaxes")
     }
 }
 

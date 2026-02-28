@@ -246,6 +246,131 @@
         }
       }
     },
+    "NewFeature.syntax.supplementalView.message" : {
+      "comment" : "%lld is the number of syntaxes",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld eigene Syntax wurde in das neue Format migriert."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld eigene Syntaxen wurden in das neue Format migriert."
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntax to the new format."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntaxes to the new format."
+                }
+              }
+            }
+          }
+        },
+        "en-GB" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntax to the new format."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntaxes to the new format."
+                }
+              }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld sintaxis personalizada se ha migrado al nuevo formato."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld sintaxis personalizadas se han migrado al nuevo formato."
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld syntaxe personnalisée a été migrée vers le nouveau format."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld yntaxes personnalisées ont été migrées vers le nouveau format."
+                }
+              }
+            }
+          }
+        },
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld件のカスタムシンタックスを新しいフォーマットに移行しました。"
+                }
+              }
+            }
+          }
+        },
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld aangepaste syntaxis is gemigreerd naar de nieuwe indeling."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld aangepaste syntaxisdefinities zijn gemigreerd naar de nieuwe indeling."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "NewFeature.treeSitter.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
