@@ -3,6 +3,10 @@
 6.2.5 (unreleased)
 --------------------------
 
+### Fixes
+
+- [trivial] Fix an issue in the What’s New window where the window could not close with the Esc key.
+
 
 
 6.2.4 (794)
