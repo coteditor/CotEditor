@@ -224,7 +224,7 @@ private struct BlockEditView: View {
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))
-        .frame(minHeight: 80, maxHeight: 120)
+        .frame(minHeight: 80, maxHeight: 200)
         
         AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
             self.focusedField = item.id
