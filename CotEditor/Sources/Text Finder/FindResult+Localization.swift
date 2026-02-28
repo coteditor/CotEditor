@@ -66,13 +66,15 @@ extension FindResult {
     /// The accessibility message that announces the current match position, if available.
     var accessibilityPositionMessage: String? {
         
-        switch (self.action, self.currentMatchIndex) {
-            case (.find, .some(let index)):
+        guard let index = self.currentMatchIndex else { return nil }
+        
+        return switch self.action {
+            case .find:
                 String(localized: "FindResult.find.accessibilityPositionMessage",
                        defaultValue: "Match \(index) of \(self.count).",
                        table: "TextFind",
                        comment: "accessibility result message for Find Next/Previous (%1$lld is current match position and %2$lld is number of found)")
-            default:
+            case .replace:
                 nil
         }
     }
