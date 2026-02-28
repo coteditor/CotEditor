@@ -528,7 +528,7 @@ struct FindMatchesCache {
         
         let matches = try await self.findMatches(for: textFind)
         let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
-        let matchedRange = result?.range
+        let matchedRange = isIncremental ? nil : result?.range
         let currentMatchIndex = matchedRange
             .flatMap(matches.firstIndex(of:))
             .map { $0 + 1 }
@@ -741,7 +741,7 @@ struct FindMatchesCache {
     private func notify(_ result: FindResult) {
         
         NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["result": result])
-        AccessibilityNotification.Announcement(result.message).post()
+        AccessibilityNotification.Announcement(result.accessibilityPositionMessage ?? result.message).post()
     }
 }
 
@@ -758,6 +758,34 @@ extension FindResult {
             case .replace:
                 String(localized: "FindResult.replace.message", defaultValue: "\(self.count) replaced", table: "TextFind",
                        comment: "short result message for Replace All (%lld is number of replaced)")
+        }
+    }
+    
+    
+    /// The short result message that shows the current match position, if available.
+    var positionMessage: String? {
+        
+        switch (self.action, self.currentMatchIndex) {
+            case (.find, .some(let index)):
+                String(localized: "FindResult.find.positionMessage", defaultValue: "\(index)/\(self.count)", table: "TextFind",
+                       comment: "short result message for Find Next/Previous (%1$lld is current match position and %2$lld is number of found)")
+            default:
+                nil
+        }
+    }
+    
+    
+    /// The accessibility message that announces the current match position, if available.
+    var accessibilityPositionMessage: String? {
+        
+        switch (self.action, self.currentMatchIndex) {
+            case (.find, .some(let index)):
+                String(localized: "FindResult.find.accessibilityPositionMessage",
+                       defaultValue: "Match \(index) of \(self.count).",
+                       table: "TextFind",
+                       comment: "accessibility result message for Find Next/Previous (%1$lld is current match position and %2$lld is number of found)")
+            default:
+                nil
         }
     }
 }
