@@ -127,6 +127,14 @@ struct FindAllMatch: Identifiable {
     private var highlightObservationTask: Task<Void, Never>?
     
     
+    // MARK: Lifecycle
+    
+    isolated deinit {
+        self.findTask?.cancel()
+        self.highlightObservationTask?.cancel()
+    }
+    
+    
     // MARK: Public Methods
     
     /// Schedules an incremental search.
