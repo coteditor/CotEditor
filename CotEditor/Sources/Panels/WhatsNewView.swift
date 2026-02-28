@@ -161,13 +161,12 @@ struct WhatsNewView: View {
 
 enum NewFeature: CaseIterable {
     
-    static let version = Version(6, 2, 0)
-    static let buildNumber = 785
+    static let version = Version(7, 0, 0)
+    static let buildNumber = 801
     
-    case settingPorting
-    case alias
-    case tsvReplacement
-    case userGuide
+    case syntax
+    case treeSitter
+    case outline
 }
     
 
@@ -176,14 +175,12 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
-            case .settingPorting:
-                Image(systemName: "truck.box")
-            case .alias:
-                Image(.arrowshapeTurnUpBackwardSquareDashed)
-            case .tsvReplacement:
-                Image(systemName: "arrow.down.document")
-            case .userGuide:
-                Image(systemName: "book.closed")
+            case .syntax:
+                Image(systemName: "curlybraces")
+            case .treeSitter:
+                Image(systemName: "tree")
+            case .outline:
+                Image(systemName: "list.bullet.indent")
         }
     }
     
@@ -191,19 +188,18 @@ private extension NewFeature {
     var label: String {
         
         switch self {
-            case .settingPorting:
-                String(localized: "NewFeature.settingPorting.label",
-                       defaultValue: "Assist your migration", table: "WhatsNew")
-            case .alias:
-                String(localized: "NewFeature.alias.label",
-                       defaultValue: "Easier access to aliases", table: "WhatsNew")
-            case .tsvReplacement:
-                String(localized: "NewFeature.tsvReplacement.label",
-                       defaultValue: "Build replace rules in bulk from TSV", table: "WhatsNew")
-                
-            case .userGuide:
-                String(localized: "NewFeature.userGuide.label",
-                       defaultValue: "Your built-in guide, newly polished", table: "WhatsNew")
+            case .syntax:
+                String(localized: "NewFeature.syntax.label",
+                       defaultValue: "Smarter syntax, sharper editing",
+                       table: "WhatsNew")
+            case .treeSitter:
+                String(localized: "NewFeature.treeSitter.label",
+                       defaultValue: "Powered by tree-sitter, where it matters most",
+                       table: "WhatsNew")
+            case .outline:
+                String(localized: "NewFeature.outline.label",
+                       defaultValue: "Outline with depth",
+                       table: "WhatsNew")
         }
     }
     
@@ -211,18 +207,18 @@ private extension NewFeature {
     var description: String {
         
         switch self {
-            case .settingPorting:
-                String(localized: "NewFeature.settingPorting.description",
-                       defaultValue: "Export and import all your CotEditor settings, custom syntaxes, themes, and Multiple Replace definitions from the File menu to easily move your environment to another Mac.", table: "WhatsNew")
-            case .alias:
-                String(localized: "NewFeature.alias.description",
-                       defaultValue: "The original documents behind aliases and symlinks can now be opened directly in the current window from the file browser.", table: "WhatsNew")
-            case .tsvReplacement:
-                String(localized: "NewFeature.tsvReplacement.description",
-                       defaultValue: "Import tab-separated pairs of search and replacement texts to create a replace definition. Ideal for large glossaries.", table: "WhatsNew")
-            case .userGuide:
-                String(localized: "NewFeature.userGuide.description",
-                       defaultValue: "The built-in user guide now offers clearer explanations, richer content, and a refreshed layout aligned with the latest macOS.", table: "WhatsNew")
+            case .syntax:
+                String(localized: "NewFeature.syntax.description",
+                       defaultValue: "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format.",
+                       table: "WhatsNew")
+            case .treeSitter:
+                String(localized: "NewFeature.treeSitter.description",
+                       defaultValue: "Several built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness.",
+                       table: "WhatsNew")
+            case .outline:
+                String(localized: "NewFeature.outline.description",
+                       defaultValue: "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy.",
+                       table: "WhatsNew")
         }
     }
     
@@ -230,12 +226,6 @@ private extension NewFeature {
     var helpAnchor: String? {
         
         switch self {
-            case .settingPorting:
-                "howto_port_settings"
-            case .alias:
-                "nowto_open_alias"
-            case .tsvReplacement:
-                "howto_multiple_replace"
             default:
                 nil
         }
@@ -245,12 +235,6 @@ private extension NewFeature {
     @ViewBuilder var supplementalView: some View {
         
         switch self {
-            case .alias:
-                Text(String(localized: "NewFeature.alias.supplement",
-                            defaultValue: "*If the original is a folder, it will open in a new window.", table: "WhatsNew"))
-                .foregroundStyle(.secondary)
-                .controlSize(.small)
-                .padding(.top, 2)
             default:
                 EmptyView()
         }
