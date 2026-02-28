@@ -28,3 +28,17 @@ jobs:
     - name: Unit Test for CotEditor
       run: |
         xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
+    - name: Release Build Smoke Test
+      run: |
+        set -euo pipefail
+        app_binary="/tmp/CotEditorInstall/Applications/CotEditor.app/Contents/MacOS/CotEditor"
+        rm -rf /tmp/CotEditorInstall
+        xcodebuild install -scheme CotEditor -configuration Release DSTROOT=/tmp/CotEditorInstall CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO -skipPackagePluginValidation
+        "${app_binary}" >/dev/null 2>&1 &
+        app_pid=$!
+        sleep 5
+        if ! kill -0 "${app_pid}" 2>/dev/null; then
+          echo "CotEditor terminated unexpectedly during launch smoke test."
+          exit 1
+        fi
+        kill "${app_pid}" 2>/dev/null || true
