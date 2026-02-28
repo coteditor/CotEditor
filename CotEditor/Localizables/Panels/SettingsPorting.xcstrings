@@ -147,7 +147,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld個のカスタムシンタックス"
+                  "value" : "%lld件のカスタムシンタックス"
                 }
               }
             }
@@ -463,7 +463,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld個のカスタムテーマ"
+                  "value" : "%lld件のカスタムテーマ"
                 }
               }
             }
@@ -780,7 +780,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld個の定義"
+                  "value" : "%lld件の定義"
                 }
               }
             }
