@@ -12,7 +12,7 @@
 ### Fixes
 
 - Fix an issue where smart indentation did not work under certain conditions.
-- Fix an issue in the Find window where syntax highlighting for regular expression patterns could break with certain patterns.
+- Fix an issue in the Find window where syntax highlighting for regular expressions could break for some patterns.
 - Fix an issue where the editor incorrectly highlighted paired symbols when an escaped symbol was nearby.
 - Fix an issue in the file browser where TypeScript documents were incorrectly displayed with a video icon.
 - Address a potential crash when pasting multiline text into the editor under certain conditions.
