@@ -41,6 +41,7 @@ struct FindPanelFieldView: View {
     
     @State private var settings: TextFinderSettings = .shared
     @State private var result: FindResult?
+    @State private var resultClientIdentifier: ObjectIdentifier?
     @State private var isFindStringValid = true
     @State private var isPressingShift = false
     @State private var isRegexReferencePresented = false
@@ -78,7 +79,7 @@ struct FindPanelFieldView: View {
                                 clearLabel: String(localized: "Clear Recent Searches", table: "TextFind", comment: "menu item label"),
                                 value: $settings.findString)
                     Spacer()
-                    FindPanelFieldAccessoryView(result: (self.result?.action == .find) ? self.result?.message : nil,
+                    FindPanelFieldAccessoryView(result: self.findResultMessage,
                                                 text: $settings.findString)
                         .onGeometryChange(for: CGFloat.self, of: \.size.width) { self.findMessageWidth = $0 }
                 }
@@ -148,20 +149,44 @@ struct FindPanelFieldView: View {
         }
         .onChange(of: self.settings.findString) {
             self.result = nil
+            self.resultClientIdentifier = nil
         }
         .onChange(of: self.settings.replacementString) {
             if self.result?.action == .replace {
                 self.result = nil
+                self.resultClientIdentifier = nil
             }
         }
         .task {
             for await notification in NotificationCenter.default.notifications(named: TextFinder.DidFindMessage.name) {
                 self.result = notification.userInfo?["result"] as? FindResult
+                if let finder = notification.object as? TextFinder {
+                    self.resultClientIdentifier = finder.client.map(ObjectIdentifier.init)
+                }
+            }
+        }
+        .task {
+            for await notification in NotificationCenter.default.notifications(named: NSTextView.didChangeSelectionNotification) {
+                guard
+                    var result = self.result,
+                    result.action == .find,
+                    result.currentMatchIndex != nil,
+                    let matchedRange = result.matchedRange,
+                    let textView = notification.object as? NSTextView,
+                    self.resultClientIdentifier == ObjectIdentifier(textView),
+                    textView.selectedRanges.count == 1,
+                    textView.selectedRange() != matchedRange
+                else { continue }
+                
+                result.currentMatchIndex = nil
+                result.matchedRange = nil
+                self.result = result
             }
         }
         .task {
             for await _ in NotificationCenter.default.notifications(named: NSWindow.didResignMainNotification) {
                 self.result = nil
+                self.resultClientIdentifier = nil
             }
         }
         .task {
@@ -171,6 +196,14 @@ struct FindPanelFieldView: View {
         }
         .scenePadding([.top, .horizontal])
         .padding(.bottom, 8)
+    }
+    
+    
+    private var findResultMessage: String? {
+        
+        guard let result, result.action == .find else { return nil }
+        
+        return result.positionMessage ?? result.message
     }
     
     

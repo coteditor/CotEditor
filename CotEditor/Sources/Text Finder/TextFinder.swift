@@ -43,6 +43,8 @@ struct FindResult {
     
     var action: TextFind.Action
     var count: Int
+    var currentMatchIndex: Int?
+    var matchedRange: NSRange?
 }
 
 
@@ -54,6 +56,23 @@ struct FindAllMatch: Identifiable {
     var lineNumber: Int
     var inlineLocation: Int
     nonisolated(unsafe) var attributedLineString: NSAttributedString
+}
+
+
+struct FindMatchesCache {
+    
+    struct FindOptions: Equatable {
+        
+        var textVersion: Int
+        var findString: String
+        var mode: TextFind.Mode
+        var inSelection: Bool
+        var selectedRanges: [NSRange]
+    }
+    
+    
+    var options: FindOptions
+    var matches: [NSRange]
 }
 
 
@@ -118,13 +137,26 @@ struct FindAllMatch: Identifiable {
     
     let settings: TextFinderSettings = .shared
     
-    weak var client: NSTextView!
+    weak var client: NSTextView!  { didSet { self.observeClientTextChanges() } }
     
     
     // MARK: Private Properties
     
+    private(set) var findMatchesCache: FindMatchesCache?
+    private var textVersion = 0
+    
     private var findTask: Task<Void, any Error>?
     private var highlightObservationTask: Task<Void, Never>?
+    private var textChangeObserver: (any NSObjectProtocol)?
+    
+    
+    // MARK: Lifecycle
+    
+    isolated deinit {
+        self.findTask?.cancel()
+        self.highlightObservationTask?.cancel()
+        self.removeTextChangeObserver()
+    }
     
     
     // MARK: Public Methods
@@ -272,7 +304,7 @@ struct FindAllMatch: Identifiable {
         
         self.client.selectedRanges = matchedRanges as [NSValue]
         
-        self.notify(.find, count: matchedRanges.count)
+        self.notify(FindResult(action: .find, count: matchedRanges.count))
         self.settings.noteFindHistory()
     }
     
@@ -347,6 +379,7 @@ struct FindAllMatch: Identifiable {
         
         Task {
             try await self.client.replaceAll(definition, inSelection: self.settings.inSelection)
+            self.invalidateFindMatchesCache()
         }
     }
     
@@ -367,6 +400,75 @@ struct FindAllMatch: Identifiable {
     
     
     // MARK: Private Methods
+    
+    /// Observes text changes in the current client and invalidates cache.
+    private func observeClientTextChanges() {
+        
+        self.removeTextChangeObserver()
+        
+        guard let textStorage = self.client?.textStorage else { return }
+        
+        self.textChangeObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: textStorage, queue: .main) { [weak self] notification in
+            let textStorage = notification.object as! NSTextStorage
+            
+            guard textStorage.editedMask.contains(.editedCharacters) else { return }
+            
+            MainActor.assumeIsolated {
+                self?.invalidateFindMatchesCache()
+            }
+        }
+    }
+    
+    
+    /// Removes text change observer if set.
+    private func removeTextChangeObserver() {
+        
+        guard let textChangeObserver else { return }
+        
+        NotificationCenter.default.removeObserver(textChangeObserver)
+        self.textChangeObserver = nil
+    }
+    
+    
+    /// Invalidates cached find matches.
+    private func invalidateFindMatchesCache() {
+        
+        self.findMatchesCache = nil
+        self.textVersion &+= 1
+    }
+    
+    
+    /// Returns cached matches or creates a new cache from the current find state.
+    ///
+    /// - Parameter textFind: The current find state.
+    /// - Returns: Matched ranges.
+    /// - Throws: `CancellationError`
+    private func findMatches(for textFind: TextFind) async throws -> [NSRange] {
+        
+        let options = FindMatchesCache.FindOptions(textVersion: self.textVersion,
+                                                   findString: textFind.findString,
+                                                   mode: textFind.mode,
+                                                   inSelection: textFind.inSelection,
+                                                   selectedRanges: textFind.inSelection ? textFind.selectedRanges : [])
+        
+        if let cache = self.findMatchesCache, cache.options == options {
+            return cache.matches
+        }
+        
+        let task = Task.detached(priority: .userInitiated) {
+            try textFind.matches
+        }
+        let matches = try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
+        
+        self.findMatchesCache = FindMatchesCache(options: options, matches: matches)
+        
+        return matches
+    }
+    
     
     /// Checks the Find action can be performed and alerts if needed.
     ///
@@ -424,17 +526,12 @@ struct FindAllMatch: Identifiable {
         let client = self.client!
         let wraps = self.settings.isWrap
         
-        // find in background thread
-        let task = Task.detached(priority: .userInitiated) {
-            let matches = try textFind.matches
-            let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
-            return (matches, result)
-        }
-        let (matches, result) = try await withTaskCancellationHandler {
-            try await task.value
-        } onCancel: {
-            task.cancel()
-        }
+        let matches = try await self.findMatches(for: textFind)
+        let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
+        let matchedRange = isIncremental ? nil : result?.range
+        let currentMatchIndex = matchedRange
+            .flatMap(matches.firstIndex(of:))
+            .map { $0 + 1 }
         
         // mark all matches
         if isIncremental {
@@ -464,7 +561,8 @@ struct FindAllMatch: Identifiable {
             NSSound.beep()
         }
         
-        self.notify(.find, count: matches.count)
+        let findResult = FindResult(action: .find, count: matches.count, currentMatchIndex: currentMatchIndex, matchedRange: matchedRange)
+        self.notify(findResult)
         if !isIncremental {
             self.settings.noteFindHistory()
         }
@@ -481,10 +579,16 @@ struct FindAllMatch: Identifiable {
         guard let result = textFind.replace(with: replacementString) else { return false }
         
         // apply replacement to text view
-        return self.client.replace(with: result.value, range: result.range,
-                                   selectedRange: NSRange(location: result.range.location,
-                                                          length: result.value.length),
-                                   actionName: String(localized: "Replace", table: "TextFind"))
+        let didReplace = self.client.replace(with: result.value, range: result.range,
+                                             selectedRange: NSRange(location: result.range.location,
+                                                                    length: result.value.length),
+                                             actionName: String(localized: "Replace", table: "TextFind"))
+        
+        if didReplace {
+            self.invalidateFindMatchesCache()
+        }
+        
+        return didReplace
     }
     
     
@@ -567,7 +671,7 @@ struct FindAllMatch: Identifiable {
         
         progress.finish()
         
-        self.notify(.find, count: matches.count)
+        self.notify(FindResult(action: .find, count: matches.count))
         
         if showsList {
             let info: [AnyHashable: Any] = ["findString": textFind.findString, "matches": matches, "client": client]
@@ -619,44 +723,24 @@ struct FindAllMatch: Identifiable {
             // apply found strings to the text view
             client.replace(with: replacementItems.map(\.value), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
                            actionName: String(localized: "Replace All", table: "TextFind"))
+            self.invalidateFindMatchesCache()
         } else {
             NSSound.beep()
         }
         
         progress.finish()
         
-        self.notify(.replace, count: progress.count)
+        self.notify(FindResult(action: .replace, count: progress.count))
         self.settings.noteReplaceHistory()
     }
     
     
     /// Notifies the find/replacement result to the user.
     ///
-    /// - Parameters:
-    ///   - action: The find action type.
-    ///   - count: The number o the items proceeded.
-    private func notify(_ action: TextFind.Action, count: Int) {
-        
-        let result = FindResult(action: action, count: count)
+    /// - Parameter result: The find/replacement result.
+    private func notify(_ result: FindResult) {
         
         NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["result": result])
-        AccessibilityNotification.Announcement(result.message).post()
-    }
-}
-
-
-extension FindResult {
-    
-    /// The short result message for the user interface.
-    var message: String {
-        
-        switch self.action {
-            case .find:
-                String(localized: "FindResult.find.message", defaultValue: "\(self.count) matches", table: "TextFind",
-                       comment: "short result message for Find All (%lld is number of found)")
-            case .replace:
-                String(localized: "FindResult.replace.message", defaultValue: "\(self.count) replaced", table: "TextFind",
-                       comment: "short result message for Replace All (%lld is number of replaced)")
-        }
+        AccessibilityNotification.Announcement(result.accessibilityPositionMessage ?? result.message).post()
     }
 }
