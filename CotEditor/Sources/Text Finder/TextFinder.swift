@@ -43,6 +43,8 @@ struct FindResult {
     
     var action: TextFind.Action
     var count: Int
+    var currentMatchIndex: Int?
+    var matchedRange: NSRange?
 }
 
 
@@ -302,7 +304,7 @@ struct FindMatchesCache {
         
         self.client.selectedRanges = matchedRanges as [NSValue]
         
-        self.notify(.find, count: matchedRanges.count)
+        self.notify(FindResult(action: .find, count: matchedRanges.count))
         self.settings.noteFindHistory()
     }
     
@@ -526,6 +528,10 @@ struct FindMatchesCache {
         
         let matches = try await self.findMatches(for: textFind)
         let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
+        let matchedRange = result?.range
+        let currentMatchIndex = matchedRange
+            .flatMap(matches.firstIndex(of:))
+            .map { $0 + 1 }
         
         // mark all matches
         if isIncremental {
@@ -555,7 +561,8 @@ struct FindMatchesCache {
             NSSound.beep()
         }
         
-        self.notify(.find, count: matches.count)
+        let findResult = FindResult(action: .find, count: matches.count, currentMatchIndex: currentMatchIndex, matchedRange: matchedRange)
+        self.notify(findResult)
         if !isIncremental {
             self.settings.noteFindHistory()
         }
@@ -664,7 +671,7 @@ struct FindMatchesCache {
         
         progress.finish()
         
-        self.notify(.find, count: matches.count)
+        self.notify(FindResult(action: .find, count: matches.count))
         
         if showsList {
             let info: [AnyHashable: Any] = ["findString": textFind.findString, "matches": matches, "client": client]
@@ -723,19 +730,15 @@ struct FindMatchesCache {
         
         progress.finish()
         
-        self.notify(.replace, count: progress.count)
+        self.notify(FindResult(action: .replace, count: progress.count))
         self.settings.noteReplaceHistory()
     }
     
     
     /// Notifies the find/replacement result to the user.
     ///
-    /// - Parameters:
-    ///   - action: The find action type.
-    ///   - count: The number o the items proceeded.
-    private func notify(_ action: TextFind.Action, count: Int) {
-        
-        let result = FindResult(action: action, count: count)
+    /// - Parameter result: The find/replacement result.
+    private func notify(_ result: FindResult) {
         
         NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["result": result])
         AccessibilityNotification.Announcement(result.message).post()

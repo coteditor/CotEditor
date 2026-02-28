@@ -146,6 +146,60 @@ import Testing
     }
     
     
+    @Test func findResultMatchMetadata() async throws {
+        
+        do {
+            let textView = TestTextView(string: "foo bar foo")
+            
+            let finder = TextFinder()
+            finder.client = textView
+            finder.settings.findString = "foo"
+            finder.settings.usesRegularExpression = false
+            
+            if finder.settings.inSelection {
+                textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+            } else {
+                textView.setSelectedRange(NSRange(0..<0))
+            }
+            
+            let firstResult = try await self.performFindAction(.nextMatch, with: finder)
+            let secondResult = try await self.performFindAction(.nextMatch, with: finder)
+            
+            #expect(firstResult.count == 2)
+            #expect(firstResult.currentMatchIndex == 1)
+            #expect(firstResult.matchedRange == NSRange(0..<3))
+            
+            if finder.settings.inSelection {
+                #expect(secondResult.currentMatchIndex == 1)
+                #expect(secondResult.matchedRange == NSRange(0..<3))
+            } else {
+                #expect(secondResult.currentMatchIndex == 2)
+                #expect(secondResult.matchedRange == NSRange(8..<11))
+                
+                let previousResult = try await self.performFindAction(.previousMatch, with: finder)
+                #expect(previousResult.currentMatchIndex == 1)
+                #expect(previousResult.matchedRange == NSRange(0..<3))
+            }
+        }
+        
+        do {
+            let textView = TestTextView(string: "bar baz")
+            textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+            
+            let finder = TextFinder()
+            finder.client = textView
+            finder.settings.findString = "foo"
+            finder.settings.usesRegularExpression = false
+            
+            let result = try await self.performFindAction(.nextMatch, with: finder)
+            
+            #expect(result.count == 0)
+            #expect(result.currentMatchIndex == nil)
+            #expect(result.matchedRange == nil)
+        }
+    }
+    
+    
     // MARK: Private Methods
     
     private func performFindAction(_ action: TextFinder.Action, with finder: TextFinder) async throws -> FindResult {
