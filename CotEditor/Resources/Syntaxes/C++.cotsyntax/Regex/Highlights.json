@@ -1,369 +1,369 @@
 {
   "attributes" : [
     {
-      "beginString" : "#define"
+      "begin" : "#define"
     },
     {
-      "beginString" : "#elif"
+      "begin" : "#elif"
     },
     {
-      "beginString" : "#elifdef"
+      "begin" : "#elifdef"
     },
     {
-      "beginString" : "#elifndef"
+      "begin" : "#elifndef"
     },
     {
-      "beginString" : "#else"
+      "begin" : "#else"
     },
     {
-      "beginString" : "#endif"
+      "begin" : "#endif"
     },
     {
-      "beginString" : "#error"
+      "begin" : "#error"
     },
     {
-      "beginString" : "#if"
+      "begin" : "#if"
     },
     {
-      "beginString" : "#ifdef"
+      "begin" : "#ifdef"
     },
     {
-      "beginString" : "#ifndef"
+      "begin" : "#ifndef"
     },
     {
-      "beginString" : "#include"
+      "begin" : "#include"
     },
     {
-      "beginString" : "#line"
+      "begin" : "#line"
     },
     {
-      "beginString" : "#pragma"
+      "begin" : "#pragma"
     },
     {
-      "beginString" : "#undef"
+      "begin" : "#undef"
     },
     {
-      "beginString" : "#warning"
+      "begin" : "#warning"
     }
   ],
   "characters" : [
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "alignas"
+      "begin" : "alignas"
     },
     {
-      "beginString" : "alignof"
+      "begin" : "alignof"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "and_eq"
+      "begin" : "and_eq"
     },
     {
-      "beginString" : "asm"
+      "begin" : "asm"
     },
     {
-      "beginString" : "auto"
+      "begin" : "auto"
     },
     {
-      "beginString" : "bitand"
+      "begin" : "bitand"
     },
     {
-      "beginString" : "bitor"
+      "begin" : "bitor"
     },
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "char"
+      "begin" : "char"
     },
     {
-      "beginString" : "char16_t"
+      "begin" : "char16_t"
     },
     {
-      "beginString" : "char32_t"
+      "begin" : "char32_t"
     },
     {
-      "beginString" : "char8_t"
+      "begin" : "char8_t"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "co_await"
+      "begin" : "co_await"
     },
     {
-      "beginString" : "co_return"
+      "begin" : "co_return"
     },
     {
-      "beginString" : "co_yield"
+      "begin" : "co_yield"
     },
     {
-      "beginString" : "compl"
+      "begin" : "compl"
     },
     {
-      "beginString" : "concept"
+      "begin" : "concept"
     },
     {
-      "beginString" : "const"
+      "begin" : "const"
     },
     {
-      "beginString" : "const_cast"
+      "begin" : "const_cast"
     },
     {
-      "beginString" : "consteval"
+      "begin" : "consteval"
     },
     {
-      "beginString" : "constexpr"
+      "begin" : "constexpr"
     },
     {
-      "beginString" : "constinit"
+      "begin" : "constinit"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "decltype"
+      "begin" : "decltype"
     },
     {
-      "beginString" : "default"
+      "begin" : "default"
     },
     {
-      "beginString" : "delete"
+      "begin" : "delete"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "dynamic_cast"
+      "begin" : "dynamic_cast"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "enum"
+      "begin" : "enum"
     },
     {
-      "beginString" : "explicit"
+      "begin" : "explicit"
     },
     {
-      "beginString" : "export"
+      "begin" : "export"
     },
     {
-      "beginString" : "extern"
+      "begin" : "extern"
     },
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "float"
+      "begin" : "float"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "friend"
+      "begin" : "friend"
     },
     {
-      "beginString" : "goto"
+      "begin" : "goto"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "inline"
+      "begin" : "inline"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "likely"
+      "begin" : "likely"
     },
     {
-      "beginString" : "long"
+      "begin" : "long"
     },
     {
-      "beginString" : "mutable"
+      "begin" : "mutable"
     },
     {
-      "beginString" : "namespace"
+      "begin" : "namespace"
     },
     {
-      "beginString" : "new"
+      "begin" : "new"
     },
     {
-      "beginString" : "no_unique_address"
+      "begin" : "no_unique_address"
     },
     {
-      "beginString" : "noexcept"
+      "begin" : "noexcept"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "not_eq"
+      "begin" : "not_eq"
     },
     {
-      "beginString" : "nullptr"
+      "begin" : "nullptr"
     },
     {
-      "beginString" : "operator"
+      "begin" : "operator"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "or_eq"
+      "begin" : "or_eq"
     },
     {
-      "beginString" : "private"
+      "begin" : "private"
     },
     {
-      "beginString" : "protected"
+      "begin" : "protected"
     },
     {
-      "beginString" : "public"
+      "begin" : "public"
     },
     {
-      "beginString" : "register"
+      "begin" : "register"
     },
     {
-      "beginString" : "reinterpret_cast"
+      "begin" : "reinterpret_cast"
     },
     {
-      "beginString" : "requires"
+      "begin" : "requires"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "short"
+      "begin" : "short"
     },
     {
-      "beginString" : "signed"
+      "begin" : "signed"
     },
     {
-      "beginString" : "sizeof"
+      "begin" : "sizeof"
     },
     {
-      "beginString" : "static"
+      "begin" : "static"
     },
     {
-      "beginString" : "static_assert"
+      "begin" : "static_assert"
     },
     {
-      "beginString" : "static_cast"
+      "begin" : "static_cast"
     },
     {
-      "beginString" : "struct"
+      "begin" : "struct"
     },
     {
-      "beginString" : "switch"
+      "begin" : "switch"
     },
     {
-      "beginString" : "template"
+      "begin" : "template"
     },
     {
-      "beginString" : "this"
+      "begin" : "this"
     },
     {
-      "beginString" : "thread_local"
+      "begin" : "thread_local"
     },
     {
-      "beginString" : "throw"
+      "begin" : "throw"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "typedef"
+      "begin" : "typedef"
     },
     {
-      "beginString" : "typeid"
+      "begin" : "typeid"
     },
     {
-      "beginString" : "typename"
+      "begin" : "typename"
     },
     {
-      "beginString" : "union"
+      "begin" : "union"
     },
     {
-      "beginString" : "unlikely"
+      "begin" : "unlikely"
     },
     {
-      "beginString" : "unsigned"
+      "begin" : "unsigned"
     },
     {
-      "beginString" : "using"
+      "begin" : "using"
     },
     {
-      "beginString" : "virtual"
+      "begin" : "virtual"
     },
     {
-      "beginString" : "void"
+      "begin" : "void"
     },
     {
-      "beginString" : "volatile"
+      "begin" : "volatile"
     },
     {
-      "beginString" : "wchar_t"
+      "begin" : "wchar_t"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "xor"
+      "begin" : "xor"
     },
     {
-      "beginString" : "xor_eq"
+      "begin" : "xor_eq"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "0",
+      "begin" : "0",
       "description" : "zero"
     },
     {
-      "beginString" : "\\b-?[1-9][0-9]*l?\\b",
+      "begin" : "\\b-?[1-9][0-9]*l?\\b",
       "description" : "integer",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?[lf]?\\b",
+      "begin" : "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?[lf]?\\b",
       "description" : "float",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0[1-7][0-7]*+l?\\b",
+      "begin" : "\\b0[1-7][0-7]*+l?\\b",
       "description" : "octal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-f]+l?\\b",
+      "begin" : "\\b0x[0-9a-f]+l?\\b",
       "description" : "hex",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -371,74 +371,74 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "(?<=#include)[\\t ]*<.+>",
+      "begin" : "(?<=#include)[\\t ]*<.+>",
       "regularExpression" : true
     },
     {
-      "beginString" : "L\""
+      "begin" : "L\""
     },
     {
-      "beginString" : "R\"",
-      "endString" : "\"",
+      "begin" : "R\"",
+      "end" : "\"",
       "isMultiline" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "char"
+      "begin" : "char"
     },
     {
-      "beginString" : "char16_t"
+      "begin" : "char16_t"
     },
     {
-      "beginString" : "char32_t"
+      "begin" : "char32_t"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "float"
+      "begin" : "float"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "long"
+      "begin" : "long"
     },
     {
-      "beginString" : "short"
+      "begin" : "short"
     },
     {
-      "beginString" : "signed"
+      "begin" : "signed"
     },
     {
-      "beginString" : "unsigned"
+      "begin" : "unsigned"
     },
     {
-      "beginString" : "wchar_t"
+      "begin" : "wchar_t"
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "NULL"
+      "begin" : "NULL"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "this"
+      "begin" : "this"
     }
   ]
 }

@@ -1,193 +1,193 @@
 {
   "characters" : [
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     },
     {
-      "beginString" : "'''",
-      "endString" : "'''",
+      "begin" : "'''",
+      "end" : "'''",
       "isMultiline" : true
     },
     {
-      "beginString" : "///",
-      "endString" : "///",
+      "begin" : "///",
+      "end" : "///",
       "isMultiline" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "by"
+      "begin" : "by"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "extends"
+      "begin" : "extends"
     },
     {
-      "beginString" : "finally"
+      "begin" : "finally"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "inst"
+      "begin" : "inst"
     },
     {
-      "beginString" : "instanceof"
+      "begin" : "instanceof"
     },
     {
-      "beginString" : "is"
+      "begin" : "is"
     },
     {
-      "beginString" : "loop"
+      "begin" : "loop"
     },
     {
-      "beginString" : "new"
+      "begin" : "new"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "of"
+      "begin" : "of"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "super"
+      "begin" : "super"
     },
     {
-      "beginString" : "switch"
+      "begin" : "switch"
     },
     {
-      "beginString" : "then"
+      "begin" : "then"
     },
     {
-      "beginString" : "this"
+      "begin" : "this"
     },
     {
-      "beginString" : "throw"
+      "begin" : "throw"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "typeof"
+      "begin" : "typeof"
     },
     {
-      "beginString" : "unless"
+      "begin" : "unless"
     },
     {
-      "beginString" : "until"
+      "begin" : "until"
     },
     {
-      "beginString" : "when"
+      "begin" : "when"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b0[bB][01][01_]*n?\\b",
+      "begin" : "\\b0[bB][01][01_]*n?\\b",
       "description" : "binary",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0[oO][0-7][0-7_]*n?\\b",
+      "begin" : "\\b0[oO][0-7][0-7_]*n?\\b",
       "description" : "octal",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0[xX][0-9a-fA-F][0-9a-fA-F_]*n?\\b",
+      "begin" : "\\b0[xX][0-9a-fA-F][0-9a-fA-F_]*n?\\b",
       "description" : "hexadecimal",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-9][0-9_]*(\\.[0-9]*)?([eE][-+]?[1-9][0-9_]*)?\\b",
+      "begin" : "\\b[0-9][0-9_]*(\\.[0-9]*)?([eE][-+]?[1-9][0-9_]*)?\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\.[0-9]*?([eE][-+]?[1-9][0-9_]*)?\\b",
+      "begin" : "\\b\\.[0-9]*?([eE][-+]?[1-9][0-9_]*)?\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "types" : [
     {
-      "beginString" : "@[a-zA-Z0-9$_]*",
+      "begin" : "@[a-zA-Z0-9$_]*",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "Infinity"
+      "begin" : "Infinity"
     },
     {
-      "beginString" : "NaN"
+      "begin" : "NaN"
     },
     {
-      "beginString" : "no"
+      "begin" : "no"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "off"
+      "begin" : "off"
     },
     {
-      "beginString" : "on"
+      "begin" : "on"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     },
     {
-      "beginString" : "undefined"
+      "begin" : "undefined"
     },
     {
-      "beginString" : "yes"
+      "begin" : "yes"
     }
   ],
   "variables" : [
     {
-      "beginString" : "this"
+      "begin" : "this"
     }
   ]
 }

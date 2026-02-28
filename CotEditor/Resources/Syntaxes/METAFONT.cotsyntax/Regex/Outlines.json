@@ -1,8 +1,8 @@
 [
   {
-    "beginString" : "beginchar\\((.*?),",
+    "pattern" : "beginchar\\((.*?),",
     "description" : "character",
-    "keyString" : "character: $1",
+    "template" : "character: $1",
     "kind" : "container"
   }
 ]

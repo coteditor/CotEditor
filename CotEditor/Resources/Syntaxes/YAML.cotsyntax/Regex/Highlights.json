@@ -1,170 +1,170 @@
 {
   "characters" : [
     {
-      "beginString" : "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{4}-[0-9]{2}?-[0-9]{2}?([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([ \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?\\b",
+      "begin" : "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{4}-[0-9]{2}?-[0-9]{2}?([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([ \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?\\b",
       "description" : "time",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "%TAG"
+      "begin" : "%TAG"
     },
     {
-      "beginString" : "%YAML [0-9.]+",
+      "begin" : "%YAML [0-9.]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "^---( |$)",
+      "begin" : "^---( |$)",
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\.\\.\\.$",
+      "begin" : "^\\.\\.\\.$",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=[-\\[{,]|^)[ \\t]*[^-:\\[\\]\\r\\n ][^:\\[\\]\\r\\n ]*[\\t ]*(?=:\\s)",
+      "begin" : "(?<=[-\\[{,]|^)[ \\t]*[^-:\\[\\]\\r\\n ][^:\\[\\]\\r\\n ]*[\\t ]*(?=:\\s)",
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\r\\n\\}\\]])",
+      "begin" : "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\r\\n\\}\\]])",
       "regularExpression" : true
     },
     {
-      "beginString" : "0x[0-9a-fA-F]+",
+      "begin" : "0x[0-9a-fA-F]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "[-+]?\\.(inf|Inf|INF)\\b",
+      "begin" : "[-+]?\\.(inf|Inf|INF)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\.(nan|NaN|NAN)\\b",
+      "begin" : "\\.(nan|NaN|NAN)\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\"",
+      "begin" : "\"",
+      "end" : "\"",
       "isMultiline" : true
     },
     {
-      "beginString" : "'.*?'",
+      "begin" : "'.*?'",
       "regularExpression" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "!"
+      "begin" : "!"
     },
     {
-      "beginString" : "!!"
+      "begin" : "!!"
     },
     {
-      "beginString" : "!!binary"
+      "begin" : "!!binary"
     },
     {
-      "beginString" : "!!bool"
+      "begin" : "!!bool"
     },
     {
-      "beginString" : "!!float"
+      "begin" : "!!float"
     },
     {
-      "beginString" : "!!int"
+      "begin" : "!!int"
     },
     {
-      "beginString" : "!!map"
+      "begin" : "!!map"
     },
     {
-      "beginString" : "!!merge"
+      "begin" : "!!merge"
     },
     {
-      "beginString" : "!!null"
+      "begin" : "!!null"
     },
     {
-      "beginString" : "!!omap"
+      "begin" : "!!omap"
     },
     {
-      "beginString" : "!!pairs"
+      "begin" : "!!pairs"
     },
     {
-      "beginString" : "!!seq"
+      "begin" : "!!seq"
     },
     {
-      "beginString" : "!!set"
+      "begin" : "!!set"
     },
     {
-      "beginString" : "!!str"
+      "begin" : "!!str"
     },
     {
-      "beginString" : "!!timestamp"
+      "begin" : "!!timestamp"
     },
     {
-      "beginString" : "!!value"
+      "begin" : "!!value"
     },
     {
-      "beginString" : "!!yaml"
+      "begin" : "!!yaml"
     },
     {
-      "beginString" : "!<",
-      "endString" : ">"
+      "begin" : "!<",
+      "end" : ">"
     },
     {
-      "beginString" : "(?<!!)!\\w+(!(\\w+)?)?",
+      "begin" : "(?<!!)!\\w+(!(\\w+)?)?",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag:\\S+",
+      "begin" : "\\btag:\\S+",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "(?<!!)(?:null|Null|NULL)\\b",
+      "begin" : "(?<!!)(?:null|Null|NULL)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=:)\\s*on\\b",
+      "begin" : "(?<=:)\\s*on\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "false",
+      "begin" : "false",
       "ignoreCase" : true
     },
     {
-      "beginString" : "no",
+      "begin" : "no",
       "ignoreCase" : true
     },
     {
-      "beginString" : "off",
+      "begin" : "off",
       "ignoreCase" : true
     },
     {
-      "beginString" : "true",
+      "begin" : "true",
       "ignoreCase" : true
     },
     {
-      "beginString" : "yes",
+      "begin" : "yes",
       "ignoreCase" : true
     },
     {
-      "beginString" : "~"
+      "begin" : "~"
     }
   ],
   "variables" : [
     {
-      "beginString" : "(?<!\\w)&[^ \\t\\r\\n]+\\b",
+      "begin" : "(?<!\\w)&[^ \\t\\r\\n]+\\b",
       "description" : "anchor",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\w)\\*[^ \\t\\r\\n]+\\b",
+      "begin" : "(?<!\\w)\\*[^ \\t\\r\\n]+\\b",
       "description" : "reference",
       "regularExpression" : true
     }

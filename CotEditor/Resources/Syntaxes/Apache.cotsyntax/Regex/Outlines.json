@@ -1,26 +1,26 @@
 [
   {
-    "beginString" : "^([\\t ]*)<Directory(?:Match)?[\\t ]+\"?(.*?)\"?>",
+    "pattern" : "^([\\t ]*)<Directory(?:Match)?[\\t ]+\"?(.*?)\"?>",
     "description" : "directory",
-    "keyString" : "$1Directory:  $2",
+    "template" : "$1Directory:  $2",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)<Files(?:Match)?[\\t ]+\"?(.*?)\"?>",
+    "pattern" : "^([\\t ]*)<Files(?:Match)?[\\t ]+\"?(.*?)\"?>",
     "description" : "files",
-    "keyString" : "$1Files:  $2",
+    "template" : "$1Files:  $2",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)<Location(?:Match)[\\t ]+\"?(.*?)\"?>",
+    "pattern" : "^([\\t ]*)<Location(?:Match)[\\t ]+\"?(.*?)\"?>",
     "description" : "location",
-    "keyString" : "$1Location:  $2",
+    "template" : "$1Location:  $2",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)<VirtualHost[\\t ]+\"?(.*?)\"?>",
+    "pattern" : "^([\\t ]*)<VirtualHost[\\t ]+\"?(.*?)\"?>",
     "description" : "virtualHost",
-    "keyString" : "$1VirtualHost:  $2",
+    "template" : "$1VirtualHost:  $2",
     "kind" : "container"
   }
 ]

@@ -1,23 +1,23 @@
 [
   {
-    "beginString" : "^([\\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\\{",
+    "pattern" : "^([\\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\\{",
     "description" : "sub-routine",
     "ignoreCase" : true,
-    "keyString" : "$1$2 $3 {}",
+    "template" : "$1$2 $3 {}",
     "kind" : "function"
   },
   {
-    "beginString" : "^[ ]*(\\@ISA)([^;]*);",
+    "pattern" : "^[ ]*(\\@ISA)([^;]*);",
     "description" : "@ISA",
     "ignoreCase" : true,
-    "keyString" : "$1 $2",
+    "template" : "$1 $2",
     "kind" : "value"
   },
   {
-    "beginString" : "^[ ]*(package)[ ]*([a-z][a-z0-9_]*).*$",
+    "pattern" : "^[ ]*(package)[ ]*([a-z][a-z0-9_]*).*$",
     "description" : "package",
     "ignoreCase" : true,
-    "keyString" : "$1 $2",
+    "template" : "$1 $2",
     "kind" : "container"
   }
 ]

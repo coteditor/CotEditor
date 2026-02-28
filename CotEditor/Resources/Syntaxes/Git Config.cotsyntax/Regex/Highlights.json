@@ -1,39 +1,39 @@
 {
   "keywords" : [
     {
-      "beginString" : "^[\\t ]*\\w+[\\t ]*(?<=)",
+      "begin" : "^[\\t ]*\\w+[\\t ]*(?<=)",
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<!\\w)[0-9.][0-9.]*(e-?[0-9.]+)?\\b",
+      "begin" : "(?<!\\w)[0-9.][0-9.]*(e-?[0-9.]+)?\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "types" : [
     {
-      "beginString" : "^\\[",
-      "endString" : "\\]",
+      "begin" : "^\\[",
+      "end" : "\\]",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ]
 }

@@ -1,3434 +1,3434 @@
 {
   "commands" : [
     {
-      "beginString" : "^\\s*AcceptFilter\\s",
+      "begin" : "^\\s*AcceptFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AcceptMutex\\s",
+      "begin" : "^\\s*AcceptMutex\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AcceptPathInfo\\s",
+      "begin" : "^\\s*AcceptPathInfo\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AccessConfig\\s",
+      "begin" : "^\\s*AccessConfig\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AccessFileName\\s",
+      "begin" : "^\\s*AccessFileName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Action\\s",
+      "begin" : "^\\s*Action\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddAlt\\s",
+      "begin" : "^\\s*AddAlt\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddAltByEncoding\\s",
+      "begin" : "^\\s*AddAltByEncoding\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddAltByType\\s",
+      "begin" : "^\\s*AddAltByType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddCharset\\s",
+      "begin" : "^\\s*AddCharset\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddClientEncoding\\s",
+      "begin" : "^\\s*AddClientEncoding\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddDefaultCharset\\s",
+      "begin" : "^\\s*AddDefaultCharset\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddDescription\\s",
+      "begin" : "^\\s*AddDescription\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddEncoding\\s",
+      "begin" : "^\\s*AddEncoding\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddHandler\\s",
+      "begin" : "^\\s*AddHandler\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddIcon\\s",
+      "begin" : "^\\s*AddIcon\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddIconByEncoding\\s",
+      "begin" : "^\\s*AddIconByEncoding\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddIconByType\\s",
+      "begin" : "^\\s*AddIconByType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddInputFilter\\s",
+      "begin" : "^\\s*AddInputFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddLanguage\\s",
+      "begin" : "^\\s*AddLanguage\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddModule\\s",
+      "begin" : "^\\s*AddModule\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddModuleInfo\\s",
+      "begin" : "^\\s*AddModuleInfo\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddOutputFilter\\s",
+      "begin" : "^\\s*AddOutputFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddOutputFilterByType\\s",
+      "begin" : "^\\s*AddOutputFilterByType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AddType\\s",
+      "begin" : "^\\s*AddType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AgentLog\\s",
+      "begin" : "^\\s*AgentLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Alias\\s",
+      "begin" : "^\\s*Alias\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AliasMatch\\s",
+      "begin" : "^\\s*AliasMatch\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Allow\\s",
+      "begin" : "^\\s*Allow\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AllowCONNECT\\s",
+      "begin" : "^\\s*AllowCONNECT\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AllowEncodedSlashes\\s",
+      "begin" : "^\\s*AllowEncodedSlashes\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AllowMethods\\s",
+      "begin" : "^\\s*AllowMethods\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AllowOverride\\s",
+      "begin" : "^\\s*AllowOverride\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AllowOverrideList\\s",
+      "begin" : "^\\s*AllowOverrideList\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Anonymous\\s",
+      "begin" : "^\\s*Anonymous\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Anonymous_Authoritative\\s",
+      "begin" : "^\\s*Anonymous_Authoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Anonymous_LogEmail\\s",
+      "begin" : "^\\s*Anonymous_LogEmail\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Anonymous_MustGiveEmail\\s",
+      "begin" : "^\\s*Anonymous_MustGiveEmail\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Anonymous_NoUserID\\s",
+      "begin" : "^\\s*Anonymous_NoUserID\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Anonymous_VerifyEmail\\s",
+      "begin" : "^\\s*Anonymous_VerifyEmail\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AssignUserID\\s",
+      "begin" : "^\\s*AssignUserID\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AsyncRequestWorkerFactor\\s",
+      "begin" : "^\\s*AsyncRequestWorkerFactor\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthAuthoritative\\s",
+      "begin" : "^\\s*AuthAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthBasicAuthoritative\\s",
+      "begin" : "^\\s*AuthBasicAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthBasicProvider\\s",
+      "begin" : "^\\s*AuthBasicProvider\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDBDUserPWQuery\\s",
+      "begin" : "^\\s*AuthDBDUserPWQuery\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDBDUserRealmQuery\\s",
+      "begin" : "^\\s*AuthDBDUserRealmQuery\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDBMAuthoritative\\s",
+      "begin" : "^\\s*AuthDBMAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDBMGroupFile\\s",
+      "begin" : "^\\s*AuthDBMGroupFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDBMType\\s",
+      "begin" : "^\\s*AuthDBMType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDBMUserFile\\s",
+      "begin" : "^\\s*AuthDBMUserFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestAlgorithm\\s",
+      "begin" : "^\\s*AuthDigestAlgorithm\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestDomain\\s",
+      "begin" : "^\\s*AuthDigestDomain\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestFile\\s",
+      "begin" : "^\\s*AuthDigestFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestGroupFile\\s",
+      "begin" : "^\\s*AuthDigestGroupFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestNcCheck\\s",
+      "begin" : "^\\s*AuthDigestNcCheck\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestNonceFormat\\s",
+      "begin" : "^\\s*AuthDigestNonceFormat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestNonceLifetime\\s",
+      "begin" : "^\\s*AuthDigestNonceLifetime\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestProvider\\s",
+      "begin" : "^\\s*AuthDigestProvider\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestQop\\s",
+      "begin" : "^\\s*AuthDigestQop\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthDigestShmemSize\\s",
+      "begin" : "^\\s*AuthDigestShmemSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormAuthoritative\\s",
+      "begin" : "^\\s*AuthFormAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormDisableNoStore\\s",
+      "begin" : "^\\s*AuthFormDisableNoStore\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormFakeBasicAuth\\s",
+      "begin" : "^\\s*AuthFormFakeBasicAuth\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormLocation\\s",
+      "begin" : "^\\s*AuthFormLocation\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormLoginRequiredLocation\\s",
+      "begin" : "^\\s*AuthFormLoginRequiredLocation\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormLoginSuccessLocation\\s",
+      "begin" : "^\\s*AuthFormLoginSuccessLocation\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormLogoutLocation\\s",
+      "begin" : "^\\s*AuthFormLogoutLocation\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormMethod\\s",
+      "begin" : "^\\s*AuthFormMethod\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormMimetype\\s",
+      "begin" : "^\\s*AuthFormMimetype\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormPassword\\s",
+      "begin" : "^\\s*AuthFormPassword\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormProvider\\s",
+      "begin" : "^\\s*AuthFormProvider\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormSitePassphrase\\s",
+      "begin" : "^\\s*AuthFormSitePassphrase\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormSize\\s",
+      "begin" : "^\\s*AuthFormSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthFormUsername\\s",
+      "begin" : "^\\s*AuthFormUsername\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthGroupFile\\s",
+      "begin" : "^\\s*AuthGroupFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPAuthoritative\\s",
+      "begin" : "^\\s*AuthLDAPAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPAuthorizePrefix\\s",
+      "begin" : "^\\s*AuthLDAPAuthorizePrefix\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPBindDN\\s",
+      "begin" : "^\\s*AuthLDAPBindDN\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPBindPassword\\s",
+      "begin" : "^\\s*AuthLDAPBindPassword\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPCharsetConfig\\s",
+      "begin" : "^\\s*AuthLDAPCharsetConfig\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPCompareAsUser\\s",
+      "begin" : "^\\s*AuthLDAPCompareAsUser\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPCompareDNOnServer\\s",
+      "begin" : "^\\s*AuthLDAPCompareDNOnServer\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPDereferenceAliases\\s",
+      "begin" : "^\\s*AuthLDAPDereferenceAliases\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPEnabled\\s",
+      "begin" : "^\\s*AuthLDAPEnabled\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPFrontPageHack\\s",
+      "begin" : "^\\s*AuthLDAPFrontPageHack\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPGroupAttribute\\s",
+      "begin" : "^\\s*AuthLDAPGroupAttribute\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPGroupAttributeIsDN\\s",
+      "begin" : "^\\s*AuthLDAPGroupAttributeIsDN\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPInitialBindAsUser\\s",
+      "begin" : "^\\s*AuthLDAPInitialBindAsUser\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPInitialBindPattern\\s",
+      "begin" : "^\\s*AuthLDAPInitialBindPattern\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPMaxSubGroupDepth\\s",
+      "begin" : "^\\s*AuthLDAPMaxSubGroupDepth\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPRemoteUserAttribute\\s",
+      "begin" : "^\\s*AuthLDAPRemoteUserAttribute\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPRemoteUserIsDN\\s",
+      "begin" : "^\\s*AuthLDAPRemoteUserIsDN\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPSearchAsUser\\s",
+      "begin" : "^\\s*AuthLDAPSearchAsUser\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPSubGroupAttribute\\s",
+      "begin" : "^\\s*AuthLDAPSubGroupAttribute\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPSubGroupClass\\s",
+      "begin" : "^\\s*AuthLDAPSubGroupClass\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthLDAPUrl\\s",
+      "begin" : "^\\s*AuthLDAPUrl\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthMerging\\s",
+      "begin" : "^\\s*AuthMerging\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthName\\s",
+      "begin" : "^\\s*AuthName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthnCacheContext\\s",
+      "begin" : "^\\s*AuthnCacheContext\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthnCacheEnable\\s",
+      "begin" : "^\\s*AuthnCacheEnable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthnCacheProvideFor\\s",
+      "begin" : "^\\s*AuthnCacheProvideFor\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthnCacheSOCache\\s",
+      "begin" : "^\\s*AuthnCacheSOCache\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthnCacheTimeout\\s",
+      "begin" : "^\\s*AuthnCacheTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthType\\s",
+      "begin" : "^\\s*AuthType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthUserFile\\s",
+      "begin" : "^\\s*AuthUserFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzDBDLoginToReferer\\s",
+      "begin" : "^\\s*AuthzDBDLoginToReferer\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzDBDQuery\\s",
+      "begin" : "^\\s*AuthzDBDQuery\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzDBDRedirectQuery\\s",
+      "begin" : "^\\s*AuthzDBDRedirectQuery\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzDBMAuthoritative\\s",
+      "begin" : "^\\s*AuthzDBMAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzDBMType\\s",
+      "begin" : "^\\s*AuthzDBMType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzDefaultAuthoritative\\s",
+      "begin" : "^\\s*AuthzDefaultAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzGroupFileAuthoritative\\s",
+      "begin" : "^\\s*AuthzGroupFileAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzLDAPAuthoritative\\s",
+      "begin" : "^\\s*AuthzLDAPAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzOwnerAuthoritative\\s",
+      "begin" : "^\\s*AuthzOwnerAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzSendForbiddenOnFailure\\s",
+      "begin" : "^\\s*AuthzSendForbiddenOnFailure\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*AuthzUserAuthoritative\\s",
+      "begin" : "^\\s*AuthzUserAuthoritative\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BalancerGrowth\\s",
+      "begin" : "^\\s*BalancerGrowth\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BalancerMember\\s",
+      "begin" : "^\\s*BalancerMember\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BindAddress\\s",
+      "begin" : "^\\s*BindAddress\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BrowserMatch\\s",
+      "begin" : "^\\s*BrowserMatch\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BrowserMatchNoCase\\s",
+      "begin" : "^\\s*BrowserMatchNoCase\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BS2000Account\\s",
+      "begin" : "^\\s*BS2000Account\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BufferedLogs\\s",
+      "begin" : "^\\s*BufferedLogs\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*BufferSize\\s",
+      "begin" : "^\\s*BufferSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheDefaultExpire\\s",
+      "begin" : "^\\s*CacheDefaultExpire\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheDirLength\\s",
+      "begin" : "^\\s*CacheDirLength\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheDirLevels\\s",
+      "begin" : "^\\s*CacheDirLevels\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheDisable\\s",
+      "begin" : "^\\s*CacheDisable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheEnable\\s",
+      "begin" : "^\\s*CacheEnable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheExpiryCheck\\s",
+      "begin" : "^\\s*CacheExpiryCheck\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheFile\\s",
+      "begin" : "^\\s*CacheFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheForceCompletion\\s",
+      "begin" : "^\\s*CacheForceCompletion\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheGcClean\\s",
+      "begin" : "^\\s*CacheGcClean\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheGcDaily\\s",
+      "begin" : "^\\s*CacheGcDaily\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheGcInterval\\s",
+      "begin" : "^\\s*CacheGcInterval\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheGcMemUsage\\s",
+      "begin" : "^\\s*CacheGcMemUsage\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheGcUnused\\s",
+      "begin" : "^\\s*CacheGcUnused\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheHeader\\s",
+      "begin" : "^\\s*CacheHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheIgnoreCacheControl\\s",
+      "begin" : "^\\s*CacheIgnoreCacheControl\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheIgnoreHeaders\\s",
+      "begin" : "^\\s*CacheIgnoreHeaders\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheIgnoreNoLastMod\\s",
+      "begin" : "^\\s*CacheIgnoreNoLastMod\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheIgnoreQueryString\\s",
+      "begin" : "^\\s*CacheIgnoreQueryString\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheIgnoreURLSessionIdentifiers\\s",
+      "begin" : "^\\s*CacheIgnoreURLSessionIdentifiers\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheKeyBaseURL\\s",
+      "begin" : "^\\s*CacheKeyBaseURL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheLastModifiedFactor\\s",
+      "begin" : "^\\s*CacheLastModifiedFactor\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheLock\\s",
+      "begin" : "^\\s*CacheLock\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheLockMaxAge\\s",
+      "begin" : "^\\s*CacheLockMaxAge\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheLockPath\\s",
+      "begin" : "^\\s*CacheLockPath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheMaxExpire\\s",
+      "begin" : "^\\s*CacheMaxExpire\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheMaxFileSize\\s",
+      "begin" : "^\\s*CacheMaxFileSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheMinExpire\\s",
+      "begin" : "^\\s*CacheMinExpire\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheMinFileSize\\s",
+      "begin" : "^\\s*CacheMinFileSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheNegotiatedDocs\\s",
+      "begin" : "^\\s*CacheNegotiatedDocs\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheQuickHandler\\s",
+      "begin" : "^\\s*CacheQuickHandler\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheReadSize\\s",
+      "begin" : "^\\s*CacheReadSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheReadTime\\s",
+      "begin" : "^\\s*CacheReadTime\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheRoot\\s",
+      "begin" : "^\\s*CacheRoot\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheSize\\s",
+      "begin" : "^\\s*CacheSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheStaleOnError\\s",
+      "begin" : "^\\s*CacheStaleOnError\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheStoreExpired\\s",
+      "begin" : "^\\s*CacheStoreExpired\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheStoreNoStore\\s",
+      "begin" : "^\\s*CacheStoreNoStore\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheStorePrivate\\s",
+      "begin" : "^\\s*CacheStorePrivate\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CacheTimeMargin\\s",
+      "begin" : "^\\s*CacheTimeMargin\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CGICommandArgs\\s",
+      "begin" : "^\\s*CGICommandArgs\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CGIMapExtension\\s",
+      "begin" : "^\\s*CGIMapExtension\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CharsetDefault\\s",
+      "begin" : "^\\s*CharsetDefault\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CharsetOptions\\s",
+      "begin" : "^\\s*CharsetOptions\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CharsetSourceEnc\\s",
+      "begin" : "^\\s*CharsetSourceEnc\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CheckCaseOnly\\s",
+      "begin" : "^\\s*CheckCaseOnly\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CheckSpelling\\s",
+      "begin" : "^\\s*CheckSpelling\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ChildPerUserID\\s",
+      "begin" : "^\\s*ChildPerUserID\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ChrootDir\\s",
+      "begin" : "^\\s*ChrootDir\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ClearModuleList\\s",
+      "begin" : "^\\s*ClearModuleList\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ContentDigest\\s",
+      "begin" : "^\\s*ContentDigest\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookieDomain\\s",
+      "begin" : "^\\s*CookieDomain\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookieExpires\\s",
+      "begin" : "^\\s*CookieExpires\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookieFormat\\s",
+      "begin" : "^\\s*CookieFormat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookieLog\\s",
+      "begin" : "^\\s*CookieLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookieName\\s",
+      "begin" : "^\\s*CookieName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookiePrefix\\s",
+      "begin" : "^\\s*CookiePrefix\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookieStyle\\s",
+      "begin" : "^\\s*CookieStyle\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CookieTracking\\s",
+      "begin" : "^\\s*CookieTracking\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CoreDumpDirectory\\s",
+      "begin" : "^\\s*CoreDumpDirectory\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*CustomLog\\s",
+      "begin" : "^\\s*CustomLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Dav\\s",
+      "begin" : "^\\s*Dav\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DavDepthInfinity\\s",
+      "begin" : "^\\s*DavDepthInfinity\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DavGenericLockDB\\s",
+      "begin" : "^\\s*DavGenericLockDB\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DavLockDB\\s",
+      "begin" : "^\\s*DavLockDB\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DavMinTimeout\\s",
+      "begin" : "^\\s*DavMinTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDExptime\\s",
+      "begin" : "^\\s*DBDExptime\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDInitSQL\\s",
+      "begin" : "^\\s*DBDInitSQL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDKeep\\s",
+      "begin" : "^\\s*DBDKeep\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDMax\\s",
+      "begin" : "^\\s*DBDMax\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDMin\\s",
+      "begin" : "^\\s*DBDMin\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDParams\\s",
+      "begin" : "^\\s*DBDParams\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDPersist\\s",
+      "begin" : "^\\s*DBDPersist\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDPrepareSQL\\s",
+      "begin" : "^\\s*DBDPrepareSQL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DBDriver\\s",
+      "begin" : "^\\s*DBDriver\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DefaultClientEncoding\\s",
+      "begin" : "^\\s*DefaultClientEncoding\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DefaultIcon\\s",
+      "begin" : "^\\s*DefaultIcon\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DefaultLanguage\\s",
+      "begin" : "^\\s*DefaultLanguage\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DefaultRuntimeDir\\s",
+      "begin" : "^\\s*DefaultRuntimeDir\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DefaultType\\s",
+      "begin" : "^\\s*DefaultType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Define\\s",
+      "begin" : "^\\s*Define\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DeflateBufferSize\\s",
+      "begin" : "^\\s*DeflateBufferSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DeflateCompressionLevel\\s",
+      "begin" : "^\\s*DeflateCompressionLevel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DeflateFilterNote\\s",
+      "begin" : "^\\s*DeflateFilterNote\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DeflateMemLevel\\s",
+      "begin" : "^\\s*DeflateMemLevel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DeflateWindowSize\\s",
+      "begin" : "^\\s*DeflateWindowSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Deny\\s",
+      "begin" : "^\\s*Deny\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DirectoryIndex\\s",
+      "begin" : "^\\s*DirectoryIndex\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DirectoryIndexRedirect\\s",
+      "begin" : "^\\s*DirectoryIndexRedirect\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DirectorySlash\\s",
+      "begin" : "^\\s*DirectorySlash\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DocumentRoot\\s",
+      "begin" : "^\\s*DocumentRoot\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DTracePrivileges\\s",
+      "begin" : "^\\s*DTracePrivileges\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DumpIOInput\\s",
+      "begin" : "^\\s*DumpIOInput\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DumpIOLogLevel\\s",
+      "begin" : "^\\s*DumpIOLogLevel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*DumpIOOutput\\s",
+      "begin" : "^\\s*DumpIOOutput\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*EBCDICConvert\\s",
+      "begin" : "^\\s*EBCDICConvert\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*EBCDICConvertByType\\s",
+      "begin" : "^\\s*EBCDICConvertByType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*EBCDICKludge\\s",
+      "begin" : "^\\s*EBCDICKludge\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*EnableExceptionHook\\s",
+      "begin" : "^\\s*EnableExceptionHook\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*EnableMMAP\\s",
+      "begin" : "^\\s*EnableMMAP\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*EnableSendfile\\s",
+      "begin" : "^\\s*EnableSendfile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*EncodingEngine\\s",
+      "begin" : "^\\s*EncodingEngine\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Error\\s",
+      "begin" : "^\\s*Error\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ErrorDocument\\s",
+      "begin" : "^\\s*ErrorDocument\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ErrorHeader\\s",
+      "begin" : "^\\s*ErrorHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ErrorLog\\s",
+      "begin" : "^\\s*ErrorLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ErrorLogFormat\\s",
+      "begin" : "^\\s*ErrorLogFormat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Example\\s",
+      "begin" : "^\\s*Example\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ExpiresActive\\s",
+      "begin" : "^\\s*ExpiresActive\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ExpiresByType\\s",
+      "begin" : "^\\s*ExpiresByType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ExpiresDefault\\s",
+      "begin" : "^\\s*ExpiresDefault\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ExtendedStatus\\s",
+      "begin" : "^\\s*ExtendedStatus\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ExtFilterDefine\\s",
+      "begin" : "^\\s*ExtFilterDefine\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ExtFilterOptions\\s",
+      "begin" : "^\\s*ExtFilterOptions\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FallbackResource\\s",
+      "begin" : "^\\s*FallbackResource\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FancyIndexing\\s",
+      "begin" : "^\\s*FancyIndexing\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FileETag\\s",
+      "begin" : "^\\s*FileETag\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FilterChain\\s",
+      "begin" : "^\\s*FilterChain\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FilterDeclare\\s",
+      "begin" : "^\\s*FilterDeclare\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FilterProtocol\\s",
+      "begin" : "^\\s*FilterProtocol\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FilterProvider\\s",
+      "begin" : "^\\s*FilterProvider\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*FilterTrace\\s",
+      "begin" : "^\\s*FilterTrace\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ForceLanguagePriority\\s",
+      "begin" : "^\\s*ForceLanguagePriority\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ForceType\\s",
+      "begin" : "^\\s*ForceType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ForensicLog\\s",
+      "begin" : "^\\s*ForensicLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*GprofDir\\s",
+      "begin" : "^\\s*GprofDir\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*GracefulShutdownTimeout\\s",
+      "begin" : "^\\s*GracefulShutdownTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Group\\s",
+      "begin" : "^\\s*Group\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Header\\s",
+      "begin" : "^\\s*Header\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*HeaderName\\s",
+      "begin" : "^\\s*HeaderName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*HeartbeatAddress\\s",
+      "begin" : "^\\s*HeartbeatAddress\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*HeartbeatListen\\s",
+      "begin" : "^\\s*HeartbeatListen\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*HeartbeatMaxServers\\s",
+      "begin" : "^\\s*HeartbeatMaxServers\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*HeartbeatStorage\\s",
+      "begin" : "^\\s*HeartbeatStorage\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*HostnameLookups\\s",
+      "begin" : "^\\s*HostnameLookups\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IdentityCheck\\s",
+      "begin" : "^\\s*IdentityCheck\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IdentityCheckTimeout\\s",
+      "begin" : "^\\s*IdentityCheckTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ImapBase\\s",
+      "begin" : "^\\s*ImapBase\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ImapDefault\\s",
+      "begin" : "^\\s*ImapDefault\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ImapMenu\\s",
+      "begin" : "^\\s*ImapMenu\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Include\\s",
+      "begin" : "^\\s*Include\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IncludeOptional\\s",
+      "begin" : "^\\s*IncludeOptional\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IndexHeadInsert\\s",
+      "begin" : "^\\s*IndexHeadInsert\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IndexIgnore\\s",
+      "begin" : "^\\s*IndexIgnore\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IndexIgnoreReset\\s",
+      "begin" : "^\\s*IndexIgnoreReset\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IndexOptions\\s",
+      "begin" : "^\\s*IndexOptions\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IndexOrderDefault\\s",
+      "begin" : "^\\s*IndexOrderDefault\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*IndexStyleSheet\\s",
+      "begin" : "^\\s*IndexStyleSheet\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*InputSed\\s",
+      "begin" : "^\\s*InputSed\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ISAPIAppendLogToErrors\\s",
+      "begin" : "^\\s*ISAPIAppendLogToErrors\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ISAPIAppendLogToQuery\\s",
+      "begin" : "^\\s*ISAPIAppendLogToQuery\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ISAPICacheFile\\s",
+      "begin" : "^\\s*ISAPICacheFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ISAPIFakeAsync\\s",
+      "begin" : "^\\s*ISAPIFakeAsync\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ISAPILogNotSupported\\s",
+      "begin" : "^\\s*ISAPILogNotSupported\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ISAPIReadAheadBuffer\\s",
+      "begin" : "^\\s*ISAPIReadAheadBuffer\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkAsfTomcat\\s",
+      "begin" : "^\\s*JkAsfTomcat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkAuthTypeIndicator\\s",
+      "begin" : "^\\s*JkAuthTypeIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkAutoAlias\\s",
+      "begin" : "^\\s*JkAutoAlias\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkCERTCHAINPrefix\\s",
+      "begin" : "^\\s*JkCERTCHAINPrefix\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkCERTSIndicator\\s",
+      "begin" : "^\\s*JkCERTSIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkCIPHERIndicator\\s",
+      "begin" : "^\\s*JkCIPHERIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkEnvVar\\s",
+      "begin" : "^\\s*JkEnvVar\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkExtractSSL\\s",
+      "begin" : "^\\s*JkExtractSSL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkHTTPSIndicator\\s",
+      "begin" : "^\\s*JkHTTPSIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkKEYSIZEIndicator\\s",
+      "begin" : "^\\s*JkKEYSIZEIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkLocalNameIndicator\\s",
+      "begin" : "^\\s*JkLocalNameIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkLocalPortIndicator\\s",
+      "begin" : "^\\s*JkLocalPortIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkLogFile\\s",
+      "begin" : "^\\s*JkLogFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkLogLevel\\s",
+      "begin" : "^\\s*JkLogLevel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkLogStampFormat\\s",
+      "begin" : "^\\s*JkLogStampFormat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkMount\\s",
+      "begin" : "^\\s*JkMount\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkMountCopy\\s",
+      "begin" : "^\\s*JkMountCopy\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkMountFile\\s",
+      "begin" : "^\\s*JkMountFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkMountFileReload\\s",
+      "begin" : "^\\s*JkMountFileReload\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkOptions\\s",
+      "begin" : "^\\s*JkOptions\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkRemoteAddrIndicator\\s",
+      "begin" : "^\\s*JkRemoteAddrIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkRemoteHostIndicator\\s",
+      "begin" : "^\\s*JkRemoteHostIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkRemotePortIndicator\\s",
+      "begin" : "^\\s*JkRemotePortIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkRemoteUserIndicator\\s",
+      "begin" : "^\\s*JkRemoteUserIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkRequestLogFormat\\s",
+      "begin" : "^\\s*JkRequestLogFormat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkSESSIONIndicator\\s",
+      "begin" : "^\\s*JkSESSIONIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkShmFile\\s",
+      "begin" : "^\\s*JkShmFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkShmSize\\s",
+      "begin" : "^\\s*JkShmSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkStripSession\\s",
+      "begin" : "^\\s*JkStripSession\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkUnMount\\s",
+      "begin" : "^\\s*JkUnMount\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkWatchdogInterval\\s",
+      "begin" : "^\\s*JkWatchdogInterval\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkWorkerIndicator\\s",
+      "begin" : "^\\s*JkWorkerIndicator\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkWorkerProperty\\s",
+      "begin" : "^\\s*JkWorkerProperty\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*JkWorkersFile\\s",
+      "begin" : "^\\s*JkWorkersFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*KeepAlive\\s",
+      "begin" : "^\\s*KeepAlive\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*KeepAliveTimeout\\s",
+      "begin" : "^\\s*KeepAliveTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*KeptBodySize\\s",
+      "begin" : "^\\s*KeptBodySize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LanguagePriority\\s",
+      "begin" : "^\\s*LanguagePriority\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPCacheEntries\\s",
+      "begin" : "^\\s*LDAPCacheEntries\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPCacheTTL\\s",
+      "begin" : "^\\s*LDAPCacheTTL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPConnectionPoolTTL\\s",
+      "begin" : "^\\s*LDAPConnectionPoolTTL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPConnectionTimeout\\s",
+      "begin" : "^\\s*LDAPConnectionTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPOpCacheEntries\\s",
+      "begin" : "^\\s*LDAPOpCacheEntries\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPOpCacheTTL\\s",
+      "begin" : "^\\s*LDAPOpCacheTTL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPReferralHopLimit\\s",
+      "begin" : "^\\s*LDAPReferralHopLimit\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPReferrals\\s",
+      "begin" : "^\\s*LDAPReferrals\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPRetries\\s",
+      "begin" : "^\\s*LDAPRetries\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPRetryDelay\\s",
+      "begin" : "^\\s*LDAPRetryDelay\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPSharedCacheFile\\s",
+      "begin" : "^\\s*LDAPSharedCacheFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPSharedCacheSize\\s",
+      "begin" : "^\\s*LDAPSharedCacheSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPTimeout\\s",
+      "begin" : "^\\s*LDAPTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPTrustedCA\\s",
+      "begin" : "^\\s*LDAPTrustedCA\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPTrustedCAType\\s",
+      "begin" : "^\\s*LDAPTrustedCAType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPTrustedClientCert\\s",
+      "begin" : "^\\s*LDAPTrustedClientCert\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPTrustedGlobalCert\\s",
+      "begin" : "^\\s*LDAPTrustedGlobalCert\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPTrustedMode\\s",
+      "begin" : "^\\s*LDAPTrustedMode\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LDAPVerifyServerCert\\s",
+      "begin" : "^\\s*LDAPVerifyServerCert\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LimitInternalRecursion\\s",
+      "begin" : "^\\s*LimitInternalRecursion\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LimitRequestBody\\s",
+      "begin" : "^\\s*LimitRequestBody\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LimitRequestFields\\s",
+      "begin" : "^\\s*LimitRequestFields\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LimitRequestFieldSize\\s",
+      "begin" : "^\\s*LimitRequestFieldSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LimitRequestLine\\s",
+      "begin" : "^\\s*LimitRequestLine\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LimitXMLRequestBody\\s",
+      "begin" : "^\\s*LimitXMLRequestBody\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Listen\\s",
+      "begin" : "^\\s*Listen\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ListenBackLog\\s",
+      "begin" : "^\\s*ListenBackLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LoadFile\\s",
+      "begin" : "^\\s*LoadFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LoadModule\\s",
+      "begin" : "^\\s*LoadModule\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LockFile\\s",
+      "begin" : "^\\s*LockFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LogFormat\\s",
+      "begin" : "^\\s*LogFormat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LogLevel\\s",
+      "begin" : "^\\s*LogLevel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LogMessage\\s",
+      "begin" : "^\\s*LogMessage\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaAuthzProvider\\s",
+      "begin" : "^\\s*LuaAuthzProvider\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookAccessChecker\\s",
+      "begin" : "^\\s*LuaHookAccessChecker\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookAuthChecker\\s",
+      "begin" : "^\\s*LuaHookAuthChecker\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookCheckUserID\\s",
+      "begin" : "^\\s*LuaHookCheckUserID\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookFixups\\s",
+      "begin" : "^\\s*LuaHookFixups\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookInsertFilter\\s",
+      "begin" : "^\\s*LuaHookInsertFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookMapToStorage\\s",
+      "begin" : "^\\s*LuaHookMapToStorage\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookTranslateName\\s",
+      "begin" : "^\\s*LuaHookTranslateName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaHookTypeChecker\\s",
+      "begin" : "^\\s*LuaHookTypeChecker\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaInherit\\s",
+      "begin" : "^\\s*LuaInherit\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaPackageCPath\\s",
+      "begin" : "^\\s*LuaPackageCPath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaPackagePath\\s",
+      "begin" : "^\\s*LuaPackagePath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaQuickHandler\\s",
+      "begin" : "^\\s*LuaQuickHandler\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaRoot\\s",
+      "begin" : "^\\s*LuaRoot\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*LuaScope\\s",
+      "begin" : "^\\s*LuaScope\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxClients\\s",
+      "begin" : "^\\s*MaxClients\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxConnectionsPerChild\\s",
+      "begin" : "^\\s*MaxConnectionsPerChild\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxKeepAliveRequests\\s",
+      "begin" : "^\\s*MaxKeepAliveRequests\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxMemFree\\s",
+      "begin" : "^\\s*MaxMemFree\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxRangeOverlaps\\s",
+      "begin" : "^\\s*MaxRangeOverlaps\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxRangeReversals\\s",
+      "begin" : "^\\s*MaxRangeReversals\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxRanges\\s",
+      "begin" : "^\\s*MaxRanges\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxRequestsPerChild\\s",
+      "begin" : "^\\s*MaxRequestsPerChild\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxRequestsPerThread\\s",
+      "begin" : "^\\s*MaxRequestsPerThread\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxRequestWorkers\\s",
+      "begin" : "^\\s*MaxRequestWorkers\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxSpareServers\\s",
+      "begin" : "^\\s*MaxSpareServers\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxSpareThreads\\s",
+      "begin" : "^\\s*MaxSpareThreads\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxThreads\\s",
+      "begin" : "^\\s*MaxThreads\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MaxThreadsPerChild\\s",
+      "begin" : "^\\s*MaxThreadsPerChild\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MCacheMaxObjectCount\\s",
+      "begin" : "^\\s*MCacheMaxObjectCount\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MCacheMaxObjectSize\\s",
+      "begin" : "^\\s*MCacheMaxObjectSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MCacheMaxStreamingBuffer\\s",
+      "begin" : "^\\s*MCacheMaxStreamingBuffer\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MCacheMinObjectSize\\s",
+      "begin" : "^\\s*MCacheMinObjectSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MCacheRemovalAlgorithm\\s",
+      "begin" : "^\\s*MCacheRemovalAlgorithm\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MCacheSize\\s",
+      "begin" : "^\\s*MCacheSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MetaDir\\s",
+      "begin" : "^\\s*MetaDir\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MetaFiles\\s",
+      "begin" : "^\\s*MetaFiles\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MetaSuffix\\s",
+      "begin" : "^\\s*MetaSuffix\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MimeMagicFile\\s",
+      "begin" : "^\\s*MimeMagicFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MinSpareServers\\s",
+      "begin" : "^\\s*MinSpareServers\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MinSpareThreads\\s",
+      "begin" : "^\\s*MinSpareThreads\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MMapFile\\s",
+      "begin" : "^\\s*MMapFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ModemStandard\\s",
+      "begin" : "^\\s*ModemStandard\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ModMimeUsePathInfo\\s",
+      "begin" : "^\\s*ModMimeUsePathInfo\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*MultiviewsMatch\\s",
+      "begin" : "^\\s*MultiviewsMatch\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Mutex\\s",
+      "begin" : "^\\s*Mutex\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*NameVirtualHost\\s",
+      "begin" : "^\\s*NameVirtualHost\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*NoCache\\s",
+      "begin" : "^\\s*NoCache\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*NoProxy\\s",
+      "begin" : "^\\s*NoProxy\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*NormalizeUsername\\s",
+      "begin" : "^\\s*NormalizeUsername\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*NumServers\\s",
+      "begin" : "^\\s*NumServers\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*NWSSLTrustedCerts\\s",
+      "begin" : "^\\s*NWSSLTrustedCerts\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*NWSSLUpgradeable\\s",
+      "begin" : "^\\s*NWSSLUpgradeable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Options\\s",
+      "begin" : "^\\s*Options\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Order\\s",
+      "begin" : "^\\s*Order\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*OutputSed\\s",
+      "begin" : "^\\s*OutputSed\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*PassEnv\\s",
+      "begin" : "^\\s*PassEnv\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*PidFile\\s",
+      "begin" : "^\\s*PidFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Port\\s",
+      "begin" : "^\\s*Port\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*PrivilegesMode\\s",
+      "begin" : "^\\s*PrivilegesMode\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Protocol\\s",
+      "begin" : "^\\s*Protocol\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProtocolEcho\\s",
+      "begin" : "^\\s*ProtocolEcho\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProtocolReqCheck\\s",
+      "begin" : "^\\s*ProtocolReqCheck\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyBadHeader\\s",
+      "begin" : "^\\s*ProxyBadHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyBlock\\s",
+      "begin" : "^\\s*ProxyBlock\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyDomain\\s",
+      "begin" : "^\\s*ProxyDomain\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyErrorOverride\\s",
+      "begin" : "^\\s*ProxyErrorOverride\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyExpressDBMFile\\s",
+      "begin" : "^\\s*ProxyExpressDBMFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyExpressDBMType\\s",
+      "begin" : "^\\s*ProxyExpressDBMType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyExpressEnable\\s",
+      "begin" : "^\\s*ProxyExpressEnable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyFtpDirCharset\\s",
+      "begin" : "^\\s*ProxyFtpDirCharset\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyFtpEscapeWildcards\\s",
+      "begin" : "^\\s*ProxyFtpEscapeWildcards\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyFtpListOnWildcard\\s",
+      "begin" : "^\\s*ProxyFtpListOnWildcard\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLBufSize\\s",
+      "begin" : "^\\s*ProxyHTMLBufSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLCharsetOut\\s",
+      "begin" : "^\\s*ProxyHTMLCharsetOut\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLDocType\\s",
+      "begin" : "^\\s*ProxyHTMLDocType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLEnable\\s",
+      "begin" : "^\\s*ProxyHTMLEnable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLEvents\\s",
+      "begin" : "^\\s*ProxyHTMLEvents\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLExtended\\s",
+      "begin" : "^\\s*ProxyHTMLExtended\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLFixups\\s",
+      "begin" : "^\\s*ProxyHTMLFixups\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLInterp\\s",
+      "begin" : "^\\s*ProxyHTMLInterp\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLLinks\\s",
+      "begin" : "^\\s*ProxyHTMLLinks\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLMeta\\s",
+      "begin" : "^\\s*ProxyHTMLMeta\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLStripComments\\s",
+      "begin" : "^\\s*ProxyHTMLStripComments\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyHTMLURLMap\\s",
+      "begin" : "^\\s*ProxyHTMLURLMap\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyIOBufferSize\\s",
+      "begin" : "^\\s*ProxyIOBufferSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyMaxForwards\\s",
+      "begin" : "^\\s*ProxyMaxForwards\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyPass\\s",
+      "begin" : "^\\s*ProxyPass\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyPassInterpolateEnv\\s",
+      "begin" : "^\\s*ProxyPassInterpolateEnv\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyPassMatch\\s",
+      "begin" : "^\\s*ProxyPassMatch\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyPassReverse\\s",
+      "begin" : "^\\s*ProxyPassReverse\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyPassReverseCookieDomain\\s",
+      "begin" : "^\\s*ProxyPassReverseCookieDomain\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyPassReverseCookiePath\\s",
+      "begin" : "^\\s*ProxyPassReverseCookiePath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyPreserveHost\\s",
+      "begin" : "^\\s*ProxyPreserveHost\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyReceiveBufferSize\\s",
+      "begin" : "^\\s*ProxyReceiveBufferSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyRemote\\s",
+      "begin" : "^\\s*ProxyRemote\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyRemoteMatch\\s",
+      "begin" : "^\\s*ProxyRemoteMatch\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyRequests\\s",
+      "begin" : "^\\s*ProxyRequests\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxySCGIInternalRedirect\\s",
+      "begin" : "^\\s*ProxySCGIInternalRedirect\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxySCGISendfile\\s",
+      "begin" : "^\\s*ProxySCGISendfile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxySet\\s",
+      "begin" : "^\\s*ProxySet\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxySourceAddress\\s",
+      "begin" : "^\\s*ProxySourceAddress\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyStatus\\s",
+      "begin" : "^\\s*ProxyStatus\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyTimeout\\s",
+      "begin" : "^\\s*ProxyTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ProxyVia\\s",
+      "begin" : "^\\s*ProxyVia\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ReadmeName\\s",
+      "begin" : "^\\s*ReadmeName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ReceiveBufferSize\\s",
+      "begin" : "^\\s*ReceiveBufferSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Redirect\\s",
+      "begin" : "^\\s*Redirect\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RedirectMatch\\s",
+      "begin" : "^\\s*RedirectMatch\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RedirectPermanent\\s",
+      "begin" : "^\\s*RedirectPermanent\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RedirectTemp\\s",
+      "begin" : "^\\s*RedirectTemp\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RefererIgnore\\s",
+      "begin" : "^\\s*RefererIgnore\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RefererLog\\s",
+      "begin" : "^\\s*RefererLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ReflectorHeader\\s",
+      "begin" : "^\\s*ReflectorHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoteIPHeader\\s",
+      "begin" : "^\\s*RemoteIPHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoteIPInternalProxy\\s",
+      "begin" : "^\\s*RemoteIPInternalProxy\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoteIPInternalProxyList\\s",
+      "begin" : "^\\s*RemoteIPInternalProxyList\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoteIPProxiesHeader\\s",
+      "begin" : "^\\s*RemoteIPProxiesHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoteIPTrustedProxy\\s",
+      "begin" : "^\\s*RemoteIPTrustedProxy\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoteIPTrustedProxyList\\s",
+      "begin" : "^\\s*RemoteIPTrustedProxyList\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoveCharset\\s",
+      "begin" : "^\\s*RemoveCharset\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoveEncoding\\s",
+      "begin" : "^\\s*RemoveEncoding\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoveHandler\\s",
+      "begin" : "^\\s*RemoveHandler\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoveInputFilter\\s",
+      "begin" : "^\\s*RemoveInputFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoveLanguage\\s",
+      "begin" : "^\\s*RemoveLanguage\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoveOutputFilter\\s",
+      "begin" : "^\\s*RemoveOutputFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RemoveType\\s",
+      "begin" : "^\\s*RemoveType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RequestHeader\\s",
+      "begin" : "^\\s*RequestHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RequestReadTimeout\\s",
+      "begin" : "^\\s*RequestReadTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Require\\s",
+      "begin" : "^\\s*Require\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ResourceConfig\\s",
+      "begin" : "^\\s*ResourceConfig\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteBase\\s",
+      "begin" : "^\\s*RewriteBase\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteCond\\s",
+      "begin" : "^\\s*RewriteCond\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteEngine\\s",
+      "begin" : "^\\s*RewriteEngine\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteLock\\s",
+      "begin" : "^\\s*RewriteLock\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteLog\\s",
+      "begin" : "^\\s*RewriteLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteLogLevel\\s",
+      "begin" : "^\\s*RewriteLogLevel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteMap\\s",
+      "begin" : "^\\s*RewriteMap\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteOptions\\s",
+      "begin" : "^\\s*RewriteOptions\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RewriteRule\\s",
+      "begin" : "^\\s*RewriteRule\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RLimitCPU\\s",
+      "begin" : "^\\s*RLimitCPU\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RLimitMEM\\s",
+      "begin" : "^\\s*RLimitMEM\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*RLimitNPROC\\s",
+      "begin" : "^\\s*RLimitNPROC\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Satisfy\\s",
+      "begin" : "^\\s*Satisfy\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScoreBoardFile\\s",
+      "begin" : "^\\s*ScoreBoardFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Script\\s",
+      "begin" : "^\\s*Script\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScriptAlias\\s",
+      "begin" : "^\\s*ScriptAlias\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScriptAliasMatch\\s",
+      "begin" : "^\\s*ScriptAliasMatch\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScriptInterpreterSource\\s",
+      "begin" : "^\\s*ScriptInterpreterSource\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScriptLog\\s",
+      "begin" : "^\\s*ScriptLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScriptLogBuffer\\s",
+      "begin" : "^\\s*ScriptLogBuffer\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScriptLogLength\\s",
+      "begin" : "^\\s*ScriptLogLength\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ScriptSock\\s",
+      "begin" : "^\\s*ScriptSock\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SecureListen\\s",
+      "begin" : "^\\s*SecureListen\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SeeRequestTail\\s",
+      "begin" : "^\\s*SeeRequestTail\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SendBufferSize\\s",
+      "begin" : "^\\s*SendBufferSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerAdmin\\s",
+      "begin" : "^\\s*ServerAdmin\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerAlias\\s",
+      "begin" : "^\\s*ServerAlias\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerLimit\\s",
+      "begin" : "^\\s*ServerLimit\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerName\\s",
+      "begin" : "^\\s*ServerName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerPath\\s",
+      "begin" : "^\\s*ServerPath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerRoot\\s",
+      "begin" : "^\\s*ServerRoot\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerSignature\\s",
+      "begin" : "^\\s*ServerSignature\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerTokens\\s",
+      "begin" : "^\\s*ServerTokens\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ServerType\\s",
+      "begin" : "^\\s*ServerType\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Session\\s",
+      "begin" : "^\\s*Session\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionCookieName2\\s",
+      "begin" : "^\\s*SessionCookieName2\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionCookieName\\s",
+      "begin" : "^\\s*SessionCookieName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionCookieRemove\\s",
+      "begin" : "^\\s*SessionCookieRemove\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionCryptoCipher\\s",
+      "begin" : "^\\s*SessionCryptoCipher\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionCryptoDriver\\s",
+      "begin" : "^\\s*SessionCryptoDriver\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionCryptoPassphrase\\s",
+      "begin" : "^\\s*SessionCryptoPassphrase\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionCryptoPassphraseFile\\s",
+      "begin" : "^\\s*SessionCryptoPassphraseFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDCookieName2\\s",
+      "begin" : "^\\s*SessionDBDCookieName2\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDCookieName\\s",
+      "begin" : "^\\s*SessionDBDCookieName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDCookieRemove\\s",
+      "begin" : "^\\s*SessionDBDCookieRemove\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDDeleteLabel\\s",
+      "begin" : "^\\s*SessionDBDDeleteLabel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDInsertLabel\\s",
+      "begin" : "^\\s*SessionDBDInsertLabel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDPerUser\\s",
+      "begin" : "^\\s*SessionDBDPerUser\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDSelectLabel\\s",
+      "begin" : "^\\s*SessionDBDSelectLabel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionDBDUpdateLabel\\s",
+      "begin" : "^\\s*SessionDBDUpdateLabel\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionEnv\\s",
+      "begin" : "^\\s*SessionEnv\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionExclude\\s",
+      "begin" : "^\\s*SessionExclude\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionHeader\\s",
+      "begin" : "^\\s*SessionHeader\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionInclude\\s",
+      "begin" : "^\\s*SessionInclude\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SessionMaxAge\\s",
+      "begin" : "^\\s*SessionMaxAge\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SetEnv\\s",
+      "begin" : "^\\s*SetEnv\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SetEnvIf\\s",
+      "begin" : "^\\s*SetEnvIf\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SetEnvIfExpr\\s",
+      "begin" : "^\\s*SetEnvIfExpr\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SetEnvIfNoCase\\s",
+      "begin" : "^\\s*SetEnvIfNoCase\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SetHandler\\s",
+      "begin" : "^\\s*SetHandler\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SetInputFilter\\s",
+      "begin" : "^\\s*SetInputFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SetOutputFilter\\s",
+      "begin" : "^\\s*SetOutputFilter\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ShmemUIDisUser\\s",
+      "begin" : "^\\s*ShmemUIDisUser\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSIEnableAccess\\s",
+      "begin" : "^\\s*SSIEnableAccess\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSIEndTag\\s",
+      "begin" : "^\\s*SSIEndTag\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSIErrorMsg\\s",
+      "begin" : "^\\s*SSIErrorMsg\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSIETag\\s",
+      "begin" : "^\\s*SSIETag\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSILastModified\\s",
+      "begin" : "^\\s*SSILastModified\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSILegacyExprParser\\s",
+      "begin" : "^\\s*SSILegacyExprParser\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSIStartTag\\s",
+      "begin" : "^\\s*SSIStartTag\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSITimeFormat\\s",
+      "begin" : "^\\s*SSITimeFormat\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSIUndefinedEcho\\s",
+      "begin" : "^\\s*SSIUndefinedEcho\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCACertificateFile\\s",
+      "begin" : "^\\s*SSLCACertificateFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCACertificatePath\\s",
+      "begin" : "^\\s*SSLCACertificatePath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCADNRequestFile\\s",
+      "begin" : "^\\s*SSLCADNRequestFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCADNRequestPath\\s",
+      "begin" : "^\\s*SSLCADNRequestPath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCARevocationCheck\\s",
+      "begin" : "^\\s*SSLCARevocationCheck\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCARevocationFile\\s",
+      "begin" : "^\\s*SSLCARevocationFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCARevocationPath\\s",
+      "begin" : "^\\s*SSLCARevocationPath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCertificateChainFile\\s",
+      "begin" : "^\\s*SSLCertificateChainFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCertificateFile\\s",
+      "begin" : "^\\s*SSLCertificateFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCertificateKeyFile\\s",
+      "begin" : "^\\s*SSLCertificateKeyFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCipherSuite\\s",
+      "begin" : "^\\s*SSLCipherSuite\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCompression\\s",
+      "begin" : "^\\s*SSLCompression\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLCryptoDevice\\s",
+      "begin" : "^\\s*SSLCryptoDevice\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLEngine\\s",
+      "begin" : "^\\s*SSLEngine\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLFIPS\\s",
+      "begin" : "^\\s*SSLFIPS\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLHonorCipherOrder\\s",
+      "begin" : "^\\s*SSLHonorCipherOrder\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLInsecureRenegotiation\\s",
+      "begin" : "^\\s*SSLInsecureRenegotiation\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLMutex\\s",
+      "begin" : "^\\s*SSLMutex\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLOCSPDefaultResponder\\s",
+      "begin" : "^\\s*SSLOCSPDefaultResponder\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLOCSPEnable\\s",
+      "begin" : "^\\s*SSLOCSPEnable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLOCSPOverrideResponder\\s",
+      "begin" : "^\\s*SSLOCSPOverrideResponder\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLOCSPResponderTimeout\\s",
+      "begin" : "^\\s*SSLOCSPResponderTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLOCSPResponseMaxAge\\s",
+      "begin" : "^\\s*SSLOCSPResponseMaxAge\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLOCSPResponseTimeSkew\\s",
+      "begin" : "^\\s*SSLOCSPResponseTimeSkew\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLOptions\\s",
+      "begin" : "^\\s*SSLOptions\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLPassPhraseDialog\\s",
+      "begin" : "^\\s*SSLPassPhraseDialog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProtocol\\s",
+      "begin" : "^\\s*SSLProtocol\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCACertificateFile\\s",
+      "begin" : "^\\s*SSLProxyCACertificateFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCACertificatePath\\s",
+      "begin" : "^\\s*SSLProxyCACertificatePath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCARevocationCheck\\s",
+      "begin" : "^\\s*SSLProxyCARevocationCheck\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCARevocationFile\\s",
+      "begin" : "^\\s*SSLProxyCARevocationFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCARevocationPath\\s",
+      "begin" : "^\\s*SSLProxyCARevocationPath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCheckPeerCN\\s",
+      "begin" : "^\\s*SSLProxyCheckPeerCN\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCheckPeerExpire\\s",
+      "begin" : "^\\s*SSLProxyCheckPeerExpire\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyCipherSuite\\s",
+      "begin" : "^\\s*SSLProxyCipherSuite\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyEngine\\s",
+      "begin" : "^\\s*SSLProxyEngine\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyMachineCertificateChainFile\\s",
+      "begin" : "^\\s*SSLProxyMachineCertificateChainFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyMachineCertificateFile\\s",
+      "begin" : "^\\s*SSLProxyMachineCertificateFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyMachineCertificatePath\\s",
+      "begin" : "^\\s*SSLProxyMachineCertificatePath\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyProtocol\\s",
+      "begin" : "^\\s*SSLProxyProtocol\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyVerify\\s",
+      "begin" : "^\\s*SSLProxyVerify\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLProxyVerifyDepth\\s",
+      "begin" : "^\\s*SSLProxyVerifyDepth\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLRandomSeed\\s",
+      "begin" : "^\\s*SSLRandomSeed\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLRenegBufferSize\\s",
+      "begin" : "^\\s*SSLRenegBufferSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLRequire\\s",
+      "begin" : "^\\s*SSLRequire\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLRequireSSL\\s",
+      "begin" : "^\\s*SSLRequireSSL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLSessionCache\\s",
+      "begin" : "^\\s*SSLSessionCache\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLSessionCacheTimeout\\s",
+      "begin" : "^\\s*SSLSessionCacheTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLSessionTicketKeyFile\\s",
+      "begin" : "^\\s*SSLSessionTicketKeyFile\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingCache\\s",
+      "begin" : "^\\s*SSLStaplingCache\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingErrorCacheTimeout\\s",
+      "begin" : "^\\s*SSLStaplingErrorCacheTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingFakeTryLater\\s",
+      "begin" : "^\\s*SSLStaplingFakeTryLater\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingForceURL\\s",
+      "begin" : "^\\s*SSLStaplingForceURL\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingResponderTimeout\\s",
+      "begin" : "^\\s*SSLStaplingResponderTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingResponseMaxAge\\s",
+      "begin" : "^\\s*SSLStaplingResponseMaxAge\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingResponseTimeSkew\\s",
+      "begin" : "^\\s*SSLStaplingResponseTimeSkew\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingReturnResponderErrors\\s",
+      "begin" : "^\\s*SSLStaplingReturnResponderErrors\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStaplingStandardCacheTimeout\\s",
+      "begin" : "^\\s*SSLStaplingStandardCacheTimeout\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLStrictSNIVHostCheck\\s",
+      "begin" : "^\\s*SSLStrictSNIVHostCheck\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLUserName\\s",
+      "begin" : "^\\s*SSLUserName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLUseStapling\\s",
+      "begin" : "^\\s*SSLUseStapling\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLVerifyClient\\s",
+      "begin" : "^\\s*SSLVerifyClient\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SSLVerifyDepth\\s",
+      "begin" : "^\\s*SSLVerifyDepth\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*StartServers\\s",
+      "begin" : "^\\s*StartServers\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*StartThreads\\s",
+      "begin" : "^\\s*StartThreads\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Substitute\\s",
+      "begin" : "^\\s*Substitute\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Suexec\\s",
+      "begin" : "^\\s*Suexec\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*SuexecUserGroup\\s",
+      "begin" : "^\\s*SuexecUserGroup\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ThreadLimit\\s",
+      "begin" : "^\\s*ThreadLimit\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ThreadsPerChild\\s",
+      "begin" : "^\\s*ThreadsPerChild\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*ThreadStackSize\\s",
+      "begin" : "^\\s*ThreadStackSize\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*TimeOut\\s",
+      "begin" : "^\\s*TimeOut\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*TraceEnable\\s",
+      "begin" : "^\\s*TraceEnable\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*TransferLog\\s",
+      "begin" : "^\\s*TransferLog\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*TypesConfig\\s",
+      "begin" : "^\\s*TypesConfig\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*UnsetEnv\\s",
+      "begin" : "^\\s*UnsetEnv\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*UseCanonicalName\\s",
+      "begin" : "^\\s*UseCanonicalName\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*UseCanonicalPhysicalPort\\s",
+      "begin" : "^\\s*UseCanonicalPhysicalPort\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*User\\s",
+      "begin" : "^\\s*User\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*UserDir\\s",
+      "begin" : "^\\s*UserDir\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VHostCGIMode\\s",
+      "begin" : "^\\s*VHostCGIMode\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VHostCGIPrivs\\s",
+      "begin" : "^\\s*VHostCGIPrivs\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VHostGroup\\s",
+      "begin" : "^\\s*VHostGroup\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VHostPrivs\\s",
+      "begin" : "^\\s*VHostPrivs\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VHostSecure\\s",
+      "begin" : "^\\s*VHostSecure\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VHostUser\\s",
+      "begin" : "^\\s*VHostUser\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VirtualDocumentRoot\\s",
+      "begin" : "^\\s*VirtualDocumentRoot\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VirtualDocumentRootIP\\s",
+      "begin" : "^\\s*VirtualDocumentRootIP\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VirtualScriptAlias\\s",
+      "begin" : "^\\s*VirtualScriptAlias\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*VirtualScriptAliasIP\\s",
+      "begin" : "^\\s*VirtualScriptAliasIP\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*WatchdogInterval\\s",
+      "begin" : "^\\s*WatchdogInterval\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*Win32DisableAcceptEx\\s",
+      "begin" : "^\\s*Win32DisableAcceptEx\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*XBitHack\\s",
+      "begin" : "^\\s*XBitHack\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*xml2EncAlias\\s",
+      "begin" : "^\\s*xml2EncAlias\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*xml2EncDefault\\s",
+      "begin" : "^\\s*xml2EncDefault\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\s*xml2StartParse\\s",
+      "begin" : "^\\s*xml2StartParse\\s",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=</?)AuthnProviderAlias\\b",
+      "begin" : "(?<=</?)AuthnProviderAlias\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)AuthzProviderAlias\\b",
+      "begin" : "(?<=</?)AuthzProviderAlias\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)Directory\\b",
+      "begin" : "(?<=</?)Directory\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)DirectoryMatch\\b",
+      "begin" : "(?<=</?)DirectoryMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)Else\\b",
+      "begin" : "(?<=</?)Else\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)ElseIf\\b",
+      "begin" : "(?<=</?)ElseIf\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)Files\\b",
+      "begin" : "(?<=</?)Files\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)FilesMatch\\b",
+      "begin" : "(?<=</?)FilesMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)If\\b",
+      "begin" : "(?<=</?)If\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)IfDefine\\b",
+      "begin" : "(?<=</?)IfDefine\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)IfModule\\b",
+      "begin" : "(?<=</?)IfModule\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)IfVersion\\b",
+      "begin" : "(?<=</?)IfVersion\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)Location\\b",
+      "begin" : "(?<=</?)Location\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)LocationMatch\\b",
+      "begin" : "(?<=</?)LocationMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)Proxy\\b",
+      "begin" : "(?<=</?)Proxy\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)ProxyMatch\\b",
+      "begin" : "(?<=</?)ProxyMatch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)RequireAll\\b",
+      "begin" : "(?<=</?)RequireAll\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)RequireAny\\b",
+      "begin" : "(?<=</?)RequireAny\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)RequireNone\\b",
+      "begin" : "(?<=</?)RequireNone\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)VirtualHost\\b",
+      "begin" : "(?<=</?)VirtualHost\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "values" : [
     {
-      "beginString" : "add",
+      "begin" : "add",
       "ignoreCase" : true
     },
     {
-      "beginString" : "all",
+      "begin" : "all",
       "ignoreCase" : true
     },
     {
-      "beginString" : "allow,deny",
+      "begin" : "allow,deny",
       "ignoreCase" : true
     },
     {
-      "beginString" : "append",
+      "begin" : "append",
       "ignoreCase" : true
     },
     {
-      "beginString" : "deny,allow",
+      "begin" : "deny,allow",
       "ignoreCase" : true
     },
     {
-      "beginString" : "echo",
+      "begin" : "echo",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ExecCGI",
+      "begin" : "ExecCGI",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FollowSymLinks",
+      "begin" : "FollowSymLinks",
       "ignoreCase" : true
     },
     {
-      "beginString" : "from",
+      "begin" : "from",
       "ignoreCase" : true
     },
     {
-      "beginString" : "gone",
+      "begin" : "gone",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Includes",
+      "begin" : "Includes",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IncludesNOEXEC",
+      "begin" : "IncludesNOEXEC",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Indexes",
+      "begin" : "Indexes",
       "ignoreCase" : true
     },
     {
-      "beginString" : "MultiViews",
+      "begin" : "MultiViews",
       "ignoreCase" : true
     },
     {
-      "beginString" : "none",
+      "begin" : "none",
       "ignoreCase" : true
     },
     {
-      "beginString" : "off",
+      "begin" : "off",
       "ignoreCase" : true
     },
     {
-      "beginString" : "on",
+      "begin" : "on",
       "ignoreCase" : true
     },
     {
-      "beginString" : "permanent",
+      "begin" : "permanent",
       "ignoreCase" : true
     },
     {
-      "beginString" : "seeothor",
+      "begin" : "seeothor",
       "ignoreCase" : true
     },
     {
-      "beginString" : "set",
+      "begin" : "set",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SymLinksIfOwnerMatch",
+      "begin" : "SymLinksIfOwnerMatch",
       "ignoreCase" : true
     },
     {
-      "beginString" : "temp",
+      "begin" : "temp",
       "ignoreCase" : true
     },
     {
-      "beginString" : "unset",
+      "begin" : "unset",
       "ignoreCase" : true
     }
   ]

@@ -1,107 +1,107 @@
 {
   "attributes" : [
     {
-      "beginString" : "[",
-      "endString" : "]",
+      "begin" : "[",
+      "end" : "]",
       "isMultiline" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "!'",
+      "begin" : "!'",
       "description" : "inverted exclamation mark (¡)",
       "regularExpression" : true
     },
     {
-      "beginString" : "''",
+      "begin" : "''",
       "description" : "opening double quotation mark (“)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\\\)\\\\[!,:>; ]",
+      "begin" : "(?<!\\\\)\\\\[!,:>; ]",
       "description" : "spaces",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\\\)\\\\[&%$#_{}~^]",
+      "begin" : "(?<!\\\\)\\\\[&%$#_{}~^]",
       "description" : "escaped characters",
       "regularExpression" : true
     },
     {
-      "beginString" : "---?",
+      "begin" : "---?",
       "description" : "en/em dash",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\?'",
+      "begin" : "\\?'",
       "description" : "inverted question mark (¿)",
       "regularExpression" : true
     },
     {
-      "beginString" : "``",
+      "begin" : "``",
       "description" : "closing double quotation mark (”)",
       "regularExpression" : true
     },
     {
-      "beginString" : "~",
+      "begin" : "~",
       "description" : "non-breaking space",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "[\\\\¥][a-zA-Z0-9]+\\*?",
+      "begin" : "[\\\\¥][a-zA-Z0-9]+\\*?",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<!\\\\)&",
+      "begin" : "(?<!\\\\)&",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\\\)\\^",
+      "begin" : "(?<!\\\\)\\^",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\w)_(?=\\{)",
+      "begin" : "(?<=\\w)_(?=\\{)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\\\\\",
+      "begin" : "\\\\\\\\",
       "regularExpression" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "{",
-      "endString" : "}",
+      "begin" : "{",
+      "end" : "}",
       "isMultiline" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "[\\\\¥](La)?TeXe?",
+      "begin" : "[\\\\¥](La)?TeXe?",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$.+?\\$",
+      "begin" : "\\$.+?\\$",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\(",
-      "endString" : "\\)",
+      "begin" : "\\(",
+      "end" : "\\)",
       "isMultiline" : true
     },
     {
-      "beginString" : "\\[",
-      "endString" : "\\]",
+      "begin" : "\\[",
+      "end" : "\\]",
       "isMultiline" : true
     }
   ],
   "variables" : [
     {
-      "beginString" : "(?<!\\\\)##?[0-9]",
+      "begin" : "(?<!\\\\)##?[0-9]",
       "regularExpression" : true
     }
   ]

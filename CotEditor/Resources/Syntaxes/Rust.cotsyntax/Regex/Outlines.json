@@ -1,20 +1,20 @@
 [
   {
-    "beginString" : "^([\\t ]*)fn[\\t ]+(\\w+)",
+    "pattern" : "^([\\t ]*)fn[\\t ]+(\\w+)",
     "description" : "function",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)impl[\\t ]+(\\w+)",
+    "pattern" : "^([\\t ]*)impl[\\t ]+(\\w+)",
     "description" : "impl",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)struct[\\t ]+(\\w+)",
+    "pattern" : "^([\\t ]*)struct[\\t ]+(\\w+)",
     "description" : "struct",
-    "keyString" : "$1struct $2",
+    "template" : "$1struct $2",
     "kind" : "container"
   }
 ]

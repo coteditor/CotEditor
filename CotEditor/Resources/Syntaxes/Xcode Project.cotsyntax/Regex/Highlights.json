@@ -1,94 +1,94 @@
 {
   "attributes" : [
     {
-      "beginString" : "PBXAggregateTarget"
+      "begin" : "PBXAggregateTarget"
     },
     {
-      "beginString" : "PBXBuildFile"
+      "begin" : "PBXBuildFile"
     },
     {
-      "beginString" : "PBXContainerItemProxy"
+      "begin" : "PBXContainerItemProxy"
     },
     {
-      "beginString" : "PBXCopyFilesBuildPhase"
+      "begin" : "PBXCopyFilesBuildPhase"
     },
     {
-      "beginString" : "PBXFileReference"
+      "begin" : "PBXFileReference"
     },
     {
-      "beginString" : "PBXFrameworksBuildPhase"
+      "begin" : "PBXFrameworksBuildPhase"
     },
     {
-      "beginString" : "PBXGroup"
+      "begin" : "PBXGroup"
     },
     {
-      "beginString" : "PBXHeadersBuildPhase"
+      "begin" : "PBXHeadersBuildPhase"
     },
     {
-      "beginString" : "PBXNativeTarget"
+      "begin" : "PBXNativeTarget"
     },
     {
-      "beginString" : "PBXProject"
+      "begin" : "PBXProject"
     },
     {
-      "beginString" : "PBXReferenceProxy"
+      "begin" : "PBXReferenceProxy"
     },
     {
-      "beginString" : "PBXResourcesBuildPhase"
+      "begin" : "PBXResourcesBuildPhase"
     },
     {
-      "beginString" : "PBXRezBuildPhase"
+      "begin" : "PBXRezBuildPhase"
     },
     {
-      "beginString" : "PBXShellScriptBuildPhase"
+      "begin" : "PBXShellScriptBuildPhase"
     },
     {
-      "beginString" : "PBXSourcesBuildPhase"
+      "begin" : "PBXSourcesBuildPhase"
     },
     {
-      "beginString" : "PBXTargetDependency"
+      "begin" : "PBXTargetDependency"
     },
     {
-      "beginString" : "PBXVariantGroup"
+      "begin" : "PBXVariantGroup"
     },
     {
-      "beginString" : "XCBuildConfiguration"
+      "begin" : "XCBuildConfiguration"
     },
     {
-      "beginString" : "XCConfigurationList"
+      "begin" : "XCConfigurationList"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "\\b[a-z0-9_.]+(?= \\= )",
+      "begin" : "\\b[a-z0-9_.]+(?= \\= )",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\s[0-9A-F][0-9A-F.]*(?=\\s|;)",
+      "begin" : "\\s[0-9A-F][0-9A-F.]*(?=\\s|;)",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "values" : [
     {
-      "beginString" : "NO"
+      "begin" : "NO"
     },
     {
-      "beginString" : "YES"
+      "begin" : "YES"
     },
     {
-      "beginString" : "YES_AGGRESSIVE"
+      "begin" : "YES_AGGRESSIVE"
     },
     {
-      "beginString" : "YES_ERROR"
+      "begin" : "YES_ERROR"
     }
   ]
 }

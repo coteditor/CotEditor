@@ -1,8 +1,8 @@
 [
   {
-    "beginString" : "^([ \\t]*)\\[(.+)\\]",
+    "pattern" : "^([ \\t]*)\\[(.+)\\]",
     "description" : "section",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "container"
   }
 ]

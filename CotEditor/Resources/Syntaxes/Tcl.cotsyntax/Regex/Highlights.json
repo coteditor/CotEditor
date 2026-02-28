@@ -1,3013 +1,3013 @@
 {
   "attributes" : [
     {
-      "beginString" : " -[-_[:alnum:]]+ ",
+      "begin" : " -[-_[:alnum:]]+ ",
       "regularExpression" : true
     },
     {
-      "beginString" : "--"
+      "begin" : "--"
     }
   ],
   "commands" : [
     {
-      "beginString" : "(?<=slave) +alias\\b",
+      "begin" : "(?<=slave) +alias\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +aliases\\b",
+      "begin" : "(?<=slave) +aliases\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +bgerror\\b",
+      "begin" : "(?<=slave) +bgerror\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +eval\\b",
+      "begin" : "(?<=slave) +eval\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +expose\\b",
+      "begin" : "(?<=slave) +expose\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +hidden\\b",
+      "begin" : "(?<=slave) +hidden\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +hide\\b",
+      "begin" : "(?<=slave) +hide\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +invokehidden\\b",
+      "begin" : "(?<=slave) +invokehidden\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +issafe\\b",
+      "begin" : "(?<=slave) +issafe\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +limit\\b",
+      "begin" : "(?<=slave) +limit\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +marktrusted\\b",
+      "begin" : "(?<=slave) +marktrusted\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=slave) +recursionlimit\\b",
+      "begin" : "(?<=slave) +recursionlimit\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "::http::cleanup"
+      "begin" : "::http::cleanup"
     },
     {
-      "beginString" : "::http::code"
+      "begin" : "::http::code"
     },
     {
-      "beginString" : "::http::config"
+      "begin" : "::http::config"
     },
     {
-      "beginString" : "::http::data"
+      "begin" : "::http::data"
     },
     {
-      "beginString" : "::http::error"
+      "begin" : "::http::error"
     },
     {
-      "beginString" : "::http::formatQuery"
+      "begin" : "::http::formatQuery"
     },
     {
-      "beginString" : "::http::geturl"
+      "begin" : "::http::geturl"
     },
     {
-      "beginString" : "::http::meta"
+      "begin" : "::http::meta"
     },
     {
-      "beginString" : "::http::ncode"
+      "begin" : "::http::ncode"
     },
     {
-      "beginString" : "::http::register"
+      "begin" : "::http::register"
     },
     {
-      "beginString" : "::http::reset"
+      "begin" : "::http::reset"
     },
     {
-      "beginString" : "::http::size"
+      "begin" : "::http::size"
     },
     {
-      "beginString" : "::http::status"
+      "begin" : "::http::status"
     },
     {
-      "beginString" : "::http::unregister"
+      "begin" : "::http::unregister"
     },
     {
-      "beginString" : "::http::wait"
+      "begin" : "::http::wait"
     },
     {
-      "beginString" : "::msgcat::mc"
+      "begin" : "::msgcat::mc"
     },
     {
-      "beginString" : "::msgcat::mcflmset"
+      "begin" : "::msgcat::mcflmset"
     },
     {
-      "beginString" : "::msgcat::mcflset"
+      "begin" : "::msgcat::mcflset"
     },
     {
-      "beginString" : "::msgcat::mcload"
+      "begin" : "::msgcat::mcload"
     },
     {
-      "beginString" : "::msgcat::mclocale"
+      "begin" : "::msgcat::mclocale"
     },
     {
-      "beginString" : "::msgcat::mcmax"
+      "begin" : "::msgcat::mcmax"
     },
     {
-      "beginString" : "::msgcat::mcmcunknown"
+      "begin" : "::msgcat::mcmcunknown"
     },
     {
-      "beginString" : "::msgcat::mcmset"
+      "begin" : "::msgcat::mcmset"
     },
     {
-      "beginString" : "::msgcat::mcpreferences"
+      "begin" : "::msgcat::mcpreferences"
     },
     {
-      "beginString" : "::msgcat::mcset"
+      "begin" : "::msgcat::mcset"
     },
     {
-      "beginString" : "::tk::mac::antialiasedtext"
+      "begin" : "::tk::mac::antialiasedtext"
     },
     {
-      "beginString" : "::tk::mac::CGAntialiasLimit"
+      "begin" : "::tk::mac::CGAntialiasLimit"
     },
     {
-      "beginString" : "::tk::mac::iconBitmap"
+      "begin" : "::tk::mac::iconBitmap"
     },
     {
-      "beginString" : "::tk::mac::OnHide"
+      "begin" : "::tk::mac::OnHide"
     },
     {
-      "beginString" : "::tk::mac::OnShow"
+      "begin" : "::tk::mac::OnShow"
     },
     {
-      "beginString" : "::tk::mac::OpenApplication"
+      "begin" : "::tk::mac::OpenApplication"
     },
     {
-      "beginString" : "::tk::mac::OpenDocument"
+      "begin" : "::tk::mac::OpenDocument"
     },
     {
-      "beginString" : "::tk::mac::PrintDocument"
+      "begin" : "::tk::mac::PrintDocument"
     },
     {
-      "beginString" : "::tk::mac::Quit"
+      "begin" : "::tk::mac::Quit"
     },
     {
-      "beginString" : "::tk::mac::ReopenApplication"
+      "begin" : "::tk::mac::ReopenApplication"
     },
     {
-      "beginString" : "::tk::mac::ShowHelp"
+      "begin" : "::tk::mac::ShowHelp"
     },
     {
-      "beginString" : "::tk::mac::ShowPreferences"
+      "begin" : "::tk::mac::ShowPreferences"
     },
     {
-      "beginString" : "::tk::mac::standardAboutPanel"
+      "begin" : "::tk::mac::standardAboutPanel"
     },
     {
-      "beginString" : "::tk::mac::useCompatibilityMetrics"
+      "begin" : "::tk::mac::useCompatibilityMetrics"
     },
     {
-      "beginString" : "::tk::mac::useThemedToplevel"
+      "begin" : "::tk::mac::useThemedToplevel"
     },
     {
-      "beginString" : "<cloned>"
+      "begin" : "<cloned>"
     },
     {
-      "beginString" : "\\bafter cancel\\b",
+      "begin" : "\\bafter cancel\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bafter idle\\b",
+      "begin" : "\\bafter idle\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bafter info\\b",
+      "begin" : "\\bafter info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray anymore\\b",
+      "begin" : "\\barray anymore\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray donesearch\\b",
+      "begin" : "\\barray donesearch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray exists\\b",
+      "begin" : "\\barray exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray get\\b",
+      "begin" : "\\barray get\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray names\\b",
+      "begin" : "\\barray names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray nextelement\\b",
+      "begin" : "\\barray nextelement\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray set\\b",
+      "begin" : "\\barray set\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray size\\b",
+      "begin" : "\\barray size\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray startsearch\\b",
+      "begin" : "\\barray startsearch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray statistics\\b",
+      "begin" : "\\barray statistics\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\barray unset\\b",
+      "begin" : "\\barray unset\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbinary decode\\b",
+      "begin" : "\\bbinary decode\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbinary encode\\b",
+      "begin" : "\\bbinary encode\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbinary format\\b",
+      "begin" : "\\bbinary format\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbinary scan\\b",
+      "begin" : "\\bbinary scan\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan blocked\\b",
+      "begin" : "\\bchan blocked\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan close\\b",
+      "begin" : "\\bchan close\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan configure\\b",
+      "begin" : "\\bchan configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan copy\\b",
+      "begin" : "\\bchan copy\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan create\\b",
+      "begin" : "\\bchan create\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan eof\\b",
+      "begin" : "\\bchan eof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan event\\b",
+      "begin" : "\\bchan event\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan flush\\b",
+      "begin" : "\\bchan flush\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan gets\\b",
+      "begin" : "\\bchan gets\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan names\\b",
+      "begin" : "\\bchan names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan pending\\b",
+      "begin" : "\\bchan pending\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan pipe\\b",
+      "begin" : "\\bchan pipe\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan pop\\b",
+      "begin" : "\\bchan pop\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan postevent\\b",
+      "begin" : "\\bchan postevent\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan push\\b",
+      "begin" : "\\bchan push\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan puts\\b",
+      "begin" : "\\bchan puts\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan read\\b",
+      "begin" : "\\bchan read\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan seek\\b",
+      "begin" : "\\bchan seek\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan tell\\b",
+      "begin" : "\\bchan tell\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchan truncate\\b",
+      "begin" : "\\bchan truncate\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclock add\\b",
+      "begin" : "\\bclock add\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclock clicks\\b",
+      "begin" : "\\bclock clicks\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclock format\\b",
+      "begin" : "\\bclock format\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclock microseconds\\b",
+      "begin" : "\\bclock microseconds\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclock milliseconds\\b",
+      "begin" : "\\bclock milliseconds\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclock scan\\b",
+      "begin" : "\\bclock scan\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclock seconds\\b",
+      "begin" : "\\bclock seconds\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bconsole eval\\b",
+      "begin" : "\\bconsole eval\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bconsole hide\\b",
+      "begin" : "\\bconsole hide\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bconsole show\\b",
+      "begin" : "\\bconsole show\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bconsole title\\b",
+      "begin" : "\\bconsole title\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bconsoleinterp eval\\b",
+      "begin" : "\\bconsoleinterp eval\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bconsoleinterp record\\b",
+      "begin" : "\\bconsoleinterp record\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdde eval\\b",
+      "begin" : "\\bdde eval\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdde execute\\b",
+      "begin" : "\\bdde execute\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdde poke\\b",
+      "begin" : "\\bdde poke\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdde request\\b",
+      "begin" : "\\bdde request\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdde servername\\b",
+      "begin" : "\\bdde servername\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdde services\\b",
+      "begin" : "\\bdde services\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict append\\b",
+      "begin" : "\\bdict append\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict create\\b",
+      "begin" : "\\bdict create\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict exists\\b",
+      "begin" : "\\bdict exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict filter\\b",
+      "begin" : "\\bdict filter\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict for\\b",
+      "begin" : "\\bdict for\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict get\\b",
+      "begin" : "\\bdict get\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict incr\\b",
+      "begin" : "\\bdict incr\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict info\\b",
+      "begin" : "\\bdict info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict keys\\b",
+      "begin" : "\\bdict keys\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict lappend\\b",
+      "begin" : "\\bdict lappend\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict map\\b",
+      "begin" : "\\bdict map\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict merge\\b",
+      "begin" : "\\bdict merge\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict remove\\b",
+      "begin" : "\\bdict remove\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict replace\\b",
+      "begin" : "\\bdict replace\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict set\\b",
+      "begin" : "\\bdict set\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict size\\b",
+      "begin" : "\\bdict size\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict unset\\b",
+      "begin" : "\\bdict unset\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict update\\b",
+      "begin" : "\\bdict update\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict values\\b",
+      "begin" : "\\bdict values\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdict with\\b",
+      "begin" : "\\bdict with\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bedit modified\\b",
+      "begin" : "\\bedit modified\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bedit redo\\b",
+      "begin" : "\\bedit redo\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bedit reset\\b",
+      "begin" : "\\bedit reset\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bedit separator\\b",
+      "begin" : "\\bedit separator\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bedit undo\\b",
+      "begin" : "\\bedit undo\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bencoding convertfrom\\b",
+      "begin" : "\\bencoding convertfrom\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bencoding convertto\\b",
+      "begin" : "\\bencoding convertto\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bencoding dirs\\b",
+      "begin" : "\\bencoding dirs\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bencoding names\\b",
+      "begin" : "\\bencoding names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bencoding system\\b",
+      "begin" : "\\bencoding system\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bevent add\\b",
+      "begin" : "\\bevent add\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bevent delete\\b",
+      "begin" : "\\bevent delete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bevent generate\\b",
+      "begin" : "\\bevent generate\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bevent info\\b",
+      "begin" : "\\bevent info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile atime\\b",
+      "begin" : "\\bfile atime\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile attributes\\b",
+      "begin" : "\\bfile attributes\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile channels\\b",
+      "begin" : "\\bfile channels\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile copy\\b",
+      "begin" : "\\bfile copy\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile delete\\b",
+      "begin" : "\\bfile delete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile dirname\\b",
+      "begin" : "\\bfile dirname\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile executable\\b",
+      "begin" : "\\bfile executable\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile exists\\b",
+      "begin" : "\\bfile exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile extension\\b",
+      "begin" : "\\bfile extension\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile isdirectory\\b",
+      "begin" : "\\bfile isdirectory\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile isfile\\b",
+      "begin" : "\\bfile isfile\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile join\\b",
+      "begin" : "\\bfile join\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile link\\b",
+      "begin" : "\\bfile link\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile lstat\\b",
+      "begin" : "\\bfile lstat\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile mkdir\\b",
+      "begin" : "\\bfile mkdir\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile mtime\\b",
+      "begin" : "\\bfile mtime\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile nativename\\b",
+      "begin" : "\\bfile nativename\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile normalize\\b",
+      "begin" : "\\bfile normalize\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile owned\\b",
+      "begin" : "\\bfile owned\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile pathtype\\b",
+      "begin" : "\\bfile pathtype\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile readable\\b",
+      "begin" : "\\bfile readable\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile readlink\\b",
+      "begin" : "\\bfile readlink\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile rename\\b",
+      "begin" : "\\bfile rename\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile rootname\\b",
+      "begin" : "\\bfile rootname\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile separator\\b",
+      "begin" : "\\bfile separator\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile size\\b",
+      "begin" : "\\bfile size\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile split\\b",
+      "begin" : "\\bfile split\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile stat\\b",
+      "begin" : "\\bfile stat\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile system\\b",
+      "begin" : "\\bfile system\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile tail\\b",
+      "begin" : "\\bfile tail\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile tempfile\\b",
+      "begin" : "\\bfile tempfile\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile type\\b",
+      "begin" : "\\bfile type\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile volumes\\b",
+      "begin" : "\\bfile volumes\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfile writable\\b",
+      "begin" : "\\bfile writable\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont actual\\b",
+      "begin" : "\\bfont actual\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont configure\\b",
+      "begin" : "\\bfont configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont create\\b",
+      "begin" : "\\bfont create\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont delete\\b",
+      "begin" : "\\bfont delete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont families\\b",
+      "begin" : "\\bfont families\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont measure\\b",
+      "begin" : "\\bfont measure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont metrics\\b",
+      "begin" : "\\bfont metrics\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfont names\\b",
+      "begin" : "\\bfont names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrab current\\b",
+      "begin" : "\\bgrab current\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrab release\\b",
+      "begin" : "\\bgrab release\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrab set\\b",
+      "begin" : "\\bgrab set\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrab status\\b",
+      "begin" : "\\bgrab status\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid anchor\\b",
+      "begin" : "\\bgrid anchor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid bbox\\b",
+      "begin" : "\\bgrid bbox\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid columnconfigure\\b",
+      "begin" : "\\bgrid columnconfigure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid configure\\b",
+      "begin" : "\\bgrid configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid forget\\b",
+      "begin" : "\\bgrid forget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid info\\b",
+      "begin" : "\\bgrid info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid location\\b",
+      "begin" : "\\bgrid location\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid propagate\\b",
+      "begin" : "\\bgrid propagate\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid remove\\b",
+      "begin" : "\\bgrid remove\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid rowconfigure\\b",
+      "begin" : "\\bgrid rowconfigure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid size\\b",
+      "begin" : "\\bgrid size\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgrid slaves\\b",
+      "begin" : "\\bgrid slaves\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory add\\b",
+      "begin" : "\\bhistory add\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory change\\b",
+      "begin" : "\\bhistory change\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory clear\\b",
+      "begin" : "\\bhistory clear\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory event\\b",
+      "begin" : "\\bhistory event\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory info\\b",
+      "begin" : "\\bhistory info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory keep\\b",
+      "begin" : "\\bhistory keep\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory nextid\\b",
+      "begin" : "\\bhistory nextid\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhistory redo\\b",
+      "begin" : "\\bhistory redo\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bidentify (column|region|element|row)\\b",
+      "begin" : "\\bidentify (column|region|element|row)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage crate\\b",
+      "begin" : "\\bimage crate\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage delete\\b",
+      "begin" : "\\bimage delete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage height\\b",
+      "begin" : "\\bimage height\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage inuse\\b",
+      "begin" : "\\bimage inuse\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage names\\b",
+      "begin" : "\\bimage names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage type\\b",
+      "begin" : "\\bimage type\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage types\\b",
+      "begin" : "\\bimage types\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage width\\b",
+      "begin" : "\\bimage width\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo args\\b",
+      "begin" : "\\binfo args\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo body\\b",
+      "begin" : "\\binfo body\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class call\\b",
+      "begin" : "\\binfo class call\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class constructor\\b",
+      "begin" : "\\binfo class constructor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class definition\\b",
+      "begin" : "\\binfo class definition\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class destructor\\b",
+      "begin" : "\\binfo class destructor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class filters\\b",
+      "begin" : "\\binfo class filters\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class forward\\b",
+      "begin" : "\\binfo class forward\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class instances\\b",
+      "begin" : "\\binfo class instances\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class methods\\b",
+      "begin" : "\\binfo class methods\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class methodtype\\b",
+      "begin" : "\\binfo class methodtype\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class mixins\\b",
+      "begin" : "\\binfo class mixins\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class subclasses\\b",
+      "begin" : "\\binfo class subclasses\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class supperclasses\\b",
+      "begin" : "\\binfo class supperclasses\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class variables\\b",
+      "begin" : "\\binfo class variables\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo class\\b",
+      "begin" : "\\binfo class\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo cmdcount\\b",
+      "begin" : "\\binfo cmdcount\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo commands\\b",
+      "begin" : "\\binfo commands\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo complete\\b",
+      "begin" : "\\binfo complete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo coroutine\\b",
+      "begin" : "\\binfo coroutine\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo default\\b",
+      "begin" : "\\binfo default\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo errorstack\\b",
+      "begin" : "\\binfo errorstack\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo exists\\b",
+      "begin" : "\\binfo exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo frame\\b",
+      "begin" : "\\binfo frame\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo functions\\b",
+      "begin" : "\\binfo functions\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo globals\\b",
+      "begin" : "\\binfo globals\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo hostname\\b",
+      "begin" : "\\binfo hostname\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo level\\b",
+      "begin" : "\\binfo level\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo library\\b",
+      "begin" : "\\binfo library\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo loaded\\b",
+      "begin" : "\\binfo loaded\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo locals\\b",
+      "begin" : "\\binfo locals\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo nameofexecutable\\b",
+      "begin" : "\\binfo nameofexecutable\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object call\\b",
+      "begin" : "\\binfo object call\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object class\\b",
+      "begin" : "\\binfo object class\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object definition\\b",
+      "begin" : "\\binfo object definition\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object filters\\b",
+      "begin" : "\\binfo object filters\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object forward\\b",
+      "begin" : "\\binfo object forward\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object isa class\\b",
+      "begin" : "\\binfo object isa class\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object isa metaclass\\b",
+      "begin" : "\\binfo object isa metaclass\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object isa mixin\\b",
+      "begin" : "\\binfo object isa mixin\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object isa object\\b",
+      "begin" : "\\binfo object isa object\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object isa typeof\\b",
+      "begin" : "\\binfo object isa typeof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object isa\\b",
+      "begin" : "\\binfo object isa\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object methods\\b",
+      "begin" : "\\binfo object methods\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object methodtype\\b",
+      "begin" : "\\binfo object methodtype\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object mixins\\b",
+      "begin" : "\\binfo object mixins\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object namespace\\b",
+      "begin" : "\\binfo object namespace\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object variables\\b",
+      "begin" : "\\binfo object variables\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object vars\\b",
+      "begin" : "\\binfo object vars\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo object\\b",
+      "begin" : "\\binfo object\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo patchlevel\\b",
+      "begin" : "\\binfo patchlevel\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo procs\\b",
+      "begin" : "\\binfo procs\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo script\\b",
+      "begin" : "\\binfo script\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo sharedlibexention\\b",
+      "begin" : "\\binfo sharedlibexention\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo tclversion\\b",
+      "begin" : "\\binfo tclversion\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo vars\\b",
+      "begin" : "\\binfo vars\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp alias\\b",
+      "begin" : "\\binterp alias\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp aliases\\b",
+      "begin" : "\\binterp aliases\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp bgerror\\b",
+      "begin" : "\\binterp bgerror\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp cancel\\b",
+      "begin" : "\\binterp cancel\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp create\\b",
+      "begin" : "\\binterp create\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp debug\\b",
+      "begin" : "\\binterp debug\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp delete\\b",
+      "begin" : "\\binterp delete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp eval\\b",
+      "begin" : "\\binterp eval\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp exists\\b",
+      "begin" : "\\binterp exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp expose\\b",
+      "begin" : "\\binterp expose\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp hidden\\b",
+      "begin" : "\\binterp hidden\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp hide\\b",
+      "begin" : "\\binterp hide\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp invokehidden\\b",
+      "begin" : "\\binterp invokehidden\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp issafe\\b",
+      "begin" : "\\binterp issafe\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp limit\\b",
+      "begin" : "\\binterp limit\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp marktrusted\\b",
+      "begin" : "\\binterp marktrusted\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp recursionlimit\\b",
+      "begin" : "\\binterp recursionlimit\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp share\\b",
+      "begin" : "\\binterp share\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp slaves\\b",
+      "begin" : "\\binterp slaves\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp target\\b",
+      "begin" : "\\binterp target\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binterp transfer\\b",
+      "begin" : "\\binterp transfer\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmark gravity\\b",
+      "begin" : "\\bmark gravity\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmark names\\b",
+      "begin" : "\\bmark names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmark next\\b",
+      "begin" : "\\bmark next\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmark previous\\b",
+      "begin" : "\\bmark previous\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmark set\\b",
+      "begin" : "\\bmark set\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmark unset\\b",
+      "begin" : "\\bmark unset\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory active\\b",
+      "begin" : "\\bmemory active\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory break_on_malloc\\b",
+      "begin" : "\\bmemory break_on_malloc\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory info\\b",
+      "begin" : "\\bmemory info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory init (on|of)\\b",
+      "begin" : "\\bmemory init (on|of)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory objs\\b",
+      "begin" : "\\bmemory objs\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory onexit\\b",
+      "begin" : "\\bmemory onexit\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory tag\\b",
+      "begin" : "\\bmemory tag\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory trace (on|off)\\b",
+      "begin" : "\\bmemory trace (on|off)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory trace_on_at_malloc\\b",
+      "begin" : "\\bmemory trace_on_at_malloc\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmemory validate (on|off)\\b",
+      "begin" : "\\bmemory validate (on|off)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace children\\b",
+      "begin" : "\\bnamespace children\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace code\\b",
+      "begin" : "\\bnamespace code\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace current\\b",
+      "begin" : "\\bnamespace current\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace delete\\b",
+      "begin" : "\\bnamespace delete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace ensemble configure\\b",
+      "begin" : "\\bnamespace ensemble configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace ensemble create\\b",
+      "begin" : "\\bnamespace ensemble create\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace ensemble exists\\b",
+      "begin" : "\\bnamespace ensemble exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace ensemble\\b",
+      "begin" : "\\bnamespace ensemble\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace eval\\b",
+      "begin" : "\\bnamespace eval\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace exists\\b",
+      "begin" : "\\bnamespace exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace export\\b",
+      "begin" : "\\bnamespace export\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace forget\\b",
+      "begin" : "\\bnamespace forget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace import\\b",
+      "begin" : "\\bnamespace import\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace inscope\\b",
+      "begin" : "\\bnamespace inscope\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace origin\\b",
+      "begin" : "\\bnamespace origin\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace parent\\b",
+      "begin" : "\\bnamespace parent\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace path\\b",
+      "begin" : "\\bnamespace path\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace qualifiers\\b",
+      "begin" : "\\bnamespace qualifiers\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace tail\\b",
+      "begin" : "\\bnamespace tail\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace unknown\\b",
+      "begin" : "\\bnamespace unknown\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace upvar\\b",
+      "begin" : "\\bnamespace upvar\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnamespace which\\b",
+      "begin" : "\\bnamespace which\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\boption value option value\\b",
+      "begin" : "\\boption value option value\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpack configure\\b",
+      "begin" : "\\bpack configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpack forget\\b",
+      "begin" : "\\bpack forget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpack info\\b",
+      "begin" : "\\bpack info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpack propagate\\b",
+      "begin" : "\\bpack propagate\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpack slaves\\b",
+      "begin" : "\\bpack slaves\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpeer create\\b",
+      "begin" : "\\bpeer create\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpeer names\\b",
+      "begin" : "\\bpeer names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bplace configure\\b",
+      "begin" : "\\bplace configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bplace forget\\b",
+      "begin" : "\\bplace forget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bplace info\\b",
+      "begin" : "\\bplace info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bplace slaves\\b",
+      "begin" : "\\bplace slaves\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bscan dragto\\b",
+      "begin" : "\\bscan dragto\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bscan mark\\b",
+      "begin" : "\\bscan mark\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection adjust\\b",
+      "begin" : "\\bselection adjust\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection clear\\b",
+      "begin" : "\\bselection clear\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection from\\b",
+      "begin" : "\\bselection from\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection get\\b",
+      "begin" : "\\bselection get\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection handle\\b",
+      "begin" : "\\bselection handle\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection own\\b",
+      "begin" : "\\bselection own\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection present\\b",
+      "begin" : "\\bselection present\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection range\\b",
+      "begin" : "\\bselection range\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselection to\\b",
+      "begin" : "\\bselection to\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag add\\b",
+      "begin" : "\\btag add\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag bind\\b",
+      "begin" : "\\btag bind\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag cget\\b",
+      "begin" : "\\btag cget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag configure\\b",
+      "begin" : "\\btag configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag delete\\b",
+      "begin" : "\\btag delete\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag lower\\b",
+      "begin" : "\\btag lower\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag names\\b",
+      "begin" : "\\btag names\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag nextrange\\b",
+      "begin" : "\\btag nextrange\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag prevrange\\b",
+      "begin" : "\\btag prevrange\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag raise\\b",
+      "begin" : "\\btag raise\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag ranges\\b",
+      "begin" : "\\btag ranges\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btag remove\\b",
+      "begin" : "\\btag remove\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk appname\\b",
+      "begin" : "\\btk appname\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk busy cget\\b",
+      "begin" : "\\btk busy cget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk busy configure\\b",
+      "begin" : "\\btk busy configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk busy current\\b",
+      "begin" : "\\btk busy current\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk busy forget\\b",
+      "begin" : "\\btk busy forget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk busy hold\\b",
+      "begin" : "\\btk busy hold\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk busy status\\b",
+      "begin" : "\\btk busy status\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk busy\\b",
+      "begin" : "\\btk busy\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk caret\\b",
+      "begin" : "\\btk caret\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk fontchooser configure\\b",
+      "begin" : "\\btk fontchooser configure\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk fontchooser hide\\b",
+      "begin" : "\\btk fontchooser hide\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk fontchooser show\\b",
+      "begin" : "\\btk fontchooser show\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk fontchooser\\b",
+      "begin" : "\\btk fontchooser\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk inactive\\b",
+      "begin" : "\\btk inactive\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk scaling\\b",
+      "begin" : "\\btk scaling\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk useinputmethods\\b",
+      "begin" : "\\btk useinputmethods\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btk windowingsystem\\b",
+      "begin" : "\\btk windowingsystem\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btkwait (variable|visibility|window)\\b",
+      "begin" : "\\btkwait (variable|visibility|window)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btransparency get\\b",
+      "begin" : "\\btransparency get\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btransparency set\\b",
+      "begin" : "\\btransparency set\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bttk::style (configure|map|lookup|layout)\\b",
+      "begin" : "\\bttk::style (configure|map|lookup|layout)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bttk::style element (create|names|options)\\b",
+      "begin" : "\\bttk::style element (create|names|options)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bttk::style theme (crate|settings|names|use)\\b",
+      "begin" : "\\bttk::style theme (crate|settings|names|use)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo atom\\b",
+      "begin" : "\\bwinfo atom\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo atomname\\b",
+      "begin" : "\\bwinfo atomname\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo cells\\b",
+      "begin" : "\\bwinfo cells\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo children\\b",
+      "begin" : "\\bwinfo children\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo class\\b",
+      "begin" : "\\bwinfo class\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo colormapfull\\b",
+      "begin" : "\\bwinfo colormapfull\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo containing\\b",
+      "begin" : "\\bwinfo containing\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo depth\\b",
+      "begin" : "\\bwinfo depth\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo exists\\b",
+      "begin" : "\\bwinfo exists\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo fpixels\\b",
+      "begin" : "\\bwinfo fpixels\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo geometry\\b",
+      "begin" : "\\bwinfo geometry\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo height\\b",
+      "begin" : "\\bwinfo height\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo id\\b",
+      "begin" : "\\bwinfo id\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo interps\\b",
+      "begin" : "\\bwinfo interps\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo ismapped\\b",
+      "begin" : "\\bwinfo ismapped\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo manager\\b",
+      "begin" : "\\bwinfo manager\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo name\\b",
+      "begin" : "\\bwinfo name\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo parent\\b",
+      "begin" : "\\bwinfo parent\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo pathname\\b",
+      "begin" : "\\bwinfo pathname\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo pixels\\b",
+      "begin" : "\\bwinfo pixels\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo pointerx\\b",
+      "begin" : "\\bwinfo pointerx\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo pointerxy\\b",
+      "begin" : "\\bwinfo pointerxy\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo pointery\\b",
+      "begin" : "\\bwinfo pointery\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo reqheight\\b",
+      "begin" : "\\bwinfo reqheight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo reqwidth\\b",
+      "begin" : "\\bwinfo reqwidth\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo rgb\\b",
+      "begin" : "\\bwinfo rgb\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo rootx\\b",
+      "begin" : "\\bwinfo rootx\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo rooty\\b",
+      "begin" : "\\bwinfo rooty\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screen\\b",
+      "begin" : "\\bwinfo screen\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screencells\\b",
+      "begin" : "\\bwinfo screencells\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screendepth\\b",
+      "begin" : "\\bwinfo screendepth\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screenheight\\b",
+      "begin" : "\\bwinfo screenheight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screenmmheight\\b",
+      "begin" : "\\bwinfo screenmmheight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screenmmwidth\\b",
+      "begin" : "\\bwinfo screenmmwidth\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screenvisual\\b",
+      "begin" : "\\bwinfo screenvisual\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo screenwidth\\b",
+      "begin" : "\\bwinfo screenwidth\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo server\\b",
+      "begin" : "\\bwinfo server\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo toplevel\\b",
+      "begin" : "\\bwinfo toplevel\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo viewable\\b",
+      "begin" : "\\bwinfo viewable\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo visual\\b",
+      "begin" : "\\bwinfo visual\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo visualid\\b",
+      "begin" : "\\bwinfo visualid\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo visualsavailable\\b",
+      "begin" : "\\bwinfo visualsavailable\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo vrootheight\\b",
+      "begin" : "\\bwinfo vrootheight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo vrootwidth\\b",
+      "begin" : "\\bwinfo vrootwidth\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo vrootx\\b",
+      "begin" : "\\bwinfo vrootx\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo vrooty\\b",
+      "begin" : "\\bwinfo vrooty\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo width\\b",
+      "begin" : "\\bwinfo width\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo x\\b",
+      "begin" : "\\bwinfo x\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwinfo y\\b",
+      "begin" : "\\bwinfo y\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm aspect\\b",
+      "begin" : "\\bwm aspect\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm attributes\\b",
+      "begin" : "\\bwm attributes\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm client\\b",
+      "begin" : "\\bwm client\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm colormapwindows\\b",
+      "begin" : "\\bwm colormapwindows\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm command\\b",
+      "begin" : "\\bwm command\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm deiconify\\b",
+      "begin" : "\\bwm deiconify\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm focusmodel\\b",
+      "begin" : "\\bwm focusmodel\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm forget\\b",
+      "begin" : "\\bwm forget\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm geometory\\b",
+      "begin" : "\\bwm geometory\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm grid\\b",
+      "begin" : "\\bwm grid\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm group\\b",
+      "begin" : "\\bwm group\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm iconbitmap\\b",
+      "begin" : "\\bwm iconbitmap\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm iconify\\b",
+      "begin" : "\\bwm iconify\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm iconmask\\b",
+      "begin" : "\\bwm iconmask\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm iconname\\b",
+      "begin" : "\\bwm iconname\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm iconphoto\\b",
+      "begin" : "\\bwm iconphoto\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm iconposition\\b",
+      "begin" : "\\bwm iconposition\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm iconwindow\\b",
+      "begin" : "\\bwm iconwindow\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm manage\\b",
+      "begin" : "\\bwm manage\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm maxsize\\b",
+      "begin" : "\\bwm maxsize\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm minsize\\b",
+      "begin" : "\\bwm minsize\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm overrideredirect\\b",
+      "begin" : "\\bwm overrideredirect\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm positionfrom\\b",
+      "begin" : "\\bwm positionfrom\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm protpcol\\b",
+      "begin" : "\\bwm protpcol\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm resizable\\b",
+      "begin" : "\\bwm resizable\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm sizefrom\\b",
+      "begin" : "\\bwm sizefrom\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm stackorder\\b",
+      "begin" : "\\bwm stackorder\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm state\\b",
+      "begin" : "\\bwm state\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm title\\b",
+      "begin" : "\\bwm title\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm transient\\b",
+      "begin" : "\\bwm transient\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bwm withdraw\\b",
+      "begin" : "\\bwm withdraw\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bxview moveto\\b",
+      "begin" : "\\bxview moveto\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bxview scroll\\b",
+      "begin" : "\\bxview scroll\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\byview moveto\\b",
+      "begin" : "\\byview moveto\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\byview scroll\\b",
+      "begin" : "\\byview scroll\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "acos"
+      "begin" : "acos"
     },
     {
-      "beginString" : "activate"
+      "begin" : "activate"
     },
     {
-      "beginString" : "active"
+      "begin" : "active"
     },
     {
-      "beginString" : "after"
+      "begin" : "after"
     },
     {
-      "beginString" : "append"
+      "begin" : "append"
     },
     {
-      "beginString" : "apply"
+      "begin" : "apply"
     },
     {
-      "beginString" : "argc"
+      "begin" : "argc"
     },
     {
-      "beginString" : "argv"
+      "begin" : "argv"
     },
     {
-      "beginString" : "argv0"
+      "begin" : "argv0"
     },
     {
-      "beginString" : "array"
+      "begin" : "array"
     },
     {
-      "beginString" : "asin"
+      "begin" : "asin"
     },
     {
-      "beginString" : "atan"
+      "begin" : "atan"
     },
     {
-      "beginString" : "atan2"
+      "begin" : "atan2"
     },
     {
-      "beginString" : "auto"
+      "begin" : "auto"
     },
     {
-      "beginString" : "auto_execok"
+      "begin" : "auto_execok"
     },
     {
-      "beginString" : "auto_import"
+      "begin" : "auto_import"
     },
     {
-      "beginString" : "auto_load"
+      "begin" : "auto_load"
     },
     {
-      "beginString" : "auto_mkindex"
+      "begin" : "auto_mkindex"
     },
     {
-      "beginString" : "auto_path"
+      "begin" : "auto_path"
     },
     {
-      "beginString" : "auto_qualify"
+      "begin" : "auto_qualify"
     },
     {
-      "beginString" : "auto_reset"
+      "begin" : "auto_reset"
     },
     {
-      "beginString" : "base64"
+      "begin" : "base64"
     },
     {
-      "beginString" : "bbox"
+      "begin" : "bbox"
     },
     {
-      "beginString" : "bell"
+      "begin" : "bell"
     },
     {
-      "beginString" : "bgerror"
+      "begin" : "bgerror"
     },
     {
-      "beginString" : "binary"
+      "begin" : "binary"
     },
     {
-      "beginString" : "bind"
+      "begin" : "bind"
     },
     {
-      "beginString" : "bindtags"
+      "begin" : "bindtags"
     },
     {
-      "beginString" : "bitmap"
+      "begin" : "bitmap"
     },
     {
-      "beginString" : "blank"
+      "begin" : "blank"
     },
     {
-      "beginString" : "body"
+      "begin" : "body"
     },
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "busy"
+      "begin" : "busy"
     },
     {
-      "beginString" : "button"
+      "begin" : "button"
     },
     {
-      "beginString" : "canvas"
+      "begin" : "canvas"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "cd"
+      "begin" : "cd"
     },
     {
-      "beginString" : "ceil"
+      "begin" : "ceil"
     },
     {
-      "beginString" : "chan"
+      "begin" : "chan"
     },
     {
-      "beginString" : "charset"
+      "begin" : "charset"
     },
     {
-      "beginString" : "checkbutton"
+      "begin" : "checkbutton"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "clipboard"
+      "begin" : "clipboard"
     },
     {
-      "beginString" : "clock"
+      "begin" : "clock"
     },
     {
-      "beginString" : "close"
+      "begin" : "close"
     },
     {
-      "beginString" : "cmd"
+      "begin" : "cmd"
     },
     {
-      "beginString" : "coding"
+      "begin" : "coding"
     },
     {
-      "beginString" : "colors"
+      "begin" : "colors"
     },
     {
-      "beginString" : "concat"
+      "begin" : "concat"
     },
     {
-      "beginString" : "console"
+      "begin" : "console"
     },
     {
-      "beginString" : "Content-Length"
+      "begin" : "Content-Length"
     },
     {
-      "beginString" : "Content-Type"
+      "begin" : "Content-Type"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "coords"
+      "begin" : "coords"
     },
     {
-      "beginString" : "coroutine"
+      "begin" : "coroutine"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "cosh"
+      "begin" : "cosh"
     },
     {
-      "beginString" : "cr"
+      "begin" : "cr"
     },
     {
-      "beginString" : "create"
+      "begin" : "create"
     },
     {
-      "beginString" : "createWithNamespace"
+      "begin" : "createWithNamespace"
     },
     {
-      "beginString" : "crlf"
+      "begin" : "crlf"
     },
     {
-      "beginString" : "current"
+      "begin" : "current"
     },
     {
-      "beginString" : "currentsize"
+      "begin" : "currentsize"
     },
     {
-      "beginString" : "curselection"
+      "begin" : "curselection"
     },
     {
-      "beginString" : "cursors"
+      "begin" : "cursors"
     },
     {
-      "beginString" : "dde"
+      "begin" : "dde"
     },
     {
-      "beginString" : "deletemethod"
+      "begin" : "deletemethod"
     },
     {
-      "beginString" : "delineinfo"
+      "begin" : "delineinfo"
     },
     {
-      "beginString" : "delta"
+      "begin" : "delta"
     },
     {
-      "beginString" : "destroy"
+      "begin" : "destroy"
     },
     {
-      "beginString" : "dict"
+      "begin" : "dict"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "dump"
+      "begin" : "dump"
     },
     {
-      "beginString" : "edit"
+      "begin" : "edit"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "elseif"
+      "begin" : "elseif"
     },
     {
-      "beginString" : "encoding"
+      "begin" : "encoding"
     },
     {
-      "beginString" : "end"
+      "begin" : "end"
     },
     {
-      "beginString" : "entier"
+      "begin" : "entier"
     },
     {
-      "beginString" : "entry"
+      "begin" : "entry"
     },
     {
-      "beginString" : "entrycget"
+      "begin" : "entrycget"
     },
     {
-      "beginString" : "entryconfigure"
+      "begin" : "entryconfigure"
     },
     {
-      "beginString" : "env"
+      "begin" : "env"
     },
     {
-      "beginString" : "eof"
+      "begin" : "eof"
     },
     {
-      "beginString" : "error"
+      "begin" : "error"
     },
     {
-      "beginString" : "errorCode"
+      "begin" : "errorCode"
     },
     {
-      "beginString" : "errorInfo"
+      "begin" : "errorInfo"
     },
     {
-      "beginString" : "eval"
+      "begin" : "eval"
     },
     {
-      "beginString" : "event"
+      "begin" : "event"
     },
     {
-      "beginString" : "exec"
+      "begin" : "exec"
     },
     {
-      "beginString" : "exit"
+      "begin" : "exit"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "export"
+      "begin" : "export"
     },
     {
-      "beginString" : "expr"
+      "begin" : "expr"
     },
     {
-      "beginString" : "fblocked"
+      "begin" : "fblocked"
     },
     {
-      "beginString" : "fconfigure"
+      "begin" : "fconfigure"
     },
     {
-      "beginString" : "fcopy"
+      "begin" : "fcopy"
     },
     {
-      "beginString" : "file"
+      "begin" : "file"
     },
     {
-      "beginString" : "fileevent"
+      "begin" : "fileevent"
     },
     {
-      "beginString" : "filename"
+      "begin" : "filename"
     },
     {
-      "beginString" : "filter"
+      "begin" : "filter"
     },
     {
-      "beginString" : "floor"
+      "begin" : "floor"
     },
     {
-      "beginString" : "flush"
+      "begin" : "flush"
     },
     {
-      "beginString" : "fmod"
+      "begin" : "fmod"
     },
     {
-      "beginString" : "focus"
+      "begin" : "focus"
     },
     {
-      "beginString" : "font"
+      "begin" : "font"
     },
     {
-      "beginString" : "fontchooser"
+      "begin" : "fontchooser"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "foreach"
+      "begin" : "foreach"
     },
     {
-      "beginString" : "format"
+      "begin" : "format"
     },
     {
-      "beginString" : "forward"
+      "begin" : "forward"
     },
     {
-      "beginString" : "frame"
+      "begin" : "frame"
     },
     {
-      "beginString" : "geometry"
+      "begin" : "geometry"
     },
     {
-      "beginString" : "gets"
+      "begin" : "gets"
     },
     {
-      "beginString" : "glob"
+      "begin" : "glob"
     },
     {
-      "beginString" : "global"
+      "begin" : "global"
     },
     {
-      "beginString" : "grab"
+      "begin" : "grab"
     },
     {
-      "beginString" : "grid"
+      "begin" : "grid"
     },
     {
-      "beginString" : "hex"
+      "begin" : "hex"
     },
     {
-      "beginString" : "history"
+      "begin" : "history"
     },
     {
-      "beginString" : "http"
+      "begin" : "http"
     },
     {
-      "beginString" : "hypot"
+      "begin" : "hypot"
     },
     {
-      "beginString" : "identify"
+      "begin" : "identify"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "image"
+      "begin" : "image"
     },
     {
-      "beginString" : "incr"
+      "begin" : "incr"
     },
     {
-      "beginString" : "info"
+      "begin" : "info"
     },
     {
-      "beginString" : "insert"
+      "begin" : "insert"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "interp"
+      "begin" : "interp"
     },
     {
-      "beginString" : "isabove"
+      "begin" : "isabove"
     },
     {
-      "beginString" : "isbelow"
+      "begin" : "isbelow"
     },
     {
-      "beginString" : "isqrt"
+      "begin" : "isqrt"
     },
     {
-      "beginString" : "itemcget"
+      "begin" : "itemcget"
     },
     {
-      "beginString" : "itemconfigure"
+      "begin" : "itemconfigure"
     },
     {
-      "beginString" : "join"
+      "begin" : "join"
     },
     {
-      "beginString" : "key"
+      "begin" : "key"
     },
     {
-      "beginString" : "keysyms"
+      "begin" : "keysyms"
     },
     {
-      "beginString" : "label"
+      "begin" : "label"
     },
     {
-      "beginString" : "labelframe"
+      "begin" : "labelframe"
     },
     {
-      "beginString" : "lambda"
+      "begin" : "lambda"
     },
     {
-      "beginString" : "lappend"
+      "begin" : "lappend"
     },
     {
-      "beginString" : "lassign"
+      "begin" : "lassign"
     },
     {
-      "beginString" : "level"
+      "begin" : "level"
     },
     {
-      "beginString" : "lf"
+      "begin" : "lf"
     },
     {
-      "beginString" : "lindex"
+      "begin" : "lindex"
     },
     {
-      "beginString" : "line"
+      "begin" : "line"
     },
     {
-      "beginString" : "linsert"
+      "begin" : "linsert"
     },
     {
-      "beginString" : "list"
+      "begin" : "list"
     },
     {
-      "beginString" : "listbox"
+      "begin" : "listbox"
     },
     {
-      "beginString" : "llength"
+      "begin" : "llength"
     },
     {
-      "beginString" : "lmap"
+      "begin" : "lmap"
     },
     {
-      "beginString" : "load"
+      "begin" : "load"
     },
     {
-      "beginString" : "Location"
+      "begin" : "Location"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "log10"
+      "begin" : "log10"
     },
     {
-      "beginString" : "lower"
+      "begin" : "lower"
     },
     {
-      "beginString" : "lrange"
+      "begin" : "lrange"
     },
     {
-      "beginString" : "lrepeat"
+      "begin" : "lrepeat"
     },
     {
-      "beginString" : "lreplace"
+      "begin" : "lreplace"
     },
     {
-      "beginString" : "lreverse"
+      "begin" : "lreverse"
     },
     {
-      "beginString" : "lsearch"
+      "begin" : "lsearch"
     },
     {
-      "beginString" : "lset"
+      "begin" : "lset"
     },
     {
-      "beginString" : "lsort"
+      "begin" : "lsort"
     },
     {
-      "beginString" : "mathfunc"
+      "begin" : "mathfunc"
     },
     {
-      "beginString" : "mathop"
+      "begin" : "mathop"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "memory"
+      "begin" : "memory"
     },
     {
-      "beginString" : "menu"
+      "begin" : "menu"
     },
     {
-      "beginString" : "menubutton"
+      "begin" : "menubutton"
     },
     {
-      "beginString" : "message"
+      "begin" : "message"
     },
     {
-      "beginString" : "meta"
+      "begin" : "meta"
     },
     {
-      "beginString" : "method"
+      "begin" : "method"
     },
     {
-      "beginString" : "min"
+      "begin" : "min"
     },
     {
-      "beginString" : "mixin"
+      "begin" : "mixin"
     },
     {
-      "beginString" : "moveto"
+      "begin" : "moveto"
     },
     {
-      "beginString" : "msgcat"
+      "begin" : "msgcat"
     },
     {
-      "beginString" : "my"
+      "begin" : "my"
     },
     {
-      "beginString" : "namespace"
+      "begin" : "namespace"
     },
     {
-      "beginString" : "nearest"
+      "begin" : "nearest"
     },
     {
-      "beginString" : "new"
+      "begin" : "new"
     },
     {
-      "beginString" : "next"
+      "begin" : "next"
     },
     {
-      "beginString" : "nextto"
+      "begin" : "nextto"
     },
     {
-      "beginString" : "ok"
+      "begin" : "ok"
     },
     {
-      "beginString" : "oo::class"
+      "begin" : "oo::class"
     },
     {
-      "beginString" : "oo::copy"
+      "begin" : "oo::copy"
     },
     {
-      "beginString" : "oo::define"
+      "begin" : "oo::define"
     },
     {
-      "beginString" : "oo::objdefine"
+      "begin" : "oo::objdefine"
     },
     {
-      "beginString" : "oo::object"
+      "begin" : "oo::object"
     },
     {
-      "beginString" : "open"
+      "begin" : "open"
     },
     {
-      "beginString" : "option"
+      "begin" : "option"
     },
     {
-      "beginString" : "options"
+      "begin" : "options"
     },
     {
-      "beginString" : "pack"
+      "begin" : "pack"
     },
     {
-      "beginString" : "package"
+      "begin" : "package"
     },
     {
-      "beginString" : "panecget"
+      "begin" : "panecget"
     },
     {
-      "beginString" : "paneconfigure"
+      "begin" : "paneconfigure"
     },
     {
-      "beginString" : "panedwindow"
+      "begin" : "panedwindow"
     },
     {
-      "beginString" : "panes"
+      "begin" : "panes"
     },
     {
-      "beginString" : "parray"
+      "begin" : "parray"
     },
     {
-      "beginString" : "passive"
+      "begin" : "passive"
     },
     {
-      "beginString" : "peer"
+      "begin" : "peer"
     },
     {
-      "beginString" : "photo"
+      "begin" : "photo"
     },
     {
-      "beginString" : "pid"
+      "begin" : "pid"
     },
     {
-      "beginString" : "pkg::create"
+      "begin" : "pkg::create"
     },
     {
-      "beginString" : "pkg_mkIndex"
+      "begin" : "pkg_mkIndex"
     },
     {
-      "beginString" : "place"
+      "begin" : "place"
     },
     {
-      "beginString" : "platform"
+      "begin" : "platform"
     },
     {
-      "beginString" : "platform::shell"
+      "begin" : "platform::shell"
     },
     {
-      "beginString" : "postcascade"
+      "begin" : "postcascade"
     },
     {
-      "beginString" : "posterror"
+      "begin" : "posterror"
     },
     {
-      "beginString" : "pow"
+      "begin" : "pow"
     },
     {
-      "beginString" : "precompiled"
+      "begin" : "precompiled"
     },
     {
-      "beginString" : "proc"
+      "begin" : "proc"
     },
     {
-      "beginString" : "proxy"
+      "begin" : "proxy"
     },
     {
-      "beginString" : "puts"
+      "begin" : "puts"
     },
     {
-      "beginString" : "pwd"
+      "begin" : "pwd"
     },
     {
-      "beginString" : "radiobutton"
+      "begin" : "radiobutton"
     },
     {
-      "beginString" : "raise"
+      "begin" : "raise"
     },
     {
-      "beginString" : "rand"
+      "begin" : "rand"
     },
     {
-      "beginString" : "re_syntax"
+      "begin" : "re_syntax"
     },
     {
-      "beginString" : "read"
+      "begin" : "read"
     },
     {
-      "beginString" : "readable"
+      "begin" : "readable"
     },
     {
-      "beginString" : "redither"
+      "begin" : "redither"
     },
     {
-      "beginString" : "refchan"
+      "begin" : "refchan"
     },
     {
-      "beginString" : "regexp"
+      "begin" : "regexp"
     },
     {
-      "beginString" : "registry"
+      "begin" : "registry"
     },
     {
-      "beginString" : "regsub"
+      "begin" : "regsub"
     },
     {
-      "beginString" : "rename"
+      "begin" : "rename"
     },
     {
-      "beginString" : "renamemethod"
+      "begin" : "renamemethod"
     },
     {
-      "beginString" : "replace"
+      "begin" : "replace"
     },
     {
-      "beginString" : "reset"
+      "begin" : "reset"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "safe"
+      "begin" : "safe"
     },
     {
-      "beginString" : "safe::loadTk"
+      "begin" : "safe::loadTk"
     },
     {
-      "beginString" : "sash"
+      "begin" : "sash"
     },
     {
-      "beginString" : "scale"
+      "begin" : "scale"
     },
     {
-      "beginString" : "scan"
+      "begin" : "scan"
     },
     {
-      "beginString" : "script"
+      "begin" : "script"
     },
     {
-      "beginString" : "scrollbar"
+      "begin" : "scrollbar"
     },
     {
-      "beginString" : "search"
+      "begin" : "search"
     },
     {
-      "beginString" : "seek"
+      "begin" : "seek"
     },
     {
-      "beginString" : "selection"
+      "begin" : "selection"
     },
     {
-      "beginString" : "self"
+      "begin" : "self"
     },
     {
-      "beginString" : "send"
+      "begin" : "send"
     },
     {
-      "beginString" : "set"
+      "begin" : "set"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "sinh"
+      "begin" : "sinh"
     },
     {
-      "beginString" : "size"
+      "begin" : "size"
     },
     {
-      "beginString" : "socket"
+      "begin" : "socket"
     },
     {
-      "beginString" : "source"
+      "begin" : "source"
     },
     {
-      "beginString" : "spinbox"
+      "begin" : "spinbox"
     },
     {
-      "beginString" : "split"
+      "begin" : "split"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "srand"
+      "begin" : "srand"
     },
     {
-      "beginString" : "start"
+      "begin" : "start"
     },
     {
-      "beginString" : "status"
+      "begin" : "status"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "subst"
+      "begin" : "subst"
     },
     {
-      "beginString" : "switch"
+      "begin" : "switch"
     },
     {
-      "beginString" : "tailcall"
+      "begin" : "tailcall"
     },
     {
-      "beginString" : "tan"
+      "begin" : "tan"
     },
     {
-      "beginString" : "tanh"
+      "begin" : "tanh"
     },
     {
-      "beginString" : "Tcl"
+      "begin" : "Tcl"
     },
     {
-      "beginString" : "tcl::prefix"
+      "begin" : "tcl::prefix"
     },
     {
-      "beginString" : "tcl_endOfWord"
+      "begin" : "tcl_endOfWord"
     },
     {
-      "beginString" : "tcl_findLibrary"
+      "begin" : "tcl_findLibrary"
     },
     {
-      "beginString" : "tcl_interactive"
+      "begin" : "tcl_interactive"
     },
     {
-      "beginString" : "tcl_library"
+      "begin" : "tcl_library"
     },
     {
-      "beginString" : "tcl_nonwordchars"
+      "begin" : "tcl_nonwordchars"
     },
     {
-      "beginString" : "tcl_patchLevel"
+      "begin" : "tcl_patchLevel"
     },
     {
-      "beginString" : "tcl_pkgPath"
+      "begin" : "tcl_pkgPath"
     },
     {
-      "beginString" : "tcl_platform"
+      "begin" : "tcl_platform"
     },
     {
-      "beginString" : "tcl_precision"
+      "begin" : "tcl_precision"
     },
     {
-      "beginString" : "tcl_rcFileName"
+      "begin" : "tcl_rcFileName"
     },
     {
-      "beginString" : "tcl_startOfNextWord"
+      "begin" : "tcl_startOfNextWord"
     },
     {
-      "beginString" : "tcl_startOfPreviousWord"
+      "begin" : "tcl_startOfPreviousWord"
     },
     {
-      "beginString" : "tcl_traceCompile"
+      "begin" : "tcl_traceCompile"
     },
     {
-      "beginString" : "tcl_traceExec"
+      "begin" : "tcl_traceExec"
     },
     {
-      "beginString" : "tcl_version"
+      "begin" : "tcl_version"
     },
     {
-      "beginString" : "tcl_wordBreakAfter"
+      "begin" : "tcl_wordBreakAfter"
     },
     {
-      "beginString" : "tcl_wordBreakBefore"
+      "begin" : "tcl_wordBreakBefore"
     },
     {
-      "beginString" : "tcl_wordchars"
+      "begin" : "tcl_wordchars"
     },
     {
-      "beginString" : "tcltest"
+      "begin" : "tcltest"
     },
     {
-      "beginString" : "tell"
+      "begin" : "tell"
     },
     {
-      "beginString" : "text"
+      "begin" : "text"
     },
     {
-      "beginString" : "then"
+      "begin" : "then"
     },
     {
-      "beginString" : "throw"
+      "begin" : "throw"
     },
     {
-      "beginString" : "time"
+      "begin" : "time"
     },
     {
-      "beginString" : "tk"
+      "begin" : "tk"
     },
     {
-      "beginString" : "tk::mac"
+      "begin" : "tk::mac"
     },
     {
-      "beginString" : "tk_bisque"
+      "begin" : "tk_bisque"
     },
     {
-      "beginString" : "tk_chooseColor"
+      "begin" : "tk_chooseColor"
     },
     {
-      "beginString" : "tk_chooseDirectory"
+      "begin" : "tk_chooseDirectory"
     },
     {
-      "beginString" : "tk_dialog"
+      "begin" : "tk_dialog"
     },
     {
-      "beginString" : "tk_focusFollowsMouse"
+      "begin" : "tk_focusFollowsMouse"
     },
     {
-      "beginString" : "tk_focusNext"
+      "begin" : "tk_focusNext"
     },
     {
-      "beginString" : "tk_focusPrev"
+      "begin" : "tk_focusPrev"
     },
     {
-      "beginString" : "tk_getOpenFile"
+      "begin" : "tk_getOpenFile"
     },
     {
-      "beginString" : "tk_getSaveFile"
+      "begin" : "tk_getSaveFile"
     },
     {
-      "beginString" : "tk_library"
+      "begin" : "tk_library"
     },
     {
-      "beginString" : "tk_menuSetFocus"
+      "begin" : "tk_menuSetFocus"
     },
     {
-      "beginString" : "tk_messageBox"
+      "begin" : "tk_messageBox"
     },
     {
-      "beginString" : "tk_optionMenu"
+      "begin" : "tk_optionMenu"
     },
     {
-      "beginString" : "tk_patchLevel"
+      "begin" : "tk_patchLevel"
     },
     {
-      "beginString" : "tk_popup"
+      "begin" : "tk_popup"
     },
     {
-      "beginString" : "tk_setPalette"
+      "begin" : "tk_setPalette"
     },
     {
-      "beginString" : "tk_strictMotif"
+      "begin" : "tk_strictMotif"
     },
     {
-      "beginString" : "tk_textCopy"
+      "begin" : "tk_textCopy"
     },
     {
-      "beginString" : "tk_textCut"
+      "begin" : "tk_textCut"
     },
     {
-      "beginString" : "tk_textPaste"
+      "begin" : "tk_textPaste"
     },
     {
-      "beginString" : "tk_version"
+      "begin" : "tk_version"
     },
     {
-      "beginString" : "tkerror"
+      "begin" : "tkerror"
     },
     {
-      "beginString" : "tkwait"
+      "begin" : "tkwait"
     },
     {
-      "beginString" : "tm"
+      "begin" : "tm"
     },
     {
-      "beginString" : "toplevel"
+      "begin" : "toplevel"
     },
     {
-      "beginString" : "totalsize"
+      "begin" : "totalsize"
     },
     {
-      "beginString" : "trace"
+      "begin" : "trace"
     },
     {
-      "beginString" : "transchan"
+      "begin" : "transchan"
     },
     {
-      "beginString" : "transparency"
+      "begin" : "transparency"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "ttk::button"
+      "begin" : "ttk::button"
     },
     {
-      "beginString" : "ttk::checkbutton"
+      "begin" : "ttk::checkbutton"
     },
     {
-      "beginString" : "ttk::combobox"
+      "begin" : "ttk::combobox"
     },
     {
-      "beginString" : "ttk::entry"
+      "begin" : "ttk::entry"
     },
     {
-      "beginString" : "ttk::frame"
+      "begin" : "ttk::frame"
     },
     {
-      "beginString" : "ttk::intro"
+      "begin" : "ttk::intro"
     },
     {
-      "beginString" : "ttk::label"
+      "begin" : "ttk::label"
     },
     {
-      "beginString" : "ttk::labelframe"
+      "begin" : "ttk::labelframe"
     },
     {
-      "beginString" : "ttk::menubutton"
+      "begin" : "ttk::menubutton"
     },
     {
-      "beginString" : "ttk::notebook"
+      "begin" : "ttk::notebook"
     },
     {
-      "beginString" : "ttk::panedwindow"
+      "begin" : "ttk::panedwindow"
     },
     {
-      "beginString" : "ttk::progressbar"
+      "begin" : "ttk::progressbar"
     },
     {
-      "beginString" : "ttk::radiobutton"
+      "begin" : "ttk::radiobutton"
     },
     {
-      "beginString" : "ttk::scale"
+      "begin" : "ttk::scale"
     },
     {
-      "beginString" : "ttk::scrollbar"
+      "begin" : "ttk::scrollbar"
     },
     {
-      "beginString" : "ttk::separator"
+      "begin" : "ttk::separator"
     },
     {
-      "beginString" : "ttk::sizegrip"
+      "begin" : "ttk::sizegrip"
     },
     {
-      "beginString" : "ttk::spinbox"
+      "begin" : "ttk::spinbox"
     },
     {
-      "beginString" : "ttk::style"
+      "begin" : "ttk::style"
     },
     {
-      "beginString" : "ttk::treeview"
+      "begin" : "ttk::treeview"
     },
     {
-      "beginString" : "ttk::widget"
+      "begin" : "ttk::widget"
     },
     {
-      "beginString" : "ttk_image"
+      "begin" : "ttk_image"
     },
     {
-      "beginString" : "ttk_vsapi"
+      "begin" : "ttk_vsapi"
     },
     {
-      "beginString" : "type"
+      "begin" : "type"
     },
     {
-      "beginString" : "unencode"
+      "begin" : "unencode"
     },
     {
-      "beginString" : "unexport"
+      "begin" : "unexport"
     },
     {
-      "beginString" : "unknown"
+      "begin" : "unknown"
     },
     {
-      "beginString" : "unload"
+      "begin" : "unload"
     },
     {
-      "beginString" : "unpost"
+      "begin" : "unpost"
     },
     {
-      "beginString" : "unset"
+      "begin" : "unset"
     },
     {
-      "beginString" : "update"
+      "begin" : "update"
     },
     {
-      "beginString" : "uplevel"
+      "begin" : "uplevel"
     },
     {
-      "beginString" : "upvar"
+      "begin" : "upvar"
     },
     {
-      "beginString" : "url"
+      "begin" : "url"
     },
     {
-      "beginString" : "validate"
+      "begin" : "validate"
     },
     {
-      "beginString" : "value"
+      "begin" : "value"
     },
     {
-      "beginString" : "variable"
+      "begin" : "variable"
     },
     {
-      "beginString" : "varname"
+      "begin" : "varname"
     },
     {
-      "beginString" : "vwait"
+      "begin" : "vwait"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "wide"
+      "begin" : "wide"
     },
     {
-      "beginString" : "winfo"
+      "begin" : "winfo"
     },
     {
-      "beginString" : "wm"
+      "begin" : "wm"
     },
     {
-      "beginString" : "writable"
+      "begin" : "writable"
     },
     {
-      "beginString" : "xposition"
+      "begin" : "xposition"
     },
     {
-      "beginString" : "xview"
+      "begin" : "xview"
     },
     {
-      "beginString" : "yield"
+      "begin" : "yield"
     },
     {
-      "beginString" : "yieldto"
+      "begin" : "yieldto"
     },
     {
-      "beginString" : "yposition"
+      "begin" : "yposition"
     },
     {
-      "beginString" : "yview"
+      "begin" : "yview"
     },
     {
-      "beginString" : "zlib"
+      "begin" : "zlib"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<![-_.[:alnum:]])\\-?\\d+(\\.\\d+)?\\b",
+      "begin" : "(?<![-_.[:alnum:]])\\-?\\d+(\\.\\d+)?\\b",
       "description" : "decimal",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0[0-7]+\\b",
+      "begin" : "\\b0[0-7]+\\b",
       "description" : "octal",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-f]+\\b",
+      "begin" : "\\b0x[0-9a-f]+\\b",
       "description" : "hexadecimal",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -3015,36 +3015,36 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\"",
+      "begin" : "\"",
+      "end" : "\"",
       "isMultiline" : true
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "types" : [
     {
-      "beginString" : "(?<=class create )\\w+",
+      "begin" : "(?<=class create )\\w+",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=object create )\\w+",
+      "begin" : "(?<=object create )\\w+",
       "regularExpression" : true
     }
   ],
   "variables" : [
     {
-      "beginString" : "${",
-      "endString" : "}"
+      "begin" : "${",
+      "end" : "}"
     },
     {
-      "beginString" : "(?<=set|unset)[\\t ]+\\w+",
+      "begin" : "(?<=set|unset)[\\t ]+\\w+",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$[-_:[:alnum:]]+\\b",
+      "begin" : "\\$[-_:[:alnum:]]+\\b",
       "regularExpression" : true
     }
   ]

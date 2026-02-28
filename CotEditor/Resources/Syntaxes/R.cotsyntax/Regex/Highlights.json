@@ -1,3091 +1,3091 @@
 {
   "commands" : [
     {
-      "beginString" : "abbreviate"
+      "begin" : "abbreviate"
     },
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "acos"
+      "begin" : "acos"
     },
     {
-      "beginString" : "acosh"
+      "begin" : "acosh"
     },
     {
-      "beginString" : "addNA"
+      "begin" : "addNA"
     },
     {
-      "beginString" : "addTaskCallback"
+      "begin" : "addTaskCallback"
     },
     {
-      "beginString" : "agrep"
+      "begin" : "agrep"
     },
     {
-      "beginString" : "agrepl"
+      "begin" : "agrepl"
     },
     {
-      "beginString" : "alist"
+      "begin" : "alist"
     },
     {
-      "beginString" : "all"
+      "begin" : "all"
     },
     {
-      "beginString" : "all.equal"
+      "begin" : "all.equal"
     },
     {
-      "beginString" : "all.equal.character"
+      "begin" : "all.equal.character"
     },
     {
-      "beginString" : "all.equal.default"
+      "begin" : "all.equal.default"
     },
     {
-      "beginString" : "all.equal.factor"
+      "begin" : "all.equal.factor"
     },
     {
-      "beginString" : "all.equal.formula"
+      "begin" : "all.equal.formula"
     },
     {
-      "beginString" : "all.equal.language"
+      "begin" : "all.equal.language"
     },
     {
-      "beginString" : "all.equal.list"
+      "begin" : "all.equal.list"
     },
     {
-      "beginString" : "all.equal.numeric"
+      "begin" : "all.equal.numeric"
     },
     {
-      "beginString" : "all.equal.POSIXt"
+      "begin" : "all.equal.POSIXt"
     },
     {
-      "beginString" : "all.equal.raw"
+      "begin" : "all.equal.raw"
     },
     {
-      "beginString" : "all.names"
+      "begin" : "all.names"
     },
     {
-      "beginString" : "all.vars"
+      "begin" : "all.vars"
     },
     {
-      "beginString" : "any"
+      "begin" : "any"
     },
     {
-      "beginString" : "anyDuplicated"
+      "begin" : "anyDuplicated"
     },
     {
-      "beginString" : "anyDuplicated.array"
+      "begin" : "anyDuplicated.array"
     },
     {
-      "beginString" : "anyDuplicated.data.frame"
+      "begin" : "anyDuplicated.data.frame"
     },
     {
-      "beginString" : "anyDuplicated.default"
+      "begin" : "anyDuplicated.default"
     },
     {
-      "beginString" : "anyDuplicated.matrix"
+      "begin" : "anyDuplicated.matrix"
     },
     {
-      "beginString" : "anyNA"
+      "begin" : "anyNA"
     },
     {
-      "beginString" : "anyNA.numeric_version"
+      "begin" : "anyNA.numeric_version"
     },
     {
-      "beginString" : "anyNA.POSIXlt"
+      "begin" : "anyNA.POSIXlt"
     },
     {
-      "beginString" : "aperm"
+      "begin" : "aperm"
     },
     {
-      "beginString" : "aperm.default"
+      "begin" : "aperm.default"
     },
     {
-      "beginString" : "aperm.table"
+      "begin" : "aperm.table"
     },
     {
-      "beginString" : "append"
+      "begin" : "append"
     },
     {
-      "beginString" : "apply"
+      "begin" : "apply"
     },
     {
-      "beginString" : "array"
+      "begin" : "array"
     },
     {
-      "beginString" : "arrayInd"
+      "begin" : "arrayInd"
     },
     {
-      "beginString" : "as.array"
+      "begin" : "as.array"
     },
     {
-      "beginString" : "as.array.default"
+      "begin" : "as.array.default"
     },
     {
-      "beginString" : "as.call"
+      "begin" : "as.call"
     },
     {
-      "beginString" : "as.character"
+      "begin" : "as.character"
     },
     {
-      "beginString" : "as.character.condition"
+      "begin" : "as.character.condition"
     },
     {
-      "beginString" : "as.character.Date"
+      "begin" : "as.character.Date"
     },
     {
-      "beginString" : "as.character.default"
+      "begin" : "as.character.default"
     },
     {
-      "beginString" : "as.character.error"
+      "begin" : "as.character.error"
     },
     {
-      "beginString" : "as.character.factor"
+      "begin" : "as.character.factor"
     },
     {
-      "beginString" : "as.character.hexmode"
+      "begin" : "as.character.hexmode"
     },
     {
-      "beginString" : "as.character.numeric_version"
+      "begin" : "as.character.numeric_version"
     },
     {
-      "beginString" : "as.character.octmode"
+      "begin" : "as.character.octmode"
     },
     {
-      "beginString" : "as.character.POSIXt"
+      "begin" : "as.character.POSIXt"
     },
     {
-      "beginString" : "as.character.srcref"
+      "begin" : "as.character.srcref"
     },
     {
-      "beginString" : "as.complex"
+      "begin" : "as.complex"
     },
     {
-      "beginString" : "as.data.frame"
+      "begin" : "as.data.frame"
     },
     {
-      "beginString" : "as.data.frame.array"
+      "begin" : "as.data.frame.array"
     },
     {
-      "beginString" : "as.data.frame.AsIs"
+      "begin" : "as.data.frame.AsIs"
     },
     {
-      "beginString" : "as.data.frame.character"
+      "begin" : "as.data.frame.character"
     },
     {
-      "beginString" : "as.data.frame.complex"
+      "begin" : "as.data.frame.complex"
     },
     {
-      "beginString" : "as.data.frame.data.frame"
+      "begin" : "as.data.frame.data.frame"
     },
     {
-      "beginString" : "as.data.frame.Date"
+      "begin" : "as.data.frame.Date"
     },
     {
-      "beginString" : "as.data.frame.default"
+      "begin" : "as.data.frame.default"
     },
     {
-      "beginString" : "as.data.frame.difftime"
+      "begin" : "as.data.frame.difftime"
     },
     {
-      "beginString" : "as.data.frame.factor"
+      "begin" : "as.data.frame.factor"
     },
     {
-      "beginString" : "as.data.frame.integer"
+      "begin" : "as.data.frame.integer"
     },
     {
-      "beginString" : "as.data.frame.list"
+      "begin" : "as.data.frame.list"
     },
     {
-      "beginString" : "as.data.frame.logical"
+      "begin" : "as.data.frame.logical"
     },
     {
-      "beginString" : "as.data.frame.matrix"
+      "begin" : "as.data.frame.matrix"
     },
     {
-      "beginString" : "as.data.frame.model.matrix"
+      "begin" : "as.data.frame.model.matrix"
     },
     {
-      "beginString" : "as.data.frame.numeric"
+      "begin" : "as.data.frame.numeric"
     },
     {
-      "beginString" : "as.data.frame.numeric_version"
+      "begin" : "as.data.frame.numeric_version"
     },
     {
-      "beginString" : "as.data.frame.ordered"
+      "begin" : "as.data.frame.ordered"
     },
     {
-      "beginString" : "as.data.frame.POSIXct"
+      "begin" : "as.data.frame.POSIXct"
     },
     {
-      "beginString" : "as.data.frame.POSIXlt"
+      "begin" : "as.data.frame.POSIXlt"
     },
     {
-      "beginString" : "as.data.frame.raw"
+      "begin" : "as.data.frame.raw"
     },
     {
-      "beginString" : "as.data.frame.table"
+      "begin" : "as.data.frame.table"
     },
     {
-      "beginString" : "as.data.frame.ts"
+      "begin" : "as.data.frame.ts"
     },
     {
-      "beginString" : "as.data.frame.vector"
+      "begin" : "as.data.frame.vector"
     },
     {
-      "beginString" : "as.Date"
+      "begin" : "as.Date"
     },
     {
-      "beginString" : "as.Date.character"
+      "begin" : "as.Date.character"
     },
     {
-      "beginString" : "as.Date.date"
+      "begin" : "as.Date.date"
     },
     {
-      "beginString" : "as.Date.dates"
+      "begin" : "as.Date.dates"
     },
     {
-      "beginString" : "as.Date.default"
+      "begin" : "as.Date.default"
     },
     {
-      "beginString" : "as.Date.factor"
+      "begin" : "as.Date.factor"
     },
     {
-      "beginString" : "as.Date.numeric"
+      "begin" : "as.Date.numeric"
     },
     {
-      "beginString" : "as.Date.POSIXct"
+      "begin" : "as.Date.POSIXct"
     },
     {
-      "beginString" : "as.Date.POSIXlt"
+      "begin" : "as.Date.POSIXlt"
     },
     {
-      "beginString" : "as.difftime"
+      "begin" : "as.difftime"
     },
     {
-      "beginString" : "as.double"
+      "begin" : "as.double"
     },
     {
-      "beginString" : "as.double.difftime"
+      "begin" : "as.double.difftime"
     },
     {
-      "beginString" : "as.double.POSIXlt"
+      "begin" : "as.double.POSIXlt"
     },
     {
-      "beginString" : "as.environment"
+      "begin" : "as.environment"
     },
     {
-      "beginString" : "as.expression"
+      "begin" : "as.expression"
     },
     {
-      "beginString" : "as.expression.default"
+      "begin" : "as.expression.default"
     },
     {
-      "beginString" : "as.factor"
+      "begin" : "as.factor"
     },
     {
-      "beginString" : "as.function"
+      "begin" : "as.function"
     },
     {
-      "beginString" : "as.function.default"
+      "begin" : "as.function.default"
     },
     {
-      "beginString" : "as.hexmode"
+      "begin" : "as.hexmode"
     },
     {
-      "beginString" : "as.integer"
+      "begin" : "as.integer"
     },
     {
-      "beginString" : "as.list"
+      "begin" : "as.list"
     },
     {
-      "beginString" : "as.list.data.frame"
+      "begin" : "as.list.data.frame"
     },
     {
-      "beginString" : "as.list.Date"
+      "begin" : "as.list.Date"
     },
     {
-      "beginString" : "as.list.default"
+      "begin" : "as.list.default"
     },
     {
-      "beginString" : "as.list.environment"
+      "begin" : "as.list.environment"
     },
     {
-      "beginString" : "as.list.factor"
+      "begin" : "as.list.factor"
     },
     {
-      "beginString" : "as.list.function"
+      "begin" : "as.list.function"
     },
     {
-      "beginString" : "as.list.numeric_version"
+      "begin" : "as.list.numeric_version"
     },
     {
-      "beginString" : "as.list.POSIXct"
+      "begin" : "as.list.POSIXct"
     },
     {
-      "beginString" : "as.logical"
+      "begin" : "as.logical"
     },
     {
-      "beginString" : "as.logical.factor"
+      "begin" : "as.logical.factor"
     },
     {
-      "beginString" : "as.matrix"
+      "begin" : "as.matrix"
     },
     {
-      "beginString" : "as.matrix.data.frame"
+      "begin" : "as.matrix.data.frame"
     },
     {
-      "beginString" : "as.matrix.default"
+      "begin" : "as.matrix.default"
     },
     {
-      "beginString" : "as.matrix.noquote"
+      "begin" : "as.matrix.noquote"
     },
     {
-      "beginString" : "as.matrix.POSIXlt"
+      "begin" : "as.matrix.POSIXlt"
     },
     {
-      "beginString" : "as.name"
+      "begin" : "as.name"
     },
     {
-      "beginString" : "as.null"
+      "begin" : "as.null"
     },
     {
-      "beginString" : "as.null.default"
+      "begin" : "as.null.default"
     },
     {
-      "beginString" : "as.numeric"
+      "begin" : "as.numeric"
     },
     {
-      "beginString" : "as.numeric_version"
+      "begin" : "as.numeric_version"
     },
     {
-      "beginString" : "as.octmode"
+      "begin" : "as.octmode"
     },
     {
-      "beginString" : "as.ordered"
+      "begin" : "as.ordered"
     },
     {
-      "beginString" : "as.package_version"
+      "begin" : "as.package_version"
     },
     {
-      "beginString" : "as.pairlist"
+      "begin" : "as.pairlist"
     },
     {
-      "beginString" : "as.POSIXct"
+      "begin" : "as.POSIXct"
     },
     {
-      "beginString" : "as.POSIXct.date"
+      "begin" : "as.POSIXct.date"
     },
     {
-      "beginString" : "as.POSIXct.Date"
+      "begin" : "as.POSIXct.Date"
     },
     {
-      "beginString" : "as.POSIXct.dates"
+      "begin" : "as.POSIXct.dates"
     },
     {
-      "beginString" : "as.POSIXct.default"
+      "begin" : "as.POSIXct.default"
     },
     {
-      "beginString" : "as.POSIXct.numeric"
+      "begin" : "as.POSIXct.numeric"
     },
     {
-      "beginString" : "as.POSIXct.POSIXlt"
+      "begin" : "as.POSIXct.POSIXlt"
     },
     {
-      "beginString" : "as.POSIXlt"
+      "begin" : "as.POSIXlt"
     },
     {
-      "beginString" : "as.POSIXlt.character"
+      "begin" : "as.POSIXlt.character"
     },
     {
-      "beginString" : "as.POSIXlt.date"
+      "begin" : "as.POSIXlt.date"
     },
     {
-      "beginString" : "as.POSIXlt.Date"
+      "begin" : "as.POSIXlt.Date"
     },
     {
-      "beginString" : "as.POSIXlt.dates"
+      "begin" : "as.POSIXlt.dates"
     },
     {
-      "beginString" : "as.POSIXlt.default"
+      "begin" : "as.POSIXlt.default"
     },
     {
-      "beginString" : "as.POSIXlt.factor"
+      "begin" : "as.POSIXlt.factor"
     },
     {
-      "beginString" : "as.POSIXlt.numeric"
+      "begin" : "as.POSIXlt.numeric"
     },
     {
-      "beginString" : "as.POSIXlt.POSIXct"
+      "begin" : "as.POSIXlt.POSIXct"
     },
     {
-      "beginString" : "as.qr"
+      "begin" : "as.qr"
     },
     {
-      "beginString" : "as.raw"
+      "begin" : "as.raw"
     },
     {
-      "beginString" : "as.single"
+      "begin" : "as.single"
     },
     {
-      "beginString" : "as.single.default"
+      "begin" : "as.single.default"
     },
     {
-      "beginString" : "as.symbol"
+      "begin" : "as.symbol"
     },
     {
-      "beginString" : "as.table"
+      "begin" : "as.table"
     },
     {
-      "beginString" : "as.table.default"
+      "begin" : "as.table.default"
     },
     {
-      "beginString" : "as.vector"
+      "begin" : "as.vector"
     },
     {
-      "beginString" : "as.vector.factor"
+      "begin" : "as.vector.factor"
     },
     {
-      "beginString" : "asin"
+      "begin" : "asin"
     },
     {
-      "beginString" : "asinh"
+      "begin" : "asinh"
     },
     {
-      "beginString" : "asNamespace"
+      "begin" : "asNamespace"
     },
     {
-      "beginString" : "asS3"
+      "begin" : "asS3"
     },
     {
-      "beginString" : "asS4"
+      "begin" : "asS4"
     },
     {
-      "beginString" : "assign"
+      "begin" : "assign"
     },
     {
-      "beginString" : "atan"
+      "begin" : "atan"
     },
     {
-      "beginString" : "atan2"
+      "begin" : "atan2"
     },
     {
-      "beginString" : "atanh"
+      "begin" : "atanh"
     },
     {
-      "beginString" : "attach"
+      "begin" : "attach"
     },
     {
-      "beginString" : "attachNamespace"
+      "begin" : "attachNamespace"
     },
     {
-      "beginString" : "attr"
+      "begin" : "attr"
     },
     {
-      "beginString" : "attr.all.equal"
+      "begin" : "attr.all.equal"
     },
     {
-      "beginString" : "attributes"
+      "begin" : "attributes"
     },
     {
-      "beginString" : "autoload"
+      "begin" : "autoload"
     },
     {
-      "beginString" : "autoloader"
+      "begin" : "autoloader"
     },
     {
-      "beginString" : "backsolve"
+      "begin" : "backsolve"
     },
     {
-      "beginString" : "baseenv"
+      "begin" : "baseenv"
     },
     {
-      "beginString" : "basename"
+      "begin" : "basename"
     },
     {
-      "beginString" : "besselI"
+      "begin" : "besselI"
     },
     {
-      "beginString" : "besselJ"
+      "begin" : "besselJ"
     },
     {
-      "beginString" : "besselK"
+      "begin" : "besselK"
     },
     {
-      "beginString" : "besselY"
+      "begin" : "besselY"
     },
     {
-      "beginString" : "beta"
+      "begin" : "beta"
     },
     {
-      "beginString" : "bindingIsActive"
+      "begin" : "bindingIsActive"
     },
     {
-      "beginString" : "bindingIsLocked"
+      "begin" : "bindingIsLocked"
     },
     {
-      "beginString" : "bindtextdomain"
+      "begin" : "bindtextdomain"
     },
     {
-      "beginString" : "bitwAnd"
+      "begin" : "bitwAnd"
     },
     {
-      "beginString" : "bitwNot"
+      "begin" : "bitwNot"
     },
     {
-      "beginString" : "bitwOr"
+      "begin" : "bitwOr"
     },
     {
-      "beginString" : "bitwShiftL"
+      "begin" : "bitwShiftL"
     },
     {
-      "beginString" : "bitwShiftR"
+      "begin" : "bitwShiftR"
     },
     {
-      "beginString" : "bitwXor"
+      "begin" : "bitwXor"
     },
     {
-      "beginString" : "body"
+      "begin" : "body"
     },
     {
-      "beginString" : "bquote"
+      "begin" : "bquote"
     },
     {
-      "beginString" : "browser"
+      "begin" : "browser"
     },
     {
-      "beginString" : "browserCondition"
+      "begin" : "browserCondition"
     },
     {
-      "beginString" : "browserSetDebug"
+      "begin" : "browserSetDebug"
     },
     {
-      "beginString" : "browserText"
+      "begin" : "browserText"
     },
     {
-      "beginString" : "builtins"
+      "begin" : "builtins"
     },
     {
-      "beginString" : "by"
+      "begin" : "by"
     },
     {
-      "beginString" : "by.data.frame"
+      "begin" : "by.data.frame"
     },
     {
-      "beginString" : "by.default"
+      "begin" : "by.default"
     },
     {
-      "beginString" : "bzfile"
+      "begin" : "bzfile"
     },
     {
-      "beginString" : "c"
+      "begin" : "c"
     },
     {
-      "beginString" : "c.Date"
+      "begin" : "c.Date"
     },
     {
-      "beginString" : "c.noquote"
+      "begin" : "c.noquote"
     },
     {
-      "beginString" : "c.numeric_version"
+      "begin" : "c.numeric_version"
     },
     {
-      "beginString" : "c.POSIXct"
+      "begin" : "c.POSIXct"
     },
     {
-      "beginString" : "c.POSIXlt"
+      "begin" : "c.POSIXlt"
     },
     {
-      "beginString" : "call"
+      "begin" : "call"
     },
     {
-      "beginString" : "callCC"
+      "begin" : "callCC"
     },
     {
-      "beginString" : "capabilities"
+      "begin" : "capabilities"
     },
     {
-      "beginString" : "casefold"
+      "begin" : "casefold"
     },
     {
-      "beginString" : "cat"
+      "begin" : "cat"
     },
     {
-      "beginString" : "cbind"
+      "begin" : "cbind"
     },
     {
-      "beginString" : "cbind.data.frame"
+      "begin" : "cbind.data.frame"
     },
     {
-      "beginString" : "ceiling"
+      "begin" : "ceiling"
     },
     {
-      "beginString" : "char.expand"
+      "begin" : "char.expand"
     },
     {
-      "beginString" : "character"
+      "begin" : "character"
     },
     {
-      "beginString" : "charmatch"
+      "begin" : "charmatch"
     },
     {
-      "beginString" : "charToRaw"
+      "begin" : "charToRaw"
     },
     {
-      "beginString" : "chartr"
+      "begin" : "chartr"
     },
     {
-      "beginString" : "check_tzones"
+      "begin" : "check_tzones"
     },
     {
-      "beginString" : "chol"
+      "begin" : "chol"
     },
     {
-      "beginString" : "chol.default"
+      "begin" : "chol.default"
     },
     {
-      "beginString" : "chol2inv"
+      "begin" : "chol2inv"
     },
     {
-      "beginString" : "choose"
+      "begin" : "choose"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "clearPushBack"
+      "begin" : "clearPushBack"
     },
     {
-      "beginString" : "close"
+      "begin" : "close"
     },
     {
-      "beginString" : "close.connection"
+      "begin" : "close.connection"
     },
     {
-      "beginString" : "close.srcfile"
+      "begin" : "close.srcfile"
     },
     {
-      "beginString" : "close.srcfilealias"
+      "begin" : "close.srcfilealias"
     },
     {
-      "beginString" : "closeAllConnections"
+      "begin" : "closeAllConnections"
     },
     {
-      "beginString" : "col"
+      "begin" : "col"
     },
     {
-      "beginString" : "colMeans"
+      "begin" : "colMeans"
     },
     {
-      "beginString" : "colnames"
+      "begin" : "colnames"
     },
     {
-      "beginString" : "colSums"
+      "begin" : "colSums"
     },
     {
-      "beginString" : "commandArgs"
+      "begin" : "commandArgs"
     },
     {
-      "beginString" : "comment"
+      "begin" : "comment"
     },
     {
-      "beginString" : "complex"
+      "begin" : "complex"
     },
     {
-      "beginString" : "computeRestarts"
+      "begin" : "computeRestarts"
     },
     {
-      "beginString" : "conditionCall"
+      "begin" : "conditionCall"
     },
     {
-      "beginString" : "conditionCall.condition"
+      "begin" : "conditionCall.condition"
     },
     {
-      "beginString" : "conditionMessage"
+      "begin" : "conditionMessage"
     },
     {
-      "beginString" : "conditionMessage.condition"
+      "begin" : "conditionMessage.condition"
     },
     {
-      "beginString" : "conflicts"
+      "begin" : "conflicts"
     },
     {
-      "beginString" : "contributors"
+      "begin" : "contributors"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "cosh"
+      "begin" : "cosh"
     },
     {
-      "beginString" : "cospi"
+      "begin" : "cospi"
     },
     {
-      "beginString" : "crossprod"
+      "begin" : "crossprod"
     },
     {
-      "beginString" : "cummax"
+      "begin" : "cummax"
     },
     {
-      "beginString" : "cummin"
+      "begin" : "cummin"
     },
     {
-      "beginString" : "cumprod"
+      "begin" : "cumprod"
     },
     {
-      "beginString" : "cumsum"
+      "begin" : "cumsum"
     },
     {
-      "beginString" : "cut"
+      "begin" : "cut"
     },
     {
-      "beginString" : "cut.Date"
+      "begin" : "cut.Date"
     },
     {
-      "beginString" : "cut.default"
+      "begin" : "cut.default"
     },
     {
-      "beginString" : "cut.POSIXt"
+      "begin" : "cut.POSIXt"
     },
     {
-      "beginString" : "data.class"
+      "begin" : "data.class"
     },
     {
-      "beginString" : "data.frame"
+      "begin" : "data.frame"
     },
     {
-      "beginString" : "data.matrix"
+      "begin" : "data.matrix"
     },
     {
-      "beginString" : "date"
+      "begin" : "date"
     },
     {
-      "beginString" : "debug"
+      "begin" : "debug"
     },
     {
-      "beginString" : "debugonce"
+      "begin" : "debugonce"
     },
     {
-      "beginString" : "default.stringsAsFactors"
+      "begin" : "default.stringsAsFactors"
     },
     {
-      "beginString" : "delayedAssign"
+      "begin" : "delayedAssign"
     },
     {
-      "beginString" : "deparse"
+      "begin" : "deparse"
     },
     {
-      "beginString" : "det"
+      "begin" : "det"
     },
     {
-      "beginString" : "detach"
+      "begin" : "detach"
     },
     {
-      "beginString" : "determinant"
+      "begin" : "determinant"
     },
     {
-      "beginString" : "determinant.matrix"
+      "begin" : "determinant.matrix"
     },
     {
-      "beginString" : "dget"
+      "begin" : "dget"
     },
     {
-      "beginString" : "diag"
+      "begin" : "diag"
     },
     {
-      "beginString" : "diff"
+      "begin" : "diff"
     },
     {
-      "beginString" : "diff.Date"
+      "begin" : "diff.Date"
     },
     {
-      "beginString" : "diff.default"
+      "begin" : "diff.default"
     },
     {
-      "beginString" : "diff.POSIXt"
+      "begin" : "diff.POSIXt"
     },
     {
-      "beginString" : "difftime"
+      "begin" : "difftime"
     },
     {
-      "beginString" : "digamma"
+      "begin" : "digamma"
     },
     {
-      "beginString" : "dim"
+      "begin" : "dim"
     },
     {
-      "beginString" : "dim.data.frame"
+      "begin" : "dim.data.frame"
     },
     {
-      "beginString" : "dimnames"
+      "begin" : "dimnames"
     },
     {
-      "beginString" : "dimnames.data.frame"
+      "begin" : "dimnames.data.frame"
     },
     {
-      "beginString" : "dir"
+      "begin" : "dir"
     },
     {
-      "beginString" : "dir.create"
+      "begin" : "dir.create"
     },
     {
-      "beginString" : "dirname"
+      "begin" : "dirname"
     },
     {
-      "beginString" : "do.call"
+      "begin" : "do.call"
     },
     {
-      "beginString" : "dontCheck"
+      "begin" : "dontCheck"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "dput"
+      "begin" : "dput"
     },
     {
-      "beginString" : "dQuote"
+      "begin" : "dQuote"
     },
     {
-      "beginString" : "drop"
+      "begin" : "drop"
     },
     {
-      "beginString" : "droplevels"
+      "begin" : "droplevels"
     },
     {
-      "beginString" : "droplevels.data.frame"
+      "begin" : "droplevels.data.frame"
     },
     {
-      "beginString" : "droplevels.factor"
+      "begin" : "droplevels.factor"
     },
     {
-      "beginString" : "dump"
+      "begin" : "dump"
     },
     {
-      "beginString" : "duplicated"
+      "begin" : "duplicated"
     },
     {
-      "beginString" : "duplicated.array"
+      "begin" : "duplicated.array"
     },
     {
-      "beginString" : "duplicated.data.frame"
+      "begin" : "duplicated.data.frame"
     },
     {
-      "beginString" : "duplicated.default"
+      "begin" : "duplicated.default"
     },
     {
-      "beginString" : "duplicated.matrix"
+      "begin" : "duplicated.matrix"
     },
     {
-      "beginString" : "duplicated.numeric_version"
+      "begin" : "duplicated.numeric_version"
     },
     {
-      "beginString" : "duplicated.POSIXlt"
+      "begin" : "duplicated.POSIXlt"
     },
     {
-      "beginString" : "dyn.load"
+      "begin" : "dyn.load"
     },
     {
-      "beginString" : "dyn.unload"
+      "begin" : "dyn.unload"
     },
     {
-      "beginString" : "eapply"
+      "begin" : "eapply"
     },
     {
-      "beginString" : "eigen"
+      "begin" : "eigen"
     },
     {
-      "beginString" : "emptyenv"
+      "begin" : "emptyenv"
     },
     {
-      "beginString" : "enc2native"
+      "begin" : "enc2native"
     },
     {
-      "beginString" : "enc2utf8"
+      "begin" : "enc2utf8"
     },
     {
-      "beginString" : "encodeString"
+      "begin" : "encodeString"
     },
     {
-      "beginString" : "enquote"
+      "begin" : "enquote"
     },
     {
-      "beginString" : "env.profile"
+      "begin" : "env.profile"
     },
     {
-      "beginString" : "environment"
+      "begin" : "environment"
     },
     {
-      "beginString" : "environmentIsLocked"
+      "begin" : "environmentIsLocked"
     },
     {
-      "beginString" : "environmentName"
+      "begin" : "environmentName"
     },
     {
-      "beginString" : "eval"
+      "begin" : "eval"
     },
     {
-      "beginString" : "eval.parent"
+      "begin" : "eval.parent"
     },
     {
-      "beginString" : "evalq"
+      "begin" : "evalq"
     },
     {
-      "beginString" : "exists"
+      "begin" : "exists"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "expand.grid"
+      "begin" : "expand.grid"
     },
     {
-      "beginString" : "expm1"
+      "begin" : "expm1"
     },
     {
-      "beginString" : "expression"
+      "begin" : "expression"
     },
     {
-      "beginString" : "factor"
+      "begin" : "factor"
     },
     {
-      "beginString" : "factorial"
+      "begin" : "factorial"
     },
     {
-      "beginString" : "fifo"
+      "begin" : "fifo"
     },
     {
-      "beginString" : "file"
+      "begin" : "file"
     },
     {
-      "beginString" : "file.access"
+      "begin" : "file.access"
     },
     {
-      "beginString" : "file.append"
+      "begin" : "file.append"
     },
     {
-      "beginString" : "file.choose"
+      "begin" : "file.choose"
     },
     {
-      "beginString" : "file.copy"
+      "begin" : "file.copy"
     },
     {
-      "beginString" : "file.create"
+      "begin" : "file.create"
     },
     {
-      "beginString" : "file.exists"
+      "begin" : "file.exists"
     },
     {
-      "beginString" : "file.info"
+      "begin" : "file.info"
     },
     {
-      "beginString" : "file.link"
+      "begin" : "file.link"
     },
     {
-      "beginString" : "file.path"
+      "begin" : "file.path"
     },
     {
-      "beginString" : "file.remove"
+      "begin" : "file.remove"
     },
     {
-      "beginString" : "file.rename"
+      "begin" : "file.rename"
     },
     {
-      "beginString" : "file.show"
+      "begin" : "file.show"
     },
     {
-      "beginString" : "file.symlink"
+      "begin" : "file.symlink"
     },
     {
-      "beginString" : "find.package"
+      "begin" : "find.package"
     },
     {
-      "beginString" : "findInterval"
+      "begin" : "findInterval"
     },
     {
-      "beginString" : "findPackageEnv"
+      "begin" : "findPackageEnv"
     },
     {
-      "beginString" : "findRestart"
+      "begin" : "findRestart"
     },
     {
-      "beginString" : "floor"
+      "begin" : "floor"
     },
     {
-      "beginString" : "flush"
+      "begin" : "flush"
     },
     {
-      "beginString" : "flush.connection"
+      "begin" : "flush.connection"
     },
     {
-      "beginString" : "force"
+      "begin" : "force"
     },
     {
-      "beginString" : "formals"
+      "begin" : "formals"
     },
     {
-      "beginString" : "format"
+      "begin" : "format"
     },
     {
-      "beginString" : "format.AsIs"
+      "begin" : "format.AsIs"
     },
     {
-      "beginString" : "format.data.frame"
+      "begin" : "format.data.frame"
     },
     {
-      "beginString" : "format.Date"
+      "begin" : "format.Date"
     },
     {
-      "beginString" : "format.default"
+      "begin" : "format.default"
     },
     {
-      "beginString" : "format.difftime"
+      "begin" : "format.difftime"
     },
     {
-      "beginString" : "format.factor"
+      "begin" : "format.factor"
     },
     {
-      "beginString" : "format.hexmode"
+      "begin" : "format.hexmode"
     },
     {
-      "beginString" : "format.info"
+      "begin" : "format.info"
     },
     {
-      "beginString" : "format.libraryIQR"
+      "begin" : "format.libraryIQR"
     },
     {
-      "beginString" : "format.numeric_version"
+      "begin" : "format.numeric_version"
     },
     {
-      "beginString" : "format.octmode"
+      "begin" : "format.octmode"
     },
     {
-      "beginString" : "format.packageInfo"
+      "begin" : "format.packageInfo"
     },
     {
-      "beginString" : "format.POSIXct"
+      "begin" : "format.POSIXct"
     },
     {
-      "beginString" : "format.POSIXlt"
+      "begin" : "format.POSIXlt"
     },
     {
-      "beginString" : "format.pval"
+      "begin" : "format.pval"
     },
     {
-      "beginString" : "format.summaryDefault"
+      "begin" : "format.summaryDefault"
     },
     {
-      "beginString" : "formatC"
+      "begin" : "formatC"
     },
     {
-      "beginString" : "formatDL"
+      "begin" : "formatDL"
     },
     {
-      "beginString" : "forwardsolve"
+      "begin" : "forwardsolve"
     },
     {
-      "beginString" : "gamma"
+      "begin" : "gamma"
     },
     {
-      "beginString" : "gc"
+      "begin" : "gc"
     },
     {
-      "beginString" : "gc.time"
+      "begin" : "gc.time"
     },
     {
-      "beginString" : "gcinfo"
+      "begin" : "gcinfo"
     },
     {
-      "beginString" : "gctorture"
+      "begin" : "gctorture"
     },
     {
-      "beginString" : "gctorture2"
+      "begin" : "gctorture2"
     },
     {
-      "beginString" : "get"
+      "begin" : "get"
     },
     {
-      "beginString" : "getAllConnections"
+      "begin" : "getAllConnections"
     },
     {
-      "beginString" : "getCallingDLL"
+      "begin" : "getCallingDLL"
     },
     {
-      "beginString" : "getCallingDLLe"
+      "begin" : "getCallingDLLe"
     },
     {
-      "beginString" : "getConnection"
+      "begin" : "getConnection"
     },
     {
-      "beginString" : "getDLLRegisteredRoutines"
+      "begin" : "getDLLRegisteredRoutines"
     },
     {
-      "beginString" : "getDLLRegisteredRoutines.character\""
+      "begin" : "getDLLRegisteredRoutines.character\""
     },
     {
-      "beginString" : "getDLLRegisteredRoutines.DLLInfo"
+      "begin" : "getDLLRegisteredRoutines.DLLInfo"
     },
     {
-      "beginString" : "getElement"
+      "begin" : "getElement"
     },
     {
-      "beginString" : "geterrmessage"
+      "begin" : "geterrmessage"
     },
     {
-      "beginString" : "getExportedValue"
+      "begin" : "getExportedValue"
     },
     {
-      "beginString" : "getHook"
+      "begin" : "getHook"
     },
     {
-      "beginString" : "getLoadedDLLs"
+      "begin" : "getLoadedDLLs"
     },
     {
-      "beginString" : "getNamespace"
+      "begin" : "getNamespace"
     },
     {
-      "beginString" : "getNamespaceExports"
+      "begin" : "getNamespaceExports"
     },
     {
-      "beginString" : "getNamespaceImports"
+      "begin" : "getNamespaceImports"
     },
     {
-      "beginString" : "getNamespaceInfo"
+      "begin" : "getNamespaceInfo"
     },
     {
-      "beginString" : "getNamespaceName"
+      "begin" : "getNamespaceName"
     },
     {
-      "beginString" : "getNamespaceUsers"
+      "begin" : "getNamespaceUsers"
     },
     {
-      "beginString" : "getNamespaceVersion"
+      "begin" : "getNamespaceVersion"
     },
     {
-      "beginString" : "getNativeSymbolInfo"
+      "begin" : "getNativeSymbolInfo"
     },
     {
-      "beginString" : "getOption"
+      "begin" : "getOption"
     },
     {
-      "beginString" : "getRversion"
+      "begin" : "getRversion"
     },
     {
-      "beginString" : "getSrcLines"
+      "begin" : "getSrcLines"
     },
     {
-      "beginString" : "getTaskCallbackNames"
+      "begin" : "getTaskCallbackNames"
     },
     {
-      "beginString" : "gettext"
+      "begin" : "gettext"
     },
     {
-      "beginString" : "gettextf"
+      "begin" : "gettextf"
     },
     {
-      "beginString" : "getwd"
+      "begin" : "getwd"
     },
     {
-      "beginString" : "gl"
+      "begin" : "gl"
     },
     {
-      "beginString" : "globalenv"
+      "begin" : "globalenv"
     },
     {
-      "beginString" : "gregexpr"
+      "begin" : "gregexpr"
     },
     {
-      "beginString" : "grep"
+      "begin" : "grep"
     },
     {
-      "beginString" : "grepl"
+      "begin" : "grepl"
     },
     {
-      "beginString" : "grepRaw"
+      "begin" : "grepRaw"
     },
     {
-      "beginString" : "gsub"
+      "begin" : "gsub"
     },
     {
-      "beginString" : "gzcon"
+      "begin" : "gzcon"
     },
     {
-      "beginString" : "gzfile"
+      "begin" : "gzfile"
     },
     {
-      "beginString" : "head"
+      "begin" : "head"
     },
     {
-      "beginString" : "iconv"
+      "begin" : "iconv"
     },
     {
-      "beginString" : "iconvlist"
+      "begin" : "iconvlist"
     },
     {
-      "beginString" : "icuSetCollate"
+      "begin" : "icuSetCollate"
     },
     {
-      "beginString" : "identical"
+      "begin" : "identical"
     },
     {
-      "beginString" : "identity"
+      "begin" : "identity"
     },
     {
-      "beginString" : "ifelse"
+      "begin" : "ifelse"
     },
     {
-      "beginString" : "importIntoEnv"
+      "begin" : "importIntoEnv"
     },
     {
-      "beginString" : "inherits"
+      "begin" : "inherits"
     },
     {
-      "beginString" : "integer"
+      "begin" : "integer"
     },
     {
-      "beginString" : "interaction"
+      "begin" : "interaction"
     },
     {
-      "beginString" : "interactive"
+      "begin" : "interactive"
     },
     {
-      "beginString" : "intersect"
+      "begin" : "intersect"
     },
     {
-      "beginString" : "intToBits"
+      "begin" : "intToBits"
     },
     {
-      "beginString" : "intToUtf8"
+      "begin" : "intToUtf8"
     },
     {
-      "beginString" : "inverse.rle"
+      "begin" : "inverse.rle"
     },
     {
-      "beginString" : "invisible"
+      "begin" : "invisible"
     },
     {
-      "beginString" : "invokeRestart"
+      "begin" : "invokeRestart"
     },
     {
-      "beginString" : "invokeRestartInteractively"
+      "begin" : "invokeRestartInteractively"
     },
     {
-      "beginString" : "is.array"
+      "begin" : "is.array"
     },
     {
-      "beginString" : "is.atomic"
+      "begin" : "is.atomic"
     },
     {
-      "beginString" : "is.call"
+      "begin" : "is.call"
     },
     {
-      "beginString" : "is.character"
+      "begin" : "is.character"
     },
     {
-      "beginString" : "is.complex"
+      "begin" : "is.complex"
     },
     {
-      "beginString" : "is.data.frame"
+      "begin" : "is.data.frame"
     },
     {
-      "beginString" : "is.double"
+      "begin" : "is.double"
     },
     {
-      "beginString" : "is.element"
+      "begin" : "is.element"
     },
     {
-      "beginString" : "is.environment"
+      "begin" : "is.environment"
     },
     {
-      "beginString" : "is.expression"
+      "begin" : "is.expression"
     },
     {
-      "beginString" : "is.factor"
+      "begin" : "is.factor"
     },
     {
-      "beginString" : "is.finite"
+      "begin" : "is.finite"
     },
     {
-      "beginString" : "is.function"
+      "begin" : "is.function"
     },
     {
-      "beginString" : "is.infinite"
+      "begin" : "is.infinite"
     },
     {
-      "beginString" : "is.integer"
+      "begin" : "is.integer"
     },
     {
-      "beginString" : "is.language"
+      "begin" : "is.language"
     },
     {
-      "beginString" : "is.list"
+      "begin" : "is.list"
     },
     {
-      "beginString" : "is.loaded"
+      "begin" : "is.loaded"
     },
     {
-      "beginString" : "is.logical"
+      "begin" : "is.logical"
     },
     {
-      "beginString" : "is.matrix"
+      "begin" : "is.matrix"
     },
     {
-      "beginString" : "is.na"
+      "begin" : "is.na"
     },
     {
-      "beginString" : "is.na.data.frame"
+      "begin" : "is.na.data.frame"
     },
     {
-      "beginString" : "is.na.numeric_version"
+      "begin" : "is.na.numeric_version"
     },
     {
-      "beginString" : "is.na.POSIXlt"
+      "begin" : "is.na.POSIXlt"
     },
     {
-      "beginString" : "is.name"
+      "begin" : "is.name"
     },
     {
-      "beginString" : "is.nan"
+      "begin" : "is.nan"
     },
     {
-      "beginString" : "is.null"
+      "begin" : "is.null"
     },
     {
-      "beginString" : "is.numeric"
+      "begin" : "is.numeric"
     },
     {
-      "beginString" : "is.numeric.Date"
+      "begin" : "is.numeric.Date"
     },
     {
-      "beginString" : "is.numeric.difftime"
+      "begin" : "is.numeric.difftime"
     },
     {
-      "beginString" : "is.numeric.POSIXt"
+      "begin" : "is.numeric.POSIXt"
     },
     {
-      "beginString" : "is.numeric_version"
+      "begin" : "is.numeric_version"
     },
     {
-      "beginString" : "is.object"
+      "begin" : "is.object"
     },
     {
-      "beginString" : "is.ordered"
+      "begin" : "is.ordered"
     },
     {
-      "beginString" : "is.package_version"
+      "begin" : "is.package_version"
     },
     {
-      "beginString" : "is.pairlist"
+      "begin" : "is.pairlist"
     },
     {
-      "beginString" : "is.primitive"
+      "begin" : "is.primitive"
     },
     {
-      "beginString" : "is.qr"
+      "begin" : "is.qr"
     },
     {
-      "beginString" : "is.R"
+      "begin" : "is.R"
     },
     {
-      "beginString" : "is.raw"
+      "begin" : "is.raw"
     },
     {
-      "beginString" : "is.recursive"
+      "begin" : "is.recursive"
     },
     {
-      "beginString" : "is.single"
+      "begin" : "is.single"
     },
     {
-      "beginString" : "is.symbol"
+      "begin" : "is.symbol"
     },
     {
-      "beginString" : "is.table"
+      "begin" : "is.table"
     },
     {
-      "beginString" : "is.unsorted"
+      "begin" : "is.unsorted"
     },
     {
-      "beginString" : "is.vector"
+      "begin" : "is.vector"
     },
     {
-      "beginString" : "isatty"
+      "begin" : "isatty"
     },
     {
-      "beginString" : "isBaseNamespace"
+      "begin" : "isBaseNamespace"
     },
     {
-      "beginString" : "isdebugged"
+      "begin" : "isdebugged"
     },
     {
-      "beginString" : "isIncomplete"
+      "begin" : "isIncomplete"
     },
     {
-      "beginString" : "isNamespace"
+      "begin" : "isNamespace"
     },
     {
-      "beginString" : "isOpen"
+      "begin" : "isOpen"
     },
     {
-      "beginString" : "isRestart"
+      "begin" : "isRestart"
     },
     {
-      "beginString" : "isS4"
+      "begin" : "isS4"
     },
     {
-      "beginString" : "isSeekable"
+      "begin" : "isSeekable"
     },
     {
-      "beginString" : "isSymmetric"
+      "begin" : "isSymmetric"
     },
     {
-      "beginString" : "isSymmetric.matrix"
+      "begin" : "isSymmetric.matrix"
     },
     {
-      "beginString" : "isTRUE"
+      "begin" : "isTRUE"
     },
     {
-      "beginString" : "jitter"
+      "begin" : "jitter"
     },
     {
-      "beginString" : "julian"
+      "begin" : "julian"
     },
     {
-      "beginString" : "julian.Date"
+      "begin" : "julian.Date"
     },
     {
-      "beginString" : "julian.POSIXt"
+      "begin" : "julian.POSIXt"
     },
     {
-      "beginString" : "kappa"
+      "begin" : "kappa"
     },
     {
-      "beginString" : "kappa.default"
+      "begin" : "kappa.default"
     },
     {
-      "beginString" : "kappa.lm"
+      "begin" : "kappa.lm"
     },
     {
-      "beginString" : "kappa.qr"
+      "begin" : "kappa.qr"
     },
     {
-      "beginString" : "kronecker"
+      "begin" : "kronecker"
     },
     {
-      "beginString" : "l10n_info"
+      "begin" : "l10n_info"
     },
     {
-      "beginString" : "labels"
+      "begin" : "labels"
     },
     {
-      "beginString" : "labels.default"
+      "begin" : "labels.default"
     },
     {
-      "beginString" : "lapply"
+      "begin" : "lapply"
     },
     {
-      "beginString" : "last.warning"
+      "begin" : "last.warning"
     },
     {
-      "beginString" : "lazyLoad"
+      "begin" : "lazyLoad"
     },
     {
-      "beginString" : "lazyLoadDBexec"
+      "begin" : "lazyLoadDBexec"
     },
     {
-      "beginString" : "lazyLoadDBfetch"
+      "begin" : "lazyLoadDBfetch"
     },
     {
-      "beginString" : "lbeta"
+      "begin" : "lbeta"
     },
     {
-      "beginString" : "lchoose"
+      "begin" : "lchoose"
     },
     {
-      "beginString" : "length"
+      "begin" : "length"
     },
     {
-      "beginString" : "length.POSIXlt"
+      "begin" : "length.POSIXlt"
     },
     {
-      "beginString" : "letters"
+      "begin" : "letters"
     },
     {
-      "beginString" : "levels"
+      "begin" : "levels"
     },
     {
-      "beginString" : "levels.default"
+      "begin" : "levels.default"
     },
     {
-      "beginString" : "lfactorial"
+      "begin" : "lfactorial"
     },
     {
-      "beginString" : "lgamma"
+      "begin" : "lgamma"
     },
     {
-      "beginString" : "library"
+      "begin" : "library"
     },
     {
-      "beginString" : "library.dynam"
+      "begin" : "library.dynam"
     },
     {
-      "beginString" : "library.dynam.unload"
+      "begin" : "library.dynam.unload"
     },
     {
-      "beginString" : "licence"
+      "begin" : "licence"
     },
     {
-      "beginString" : "license"
+      "begin" : "license"
     },
     {
-      "beginString" : "list"
+      "begin" : "list"
     },
     {
-      "beginString" : "list.dirs"
+      "begin" : "list.dirs"
     },
     {
-      "beginString" : "list.files"
+      "begin" : "list.files"
     },
     {
-      "beginString" : "list2env"
+      "begin" : "list2env"
     },
     {
-      "beginString" : "load"
+      "begin" : "load"
     },
     {
-      "beginString" : "loadedNamespaces"
+      "begin" : "loadedNamespaces"
     },
     {
-      "beginString" : "loadingNamespaceInfo"
+      "begin" : "loadingNamespaceInfo"
     },
     {
-      "beginString" : "loadNamespace"
+      "begin" : "loadNamespace"
     },
     {
-      "beginString" : "local"
+      "begin" : "local"
     },
     {
-      "beginString" : "lockBinding"
+      "begin" : "lockBinding"
     },
     {
-      "beginString" : "lockEnvironment"
+      "begin" : "lockEnvironment"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "log10"
+      "begin" : "log10"
     },
     {
-      "beginString" : "log1p"
+      "begin" : "log1p"
     },
     {
-      "beginString" : "log2"
+      "begin" : "log2"
     },
     {
-      "beginString" : "logb"
+      "begin" : "logb"
     },
     {
-      "beginString" : "logical"
+      "begin" : "logical"
     },
     {
-      "beginString" : "lower.tri"
+      "begin" : "lower.tri"
     },
     {
-      "beginString" : "ls"
+      "begin" : "ls"
     },
     {
-      "beginString" : "make.names"
+      "begin" : "make.names"
     },
     {
-      "beginString" : "make.unique"
+      "begin" : "make.unique"
     },
     {
-      "beginString" : "makeActiveBinding"
+      "begin" : "makeActiveBinding"
     },
     {
-      "beginString" : "mapply"
+      "begin" : "mapply"
     },
     {
-      "beginString" : "margin.table"
+      "begin" : "margin.table"
     },
     {
-      "beginString" : "mat.or.vec"
+      "begin" : "mat.or.vec"
     },
     {
-      "beginString" : "match"
+      "begin" : "match"
     },
     {
-      "beginString" : "match.arg"
+      "begin" : "match.arg"
     },
     {
-      "beginString" : "match.call"
+      "begin" : "match.call"
     },
     {
-      "beginString" : "match.fun"
+      "begin" : "match.fun"
     },
     {
-      "beginString" : "matrix"
+      "begin" : "matrix"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "max.col"
+      "begin" : "max.col"
     },
     {
-      "beginString" : "mean"
+      "begin" : "mean"
     },
     {
-      "beginString" : "mean.Date"
+      "begin" : "mean.Date"
     },
     {
-      "beginString" : "mean.default"
+      "begin" : "mean.default"
     },
     {
-      "beginString" : "mean.difftime"
+      "begin" : "mean.difftime"
     },
     {
-      "beginString" : "mean.POSIXct"
+      "begin" : "mean.POSIXct"
     },
     {
-      "beginString" : "mean.POSIXlt"
+      "begin" : "mean.POSIXlt"
     },
     {
-      "beginString" : "mem.limits"
+      "begin" : "mem.limits"
     },
     {
-      "beginString" : "memCompress"
+      "begin" : "memCompress"
     },
     {
-      "beginString" : "memDecompress"
+      "begin" : "memDecompress"
     },
     {
-      "beginString" : "memory.profile"
+      "begin" : "memory.profile"
     },
     {
-      "beginString" : "merge"
+      "begin" : "merge"
     },
     {
-      "beginString" : "merge.data.frame"
+      "begin" : "merge.data.frame"
     },
     {
-      "beginString" : "merge.default"
+      "begin" : "merge.default"
     },
     {
-      "beginString" : "message"
+      "begin" : "message"
     },
     {
-      "beginString" : "mget"
+      "begin" : "mget"
     },
     {
-      "beginString" : "min"
+      "begin" : "min"
     },
     {
-      "beginString" : "missing"
+      "begin" : "missing"
     },
     {
-      "beginString" : "mode"
+      "begin" : "mode"
     },
     {
-      "beginString" : "month.abb"
+      "begin" : "month.abb"
     },
     {
-      "beginString" : "month.name"
+      "begin" : "month.name"
     },
     {
-      "beginString" : "months"
+      "begin" : "months"
     },
     {
-      "beginString" : "months.Date"
+      "begin" : "months.Date"
     },
     {
-      "beginString" : "months.POSIXt"
+      "begin" : "months.POSIXt"
     },
     {
-      "beginString" : "names"
+      "begin" : "names"
     },
     {
-      "beginString" : "names.POSIXlt"
+      "begin" : "names.POSIXlt"
     },
     {
-      "beginString" : "namespaceExport"
+      "begin" : "namespaceExport"
     },
     {
-      "beginString" : "namespaceImport"
+      "begin" : "namespaceImport"
     },
     {
-      "beginString" : "namespaceImportClasses"
+      "begin" : "namespaceImportClasses"
     },
     {
-      "beginString" : "namespaceImportFrom"
+      "begin" : "namespaceImportFrom"
     },
     {
-      "beginString" : "namespaceImportMethods"
+      "begin" : "namespaceImportMethods"
     },
     {
-      "beginString" : "nargs"
+      "begin" : "nargs"
     },
     {
-      "beginString" : "nchar"
+      "begin" : "nchar"
     },
     {
-      "beginString" : "ncol"
+      "begin" : "ncol"
     },
     {
-      "beginString" : "new.env"
+      "begin" : "new.env"
     },
     {
-      "beginString" : "ngettext"
+      "begin" : "ngettext"
     },
     {
-      "beginString" : "nlevels"
+      "begin" : "nlevels"
     },
     {
-      "beginString" : "noquote"
+      "begin" : "noquote"
     },
     {
-      "beginString" : "norm"
+      "begin" : "norm"
     },
     {
-      "beginString" : "normalizePath"
+      "begin" : "normalizePath"
     },
     {
-      "beginString" : "nrow"
+      "begin" : "nrow"
     },
     {
-      "beginString" : "numeric"
+      "begin" : "numeric"
     },
     {
-      "beginString" : "numeric_version"
+      "begin" : "numeric_version"
     },
     {
-      "beginString" : "nzchar"
+      "begin" : "nzchar"
     },
     {
-      "beginString" : "objects"
+      "begin" : "objects"
     },
     {
-      "beginString" : "oldClass"
+      "begin" : "oldClass"
     },
     {
-      "beginString" : "on.exit"
+      "begin" : "on.exit"
     },
     {
-      "beginString" : "open"
+      "begin" : "open"
     },
     {
-      "beginString" : "open.connection"
+      "begin" : "open.connection"
     },
     {
-      "beginString" : "open.srcfile"
+      "begin" : "open.srcfile"
     },
     {
-      "beginString" : "open.srcfilealias"
+      "begin" : "open.srcfilealias"
     },
     {
-      "beginString" : "open.srcfilecopy"
+      "begin" : "open.srcfilecopy"
     },
     {
-      "beginString" : "options"
+      "begin" : "options"
     },
     {
-      "beginString" : "order"
+      "begin" : "order"
     },
     {
-      "beginString" : "outer"
+      "begin" : "outer"
     },
     {
-      "beginString" : "package_version"
+      "begin" : "package_version"
     },
     {
-      "beginString" : "packageEvent"
+      "begin" : "packageEvent"
     },
     {
-      "beginString" : "packageHasNamespace"
+      "begin" : "packageHasNamespace"
     },
     {
-      "beginString" : "packageStartupMessage"
+      "begin" : "packageStartupMessage"
     },
     {
-      "beginString" : "packBits"
+      "begin" : "packBits"
     },
     {
-      "beginString" : "pairlist"
+      "begin" : "pairlist"
     },
     {
-      "beginString" : "parent.env"
+      "begin" : "parent.env"
     },
     {
-      "beginString" : "parent.frame"
+      "begin" : "parent.frame"
     },
     {
-      "beginString" : "parse"
+      "begin" : "parse"
     },
     {
-      "beginString" : "parseNamespaceFile"
+      "begin" : "parseNamespaceFile"
     },
     {
-      "beginString" : "paste"
+      "begin" : "paste"
     },
     {
-      "beginString" : "paste0"
+      "begin" : "paste0"
     },
     {
-      "beginString" : "path.expand"
+      "begin" : "path.expand"
     },
     {
-      "beginString" : "path.package"
+      "begin" : "path.package"
     },
     {
-      "beginString" : "pi"
+      "begin" : "pi"
     },
     {
-      "beginString" : "pipe"
+      "begin" : "pipe"
     },
     {
-      "beginString" : "pmatch"
+      "begin" : "pmatch"
     },
     {
-      "beginString" : "pmax"
+      "begin" : "pmax"
     },
     {
-      "beginString" : "pmax.int"
+      "begin" : "pmax.int"
     },
     {
-      "beginString" : "pmin"
+      "begin" : "pmin"
     },
     {
-      "beginString" : "pmin.int"
+      "begin" : "pmin.int"
     },
     {
-      "beginString" : "polyroot"
+      "begin" : "polyroot"
     },
     {
-      "beginString" : "pos.to.env"
+      "begin" : "pos.to.env"
     },
     {
-      "beginString" : "pretty"
+      "begin" : "pretty"
     },
     {
-      "beginString" : "pretty.default"
+      "begin" : "pretty.default"
     },
     {
-      "beginString" : "prettyNum"
+      "begin" : "prettyNum"
     },
     {
-      "beginString" : "print"
+      "begin" : "print"
     },
     {
-      "beginString" : "print.AsIs"
+      "begin" : "print.AsIs"
     },
     {
-      "beginString" : "print.by"
+      "begin" : "print.by"
     },
     {
-      "beginString" : "print.condition"
+      "begin" : "print.condition"
     },
     {
-      "beginString" : "print.connection"
+      "begin" : "print.connection"
     },
     {
-      "beginString" : "print.data.frame"
+      "begin" : "print.data.frame"
     },
     {
-      "beginString" : "print.Date"
+      "begin" : "print.Date"
     },
     {
-      "beginString" : "print.default"
+      "begin" : "print.default"
     },
     {
-      "beginString" : "print.difftime"
+      "begin" : "print.difftime"
     },
     {
-      "beginString" : "print.DLLInfo"
+      "begin" : "print.DLLInfo"
     },
     {
-      "beginString" : "print.DLLInfoList"
+      "begin" : "print.DLLInfoList"
     },
     {
-      "beginString" : "print.DLLRegisteredRoutines"
+      "begin" : "print.DLLRegisteredRoutines"
     },
     {
-      "beginString" : "print.factor"
+      "begin" : "print.factor"
     },
     {
-      "beginString" : "print.function"
+      "begin" : "print.function"
     },
     {
-      "beginString" : "print.hexmode"
+      "begin" : "print.hexmode"
     },
     {
-      "beginString" : "print.libraryIQR"
+      "begin" : "print.libraryIQR"
     },
     {
-      "beginString" : "print.listof"
+      "begin" : "print.listof"
     },
     {
-      "beginString" : "print.NativeRoutineList"
+      "begin" : "print.NativeRoutineList"
     },
     {
-      "beginString" : "print.noquote"
+      "begin" : "print.noquote"
     },
     {
-      "beginString" : "print.numeric_version"
+      "begin" : "print.numeric_version"
     },
     {
-      "beginString" : "print.octmode"
+      "begin" : "print.octmode"
     },
     {
-      "beginString" : "print.packageInfo"
+      "begin" : "print.packageInfo"
     },
     {
-      "beginString" : "print.POSIXct"
+      "begin" : "print.POSIXct"
     },
     {
-      "beginString" : "print.POSIXlt"
+      "begin" : "print.POSIXlt"
     },
     {
-      "beginString" : "print.proc_time"
+      "begin" : "print.proc_time"
     },
     {
-      "beginString" : "print.restart"
+      "begin" : "print.restart"
     },
     {
-      "beginString" : "print.rle"
+      "begin" : "print.rle"
     },
     {
-      "beginString" : "print.simple.list"
+      "begin" : "print.simple.list"
     },
     {
-      "beginString" : "print.srcfile"
+      "begin" : "print.srcfile"
     },
     {
-      "beginString" : "print.srcref"
+      "begin" : "print.srcref"
     },
     {
-      "beginString" : "print.summary.table"
+      "begin" : "print.summary.table"
     },
     {
-      "beginString" : "print.summaryDefault"
+      "begin" : "print.summaryDefault"
     },
     {
-      "beginString" : "print.table"
+      "begin" : "print.table"
     },
     {
-      "beginString" : "print.warnings"
+      "begin" : "print.warnings"
     },
     {
-      "beginString" : "prmatrix"
+      "begin" : "prmatrix"
     },
     {
-      "beginString" : "proc.time"
+      "begin" : "proc.time"
     },
     {
-      "beginString" : "prod"
+      "begin" : "prod"
     },
     {
-      "beginString" : "prop.table"
+      "begin" : "prop.table"
     },
     {
-      "beginString" : "provideDimnames"
+      "begin" : "provideDimnames"
     },
     {
-      "beginString" : "psigamma"
+      "begin" : "psigamma"
     },
     {
-      "beginString" : "pushBack"
+      "begin" : "pushBack"
     },
     {
-      "beginString" : "pushBackLength"
+      "begin" : "pushBackLength"
     },
     {
-      "beginString" : "q"
+      "begin" : "q"
     },
     {
-      "beginString" : "qr"
+      "begin" : "qr"
     },
     {
-      "beginString" : "qr.coef"
+      "begin" : "qr.coef"
     },
     {
-      "beginString" : "qr.default"
+      "begin" : "qr.default"
     },
     {
-      "beginString" : "qr.fitted"
+      "begin" : "qr.fitted"
     },
     {
-      "beginString" : "qr.Q"
+      "begin" : "qr.Q"
     },
     {
-      "beginString" : "qr.qty"
+      "begin" : "qr.qty"
     },
     {
-      "beginString" : "qr.qy"
+      "begin" : "qr.qy"
     },
     {
-      "beginString" : "qr.R"
+      "begin" : "qr.R"
     },
     {
-      "beginString" : "qr.resid"
+      "begin" : "qr.resid"
     },
     {
-      "beginString" : "qr.solve"
+      "begin" : "qr.solve"
     },
     {
-      "beginString" : "qr.X"
+      "begin" : "qr.X"
     },
     {
-      "beginString" : "quarters"
+      "begin" : "quarters"
     },
     {
-      "beginString" : "quarters.Date"
+      "begin" : "quarters.Date"
     },
     {
-      "beginString" : "quarters.POSIXt"
+      "begin" : "quarters.POSIXt"
     },
     {
-      "beginString" : "quit"
+      "begin" : "quit"
     },
     {
-      "beginString" : "range"
+      "begin" : "range"
     },
     {
-      "beginString" : "range.default"
+      "begin" : "range.default"
     },
     {
-      "beginString" : "rank"
+      "begin" : "rank"
     },
     {
-      "beginString" : "rapply"
+      "begin" : "rapply"
     },
     {
-      "beginString" : "raw"
+      "begin" : "raw"
     },
     {
-      "beginString" : "rawConnection"
+      "begin" : "rawConnection"
     },
     {
-      "beginString" : "rawConnectionValue"
+      "begin" : "rawConnectionValue"
     },
     {
-      "beginString" : "rawShift"
+      "begin" : "rawShift"
     },
     {
-      "beginString" : "rawToBits"
+      "begin" : "rawToBits"
     },
     {
-      "beginString" : "rawToChar"
+      "begin" : "rawToChar"
     },
     {
-      "beginString" : "rbind"
+      "begin" : "rbind"
     },
     {
-      "beginString" : "rbind.data.frame"
+      "begin" : "rbind.data.frame"
     },
     {
-      "beginString" : "rcond"
+      "begin" : "rcond"
     },
     {
-      "beginString" : "read.dcf"
+      "begin" : "read.dcf"
     },
     {
-      "beginString" : "readBin"
+      "begin" : "readBin"
     },
     {
-      "beginString" : "readChar"
+      "begin" : "readChar"
     },
     {
-      "beginString" : "readline"
+      "begin" : "readline"
     },
     {
-      "beginString" : "readLines"
+      "begin" : "readLines"
     },
     {
-      "beginString" : "readRDS"
+      "begin" : "readRDS"
     },
     {
-      "beginString" : "readRenviron"
+      "begin" : "readRenviron"
     },
     {
-      "beginString" : "reg.finalizer"
+      "begin" : "reg.finalizer"
     },
     {
-      "beginString" : "regexec"
+      "begin" : "regexec"
     },
     {
-      "beginString" : "regexpr"
+      "begin" : "regexpr"
     },
     {
-      "beginString" : "registerS3method"
+      "begin" : "registerS3method"
     },
     {
-      "beginString" : "registerS3methods"
+      "begin" : "registerS3methods"
     },
     {
-      "beginString" : "regmatches"
+      "begin" : "regmatches"
     },
     {
-      "beginString" : "remove"
+      "begin" : "remove"
     },
     {
-      "beginString" : "removeTaskCallback"
+      "begin" : "removeTaskCallback"
     },
     {
-      "beginString" : "rep"
+      "begin" : "rep"
     },
     {
-      "beginString" : "rep.Date"
+      "begin" : "rep.Date"
     },
     {
-      "beginString" : "rep.factor"
+      "begin" : "rep.factor"
     },
     {
-      "beginString" : "rep.int"
+      "begin" : "rep.int"
     },
     {
-      "beginString" : "rep.numeric_version"
+      "begin" : "rep.numeric_version"
     },
     {
-      "beginString" : "rep.POSIXct"
+      "begin" : "rep.POSIXct"
     },
     {
-      "beginString" : "rep.POSIXlt"
+      "begin" : "rep.POSIXlt"
     },
     {
-      "beginString" : "rep_len"
+      "begin" : "rep_len"
     },
     {
-      "beginString" : "replace"
+      "begin" : "replace"
     },
     {
-      "beginString" : "replicate"
+      "begin" : "replicate"
     },
     {
-      "beginString" : "require"
+      "begin" : "require"
     },
     {
-      "beginString" : "requireNamespace"
+      "begin" : "requireNamespace"
     },
     {
-      "beginString" : "restartDescription"
+      "begin" : "restartDescription"
     },
     {
-      "beginString" : "restartFormals"
+      "begin" : "restartFormals"
     },
     {
-      "beginString" : "retracemem"
+      "begin" : "retracemem"
     },
     {
-      "beginString" : "rev"
+      "begin" : "rev"
     },
     {
-      "beginString" : "rev.default"
+      "begin" : "rev.default"
     },
     {
-      "beginString" : "rle"
+      "begin" : "rle"
     },
     {
-      "beginString" : "rm"
+      "begin" : "rm"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "round.Date"
+      "begin" : "round.Date"
     },
     {
-      "beginString" : "round.POSIXt"
+      "begin" : "round.POSIXt"
     },
     {
-      "beginString" : "row"
+      "begin" : "row"
     },
     {
-      "beginString" : "row.names"
+      "begin" : "row.names"
     },
     {
-      "beginString" : "row.names.data.frame"
+      "begin" : "row.names.data.frame"
     },
     {
-      "beginString" : "row.names.default"
+      "begin" : "row.names.default"
     },
     {
-      "beginString" : "rowMeans"
+      "begin" : "rowMeans"
     },
     {
-      "beginString" : "rownames"
+      "begin" : "rownames"
     },
     {
-      "beginString" : "rowsum"
+      "begin" : "rowsum"
     },
     {
-      "beginString" : "rowsum.data.frame"
+      "begin" : "rowsum.data.frame"
     },
     {
-      "beginString" : "rowsum.default"
+      "begin" : "rowsum.default"
     },
     {
-      "beginString" : "rowSums"
+      "begin" : "rowSums"
     },
     {
-      "beginString" : "sample"
+      "begin" : "sample"
     },
     {
-      "beginString" : "sample.int"
+      "begin" : "sample.int"
     },
     {
-      "beginString" : "sapply"
+      "begin" : "sapply"
     },
     {
-      "beginString" : "save"
+      "begin" : "save"
     },
     {
-      "beginString" : "save.image"
+      "begin" : "save.image"
     },
     {
-      "beginString" : "saveRDS"
+      "begin" : "saveRDS"
     },
     {
-      "beginString" : "scale"
+      "begin" : "scale"
     },
     {
-      "beginString" : "scale.default"
+      "begin" : "scale.default"
     },
     {
-      "beginString" : "scan"
+      "begin" : "scan"
     },
     {
-      "beginString" : "search"
+      "begin" : "search"
     },
     {
-      "beginString" : "searchpaths"
+      "begin" : "searchpaths"
     },
     {
-      "beginString" : "seek"
+      "begin" : "seek"
     },
     {
-      "beginString" : "seek.connection"
+      "begin" : "seek.connection"
     },
     {
-      "beginString" : "seq"
+      "begin" : "seq"
     },
     {
-      "beginString" : "seq.Date"
+      "begin" : "seq.Date"
     },
     {
-      "beginString" : "seq.default"
+      "begin" : "seq.default"
     },
     {
-      "beginString" : "seq.int"
+      "begin" : "seq.int"
     },
     {
-      "beginString" : "seq.POSIXt"
+      "begin" : "seq.POSIXt"
     },
     {
-      "beginString" : "seq_along"
+      "begin" : "seq_along"
     },
     {
-      "beginString" : "seq_len"
+      "begin" : "seq_len"
     },
     {
-      "beginString" : "sequence"
+      "begin" : "sequence"
     },
     {
-      "beginString" : "serialize"
+      "begin" : "serialize"
     },
     {
-      "beginString" : "set.seed"
+      "begin" : "set.seed"
     },
     {
-      "beginString" : "setdiff"
+      "begin" : "setdiff"
     },
     {
-      "beginString" : "setequal"
+      "begin" : "setequal"
     },
     {
-      "beginString" : "setHook"
+      "begin" : "setHook"
     },
     {
-      "beginString" : "setNamespaceInfo"
+      "begin" : "setNamespaceInfo"
     },
     {
-      "beginString" : "setSessionTimeLimit"
+      "begin" : "setSessionTimeLimit"
     },
     {
-      "beginString" : "setTimeLimit"
+      "begin" : "setTimeLimit"
     },
     {
-      "beginString" : "setwd"
+      "begin" : "setwd"
     },
     {
-      "beginString" : "showConnections"
+      "begin" : "showConnections"
     },
     {
-      "beginString" : "shQuote"
+      "begin" : "shQuote"
     },
     {
-      "beginString" : "sign"
+      "begin" : "sign"
     },
     {
-      "beginString" : "signalCondition"
+      "begin" : "signalCondition"
     },
     {
-      "beginString" : "signif"
+      "begin" : "signif"
     },
     {
-      "beginString" : "simpleCondition"
+      "begin" : "simpleCondition"
     },
     {
-      "beginString" : "simpleError"
+      "begin" : "simpleError"
     },
     {
-      "beginString" : "simpleMessage"
+      "begin" : "simpleMessage"
     },
     {
-      "beginString" : "simpleWarning"
+      "begin" : "simpleWarning"
     },
     {
-      "beginString" : "simplify2array"
+      "begin" : "simplify2array"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "single"
+      "begin" : "single"
     },
     {
-      "beginString" : "sinh"
+      "begin" : "sinh"
     },
     {
-      "beginString" : "sink"
+      "begin" : "sink"
     },
     {
-      "beginString" : "sink.number"
+      "begin" : "sink.number"
     },
     {
-      "beginString" : "sinpi"
+      "begin" : "sinpi"
     },
     {
-      "beginString" : "slice.index"
+      "begin" : "slice.index"
     },
     {
-      "beginString" : "socketConnection"
+      "begin" : "socketConnection"
     },
     {
-      "beginString" : "socketSelect"
+      "begin" : "socketSelect"
     },
     {
-      "beginString" : "solve"
+      "begin" : "solve"
     },
     {
-      "beginString" : "solve.default"
+      "begin" : "solve.default"
     },
     {
-      "beginString" : "solve.qr"
+      "begin" : "solve.qr"
     },
     {
-      "beginString" : "sort"
+      "begin" : "sort"
     },
     {
-      "beginString" : "sort.default"
+      "begin" : "sort.default"
     },
     {
-      "beginString" : "sort.int"
+      "begin" : "sort.int"
     },
     {
-      "beginString" : "sort.list"
+      "begin" : "sort.list"
     },
     {
-      "beginString" : "sort.POSIXlt"
+      "begin" : "sort.POSIXlt"
     },
     {
-      "beginString" : "source"
+      "begin" : "source"
     },
     {
-      "beginString" : "split"
+      "begin" : "split"
     },
     {
-      "beginString" : "split.data.frame"
+      "begin" : "split.data.frame"
     },
     {
-      "beginString" : "split.Date"
+      "begin" : "split.Date"
     },
     {
-      "beginString" : "split.default"
+      "begin" : "split.default"
     },
     {
-      "beginString" : "split.POSIXct"
+      "begin" : "split.POSIXct"
     },
     {
-      "beginString" : "sprintf"
+      "begin" : "sprintf"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "sQuote"
+      "begin" : "sQuote"
     },
     {
-      "beginString" : "srcfile"
+      "begin" : "srcfile"
     },
     {
-      "beginString" : "srcfilealias"
+      "begin" : "srcfilealias"
     },
     {
-      "beginString" : "srcfilecopy"
+      "begin" : "srcfilecopy"
     },
     {
-      "beginString" : "srcref"
+      "begin" : "srcref"
     },
     {
-      "beginString" : "standardGeneric"
+      "begin" : "standardGeneric"
     },
     {
-      "beginString" : "stderr"
+      "begin" : "stderr"
     },
     {
-      "beginString" : "stdin"
+      "begin" : "stdin"
     },
     {
-      "beginString" : "stdout"
+      "begin" : "stdout"
     },
     {
-      "beginString" : "stop"
+      "begin" : "stop"
     },
     {
-      "beginString" : "stopifnot"
+      "begin" : "stopifnot"
     },
     {
-      "beginString" : "storage.mode"
+      "begin" : "storage.mode"
     },
     {
-      "beginString" : "strftime"
+      "begin" : "strftime"
     },
     {
-      "beginString" : "strptime"
+      "begin" : "strptime"
     },
     {
-      "beginString" : "strsplit"
+      "begin" : "strsplit"
     },
     {
-      "beginString" : "strtoi"
+      "begin" : "strtoi"
     },
     {
-      "beginString" : "strtrim"
+      "begin" : "strtrim"
     },
     {
-      "beginString" : "structure"
+      "begin" : "structure"
     },
     {
-      "beginString" : "strwrap"
+      "begin" : "strwrap"
     },
     {
-      "beginString" : "sub"
+      "begin" : "sub"
     },
     {
-      "beginString" : "subset"
+      "begin" : "subset"
     },
     {
-      "beginString" : "subset.data.frame"
+      "begin" : "subset.data.frame"
     },
     {
-      "beginString" : "subset.default"
+      "begin" : "subset.default"
     },
     {
-      "beginString" : "subset.matrix"
+      "begin" : "subset.matrix"
     },
     {
-      "beginString" : "substitute"
+      "begin" : "substitute"
     },
     {
-      "beginString" : "substr"
+      "begin" : "substr"
     },
     {
-      "beginString" : "substring"
+      "begin" : "substring"
     },
     {
-      "beginString" : "sum"
+      "begin" : "sum"
     },
     {
-      "beginString" : "summary"
+      "begin" : "summary"
     },
     {
-      "beginString" : "summary.connection"
+      "begin" : "summary.connection"
     },
     {
-      "beginString" : "summary.data.frame"
+      "begin" : "summary.data.frame"
     },
     {
-      "beginString" : "summary.Date"
+      "begin" : "summary.Date"
     },
     {
-      "beginString" : "summary.default"
+      "begin" : "summary.default"
     },
     {
-      "beginString" : "summary.factor"
+      "begin" : "summary.factor"
     },
     {
-      "beginString" : "summary.matrix"
+      "begin" : "summary.matrix"
     },
     {
-      "beginString" : "summary.POSIXct"
+      "begin" : "summary.POSIXct"
     },
     {
-      "beginString" : "summary.POSIXlt"
+      "begin" : "summary.POSIXlt"
     },
     {
-      "beginString" : "summary.proc_time"
+      "begin" : "summary.proc_time"
     },
     {
-      "beginString" : "summary.srcfile"
+      "begin" : "summary.srcfile"
     },
     {
-      "beginString" : "summary.srcref"
+      "begin" : "summary.srcref"
     },
     {
-      "beginString" : "summary.table"
+      "begin" : "summary.table"
     },
     {
-      "beginString" : "suppressMessages"
+      "begin" : "suppressMessages"
     },
     {
-      "beginString" : "suppressPackageStartupMessages"
+      "begin" : "suppressPackageStartupMessages"
     },
     {
-      "beginString" : "suppressWarnings"
+      "begin" : "suppressWarnings"
     },
     {
-      "beginString" : "svd"
+      "begin" : "svd"
     },
     {
-      "beginString" : "sweep"
+      "begin" : "sweep"
     },
     {
-      "beginString" : "sys.call"
+      "begin" : "sys.call"
     },
     {
-      "beginString" : "sys.calls"
+      "begin" : "sys.calls"
     },
     {
-      "beginString" : "sys.frame"
+      "begin" : "sys.frame"
     },
     {
-      "beginString" : "sys.frames"
+      "begin" : "sys.frames"
     },
     {
-      "beginString" : "sys.function"
+      "begin" : "sys.function"
     },
     {
-      "beginString" : "sys.load.image"
+      "begin" : "sys.load.image"
     },
     {
-      "beginString" : "sys.nframe"
+      "begin" : "sys.nframe"
     },
     {
-      "beginString" : "sys.on.exit"
+      "begin" : "sys.on.exit"
     },
     {
-      "beginString" : "sys.parent"
+      "begin" : "sys.parent"
     },
     {
-      "beginString" : "sys.parents"
+      "begin" : "sys.parents"
     },
     {
-      "beginString" : "sys.save.image"
+      "begin" : "sys.save.image"
     },
     {
-      "beginString" : "sys.source"
+      "begin" : "sys.source"
     },
     {
-      "beginString" : "sys.status"
+      "begin" : "sys.status"
     },
     {
-      "beginString" : "system"
+      "begin" : "system"
     },
     {
-      "beginString" : "system.file"
+      "begin" : "system.file"
     },
     {
-      "beginString" : "system.time"
+      "begin" : "system.time"
     },
     {
-      "beginString" : "system2"
+      "begin" : "system2"
     },
     {
-      "beginString" : "t"
+      "begin" : "t"
     },
     {
-      "beginString" : "t.data.frame"
+      "begin" : "t.data.frame"
     },
     {
-      "beginString" : "t.default"
+      "begin" : "t.default"
     },
     {
-      "beginString" : "table"
+      "begin" : "table"
     },
     {
-      "beginString" : "tabulate"
+      "begin" : "tabulate"
     },
     {
-      "beginString" : "tan"
+      "begin" : "tan"
     },
     {
-      "beginString" : "tanh"
+      "begin" : "tanh"
     },
     {
-      "beginString" : "tanpi"
+      "begin" : "tanpi"
     },
     {
-      "beginString" : "tapply"
+      "begin" : "tapply"
     },
     {
-      "beginString" : "taskCallbackManager"
+      "begin" : "taskCallbackManager"
     },
     {
-      "beginString" : "tcrossprod"
+      "begin" : "tcrossprod"
     },
     {
-      "beginString" : "tempdir"
+      "begin" : "tempdir"
     },
     {
-      "beginString" : "tempfile"
+      "begin" : "tempfile"
     },
     {
-      "beginString" : "testPlatformEquivalence"
+      "begin" : "testPlatformEquivalence"
     },
     {
-      "beginString" : "textConnection"
+      "begin" : "textConnection"
     },
     {
-      "beginString" : "textConnectionValue"
+      "begin" : "textConnectionValue"
     },
     {
-      "beginString" : "tolower"
+      "begin" : "tolower"
     },
     {
-      "beginString" : "topenv"
+      "begin" : "topenv"
     },
     {
-      "beginString" : "toString"
+      "begin" : "toString"
     },
     {
-      "beginString" : "toString.default"
+      "begin" : "toString.default"
     },
     {
-      "beginString" : "toupper"
+      "begin" : "toupper"
     },
     {
-      "beginString" : "trace"
+      "begin" : "trace"
     },
     {
-      "beginString" : "traceback"
+      "begin" : "traceback"
     },
     {
-      "beginString" : "tracemem"
+      "begin" : "tracemem"
     },
     {
-      "beginString" : "tracingState"
+      "begin" : "tracingState"
     },
     {
-      "beginString" : "transform"
+      "begin" : "transform"
     },
     {
-      "beginString" : "transform.data.frame"
+      "begin" : "transform.data.frame"
     },
     {
-      "beginString" : "transform.default"
+      "begin" : "transform.default"
     },
     {
-      "beginString" : "trigamma"
+      "begin" : "trigamma"
     },
     {
-      "beginString" : "trunc"
+      "begin" : "trunc"
     },
     {
-      "beginString" : "trunc.Date"
+      "begin" : "trunc.Date"
     },
     {
-      "beginString" : "trunc.POSIXt"
+      "begin" : "trunc.POSIXt"
     },
     {
-      "beginString" : "truncate"
+      "begin" : "truncate"
     },
     {
-      "beginString" : "truncate.connection"
+      "begin" : "truncate.connection"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "tryCatch"
+      "begin" : "tryCatch"
     },
     {
-      "beginString" : "typeof"
+      "begin" : "typeof"
     },
     {
-      "beginString" : "unclass"
+      "begin" : "unclass"
     },
     {
-      "beginString" : "undebug"
+      "begin" : "undebug"
     },
     {
-      "beginString" : "union"
+      "begin" : "union"
     },
     {
-      "beginString" : "unique"
+      "begin" : "unique"
     },
     {
-      "beginString" : "unique.array"
+      "begin" : "unique.array"
     },
     {
-      "beginString" : "unique.data.frame"
+      "begin" : "unique.data.frame"
     },
     {
-      "beginString" : "unique.default"
+      "begin" : "unique.default"
     },
     {
-      "beginString" : "unique.matrix"
+      "begin" : "unique.matrix"
     },
     {
-      "beginString" : "unique.numeric_version"
+      "begin" : "unique.numeric_version"
     },
     {
-      "beginString" : "unique.POSIXlt"
+      "begin" : "unique.POSIXlt"
     },
     {
-      "beginString" : "units"
+      "begin" : "units"
     },
     {
-      "beginString" : "units.difftime"
+      "begin" : "units.difftime"
     },
     {
-      "beginString" : "unix.time"
+      "begin" : "unix.time"
     },
     {
-      "beginString" : "unlink"
+      "begin" : "unlink"
     },
     {
-      "beginString" : "unlist"
+      "begin" : "unlist"
     },
     {
-      "beginString" : "unloadNamespace"
+      "begin" : "unloadNamespace"
     },
     {
-      "beginString" : "unlockBinding"
+      "begin" : "unlockBinding"
     },
     {
-      "beginString" : "unname"
+      "begin" : "unname"
     },
     {
-      "beginString" : "unserialize"
+      "begin" : "unserialize"
     },
     {
-      "beginString" : "unsplit"
+      "begin" : "unsplit"
     },
     {
-      "beginString" : "untrace"
+      "begin" : "untrace"
     },
     {
-      "beginString" : "untracemem"
+      "begin" : "untracemem"
     },
     {
-      "beginString" : "unz"
+      "begin" : "unz"
     },
     {
-      "beginString" : "upper.tri"
+      "begin" : "upper.tri"
     },
     {
-      "beginString" : "url"
+      "begin" : "url"
     },
     {
-      "beginString" : "utf8ToInt"
+      "begin" : "utf8ToInt"
     },
     {
-      "beginString" : "vapply"
+      "begin" : "vapply"
     },
     {
-      "beginString" : "vector"
+      "begin" : "vector"
     },
     {
-      "beginString" : "version"
+      "begin" : "version"
     },
     {
-      "beginString" : "warning"
+      "begin" : "warning"
     },
     {
-      "beginString" : "warnings"
+      "begin" : "warnings"
     },
     {
-      "beginString" : "weekdays"
+      "begin" : "weekdays"
     },
     {
-      "beginString" : "weekdays.Date"
+      "begin" : "weekdays.Date"
     },
     {
-      "beginString" : "weekdays.POSIXt"
+      "begin" : "weekdays.POSIXt"
     },
     {
-      "beginString" : "which"
+      "begin" : "which"
     },
     {
-      "beginString" : "which.max"
+      "begin" : "which.max"
     },
     {
-      "beginString" : "which.min"
+      "begin" : "which.min"
     },
     {
-      "beginString" : "with"
+      "begin" : "with"
     },
     {
-      "beginString" : "with.default"
+      "begin" : "with.default"
     },
     {
-      "beginString" : "withCallingHandlers"
+      "begin" : "withCallingHandlers"
     },
     {
-      "beginString" : "within"
+      "begin" : "within"
     },
     {
-      "beginString" : "within.data.frame"
+      "begin" : "within.data.frame"
     },
     {
-      "beginString" : "within.list"
+      "begin" : "within.list"
     },
     {
-      "beginString" : "withRestarts"
+      "begin" : "withRestarts"
     },
     {
-      "beginString" : "withVisible"
+      "begin" : "withVisible"
     },
     {
-      "beginString" : "write"
+      "begin" : "write"
     },
     {
-      "beginString" : "write.dcf"
+      "begin" : "write.dcf"
     },
     {
-      "beginString" : "writeBin"
+      "begin" : "writeBin"
     },
     {
-      "beginString" : "writeChar"
+      "begin" : "writeChar"
     },
     {
-      "beginString" : "writeLines"
+      "begin" : "writeLines"
     },
     {
-      "beginString" : "xor"
+      "begin" : "xor"
     },
     {
-      "beginString" : "xor.hexmode"
+      "begin" : "xor.hexmode"
     },
     {
-      "beginString" : "xor.octmode"
+      "begin" : "xor.octmode"
     },
     {
-      "beginString" : "xpdrows.data.frame"
+      "begin" : "xpdrows.data.frame"
     },
     {
-      "beginString" : "xtfrm"
+      "begin" : "xtfrm"
     },
     {
-      "beginString" : "xtfrm.AsIs"
+      "begin" : "xtfrm.AsIs"
     },
     {
-      "beginString" : "xtfrm.Date"
+      "begin" : "xtfrm.Date"
     },
     {
-      "beginString" : "xtfrm.default"
+      "begin" : "xtfrm.default"
     },
     {
-      "beginString" : "xtfrm.difftime"
+      "begin" : "xtfrm.difftime"
     },
     {
-      "beginString" : "xtfrm.factor"
+      "begin" : "xtfrm.factor"
     },
     {
-      "beginString" : "xtfrm.numeric_version"
+      "begin" : "xtfrm.numeric_version"
     },
     {
-      "beginString" : "xtfrm.POSIXct"
+      "begin" : "xtfrm.POSIXct"
     },
     {
-      "beginString" : "xtfrm.POSIXlt"
+      "begin" : "xtfrm.POSIXlt"
     },
     {
-      "beginString" : "xtfrm.Surv"
+      "begin" : "xtfrm.Surv"
     },
     {
-      "beginString" : "xzfile"
+      "begin" : "xzfile"
     },
     {
-      "beginString" : "zapsmall"
+      "begin" : "zapsmall"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "expr"
+      "begin" : "expr"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "function"
+      "begin" : "function"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "next"
+      "begin" : "next"
     },
     {
-      "beginString" : "quote"
+      "begin" : "quote"
     },
     {
-      "beginString" : "repeat"
+      "begin" : "repeat"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "switch"
+      "begin" : "switch"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b((\\d\\.?\\d*)|(\\.\\d+))(e[-+]?\\d+)?(i|l|ul|u|f|ll|ull)?\\b",
+      "begin" : "\\b((\\d\\.?\\d*)|(\\.\\d+))(e[-+]?\\d+)?(i|l|ul|u|f|ll|ull)?\\b",
       "description" : "decimal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b-?0x[0-9a-f]+\\b",
+      "begin" : "\\b-?0x[0-9a-f]+\\b",
       "description" : "hexadecimal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0b[01]+\\b",
+      "begin" : "\\b0b[01]+\\b",
       "description" : "binary",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "types" : [
     {
-      "beginString" : "array"
+      "begin" : "array"
     },
     {
-      "beginString" : "category"
+      "begin" : "category"
     },
     {
-      "beginString" : "character"
+      "begin" : "character"
     },
     {
-      "beginString" : "complex"
+      "begin" : "complex"
     },
     {
-      "beginString" : "data.frame"
+      "begin" : "data.frame"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "function"
+      "begin" : "function"
     },
     {
-      "beginString" : "integer"
+      "begin" : "integer"
     },
     {
-      "beginString" : "list"
+      "begin" : "list"
     },
     {
-      "beginString" : "logical"
+      "begin" : "logical"
     },
     {
-      "beginString" : "matrix"
+      "begin" : "matrix"
     },
     {
-      "beginString" : "numeric"
+      "begin" : "numeric"
     },
     {
-      "beginString" : "rType"
+      "begin" : "rType"
     },
     {
-      "beginString" : "vector"
+      "begin" : "vector"
     }
   ],
   "values" : [
     {
-      "beginString" : "F"
+      "begin" : "F"
     },
     {
-      "beginString" : "FALSE"
+      "begin" : "FALSE"
     },
     {
-      "beginString" : "Inf"
+      "begin" : "Inf"
     },
     {
-      "beginString" : "LETTERS",
+      "begin" : "LETTERS",
       "ignoreCase" : true
     },
     {
-      "beginString" : "month.abb"
+      "begin" : "month.abb"
     },
     {
-      "beginString" : "month.name"
+      "begin" : "month.name"
     },
     {
-      "beginString" : "NA"
+      "begin" : "NA"
     },
     {
-      "beginString" : "NA_character_"
+      "begin" : "NA_character_"
     },
     {
-      "beginString" : "NA_complex_"
+      "begin" : "NA_complex_"
     },
     {
-      "beginString" : "NA_integer_"
+      "begin" : "NA_integer_"
     },
     {
-      "beginString" : "NA_real_"
+      "begin" : "NA_real_"
     },
     {
-      "beginString" : "NaN"
+      "begin" : "NaN"
     },
     {
-      "beginString" : "NULL"
+      "begin" : "NULL"
     },
     {
-      "beginString" : "pi"
+      "begin" : "pi"
     },
     {
-      "beginString" : "R.version.string"
+      "begin" : "R.version.string"
     },
     {
-      "beginString" : "T"
+      "begin" : "T"
     },
     {
-      "beginString" : "TRUE"
+      "begin" : "TRUE"
     }
   ]
 }

@@ -1,805 +1,805 @@
 {
   "attributes" : [
     {
-      "beginString" : "atleast"
+      "begin" : "atleast"
     },
     {
-      "beginString" : "controls"
+      "begin" : "controls"
     },
     {
-      "beginString" : "curl"
+      "begin" : "curl"
     },
     {
-      "beginString" : "cycle"
+      "begin" : "cycle"
     },
     {
-      "beginString" : "makepath"
+      "begin" : "makepath"
     },
     {
-      "beginString" : "makepen"
+      "begin" : "makepen"
     },
     {
-      "beginString" : "nullpen"
+      "begin" : "nullpen"
     },
     {
-      "beginString" : "nullpicture"
+      "begin" : "nullpicture"
     },
     {
-      "beginString" : "of"
+      "begin" : "of"
     },
     {
-      "beginString" : "pencircle"
+      "begin" : "pencircle"
     },
     {
-      "beginString" : "penoffset"
+      "begin" : "penoffset"
     },
     {
-      "beginString" : "point"
+      "begin" : "point"
     },
     {
-      "beginString" : "postcontrol"
+      "begin" : "postcontrol"
     },
     {
-      "beginString" : "precontrol"
+      "begin" : "precontrol"
     },
     {
-      "beginString" : "reverse"
+      "begin" : "reverse"
     },
     {
-      "beginString" : "rotated"
+      "begin" : "rotated"
     },
     {
-      "beginString" : "scaled"
+      "begin" : "scaled"
     },
     {
-      "beginString" : "shifted"
+      "begin" : "shifted"
     },
     {
-      "beginString" : "slanted"
+      "begin" : "slanted"
     },
     {
-      "beginString" : "subpath"
+      "begin" : "subpath"
     },
     {
-      "beginString" : "tension"
+      "begin" : "tension"
     },
     {
-      "beginString" : "transformed"
+      "begin" : "transformed"
     },
     {
-      "beginString" : "xscaled"
+      "begin" : "xscaled"
     },
     {
-      "beginString" : "yscaled"
+      "begin" : "yscaled"
     },
     {
-      "beginString" : "zscaled"
+      "begin" : "zscaled"
     }
   ],
   "commands" : [
     {
-      "beginString" : "addto"
+      "begin" : "addto"
     },
     {
-      "beginString" : "also"
+      "begin" : "also"
     },
     {
-      "beginString" : "at"
+      "begin" : "at"
     },
     {
-      "beginString" : "batchmode"
+      "begin" : "batchmode"
     },
     {
-      "beginString" : "boolean"
+      "begin" : "boolean"
     },
     {
-      "beginString" : "contour"
+      "begin" : "contour"
     },
     {
-      "beginString" : "cull"
+      "begin" : "cull"
     },
     {
-      "beginString" : "delimiters"
+      "begin" : "delimiters"
     },
     {
-      "beginString" : "display"
+      "begin" : "display"
     },
     {
-      "beginString" : "doublepath"
+      "begin" : "doublepath"
     },
     {
-      "beginString" : "dropping"
+      "begin" : "dropping"
     },
     {
-      "beginString" : "dump"
+      "begin" : "dump"
     },
     {
-      "beginString" : "end"
+      "begin" : "end"
     },
     {
-      "beginString" : "errhelp"
+      "begin" : "errhelp"
     },
     {
-      "beginString" : "errmessage"
+      "begin" : "errmessage"
     },
     {
-      "beginString" : "errorstopmode"
+      "begin" : "errorstopmode"
     },
     {
-      "beginString" : "everyjob"
+      "begin" : "everyjob"
     },
     {
-      "beginString" : "from"
+      "begin" : "from"
     },
     {
-      "beginString" : "interim"
+      "begin" : "interim"
     },
     {
-      "beginString" : "inwindow"
+      "begin" : "inwindow"
     },
     {
-      "beginString" : "keeping"
+      "begin" : "keeping"
     },
     {
-      "beginString" : "let"
+      "begin" : "let"
     },
     {
-      "beginString" : "message"
+      "begin" : "message"
     },
     {
-      "beginString" : "newinternal"
+      "begin" : "newinternal"
     },
     {
-      "beginString" : "nonstopmode"
+      "begin" : "nonstopmode"
     },
     {
-      "beginString" : "numeric"
+      "begin" : "numeric"
     },
     {
-      "beginString" : "numspecial"
+      "begin" : "numspecial"
     },
     {
-      "beginString" : "openwindow"
+      "begin" : "openwindow"
     },
     {
-      "beginString" : "outer"
+      "begin" : "outer"
     },
     {
-      "beginString" : "pair"
+      "begin" : "pair"
     },
     {
-      "beginString" : "path"
+      "begin" : "path"
     },
     {
-      "beginString" : "pen"
+      "begin" : "pen"
     },
     {
-      "beginString" : "picture"
+      "begin" : "picture"
     },
     {
-      "beginString" : "randomseed"
+      "begin" : "randomseed"
     },
     {
-      "beginString" : "save"
+      "begin" : "save"
     },
     {
-      "beginString" : "scrollmode"
+      "begin" : "scrollmode"
     },
     {
-      "beginString" : "shipout"
+      "begin" : "shipout"
     },
     {
-      "beginString" : "show"
+      "begin" : "show"
     },
     {
-      "beginString" : "showdependencies"
+      "begin" : "showdependencies"
     },
     {
-      "beginString" : "showstats"
+      "begin" : "showstats"
     },
     {
-      "beginString" : "showtoken"
+      "begin" : "showtoken"
     },
     {
-      "beginString" : "showvariable"
+      "begin" : "showvariable"
     },
     {
-      "beginString" : "special"
+      "begin" : "special"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "to"
+      "begin" : "to"
     },
     {
-      "beginString" : "transform"
+      "begin" : "transform"
     },
     {
-      "beginString" : "withpen"
+      "begin" : "withpen"
     },
     {
-      "beginString" : "withweight"
+      "begin" : "withweight"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "addto_currentpicture"
+      "begin" : "addto_currentpicture"
     },
     {
-      "beginString" : "aspect_ratio"
+      "begin" : "aspect_ratio"
     },
     {
-      "beginString" : "base_name"
+      "begin" : "base_name"
     },
     {
-      "beginString" : "base_version"
+      "begin" : "base_version"
     },
     {
-      "beginString" : "blacker"
+      "begin" : "blacker"
     },
     {
-      "beginString" : "blankpicture"
+      "begin" : "blankpicture"
     },
     {
-      "beginString" : "bot"
+      "begin" : "bot"
     },
     {
-      "beginString" : "bye"
+      "begin" : "bye"
     },
     {
-      "beginString" : "byte"
+      "begin" : "byte"
     },
     {
-      "beginString" : "capsule_def"
+      "begin" : "capsule_def"
     },
     {
-      "beginString" : "change_width"
+      "begin" : "change_width"
     },
     {
-      "beginString" : "clear_pen_memory"
+      "begin" : "clear_pen_memory"
     },
     {
-      "beginString" : "clearit"
+      "begin" : "clearit"
     },
     {
-      "beginString" : "clearpen"
+      "begin" : "clearpen"
     },
     {
-      "beginString" : "clearxy"
+      "begin" : "clearxy"
     },
     {
-      "beginString" : "counterclockwise"
+      "begin" : "counterclockwise"
     },
     {
-      "beginString" : "culldraw"
+      "begin" : "culldraw"
     },
     {
-      "beginString" : "cullit"
+      "begin" : "cullit"
     },
     {
-      "beginString" : "currentpen"
+      "begin" : "currentpen"
     },
     {
-      "beginString" : "currentpen_path"
+      "begin" : "currentpen_path"
     },
     {
-      "beginString" : "currentpicture"
+      "begin" : "currentpicture"
     },
     {
-      "beginString" : "currenttransform"
+      "begin" : "currenttransform"
     },
     {
-      "beginString" : "currentwindow"
+      "begin" : "currentwindow"
     },
     {
-      "beginString" : "cutdraw"
+      "begin" : "cutdraw"
     },
     {
-      "beginString" : "cutoff"
+      "begin" : "cutoff"
     },
     {
-      "beginString" : "d"
+      "begin" : "d"
     },
     {
-      "beginString" : "decr"
+      "begin" : "decr"
     },
     {
-      "beginString" : "define_blacker_pixels"
+      "begin" : "define_blacker_pixels"
     },
     {
-      "beginString" : "define_corrected_pixels"
+      "begin" : "define_corrected_pixels"
     },
     {
-      "beginString" : "define_good_x_pixels"
+      "begin" : "define_good_x_pixels"
     },
     {
-      "beginString" : "define_good_y_pixels"
+      "begin" : "define_good_y_pixels"
     },
     {
-      "beginString" : "define_horizontal_corrected_pixels"
+      "begin" : "define_horizontal_corrected_pixels"
     },
     {
-      "beginString" : "define_pixels"
+      "begin" : "define_pixels"
     },
     {
-      "beginString" : "define_whole_blacker_pixels"
+      "begin" : "define_whole_blacker_pixels"
     },
     {
-      "beginString" : "define_whole_pixels"
+      "begin" : "define_whole_pixels"
     },
     {
-      "beginString" : "define_whole_vertical_blacker_pixels"
+      "begin" : "define_whole_vertical_blacker_pixels"
     },
     {
-      "beginString" : "define_whole_vertical_pixels"
+      "begin" : "define_whole_vertical_pixels"
     },
     {
-      "beginString" : "dir"
+      "begin" : "dir"
     },
     {
-      "beginString" : "direction"
+      "begin" : "direction"
     },
     {
-      "beginString" : "directionpoint"
+      "begin" : "directionpoint"
     },
     {
-      "beginString" : "displaying"
+      "begin" : "displaying"
     },
     {
-      "beginString" : "ditto"
+      "begin" : "ditto"
     },
     {
-      "beginString" : "down"
+      "begin" : "down"
     },
     {
-      "beginString" : "downto"
+      "begin" : "downto"
     },
     {
-      "beginString" : "draw"
+      "begin" : "draw"
     },
     {
-      "beginString" : "drawdot"
+      "begin" : "drawdot"
     },
     {
-      "beginString" : "eps"
+      "begin" : "eps"
     },
     {
-      "beginString" : "epsilon"
+      "begin" : "epsilon"
     },
     {
-      "beginString" : "erase"
+      "begin" : "erase"
     },
     {
-      "beginString" : "exitunless"
+      "begin" : "exitunless"
     },
     {
-      "beginString" : "extra_setup"
+      "begin" : "extra_setup"
     },
     {
-      "beginString" : "fill"
+      "begin" : "fill"
     },
     {
-      "beginString" : "filldraw"
+      "begin" : "filldraw"
     },
     {
-      "beginString" : "fix_units"
+      "begin" : "fix_units"
     },
     {
-      "beginString" : "flex"
+      "begin" : "flex"
     },
     {
-      "beginString" : "font_coding_scheme"
+      "begin" : "font_coding_scheme"
     },
     {
-      "beginString" : "font_extra_space"
+      "begin" : "font_extra_space"
     },
     {
-      "beginString" : "font_identifier"
+      "begin" : "font_identifier"
     },
     {
-      "beginString" : "font_normal_shrink"
+      "begin" : "font_normal_shrink"
     },
     {
-      "beginString" : "font_normal_space"
+      "begin" : "font_normal_space"
     },
     {
-      "beginString" : "font_normal_stretch"
+      "begin" : "font_normal_stretch"
     },
     {
-      "beginString" : "font_quad"
+      "begin" : "font_quad"
     },
     {
-      "beginString" : "font_setup"
+      "begin" : "font_setup"
     },
     {
-      "beginString" : "font_size"
+      "begin" : "font_size"
     },
     {
-      "beginString" : "font_slant"
+      "begin" : "font_slant"
     },
     {
-      "beginString" : "font_x_height"
+      "begin" : "font_x_height"
     },
     {
-      "beginString" : "fullcircle"
+      "begin" : "fullcircle"
     },
     {
-      "beginString" : "generate"
+      "begin" : "generate"
     },
     {
-      "beginString" : "gfcorners"
+      "begin" : "gfcorners"
     },
     {
-      "beginString" : "gobble"
+      "begin" : "gobble"
     },
     {
-      "beginString" : "gobbled"
+      "begin" : "gobbled"
     },
     {
-      "beginString" : "grayfont"
+      "begin" : "grayfont"
     },
     {
-      "beginString" : "h"
+      "begin" : "h"
     },
     {
-      "beginString" : "halfcircle"
+      "begin" : "halfcircle"
     },
     {
-      "beginString" : "hide"
+      "begin" : "hide"
     },
     {
-      "beginString" : "hround"
+      "begin" : "hround"
     },
     {
-      "beginString" : "identity"
+      "begin" : "identity"
     },
     {
-      "beginString" : "image_rules"
+      "begin" : "image_rules"
     },
     {
-      "beginString" : "incr"
+      "begin" : "incr"
     },
     {
-      "beginString" : "infinity"
+      "begin" : "infinity"
     },
     {
-      "beginString" : "interact"
+      "begin" : "interact"
     },
     {
-      "beginString" : "interpath"
+      "begin" : "interpath"
     },
     {
-      "beginString" : "intersectionpoint"
+      "begin" : "intersectionpoint"
     },
     {
-      "beginString" : "inverse"
+      "begin" : "inverse"
     },
     {
-      "beginString" : "italcorr"
+      "begin" : "italcorr"
     },
     {
-      "beginString" : "join_radius"
+      "begin" : "join_radius"
     },
     {
-      "beginString" : "killtext"
+      "begin" : "killtext"
     },
     {
-      "beginString" : "labelfont"
+      "begin" : "labelfont"
     },
     {
-      "beginString" : "labels"
+      "begin" : "labels"
     },
     {
-      "beginString" : "left"
+      "begin" : "left"
     },
     {
-      "beginString" : "lft"
+      "begin" : "lft"
     },
     {
-      "beginString" : "localfont"
+      "begin" : "localfont"
     },
     {
-      "beginString" : "loggingall"
+      "begin" : "loggingall"
     },
     {
-      "beginString" : "lowres"
+      "begin" : "lowres"
     },
     {
-      "beginString" : "lowres_fix"
+      "begin" : "lowres_fix"
     },
     {
-      "beginString" : "mag"
+      "begin" : "mag"
     },
     {
-      "beginString" : "magstep"
+      "begin" : "magstep"
     },
     {
-      "beginString" : "makebox"
+      "begin" : "makebox"
     },
     {
-      "beginString" : "makegrid"
+      "begin" : "makegrid"
     },
     {
-      "beginString" : "makelabel"
+      "begin" : "makelabel"
     },
     {
-      "beginString" : "maketicks"
+      "begin" : "maketicks"
     },
     {
-      "beginString" : "mode"
+      "begin" : "mode"
     },
     {
-      "beginString" : "mode_def"
+      "begin" : "mode_def"
     },
     {
-      "beginString" : "mode_name"
+      "begin" : "mode_name"
     },
     {
-      "beginString" : "mode_setup"
+      "begin" : "mode_setup"
     },
     {
-      "beginString" : "nodisplays"
+      "begin" : "nodisplays"
     },
     {
-      "beginString" : "notransforms"
+      "begin" : "notransforms"
     },
     {
-      "beginString" : "number_of_modes"
+      "begin" : "number_of_modes"
     },
     {
-      "beginString" : "numtok"
+      "begin" : "numtok"
     },
     {
-      "beginString" : "o_correction"
+      "begin" : "o_correction"
     },
     {
-      "beginString" : "openit"
+      "begin" : "openit"
     },
     {
-      "beginString" : "origin"
+      "begin" : "origin"
     },
     {
-      "beginString" : "pen_bot"
+      "begin" : "pen_bot"
     },
     {
-      "beginString" : "pen_lft"
+      "begin" : "pen_lft"
     },
     {
-      "beginString" : "pen_rt"
+      "begin" : "pen_rt"
     },
     {
-      "beginString" : "pen_top"
+      "begin" : "pen_top"
     },
     {
-      "beginString" : "penlabels"
+      "begin" : "penlabels"
     },
     {
-      "beginString" : "penpos"
+      "begin" : "penpos"
     },
     {
-      "beginString" : "penrazor"
+      "begin" : "penrazor"
     },
     {
-      "beginString" : "penspeck"
+      "begin" : "penspeck"
     },
     {
-      "beginString" : "pensquare"
+      "begin" : "pensquare"
     },
     {
-      "beginString" : "penstroke"
+      "begin" : "penstroke"
     },
     {
-      "beginString" : "pickup"
+      "begin" : "pickup"
     },
     {
-      "beginString" : "pixels_per_inch"
+      "begin" : "pixels_per_inch"
     },
     {
-      "beginString" : "proof"
+      "begin" : "proof"
     },
     {
-      "beginString" : "proofoffset"
+      "begin" : "proofoffset"
     },
     {
-      "beginString" : "proofrule"
+      "begin" : "proofrule"
     },
     {
-      "beginString" : "proofrulethickness"
+      "begin" : "proofrulethickness"
     },
     {
-      "beginString" : "quartercircle"
+      "begin" : "quartercircle"
     },
     {
-      "beginString" : "range"
+      "begin" : "range"
     },
     {
-      "beginString" : "reflectedabout"
+      "begin" : "reflectedabout"
     },
     {
-      "beginString" : "relax"
+      "begin" : "relax"
     },
     {
-      "beginString" : "right"
+      "begin" : "right"
     },
     {
-      "beginString" : "rotatedabout"
+      "begin" : "rotatedabout"
     },
     {
-      "beginString" : "rotatedaround"
+      "begin" : "rotatedaround"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "rt"
+      "begin" : "rt"
     },
     {
-      "beginString" : "rulepen"
+      "begin" : "rulepen"
     },
     {
-      "beginString" : "savepen"
+      "begin" : "savepen"
     },
     {
-      "beginString" : "screen_cols"
+      "begin" : "screen_cols"
     },
     {
-      "beginString" : "screen_rows"
+      "begin" : "screen_rows"
     },
     {
-      "beginString" : "screenchars"
+      "begin" : "screenchars"
     },
     {
-      "beginString" : "screenrule"
+      "begin" : "screenrule"
     },
     {
-      "beginString" : "screenstrokes"
+      "begin" : "screenstrokes"
     },
     {
-      "beginString" : "shipit"
+      "begin" : "shipit"
     },
     {
-      "beginString" : "showit"
+      "begin" : "showit"
     },
     {
-      "beginString" : "slantfont"
+      "begin" : "slantfont"
     },
     {
-      "beginString" : "smode"
+      "begin" : "smode"
     },
     {
-      "beginString" : "smoke"
+      "begin" : "smoke"
     },
     {
-      "beginString" : "softjoin"
+      "begin" : "softjoin"
     },
     {
-      "beginString" : "solve"
+      "begin" : "solve"
     },
     {
-      "beginString" : "stop"
+      "begin" : "stop"
     },
     {
-      "beginString" : "superellipse"
+      "begin" : "superellipse"
     },
     {
-      "beginString" : "takepower"
+      "begin" : "takepower"
     },
     {
-      "beginString" : "tensepath"
+      "begin" : "tensepath"
     },
     {
-      "beginString" : "titlefont"
+      "begin" : "titlefont"
     },
     {
-      "beginString" : "tolerance"
+      "begin" : "tolerance"
     },
     {
-      "beginString" : "top"
+      "begin" : "top"
     },
     {
-      "beginString" : "tracingall"
+      "begin" : "tracingall"
     },
     {
-      "beginString" : "tracingnone"
+      "begin" : "tracingnone"
     },
     {
-      "beginString" : "undraw"
+      "begin" : "undraw"
     },
     {
-      "beginString" : "undrawdot"
+      "begin" : "undrawdot"
     },
     {
-      "beginString" : "unfill"
+      "begin" : "unfill"
     },
     {
-      "beginString" : "unfilldraw"
+      "begin" : "unfilldraw"
     },
     {
-      "beginString" : "unitpixel"
+      "begin" : "unitpixel"
     },
     {
-      "beginString" : "unitsquare"
+      "begin" : "unitsquare"
     },
     {
-      "beginString" : "unitvector"
+      "begin" : "unitvector"
     },
     {
-      "beginString" : "up"
+      "begin" : "up"
     },
     {
-      "beginString" : "upto"
+      "begin" : "upto"
     },
     {
-      "beginString" : "vround"
+      "begin" : "vround"
     },
     {
-      "beginString" : "w"
+      "begin" : "w"
     },
     {
-      "beginString" : "whatever"
+      "begin" : "whatever"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "-?.\\d+(bp|cc|cm|dd|in|mm|pc|pt)#?",
+      "begin" : "-?.\\d+(bp|cc|cm|dd|in|mm|pc|pt)#?",
       "regularExpression" : true
     },
     {
-      "beginString" : "-?\\d+(bp|cc|cm|dd|in|mm|pc|pt)#?",
+      "begin" : "-?\\d+(bp|cc|cm|dd|in|mm|pc|pt)#?",
       "regularExpression" : true
     },
     {
-      "beginString" : "-?\\d\\.\\d+(bp|cc|cm|dd|in|mm|pc|pt)#?",
+      "begin" : "-?\\d\\.\\d+(bp|cc|cm|dd|in|mm|pc|pt)#?",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "types" : [
     {
-      "beginString" : "beginchar"
+      "begin" : "beginchar"
     },
     {
-      "beginString" : "beginfig"
+      "begin" : "beginfig"
     },
     {
-      "beginString" : "beginlogochar"
+      "begin" : "beginlogochar"
     },
     {
-      "beginString" : "endchar"
+      "begin" : "endchar"
     },
     {
-      "beginString" : "endfig"
+      "begin" : "endfig"
     },
     {
-      "beginString" : "extra_beginchar"
+      "begin" : "extra_beginchar"
     },
     {
-      "beginString" : "extra_beginfig"
+      "begin" : "extra_beginfig"
     },
     {
-      "beginString" : "extra_endchar"
+      "begin" : "extra_endchar"
     },
     {
-      "beginString" : "extra_endfig"
+      "begin" : "extra_endfig"
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "\\b[xyz]\\d(\\w|\\')*",
+      "begin" : "\\b[xyz]\\d(\\w|\\')*",
       "regularExpression" : true
     }
   ]

@@ -1,20 +1,20 @@
 [
   {
-    "beginString" : "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$",
+    "pattern" : "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$",
     "description" : "class",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$",
+    "pattern" : "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$",
     "description" : "function",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)struct[\\t ]+(.+?):?[\\t]*$",
+    "pattern" : "^([\\t ]*)struct[\\t ]+(.+?):?[\\t]*$",
     "description" : "Mojo struct",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "container"
   }
 ]

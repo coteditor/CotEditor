@@ -1,2173 +1,2173 @@
 {
   "attributes" : [
     {
-      "beginString" : "@(<=\\()",
+      "begin" : "@(<=\\()",
       "regularExpression" : true
     },
     {
-      "beginString" : "@[a-z_]+",
+      "begin" : "@[a-z_]+",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "@disable"
+      "begin" : "@disable"
     },
     {
-      "beginString" : "@nogc"
+      "begin" : "@nogc"
     },
     {
-      "beginString" : "@property"
+      "begin" : "@property"
     }
   ],
   "characters" : [
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "commands" : [
     {
-      "beginString" : "_d_array_bounds"
+      "begin" : "_d_array_bounds"
     },
     {
-      "beginString" : "_d_arraybounds"
+      "begin" : "_d_arraybounds"
     },
     {
-      "beginString" : "_d_assert"
+      "begin" : "_d_assert"
     },
     {
-      "beginString" : "_d_assert_msg"
+      "begin" : "_d_assert_msg"
     },
     {
-      "beginString" : "_d_assertm"
+      "begin" : "_d_assertm"
     },
     {
-      "beginString" : "_d_switch_error"
+      "begin" : "_d_switch_error"
     },
     {
-      "beginString" : "_d_unittest"
+      "begin" : "_d_unittest"
     },
     {
-      "beginString" : "_d_unittest_msg"
+      "begin" : "_d_unittest_msg"
     },
     {
-      "beginString" : "_d_unittestm"
+      "begin" : "_d_unittestm"
     },
     {
-      "beginString" : "_Exit"
+      "begin" : "_Exit"
     },
     {
-      "beginString" : "_popcnt"
+      "begin" : "_popcnt"
     },
     {
-      "beginString" : "abort"
+      "begin" : "abort"
     },
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "acos"
+      "begin" : "acos"
     },
     {
-      "beginString" : "acosf"
+      "begin" : "acosf"
     },
     {
-      "beginString" : "acosh"
+      "begin" : "acosh"
     },
     {
-      "beginString" : "acoshf"
+      "begin" : "acoshf"
     },
     {
-      "beginString" : "acoshl"
+      "begin" : "acoshl"
     },
     {
-      "beginString" : "acosl"
+      "begin" : "acosl"
     },
     {
-      "beginString" : "adds"
+      "begin" : "adds"
     },
     {
-      "beginString" : "addu"
+      "begin" : "addu"
     },
     {
-      "beginString" : "aes"
+      "begin" : "aes"
     },
     {
-      "beginString" : "alloca"
+      "begin" : "alloca"
     },
     {
-      "beginString" : "amd3dnow"
+      "begin" : "amd3dnow"
     },
     {
-      "beginString" : "amd3dnowExt"
+      "begin" : "amd3dnowExt"
     },
     {
-      "beginString" : "amdMmx"
+      "begin" : "amdMmx"
     },
     {
-      "beginString" : "asctime"
+      "begin" : "asctime"
     },
     {
-      "beginString" : "asin"
+      "begin" : "asin"
     },
     {
-      "beginString" : "asinf"
+      "begin" : "asinf"
     },
     {
-      "beginString" : "asinh"
+      "begin" : "asinh"
     },
     {
-      "beginString" : "asinhf"
+      "begin" : "asinhf"
     },
     {
-      "beginString" : "asinhl"
+      "begin" : "asinhl"
     },
     {
-      "beginString" : "asinl"
+      "begin" : "asinl"
     },
     {
-      "beginString" : "assertHandler"
+      "begin" : "assertHandler"
     },
     {
-      "beginString" : "atan"
+      "begin" : "atan"
     },
     {
-      "beginString" : "atan2"
+      "begin" : "atan2"
     },
     {
-      "beginString" : "atan2f"
+      "begin" : "atan2f"
     },
     {
-      "beginString" : "atan2l"
+      "begin" : "atan2l"
     },
     {
-      "beginString" : "atanf"
+      "begin" : "atanf"
     },
     {
-      "beginString" : "atanh"
+      "begin" : "atanh"
     },
     {
-      "beginString" : "atanhf"
+      "begin" : "atanhf"
     },
     {
-      "beginString" : "atanhl"
+      "begin" : "atanhl"
     },
     {
-      "beginString" : "atanl"
+      "begin" : "atanl"
     },
     {
-      "beginString" : "atexit"
+      "begin" : "atexit"
     },
     {
-      "beginString" : "atof"
+      "begin" : "atof"
     },
     {
-      "beginString" : "atoi"
+      "begin" : "atoi"
     },
     {
-      "beginString" : "atol"
+      "begin" : "atol"
     },
     {
-      "beginString" : "atoll"
+      "begin" : "atoll"
     },
     {
-      "beginString" : "atomicFence"
+      "begin" : "atomicFence"
     },
     {
-      "beginString" : "atomicLoad"
+      "begin" : "atomicLoad"
     },
     {
-      "beginString" : "atomicOp"
+      "begin" : "atomicOp"
     },
     {
-      "beginString" : "atomicStore"
+      "begin" : "atomicStore"
     },
     {
-      "beginString" : "avx"
+      "begin" : "avx"
     },
     {
-      "beginString" : "avx2"
+      "begin" : "avx2"
     },
     {
-      "beginString" : "bitswap"
+      "begin" : "bitswap"
     },
     {
-      "beginString" : "bsearch"
+      "begin" : "bsearch"
     },
     {
-      "beginString" : "bsf"
+      "begin" : "bsf"
     },
     {
-      "beginString" : "bsr"
+      "begin" : "bsr"
     },
     {
-      "beginString" : "bswap"
+      "begin" : "bswap"
     },
     {
-      "beginString" : "bt"
+      "begin" : "bt"
     },
     {
-      "beginString" : "btc"
+      "begin" : "btc"
     },
     {
-      "beginString" : "btowc"
+      "begin" : "btowc"
     },
     {
-      "beginString" : "btr"
+      "begin" : "btr"
     },
     {
-      "beginString" : "bts"
+      "begin" : "bts"
     },
     {
-      "beginString" : "cabs"
+      "begin" : "cabs"
     },
     {
-      "beginString" : "cabsf"
+      "begin" : "cabsf"
     },
     {
-      "beginString" : "cabsl"
+      "begin" : "cabsl"
     },
     {
-      "beginString" : "cacheLevels"
+      "begin" : "cacheLevels"
     },
     {
-      "beginString" : "cacos"
+      "begin" : "cacos"
     },
     {
-      "beginString" : "cacosf"
+      "begin" : "cacosf"
     },
     {
-      "beginString" : "cacosh"
+      "begin" : "cacosh"
     },
     {
-      "beginString" : "cacoshf"
+      "begin" : "cacoshf"
     },
     {
-      "beginString" : "cacoshl"
+      "begin" : "cacoshl"
     },
     {
-      "beginString" : "cacosl"
+      "begin" : "cacosl"
     },
     {
-      "beginString" : "calloc"
+      "begin" : "calloc"
     },
     {
-      "beginString" : "carg"
+      "begin" : "carg"
     },
     {
-      "beginString" : "cargf"
+      "begin" : "cargf"
     },
     {
-      "beginString" : "cargl"
+      "begin" : "cargl"
     },
     {
-      "beginString" : "cas"
+      "begin" : "cas"
     },
     {
-      "beginString" : "casin"
+      "begin" : "casin"
     },
     {
-      "beginString" : "casinf"
+      "begin" : "casinf"
     },
     {
-      "beginString" : "casinh"
+      "begin" : "casinh"
     },
     {
-      "beginString" : "casinhf"
+      "begin" : "casinhf"
     },
     {
-      "beginString" : "casinhl"
+      "begin" : "casinhl"
     },
     {
-      "beginString" : "casinl"
+      "begin" : "casinl"
     },
     {
-      "beginString" : "catan"
+      "begin" : "catan"
     },
     {
-      "beginString" : "catanf"
+      "begin" : "catanf"
     },
     {
-      "beginString" : "catanh"
+      "begin" : "catanh"
     },
     {
-      "beginString" : "catanhf"
+      "begin" : "catanhf"
     },
     {
-      "beginString" : "catanhl"
+      "begin" : "catanhl"
     },
     {
-      "beginString" : "catanl"
+      "begin" : "catanl"
     },
     {
-      "beginString" : "cbrt"
+      "begin" : "cbrt"
     },
     {
-      "beginString" : "cbrtf"
+      "begin" : "cbrtf"
     },
     {
-      "beginString" : "cbrtl"
+      "begin" : "cbrtl"
     },
     {
-      "beginString" : "ccos"
+      "begin" : "ccos"
     },
     {
-      "beginString" : "ccosf"
+      "begin" : "ccosf"
     },
     {
-      "beginString" : "ccosh"
+      "begin" : "ccosh"
     },
     {
-      "beginString" : "ccoshf"
+      "begin" : "ccoshf"
     },
     {
-      "beginString" : "ccoshl"
+      "begin" : "ccoshl"
     },
     {
-      "beginString" : "ccosl"
+      "begin" : "ccosl"
     },
     {
-      "beginString" : "ceil"
+      "begin" : "ceil"
     },
     {
-      "beginString" : "ceilf"
+      "begin" : "ceilf"
     },
     {
-      "beginString" : "ceill"
+      "begin" : "ceill"
     },
     {
-      "beginString" : "cexp"
+      "begin" : "cexp"
     },
     {
-      "beginString" : "cexpf"
+      "begin" : "cexpf"
     },
     {
-      "beginString" : "cexpl"
+      "begin" : "cexpl"
     },
     {
-      "beginString" : "chunks"
+      "begin" : "chunks"
     },
     {
-      "beginString" : "cimag"
+      "begin" : "cimag"
     },
     {
-      "beginString" : "cimagf"
+      "begin" : "cimagf"
     },
     {
-      "beginString" : "cimagl"
+      "begin" : "cimagl"
     },
     {
-      "beginString" : "clearerr"
+      "begin" : "clearerr"
     },
     {
-      "beginString" : "clock"
+      "begin" : "clock"
     },
     {
-      "beginString" : "clog"
+      "begin" : "clog"
     },
     {
-      "beginString" : "clogf"
+      "begin" : "clogf"
     },
     {
-      "beginString" : "clogl"
+      "begin" : "clogl"
     },
     {
-      "beginString" : "conj"
+      "begin" : "conj"
     },
     {
-      "beginString" : "conjf"
+      "begin" : "conjf"
     },
     {
-      "beginString" : "conjl"
+      "begin" : "conjl"
     },
     {
-      "beginString" : "convClockFreq"
+      "begin" : "convClockFreq"
     },
     {
-      "beginString" : "convert"
+      "begin" : "convert"
     },
     {
-      "beginString" : "copysign"
+      "begin" : "copysign"
     },
     {
-      "beginString" : "copysignf"
+      "begin" : "copysignf"
     },
     {
-      "beginString" : "copysignl"
+      "begin" : "copysignl"
     },
     {
-      "beginString" : "coresPerCPU"
+      "begin" : "coresPerCPU"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "cosf"
+      "begin" : "cosf"
     },
     {
-      "beginString" : "cosh"
+      "begin" : "cosh"
     },
     {
-      "beginString" : "coshf"
+      "begin" : "coshf"
     },
     {
-      "beginString" : "coshl"
+      "begin" : "coshl"
     },
     {
-      "beginString" : "cosl"
+      "begin" : "cosl"
     },
     {
-      "beginString" : "cpow"
+      "begin" : "cpow"
     },
     {
-      "beginString" : "cpowf"
+      "begin" : "cpowf"
     },
     {
-      "beginString" : "cpowl"
+      "begin" : "cpowl"
     },
     {
-      "beginString" : "cproj"
+      "begin" : "cproj"
     },
     {
-      "beginString" : "cprojf"
+      "begin" : "cprojf"
     },
     {
-      "beginString" : "cprojl"
+      "begin" : "cprojl"
     },
     {
-      "beginString" : "crealf"
+      "begin" : "crealf"
     },
     {
-      "beginString" : "creall"
+      "begin" : "creall"
     },
     {
-      "beginString" : "csin"
+      "begin" : "csin"
     },
     {
-      "beginString" : "csinf"
+      "begin" : "csinf"
     },
     {
-      "beginString" : "csinh"
+      "begin" : "csinh"
     },
     {
-      "beginString" : "csinhf"
+      "begin" : "csinhf"
     },
     {
-      "beginString" : "csinhl"
+      "begin" : "csinhl"
     },
     {
-      "beginString" : "csinl"
+      "begin" : "csinl"
     },
     {
-      "beginString" : "csqrt"
+      "begin" : "csqrt"
     },
     {
-      "beginString" : "csqrtf"
+      "begin" : "csqrtf"
     },
     {
-      "beginString" : "csqrtl"
+      "begin" : "csqrtl"
     },
     {
-      "beginString" : "ctan"
+      "begin" : "ctan"
     },
     {
-      "beginString" : "ctanf"
+      "begin" : "ctanf"
     },
     {
-      "beginString" : "ctanh"
+      "begin" : "ctanh"
     },
     {
-      "beginString" : "ctanhf"
+      "begin" : "ctanhf"
     },
     {
-      "beginString" : "ctanhl"
+      "begin" : "ctanhl"
     },
     {
-      "beginString" : "ctanl"
+      "begin" : "ctanl"
     },
     {
-      "beginString" : "ctime"
+      "begin" : "ctime"
     },
     {
-      "beginString" : "dataCaches"
+      "begin" : "dataCaches"
     },
     {
-      "beginString" : "defaultTraceHandler"
+      "begin" : "defaultTraceHandler"
     },
     {
-      "beginString" : "demangle"
+      "begin" : "demangle"
     },
     {
-      "beginString" : "demangleType"
+      "begin" : "demangleType"
     },
     {
-      "beginString" : "difftime"
+      "begin" : "difftime"
     },
     {
-      "beginString" : "div"
+      "begin" : "div"
     },
     {
-      "beginString" : "dmd_coverDestPath"
+      "begin" : "dmd_coverDestPath"
     },
     {
-      "beginString" : "dmd_coverSetMerge"
+      "begin" : "dmd_coverSetMerge"
     },
     {
-      "beginString" : "dmd_coverSourcePath"
+      "begin" : "dmd_coverSourcePath"
     },
     {
-      "beginString" : "dur"
+      "begin" : "dur"
     },
     {
-      "beginString" : "erf"
+      "begin" : "erf"
     },
     {
-      "beginString" : "erfc"
+      "begin" : "erfc"
     },
     {
-      "beginString" : "erfcf"
+      "begin" : "erfcf"
     },
     {
-      "beginString" : "erfcl"
+      "begin" : "erfcl"
     },
     {
-      "beginString" : "erff"
+      "begin" : "erff"
     },
     {
-      "beginString" : "erfl"
+      "begin" : "erfl"
     },
     {
-      "beginString" : "errno"
+      "begin" : "errno"
     },
     {
-      "beginString" : "exit"
+      "begin" : "exit"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "exp2"
+      "begin" : "exp2"
     },
     {
-      "beginString" : "exp2f"
+      "begin" : "exp2f"
     },
     {
-      "beginString" : "exp2l"
+      "begin" : "exp2l"
     },
     {
-      "beginString" : "expf"
+      "begin" : "expf"
     },
     {
-      "beginString" : "expl"
+      "begin" : "expl"
     },
     {
-      "beginString" : "expm1"
+      "begin" : "expm1"
     },
     {
-      "beginString" : "expm1f"
+      "begin" : "expm1f"
     },
     {
-      "beginString" : "expm1l"
+      "begin" : "expm1l"
     },
     {
-      "beginString" : "fabs"
+      "begin" : "fabs"
     },
     {
-      "beginString" : "fabsf"
+      "begin" : "fabsf"
     },
     {
-      "beginString" : "fabsl"
+      "begin" : "fabsl"
     },
     {
-      "beginString" : "fclose"
+      "begin" : "fclose"
     },
     {
-      "beginString" : "fdim"
+      "begin" : "fdim"
     },
     {
-      "beginString" : "fdimf"
+      "begin" : "fdimf"
     },
     {
-      "beginString" : "fdiml"
+      "begin" : "fdiml"
     },
     {
-      "beginString" : "feclearexcept"
+      "begin" : "feclearexcept"
     },
     {
-      "beginString" : "fegetenv"
+      "begin" : "fegetenv"
     },
     {
-      "beginString" : "fegetexceptflag"
+      "begin" : "fegetexceptflag"
     },
     {
-      "beginString" : "fegetround"
+      "begin" : "fegetround"
     },
     {
-      "beginString" : "feholdexcept"
+      "begin" : "feholdexcept"
     },
     {
-      "beginString" : "feof"
+      "begin" : "feof"
     },
     {
-      "beginString" : "feraiseexcept"
+      "begin" : "feraiseexcept"
     },
     {
-      "beginString" : "ferror"
+      "begin" : "ferror"
     },
     {
-      "beginString" : "fesetenv"
+      "begin" : "fesetenv"
     },
     {
-      "beginString" : "fesetexceptflag"
+      "begin" : "fesetexceptflag"
     },
     {
-      "beginString" : "fesetround"
+      "begin" : "fesetround"
     },
     {
-      "beginString" : "fetestexcept"
+      "begin" : "fetestexcept"
     },
     {
-      "beginString" : "feupdateenv"
+      "begin" : "feupdateenv"
     },
     {
-      "beginString" : "fflush"
+      "begin" : "fflush"
     },
     {
-      "beginString" : "fgetc"
+      "begin" : "fgetc"
     },
     {
-      "beginString" : "fgetpos"
+      "begin" : "fgetpos"
     },
     {
-      "beginString" : "fgets"
+      "begin" : "fgets"
     },
     {
-      "beginString" : "fgetwc"
+      "begin" : "fgetwc"
     },
     {
-      "beginString" : "fgetws"
+      "begin" : "fgetws"
     },
     {
-      "beginString" : "fileno"
+      "begin" : "fileno"
     },
     {
-      "beginString" : "floor"
+      "begin" : "floor"
     },
     {
-      "beginString" : "floorf"
+      "begin" : "floorf"
     },
     {
-      "beginString" : "floorl"
+      "begin" : "floorl"
     },
     {
-      "beginString" : "fma"
+      "begin" : "fma"
     },
     {
-      "beginString" : "fmaf"
+      "begin" : "fmaf"
     },
     {
-      "beginString" : "fmal"
+      "begin" : "fmal"
     },
     {
-      "beginString" : "fmax"
+      "begin" : "fmax"
     },
     {
-      "beginString" : "fmaxf"
+      "begin" : "fmaxf"
     },
     {
-      "beginString" : "fmaxl"
+      "begin" : "fmaxl"
     },
     {
-      "beginString" : "fmin"
+      "begin" : "fmin"
     },
     {
-      "beginString" : "fminf"
+      "begin" : "fminf"
     },
     {
-      "beginString" : "fminl"
+      "begin" : "fminl"
     },
     {
-      "beginString" : "fmod"
+      "begin" : "fmod"
     },
     {
-      "beginString" : "fmodf"
+      "begin" : "fmodf"
     },
     {
-      "beginString" : "fmodl"
+      "begin" : "fmodl"
     },
     {
-      "beginString" : "fopen"
+      "begin" : "fopen"
     },
     {
-      "beginString" : "fp16c"
+      "begin" : "fp16c"
     },
     {
-      "beginString" : "fpclassify"
+      "begin" : "fpclassify"
     },
     {
-      "beginString" : "fprintf"
+      "begin" : "fprintf"
     },
     {
-      "beginString" : "fputc"
+      "begin" : "fputc"
     },
     {
-      "beginString" : "fputs"
+      "begin" : "fputs"
     },
     {
-      "beginString" : "fputwc"
+      "begin" : "fputwc"
     },
     {
-      "beginString" : "fputws"
+      "begin" : "fputws"
     },
     {
-      "beginString" : "fread"
+      "begin" : "fread"
     },
     {
-      "beginString" : "free"
+      "begin" : "free"
     },
     {
-      "beginString" : "freopen"
+      "begin" : "freopen"
     },
     {
-      "beginString" : "frexp"
+      "begin" : "frexp"
     },
     {
-      "beginString" : "frexpf"
+      "begin" : "frexpf"
     },
     {
-      "beginString" : "frexpl"
+      "begin" : "frexpl"
     },
     {
-      "beginString" : "fscanf"
+      "begin" : "fscanf"
     },
     {
-      "beginString" : "fseek"
+      "begin" : "fseek"
     },
     {
-      "beginString" : "fsetpos"
+      "begin" : "fsetpos"
     },
     {
-      "beginString" : "ftell"
+      "begin" : "ftell"
     },
     {
-      "beginString" : "fwide"
+      "begin" : "fwide"
     },
     {
-      "beginString" : "fwprintf"
+      "begin" : "fwprintf"
     },
     {
-      "beginString" : "fwrite"
+      "begin" : "fwrite"
     },
     {
-      "beginString" : "fwscanf"
+      "begin" : "fwscanf"
     },
     {
-      "beginString" : "getc"
+      "begin" : "getc"
     },
     {
-      "beginString" : "getchar"
+      "begin" : "getchar"
     },
     {
-      "beginString" : "getenv"
+      "begin" : "getenv"
     },
     {
-      "beginString" : "gets"
+      "begin" : "gets"
     },
     {
-      "beginString" : "getwc"
+      "begin" : "getwc"
     },
     {
-      "beginString" : "getwchar"
+      "begin" : "getwchar"
     },
     {
-      "beginString" : "gmtime"
+      "begin" : "gmtime"
     },
     {
-      "beginString" : "has3dnowPrefetch"
+      "begin" : "has3dnowPrefetch"
     },
     {
-      "beginString" : "hasCmov"
+      "begin" : "hasCmov"
     },
     {
-      "beginString" : "hasCmpxchg16b"
+      "begin" : "hasCmpxchg16b"
     },
     {
-      "beginString" : "hasCmpxchg8b"
+      "begin" : "hasCmpxchg8b"
     },
     {
-      "beginString" : "hasFxsr"
+      "begin" : "hasFxsr"
     },
     {
-      "beginString" : "hasLahfSahf"
+      "begin" : "hasLahfSahf"
     },
     {
-      "beginString" : "hasLzcnt"
+      "begin" : "hasLzcnt"
     },
     {
-      "beginString" : "hasPclmulqdq"
+      "begin" : "hasPclmulqdq"
     },
     {
-      "beginString" : "hasPopcnt"
+      "begin" : "hasPopcnt"
     },
     {
-      "beginString" : "hasRdrand"
+      "begin" : "hasRdrand"
     },
     {
-      "beginString" : "hasRdseed"
+      "begin" : "hasRdseed"
     },
     {
-      "beginString" : "hasRdtsc"
+      "begin" : "hasRdtsc"
     },
     {
-      "beginString" : "hasSha"
+      "begin" : "hasSha"
     },
     {
-      "beginString" : "hasSysEnterSysExit"
+      "begin" : "hasSysEnterSysExit"
     },
     {
-      "beginString" : "hasVpclmulqdq"
+      "begin" : "hasVpclmulqdq"
     },
     {
-      "beginString" : "hle"
+      "begin" : "hle"
     },
     {
-      "beginString" : "hyperThreading"
+      "begin" : "hyperThreading"
     },
     {
-      "beginString" : "hypot"
+      "begin" : "hypot"
     },
     {
-      "beginString" : "hypotf"
+      "begin" : "hypotf"
     },
     {
-      "beginString" : "hypotl"
+      "begin" : "hypotl"
     },
     {
-      "beginString" : "ilogb"
+      "begin" : "ilogb"
     },
     {
-      "beginString" : "ilogbf"
+      "begin" : "ilogbf"
     },
     {
-      "beginString" : "ilogbl"
+      "begin" : "ilogbl"
     },
     {
-      "beginString" : "imaxabs"
+      "begin" : "imaxabs"
     },
     {
-      "beginString" : "imaxdiv"
+      "begin" : "imaxdiv"
     },
     {
-      "beginString" : "inp"
+      "begin" : "inp"
     },
     {
-      "beginString" : "inpl"
+      "begin" : "inpl"
     },
     {
-      "beginString" : "inpw"
+      "begin" : "inpw"
     },
     {
-      "beginString" : "isalnum"
+      "begin" : "isalnum"
     },
     {
-      "beginString" : "isalpha"
+      "begin" : "isalpha"
     },
     {
-      "beginString" : "isblank"
+      "begin" : "isblank"
     },
     {
-      "beginString" : "iscntrl"
+      "begin" : "iscntrl"
     },
     {
-      "beginString" : "isdigit"
+      "begin" : "isdigit"
     },
     {
-      "beginString" : "isfinite"
+      "begin" : "isfinite"
     },
     {
-      "beginString" : "isgraph"
+      "begin" : "isgraph"
     },
     {
-      "beginString" : "isgreater"
+      "begin" : "isgreater"
     },
     {
-      "beginString" : "isgreaterequal"
+      "begin" : "isgreaterequal"
     },
     {
-      "beginString" : "isinf"
+      "begin" : "isinf"
     },
     {
-      "beginString" : "isItanium"
+      "begin" : "isItanium"
     },
     {
-      "beginString" : "isless"
+      "begin" : "isless"
     },
     {
-      "beginString" : "islessequal"
+      "begin" : "islessequal"
     },
     {
-      "beginString" : "islessgreater"
+      "begin" : "islessgreater"
     },
     {
-      "beginString" : "islower"
+      "begin" : "islower"
     },
     {
-      "beginString" : "isnan"
+      "begin" : "isnan"
     },
     {
-      "beginString" : "isnormal"
+      "begin" : "isnormal"
     },
     {
-      "beginString" : "isprint"
+      "begin" : "isprint"
     },
     {
-      "beginString" : "ispunct"
+      "begin" : "ispunct"
     },
     {
-      "beginString" : "isspace"
+      "begin" : "isspace"
     },
     {
-      "beginString" : "isunordered"
+      "begin" : "isunordered"
     },
     {
-      "beginString" : "isupper"
+      "begin" : "isupper"
     },
     {
-      "beginString" : "iswalnum"
+      "begin" : "iswalnum"
     },
     {
-      "beginString" : "iswalpha"
+      "begin" : "iswalpha"
     },
     {
-      "beginString" : "iswblank"
+      "begin" : "iswblank"
     },
     {
-      "beginString" : "iswcntrl"
+      "begin" : "iswcntrl"
     },
     {
-      "beginString" : "iswctype"
+      "begin" : "iswctype"
     },
     {
-      "beginString" : "iswdigit"
+      "begin" : "iswdigit"
     },
     {
-      "beginString" : "iswgraph"
+      "begin" : "iswgraph"
     },
     {
-      "beginString" : "iswlower"
+      "begin" : "iswlower"
     },
     {
-      "beginString" : "iswprint"
+      "begin" : "iswprint"
     },
     {
-      "beginString" : "iswpunct"
+      "begin" : "iswpunct"
     },
     {
-      "beginString" : "iswspace"
+      "begin" : "iswspace"
     },
     {
-      "beginString" : "iswupper"
+      "begin" : "iswupper"
     },
     {
-      "beginString" : "iswxdigit"
+      "begin" : "iswxdigit"
     },
     {
-      "beginString" : "isX86_64"
+      "begin" : "isX86_64"
     },
     {
-      "beginString" : "isxdigit"
+      "begin" : "isxdigit"
     },
     {
-      "beginString" : "labs"
+      "begin" : "labs"
     },
     {
-      "beginString" : "ldexp"
+      "begin" : "ldexp"
     },
     {
-      "beginString" : "ldexpf"
+      "begin" : "ldexpf"
     },
     {
-      "beginString" : "ldexpl"
+      "begin" : "ldexpl"
     },
     {
-      "beginString" : "ldiv"
+      "begin" : "ldiv"
     },
     {
-      "beginString" : "lgamma"
+      "begin" : "lgamma"
     },
     {
-      "beginString" : "lgammaf"
+      "begin" : "lgammaf"
     },
     {
-      "beginString" : "lgammal"
+      "begin" : "lgammal"
     },
     {
-      "beginString" : "llabs"
+      "begin" : "llabs"
     },
     {
-      "beginString" : "lldiv"
+      "begin" : "lldiv"
     },
     {
-      "beginString" : "llrint"
+      "begin" : "llrint"
     },
     {
-      "beginString" : "llrintf"
+      "begin" : "llrintf"
     },
     {
-      "beginString" : "llrintl"
+      "begin" : "llrintl"
     },
     {
-      "beginString" : "llround"
+      "begin" : "llround"
     },
     {
-      "beginString" : "llroundf"
+      "begin" : "llroundf"
     },
     {
-      "beginString" : "llroundl"
+      "begin" : "llroundl"
     },
     {
-      "beginString" : "localeconv"
+      "begin" : "localeconv"
     },
     {
-      "beginString" : "localtime"
+      "begin" : "localtime"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "log10"
+      "begin" : "log10"
     },
     {
-      "beginString" : "log10f"
+      "begin" : "log10f"
     },
     {
-      "beginString" : "log10l"
+      "begin" : "log10l"
     },
     {
-      "beginString" : "log1p"
+      "begin" : "log1p"
     },
     {
-      "beginString" : "log1pf"
+      "begin" : "log1pf"
     },
     {
-      "beginString" : "log1pl"
+      "begin" : "log1pl"
     },
     {
-      "beginString" : "log2"
+      "begin" : "log2"
     },
     {
-      "beginString" : "log2f"
+      "begin" : "log2f"
     },
     {
-      "beginString" : "log2l"
+      "begin" : "log2l"
     },
     {
-      "beginString" : "logb"
+      "begin" : "logb"
     },
     {
-      "beginString" : "logbf"
+      "begin" : "logbf"
     },
     {
-      "beginString" : "logbl"
+      "begin" : "logbl"
     },
     {
-      "beginString" : "logf"
+      "begin" : "logf"
     },
     {
-      "beginString" : "logl"
+      "begin" : "logl"
     },
     {
-      "beginString" : "lrint"
+      "begin" : "lrint"
     },
     {
-      "beginString" : "lrintf"
+      "begin" : "lrintf"
     },
     {
-      "beginString" : "lrintl"
+      "begin" : "lrintl"
     },
     {
-      "beginString" : "lround"
+      "begin" : "lround"
     },
     {
-      "beginString" : "lroundf"
+      "begin" : "lroundf"
     },
     {
-      "beginString" : "lroundl"
+      "begin" : "lroundl"
     },
     {
-      "beginString" : "malloc"
+      "begin" : "malloc"
     },
     {
-      "beginString" : "mangle"
+      "begin" : "mangle"
     },
     {
-      "beginString" : "mangleC"
+      "begin" : "mangleC"
     },
     {
-      "beginString" : "mangleFunc"
+      "begin" : "mangleFunc"
     },
     {
-      "beginString" : "mblen"
+      "begin" : "mblen"
     },
     {
-      "beginString" : "mbrlen"
+      "begin" : "mbrlen"
     },
     {
-      "beginString" : "mbrtowc"
+      "begin" : "mbrtowc"
     },
     {
-      "beginString" : "mbsinit"
+      "begin" : "mbsinit"
     },
     {
-      "beginString" : "mbsrtowcs"
+      "begin" : "mbsrtowcs"
     },
     {
-      "beginString" : "mbstowcs"
+      "begin" : "mbstowcs"
     },
     {
-      "beginString" : "mbtowc"
+      "begin" : "mbtowc"
     },
     {
-      "beginString" : "memchr"
+      "begin" : "memchr"
     },
     {
-      "beginString" : "memcmp"
+      "begin" : "memcmp"
     },
     {
-      "beginString" : "memcpy"
+      "begin" : "memcpy"
     },
     {
-      "beginString" : "memmove"
+      "begin" : "memmove"
     },
     {
-      "beginString" : "memset"
+      "begin" : "memset"
     },
     {
-      "beginString" : "mktime"
+      "begin" : "mktime"
     },
     {
-      "beginString" : "mmx"
+      "begin" : "mmx"
     },
     {
-      "beginString" : "modf"
+      "begin" : "modf"
     },
     {
-      "beginString" : "modff"
+      "begin" : "modff"
     },
     {
-      "beginString" : "modfl"
+      "begin" : "modfl"
     },
     {
-      "beginString" : "muls"
+      "begin" : "muls"
     },
     {
-      "beginString" : "mulu"
+      "begin" : "mulu"
     },
     {
-      "beginString" : "Name"
+      "begin" : "Name"
     },
     {
-      "beginString" : "nan"
+      "begin" : "nan"
     },
     {
-      "beginString" : "nanf"
+      "begin" : "nanf"
     },
     {
-      "beginString" : "nanl"
+      "begin" : "nanl"
     },
     {
-      "beginString" : "nearbyint"
+      "begin" : "nearbyint"
     },
     {
-      "beginString" : "nearbyintf"
+      "begin" : "nearbyintf"
     },
     {
-      "beginString" : "nearbyintl"
+      "begin" : "nearbyintl"
     },
     {
-      "beginString" : "negs"
+      "begin" : "negs"
     },
     {
-      "beginString" : "nextafter"
+      "begin" : "nextafter"
     },
     {
-      "beginString" : "nextafterf"
+      "begin" : "nextafterf"
     },
     {
-      "beginString" : "nextafterl"
+      "begin" : "nextafterl"
     },
     {
-      "beginString" : "nexttoward"
+      "begin" : "nexttoward"
     },
     {
-      "beginString" : "nexttowardf"
+      "begin" : "nexttowardf"
     },
     {
-      "beginString" : "nexttowardl"
+      "begin" : "nexttowardl"
     },
     {
-      "beginString" : "nsecsToTicks"
+      "begin" : "nsecsToTicks"
     },
     {
-      "beginString" : "onAssertError"
+      "begin" : "onAssertError"
     },
     {
-      "beginString" : "onAssertErrorMsg"
+      "begin" : "onAssertErrorMsg"
     },
     {
-      "beginString" : "onFinalizeError"
+      "begin" : "onFinalizeError"
     },
     {
-      "beginString" : "onInvalidMemoryOperationError"
+      "begin" : "onInvalidMemoryOperationError"
     },
     {
-      "beginString" : "onOutOfMemoryError"
+      "begin" : "onOutOfMemoryError"
     },
     {
-      "beginString" : "onRangeError"
+      "begin" : "onRangeError"
     },
     {
-      "beginString" : "onSwitchError"
+      "begin" : "onSwitchError"
     },
     {
-      "beginString" : "onUnicodeError"
+      "begin" : "onUnicodeError"
     },
     {
-      "beginString" : "onUnittestErrorMsg"
+      "begin" : "onUnittestErrorMsg"
     },
     {
-      "beginString" : "outp"
+      "begin" : "outp"
     },
     {
-      "beginString" : "outpl"
+      "begin" : "outpl"
     },
     {
-      "beginString" : "outpw"
+      "begin" : "outpw"
     },
     {
-      "beginString" : "perror"
+      "begin" : "perror"
     },
     {
-      "beginString" : "popcnt"
+      "begin" : "popcnt"
     },
     {
-      "beginString" : "popen"
+      "begin" : "popen"
     },
     {
-      "beginString" : "pow"
+      "begin" : "pow"
     },
     {
-      "beginString" : "powf"
+      "begin" : "powf"
     },
     {
-      "beginString" : "powl"
+      "begin" : "powl"
     },
     {
-      "beginString" : "preferAthlon"
+      "begin" : "preferAthlon"
     },
     {
-      "beginString" : "preferPentium1"
+      "begin" : "preferPentium1"
     },
     {
-      "beginString" : "preferPentium4"
+      "begin" : "preferPentium4"
     },
     {
-      "beginString" : "printf"
+      "begin" : "printf"
     },
     {
-      "beginString" : "processor"
+      "begin" : "processor"
     },
     {
-      "beginString" : "profilegc_setlogfilename"
+      "begin" : "profilegc_setlogfilename"
     },
     {
-      "beginString" : "putc"
+      "begin" : "putc"
     },
     {
-      "beginString" : "putchar"
+      "begin" : "putchar"
     },
     {
-      "beginString" : "puts"
+      "begin" : "puts"
     },
     {
-      "beginString" : "putwc"
+      "begin" : "putwc"
     },
     {
-      "beginString" : "putwchar"
+      "begin" : "putwchar"
     },
     {
-      "beginString" : "qsort"
+      "begin" : "qsort"
     },
     {
-      "beginString" : "raise"
+      "begin" : "raise"
     },
     {
-      "beginString" : "rand"
+      "begin" : "rand"
     },
     {
-      "beginString" : "readf"
+      "begin" : "readf"
     },
     {
-      "beginString" : "readln"
+      "begin" : "readln"
     },
     {
-      "beginString" : "realloc"
+      "begin" : "realloc"
     },
     {
-      "beginString" : "remainder"
+      "begin" : "remainder"
     },
     {
-      "beginString" : "remainderf"
+      "begin" : "remainderf"
     },
     {
-      "beginString" : "remainderl"
+      "begin" : "remainderl"
     },
     {
-      "beginString" : "remove"
+      "begin" : "remove"
     },
     {
-      "beginString" : "remquo"
+      "begin" : "remquo"
     },
     {
-      "beginString" : "remquof"
+      "begin" : "remquof"
     },
     {
-      "beginString" : "remquol"
+      "begin" : "remquol"
     },
     {
-      "beginString" : "rename"
+      "begin" : "rename"
     },
     {
-      "beginString" : "rewind"
+      "begin" : "rewind"
     },
     {
-      "beginString" : "rint"
+      "begin" : "rint"
     },
     {
-      "beginString" : "rintf"
+      "begin" : "rintf"
     },
     {
-      "beginString" : "rintl"
+      "begin" : "rintl"
     },
     {
-      "beginString" : "rndtol"
+      "begin" : "rndtol"
     },
     {
-      "beginString" : "rndtonl"
+      "begin" : "rndtonl"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "roundf"
+      "begin" : "roundf"
     },
     {
-      "beginString" : "roundl"
+      "begin" : "roundl"
     },
     {
-      "beginString" : "rt_init"
+      "begin" : "rt_init"
     },
     {
-      "beginString" : "rt_loadLibrary"
+      "begin" : "rt_loadLibrary"
     },
     {
-      "beginString" : "rt_term"
+      "begin" : "rt_term"
     },
     {
-      "beginString" : "rt_unloadLibrary"
+      "begin" : "rt_unloadLibrary"
     },
     {
-      "beginString" : "rtm"
+      "begin" : "rtm"
     },
     {
-      "beginString" : "runModuleUnitTests"
+      "begin" : "runModuleUnitTests"
     },
     {
-      "beginString" : "scalbln"
+      "begin" : "scalbln"
     },
     {
-      "beginString" : "scalblnf"
+      "begin" : "scalblnf"
     },
     {
-      "beginString" : "scalblnl"
+      "begin" : "scalblnl"
     },
     {
-      "beginString" : "scalbn"
+      "begin" : "scalbn"
     },
     {
-      "beginString" : "scalbnf"
+      "begin" : "scalbnf"
     },
     {
-      "beginString" : "scalbnl"
+      "begin" : "scalbnl"
     },
     {
-      "beginString" : "scanf"
+      "begin" : "scanf"
     },
     {
-      "beginString" : "setbuf"
+      "begin" : "setbuf"
     },
     {
-      "beginString" : "setlocale"
+      "begin" : "setlocale"
     },
     {
-      "beginString" : "setvbuf"
+      "begin" : "setvbuf"
     },
     {
-      "beginString" : "signal"
+      "begin" : "signal"
     },
     {
-      "beginString" : "signbit"
+      "begin" : "signbit"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "sinf"
+      "begin" : "sinf"
     },
     {
-      "beginString" : "sinh"
+      "begin" : "sinh"
     },
     {
-      "beginString" : "sinhf"
+      "begin" : "sinhf"
     },
     {
-      "beginString" : "sinhl"
+      "begin" : "sinhl"
     },
     {
-      "beginString" : "sinl"
+      "begin" : "sinl"
     },
     {
-      "beginString" : "snprintf"
+      "begin" : "snprintf"
     },
     {
-      "beginString" : "sprintf"
+      "begin" : "sprintf"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "sqrtf"
+      "begin" : "sqrtf"
     },
     {
-      "beginString" : "sqrtl"
+      "begin" : "sqrtl"
     },
     {
-      "beginString" : "srand"
+      "begin" : "srand"
     },
     {
-      "beginString" : "sscanf"
+      "begin" : "sscanf"
     },
     {
-      "beginString" : "sse"
+      "begin" : "sse"
     },
     {
-      "beginString" : "sse2"
+      "begin" : "sse2"
     },
     {
-      "beginString" : "sse3"
+      "begin" : "sse3"
     },
     {
-      "beginString" : "sse41"
+      "begin" : "sse41"
     },
     {
-      "beginString" : "sse42"
+      "begin" : "sse42"
     },
     {
-      "beginString" : "sse4a"
+      "begin" : "sse4a"
     },
     {
-      "beginString" : "ssse3"
+      "begin" : "ssse3"
     },
     {
-      "beginString" : "strcat"
+      "begin" : "strcat"
     },
     {
-      "beginString" : "strchr"
+      "begin" : "strchr"
     },
     {
-      "beginString" : "strcmp"
+      "begin" : "strcmp"
     },
     {
-      "beginString" : "strcoll"
+      "begin" : "strcoll"
     },
     {
-      "beginString" : "strcpy"
+      "begin" : "strcpy"
     },
     {
-      "beginString" : "strcspn"
+      "begin" : "strcspn"
     },
     {
-      "beginString" : "strdup"
+      "begin" : "strdup"
     },
     {
-      "beginString" : "strerror"
+      "begin" : "strerror"
     },
     {
-      "beginString" : "strerror_r"
+      "begin" : "strerror_r"
     },
     {
-      "beginString" : "strftime"
+      "begin" : "strftime"
     },
     {
-      "beginString" : "strlen"
+      "begin" : "strlen"
     },
     {
-      "beginString" : "strncat"
+      "begin" : "strncat"
     },
     {
-      "beginString" : "strncmp"
+      "begin" : "strncmp"
     },
     {
-      "beginString" : "strncpy"
+      "begin" : "strncpy"
     },
     {
-      "beginString" : "strpbrk"
+      "begin" : "strpbrk"
     },
     {
-      "beginString" : "strrchr"
+      "begin" : "strrchr"
     },
     {
-      "beginString" : "strspn"
+      "begin" : "strspn"
     },
     {
-      "beginString" : "strstr"
+      "begin" : "strstr"
     },
     {
-      "beginString" : "strtod"
+      "begin" : "strtod"
     },
     {
-      "beginString" : "strtof"
+      "begin" : "strtof"
     },
     {
-      "beginString" : "strtoimax"
+      "begin" : "strtoimax"
     },
     {
-      "beginString" : "strtok"
+      "begin" : "strtok"
     },
     {
-      "beginString" : "strtol"
+      "begin" : "strtol"
     },
     {
-      "beginString" : "strtold"
+      "begin" : "strtold"
     },
     {
-      "beginString" : "strtoll"
+      "begin" : "strtoll"
     },
     {
-      "beginString" : "strtoul"
+      "begin" : "strtoul"
     },
     {
-      "beginString" : "strtoull"
+      "begin" : "strtoull"
     },
     {
-      "beginString" : "strtoumax"
+      "begin" : "strtoumax"
     },
     {
-      "beginString" : "strxfrm"
+      "begin" : "strxfrm"
     },
     {
-      "beginString" : "subs"
+      "begin" : "subs"
     },
     {
-      "beginString" : "subu"
+      "begin" : "subu"
     },
     {
-      "beginString" : "swprintf"
+      "begin" : "swprintf"
     },
     {
-      "beginString" : "swscanf"
+      "begin" : "swscanf"
     },
     {
-      "beginString" : "system"
+      "begin" : "system"
     },
     {
-      "beginString" : "tan"
+      "begin" : "tan"
     },
     {
-      "beginString" : "tanf"
+      "begin" : "tanf"
     },
     {
-      "beginString" : "tanh"
+      "begin" : "tanh"
     },
     {
-      "beginString" : "tanhf"
+      "begin" : "tanhf"
     },
     {
-      "beginString" : "tanhl"
+      "begin" : "tanhl"
     },
     {
-      "beginString" : "tanl"
+      "begin" : "tanl"
     },
     {
-      "beginString" : "tgamma"
+      "begin" : "tgamma"
     },
     {
-      "beginString" : "tgammaf"
+      "begin" : "tgammaf"
     },
     {
-      "beginString" : "tgammal"
+      "begin" : "tgammal"
     },
     {
-      "beginString" : "thread_attachThis"
+      "begin" : "thread_attachThis"
     },
     {
-      "beginString" : "thread_detachByAddr"
+      "begin" : "thread_detachByAddr"
     },
     {
-      "beginString" : "thread_detachInstance"
+      "begin" : "thread_detachInstance"
     },
     {
-      "beginString" : "thread_detachThis"
+      "begin" : "thread_detachThis"
     },
     {
-      "beginString" : "thread_enterCriticalRegion"
+      "begin" : "thread_enterCriticalRegion"
     },
     {
-      "beginString" : "thread_exitCriticalRegion"
+      "begin" : "thread_exitCriticalRegion"
     },
     {
-      "beginString" : "thread_findByAddr"
+      "begin" : "thread_findByAddr"
     },
     {
-      "beginString" : "thread_inCriticalRegion"
+      "begin" : "thread_inCriticalRegion"
     },
     {
-      "beginString" : "thread_init"
+      "begin" : "thread_init"
     },
     {
-      "beginString" : "thread_isMainThread"
+      "begin" : "thread_isMainThread"
     },
     {
-      "beginString" : "thread_joinAll"
+      "begin" : "thread_joinAll"
     },
     {
-      "beginString" : "thread_processGCMarks"
+      "begin" : "thread_processGCMarks"
     },
     {
-      "beginString" : "thread_resumeAll"
+      "begin" : "thread_resumeAll"
     },
     {
-      "beginString" : "thread_scanAll"
+      "begin" : "thread_scanAll"
     },
     {
-      "beginString" : "thread_scanAllType"
+      "begin" : "thread_scanAllType"
     },
     {
-      "beginString" : "thread_setGCSignals"
+      "begin" : "thread_setGCSignals"
     },
     {
-      "beginString" : "thread_setThis"
+      "begin" : "thread_setThis"
     },
     {
-      "beginString" : "thread_stackBottom"
+      "begin" : "thread_stackBottom"
     },
     {
-      "beginString" : "thread_stackTop"
+      "begin" : "thread_stackTop"
     },
     {
-      "beginString" : "thread_suspendAll"
+      "begin" : "thread_suspendAll"
     },
     {
-      "beginString" : "thread_term"
+      "begin" : "thread_term"
     },
     {
-      "beginString" : "threadsPerCPU"
+      "begin" : "threadsPerCPU"
     },
     {
-      "beginString" : "ticksToNSecs"
+      "begin" : "ticksToNSecs"
     },
     {
-      "beginString" : "time"
+      "begin" : "time"
     },
     {
-      "beginString" : "tmpfile"
+      "begin" : "tmpfile"
     },
     {
-      "beginString" : "tmpnam"
+      "begin" : "tmpnam"
     },
     {
-      "beginString" : "to"
+      "begin" : "to"
     },
     {
-      "beginString" : "tolower"
+      "begin" : "tolower"
     },
     {
-      "beginString" : "toupper"
+      "begin" : "toupper"
     },
     {
-      "beginString" : "towctrans"
+      "begin" : "towctrans"
     },
     {
-      "beginString" : "towlower"
+      "begin" : "towlower"
     },
     {
-      "beginString" : "towupper"
+      "begin" : "towupper"
     },
     {
-      "beginString" : "trace_setdeffilename"
+      "begin" : "trace_setdeffilename"
     },
     {
-      "beginString" : "trace_setlogfilename"
+      "begin" : "trace_setlogfilename"
     },
     {
-      "beginString" : "trunc"
+      "begin" : "trunc"
     },
     {
-      "beginString" : "truncf"
+      "begin" : "truncf"
     },
     {
-      "beginString" : "truncl"
+      "begin" : "truncl"
     },
     {
-      "beginString" : "tzset"
+      "begin" : "tzset"
     },
     {
-      "beginString" : "ungetc"
+      "begin" : "ungetc"
     },
     {
-      "beginString" : "ungetwc"
+      "begin" : "ungetwc"
     },
     {
-      "beginString" : "va_arg"
+      "begin" : "va_arg"
     },
     {
-      "beginString" : "va_copy"
+      "begin" : "va_copy"
     },
     {
-      "beginString" : "va_end"
+      "begin" : "va_end"
     },
     {
-      "beginString" : "va_start"
+      "begin" : "va_start"
     },
     {
-      "beginString" : "vaes"
+      "begin" : "vaes"
     },
     {
-      "beginString" : "vendor"
+      "begin" : "vendor"
     },
     {
-      "beginString" : "vfprintf"
+      "begin" : "vfprintf"
     },
     {
-      "beginString" : "vfscanf"
+      "begin" : "vfscanf"
     },
     {
-      "beginString" : "vfwprintf"
+      "begin" : "vfwprintf"
     },
     {
-      "beginString" : "vfwscanf"
+      "begin" : "vfwscanf"
     },
     {
-      "beginString" : "volatileLoad"
+      "begin" : "volatileLoad"
     },
     {
-      "beginString" : "volatileStore"
+      "begin" : "volatileStore"
     },
     {
-      "beginString" : "vprintf"
+      "begin" : "vprintf"
     },
     {
-      "beginString" : "vscanf"
+      "begin" : "vscanf"
     },
     {
-      "beginString" : "vsnprintf"
+      "begin" : "vsnprintf"
     },
     {
-      "beginString" : "vsprintf"
+      "begin" : "vsprintf"
     },
     {
-      "beginString" : "vsscanf"
+      "begin" : "vsscanf"
     },
     {
-      "beginString" : "vswprintf"
+      "begin" : "vswprintf"
     },
     {
-      "beginString" : "vswscanf"
+      "begin" : "vswscanf"
     },
     {
-      "beginString" : "vwprintf"
+      "begin" : "vwprintf"
     },
     {
-      "beginString" : "vwscanf"
+      "begin" : "vwscanf"
     },
     {
-      "beginString" : "wcrtomb"
+      "begin" : "wcrtomb"
     },
     {
-      "beginString" : "wcscat"
+      "begin" : "wcscat"
     },
     {
-      "beginString" : "wcschr"
+      "begin" : "wcschr"
     },
     {
-      "beginString" : "wcscmp"
+      "begin" : "wcscmp"
     },
     {
-      "beginString" : "wcscoll"
+      "begin" : "wcscoll"
     },
     {
-      "beginString" : "wcscpy"
+      "begin" : "wcscpy"
     },
     {
-      "beginString" : "wcscspn"
+      "begin" : "wcscspn"
     },
     {
-      "beginString" : "wcsftime"
+      "begin" : "wcsftime"
     },
     {
-      "beginString" : "wcslen"
+      "begin" : "wcslen"
     },
     {
-      "beginString" : "wcsncat"
+      "begin" : "wcsncat"
     },
     {
-      "beginString" : "wcsncmp"
+      "begin" : "wcsncmp"
     },
     {
-      "beginString" : "wcsncpy"
+      "begin" : "wcsncpy"
     },
     {
-      "beginString" : "wcspbrk"
+      "begin" : "wcspbrk"
     },
     {
-      "beginString" : "wcsrchr"
+      "begin" : "wcsrchr"
     },
     {
-      "beginString" : "wcsrtombs"
+      "begin" : "wcsrtombs"
     },
     {
-      "beginString" : "wcsspn"
+      "begin" : "wcsspn"
     },
     {
-      "beginString" : "wcsstr"
+      "begin" : "wcsstr"
     },
     {
-      "beginString" : "wcstod"
+      "begin" : "wcstod"
     },
     {
-      "beginString" : "wcstof"
+      "begin" : "wcstof"
     },
     {
-      "beginString" : "wcstoimax"
+      "begin" : "wcstoimax"
     },
     {
-      "beginString" : "wcstok"
+      "begin" : "wcstok"
     },
     {
-      "beginString" : "wcstol"
+      "begin" : "wcstol"
     },
     {
-      "beginString" : "wcstold"
+      "begin" : "wcstold"
     },
     {
-      "beginString" : "wcstoll"
+      "begin" : "wcstoll"
     },
     {
-      "beginString" : "wcstombs"
+      "begin" : "wcstombs"
     },
     {
-      "beginString" : "wcstoul"
+      "begin" : "wcstoul"
     },
     {
-      "beginString" : "wcstoull"
+      "begin" : "wcstoull"
     },
     {
-      "beginString" : "wcstoumax"
+      "begin" : "wcstoumax"
     },
     {
-      "beginString" : "wcsxfrm"
+      "begin" : "wcsxfrm"
     },
     {
-      "beginString" : "wctob"
+      "begin" : "wctob"
     },
     {
-      "beginString" : "wctomb"
+      "begin" : "wctomb"
     },
     {
-      "beginString" : "wctrans"
+      "begin" : "wctrans"
     },
     {
-      "beginString" : "wctype"
+      "begin" : "wctype"
     },
     {
-      "beginString" : "wmemchr"
+      "begin" : "wmemchr"
     },
     {
-      "beginString" : "wmemcmp"
+      "begin" : "wmemcmp"
     },
     {
-      "beginString" : "wmemcpy"
+      "begin" : "wmemcpy"
     },
     {
-      "beginString" : "wmemmove"
+      "begin" : "wmemmove"
     },
     {
-      "beginString" : "wmemset"
+      "begin" : "wmemset"
     },
     {
-      "beginString" : "wprintf"
+      "begin" : "wprintf"
     },
     {
-      "beginString" : "write"
+      "begin" : "write"
     },
     {
-      "beginString" : "write-fln"
+      "begin" : "write-fln"
     },
     {
-      "beginString" : "writef"
+      "begin" : "writef"
     },
     {
-      "beginString" : "writeln"
+      "begin" : "writeln"
     },
     {
-      "beginString" : "wscanf"
+      "begin" : "wscanf"
     },
     {
-      "beginString" : "x87onChip"
+      "begin" : "x87onChip"
     },
     {
-      "beginString" : "yl2x"
+      "begin" : "yl2x"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "!in"
+      "begin" : "!in"
     },
     {
-      "beginString" : "!is"
+      "begin" : "!is"
     },
     {
-      "beginString" : "__gshared"
+      "begin" : "__gshared"
     },
     {
-      "beginString" : "__parameters"
+      "begin" : "__parameters"
     },
     {
-      "beginString" : "__traits"
+      "begin" : "__traits"
     },
     {
-      "beginString" : "__vector"
+      "begin" : "__vector"
     },
     {
-      "beginString" : "abstract"
+      "begin" : "abstract"
     },
     {
-      "beginString" : "align"
+      "begin" : "align"
     },
     {
-      "beginString" : "asm"
+      "begin" : "asm"
     },
     {
-      "beginString" : "assert"
+      "begin" : "assert"
     },
     {
-      "beginString" : "body"
+      "begin" : "body"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "cast"
+      "begin" : "cast"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "const"
+      "begin" : "const"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "debug"
+      "begin" : "debug"
     },
     {
-      "beginString" : "default"
+      "begin" : "default"
     },
     {
-      "beginString" : "delegate"
+      "begin" : "delegate"
     },
     {
-      "beginString" : "delete"
+      "begin" : "delete"
     },
     {
-      "beginString" : "deprecated"
+      "begin" : "deprecated"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "export"
+      "begin" : "export"
     },
     {
-      "beginString" : "extern"
+      "begin" : "extern"
     },
     {
-      "beginString" : "final"
+      "begin" : "final"
     },
     {
-      "beginString" : "finally"
+      "begin" : "finally"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "foreach"
+      "begin" : "foreach"
     },
     {
-      "beginString" : "foreach_reverse"
+      "begin" : "foreach_reverse"
     },
     {
-      "beginString" : "function"
+      "begin" : "function"
     },
     {
-      "beginString" : "goto"
+      "begin" : "goto"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "immutable"
+      "begin" : "immutable"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "inout"
+      "begin" : "inout"
     },
     {
-      "beginString" : "interface"
+      "begin" : "interface"
     },
     {
-      "beginString" : "invariant"
+      "begin" : "invariant"
     },
     {
-      "beginString" : "is"
+      "begin" : "is"
     },
     {
-      "beginString" : "lazy"
+      "begin" : "lazy"
     },
     {
-      "beginString" : "macro"
+      "begin" : "macro"
     },
     {
-      "beginString" : "mixin"
+      "begin" : "mixin"
     },
     {
-      "beginString" : "module"
+      "begin" : "module"
     },
     {
-      "beginString" : "new"
+      "begin" : "new"
     },
     {
-      "beginString" : "nothrow"
+      "begin" : "nothrow"
     },
     {
-      "beginString" : "out"
+      "begin" : "out"
     },
     {
-      "beginString" : "override"
+      "begin" : "override"
     },
     {
-      "beginString" : "package"
+      "begin" : "package"
     },
     {
-      "beginString" : "pragma"
+      "begin" : "pragma"
     },
     {
-      "beginString" : "private"
+      "begin" : "private"
     },
     {
-      "beginString" : "protected"
+      "begin" : "protected"
     },
     {
-      "beginString" : "public"
+      "begin" : "public"
     },
     {
-      "beginString" : "pure"
+      "begin" : "pure"
     },
     {
-      "beginString" : "ref"
+      "begin" : "ref"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "rty"
+      "begin" : "rty"
     },
     {
-      "beginString" : "scope"
+      "begin" : "scope"
     },
     {
-      "beginString" : "shared"
+      "begin" : "shared"
     },
     {
-      "beginString" : "short"
+      "begin" : "short"
     },
     {
-      "beginString" : "static"
+      "begin" : "static"
     },
     {
-      "beginString" : "switch"
+      "begin" : "switch"
     },
     {
-      "beginString" : "synchronized"
+      "begin" : "synchronized"
     },
     {
-      "beginString" : "template"
+      "begin" : "template"
     },
     {
-      "beginString" : "throw"
+      "begin" : "throw"
     },
     {
-      "beginString" : "typedef"
+      "begin" : "typedef"
     },
     {
-      "beginString" : "typeid"
+      "begin" : "typeid"
     },
     {
-      "beginString" : "typeof"
+      "begin" : "typeof"
     },
     {
-      "beginString" : "unittest"
+      "begin" : "unittest"
     },
     {
-      "beginString" : "version"
+      "begin" : "version"
     },
     {
-      "beginString" : "volatile"
+      "begin" : "volatile"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "with"
+      "begin" : "with"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b0x[0-9a-f][0-9a-f_]*(\\.[0-9a-f][0-9a-f_]*)?(p[-+]?[0-9]+)?[flu]{0,2}\\b",
+      "begin" : "\\b0x[0-9a-f][0-9a-f_]*(\\.[0-9a-f][0-9a-f_]*)?(p[-+]?[0-9]+)?[flu]{0,2}\\b",
       "description" : "hexadecimal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?(e[-+]?[0-9][0-9_]*)?[fliu]{0,2}\\b",
+      "begin" : "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?(e[-+]?[0-9][0-9_]*)?[fliu]{0,2}\\b",
       "description" : "float",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-9][0-9_]*[lu]{0,2}\\b",
+      "begin" : "\\b[0-9][0-9_]*[lu]{0,2}\\b",
       "description" : "integer",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -2175,286 +2175,286 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "\"c"
+      "begin" : "\"c"
     },
     {
-      "beginString" : "\"d"
+      "begin" : "\"d"
     },
     {
-      "beginString" : "\"w"
+      "begin" : "\"w"
     },
     {
-      "beginString" : "`",
-      "endString" : "`"
+      "begin" : "`",
+      "end" : "`"
     },
     {
-      "beginString" : "q\""
+      "begin" : "q\""
     },
     {
-      "beginString" : "q{",
-      "endString" : "}",
+      "begin" : "q{",
+      "end" : "}",
       "isMultiline" : true
     },
     {
-      "beginString" : "r\""
+      "begin" : "r\""
     },
     {
-      "beginString" : "x\""
+      "begin" : "x\""
     }
   ],
   "types" : [
     {
-      "beginString" : "alias"
+      "begin" : "alias"
     },
     {
-      "beginString" : "auto"
+      "begin" : "auto"
     },
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "byte"
+      "begin" : "byte"
     },
     {
-      "beginString" : "cent"
+      "begin" : "cent"
     },
     {
-      "beginString" : "cfloat"
+      "begin" : "cfloat"
     },
     {
-      "beginString" : "char"
+      "begin" : "char"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "creal"
+      "begin" : "creal"
     },
     {
-      "beginString" : "dchar"
+      "begin" : "dchar"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "dstring"
+      "begin" : "dstring"
     },
     {
-      "beginString" : "enum"
+      "begin" : "enum"
     },
     {
-      "beginString" : "float"
+      "begin" : "float"
     },
     {
-      "beginString" : "idouble"
+      "begin" : "idouble"
     },
     {
-      "beginString" : "ifloat"
+      "begin" : "ifloat"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "ireal"
+      "begin" : "ireal"
     },
     {
-      "beginString" : "long"
+      "begin" : "long"
     },
     {
-      "beginString" : "ptrdiff_t"
+      "begin" : "ptrdiff_t"
     },
     {
-      "beginString" : "real"
+      "begin" : "real"
     },
     {
-      "beginString" : "size_t"
+      "begin" : "size_t"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "struct"
+      "begin" : "struct"
     },
     {
-      "beginString" : "ubyte"
+      "begin" : "ubyte"
     },
     {
-      "beginString" : "ucent"
+      "begin" : "ucent"
     },
     {
-      "beginString" : "uint"
+      "begin" : "uint"
     },
     {
-      "beginString" : "ulong"
+      "begin" : "ulong"
     },
     {
-      "beginString" : "union"
+      "begin" : "union"
     },
     {
-      "beginString" : "ushort"
+      "begin" : "ushort"
     },
     {
-      "beginString" : "void"
+      "begin" : "void"
     },
     {
-      "beginString" : "wchar"
+      "begin" : "wchar"
     },
     {
-      "beginString" : "wstring"
+      "begin" : "wstring"
     }
   ],
   "values" : [
     {
-      "beginString" : "#line"
+      "begin" : "#line"
     },
     {
-      "beginString" : "(?<=\\.)alignof\\b",
+      "begin" : "(?<=\\.)alignof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)classinfo\\b",
+      "begin" : "(?<=\\.)classinfo\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)dig\\b",
+      "begin" : "(?<=\\.)dig\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)epsilon\\b",
+      "begin" : "(?<=\\.)epsilon\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)im\\b",
+      "begin" : "(?<=\\.)im\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)infinity\\b",
+      "begin" : "(?<=\\.)infinity\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)init\\b",
+      "begin" : "(?<=\\.)init\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)mangleof\\b",
+      "begin" : "(?<=\\.)mangleof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)mant_dig\\b",
+      "begin" : "(?<=\\.)mant_dig\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)max\\b",
+      "begin" : "(?<=\\.)max\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)max_10_exp\\b",
+      "begin" : "(?<=\\.)max_10_exp\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)max_exp\\b",
+      "begin" : "(?<=\\.)max_exp\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)min\\b",
+      "begin" : "(?<=\\.)min\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)min_10_exp\\b",
+      "begin" : "(?<=\\.)min_10_exp\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)min_exp\\b",
+      "begin" : "(?<=\\.)min_exp\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)min_normal\\b",
+      "begin" : "(?<=\\.)min_normal\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)nan\\b",
+      "begin" : "(?<=\\.)nan\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)re\\b",
+      "begin" : "(?<=\\.)re\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)sizeof\\b",
+      "begin" : "(?<=\\.)sizeof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\.)stringof\\b",
+      "begin" : "(?<=\\.)stringof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "__DATE__"
+      "begin" : "__DATE__"
     },
     {
-      "beginString" : "__EOF__"
+      "begin" : "__EOF__"
     },
     {
-      "beginString" : "__FILE__"
+      "begin" : "__FILE__"
     },
     {
-      "beginString" : "__FUNCTION__"
+      "begin" : "__FUNCTION__"
     },
     {
-      "beginString" : "__LINE__"
+      "begin" : "__LINE__"
     },
     {
-      "beginString" : "__MODULE__"
+      "begin" : "__MODULE__"
     },
     {
-      "beginString" : "__PRETTY_FUNCTION__"
+      "begin" : "__PRETTY_FUNCTION__"
     },
     {
-      "beginString" : "__TIME__"
+      "begin" : "__TIME__"
     },
     {
-      "beginString" : "__TIMESTAMP__"
+      "begin" : "__TIMESTAMP__"
     },
     {
-      "beginString" : "__VENDOR__"
+      "begin" : "__VENDOR__"
     },
     {
-      "beginString" : "__VERSION__"
+      "begin" : "__VERSION__"
     },
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "$"
+      "begin" : "$"
     },
     {
-      "beginString" : "stderr"
+      "begin" : "stderr"
     },
     {
-      "beginString" : "stdin"
+      "begin" : "stdin"
     },
     {
-      "beginString" : "stdout"
+      "begin" : "stdout"
     },
     {
-      "beginString" : "super"
+      "begin" : "super"
     },
     {
-      "beginString" : "this"
+      "begin" : "this"
     },
     {
-      "beginString" : "tzname"
+      "begin" : "tzname"
     }
   ]
 }

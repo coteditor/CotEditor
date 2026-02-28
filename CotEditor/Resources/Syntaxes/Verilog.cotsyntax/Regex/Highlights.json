@@ -1,7 +1,7 @@
 {
   "characters" : [
     {
-      "beginString" : "[0-9]*'s?[bdh](?=[0-9a-f])",
+      "begin" : "[0-9]*'s?[bdh](?=[0-9a-f])",
       "description" : "number prefix",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -9,1220 +9,1220 @@
   ],
   "commands" : [
     {
-      "beginString" : "$acos"
+      "begin" : "$acos"
     },
     {
-      "beginString" : "$acosh"
+      "begin" : "$acosh"
     },
     {
-      "beginString" : "$asin"
+      "begin" : "$asin"
     },
     {
-      "beginString" : "$asinh"
+      "begin" : "$asinh"
     },
     {
-      "beginString" : "$assertcontrol"
+      "begin" : "$assertcontrol"
     },
     {
-      "beginString" : "$assertfailoff"
+      "begin" : "$assertfailoff"
     },
     {
-      "beginString" : "$assertfailon"
+      "begin" : "$assertfailon"
     },
     {
-      "beginString" : "$assertkill"
+      "begin" : "$assertkill"
     },
     {
-      "beginString" : "$assertnonvacuouson"
+      "begin" : "$assertnonvacuouson"
     },
     {
-      "beginString" : "$assertoff"
+      "begin" : "$assertoff"
     },
     {
-      "beginString" : "$asserton"
+      "begin" : "$asserton"
     },
     {
-      "beginString" : "$assertpassoff"
+      "begin" : "$assertpassoff"
     },
     {
-      "beginString" : "$assertpasson"
+      "begin" : "$assertpasson"
     },
     {
-      "beginString" : "$assertvacuousoff"
+      "begin" : "$assertvacuousoff"
     },
     {
-      "beginString" : "$async$and$array"
+      "begin" : "$async$and$array"
     },
     {
-      "beginString" : "$async$and$plane"
+      "begin" : "$async$and$plane"
     },
     {
-      "beginString" : "$async$nand$array"
+      "begin" : "$async$nand$array"
     },
     {
-      "beginString" : "$async$nand$plane"
+      "begin" : "$async$nand$plane"
     },
     {
-      "beginString" : "$async$nor$array"
+      "begin" : "$async$nor$array"
     },
     {
-      "beginString" : "$async$nor$plane"
+      "begin" : "$async$nor$plane"
     },
     {
-      "beginString" : "$async$or$array"
+      "begin" : "$async$or$array"
     },
     {
-      "beginString" : "$async$or$plane"
+      "begin" : "$async$or$plane"
     },
     {
-      "beginString" : "$atan"
+      "begin" : "$atan"
     },
     {
-      "beginString" : "$atan2"
+      "begin" : "$atan2"
     },
     {
-      "beginString" : "$atanh"
+      "begin" : "$atanh"
     },
     {
-      "beginString" : "$bits"
+      "begin" : "$bits"
     },
     {
-      "beginString" : "$bitstoreal"
+      "begin" : "$bitstoreal"
     },
     {
-      "beginString" : "$bitstoshortreal"
+      "begin" : "$bitstoshortreal"
     },
     {
-      "beginString" : "$cast"
+      "begin" : "$cast"
     },
     {
-      "beginString" : "$ceil"
+      "begin" : "$ceil"
     },
     {
-      "beginString" : "$changed"
+      "begin" : "$changed"
     },
     {
-      "beginString" : "$changed_gclk"
+      "begin" : "$changed_gclk"
     },
     {
-      "beginString" : "$changing_gclk"
+      "begin" : "$changing_gclk"
     },
     {
-      "beginString" : "$clog2"
+      "begin" : "$clog2"
     },
     {
-      "beginString" : "$cos"
+      "begin" : "$cos"
     },
     {
-      "beginString" : "$cosh"
+      "begin" : "$cosh"
     },
     {
-      "beginString" : "$countbits"
+      "begin" : "$countbits"
     },
     {
-      "beginString" : "$countdrivers"
+      "begin" : "$countdrivers"
     },
     {
-      "beginString" : "$countones"
+      "begin" : "$countones"
     },
     {
-      "beginString" : "$coverage_control"
+      "begin" : "$coverage_control"
     },
     {
-      "beginString" : "$coverage_get"
+      "begin" : "$coverage_get"
     },
     {
-      "beginString" : "$coverage_get_max"
+      "begin" : "$coverage_get_max"
     },
     {
-      "beginString" : "$coverage_merge"
+      "begin" : "$coverage_merge"
     },
     {
-      "beginString" : "$coverage_save"
+      "begin" : "$coverage_save"
     },
     {
-      "beginString" : "$dimensions"
+      "begin" : "$dimensions"
     },
     {
-      "beginString" : "$dist_chi_square"
+      "begin" : "$dist_chi_square"
     },
     {
-      "beginString" : "$dist_erlang"
+      "begin" : "$dist_erlang"
     },
     {
-      "beginString" : "$dist_exponential"
+      "begin" : "$dist_exponential"
     },
     {
-      "beginString" : "$dist_normal"
+      "begin" : "$dist_normal"
     },
     {
-      "beginString" : "$dist_poisson"
+      "begin" : "$dist_poisson"
     },
     {
-      "beginString" : "$dist_t"
+      "begin" : "$dist_t"
     },
     {
-      "beginString" : "$dist_uniform"
+      "begin" : "$dist_uniform"
     },
     {
-      "beginString" : "$error"
+      "begin" : "$error"
     },
     {
-      "beginString" : "$exit"
+      "begin" : "$exit"
     },
     {
-      "beginString" : "$exp"
+      "begin" : "$exp"
     },
     {
-      "beginString" : "$falling_gclk"
+      "begin" : "$falling_gclk"
     },
     {
-      "beginString" : "$fatal"
+      "begin" : "$fatal"
     },
     {
-      "beginString" : "$fell"
+      "begin" : "$fell"
     },
     {
-      "beginString" : "$fell_gclk"
+      "begin" : "$fell_gclk"
     },
     {
-      "beginString" : "$finish"
+      "begin" : "$finish"
     },
     {
-      "beginString" : "$floor"
+      "begin" : "$floor"
     },
     {
-      "beginString" : "$future_gclk"
+      "begin" : "$future_gclk"
     },
     {
-      "beginString" : "$get_coverage"
+      "begin" : "$get_coverage"
     },
     {
-      "beginString" : "$getpattern"
+      "begin" : "$getpattern"
     },
     {
-      "beginString" : "$high"
+      "begin" : "$high"
     },
     {
-      "beginString" : "$hypot"
+      "begin" : "$hypot"
     },
     {
-      "beginString" : "$increment"
+      "begin" : "$increment"
     },
     {
-      "beginString" : "$incsave"
+      "begin" : "$incsave"
     },
     {
-      "beginString" : "$info"
+      "begin" : "$info"
     },
     {
-      "beginString" : "$input"
+      "begin" : "$input"
     },
     {
-      "beginString" : "$isunbounded"
+      "begin" : "$isunbounded"
     },
     {
-      "beginString" : "$isunknown"
+      "begin" : "$isunknown"
     },
     {
-      "beginString" : "$itor"
+      "begin" : "$itor"
     },
     {
-      "beginString" : "$key"
+      "begin" : "$key"
     },
     {
-      "beginString" : "$left"
+      "begin" : "$left"
     },
     {
-      "beginString" : "$list"
+      "begin" : "$list"
     },
     {
-      "beginString" : "$ln"
+      "begin" : "$ln"
     },
     {
-      "beginString" : "$load_coverage_db"
+      "begin" : "$load_coverage_db"
     },
     {
-      "beginString" : "$log"
+      "begin" : "$log"
     },
     {
-      "beginString" : "$log10"
+      "begin" : "$log10"
     },
     {
-      "beginString" : "$low"
+      "begin" : "$low"
     },
     {
-      "beginString" : "$nokey"
+      "begin" : "$nokey"
     },
     {
-      "beginString" : "$nolog"
+      "begin" : "$nolog"
     },
     {
-      "beginString" : "$onehot"
+      "begin" : "$onehot"
     },
     {
-      "beginString" : "$onehot0"
+      "begin" : "$onehot0"
     },
     {
-      "beginString" : "$past"
+      "begin" : "$past"
     },
     {
-      "beginString" : "$past_gclk"
+      "begin" : "$past_gclk"
     },
     {
-      "beginString" : "$pow"
+      "begin" : "$pow"
     },
     {
-      "beginString" : "$printtimescale"
+      "begin" : "$printtimescale"
     },
     {
-      "beginString" : "$q_add"
+      "begin" : "$q_add"
     },
     {
-      "beginString" : "$q_exam"
+      "begin" : "$q_exam"
     },
     {
-      "beginString" : "$q_full"
+      "begin" : "$q_full"
     },
     {
-      "beginString" : "$q_initialize"
+      "begin" : "$q_initialize"
     },
     {
-      "beginString" : "$q_remove"
+      "begin" : "$q_remove"
     },
     {
-      "beginString" : "$random"
+      "begin" : "$random"
     },
     {
-      "beginString" : "$realtime"
+      "begin" : "$realtime"
     },
     {
-      "beginString" : "$realtobits"
+      "begin" : "$realtobits"
     },
     {
-      "beginString" : "$reset"
+      "begin" : "$reset"
     },
     {
-      "beginString" : "$reset_count"
+      "begin" : "$reset_count"
     },
     {
-      "beginString" : "$reset_value"
+      "begin" : "$reset_value"
     },
     {
-      "beginString" : "$restart"
+      "begin" : "$restart"
     },
     {
-      "beginString" : "$right"
+      "begin" : "$right"
     },
     {
-      "beginString" : "$rising_gclk"
+      "begin" : "$rising_gclk"
     },
     {
-      "beginString" : "$rose"
+      "begin" : "$rose"
     },
     {
-      "beginString" : "$rose_gclk"
+      "begin" : "$rose_gclk"
     },
     {
-      "beginString" : "$rtoi"
+      "begin" : "$rtoi"
     },
     {
-      "beginString" : "$sampled"
+      "begin" : "$sampled"
     },
     {
-      "beginString" : "$save"
+      "begin" : "$save"
     },
     {
-      "beginString" : "$scale"
+      "begin" : "$scale"
     },
     {
-      "beginString" : "$scope"
+      "begin" : "$scope"
     },
     {
-      "beginString" : "$set_coverage_db_name"
+      "begin" : "$set_coverage_db_name"
     },
     {
-      "beginString" : "$shortrealtobits"
+      "begin" : "$shortrealtobits"
     },
     {
-      "beginString" : "$showscopes"
+      "begin" : "$showscopes"
     },
     {
-      "beginString" : "$showvars"
+      "begin" : "$showvars"
     },
     {
-      "beginString" : "$signed"
+      "begin" : "$signed"
     },
     {
-      "beginString" : "$sin"
+      "begin" : "$sin"
     },
     {
-      "beginString" : "$sinh"
+      "begin" : "$sinh"
     },
     {
-      "beginString" : "$size"
+      "begin" : "$size"
     },
     {
-      "beginString" : "$sqrt"
+      "begin" : "$sqrt"
     },
     {
-      "beginString" : "$sreadmemb"
+      "begin" : "$sreadmemb"
     },
     {
-      "beginString" : "$sreadmemh"
+      "begin" : "$sreadmemh"
     },
     {
-      "beginString" : "$stable"
+      "begin" : "$stable"
     },
     {
-      "beginString" : "$stable_gclk"
+      "begin" : "$stable_gclk"
     },
     {
-      "beginString" : "$steady_gclk"
+      "begin" : "$steady_gclk"
     },
     {
-      "beginString" : "$stime"
+      "begin" : "$stime"
     },
     {
-      "beginString" : "$stop"
+      "begin" : "$stop"
     },
     {
-      "beginString" : "$sync$and$array"
+      "begin" : "$sync$and$array"
     },
     {
-      "beginString" : "$sync$and$plane"
+      "begin" : "$sync$and$plane"
     },
     {
-      "beginString" : "$sync$nand$array"
+      "begin" : "$sync$nand$array"
     },
     {
-      "beginString" : "$sync$nand$plane"
+      "begin" : "$sync$nand$plane"
     },
     {
-      "beginString" : "$sync$nor$array"
+      "begin" : "$sync$nor$array"
     },
     {
-      "beginString" : "$sync$nor$plane"
+      "begin" : "$sync$nor$plane"
     },
     {
-      "beginString" : "$sync$or$array"
+      "begin" : "$sync$or$array"
     },
     {
-      "beginString" : "$sync$or$plane"
+      "begin" : "$sync$or$plane"
     },
     {
-      "beginString" : "$system"
+      "begin" : "$system"
     },
     {
-      "beginString" : "$tan"
+      "begin" : "$tan"
     },
     {
-      "beginString" : "$tanh"
+      "begin" : "$tanh"
     },
     {
-      "beginString" : "$time"
+      "begin" : "$time"
     },
     {
-      "beginString" : "$timeformat"
+      "begin" : "$timeformat"
     },
     {
-      "beginString" : "$typename"
+      "begin" : "$typename"
     },
     {
-      "beginString" : "$unpacked_dimensions"
+      "begin" : "$unpacked_dimensions"
     },
     {
-      "beginString" : "$unsigned"
+      "begin" : "$unsigned"
     },
     {
-      "beginString" : "$warning"
+      "begin" : "$warning"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "accept_on"
+      "begin" : "accept_on"
     },
     {
-      "beginString" : "alias"
+      "begin" : "alias"
     },
     {
-      "beginString" : "always"
+      "begin" : "always"
     },
     {
-      "beginString" : "always_comb"
+      "begin" : "always_comb"
     },
     {
-      "beginString" : "always_ff"
+      "begin" : "always_ff"
     },
     {
-      "beginString" : "always_latch"
+      "begin" : "always_latch"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "assert"
+      "begin" : "assert"
     },
     {
-      "beginString" : "assign"
+      "begin" : "assign"
     },
     {
-      "beginString" : "assume"
+      "begin" : "assume"
     },
     {
-      "beginString" : "attribute"
+      "begin" : "attribute"
     },
     {
-      "beginString" : "automatic"
+      "begin" : "automatic"
     },
     {
-      "beginString" : "before"
+      "begin" : "before"
     },
     {
-      "beginString" : "begin"
+      "begin" : "begin"
     },
     {
-      "beginString" : "bind"
+      "begin" : "bind"
     },
     {
-      "beginString" : "bins"
+      "begin" : "bins"
     },
     {
-      "beginString" : "binsof"
+      "begin" : "binsof"
     },
     {
-      "beginString" : "bit"
+      "begin" : "bit"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "buf"
+      "begin" : "buf"
     },
     {
-      "beginString" : "bufif0"
+      "begin" : "bufif0"
     },
     {
-      "beginString" : "bufif1"
+      "begin" : "bufif1"
     },
     {
-      "beginString" : "byte"
+      "begin" : "byte"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "casex"
+      "begin" : "casex"
     },
     {
-      "beginString" : "casez"
+      "begin" : "casez"
     },
     {
-      "beginString" : "cell"
+      "begin" : "cell"
     },
     {
-      "beginString" : "chandle"
+      "begin" : "chandle"
     },
     {
-      "beginString" : "checker"
+      "begin" : "checker"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "clocking"
+      "begin" : "clocking"
     },
     {
-      "beginString" : "cmos"
+      "begin" : "cmos"
     },
     {
-      "beginString" : "config"
+      "begin" : "config"
     },
     {
-      "beginString" : "const"
+      "begin" : "const"
     },
     {
-      "beginString" : "constraint"
+      "begin" : "constraint"
     },
     {
-      "beginString" : "context"
+      "begin" : "context"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "cover"
+      "begin" : "cover"
     },
     {
-      "beginString" : "covergroup"
+      "begin" : "covergroup"
     },
     {
-      "beginString" : "coverpoint"
+      "begin" : "coverpoint"
     },
     {
-      "beginString" : "cross"
+      "begin" : "cross"
     },
     {
-      "beginString" : "deassign"
+      "begin" : "deassign"
     },
     {
-      "beginString" : "default"
+      "begin" : "default"
     },
     {
-      "beginString" : "defparam"
+      "begin" : "defparam"
     },
     {
-      "beginString" : "design"
+      "begin" : "design"
     },
     {
-      "beginString" : "disable"
+      "begin" : "disable"
     },
     {
-      "beginString" : "dist"
+      "begin" : "dist"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "edge"
+      "begin" : "edge"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "end"
+      "begin" : "end"
     },
     {
-      "beginString" : "endattribute"
+      "begin" : "endattribute"
     },
     {
-      "beginString" : "endcase"
+      "begin" : "endcase"
     },
     {
-      "beginString" : "endchecker"
+      "begin" : "endchecker"
     },
     {
-      "beginString" : "endclass"
+      "begin" : "endclass"
     },
     {
-      "beginString" : "endclocking"
+      "begin" : "endclocking"
     },
     {
-      "beginString" : "endconfig"
+      "begin" : "endconfig"
     },
     {
-      "beginString" : "endfunction"
+      "begin" : "endfunction"
     },
     {
-      "beginString" : "endgenerate"
+      "begin" : "endgenerate"
     },
     {
-      "beginString" : "endgroup"
+      "begin" : "endgroup"
     },
     {
-      "beginString" : "endinterface"
+      "begin" : "endinterface"
     },
     {
-      "beginString" : "endmodule"
+      "begin" : "endmodule"
     },
     {
-      "beginString" : "endpackage"
+      "begin" : "endpackage"
     },
     {
-      "beginString" : "endprimitive"
+      "begin" : "endprimitive"
     },
     {
-      "beginString" : "endprogram"
+      "begin" : "endprogram"
     },
     {
-      "beginString" : "endproperty"
+      "begin" : "endproperty"
     },
     {
-      "beginString" : "endsequence"
+      "begin" : "endsequence"
     },
     {
-      "beginString" : "endspecify"
+      "begin" : "endspecify"
     },
     {
-      "beginString" : "endtable"
+      "begin" : "endtable"
     },
     {
-      "beginString" : "endtask"
+      "begin" : "endtask"
     },
     {
-      "beginString" : "enum"
+      "begin" : "enum"
     },
     {
-      "beginString" : "event"
+      "begin" : "event"
     },
     {
-      "beginString" : "eventually"
+      "begin" : "eventually"
     },
     {
-      "beginString" : "expect"
+      "begin" : "expect"
     },
     {
-      "beginString" : "export"
+      "begin" : "export"
     },
     {
-      "beginString" : "extends"
+      "begin" : "extends"
     },
     {
-      "beginString" : "extern"
+      "begin" : "extern"
     },
     {
-      "beginString" : "final"
+      "begin" : "final"
     },
     {
-      "beginString" : "first_match"
+      "begin" : "first_match"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "force"
+      "begin" : "force"
     },
     {
-      "beginString" : "foreach"
+      "begin" : "foreach"
     },
     {
-      "beginString" : "forever"
+      "begin" : "forever"
     },
     {
-      "beginString" : "fork"
+      "begin" : "fork"
     },
     {
-      "beginString" : "forkjoin"
+      "begin" : "forkjoin"
     },
     {
-      "beginString" : "function"
+      "begin" : "function"
     },
     {
-      "beginString" : "generate"
+      "begin" : "generate"
     },
     {
-      "beginString" : "genvar"
+      "begin" : "genvar"
     },
     {
-      "beginString" : "global"
+      "begin" : "global"
     },
     {
-      "beginString" : "highz0"
+      "begin" : "highz0"
     },
     {
-      "beginString" : "highz1"
+      "begin" : "highz1"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "iff"
+      "begin" : "iff"
     },
     {
-      "beginString" : "ifnone"
+      "begin" : "ifnone"
     },
     {
-      "beginString" : "ignore_bins"
+      "begin" : "ignore_bins"
     },
     {
-      "beginString" : "illegal_bins"
+      "begin" : "illegal_bins"
     },
     {
-      "beginString" : "implements"
+      "begin" : "implements"
     },
     {
-      "beginString" : "implies"
+      "begin" : "implies"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "incdir"
+      "begin" : "incdir"
     },
     {
-      "beginString" : "include"
+      "begin" : "include"
     },
     {
-      "beginString" : "initial"
+      "begin" : "initial"
     },
     {
-      "beginString" : "inout"
+      "begin" : "inout"
     },
     {
-      "beginString" : "input"
+      "begin" : "input"
     },
     {
-      "beginString" : "inside"
+      "begin" : "inside"
     },
     {
-      "beginString" : "instance"
+      "begin" : "instance"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "integer"
+      "begin" : "integer"
     },
     {
-      "beginString" : "interconnect"
+      "begin" : "interconnect"
     },
     {
-      "beginString" : "interface"
+      "begin" : "interface"
     },
     {
-      "beginString" : "intersect"
+      "begin" : "intersect"
     },
     {
-      "beginString" : "join"
+      "begin" : "join"
     },
     {
-      "beginString" : "join_any"
+      "begin" : "join_any"
     },
     {
-      "beginString" : "join_none"
+      "begin" : "join_none"
     },
     {
-      "beginString" : "large"
+      "begin" : "large"
     },
     {
-      "beginString" : "let"
+      "begin" : "let"
     },
     {
-      "beginString" : "liblist"
+      "begin" : "liblist"
     },
     {
-      "beginString" : "library"
+      "begin" : "library"
     },
     {
-      "beginString" : "local"
+      "begin" : "local"
     },
     {
-      "beginString" : "localparam"
+      "begin" : "localparam"
     },
     {
-      "beginString" : "logic"
+      "begin" : "logic"
     },
     {
-      "beginString" : "longint"
+      "begin" : "longint"
     },
     {
-      "beginString" : "macromodule"
+      "begin" : "macromodule"
     },
     {
-      "beginString" : "matches"
+      "begin" : "matches"
     },
     {
-      "beginString" : "medium"
+      "begin" : "medium"
     },
     {
-      "beginString" : "modport"
+      "begin" : "modport"
     },
     {
-      "beginString" : "module"
+      "begin" : "module"
     },
     {
-      "beginString" : "nand"
+      "begin" : "nand"
     },
     {
-      "beginString" : "negedge"
+      "begin" : "negedge"
     },
     {
-      "beginString" : "nettype"
+      "begin" : "nettype"
     },
     {
-      "beginString" : "new"
+      "begin" : "new"
     },
     {
-      "beginString" : "nexttime"
+      "begin" : "nexttime"
     },
     {
-      "beginString" : "nmos"
+      "begin" : "nmos"
     },
     {
-      "beginString" : "nor"
+      "begin" : "nor"
     },
     {
-      "beginString" : "noshowcancelled"
+      "begin" : "noshowcancelled"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "notif0"
+      "begin" : "notif0"
     },
     {
-      "beginString" : "notif1"
+      "begin" : "notif1"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "output"
+      "begin" : "output"
     },
     {
-      "beginString" : "package"
+      "begin" : "package"
     },
     {
-      "beginString" : "packed"
+      "begin" : "packed"
     },
     {
-      "beginString" : "parameter"
+      "begin" : "parameter"
     },
     {
-      "beginString" : "pmos"
+      "begin" : "pmos"
     },
     {
-      "beginString" : "posedge"
+      "begin" : "posedge"
     },
     {
-      "beginString" : "primitive"
+      "begin" : "primitive"
     },
     {
-      "beginString" : "priority"
+      "begin" : "priority"
     },
     {
-      "beginString" : "program"
+      "begin" : "program"
     },
     {
-      "beginString" : "property"
+      "begin" : "property"
     },
     {
-      "beginString" : "protected"
+      "begin" : "protected"
     },
     {
-      "beginString" : "pull0"
+      "begin" : "pull0"
     },
     {
-      "beginString" : "pull1"
+      "begin" : "pull1"
     },
     {
-      "beginString" : "pulldown"
+      "begin" : "pulldown"
     },
     {
-      "beginString" : "pullup"
+      "begin" : "pullup"
     },
     {
-      "beginString" : "pulsestyle_ondetect"
+      "begin" : "pulsestyle_ondetect"
     },
     {
-      "beginString" : "pulsestyle_onevent"
+      "begin" : "pulsestyle_onevent"
     },
     {
-      "beginString" : "pure"
+      "begin" : "pure"
     },
     {
-      "beginString" : "rand"
+      "begin" : "rand"
     },
     {
-      "beginString" : "randc"
+      "begin" : "randc"
     },
     {
-      "beginString" : "randcase"
+      "begin" : "randcase"
     },
     {
-      "beginString" : "randsequence"
+      "begin" : "randsequence"
     },
     {
-      "beginString" : "rcmos"
+      "begin" : "rcmos"
     },
     {
-      "beginString" : "real"
+      "begin" : "real"
     },
     {
-      "beginString" : "realtime"
+      "begin" : "realtime"
     },
     {
-      "beginString" : "ref"
+      "begin" : "ref"
     },
     {
-      "beginString" : "reg"
+      "begin" : "reg"
     },
     {
-      "beginString" : "reject_on"
+      "begin" : "reject_on"
     },
     {
-      "beginString" : "release"
+      "begin" : "release"
     },
     {
-      "beginString" : "repeat"
+      "begin" : "repeat"
     },
     {
-      "beginString" : "restrict"
+      "begin" : "restrict"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "rnmos"
+      "begin" : "rnmos"
     },
     {
-      "beginString" : "rpmos"
+      "begin" : "rpmos"
     },
     {
-      "beginString" : "rtran"
+      "begin" : "rtran"
     },
     {
-      "beginString" : "rtranif0"
+      "begin" : "rtranif0"
     },
     {
-      "beginString" : "rtranif1"
+      "begin" : "rtranif1"
     },
     {
-      "beginString" : "s_always"
+      "begin" : "s_always"
     },
     {
-      "beginString" : "s_eventually"
+      "begin" : "s_eventually"
     },
     {
-      "beginString" : "s_nexttime"
+      "begin" : "s_nexttime"
     },
     {
-      "beginString" : "s_until"
+      "begin" : "s_until"
     },
     {
-      "beginString" : "s_until_with"
+      "begin" : "s_until_with"
     },
     {
-      "beginString" : "scalared"
+      "begin" : "scalared"
     },
     {
-      "beginString" : "sequence"
+      "begin" : "sequence"
     },
     {
-      "beginString" : "shortint"
+      "begin" : "shortint"
     },
     {
-      "beginString" : "shortreal"
+      "begin" : "shortreal"
     },
     {
-      "beginString" : "showcancelled"
+      "begin" : "showcancelled"
     },
     {
-      "beginString" : "signed"
+      "begin" : "signed"
     },
     {
-      "beginString" : "small"
+      "begin" : "small"
     },
     {
-      "beginString" : "soft"
+      "begin" : "soft"
     },
     {
-      "beginString" : "solve"
+      "begin" : "solve"
     },
     {
-      "beginString" : "specify"
+      "begin" : "specify"
     },
     {
-      "beginString" : "specparam"
+      "begin" : "specparam"
     },
     {
-      "beginString" : "static"
+      "begin" : "static"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "strong"
+      "begin" : "strong"
     },
     {
-      "beginString" : "strong0"
+      "begin" : "strong0"
     },
     {
-      "beginString" : "strong1"
+      "begin" : "strong1"
     },
     {
-      "beginString" : "struct"
+      "begin" : "struct"
     },
     {
-      "beginString" : "super"
+      "begin" : "super"
     },
     {
-      "beginString" : "supply0"
+      "begin" : "supply0"
     },
     {
-      "beginString" : "supply1"
+      "begin" : "supply1"
     },
     {
-      "beginString" : "sync_accept_on"
+      "begin" : "sync_accept_on"
     },
     {
-      "beginString" : "sync_reject_on"
+      "begin" : "sync_reject_on"
     },
     {
-      "beginString" : "table"
+      "begin" : "table"
     },
     {
-      "beginString" : "tagged"
+      "begin" : "tagged"
     },
     {
-      "beginString" : "task"
+      "begin" : "task"
     },
     {
-      "beginString" : "this"
+      "begin" : "this"
     },
     {
-      "beginString" : "throughout"
+      "begin" : "throughout"
     },
     {
-      "beginString" : "time"
+      "begin" : "time"
     },
     {
-      "beginString" : "timeprecision"
+      "begin" : "timeprecision"
     },
     {
-      "beginString" : "timeunit"
+      "begin" : "timeunit"
     },
     {
-      "beginString" : "tran"
+      "begin" : "tran"
     },
     {
-      "beginString" : "tranif0"
+      "begin" : "tranif0"
     },
     {
-      "beginString" : "tranif1"
+      "begin" : "tranif1"
     },
     {
-      "beginString" : "tri"
+      "begin" : "tri"
     },
     {
-      "beginString" : "tri0"
+      "begin" : "tri0"
     },
     {
-      "beginString" : "tri1"
+      "begin" : "tri1"
     },
     {
-      "beginString" : "triand"
+      "begin" : "triand"
     },
     {
-      "beginString" : "tril"
+      "begin" : "tril"
     },
     {
-      "beginString" : "trior"
+      "begin" : "trior"
     },
     {
-      "beginString" : "trireg"
+      "begin" : "trireg"
     },
     {
-      "beginString" : "type"
+      "begin" : "type"
     },
     {
-      "beginString" : "typedef"
+      "begin" : "typedef"
     },
     {
-      "beginString" : "union"
+      "begin" : "union"
     },
     {
-      "beginString" : "unique"
+      "begin" : "unique"
     },
     {
-      "beginString" : "unique0"
+      "begin" : "unique0"
     },
     {
-      "beginString" : "unsigned"
+      "begin" : "unsigned"
     },
     {
-      "beginString" : "until"
+      "begin" : "until"
     },
     {
-      "beginString" : "until_with"
+      "begin" : "until_with"
     },
     {
-      "beginString" : "untyped"
+      "begin" : "untyped"
     },
     {
-      "beginString" : "use"
+      "begin" : "use"
     },
     {
-      "beginString" : "uwire"
+      "begin" : "uwire"
     },
     {
-      "beginString" : "var"
+      "begin" : "var"
     },
     {
-      "beginString" : "vectored"
+      "begin" : "vectored"
     },
     {
-      "beginString" : "virtual"
+      "begin" : "virtual"
     },
     {
-      "beginString" : "void"
+      "begin" : "void"
     },
     {
-      "beginString" : "wait"
+      "begin" : "wait"
     },
     {
-      "beginString" : "wait_order"
+      "begin" : "wait_order"
     },
     {
-      "beginString" : "wand"
+      "begin" : "wand"
     },
     {
-      "beginString" : "weak"
+      "begin" : "weak"
     },
     {
-      "beginString" : "weak0"
+      "begin" : "weak0"
     },
     {
-      "beginString" : "weak1"
+      "begin" : "weak1"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "wildcard"
+      "begin" : "wildcard"
     },
     {
-      "beginString" : "wire"
+      "begin" : "wire"
     },
     {
-      "beginString" : "with"
+      "begin" : "with"
     },
     {
-      "beginString" : "within"
+      "begin" : "within"
     },
     {
-      "beginString" : "wor"
+      "begin" : "wor"
     },
     {
-      "beginString" : "xnor"
+      "begin" : "xnor"
     },
     {
-      "beginString" : "xor"
+      "begin" : "xor"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<=)b[01xz?][01xz?_]*",
+      "begin" : "(?<=)b[01xz?][01xz?_]*",
       "description" : "binary",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=)d[0-9][0-9_]*\\b",
+      "begin" : "(?<=)d[0-9][0-9_]*\\b",
       "description" : "decimal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=)h[0-9a-f][0-9a-f_]*\\b",
+      "begin" : "(?<=)h[0-9a-f][0-9a-f_]*\\b",
       "description" : "hex",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=)o[0-7][0-7_]*\\b",
+      "begin" : "(?<=)o[0-7][0-7_]*\\b",
       "description" : "octal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?l?\\b",
+      "begin" : "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?l?\\b",
       "description" : "float (same as C)",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-9][0-9_]*\\b",
+      "begin" : "\\b[0-9][0-9_]*\\b",
       "description" : "decimal",
       "regularExpression" : true
     }

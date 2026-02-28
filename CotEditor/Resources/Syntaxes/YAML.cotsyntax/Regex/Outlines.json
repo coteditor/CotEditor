@@ -1,14 +1,14 @@
 [
   {
-    "beginString" : "^([^\\r\\n -].*?):",
+    "pattern" : "^([^\\r\\n -].*?):",
     "description" : "top level element",
-    "keyString" : "$1:",
+    "template" : "$1:",
     "kind" : "value"
   },
   {
-    "beginString" : "^---",
+    "pattern" : "^---",
     "description" : "block",
-    "keyString" : "",
+    "template" : "",
     "kind" : "separator"
   }
 ]

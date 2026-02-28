@@ -1,25 +1,25 @@
 {
   "characters" : [
     {
-      "beginString" : "\\\\$",
+      "begin" : "\\\\$",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "^\\S+[ \\t\\f]+(?=\\w)",
+      "begin" : "^\\S+[ \\t\\f]+(?=\\w)",
       "description" : "Key without symbols (= or :)",
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\S.*?(?=[=:])",
+      "begin" : "^\\S.*?(?=[=:])",
       "regularExpression" : true
     }
   ],
   "variables" : [
     {
-      "beginString" : "${",
-      "endString" : "}"
+      "begin" : "${",
+      "end" : "}"
     }
   ]
 }

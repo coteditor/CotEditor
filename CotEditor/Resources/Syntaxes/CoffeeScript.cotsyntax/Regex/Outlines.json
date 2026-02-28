@@ -1,26 +1,26 @@
 [
   {
-    "beginString" : "^([\\t ]*\\w+): (.*)->",
+    "pattern" : "^([\\t ]*\\w+): (.*)->",
     "description" : "function",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*\\w+)[\\t ]= (.*)->",
+    "pattern" : "^([\\t ]*\\w+)[\\t ]= (.*)->",
     "description" : "function",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "function"
   },
   {
-    "beginString" : "^(\\w*::\\w*) (.*)->",
+    "pattern" : "^(\\w*::\\w*) (.*)->",
     "description" : "function",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "function"
   },
   {
-    "beginString" : "^class (.*)",
+    "pattern" : "^class (.*)",
     "description" : "class",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "container"
   }
 ]

@@ -1,14 +1,14 @@
 [
   {
-    "beginString" : "\\bfunction\\s+\\w+\\(.*\\)",
+    "pattern" : "\\bfunction\\s+\\w+\\(.*\\)",
     "description" : "function",
-    "keyString" : "",
+    "template" : "",
     "kind" : "function"
   },
   {
-    "beginString" : "\\bmacro\\s+\\w+\\(.+\\)",
+    "pattern" : "\\bmacro\\s+\\w+\\(.+\\)",
     "description" : "macro",
-    "keyString" : "",
+    "template" : "",
     "kind" : "function"
   }
 ]

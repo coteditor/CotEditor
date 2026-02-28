@@ -1,232 +1,232 @@
 {
   "attributes" : [
     {
-      "beginString" : "\\s+alt(?==[^\\[\\]]*\\])",
+      "begin" : "\\s+alt(?==[^\\[\\]]*\\])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\s+color(?==[^\\[\\]]*\\])",
+      "begin" : "\\s+color(?==[^\\[\\]]*\\])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\s+height(?==[^\\[\\]]*\\])",
+      "begin" : "\\s+height(?==[^\\[\\]]*\\])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\s+size(?==[^\\[\\]]*\\])",
+      "begin" : "\\s+size(?==[^\\[\\]]*\\])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\s+title(?==[^\\[\\]]*\\])",
+      "begin" : "\\s+title(?==[^\\[\\]]*\\])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\s+width(?==[^\\[\\]]*\\])",
+      "begin" : "\\s+width(?==[^\\[\\]]*\\])",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "[*]"
+      "begin" : "[*]"
     },
     {
-      "beginString" : "[/b]"
+      "begin" : "[/b]"
     },
     {
-      "beginString" : "[/center]"
+      "begin" : "[/center]"
     },
     {
-      "beginString" : "[/code]"
+      "begin" : "[/code]"
     },
     {
-      "beginString" : "[/color]"
+      "begin" : "[/color]"
     },
     {
-      "beginString" : "[/email]"
+      "begin" : "[/email]"
     },
     {
-      "beginString" : "[/i]"
+      "begin" : "[/i]"
     },
     {
-      "beginString" : "[/img]"
+      "begin" : "[/img]"
     },
     {
-      "beginString" : "[/left]"
+      "begin" : "[/left]"
     },
     {
-      "beginString" : "[/li]"
+      "begin" : "[/li]"
     },
     {
-      "beginString" : "[/list]"
+      "begin" : "[/list]"
     },
     {
-      "beginString" : "[/ol]"
+      "begin" : "[/ol]"
     },
     {
-      "beginString" : "[/pre]"
+      "begin" : "[/pre]"
     },
     {
-      "beginString" : "[/quote]"
+      "begin" : "[/quote]"
     },
     {
-      "beginString" : "[/right]"
+      "begin" : "[/right]"
     },
     {
-      "beginString" : "[/s]"
+      "begin" : "[/s]"
     },
     {
-      "beginString" : "[/size]"
+      "begin" : "[/size]"
     },
     {
-      "beginString" : "[/spoiler]"
+      "begin" : "[/spoiler]"
     },
     {
-      "beginString" : "[/style]"
+      "begin" : "[/style]"
     },
     {
-      "beginString" : "[/table]"
+      "begin" : "[/table]"
     },
     {
-      "beginString" : "[/td]"
+      "begin" : "[/td]"
     },
     {
-      "beginString" : "[/th]"
+      "begin" : "[/th]"
     },
     {
-      "beginString" : "[/tr]"
+      "begin" : "[/tr]"
     },
     {
-      "beginString" : "[/u]"
+      "begin" : "[/u]"
     },
     {
-      "beginString" : "[/ul]"
+      "begin" : "[/ul]"
     },
     {
-      "beginString" : "[/url]"
+      "begin" : "[/url]"
     },
     {
-      "beginString" : "[/youtube]"
+      "begin" : "[/youtube]"
     },
     {
-      "beginString" : "[b]"
+      "begin" : "[b]"
     },
     {
-      "beginString" : "[center]"
+      "begin" : "[center]"
     },
     {
-      "beginString" : "[code]"
+      "begin" : "[code]"
     },
     {
-      "beginString" : "[email]"
+      "begin" : "[email]"
     },
     {
-      "beginString" : "[i]"
+      "begin" : "[i]"
     },
     {
-      "beginString" : "[img]"
+      "begin" : "[img]"
     },
     {
-      "beginString" : "[left]"
+      "begin" : "[left]"
     },
     {
-      "beginString" : "[li]"
+      "begin" : "[li]"
     },
     {
-      "beginString" : "[line]"
+      "begin" : "[line]"
     },
     {
-      "beginString" : "[list]"
+      "begin" : "[list]"
     },
     {
-      "beginString" : "[ol]"
+      "begin" : "[ol]"
     },
     {
-      "beginString" : "[pre]"
+      "begin" : "[pre]"
     },
     {
-      "beginString" : "[quote]"
+      "begin" : "[quote]"
     },
     {
-      "beginString" : "[right]"
+      "begin" : "[right]"
     },
     {
-      "beginString" : "[s]"
+      "begin" : "[s]"
     },
     {
-      "beginString" : "[spoiler]"
+      "begin" : "[spoiler]"
     },
     {
-      "beginString" : "[table]"
+      "begin" : "[table]"
     },
     {
-      "beginString" : "[td]"
+      "begin" : "[td]"
     },
     {
-      "beginString" : "[th]"
+      "begin" : "[th]"
     },
     {
-      "beginString" : "[tr]"
+      "begin" : "[tr]"
     },
     {
-      "beginString" : "[u]"
+      "begin" : "[u]"
     },
     {
-      "beginString" : "[ul]"
+      "begin" : "[ul]"
     },
     {
-      "beginString" : "[url]"
+      "begin" : "[url]"
     },
     {
-      "beginString" : "[youtube]"
+      "begin" : "[youtube]"
     },
     {
-      "beginString" : "\\[code=.+?\\]",
+      "begin" : "\\[code=.+?\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[color=.+?\\]",
+      "begin" : "\\[color=.+?\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[img[=[:space:]].+?\\]",
+      "begin" : "\\[img[=[:space:]].+?\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[list(=.+?)?\\]",
+      "begin" : "\\[list(=.+?)?\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[quote=\".+?\"\\]",
+      "begin" : "\\[quote=\".+?\"\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[size=[0-9]+\\]",
+      "begin" : "\\[size=[0-9]+\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[spoiler=.+?\\]",
+      "begin" : "\\[spoiler=.+?\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[style\\s+color=.+?\\]",
+      "begin" : "\\[style\\s+color=.+?\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[style\\s+size=.+?\\]",
+      "begin" : "\\[style\\s+size=.+?\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\[url=.+?\\]",
+      "begin" : "\\[url=.+?\\]",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "(?<=[a-z]=)[^[:space:]\\]]+(?=[^\\[\\]]*\\])",
+      "begin" : "(?<=[a-z]=)[^[:space:]\\]]+(?=[^\\[\\]]*\\])",
       "regularExpression" : true
     }
   ]

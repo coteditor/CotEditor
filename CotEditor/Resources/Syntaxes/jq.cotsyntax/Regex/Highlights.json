@@ -1,696 +1,696 @@
 {
   "attributes" : [
     {
-      "beginString" : "@base64"
+      "begin" : "@base64"
     },
     {
-      "beginString" : "@base64d"
+      "begin" : "@base64d"
     },
     {
-      "beginString" : "@csv"
+      "begin" : "@csv"
     },
     {
-      "beginString" : "@html"
+      "begin" : "@html"
     },
     {
-      "beginString" : "@json"
+      "begin" : "@json"
     },
     {
-      "beginString" : "@sh"
+      "begin" : "@sh"
     },
     {
-      "beginString" : "@text"
+      "begin" : "@text"
     },
     {
-      "beginString" : "@tsv"
+      "begin" : "@tsv"
     },
     {
-      "beginString" : "@uri"
+      "begin" : "@uri"
     }
   ],
   "characters" : [
     {
-      "beginString" : "&amp;"
+      "begin" : "&amp;"
     },
     {
-      "beginString" : "&apos;"
+      "begin" : "&apos;"
     },
     {
-      "beginString" : "&gt;"
+      "begin" : "&gt;"
     },
     {
-      "beginString" : "&lt;"
+      "begin" : "&lt;"
     },
     {
-      "beginString" : "&quot;"
+      "begin" : "&quot;"
     },
     {
-      "beginString" : "\\\\"
+      "begin" : "\\\\"
     },
     {
-      "beginString" : "\\n"
+      "begin" : "\\n"
     },
     {
-      "beginString" : "\\r"
+      "begin" : "\\r"
     },
     {
-      "beginString" : "\\t"
+      "begin" : "\\t"
     }
   ],
   "commands" : [
     {
-      "beginString" : "\\bin(?=\\()",
+      "begin" : "\\bin(?=\\()",
       "regularExpression" : true
     },
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "acos"
+      "begin" : "acos"
     },
     {
-      "beginString" : "acosh"
+      "begin" : "acosh"
     },
     {
-      "beginString" : "add"
+      "begin" : "add"
     },
     {
-      "beginString" : "all"
+      "begin" : "all"
     },
     {
-      "beginString" : "any"
+      "begin" : "any"
     },
     {
-      "beginString" : "arrays"
+      "begin" : "arrays"
     },
     {
-      "beginString" : "ascii_downcase"
+      "begin" : "ascii_downcase"
     },
     {
-      "beginString" : "ascii_upcase"
+      "begin" : "ascii_upcase"
     },
     {
-      "beginString" : "asin"
+      "begin" : "asin"
     },
     {
-      "beginString" : "asinh"
+      "begin" : "asinh"
     },
     {
-      "beginString" : "atan"
+      "begin" : "atan"
     },
     {
-      "beginString" : "atan2"
+      "begin" : "atan2"
     },
     {
-      "beginString" : "atanh"
+      "begin" : "atanh"
     },
     {
-      "beginString" : "booleans"
+      "begin" : "booleans"
     },
     {
-      "beginString" : "bsearch"
+      "begin" : "bsearch"
     },
     {
-      "beginString" : "capture"
+      "begin" : "capture"
     },
     {
-      "beginString" : "cbrt"
+      "begin" : "cbrt"
     },
     {
-      "beginString" : "ceil"
+      "begin" : "ceil"
     },
     {
-      "beginString" : "combinations"
+      "begin" : "combinations"
     },
     {
-      "beginString" : "contains"
+      "begin" : "contains"
     },
     {
-      "beginString" : "copysign"
+      "begin" : "copysign"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "cosh"
+      "begin" : "cosh"
     },
     {
-      "beginString" : "del"
+      "begin" : "del"
     },
     {
-      "beginString" : "delpaths"
+      "begin" : "delpaths"
     },
     {
-      "beginString" : "drem"
+      "begin" : "drem"
     },
     {
-      "beginString" : "endswith"
+      "begin" : "endswith"
     },
     {
-      "beginString" : "erf"
+      "begin" : "erf"
     },
     {
-      "beginString" : "erfc"
+      "begin" : "erfc"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "exp10"
+      "begin" : "exp10"
     },
     {
-      "beginString" : "exp2"
+      "begin" : "exp2"
     },
     {
-      "beginString" : "explode"
+      "begin" : "explode"
     },
     {
-      "beginString" : "expm1"
+      "begin" : "expm1"
     },
     {
-      "beginString" : "fabs"
+      "begin" : "fabs"
     },
     {
-      "beginString" : "fdim"
+      "begin" : "fdim"
     },
     {
-      "beginString" : "finites"
+      "begin" : "finites"
     },
     {
-      "beginString" : "first"
+      "begin" : "first"
     },
     {
-      "beginString" : "flatten"
+      "begin" : "flatten"
     },
     {
-      "beginString" : "floor"
+      "begin" : "floor"
     },
     {
-      "beginString" : "fma"
+      "begin" : "fma"
     },
     {
-      "beginString" : "fmax"
+      "begin" : "fmax"
     },
     {
-      "beginString" : "fmin"
+      "begin" : "fmin"
     },
     {
-      "beginString" : "fmod"
+      "begin" : "fmod"
     },
     {
-      "beginString" : "frexp"
+      "begin" : "frexp"
     },
     {
-      "beginString" : "from_entries"
+      "begin" : "from_entries"
     },
     {
-      "beginString" : "fromdate"
+      "begin" : "fromdate"
     },
     {
-      "beginString" : "fromdateiso8601"
+      "begin" : "fromdateiso8601"
     },
     {
-      "beginString" : "fromjson"
+      "begin" : "fromjson"
     },
     {
-      "beginString" : "fromstream"
+      "begin" : "fromstream"
     },
     {
-      "beginString" : "gamma"
+      "begin" : "gamma"
     },
     {
-      "beginString" : "gethpath"
+      "begin" : "gethpath"
     },
     {
-      "beginString" : "group_by"
+      "begin" : "group_by"
     },
     {
-      "beginString" : "gsub"
+      "begin" : "gsub"
     },
     {
-      "beginString" : "halt"
+      "begin" : "halt"
     },
     {
-      "beginString" : "halt_error"
+      "begin" : "halt_error"
     },
     {
-      "beginString" : "have_decnum"
+      "begin" : "have_decnum"
     },
     {
-      "beginString" : "have_literal_numbers"
+      "begin" : "have_literal_numbers"
     },
     {
-      "beginString" : "hypot"
+      "begin" : "hypot"
     },
     {
-      "beginString" : "implode"
+      "begin" : "implode"
     },
     {
-      "beginString" : "IN"
+      "begin" : "IN"
     },
     {
-      "beginString" : "index"
+      "begin" : "index"
     },
     {
-      "beginString" : "INDEX"
+      "begin" : "INDEX"
     },
     {
-      "beginString" : "indices"
+      "begin" : "indices"
     },
     {
-      "beginString" : "input"
+      "begin" : "input"
     },
     {
-      "beginString" : "input_filename"
+      "begin" : "input_filename"
     },
     {
-      "beginString" : "input_line_number"
+      "begin" : "input_line_number"
     },
     {
-      "beginString" : "inputs"
+      "begin" : "inputs"
     },
     {
-      "beginString" : "inside"
+      "begin" : "inside"
     },
     {
-      "beginString" : "isempty"
+      "begin" : "isempty"
     },
     {
-      "beginString" : "isfinite"
+      "begin" : "isfinite"
     },
     {
-      "beginString" : "isinfinite"
+      "begin" : "isinfinite"
     },
     {
-      "beginString" : "isnan"
+      "begin" : "isnan"
     },
     {
-      "beginString" : "isnormal"
+      "begin" : "isnormal"
     },
     {
-      "beginString" : "iterables"
+      "begin" : "iterables"
     },
     {
-      "beginString" : "j0"
+      "begin" : "j0"
     },
     {
-      "beginString" : "j1"
+      "begin" : "j1"
     },
     {
-      "beginString" : "jn"
+      "begin" : "jn"
     },
     {
-      "beginString" : "join"
+      "begin" : "join"
     },
     {
-      "beginString" : "JOIN"
+      "begin" : "JOIN"
     },
     {
-      "beginString" : "keys"
+      "begin" : "keys"
     },
     {
-      "beginString" : "keys_unsorted"
+      "begin" : "keys_unsorted"
     },
     {
-      "beginString" : "last"
+      "begin" : "last"
     },
     {
-      "beginString" : "ldexp"
+      "begin" : "ldexp"
     },
     {
-      "beginString" : "length"
+      "begin" : "length"
     },
     {
-      "beginString" : "lgamma"
+      "begin" : "lgamma"
     },
     {
-      "beginString" : "limit"
+      "begin" : "limit"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "log10"
+      "begin" : "log10"
     },
     {
-      "beginString" : "log1p"
+      "begin" : "log1p"
     },
     {
-      "beginString" : "log2"
+      "begin" : "log2"
     },
     {
-      "beginString" : "logb"
+      "begin" : "logb"
     },
     {
-      "beginString" : "ltrim"
+      "begin" : "ltrim"
     },
     {
-      "beginString" : "ltrimstr"
+      "begin" : "ltrimstr"
     },
     {
-      "beginString" : "map"
+      "begin" : "map"
     },
     {
-      "beginString" : "map_values"
+      "begin" : "map_values"
     },
     {
-      "beginString" : "match"
+      "begin" : "match"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "max_by"
+      "begin" : "max_by"
     },
     {
-      "beginString" : "min"
+      "begin" : "min"
     },
     {
-      "beginString" : "min_by"
+      "begin" : "min_by"
     },
     {
-      "beginString" : "modf"
+      "begin" : "modf"
     },
     {
-      "beginString" : "nearbyint"
+      "begin" : "nearbyint"
     },
     {
-      "beginString" : "nextafter"
+      "begin" : "nextafter"
     },
     {
-      "beginString" : "nexttoward"
+      "begin" : "nexttoward"
     },
     {
-      "beginString" : "normals"
+      "begin" : "normals"
     },
     {
-      "beginString" : "now"
+      "begin" : "now"
     },
     {
-      "beginString" : "nulls"
+      "begin" : "nulls"
     },
     {
-      "beginString" : "numbers"
+      "begin" : "numbers"
     },
     {
-      "beginString" : "objects"
+      "begin" : "objects"
     },
     {
-      "beginString" : "path"
+      "begin" : "path"
     },
     {
-      "beginString" : "paths"
+      "begin" : "paths"
     },
     {
-      "beginString" : "pick"
+      "begin" : "pick"
     },
     {
-      "beginString" : "pow"
+      "begin" : "pow"
     },
     {
-      "beginString" : "range"
+      "begin" : "range"
     },
     {
-      "beginString" : "recurse"
+      "begin" : "recurse"
     },
     {
-      "beginString" : "remainder"
+      "begin" : "remainder"
     },
     {
-      "beginString" : "repeat"
+      "begin" : "repeat"
     },
     {
-      "beginString" : "reverse"
+      "begin" : "reverse"
     },
     {
-      "beginString" : "rindex"
+      "begin" : "rindex"
     },
     {
-      "beginString" : "rint"
+      "begin" : "rint"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "rtrim"
+      "begin" : "rtrim"
     },
     {
-      "beginString" : "rtrimstr"
+      "begin" : "rtrimstr"
     },
     {
-      "beginString" : "scalars"
+      "begin" : "scalars"
     },
     {
-      "beginString" : "scalb"
+      "begin" : "scalb"
     },
     {
-      "beginString" : "scalbln"
+      "begin" : "scalbln"
     },
     {
-      "beginString" : "scan"
+      "begin" : "scan"
     },
     {
-      "beginString" : "select"
+      "begin" : "select"
     },
     {
-      "beginString" : "setpath"
+      "begin" : "setpath"
     },
     {
-      "beginString" : "significand"
+      "begin" : "significand"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "sinh"
+      "begin" : "sinh"
     },
     {
-      "beginString" : "sort"
+      "begin" : "sort"
     },
     {
-      "beginString" : "sort_by"
+      "begin" : "sort_by"
     },
     {
-      "beginString" : "split"
+      "begin" : "split"
     },
     {
-      "beginString" : "splits"
+      "begin" : "splits"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "startswith"
+      "begin" : "startswith"
     },
     {
-      "beginString" : "strings"
+      "begin" : "strings"
     },
     {
-      "beginString" : "sub"
+      "begin" : "sub"
     },
     {
-      "beginString" : "tan"
+      "begin" : "tan"
     },
     {
-      "beginString" : "tanh"
+      "begin" : "tanh"
     },
     {
-      "beginString" : "test"
+      "begin" : "test"
     },
     {
-      "beginString" : "tgamma"
+      "begin" : "tgamma"
     },
     {
-      "beginString" : "to_entries"
+      "begin" : "to_entries"
     },
     {
-      "beginString" : "todate"
+      "begin" : "todate"
     },
     {
-      "beginString" : "todateiso8601"
+      "begin" : "todateiso8601"
     },
     {
-      "beginString" : "tojson"
+      "begin" : "tojson"
     },
     {
-      "beginString" : "tonumber"
+      "begin" : "tonumber"
     },
     {
-      "beginString" : "tostream"
+      "begin" : "tostream"
     },
     {
-      "beginString" : "tostring"
+      "begin" : "tostring"
     },
     {
-      "beginString" : "transpose"
+      "begin" : "transpose"
     },
     {
-      "beginString" : "trim"
+      "begin" : "trim"
     },
     {
-      "beginString" : "trunc"
+      "begin" : "trunc"
     },
     {
-      "beginString" : "truncate_stream"
+      "begin" : "truncate_stream"
     },
     {
-      "beginString" : "type"
+      "begin" : "type"
     },
     {
-      "beginString" : "unique"
+      "begin" : "unique"
     },
     {
-      "beginString" : "unique_by"
+      "begin" : "unique_by"
     },
     {
-      "beginString" : "until"
+      "begin" : "until"
     },
     {
-      "beginString" : "utf8bytelength"
+      "begin" : "utf8bytelength"
     },
     {
-      "beginString" : "values"
+      "begin" : "values"
     },
     {
-      "beginString" : "walk"
+      "begin" : "walk"
     },
     {
-      "beginString" : "y0"
+      "begin" : "y0"
     },
     {
-      "beginString" : "y1"
+      "begin" : "y1"
     },
     {
-      "beginString" : "yn"
+      "begin" : "yn"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "as"
+      "begin" : "as"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "debug"
+      "begin" : "debug"
     },
     {
-      "beginString" : "def"
+      "begin" : "def"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "empty"
+      "begin" : "empty"
     },
     {
-      "beginString" : "end"
+      "begin" : "end"
     },
     {
-      "beginString" : "env"
+      "begin" : "env"
     },
     {
-      "beginString" : "error"
+      "begin" : "error"
     },
     {
-      "beginString" : "foreach"
+      "begin" : "foreach"
     },
     {
-      "beginString" : "has"
+      "begin" : "has"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "include"
+      "begin" : "include"
     },
     {
-      "beginString" : "label"
+      "begin" : "label"
     },
     {
-      "beginString" : "module"
+      "begin" : "module"
     },
     {
-      "beginString" : "modulemeta"
+      "begin" : "modulemeta"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "nth"
+      "begin" : "nth"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "reduce"
+      "begin" : "reduce"
     },
     {
-      "beginString" : "stderr"
+      "begin" : "stderr"
     },
     {
-      "beginString" : "then"
+      "begin" : "then"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b[0-9]+[dDfFlL]?\\b",
+      "begin" : "\\b[0-9]+[dDfFlL]?\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "infinite"
+      "begin" : "infinite"
     },
     {
-      "beginString" : "nan"
+      "begin" : "nan"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "$__loc__"
+      "begin" : "$__loc__"
     },
     {
-      "beginString" : "$ENV"
+      "begin" : "$ENV"
     },
     {
-      "beginString" : "$JQ_BUILD_CONFIGURATION"
+      "begin" : "$JQ_BUILD_CONFIGURATION"
     },
     {
-      "beginString" : "\\$[_A-Za-z0-9]+\\b",
+      "begin" : "\\$[_A-Za-z0-9]+\\b",
       "regularExpression" : true
     }
   ]

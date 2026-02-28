@@ -1,1277 +1,1277 @@
 {
   "characters" : [
     {
-      "beginString" : "#\\"
+      "begin" : "#\\"
     },
     {
-      "beginString" : "#\\\\.(?=[[:space:]()\\[\\]\";#])",
+      "begin" : "#\\\\.(?=[[:space:]()\\[\\]\";#])",
       "regularExpression" : true
     },
     {
-      "beginString" : "#\\\\x[0-9a-fA-F]+\\b",
+      "begin" : "#\\\\x[0-9a-fA-F]+\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "#\\alarm"
+      "begin" : "#\\alarm"
     },
     {
-      "beginString" : "#\\backspace"
+      "begin" : "#\\backspace"
     },
     {
-      "beginString" : "#\\delete"
+      "begin" : "#\\delete"
     },
     {
-      "beginString" : "#\\esc"
+      "begin" : "#\\esc"
     },
     {
-      "beginString" : "#\\linefeed"
+      "begin" : "#\\linefeed"
     },
     {
-      "beginString" : "#\\newline"
+      "begin" : "#\\newline"
     },
     {
-      "beginString" : "#\\nul"
+      "begin" : "#\\nul"
     },
     {
-      "beginString" : "#\\page"
+      "begin" : "#\\page"
     },
     {
-      "beginString" : "#\\return"
+      "begin" : "#\\return"
     },
     {
-      "beginString" : "#\\space"
+      "begin" : "#\\space"
     },
     {
-      "beginString" : "#\\tab"
+      "begin" : "#\\tab"
     },
     {
-      "beginString" : "#\\vtab"
+      "begin" : "#\\vtab"
     }
   ],
   "commands" : [
     {
-      "beginString" : "*"
+      "begin" : "*"
     },
     {
-      "beginString" : "+"
+      "begin" : "+"
     },
     {
-      "beginString" : "-"
+      "begin" : "-"
     },
     {
-      "beginString" : "/"
+      "begin" : "/"
     },
     {
-      "beginString" : "<"
+      "begin" : "<"
     },
     {
-      "beginString" : "<="
+      "begin" : "<="
     },
     {
-      "beginString" : "="
+      "begin" : "="
     },
     {
-      "beginString" : ">"
+      "begin" : ">"
     },
     {
-      "beginString" : ">="
+      "begin" : ">="
     },
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "acos"
+      "begin" : "acos"
     },
     {
-      "beginString" : "angle"
+      "begin" : "angle"
     },
     {
-      "beginString" : "append"
+      "begin" : "append"
     },
     {
-      "beginString" : "apply"
+      "begin" : "apply"
     },
     {
-      "beginString" : "asin"
+      "begin" : "asin"
     },
     {
-      "beginString" : "assoc"
+      "begin" : "assoc"
     },
     {
-      "beginString" : "assor"
+      "begin" : "assor"
     },
     {
-      "beginString" : "assp"
+      "begin" : "assp"
     },
     {
-      "beginString" : "assq"
+      "begin" : "assq"
     },
     {
-      "beginString" : "assv"
+      "begin" : "assv"
     },
     {
-      "beginString" : "atan"
+      "begin" : "atan"
     },
     {
-      "beginString" : "binary-port?"
+      "begin" : "binary-port?"
     },
     {
-      "beginString" : "boolean=?"
+      "begin" : "boolean=?"
     },
     {
-      "beginString" : "boolean?"
+      "begin" : "boolean?"
     },
     {
-      "beginString" : "bytevector"
+      "begin" : "bytevector"
     },
     {
-      "beginString" : "bytevector-append"
+      "begin" : "bytevector-append"
     },
     {
-      "beginString" : "bytevector-copy"
+      "begin" : "bytevector-copy"
     },
     {
-      "beginString" : "bytevector-copy!"
+      "begin" : "bytevector-copy!"
     },
     {
-      "beginString" : "bytevector-length"
+      "begin" : "bytevector-length"
     },
     {
-      "beginString" : "bytevector-u8-ref"
+      "begin" : "bytevector-u8-ref"
     },
     {
-      "beginString" : "bytevector-u8-set!"
+      "begin" : "bytevector-u8-set!"
     },
     {
-      "beginString" : "bytevector?"
+      "begin" : "bytevector?"
     },
     {
-      "beginString" : "caaar"
+      "begin" : "caaar"
     },
     {
-      "beginString" : "caadr"
+      "begin" : "caadr"
     },
     {
-      "beginString" : "caar"
+      "begin" : "caar"
     },
     {
-      "beginString" : "cadar"
+      "begin" : "cadar"
     },
     {
-      "beginString" : "caddr"
+      "begin" : "caddr"
     },
     {
-      "beginString" : "cadr"
+      "begin" : "cadr"
     },
     {
-      "beginString" : "call-with-current-continuation"
+      "begin" : "call-with-current-continuation"
     },
     {
-      "beginString" : "call-with-input-file"
+      "begin" : "call-with-input-file"
     },
     {
-      "beginString" : "call-with-output-file"
+      "begin" : "call-with-output-file"
     },
     {
-      "beginString" : "call-with-values"
+      "begin" : "call-with-values"
     },
     {
-      "beginString" : "call/cc"
+      "begin" : "call/cc"
     },
     {
-      "beginString" : "car"
+      "begin" : "car"
     },
     {
-      "beginString" : "cdar"
+      "begin" : "cdar"
     },
     {
-      "beginString" : "cddaar"
+      "begin" : "cddaar"
     },
     {
-      "beginString" : "cddadr"
+      "begin" : "cddadr"
     },
     {
-      "beginString" : "cdddar"
+      "begin" : "cdddar"
     },
     {
-      "beginString" : "cddddr"
+      "begin" : "cddddr"
     },
     {
-      "beginString" : "cddr"
+      "begin" : "cddr"
     },
     {
-      "beginString" : "cdr"
+      "begin" : "cdr"
     },
     {
-      "beginString" : "ceiling"
+      "begin" : "ceiling"
     },
     {
-      "beginString" : "char->integer"
+      "begin" : "char->integer"
     },
     {
-      "beginString" : "char-alphabetic?"
+      "begin" : "char-alphabetic?"
     },
     {
-      "beginString" : "char-ci<=?"
+      "begin" : "char-ci<=?"
     },
     {
-      "beginString" : "char-ci=?"
+      "begin" : "char-ci=?"
     },
     {
-      "beginString" : "char-ci>=?"
+      "begin" : "char-ci>=?"
     },
     {
-      "beginString" : "char-ci>?"
+      "begin" : "char-ci>?"
     },
     {
-      "beginString" : "char-downcase"
+      "begin" : "char-downcase"
     },
     {
-      "beginString" : "char-lower-case?"
+      "begin" : "char-lower-case?"
     },
     {
-      "beginString" : "char-numeric?"
+      "begin" : "char-numeric?"
     },
     {
-      "beginString" : "char-ready?"
+      "begin" : "char-ready?"
     },
     {
-      "beginString" : "char-upcase"
+      "begin" : "char-upcase"
     },
     {
-      "beginString" : "char-upper-case?"
+      "begin" : "char-upper-case?"
     },
     {
-      "beginString" : "char-whitespace?"
+      "begin" : "char-whitespace?"
     },
     {
-      "beginString" : "char<=?"
+      "begin" : "char<=?"
     },
     {
-      "beginString" : "char<?"
+      "begin" : "char<?"
     },
     {
-      "beginString" : "char=?"
+      "begin" : "char=?"
     },
     {
-      "beginString" : "char>=?"
+      "begin" : "char>=?"
     },
     {
-      "beginString" : "char>?"
+      "begin" : "char>?"
     },
     {
-      "beginString" : "char?"
+      "begin" : "char?"
     },
     {
-      "beginString" : "close-input-file"
+      "begin" : "close-input-file"
     },
     {
-      "beginString" : "close-output-file"
+      "begin" : "close-output-file"
     },
     {
-      "beginString" : "complex?"
+      "begin" : "complex?"
     },
     {
-      "beginString" : "cons"
+      "begin" : "cons"
     },
     {
-      "beginString" : "cons*"
+      "begin" : "cons*"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "current-input-port"
+      "begin" : "current-input-port"
     },
     {
-      "beginString" : "current-output-port"
+      "begin" : "current-output-port"
     },
     {
-      "beginString" : "denominator"
+      "begin" : "denominator"
     },
     {
-      "beginString" : "digit-value"
+      "begin" : "digit-value"
     },
     {
-      "beginString" : "display"
+      "begin" : "display"
     },
     {
-      "beginString" : "dynamic-wind"
+      "begin" : "dynamic-wind"
     },
     {
-      "beginString" : "emergency-exit"
+      "begin" : "emergency-exit"
     },
     {
-      "beginString" : "environment"
+      "begin" : "environment"
     },
     {
-      "beginString" : "eof-object"
+      "begin" : "eof-object"
     },
     {
-      "beginString" : "eof-object?"
+      "begin" : "eof-object?"
     },
     {
-      "beginString" : "eq?"
+      "begin" : "eq?"
     },
     {
-      "beginString" : "equal-hash"
+      "begin" : "equal-hash"
     },
     {
-      "beginString" : "equal?"
+      "begin" : "equal?"
     },
     {
-      "beginString" : "eqv?"
+      "begin" : "eqv?"
     },
     {
-      "beginString" : "error"
+      "begin" : "error"
     },
     {
-      "beginString" : "error-object-irritants"
+      "begin" : "error-object-irritants"
     },
     {
-      "beginString" : "error-object-message"
+      "begin" : "error-object-message"
     },
     {
-      "beginString" : "error-object?"
+      "begin" : "error-object?"
     },
     {
-      "beginString" : "eval"
+      "begin" : "eval"
     },
     {
-      "beginString" : "even?"
+      "begin" : "even?"
     },
     {
-      "beginString" : "exact"
+      "begin" : "exact"
     },
     {
-      "beginString" : "exact->inexact"
+      "begin" : "exact->inexact"
     },
     {
-      "beginString" : "exact-integer-sqrt"
+      "begin" : "exact-integer-sqrt"
     },
     {
-      "beginString" : "exact-integer?"
+      "begin" : "exact-integer?"
     },
     {
-      "beginString" : "exact?"
+      "begin" : "exact?"
     },
     {
-      "beginString" : "exists"
+      "begin" : "exists"
     },
     {
-      "beginString" : "exit"
+      "begin" : "exit"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "expt"
+      "begin" : "expt"
     },
     {
-      "beginString" : "features"
+      "begin" : "features"
     },
     {
-      "beginString" : "file-error?"
+      "begin" : "file-error?"
     },
     {
-      "beginString" : "file-exists?"
+      "begin" : "file-exists?"
     },
     {
-      "beginString" : "filter"
+      "begin" : "filter"
     },
     {
-      "beginString" : "find"
+      "begin" : "find"
     },
     {
-      "beginString" : "finite?"
+      "begin" : "finite?"
     },
     {
-      "beginString" : "floor"
+      "begin" : "floor"
     },
     {
-      "beginString" : "floor-quotient"
+      "begin" : "floor-quotient"
     },
     {
-      "beginString" : "floor-remainder"
+      "begin" : "floor-remainder"
     },
     {
-      "beginString" : "floor/"
+      "begin" : "floor/"
     },
     {
-      "beginString" : "flush-output-port"
+      "begin" : "flush-output-port"
     },
     {
-      "beginString" : "fold-left"
+      "begin" : "fold-left"
     },
     {
-      "beginString" : "fold-right"
+      "begin" : "fold-right"
     },
     {
-      "beginString" : "for-all"
+      "begin" : "for-all"
     },
     {
-      "beginString" : "for-each"
+      "begin" : "for-each"
     },
     {
-      "beginString" : "force"
+      "begin" : "force"
     },
     {
-      "beginString" : "gcd"
+      "begin" : "gcd"
     },
     {
-      "beginString" : "get-environment-variable"
+      "begin" : "get-environment-variable"
     },
     {
-      "beginString" : "get-environment-variables"
+      "begin" : "get-environment-variables"
     },
     {
-      "beginString" : "get-output-bytevector"
+      "begin" : "get-output-bytevector"
     },
     {
-      "beginString" : "get-output-string"
+      "begin" : "get-output-string"
     },
     {
-      "beginString" : "hashtable-clear!"
+      "begin" : "hashtable-clear!"
     },
     {
-      "beginString" : "hashtable-contains?"
+      "begin" : "hashtable-contains?"
     },
     {
-      "beginString" : "hashtable-copy"
+      "begin" : "hashtable-copy"
     },
     {
-      "beginString" : "hashtable-delete!"
+      "begin" : "hashtable-delete!"
     },
     {
-      "beginString" : "hashtable-entries"
+      "begin" : "hashtable-entries"
     },
     {
-      "beginString" : "hashtable-equivalence-function"
+      "begin" : "hashtable-equivalence-function"
     },
     {
-      "beginString" : "hashtable-hash-function"
+      "begin" : "hashtable-hash-function"
     },
     {
-      "beginString" : "hashtable-keys"
+      "begin" : "hashtable-keys"
     },
     {
-      "beginString" : "hashtable-mutable?"
+      "begin" : "hashtable-mutable?"
     },
     {
-      "beginString" : "hashtable-ref"
+      "begin" : "hashtable-ref"
     },
     {
-      "beginString" : "hashtable-set!"
+      "begin" : "hashtable-set!"
     },
     {
-      "beginString" : "hashtable-size"
+      "begin" : "hashtable-size"
     },
     {
-      "beginString" : "hashtable-update!"
+      "begin" : "hashtable-update!"
     },
     {
-      "beginString" : "hashtable?"
+      "begin" : "hashtable?"
     },
     {
-      "beginString" : "identifier"
+      "begin" : "identifier"
     },
     {
-      "beginString" : "imag-part"
+      "begin" : "imag-part"
     },
     {
-      "beginString" : "inexact->exact"
+      "begin" : "inexact->exact"
     },
     {
-      "beginString" : "inexact?"
+      "begin" : "inexact?"
     },
     {
-      "beginString" : "infinite?"
+      "begin" : "infinite?"
     },
     {
-      "beginString" : "input-port-open?"
+      "begin" : "input-port-open?"
     },
     {
-      "beginString" : "input-port?"
+      "begin" : "input-port?"
     },
     {
-      "beginString" : "integer->char"
+      "begin" : "integer->char"
     },
     {
-      "beginString" : "integer?"
+      "begin" : "integer?"
     },
     {
-      "beginString" : "interaction-environment"
+      "begin" : "interaction-environment"
     },
     {
-      "beginString" : "jiffiers-per-second"
+      "begin" : "jiffiers-per-second"
     },
     {
-      "beginString" : "lcm"
+      "begin" : "lcm"
     },
     {
-      "beginString" : "length"
+      "begin" : "length"
     },
     {
-      "beginString" : "list"
+      "begin" : "list"
     },
     {
-      "beginString" : "list->string"
+      "begin" : "list->string"
     },
     {
-      "beginString" : "list->vector"
+      "begin" : "list->vector"
     },
     {
-      "beginString" : "list-ref"
+      "begin" : "list-ref"
     },
     {
-      "beginString" : "list-tail"
+      "begin" : "list-tail"
     },
     {
-      "beginString" : "list?"
+      "begin" : "list?"
     },
     {
-      "beginString" : "load"
+      "begin" : "load"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "magnitude"
+      "begin" : "magnitude"
     },
     {
-      "beginString" : "make-bytevector"
+      "begin" : "make-bytevector"
     },
     {
-      "beginString" : "make-eq-hashtable"
+      "begin" : "make-eq-hashtable"
     },
     {
-      "beginString" : "make-eqv-hashtable"
+      "begin" : "make-eqv-hashtable"
     },
     {
-      "beginString" : "make-hashtable"
+      "begin" : "make-hashtable"
     },
     {
-      "beginString" : "make-list"
+      "begin" : "make-list"
     },
     {
-      "beginString" : "make-parameter"
+      "begin" : "make-parameter"
     },
     {
-      "beginString" : "make-polar"
+      "begin" : "make-polar"
     },
     {
-      "beginString" : "make-promise"
+      "begin" : "make-promise"
     },
     {
-      "beginString" : "make-rectangular"
+      "begin" : "make-rectangular"
     },
     {
-      "beginString" : "make-string"
+      "begin" : "make-string"
     },
     {
-      "beginString" : "make-vector"
+      "begin" : "make-vector"
     },
     {
-      "beginString" : "map"
+      "begin" : "map"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "member"
+      "begin" : "member"
     },
     {
-      "beginString" : "memp"
+      "begin" : "memp"
     },
     {
-      "beginString" : "memq"
+      "begin" : "memq"
     },
     {
-      "beginString" : "memv"
+      "begin" : "memv"
     },
     {
-      "beginString" : "min"
+      "begin" : "min"
     },
     {
-      "beginString" : "modulo"
+      "begin" : "modulo"
     },
     {
-      "beginString" : "nan?"
+      "begin" : "nan?"
     },
     {
-      "beginString" : "negative?"
+      "begin" : "negative?"
     },
     {
-      "beginString" : "newline"
+      "begin" : "newline"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "null-environment"
+      "begin" : "null-environment"
     },
     {
-      "beginString" : "null?"
+      "begin" : "null?"
     },
     {
-      "beginString" : "number->string"
+      "begin" : "number->string"
     },
     {
-      "beginString" : "number?"
+      "begin" : "number?"
     },
     {
-      "beginString" : "numerator"
+      "begin" : "numerator"
     },
     {
-      "beginString" : "odd?"
+      "begin" : "odd?"
     },
     {
-      "beginString" : "only"
+      "begin" : "only"
     },
     {
-      "beginString" : "open-binary-input-file"
+      "begin" : "open-binary-input-file"
     },
     {
-      "beginString" : "open-binary-output-file"
+      "begin" : "open-binary-output-file"
     },
     {
-      "beginString" : "open-input-bytevector"
+      "begin" : "open-input-bytevector"
     },
     {
-      "beginString" : "open-input-file"
+      "begin" : "open-input-file"
     },
     {
-      "beginString" : "open-input-string"
+      "begin" : "open-input-string"
     },
     {
-      "beginString" : "open-output-bytevector"
+      "begin" : "open-output-bytevector"
     },
     {
-      "beginString" : "open-output-file"
+      "begin" : "open-output-file"
     },
     {
-      "beginString" : "open-output-string"
+      "begin" : "open-output-string"
     },
     {
-      "beginString" : "output-port-open?"
+      "begin" : "output-port-open?"
     },
     {
-      "beginString" : "output-port?"
+      "begin" : "output-port?"
     },
     {
-      "beginString" : "pair?"
+      "begin" : "pair?"
     },
     {
-      "beginString" : "pare?"
+      "begin" : "pare?"
     },
     {
-      "beginString" : "partition"
+      "begin" : "partition"
     },
     {
-      "beginString" : "peek-char"
+      "begin" : "peek-char"
     },
     {
-      "beginString" : "peek-u8"
+      "begin" : "peek-u8"
     },
     {
-      "beginString" : "port?"
+      "begin" : "port?"
     },
     {
-      "beginString" : "positive?"
+      "begin" : "positive?"
     },
     {
-      "beginString" : "procedure?"
+      "begin" : "procedure?"
     },
     {
-      "beginString" : "promise?"
+      "begin" : "promise?"
     },
     {
-      "beginString" : "quotient"
+      "begin" : "quotient"
     },
     {
-      "beginString" : "raise"
+      "begin" : "raise"
     },
     {
-      "beginString" : "rational?"
+      "begin" : "rational?"
     },
     {
-      "beginString" : "rationalize"
+      "begin" : "rationalize"
     },
     {
-      "beginString" : "read"
+      "begin" : "read"
     },
     {
-      "beginString" : "read-bytevector"
+      "begin" : "read-bytevector"
     },
     {
-      "beginString" : "read-bytevector?"
+      "begin" : "read-bytevector?"
     },
     {
-      "beginString" : "read-char"
+      "begin" : "read-char"
     },
     {
-      "beginString" : "read-error?"
+      "begin" : "read-error?"
     },
     {
-      "beginString" : "read-line"
+      "begin" : "read-line"
     },
     {
-      "beginString" : "read-string"
+      "begin" : "read-string"
     },
     {
-      "beginString" : "read-u8"
+      "begin" : "read-u8"
     },
     {
-      "beginString" : "real-part"
+      "begin" : "real-part"
     },
     {
-      "beginString" : "real?"
+      "begin" : "real?"
     },
     {
-      "beginString" : "remainder"
+      "begin" : "remainder"
     },
     {
-      "beginString" : "remove"
+      "begin" : "remove"
     },
     {
-      "beginString" : "remp"
+      "begin" : "remp"
     },
     {
-      "beginString" : "remq"
+      "begin" : "remq"
     },
     {
-      "beginString" : "remv"
+      "begin" : "remv"
     },
     {
-      "beginString" : "reverse"
+      "begin" : "reverse"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "scheme-report-environment"
+      "begin" : "scheme-report-environment"
     },
     {
-      "beginString" : "set-car!"
+      "begin" : "set-car!"
     },
     {
-      "beginString" : "set-cdr!"
+      "begin" : "set-cdr!"
     },
     {
-      "beginString" : "set-kar!"
+      "begin" : "set-kar!"
     },
     {
-      "beginString" : "setcar"
+      "begin" : "setcar"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "string->list"
+      "begin" : "string->list"
     },
     {
-      "beginString" : "string->number"
+      "begin" : "string->number"
     },
     {
-      "beginString" : "string->symbol"
+      "begin" : "string->symbol"
     },
     {
-      "beginString" : "string->utf8"
+      "begin" : "string->utf8"
     },
     {
-      "beginString" : "string->vector"
+      "begin" : "string->vector"
     },
     {
-      "beginString" : "string-append"
+      "begin" : "string-append"
     },
     {
-      "beginString" : "string-ci-hash"
+      "begin" : "string-ci-hash"
     },
     {
-      "beginString" : "string-ci<=?"
+      "begin" : "string-ci<=?"
     },
     {
-      "beginString" : "string-ci<?"
+      "begin" : "string-ci<?"
     },
     {
-      "beginString" : "string-ci=?"
+      "begin" : "string-ci=?"
     },
     {
-      "beginString" : "string-ci>=?"
+      "begin" : "string-ci>=?"
     },
     {
-      "beginString" : "string-ci>?"
+      "begin" : "string-ci>?"
     },
     {
-      "beginString" : "string-copy"
+      "begin" : "string-copy"
     },
     {
-      "beginString" : "string-copy!"
+      "begin" : "string-copy!"
     },
     {
-      "beginString" : "string-downcase"
+      "begin" : "string-downcase"
     },
     {
-      "beginString" : "string-fill!"
+      "begin" : "string-fill!"
     },
     {
-      "beginString" : "string-foldcase"
+      "begin" : "string-foldcase"
     },
     {
-      "beginString" : "string-for-each"
+      "begin" : "string-for-each"
     },
     {
-      "beginString" : "string-hash"
+      "begin" : "string-hash"
     },
     {
-      "beginString" : "string-length"
+      "begin" : "string-length"
     },
     {
-      "beginString" : "string-map"
+      "begin" : "string-map"
     },
     {
-      "beginString" : "string-ref"
+      "begin" : "string-ref"
     },
     {
-      "beginString" : "string-set!"
+      "begin" : "string-set!"
     },
     {
-      "beginString" : "string<=?"
+      "begin" : "string<=?"
     },
     {
-      "beginString" : "string<?"
+      "begin" : "string<?"
     },
     {
-      "beginString" : "string=?"
+      "begin" : "string=?"
     },
     {
-      "beginString" : "string>=?"
+      "begin" : "string>=?"
     },
     {
-      "beginString" : "string>?"
+      "begin" : "string>?"
     },
     {
-      "beginString" : "string?"
+      "begin" : "string?"
     },
     {
-      "beginString" : "substring"
+      "begin" : "substring"
     },
     {
-      "beginString" : "symbol->string"
+      "begin" : "symbol->string"
     },
     {
-      "beginString" : "symbol-hash"
+      "begin" : "symbol-hash"
     },
     {
-      "beginString" : "symbol=?"
+      "begin" : "symbol=?"
     },
     {
-      "beginString" : "symbol?"
+      "begin" : "symbol?"
     },
     {
-      "beginString" : "tan"
+      "begin" : "tan"
     },
     {
-      "beginString" : "textual-port?"
+      "begin" : "textual-port?"
     },
     {
-      "beginString" : "transcript-off"
+      "begin" : "transcript-off"
     },
     {
-      "beginString" : "transcript-on"
+      "begin" : "transcript-on"
     },
     {
-      "beginString" : "truncate"
+      "begin" : "truncate"
     },
     {
-      "beginString" : "truncate-quotient"
+      "begin" : "truncate-quotient"
     },
     {
-      "beginString" : "truncate-remainder"
+      "begin" : "truncate-remainder"
     },
     {
-      "beginString" : "truncate/"
+      "begin" : "truncate/"
     },
     {
-      "beginString" : "u8-ready"
+      "begin" : "u8-ready"
     },
     {
-      "beginString" : "utf8->string"
+      "begin" : "utf8->string"
     },
     {
-      "beginString" : "values"
+      "begin" : "values"
     },
     {
-      "beginString" : "vector"
+      "begin" : "vector"
     },
     {
-      "beginString" : "vector->list"
+      "begin" : "vector->list"
     },
     {
-      "beginString" : "vector->string"
+      "begin" : "vector->string"
     },
     {
-      "beginString" : "vector-append"
+      "begin" : "vector-append"
     },
     {
-      "beginString" : "vector-copy"
+      "begin" : "vector-copy"
     },
     {
-      "beginString" : "vector-copy!"
+      "begin" : "vector-copy!"
     },
     {
-      "beginString" : "vector-fill!"
+      "begin" : "vector-fill!"
     },
     {
-      "beginString" : "vector-for-each"
+      "begin" : "vector-for-each"
     },
     {
-      "beginString" : "vector-length"
+      "begin" : "vector-length"
     },
     {
-      "beginString" : "vector-map"
+      "begin" : "vector-map"
     },
     {
-      "beginString" : "vector-ref"
+      "begin" : "vector-ref"
     },
     {
-      "beginString" : "vector-set!"
+      "begin" : "vector-set!"
     },
     {
-      "beginString" : "vector?"
+      "begin" : "vector?"
     },
     {
-      "beginString" : "with-exception-handler"
+      "begin" : "with-exception-handler"
     },
     {
-      "beginString" : "with-input-from-file"
+      "begin" : "with-input-from-file"
     },
     {
-      "beginString" : "with-output-to-file"
+      "begin" : "with-output-to-file"
     },
     {
-      "beginString" : "write"
+      "begin" : "write"
     },
     {
-      "beginString" : "write-bytevector"
+      "begin" : "write-bytevector"
     },
     {
-      "beginString" : "write-char"
+      "begin" : "write-char"
     },
     {
-      "beginString" : "write-shared"
+      "begin" : "write-shared"
     },
     {
-      "beginString" : "write-simple"
+      "begin" : "write-simple"
     },
     {
-      "beginString" : "write-string"
+      "begin" : "write-string"
     },
     {
-      "beginString" : "write-u8"
+      "begin" : "write-u8"
     },
     {
-      "beginString" : "zero?"
+      "begin" : "zero?"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "=>"
+      "begin" : "=>"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "begin"
+      "begin" : "begin"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "case-lambda"
+      "begin" : "case-lambda"
     },
     {
-      "beginString" : "cond"
+      "begin" : "cond"
     },
     {
-      "beginString" : "cond-expand"
+      "begin" : "cond-expand"
     },
     {
-      "beginString" : "define"
+      "begin" : "define"
     },
     {
-      "beginString" : "define-library"
+      "begin" : "define-library"
     },
     {
-      "beginString" : "define-record-type"
+      "begin" : "define-record-type"
     },
     {
-      "beginString" : "define-syntax"
+      "begin" : "define-syntax"
     },
     {
-      "beginString" : "delay"
+      "begin" : "delay"
     },
     {
-      "beginString" : "delay-force"
+      "begin" : "delay-force"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "except"
+      "begin" : "except"
     },
     {
-      "beginString" : "export"
+      "begin" : "export"
     },
     {
-      "beginString" : "fields"
+      "begin" : "fields"
     },
     {
-      "beginString" : "force"
+      "begin" : "force"
     },
     {
-      "beginString" : "guard"
+      "begin" : "guard"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "include"
+      "begin" : "include"
     },
     {
-      "beginString" : "include-ci"
+      "begin" : "include-ci"
     },
     {
-      "beginString" : "include-library-declarations"
+      "begin" : "include-library-declarations"
     },
     {
-      "beginString" : "kar"
+      "begin" : "kar"
     },
     {
-      "beginString" : "kdr"
+      "begin" : "kdr"
     },
     {
-      "beginString" : "kons"
+      "begin" : "kons"
     },
     {
-      "beginString" : "lambda"
+      "begin" : "lambda"
     },
     {
-      "beginString" : "let"
+      "begin" : "let"
     },
     {
-      "beginString" : "let*"
+      "begin" : "let*"
     },
     {
-      "beginString" : "let-syntax"
+      "begin" : "let-syntax"
     },
     {
-      "beginString" : "letrec"
+      "begin" : "letrec"
     },
     {
-      "beginString" : "letrec-syntax"
+      "begin" : "letrec-syntax"
     },
     {
-      "beginString" : "library"
+      "begin" : "library"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "only"
+      "begin" : "only"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "parameterize"
+      "begin" : "parameterize"
     },
     {
-      "beginString" : "prefix"
+      "begin" : "prefix"
     },
     {
-      "beginString" : "protocol"
+      "begin" : "protocol"
     },
     {
-      "beginString" : "quasiquote"
+      "begin" : "quasiquote"
     },
     {
-      "beginString" : "quote"
+      "begin" : "quote"
     },
     {
-      "beginString" : "rename"
+      "begin" : "rename"
     },
     {
-      "beginString" : "set!"
+      "begin" : "set!"
     },
     {
-      "beginString" : "syntax-error"
+      "begin" : "syntax-error"
     },
     {
-      "beginString" : "syntax-rules"
+      "begin" : "syntax-rules"
     },
     {
-      "beginString" : "unless"
+      "begin" : "unless"
     },
     {
-      "beginString" : "unquote"
+      "begin" : "unquote"
     },
     {
-      "beginString" : "unquote-splicing"
+      "begin" : "unquote-splicing"
     },
     {
-      "beginString" : "when"
+      "begin" : "when"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "#[0-9a-f]+\\b",
+      "begin" : "#[0-9a-f]+\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b(#x(#[ie])?|(#[ie])?#x)([-+]?[0-9a-f][-+0-9a-f/|@.iesfdl]*)\\b",
+      "begin" : "\\b(#x(#[ie])?|(#[ie])?#x)([-+]?[0-9a-f][-+0-9a-f/|@.iesfdl]*)\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b((#[bod])?(#[ie])?|(#[ie])?(#[bod])?)([-+]?[0-9][-+0-9/|@.iesfdl]*)\\b",
+      "begin" : "\\b((#[bod])?(#[ie])?|(#[ie])?(#[bod])?)([-+]?[0-9][-+0-9/|@.iesfdl]*)\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[+-]?(inf|nan)\\.0\\b",
+      "begin" : "\\b[+-]?(inf|nan)\\.0\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\.[0-9]+\\b",
+      "begin" : "\\b\\.[0-9]+\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\"",
+      "begin" : "\"",
+      "end" : "\"",
       "isMultiline" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "#!fold-case"
+      "begin" : "#!fold-case"
     },
     {
-      "beginString" : "#!no-fold-case"
+      "begin" : "#!no-fold-case"
     },
     {
-      "beginString" : "#\\!\\S+",
+      "begin" : "#\\!\\S+",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "#(",
-      "endString" : ")",
+      "begin" : "#(",
+      "end" : ")",
       "isMultiline" : true
     },
     {
-      "beginString" : "#f",
+      "begin" : "#f",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#t",
+      "begin" : "#t",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#u8(",
-      "endString" : ")",
+      "begin" : "#u8(",
+      "end" : ")",
       "isMultiline" : true
     },
     {
-      "beginString" : "bsd"
+      "begin" : "bsd"
     },
     {
-      "beginString" : "clr"
+      "begin" : "clr"
     },
     {
-      "beginString" : "darwin"
+      "begin" : "darwin"
     },
     {
-      "beginString" : "exact-closed"
+      "begin" : "exact-closed"
     },
     {
-      "beginString" : "exact-complex"
+      "begin" : "exact-complex"
     },
     {
-      "beginString" : "freebsd"
+      "begin" : "freebsd"
     },
     {
-      "beginString" : "full-unicode"
+      "begin" : "full-unicode"
     },
     {
-      "beginString" : "gnu-linux"
+      "begin" : "gnu-linux"
     },
     {
-      "beginString" : "i386"
+      "begin" : "i386"
     },
     {
-      "beginString" : "ieee-float"
+      "begin" : "ieee-float"
     },
     {
-      "beginString" : "ilp32"
+      "begin" : "ilp32"
     },
     {
-      "beginString" : "ilp64"
+      "begin" : "ilp64"
     },
     {
-      "beginString" : "jvm"
+      "begin" : "jvm"
     },
     {
-      "beginString" : "llvm"
+      "begin" : "llvm"
     },
     {
-      "beginString" : "lp64"
+      "begin" : "lp64"
     },
     {
-      "beginString" : "pcc"
+      "begin" : "pcc"
     },
     {
-      "beginString" : "r5rs"
+      "begin" : "r5rs"
     },
     {
-      "beginString" : "r6rs"
+      "begin" : "r6rs"
     },
     {
-      "beginString" : "r7rs"
+      "begin" : "r7rs"
     },
     {
-      "beginString" : "ratios"
+      "begin" : "ratios"
     },
     {
-      "beginString" : "solaris"
+      "begin" : "solaris"
     },
     {
-      "beginString" : "sparc"
+      "begin" : "sparc"
     },
     {
-      "beginString" : "unix"
+      "begin" : "unix"
     },
     {
-      "beginString" : "windows"
+      "begin" : "windows"
     },
     {
-      "beginString" : "x86-64"
+      "begin" : "x86-64"
     }
   ]
 }

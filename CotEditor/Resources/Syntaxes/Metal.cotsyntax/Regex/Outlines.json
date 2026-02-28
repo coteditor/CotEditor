@@ -1,12 +1,12 @@
 [
   {
-    "beginString" : "\\b(kernel|vertex|fragment|compute)\\s+\\w+\\s+(\\w+)\\s*\\(",
-    "keyString" : "$1 function: $2",
+    "pattern" : "\\b(kernel|vertex|fragment|compute)\\s+\\w+\\s+(\\w+)\\s*\\(",
+    "template" : "$1 function: $2",
     "kind" : "function"
   },
   {
-    "beginString" : "\\bstruct\\s+(\\w+)",
-    "keyString" : "struct: $1",
+    "pattern" : "\\bstruct\\s+(\\w+)",
+    "template" : "struct: $1",
     "kind" : "container"
   }
 ]

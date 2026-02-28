@@ -1,7 +1,7 @@
 [
   {
-    "beginString" : "^/\\* Begin (.+) section \\*/$",
-    "keyString" : "$1",
+    "pattern" : "^/\\* Begin (.+) section \\*/$",
+    "template" : "$1",
     "kind" : "mark"
   }
 ]

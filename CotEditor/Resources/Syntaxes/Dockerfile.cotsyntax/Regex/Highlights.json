@@ -1,73 +1,73 @@
 {
   "characters" : [
     {
-      "beginString" : "\\"
+      "begin" : "\\"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "ADD"
+      "begin" : "ADD"
     },
     {
-      "beginString" : "ARG"
+      "begin" : "ARG"
     },
     {
-      "beginString" : "CMD"
+      "begin" : "CMD"
     },
     {
-      "beginString" : "COPY"
+      "begin" : "COPY"
     },
     {
-      "beginString" : "ENTRYPOINT"
+      "begin" : "ENTRYPOINT"
     },
     {
-      "beginString" : "ENV"
+      "begin" : "ENV"
     },
     {
-      "beginString" : "EXPOSE"
+      "begin" : "EXPOSE"
     },
     {
-      "beginString" : "FROM"
+      "begin" : "FROM"
     },
     {
-      "beginString" : "HEALTHCHECK"
+      "begin" : "HEALTHCHECK"
     },
     {
-      "beginString" : "LABEL"
+      "begin" : "LABEL"
     },
     {
-      "beginString" : "MAINTAINER"
+      "begin" : "MAINTAINER"
     },
     {
-      "beginString" : "ONBUILD"
+      "begin" : "ONBUILD"
     },
     {
-      "beginString" : "RUN"
+      "begin" : "RUN"
     },
     {
-      "beginString" : "SHELL"
+      "begin" : "SHELL"
     },
     {
-      "beginString" : "STOPSIGNAL"
+      "begin" : "STOPSIGNAL"
     },
     {
-      "beginString" : "USER"
+      "begin" : "USER"
     },
     {
-      "beginString" : "VOLUME"
+      "begin" : "VOLUME"
     },
     {
-      "beginString" : "WORKDIR"
+      "begin" : "WORKDIR"
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ]
 }

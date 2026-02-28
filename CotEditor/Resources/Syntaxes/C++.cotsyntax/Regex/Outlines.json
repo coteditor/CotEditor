@@ -1,50 +1,50 @@
 [
   {
-    "beginString" : "^([\\t ]*)(\\w+::\\w+)\\s*\\(([\\s\\w*&,\\[\\]]*)\\)",
+    "pattern" : "^([\\t ]*)(\\w+::\\w+)\\s*\\(([\\s\\w*&,\\[\\]]*)\\)",
     "description" : "constructor",
-    "keyString" : "$1$2($3)",
+    "template" : "$1$2($3)",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)(\\w+::~\\w+)\\s*\\(\\)",
+    "pattern" : "^([\\t ]*)(\\w+::~\\w+)\\s*\\(\\)",
     "description" : "deconstructor",
-    "keyString" : "$1$2()",
+    "template" : "$1$2()",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)[\\t ]*(?=\\{|//|$)",
+    "pattern" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)[\\t ]*(?=\\{|//|$)",
     "description" : "function",
-    "keyString" : "$1 $3($4)",
+    "template" : "$1 $3($4)",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+::\\w+)\\(([\\s\\w*&,]*)\\)[\\t ]*(?=\\{|//|$)",
+    "pattern" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+::\\w+)\\(([\\s\\w*&,]*)\\)[\\t ]*(?=\\{|//|$)",
     "description" : "method",
-    "keyString" : "$1 $3($4)",
+    "template" : "$1 $3($4)",
     "kind" : "function"
   },
   {
-    "beginString" : "^class[\\t ]+(\\w+)",
+    "pattern" : "^class[\\t ]+(\\w+)",
     "description" : "class",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "container"
   },
   {
-    "beginString" : "^enum[\\t ]+(\\w+)",
+    "pattern" : "^enum[\\t ]+(\\w+)",
     "description" : "enum",
-    "keyString" : "enum $1",
+    "template" : "enum $1",
     "kind" : "container"
   },
   {
-    "beginString" : "^struct[\\t ]+(\\w+)",
+    "pattern" : "^struct[\\t ]+(\\w+)",
     "description" : "struct",
-    "keyString" : "struct $1",
+    "template" : "struct $1",
     "kind" : "container"
   },
   {
-    "beginString" : "^union[\\t ]+(\\w+)",
+    "pattern" : "^union[\\t ]+(\\w+)",
     "description" : "union",
-    "keyString" : "union $1",
+    "template" : "union $1",
     "kind" : "container"
   }
 ]

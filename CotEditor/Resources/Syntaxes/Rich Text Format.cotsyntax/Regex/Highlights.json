@@ -1,108 +1,108 @@
 {
   "attributes" : [
     {
-      "beginString" : "(?<=\\\\)[a-z0-9]+",
+      "begin" : "(?<=\\\\)[a-z0-9]+",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "\\\\'[0-9a-f]{2}",
+      "begin" : "\\\\'[0-9a-f]{2}",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\-",
+      "begin" : "\\\\-",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\\\\\",
+      "begin" : "\\\\\\\\",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\_",
+      "begin" : "\\\\_",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\u[0-9]+",
+      "begin" : "\\\\u[0-9]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\uc[0-9]+",
+      "begin" : "\\\\uc[0-9]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\~",
+      "begin" : "\\\\~",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bullet"
+      "begin" : "\\bullet"
     },
     {
-      "beginString" : "\\emdash"
+      "begin" : "\\emdash"
     },
     {
-      "beginString" : "\\emspace"
+      "begin" : "\\emspace"
     },
     {
-      "beginString" : "\\endash"
+      "begin" : "\\endash"
     },
     {
-      "beginString" : "\\enspace"
+      "begin" : "\\enspace"
     },
     {
-      "beginString" : "\\ldblquote"
+      "begin" : "\\ldblquote"
     },
     {
-      "beginString" : "\\lquote"
+      "begin" : "\\lquote"
     },
     {
-      "beginString" : "\\rdblquote"
+      "begin" : "\\rdblquote"
     },
     {
-      "beginString" : "\\rquote"
+      "begin" : "\\rquote"
     },
     {
-      "beginString" : "\\tab"
+      "begin" : "\\tab"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<!\\\\);",
+      "begin" : "(?<!\\\\);",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\\\)\\{",
+      "begin" : "(?<!\\\\)\\{",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\\\)\\}",
+      "begin" : "(?<!\\\\)\\}",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\\\",
+      "begin" : "\\\\",
       "regularExpression" : true
     },
     {
-      "beginString" : "{\\*"
+      "begin" : "{\\*"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<=\\\\[a-zA-Z]{1,16})-?[0-9]+",
+      "begin" : "(?<=\\\\[a-zA-Z]{1,16})-?[0-9]+",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "(?<=HYPERLINK )\"",
-      "endString" : "\"",
+      "begin" : "(?<=HYPERLINK )\"",
+      "end" : "\"",
       "regularExpression" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "(?<=\\\\fldinst[ {]) *[A-Z][A-Z0-9]*",
+      "begin" : "(?<=\\\\fldinst[ {]) *[A-Z][A-Z0-9]*",
       "regularExpression" : true
     }
   ]

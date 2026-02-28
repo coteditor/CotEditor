@@ -1,101 +1,101 @@
 {
   "attributes" : [
     {
-      "beginString" : "#?:[^[:space:],)]+",
+      "begin" : "#?:[^[:space:],)]+",
       "regularExpression" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "#'",
+      "begin" : "#'",
       "regularExpression" : true
     },
     {
-      "beginString" : "#\\"
+      "begin" : "#\\"
     },
     {
-      "beginString" : "#\\\\[^[:space:],)]+",
+      "begin" : "#\\\\[^[:space:],)]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "#\\backspace",
+      "begin" : "#\\backspace",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#\\linefeed",
+      "begin" : "#\\linefeed",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#\\newline",
+      "begin" : "#\\newline",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#\\page",
+      "begin" : "#\\page",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#\\return",
+      "begin" : "#\\return",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#\\rubout",
+      "begin" : "#\\rubout",
       "ignoreCase" : true
     },
     {
-      "beginString" : "#\\tab",
+      "begin" : "#\\tab",
       "ignoreCase" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=\\()[^[:space:],)]+",
+      "begin" : "(?<=\\()[^[:space:],)]+",
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "#b[01][01_]*\\b",
+      "begin" : "#b[01][01_]*\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "#o[0-7][0-7_]*\\b",
+      "begin" : "#o[0-7][0-7_]*\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "#x[0-9a-f][0-9a-f_]*\\b",
+      "begin" : "#x[0-9a-f][0-9a-f_]*\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])[0-9][0-9./_]*([ed][-+]?\\d+)?\\b",
+      "begin" : "(\\b|[-+])[0-9][0-9./_]*([ed][-+]?\\d+)?\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\"",
+      "begin" : "\"",
+      "end" : "\"",
       "isMultiline" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "f",
+      "begin" : "f",
       "ignoreCase" : true
     },
     {
-      "beginString" : "nil",
+      "begin" : "nil",
       "ignoreCase" : true
     },
     {
-      "beginString" : "pi",
+      "begin" : "pi",
       "ignoreCase" : true
     },
     {
-      "beginString" : "t",
+      "begin" : "t",
       "ignoreCase" : true
     }
   ]

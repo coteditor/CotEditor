@@ -1,203 +1,203 @@
 {
   "characters" : [
     {
-      "beginString" : "/",
+      "begin" : "/",
       "description" : "regular expression",
-      "endString" : "/"
+      "end" : "/"
     }
   ],
   "commands" : [
     {
-      "beginString" : "atan2"
+      "begin" : "atan2"
     },
     {
-      "beginString" : "close"
+      "begin" : "close"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "getline"
+      "begin" : "getline"
     },
     {
-      "beginString" : "gsub"
+      "begin" : "gsub"
     },
     {
-      "beginString" : "index"
+      "begin" : "index"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "length"
+      "begin" : "length"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "match"
+      "begin" : "match"
     },
     {
-      "beginString" : "print"
+      "begin" : "print"
     },
     {
-      "beginString" : "rand"
+      "begin" : "rand"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "split"
+      "begin" : "split"
     },
     {
-      "beginString" : "sprintf"
+      "begin" : "sprintf"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "srand"
+      "begin" : "srand"
     },
     {
-      "beginString" : "sub"
+      "begin" : "sub"
     },
     {
-      "beginString" : "substr"
+      "begin" : "substr"
     },
     {
-      "beginString" : "system"
+      "begin" : "system"
     },
     {
-      "beginString" : "tolower"
+      "begin" : "tolower"
     },
     {
-      "beginString" : "toupper"
+      "begin" : "toupper"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "BEGIN"
+      "begin" : "BEGIN"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "delete"
+      "begin" : "delete"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "END"
+      "begin" : "END"
     },
     {
-      "beginString" : "exit"
+      "begin" : "exit"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "function"
+      "begin" : "function"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "next"
+      "begin" : "next"
     },
     {
-      "beginString" : "nextfile"
+      "begin" : "nextfile"
     },
     {
-      "beginString" : "print"
+      "begin" : "print"
     },
     {
-      "beginString" : "printf"
+      "begin" : "printf"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<!\\$|\\w)[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?",
+      "begin" : "(?<!\\$|\\w)[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "variables" : [
     {
-      "beginString" : "\\$\\d\\b",
+      "begin" : "\\$\\d\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "ARGC"
+      "begin" : "ARGC"
     },
     {
-      "beginString" : "ARGV"
+      "begin" : "ARGV"
     },
     {
-      "beginString" : "CONVFMT"
+      "begin" : "CONVFMT"
     },
     {
-      "beginString" : "ENVIRON"
+      "begin" : "ENVIRON"
     },
     {
-      "beginString" : "FILENAME"
+      "begin" : "FILENAME"
     },
     {
-      "beginString" : "FNR"
+      "begin" : "FNR"
     },
     {
-      "beginString" : "FS"
+      "begin" : "FS"
     },
     {
-      "beginString" : "NF"
+      "begin" : "NF"
     },
     {
-      "beginString" : "NR"
+      "begin" : "NR"
     },
     {
-      "beginString" : "OFMT"
+      "begin" : "OFMT"
     },
     {
-      "beginString" : "OFS"
+      "begin" : "OFS"
     },
     {
-      "beginString" : "ORS"
+      "begin" : "ORS"
     },
     {
-      "beginString" : "RLENGTH"
+      "begin" : "RLENGTH"
     },
     {
-      "beginString" : "RS"
+      "begin" : "RS"
     },
     {
-      "beginString" : "RSTART"
+      "begin" : "RSTART"
     },
     {
-      "beginString" : "SUBSEP"
+      "begin" : "SUBSEP"
     }
   ]
 }

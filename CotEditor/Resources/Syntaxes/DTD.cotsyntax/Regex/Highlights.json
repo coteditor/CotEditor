@@ -1,136 +1,136 @@
 {
   "attributes" : [
     {
-      "beginString" : "(?<=\\s)[[:alnum:]_\\-.:]+(?=\\s*=)",
+      "begin" : "(?<=\\s)[[:alnum:]_\\-.:]+(?=\\s*=)",
       "regularExpression" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "%[^&%\"]+;(?=[^<>]*[\\[>])",
+      "begin" : "%[^&%\"]+;(?=[^<>]*[\\[>])",
       "regularExpression" : true
     },
     {
-      "beginString" : "&\\S+?;",
+      "begin" : "&\\S+?;",
       "regularExpression" : true
     },
     {
-      "beginString" : "<![CDATA[",
-      "endString" : "]]>",
+      "begin" : "<![CDATA[",
+      "end" : "]]>",
       "isMultiline" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "(?<=<)\\?[[:alnum:]_\\-.:]+",
+      "begin" : "(?<=<)\\?[[:alnum:]_\\-.:]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\?(?=>)",
+      "begin" : "\\?(?=>)",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
+      "begin" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=[\\r\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\r\\n\\t )|,]?[^<>\\[]*[>\\[])",
+      "begin" : "(?<=[\\r\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\r\\n\\t )|,]?[^<>\\[]*[>\\[])",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
+      "begin" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=NDATA)\\s+[[:alnum:]_\\-.]+(?=\\s*>)",
+      "begin" : "(?<=NDATA)\\s+[[:alnum:]_\\-.]+(?=\\s*>)",
       "regularExpression" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "(?<=<)![A-Z]*",
+      "begin" : "(?<=<)![A-Z]*",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "(?<=[(|])#PCDATA(?=\\b)",
+      "begin" : "(?<=[(|])#PCDATA(?=\\b)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\[)\\s*(?:IGNORE|INCLUDE)\\s*(?=\\[)",
+      "begin" : "(?<=\\[)\\s*(?:IGNORE|INCLUDE)\\s*(?=\\[)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)#(?:FIXED|IMPLIED|REQUIRED)(?=[^<>]*>)",
+      "begin" : "(?<=\\s)#(?:FIXED|IMPLIED|REQUIRED)(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)(?:ANY|EMPTY)(?=[^<>]*>)",
+      "begin" : "(?<=\\s)(?:ANY|EMPTY)(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)(?:PUBLIC|SYSTEM)(?=\\s+[\"'])",
+      "begin" : "(?<=\\s)(?:PUBLIC|SYSTEM)(?=\\s+[\"'])",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^<>]*>)",
+      "begin" : "(?<=\\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^<>]*>)",
       "description" : "for SGML DTD",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)CDATA(?=[^<>]*>)",
+      "begin" : "(?<=\\s)CDATA(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)ENTIT(?:Y|IES)(?=[^<>]*>)",
+      "begin" : "(?<=\\s)ENTIT(?:Y|IES)(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)ID(?=[^<>]*>)",
+      "begin" : "(?<=\\s)ID(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)IDREFS?(?=[^<>]*>)",
+      "begin" : "(?<=\\s)IDREFS?(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)NDATA(?=[^<>]*>)",
+      "begin" : "(?<=\\s)NDATA(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)NMTOKENS?(?=[^<>]*>)",
+      "begin" : "(?<=\\s)NMTOKENS?(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)NOTATION(?=[^<>]*>)",
+      "begin" : "(?<=\\s)NOTATION(?=[^<>]*>)",
       "regularExpression" : true
     }
   ],
   "variables" : [
     {
-      "beginString" : "(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)",
+      "begin" : "(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)",
       "description" : "for SGML DTD",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "begin" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\b)[[:alnum:]_\\-.]+:(?=\\w[^<>]*>)",
+      "begin" : "(?<=\\b)[[:alnum:]_\\-.]+:(?=\\w[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
+      "begin" : "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
       "regularExpression" : true
     }
   ]

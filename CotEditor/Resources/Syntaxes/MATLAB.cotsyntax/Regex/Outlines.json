@@ -1,22 +1,22 @@
 [
   {
-    "beginString" : "^([\\t ]*)classdef[\\t ]+(\\(.+\\)[\\t ]+)?(\\w+)",
-    "keyString" : "$1$3",
+    "pattern" : "^([\\t ]*)classdef[\\t ]+(\\(.+\\)[\\t ]+)?(\\w+)",
+    "template" : "$1$3",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)function[\\t ]+(\\w+)\\(",
-    "keyString" : "$1$2",
+    "pattern" : "^([\\t ]*)function[\\t ]+(\\w+)\\(",
+    "template" : "$1$2",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)methods(?:[\\t ]+(\\(.+\\)))?",
-    "keyString" : "$1methods $2",
+    "pattern" : "^([\\t ]*)methods(?:[\\t ]+(\\(.+\\)))?",
+    "template" : "$1methods $2",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)properties(?:[\\t ]+(\\(.+\\)))?",
-    "keyString" : "$1properties $2",
+    "pattern" : "^([\\t ]*)properties(?:[\\t ]+(\\(.+\\)))?",
+    "template" : "$1properties $2",
     "kind" : "value"
   }
 ]

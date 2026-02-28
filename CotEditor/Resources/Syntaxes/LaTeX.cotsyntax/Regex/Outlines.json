@@ -1,32 +1,32 @@
 [
   {
-    "beginString" : "[\\\\¥]chapter\\*?\\{(.*)\\}",
+    "pattern" : "[\\\\¥]chapter\\*?\\{(.*)\\}",
     "description" : "chapter",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "heading"
   },
   {
-    "beginString" : "[\\\\¥]part\\*?\\{(.*)\\}",
+    "pattern" : "[\\\\¥]part\\*?\\{(.*)\\}",
     "description" : "part",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "heading"
   },
   {
-    "beginString" : "[\\\\¥]section\\*?\\{(.*)\\}",
+    "pattern" : "[\\\\¥]section\\*?\\{(.*)\\}",
     "description" : "section",
-    "keyString" : "    $1",
+    "template" : "    $1",
     "kind" : "heading"
   },
   {
-    "beginString" : "[\\\\¥]subsection\\*?\\{(.*)\\}",
+    "pattern" : "[\\\\¥]subsection\\*?\\{(.*)\\}",
     "description" : "subsection",
-    "keyString" : "        $1",
+    "template" : "        $1",
     "kind" : "heading"
   },
   {
-    "beginString" : "[\\\\¥]subsubsection\\*?\\{(.*)\\}",
+    "pattern" : "[\\\\¥]subsubsection\\*?\\{(.*)\\}",
     "description" : "subsubsection",
-    "keyString" : "            $1",
+    "template" : "            $1",
     "kind" : "heading"
   }
 ]

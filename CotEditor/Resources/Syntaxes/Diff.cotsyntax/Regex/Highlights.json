@@ -1,56 +1,56 @@
 {
   "characters" : [
     {
-      "beginString" : "^! .*",
+      "begin" : "^! .*",
       "regularExpression" : true
     },
     {
-      "beginString" : "^!$",
+      "begin" : "^!$",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "^diff -.+",
+      "begin" : "^diff -.+",
       "regularExpression" : true
     },
     {
-      "beginString" : "^index .+",
+      "begin" : "^index .+",
       "regularExpression" : true
     },
     {
-      "beginString" : "^Index: .+(\\R ?=+)?",
+      "begin" : "^Index: .+(\\R ?=+)?",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "^-.*",
+      "begin" : "^-.*",
       "regularExpression" : true
     },
     {
-      "beginString" : "^> .*",
+      "begin" : "^> .*",
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "^@@ ",
-      "endString" : " @@",
+      "begin" : "^@@ ",
+      "end" : " @@",
       "regularExpression" : true
     },
     {
-      "beginString" : "^[0-9,adc]+$",
+      "begin" : "^[0-9,adc]+$",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "^< .*",
+      "begin" : "^< .*",
       "regularExpression" : true
     },
     {
-      "beginString" : "^\\+.*",
+      "begin" : "^\\+.*",
       "regularExpression" : true
     }
   ]

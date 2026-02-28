@@ -1,26 +1,26 @@
 [
   {
-    "beginString" : "^[\\t ]*(elemental )?(pure )?([a-z]+ )?function[\\t ]+[a-z][a-z0-9_]*\\([^)]*\\)",
+    "pattern" : "^[\\t ]*(elemental )?(pure )?([a-z]+ )?function[\\t ]+[a-z][a-z0-9_]*\\([^)]*\\)",
     "ignoreCase" : true,
-    "keyString" : "",
+    "template" : "",
     "kind" : "function"
   },
   {
-    "beginString" : "^[\\t ]*(elemental )?(pure )?subroutine[\\t ]+[a-z].*",
+    "pattern" : "^[\\t ]*(elemental )?(pure )?subroutine[\\t ]+[a-z].*",
     "ignoreCase" : true,
-    "keyString" : "",
+    "template" : "",
     "kind" : "function"
   },
   {
-    "beginString" : "^[\\t ]*module[\\t ]+[a-z].*",
+    "pattern" : "^[\\t ]*module[\\t ]+[a-z].*",
     "ignoreCase" : true,
-    "keyString" : "",
+    "template" : "",
     "kind" : "container"
   },
   {
-    "beginString" : "^[\\t ]*program[\\t ]+[a-z].*",
+    "pattern" : "^[\\t ]*program[\\t ]+[a-z].*",
     "ignoreCase" : true,
-    "keyString" : "",
+    "template" : "",
     "kind" : "container"
   }
 ]

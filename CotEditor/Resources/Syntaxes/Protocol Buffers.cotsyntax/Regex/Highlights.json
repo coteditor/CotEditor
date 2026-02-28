@@ -1,92 +1,92 @@
 {
   "keywords" : [
     {
-      "beginString" : "default"
+      "begin" : "default"
     },
     {
-      "beginString" : "enum"
+      "begin" : "enum"
     },
     {
-      "beginString" : "extend"
+      "begin" : "extend"
     },
     {
-      "beginString" : "extensions"
+      "begin" : "extensions"
     },
     {
-      "beginString" : "group"
+      "begin" : "group"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "map"
+      "begin" : "map"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "message"
+      "begin" : "message"
     },
     {
-      "beginString" : "oneof"
+      "begin" : "oneof"
     },
     {
-      "beginString" : "option"
+      "begin" : "option"
     },
     {
-      "beginString" : "optional"
+      "begin" : "optional"
     },
     {
-      "beginString" : "package"
+      "begin" : "package"
     },
     {
-      "beginString" : "public"
+      "begin" : "public"
     },
     {
-      "beginString" : "repeated"
+      "begin" : "repeated"
     },
     {
-      "beginString" : "required"
+      "begin" : "required"
     },
     {
-      "beginString" : "reserved"
+      "begin" : "reserved"
     },
     {
-      "beginString" : "returns"
+      "begin" : "returns"
     },
     {
-      "beginString" : "rpc"
+      "begin" : "rpc"
     },
     {
-      "beginString" : "service"
+      "begin" : "service"
     },
     {
-      "beginString" : "stream"
+      "begin" : "stream"
     },
     {
-      "beginString" : "syntax"
+      "begin" : "syntax"
     },
     {
-      "beginString" : "to"
+      "begin" : "to"
     },
     {
-      "beginString" : "weak"
+      "begin" : "weak"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "((?<!\\w)|[-+])[0-9]+(\\.[0-9]+)?(e[+-]?[0-9]+)?",
+      "begin" : "((?<!\\w)|[-+])[0-9]+(\\.[0-9]+)?(e[+-]?[0-9]+)?",
       "description" : "float",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0[0-7]*\\b",
+      "begin" : "\\b0[0-7]*\\b",
       "description" : "octal",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-f]+\\b",
+      "begin" : "\\b0x[0-9a-f]+\\b",
       "description" : "hex",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -94,82 +94,82 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "types" : [
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "bytes"
+      "begin" : "bytes"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "enumType"
+      "begin" : "enumType"
     },
     {
-      "beginString" : "fixed32"
+      "begin" : "fixed32"
     },
     {
-      "beginString" : "fixed64"
+      "begin" : "fixed64"
     },
     {
-      "beginString" : "float"
+      "begin" : "float"
     },
     {
-      "beginString" : "int32"
+      "begin" : "int32"
     },
     {
-      "beginString" : "int64"
+      "begin" : "int64"
     },
     {
-      "beginString" : "messageType"
+      "begin" : "messageType"
     },
     {
-      "beginString" : "sfixed32"
+      "begin" : "sfixed32"
     },
     {
-      "beginString" : "sfixed64"
+      "begin" : "sfixed64"
     },
     {
-      "beginString" : "sint32"
+      "begin" : "sint32"
     },
     {
-      "beginString" : "sint64"
+      "begin" : "sint64"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "uint32"
+      "begin" : "uint32"
     },
     {
-      "beginString" : "uint64"
+      "begin" : "uint64"
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "(?<=message|enum|service)[ \\t]+\\w+",
+      "begin" : "(?<=message|enum|service)[ \\t]+\\w+",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[A-Z]\\w+\\b",
+      "begin" : "\\b[A-Z]\\w+\\b",
       "regularExpression" : true
     }
   ]

@@ -1,14 +1,14 @@
 [
   {
-    "beginString" : "^#+[\\t ]*(.*?)[\\t ]*(-|=|#){4,}",
+    "pattern" : "^#+[\\t ]*(.*?)[\\t ]*(-|=|#){4,}",
     "description" : "section",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "mark"
   },
   {
-    "beginString" : "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function",
+    "pattern" : "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function",
     "description" : "function",
-    "keyString" : "function: $1",
+    "template" : "function: $1",
     "kind" : "function"
   }
 ]

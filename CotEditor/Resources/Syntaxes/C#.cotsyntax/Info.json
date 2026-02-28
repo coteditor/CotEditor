@@ -12,7 +12,7 @@
     "author" : "usami-k",
     "description" : "C# 5.0\nkeywords: Statement,Namespace,Preprocessor\ncommands: Query(LINQ)\ntypes: Types\nattributes: Modifiers,MethodParameters,Operator,Conversion,Contextual\nvariables: Access\nvalues: Literal",
     "distributionURL" : "https://coteditor.com",
-    "lastModified" : "2026-01-29",
+    "lastModified" : "2026-02-28",
     "license" : "Same as CotEditor",
     "version" : "2.0.0"
   }

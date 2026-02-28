@@ -1,375 +1,375 @@
 {
   "attributes" : [
     {
-      "beginString" : "arrowhead"
+      "begin" : "arrowhead"
     },
     {
-      "beginString" : "arrowsize"
+      "begin" : "arrowsize"
     },
     {
-      "beginString" : "arrowtail"
+      "begin" : "arrowtail"
     },
     {
-      "beginString" : "bgcolor"
+      "begin" : "bgcolor"
     },
     {
-      "beginString" : "bottomlabel"
+      "begin" : "bottomlabel"
     },
     {
-      "beginString" : "center"
+      "begin" : "center"
     },
     {
-      "beginString" : "clusterrank"
+      "begin" : "clusterrank"
     },
     {
-      "beginString" : "color"
+      "begin" : "color"
     },
     {
-      "beginString" : "comment"
+      "begin" : "comment"
     },
     {
-      "beginString" : "compound"
+      "begin" : "compound"
     },
     {
-      "beginString" : "concentrate"
+      "begin" : "concentrate"
     },
     {
-      "beginString" : "constraint"
+      "begin" : "constraint"
     },
     {
-      "beginString" : "decorate"
+      "begin" : "decorate"
     },
     {
-      "beginString" : "dir"
+      "begin" : "dir"
     },
     {
-      "beginString" : "distortion"
+      "begin" : "distortion"
     },
     {
-      "beginString" : "fillcolor"
+      "begin" : "fillcolor"
     },
     {
-      "beginString" : "fixedsize"
+      "begin" : "fixedsize"
     },
     {
-      "beginString" : "fontcolor"
+      "begin" : "fontcolor"
     },
     {
-      "beginString" : "fontname"
+      "begin" : "fontname"
     },
     {
-      "beginString" : "fontpath"
+      "begin" : "fontpath"
     },
     {
-      "beginString" : "fontsize"
+      "begin" : "fontsize"
     },
     {
-      "beginString" : "group"
+      "begin" : "group"
     },
     {
-      "beginString" : "headlabel"
+      "begin" : "headlabel"
     },
     {
-      "beginString" : "headport"
+      "begin" : "headport"
     },
     {
-      "beginString" : "headURL"
+      "begin" : "headURL"
     },
     {
-      "beginString" : "height"
+      "begin" : "height"
     },
     {
-      "beginString" : "label"
+      "begin" : "label"
     },
     {
-      "beginString" : "labelangle"
+      "begin" : "labelangle"
     },
     {
-      "beginString" : "labelcolor"
+      "begin" : "labelcolor"
     },
     {
-      "beginString" : "labeldistance"
+      "begin" : "labeldistance"
     },
     {
-      "beginString" : "labelfloat"
+      "begin" : "labelfloat"
     },
     {
-      "beginString" : "labelfontname"
+      "begin" : "labelfontname"
     },
     {
-      "beginString" : "labelfontsize"
+      "begin" : "labelfontsize"
     },
     {
-      "beginString" : "labeljust"
+      "begin" : "labeljust"
     },
     {
-      "beginString" : "labelloc"
+      "begin" : "labelloc"
     },
     {
-      "beginString" : "layer"
+      "begin" : "layer"
     },
     {
-      "beginString" : "layers"
+      "begin" : "layers"
     },
     {
-      "beginString" : "lhead"
+      "begin" : "lhead"
     },
     {
-      "beginString" : "ltail"
+      "begin" : "ltail"
     },
     {
-      "beginString" : "margin"
+      "begin" : "margin"
     },
     {
-      "beginString" : "mclimit"
+      "begin" : "mclimit"
     },
     {
-      "beginString" : "minlen"
+      "begin" : "minlen"
     },
     {
-      "beginString" : "nodesep"
+      "begin" : "nodesep"
     },
     {
-      "beginString" : "nslimit"
+      "begin" : "nslimit"
     },
     {
-      "beginString" : "nslimit1"
+      "begin" : "nslimit1"
     },
     {
-      "beginString" : "ordering"
+      "begin" : "ordering"
     },
     {
-      "beginString" : "orientation"
+      "begin" : "orientation"
     },
     {
-      "beginString" : "page"
+      "begin" : "page"
     },
     {
-      "beginString" : "pagedir"
+      "begin" : "pagedir"
     },
     {
-      "beginString" : "peripheries"
+      "begin" : "peripheries"
     },
     {
-      "beginString" : "quantum"
+      "begin" : "quantum"
     },
     {
-      "beginString" : "rank"
+      "begin" : "rank"
     },
     {
-      "beginString" : "rankdir"
+      "begin" : "rankdir"
     },
     {
-      "beginString" : "ranksep"
+      "begin" : "ranksep"
     },
     {
-      "beginString" : "ratio"
+      "begin" : "ratio"
     },
     {
-      "beginString" : "regular"
+      "begin" : "regular"
     },
     {
-      "beginString" : "remincross"
+      "begin" : "remincross"
     },
     {
-      "beginString" : "rotate"
+      "begin" : "rotate"
     },
     {
-      "beginString" : "samehead"
+      "begin" : "samehead"
     },
     {
-      "beginString" : "sametail"
+      "begin" : "sametail"
     },
     {
-      "beginString" : "samplepoints"
+      "begin" : "samplepoints"
     },
     {
-      "beginString" : "searchsize"
+      "begin" : "searchsize"
     },
     {
-      "beginString" : "shape"
+      "begin" : "shape"
     },
     {
-      "beginString" : "shapefile"
+      "begin" : "shapefile"
     },
     {
-      "beginString" : "sides"
+      "begin" : "sides"
     },
     {
-      "beginString" : "size"
+      "begin" : "size"
     },
     {
-      "beginString" : "skew"
+      "begin" : "skew"
     },
     {
-      "beginString" : "splines"
+      "begin" : "splines"
     },
     {
-      "beginString" : "style"
+      "begin" : "style"
     },
     {
-      "beginString" : "taillabel"
+      "begin" : "taillabel"
     },
     {
-      "beginString" : "tailport"
+      "begin" : "tailport"
     },
     {
-      "beginString" : "tailURL"
+      "begin" : "tailURL"
     },
     {
-      "beginString" : "toplabel"
+      "begin" : "toplabel"
     },
     {
-      "beginString" : "URL"
+      "begin" : "URL"
     },
     {
-      "beginString" : "weight"
+      "begin" : "weight"
     },
     {
-      "beginString" : "width"
+      "begin" : "width"
     },
     {
-      "beginString" : "z"
+      "begin" : "z"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(<-|->|--)",
+      "begin" : "(<-|->|--)",
       "regularExpression" : true
     },
     {
-      "beginString" : "digraph"
+      "begin" : "digraph"
     },
     {
-      "beginString" : "edge"
+      "begin" : "edge"
     },
     {
-      "beginString" : "graph"
+      "begin" : "graph"
     },
     {
-      "beginString" : "node"
+      "begin" : "node"
     },
     {
-      "beginString" : "strict"
+      "begin" : "strict"
     },
     {
-      "beginString" : "subgraph"
+      "begin" : "subgraph"
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "variables" : [
     {
-      "beginString" : "box"
+      "begin" : "box"
     },
     {
-      "beginString" : "box3d"
+      "begin" : "box3d"
     },
     {
-      "beginString" : "circle"
+      "begin" : "circle"
     },
     {
-      "beginString" : "component"
+      "begin" : "component"
     },
     {
-      "beginString" : "diamond"
+      "begin" : "diamond"
     },
     {
-      "beginString" : "doublecircle"
+      "begin" : "doublecircle"
     },
     {
-      "beginString" : "doubleoctagon"
+      "begin" : "doubleoctagon"
     },
     {
-      "beginString" : "egg"
+      "begin" : "egg"
     },
     {
-      "beginString" : "ellipse"
+      "begin" : "ellipse"
     },
     {
-      "beginString" : "folder"
+      "begin" : "folder"
     },
     {
-      "beginString" : "hexagon"
+      "begin" : "hexagon"
     },
     {
-      "beginString" : "house"
+      "begin" : "house"
     },
     {
-      "beginString" : "invhouse"
+      "begin" : "invhouse"
     },
     {
-      "beginString" : "invtrapezium"
+      "begin" : "invtrapezium"
     },
     {
-      "beginString" : "invtriangle"
+      "begin" : "invtriangle"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "Mcircle"
+      "begin" : "Mcircle"
     },
     {
-      "beginString" : "Mdiamond"
+      "begin" : "Mdiamond"
     },
     {
-      "beginString" : "min"
+      "begin" : "min"
     },
     {
-      "beginString" : "Msquare"
+      "begin" : "Msquare"
     },
     {
-      "beginString" : "none"
+      "begin" : "none"
     },
     {
-      "beginString" : "note"
+      "begin" : "note"
     },
     {
-      "beginString" : "octagon"
+      "begin" : "octagon"
     },
     {
-      "beginString" : "parallelogram"
+      "begin" : "parallelogram"
     },
     {
-      "beginString" : "pentagon"
+      "begin" : "pentagon"
     },
     {
-      "beginString" : "plaintext"
+      "begin" : "plaintext"
     },
     {
-      "beginString" : "point"
+      "begin" : "point"
     },
     {
-      "beginString" : "polygon"
+      "begin" : "polygon"
     },
     {
-      "beginString" : "rect"
+      "begin" : "rect"
     },
     {
-      "beginString" : "rectangle"
+      "begin" : "rectangle"
     },
     {
-      "beginString" : "same"
+      "begin" : "same"
     },
     {
-      "beginString" : "septagon"
+      "begin" : "septagon"
     },
     {
-      "beginString" : "tab"
+      "begin" : "tab"
     },
     {
-      "beginString" : "trapezium"
+      "begin" : "trapezium"
     },
     {
-      "beginString" : "triangle"
+      "begin" : "triangle"
     },
     {
-      "beginString" : "tripleoctagon"
+      "begin" : "tripleoctagon"
     }
   ]
 }

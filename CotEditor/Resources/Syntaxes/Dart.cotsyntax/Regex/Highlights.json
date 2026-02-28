@@ -1,171 +1,171 @@
 {
   "attributes" : [
     {
-      "beginString" : "@\\w+",
+      "begin" : "@\\w+",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "abstract"
+      "begin" : "abstract"
     },
     {
-      "beginString" : "as"
+      "begin" : "as"
     },
     {
-      "beginString" : "assert"
+      "begin" : "assert"
     },
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "const"
+      "begin" : "const"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "default"
+      "begin" : "default"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "dynamic"
+      "begin" : "dynamic"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "enum"
+      "begin" : "enum"
     },
     {
-      "beginString" : "export"
+      "begin" : "export"
     },
     {
-      "beginString" : "extends"
+      "begin" : "extends"
     },
     {
-      "beginString" : "external"
+      "begin" : "external"
     },
     {
-      "beginString" : "factory"
+      "begin" : "factory"
     },
     {
-      "beginString" : "final"
+      "begin" : "final"
     },
     {
-      "beginString" : "finally"
+      "begin" : "finally"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "get"
+      "begin" : "get"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "implements"
+      "begin" : "implements"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "is"
+      "begin" : "is"
     },
     {
-      "beginString" : "library"
+      "begin" : "library"
     },
     {
-      "beginString" : "List"
+      "begin" : "List"
     },
     {
-      "beginString" : "Map"
+      "begin" : "Map"
     },
     {
-      "beginString" : "new"
+      "begin" : "new"
     },
     {
-      "beginString" : "num"
+      "begin" : "num"
     },
     {
-      "beginString" : "operator"
+      "begin" : "operator"
     },
     {
-      "beginString" : "part"
+      "begin" : "part"
     },
     {
-      "beginString" : "rethrow"
+      "begin" : "rethrow"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "set"
+      "begin" : "set"
     },
     {
-      "beginString" : "static"
+      "begin" : "static"
     },
     {
-      "beginString" : "String"
+      "begin" : "String"
     },
     {
-      "beginString" : "switch"
+      "begin" : "switch"
     },
     {
-      "beginString" : "throw"
+      "begin" : "throw"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "typedef"
+      "begin" : "typedef"
     },
     {
-      "beginString" : "var"
+      "begin" : "var"
     },
     {
-      "beginString" : "void"
+      "begin" : "void"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "with"
+      "begin" : "with"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?",
+      "begin" : "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?",
       "description" : "decimal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b-?(0x)[0-9a-f]+\\b",
+      "begin" : "\\b-?(0x)[0-9a-f]+\\b",
       "description" : "hexadecimal",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -173,41 +173,41 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "\"\"\"",
-      "endString" : "\"\"\"",
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
       "isMultiline" : true
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     },
     {
-      "beginString" : "'''",
-      "endString" : "'''",
+      "begin" : "'''",
+      "end" : "'''",
       "isMultiline" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "super"
+      "begin" : "super"
     },
     {
-      "beginString" : "this"
+      "begin" : "this"
     }
   ]
 }

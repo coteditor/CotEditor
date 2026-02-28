@@ -1,62 +1,62 @@
 {
   "attributes" : [
     {
-      "beginString" : "\\s[[:alnum:]_\\-.:]+\\s*(?==)",
+      "begin" : "\\s[[:alnum:]_\\-.:]+\\s*(?==)",
       "regularExpression" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "&\\S+?;",
+      "begin" : "&\\S+?;",
       "regularExpression" : true
     },
     {
-      "beginString" : "<![CDATA[",
-      "endString" : "]]>",
+      "begin" : "<![CDATA[",
+      "end" : "]]>",
       "isMultiline" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "(?<=<)\\?[[:alnum:]_\\-.:]+",
+      "begin" : "(?<=<)\\?[[:alnum:]_\\-.:]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\?(?=>)",
+      "begin" : "\\?(?=>)",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
+      "begin" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
       "description" : "element",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\"",
+      "begin" : "\"",
+      "end" : "\"",
       "isMultiline" : true
     },
     {
-      "beginString" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
+      "begin" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
       "regularExpression" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "(?<=<)![A-Z]*",
+      "begin" : "(?<=<)![A-Z]*",
       "regularExpression" : true
     }
   ],
   "variables" : [
     {
-      "beginString" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "begin" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
+      "begin" : "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
       "regularExpression" : true
     }
   ]

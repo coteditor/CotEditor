@@ -1,8 +1,8 @@
 [
   {
-    "beginString" : "^([\\t ]*)(\\w+)\\s*\\(.*\\)\\s+->",
+    "pattern" : "^([\\t ]*)(\\w+)\\s*\\(.*\\)\\s+->",
     "description" : "function",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "function"
   }
 ]

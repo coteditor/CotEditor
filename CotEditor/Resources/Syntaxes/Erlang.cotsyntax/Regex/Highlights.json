@@ -1,175 +1,175 @@
 {
   "attributes" : [
     {
-      "beginString" : "\\-[a-z][a-zA-Z0-9_@]*(?=\\()",
+      "begin" : "\\-[a-z][a-zA-Z0-9_@]*(?=\\()",
       "regularExpression" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "\\$\\S{1,10}",
+      "begin" : "\\$\\S{1,10}",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "\\w+(?=\\()",
+      "begin" : "\\w+(?=\\()",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "after"
+      "begin" : "after"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "andalso"
+      "begin" : "andalso"
     },
     {
-      "beginString" : "band"
+      "begin" : "band"
     },
     {
-      "beginString" : "begin"
+      "begin" : "begin"
     },
     {
-      "beginString" : "big"
+      "begin" : "big"
     },
     {
-      "beginString" : "binary"
+      "begin" : "binary"
     },
     {
-      "beginString" : "bnot"
+      "begin" : "bnot"
     },
     {
-      "beginString" : "bor"
+      "begin" : "bor"
     },
     {
-      "beginString" : "bsl"
+      "begin" : "bsl"
     },
     {
-      "beginString" : "bxor"
+      "begin" : "bxor"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "cond"
+      "begin" : "cond"
     },
     {
-      "beginString" : "div"
+      "begin" : "div"
     },
     {
-      "beginString" : "end"
+      "begin" : "end"
     },
     {
-      "beginString" : "float"
+      "begin" : "float"
     },
     {
-      "beginString" : "fun"
+      "begin" : "fun"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "integer"
+      "begin" : "integer"
     },
     {
-      "beginString" : "let"
+      "begin" : "let"
     },
     {
-      "beginString" : "little"
+      "begin" : "little"
     },
     {
-      "beginString" : "native"
+      "begin" : "native"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "of"
+      "begin" : "of"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "orelse"
+      "begin" : "orelse"
     },
     {
-      "beginString" : "receive"
+      "begin" : "receive"
     },
     {
-      "beginString" : "rem"
+      "begin" : "rem"
     },
     {
-      "beginString" : "signed"
+      "begin" : "signed"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "unit"
+      "begin" : "unit"
     },
     {
-      "beginString" : "unsigned"
+      "begin" : "unsigned"
     },
     {
-      "beginString" : "when"
+      "begin" : "when"
     },
     {
-      "beginString" : "xor"
+      "begin" : "xor"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b(\\d{1,2}#)?\\d+\\b",
+      "begin" : "\\b(\\d{1,2}#)?\\d+\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b1\\d#[0-9a-f]+\\b",
+      "begin" : "\\b1\\d#[0-9a-f]+\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\d+\\.\\d+([eE][-+]?\\d+)?",
+      "begin" : "\\b\\d+\\.\\d+([eE][-+]?\\d+)?",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "types" : [
     {
-      "beginString" : "(?<=-module\\().*(?=\\))",
+      "begin" : "(?<=-module\\().*(?=\\))",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\w+(?=:)",
+      "begin" : "\\b\\w+(?=:)",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "\\b[A-Z_]\\w*\\b",
+      "begin" : "\\b[A-Z_]\\w*\\b",
       "regularExpression" : true
     }
   ]

@@ -1,26 +1,26 @@
 [
   {
-    "beginString" : "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)",
+    "pattern" : "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)",
     "description" : "equation / binding",
-    "keyString" : "",
+    "template" : "",
     "kind" : "value"
   },
   {
-    "beginString" : "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)",
+    "pattern" : "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)",
     "description" : "type signature",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "value"
   },
   {
-    "beginString" : "^[\\t ]*class\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)",
+    "pattern" : "^[\\t ]*class\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)",
     "description" : "class",
-    "keyString" : "",
+    "template" : "",
     "kind" : "container"
   },
   {
-    "beginString" : "^[\\t ]*data[\\t ]+([A-Z][\\w']*)(?=[\\t ]*\\=)",
+    "pattern" : "^[\\t ]*data[\\t ]+([A-Z][\\w']*)(?=[\\t ]*\\=)",
     "description" : "data",
-    "keyString" : "data $1",
+    "template" : "data $1",
     "kind" : "container"
   }
 ]

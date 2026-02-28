@@ -1,861 +1,861 @@
 {
   "commands" : [
     {
-      "beginString" : "\\b(abort|begin|end) transaction\\b",
+      "begin" : "\\b(abort|begin|end) transaction\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b(closing|moving) folder window for\\b",
+      "begin" : "\\b(closing|moving) folder window for\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\badding folder items to\\b",
+      "begin" : "\\badding folder items to\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bASCII (character|number)\\b",
+      "begin" : "\\bASCII (character|number)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchange (case|kana|roman width)\\b",
+      "begin" : "\\bchange (case|kana|roman width)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchoose (application|color|file|file name|folder|from list|remote application|URL)\\b",
+      "begin" : "\\bchoose (application|color|file|file name|folder|from list|remote application|URL)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchoose file\\b",
+      "begin" : "\\bchoose file\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclean up\\b",
+      "begin" : "\\bclean up\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclipboard info\\b",
+      "begin" : "\\bclipboard info\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bclose access\\b",
+      "begin" : "\\bclose access\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcurrent date\\b",
+      "begin" : "\\bcurrent date\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdata size\\b",
+      "begin" : "\\bdata size\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdisplay (alert|dialog|notification|warning)\\b",
+      "begin" : "\\bdisplay (alert|dialog|notification|warning)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdisplay notification\\b",
+      "begin" : "\\bdisplay notification\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdo shell script\\b",
+      "begin" : "\\bdo shell script\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bget eof\\b",
+      "begin" : "\\bget eof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bget volume settings\\b",
+      "begin" : "\\bget volume settings\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhandle CGI request\\b",
+      "begin" : "\\bhandle CGI request\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binfo for\\b",
+      "begin" : "\\binfo for\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bkey code\\b",
+      "begin" : "\\bkey code\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blist (disks|folder)\\b",
+      "begin" : "\\blist (disks|folder)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bload script\\b",
+      "begin" : "\\bload script\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blocalized string\\b",
+      "begin" : "\\blocalized string\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blog out\\b",
+      "begin" : "\\blog out\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmount volume\\b",
+      "begin" : "\\bmount volume\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnormalize unicode\\b",
+      "begin" : "\\bnormalize unicode\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bopen for access\\b",
+      "begin" : "\\bopen for access\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bopen location\\b",
+      "begin" : "\\bopen location\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bopening folder\\b",
+      "begin" : "\\bopening folder\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpath to( resource)?\\b",
+      "begin" : "\\bpath to( resource)?\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brandom number\\b",
+      "begin" : "\\brandom number\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bremoving folder items from\\b",
+      "begin" : "\\bremoving folder items from\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brun script\\b",
+      "begin" : "\\brun script\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bscripting components\\b",
+      "begin" : "\\bscripting components\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bscroll to caret\\b",
+      "begin" : "\\bscroll to caret\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bset eof\\b",
+      "begin" : "\\bset eof\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bset the clipboard to\\b",
+      "begin" : "\\bset the clipboard to\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bset volume\\b",
+      "begin" : "\\bset volume\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bshift (left|right)\\b",
+      "begin" : "\\bshift (left|right)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bshut down\\b",
+      "begin" : "\\bshut down\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bstore script\\b",
+      "begin" : "\\bstore script\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsystem (attribute|info)\\b",
+      "begin" : "\\bsystem (attribute|info)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bthe clipboard\\b",
+      "begin" : "\\bthe clipboard\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btime to GMT\\b",
+      "begin" : "\\btime to GMT\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "activate"
+      "begin" : "activate"
     },
     {
-      "beginString" : "beep"
+      "begin" : "beep"
     },
     {
-      "beginString" : "click"
+      "begin" : "click"
     },
     {
-      "beginString" : "close"
+      "begin" : "close"
     },
     {
-      "beginString" : "connect"
+      "begin" : "connect"
     },
     {
-      "beginString" : "convert"
+      "begin" : "convert"
     },
     {
-      "beginString" : "copy"
+      "begin" : "copy"
     },
     {
-      "beginString" : "count"
+      "begin" : "count"
     },
     {
-      "beginString" : "crop"
+      "begin" : "crop"
     },
     {
-      "beginString" : "delay"
+      "begin" : "delay"
     },
     {
-      "beginString" : "delete"
+      "begin" : "delete"
     },
     {
-      "beginString" : "disconnect"
+      "begin" : "disconnect"
     },
     {
-      "beginString" : "duplicate"
+      "begin" : "duplicate"
     },
     {
-      "beginString" : "eject"
+      "begin" : "eject"
     },
     {
-      "beginString" : "embed"
+      "begin" : "embed"
     },
     {
-      "beginString" : "empty"
+      "begin" : "empty"
     },
     {
-      "beginString" : "erase"
+      "begin" : "erase"
     },
     {
-      "beginString" : "exists"
+      "begin" : "exists"
     },
     {
-      "beginString" : "file"
+      "begin" : "file"
     },
     {
-      "beginString" : "find"
+      "begin" : "find"
     },
     {
-      "beginString" : "flip"
+      "begin" : "flip"
     },
     {
-      "beginString" : "get"
+      "begin" : "get"
     },
     {
-      "beginString" : "keystroke"
+      "begin" : "keystroke"
     },
     {
-      "beginString" : "make"
+      "begin" : "make"
     },
     {
-      "beginString" : "match"
+      "begin" : "match"
     },
     {
-      "beginString" : "move"
+      "begin" : "move"
     },
     {
-      "beginString" : "offset"
+      "begin" : "offset"
     },
     {
-      "beginString" : "open"
+      "begin" : "open"
     },
     {
-      "beginString" : "pad"
+      "begin" : "pad"
     },
     {
-      "beginString" : "perform"
+      "begin" : "perform"
     },
     {
-      "beginString" : "print"
+      "begin" : "print"
     },
     {
-      "beginString" : "quit"
+      "begin" : "quit"
     },
     {
-      "beginString" : "read"
+      "begin" : "read"
     },
     {
-      "beginString" : "reinterpret"
+      "begin" : "reinterpret"
     },
     {
-      "beginString" : "replace"
+      "begin" : "replace"
     },
     {
-      "beginString" : "restart"
+      "begin" : "restart"
     },
     {
-      "beginString" : "reveal"
+      "begin" : "reveal"
     },
     {
-      "beginString" : "rotate"
+      "begin" : "rotate"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "run"
+      "begin" : "run"
     },
     {
-      "beginString" : "save"
+      "begin" : "save"
     },
     {
-      "beginString" : "say"
+      "begin" : "say"
     },
     {
-      "beginString" : "scale"
+      "begin" : "scale"
     },
     {
-      "beginString" : "select"
+      "begin" : "select"
     },
     {
-      "beginString" : "sleep"
+      "begin" : "sleep"
     },
     {
-      "beginString" : "sort"
+      "begin" : "sort"
     },
     {
-      "beginString" : "start"
+      "begin" : "start"
     },
     {
-      "beginString" : "stop"
+      "begin" : "stop"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "summarize"
+      "begin" : "summarize"
     },
     {
-      "beginString" : "unembed"
+      "begin" : "unembed"
     },
     {
-      "beginString" : "update"
+      "begin" : "update"
     },
     {
-      "beginString" : "write"
+      "begin" : "write"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "&"
+      "begin" : "&"
     },
     {
-      "beginString" : "(?<=')s\\s",
+      "begin" : "(?<=')s\\s",
       "regularExpression" : true
     },
     {
-      "beginString" : "*"
+      "begin" : "*"
     },
     {
-      "beginString" : "+"
+      "begin" : "+"
     },
     {
-      "beginString" : "-"
+      "begin" : "-"
     },
     {
-      "beginString" : "/"
+      "begin" : "/"
     },
     {
-      "beginString" : "<"
+      "begin" : "<"
     },
     {
-      "beginString" : "="
+      "begin" : "="
     },
     {
-      "beginString" : "≠"
+      "begin" : "≠"
     },
     {
-      "beginString" : ">"
+      "begin" : ">"
     },
     {
-      "beginString" : "\\bcomes (before|after)\\b",
+      "begin" : "\\bcomes (before|after)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "a"
+      "begin" : "a"
     },
     {
-      "beginString" : "about"
+      "begin" : "about"
     },
     {
-      "beginString" : "above"
+      "begin" : "above"
     },
     {
-      "beginString" : "against"
+      "begin" : "against"
     },
     {
-      "beginString" : "an"
+      "begin" : "an"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "apart"
+      "begin" : "apart"
     },
     {
-      "beginString" : "around"
+      "begin" : "around"
     },
     {
-      "beginString" : "as"
+      "begin" : "as"
     },
     {
-      "beginString" : "aside"
+      "begin" : "aside"
     },
     {
-      "beginString" : "back"
+      "begin" : "back"
     },
     {
-      "beginString" : "begin"
+      "begin" : "begin"
     },
     {
-      "beginString" : "beginning"
+      "begin" : "beginning"
     },
     {
-      "beginString" : "begins"
+      "begin" : "begins"
     },
     {
-      "beginString" : "behind"
+      "begin" : "behind"
     },
     {
-      "beginString" : "below"
+      "begin" : "below"
     },
     {
-      "beginString" : "beneath"
+      "begin" : "beneath"
     },
     {
-      "beginString" : "beside"
+      "begin" : "beside"
     },
     {
-      "beginString" : "between"
+      "begin" : "between"
     },
     {
-      "beginString" : "but"
+      "begin" : "but"
     },
     {
-      "beginString" : "by"
+      "begin" : "by"
     },
     {
-      "beginString" : "considering"
+      "begin" : "considering"
     },
     {
-      "beginString" : "contain"
+      "begin" : "contain"
     },
     {
-      "beginString" : "contained"
+      "begin" : "contained"
     },
     {
-      "beginString" : "contains"
+      "begin" : "contains"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "div"
+      "begin" : "div"
     },
     {
-      "beginString" : "does"
+      "begin" : "does"
     },
     {
-      "beginString" : "doesn't"
+      "begin" : "doesn't"
     },
     {
-      "beginString" : "eighth"
+      "begin" : "eighth"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "end"
+      "begin" : "end"
     },
     {
-      "beginString" : "ends"
+      "begin" : "ends"
     },
     {
-      "beginString" : "equal"
+      "begin" : "equal"
     },
     {
-      "beginString" : "equals"
+      "begin" : "equals"
     },
     {
-      "beginString" : "error"
+      "begin" : "error"
     },
     {
-      "beginString" : "every"
+      "begin" : "every"
     },
     {
-      "beginString" : "exit"
+      "begin" : "exit"
     },
     {
-      "beginString" : "fifth"
+      "begin" : "fifth"
     },
     {
-      "beginString" : "first"
+      "begin" : "first"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "fourth"
+      "begin" : "fourth"
     },
     {
-      "beginString" : "front"
+      "begin" : "front"
     },
     {
-      "beginString" : "given"
+      "begin" : "given"
     },
     {
-      "beginString" : "global"
+      "begin" : "global"
     },
     {
-      "beginString" : "greater"
+      "begin" : "greater"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "ignoring"
+      "begin" : "ignoring"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "instead"
+      "begin" : "instead"
     },
     {
-      "beginString" : "into"
+      "begin" : "into"
     },
     {
-      "beginString" : "is"
+      "begin" : "is"
     },
     {
-      "beginString" : "isn't"
+      "begin" : "isn't"
     },
     {
-      "beginString" : "it"
+      "begin" : "it"
     },
     {
-      "beginString" : "its"
+      "begin" : "its"
     },
     {
-      "beginString" : "last"
+      "begin" : "last"
     },
     {
-      "beginString" : "less"
+      "begin" : "less"
     },
     {
-      "beginString" : "local"
+      "begin" : "local"
     },
     {
-      "beginString" : "middle"
+      "begin" : "middle"
     },
     {
-      "beginString" : "mod"
+      "begin" : "mod"
     },
     {
-      "beginString" : "my"
+      "begin" : "my"
     },
     {
-      "beginString" : "ninth"
+      "begin" : "ninth"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "of"
+      "begin" : "of"
     },
     {
-      "beginString" : "on"
+      "begin" : "on"
     },
     {
-      "beginString" : "onto"
+      "begin" : "onto"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "out"
+      "begin" : "out"
     },
     {
-      "beginString" : "over"
+      "begin" : "over"
     },
     {
-      "beginString" : "prop"
+      "begin" : "prop"
     },
     {
-      "beginString" : "property"
+      "begin" : "property"
     },
     {
-      "beginString" : "put"
+      "begin" : "put"
     },
     {
-      "beginString" : "ref"
+      "begin" : "ref"
     },
     {
-      "beginString" : "reference"
+      "begin" : "reference"
     },
     {
-      "beginString" : "repeat"
+      "begin" : "repeat"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "returning"
+      "begin" : "returning"
     },
     {
-      "beginString" : "script"
+      "begin" : "script"
     },
     {
-      "beginString" : "second"
+      "begin" : "second"
     },
     {
-      "beginString" : "set"
+      "begin" : "set"
     },
     {
-      "beginString" : "seventh"
+      "begin" : "seventh"
     },
     {
-      "beginString" : "since"
+      "begin" : "since"
     },
     {
-      "beginString" : "sixth"
+      "begin" : "sixth"
     },
     {
-      "beginString" : "some"
+      "begin" : "some"
     },
     {
-      "beginString" : "start"
+      "begin" : "start"
     },
     {
-      "beginString" : "starts"
+      "begin" : "starts"
     },
     {
-      "beginString" : "tell"
+      "begin" : "tell"
     },
     {
-      "beginString" : "tenth"
+      "begin" : "tenth"
     },
     {
-      "beginString" : "than"
+      "begin" : "than"
     },
     {
-      "beginString" : "that"
+      "begin" : "that"
     },
     {
-      "beginString" : "the"
+      "begin" : "the"
     },
     {
-      "beginString" : "then"
+      "begin" : "then"
     },
     {
-      "beginString" : "third"
+      "begin" : "third"
     },
     {
-      "beginString" : "through"
+      "begin" : "through"
     },
     {
-      "beginString" : "thru"
+      "begin" : "thru"
     },
     {
-      "beginString" : "timeout"
+      "begin" : "timeout"
     },
     {
-      "beginString" : "times"
+      "begin" : "times"
     },
     {
-      "beginString" : "to"
+      "begin" : "to"
     },
     {
-      "beginString" : "transaction"
+      "begin" : "transaction"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "until"
+      "begin" : "until"
     },
     {
-      "beginString" : "use"
+      "begin" : "use"
     },
     {
-      "beginString" : "where"
+      "begin" : "where"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "whose"
+      "begin" : "whose"
     },
     {
-      "beginString" : "with"
+      "begin" : "with"
     },
     {
-      "beginString" : "without"
+      "begin" : "without"
     },
     {
-      "beginString" : "÷"
+      "begin" : "÷"
     },
     {
-      "beginString" : "≤"
+      "begin" : "≤"
     },
     {
-      "beginString" : "≥"
+      "begin" : "≥"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b\\d+(\\.\\d*)?\\b",
+      "begin" : "\\b\\d+(\\.\\d*)?\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\"",
+      "begin" : "\"",
+      "end" : "\"",
       "isMultiline" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "alias"
+      "begin" : "alias"
     },
     {
-      "beginString" : "application"
+      "begin" : "application"
     },
     {
-      "beginString" : "applications"
+      "begin" : "applications"
     },
     {
-      "beginString" : "character"
+      "begin" : "character"
     },
     {
-      "beginString" : "characters"
+      "begin" : "characters"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "color"
+      "begin" : "color"
     },
     {
-      "beginString" : "document"
+      "begin" : "document"
     },
     {
-      "beginString" : "documents"
+      "begin" : "documents"
     },
     {
-      "beginString" : "file"
+      "begin" : "file"
     },
     {
-      "beginString" : "integer"
+      "begin" : "integer"
     },
     {
-      "beginString" : "item"
+      "begin" : "item"
     },
     {
-      "beginString" : "items"
+      "begin" : "items"
     },
     {
-      "beginString" : "list"
+      "begin" : "list"
     },
     {
-      "beginString" : "paragraph"
+      "begin" : "paragraph"
     },
     {
-      "beginString" : "paragraphs"
+      "begin" : "paragraphs"
     },
     {
-      "beginString" : "real"
+      "begin" : "real"
     },
     {
-      "beginString" : "record"
+      "begin" : "record"
     },
     {
-      "beginString" : "text"
+      "begin" : "text"
     },
     {
-      "beginString" : "window"
+      "begin" : "window"
     },
     {
-      "beginString" : "windows"
+      "begin" : "windows"
     },
     {
-      "beginString" : "word"
+      "begin" : "word"
     },
     {
-      "beginString" : "words"
+      "begin" : "words"
     }
   ],
   "values" : [
     {
-      "beginString" : "(?<=\\&)\\s+return",
+      "begin" : "(?<=\\&)\\s+return",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcurrent application\\b",
+      "begin" : "\\bcurrent application\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmissing value\\b",
+      "begin" : "\\bmissing value\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bPOSIX (path|file)\\b",
+      "begin" : "\\bPOSIX (path|file)\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bquoted form\\b",
+      "begin" : "\\bquoted form\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bversion of AppleScript\\b",
+      "begin" : "\\bversion of AppleScript\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "bounds"
+      "begin" : "bounds"
     },
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "linefeed"
+      "begin" : "linefeed"
     },
     {
-      "beginString" : "pi"
+      "begin" : "pi"
     },
     {
-      "beginString" : "quote"
+      "begin" : "quote"
     },
     {
-      "beginString" : "result"
+      "begin" : "result"
     },
     {
-      "beginString" : "return\\s+(?=\\&)",
+      "begin" : "return\\s+(?=\\&)",
       "regularExpression" : true
     },
     {
-      "beginString" : "space"
+      "begin" : "space"
     },
     {
-      "beginString" : "tab"
+      "begin" : "tab"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     },
     {
-      "beginString" : "version"
+      "begin" : "version"
     },
     {
-      "beginString" : "warning"
+      "begin" : "warning"
     }
   ],
   "variables" : [
     {
-      "beginString" : "it"
+      "begin" : "it"
     },
     {
-      "beginString" : "me"
+      "begin" : "me"
     }
   ]
 }

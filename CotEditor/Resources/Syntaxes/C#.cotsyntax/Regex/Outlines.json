@@ -1,26 +1,26 @@
 [
   {
-    "beginString" : "#region\\W(.*)$",
+    "pattern" : "#region\\W(.*)$",
     "description" : "#region",
-    "keyString" : "",
+    "template" : "",
     "kind" : "mark"
   },
   {
-    "beginString" : "^([\\t ]*)(?:\\w+ )*class +(\\w+)",
+    "pattern" : "^([\\t ]*)(?:\\w+ )*class +(\\w+)",
     "description" : "class",
-    "keyString" : "",
+    "template" : "",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)(\\w[\\w\\s]*\\s[\\*]*)(\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)",
+    "pattern" : "^([\\t ]*)(\\w[\\w\\s]*\\s[\\*]*)(\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)",
     "description" : "function",
-    "keyString" : "",
+    "template" : "",
     "kind" : "function"
   },
   {
-    "beginString" : "namespace\\W(.*)$",
+    "pattern" : "namespace\\W(.*)$",
     "description" : "namespace",
-    "keyString" : "",
+    "template" : "",
     "kind" : "container"
   }
 ]

@@ -1,65 +1,65 @@
 [
   {
-    "beginString" : "(^\\s*)(?:\\T)(?:.*)(?<!\\:)\\=(?:.*)",
+    "pattern" : "(^\\s*)(?:\\T)(?:.*)(?<!\\:)\\=(?:.*)",
     "description" : "Types (start with T)",
     "ignoreCase" : true,
-    "keyString" : "type $0",
+    "template" : "type $0",
     "kind" : "container"
   },
   {
-    "beginString" : "\\{(?:.*)\\$(?:.*)(?:region)(?:.*)\\'(.*)\\'\\}",
+    "pattern" : "\\{(?:.*)\\$(?:.*)(?:region)(?:.*)\\'(.*)\\'\\}",
     "description" : "Region",
     "ignoreCase" : true,
-    "keyString" : "($1)",
+    "template" : "($1)",
     "kind" : "mark"
   },
   {
-    "beginString" : "^([ \\t]*)(?:[a-z]* )*function(.*)(?:\\;|\\()",
+    "pattern" : "^([ \\t]*)(?:[a-z]* )*function(.*)(?:\\;|\\()",
     "description" : "Function",
     "ignoreCase" : true,
-    "keyString" : "$2",
+    "template" : "$2",
     "kind" : "function"
   },
   {
-    "beginString" : "^([ \\t]*)(?:[a-z]* )*procedure(.*)(?:\\;|\\()",
+    "pattern" : "^([ \\t]*)(?:[a-z]* )*procedure(.*)(?:\\;|\\()",
     "description" : "Procedure",
     "ignoreCase" : true,
-    "keyString" : "$2",
+    "template" : "$2",
     "kind" : "function"
   },
   {
-    "beginString" : "^\\s*(implementation)",
+    "pattern" : "^\\s*(implementation)",
     "description" : "Implementation",
     "ignoreCase" : true,
-    "keyString" : "---- $1",
+    "template" : "---- $1",
     "kind" : "container"
   },
   {
-    "beginString" : "^\\s*(interface)",
+    "pattern" : "^\\s*(interface)",
     "description" : "Interface",
     "ignoreCase" : true,
-    "keyString" : "---- $1",
+    "template" : "---- $1",
     "kind" : "container"
   },
   {
-    "beginString" : "^\\s*(type)",
+    "pattern" : "^\\s*(type)",
     "description" : "Type",
     "ignoreCase" : true,
-    "keyString" : "---- $1",
+    "template" : "---- $1",
     "kind" : "container"
   },
   {
-    "beginString" : "^\\s*(uses)",
+    "pattern" : "^\\s*(uses)",
     "description" : "Uses",
     "ignoreCase" : true,
-    "keyString" : "---- $1",
+    "template" : "---- $1",
     "kind" : "reference"
   },
   {
-    "beginString" : "unit\\W(.*)(?:\\;)$",
+    "pattern" : "unit\\W(.*)(?:\\;)$",
     "description" : "Unit",
     "ignoreCase" : true,
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "container"
   }
 ]

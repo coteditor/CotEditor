@@ -1,206 +1,206 @@
 {
   "attributes" : [
     {
-      "beginString" : "\\baddress[\\t ]*=",
+      "begin" : "\\baddress[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bauthor[\\t ]*=",
+      "begin" : "\\bauthor[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbooktitle[\\t ]*=",
+      "begin" : "\\bbooktitle[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchapter[\\t ]*=",
+      "begin" : "\\bchapter[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bedition[\\t ]*=",
+      "begin" : "\\bedition[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\beditor[\\t ]*=",
+      "begin" : "\\beditor[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhowpublished[\\t ]*=",
+      "begin" : "\\bhowpublished[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binstitution[\\t ]*=",
+      "begin" : "\\binstitution[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bisbn[\\t ]*=",
+      "begin" : "\\bisbn[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bjournal[\\t ]*=",
+      "begin" : "\\bjournal[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmonth[\\t ]*=",
+      "begin" : "\\bmonth[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnote[\\t ]*=",
+      "begin" : "\\bnote[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnumber[\\t ]*=",
+      "begin" : "\\bnumber[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\borganization[\\t ]*=",
+      "begin" : "\\borganization[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpages[\\t ]*=",
+      "begin" : "\\bpages[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bprice[\\t ]*=",
+      "begin" : "\\bprice[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpublisher[\\t ]*=",
+      "begin" : "\\bpublisher[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bschool[\\t ]*=",
+      "begin" : "\\bschool[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bseries[\\t ]*=",
+      "begin" : "\\bseries[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btitle[\\t ]*=",
+      "begin" : "\\btitle[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btype[\\t ]*=",
+      "begin" : "\\btype[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\burl[\\t ]*=",
+      "begin" : "\\burl[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bvolume[\\t ]*=",
+      "begin" : "\\bvolume[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\byear[\\t ]*=",
+      "begin" : "\\byear[\\t ]*=",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "\\emph"
+      "begin" : "\\emph"
     },
     {
-      "beginString" : "\\LaTeX"
+      "begin" : "\\LaTeX"
     },
     {
-      "beginString" : "\\texttt"
+      "begin" : "\\texttt"
     },
     {
-      "beginString" : "\\verb"
+      "begin" : "\\verb"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "@\\w+\\b",
+      "begin" : "@\\w+\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "@article",
+      "begin" : "@article",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@book",
+      "begin" : "@book",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@booklet",
+      "begin" : "@booklet",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@conference",
+      "begin" : "@conference",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@inbook",
+      "begin" : "@inbook",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@incollection",
+      "begin" : "@incollection",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@inproceedings",
+      "begin" : "@inproceedings",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@manual",
+      "begin" : "@manual",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@masterthesis",
+      "begin" : "@masterthesis",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@misc",
+      "begin" : "@misc",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@phdthesis",
+      "begin" : "@phdthesis",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@proceedings",
+      "begin" : "@proceedings",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@techreport",
+      "begin" : "@techreport",
       "ignoreCase" : true
     },
     {
-      "beginString" : "@unpublished",
+      "begin" : "@unpublished",
       "ignoreCase" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\"",
+      "begin" : "\"",
+      "end" : "\"",
       "isMultiline" : true
     }
   ]

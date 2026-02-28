@@ -1,38 +1,38 @@
 [
   {
-    "beginString" : "^h1([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "pattern" : "^h1([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
     "description" : "h1",
-    "keyString" : "$2",
+    "template" : "$2",
     "kind" : "heading"
   },
   {
-    "beginString" : "^h2([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "pattern" : "^h2([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
     "description" : "h2",
-    "keyString" : "    $2",
+    "template" : "    $2",
     "kind" : "heading"
   },
   {
-    "beginString" : "^h3([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "pattern" : "^h3([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
     "description" : "h3",
-    "keyString" : "        $2",
+    "template" : "        $2",
     "kind" : "heading"
   },
   {
-    "beginString" : "^h4([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "pattern" : "^h4([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
     "description" : "h4",
-    "keyString" : "            $2",
+    "template" : "            $2",
     "kind" : "heading"
   },
   {
-    "beginString" : "^h5([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "pattern" : "^h5([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
     "description" : "h5",
-    "keyString" : "                $2",
+    "template" : "                $2",
     "kind" : "heading"
   },
   {
-    "beginString" : "^h6([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
+    "pattern" : "^h6([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$",
     "description" : "h6",
-    "keyString" : "                    $2",
+    "template" : "                    $2",
     "kind" : "heading"
   }
 ]

@@ -1,8 +1,8 @@
 [
   {
-    "beginString" : "^[ /t]*def +([a-zA-Z0-9]+)[^:]+(?=:)",
+    "pattern" : "^[ /t]*def +([a-zA-Z0-9]+)[^:]+(?=:)",
     "description" : "function",
-    "keyString" : "",
+    "template" : "",
     "kind" : "function"
   }
 ]

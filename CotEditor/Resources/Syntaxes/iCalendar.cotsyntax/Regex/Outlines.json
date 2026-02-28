@@ -1,8 +1,8 @@
 [
   {
-    "beginString" : "^SUMMARY:(.*)$",
+    "pattern" : "^SUMMARY:(.*)$",
     "description" : "summary",
-    "keyString" : "",
+    "template" : "",
     "kind" : "heading"
   }
 ]

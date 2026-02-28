@@ -1,16 +1,16 @@
 [
   {
-    "beginString" : "(?<= )id=\"([^\"]+?)\"",
+    "pattern" : "(?<= )id=\"([^\"]+?)\"",
     "description" : "id",
     "ignoreCase" : true,
-    "keyString" : "#$1",
+    "template" : "#$1",
     "kind" : "reference"
   },
   {
-    "beginString" : "<title[^>]*>([^<]*)</title[^>]*>",
+    "pattern" : "<title[^>]*>([^<]*)</title[^>]*>",
     "description" : "title",
     "ignoreCase" : true,
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "heading"
   }
 ]

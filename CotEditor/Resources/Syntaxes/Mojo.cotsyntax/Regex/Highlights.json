@@ -1,1125 +1,1125 @@
 {
   "attributes" : [
     {
-      "beginString" : "@(?:\\w|\\.)+",
+      "begin" : "@(?:\\w|\\.)+",
       "regularExpression" : true
     },
     {
-      "beginString" : "@abstractmethod"
+      "begin" : "@abstractmethod"
     },
     {
-      "beginString" : "@always_inline",
+      "begin" : "@always_inline",
       "description" : "Mojo decorator"
     },
     {
-      "beginString" : "@classmethod"
+      "begin" : "@classmethod"
     },
     {
-      "beginString" : "@parameter",
+      "begin" : "@parameter",
       "description" : "Mojo decorator"
     },
     {
-      "beginString" : "@property"
+      "begin" : "@property"
     },
     {
-      "beginString" : "@register_passable",
+      "begin" : "@register_passable",
       "description" : "Mojo decorator"
     },
     {
-      "beginString" : "@staticmethod"
+      "begin" : "@staticmethod"
     },
     {
-      "beginString" : "@value",
+      "begin" : "@value",
       "description" : "Mojo decorator"
     }
   ],
   "commands" : [
     {
-      "beginString" : "\\bprint(?![\\t ]*(\\w|['\"]))",
+      "begin" : "\\bprint(?![\\t ]*(\\w|['\"]))",
       "regularExpression" : true
     },
     {
-      "beginString" : "__abs__"
+      "begin" : "__abs__"
     },
     {
-      "beginString" : "__add__"
+      "begin" : "__add__"
     },
     {
-      "beginString" : "__aenter__"
+      "begin" : "__aenter__"
     },
     {
-      "beginString" : "__aexit__"
+      "begin" : "__aexit__"
     },
     {
-      "beginString" : "__aiter__"
+      "begin" : "__aiter__"
     },
     {
-      "beginString" : "__and__"
+      "begin" : "__and__"
     },
     {
-      "beginString" : "__anext__"
+      "begin" : "__anext__"
     },
     {
-      "beginString" : "__await__"
+      "begin" : "__await__"
     },
     {
-      "beginString" : "__bool__"
+      "begin" : "__bool__"
     },
     {
-      "beginString" : "__bytes__"
+      "begin" : "__bytes__"
     },
     {
-      "beginString" : "__call__"
+      "begin" : "__call__"
     },
     {
-      "beginString" : "__cmp__"
+      "begin" : "__cmp__"
     },
     {
-      "beginString" : "__coerce__"
+      "begin" : "__coerce__"
     },
     {
-      "beginString" : "__complex__"
+      "begin" : "__complex__"
     },
     {
-      "beginString" : "__concat__"
+      "begin" : "__concat__"
     },
     {
-      "beginString" : "__contains__"
+      "begin" : "__contains__"
     },
     {
-      "beginString" : "__copy__"
+      "begin" : "__copy__"
     },
     {
-      "beginString" : "__copyinit__",
+      "begin" : "__copyinit__",
       "description" : "Mojo method"
     },
     {
-      "beginString" : "__deepcopy__"
+      "begin" : "__deepcopy__"
     },
     {
-      "beginString" : "__del__"
+      "begin" : "__del__"
     },
     {
-      "beginString" : "__delattr__"
+      "begin" : "__delattr__"
     },
     {
-      "beginString" : "__delete__"
+      "begin" : "__delete__"
     },
     {
-      "beginString" : "__delitem__"
+      "begin" : "__delitem__"
     },
     {
-      "beginString" : "__delslice__"
+      "begin" : "__delslice__"
     },
     {
-      "beginString" : "__dir__"
+      "begin" : "__dir__"
     },
     {
-      "beginString" : "__div__"
+      "begin" : "__div__"
     },
     {
-      "beginString" : "__divmod__"
+      "begin" : "__divmod__"
     },
     {
-      "beginString" : "__enter__"
+      "begin" : "__enter__"
     },
     {
-      "beginString" : "__eq__"
+      "begin" : "__eq__"
     },
     {
-      "beginString" : "__exit__"
+      "begin" : "__exit__"
     },
     {
-      "beginString" : "__float__"
+      "begin" : "__float__"
     },
     {
-      "beginString" : "__floordiv__"
+      "begin" : "__floordiv__"
     },
     {
-      "beginString" : "__ge__"
+      "begin" : "__ge__"
     },
     {
-      "beginString" : "__get__"
+      "begin" : "__get__"
     },
     {
-      "beginString" : "__getattr__"
+      "begin" : "__getattr__"
     },
     {
-      "beginString" : "__getattribute__"
+      "begin" : "__getattribute__"
     },
     {
-      "beginString" : "__getitem__"
+      "begin" : "__getitem__"
     },
     {
-      "beginString" : "__getnewargs__"
+      "begin" : "__getnewargs__"
     },
     {
-      "beginString" : "__getnewargs_ex__"
+      "begin" : "__getnewargs_ex__"
     },
     {
-      "beginString" : "__getslice__"
+      "begin" : "__getslice__"
     },
     {
-      "beginString" : "__getstate__"
+      "begin" : "__getstate__"
     },
     {
-      "beginString" : "__gt__"
+      "begin" : "__gt__"
     },
     {
-      "beginString" : "__hash__"
+      "begin" : "__hash__"
     },
     {
-      "beginString" : "__hex__"
+      "begin" : "__hex__"
     },
     {
-      "beginString" : "__iadd__"
+      "begin" : "__iadd__"
     },
     {
-      "beginString" : "__iand__"
+      "begin" : "__iand__"
     },
     {
-      "beginString" : "__iconcat__"
+      "begin" : "__iconcat__"
     },
     {
-      "beginString" : "__idiv__"
+      "begin" : "__idiv__"
     },
     {
-      "beginString" : "__ifloordiv__"
+      "begin" : "__ifloordiv__"
     },
     {
-      "beginString" : "__ilshift__"
+      "begin" : "__ilshift__"
     },
     {
-      "beginString" : "__imatmul__"
+      "begin" : "__imatmul__"
     },
     {
-      "beginString" : "__imod__"
+      "begin" : "__imod__"
     },
     {
-      "beginString" : "__import__"
+      "begin" : "__import__"
     },
     {
-      "beginString" : "__imul__"
+      "begin" : "__imul__"
     },
     {
-      "beginString" : "__index__"
+      "begin" : "__index__"
     },
     {
-      "beginString" : "__init__"
+      "begin" : "__init__"
     },
     {
-      "beginString" : "__init_subclass__"
+      "begin" : "__init_subclass__"
     },
     {
-      "beginString" : "__instancecheck__"
+      "begin" : "__instancecheck__"
     },
     {
-      "beginString" : "__int__"
+      "begin" : "__int__"
     },
     {
-      "beginString" : "__inv__"
+      "begin" : "__inv__"
     },
     {
-      "beginString" : "__invert__"
+      "begin" : "__invert__"
     },
     {
-      "beginString" : "__ior__"
+      "begin" : "__ior__"
     },
     {
-      "beginString" : "__ipow__"
+      "begin" : "__ipow__"
     },
     {
-      "beginString" : "__irshift__"
+      "begin" : "__irshift__"
     },
     {
-      "beginString" : "__isub__"
+      "begin" : "__isub__"
     },
     {
-      "beginString" : "__iter__"
+      "begin" : "__iter__"
     },
     {
-      "beginString" : "__itruediv__"
+      "begin" : "__itruediv__"
     },
     {
-      "beginString" : "__ixor__"
+      "begin" : "__ixor__"
     },
     {
-      "beginString" : "__le__"
+      "begin" : "__le__"
     },
     {
-      "beginString" : "__len__"
+      "begin" : "__len__"
     },
     {
-      "beginString" : "__length_hint__"
+      "begin" : "__length_hint__"
     },
     {
-      "beginString" : "__long__"
+      "begin" : "__long__"
     },
     {
-      "beginString" : "__lshift__"
+      "begin" : "__lshift__"
     },
     {
-      "beginString" : "__lt__"
+      "begin" : "__lt__"
     },
     {
-      "beginString" : "__matmul__"
+      "begin" : "__matmul__"
     },
     {
-      "beginString" : "__missing__"
+      "begin" : "__missing__"
     },
     {
-      "beginString" : "__mod__"
+      "begin" : "__mod__"
     },
     {
-      "beginString" : "__moveinit__",
+      "begin" : "__moveinit__",
       "description" : "Mojo method"
     },
     {
-      "beginString" : "__mul__"
+      "begin" : "__mul__"
     },
     {
-      "beginString" : "__ne__"
+      "begin" : "__ne__"
     },
     {
-      "beginString" : "__neg__"
+      "begin" : "__neg__"
     },
     {
-      "beginString" : "__new__"
+      "begin" : "__new__"
     },
     {
-      "beginString" : "__next__"
+      "begin" : "__next__"
     },
     {
-      "beginString" : "__nonzero__"
+      "begin" : "__nonzero__"
     },
     {
-      "beginString" : "__not__"
+      "begin" : "__not__"
     },
     {
-      "beginString" : "__oct__"
+      "begin" : "__oct__"
     },
     {
-      "beginString" : "__or__"
+      "begin" : "__or__"
     },
     {
-      "beginString" : "__pos__"
+      "begin" : "__pos__"
     },
     {
-      "beginString" : "__pow__"
+      "begin" : "__pow__"
     },
     {
-      "beginString" : "__radd__"
+      "begin" : "__radd__"
     },
     {
-      "beginString" : "__rand__"
+      "begin" : "__rand__"
     },
     {
-      "beginString" : "__rcmp__"
+      "begin" : "__rcmp__"
     },
     {
-      "beginString" : "__rdiv__"
+      "begin" : "__rdiv__"
     },
     {
-      "beginString" : "__rdivmod__"
+      "begin" : "__rdivmod__"
     },
     {
-      "beginString" : "__reduce__"
+      "begin" : "__reduce__"
     },
     {
-      "beginString" : "__reduce_ex__"
+      "begin" : "__reduce_ex__"
     },
     {
-      "beginString" : "__repr__"
+      "begin" : "__repr__"
     },
     {
-      "beginString" : "__reversed__"
+      "begin" : "__reversed__"
     },
     {
-      "beginString" : "__rfloordiv__"
+      "begin" : "__rfloordiv__"
     },
     {
-      "beginString" : "__rlshift__"
+      "begin" : "__rlshift__"
     },
     {
-      "beginString" : "__rmatmul__"
+      "begin" : "__rmatmul__"
     },
     {
-      "beginString" : "__rmod__"
+      "begin" : "__rmod__"
     },
     {
-      "beginString" : "__rmul__"
+      "begin" : "__rmul__"
     },
     {
-      "beginString" : "__ror__"
+      "begin" : "__ror__"
     },
     {
-      "beginString" : "__round__"
+      "begin" : "__round__"
     },
     {
-      "beginString" : "__rpow__"
+      "begin" : "__rpow__"
     },
     {
-      "beginString" : "__rrshift__"
+      "begin" : "__rrshift__"
     },
     {
-      "beginString" : "__rshift__"
+      "begin" : "__rshift__"
     },
     {
-      "beginString" : "__rsub__"
+      "begin" : "__rsub__"
     },
     {
-      "beginString" : "__rtruediv__"
+      "begin" : "__rtruediv__"
     },
     {
-      "beginString" : "__rxor__"
+      "begin" : "__rxor__"
     },
     {
-      "beginString" : "__set__"
+      "begin" : "__set__"
     },
     {
-      "beginString" : "__set_name__"
+      "begin" : "__set_name__"
     },
     {
-      "beginString" : "__setattr__"
+      "begin" : "__setattr__"
     },
     {
-      "beginString" : "__setitem__"
+      "begin" : "__setitem__"
     },
     {
-      "beginString" : "__setslice__"
+      "begin" : "__setslice__"
     },
     {
-      "beginString" : "__setstate__"
+      "begin" : "__setstate__"
     },
     {
-      "beginString" : "__str__"
+      "begin" : "__str__"
     },
     {
-      "beginString" : "__sub__"
+      "begin" : "__sub__"
     },
     {
-      "beginString" : "__subclasscheck__"
+      "begin" : "__subclasscheck__"
     },
     {
-      "beginString" : "__subclasses__"
+      "begin" : "__subclasses__"
     },
     {
-      "beginString" : "__truediv__"
+      "begin" : "__truediv__"
     },
     {
-      "beginString" : "__unicode__"
+      "begin" : "__unicode__"
     },
     {
-      "beginString" : "__xor__"
+      "begin" : "__xor__"
     },
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "add"
+      "begin" : "add"
     },
     {
-      "beginString" : "all"
+      "begin" : "all"
     },
     {
-      "beginString" : "any"
+      "begin" : "any"
     },
     {
-      "beginString" : "append"
+      "begin" : "append"
     },
     {
-      "beginString" : "as_integer_ratio"
+      "begin" : "as_integer_ratio"
     },
     {
-      "beginString" : "ascii"
+      "begin" : "ascii"
     },
     {
-      "beginString" : "bin"
+      "begin" : "bin"
     },
     {
-      "beginString" : "bit_length"
+      "begin" : "bit_length"
     },
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "breakpoint"
+      "begin" : "breakpoint"
     },
     {
-      "beginString" : "bytearray"
+      "begin" : "bytearray"
     },
     {
-      "beginString" : "bytes"
+      "begin" : "bytes"
     },
     {
-      "beginString" : "callable"
+      "begin" : "callable"
     },
     {
-      "beginString" : "capitalize"
+      "begin" : "capitalize"
     },
     {
-      "beginString" : "casefold"
+      "begin" : "casefold"
     },
     {
-      "beginString" : "cast"
+      "begin" : "cast"
     },
     {
-      "beginString" : "center"
+      "begin" : "center"
     },
     {
-      "beginString" : "chr"
+      "begin" : "chr"
     },
     {
-      "beginString" : "classmethod"
+      "begin" : "classmethod"
     },
     {
-      "beginString" : "clear"
+      "begin" : "clear"
     },
     {
-      "beginString" : "close"
+      "begin" : "close"
     },
     {
-      "beginString" : "cmp"
+      "begin" : "cmp"
     },
     {
-      "beginString" : "compile"
+      "begin" : "compile"
     },
     {
-      "beginString" : "complex"
+      "begin" : "complex"
     },
     {
-      "beginString" : "conjugate"
+      "begin" : "conjugate"
     },
     {
-      "beginString" : "copy"
+      "begin" : "copy"
     },
     {
-      "beginString" : "count"
+      "begin" : "count"
     },
     {
-      "beginString" : "decode"
+      "begin" : "decode"
     },
     {
-      "beginString" : "delattr"
+      "begin" : "delattr"
     },
     {
-      "beginString" : "dict"
+      "begin" : "dict"
     },
     {
-      "beginString" : "difference"
+      "begin" : "difference"
     },
     {
-      "beginString" : "difference_update"
+      "begin" : "difference_update"
     },
     {
-      "beginString" : "dir"
+      "begin" : "dir"
     },
     {
-      "beginString" : "discard"
+      "begin" : "discard"
     },
     {
-      "beginString" : "divmod"
+      "begin" : "divmod"
     },
     {
-      "beginString" : "encode"
+      "begin" : "encode"
     },
     {
-      "beginString" : "endswith"
+      "begin" : "endswith"
     },
     {
-      "beginString" : "enumerate"
+      "begin" : "enumerate"
     },
     {
-      "beginString" : "eval"
+      "begin" : "eval"
     },
     {
-      "beginString" : "exec"
+      "begin" : "exec"
     },
     {
-      "beginString" : "execfile"
+      "begin" : "execfile"
     },
     {
-      "beginString" : "expandtabs"
+      "begin" : "expandtabs"
     },
     {
-      "beginString" : "extend"
+      "begin" : "extend"
     },
     {
-      "beginString" : "file"
+      "begin" : "file"
     },
     {
-      "beginString" : "fileno"
+      "begin" : "fileno"
     },
     {
-      "beginString" : "filter"
+      "begin" : "filter"
     },
     {
-      "beginString" : "find"
+      "begin" : "find"
     },
     {
-      "beginString" : "float"
+      "begin" : "float"
     },
     {
-      "beginString" : "flush"
+      "begin" : "flush"
     },
     {
-      "beginString" : "format"
+      "begin" : "format"
     },
     {
-      "beginString" : "format_map"
+      "begin" : "format_map"
     },
     {
-      "beginString" : "from_bytes"
+      "begin" : "from_bytes"
     },
     {
-      "beginString" : "fromhex"
+      "begin" : "fromhex"
     },
     {
-      "beginString" : "fromkeys"
+      "begin" : "fromkeys"
     },
     {
-      "beginString" : "frozenset"
+      "begin" : "frozenset"
     },
     {
-      "beginString" : "get"
+      "begin" : "get"
     },
     {
-      "beginString" : "getattr"
+      "begin" : "getattr"
     },
     {
-      "beginString" : "getboolean"
+      "begin" : "getboolean"
     },
     {
-      "beginString" : "getfloat"
+      "begin" : "getfloat"
     },
     {
-      "beginString" : "getint"
+      "begin" : "getint"
     },
     {
-      "beginString" : "globals"
+      "begin" : "globals"
     },
     {
-      "beginString" : "has_key"
+      "begin" : "has_key"
     },
     {
-      "beginString" : "hasattr"
+      "begin" : "hasattr"
     },
     {
-      "beginString" : "hash"
+      "begin" : "hash"
     },
     {
-      "beginString" : "help"
+      "begin" : "help"
     },
     {
-      "beginString" : "hex"
+      "begin" : "hex"
     },
     {
-      "beginString" : "id"
+      "begin" : "id"
     },
     {
-      "beginString" : "index"
+      "begin" : "index"
     },
     {
-      "beginString" : "indices"
+      "begin" : "indices"
     },
     {
-      "beginString" : "input"
+      "begin" : "input"
     },
     {
-      "beginString" : "insert"
+      "begin" : "insert"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "intersection"
+      "begin" : "intersection"
     },
     {
-      "beginString" : "intersection_update"
+      "begin" : "intersection_update"
     },
     {
-      "beginString" : "is_integer"
+      "begin" : "is_integer"
     },
     {
-      "beginString" : "isalnum"
+      "begin" : "isalnum"
     },
     {
-      "beginString" : "isalpha"
+      "begin" : "isalpha"
     },
     {
-      "beginString" : "isatty"
+      "begin" : "isatty"
     },
     {
-      "beginString" : "isdecimal"
+      "begin" : "isdecimal"
     },
     {
-      "beginString" : "isdigit"
+      "begin" : "isdigit"
     },
     {
-      "beginString" : "isdisjoint"
+      "begin" : "isdisjoint"
     },
     {
-      "beginString" : "isinstance"
+      "begin" : "isinstance"
     },
     {
-      "beginString" : "islower"
+      "begin" : "islower"
     },
     {
-      "beginString" : "isnumeric"
+      "begin" : "isnumeric"
     },
     {
-      "beginString" : "isspace"
+      "begin" : "isspace"
     },
     {
-      "beginString" : "issubclass"
+      "begin" : "issubclass"
     },
     {
-      "beginString" : "issubset"
+      "begin" : "issubset"
     },
     {
-      "beginString" : "issuperset"
+      "begin" : "issuperset"
     },
     {
-      "beginString" : "istitle"
+      "begin" : "istitle"
     },
     {
-      "beginString" : "isupper"
+      "begin" : "isupper"
     },
     {
-      "beginString" : "items"
+      "begin" : "items"
     },
     {
-      "beginString" : "iter"
+      "begin" : "iter"
     },
     {
-      "beginString" : "iteritems"
+      "begin" : "iteritems"
     },
     {
-      "beginString" : "iterkeys"
+      "begin" : "iterkeys"
     },
     {
-      "beginString" : "itervalues"
+      "begin" : "itervalues"
     },
     {
-      "beginString" : "join"
+      "begin" : "join"
     },
     {
-      "beginString" : "keys"
+      "begin" : "keys"
     },
     {
-      "beginString" : "len"
+      "begin" : "len"
     },
     {
-      "beginString" : "list"
+      "begin" : "list"
     },
     {
-      "beginString" : "ljust"
+      "begin" : "ljust"
     },
     {
-      "beginString" : "locals"
+      "begin" : "locals"
     },
     {
-      "beginString" : "long"
+      "begin" : "long"
     },
     {
-      "beginString" : "lower"
+      "begin" : "lower"
     },
     {
-      "beginString" : "lstrip"
+      "begin" : "lstrip"
     },
     {
-      "beginString" : "maketrans"
+      "begin" : "maketrans"
     },
     {
-      "beginString" : "map"
+      "begin" : "map"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "memoryview"
+      "begin" : "memoryview"
     },
     {
-      "beginString" : "min"
+      "begin" : "min"
     },
     {
-      "beginString" : "mro"
+      "begin" : "mro"
     },
     {
-      "beginString" : "next"
+      "begin" : "next"
     },
     {
-      "beginString" : "object"
+      "begin" : "object"
     },
     {
-      "beginString" : "oct"
+      "begin" : "oct"
     },
     {
-      "beginString" : "open"
+      "begin" : "open"
     },
     {
-      "beginString" : "ord"
+      "begin" : "ord"
     },
     {
-      "beginString" : "partition"
+      "begin" : "partition"
     },
     {
-      "beginString" : "pop"
+      "begin" : "pop"
     },
     {
-      "beginString" : "popitem"
+      "begin" : "popitem"
     },
     {
-      "beginString" : "pow"
+      "begin" : "pow"
     },
     {
-      "beginString" : "property"
+      "begin" : "property"
     },
     {
-      "beginString" : "range"
+      "begin" : "range"
     },
     {
-      "beginString" : "raw_input"
+      "begin" : "raw_input"
     },
     {
-      "beginString" : "read"
+      "begin" : "read"
     },
     {
-      "beginString" : "readline"
+      "begin" : "readline"
     },
     {
-      "beginString" : "readlines"
+      "begin" : "readlines"
     },
     {
-      "beginString" : "reduce"
+      "begin" : "reduce"
     },
     {
-      "beginString" : "release"
+      "begin" : "release"
     },
     {
-      "beginString" : "reload"
+      "begin" : "reload"
     },
     {
-      "beginString" : "remove"
+      "begin" : "remove"
     },
     {
-      "beginString" : "removeprefix"
+      "begin" : "removeprefix"
     },
     {
-      "beginString" : "removesuffix"
+      "begin" : "removesuffix"
     },
     {
-      "beginString" : "replace"
+      "begin" : "replace"
     },
     {
-      "beginString" : "repr"
+      "begin" : "repr"
     },
     {
-      "beginString" : "reverse"
+      "begin" : "reverse"
     },
     {
-      "beginString" : "reversed"
+      "begin" : "reversed"
     },
     {
-      "beginString" : "rfind"
+      "begin" : "rfind"
     },
     {
-      "beginString" : "rindex"
+      "begin" : "rindex"
     },
     {
-      "beginString" : "rjust"
+      "begin" : "rjust"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "rpartition"
+      "begin" : "rpartition"
     },
     {
-      "beginString" : "rsplit"
+      "begin" : "rsplit"
     },
     {
-      "beginString" : "rstrip"
+      "begin" : "rstrip"
     },
     {
-      "beginString" : "seek"
+      "begin" : "seek"
     },
     {
-      "beginString" : "set"
+      "begin" : "set"
     },
     {
-      "beginString" : "setattr"
+      "begin" : "setattr"
     },
     {
-      "beginString" : "setdefault"
+      "begin" : "setdefault"
     },
     {
-      "beginString" : "slice"
+      "begin" : "slice"
     },
     {
-      "beginString" : "sort"
+      "begin" : "sort"
     },
     {
-      "beginString" : "sorted"
+      "begin" : "sorted"
     },
     {
-      "beginString" : "split"
+      "begin" : "split"
     },
     {
-      "beginString" : "splitlines"
+      "begin" : "splitlines"
     },
     {
-      "beginString" : "startswith"
+      "begin" : "startswith"
     },
     {
-      "beginString" : "staticmethod"
+      "begin" : "staticmethod"
     },
     {
-      "beginString" : "str"
+      "begin" : "str"
     },
     {
-      "beginString" : "strip"
+      "begin" : "strip"
     },
     {
-      "beginString" : "sum"
+      "begin" : "sum"
     },
     {
-      "beginString" : "super"
+      "begin" : "super"
     },
     {
-      "beginString" : "swapcase"
+      "begin" : "swapcase"
     },
     {
-      "beginString" : "symmetric_difference"
+      "begin" : "symmetric_difference"
     },
     {
-      "beginString" : "symmetric_difference_update"
+      "begin" : "symmetric_difference_update"
     },
     {
-      "beginString" : "tell"
+      "begin" : "tell"
     },
     {
-      "beginString" : "title"
+      "begin" : "title"
     },
     {
-      "beginString" : "to_bytes"
+      "begin" : "to_bytes"
     },
     {
-      "beginString" : "tolist"
+      "begin" : "tolist"
     },
     {
-      "beginString" : "translate"
+      "begin" : "translate"
     },
     {
-      "beginString" : "truncate"
+      "begin" : "truncate"
     },
     {
-      "beginString" : "tuple"
+      "begin" : "tuple"
     },
     {
-      "beginString" : "type"
+      "begin" : "type"
     },
     {
-      "beginString" : "unichr"
+      "begin" : "unichr"
     },
     {
-      "beginString" : "unicode"
+      "begin" : "unicode"
     },
     {
-      "beginString" : "union"
+      "begin" : "union"
     },
     {
-      "beginString" : "update"
+      "begin" : "update"
     },
     {
-      "beginString" : "upper"
+      "begin" : "upper"
     },
     {
-      "beginString" : "values"
+      "begin" : "values"
     },
     {
-      "beginString" : "vars"
+      "begin" : "vars"
     },
     {
-      "beginString" : "viewitems"
+      "begin" : "viewitems"
     },
     {
-      "beginString" : "viewkeys"
+      "begin" : "viewkeys"
     },
     {
-      "beginString" : "viewvalues"
+      "begin" : "viewvalues"
     },
     {
-      "beginString" : "write"
+      "begin" : "write"
     },
     {
-      "beginString" : "writelines"
+      "begin" : "writelines"
     },
     {
-      "beginString" : "xrange"
+      "begin" : "xrange"
     },
     {
-      "beginString" : "xreadlines"
+      "begin" : "xreadlines"
     },
     {
-      "beginString" : "zfill"
+      "begin" : "zfill"
     },
     {
-      "beginString" : "zip"
+      "begin" : "zip"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "alias",
+      "begin" : "alias",
       "description" : "Mojo keyword"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "as"
+      "begin" : "as"
     },
     {
-      "beginString" : "assert"
+      "begin" : "assert"
     },
     {
-      "beginString" : "async"
+      "begin" : "async"
     },
     {
-      "beginString" : "await"
+      "begin" : "await"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "def"
+      "begin" : "def"
     },
     {
-      "beginString" : "del"
+      "begin" : "del"
     },
     {
-      "beginString" : "elif"
+      "begin" : "elif"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "except"
+      "begin" : "except"
     },
     {
-      "beginString" : "finally"
+      "begin" : "finally"
     },
     {
-      "beginString" : "fn",
+      "begin" : "fn",
       "description" : "Mojo keyword"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "from"
+      "begin" : "from"
     },
     {
-      "beginString" : "global"
+      "begin" : "global"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "is"
+      "begin" : "is"
     },
     {
-      "beginString" : "lambda"
+      "begin" : "lambda"
     },
     {
-      "beginString" : "let",
+      "begin" : "let",
       "description" : "Mojo keyword"
     },
     {
-      "beginString" : "match"
+      "begin" : "match"
     },
     {
-      "beginString" : "nonlocal"
+      "begin" : "nonlocal"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "pass"
+      "begin" : "pass"
     },
     {
-      "beginString" : "print"
+      "begin" : "print"
     },
     {
-      "beginString" : "raise"
+      "begin" : "raise"
     },
     {
-      "beginString" : "raises",
+      "begin" : "raises",
       "description" : "Mojo keyword"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "struct",
+      "begin" : "struct",
       "description" : "Mojo keyword"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "var",
+      "begin" : "var",
       "description" : "Mojo keyword"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "with"
+      "begin" : "with"
     },
     {
-      "beginString" : "yield"
+      "begin" : "yield"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "((?<!\\w)|[-+])(?:\\.[0-9][0-9_]*|[0-9][0-9_]*\\.|[0-9]+\\.[0-9][0-9_]*|[0-9][0-9_]*)(e[+-]?[0-9][0-9_]*)?[jl]?",
+      "begin" : "((?<!\\w)|[-+])(?:\\.[0-9][0-9_]*|[0-9][0-9_]*\\.|[0-9]+\\.[0-9][0-9_]*|[0-9][0-9_]*)(e[+-]?[0-9][0-9_]*)?[jl]?",
       "description" : "decimal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0b[01][01_]*l?",
+      "begin" : "\\b0b[01][01_]*l?",
       "description" : "binary",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0o[0-7][0-7_]*l?",
+      "begin" : "\\b0o[0-7][0-7_]*l?",
       "description" : "octal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-f][0-9a-f_]*l?",
+      "begin" : "\\b0x[0-9a-f][0-9a-f_]*l?",
       "description" : "hexadecimal",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -1127,230 +1127,230 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "\"\"\"",
-      "endString" : "\"\"\"",
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
       "isMultiline" : true
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     },
     {
-      "beginString" : "'''",
-      "endString" : "'''",
+      "begin" : "'''",
+      "end" : "'''",
       "isMultiline" : true
     },
     {
-      "beginString" : "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]",
+      "begin" : "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "`",
-      "endString" : "`"
+      "begin" : "`",
+      "end" : "`"
     }
   ],
   "values" : [
     {
-      "beginString" : "__all__"
+      "begin" : "__all__"
     },
     {
-      "beginString" : "__annotations__"
+      "begin" : "__annotations__"
     },
     {
-      "beginString" : "__bases__"
+      "begin" : "__bases__"
     },
     {
-      "beginString" : "__builtins__"
+      "begin" : "__builtins__"
     },
     {
-      "beginString" : "__cached__"
+      "begin" : "__cached__"
     },
     {
-      "beginString" : "__callback__"
+      "begin" : "__callback__"
     },
     {
-      "beginString" : "__cause__"
+      "begin" : "__cause__"
     },
     {
-      "beginString" : "__class__"
+      "begin" : "__class__"
     },
     {
-      "beginString" : "__closure__"
+      "begin" : "__closure__"
     },
     {
-      "beginString" : "__code__"
+      "begin" : "__code__"
     },
     {
-      "beginString" : "__context__"
+      "begin" : "__context__"
     },
     {
-      "beginString" : "__debug__"
+      "begin" : "__debug__"
     },
     {
-      "beginString" : "__defaults__"
+      "begin" : "__defaults__"
     },
     {
-      "beginString" : "__dict__"
+      "begin" : "__dict__"
     },
     {
-      "beginString" : "__displayhook__"
+      "begin" : "__displayhook__"
     },
     {
-      "beginString" : "__doc__"
+      "begin" : "__doc__"
     },
     {
-      "beginString" : "__excepthook__"
+      "begin" : "__excepthook__"
     },
     {
-      "beginString" : "__file__"
+      "begin" : "__file__"
     },
     {
-      "beginString" : "__func__"
+      "begin" : "__func__"
     },
     {
-      "beginString" : "__future__"
+      "begin" : "__future__"
     },
     {
-      "beginString" : "__globals__"
+      "begin" : "__globals__"
     },
     {
-      "beginString" : "__interactivehook__"
+      "begin" : "__interactivehook__"
     },
     {
-      "beginString" : "__kwdefaults__"
+      "begin" : "__kwdefaults__"
     },
     {
-      "beginString" : "__loader__"
+      "begin" : "__loader__"
     },
     {
-      "beginString" : "__main__"
+      "begin" : "__main__"
     },
     {
-      "beginString" : "__metaclass__"
+      "begin" : "__metaclass__"
     },
     {
-      "beginString" : "__module__"
+      "begin" : "__module__"
     },
     {
-      "beginString" : "__mro__"
+      "begin" : "__mro__"
     },
     {
-      "beginString" : "__name__"
+      "begin" : "__name__"
     },
     {
-      "beginString" : "__package__"
+      "begin" : "__package__"
     },
     {
-      "beginString" : "__path__"
+      "begin" : "__path__"
     },
     {
-      "beginString" : "__qualname__"
+      "begin" : "__qualname__"
     },
     {
-      "beginString" : "__self__"
+      "begin" : "__self__"
     },
     {
-      "beginString" : "__slots__"
+      "begin" : "__slots__"
     },
     {
-      "beginString" : "__spec__"
+      "begin" : "__spec__"
     },
     {
-      "beginString" : "__stderr__"
+      "begin" : "__stderr__"
     },
     {
-      "beginString" : "__stdin__"
+      "begin" : "__stdin__"
     },
     {
-      "beginString" : "__stdout__"
+      "begin" : "__stdout__"
     },
     {
-      "beginString" : "__suppress_context__"
+      "begin" : "__suppress_context__"
     },
     {
-      "beginString" : "__traceback__"
+      "begin" : "__traceback__"
     },
     {
-      "beginString" : "__wrapped__"
+      "begin" : "__wrapped__"
     },
     {
-      "beginString" : "basestring"
+      "begin" : "basestring"
     },
     {
-      "beginString" : "closed"
+      "begin" : "closed"
     },
     {
-      "beginString" : "Ellipsis"
+      "begin" : "Ellipsis"
     },
     {
-      "beginString" : "encoding"
+      "begin" : "encoding"
     },
     {
-      "beginString" : "False"
+      "begin" : "False"
     },
     {
-      "beginString" : "func_closure"
+      "begin" : "func_closure"
     },
     {
-      "beginString" : "func_code"
+      "begin" : "func_code"
     },
     {
-      "beginString" : "func_defaults"
+      "begin" : "func_defaults"
     },
     {
-      "beginString" : "func_dict"
+      "begin" : "func_dict"
     },
     {
-      "beginString" : "func_doc"
+      "begin" : "func_doc"
     },
     {
-      "beginString" : "func_globals"
+      "begin" : "func_globals"
     },
     {
-      "beginString" : "func_name"
+      "begin" : "func_name"
     },
     {
-      "beginString" : "im_class"
+      "begin" : "im_class"
     },
     {
-      "beginString" : "im_func"
+      "begin" : "im_func"
     },
     {
-      "beginString" : "im_self"
+      "begin" : "im_self"
     },
     {
-      "beginString" : "imag"
+      "begin" : "imag"
     },
     {
-      "beginString" : "mode"
+      "begin" : "mode"
     },
     {
-      "beginString" : "newlines"
+      "begin" : "newlines"
     },
     {
-      "beginString" : "None"
+      "begin" : "None"
     },
     {
-      "beginString" : "NotImplemented"
+      "begin" : "NotImplemented"
     },
     {
-      "beginString" : "softspace"
+      "begin" : "softspace"
     },
     {
-      "beginString" : "True"
+      "begin" : "True"
     }
   ],
   "variables" : [
     {
-      "beginString" : "cls"
+      "begin" : "cls"
     },
     {
-      "beginString" : "self"
+      "begin" : "self"
     }
   ]
 }

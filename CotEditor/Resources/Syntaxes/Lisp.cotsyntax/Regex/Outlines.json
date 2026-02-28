@@ -1,14 +1,14 @@
 [
   {
-    "beginString" : "([\\t ]*)\\(defmacro\\S+(\\S+)",
+    "pattern" : "([\\t ]*)\\(defmacro\\S+(\\S+)",
     "description" : "macro",
-    "keyString" : "$1macro: $2",
+    "template" : "$1macro: $2",
     "kind" : "function"
   },
   {
-    "beginString" : "([\\t ]*)\\(defun\\S+(\\S+)",
+    "pattern" : "([\\t ]*)\\(defun\\S+(\\S+)",
     "description" : "function",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "function"
   }
 ]

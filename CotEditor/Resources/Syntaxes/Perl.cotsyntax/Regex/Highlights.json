@@ -1,1127 +1,1127 @@
 {
   "characters" : [
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     },
     {
-      "beginString" : "(?s)<<\\s*'([0-9a-zA-Z_]+)'\\s*;.+?\\R\\1\\R",
+      "begin" : "(?s)<<\\s*'([0-9a-zA-Z_]+)'\\s*;.+?\\R\\1\\R",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bq/",
-      "endString" : "/",
+      "begin" : "\\bq/",
+      "end" : "/",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "accept"
+      "begin" : "accept"
     },
     {
-      "beginString" : "alarm"
+      "begin" : "alarm"
     },
     {
-      "beginString" : "atan2"
+      "begin" : "atan2"
     },
     {
-      "beginString" : "AUTOLOAD"
+      "begin" : "AUTOLOAD"
     },
     {
-      "beginString" : "BEGIN"
+      "begin" : "BEGIN"
     },
     {
-      "beginString" : "bind"
+      "begin" : "bind"
     },
     {
-      "beginString" : "binmode"
+      "begin" : "binmode"
     },
     {
-      "beginString" : "bless"
+      "begin" : "bless"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "caller"
+      "begin" : "caller"
     },
     {
-      "beginString" : "chdir"
+      "begin" : "chdir"
     },
     {
-      "beginString" : "CHECK"
+      "begin" : "CHECK"
     },
     {
-      "beginString" : "chmod"
+      "begin" : "chmod"
     },
     {
-      "beginString" : "chomp"
+      "begin" : "chomp"
     },
     {
-      "beginString" : "chop"
+      "begin" : "chop"
     },
     {
-      "beginString" : "chown"
+      "begin" : "chown"
     },
     {
-      "beginString" : "chr"
+      "begin" : "chr"
     },
     {
-      "beginString" : "chroot"
+      "begin" : "chroot"
     },
     {
-      "beginString" : "close"
+      "begin" : "close"
     },
     {
-      "beginString" : "closedir"
+      "begin" : "closedir"
     },
     {
-      "beginString" : "connect"
+      "begin" : "connect"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "crypt"
+      "begin" : "crypt"
     },
     {
-      "beginString" : "dbmclose"
+      "begin" : "dbmclose"
     },
     {
-      "beginString" : "dbmopen"
+      "begin" : "dbmopen"
     },
     {
-      "beginString" : "defined"
+      "begin" : "defined"
     },
     {
-      "beginString" : "delete"
+      "begin" : "delete"
     },
     {
-      "beginString" : "DESTROY"
+      "begin" : "DESTROY"
     },
     {
-      "beginString" : "die"
+      "begin" : "die"
     },
     {
-      "beginString" : "dump"
+      "begin" : "dump"
     },
     {
-      "beginString" : "each"
+      "begin" : "each"
     },
     {
-      "beginString" : "END"
+      "begin" : "END"
     },
     {
-      "beginString" : "endgrent"
+      "begin" : "endgrent"
     },
     {
-      "beginString" : "endhostent"
+      "begin" : "endhostent"
     },
     {
-      "beginString" : "endnetent"
+      "begin" : "endnetent"
     },
     {
-      "beginString" : "endprotoent"
+      "begin" : "endprotoent"
     },
     {
-      "beginString" : "endpwent"
+      "begin" : "endpwent"
     },
     {
-      "beginString" : "endservent"
+      "begin" : "endservent"
     },
     {
-      "beginString" : "eof"
+      "begin" : "eof"
     },
     {
-      "beginString" : "eval"
+      "begin" : "eval"
     },
     {
-      "beginString" : "exec"
+      "begin" : "exec"
     },
     {
-      "beginString" : "exists"
+      "begin" : "exists"
     },
     {
-      "beginString" : "exit"
+      "begin" : "exit"
     },
     {
-      "beginString" : "fcntl"
+      "begin" : "fcntl"
     },
     {
-      "beginString" : "fileno"
+      "begin" : "fileno"
     },
     {
-      "beginString" : "flock"
+      "begin" : "flock"
     },
     {
-      "beginString" : "fork"
+      "begin" : "fork"
     },
     {
-      "beginString" : "format"
+      "begin" : "format"
     },
     {
-      "beginString" : "formline"
+      "begin" : "formline"
     },
     {
-      "beginString" : "getc"
+      "begin" : "getc"
     },
     {
-      "beginString" : "getgrent"
+      "begin" : "getgrent"
     },
     {
-      "beginString" : "getgrgid"
+      "begin" : "getgrgid"
     },
     {
-      "beginString" : "getgrnam"
+      "begin" : "getgrnam"
     },
     {
-      "beginString" : "gethostbyaddr"
+      "begin" : "gethostbyaddr"
     },
     {
-      "beginString" : "gethostbyname"
+      "begin" : "gethostbyname"
     },
     {
-      "beginString" : "gethostent"
+      "begin" : "gethostent"
     },
     {
-      "beginString" : "getlogin"
+      "begin" : "getlogin"
     },
     {
-      "beginString" : "getnetbyaddr"
+      "begin" : "getnetbyaddr"
     },
     {
-      "beginString" : "getnetbyname"
+      "begin" : "getnetbyname"
     },
     {
-      "beginString" : "getnetent"
+      "begin" : "getnetent"
     },
     {
-      "beginString" : "getpeername"
+      "begin" : "getpeername"
     },
     {
-      "beginString" : "getpgrp"
+      "begin" : "getpgrp"
     },
     {
-      "beginString" : "getppid"
+      "begin" : "getppid"
     },
     {
-      "beginString" : "getpriority"
+      "begin" : "getpriority"
     },
     {
-      "beginString" : "getprotobyname"
+      "begin" : "getprotobyname"
     },
     {
-      "beginString" : "getprotobynumber"
+      "begin" : "getprotobynumber"
     },
     {
-      "beginString" : "getprotoent"
+      "begin" : "getprotoent"
     },
     {
-      "beginString" : "getpwent"
+      "begin" : "getpwent"
     },
     {
-      "beginString" : "getpwnam"
+      "begin" : "getpwnam"
     },
     {
-      "beginString" : "getpwuid"
+      "begin" : "getpwuid"
     },
     {
-      "beginString" : "getservbyname"
+      "begin" : "getservbyname"
     },
     {
-      "beginString" : "getservbyport"
+      "begin" : "getservbyport"
     },
     {
-      "beginString" : "getservent"
+      "begin" : "getservent"
     },
     {
-      "beginString" : "getsockname"
+      "begin" : "getsockname"
     },
     {
-      "beginString" : "getsockopt"
+      "begin" : "getsockopt"
     },
     {
-      "beginString" : "glob"
+      "begin" : "glob"
     },
     {
-      "beginString" : "gmtime"
+      "begin" : "gmtime"
     },
     {
-      "beginString" : "goto"
+      "begin" : "goto"
     },
     {
-      "beginString" : "grep"
+      "begin" : "grep"
     },
     {
-      "beginString" : "hex"
+      "begin" : "hex"
     },
     {
-      "beginString" : "index"
+      "begin" : "index"
     },
     {
-      "beginString" : "INIT"
+      "begin" : "INIT"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "ioctl"
+      "begin" : "ioctl"
     },
     {
-      "beginString" : "join"
+      "begin" : "join"
     },
     {
-      "beginString" : "keys"
+      "begin" : "keys"
     },
     {
-      "beginString" : "kill"
+      "begin" : "kill"
     },
     {
-      "beginString" : "last"
+      "begin" : "last"
     },
     {
-      "beginString" : "lc"
+      "begin" : "lc"
     },
     {
-      "beginString" : "lcfirst"
+      "begin" : "lcfirst"
     },
     {
-      "beginString" : "length"
+      "begin" : "length"
     },
     {
-      "beginString" : "link"
+      "begin" : "link"
     },
     {
-      "beginString" : "listen"
+      "begin" : "listen"
     },
     {
-      "beginString" : "local"
+      "begin" : "local"
     },
     {
-      "beginString" : "localtime"
+      "begin" : "localtime"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "lstat"
+      "begin" : "lstat"
     },
     {
-      "beginString" : "map"
+      "begin" : "map"
     },
     {
-      "beginString" : "mkdir"
+      "begin" : "mkdir"
     },
     {
-      "beginString" : "msgctl"
+      "begin" : "msgctl"
     },
     {
-      "beginString" : "msgget"
+      "begin" : "msgget"
     },
     {
-      "beginString" : "msgrcv"
+      "begin" : "msgrcv"
     },
     {
-      "beginString" : "msgsnd"
+      "begin" : "msgsnd"
     },
     {
-      "beginString" : "my"
+      "begin" : "my"
     },
     {
-      "beginString" : "next"
+      "begin" : "next"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "oct"
+      "begin" : "oct"
     },
     {
-      "beginString" : "open"
+      "begin" : "open"
     },
     {
-      "beginString" : "opendir"
+      "begin" : "opendir"
     },
     {
-      "beginString" : "ord"
+      "begin" : "ord"
     },
     {
-      "beginString" : "our"
+      "begin" : "our"
     },
     {
-      "beginString" : "pack"
+      "begin" : "pack"
     },
     {
-      "beginString" : "pipe"
+      "begin" : "pipe"
     },
     {
-      "beginString" : "pop"
+      "begin" : "pop"
     },
     {
-      "beginString" : "pos"
+      "begin" : "pos"
     },
     {
-      "beginString" : "print"
+      "begin" : "print"
     },
     {
-      "beginString" : "printf"
+      "begin" : "printf"
     },
     {
-      "beginString" : "prototype"
+      "begin" : "prototype"
     },
     {
-      "beginString" : "push"
+      "begin" : "push"
     },
     {
-      "beginString" : "quotemeta"
+      "begin" : "quotemeta"
     },
     {
-      "beginString" : "rand"
+      "begin" : "rand"
     },
     {
-      "beginString" : "read"
+      "begin" : "read"
     },
     {
-      "beginString" : "readdir"
+      "begin" : "readdir"
     },
     {
-      "beginString" : "readline"
+      "begin" : "readline"
     },
     {
-      "beginString" : "readlink"
+      "begin" : "readlink"
     },
     {
-      "beginString" : "readpipe"
+      "begin" : "readpipe"
     },
     {
-      "beginString" : "recv"
+      "begin" : "recv"
     },
     {
-      "beginString" : "redo"
+      "begin" : "redo"
     },
     {
-      "beginString" : "ref"
+      "begin" : "ref"
     },
     {
-      "beginString" : "rename"
+      "begin" : "rename"
     },
     {
-      "beginString" : "require"
+      "begin" : "require"
     },
     {
-      "beginString" : "reset"
+      "begin" : "reset"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "reverse"
+      "begin" : "reverse"
     },
     {
-      "beginString" : "rewinddir"
+      "begin" : "rewinddir"
     },
     {
-      "beginString" : "rindex"
+      "begin" : "rindex"
     },
     {
-      "beginString" : "rmdir"
+      "begin" : "rmdir"
     },
     {
-      "beginString" : "say"
+      "begin" : "say"
     },
     {
-      "beginString" : "scalar"
+      "begin" : "scalar"
     },
     {
-      "beginString" : "seek"
+      "begin" : "seek"
     },
     {
-      "beginString" : "seekdir"
+      "begin" : "seekdir"
     },
     {
-      "beginString" : "select"
+      "begin" : "select"
     },
     {
-      "beginString" : "semctl"
+      "begin" : "semctl"
     },
     {
-      "beginString" : "semget"
+      "begin" : "semget"
     },
     {
-      "beginString" : "semop"
+      "begin" : "semop"
     },
     {
-      "beginString" : "send"
+      "begin" : "send"
     },
     {
-      "beginString" : "setgrent"
+      "begin" : "setgrent"
     },
     {
-      "beginString" : "sethostent"
+      "begin" : "sethostent"
     },
     {
-      "beginString" : "setnetent"
+      "begin" : "setnetent"
     },
     {
-      "beginString" : "setpgrp"
+      "begin" : "setpgrp"
     },
     {
-      "beginString" : "setpriority"
+      "begin" : "setpriority"
     },
     {
-      "beginString" : "setprotoent"
+      "begin" : "setprotoent"
     },
     {
-      "beginString" : "setpwent"
+      "begin" : "setpwent"
     },
     {
-      "beginString" : "setservent"
+      "begin" : "setservent"
     },
     {
-      "beginString" : "setsockopt"
+      "begin" : "setsockopt"
     },
     {
-      "beginString" : "shift"
+      "begin" : "shift"
     },
     {
-      "beginString" : "shmctl"
+      "begin" : "shmctl"
     },
     {
-      "beginString" : "shmget"
+      "begin" : "shmget"
     },
     {
-      "beginString" : "shmread"
+      "begin" : "shmread"
     },
     {
-      "beginString" : "shmwrite"
+      "begin" : "shmwrite"
     },
     {
-      "beginString" : "shutdown"
+      "begin" : "shutdown"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "sleep"
+      "begin" : "sleep"
     },
     {
-      "beginString" : "socket"
+      "begin" : "socket"
     },
     {
-      "beginString" : "socketpair"
+      "begin" : "socketpair"
     },
     {
-      "beginString" : "sort"
+      "begin" : "sort"
     },
     {
-      "beginString" : "splice"
+      "begin" : "splice"
     },
     {
-      "beginString" : "split"
+      "begin" : "split"
     },
     {
-      "beginString" : "sprintf"
+      "begin" : "sprintf"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "srand"
+      "begin" : "srand"
     },
     {
-      "beginString" : "stat"
+      "begin" : "stat"
     },
     {
-      "beginString" : "state"
+      "begin" : "state"
     },
     {
-      "beginString" : "study"
+      "begin" : "study"
     },
     {
-      "beginString" : "substr"
+      "begin" : "substr"
     },
     {
-      "beginString" : "symlink"
+      "begin" : "symlink"
     },
     {
-      "beginString" : "syscall"
+      "begin" : "syscall"
     },
     {
-      "beginString" : "sysopen"
+      "begin" : "sysopen"
     },
     {
-      "beginString" : "sysread"
+      "begin" : "sysread"
     },
     {
-      "beginString" : "sysseek"
+      "begin" : "sysseek"
     },
     {
-      "beginString" : "system"
+      "begin" : "system"
     },
     {
-      "beginString" : "syswrite"
+      "begin" : "syswrite"
     },
     {
-      "beginString" : "tell"
+      "begin" : "tell"
     },
     {
-      "beginString" : "telldir"
+      "begin" : "telldir"
     },
     {
-      "beginString" : "tie"
+      "begin" : "tie"
     },
     {
-      "beginString" : "tied"
+      "begin" : "tied"
     },
     {
-      "beginString" : "time"
+      "begin" : "time"
     },
     {
-      "beginString" : "times"
+      "begin" : "times"
     },
     {
-      "beginString" : "truncate"
+      "begin" : "truncate"
     },
     {
-      "beginString" : "uc"
+      "begin" : "uc"
     },
     {
-      "beginString" : "ucfirst"
+      "begin" : "ucfirst"
     },
     {
-      "beginString" : "umask"
+      "begin" : "umask"
     },
     {
-      "beginString" : "undef"
+      "begin" : "undef"
     },
     {
-      "beginString" : "UNITCHECK"
+      "begin" : "UNITCHECK"
     },
     {
-      "beginString" : "unlink"
+      "begin" : "unlink"
     },
     {
-      "beginString" : "unpack"
+      "begin" : "unpack"
     },
     {
-      "beginString" : "unshift"
+      "begin" : "unshift"
     },
     {
-      "beginString" : "untie"
+      "begin" : "untie"
     },
     {
-      "beginString" : "use"
+      "begin" : "use"
     },
     {
-      "beginString" : "utime"
+      "begin" : "utime"
     },
     {
-      "beginString" : "values"
+      "begin" : "values"
     },
     {
-      "beginString" : "vec"
+      "begin" : "vec"
     },
     {
-      "beginString" : "wait"
+      "begin" : "wait"
     },
     {
-      "beginString" : "waitpid"
+      "begin" : "waitpid"
     },
     {
-      "beginString" : "wantarray"
+      "begin" : "wantarray"
     },
     {
-      "beginString" : "warn"
+      "begin" : "warn"
     },
     {
-      "beginString" : "write"
+      "begin" : "write"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "__DATA__"
+      "begin" : "__DATA__"
     },
     {
-      "beginString" : "__END__"
+      "begin" : "__END__"
     },
     {
-      "beginString" : "__FILE__"
+      "begin" : "__FILE__"
     },
     {
-      "beginString" : "__LINE__"
+      "begin" : "__LINE__"
     },
     {
-      "beginString" : "__PACKAGE__"
+      "begin" : "__PACKAGE__"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "cmp"
+      "begin" : "cmp"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "CORE"
+      "begin" : "CORE"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "elsif"
+      "begin" : "elsif"
     },
     {
-      "beginString" : "eq"
+      "begin" : "eq"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "foreach"
+      "begin" : "foreach"
     },
     {
-      "beginString" : "ge"
+      "begin" : "ge"
     },
     {
-      "beginString" : "gt"
+      "begin" : "gt"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "le"
+      "begin" : "le"
     },
     {
-      "beginString" : "lock"
+      "begin" : "lock"
     },
     {
-      "beginString" : "lt"
+      "begin" : "lt"
     },
     {
-      "beginString" : "m"
+      "begin" : "m"
     },
     {
-      "beginString" : "ne"
+      "begin" : "ne"
     },
     {
-      "beginString" : "no"
+      "begin" : "no"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "package"
+      "begin" : "package"
     },
     {
-      "beginString" : "q"
+      "begin" : "q"
     },
     {
-      "beginString" : "qq"
+      "begin" : "qq"
     },
     {
-      "beginString" : "qr"
+      "begin" : "qr"
     },
     {
-      "beginString" : "qw"
+      "begin" : "qw"
     },
     {
-      "beginString" : "qx"
+      "begin" : "qx"
     },
     {
-      "beginString" : "s"
+      "begin" : "s"
     },
     {
-      "beginString" : "sub"
+      "begin" : "sub"
     },
     {
-      "beginString" : "tr"
+      "begin" : "tr"
     },
     {
-      "beginString" : "unless"
+      "begin" : "unless"
     },
     {
-      "beginString" : "until"
+      "begin" : "until"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "xor"
+      "begin" : "xor"
     },
     {
-      "beginString" : "y"
+      "begin" : "y"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<![0-9a-z_$])[0-9.][0-9._]*(e[-+][0-9._]+)?\\b",
+      "begin" : "(?<![0-9a-z_$])[0-9.][0-9._]*(e[-+][0-9._]+)?\\b",
       "description" : "decimal",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0b[01_]+\\b",
+      "begin" : "\\b0b[01_]+\\b",
       "description" : "binary",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-fA-F_]+\\b",
+      "begin" : "\\b0x[0-9a-fA-F_]+\\b",
       "description" : "hexadecimal",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\R\\1\\R",
+      "begin" : "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\R\\1\\R",
       "regularExpression" : true
     },
     {
-      "beginString" : "/[^\\r\\n/]*/[^\\r\\n/]*/[a-z]*\\b",
+      "begin" : "/[^\\r\\n/]*/[^\\r\\n/]*/[a-z]*\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "qq/",
-      "endString" : "/"
+      "begin" : "qq/",
+      "end" : "/"
     }
   ],
   "values" : [
     {
-      "beginString" : "$ACCUMULATOR"
+      "begin" : "$ACCUMULATOR"
     },
     {
-      "beginString" : "$ARGV"
+      "begin" : "$ARGV"
     },
     {
-      "beginString" : "$BASETIME"
+      "begin" : "$BASETIME"
     },
     {
-      "beginString" : "$CHILD_ERROR"
+      "begin" : "$CHILD_ERROR"
     },
     {
-      "beginString" : "$DEBUGGING"
+      "begin" : "$DEBUGGING"
     },
     {
-      "beginString" : "$EFFECTIVE_GROUP_ID"
+      "begin" : "$EFFECTIVE_GROUP_ID"
     },
     {
-      "beginString" : "$EFFECTIVE_USER_ID"
+      "begin" : "$EFFECTIVE_USER_ID"
     },
     {
-      "beginString" : "$EGID"
+      "begin" : "$EGID"
     },
     {
-      "beginString" : "$ENV"
+      "begin" : "$ENV"
     },
     {
-      "beginString" : "$ERRNO"
+      "begin" : "$ERRNO"
     },
     {
-      "beginString" : "$EUID"
+      "begin" : "$EUID"
     },
     {
-      "beginString" : "$EVAL_ERROR"
+      "begin" : "$EVAL_ERROR"
     },
     {
-      "beginString" : "$EXECUTABLE_NAME"
+      "begin" : "$EXECUTABLE_NAME"
     },
     {
-      "beginString" : "$FORMAT_FORMFEED"
+      "begin" : "$FORMAT_FORMFEED"
     },
     {
-      "beginString" : "$FORMAT_LINE_BREAK_CHARACTERS"
+      "begin" : "$FORMAT_LINE_BREAK_CHARACTERS"
     },
     {
-      "beginString" : "$FORMAT_LINES_LEFT"
+      "begin" : "$FORMAT_LINES_LEFT"
     },
     {
-      "beginString" : "$FORMAT_LINES_PER_PAGE"
+      "begin" : "$FORMAT_LINES_PER_PAGE"
     },
     {
-      "beginString" : "$FORMAT_NAME"
+      "begin" : "$FORMAT_NAME"
     },
     {
-      "beginString" : "$FORMAT_PAGE_NUMBER"
+      "begin" : "$FORMAT_PAGE_NUMBER"
     },
     {
-      "beginString" : "$FORMAT_TOP_NAME"
+      "begin" : "$FORMAT_TOP_NAME"
     },
     {
-      "beginString" : "$GID"
+      "begin" : "$GID"
     },
     {
-      "beginString" : "$INPLACE_EDIT"
+      "begin" : "$INPLACE_EDIT"
     },
     {
-      "beginString" : "$INPUT_LINE_NUMBER"
+      "begin" : "$INPUT_LINE_NUMBER"
     },
     {
-      "beginString" : "$INPUT_RECORD_SEPARATOR"
+      "begin" : "$INPUT_RECORD_SEPARATOR"
     },
     {
-      "beginString" : "$LAST_PAREN_MATCH"
+      "begin" : "$LAST_PAREN_MATCH"
     },
     {
-      "beginString" : "$LIST_SEPARATOR"
+      "begin" : "$LIST_SEPARATOR"
     },
     {
-      "beginString" : "$MATCH"
+      "begin" : "$MATCH"
     },
     {
-      "beginString" : "$NR"
+      "begin" : "$NR"
     },
     {
-      "beginString" : "$OFMT"
+      "begin" : "$OFMT"
     },
     {
-      "beginString" : "$OFS"
+      "begin" : "$OFS"
     },
     {
-      "beginString" : "$ORS"
+      "begin" : "$ORS"
     },
     {
-      "beginString" : "$OS_ERROR"
+      "begin" : "$OS_ERROR"
     },
     {
-      "beginString" : "$OUTPUT_FIELD_SEPARATOR"
+      "begin" : "$OUTPUT_FIELD_SEPARATOR"
     },
     {
-      "beginString" : "$OUTPUT_RECORD_SEPARATOR"
+      "begin" : "$OUTPUT_RECORD_SEPARATOR"
     },
     {
-      "beginString" : "$PERL_VERSION"
+      "begin" : "$PERL_VERSION"
     },
     {
-      "beginString" : "$PERLDB"
+      "begin" : "$PERLDB"
     },
     {
-      "beginString" : "$PID"
+      "begin" : "$PID"
     },
     {
-      "beginString" : "$POSTMATCH"
+      "begin" : "$POSTMATCH"
     },
     {
-      "beginString" : "$PREMATCH"
+      "begin" : "$PREMATCH"
     },
     {
-      "beginString" : "$PROCESS_ID"
+      "begin" : "$PROCESS_ID"
     },
     {
-      "beginString" : "$PROGRAM_NAME"
+      "begin" : "$PROGRAM_NAME"
     },
     {
-      "beginString" : "$REAL_GROUP_ID"
+      "begin" : "$REAL_GROUP_ID"
     },
     {
-      "beginString" : "$REAL_USER_ID"
+      "begin" : "$REAL_USER_ID"
     },
     {
-      "beginString" : "$RS"
+      "begin" : "$RS"
     },
     {
-      "beginString" : "$SIG"
+      "begin" : "$SIG"
     },
     {
-      "beginString" : "$SUBSCRIPT_SEPARATOR"
+      "begin" : "$SUBSCRIPT_SEPARATOR"
     },
     {
-      "beginString" : "$SUBSEP"
+      "begin" : "$SUBSEP"
     },
     {
-      "beginString" : "$SYSTEM_FD_MAX"
+      "begin" : "$SYSTEM_FD_MAX"
     },
     {
-      "beginString" : "$UID"
+      "begin" : "$UID"
     },
     {
-      "beginString" : "$WARNING"
+      "begin" : "$WARNING"
     },
     {
-      "beginString" : "%INC"
+      "begin" : "%INC"
     }
   ],
   "variables" : [
     {
-      "beginString" : "(?<!\\$)\\$,",
+      "begin" : "(?<!\\$)\\$,",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\$)\\$;",
+      "begin" : "(?<!\\$)\\$;",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\$)\\$\\$",
+      "begin" : "(?<!\\$)\\$\\$",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\$)\\$\\)(?!\\s*\\{)",
+      "begin" : "(?<!\\$)\\$\\)(?!\\s*\\{)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\$)\\$\\+",
+      "begin" : "(?<!\\$)\\$\\+",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\$)\\$\\-",
+      "begin" : "(?<!\\$)\\$\\-",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<!\\$)\\$\\.",
+      "begin" : "(?<!\\$)\\$\\.",
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\$|\\$#|@|%)[_a-zA-Z][_a-zA-Z0-9]*",
+      "begin" : "(\\$|\\$#|@|%)[_a-zA-Z][_a-zA-Z0-9]*",
       "regularExpression" : true
     },
     {
-      "beginString" : "@ARGV"
+      "begin" : "@ARGV"
     },
     {
-      "beginString" : "@INC"
+      "begin" : "@INC"
     },
     {
-      "beginString" : "\\$!",
+      "begin" : "\\$!",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\"",
+      "begin" : "\\$\"",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$#",
+      "begin" : "\\$#",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$%",
+      "begin" : "\\$%",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$&",
+      "begin" : "\\$&",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$'",
+      "begin" : "\\$'",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$/",
+      "begin" : "\\$/",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$:",
+      "begin" : "\\$:",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$<",
+      "begin" : "\\$<",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$=",
+      "begin" : "\\$=",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$>",
+      "begin" : "\\$>",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$@",
+      "begin" : "\\$@",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$[0-9]+\\b",
+      "begin" : "\\$[0-9]+\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\(",
+      "begin" : "\\$\\(",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\*",
+      "begin" : "\\$\\*",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\?",
+      "begin" : "\\$\\?",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\[",
+      "begin" : "\\$\\[",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\\\",
+      "begin" : "\\$\\\\",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\]",
+      "begin" : "\\$\\]",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^",
+      "begin" : "\\$\\^",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^A\\b",
+      "begin" : "\\$\\^A\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^D\\b",
+      "begin" : "\\$\\^D\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^F\\b",
+      "begin" : "\\$\\^F\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^I\\b",
+      "begin" : "\\$\\^I\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^L\\b",
+      "begin" : "\\$\\^L\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^P\\b",
+      "begin" : "\\$\\^P\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^T\\b",
+      "begin" : "\\$\\^T\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^W\\b",
+      "begin" : "\\$\\^W\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\^X\\b",
+      "begin" : "\\$\\^X\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$\\|",
+      "begin" : "\\$\\|",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$_",
+      "begin" : "\\$_",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$`",
+      "begin" : "\\$`",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$~",
+      "begin" : "\\$~",
       "regularExpression" : true
     }
   ]

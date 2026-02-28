@@ -1,32 +1,32 @@
 {
   "characters" : [
     {
-      "beginString" : "\"[^\\r\\n\"]++\"\\s*+(?=:)",
+      "begin" : "\"[^\\r\\n\"]++\"\\s*+(?=:)",
       "description" : "Key",
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<=[:,\\[])[\\r\\n\\t ]*-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b",
+      "begin" : "(?<=[:,\\[])[\\r\\n\\t ]*-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ]
 }

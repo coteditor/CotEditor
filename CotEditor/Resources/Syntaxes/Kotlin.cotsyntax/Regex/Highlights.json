@@ -1,545 +1,545 @@
 {
   "attributes" : [
     {
-      "beginString" : "(?<=\\s|\\A)@[a-zA-Z][a-zA-Z0-9_]*\\b",
+      "begin" : "(?<=\\s|\\A)@[a-zA-Z][a-zA-Z0-9_]*\\b",
       "description" : "annotation",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=continue|break)@[a-zA-Z][a-zA-Z0-9_]*+(?=\\s|\\z)",
+      "begin" : "(?<=continue|break)@[a-zA-Z][a-zA-Z0-9_]*+(?=\\s|\\z)",
       "description" : "label",
       "regularExpression" : true
     },
     {
-      "beginString" : "@delegate"
+      "begin" : "@delegate"
     },
     {
-      "beginString" : "@field"
+      "begin" : "@field"
     },
     {
-      "beginString" : "@file"
+      "begin" : "@file"
     },
     {
-      "beginString" : "@get"
+      "begin" : "@get"
     },
     {
-      "beginString" : "@MustBeDocumented"
+      "begin" : "@MustBeDocumented"
     },
     {
-      "beginString" : "@param"
+      "begin" : "@param"
     },
     {
-      "beginString" : "@property"
+      "begin" : "@property"
     },
     {
-      "beginString" : "@receiver"
+      "begin" : "@receiver"
     },
     {
-      "beginString" : "@Repeatable"
+      "begin" : "@Repeatable"
     },
     {
-      "beginString" : "@Retention"
+      "begin" : "@Retention"
     },
     {
-      "beginString" : "@set"
+      "begin" : "@set"
     },
     {
-      "beginString" : "@setparam"
+      "begin" : "@setparam"
     },
     {
-      "beginString" : "@Target"
+      "begin" : "@Target"
     },
     {
-      "beginString" : "[a-zA-Z][a-zA-Z0-9_]*+@(?=\\s)",
+      "begin" : "[a-zA-Z][a-zA-Z0-9_]*+@(?=\\s)",
       "description" : "label",
       "regularExpression" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "!in"
+      "begin" : "!in"
     },
     {
-      "beginString" : "!is"
+      "begin" : "!is"
     },
     {
-      "beginString" : "abstract"
+      "begin" : "abstract"
     },
     {
-      "beginString" : "actual"
+      "begin" : "actual"
     },
     {
-      "beginString" : "annotation"
+      "begin" : "annotation"
     },
     {
-      "beginString" : "as"
+      "begin" : "as"
     },
     {
-      "beginString" : "as?"
+      "begin" : "as?"
     },
     {
-      "beginString" : "braek"
+      "begin" : "braek"
     },
     {
-      "beginString" : "by"
+      "begin" : "by"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "const"
+      "begin" : "const"
     },
     {
-      "beginString" : "constructor"
+      "begin" : "constructor"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "crossinline"
+      "begin" : "crossinline"
     },
     {
-      "beginString" : "data"
+      "begin" : "data"
     },
     {
-      "beginString" : "delegate"
+      "begin" : "delegate"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "dynamic"
+      "begin" : "dynamic"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "enum"
+      "begin" : "enum"
     },
     {
-      "beginString" : "expect"
+      "begin" : "expect"
     },
     {
-      "beginString" : "external"
+      "begin" : "external"
     },
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "field"
+      "begin" : "field"
     },
     {
-      "beginString" : "final"
+      "begin" : "final"
     },
     {
-      "beginString" : "finally"
+      "begin" : "finally"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "fun"
+      "begin" : "fun"
     },
     {
-      "beginString" : "get"
+      "begin" : "get"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "infix"
+      "begin" : "infix"
     },
     {
-      "beginString" : "init"
+      "begin" : "init"
     },
     {
-      "beginString" : "inline"
+      "begin" : "inline"
     },
     {
-      "beginString" : "inner"
+      "begin" : "inner"
     },
     {
-      "beginString" : "interface"
+      "begin" : "interface"
     },
     {
-      "beginString" : "internal"
+      "begin" : "internal"
     },
     {
-      "beginString" : "is"
+      "begin" : "is"
     },
     {
-      "beginString" : "it"
+      "begin" : "it"
     },
     {
-      "beginString" : "lateinit"
+      "begin" : "lateinit"
     },
     {
-      "beginString" : "noinline"
+      "begin" : "noinline"
     },
     {
-      "beginString" : "object"
+      "begin" : "object"
     },
     {
-      "beginString" : "ompanion"
+      "begin" : "ompanion"
     },
     {
-      "beginString" : "open"
+      "begin" : "open"
     },
     {
-      "beginString" : "operator"
+      "begin" : "operator"
     },
     {
-      "beginString" : "out"
+      "begin" : "out"
     },
     {
-      "beginString" : "override"
+      "begin" : "override"
     },
     {
-      "beginString" : "package"
+      "begin" : "package"
     },
     {
-      "beginString" : "param"
+      "begin" : "param"
     },
     {
-      "beginString" : "private"
+      "begin" : "private"
     },
     {
-      "beginString" : "property"
+      "begin" : "property"
     },
     {
-      "beginString" : "protected"
+      "begin" : "protected"
     },
     {
-      "beginString" : "public"
+      "begin" : "public"
     },
     {
-      "beginString" : "receiver"
+      "begin" : "receiver"
     },
     {
-      "beginString" : "reified"
+      "begin" : "reified"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "sealed"
+      "begin" : "sealed"
     },
     {
-      "beginString" : "set"
+      "begin" : "set"
     },
     {
-      "beginString" : "setparam"
+      "begin" : "setparam"
     },
     {
-      "beginString" : "suspend"
+      "begin" : "suspend"
     },
     {
-      "beginString" : "tailrec"
+      "begin" : "tailrec"
     },
     {
-      "beginString" : "throw"
+      "begin" : "throw"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "typealias"
+      "begin" : "typealias"
     },
     {
-      "beginString" : "val"
+      "begin" : "val"
     },
     {
-      "beginString" : "var"
+      "begin" : "var"
     },
     {
-      "beginString" : "vararg"
+      "begin" : "vararg"
     },
     {
-      "beginString" : "when"
+      "begin" : "when"
     },
     {
-      "beginString" : "where"
+      "begin" : "where"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b0b[01][01_]*\\b",
+      "begin" : "\\b0b[01][01_]*\\b",
       "description" : "Binary",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-fA-F][0-9a-fA-F_]*\\b",
+      "begin" : "\\b0x[0-9a-fA-F][0-9a-fA-F_]*\\b",
       "description" : "Hex",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-9][0-9_]*(L|l|ul)?\\b",
+      "begin" : "\\b[0-9][0-9_]*(L|l|ul)?\\b",
       "description" : "Int",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][0-9]+)?f?\\b",
+      "begin" : "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][0-9]+)?f?\\b",
       "description" : "Float",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "\"\"\"",
-      "endString" : "\"\"\"",
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
       "isMultiline" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "Annotation"
+      "begin" : "Annotation"
     },
     {
-      "beginString" : "Any"
+      "begin" : "Any"
     },
     {
-      "beginString" : "ArithmeticException"
+      "begin" : "ArithmeticException"
     },
     {
-      "beginString" : "Array"
+      "begin" : "Array"
     },
     {
-      "beginString" : "ArrayIndexOutOfBoundsException"
+      "begin" : "ArrayIndexOutOfBoundsException"
     },
     {
-      "beginString" : "AssertionError"
+      "begin" : "AssertionError"
     },
     {
-      "beginString" : "Boolean"
+      "begin" : "Boolean"
     },
     {
-      "beginString" : "BooleanArray"
+      "begin" : "BooleanArray"
     },
     {
-      "beginString" : "Byte"
+      "begin" : "Byte"
     },
     {
-      "beginString" : "ByteArray"
+      "begin" : "ByteArray"
     },
     {
-      "beginString" : "Char"
+      "begin" : "Char"
     },
     {
-      "beginString" : "CharArray"
+      "begin" : "CharArray"
     },
     {
-      "beginString" : "CharSequence"
+      "begin" : "CharSequence"
     },
     {
-      "beginString" : "ClassCastException"
+      "begin" : "ClassCastException"
     },
     {
-      "beginString" : "Comparable"
+      "begin" : "Comparable"
     },
     {
-      "beginString" : "Comparator"
+      "begin" : "Comparator"
     },
     {
-      "beginString" : "ConcurrentModificationException"
+      "begin" : "ConcurrentModificationException"
     },
     {
-      "beginString" : "DeprecationLevel"
+      "begin" : "DeprecationLevel"
     },
     {
-      "beginString" : "Double"
+      "begin" : "Double"
     },
     {
-      "beginString" : "DoubleArray"
+      "begin" : "DoubleArray"
     },
     {
-      "beginString" : "Enum"
+      "begin" : "Enum"
     },
     {
-      "beginString" : "Error"
+      "begin" : "Error"
     },
     {
-      "beginString" : "Exception"
+      "begin" : "Exception"
     },
     {
-      "beginString" : "Float"
+      "begin" : "Float"
     },
     {
-      "beginString" : "FloatArray"
+      "begin" : "FloatArray"
     },
     {
-      "beginString" : "Function"
+      "begin" : "Function"
     },
     {
-      "beginString" : "IllegalArgumentException"
+      "begin" : "IllegalArgumentException"
     },
     {
-      "beginString" : "IllegalCharacterConversionException"
+      "begin" : "IllegalCharacterConversionException"
     },
     {
-      "beginString" : "IllegalStateException"
+      "begin" : "IllegalStateException"
     },
     {
-      "beginString" : "IndexOutOfBoundsException"
+      "begin" : "IndexOutOfBoundsException"
     },
     {
-      "beginString" : "Int"
+      "begin" : "Int"
     },
     {
-      "beginString" : "IntArray"
+      "begin" : "IntArray"
     },
     {
-      "beginString" : "KotlinNullPointerException"
+      "begin" : "KotlinNullPointerException"
     },
     {
-      "beginString" : "KotlinVersion"
+      "begin" : "KotlinVersion"
     },
     {
-      "beginString" : "Lazy"
+      "begin" : "Lazy"
     },
     {
-      "beginString" : "LazyThreadSafetyMode"
+      "begin" : "LazyThreadSafetyMode"
     },
     {
-      "beginString" : "Long"
+      "begin" : "Long"
     },
     {
-      "beginString" : "LongArray"
+      "begin" : "LongArray"
     },
     {
-      "beginString" : "NoSuchElementException"
+      "begin" : "NoSuchElementException"
     },
     {
-      "beginString" : "Nothing"
+      "begin" : "Nothing"
     },
     {
-      "beginString" : "NotImplementedError"
+      "begin" : "NotImplementedError"
     },
     {
-      "beginString" : "NoWhenBranchMatchedException"
+      "begin" : "NoWhenBranchMatchedException"
     },
     {
-      "beginString" : "NullPointerException"
+      "begin" : "NullPointerException"
     },
     {
-      "beginString" : "Number"
+      "begin" : "Number"
     },
     {
-      "beginString" : "NumberFormatException"
+      "begin" : "NumberFormatException"
     },
     {
-      "beginString" : "OutOfMemoryError"
+      "begin" : "OutOfMemoryError"
     },
     {
-      "beginString" : "Pair"
+      "begin" : "Pair"
     },
     {
-      "beginString" : "Result"
+      "begin" : "Result"
     },
     {
-      "beginString" : "RuntimeException"
+      "begin" : "RuntimeException"
     },
     {
-      "beginString" : "Short"
+      "begin" : "Short"
     },
     {
-      "beginString" : "ShortArray"
+      "begin" : "ShortArray"
     },
     {
-      "beginString" : "String"
+      "begin" : "String"
     },
     {
-      "beginString" : "Synchronized"
+      "begin" : "Synchronized"
     },
     {
-      "beginString" : "Throwable"
+      "begin" : "Throwable"
     },
     {
-      "beginString" : "Triple"
+      "begin" : "Triple"
     },
     {
-      "beginString" : "TypeCastException"
+      "begin" : "TypeCastException"
     },
     {
-      "beginString" : "UByte"
+      "begin" : "UByte"
     },
     {
-      "beginString" : "UByteArray"
+      "begin" : "UByteArray"
     },
     {
-      "beginString" : "UInt"
+      "begin" : "UInt"
     },
     {
-      "beginString" : "UIntArray"
+      "begin" : "UIntArray"
     },
     {
-      "beginString" : "ULong"
+      "begin" : "ULong"
     },
     {
-      "beginString" : "ULongArray"
+      "begin" : "ULongArray"
     },
     {
-      "beginString" : "UninitializedPropertyAccessException"
+      "begin" : "UninitializedPropertyAccessException"
     },
     {
-      "beginString" : "Unit"
+      "begin" : "Unit"
     },
     {
-      "beginString" : "UnsupportedOperationException"
+      "begin" : "UnsupportedOperationException"
     },
     {
-      "beginString" : "UShort"
+      "begin" : "UShort"
     },
     {
-      "beginString" : "UShortArray"
+      "begin" : "UShortArray"
     },
     {
-      "beginString" : "Volatile"
+      "begin" : "Volatile"
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "`",
-      "endString" : "`"
+      "begin" : "`",
+      "end" : "`"
     },
     {
-      "beginString" : "super"
+      "begin" : "super"
     },
     {
-      "beginString" : "this"
+      "begin" : "this"
     }
   ]
 }

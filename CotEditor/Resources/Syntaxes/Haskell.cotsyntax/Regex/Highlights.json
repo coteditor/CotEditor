@@ -1,878 +1,878 @@
 {
   "characters" : [
     {
-      "beginString" : "'.'",
+      "begin" : "'.'",
       "regularExpression" : true
     },
     {
-      "beginString" : "'\\\\o[0-7]+'",
+      "begin" : "'\\\\o[0-7]+'",
       "regularExpression" : true
     },
     {
-      "beginString" : "'\\\\x[0-9a-fA-F]+'",
+      "begin" : "'\\\\x[0-9a-fA-F]+'",
       "regularExpression" : true
     },
     {
-      "beginString" : "'\\^[A-Z@\\[\\]\\^_]'",
+      "begin" : "'\\^[A-Z@\\[\\]\\^_]'",
       "regularExpression" : true
     },
     {
-      "beginString" : "'\\ACK'"
+      "begin" : "'\\ACK'"
     },
     {
-      "beginString" : "'\\BEL'"
+      "begin" : "'\\BEL'"
     },
     {
-      "beginString" : "'\\BS'"
+      "begin" : "'\\BS'"
     },
     {
-      "beginString" : "'\\CAN'"
+      "begin" : "'\\CAN'"
     },
     {
-      "beginString" : "'\\CR'"
+      "begin" : "'\\CR'"
     },
     {
-      "beginString" : "'\\DC1'"
+      "begin" : "'\\DC1'"
     },
     {
-      "beginString" : "'\\DC2'"
+      "begin" : "'\\DC2'"
     },
     {
-      "beginString" : "'\\DC3'"
+      "begin" : "'\\DC3'"
     },
     {
-      "beginString" : "'\\DC4'"
+      "begin" : "'\\DC4'"
     },
     {
-      "beginString" : "'\\DEL'"
+      "begin" : "'\\DEL'"
     },
     {
-      "beginString" : "'\\DLE'"
+      "begin" : "'\\DLE'"
     },
     {
-      "beginString" : "'\\EM'"
+      "begin" : "'\\EM'"
     },
     {
-      "beginString" : "'\\ENQ'"
+      "begin" : "'\\ENQ'"
     },
     {
-      "beginString" : "'\\ESC'"
+      "begin" : "'\\ESC'"
     },
     {
-      "beginString" : "'\\ETB'"
+      "begin" : "'\\ETB'"
     },
     {
-      "beginString" : "'\\ETX'"
+      "begin" : "'\\ETX'"
     },
     {
-      "beginString" : "'\\FF'"
+      "begin" : "'\\FF'"
     },
     {
-      "beginString" : "'\\FS'"
+      "begin" : "'\\FS'"
     },
     {
-      "beginString" : "'\\GS'"
+      "begin" : "'\\GS'"
     },
     {
-      "beginString" : "'\\HT'"
+      "begin" : "'\\HT'"
     },
     {
-      "beginString" : "'\\LF'"
+      "begin" : "'\\LF'"
     },
     {
-      "beginString" : "'\\NAK'"
+      "begin" : "'\\NAK'"
     },
     {
-      "beginString" : "'\\NUL'"
+      "begin" : "'\\NUL'"
     },
     {
-      "beginString" : "'\\RS'"
+      "begin" : "'\\RS'"
     },
     {
-      "beginString" : "'\\SHO'"
+      "begin" : "'\\SHO'"
     },
     {
-      "beginString" : "'\\SI'"
+      "begin" : "'\\SI'"
     },
     {
-      "beginString" : "'\\SO'"
+      "begin" : "'\\SO'"
     },
     {
-      "beginString" : "'\\SP'"
+      "begin" : "'\\SP'"
     },
     {
-      "beginString" : "'\\STX'"
+      "begin" : "'\\STX'"
     },
     {
-      "beginString" : "'\\SUB'"
+      "begin" : "'\\SUB'"
     },
     {
-      "beginString" : "'\\SYN'"
+      "begin" : "'\\SYN'"
     },
     {
-      "beginString" : "'\\US'"
+      "begin" : "'\\US'"
     },
     {
-      "beginString" : "'\\VT'"
+      "begin" : "'\\VT'"
     }
   ],
   "commands" : [
     {
-      "beginString" : "abs"
+      "begin" : "abs"
     },
     {
-      "beginString" : "acos"
+      "begin" : "acos"
     },
     {
-      "beginString" : "acosh"
+      "begin" : "acosh"
     },
     {
-      "beginString" : "all"
+      "begin" : "all"
     },
     {
-      "beginString" : "and"
+      "begin" : "and"
     },
     {
-      "beginString" : "any"
+      "begin" : "any"
     },
     {
-      "beginString" : "appendFile"
+      "begin" : "appendFile"
     },
     {
-      "beginString" : "asin"
+      "begin" : "asin"
     },
     {
-      "beginString" : "asinh"
+      "begin" : "asinh"
     },
     {
-      "beginString" : "asTypeOf"
+      "begin" : "asTypeOf"
     },
     {
-      "beginString" : "atan"
+      "begin" : "atan"
     },
     {
-      "beginString" : "atan2"
+      "begin" : "atan2"
     },
     {
-      "beginString" : "atanh"
+      "begin" : "atanh"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "ceiling"
+      "begin" : "ceiling"
     },
     {
-      "beginString" : "compare"
+      "begin" : "compare"
     },
     {
-      "beginString" : "concat"
+      "begin" : "concat"
     },
     {
-      "beginString" : "concatMap"
+      "begin" : "concatMap"
     },
     {
-      "beginString" : "const"
+      "begin" : "const"
     },
     {
-      "beginString" : "cos"
+      "begin" : "cos"
     },
     {
-      "beginString" : "cosh"
+      "begin" : "cosh"
     },
     {
-      "beginString" : "curry"
+      "begin" : "curry"
     },
     {
-      "beginString" : "cycle"
+      "begin" : "cycle"
     },
     {
-      "beginString" : "decodeFloat"
+      "begin" : "decodeFloat"
     },
     {
-      "beginString" : "div"
+      "begin" : "div"
     },
     {
-      "beginString" : "divMod"
+      "begin" : "divMod"
     },
     {
-      "beginString" : "drop"
+      "begin" : "drop"
     },
     {
-      "beginString" : "dropWhile"
+      "begin" : "dropWhile"
     },
     {
-      "beginString" : "either"
+      "begin" : "either"
     },
     {
-      "beginString" : "elem"
+      "begin" : "elem"
     },
     {
-      "beginString" : "encodeFloat"
+      "begin" : "encodeFloat"
     },
     {
-      "beginString" : "enumFrom"
+      "begin" : "enumFrom"
     },
     {
-      "beginString" : "enumFromThen"
+      "begin" : "enumFromThen"
     },
     {
-      "beginString" : "enumFromThenTo"
+      "begin" : "enumFromThenTo"
     },
     {
-      "beginString" : "enumFromTo"
+      "begin" : "enumFromTo"
     },
     {
-      "beginString" : "error"
+      "begin" : "error"
     },
     {
-      "beginString" : "even"
+      "begin" : "even"
     },
     {
-      "beginString" : "exp"
+      "begin" : "exp"
     },
     {
-      "beginString" : "exponent"
+      "begin" : "exponent"
     },
     {
-      "beginString" : "fail"
+      "begin" : "fail"
     },
     {
-      "beginString" : "filter"
+      "begin" : "filter"
     },
     {
-      "beginString" : "flip"
+      "begin" : "flip"
     },
     {
-      "beginString" : "floatDigits"
+      "begin" : "floatDigits"
     },
     {
-      "beginString" : "floatRadix"
+      "begin" : "floatRadix"
     },
     {
-      "beginString" : "floatRange"
+      "begin" : "floatRange"
     },
     {
-      "beginString" : "floor"
+      "begin" : "floor"
     },
     {
-      "beginString" : "fmap"
+      "begin" : "fmap"
     },
     {
-      "beginString" : "foldl"
+      "begin" : "foldl"
     },
     {
-      "beginString" : "foldl1"
+      "begin" : "foldl1"
     },
     {
-      "beginString" : "foldr"
+      "begin" : "foldr"
     },
     {
-      "beginString" : "foldr1"
+      "begin" : "foldr1"
     },
     {
-      "beginString" : "fromEnum"
+      "begin" : "fromEnum"
     },
     {
-      "beginString" : "fromInteger"
+      "begin" : "fromInteger"
     },
     {
-      "beginString" : "fromIntegral"
+      "begin" : "fromIntegral"
     },
     {
-      "beginString" : "fst"
+      "begin" : "fst"
     },
     {
-      "beginString" : "gcd"
+      "begin" : "gcd"
     },
     {
-      "beginString" : "getChar"
+      "begin" : "getChar"
     },
     {
-      "beginString" : "getContents"
+      "begin" : "getContents"
     },
     {
-      "beginString" : "getLine"
+      "begin" : "getLine"
     },
     {
-      "beginString" : "id"
+      "begin" : "id"
     },
     {
-      "beginString" : "init"
+      "begin" : "init"
     },
     {
-      "beginString" : "interact"
+      "begin" : "interact"
     },
     {
-      "beginString" : "ioError"
+      "begin" : "ioError"
     },
     {
-      "beginString" : "isDenormalized"
+      "begin" : "isDenormalized"
     },
     {
-      "beginString" : "isIEEE"
+      "begin" : "isIEEE"
     },
     {
-      "beginString" : "isInfinite"
+      "begin" : "isInfinite"
     },
     {
-      "beginString" : "isNaN"
+      "begin" : "isNaN"
     },
     {
-      "beginString" : "isNegativeZero"
+      "begin" : "isNegativeZero"
     },
     {
-      "beginString" : "iterate"
+      "begin" : "iterate"
     },
     {
-      "beginString" : "last"
+      "begin" : "last"
     },
     {
-      "beginString" : "lcm"
+      "begin" : "lcm"
     },
     {
-      "beginString" : "length"
+      "begin" : "length"
     },
     {
-      "beginString" : "lex"
+      "begin" : "lex"
     },
     {
-      "beginString" : "lines"
+      "begin" : "lines"
     },
     {
-      "beginString" : "log"
+      "begin" : "log"
     },
     {
-      "beginString" : "logBase"
+      "begin" : "logBase"
     },
     {
-      "beginString" : "lookup"
+      "begin" : "lookup"
     },
     {
-      "beginString" : "map"
+      "begin" : "map"
     },
     {
-      "beginString" : "mapM"
+      "begin" : "mapM"
     },
     {
-      "beginString" : "mapM_"
+      "begin" : "mapM_"
     },
     {
-      "beginString" : "max"
+      "begin" : "max"
     },
     {
-      "beginString" : "maxBound"
+      "begin" : "maxBound"
     },
     {
-      "beginString" : "maximum"
+      "begin" : "maximum"
     },
     {
-      "beginString" : "maybe"
+      "begin" : "maybe"
     },
     {
-      "beginString" : "min"
+      "begin" : "min"
     },
     {
-      "beginString" : "minBound"
+      "begin" : "minBound"
     },
     {
-      "beginString" : "minimum"
+      "begin" : "minimum"
     },
     {
-      "beginString" : "mod"
+      "begin" : "mod"
     },
     {
-      "beginString" : "negate"
+      "begin" : "negate"
     },
     {
-      "beginString" : "not"
+      "begin" : "not"
     },
     {
-      "beginString" : "notElem"
+      "begin" : "notElem"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "odd"
+      "begin" : "odd"
     },
     {
-      "beginString" : "or"
+      "begin" : "or"
     },
     {
-      "beginString" : "otherwise"
+      "begin" : "otherwise"
     },
     {
-      "beginString" : "pi"
+      "begin" : "pi"
     },
     {
-      "beginString" : "pred"
+      "begin" : "pred"
     },
     {
-      "beginString" : "print"
+      "begin" : "print"
     },
     {
-      "beginString" : "product"
+      "begin" : "product"
     },
     {
-      "beginString" : "properFraction"
+      "begin" : "properFraction"
     },
     {
-      "beginString" : "putChar"
+      "begin" : "putChar"
     },
     {
-      "beginString" : "putStr"
+      "begin" : "putStr"
     },
     {
-      "beginString" : "putStrLn"
+      "begin" : "putStrLn"
     },
     {
-      "beginString" : "quot"
+      "begin" : "quot"
     },
     {
-      "beginString" : "quotRem"
+      "begin" : "quotRem"
     },
     {
-      "beginString" : "read"
+      "begin" : "read"
     },
     {
-      "beginString" : "readFile"
+      "begin" : "readFile"
     },
     {
-      "beginString" : "readIO"
+      "begin" : "readIO"
     },
     {
-      "beginString" : "readList"
+      "begin" : "readList"
     },
     {
-      "beginString" : "readLn"
+      "begin" : "readLn"
     },
     {
-      "beginString" : "readParen"
+      "begin" : "readParen"
     },
     {
-      "beginString" : "reads"
+      "begin" : "reads"
     },
     {
-      "beginString" : "readsPrec"
+      "begin" : "readsPrec"
     },
     {
-      "beginString" : "realToFrac"
+      "begin" : "realToFrac"
     },
     {
-      "beginString" : "rem"
+      "begin" : "rem"
     },
     {
-      "beginString" : "repeat"
+      "begin" : "repeat"
     },
     {
-      "beginString" : "replicate"
+      "begin" : "replicate"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "reverse"
+      "begin" : "reverse"
     },
     {
-      "beginString" : "round"
+      "begin" : "round"
     },
     {
-      "beginString" : "scaleFloat"
+      "begin" : "scaleFloat"
     },
     {
-      "beginString" : "scanl"
+      "begin" : "scanl"
     },
     {
-      "beginString" : "scanl1"
+      "begin" : "scanl1"
     },
     {
-      "beginString" : "scanr"
+      "begin" : "scanr"
     },
     {
-      "beginString" : "scanr1"
+      "begin" : "scanr1"
     },
     {
-      "beginString" : "seq"
+      "begin" : "seq"
     },
     {
-      "beginString" : "sequence"
+      "begin" : "sequence"
     },
     {
-      "beginString" : "sequence_"
+      "begin" : "sequence_"
     },
     {
-      "beginString" : "show"
+      "begin" : "show"
     },
     {
-      "beginString" : "showChar"
+      "begin" : "showChar"
     },
     {
-      "beginString" : "showList"
+      "begin" : "showList"
     },
     {
-      "beginString" : "showParen"
+      "begin" : "showParen"
     },
     {
-      "beginString" : "showPrec"
+      "begin" : "showPrec"
     },
     {
-      "beginString" : "shows"
+      "begin" : "shows"
     },
     {
-      "beginString" : "showString"
+      "begin" : "showString"
     },
     {
-      "beginString" : "significand"
+      "begin" : "significand"
     },
     {
-      "beginString" : "signum"
+      "begin" : "signum"
     },
     {
-      "beginString" : "sin"
+      "begin" : "sin"
     },
     {
-      "beginString" : "sinh"
+      "begin" : "sinh"
     },
     {
-      "beginString" : "snd"
+      "begin" : "snd"
     },
     {
-      "beginString" : "span"
+      "begin" : "span"
     },
     {
-      "beginString" : "splitAt"
+      "begin" : "splitAt"
     },
     {
-      "beginString" : "sqrt"
+      "begin" : "sqrt"
     },
     {
-      "beginString" : "subtract"
+      "begin" : "subtract"
     },
     {
-      "beginString" : "succ"
+      "begin" : "succ"
     },
     {
-      "beginString" : "sum"
+      "begin" : "sum"
     },
     {
-      "beginString" : "tail"
+      "begin" : "tail"
     },
     {
-      "beginString" : "take"
+      "begin" : "take"
     },
     {
-      "beginString" : "takeWhile"
+      "begin" : "takeWhile"
     },
     {
-      "beginString" : "tan"
+      "begin" : "tan"
     },
     {
-      "beginString" : "tanh"
+      "begin" : "tanh"
     },
     {
-      "beginString" : "toEnum"
+      "begin" : "toEnum"
     },
     {
-      "beginString" : "toInteger"
+      "begin" : "toInteger"
     },
     {
-      "beginString" : "toRational"
+      "begin" : "toRational"
     },
     {
-      "beginString" : "truncate"
+      "begin" : "truncate"
     },
     {
-      "beginString" : "uncurry"
+      "begin" : "uncurry"
     },
     {
-      "beginString" : "undefined"
+      "begin" : "undefined"
     },
     {
-      "beginString" : "unlines"
+      "begin" : "unlines"
     },
     {
-      "beginString" : "until"
+      "begin" : "until"
     },
     {
-      "beginString" : "unwords"
+      "begin" : "unwords"
     },
     {
-      "beginString" : "unzip"
+      "begin" : "unzip"
     },
     {
-      "beginString" : "unzip3"
+      "begin" : "unzip3"
     },
     {
-      "beginString" : "userError"
+      "begin" : "userError"
     },
     {
-      "beginString" : "words"
+      "begin" : "words"
     },
     {
-      "beginString" : "writeFile"
+      "begin" : "writeFile"
     },
     {
-      "beginString" : "zip"
+      "begin" : "zip"
     },
     {
-      "beginString" : "zip3"
+      "begin" : "zip3"
     },
     {
-      "beginString" : "zipWith"
+      "begin" : "zipWith"
     },
     {
-      "beginString" : "zipWith3"
+      "begin" : "zipWith3"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "_"
+      "begin" : "_"
     },
     {
-      "beginString" : "as"
+      "begin" : "as"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "data"
+      "begin" : "data"
     },
     {
-      "beginString" : "default"
+      "begin" : "default"
     },
     {
-      "beginString" : "deriving"
+      "begin" : "deriving"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "forall"
+      "begin" : "forall"
     },
     {
-      "beginString" : "foreign"
+      "begin" : "foreign"
     },
     {
-      "beginString" : "hiding"
+      "begin" : "hiding"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "import"
+      "begin" : "import"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "infix"
+      "begin" : "infix"
     },
     {
-      "beginString" : "infixl"
+      "begin" : "infixl"
     },
     {
-      "beginString" : "infixr"
+      "begin" : "infixr"
     },
     {
-      "beginString" : "instance"
+      "begin" : "instance"
     },
     {
-      "beginString" : "let"
+      "begin" : "let"
     },
     {
-      "beginString" : "mdo"
+      "begin" : "mdo"
     },
     {
-      "beginString" : "module"
+      "begin" : "module"
     },
     {
-      "beginString" : "newtype"
+      "begin" : "newtype"
     },
     {
-      "beginString" : "of"
+      "begin" : "of"
     },
     {
-      "beginString" : "proc"
+      "begin" : "proc"
     },
     {
-      "beginString" : "qualified"
+      "begin" : "qualified"
     },
     {
-      "beginString" : "rec"
+      "begin" : "rec"
     },
     {
-      "beginString" : "safe"
+      "begin" : "safe"
     },
     {
-      "beginString" : "then"
+      "begin" : "then"
     },
     {
-      "beginString" : "type"
+      "begin" : "type"
     },
     {
-      "beginString" : "unsafe"
+      "begin" : "unsafe"
     },
     {
-      "beginString" : "where"
+      "begin" : "where"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b0o[0-7]+\\b",
+      "begin" : "\\b0o[0-7]+\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-f]+\\b",
+      "begin" : "\\b0x[0-9a-f]+\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\d+\\.\\d+(e[-+]\\d+)?\\b",
+      "begin" : "\\b\\d+\\.\\d+(e[-+]\\d+)?\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\d+\\b",
+      "begin" : "\\b\\d+\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "types" : [
     {
-      "beginString" : "\\b[A-Z][\\w_\\']*",
+      "begin" : "\\b[A-Z][\\w_\\']*",
       "regularExpression" : true
     },
     {
-      "beginString" : "Bool"
+      "begin" : "Bool"
     },
     {
-      "beginString" : "Bounded"
+      "begin" : "Bounded"
     },
     {
-      "beginString" : "Char"
+      "begin" : "Char"
     },
     {
-      "beginString" : "Double"
+      "begin" : "Double"
     },
     {
-      "beginString" : "Either"
+      "begin" : "Either"
     },
     {
-      "beginString" : "Enum"
+      "begin" : "Enum"
     },
     {
-      "beginString" : "Eq"
+      "begin" : "Eq"
     },
     {
-      "beginString" : "Float"
+      "begin" : "Float"
     },
     {
-      "beginString" : "Floating"
+      "begin" : "Floating"
     },
     {
-      "beginString" : "Fractional"
+      "begin" : "Fractional"
     },
     {
-      "beginString" : "Functor"
+      "begin" : "Functor"
     },
     {
-      "beginString" : "Int"
+      "begin" : "Int"
     },
     {
-      "beginString" : "Integer"
+      "begin" : "Integer"
     },
     {
-      "beginString" : "Integral"
+      "begin" : "Integral"
     },
     {
-      "beginString" : "IO"
+      "begin" : "IO"
     },
     {
-      "beginString" : "IOError"
+      "begin" : "IOError"
     },
     {
-      "beginString" : "Maybe"
+      "begin" : "Maybe"
     },
     {
-      "beginString" : "Monad"
+      "begin" : "Monad"
     },
     {
-      "beginString" : "MonadPlus"
+      "begin" : "MonadPlus"
     },
     {
-      "beginString" : "Num"
+      "begin" : "Num"
     },
     {
-      "beginString" : "Ord"
+      "begin" : "Ord"
     },
     {
-      "beginString" : "Ordering"
+      "begin" : "Ordering"
     },
     {
-      "beginString" : "Rational"
+      "begin" : "Rational"
     },
     {
-      "beginString" : "Read"
+      "begin" : "Read"
     },
     {
-      "beginString" : "Real"
+      "begin" : "Real"
     },
     {
-      "beginString" : "RealFloat"
+      "begin" : "RealFloat"
     },
     {
-      "beginString" : "RealFrac"
+      "begin" : "RealFrac"
     },
     {
-      "beginString" : "Show"
+      "begin" : "Show"
     },
     {
-      "beginString" : "String"
+      "begin" : "String"
     }
   ],
   "values" : [
     {
-      "beginString" : "EQ"
+      "begin" : "EQ"
     },
     {
-      "beginString" : "False"
+      "begin" : "False"
     },
     {
-      "beginString" : "GT"
+      "begin" : "GT"
     },
     {
-      "beginString" : "Just"
+      "begin" : "Just"
     },
     {
-      "beginString" : "Left"
+      "begin" : "Left"
     },
     {
-      "beginString" : "LT"
+      "begin" : "LT"
     },
     {
-      "beginString" : "Nothing"
+      "begin" : "Nothing"
     },
     {
-      "beginString" : "Right"
+      "begin" : "Right"
     },
     {
-      "beginString" : "True"
+      "begin" : "True"
     }
   ]
 }

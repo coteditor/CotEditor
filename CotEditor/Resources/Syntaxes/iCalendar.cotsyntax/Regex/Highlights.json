@@ -1,358 +1,358 @@
 {
   "attributes" : [
     {
-      "beginString" : "ACTION"
+      "begin" : "ACTION"
     },
     {
-      "beginString" : "ATTACH"
+      "begin" : "ATTACH"
     },
     {
-      "beginString" : "ATTENDEE"
+      "begin" : "ATTENDEE"
     },
     {
-      "beginString" : "CALSCALE"
+      "begin" : "CALSCALE"
     },
     {
-      "beginString" : "CATEGORIES"
+      "begin" : "CATEGORIES"
     },
     {
-      "beginString" : "CLASS"
+      "begin" : "CLASS"
     },
     {
-      "beginString" : "COMMENT"
+      "begin" : "COMMENT"
     },
     {
-      "beginString" : "COMPLETED"
+      "begin" : "COMPLETED"
     },
     {
-      "beginString" : "CONTACT"
+      "begin" : "CONTACT"
     },
     {
-      "beginString" : "CREATED"
+      "begin" : "CREATED"
     },
     {
-      "beginString" : "DESCRIPTION"
+      "begin" : "DESCRIPTION"
     },
     {
-      "beginString" : "DTEND"
+      "begin" : "DTEND"
     },
     {
-      "beginString" : "DTSTAMP"
+      "begin" : "DTSTAMP"
     },
     {
-      "beginString" : "DTSTART"
+      "begin" : "DTSTART"
     },
     {
-      "beginString" : "DUE"
+      "begin" : "DUE"
     },
     {
-      "beginString" : "DURATION"
+      "begin" : "DURATION"
     },
     {
-      "beginString" : "EXDATE"
+      "begin" : "EXDATE"
     },
     {
-      "beginString" : "EXRULE"
+      "begin" : "EXRULE"
     },
     {
-      "beginString" : "FREEBUSY"
+      "begin" : "FREEBUSY"
     },
     {
-      "beginString" : "LAST-MODIFIED"
+      "begin" : "LAST-MODIFIED"
     },
     {
-      "beginString" : "LOCATION"
+      "begin" : "LOCATION"
     },
     {
-      "beginString" : "METHOD"
+      "begin" : "METHOD"
     },
     {
-      "beginString" : "ORGANIZER"
+      "begin" : "ORGANIZER"
     },
     {
-      "beginString" : "PERCENT-COMPLETE"
+      "begin" : "PERCENT-COMPLETE"
     },
     {
-      "beginString" : "PRIORITY"
+      "begin" : "PRIORITY"
     },
     {
-      "beginString" : "PRODID"
+      "begin" : "PRODID"
     },
     {
-      "beginString" : "RDATE"
+      "begin" : "RDATE"
     },
     {
-      "beginString" : "RECURRENCE-ID"
+      "begin" : "RECURRENCE-ID"
     },
     {
-      "beginString" : "RELATED-TO"
+      "begin" : "RELATED-TO"
     },
     {
-      "beginString" : "REPEAT"
+      "begin" : "REPEAT"
     },
     {
-      "beginString" : "REQUEST-STATUS"
+      "begin" : "REQUEST-STATUS"
     },
     {
-      "beginString" : "RESOURCES"
+      "begin" : "RESOURCES"
     },
     {
-      "beginString" : "RRULE"
+      "begin" : "RRULE"
     },
     {
-      "beginString" : "SEQUENCE"
+      "begin" : "SEQUENCE"
     },
     {
-      "beginString" : "STATUS"
+      "begin" : "STATUS"
     },
     {
-      "beginString" : "SUMMARY"
+      "begin" : "SUMMARY"
     },
     {
-      "beginString" : "TRANSP"
+      "begin" : "TRANSP"
     },
     {
-      "beginString" : "TRIGGER"
+      "begin" : "TRIGGER"
     },
     {
-      "beginString" : "TZID"
+      "begin" : "TZID"
     },
     {
-      "beginString" : "TZNAME"
+      "begin" : "TZNAME"
     },
     {
-      "beginString" : "TZOFFSETFROM"
+      "begin" : "TZOFFSETFROM"
     },
     {
-      "beginString" : "TZOFFSETTO"
+      "begin" : "TZOFFSETTO"
     },
     {
-      "beginString" : "TZURL"
+      "begin" : "TZURL"
     },
     {
-      "beginString" : "UID"
+      "begin" : "UID"
     },
     {
-      "beginString" : "URL"
+      "begin" : "URL"
     },
     {
-      "beginString" : "VERSION"
+      "begin" : "VERSION"
     },
     {
-      "beginString" : "X-(WR|M2C|APPLE)-[A-Z0-9-]*(?=:)",
+      "begin" : "X-(WR|M2C|APPLE)-[A-Z0-9-]*(?=:)",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "BINARY"
+      "begin" : "BINARY"
     },
     {
-      "beginString" : "BOOLEAN"
+      "begin" : "BOOLEAN"
     },
     {
-      "beginString" : "CAL-ADDRESS"
+      "begin" : "CAL-ADDRESS"
     },
     {
-      "beginString" : "DATE"
+      "begin" : "DATE"
     },
     {
-      "beginString" : "DATE-TIME"
+      "begin" : "DATE-TIME"
     },
     {
-      "beginString" : "DURATION"
+      "begin" : "DURATION"
     },
     {
-      "beginString" : "FLOAT"
+      "begin" : "FLOAT"
     },
     {
-      "beginString" : "INTEGER"
+      "begin" : "INTEGER"
     },
     {
-      "beginString" : "PERIOD"
+      "begin" : "PERIOD"
     },
     {
-      "beginString" : "RECUR"
+      "begin" : "RECUR"
     },
     {
-      "beginString" : "TEXT"
+      "begin" : "TEXT"
     },
     {
-      "beginString" : "TIME"
+      "begin" : "TIME"
     },
     {
-      "beginString" : "URI"
+      "begin" : "URI"
     },
     {
-      "beginString" : "UTC-OFFSET"
+      "begin" : "UTC-OFFSET"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "BEGIN"
+      "begin" : "BEGIN"
     },
     {
-      "beginString" : "END"
+      "begin" : "END"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<=:)[0-9]+",
+      "begin" : "(?<=:)[0-9]+",
       "regularExpression" : true
     },
     {
-      "beginString" : "[0-9]{8}T[0-9]{6}Z?",
+      "begin" : "[0-9]{8}T[0-9]{6}Z?",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "(?<=UID:)[0-9A-Z][0-9A-Z-]+",
+      "begin" : "(?<=UID:)[0-9A-Z][0-9A-Z-]+",
       "regularExpression" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "VALARM"
+      "begin" : "VALARM"
     },
     {
-      "beginString" : "VCALENDAR"
+      "begin" : "VCALENDAR"
     },
     {
-      "beginString" : "VEVENT"
+      "begin" : "VEVENT"
     },
     {
-      "beginString" : "VFREEBUSY"
+      "begin" : "VFREEBUSY"
     },
     {
-      "beginString" : "VJOURNAL"
+      "begin" : "VJOURNAL"
     },
     {
-      "beginString" : "VTIMEZONE"
+      "begin" : "VTIMEZONE"
     },
     {
-      "beginString" : "VTODO"
+      "begin" : "VTODO"
     }
   ],
   "values" : [
     {
-      "beginString" : "ACCEPTED"
+      "begin" : "ACCEPTED"
     },
     {
-      "beginString" : "AUDIO"
+      "begin" : "AUDIO"
     },
     {
-      "beginString" : "AUTOMATIC"
+      "begin" : "AUTOMATIC"
     },
     {
-      "beginString" : "CANCELLED"
+      "begin" : "CANCELLED"
     },
     {
-      "beginString" : "CONFIRMED"
+      "begin" : "CONFIRMED"
     },
     {
-      "beginString" : "DECLINED"
+      "begin" : "DECLINED"
     },
     {
-      "beginString" : "DELEGATED"
+      "begin" : "DELEGATED"
     },
     {
-      "beginString" : "DISPLAY"
+      "begin" : "DISPLAY"
     },
     {
-      "beginString" : "FALSE"
+      "begin" : "FALSE"
     },
     {
-      "beginString" : "GREGORIAN"
+      "begin" : "GREGORIAN"
     },
     {
-      "beginString" : "IN-PROGRESS"
+      "begin" : "IN-PROGRESS"
     },
     {
-      "beginString" : "NEEDS-ACTION"
+      "begin" : "NEEDS-ACTION"
     },
     {
-      "beginString" : "NONE"
+      "begin" : "NONE"
     },
     {
-      "beginString" : "OPAQUE"
+      "begin" : "OPAQUE"
     },
     {
-      "beginString" : "PRIVATE"
+      "begin" : "PRIVATE"
     },
     {
-      "beginString" : "PUBLIC"
+      "begin" : "PUBLIC"
     },
     {
-      "beginString" : "PUBLISH"
+      "begin" : "PUBLISH"
     },
     {
-      "beginString" : "TENTATIVE"
+      "begin" : "TENTATIVE"
     },
     {
-      "beginString" : "TRUE"
+      "begin" : "TRUE"
     }
   ],
   "variables" : [
     {
-      "beginString" : "ALTREP"
+      "begin" : "ALTREP"
     },
     {
-      "beginString" : "CN"
+      "begin" : "CN"
     },
     {
-      "beginString" : "CUTYPE"
+      "begin" : "CUTYPE"
     },
     {
-      "beginString" : "DELEGATED-FROM"
+      "begin" : "DELEGATED-FROM"
     },
     {
-      "beginString" : "DELEGATED-TO"
+      "begin" : "DELEGATED-TO"
     },
     {
-      "beginString" : "DIR"
+      "begin" : "DIR"
     },
     {
-      "beginString" : "ENCODING"
+      "begin" : "ENCODING"
     },
     {
-      "beginString" : "FBTYPE"
+      "begin" : "FBTYPE"
     },
     {
-      "beginString" : "FMTTYPE"
+      "begin" : "FMTTYPE"
     },
     {
-      "beginString" : "LANGUAGE"
+      "begin" : "LANGUAGE"
     },
     {
-      "beginString" : "MEMBER"
+      "begin" : "MEMBER"
     },
     {
-      "beginString" : "PARTSTAT"
+      "begin" : "PARTSTAT"
     },
     {
-      "beginString" : "RANGE"
+      "begin" : "RANGE"
     },
     {
-      "beginString" : "RELATED"
+      "begin" : "RELATED"
     },
     {
-      "beginString" : "RELTYPE"
+      "begin" : "RELTYPE"
     },
     {
-      "beginString" : "ROLE"
+      "begin" : "ROLE"
     },
     {
-      "beginString" : "RSVP"
+      "begin" : "RSVP"
     },
     {
-      "beginString" : "SENT-BY"
+      "begin" : "SENT-BY"
     },
     {
-      "beginString" : "TZID"
+      "begin" : "TZID"
     },
     {
-      "beginString" : "VALUE"
+      "begin" : "VALUE"
     }
   ]
 }

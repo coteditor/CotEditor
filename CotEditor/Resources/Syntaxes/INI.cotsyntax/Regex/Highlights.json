@@ -1,63 +1,63 @@
 {
   "keywords" : [
     {
-      "beginString" : "^[ \\t]*\\w[^=:\\r\\n]*(?=[=:])",
+      "begin" : "^[ \\t]*\\w[^=:\\r\\n]*(?=[=:])",
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(?<![-0-9a-z$])-?[0-9.][0-9.]*(e-?[0-9.]+)?\\b",
+      "begin" : "(?<![-0-9a-z$])-?[0-9.][0-9.]*(e-?[0-9.]+)?\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     }
   ],
   "types" : [
     {
-      "beginString" : "^[ \\t]*\\[",
-      "endString" : "\\]",
+      "begin" : "^[ \\t]*\\[",
+      "end" : "\\]",
       "regularExpression" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "(?<=[:=])\\s*false\\b",
+      "begin" : "(?<=[:=])\\s*false\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=[:=])\\s*no\\b",
+      "begin" : "(?<=[:=])\\s*no\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=[:=])\\s*none\\b",
+      "begin" : "(?<=[:=])\\s*none\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=[:=])\\s*off\\b",
+      "begin" : "(?<=[:=])\\s*off\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=[:=])\\s*on\\b",
+      "begin" : "(?<=[:=])\\s*on\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=[:=])\\s*true\\b",
+      "begin" : "(?<=[:=])\\s*true\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=[:=])\\s*yes\\b",
+      "begin" : "(?<=[:=])\\s*yes\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     }

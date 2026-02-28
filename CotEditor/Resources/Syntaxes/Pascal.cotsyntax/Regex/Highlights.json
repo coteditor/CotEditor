@@ -1,1918 +1,1918 @@
 {
   "attributes" : [
     {
-      "beginString" : "anyfile",
+      "begin" : "anyfile",
       "ignoreCase" : true
     },
     {
-      "beginString" : "archive",
+      "begin" : "archive",
       "ignoreCase" : true
     },
     {
-      "beginString" : "directory",
+      "begin" : "directory",
       "ignoreCase" : true
     },
     {
-      "beginString" : "hidden",
+      "begin" : "hidden",
       "ignoreCase" : true
     },
     {
-      "beginString" : "readonly",
+      "begin" : "readonly",
       "ignoreCase" : true
     },
     {
-      "beginString" : "sysfile",
+      "begin" : "sysfile",
       "ignoreCase" : true
     },
     {
-      "beginString" : "volumeid",
+      "begin" : "volumeid",
       "ignoreCase" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "\\#",
+      "begin" : "\\#",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "Abs",
+      "begin" : "Abs",
       "ignoreCase" : true
     },
     {
-      "beginString" : "AbstractError",
+      "begin" : "AbstractError",
       "ignoreCase" : true
     },
     {
-      "beginString" : "AcquireExceptionObject",
+      "begin" : "AcquireExceptionObject",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Add",
+      "begin" : "Add",
       "ignoreCase" : true
     },
     {
-      "beginString" : "AddExitProc",
+      "begin" : "AddExitProc",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Addr",
+      "begin" : "Addr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Align",
+      "begin" : "Align",
       "ignoreCase" : true
     },
     {
-      "beginString" : "AllocMem",
+      "begin" : "AllocMem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "AnsiToUtf8",
+      "begin" : "AnsiToUtf8",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Append",
+      "begin" : "Append",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ArcTan",
+      "begin" : "ArcTan",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ArrayStringToPPchar",
+      "begin" : "ArrayStringToPPchar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Assert",
+      "begin" : "Assert",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Assign",
+      "begin" : "Assign",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Assigned",
+      "begin" : "Assigned",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BeginThread",
+      "begin" : "BeginThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BEtoN",
+      "begin" : "BEtoN",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BinStr",
+      "begin" : "BinStr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BlockRead",
+      "begin" : "BlockRead",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BlockWrite",
+      "begin" : "BlockWrite",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Break",
+      "begin" : "Break",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsfByte",
+      "begin" : "BsfByte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsfDWord",
+      "begin" : "BsfDWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsfQWord",
+      "begin" : "BsfQWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsfWord",
+      "begin" : "BsfWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsrByte",
+      "begin" : "BsrByte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsrDWord",
+      "begin" : "BsrDWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsrQWord",
+      "begin" : "BsrQWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "BsrWord",
+      "begin" : "BsrWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CaptureBacktrace",
+      "begin" : "CaptureBacktrace",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ChDir",
+      "begin" : "ChDir",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Chr",
+      "begin" : "Chr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Close",
+      "begin" : "Close",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CloseThread",
+      "begin" : "CloseThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CompareByte",
+      "begin" : "CompareByte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CompareChar",
+      "begin" : "CompareChar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CompareChar0",
+      "begin" : "CompareChar0",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CompareDWord",
+      "begin" : "CompareDWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CompareWord",
+      "begin" : "CompareWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Concat",
+      "begin" : "Concat",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Continue",
+      "begin" : "Continue",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Copy",
+      "begin" : "Copy",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CopyArray",
+      "begin" : "CopyArray",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Cos",
+      "begin" : "Cos",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Create",
+      "begin" : "Create",
       "ignoreCase" : true
     },
     {
-      "beginString" : "CSeg",
+      "begin" : "CSeg",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Dec",
+      "begin" : "Dec",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Default",
+      "begin" : "Default",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DefaultAnsi2UnicodeMove",
+      "begin" : "DefaultAnsi2UnicodeMove",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DefaultAnsi2WideMove",
+      "begin" : "DefaultAnsi2WideMove",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DefaultUnicode2AnsiMove",
+      "begin" : "DefaultUnicode2AnsiMove",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Delete",
+      "begin" : "Delete",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Dispose",
+      "begin" : "Dispose",
       "ignoreCase" : true
     },
     {
-      "beginString" : "divide",
+      "begin" : "divide",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DoneCriticalSection",
+      "begin" : "DoneCriticalSection",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DoneThread",
+      "begin" : "DoneThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DSeg",
+      "begin" : "DSeg",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Dump_Stack",
+      "begin" : "Dump_Stack",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DumpExceptionBacktrace",
+      "begin" : "DumpExceptionBacktrace",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DynArrayBounds",
+      "begin" : "DynArrayBounds",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DynArrayClear",
+      "begin" : "DynArrayClear",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DynArrayDim",
+      "begin" : "DynArrayDim",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DynArrayIndex",
+      "begin" : "DynArrayIndex",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DynArraySetLength",
+      "begin" : "DynArraySetLength",
       "ignoreCase" : true
     },
     {
-      "beginString" : "DynArraySize",
+      "begin" : "DynArraySize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EmptyMethod",
+      "begin" : "EmptyMethod",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EndThread",
+      "begin" : "EndThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EnterCriticalSection",
+      "begin" : "EnterCriticalSection",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EnumResourceLanguages",
+      "begin" : "EnumResourceLanguages",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EnumResourceNames",
+      "begin" : "EnumResourceNames",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EnumResourceTypes",
+      "begin" : "EnumResourceTypes",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EOF",
+      "begin" : "EOF",
       "ignoreCase" : true
     },
     {
-      "beginString" : "EOLn",
+      "begin" : "EOLn",
       "ignoreCase" : true
     },
     {
-      "beginString" : "equal",
+      "begin" : "equal",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Erase",
+      "begin" : "Erase",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Error",
+      "begin" : "Error",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Exclude",
+      "begin" : "Exclude",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Exit",
+      "begin" : "Exit",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Exp",
+      "begin" : "Exp",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Fail",
+      "begin" : "Fail",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FilePos",
+      "begin" : "FilePos",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FileSize",
+      "begin" : "FileSize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FillByte",
+      "begin" : "FillByte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FillChar",
+      "begin" : "FillChar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FillDWord",
+      "begin" : "FillDWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FillWord",
+      "begin" : "FillWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Finalize",
+      "begin" : "Finalize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FinalizeArray",
+      "begin" : "FinalizeArray",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FindResource",
+      "begin" : "FindResource",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FindResourceEx",
+      "begin" : "FindResourceEx",
       "ignoreCase" : true
     },
     {
-      "beginString" : "float_raise",
+      "begin" : "float_raise",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Flush",
+      "begin" : "Flush",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FlushThread",
+      "begin" : "FlushThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FMADouble",
+      "begin" : "FMADouble",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FMASingle",
+      "begin" : "FMASingle",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Frac",
+      "begin" : "Frac",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FreeLibrary",
+      "begin" : "FreeLibrary",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Freemem",
+      "begin" : "Freemem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Freememory",
+      "begin" : "Freememory",
       "ignoreCase" : true
     },
     {
-      "beginString" : "FreeResource",
+      "begin" : "FreeResource",
       "ignoreCase" : true
     },
     {
-      "beginString" : "get_caller_addr",
+      "begin" : "get_caller_addr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "get_caller_frame",
+      "begin" : "get_caller_frame",
       "ignoreCase" : true
     },
     {
-      "beginString" : "get_caller_stackinfo",
+      "begin" : "get_caller_stackinfo",
       "ignoreCase" : true
     },
     {
-      "beginString" : "get_cmdline",
+      "begin" : "get_cmdline",
       "ignoreCase" : true
     },
     {
-      "beginString" : "get_frame",
+      "begin" : "get_frame",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Get_pc_addr",
+      "begin" : "Get_pc_addr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetCPUCount",
+      "begin" : "GetCPUCount",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetCurrentThreadId",
+      "begin" : "GetCurrentThreadId",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetDir",
+      "begin" : "GetDir",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetDynLibsManager",
+      "begin" : "GetDynLibsManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetFPCHeapStatus",
+      "begin" : "GetFPCHeapStatus",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetHeapStatus",
+      "begin" : "GetHeapStatus",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetLoadErrorStr",
+      "begin" : "GetLoadErrorStr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetMem",
+      "begin" : "GetMem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetMemory",
+      "begin" : "GetMemory",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetMemoryManager",
+      "begin" : "GetMemoryManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetProcAddress",
+      "begin" : "GetProcAddress",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetProcedureAddress",
+      "begin" : "GetProcedureAddress",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetProcessID",
+      "begin" : "GetProcessID",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetResourceManager",
+      "begin" : "GetResourceManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetTextCodePage",
+      "begin" : "GetTextCodePage",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetThreadID",
+      "begin" : "GetThreadID",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetThreadManager",
+      "begin" : "GetThreadManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetTypeKind",
+      "begin" : "GetTypeKind",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetUnicodeStringManager",
+      "begin" : "GetUnicodeStringManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetVariantManager",
+      "begin" : "GetVariantManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "GetWideStringManager",
+      "begin" : "GetWideStringManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "greaterthan",
+      "begin" : "greaterthan",
       "ignoreCase" : true
     },
     {
-      "beginString" : "greaterthanorequal",
+      "begin" : "greaterthanorequal",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Halt",
+      "begin" : "Halt",
       "ignoreCase" : true
     },
     {
-      "beginString" : "HexStr",
+      "begin" : "HexStr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Hi",
+      "begin" : "Hi",
       "ignoreCase" : true
     },
     {
-      "beginString" : "High",
+      "begin" : "High",
       "ignoreCase" : true
     },
     {
-      "beginString" : "HINSTANCE",
+      "begin" : "HINSTANCE",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Inc",
+      "begin" : "Inc",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Include",
+      "begin" : "Include",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IndexByte",
+      "begin" : "IndexByte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IndexChar",
+      "begin" : "IndexChar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IndexChar0",
+      "begin" : "IndexChar0",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IndexDWord",
+      "begin" : "IndexDWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IndexQWord",
+      "begin" : "IndexQWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Indexword",
+      "begin" : "Indexword",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InitCriticalSection",
+      "begin" : "InitCriticalSection",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Initialize",
+      "begin" : "Initialize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InitializeArray",
+      "begin" : "InitializeArray",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InitThread",
+      "begin" : "InitThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InitThreadVars",
+      "begin" : "InitThreadVars",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Insert",
+      "begin" : "Insert",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Int",
+      "begin" : "Int",
       "ignoreCase" : true
     },
     {
-      "beginString" : "intdivide",
+      "begin" : "intdivide",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InterlockedCompareExchange",
+      "begin" : "InterlockedCompareExchange",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InterlockedCompareExchangePointer",
+      "begin" : "InterlockedCompareExchangePointer",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InterlockedDecrement",
+      "begin" : "InterlockedDecrement",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InterlockedExchange",
+      "begin" : "InterlockedExchange",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InterlockedExchangeAdd",
+      "begin" : "InterlockedExchangeAdd",
       "ignoreCase" : true
     },
     {
-      "beginString" : "InterlockedIncrement",
+      "begin" : "InterlockedIncrement",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IOResult",
+      "begin" : "IOResult",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Is_IntResource",
+      "begin" : "Is_IntResource",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IsDynArrayRectangular",
+      "begin" : "IsDynArrayRectangular",
       "ignoreCase" : true
     },
     {
-      "beginString" : "IsMemoryManagerSet",
+      "begin" : "IsMemoryManagerSet",
       "ignoreCase" : true
     },
     {
-      "beginString" : "KillThread",
+      "begin" : "KillThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "LeaveCriticalSection",
+      "begin" : "LeaveCriticalSection",
       "ignoreCase" : true
     },
     {
-      "beginString" : "leftshift",
+      "begin" : "leftshift",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Length",
+      "begin" : "Length",
       "ignoreCase" : true
     },
     {
-      "beginString" : "lessthan",
+      "begin" : "lessthan",
       "ignoreCase" : true
     },
     {
-      "beginString" : "lessthanorequal",
+      "begin" : "lessthanorequal",
       "ignoreCase" : true
     },
     {
-      "beginString" : "LEtoN",
+      "begin" : "LEtoN",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Ln",
+      "begin" : "Ln",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Lo",
+      "begin" : "Lo",
       "ignoreCase" : true
     },
     {
-      "beginString" : "LoadLibrary",
+      "begin" : "LoadLibrary",
       "ignoreCase" : true
     },
     {
-      "beginString" : "LoadResource",
+      "begin" : "LoadResource",
       "ignoreCase" : true
     },
     {
-      "beginString" : "LockResource",
+      "begin" : "LockResource",
       "ignoreCase" : true
     },
     {
-      "beginString" : "logicaland",
+      "begin" : "logicaland",
       "ignoreCase" : true
     },
     {
-      "beginString" : "logicalnot",
+      "begin" : "logicalnot",
       "ignoreCase" : true
     },
     {
-      "beginString" : "logicalor",
+      "begin" : "logicalor",
       "ignoreCase" : true
     },
     {
-      "beginString" : "logicalxor",
+      "begin" : "logicalxor",
       "ignoreCase" : true
     },
     {
-      "beginString" : "longjmp",
+      "begin" : "longjmp",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Low",
+      "begin" : "Low",
       "ignoreCase" : true
     },
     {
-      "beginString" : "LowerCase",
+      "begin" : "LowerCase",
       "ignoreCase" : true
     },
     {
-      "beginString" : "MakeLangID",
+      "begin" : "MakeLangID",
       "ignoreCase" : true
     },
     {
-      "beginString" : "MemSize",
+      "begin" : "MemSize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "MkDir",
+      "begin" : "MkDir",
       "ignoreCase" : true
     },
     {
-      "beginString" : "modulus",
+      "begin" : "modulus",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Move",
+      "begin" : "Move",
       "ignoreCase" : true
     },
     {
-      "beginString" : "MoveChar0",
+      "begin" : "MoveChar0",
       "ignoreCase" : true
     },
     {
-      "beginString" : "multiply",
+      "begin" : "multiply",
       "ignoreCase" : true
     },
     {
-      "beginString" : "negative",
+      "begin" : "negative",
       "ignoreCase" : true
     },
     {
-      "beginString" : "New",
+      "begin" : "New",
       "ignoreCase" : true
     },
     {
-      "beginString" : "NtoBE",
+      "begin" : "NtoBE",
       "ignoreCase" : true
     },
     {
-      "beginString" : "NtoLE",
+      "begin" : "NtoLE",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Null",
+      "begin" : "Null",
       "ignoreCase" : true
     },
     {
-      "beginString" : "OctStr",
+      "begin" : "OctStr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Odd",
+      "begin" : "Odd",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Ofs",
+      "begin" : "Ofs",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Ord",
+      "begin" : "Ord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Pack",
+      "begin" : "Pack",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ParamCount",
+      "begin" : "ParamCount",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ParamStr",
+      "begin" : "ParamStr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Pi",
+      "begin" : "Pi",
       "ignoreCase" : true
     },
     {
-      "beginString" : "PopCnt",
+      "begin" : "PopCnt",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Pos",
+      "begin" : "Pos",
       "ignoreCase" : true
     },
     {
-      "beginString" : "power",
+      "begin" : "power",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Pred",
+      "begin" : "Pred",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Prefetch",
+      "begin" : "Prefetch",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Ptr",
+      "begin" : "Ptr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RaiseList",
+      "begin" : "RaiseList",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Random",
+      "begin" : "Random",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Randomize",
+      "begin" : "Randomize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Read",
+      "begin" : "Read",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReadBarrier",
+      "begin" : "ReadBarrier",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReadDependencyBarrier",
+      "begin" : "ReadDependencyBarrier",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReadLn",
+      "begin" : "ReadLn",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReadStr",
+      "begin" : "ReadStr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReadWriteBarrier",
+      "begin" : "ReadWriteBarrier",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Real2Double",
+      "begin" : "Real2Double",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReAllocMem",
+      "begin" : "ReAllocMem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReAllocMemory",
+      "begin" : "ReAllocMemory",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ReleaseExceptionObject",
+      "begin" : "ReleaseExceptionObject",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Rename",
+      "begin" : "Rename",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Reset",
+      "begin" : "Reset",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ResumeThread",
+      "begin" : "ResumeThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Rewrite",
+      "begin" : "Rewrite",
       "ignoreCase" : true
     },
     {
-      "beginString" : "rightshift",
+      "begin" : "rightshift",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RmDir",
+      "begin" : "RmDir",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RolByte",
+      "begin" : "RolByte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RolDWord",
+      "begin" : "RolDWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RolQWord",
+      "begin" : "RolQWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RolWord",
+      "begin" : "RolWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RorByte",
+      "begin" : "RorByte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RorDWord",
+      "begin" : "RorDWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RorQWord",
+      "begin" : "RorQWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RorWord",
+      "begin" : "RorWord",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Round",
+      "begin" : "Round",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RTLEventCreate",
+      "begin" : "RTLEventCreate",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RTLEventDestroy",
+      "begin" : "RTLEventDestroy",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RTLEventResetEvent",
+      "begin" : "RTLEventResetEvent",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RTLEventSetEvent",
+      "begin" : "RTLEventSetEvent",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RTLEventWaitFor",
+      "begin" : "RTLEventWaitFor",
       "ignoreCase" : true
     },
     {
-      "beginString" : "RunError",
+      "begin" : "RunError",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SafeLoadLibrary",
+      "begin" : "SafeLoadLibrary",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SarInt64",
+      "begin" : "SarInt64",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SarLongint",
+      "begin" : "SarLongint",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SarShortint",
+      "begin" : "SarShortint",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SarSmallint",
+      "begin" : "SarSmallint",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Seek",
+      "begin" : "Seek",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SeekEOF",
+      "begin" : "SeekEOF",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SeekEOLn",
+      "begin" : "SeekEOLn",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Seg",
+      "begin" : "Seg",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetCodePage",
+      "begin" : "SetCodePage",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetDynLibsManager",
+      "begin" : "SetDynLibsManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Setjmp",
+      "begin" : "Setjmp",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetLength",
+      "begin" : "SetLength",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetMemoryManager",
+      "begin" : "SetMemoryManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetMultiByteConversionCodePage",
+      "begin" : "SetMultiByteConversionCodePage",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetMultiByteFileSystemCodePage",
+      "begin" : "SetMultiByteFileSystemCodePage",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetMultiByteRTLFileSystemCodePage",
+      "begin" : "SetMultiByteRTLFileSystemCodePage",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetResourceManager",
+      "begin" : "SetResourceManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetString",
+      "begin" : "SetString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetTextBuf",
+      "begin" : "SetTextBuf",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetTextCodePage",
+      "begin" : "SetTextCodePage",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetTextLineEnding",
+      "begin" : "SetTextLineEnding",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetThreadManager",
+      "begin" : "SetThreadManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetUnicodeStringManager",
+      "begin" : "SetUnicodeStringManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetVariantManager",
+      "begin" : "SetVariantManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SetWideStringManager",
+      "begin" : "SetWideStringManager",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ShortCompareText",
+      "begin" : "ShortCompareText",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Sin",
+      "begin" : "Sin",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SizeOf",
+      "begin" : "SizeOf",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SizeofResource",
+      "begin" : "SizeofResource",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Slice",
+      "begin" : "Slice",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Space",
+      "begin" : "Space",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SPtr",
+      "begin" : "SPtr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Sqr",
+      "begin" : "Sqr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Sqrt",
+      "begin" : "Sqrt",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SSeg",
+      "begin" : "SSeg",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StackTop",
+      "begin" : "StackTop",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Str",
+      "begin" : "Str",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StringCodePage",
+      "begin" : "StringCodePage",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StringElementSize",
+      "begin" : "StringElementSize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StringOfChar",
+      "begin" : "StringOfChar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StringRefCount",
+      "begin" : "StringRefCount",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StringToPPChar",
+      "begin" : "StringToPPChar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StringToUnicodeChar",
+      "begin" : "StringToUnicodeChar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StringToWideChar",
+      "begin" : "StringToWideChar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StrLen",
+      "begin" : "StrLen",
       "ignoreCase" : true
     },
     {
-      "beginString" : "StrPas",
+      "begin" : "StrPas",
       "ignoreCase" : true
     },
     {
-      "beginString" : "subtract",
+      "begin" : "subtract",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Succ",
+      "begin" : "Succ",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SuspendThread",
+      "begin" : "SuspendThread",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Swap",
+      "begin" : "Swap",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SwapEndian",
+      "begin" : "SwapEndian",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysAllocMem",
+      "begin" : "SysAllocMem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysAssert",
+      "begin" : "SysAssert",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysBacktraceStr",
+      "begin" : "SysBacktraceStr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysFlushStdIO",
+      "begin" : "SysFlushStdIO",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysFreemem",
+      "begin" : "SysFreemem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysFreememSize",
+      "begin" : "SysFreememSize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysGetFPCHeapStatus",
+      "begin" : "SysGetFPCHeapStatus",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysGetHeapStatus",
+      "begin" : "SysGetHeapStatus",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysGetmem",
+      "begin" : "SysGetmem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysInitExceptions",
+      "begin" : "SysInitExceptions",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysInitFPU",
+      "begin" : "SysInitFPU",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysInitStdIO",
+      "begin" : "SysInitStdIO",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysMemSize",
+      "begin" : "SysMemSize",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysReAllocMem",
+      "begin" : "SysReAllocMem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysResetFPU",
+      "begin" : "SysResetFPU",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysSetCtrlBreakHandler",
+      "begin" : "SysSetCtrlBreakHandler",
       "ignoreCase" : true
     },
     {
-      "beginString" : "SysTryResizeMem",
+      "begin" : "SysTryResizeMem",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ThreadGetPriority",
+      "begin" : "ThreadGetPriority",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ThreadSetPriority",
+      "begin" : "ThreadSetPriority",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ThreadSwitch",
+      "begin" : "ThreadSwitch",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ToSingleByteFileSystemEncodedFileName",
+      "begin" : "ToSingleByteFileSystemEncodedFileName",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Trunc",
+      "begin" : "Trunc",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Truncate",
+      "begin" : "Truncate",
       "ignoreCase" : true
     },
     {
-      "beginString" : "TryEnterCriticalSection",
+      "begin" : "TryEnterCriticalSection",
       "ignoreCase" : true
     },
     {
-      "beginString" : "TypeInfo",
+      "begin" : "TypeInfo",
       "ignoreCase" : true
     },
     {
-      "beginString" : "TypeOf",
+      "begin" : "TypeOf",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UCS4StringToUnicodeString",
+      "begin" : "UCS4StringToUnicodeString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UCS4StringToWideString",
+      "begin" : "UCS4StringToWideString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Unassigned",
+      "begin" : "Unassigned",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnicodeCharLenToString",
+      "begin" : "UnicodeCharLenToString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnicodeCharLenToStrVar",
+      "begin" : "UnicodeCharLenToStrVar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnicodeCharToString",
+      "begin" : "UnicodeCharToString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnicodeCharToStrVar",
+      "begin" : "UnicodeCharToStrVar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnicodeStringToUCS4String",
+      "begin" : "UnicodeStringToUCS4String",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnicodeToUtf8",
+      "begin" : "UnicodeToUtf8",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UniqueString",
+      "begin" : "UniqueString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnloadLibrary",
+      "begin" : "UnloadLibrary",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnlockResource",
+      "begin" : "UnlockResource",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UnPack",
+      "begin" : "UnPack",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UpCase",
+      "begin" : "UpCase",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Utf8CodePointLen",
+      "begin" : "Utf8CodePointLen",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UTF8Decode",
+      "begin" : "UTF8Decode",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UTF8Encode",
+      "begin" : "UTF8Encode",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Utf8ToAnsi",
+      "begin" : "Utf8ToAnsi",
       "ignoreCase" : true
     },
     {
-      "beginString" : "UTF8ToString",
+      "begin" : "UTF8ToString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Utf8ToUnicode",
+      "begin" : "Utf8ToUnicode",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Val",
+      "begin" : "Val",
       "ignoreCase" : true
     },
     {
-      "beginString" : "VarArrayGet",
+      "begin" : "VarArrayGet",
       "ignoreCase" : true
     },
     {
-      "beginString" : "VarArrayPut",
+      "begin" : "VarArrayPut",
       "ignoreCase" : true
     },
     {
-      "beginString" : "VarArrayRedim",
+      "begin" : "VarArrayRedim",
       "ignoreCase" : true
     },
     {
-      "beginString" : "VarCast",
+      "begin" : "VarCast",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WaitForThreadTerminate",
+      "begin" : "WaitForThreadTerminate",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WideCharLenToString",
+      "begin" : "WideCharLenToString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WideCharLenToStrVar",
+      "begin" : "WideCharLenToStrVar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WideCharToString",
+      "begin" : "WideCharToString",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WideCharToStrVar",
+      "begin" : "WideCharToStrVar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WideStringToUCS4String",
+      "begin" : "WideStringToUCS4String",
       "ignoreCase" : true
     },
     {
-      "beginString" : "Write",
+      "begin" : "Write",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WriteBarrier",
+      "begin" : "WriteBarrier",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WriteLn",
+      "begin" : "WriteLn",
       "ignoreCase" : true
     },
     {
-      "beginString" : "WriteStr",
+      "begin" : "WriteStr",
       "ignoreCase" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "abstract",
+      "begin" : "abstract",
       "ignoreCase" : true
     },
     {
-      "beginString" : "and",
+      "begin" : "and",
       "ignoreCase" : true
     },
     {
-      "beginString" : "array",
+      "begin" : "array",
       "ignoreCase" : true
     },
     {
-      "beginString" : "as",
+      "begin" : "as",
       "ignoreCase" : true
     },
     {
-      "beginString" : "asm",
+      "begin" : "asm",
       "ignoreCase" : true
     },
     {
-      "beginString" : "begin",
+      "begin" : "begin",
       "ignoreCase" : true
     },
     {
-      "beginString" : "break",
+      "begin" : "break",
       "ignoreCase" : true
     },
     {
-      "beginString" : "case",
+      "begin" : "case",
       "ignoreCase" : true
     },
     {
-      "beginString" : "class",
+      "begin" : "class",
       "ignoreCase" : true
     },
     {
-      "beginString" : "const",
+      "begin" : "const",
       "ignoreCase" : true
     },
     {
-      "beginString" : "constref",
+      "begin" : "constref",
       "ignoreCase" : true
     },
     {
-      "beginString" : "constructor",
+      "begin" : "constructor",
       "ignoreCase" : true
     },
     {
-      "beginString" : "continue",
+      "begin" : "continue",
       "ignoreCase" : true
     },
     {
-      "beginString" : "destructor",
+      "begin" : "destructor",
       "ignoreCase" : true
     },
     {
-      "beginString" : "dispose",
+      "begin" : "dispose",
       "ignoreCase" : true
     },
     {
-      "beginString" : "div",
+      "begin" : "div",
       "ignoreCase" : true
     },
     {
-      "beginString" : "do",
+      "begin" : "do",
       "ignoreCase" : true
     },
     {
-      "beginString" : "downto",
+      "begin" : "downto",
       "ignoreCase" : true
     },
     {
-      "beginString" : "else",
+      "begin" : "else",
       "ignoreCase" : true
     },
     {
-      "beginString" : "end",
+      "begin" : "end",
       "ignoreCase" : true
     },
     {
-      "beginString" : "except",
+      "begin" : "except",
       "ignoreCase" : true
     },
     {
-      "beginString" : "exit",
+      "begin" : "exit",
       "ignoreCase" : true
     },
     {
-      "beginString" : "exports",
+      "begin" : "exports",
       "ignoreCase" : true
     },
     {
-      "beginString" : "false",
+      "begin" : "false",
       "ignoreCase" : true
     },
     {
-      "beginString" : "file",
+      "begin" : "file",
       "ignoreCase" : true
     },
     {
-      "beginString" : "finalization",
+      "begin" : "finalization",
       "ignoreCase" : true
     },
     {
-      "beginString" : "finally",
+      "begin" : "finally",
       "ignoreCase" : true
     },
     {
-      "beginString" : "for",
+      "begin" : "for",
       "ignoreCase" : true
     },
     {
-      "beginString" : "function",
+      "begin" : "function",
       "ignoreCase" : true
     },
     {
-      "beginString" : "goto",
+      "begin" : "goto",
       "ignoreCase" : true
     },
     {
-      "beginString" : "if",
+      "begin" : "if",
       "ignoreCase" : true
     },
     {
-      "beginString" : "implementation",
+      "begin" : "implementation",
       "ignoreCase" : true
     },
     {
-      "beginString" : "in",
+      "begin" : "in",
       "ignoreCase" : true
     },
     {
-      "beginString" : "inherited",
+      "begin" : "inherited",
       "ignoreCase" : true
     },
     {
-      "beginString" : "initialization",
+      "begin" : "initialization",
       "ignoreCase" : true
     },
     {
-      "beginString" : "inline",
+      "begin" : "inline",
       "ignoreCase" : true
     },
     {
-      "beginString" : "interface",
+      "begin" : "interface",
       "ignoreCase" : true
     },
     {
-      "beginString" : "is",
+      "begin" : "is",
       "ignoreCase" : true
     },
     {
-      "beginString" : "label",
+      "begin" : "label",
       "ignoreCase" : true
     },
     {
-      "beginString" : "library",
+      "begin" : "library",
       "ignoreCase" : true
     },
     {
-      "beginString" : "mod",
+      "begin" : "mod",
       "ignoreCase" : true
     },
     {
-      "beginString" : "new",
+      "begin" : "new",
       "ignoreCase" : true
     },
     {
-      "beginString" : "nil",
+      "begin" : "nil",
       "ignoreCase" : true
     },
     {
-      "beginString" : "not",
+      "begin" : "not",
       "ignoreCase" : true
     },
     {
-      "beginString" : "object",
+      "begin" : "object",
       "ignoreCase" : true
     },
     {
-      "beginString" : "of",
+      "begin" : "of",
       "ignoreCase" : true
     },
     {
-      "beginString" : "on",
+      "begin" : "on",
       "ignoreCase" : true
     },
     {
-      "beginString" : "operator",
+      "begin" : "operator",
       "ignoreCase" : true
     },
     {
-      "beginString" : "or",
+      "begin" : "or",
       "ignoreCase" : true
     },
     {
-      "beginString" : "out",
+      "begin" : "out",
       "ignoreCase" : true
     },
     {
-      "beginString" : "override",
+      "begin" : "override",
       "ignoreCase" : true
     },
     {
-      "beginString" : "packed",
+      "begin" : "packed",
       "ignoreCase" : true
     },
     {
-      "beginString" : "private",
+      "begin" : "private",
       "ignoreCase" : true
     },
     {
-      "beginString" : "procedure",
+      "begin" : "procedure",
       "ignoreCase" : true
     },
     {
-      "beginString" : "program",
+      "begin" : "program",
       "ignoreCase" : true
     },
     {
-      "beginString" : "property",
+      "begin" : "property",
       "ignoreCase" : true
     },
     {
-      "beginString" : "protected",
+      "begin" : "protected",
       "ignoreCase" : true
     },
     {
-      "beginString" : "public",
+      "begin" : "public",
       "ignoreCase" : true
     },
     {
-      "beginString" : "published",
+      "begin" : "published",
       "ignoreCase" : true
     },
     {
-      "beginString" : "raise",
+      "begin" : "raise",
       "ignoreCase" : true
     },
     {
-      "beginString" : "read",
+      "begin" : "read",
       "ignoreCase" : true
     },
     {
-      "beginString" : "record",
+      "begin" : "record",
       "ignoreCase" : true
     },
     {
-      "beginString" : "repeat",
+      "begin" : "repeat",
       "ignoreCase" : true
     },
     {
-      "beginString" : "resourcestring",
+      "begin" : "resourcestring",
       "ignoreCase" : true
     },
     {
-      "beginString" : "self",
+      "begin" : "self",
       "ignoreCase" : true
     },
     {
-      "beginString" : "set",
+      "begin" : "set",
       "ignoreCase" : true
     },
     {
-      "beginString" : "shl",
+      "begin" : "shl",
       "ignoreCase" : true
     },
     {
-      "beginString" : "shr",
+      "begin" : "shr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "string",
+      "begin" : "string",
       "ignoreCase" : true
     },
     {
-      "beginString" : "then",
+      "begin" : "then",
       "ignoreCase" : true
     },
     {
-      "beginString" : "threadvar",
+      "begin" : "threadvar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "to",
+      "begin" : "to",
       "ignoreCase" : true
     },
     {
-      "beginString" : "true",
+      "begin" : "true",
       "ignoreCase" : true
     },
     {
-      "beginString" : "try",
+      "begin" : "try",
       "ignoreCase" : true
     },
     {
-      "beginString" : "type",
+      "begin" : "type",
       "ignoreCase" : true
     },
     {
-      "beginString" : "unit",
+      "begin" : "unit",
       "ignoreCase" : true
     },
     {
-      "beginString" : "until",
+      "begin" : "until",
       "ignoreCase" : true
     },
     {
-      "beginString" : "uses",
+      "begin" : "uses",
       "ignoreCase" : true
     },
     {
-      "beginString" : "var",
+      "begin" : "var",
       "ignoreCase" : true
     },
     {
-      "beginString" : "virtual",
+      "begin" : "virtual",
       "ignoreCase" : true
     },
     {
-      "beginString" : "while",
+      "begin" : "while",
       "ignoreCase" : true
     },
     {
-      "beginString" : "with",
+      "begin" : "with",
       "ignoreCase" : true
     },
     {
-      "beginString" : "write",
+      "begin" : "write",
       "ignoreCase" : true
     },
     {
-      "beginString" : "xor",
+      "begin" : "xor",
       "ignoreCase" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b(\\d+\\.?\\d*|\\.\\d+)(e[-+]\\d+)?[dfm]?\\b",
+      "begin" : "\\b(\\d+\\.?\\d*|\\.\\d+)(e[-+]\\d+)?[dfm]?\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-f]+\\b",
+      "begin" : "\\b0x[0-9a-f]+\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\d+[lu]{0,2}\\b",
+      "begin" : "\\b\\d+[lu]{0,2}\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "types" : [
     {
-      "beginString" : "boolean",
+      "begin" : "boolean",
       "ignoreCase" : true
     },
     {
-      "beginString" : "byte",
+      "begin" : "byte",
       "ignoreCase" : true
     },
     {
-      "beginString" : "bytebool",
+      "begin" : "bytebool",
       "ignoreCase" : true
     },
     {
-      "beginString" : "cardinal",
+      "begin" : "cardinal",
       "ignoreCase" : true
     },
     {
-      "beginString" : "char",
+      "begin" : "char",
       "ignoreCase" : true
     },
     {
-      "beginString" : "comp",
+      "begin" : "comp",
       "ignoreCase" : true
     },
     {
-      "beginString" : "currency",
+      "begin" : "currency",
       "ignoreCase" : true
     },
     {
-      "beginString" : "double",
+      "begin" : "double",
       "ignoreCase" : true
     },
     {
-      "beginString" : "extended",
+      "begin" : "extended",
       "ignoreCase" : true
     },
     {
-      "beginString" : "int64",
+      "begin" : "int64",
       "ignoreCase" : true
     },
     {
-      "beginString" : "integer",
+      "begin" : "integer",
       "ignoreCase" : true
     },
     {
-      "beginString" : "longbool",
+      "begin" : "longbool",
       "ignoreCase" : true
     },
     {
-      "beginString" : "longint",
+      "begin" : "longint",
       "ignoreCase" : true
     },
     {
-      "beginString" : "longword",
+      "begin" : "longword",
       "ignoreCase" : true
     },
     {
-      "beginString" : "qword",
+      "begin" : "qword",
       "ignoreCase" : true
     },
     {
-      "beginString" : "qwordbool",
+      "begin" : "qwordbool",
       "ignoreCase" : true
     },
     {
-      "beginString" : "real",
+      "begin" : "real",
       "ignoreCase" : true
     },
     {
-      "beginString" : "shortint",
+      "begin" : "shortint",
       "ignoreCase" : true
     },
     {
-      "beginString" : "single",
+      "begin" : "single",
       "ignoreCase" : true
     },
     {
-      "beginString" : "smallint",
+      "begin" : "smallint",
       "ignoreCase" : true
     },
     {
-      "beginString" : "word",
+      "begin" : "word",
       "ignoreCase" : true
     },
     {
-      "beginString" : "wordbool",
+      "begin" : "wordbool",
       "ignoreCase" : true
     }
   ],
   "values" : [
     {
-      "beginString" : "false",
+      "begin" : "false",
       "ignoreCase" : true
     },
     {
-      "beginString" : "nil",
+      "begin" : "nil",
       "ignoreCase" : true
     },
     {
-      "beginString" : "true",
+      "begin" : "true",
       "ignoreCase" : true
     }
   ],
   "variables" : [
     {
-      "beginString" : "self",
+      "begin" : "self",
       "ignoreCase" : true
     }
   ]

@@ -1,17 +1,17 @@
 [
   {
-    "beginString" : "^([\\t ]*)(extended)[\\t ]+(\\w+)",
-    "keyString" : "$1$2 $3",
+    "pattern" : "^([\\t ]*)(extended)[\\t ]+(\\w+)",
+    "template" : "$1$2 $3",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)(message|enum|service)[\\t ]+(\\w+)",
-    "keyString" : "$1$2 $3",
+    "pattern" : "^([\\t ]*)(message|enum|service)[\\t ]+(\\w+)",
+    "template" : "$1$2 $3",
     "kind" : "container"
   },
   {
-    "beginString" : "^([\\t ]*)(oneof)[\\t ]+(\\w+)",
-    "keyString" : "$1$2 $3",
+    "pattern" : "^([\\t ]*)(oneof)[\\t ]+(\\w+)",
+    "template" : "$1$2 $3",
     "kind" : "container"
   }
 ]

@@ -1,12 +1,12 @@
 [
   {
-    "beginString" : "\\b(graph|digraph)\\s+([^\\s\\{]+)\\s*\\{",
-    "keyString" : "$2",
+    "pattern" : "\\b(graph|digraph)\\s+([^\\s\\{]+)\\s*\\{",
+    "template" : "$2",
     "kind" : "container"
   },
   {
-    "beginString" : "\\bsubgraph\\s+([^\\s]+)",
-    "keyString" : "$1",
+    "pattern" : "\\bsubgraph\\s+([^\\s]+)",
+    "template" : "$1",
     "kind" : "container"
   }
 ]

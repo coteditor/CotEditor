@@ -1,209 +1,209 @@
 {
   "attributes" : [
     {
-      "beginString" : "(?<=\\[)[^\\]]+(?=\\])",
+      "begin" : "(?<=\\[)[^\\]]+(?=\\])",
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "beginString" : "aaa",
+      "begin" : "aaa",
       "ignoreCase" : true
     },
     {
-      "beginString" : "aad",
+      "begin" : "aad",
       "ignoreCase" : true
     },
     {
-      "beginString" : "add",
+      "begin" : "add",
       "ignoreCase" : true
     },
     {
-      "beginString" : "and",
+      "begin" : "and",
       "ignoreCase" : true
     },
     {
-      "beginString" : "daa",
+      "begin" : "daa",
       "ignoreCase" : true
     },
     {
-      "beginString" : "div",
+      "begin" : "div",
       "ignoreCase" : true
     },
     {
-      "beginString" : "enter",
+      "begin" : "enter",
       "ignoreCase" : true
     },
     {
-      "beginString" : "idiv",
+      "begin" : "idiv",
       "ignoreCase" : true
     },
     {
-      "beginString" : "lad",
+      "begin" : "lad",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ld",
+      "begin" : "ld",
       "ignoreCase" : true
     },
     {
-      "beginString" : "loop",
+      "begin" : "loop",
       "ignoreCase" : true
     },
     {
-      "beginString" : "mov",
+      "begin" : "mov",
       "description" : "mnemonic",
       "ignoreCase" : true
     },
     {
-      "beginString" : "mul",
+      "begin" : "mul",
       "ignoreCase" : true
     },
     {
-      "beginString" : "neg",
+      "begin" : "neg",
       "ignoreCase" : true
     },
     {
-      "beginString" : "or",
+      "begin" : "or",
       "ignoreCase" : true
     },
     {
-      "beginString" : "pop",
+      "begin" : "pop",
       "ignoreCase" : true
     },
     {
-      "beginString" : "push",
+      "begin" : "push",
       "ignoreCase" : true
     },
     {
-      "beginString" : "rcl",
+      "begin" : "rcl",
       "ignoreCase" : true
     },
     {
-      "beginString" : "rcr",
+      "begin" : "rcr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "rol",
+      "begin" : "rol",
       "ignoreCase" : true
     },
     {
-      "beginString" : "ror",
+      "begin" : "ror",
       "ignoreCase" : true
     },
     {
-      "beginString" : "sal",
+      "begin" : "sal",
       "ignoreCase" : true
     },
     {
-      "beginString" : "sar",
+      "begin" : "sar",
       "ignoreCase" : true
     },
     {
-      "beginString" : "shl",
+      "begin" : "shl",
       "ignoreCase" : true
     },
     {
-      "beginString" : "shr",
+      "begin" : "shr",
       "ignoreCase" : true
     },
     {
-      "beginString" : "st",
+      "begin" : "st",
       "ignoreCase" : true
     },
     {
-      "beginString" : "sub",
+      "begin" : "sub",
       "ignoreCase" : true
     },
     {
-      "beginString" : "svc",
+      "begin" : "svc",
       "ignoreCase" : true
     },
     {
-      "beginString" : "xor",
+      "begin" : "xor",
       "ignoreCase" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "\\.\\w+\\b",
+      "begin" : "\\.\\w+\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "^[a-z0-9._]+(?=:)",
+      "begin" : "^[a-z0-9._]+(?=:)",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "(\\b|[-+])(0[dt])?[0-9][0-9_]*[dt]?\\b",
+      "begin" : "(\\b|[-+])(0[dt])?[0-9][0-9_]*[dt]?\\b",
       "description" : "decimal with pre/suf-fix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])0[by][01][01_]*\\b",
+      "begin" : "(\\b|[-+])0[by][01][01_]*\\b",
       "description" : "binary with prefix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])0[hx][0-9a-f][0-9a-f_]*\\b",
+      "begin" : "(\\b|[-+])0[hx][0-9a-f][0-9a-f_]*\\b",
       "description" : "hex with prefix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])0[qo][0-7][0-7_]*\\b",
+      "begin" : "(\\b|[-+])0[qo][0-7][0-7_]*\\b",
       "description" : "octal with prefix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])0p[0-9][0-9_]\\b",
+      "begin" : "(\\b|[-+])0p[0-9][0-9_]\\b",
       "description" : "x87-style packed BCD constants with prefix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])0x[0-9a-z][0-9a-z_]*(\\.[0-9a-z][0-9a-z_]*)?(p[-+]?[0-9][0-9_]*)\\b",
+      "begin" : "(\\b|[-+])0x[0-9a-z][0-9a-z_]*(\\.[0-9a-z][0-9a-z_]*)?(p[-+]?[0-9][0-9_]*)\\b",
       "description" : "C99-style hex floating-point",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])[0-7][0-7_]*[qo]\\b",
+      "begin" : "(\\b|[-+])[0-7][0-7_]*[qo]\\b",
       "description" : "octal with suffix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])[0-9][0-9_]*\\.([0-9][0-9_]*)?(e[-+]?[0-9][0-9_]*)?\\b",
+      "begin" : "(\\b|[-+])[0-9][0-9_]*\\.([0-9][0-9_]*)?(e[-+]?[0-9][0-9_]*)?\\b",
       "description" : "floating-point",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])[0-9][0-9_]*p\\b",
+      "begin" : "(\\b|[-+])[0-9][0-9_]*p\\b",
       "description" : "x87-style packed BCD constants with suffix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])[0-9a-f][0-9a-f_]*[hx]\\b",
+      "begin" : "(\\b|[-+])[0-9a-f][0-9a-f_]*[hx]\\b",
       "description" : "hex with suffix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "(\\b|[-+])[01][01_]*[by]\\b",
+      "begin" : "(\\b|[-+])[01][01_]*[by]\\b",
       "description" : "binary with suffix",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\$[0-9][0-9a-f_]*\\b",
+      "begin" : "\\$[0-9][0-9a-f_]*\\b",
       "description" : "hex with $",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -211,205 +211,205 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     },
     {
-      "beginString" : "`",
-      "endString" : "`"
+      "begin" : "`",
+      "end" : "`"
     }
   ],
   "types" : [
     {
-      "beginString" : "%!variable"
+      "begin" : "%!variable"
     },
     {
-      "beginString" : "%0"
+      "begin" : "%0"
     },
     {
-      "beginString" : "%00"
+      "begin" : "%00"
     },
     {
-      "beginString" : "%abs"
+      "begin" : "%abs"
     },
     {
-      "beginString" : "%arg"
+      "begin" : "%arg"
     },
     {
-      "beginString" : "%assign"
+      "begin" : "%assign"
     },
     {
-      "beginString" : "%clear"
+      "begin" : "%clear"
     },
     {
-      "beginString" : "%cond"
+      "begin" : "%cond"
     },
     {
-      "beginString" : "%count"
+      "begin" : "%count"
     },
     {
-      "beginString" : "%defalias"
+      "begin" : "%defalias"
     },
     {
-      "beginString" : "%define",
+      "begin" : "%define",
       "description" : "macro"
     },
     {
-      "beginString" : "%defstr"
+      "begin" : "%defstr"
     },
     {
-      "beginString" : "%deftok"
+      "begin" : "%deftok"
     },
     {
-      "beginString" : "%depend"
+      "begin" : "%depend"
     },
     {
-      "beginString" : "%elif"
+      "begin" : "%elif"
     },
     {
-      "beginString" : "%else"
+      "begin" : "%else"
     },
     {
-      "beginString" : "%endif"
+      "begin" : "%endif"
     },
     {
-      "beginString" : "%error"
+      "begin" : "%error"
     },
     {
-      "beginString" : "%eval"
+      "begin" : "%eval"
     },
     {
-      "beginString" : "%fatal"
+      "begin" : "%fatal"
     },
     {
-      "beginString" : "%hex"
+      "begin" : "%hex"
     },
     {
-      "beginString" : "%if"
+      "begin" : "%if"
     },
     {
-      "beginString" : "%ifctx"
+      "begin" : "%ifctx"
     },
     {
-      "beginString" : "%ifempty"
+      "begin" : "%ifempty"
     },
     {
-      "beginString" : "%ifenv"
+      "begin" : "%ifenv"
     },
     {
-      "beginString" : "%ifid"
+      "begin" : "%ifid"
     },
     {
-      "beginString" : "%ifidn"
+      "begin" : "%ifidn"
     },
     {
-      "beginString" : "%ifidni"
+      "begin" : "%ifidni"
     },
     {
-      "beginString" : "%ifmacro"
+      "begin" : "%ifmacro"
     },
     {
-      "beginString" : "%ifnum"
+      "begin" : "%ifnum"
     },
     {
-      "beginString" : "%ifstr"
+      "begin" : "%ifstr"
     },
     {
-      "beginString" : "%iftoken"
+      "begin" : "%iftoken"
     },
     {
-      "beginString" : "%include"
+      "begin" : "%include"
     },
     {
-      "beginString" : "%is"
+      "begin" : "%is"
     },
     {
-      "beginString" : "%line"
+      "begin" : "%line"
     },
     {
-      "beginString" : "%local"
+      "begin" : "%local"
     },
     {
-      "beginString" : "%macro"
+      "begin" : "%macro"
     },
     {
-      "beginString" : "%map"
+      "begin" : "%map"
     },
     {
-      "beginString" : "%num"
+      "begin" : "%num"
     },
     {
-      "beginString" : "%pathsearch"
+      "begin" : "%pathsearch"
     },
     {
-      "beginString" : "%pop"
+      "begin" : "%pop"
     },
     {
-      "beginString" : "%pragma"
+      "begin" : "%pragma"
     },
     {
-      "beginString" : "%push"
+      "begin" : "%push"
     },
     {
-      "beginString" : "%rep"
+      "begin" : "%rep"
     },
     {
-      "beginString" : "%repl"
+      "begin" : "%repl"
     },
     {
-      "beginString" : "%rotate"
+      "begin" : "%rotate"
     },
     {
-      "beginString" : "%sel"
+      "begin" : "%sel"
     },
     {
-      "beginString" : "%stacksize"
+      "begin" : "%stacksize"
     },
     {
-      "beginString" : "%str"
+      "begin" : "%str"
     },
     {
-      "beginString" : "%strcat"
+      "begin" : "%strcat"
     },
     {
-      "beginString" : "%strlen"
+      "begin" : "%strlen"
     },
     {
-      "beginString" : "%substr"
+      "begin" : "%substr"
     },
     {
-      "beginString" : "%tok"
+      "begin" : "%tok"
     },
     {
-      "beginString" : "%undef"
+      "begin" : "%undef"
     },
     {
-      "beginString" : "%use"
+      "begin" : "%use"
     },
     {
-      "beginString" : "%warning"
+      "begin" : "%warning"
     },
     {
-      "beginString" : "%xdefine",
+      "begin" : "%xdefine",
       "description" : "macro"
     }
   ],
   "values" : [
     {
-      "beginString" : "__?Infinity?__"
+      "begin" : "__?Infinity?__"
     },
     {
-      "beginString" : "__?NaN?__"
+      "begin" : "__?NaN?__"
     },
     {
-      "beginString" : "__?QNaN?__"
+      "begin" : "__?QNaN?__"
     },
     {
-      "beginString" : "__?SNaN?__"
+      "begin" : "__?SNaN?__"
     }
   ]
 }

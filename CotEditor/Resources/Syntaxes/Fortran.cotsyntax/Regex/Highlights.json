@@ -1,1452 +1,1452 @@
 {
   "commands" : [
     {
-      "beginString" : "\\babs(?=\\()",
+      "begin" : "\\babs(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bachar(?=\\()",
+      "begin" : "\\bachar(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bacos(?=\\()",
+      "begin" : "\\bacos(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bacosh(?=\\()",
+      "begin" : "\\bacosh(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\badjustl(?=\\()",
+      "begin" : "\\badjustl(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\badjustr(?=\\()",
+      "begin" : "\\badjustr(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\baimag(?=\\()",
+      "begin" : "\\baimag(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\baint(?=\\()",
+      "begin" : "\\baint(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\ball(?=\\()",
+      "begin" : "\\ball(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\ballocated(?=\\()",
+      "begin" : "\\ballocated(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\banint(?=\\()",
+      "begin" : "\\banint(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bany(?=\\()",
+      "begin" : "\\bany(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\basin(?=\\()",
+      "begin" : "\\basin(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\basinh(?=\\()",
+      "begin" : "\\basinh(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bassociated(?=\\()",
+      "begin" : "\\bassociated(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batan(?=\\()",
+      "begin" : "\\batan(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batan2(?=\\()",
+      "begin" : "\\batan2(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batanh(?=\\()",
+      "begin" : "\\batanh(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_add(?=\\()",
+      "begin" : "\\batomic_add(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_and(?=\\()",
+      "begin" : "\\batomic_and(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_cas(?=\\()",
+      "begin" : "\\batomic_cas(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_define(?=\\()",
+      "begin" : "\\batomic_define(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_fetch_add(?=\\()",
+      "begin" : "\\batomic_fetch_add(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_fetch_and(?=\\()",
+      "begin" : "\\batomic_fetch_and(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_fetch_or(?=\\()",
+      "begin" : "\\batomic_fetch_or(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_fetch_xor(?=\\()",
+      "begin" : "\\batomic_fetch_xor(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_or(?=\\()",
+      "begin" : "\\batomic_or(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_ref(?=\\()",
+      "begin" : "\\batomic_ref(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\batomic_xor(?=\\()",
+      "begin" : "\\batomic_xor(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbessel_j0(?=\\()",
+      "begin" : "\\bbessel_j0(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbessel_jn(?=\\()",
+      "begin" : "\\bbessel_jn(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbessel_y0(?=\\()",
+      "begin" : "\\bbessel_y0(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbessel_y1(?=\\()",
+      "begin" : "\\bbessel_y1(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbessel_yn(?=\\()",
+      "begin" : "\\bbessel_yn(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbesselj1(?=\\()",
+      "begin" : "\\bbesselj1(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbge(?=\\()",
+      "begin" : "\\bbge(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbgt(?=\\()",
+      "begin" : "\\bbgt(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbit_size(?=\\()",
+      "begin" : "\\bbit_size(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bble(?=\\()",
+      "begin" : "\\bble(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bblt(?=\\()",
+      "begin" : "\\bblt(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bbtest(?=\\()",
+      "begin" : "\\bbtest(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bc_associated(?=\\()",
+      "begin" : "\\bc_associated(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bc_f_pointer(?=\\()",
+      "begin" : "\\bc_f_pointer(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bc_f_procpointer(?=\\()",
+      "begin" : "\\bc_f_procpointer(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bc_funloc(?=\\()",
+      "begin" : "\\bc_funloc(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bc_loc(?=\\()",
+      "begin" : "\\bc_loc(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bc_sizeof(?=\\()",
+      "begin" : "\\bc_sizeof(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bceiling(?=\\()",
+      "begin" : "\\bceiling(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bchar(?=\\()",
+      "begin" : "\\bchar(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcmplx(?=\\()",
+      "begin" : "\\bcmplx(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bco_broadcst(?=\\()",
+      "begin" : "\\bco_broadcst(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bco_max(?=\\()",
+      "begin" : "\\bco_max(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bco_min(?=\\()",
+      "begin" : "\\bco_min(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bco_reduce(?=\\()",
+      "begin" : "\\bco_reduce(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bco_sum(?=\\()",
+      "begin" : "\\bco_sum(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcommand_argument_count(?=\\()",
+      "begin" : "\\bcommand_argument_count(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcompiler_options(?=\\()",
+      "begin" : "\\bcompiler_options(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcompiler_version(?=\\()",
+      "begin" : "\\bcompiler_version(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bconjg(?=\\()",
+      "begin" : "\\bconjg(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcos(?=\\()",
+      "begin" : "\\bcos(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcosh(?=\\()",
+      "begin" : "\\bcosh(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcount(?=\\()",
+      "begin" : "\\bcount(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcpu_time(?=\\()",
+      "begin" : "\\bcpu_time(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcshift(?=\\()",
+      "begin" : "\\bcshift(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdate_and_time(?=\\()",
+      "begin" : "\\bdate_and_time(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdble(?=\\()",
+      "begin" : "\\bdble(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdigits(?=\\()",
+      "begin" : "\\bdigits(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdim(?=\\()",
+      "begin" : "\\bdim(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdot_product(?=\\()",
+      "begin" : "\\bdot_product(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdprod(?=\\()",
+      "begin" : "\\bdprod(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdshiftl(?=\\()",
+      "begin" : "\\bdshiftl(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdshiftr(?=\\()",
+      "begin" : "\\bdshiftr(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\beoshift(?=\\()",
+      "begin" : "\\beoshift(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bepsilon(?=\\()",
+      "begin" : "\\bepsilon(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\berf(?=\\()",
+      "begin" : "\\berf(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\berfc(?=\\()",
+      "begin" : "\\berfc(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\berfc_scaled(?=\\()",
+      "begin" : "\\berfc_scaled(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bevent_query(?=\\()",
+      "begin" : "\\bevent_query(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bexecute_command_line(?=\\()",
+      "begin" : "\\bexecute_command_line(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bexp(?=\\()",
+      "begin" : "\\bexp(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bexponent(?=\\()",
+      "begin" : "\\bexponent(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bextends_type_of(?=\\()",
+      "begin" : "\\bextends_type_of(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfloat(?=\\()",
+      "begin" : "\\bfloat(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfloor(?=\\()",
+      "begin" : "\\bfloor(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bfraction(?=\\()",
+      "begin" : "\\bfraction(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bgamma(?=\\()",
+      "begin" : "\\bgamma(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bget_command(?=\\()",
+      "begin" : "\\bget_command(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bget_command_argument(?=\\()",
+      "begin" : "\\bget_command_argument(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bget_environment_variable(?=\\()",
+      "begin" : "\\bget_environment_variable(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhuge(?=\\()",
+      "begin" : "\\bhuge(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bhypot(?=\\()",
+      "begin" : "\\bhypot(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\biachar(?=\\()",
+      "begin" : "\\biachar(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\biall(?=\\()",
+      "begin" : "\\biall(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\biand(?=\\()",
+      "begin" : "\\biand(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\biany(?=\\()",
+      "begin" : "\\biany(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bibclr(?=\\()",
+      "begin" : "\\bibclr(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bibits(?=\\()",
+      "begin" : "\\bibits(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bibset(?=\\()",
+      "begin" : "\\bibset(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bichar(?=\\()",
+      "begin" : "\\bichar(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bieor(?=\\()",
+      "begin" : "\\bieor(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bimage_index(?=\\()",
+      "begin" : "\\bimage_index(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bindex(?=\\()",
+      "begin" : "\\bindex(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bint(?=\\()",
+      "begin" : "\\bint(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bior(?=\\()",
+      "begin" : "\\bior(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\biparity(?=\\()",
+      "begin" : "\\biparity(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bis_iostat_end(?=\\()",
+      "begin" : "\\bis_iostat_end(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bis_iostat_eor(?=\\()",
+      "begin" : "\\bis_iostat_eor(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bishft(?=\\()",
+      "begin" : "\\bishft(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bishftc(?=\\()",
+      "begin" : "\\bishftc(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bkind(?=\\()",
+      "begin" : "\\bkind(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blbound(?=\\()",
+      "begin" : "\\blbound(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blcobound(?=\\()",
+      "begin" : "\\blcobound(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bleadz(?=\\()",
+      "begin" : "\\bleadz(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blen(?=\\()",
+      "begin" : "\\blen(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blen_trim(?=\\()",
+      "begin" : "\\blen_trim(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blge(?=\\()",
+      "begin" : "\\blge(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blgt(?=\\()",
+      "begin" : "\\blgt(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blle(?=\\()",
+      "begin" : "\\blle(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bllt(?=\\()",
+      "begin" : "\\bllt(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blog(?=\\()",
+      "begin" : "\\blog(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blog10(?=\\()",
+      "begin" : "\\blog10(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blog_gamma(?=\\()",
+      "begin" : "\\blog_gamma(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blogical(?=\\()",
+      "begin" : "\\blogical(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmaskl(?=\\()",
+      "begin" : "\\bmaskl(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmaskr(?=\\()",
+      "begin" : "\\bmaskr(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmatmul(?=\\()",
+      "begin" : "\\bmatmul(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmax(?=\\()",
+      "begin" : "\\bmax(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmaxexponent(?=\\()",
+      "begin" : "\\bmaxexponent(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmaxloc(?=\\()",
+      "begin" : "\\bmaxloc(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmaxval(?=\\()",
+      "begin" : "\\bmaxval(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmerge(?=\\()",
+      "begin" : "\\bmerge(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmerge_bits(?=\\()",
+      "begin" : "\\bmerge_bits(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmin(?=\\()",
+      "begin" : "\\bmin(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bminexponent(?=\\()",
+      "begin" : "\\bminexponent(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bminloc(?=\\()",
+      "begin" : "\\bminloc(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bminval(?=\\()",
+      "begin" : "\\bminval(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmod(?=\\()",
+      "begin" : "\\bmod(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmodulo(?=\\()",
+      "begin" : "\\bmodulo(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmove_alloc(?=\\()",
+      "begin" : "\\bmove_alloc(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bmvbits(?=\\()",
+      "begin" : "\\bmvbits(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnearest(?=\\()",
+      "begin" : "\\bnearest(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnew_line(?=\\()",
+      "begin" : "\\bnew_line(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnint(?=\\()",
+      "begin" : "\\bnint(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnorm2(?=\\()",
+      "begin" : "\\bnorm2(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnot(?=\\()",
+      "begin" : "\\bnot(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnull(?=\\()",
+      "begin" : "\\bnull(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bnum_images(?=\\()",
+      "begin" : "\\bnum_images(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpack(?=\\()",
+      "begin" : "\\bpack(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bparity(?=\\()",
+      "begin" : "\\bparity(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpopcnt(?=\\()",
+      "begin" : "\\bpopcnt(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpoppar(?=\\()",
+      "begin" : "\\bpoppar(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bprecision(?=\\()",
+      "begin" : "\\bprecision(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bpresent(?=\\()",
+      "begin" : "\\bpresent(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bproduct(?=\\()",
+      "begin" : "\\bproduct(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bradix(?=\\()",
+      "begin" : "\\bradix(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brandom_number(?=\\()",
+      "begin" : "\\brandom_number(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brandom_seed(?=\\()",
+      "begin" : "\\brandom_seed(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brange(?=\\()",
+      "begin" : "\\brange(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brank(?=\\()",
+      "begin" : "\\brank(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\breal(?=\\()",
+      "begin" : "\\breal(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brepeat(?=\\()",
+      "begin" : "\\brepeat(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\breshape(?=\\()",
+      "begin" : "\\breshape(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brrspacing(?=\\()",
+      "begin" : "\\brrspacing(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsame_type_as(?=\\()",
+      "begin" : "\\bsame_type_as(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bscale(?=\\()",
+      "begin" : "\\bscale(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bscan(?=\\()",
+      "begin" : "\\bscan(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselected_char_kind(?=\\()",
+      "begin" : "\\bselected_char_kind(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselected_int_kind(?=\\()",
+      "begin" : "\\bselected_int_kind(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bselected_real_kind(?=\\()",
+      "begin" : "\\bselected_real_kind(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bset_exponent(?=\\()",
+      "begin" : "\\bset_exponent(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bshape(?=\\()",
+      "begin" : "\\bshape(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bshifta(?=\\()",
+      "begin" : "\\bshifta(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bshiftl(?=\\()",
+      "begin" : "\\bshiftl(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bshiftr(?=\\()",
+      "begin" : "\\bshiftr(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsign(?=\\()",
+      "begin" : "\\bsign(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsin(?=\\()",
+      "begin" : "\\bsin(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsinh(?=\\()",
+      "begin" : "\\bsinh(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsize(?=\\()",
+      "begin" : "\\bsize(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsngl(?=\\()",
+      "begin" : "\\bsngl(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bspacing(?=\\()",
+      "begin" : "\\bspacing(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bspread(?=\\()",
+      "begin" : "\\bspread(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsqrt(?=\\()",
+      "begin" : "\\bsqrt(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bstorage_size(?=\\()",
+      "begin" : "\\bstorage_size(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsum(?=\\()",
+      "begin" : "\\bsum(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsystem_clock(?=\\()",
+      "begin" : "\\bsystem_clock(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btan(?=\\()",
+      "begin" : "\\btan(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btanh(?=\\()",
+      "begin" : "\\btanh(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bthis_image(?=\\()",
+      "begin" : "\\bthis_image(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btiny(?=\\()",
+      "begin" : "\\btiny(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btrailz(?=\\()",
+      "begin" : "\\btrailz(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btransfer(?=\\()",
+      "begin" : "\\btransfer(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btranspose(?=\\()",
+      "begin" : "\\btranspose(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\btrim(?=\\()",
+      "begin" : "\\btrim(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bubound(?=\\()",
+      "begin" : "\\bubound(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bucobound(?=\\()",
+      "begin" : "\\bucobound(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bunpack(?=\\()",
+      "begin" : "\\bunpack(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bverify(?=\\()",
+      "begin" : "\\bverify(?=\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : ".AND.",
+      "begin" : ".AND.",
       "ignoreCase" : true
     },
     {
-      "beginString" : ".EQ.",
+      "begin" : ".EQ.",
       "ignoreCase" : true
     },
     {
-      "beginString" : ".GE.",
+      "begin" : ".GE.",
       "ignoreCase" : true
     },
     {
-      "beginString" : ".GT.",
+      "begin" : ".GT.",
       "ignoreCase" : true
     },
     {
-      "beginString" : ".LE.",
+      "begin" : ".LE.",
       "ignoreCase" : true
     },
     {
-      "beginString" : ".LT.",
+      "begin" : ".LT.",
       "ignoreCase" : true
     },
     {
-      "beginString" : ".NE.",
+      "begin" : ".NE.",
       "ignoreCase" : true
     },
     {
-      "beginString" : ".OR.",
+      "begin" : ".OR.",
       "ignoreCase" : true
     },
     {
-      "beginString" : "\\bsync (all|images|memory)\\b",
+      "begin" : "\\bsync (all|images|memory)\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "abstract",
+      "begin" : "abstract",
       "ignoreCase" : true
     },
     {
-      "beginString" : "allocatable",
+      "begin" : "allocatable",
       "ignoreCase" : true
     },
     {
-      "beginString" : "allocate",
+      "begin" : "allocate",
       "ignoreCase" : true
     },
     {
-      "beginString" : "assign",
+      "begin" : "assign",
       "ignoreCase" : true
     },
     {
-      "beginString" : "associate",
+      "begin" : "associate",
       "ignoreCase" : true
     },
     {
-      "beginString" : "asynchronous",
+      "begin" : "asynchronous",
       "ignoreCase" : true
     },
     {
-      "beginString" : "backspace",
+      "begin" : "backspace",
       "ignoreCase" : true
     },
     {
-      "beginString" : "bind",
+      "begin" : "bind",
       "ignoreCase" : true
     },
     {
-      "beginString" : "block",
+      "begin" : "block",
       "ignoreCase" : true
     },
     {
-      "beginString" : "call",
+      "begin" : "call",
       "ignoreCase" : true
     },
     {
-      "beginString" : "case",
+      "begin" : "case",
       "ignoreCase" : true
     },
     {
-      "beginString" : "class",
+      "begin" : "class",
       "ignoreCase" : true
     },
     {
-      "beginString" : "close",
+      "begin" : "close",
       "ignoreCase" : true
     },
     {
-      "beginString" : "codimension",
+      "begin" : "codimension",
       "ignoreCase" : true
     },
     {
-      "beginString" : "common",
+      "begin" : "common",
       "ignoreCase" : true
     },
     {
-      "beginString" : "contains",
+      "begin" : "contains",
       "ignoreCase" : true
     },
     {
-      "beginString" : "contiguous",
+      "begin" : "contiguous",
       "ignoreCase" : true
     },
     {
-      "beginString" : "continue",
+      "begin" : "continue",
       "ignoreCase" : true
     },
     {
-      "beginString" : "critical",
+      "begin" : "critical",
       "ignoreCase" : true
     },
     {
-      "beginString" : "cycle",
+      "begin" : "cycle",
       "ignoreCase" : true
     },
     {
-      "beginString" : "data",
+      "begin" : "data",
       "ignoreCase" : true
     },
     {
-      "beginString" : "deallocate",
+      "begin" : "deallocate",
       "ignoreCase" : true
     },
     {
-      "beginString" : "deferred",
+      "begin" : "deferred",
       "ignoreCase" : true
     },
     {
-      "beginString" : "dimension",
+      "begin" : "dimension",
       "ignoreCase" : true
     },
     {
-      "beginString" : "do",
+      "begin" : "do",
       "ignoreCase" : true
     },
     {
-      "beginString" : "do concurrent",
+      "begin" : "do concurrent",
       "ignoreCase" : true
     },
     {
-      "beginString" : "elemental",
+      "begin" : "elemental",
       "ignoreCase" : true
     },
     {
-      "beginString" : "else",
+      "begin" : "else",
       "ignoreCase" : true
     },
     {
-      "beginString" : "elsewhere",
+      "begin" : "elsewhere",
       "ignoreCase" : true
     },
     {
-      "beginString" : "end",
+      "begin" : "end",
       "ignoreCase" : true
     },
     {
-      "beginString" : "endfile",
+      "begin" : "endfile",
       "ignoreCase" : true
     },
     {
-      "beginString" : "endif",
+      "begin" : "endif",
       "ignoreCase" : true
     },
     {
-      "beginString" : "entry",
+      "begin" : "entry",
       "ignoreCase" : true
     },
     {
-      "beginString" : "enum",
+      "begin" : "enum",
       "ignoreCase" : true
     },
     {
-      "beginString" : "enumerator",
+      "begin" : "enumerator",
       "ignoreCase" : true
     },
     {
-      "beginString" : "equivalence",
+      "begin" : "equivalence",
       "ignoreCase" : true
     },
     {
-      "beginString" : "error",
+      "begin" : "error",
       "ignoreCase" : true
     },
     {
-      "beginString" : "exit",
+      "begin" : "exit",
       "ignoreCase" : true
     },
     {
-      "beginString" : "extends",
+      "begin" : "extends",
       "ignoreCase" : true
     },
     {
-      "beginString" : "external",
+      "begin" : "external",
       "ignoreCase" : true
     },
     {
-      "beginString" : "final",
+      "begin" : "final",
       "ignoreCase" : true
     },
     {
-      "beginString" : "flush",
+      "begin" : "flush",
       "ignoreCase" : true
     },
     {
-      "beginString" : "forall",
+      "begin" : "forall",
       "ignoreCase" : true
     },
     {
-      "beginString" : "format",
+      "begin" : "format",
       "ignoreCase" : true
     },
     {
-      "beginString" : "function",
+      "begin" : "function",
       "ignoreCase" : true
     },
     {
-      "beginString" : "generic",
+      "begin" : "generic",
       "ignoreCase" : true
     },
     {
-      "beginString" : "goto",
+      "begin" : "goto",
       "ignoreCase" : true
     },
     {
-      "beginString" : "if",
+      "begin" : "if",
       "ignoreCase" : true
     },
     {
-      "beginString" : "implicit",
+      "begin" : "implicit",
       "ignoreCase" : true
     },
     {
-      "beginString" : "import",
+      "begin" : "import",
       "ignoreCase" : true
     },
     {
-      "beginString" : "include",
+      "begin" : "include",
       "ignoreCase" : true
     },
     {
-      "beginString" : "inquire",
+      "begin" : "inquire",
       "ignoreCase" : true
     },
     {
-      "beginString" : "intent",
+      "begin" : "intent",
       "ignoreCase" : true
     },
     {
-      "beginString" : "interface",
+      "begin" : "interface",
       "ignoreCase" : true
     },
     {
-      "beginString" : "intrinsic",
+      "begin" : "intrinsic",
       "ignoreCase" : true
     },
     {
-      "beginString" : "lock",
+      "begin" : "lock",
       "ignoreCase" : true
     },
     {
-      "beginString" : "module",
+      "begin" : "module",
       "ignoreCase" : true
     },
     {
-      "beginString" : "namelist",
+      "begin" : "namelist",
       "ignoreCase" : true
     },
     {
-      "beginString" : "non_overridable",
+      "begin" : "non_overridable",
       "ignoreCase" : true
     },
     {
-      "beginString" : "nopass",
+      "begin" : "nopass",
       "ignoreCase" : true
     },
     {
-      "beginString" : "nullify",
+      "begin" : "nullify",
       "ignoreCase" : true
     },
     {
-      "beginString" : "only",
+      "begin" : "only",
       "ignoreCase" : true
     },
     {
-      "beginString" : "open",
+      "begin" : "open",
       "ignoreCase" : true
     },
     {
-      "beginString" : "operator",
+      "begin" : "operator",
       "ignoreCase" : true
     },
     {
-      "beginString" : "optional",
+      "begin" : "optional",
       "ignoreCase" : true
     },
     {
-      "beginString" : "parameter",
+      "begin" : "parameter",
       "ignoreCase" : true
     },
     {
-      "beginString" : "pass",
+      "begin" : "pass",
       "ignoreCase" : true
     },
     {
-      "beginString" : "pause",
+      "begin" : "pause",
       "ignoreCase" : true
     },
     {
-      "beginString" : "pointer",
+      "begin" : "pointer",
       "ignoreCase" : true
     },
     {
-      "beginString" : "print",
+      "begin" : "print",
       "ignoreCase" : true
     },
     {
-      "beginString" : "private",
+      "begin" : "private",
       "ignoreCase" : true
     },
     {
-      "beginString" : "procedure",
+      "begin" : "procedure",
       "ignoreCase" : true
     },
     {
-      "beginString" : "program",
+      "begin" : "program",
       "ignoreCase" : true
     },
     {
-      "beginString" : "protected",
+      "begin" : "protected",
       "ignoreCase" : true
     },
     {
-      "beginString" : "public",
+      "begin" : "public",
       "ignoreCase" : true
     },
     {
-      "beginString" : "pure",
+      "begin" : "pure",
       "ignoreCase" : true
     },
     {
-      "beginString" : "read",
+      "begin" : "read",
       "ignoreCase" : true
     },
     {
-      "beginString" : "recursive",
+      "begin" : "recursive",
       "ignoreCase" : true
     },
     {
-      "beginString" : "result",
+      "begin" : "result",
       "ignoreCase" : true
     },
     {
-      "beginString" : "return",
+      "begin" : "return",
       "ignoreCase" : true
     },
     {
-      "beginString" : "rewind",
+      "begin" : "rewind",
       "ignoreCase" : true
     },
     {
-      "beginString" : "rewrite",
+      "begin" : "rewrite",
       "ignoreCase" : true
     },
     {
-      "beginString" : "save",
+      "begin" : "save",
       "ignoreCase" : true
     },
     {
-      "beginString" : "select",
+      "begin" : "select",
       "ignoreCase" : true
     },
     {
-      "beginString" : "sequence",
+      "begin" : "sequence",
       "ignoreCase" : true
     },
     {
-      "beginString" : "stop",
+      "begin" : "stop",
       "ignoreCase" : true
     },
     {
-      "beginString" : "submodule",
+      "begin" : "submodule",
       "ignoreCase" : true
     },
     {
-      "beginString" : "subroutine",
+      "begin" : "subroutine",
       "ignoreCase" : true
     },
     {
-      "beginString" : "target",
+      "begin" : "target",
       "ignoreCase" : true
     },
     {
-      "beginString" : "then",
+      "begin" : "then",
       "ignoreCase" : true
     },
     {
-      "beginString" : "unlock",
+      "begin" : "unlock",
       "ignoreCase" : true
     },
     {
-      "beginString" : "use",
+      "begin" : "use",
       "ignoreCase" : true
     },
     {
-      "beginString" : "value",
+      "begin" : "value",
       "ignoreCase" : true
     },
     {
-      "beginString" : "volatile",
+      "begin" : "volatile",
       "ignoreCase" : true
     },
     {
-      "beginString" : "wait",
+      "begin" : "wait",
       "ignoreCase" : true
     },
     {
-      "beginString" : "where",
+      "begin" : "where",
       "ignoreCase" : true
     },
     {
-      "beginString" : "while",
+      "begin" : "while",
       "ignoreCase" : true
     },
     {
-      "beginString" : "write",
+      "begin" : "write",
       "ignoreCase" : true
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\.false\\.(_[a-z0-9_]+)?",
+      "begin" : "\\.false\\.(_[a-z0-9_]+)?",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\.true\\.(_[a-z0-9_]+)?",
+      "begin" : "\\.true\\.(_[a-z0-9_]+)?",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-7]+b\\b",
+      "begin" : "\\b[0-7]+b\\b",
       "description" : "oct",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b[0-9]+(\\.[0-9]*)?(e[-+]?[0-9]+)?(_[a-z0-9_]+)?\\b",
+      "begin" : "\\b[0-9]+(\\.[0-9]*)?(e[-+]?[0-9]+)?(_[a-z0-9_]+)?\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bo'[0-7]+'",
+      "begin" : "\\bo'[0-7]+'",
       "description" : "oct",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bz'[0-9a-f]+'",
+      "begin" : "\\bz'[0-9a-f]+'",
       "description" : "hex",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -1454,47 +1454,47 @@
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "types" : [
     {
-      "beginString" : "\\bcharacter\\b(?!\\()",
+      "begin" : "\\bcharacter\\b(?!\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bcomplex\\b(?!\\()",
+      "begin" : "\\bcomplex\\b(?!\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdata\\b(?!\\()",
+      "begin" : "\\bdata\\b(?!\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdouble precision\\b",
+      "begin" : "\\bdouble precision\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\binteger\\b(?!\\()",
+      "begin" : "\\binteger\\b(?!\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\blogical\\b(?!\\()",
+      "begin" : "\\blogical\\b(?!\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\breal\\b(?!\\()",
+      "begin" : "\\breal\\b(?!\\()",
       "ignoreCase" : true,
       "regularExpression" : true
     }

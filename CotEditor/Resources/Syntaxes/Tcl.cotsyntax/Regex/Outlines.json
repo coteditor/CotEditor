@@ -1,32 +1,32 @@
 [
   {
-    "beginString" : "^([\\t ]*)(constructor|destructor)",
+    "pattern" : "^([\\t ]*)(constructor|destructor)",
     "description" : "constructor/deconstructor",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)method\\s+(\\w+)",
+    "pattern" : "^([\\t ]*)method\\s+(\\w+)",
     "description" : "method",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "function"
   },
   {
-    "beginString" : "^([\\t ]*)proc\\s+(\\S+)",
+    "pattern" : "^([\\t ]*)proc\\s+(\\S+)",
     "description" : "procedure",
-    "keyString" : "$1$2",
+    "template" : "$1$2",
     "kind" : "function"
   },
   {
-    "beginString" : "class\\s+create\\s+(\\w+)",
+    "pattern" : "class\\s+create\\s+(\\w+)",
     "description" : "class",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "container"
   },
   {
-    "beginString" : "package\\s+provide\\s+(\\w+)",
+    "pattern" : "package\\s+provide\\s+(\\w+)",
     "description" : "package",
-    "keyString" : "$1",
+    "template" : "$1",
     "kind" : "container"
   }
 ]

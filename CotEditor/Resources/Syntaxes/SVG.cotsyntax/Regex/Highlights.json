@@ -1,1606 +1,1606 @@
 {
   "attributes" : [
     {
-      "beginString" : "(?<=xlink:)actuate\\s*+(?==)",
+      "begin" : "(?<=xlink:)actuate\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)arcrole\\s*+(?==)",
+      "begin" : "(?<=xlink:)arcrole\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)base\\s*+(?==)",
+      "begin" : "(?<=xlink:)base\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)href\\s*+(?==)",
+      "begin" : "(?<=xlink:)href\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)lang\\s*+(?==)",
+      "begin" : "(?<=xlink:)lang\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)role\\s*+(?==)",
+      "begin" : "(?<=xlink:)role\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)show\\s*+(?==)",
+      "begin" : "(?<=xlink:)show\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)space\\s*+(?==)",
+      "begin" : "(?<=xlink:)space\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)title\\s*+(?==)",
+      "begin" : "(?<=xlink:)title\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xlink:)type\\s*+(?==)",
+      "begin" : "(?<=xlink:)type\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xml:)lang\\s*+(?==)",
+      "begin" : "(?<=xml:)lang\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xml:)space\\s*+(?==)",
+      "begin" : "(?<=xml:)space\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xmlns:)a\\s*+(?==)",
+      "begin" : "(?<=xmlns:)a\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xmlns:)cc\\s*+(?==)",
+      "begin" : "(?<=xmlns:)cc\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xmlns:)dc\\s*+(?==)",
+      "begin" : "(?<=xmlns:)dc\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xmlns:)rdf\\s*+(?==)",
+      "begin" : "(?<=xmlns:)rdf\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xmlns:)svg\\s*+(?==)",
+      "begin" : "(?<=xmlns:)svg\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=xmlns:)xlink\\s*+(?==)",
+      "begin" : "(?<=xmlns:)xlink\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\saccent-height\\s*+(?==)",
+      "begin" : "\\saccent-height\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\saccumulate\\s*+(?==)",
+      "begin" : "\\saccumulate\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sadditive\\s*+(?==)",
+      "begin" : "\\sadditive\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\salignment-baseline\\s*+(?==)",
+      "begin" : "\\salignment-baseline\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\salphabetic\\s*+(?==)",
+      "begin" : "\\salphabetic\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\samplitude\\s*+(?==)",
+      "begin" : "\\samplitude\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sarabic-form\\s*+(?==)",
+      "begin" : "\\sarabic-form\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sascent\\s*+(?==)",
+      "begin" : "\\sascent\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sattributeName\\s*+(?==)",
+      "begin" : "\\sattributeName\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sattributeType\\s*+(?==)",
+      "begin" : "\\sattributeType\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sazimuth\\s*+(?==)",
+      "begin" : "\\sazimuth\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sbaseFrequency\\s*+(?==)",
+      "begin" : "\\sbaseFrequency\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sbaseline-shift\\s*+(?==)",
+      "begin" : "\\sbaseline-shift\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sbaseProfile\\s*+(?==)",
+      "begin" : "\\sbaseProfile\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sbbox\\s*+(?==)",
+      "begin" : "\\sbbox\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sbegin\\s*+(?==)",
+      "begin" : "\\sbegin\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sbias\\s*+(?==)",
+      "begin" : "\\sbias\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sby\\s*+(?==)",
+      "begin" : "\\sby\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scalcMode\\s*+(?==)",
+      "begin" : "\\scalcMode\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scap-height\\s*+(?==)",
+      "begin" : "\\scap-height\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sclass\\s*+(?==)",
+      "begin" : "\\sclass\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sclip-path\\s*+(?==)",
+      "begin" : "\\sclip-path\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sclip-rule\\s*+(?==)",
+      "begin" : "\\sclip-rule\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sclip\\s*+(?==)",
+      "begin" : "\\sclip\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sclipPathUnits\\s*+(?==)",
+      "begin" : "\\sclipPathUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scolor-interpolation-filters\\s*+(?==)",
+      "begin" : "\\scolor-interpolation-filters\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scolor-interpolation\\s*+(?==)",
+      "begin" : "\\scolor-interpolation\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scolor-profile\\s*+(?==)",
+      "begin" : "\\scolor-profile\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scolor-rendering\\s*+(?==)",
+      "begin" : "\\scolor-rendering\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scolor\\s*+(?==)",
+      "begin" : "\\scolor\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scontentScriptType\\s*+(?==)",
+      "begin" : "\\scontentScriptType\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scontentStyleType\\s*+(?==)",
+      "begin" : "\\scontentStyleType\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scursor\\s*+(?==)",
+      "begin" : "\\scursor\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scx\\s*+(?==)",
+      "begin" : "\\scx\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\scy\\s*+(?==)",
+      "begin" : "\\scy\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sd\\s*+(?==)",
+      "begin" : "\\sd\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdescent\\s*+(?==)",
+      "begin" : "\\sdescent\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdiffuseConstant\\s*+(?==)",
+      "begin" : "\\sdiffuseConstant\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdirection\\s*+(?==)",
+      "begin" : "\\sdirection\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdisplay\\s*+(?==)",
+      "begin" : "\\sdisplay\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdivisor\\s*+(?==)",
+      "begin" : "\\sdivisor\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdominant-baseline\\s*+(?==)",
+      "begin" : "\\sdominant-baseline\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdur\\s*+(?==)",
+      "begin" : "\\sdur\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdx\\s*+(?==)",
+      "begin" : "\\sdx\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sdy\\s*+(?==)",
+      "begin" : "\\sdy\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sedgeMode\\s*+(?==)",
+      "begin" : "\\sedgeMode\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\selevation\\s*+(?==)",
+      "begin" : "\\selevation\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\senable-background\\s*+(?==)",
+      "begin" : "\\senable-background\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sencoding\\s*+(?==)",
+      "begin" : "\\sencoding\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\send\\s*+(?==)",
+      "begin" : "\\send\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sexponent\\s*+(?==)",
+      "begin" : "\\sexponent\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sexternalResourcesRequired\\s*+(?==)",
+      "begin" : "\\sexternalResourcesRequired\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfill-opacity\\s*+(?==)",
+      "begin" : "\\sfill-opacity\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfill-rule\\s*+(?==)",
+      "begin" : "\\sfill-rule\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfill\\s*+(?==)",
+      "begin" : "\\sfill\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfilter\\s*+(?==)",
+      "begin" : "\\sfilter\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfilterRes\\s*+(?==)",
+      "begin" : "\\sfilterRes\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfilterUnits\\s*+(?==)",
+      "begin" : "\\sfilterUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sflood-color\\s*+(?==)",
+      "begin" : "\\sflood-color\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sflood-opacity\\s*+(?==)",
+      "begin" : "\\sflood-opacity\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfont-family\\s*+(?==)",
+      "begin" : "\\sfont-family\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfont-size-adjust\\s*+(?==)",
+      "begin" : "\\sfont-size-adjust\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfont-size\\s*+(?==)",
+      "begin" : "\\sfont-size\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfont-stretch\\s*+(?==)",
+      "begin" : "\\sfont-stretch\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfont-style\\s*+(?==)",
+      "begin" : "\\sfont-style\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfont-variant\\s*+(?==)",
+      "begin" : "\\sfont-variant\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfont-weight\\s*+(?==)",
+      "begin" : "\\sfont-weight\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sformat\\s*+(?==)",
+      "begin" : "\\sformat\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfrom\\s*+(?==)",
+      "begin" : "\\sfrom\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfx\\s*+(?==)",
+      "begin" : "\\sfx\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sfy\\s*+(?==)",
+      "begin" : "\\sfy\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sg1\\s*+(?==)",
+      "begin" : "\\sg1\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sg2\\s*+(?==)",
+      "begin" : "\\sg2\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sglyph-name\\s*+(?==)",
+      "begin" : "\\sglyph-name\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sglyph-orientation-horizontal\\s*+(?==)",
+      "begin" : "\\sglyph-orientation-horizontal\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sglyph-orientation-vertical\\s*+(?==)",
+      "begin" : "\\sglyph-orientation-vertical\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sglyphRef\\s*+(?==)",
+      "begin" : "\\sglyphRef\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sgradientTransform\\s*+(?==)",
+      "begin" : "\\sgradientTransform\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sgradientUnits\\s*+(?==)",
+      "begin" : "\\sgradientUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\shanging\\s*+(?==)",
+      "begin" : "\\shanging\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sheight\\s*+(?==)",
+      "begin" : "\\sheight\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\shoriz-adv-x\\s*+(?==)",
+      "begin" : "\\shoriz-adv-x\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\shoriz-origin-x\\s*+(?==)",
+      "begin" : "\\shoriz-origin-x\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\shoriz-origin-y\\s*+(?==)",
+      "begin" : "\\shoriz-origin-y\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\shref\\s*+(?==)",
+      "begin" : "\\shref\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sid\\s*+(?==)",
+      "begin" : "\\sid\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sideographic\\s*+(?==)",
+      "begin" : "\\sideographic\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\simage-rendering\\s*+(?==)",
+      "begin" : "\\simage-rendering\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sin2\\s*+(?==)",
+      "begin" : "\\sin2\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sin\\s*+(?==)",
+      "begin" : "\\sin\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sintercept\\s*+(?==)",
+      "begin" : "\\sintercept\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sk1\\s*+(?==)",
+      "begin" : "\\sk1\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sk2\\s*+(?==)",
+      "begin" : "\\sk2\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sk3\\s*+(?==)",
+      "begin" : "\\sk3\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sk4\\s*+(?==)",
+      "begin" : "\\sk4\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sk\\s*+(?==)",
+      "begin" : "\\sk\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\skernelMatrix\\s*+(?==)",
+      "begin" : "\\skernelMatrix\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\skernelUnitLength\\s*+(?==)",
+      "begin" : "\\skernelUnitLength\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\skerning\\s*+(?==)",
+      "begin" : "\\skerning\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\skeyPoints\\s*+(?==)",
+      "begin" : "\\skeyPoints\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\skeySplines\\s*+(?==)",
+      "begin" : "\\skeySplines\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\skeyTimes\\s*+(?==)",
+      "begin" : "\\skeyTimes\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\slang\\s*+(?==)",
+      "begin" : "\\slang\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\slengthAdjust\\s*+(?==)",
+      "begin" : "\\slengthAdjust\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sletter-spacing\\s*+(?==)",
+      "begin" : "\\sletter-spacing\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\slighting-color\\s*+(?==)",
+      "begin" : "\\slighting-color\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\slimitingConeAngle\\s*+(?==)",
+      "begin" : "\\slimitingConeAngle\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\slocal\\s*+(?==)",
+      "begin" : "\\slocal\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smarker-end\\s*+(?==)",
+      "begin" : "\\smarker-end\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smarker-mid\\s*+(?==)",
+      "begin" : "\\smarker-mid\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smarker-start\\s*+(?==)",
+      "begin" : "\\smarker-start\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smarkerHeight\\s*+(?==)",
+      "begin" : "\\smarkerHeight\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smarkerUnits\\s*+(?==)",
+      "begin" : "\\smarkerUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smarkerWidth\\s*+(?==)",
+      "begin" : "\\smarkerWidth\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smask\\s*+(?==)",
+      "begin" : "\\smask\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smaskContentUnits\\s*+(?==)",
+      "begin" : "\\smaskContentUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smaskUnits\\s*+(?==)",
+      "begin" : "\\smaskUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smathematical\\s*+(?==)",
+      "begin" : "\\smathematical\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smax\\s*+(?==)",
+      "begin" : "\\smax\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smedia\\s*+(?==)",
+      "begin" : "\\smedia\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smethod\\s*+(?==)",
+      "begin" : "\\smethod\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smin\\s*+(?==)",
+      "begin" : "\\smin\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\smode\\s*+(?==)",
+      "begin" : "\\smode\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sname\\s*+(?==)",
+      "begin" : "\\sname\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\snumOctaves\\s*+(?==)",
+      "begin" : "\\snumOctaves\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\soffset\\s*+(?==)",
+      "begin" : "\\soffset\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\soffsetx\\s*+(?==)",
+      "begin" : "\\soffsetx\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonabort\\s*+(?==)",
+      "begin" : "\\sonabort\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonactivate\\s*+(?==)",
+      "begin" : "\\sonactivate\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonbegin\\s*+(?==)",
+      "begin" : "\\sonbegin\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonclick\\s*+(?==)",
+      "begin" : "\\sonclick\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonend\\s*+(?==)",
+      "begin" : "\\sonend\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonerror\\s*+(?==)",
+      "begin" : "\\sonerror\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonfocusin\\s*+(?==)",
+      "begin" : "\\sonfocusin\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonfocusout\\s*+(?==)",
+      "begin" : "\\sonfocusout\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonload\\s*+(?==)",
+      "begin" : "\\sonload\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonmousedown\\s*+(?==)",
+      "begin" : "\\sonmousedown\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonmousemove\\s*+(?==)",
+      "begin" : "\\sonmousemove\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonmouseout\\s*+(?==)",
+      "begin" : "\\sonmouseout\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonmouseover\\s*+(?==)",
+      "begin" : "\\sonmouseover\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonmouseup\\s*+(?==)",
+      "begin" : "\\sonmouseup\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonrepeat\\s*+(?==)",
+      "begin" : "\\sonrepeat\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonresize\\s*+(?==)",
+      "begin" : "\\sonresize\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonscroll\\s*+(?==)",
+      "begin" : "\\sonscroll\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonunload\\s*+(?==)",
+      "begin" : "\\sonunload\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sonzoom\\s*+(?==)",
+      "begin" : "\\sonzoom\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sopacity\\s*+(?==)",
+      "begin" : "\\sopacity\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\soperator\\s*+(?==)",
+      "begin" : "\\soperator\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sorder\\s*+(?==)",
+      "begin" : "\\sorder\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sorient\\s*+(?==)",
+      "begin" : "\\sorient\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sorientation\\s*+(?==)",
+      "begin" : "\\sorientation\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\soverflow\\s*+(?==)",
+      "begin" : "\\soverflow\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\soverline-position\\s*+(?==)",
+      "begin" : "\\soverline-position\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\soverline-thickness\\s*+(?==)",
+      "begin" : "\\soverline-thickness\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spanose-1\\s*+(?==)",
+      "begin" : "\\spanose-1\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spath\\s*+(?==)",
+      "begin" : "\\spath\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spathLength\\s*+(?==)",
+      "begin" : "\\spathLength\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spatternContentUnits\\s*+(?==)",
+      "begin" : "\\spatternContentUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spatternTransform\\s*+(?==)",
+      "begin" : "\\spatternTransform\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spatternUnits\\s*+(?==)",
+      "begin" : "\\spatternUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spointer-events\\s*+(?==)",
+      "begin" : "\\spointer-events\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spoints\\s*+(?==)",
+      "begin" : "\\spoints\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spointsAtX\\s*+(?==)",
+      "begin" : "\\spointsAtX\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spointsAtY\\s*+(?==)",
+      "begin" : "\\spointsAtY\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spointsAtZ\\s*+(?==)",
+      "begin" : "\\spointsAtZ\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spreserveAlpha\\s*+(?==)",
+      "begin" : "\\spreserveAlpha\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\spreserveAspectRatio\\s*+(?==)",
+      "begin" : "\\spreserveAspectRatio\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sprimitiveUnits\\s*+(?==)",
+      "begin" : "\\sprimitiveUnits\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sr\\s*+(?==)",
+      "begin" : "\\sr\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sradius\\s*+(?==)",
+      "begin" : "\\sradius\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srefX\\s*+(?==)",
+      "begin" : "\\srefX\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srefY\\s*+(?==)",
+      "begin" : "\\srefY\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srendering-intent\\s*+(?==)",
+      "begin" : "\\srendering-intent\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srepeatCount\\s*+(?==)",
+      "begin" : "\\srepeatCount\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srepeatDur\\s*+(?==)",
+      "begin" : "\\srepeatDur\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srequiredExtensions\\s*+(?==)",
+      "begin" : "\\srequiredExtensions\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srequiredFeatures\\s*+(?==)",
+      "begin" : "\\srequiredFeatures\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srestart\\s*+(?==)",
+      "begin" : "\\srestart\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sresult\\s*+(?==)",
+      "begin" : "\\sresult\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srotate\\s*+(?==)",
+      "begin" : "\\srotate\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\srx\\s*+(?==)",
+      "begin" : "\\srx\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sry\\s*+(?==)",
+      "begin" : "\\sry\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sscale\\s*+(?==)",
+      "begin" : "\\sscale\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sseed\\s*+(?==)",
+      "begin" : "\\sseed\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sshape-rendering\\s*+(?==)",
+      "begin" : "\\sshape-rendering\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sslope\\s*+(?==)",
+      "begin" : "\\sslope\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sspacing\\s*+(?==)",
+      "begin" : "\\sspacing\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sspecularConstant\\s*+(?==)",
+      "begin" : "\\sspecularConstant\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sspecularExponent\\s*+(?==)",
+      "begin" : "\\sspecularExponent\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sspreadMethod\\s*+(?==)",
+      "begin" : "\\sspreadMethod\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstandalone\\s*+(?==)",
+      "begin" : "\\sstandalone\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstartOffset\\s*+(?==)",
+      "begin" : "\\sstartOffset\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstdDeviation\\s*+(?==)",
+      "begin" : "\\sstdDeviation\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstemh\\s*+(?==)",
+      "begin" : "\\sstemh\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstemv\\s*+(?==)",
+      "begin" : "\\sstemv\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstitchTiles\\s*+(?==)",
+      "begin" : "\\sstitchTiles\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstop-color\\s*+(?==)",
+      "begin" : "\\sstop-color\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstop-opacity\\s*+(?==)",
+      "begin" : "\\sstop-opacity\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstrikethrough-position\\s*+(?==)",
+      "begin" : "\\sstrikethrough-position\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstrikethrough-thickness\\s*+(?==)",
+      "begin" : "\\sstrikethrough-thickness\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstring\\s*+(?==)",
+      "begin" : "\\sstring\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke-dasharray\\s*+(?==)",
+      "begin" : "\\sstroke-dasharray\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke-dashoffset\\s*+(?==)",
+      "begin" : "\\sstroke-dashoffset\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke-linecap\\s*+(?==)",
+      "begin" : "\\sstroke-linecap\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke-linejoin\\s*+(?==)",
+      "begin" : "\\sstroke-linejoin\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke-miterlimit\\s*+(?==)",
+      "begin" : "\\sstroke-miterlimit\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke-opacity\\s*+(?==)",
+      "begin" : "\\sstroke-opacity\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke-width\\s*+(?==)",
+      "begin" : "\\sstroke-width\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstroke\\s*+(?==)",
+      "begin" : "\\sstroke\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sstyle\\s*+(?==)",
+      "begin" : "\\sstyle\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\ssurfaceScale\\s*+(?==)",
+      "begin" : "\\ssurfaceScale\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\ssystemLanguage\\s*+(?==)",
+      "begin" : "\\ssystemLanguage\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stableValues\\s*+(?==)",
+      "begin" : "\\stableValues\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\starget\\s*+(?==)",
+      "begin" : "\\starget\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stargetX\\s*+(?==)",
+      "begin" : "\\stargetX\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stargetY\\s*+(?==)",
+      "begin" : "\\stargetY\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stext-anchor\\s*+(?==)",
+      "begin" : "\\stext-anchor\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stext-decoration\\s*+(?==)",
+      "begin" : "\\stext-decoration\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stext-rendering\\s*+(?==)",
+      "begin" : "\\stext-rendering\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stextLength\\s*+(?==)",
+      "begin" : "\\stextLength\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stitle\\s*+(?==)",
+      "begin" : "\\stitle\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sto\\s*+(?==)",
+      "begin" : "\\sto\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stransform\\s*+(?==)",
+      "begin" : "\\stransform\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\stype\\s*+(?==)",
+      "begin" : "\\stype\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\su1\\s*+(?==)",
+      "begin" : "\\su1\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\su2\\s*+(?==)",
+      "begin" : "\\su2\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sunderline-position\\s*+(?==)",
+      "begin" : "\\sunderline-position\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sunderline-thickness\\s*+(?==)",
+      "begin" : "\\sunderline-thickness\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sunicode-bidi\\s*+(?==)",
+      "begin" : "\\sunicode-bidi\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sunicode-range\\s*+(?==)",
+      "begin" : "\\sunicode-range\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sunicode\\s*+(?==)",
+      "begin" : "\\sunicode\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sunits-per-em\\s*+(?==)",
+      "begin" : "\\sunits-per-em\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sv-alphabetic\\s*+(?==)",
+      "begin" : "\\sv-alphabetic\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sv-hanging\\s*+(?==)",
+      "begin" : "\\sv-hanging\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sv-ideographic\\s*+(?==)",
+      "begin" : "\\sv-ideographic\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sv-mathematical\\s*+(?==)",
+      "begin" : "\\sv-mathematical\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\svalues\\s*+(?==)",
+      "begin" : "\\svalues\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sversion\\s*+(?==)",
+      "begin" : "\\sversion\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\svert-adv-y\\s*+(?==)",
+      "begin" : "\\svert-adv-y\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\svert-origin-x\\s*+(?==)",
+      "begin" : "\\svert-origin-x\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\svert-origin-y\\s*+(?==)",
+      "begin" : "\\svert-origin-y\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sviewBox\\s*+(?==)",
+      "begin" : "\\sviewBox\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sviewTarget\\s*+(?==)",
+      "begin" : "\\sviewTarget\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\svisibility\\s*+(?==)",
+      "begin" : "\\svisibility\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\swidth\\s*+(?==)",
+      "begin" : "\\swidth\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\swidths\\s*+(?==)",
+      "begin" : "\\swidths\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sword-spacing\\s*+(?==)",
+      "begin" : "\\sword-spacing\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\swriting-mode\\s*+(?==)",
+      "begin" : "\\swriting-mode\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sx-height\\s*+(?==)",
+      "begin" : "\\sx-height\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sx1\\s*+(?==)",
+      "begin" : "\\sx1\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sx2\\s*+(?==)",
+      "begin" : "\\sx2\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sx\\s*+(?==)",
+      "begin" : "\\sx\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sxChannelSelector\\s*+(?==)",
+      "begin" : "\\sxChannelSelector\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sxmlns\\s*+(?==)",
+      "begin" : "\\sxmlns\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sy1\\s*+(?==)",
+      "begin" : "\\sy1\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sy2\\s*+(?==)",
+      "begin" : "\\sy2\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sy\\s*+(?==)",
+      "begin" : "\\sy\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\syChannelSelector\\s*+(?==)",
+      "begin" : "\\syChannelSelector\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\sz\\s*+(?==)",
+      "begin" : "\\sz\\s*+(?==)",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\szoomAndPan\\s*+(?==)",
+      "begin" : "\\szoomAndPan\\s*+(?==)",
       "regularExpression" : true
     }
   ],
   "characters" : [
     {
-      "beginString" : "&#[0-9]+;",
+      "begin" : "&#[0-9]+;",
       "regularExpression" : true
     },
     {
-      "beginString" : "&amp;"
+      "begin" : "&amp;"
     },
     {
-      "beginString" : "&copy;"
+      "begin" : "&copy;"
     },
     {
-      "beginString" : "&gt;"
+      "begin" : "&gt;"
     },
     {
-      "beginString" : "&hearts;"
+      "begin" : "&hearts;"
     },
     {
-      "beginString" : "&infin;"
+      "begin" : "&infin;"
     },
     {
-      "beginString" : "&laquo;"
+      "begin" : "&laquo;"
     },
     {
-      "beginString" : "&lt;"
+      "begin" : "&lt;"
     },
     {
-      "beginString" : "&nbsp;"
+      "begin" : "&nbsp;"
     },
     {
-      "beginString" : "&quot;"
+      "begin" : "&quot;"
     },
     {
-      "beginString" : "&raquo;"
+      "begin" : "&raquo;"
     },
     {
-      "beginString" : "&reg;"
+      "begin" : "&reg;"
     },
     {
-      "beginString" : "&yen;"
+      "begin" : "&yen;"
     },
     {
-      "beginString" : "<![CDATA[",
-      "endString" : "]]>"
+      "begin" : "<![CDATA[",
+      "end" : "]]>"
     }
   ],
   "commands" : [
     {
-      "beginString" : "(?<=<)\\?xml-stylesheet\\b",
+      "begin" : "(?<=<)\\?xml-stylesheet\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<)\\?xml\\b",
+      "begin" : "(?<=<)\\?xml\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\?(?=>)",
+      "begin" : "\\?(?=>)",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "beginString" : "(?<=</?)(svg:)?a\\b",
+      "begin" : "(?<=</?)(svg:)?a\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?altGlyph\\b",
+      "begin" : "(?<=</?)(svg:)?altGlyph\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?altGlyphDef\\b",
+      "begin" : "(?<=</?)(svg:)?altGlyphDef\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?altGlyphItem\\b",
+      "begin" : "(?<=</?)(svg:)?altGlyphItem\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?animate\\b",
+      "begin" : "(?<=</?)(svg:)?animate\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?animateColor\\b",
+      "begin" : "(?<=</?)(svg:)?animateColor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?animateMotion\\b",
+      "begin" : "(?<=</?)(svg:)?animateMotion\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?animateTransform\\b",
+      "begin" : "(?<=</?)(svg:)?animateTransform\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?circle\\b",
+      "begin" : "(?<=</?)(svg:)?circle\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?clipPath\\b",
+      "begin" : "(?<=</?)(svg:)?clipPath\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?color-profile\\b",
+      "begin" : "(?<=</?)(svg:)?color-profile\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?cursor\\b",
+      "begin" : "(?<=</?)(svg:)?cursor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?defs\\b",
+      "begin" : "(?<=</?)(svg:)?defs\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?desc\\b",
+      "begin" : "(?<=</?)(svg:)?desc\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?ellipse\\b",
+      "begin" : "(?<=</?)(svg:)?ellipse\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feBlend\\b",
+      "begin" : "(?<=</?)(svg:)?feBlend\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feColorMatrix\\b",
+      "begin" : "(?<=</?)(svg:)?feColorMatrix\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feComponentTransfer\\b",
+      "begin" : "(?<=</?)(svg:)?feComponentTransfer\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feComposite\\b",
+      "begin" : "(?<=</?)(svg:)?feComposite\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feConvolveMatrix\\b",
+      "begin" : "(?<=</?)(svg:)?feConvolveMatrix\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feDiffuseLighting\\b",
+      "begin" : "(?<=</?)(svg:)?feDiffuseLighting\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feDisplacementMap\\b",
+      "begin" : "(?<=</?)(svg:)?feDisplacementMap\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feDistantLight\\b",
+      "begin" : "(?<=</?)(svg:)?feDistantLight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feFlood\\b",
+      "begin" : "(?<=</?)(svg:)?feFlood\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feFuncA\\b",
+      "begin" : "(?<=</?)(svg:)?feFuncA\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feFuncB\\b",
+      "begin" : "(?<=</?)(svg:)?feFuncB\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feFuncG\\b",
+      "begin" : "(?<=</?)(svg:)?feFuncG\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feFuncR\\b",
+      "begin" : "(?<=</?)(svg:)?feFuncR\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feGaussianBlur\\b",
+      "begin" : "(?<=</?)(svg:)?feGaussianBlur\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feImage\\b",
+      "begin" : "(?<=</?)(svg:)?feImage\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feMerge\\b",
+      "begin" : "(?<=</?)(svg:)?feMerge\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feMergeNode\\b",
+      "begin" : "(?<=</?)(svg:)?feMergeNode\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feMorphology\\b",
+      "begin" : "(?<=</?)(svg:)?feMorphology\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feOffset\\b",
+      "begin" : "(?<=</?)(svg:)?feOffset\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?fePointLight\\b",
+      "begin" : "(?<=</?)(svg:)?fePointLight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feSpecularLighting\\b",
+      "begin" : "(?<=</?)(svg:)?feSpecularLighting\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feSpotLight\\b",
+      "begin" : "(?<=</?)(svg:)?feSpotLight\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feTile\\b",
+      "begin" : "(?<=</?)(svg:)?feTile\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?feTurbulence\\b",
+      "begin" : "(?<=</?)(svg:)?feTurbulence\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?filter\\b",
+      "begin" : "(?<=</?)(svg:)?filter\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?font-face-format\\b",
+      "begin" : "(?<=</?)(svg:)?font-face-format\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?font-face-name\\b",
+      "begin" : "(?<=</?)(svg:)?font-face-name\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?font-face-src\\b",
+      "begin" : "(?<=</?)(svg:)?font-face-src\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?font-face-uri\\b",
+      "begin" : "(?<=</?)(svg:)?font-face-uri\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?font-face\\b",
+      "begin" : "(?<=</?)(svg:)?font-face\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?font\\b",
+      "begin" : "(?<=</?)(svg:)?font\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?foreignObject\\b",
+      "begin" : "(?<=</?)(svg:)?foreignObject\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?g\\b",
+      "begin" : "(?<=</?)(svg:)?g\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?glyph\\b",
+      "begin" : "(?<=</?)(svg:)?glyph\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?glyphRef\\b",
+      "begin" : "(?<=</?)(svg:)?glyphRef\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?hkern\\b",
+      "begin" : "(?<=</?)(svg:)?hkern\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?image\\b",
+      "begin" : "(?<=</?)(svg:)?image\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?line\\b",
+      "begin" : "(?<=</?)(svg:)?line\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?linearGradient\\b",
+      "begin" : "(?<=</?)(svg:)?linearGradient\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?marker\\b",
+      "begin" : "(?<=</?)(svg:)?marker\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?mask\\b",
+      "begin" : "(?<=</?)(svg:)?mask\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?metadata\\b",
+      "begin" : "(?<=</?)(svg:)?metadata\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?missing-glyph\\b",
+      "begin" : "(?<=</?)(svg:)?missing-glyph\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?mpath\\b",
+      "begin" : "(?<=</?)(svg:)?mpath\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?path\\b",
+      "begin" : "(?<=</?)(svg:)?path\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?pattern\\b",
+      "begin" : "(?<=</?)(svg:)?pattern\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?polygon\\b",
+      "begin" : "(?<=</?)(svg:)?polygon\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?polyline\\b",
+      "begin" : "(?<=</?)(svg:)?polyline\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?radialGradient\\b",
+      "begin" : "(?<=</?)(svg:)?radialGradient\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?rect\\b",
+      "begin" : "(?<=</?)(svg:)?rect\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?script\\b",
+      "begin" : "(?<=</?)(svg:)?script\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?set\\b",
+      "begin" : "(?<=</?)(svg:)?set\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?stop\\b",
+      "begin" : "(?<=</?)(svg:)?stop\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?style\\b",
+      "begin" : "(?<=</?)(svg:)?style\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?svg\\b",
+      "begin" : "(?<=</?)(svg:)?svg\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?switch\\b",
+      "begin" : "(?<=</?)(svg:)?switch\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?symbol\\b",
+      "begin" : "(?<=</?)(svg:)?symbol\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?text\\b",
+      "begin" : "(?<=</?)(svg:)?text\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?textPath\\b",
+      "begin" : "(?<=</?)(svg:)?textPath\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?title\\b",
+      "begin" : "(?<=</?)(svg:)?title\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?tref\\b",
+      "begin" : "(?<=</?)(svg:)?tref\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?tspan\\b",
+      "begin" : "(?<=</?)(svg:)?tspan\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?use\\b",
+      "begin" : "(?<=</?)(svg:)?use\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?view\\b",
+      "begin" : "(?<=</?)(svg:)?view\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?)(svg:)?vkern\\b",
+      "begin" : "(?<=</?)(svg:)?vkern\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)contributor\\b",
+      "begin" : "(?<=</?dc:)contributor\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)creator\\b",
+      "begin" : "(?<=</?dc:)creator\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)date\\b",
+      "begin" : "(?<=</?dc:)date\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)description\\b",
+      "begin" : "(?<=</?dc:)description\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)format\\b",
+      "begin" : "(?<=</?dc:)format\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)identifier\\b",
+      "begin" : "(?<=</?dc:)identifier\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)language\\b",
+      "begin" : "(?<=</?dc:)language\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)publisher\\b",
+      "begin" : "(?<=</?dc:)publisher\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)relation\\b",
+      "begin" : "(?<=</?dc:)relation\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)rights\\b",
+      "begin" : "(?<=</?dc:)rights\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)source\\b",
+      "begin" : "(?<=</?dc:)source\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)subject\\b",
+      "begin" : "(?<=</?dc:)subject\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)title\\b",
+      "begin" : "(?<=</?dc:)title\\b",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=</?dc:)type\\b",
+      "begin" : "(?<=</?dc:)type\\b",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "(?<==)\\s*'",
-      "endString" : "'",
+      "begin" : "(?<==)\\s*'",
+      "end" : "'",
       "regularExpression" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "(?<=<)!DOCTYPE",
-      "endString" : "\"",
+      "begin" : "(?<=<)!DOCTYPE",
+      "end" : "\"",
       "regularExpression" : true
     },
     {
-      "beginString" : "(?<=<)!ENTITY",
-      "endString" : "\"",
+      "begin" : "(?<=<)!ENTITY",
+      "end" : "\"",
       "regularExpression" : true
     }
   ],
   "variables" : [
     {
-      "beginString" : "\\bcc:(?=[a-zA-Z])",
+      "begin" : "\\bcc:(?=[a-zA-Z])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bdc:(?=[a-zA-Z])",
+      "begin" : "\\bdc:(?=[a-zA-Z])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\brdf:(?=[a-zA-Z])",
+      "begin" : "\\brdf:(?=[a-zA-Z])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bsvg:(?=[a-zA-Z])",
+      "begin" : "\\bsvg:(?=[a-zA-Z])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bxlink:(?=[a-z])",
+      "begin" : "\\bxlink:(?=[a-z])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bxml:(?=[a-z])",
+      "begin" : "\\bxml:(?=[a-z])",
       "regularExpression" : true
     },
     {
-      "beginString" : "\\bxmlns:(?=[a-z])",
+      "begin" : "\\bxmlns:(?=[a-z])",
       "regularExpression" : true
     }
   ]

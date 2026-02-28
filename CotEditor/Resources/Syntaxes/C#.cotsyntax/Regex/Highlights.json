@@ -1,393 +1,393 @@
 {
   "attributes" : [
     {
-      "beginString" : "abstract"
+      "begin" : "abstract"
     },
     {
-      "beginString" : "add"
+      "begin" : "add"
     },
     {
-      "beginString" : "alias"
+      "begin" : "alias"
     },
     {
-      "beginString" : "as"
+      "begin" : "as"
     },
     {
-      "beginString" : "async"
+      "begin" : "async"
     },
     {
-      "beginString" : "await"
+      "begin" : "await"
     },
     {
-      "beginString" : "const"
+      "begin" : "const"
     },
     {
-      "beginString" : "event"
+      "begin" : "event"
     },
     {
-      "beginString" : "explicit"
+      "begin" : "explicit"
     },
     {
-      "beginString" : "extern"
+      "begin" : "extern"
     },
     {
-      "beginString" : "get"
+      "begin" : "get"
     },
     {
-      "beginString" : "global"
+      "begin" : "global"
     },
     {
-      "beginString" : "implicit"
+      "begin" : "implicit"
     },
     {
-      "beginString" : "internal"
+      "begin" : "internal"
     },
     {
-      "beginString" : "is"
+      "begin" : "is"
     },
     {
-      "beginString" : "new"
+      "begin" : "new"
     },
     {
-      "beginString" : "operator"
+      "begin" : "operator"
     },
     {
-      "beginString" : "out"
+      "begin" : "out"
     },
     {
-      "beginString" : "override"
+      "begin" : "override"
     },
     {
-      "beginString" : "params"
+      "begin" : "params"
     },
     {
-      "beginString" : "partial"
+      "begin" : "partial"
     },
     {
-      "beginString" : "private"
+      "begin" : "private"
     },
     {
-      "beginString" : "protected"
+      "begin" : "protected"
     },
     {
-      "beginString" : "public"
+      "begin" : "public"
     },
     {
-      "beginString" : "readonly"
+      "begin" : "readonly"
     },
     {
-      "beginString" : "ref"
+      "begin" : "ref"
     },
     {
-      "beginString" : "remove"
+      "begin" : "remove"
     },
     {
-      "beginString" : "sealed"
+      "begin" : "sealed"
     },
     {
-      "beginString" : "set"
+      "begin" : "set"
     },
     {
-      "beginString" : "sizeof"
+      "begin" : "sizeof"
     },
     {
-      "beginString" : "static"
+      "begin" : "static"
     },
     {
-      "beginString" : "typeof"
+      "begin" : "typeof"
     },
     {
-      "beginString" : "unsafe"
+      "begin" : "unsafe"
     },
     {
-      "beginString" : "value"
+      "begin" : "value"
     },
     {
-      "beginString" : "virtual"
+      "begin" : "virtual"
     },
     {
-      "beginString" : "volatile"
+      "begin" : "volatile"
     }
   ],
   "characters" : [
     {
-      "beginString" : "'",
-      "endString" : "'"
+      "begin" : "'",
+      "end" : "'"
     }
   ],
   "commands" : [
     {
-      "beginString" : "ascending"
+      "begin" : "ascending"
     },
     {
-      "beginString" : "by"
+      "begin" : "by"
     },
     {
-      "beginString" : "descending"
+      "begin" : "descending"
     },
     {
-      "beginString" : "equals"
+      "begin" : "equals"
     },
     {
-      "beginString" : "from"
+      "begin" : "from"
     },
     {
-      "beginString" : "group"
+      "begin" : "group"
     },
     {
-      "beginString" : "into"
+      "begin" : "into"
     },
     {
-      "beginString" : "join"
+      "begin" : "join"
     },
     {
-      "beginString" : "let"
+      "begin" : "let"
     },
     {
-      "beginString" : "on"
+      "begin" : "on"
     },
     {
-      "beginString" : "orderby"
+      "begin" : "orderby"
     },
     {
-      "beginString" : "select"
+      "begin" : "select"
     },
     {
-      "beginString" : "where"
+      "begin" : "where"
     }
   ],
   "keywords" : [
     {
-      "beginString" : "#define"
+      "begin" : "#define"
     },
     {
-      "beginString" : "#elif"
+      "begin" : "#elif"
     },
     {
-      "beginString" : "#else"
+      "begin" : "#else"
     },
     {
-      "beginString" : "#endif"
+      "begin" : "#endif"
     },
     {
-      "beginString" : "#endregion"
+      "begin" : "#endregion"
     },
     {
-      "beginString" : "#error"
+      "begin" : "#error"
     },
     {
-      "beginString" : "#if"
+      "begin" : "#if"
     },
     {
-      "beginString" : "#line"
+      "begin" : "#line"
     },
     {
-      "beginString" : "#pragma"
+      "begin" : "#pragma"
     },
     {
-      "beginString" : "#region"
+      "begin" : "#region"
     },
     {
-      "beginString" : "#undef"
+      "begin" : "#undef"
     },
     {
-      "beginString" : "#warning"
+      "begin" : "#warning"
     },
     {
-      "beginString" : "break"
+      "begin" : "break"
     },
     {
-      "beginString" : "case"
+      "begin" : "case"
     },
     {
-      "beginString" : "catch"
+      "begin" : "catch"
     },
     {
-      "beginString" : "checked"
+      "begin" : "checked"
     },
     {
-      "beginString" : "continue"
+      "begin" : "continue"
     },
     {
-      "beginString" : "default"
+      "begin" : "default"
     },
     {
-      "beginString" : "do"
+      "begin" : "do"
     },
     {
-      "beginString" : "else"
+      "begin" : "else"
     },
     {
-      "beginString" : "finally"
+      "begin" : "finally"
     },
     {
-      "beginString" : "fixed"
+      "begin" : "fixed"
     },
     {
-      "beginString" : "for"
+      "begin" : "for"
     },
     {
-      "beginString" : "foreach"
+      "begin" : "foreach"
     },
     {
-      "beginString" : "goto"
+      "begin" : "goto"
     },
     {
-      "beginString" : "if"
+      "begin" : "if"
     },
     {
-      "beginString" : "in"
+      "begin" : "in"
     },
     {
-      "beginString" : "lock"
+      "begin" : "lock"
     },
     {
-      "beginString" : "namespace"
+      "begin" : "namespace"
     },
     {
-      "beginString" : "return"
+      "begin" : "return"
     },
     {
-      "beginString" : "stackalloc"
+      "begin" : "stackalloc"
     },
     {
-      "beginString" : "switch"
+      "begin" : "switch"
     },
     {
-      "beginString" : "throw"
+      "begin" : "throw"
     },
     {
-      "beginString" : "try"
+      "begin" : "try"
     },
     {
-      "beginString" : "unchecked"
+      "begin" : "unchecked"
     },
     {
-      "beginString" : "using"
+      "begin" : "using"
     },
     {
-      "beginString" : "while"
+      "begin" : "while"
     },
     {
-      "beginString" : "yield"
+      "begin" : "yield"
     }
   ],
   "numbers" : [
     {
-      "beginString" : "\\b(\\d+\\.?\\d*|\\.\\d+)(e[-+]\\d+)?[dfm]?\\b",
+      "begin" : "\\b(\\d+\\.?\\d*|\\.\\d+)(e[-+]\\d+)?[dfm]?\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b0x[0-9a-f]+\\b",
+      "begin" : "\\b0x[0-9a-f]+\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     },
     {
-      "beginString" : "\\b\\d+[lu]{0,2}\\b",
+      "begin" : "\\b\\d+[lu]{0,2}\\b",
       "ignoreCase" : true,
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "beginString" : "\"",
-      "endString" : "\""
+      "begin" : "\"",
+      "end" : "\""
     },
     {
-      "beginString" : "\"\"\"",
-      "endString" : "\"\"\"",
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
       "isMultiline" : true
     }
   ],
   "types" : [
     {
-      "beginString" : "bool"
+      "begin" : "bool"
     },
     {
-      "beginString" : "byte"
+      "begin" : "byte"
     },
     {
-      "beginString" : "char"
+      "begin" : "char"
     },
     {
-      "beginString" : "class"
+      "begin" : "class"
     },
     {
-      "beginString" : "decimal"
+      "begin" : "decimal"
     },
     {
-      "beginString" : "delegate"
+      "begin" : "delegate"
     },
     {
-      "beginString" : "double"
+      "begin" : "double"
     },
     {
-      "beginString" : "dynamic"
+      "begin" : "dynamic"
     },
     {
-      "beginString" : "enum"
+      "begin" : "enum"
     },
     {
-      "beginString" : "float"
+      "begin" : "float"
     },
     {
-      "beginString" : "int"
+      "begin" : "int"
     },
     {
-      "beginString" : "interface"
+      "begin" : "interface"
     },
     {
-      "beginString" : "long"
+      "begin" : "long"
     },
     {
-      "beginString" : "object"
+      "begin" : "object"
     },
     {
-      "beginString" : "sbyte"
+      "begin" : "sbyte"
     },
     {
-      "beginString" : "short"
+      "begin" : "short"
     },
     {
-      "beginString" : "string"
+      "begin" : "string"
     },
     {
-      "beginString" : "struct"
+      "begin" : "struct"
     },
     {
-      "beginString" : "uint"
+      "begin" : "uint"
     },
     {
-      "beginString" : "ulong"
+      "begin" : "ulong"
     },
     {
-      "beginString" : "ushort"
+      "begin" : "ushort"
     },
     {
-      "beginString" : "var"
+      "begin" : "var"
     },
     {
-      "beginString" : "void"
+      "begin" : "void"
     }
   ],
   "values" : [
     {
-      "beginString" : "false"
+      "begin" : "false"
     },
     {
-      "beginString" : "null"
+      "begin" : "null"
     },
     {
-      "beginString" : "true"
+      "begin" : "true"
     }
   ],
   "variables" : [
     {
-      "beginString" : "base"
+      "begin" : "base"
     },
     {
-      "beginString" : "this"
+      "begin" : "this"
     }
   ]
 }
