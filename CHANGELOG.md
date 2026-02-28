@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Introduce a new parser, tree-sitter, for syntax highlighting and outline extraction in several built-in syntaxes:
+- Introduce a new parser, tree-sitter, for syntax highlighting and outline extraction in multiple built-in syntaxes:
     - C
     - CSS
     - Go
@@ -24,12 +24,12 @@
     - SQL
     - Swift
     - TypeScript
-- Prepend a symbolic icon to extracted outline items.
+- Add a symbolic icon before extracted outline items.
 - Make outline items in the Outline inspector collapsible when using a tree-sitter-based syntax.
 - Introduce syntax-based smart indentation.
-- Enable registering multiple comment delimiters in a syntax definition.
+- Allow defining multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
-- Add the Delimiters pane to the syntax editor to customize parsing rules.
+- Add a Delimiters pane to the syntax editor for customizing parsing rules.
 
 
 ### Compatibility Changes
@@ -39,9 +39,9 @@
 
 ### Improvements
 
-- Improve the syntax highlighting algorithm for the legacy regex-based highlighting.
+- Improve the syntax-highlighting algorithm in the legacy regex-based highlighting engine.
 - Update built-in syntaxes.
-- Improve the performance of general text editing.
+- Improve general text-editing performance.
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move to the Format menu.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
