@@ -86,8 +86,6 @@ struct FindMatchesCache {
         
         typealias Subject = TextFinder
         
-        static let name = Notification.Name("TextFinderDidFind")
-        
         var result: FindResult
         var clientIdentifier: ObjectIdentifier
     }
@@ -96,8 +94,6 @@ struct FindMatchesCache {
     struct DidFindAllMessage: NotificationCenter.MainActorMessage {
         
         typealias Subject = TextFinder
-        
-        static let name = Notification.Name("TextFinderDidFindAll")
         
         var findString: String = ""
         var matches: [FindAllMatch] = []
@@ -742,8 +738,8 @@ struct FindMatchesCache {
         self.notify(FindResult(action: .find, count: matches.count), for: client)
         
         if showsList {
-            let info: [AnyHashable: Any] = ["findString": textFind.findString, "matches": matches, "client": client]
-            NotificationCenter.default.post(name: DidFindAllMessage.name, object: self, userInfo: info)
+            let message = DidFindAllMessage(findString: textFind.findString, matches: matches, client: client)
+            NotificationCenter.default.post(message, subject: self)
         }
         
         self.settings.noteFindHistory()
@@ -809,8 +805,9 @@ struct FindMatchesCache {
     private func notify(_ result: FindResult, for client: NSTextView) {
         
         let identifier = ObjectIdentifier(client)
+        let message = DidFindMessage(result: result, clientIdentifier: identifier)
         
-        NotificationCenter.default.post(name: DidFindMessage.name, object: self, userInfo: ["result": result, "clientIdentifier": identifier])
+        NotificationCenter.default.post(message, subject: self)
         AccessibilityNotification.Announcement(result.accessibilityPositionMessage ?? result.message).post()
     }
 }

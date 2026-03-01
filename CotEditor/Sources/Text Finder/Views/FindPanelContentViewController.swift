@@ -37,13 +37,15 @@ final class FindPanelContentViewController: NSSplitViewController {
     @ViewLoading private var fieldSplitViewItem: NSSplitViewItem
     @ViewLoading private var resultSplitViewItem: NSSplitViewItem
     
-    private var resultObservationTask: Task<Void, Never>?
+    private var resultObserver: NotificationCenter.ObservationToken?
     
     
     // MARK: Lifecycle
     
     isolated deinit {
-        self.resultObservationTask?.cancel()
+        if let observer = self.resultObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     
@@ -83,16 +85,8 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         self.splitViewItems = [fieldViewItem, resultViewItem, buttonViewItem]
         
-        self.resultObservationTask = Task { [weak self] in
-            for await userInfo in NotificationCenter.default.notifications(named: TextFinder.DidFindAllMessage.name).compactMap(\.userInfo) {
-                guard
-                    let matches = userInfo["matches"] as? [FindAllMatch],
-                    let findString = userInfo["findString"] as? String
-                else { continue }
-                
-                let client = userInfo["client"] as? NSTextView
-                self?.didFinishFindAll(matches, for: findString, in: client)
-            }
+        self.resultObserver = NotificationCenter.default.addObserver(for: TextFinder.DidFindAllMessage.self) { [weak self] message in
+            self?.didFinishFindAll(message.matches, for: message.findString, in: message.client)
         }
     }
     
