@@ -236,7 +236,7 @@ extension NSTextView: EditorCounter.Source { }
         didSet {
             Task { @MainActor [fileURL = self.fileURL] in
                 self.synchronizeFileType(documentName: fileURL?.lastPathComponent)
-                NotificationCenter.default.post(name: NSDocument.DidChangeFileURLMessage.name, object: self)
+                NotificationCenter.default.post(NSDocument.DidChangeFileURLMessage(), subject: self)
             }
         }
     }
@@ -261,7 +261,7 @@ extension NSTextView: EditorCounter.Source { }
                     .assign(to: \.isWhitePaper, on: windowController)
             }
             
-            NotificationCenter.default.post(name: DidMakeWindowMessage.name, object: self)
+            NotificationCenter.default.post(DidMakeWindowMessage(), subject: self)
         }
         
         self.applyContentToWindow()

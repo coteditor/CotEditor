@@ -67,7 +67,7 @@ final class DirectoryDocument: NSDocument {
         
         didSet {
             Task { @MainActor in
-                NotificationCenter.default.post(name: NSDocument.DidChangeFileURLMessage.name, object: self)
+                NotificationCenter.default.post(NSDocument.DidChangeFileURLMessage(), subject: self)
             }
         }
     }
@@ -136,7 +136,7 @@ final class DirectoryDocument: NSDocument {
         
         self.addWindowController(DocumentWindowController(directoryDocument: self))
         
-        NotificationCenter.default.post(name: DidMakeWindowMessage.name, object: self)
+        NotificationCenter.default.post(DidMakeWindowMessage(), subject: self)
         
         // observe document updates for the edited marker in the close button
         if self.documentObserver == nil {

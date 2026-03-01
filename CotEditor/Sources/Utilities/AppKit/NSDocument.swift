@@ -32,16 +32,12 @@ extension NSDocument {
     struct DidChangeFileURLMessage: NotificationCenter.MainActorMessage {
         
         typealias Subject = NSDocument
-        
-        static let name = Notification.Name("DocumentDidChangeFileURL")
     }
     
     
     struct DidMakeWindowMessage: NotificationCenter.MainActorMessage {
         
         typealias Subject = NSDocument
-        
-        static let name = Notification.Name("DocumentDidMakeWindow")
     }
 }
 

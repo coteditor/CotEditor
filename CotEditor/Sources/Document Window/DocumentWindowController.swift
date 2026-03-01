@@ -69,7 +69,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
     private var fileDocumentNameObserver: AnyCancellable?
-    private var documentsObserver: AnyCancellable?
+    private var documentObservers: [NotificationCenter.ObservationToken] = []
     
     private var documentSyntaxObserver: Task<Void, Never>?
     private var syntaxNamesObserver: Task<Void, Never>?
@@ -161,12 +161,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
         
         // observe documents to update window title
-        self.documentsObserver = Publishers.Merge(
-            NotificationCenter.default.publisher(for: NSDocument.DidChangeFileURLMessage.name, object: nil),
-            NotificationCenter.default.publisher(for: NSDocument.DidMakeWindowMessage.name, object: nil)
-        )
-        .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
-        .sink { [weak self] _ in self?.invalidateUniqueDirectory() }
+        self.documentObservers.forEach(NotificationCenter.default.removeObserver)
+        self.documentObservers = [
+            NotificationCenter.default.addObserver(for: NSDocument.DidChangeFileURLMessage.self) { [weak self] _ in self?.invalidateUniqueDirectory() },
+            NotificationCenter.default.addObserver(for: NSDocument.DidMakeWindowMessage.self) { [weak self] _ in self?.invalidateUniqueDirectory() },
+        ]
     }
     
     
@@ -179,6 +178,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     isolated deinit {
         self.documentSyntaxObserver?.cancel()
         self.syntaxNamesObserver?.cancel()
+        self.documentObservers.forEach(NotificationCenter.default.removeObserver)
     }
     
     
