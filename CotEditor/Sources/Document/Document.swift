@@ -49,8 +49,6 @@ extension NSTextView: EditorCounter.Source { }
     struct DidUpdateChangeMessage: NotificationCenter.MainActorMessage {
         
         typealias Subject = Document
-        
-        static let name = Notification.Name("DocumentDidUpdateChange")
     }
     
     
@@ -748,7 +746,7 @@ extension NSTextView: EditorCounter.Source { }
         
         super.updateChangeCount(change)
         
-        NotificationCenter.default.post(name: DidUpdateChangeMessage.name, object: self)
+        NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
     }
     
     
@@ -757,7 +755,7 @@ extension NSTextView: EditorCounter.Source { }
         // This method updates the values in the .isDocumentEdited and .hasUnautosavedChanges properties.
         super.updateChangeCount(withToken: changeCountToken, for: saveOperation)
         
-        NotificationCenter.default.post(name: DidUpdateChangeMessage.name, object: self)
+        NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
     }
     
     
