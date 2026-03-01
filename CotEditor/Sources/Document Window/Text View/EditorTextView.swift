@@ -55,7 +55,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         typealias Subject = EditorTextView
         
-        static let name = Notification.Name("TextViewDidBecomeFirstResponder")
+        var sender: Subject
     }
     
     
@@ -282,7 +282,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         guard super.becomeFirstResponder() else { return false }
         
         // post notification about becoming the first responder
-        NotificationCenter.default.post(name: DidBecomeFirstResponderMessage.name, object: self)
+        NotificationCenter.default.post(DidBecomeFirstResponderMessage(sender: self), subject: self)
         
         defer {
             self.invalidateInsertionIndicatorDisplayMode()

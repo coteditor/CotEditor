@@ -479,15 +479,12 @@ extension Document {
             return
         }
         
-        Task.detached { [weak self] in
-            for await _ in NotificationCenter.default.notifications(named: EditorTextView.DidBecomeFirstResponderMessage.name).map(\.name) {
-                guard let viewController = await self?.viewController else { return }
-                
-                await MainActor.run {
-                    viewController.apply(scriptingProperty: property)
-                }
-                break
-            }
+        var observer: NotificationCenter.ObservationToken?
+        observer = NotificationCenter.default.addObserver(for: EditorTextView.DidBecomeFirstResponderMessage.self) { [weak self] _ in
+            guard let observer, let viewController = self?.viewController else { return }
+            
+            viewController.apply(scriptingProperty: property)
+            NotificationCenter.default.removeObserver(observer)
         }
     }
 }

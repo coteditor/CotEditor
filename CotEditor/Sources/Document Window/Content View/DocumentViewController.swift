@@ -73,6 +73,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var editableObserver: Task<Void, Never>?
     private var observers: Set<AnyCancellable> = []
     private var defaultsObservers: Set<AnyCancellable> = []
+    private var focusObserver: NotificationCenter.ObservationToken?
     
     
     // MARK: Lifecycle
@@ -105,7 +106,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     isolated deinit {
         NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: nil)
+        if let focusObserver {
+            NotificationCenter.default.removeObserver(focusObserver)
+        }
         
         self.editableObserver?.cancel()
     }
@@ -150,6 +153,12 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             }
         }
         
+        // observe focus change
+        self.focusObserver = NotificationCenter.default.addObserver(for: EditorTextView.DidBecomeFirstResponderMessage.self) { [weak self] message in
+            guard let child = self?.editorViewControllers.first(where: { $0.textView == message.sender }) else { return }
+            self?.focusedChild = child
+        }
+        
         // observe
         self.observers = [
             // observe theme change
@@ -176,12 +185,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     
                     self.setTheme(name: themeName)
                 },
-            
-            // observe focus change
-            NotificationCenter.default.publisher(for: EditorTextView.DidBecomeFirstResponderMessage.name)
-                .map { $0.object as! EditorTextView }
-                .compactMap { [weak self] textView in self?.editorViewControllers.first { $0.textView == textView } }
-                .sink { [weak self] in self?.focusedChild = $0 },
         ]
     }
     
