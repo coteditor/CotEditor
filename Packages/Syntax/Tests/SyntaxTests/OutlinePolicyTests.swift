@@ -30,6 +30,17 @@ import Testing
 
 struct OutlinePolicyTests {
     
+    @Test func depthParsesNumericHeadingCaptureLevelTokens() {
+        
+        let policy = OutlinePolicy()
+        
+        #expect(policy.depth(captureNameComponents: ["outline", "heading", "2"], ancestorNodeTypes: []) == 2)
+        #expect(policy.depth(captureNameComponents: ["outline", "heading", "0"], ancestorNodeTypes: []) == 1)
+        #expect(policy.depth(captureNameComponents: ["outline", "heading", "10"], ancestorNodeTypes: []) == 1)
+        #expect(policy.depth(captureNameComponents: ["outline", "heading", "h2"], ancestorNodeTypes: []) == 1)
+    }
+    
+    
     @Test func normalizeLevels() {
         
         let items: [OutlineItem] = [

@@ -93,6 +93,8 @@ public struct Syntax: Equatable, Sendable {
             
             case separator
             
+            public static let levelRange = 1...9
+            
             public static let iconCases: [Self] = Self.allCases.dropLast()
         }
         

@@ -97,7 +97,7 @@ extension TreeSitterSyntax {
     /// Formats Markdown outline titles with setext heading handling.
     private static let markdownOutlineTitleFormatter: OutlinePolicy.TitleFormatter = { kind, title in
         
-        guard kind == .heading else { return title }
+        guard case .heading = kind else { return title }
         
         // Setext headings include the underline on following lines.
         let firstLine = title.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
