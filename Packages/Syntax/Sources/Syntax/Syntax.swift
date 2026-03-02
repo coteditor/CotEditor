@@ -87,6 +87,7 @@ public struct Syntax: Equatable, Sendable {
             case container
             case value
             case function
+            case title
             case heading
             case mark
             case reference

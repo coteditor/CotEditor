@@ -3,6 +3,6 @@
     "pattern" : "^SUMMARY:(.*)$",
     "description" : "summary",
     "template" : "",
-    "kind" : "heading"
+    "kind" : "title"
   }
 ]

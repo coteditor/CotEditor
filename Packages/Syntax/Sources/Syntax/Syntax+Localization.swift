@@ -111,6 +111,10 @@ public extension Syntax.Outline.Kind {
                 String(localized: "Syntax.Outline.Kind.function.label",
                        defaultValue: "Function",
                        bundle: .module)
+            case .title:
+                String(localized: "Syntax.Outline.Kind.title.label",
+                       defaultValue: "Title",
+                       bundle: .module)
             case .heading:
                 String(localized: "Syntax.Outline.Kind.heading.label",
                        defaultValue: "Heading",

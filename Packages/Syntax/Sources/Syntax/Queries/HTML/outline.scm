@@ -41,7 +41,7 @@
 
 ((element
    (start_tag (tag_name) @tag)
-   (text) @outline.heading.title)
+   (text) @outline.title)
   (#match? @tag "^title$"))
 
 ; hr separator

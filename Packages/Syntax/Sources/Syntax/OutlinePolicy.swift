@@ -91,13 +91,13 @@ struct OutlinePolicy: Sendable {
     /// Returns the semantic heading depth for a heading capture component.
     ///
     /// - Parameters:
-    ///   - component: The heading component suffix such as `1` or `title`.
+    ///   - component: The heading component suffix such as `1`.
     /// - Returns: The 1-based heading depth.
     private static func headingLevel(from component: String) -> Int {
         
         if let level = Int(component), Syntax.Outline.Kind.levelRange.contains(level) {
             level
-        } else {  // "title" is also treated as 1
+        } else {
             1
         }
     }

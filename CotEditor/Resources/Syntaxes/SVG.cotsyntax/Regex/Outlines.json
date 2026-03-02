@@ -11,6 +11,6 @@
     "description" : "title",
     "ignoreCase" : true,
     "template" : "$1",
-    "kind" : "heading"
+    "kind" : "title"
   }
 ]

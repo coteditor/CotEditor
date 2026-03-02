@@ -96,6 +96,7 @@ extension Syntax.Outline.Kind {
             case .container: [.bold]
             case .value: []
             case .function: []
+            case .title: []
             case .heading: []
             case .mark: [.bold]
             case .reference: []

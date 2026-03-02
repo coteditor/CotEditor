@@ -62,6 +62,7 @@ private extension Syntax.Outline.Kind {
             case .container: .systemBlue
             case .value: .systemGreen
             case .function: .systemOrange
+            case .title: .systemBrown
             case .heading: .systemBrown
             case .mark: .systemRed
             case .reference: .systemPurple
@@ -77,6 +78,7 @@ private extension Syntax.Outline.Kind {
             case .container: .system("chevron.forward")
             case .value: .system("v")
             case .function: .system("f")
+            case .title: .system("tag")
             case .heading: .resource(.listBulletSquareFill)
             case .mark: .system("flag")
             case .reference: .system("arrow.uturn.backward")
