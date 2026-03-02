@@ -51,7 +51,7 @@
 
 ### Fixes
 
-- Fix issues with incorrect syntax highlighting in some built-in syntaxes.
+- Fix issues with incorrect syntax analysis in some built-in syntaxes.
 
 
 ### TODO
