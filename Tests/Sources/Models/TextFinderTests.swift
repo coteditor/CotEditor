@@ -205,7 +205,7 @@ import Testing
     private func performFindAction(_ action: TextFinder.Action, with finder: TextFinder) async throws -> FindResult {
         
         let notifications = NotificationCenter.default.notifications(named: TextFinder.DidFindMessage.name, object: finder)
-        var iterator = notifications.makeAsyncIterator()
+        let iterator = notifications.makeAsyncIterator()
         
         finder.performAction(action)
         
