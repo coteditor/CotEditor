@@ -478,8 +478,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 }
                 
                 // insert a bracket pair if the insertion point is not in a word
-                if !CharacterSet.alphanumerics.contains(self.string.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
-                   !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.string.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
+                if self.string.character(after: self.rangeForUserTextChange).map(CharacterSet.alphanumerics.contains) != true,
+                   !(pair.begin == pair.end &&
+                     self.string.character(before: self.rangeForUserTextChange).map(CharacterSet.alphanumerics.contains) == true)  // for "
                 {
                     // raise a flag to adjust the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
                     if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
@@ -505,7 +506,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             }
         }
         
-        // smart outdent with a certain symbol
+        // smart outdent with certain symbols
         if self.isAutomaticIndentEnabled, replacementRange.isEmpty {
             let levelToReduce = self.string.smartOutdentLevel(with: plainString, indentWidth: self.tabWidth, tokens: self.indentTokens, in: self.rangeForUserTextChange)
             for _ in 0..<levelToReduce {
