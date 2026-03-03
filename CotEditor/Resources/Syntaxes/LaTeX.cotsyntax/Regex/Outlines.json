@@ -1,5 +1,11 @@
 [
   {
+    "pattern" : "[\\\\¥]title\\*?\\{(.*)\\}",
+    "description" : "title",
+    "template" : "$1",
+    "kind" : "title"
+  },
+  {
     "pattern" : "[\\\\¥]chapter\\*?\\{(.*)\\}",
     "description" : "chapter",
     "template" : "$1",
