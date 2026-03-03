@@ -1,38 +1,38 @@
 [
   {
-    "pattern" : "[\\\\¥]title\\*?\\{(.*)\\}",
-    "description" : "title",
-    "template" : "$1",
-    "kind" : "title"
-  },
-  {
-    "pattern" : "[\\\\¥]chapter\\*?\\{(.*)\\}",
     "description" : "chapter",
-    "template" : "$1",
-    "kind" : "heading"
+    "kind" : "heading",
+    "pattern" : "[\\\\¥]chapter\\*?\\{(.*)\\}",
+    "template" : "$1"
   },
   {
-    "pattern" : "[\\\\¥]part\\*?\\{(.*)\\}",
     "description" : "part",
-    "template" : "$1",
-    "kind" : "heading"
+    "kind" : "heading",
+    "pattern" : "[\\\\¥]part\\*?\\{(.*)\\}",
+    "template" : "$1"
   },
   {
-    "pattern" : "[\\\\¥]section\\*?\\{(.*)\\}",
     "description" : "section",
-    "template" : "    $1",
-    "kind" : "heading"
+    "kind" : "heading",
+    "pattern" : "[\\\\¥]section\\*?\\{(.*)\\}",
+    "template" : "    $1"
   },
   {
-    "pattern" : "[\\\\¥]subsection\\*?\\{(.*)\\}",
     "description" : "subsection",
-    "template" : "        $1",
-    "kind" : "heading"
+    "kind" : "heading",
+    "pattern" : "[\\\\¥]subsection\\*?\\{(.*)\\}",
+    "template" : "        $1"
   },
   {
-    "pattern" : "[\\\\¥]subsubsection\\*?\\{(.*)\\}",
     "description" : "subsubsection",
-    "template" : "            $1",
-    "kind" : "heading"
+    "kind" : "heading",
+    "pattern" : "[\\\\¥]subsubsection\\*?\\{(.*)\\}",
+    "template" : "            $1"
+  },
+  {
+    "description" : "title",
+    "kind" : "title",
+    "pattern" : "[\\\\¥]title\\*?\\{(.*)\\}",
+    "template" : "$1"
   }
 ]
