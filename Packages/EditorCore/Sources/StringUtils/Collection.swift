@@ -26,20 +26,6 @@
 
 // MARK: Unique
 
-public extension Sequence where Element: Equatable {
-    
-    /// An array consists of unique elements of receiver by keeping ordering.
-    var uniqued: [Element] {
-        
-        self.reduce(into: []) { unique, element in
-            guard !unique.contains(element) else { return }
-            
-            unique.append(element)
-        }
-    }
-}
-
-
 public extension Sequence where Element: Hashable {
     
     /// An array consists of unique elements of receiver by keeping ordering.
@@ -48,16 +34,6 @@ public extension Sequence where Element: Hashable {
         var seen = Set<Element>()
         
         return self.filter { seen.insert($0).inserted }
-    }
-}
-
-
-public extension Array where Element: Equatable {
-    
-    /// Removes duplicated elements by keeping ordering.
-    mutating func unique() {
-        
-        self = self.uniqued
     }
 }
 
