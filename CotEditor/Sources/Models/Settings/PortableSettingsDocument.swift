@@ -25,6 +25,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import Defaults
 import SemanticVersioning
 import URLUtils
 
