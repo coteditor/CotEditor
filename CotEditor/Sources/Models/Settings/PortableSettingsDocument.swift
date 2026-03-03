@@ -232,19 +232,19 @@ struct PortableSettingsDocument: FileDocument {
         
         if types.contains(.replacements) {
             for (name, payload) in self.replacements {
-                try ReplacementManager.shared.importSetting(.payload(payload), name: name, overwrite: true)
+                try ReplacementManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, overwrite: true)
             }
         }
         
         if types.contains(.syntaxes) {
             for (name, payload) in self.syntaxes {
-                try SyntaxManager.shared.importSetting(.payload(payload), name: name, overwrite: true)
+                try SyntaxManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, overwrite: true)
             }
         }
         
         if types.contains(.themes) {
             for (name, payload) in self.themes {
-                try ThemeManager.shared.importSetting(.payload(payload), name: name, overwrite: true)
+                try ThemeManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, overwrite: true)
             }
         }
     }

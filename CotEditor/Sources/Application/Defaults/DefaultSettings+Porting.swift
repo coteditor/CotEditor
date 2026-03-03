@@ -101,6 +101,7 @@ extension DefaultSettings {
         .syntax,
         
         // Snippet
+        .snippets,
         .fileDropArray,
     ]
 }
