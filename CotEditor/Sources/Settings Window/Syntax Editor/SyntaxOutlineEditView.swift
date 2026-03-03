@@ -62,19 +62,12 @@ struct SyntaxOutlineEditView: View {
                         }
                         .tag(Optional<Syntax.Outline.Kind>.none)
                         
-                        Section {
-                            ForEach(Syntax.Outline.Kind.iconCases, id: \.self) { kind in
-                                Label {
-                                    Text(kind.label)
-                                } icon: {
-                                    kind.icon(mode: .palette)  // workaround
-                                }
-                                .tag(Optional(kind))
-                            }
-                        }
+                        Divider()
                         
-                        Section {
-                            let kind = Syntax.Outline.Kind.separator
+                        ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in
+                            if kind == .separator {
+                                Divider()
+                            }
                             Label {
                                 Text(kind.label)
                             } icon: {
