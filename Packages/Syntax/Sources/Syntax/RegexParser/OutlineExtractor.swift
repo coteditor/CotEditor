@@ -75,7 +75,16 @@ public struct OutlineExtractor: Sendable {
                     !match.title.isEmpty
                 else { return nil }
                 
-                return OutlineItem(title: String(match.title), range: result.range, kind: self.kind, indent: .string(String(match.indent)))
+                let kind: Syntax.Outline.Kind? = switch self.kind {
+                    case .heading(_?): .heading(nil)
+                    default: self.kind
+                }
+                let indent: OutlineItem.Indent = switch self.kind {
+                    case .heading(let level?): .level(level)
+                    default: .string(String(match.indent))
+                }
+                
+                return OutlineItem(title: String(match.title), range: result.range, kind: kind, indent: indent)
             }
     }
 }

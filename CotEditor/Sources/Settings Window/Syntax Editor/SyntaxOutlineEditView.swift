@@ -52,42 +52,7 @@ struct SyntaxOutlineEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Kind", table: "SyntaxEditor", comment: "table column header")) { $item in
-                    Picker(String(localized: "Kind", table: "SyntaxEditor"), selection: $item.value.kind) {
-                        Label {
-                            Text("None", tableName: "SyntaxEditor")
-                        } icon: {
-                            Image(systemName: "square")
-                                .symbolRenderingMode(.palette)
-                                .foregroundStyle(.tertiary)
-                        }
-                        .tag(Optional<Syntax.Outline.Kind>.none)
-                        
-                        Divider()
-                        
-                        ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in
-                            if kind == .separator {
-                                Divider()
-                            }
-                            Label {
-                                Text(kind.label)
-                            } icon: {
-                                kind.icon(mode: .palette)  // workaround
-                            }
-                            .tag(Optional(kind))
-                        }
-                        
-                    } currentValueLabel: {
-                        if let selection = item.value.kind {
-                            selection.icon(mode: .palette)  // workaround
-                                .accessibilityLabel(selection.label)
-                        } else {
-                            Image(systemName: "square")
-                                .symbolRenderingMode(.palette)
-                                .foregroundStyle(.tertiary)
-                        }
-                    }
-                    .labelsHidden()
-                    .buttonStyle(.borderless)
+                    OutlineKindMenu(kind: $item.value.kind)
                 }
                 .width(40)
                 
@@ -148,12 +113,88 @@ struct SyntaxOutlineEditView: View {
 }
 
 
+// MARK: - Outline Kind Menu
+
+private struct OutlineKindMenu: View {
+
+    @Binding var kind: Syntax.Outline.Kind?
+
+
+    var body: some View {
+
+        Menu {
+            Button {
+                self.kind = nil
+            } label: {
+                Label {
+                    Text("None", tableName: "SyntaxEditor")
+                } icon: {
+                    Image(systemName: "square")
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+
+            Divider()
+            
+            ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in
+                if kind == .heading(nil) {
+                    Menu {
+                        Button(Syntax.Outline.Kind.heading(nil).label) {
+                            self.kind = .heading(nil)
+                        }
+                        
+                        Divider()
+                        
+                        ForEach(Syntax.Outline.Kind.levelRange, id: \.self) { level in
+                            Button(Syntax.Outline.Kind.heading(level).label) {
+                                self.kind = .heading(level)
+                            }
+                            .monospacedDigit()
+                        }
+                    } label: {
+                        Label {
+                            Text(Syntax.Outline.Kind.heading(nil).label)
+                        } icon: {
+                            Syntax.Outline.Kind.heading(nil).icon(mode: .palette)
+                        }
+                    }
+                } else {
+                    if kind == .separator {
+                        Divider()
+                    }
+                    Button {
+                        self.kind = kind
+                    } label: {
+                        Label {
+                            Text(kind.label)
+                        } icon: {
+                            kind.icon(mode: .palette)
+                        }
+                    }
+                }
+            }
+        } label: {
+            if let selection = self.kind {
+                selection.icon(mode: .palette)
+                    .accessibilityLabel(selection.label)
+            } else {
+                Image(systemName: "square")
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(.tertiary)
+            }
+        }
+        .menuStyle(.borderlessButton)
+    }
+}
+
+
 // MARK: - Preview
 
 #Preview {
     @Previewable @State var items: [SyntaxObject.Outline] = [
         .init(value: .init(pattern: "abc")),
-        .init(value: .init(pattern: "def", ignoreCase: true, kind: .heading)),
+        .init(value: .init(pattern: "def", ignoreCase: true, kind: .heading(nil))),
     ]
     
     SyntaxOutlineEditView(items: $items)

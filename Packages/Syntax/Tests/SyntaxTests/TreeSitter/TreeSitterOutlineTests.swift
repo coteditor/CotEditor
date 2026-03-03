@@ -60,9 +60,9 @@ actor TreeSitterOutlineTests {
         
         let formatter = TreeSitterSyntax.markdown.outlinePolicy.titleFormatter
         
-        #expect(formatter(.heading, "Setext H1\n========") == "Setext H1")
-        #expect(formatter(.heading, "Setext H2\n--------") == "Setext H2")
-        #expect(formatter(.heading, "ATX H1") == "ATX H1")
+        #expect(formatter(.heading(nil), "Setext H1\n========") == "Setext H1")
+        #expect(formatter(.heading(nil), "Setext H2\n--------") == "Setext H2")
+        #expect(formatter(.heading(nil), "ATX H1") == "ATX H1")
     }
     
     
@@ -85,7 +85,7 @@ actor TreeSitterOutlineTests {
         let outline = try await self.parseOutline(in: source, syntax: .markdown)
         
         #expect(outline.map(\.title) == ["Top", "Section", "Setext One", "Setext Two"])
-        #expect(outline.map(\.kind) == [.heading, .heading, .heading, .heading])
+        #expect(outline.map(\.kind) == [.heading(nil), .heading(nil), .heading(nil), .heading(nil)])
         #expect(outline.map(\.indent.level) == [0, 1, 0, 1])
     }
     

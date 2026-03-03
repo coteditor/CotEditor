@@ -94,6 +94,44 @@ struct SyntaxFileWrapperTests {
     }
     
     
+    @Test func outlineEncodingUsesDottedHeadingLevelToken() throws {
+        
+        let outline = Syntax.Outline(pattern: "pattern", template: "template", kind: .heading(2))
+        let data = try JSONEncoder().encode(outline)
+        let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        
+        #expect(object["kind"] as? String == "heading.2")
+    }
+    
+    
+    @Test func outlineDecodingSupportsDottedHeadingLevelToken() throws {
+        
+        let data = try JSONSerialization.data(withJSONObject: [
+            "pattern": "pattern",
+            "template": "template",
+            "kind": "heading.5",
+        ])
+        
+        let outline = try JSONDecoder().decode(Syntax.Outline.self, from: data)
+        
+        #expect(outline.kind == .heading(5))
+    }
+    
+    
+    @Test func outlineDecodingRejectsInvalidHeadingLevelTokens() throws {
+        
+        let multiDigit = try JSONSerialization.data(withJSONObject: [
+            "pattern": "pattern",
+            "template": "template",
+            "kind": "heading.10",
+        ])
+        
+        #expect(throws: DecodingError.self) {
+            _ = try JSONDecoder().decode(Syntax.Outline.self, from: multiDigit)
+        }
+    }
+    
+    
     @Test func commentInlineEncodingDefaults() throws {
         
         let inline = Syntax.Comment.Inline(begin: "//")

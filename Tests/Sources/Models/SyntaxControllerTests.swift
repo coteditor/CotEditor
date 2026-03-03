@@ -82,7 +82,7 @@ import Syntax
     @Test func outlineItemsUpdate() async throws {
         
         let syntax = Syntax(outlines: [
-            Syntax.Outline(pattern: "^##\\s+(.+)$", template: "$1", kind: .heading),
+            Syntax.Outline(pattern: "^##\\s+(.+)$", template: "$1", kind: .heading(nil)),
         ])
         
         let (controller, _, _) = self.makeController(
@@ -103,7 +103,7 @@ import Syntax
         #expect(outlineItems.count == 1)
         #expect(item.title == "Heading")
         #expect(item.range == NSRange(0..<10))
-        #expect(item.kind == .heading)
+        #expect(item.kind == .heading(nil))
         #expect(item.style.isEmpty)
     }
     
