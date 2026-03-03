@@ -26,6 +26,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import SemanticVersioning
+import URLUtils
 
 extension UTType {
     
