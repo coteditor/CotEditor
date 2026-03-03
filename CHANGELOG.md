@@ -5,6 +5,7 @@
 
 ### Fixes
 
+- Fix an issue where snippets were not included in the settings export.
 - [trivial] Fix an issue in the What’s New window where the window could not close with the Esc key.
 
 
