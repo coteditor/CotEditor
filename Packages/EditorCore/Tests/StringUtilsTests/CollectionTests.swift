@@ -57,7 +57,7 @@ struct CollectionTests {
     
     @Test func uniqueEquatableFallback() {
         
-        struct EquatableOnly: Equatable {
+        struct EquatableOnly: Hashable {
             
             let value: Int
         }
