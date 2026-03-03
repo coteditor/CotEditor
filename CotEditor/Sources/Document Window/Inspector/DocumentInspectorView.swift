@@ -323,10 +323,10 @@ private struct CharacterPaneView: View {
             Form {
                 if let scalars = self.character?.unicodeScalars {
                     let label = (scalars.count == 1)
-                    ? String(localized: "Code Point", table: "Document",
-                             comment: "label in document inspector")
-                    : String(localized: "Code Points", table: "Document",
-                             comment: "label in document inspector")
+                        ? String(localized: "Code Point", table: "Document",
+                                 comment: "label in document inspector")
+                        : String(localized: "Code Points", table: "Document",
+                                 comment: "label in document inspector")
                     LabeledContent(label) {
                         WrappingHStack {
                             ForEach(Array(scalars.enumerated()), id: \.offset) { _, scalar in

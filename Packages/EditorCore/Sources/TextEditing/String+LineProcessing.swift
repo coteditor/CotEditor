@@ -118,8 +118,8 @@ public extension String {
             for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
                     let offset = (lineString.last?.isNewline == true)
-                    ? lowerLineRange.length
-                    : lowerLineRange.length + lowerLineString.last!.utf16.count
+                        ? lowerLineRange.length
+                        : lowerLineRange.length + lowerLineString.last!.utf16.count
                     selectedRanges.append(intersectionRange.shifted(by: offset))
                     
                 } else if editRange.touches(selectedRange.location) {
