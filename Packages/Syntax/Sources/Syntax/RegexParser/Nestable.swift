@@ -32,10 +32,10 @@ import StringUtils
 enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
-    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool)
+    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeRule: DelimiterEscapeRule = .backslash)
     
     
-    init?(highlight: Syntax.Highlight) {
+    init?(highlight: Syntax.Highlight, escapeRule: DelimiterEscapeRule = .backslash) {
         
         guard
             !highlight.isRegularExpression,
@@ -43,7 +43,7 @@ enum NestableToken: Equatable, Hashable, Sendable {
             pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
         else { return nil }
         
-        self = .pair(pair, isMultiline: highlight.isMultiline, isNestable: true)
+        self = .pair(pair, isMultiline: highlight.isMultiline, isNestable: true, escapeRule: escapeRule)
     }
 }
 
@@ -83,7 +83,7 @@ extension [NestableToken: SyntaxType] {
                 return token.positions(in: string, type: type, range: parseRange)
             }
             .filter { item in
-                switch escapeRule {
+                switch item.token.escapeRule(default: escapeRule) {
                     case .backslash: !string.isEscaped(at: item.range.location)
                     case .doubleDelimiter, .none: true
                 }
@@ -124,7 +124,7 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
-                let appliesDoubleDelimiter = escapeRule == .doubleDelimiter && beginPosition.token.isSingleSamePair
+                let appliesDoubleDelimiter = beginPosition.token.escapeRule(default: escapeRule) == .doubleDelimiter && beginPosition.token.isSingleSamePair
                 
                 var nestDepth = 0
                 var skipCount = 0
@@ -179,12 +179,25 @@ extension [NestableToken: SyntaxType] {
 
 private extension NestableToken {
     
+    /// Returns the effective delimiter-escape rule for this token.
+    ///
+    /// - Parameter fallback: The lexical default rule used when the token does not define one.
+    /// - Returns: The token-specific rule for `pair`, or `fallback` for `inline`.
+    func escapeRule(default fallback: DelimiterEscapeRule) -> DelimiterEscapeRule {
+        
+        switch self {
+            case .inline: fallback
+            case .pair(_, _, _, let escapeRule): escapeRule
+        }
+    }
+    
+    
     /// Whether this token can span multiple lines.
     var allowsMultiline: Bool {
         
         switch self {
             case .inline: false
-            case .pair(_, let isMultiline, _): isMultiline
+            case .pair(_, let isMultiline, _, _): isMultiline
         }
     }
     
@@ -194,7 +207,7 @@ private extension NestableToken {
         
         switch self {
             case .inline: false
-            case .pair(_, _, let isNestable): isNestable
+            case .pair(_, _, let isNestable, _): isNestable
         }
     }
     
@@ -202,7 +215,7 @@ private extension NestableToken {
     /// Whether the token is a one-character symmetric pair delimiter.
     var isSingleSamePair: Bool {
         
-        guard case .pair(let pair, _, _) = self else { return false }
+        guard case .pair(let pair, _, _, _) = self else { return false }
         
         return pair.begin == pair.end && pair.begin.count == 1
     }
@@ -238,7 +251,7 @@ private extension NestableToken {
                             NestableItem(type: type, token: self, role: .end, range: endRange)]
                 }
                 
-            case .pair(let pair, _, _):
+            case .pair(let pair, _, _, _):
                 if pair.begin == pair.end {
                     return string.ranges(of: pair.begin, range: parseRange)
                         .map { NestableItem(type: type, token: self, role: [.begin, .end], range: $0) }

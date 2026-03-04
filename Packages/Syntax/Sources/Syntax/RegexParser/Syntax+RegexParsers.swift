@@ -25,6 +25,7 @@
 //  limitations under the License.
 
 import Foundation
+import StringUtils
 
 extension Syntax {
     
@@ -51,7 +52,7 @@ extension Syntax {
                 
                 for highlight in self.highlights[type] ?? [] {
                     if // extract paired delimiters such as quotes
-                        let token = NestableToken(highlight: highlight),
+                        let token = NestableToken(highlight: highlight, escapeRule: self.lexicalRules.delimiterEscapeRule),
                         nestables[token] == nil  // not registered yet
                     {
                         nestables[token] = type
@@ -83,8 +84,11 @@ extension Syntax {
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
         
+        for delimiter in self.stringDelimiters {
+            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: delimiter.isMultiline, isNestable: true, escapeRule: delimiter.escapeRule)] = .strings
+        }
         for delimiter in self.commentDelimiters.blocks {
-            nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable)] = .comments
+            nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable, escapeRule: self.lexicalRules.delimiterEscapeRule)] = .comments
         }
         for delimiter in self.commentDelimiters.inlines {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
