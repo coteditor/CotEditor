@@ -184,6 +184,44 @@ extension Syntax.Comment.Block {
 }
 
 
+extension Syntax.StringDelimiter: Codable {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case begin
+        case end
+        case isMultiline
+        case escapeRule
+    }
+    
+    
+    public init(from decoder: any Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.begin = try container.decode(String.self, forKey: .begin)
+        self.end = try container.decode(String.self, forKey: .end)
+        self.isMultiline = try container.decodeIfPresent(Bool.self, forKey: .isMultiline) ?? false
+        self.escapeRule = (try? container.decodeIfPresent(DelimiterEscapeRule.self, forKey: .escapeRule)) ?? .backslash
+    }
+    
+    
+    public func encode(to encoder: any Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.begin, forKey: .begin)
+        try container.encode(self.end, forKey: .end)
+        if self.isMultiline {
+            try container.encode(true, forKey: .isMultiline)
+        }
+        if self.escapeRule != .backslash {
+            try container.encode(self.escapeRule, forKey: .escapeRule)
+        }
+    }
+}
+
+
 extension Syntax.Delimiter: Codable {
     
     private enum CodingKeys: String, CodingKey {

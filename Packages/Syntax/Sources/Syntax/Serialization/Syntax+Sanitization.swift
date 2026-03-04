@@ -35,6 +35,7 @@ extension Syntax {
         
         syntax.fileMap.sanitize()
         syntax.commentDelimiters.sanitize()
+        syntax.stringDelimiters.sanitize()
         syntax.indentation.sanitize()
         
         for type in SyntaxType.allCases {
@@ -76,6 +77,17 @@ extension Syntax.Indentation {
             self.blockDelimiters[index].end = nil
         }
         self.blockDelimiters.removeAll(where: \.begin.isEmpty)
+    }
+}
+
+
+extension [Syntax.StringDelimiter] {
+    
+    mutating func sanitize() {
+        
+        self.removeAll(where: \.isEmpty)
+        self.caseInsensitiveSort(\.end)
+        self.caseInsensitiveSort(\.begin)
     }
 }
 

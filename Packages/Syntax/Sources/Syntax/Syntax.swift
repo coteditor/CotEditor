@@ -170,6 +170,26 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
+    public struct StringDelimiter: Equatable, Sendable {
+        
+        public var begin: String
+        public var end: String
+        public var isMultiline: Bool
+        public var escapeRule: DelimiterEscapeRule
+        
+        public var isEmpty: Bool { self.begin.isEmpty || self.end.isEmpty }
+        
+        
+        public init(begin: String = "", end: String = "", isMultiline: Bool = false, escapeRule: DelimiterEscapeRule = .backslash) {
+            
+            self.begin = begin
+            self.end = end
+            self.isMultiline = isMultiline
+            self.escapeRule = escapeRule
+        }
+    }
+    
+    
     public struct Indentation: Equatable, Sendable, Codable {
         
         public var blockDelimiters: [Delimiter] = []
@@ -259,6 +279,7 @@ public struct Syntax: Equatable, Sendable {
     public var outlines: [Outline]
     
     public var commentDelimiters: Comment
+    public var stringDelimiters: [StringDelimiter]
     public var indentation: Indentation
     public var lexicalRules: LexicalRules
     public var completions: [CompletionWord]
@@ -274,6 +295,7 @@ public struct Syntax: Equatable, Sendable {
         highlights: [SyntaxType: [Highlight]] = [:],
         outlines: [Outline] = [],
         commentDelimiters: Comment = .init(),
+        stringDelimiters: [StringDelimiter] = [],
         indentation: Indentation = .init(),
         lexicalRules: LexicalRules = .default,
         completions: [CompletionWord] = [],
@@ -285,6 +307,7 @@ public struct Syntax: Equatable, Sendable {
         self.highlights = highlights
         self.outlines = outlines
         self.commentDelimiters = commentDelimiters
+        self.stringDelimiters = stringDelimiters
         self.indentation = indentation
         self.lexicalRules = lexicalRules
         self.completions = completions

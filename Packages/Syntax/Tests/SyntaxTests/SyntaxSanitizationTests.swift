@@ -25,6 +25,7 @@
 //
 
 import Testing
+import StringUtils
 @testable import Syntax
 
 struct SyntaxSanitizationTests {
@@ -58,6 +59,12 @@ struct SyntaxSanitizationTests {
                     .init(begin: "/*", end: "*/"),
                 ]
             ),
+            stringDelimiters: [
+                .init(begin: "", end: "\""),
+                .init(begin: "\"", end: ""),
+                .init(begin: "'''", end: "'''", isMultiline: true, escapeRule: .none),
+                .init(begin: "\"", end: "\""),
+            ],
             completions: [
                 .init(),
                 .init(text: "Zoo", type: .keywords),
@@ -78,6 +85,8 @@ struct SyntaxSanitizationTests {
         
         #expect(sanitized.commentDelimiters.inlines.map(\.begin) == ["//"])
         #expect(sanitized.commentDelimiters.blocks == [.init(begin: "/*", end: "*/")])
+        #expect(sanitized.stringDelimiters == [.init(begin: "\"", end: "\""),
+                                               .init(begin: "'''", end: "'''", isMultiline: true, escapeRule: .none)])
         
         #expect(sanitized.completions.map(\.text) == ["apple", "Zoo"])
     }
