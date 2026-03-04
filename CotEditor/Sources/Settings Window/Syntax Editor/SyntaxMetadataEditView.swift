@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,34 +35,37 @@ struct SyntaxMetadataEditView: View {
     
     var body: some View {
         
-        Form {
-            TextField(String(localized: "Version:", table: "SyntaxEditor", comment: "label"),
-                      text: $metadata.version ?? "")
-            TextField(String(localized: "Last Modified:", table: "SyntaxEditor", comment: "label"),
-                      text: $metadata.lastModified ?? "")
-            LabeledContent(String(localized: "Distribution URL:", table: "SyntaxEditor", comment: "label")) {
-                InsetTextField(text: $metadata.distributionURL ?? "")
-                    .inset(.trailing, 32)
-                    .overlay(alignment: .trailing) {
-                        LinkButton(url: self.metadata.distributionURL ?? "")
-                            .foregroundStyle(.secondary)
-                            .padding(.trailing, 4)
-                    }
-                    .textContentType(.URL)
-            }
-            TextField(String(localized: "Author:", table: "SyntaxEditor", comment: "label"),
-                      text: $metadata.author ?? "")
-            TextField(String(localized: "License:", table: "SyntaxEditor", comment: "label"),
-                      text: $metadata.license ?? "")
-            TextField(String(localized: "Description:", table: "SyntaxEditor", comment: "label"),
-                      text: $metadata.description ?? "", axis: .vertical)
+        VStack {
+            Form {
+                TextField(String(localized: "Version:", table: "SyntaxEditor", comment: "label"),
+                          text: $metadata.version ?? "")
+                TextField(String(localized: "Last Modified:", table: "SyntaxEditor", comment: "label"),
+                          text: $metadata.lastModified ?? "")
+                LabeledContent(String(localized: "Distribution URL:", table: "SyntaxEditor", comment: "label")) {
+                    InsetTextField(text: $metadata.distributionURL ?? "")
+                        .inset(.trailing, 32)
+                        .overlay(alignment: .trailing) {
+                            LinkButton(url: self.metadata.distributionURL ?? "")
+                                .foregroundStyle(.secondary)
+                                .padding(.trailing, 4)
+                        }
+                        .textContentType(.URL)
+                }
+                TextField(String(localized: "Author:", table: "SyntaxEditor", comment: "label"),
+                          text: $metadata.author ?? "")
+                TextField(String(localized: "License:", table: "SyntaxEditor", comment: "label"),
+                          text: $metadata.license ?? "")
+                TextField(String(localized: "Description:", table: "SyntaxEditor", comment: "label"),
+                          text: $metadata.description ?? "", axis: .vertical)
                 .lineLimit(5, reservesSpace: true)
-        }
-        Spacer()
-        HStack {
+            }
             Spacer()
-            HelpLink(anchor: "syntax_metadata_settings")
+            HStack {
+                Spacer()
+                HelpLink(anchor: "syntax_metadata_settings")
+            }
         }
+        .scenePadding()
     }
 }
 
@@ -71,5 +74,4 @@ struct SyntaxMetadataEditView: View {
 
 #Preview {
     SyntaxMetadataEditView(metadata: .constant(.init()))
-        .padding()
 }

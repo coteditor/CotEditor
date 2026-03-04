@@ -107,6 +107,7 @@ struct SyntaxCompletionEditView: View {
                 HelpLink(anchor: "syntax_highlight_settings")
             }
         }
+        .scenePadding()
     }
 }
 
@@ -132,5 +133,4 @@ private extension SyntaxType? {
     @Previewable @State var items: [SyntaxObject.CompletionWord] = [.init(value: .init(text: "abc"))]
     
     SyntaxCompletionEditView(items: $items)
-        .padding()
 }

@@ -118,7 +118,7 @@ struct SyntaxEditView: View {
             }.environment(\.sidebarRowSize, .medium)
             
         } detail: {
-            VStack(spacing: 16) {
+            VStack(spacing: 0) {
                 HStack(alignment: .firstTextBaseline) {
                     if self.isBundled {
                         Text(self.name)
@@ -148,12 +148,13 @@ struct SyntaxEditView: View {
                             Text($0.label)
                         }
                     }.fixedSize()
-                }.scenePadding(.horizontal)
+                }
+                .padding(.bottom)
+                .scenePadding(.horizontal)
                 
                 Divider()
                 
                 self.detailView
-                    .scenePadding(.horizontal)
                 
                 Divider()
                 
@@ -162,14 +163,16 @@ struct SyntaxEditView: View {
                     SubmitButtonGroup(action: self.submit) {
                         self.dismiss()
                     }
-                }.scenePadding(.horizontal)
+                }
+                .padding(.top)
+                .scenePadding(.horizontal)
             }.scenePadding(.vertical)
         }
         .onChange(of: self.pane) {
             self.errors = self.syntax.value.validate()
         }
         .alert(error: $error)
-        .frame(minWidth: 400, idealWidth: 740, minHeight: 620, idealHeight: 620)
+        .frame(minWidth: 400, idealWidth: 740, minHeight: 560, idealHeight: 580)
         .presentationSizing(.fitted)
     }
     
@@ -180,13 +183,16 @@ struct SyntaxEditView: View {
             case .fileMapping:
                 SyntaxFileMappingEditView(extensions: $syntax.extensions, filenames: $syntax.filenames, interpreters: $syntax.interpreters)
             case .delimiters:
-                SyntaxDelimitersEditView(
-                    inlineComments: $syntax.inlineComments,
-                    blockComments: $syntax.blockComments,
-                    indentations: $syntax.indentations,
-                    lexicalRules: $syntax.lexicalRules,
-                    canCustomizeHighlight: self.customizableFeatures.contains(.highlight)
-                )
+                ScrollView(.vertical) {
+                    SyntaxDelimitersEditView(
+                        inlineComments: $syntax.inlineComments,
+                        blockComments: $syntax.blockComments,
+                        indentations: $syntax.indentations,
+                        lexicalRules: $syntax.lexicalRules,
+                        canCustomizeHighlight: self.customizableFeatures.contains(.highlight)
+                    )
+                }
+                .scenePadding([])
             case .outline:
                 if self.customizableFeatures.contains(.outline) {
                     SyntaxOutlineEditView(items: $syntax.outlines)

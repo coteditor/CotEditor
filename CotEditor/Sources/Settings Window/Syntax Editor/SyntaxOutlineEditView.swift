@@ -143,6 +143,7 @@ struct SyntaxOutlineEditView: View {
                 HelpLink(anchor: "syntax_outline_settings")
             }
         }
+        .scenePadding()
     }
 }
 
@@ -156,5 +157,4 @@ struct SyntaxOutlineEditView: View {
     ]
     
     SyntaxOutlineEditView(items: $items)
-        .padding()
 }

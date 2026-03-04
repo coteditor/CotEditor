@@ -107,6 +107,7 @@ struct SyntaxDelimitersEditView: View {
                 HelpLink(anchor: "syntax_delimiter_settings")
             }
         }
+        .scenePadding()
     }
 }
 
@@ -136,7 +137,7 @@ private struct InlineCommentsEditView: View {
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))
-        .frame(minHeight: 80, maxHeight: 120)
+        .frame(height: 100)
         
         AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
             self.focusedField = item.id
@@ -178,7 +179,7 @@ private struct BlockCommentsEditView: View {
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))
-        .frame(minHeight: 80, maxHeight: 120)
+        .frame(height: 100)
         
         AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
             self.focusedField = item.id
@@ -224,7 +225,7 @@ private struct BlockEditView: View {
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))
-        .frame(minHeight: 80, maxHeight: 200)
+        .frame(height: 100)
         
         AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
             self.focusedField = item.id
@@ -266,5 +267,4 @@ private extension DelimiterEscapeRule {
     @Previewable @State var rules: Syntax.LexicalRules = .default
     
     SyntaxDelimitersEditView(inlineComments: $inlineComments, blockComments: $blockComments, indentations: $indentations, lexicalRules: $rules)
-        .padding()
 }

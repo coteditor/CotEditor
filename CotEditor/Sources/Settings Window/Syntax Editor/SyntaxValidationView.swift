@@ -46,7 +46,9 @@ struct SyntaxValidationView: View {
                 }
                 .border(.separator)
             }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .scenePadding()
     }
     
     
@@ -163,11 +165,9 @@ private extension Syntax.Error.Scope {
     
     return SyntaxValidationView(errors: errors)
         .frame(width: 400)
-        .padding()
 }
 
 #Preview("No Error") {
     SyntaxValidationView(errors: [])
         .frame(width: 400)
-        .padding()
 }
