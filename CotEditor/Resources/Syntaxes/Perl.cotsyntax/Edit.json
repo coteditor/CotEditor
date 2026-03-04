@@ -25,7 +25,8 @@
     {
       "begin" : "qq/",
       "end" : "/",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "description" : "Interpolated string with / delimiter (qq)"
     }
   ],
   "indentation" : {

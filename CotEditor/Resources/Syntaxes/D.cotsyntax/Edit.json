@@ -27,25 +27,29 @@
       "begin" : "`",
       "end" : "`",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "WYSIWYG string literal"
     },
     {
       "begin" : "q{",
       "end" : "}",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Token string literal with { } delimiter"
     },
     {
       "begin" : "r\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "WYSIWYG string literal with r-prefix"
     },
     {
       "begin" : "x\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Hex string literal"
     }
   ],
   "indentation" : {

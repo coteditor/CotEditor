@@ -26,15 +26,18 @@
     },
     {
       "begin" : "b\"",
-      "end" : "\""
+      "end" : "\"",
+      "description" : "Byte string literal"
     },
     {
       "begin" : "r\"",
-      "end" : "\""
+      "end" : "\"",
+      "description" : "Regular expression literal"
     },
     {
       "begin" : "v\"",
-      "end" : "\""
+      "end" : "\"",
+      "description" : "Version number literal"
     }
   ],
   "indentation" : {

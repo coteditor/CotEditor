@@ -37,25 +37,29 @@
       "begin" : "[[",
       "end" : "]]",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Long bracket string (level 0)"
     },
     {
       "begin" : "[=[",
       "end" : "]=]",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Long bracket string (level 1)"
     },
     {
       "begin" : "[==[",
       "end" : "]==]",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Long bracket string (level 2)"
     },
     {
       "begin" : "[===[",
       "end" : "]===]",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Long bracket string (level 3)"
     }
   ],
   "indentation" : {

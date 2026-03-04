@@ -26,24 +26,28 @@
     {
       "begin" : "#\"",
       "end" : "\"#",
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Raw string literal (1 #)"
     },
     {
       "begin" : "##\"",
       "end" : "\"##",
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Raw string literal (2 #)"
     },
     {
       "begin" : "#\"\"\"",
       "end" : "\"\"\"#",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Raw multiline string literal (1 #)"
     },
     {
       "begin" : "##\"\"\"",
       "end" : "\"\"\"##",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeRule" : "none",
+      "description" : "Raw multiline string literal (2 #)"
     }
   ],
   "indentation" : {

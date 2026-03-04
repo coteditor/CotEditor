@@ -21,7 +21,8 @@
     },
     {
       "begin" : "$'",
-      "end" : "'"
+      "end" : "'",
+      "description" : "ANSI-C quoted string literal"
     }
   ],
   "indentation" : {
