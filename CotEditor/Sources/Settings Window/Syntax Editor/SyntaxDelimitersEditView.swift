@@ -259,6 +259,9 @@ private struct StringDelimitersEditView: View {
                         .forEach { $0.value.escapeRule.wrappedValue = newValue }
                 }
             }
+            TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.description ?? "", label: EmptyView.init)
+            }
         }
         .tableStyle(.bordered)
         .border(Color(nsColor: .gridColor))
@@ -304,6 +307,9 @@ private struct BlockEditView: View {
             }
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end ?? "", label: EmptyView.init)
+            }
+            TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.description ?? "", label: EmptyView.init)
             }
         }
         .tableStyle(.bordered)

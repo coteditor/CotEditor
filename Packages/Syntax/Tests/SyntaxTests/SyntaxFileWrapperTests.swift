@@ -131,6 +131,7 @@ struct SyntaxFileWrapperTests {
         #expect(delimiter.end == "\"")
         #expect(delimiter.escapeRule == .backslash)
         #expect(!delimiter.isMultiline)
+        #expect(delimiter.description == nil)
     }
     
     
@@ -144,6 +145,50 @@ struct SyntaxFileWrapperTests {
         #expect(object["end"] as? String == "'")
         #expect(object["isMultiline"] == nil)
         #expect(object["escapeRule"] as? String == "none")
+        #expect(object["description"] == nil)
+    }
+    
+    
+    @Test func stringDelimiterEncodingIncludesDescription() throws {
+        
+        let delimiter = Syntax.StringDelimiter(begin: "'", end: "'", description: "single quoted")
+        let data = try JSONEncoder().encode(delimiter)
+        let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        
+        #expect(object["begin"] as? String == "'")
+        #expect(object["end"] as? String == "'")
+        #expect(object["isMultiline"] == nil)
+        #expect(object["escapeRule"] == nil)
+        #expect(object["description"] as? String == "single quoted")
+    }
+    
+    
+    @Test func delimiterDecodingDefaults() throws {
+        
+        let data = try JSONSerialization.data(withJSONObject: [
+            "begin": "{",
+            "end": "}",
+        ])
+        
+        let delimiter = try JSONDecoder().decode(Syntax.Delimiter.self, from: data)
+        
+        #expect(delimiter.begin == "{")
+        #expect(delimiter.end == "}")
+        #expect(!delimiter.ignoreCase)
+        #expect(delimiter.description == nil)
+    }
+    
+    
+    @Test func delimiterEncodingSkipsDefaults() throws {
+        
+        let delimiter = Syntax.Delimiter(begin: "{", end: "}", description: "block")
+        let data = try JSONEncoder().encode(delimiter)
+        let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        
+        #expect(object["begin"] as? String == "{")
+        #expect(object["end"] as? String == "}")
+        #expect(object["ignoreCase"] == nil)
+        #expect(object["description"] as? String == "block")
     }
     
     

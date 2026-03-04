@@ -176,16 +176,18 @@ public struct Syntax: Equatable, Sendable {
         public var end: String
         public var isMultiline: Bool
         public var escapeRule: DelimiterEscapeRule
+        public var description: String?
         
         public var isEmpty: Bool { self.begin.isEmpty || self.end.isEmpty }
         
         
-        public init(begin: String = "", end: String = "", isMultiline: Bool = false, escapeRule: DelimiterEscapeRule = .backslash) {
+        public init(begin: String = "", end: String = "", isMultiline: Bool = false, escapeRule: DelimiterEscapeRule = .backslash, description: String? = nil) {
             
             self.begin = begin
             self.end = end
             self.isMultiline = isMultiline
             self.escapeRule = escapeRule
+            self.description = description
         }
     }
     
@@ -209,13 +211,15 @@ public struct Syntax: Equatable, Sendable {
         public var begin: String
         public var end: String?
         public var ignoreCase: Bool
+        public var description: String?
         
         
-        public init(begin: String = "", end: String? = nil, ignoreCase: Bool = false) {
+        public init(begin: String = "", end: String? = nil, ignoreCase: Bool = false, description: String? = nil) {
             
             self.begin = begin
             self.end = end
             self.ignoreCase = ignoreCase
+            self.description = description
         }
     }
     

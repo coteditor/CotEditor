@@ -192,6 +192,7 @@ extension Syntax.StringDelimiter: Codable {
         case end
         case isMultiline
         case escapeRule
+        case description
     }
     
     
@@ -203,6 +204,7 @@ extension Syntax.StringDelimiter: Codable {
         self.end = try container.decode(String.self, forKey: .end)
         self.isMultiline = try container.decodeIfPresent(Bool.self, forKey: .isMultiline) ?? false
         self.escapeRule = (try? container.decodeIfPresent(DelimiterEscapeRule.self, forKey: .escapeRule)) ?? .backslash
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
     }
     
     
@@ -218,6 +220,9 @@ extension Syntax.StringDelimiter: Codable {
         if self.escapeRule != .backslash {
             try container.encode(self.escapeRule, forKey: .escapeRule)
         }
+        if let description = self.description {
+            try container.encode(description, forKey: .description)
+        }
     }
 }
 
@@ -229,6 +234,7 @@ extension Syntax.Delimiter: Codable {
         case begin
         case end
         case ignoreCase
+        case description
     }
     
     
@@ -239,6 +245,7 @@ extension Syntax.Delimiter: Codable {
         self.begin = try container.decode(String.self, forKey: .begin)
         self.end = try container.decodeIfPresent(String.self, forKey: .end)
         self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
     }
     
     
@@ -252,6 +259,9 @@ extension Syntax.Delimiter: Codable {
         }
         if self.ignoreCase {
             try container.encode(true, forKey: .ignoreCase)
+        }
+        if let description = self.description {
+            try container.encode(description, forKey: .description)
         }
     }
 }
