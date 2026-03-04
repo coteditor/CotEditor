@@ -44,7 +44,7 @@ struct SyntaxDelimitersEditView: View {
         
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading) {
-                Text("Comments", tableName: "SyntaxEditor")
+                Text(SyntaxType.comments.label)
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
@@ -60,12 +60,6 @@ struct SyntaxDelimitersEditView: View {
                             .accessibilityAddTraits(.isHeader)
                         BlockCommentsEditView(items: $blockComments)
                     }.accessibilityElement(children: .contain)
-                }
-                
-                if self.canCustomizeHighlight {
-                    Text("The comment delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
-                        .controlSize(.small)
-                        .padding(.top, 2)
                 }
             }
             .padding(.bottom)
@@ -110,6 +104,12 @@ struct SyntaxDelimitersEditView: View {
                     .horizontalRadioGroupLayout()
                     .fixedSize()
                 }
+            }
+            
+            if self.canCustomizeHighlight {
+                Text("The delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
+                    .controlSize(.small)
+                    .padding(.top)
             }
             
             Spacer(minLength: 0)
