@@ -187,6 +187,7 @@ struct SyntaxEditView: View {
                     SyntaxDelimitersEditView(
                         inlineComments: $syntax.inlineComments,
                         blockComments: $syntax.blockComments,
+                        stringDelimiters: $syntax.stringDelimiters,
                         indentations: $syntax.indentations,
                         lexicalRules: $syntax.lexicalRules,
                         canCustomizeHighlight: self.customizableFeatures.contains(.highlight)

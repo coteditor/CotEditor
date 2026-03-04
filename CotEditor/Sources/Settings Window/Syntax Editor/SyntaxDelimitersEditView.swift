@@ -31,6 +31,7 @@ struct SyntaxDelimitersEditView: View {
     
     @Binding var inlineComments: [SyntaxObject.InlineComment]
     @Binding var blockComments: [SyntaxObject.BlockComment]
+    @Binding var stringDelimiters: [SyntaxObject.StringDelimiter]
     @Binding var indentations: [SyntaxObject.BlockIndent]
     @Binding var lexicalRules: Syntax.LexicalRules
     
@@ -66,6 +67,17 @@ struct SyntaxDelimitersEditView: View {
                         .controlSize(.small)
                         .padding(.top, 2)
                 }
+            }
+            .padding(.bottom)
+            
+            VStack(alignment: .leading) {
+                Text(SyntaxType.strings.label)
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 2)
+                
+                Text("String delimiters:", tableName: "SyntaxEditor", comment: "label")
+                    .accessibilityAddTraits(.isHeader)
+                StringDelimitersEditView(items: $stringDelimiters)
             }
             .padding(.bottom)
             
@@ -188,6 +200,77 @@ private struct BlockCommentsEditView: View {
 }
 
 
+// MARK: - String Delimiters
+
+private struct StringDelimitersEditView: View {
+    
+    typealias Item = SyntaxObject.StringDelimiter
+    
+    @Binding var items: [Item]
+    
+    @State private var selection: Set<Item.ID> = []
+    @FocusState private var focusedField: Item.ID?
+    
+    
+    var body: some View {
+        
+        Table($items, selection: $selection) {
+            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.begin, label: EmptyView.init)
+                    .focused($focusedField, equals: item.id)
+            }
+            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.end, label: EmptyView.init)
+            }
+            TableColumn(String(localized: "Multiline", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
+                Toggle(isOn: $item.value.isMultiline, label: EmptyView.init)
+                    .onChange(of: item.value.isMultiline) { _, newValue in
+                        guard self.selection.contains(item.id) else { return }
+                        $items
+                            .filter(with: self.selection)
+                            .filter { $0.id != item.id }
+                            .forEach { $0.value.isMultiline.wrappedValue = newValue }
+                    }
+            }
+            .width(56)
+            .alignment(.center)
+            TableColumn(String(localized: "Escape", defaultValue: "Escape", table: "SyntaxEditor", comment: "table column header")) { $item in
+                Picker(selection: $item.value.escapeRule) {
+                    ForEach(DelimiterEscapeRule.allCases, id: \.self) { rule in
+                        if rule == .none {
+                            Divider()
+                        }
+                        Text(rule.label)
+                    }
+                } label: {
+                    EmptyView()
+                } currentValueLabel: {
+                    let rule = item.value.escapeRule
+                    Text(rule.label)
+                        .foregroundStyle((rule != .none) ? .primary : .tertiary)
+                }
+                .buttonStyle(.plain)
+                .labelsHidden()
+                .onChange(of: item.value.escapeRule) { _, newValue in
+                    guard self.selection.contains(item.id) else { return }
+                    $items
+                        .filter(with: self.selection)
+                        .filter { $0.id != item.id }
+                        .forEach { $0.value.escapeRule.wrappedValue = newValue }
+                }
+            }
+        }
+        .tableStyle(.bordered)
+        .border(Color(nsColor: .gridColor))
+        .frame(height: 100)
+        
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
+        }
+    }
+}
+
+
 // MARK: - Indentations
 
 private struct BlockEditView: View {
@@ -263,8 +346,15 @@ private extension DelimiterEscapeRule {
 #Preview {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: .init(begin: "/*", end: "*/"))]
+    @Previewable @State var stringDelimiters: [SyntaxObject.StringDelimiter] = [.init(value: .init(begin: "\"", end: "\""))]
     @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: .init(begin: "{", end: "}"))]
     @Previewable @State var rules: Syntax.LexicalRules = .default
     
-    SyntaxDelimitersEditView(inlineComments: $inlineComments, blockComments: $blockComments, indentations: $indentations, lexicalRules: $rules)
+    SyntaxDelimitersEditView(
+        inlineComments: $inlineComments,
+        blockComments: $blockComments,
+        stringDelimiters: $stringDelimiters,
+        indentations: $indentations,
+        lexicalRules: $rules
+    )
 }

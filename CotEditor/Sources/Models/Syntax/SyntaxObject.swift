@@ -40,6 +40,7 @@ import Syntax
     typealias KeyString = Item<String>
     typealias InlineComment = Item<Syntax.Comment.Inline>
     typealias BlockComment = Item<Syntax.Comment.Block>
+    typealias StringDelimiter = Item<Syntax.StringDelimiter>
     typealias BlockIndent = Item<Syntax.Delimiter>
     typealias CompletionWord = Item<Syntax.CompletionWord>
     typealias Metadata = Syntax.Metadata
@@ -83,6 +84,7 @@ import Syntax
     
     var inlineComments: [InlineComment] = []
     var blockComments: [BlockComment] = []
+    var stringDelimiters: [StringDelimiter] = []
     var indentations: [BlockIndent] = []
     var lexicalRules: Syntax.LexicalRules = .default
     
@@ -135,6 +137,7 @@ extension SyntaxObject {
                 inlines: self.inlineComments.map(\.value),
                 blocks: self.blockComments.map(\.value)
               ),
+              stringDelimiters: self.stringDelimiters.map(\.value),
               indentation: .init(blockDelimiters: self.indentations.map(\.value)),
               lexicalRules: self.lexicalRules,
               
@@ -157,6 +160,7 @@ extension SyntaxObject {
         
         self.inlineComments = value.commentDelimiters.inlines.map { .init(value: $0) }
         self.blockComments = value.commentDelimiters.blocks.map { .init(value: $0) }
+        self.stringDelimiters = value.stringDelimiters.map { .init(value: $0) }
         self.indentations = value.indentation.blockDelimiters.map { .init(value: $0) }
         self.lexicalRules = value.lexicalRules
         
@@ -241,6 +245,15 @@ extension SyntaxObject.BlockComment {
 
 
 extension SyntaxObject.BlockIndent {
+    
+    init() {
+        
+        self.value = .init()
+    }
+}
+
+
+extension SyntaxObject.StringDelimiter {
     
     init() {
         
