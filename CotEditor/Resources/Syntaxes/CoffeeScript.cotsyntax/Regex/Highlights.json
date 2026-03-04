@@ -1,15 +1,6 @@
 {
   "characters" : [
     {
-      "begin" : "'",
-      "end" : "'"
-    },
-    {
-      "begin" : "'''",
-      "end" : "'''",
-      "isMultiline" : true
-    },
-    {
       "begin" : "///",
       "end" : "///",
       "isMultiline" : true

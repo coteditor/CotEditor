@@ -18,6 +18,11 @@
       "end" : "\""
     },
     {
+      "begin" : "'",
+      "end" : "'",
+      "isMultiline" : true
+    },
+    {
       "begin" : "qq/",
       "end" : "/",
       "isMultiline" : true

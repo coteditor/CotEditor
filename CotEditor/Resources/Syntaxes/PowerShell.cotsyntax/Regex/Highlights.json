@@ -19,6 +19,11 @@
   ],
   "characters" : [
     {
+      "begin" : "`(?:[0abefnrtv`\"'$]|\\r?\\n)",
+      "description" : "Escape sequence / line continuation",
+      "regularExpression" : true
+    },
+    {
       "begin" : "`u\\{[0-9a-fA-F]{1,5}\\}",
       "description" : "Unicode code point",
       "regularExpression" : true
@@ -7877,10 +7882,6 @@
       "begin" : "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]",
       "ignoreCase" : true,
       "regularExpression" : true
-    },
-    {
-      "begin" : "`",
-      "end" : "`"
     }
   ],
   "types" : [
