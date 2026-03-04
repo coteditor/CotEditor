@@ -15,7 +15,7 @@
 
 <h1>Define delimiters in CotEditor on Mac</h1>
 
-<p>In CotEditor, you can define delimiters for comments, automatic indentation, and delimiter escaping for each syntax. These settings are used by comment commands, smart indentation while typing, regular-expression-based syntax highlighting, and paired-symbol matching in the editor.</p>
+<p>In CotEditor, you can define delimiters for comments, strings, automatic indentation, and delimiter escaping for each syntax. These settings are used by comment commands, smart indentation while typing, regular-expression-based syntax highlighting, and paired-symbol matching in the editor.</p>
 
 <p>To define delimiters for a syntax, select Delimiters in the list on the left side of the syntax editor, then configure options on the right. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
 
@@ -57,6 +57,27 @@
 
 
 <section>
+<h2>Define string delimiters</h2>
+
+<p>String delimiters are used to determine string ranges for the Strings element in regular-expression-based syntax highlighting. Text enclosed by the Begin String and End String is treated as a string.</p>
+
+<table>
+	<thead>
+		<tr><th>Field</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>Begin String</th><td><p>Delimiter that starts a string.</p></td></tr>
+		<tr><th>End String</th><td><p>Delimiter that ends a string.</p></td></tr>
+		<tr><th>Multiline</th><td><p>If selected, strings can span across line breaks.</p></td></tr>
+		<tr><th>Escape</th><td><p>The escape style for this string delimiter. The default value is “Backslash.”</p></td></tr>
+	</tbody>
+</table>
+
+<p>If you define multiple string delimiters, you can support different quote styles in the same syntax (for example, <code>&quot;...&quot;</code> and <code>'...'</code>).</p>
+</section>
+
+
+<section>
 <h2>Define indentation delimiters</h2>
 
 <p>Block delimiters are used for automatic indentation while typing. When the token at the end of a line matches a Begin String, pressing <kbd>Return</kbd> inserts one additional indentation level on the new line.</p>
@@ -88,7 +109,7 @@
 <tbody>
 	<tr>
 		<th>Delimiter escape style</th>
-		<td><p>The style applied to begin/end delimiter pairs.</p>
+		<td><p>The style applied to begin/end delimiter pairs other than string delimiters, such as comment delimiters.</p>
 			<ul>
 				<li><em>Backslash</em>: Treat a backslash (&#x005C;) as an escape character. A delimiter immediately preceded by a backslash is ignored.</li>
 				<li><em>Double delimiter</em>: Treat two consecutive delimiters as an escaped delimiter. This style is applied only when the begin and end delimiters are the same single character.</li>
