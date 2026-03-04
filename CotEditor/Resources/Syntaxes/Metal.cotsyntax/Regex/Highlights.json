@@ -42,10 +42,6 @@
   ],
   "characters" : [
     {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
       "begin" : "'",
       "end" : "'"
     }

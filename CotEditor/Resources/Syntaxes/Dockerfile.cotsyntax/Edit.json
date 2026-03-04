@@ -9,5 +9,15 @@
         "leadingOnly" : true
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "'",
+      "end" : "'"
+    }
+  ]
 }

@@ -656,12 +656,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    }
-  ],
   "values" : [
     {
       "begin" : "false"

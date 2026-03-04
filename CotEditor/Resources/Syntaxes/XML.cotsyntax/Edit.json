@@ -10,6 +10,14 @@
 
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    }
+  ],
   "lexicalRules" : {
     "delimiterEscapeRule" : "none"
   }

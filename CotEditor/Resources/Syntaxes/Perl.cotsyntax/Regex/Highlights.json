@@ -782,15 +782,13 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
       "begin" : "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\R\\1\\R",
+      "description" : "here-doc",
       "regularExpression" : true
     },
     {
       "begin" : "/[^\\r\\n/]*/[^\\r\\n/]*/[a-z]*\\b",
+      "description" : "regex",
       "regularExpression" : true
     },
     {

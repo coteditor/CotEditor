@@ -16,6 +16,12 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

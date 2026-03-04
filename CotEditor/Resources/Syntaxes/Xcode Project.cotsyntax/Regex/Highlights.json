@@ -71,12 +71,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    }
-  ],
   "values" : [
     {
       "begin" : "NO"

@@ -74,13 +74,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true
-    }
-  ],
   "values" : [
     {
       "begin" : "f",

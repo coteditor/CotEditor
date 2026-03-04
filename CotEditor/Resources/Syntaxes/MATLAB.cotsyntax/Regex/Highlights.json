@@ -2333,12 +2333,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    }
-  ],
   "values" : [
     {
       "begin" : "eps"

@@ -9,6 +9,18 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeRule" : "doubleDelimiter"
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeRule" : "doubleDelimiter"
+    }
+  ],
   "lexicalRules" : {
     "delimiterEscapeRule" : "doubleDelimiter"
   },

@@ -196,12 +196,5 @@
       "begin" : "@unpublished",
       "ignoreCase" : true
     }
-  ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true
-    }
   ]
 }

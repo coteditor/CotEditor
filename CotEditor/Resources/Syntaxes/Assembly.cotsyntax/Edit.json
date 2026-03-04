@@ -8,5 +8,19 @@
         "begin" : ";"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "'",
+      "end" : "'"
+    },
+    {
+      "begin" : "`",
+      "end" : "`"
+    }
+  ]
 }

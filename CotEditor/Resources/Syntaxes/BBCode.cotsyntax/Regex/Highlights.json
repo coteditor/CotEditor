@@ -222,10 +222,6 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
       "begin" : "(?<=[a-z]=)[^[:space:]\\]]+(?=[^\\[\\]]*\\])",
       "regularExpression" : true
     }

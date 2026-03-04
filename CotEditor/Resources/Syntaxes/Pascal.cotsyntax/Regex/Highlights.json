@@ -1800,12 +1800,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
-  ],
   "types" : [
     {
       "begin" : "boolean",

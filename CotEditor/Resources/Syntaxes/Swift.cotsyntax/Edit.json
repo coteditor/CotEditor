@@ -13,6 +13,39 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "#\"",
+      "end" : "\"#",
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "##\"",
+      "end" : "\"##",
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "#\"\"\"",
+      "end" : "\"\"\"#",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "##\"\"\"",
+      "end" : "\"\"\"##",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

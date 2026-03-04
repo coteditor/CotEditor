@@ -141,12 +141,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    }
-  ],
   "types" : [
     {
       "begin" : "@[a-zA-Z0-9$_]*",

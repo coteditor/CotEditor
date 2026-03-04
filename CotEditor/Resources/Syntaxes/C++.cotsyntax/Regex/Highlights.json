@@ -371,10 +371,6 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
       "begin" : "(?<=#include)[\\t ]*<.+>",
       "regularExpression" : true
     },

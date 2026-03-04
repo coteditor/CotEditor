@@ -140,12 +140,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    }
-  ],
   "variables" : [
     {
       "begin" : "\\$\\d\\b",

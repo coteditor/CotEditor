@@ -13,6 +13,18 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "isMultiline" : true
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

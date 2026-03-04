@@ -47,17 +47,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "'.*?'",
-      "regularExpression" : true
-    }
-  ],
   "types" : [
     {
       "begin" : "!"

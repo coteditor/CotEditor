@@ -747,12 +747,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    }
-  ],
   "types" : [
     {
       "begin" : "\\b[A-Z][\\w_\\']*",

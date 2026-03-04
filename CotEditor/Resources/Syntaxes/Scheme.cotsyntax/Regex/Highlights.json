@@ -1160,13 +1160,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true
-    }
-  ],
   "types" : [
     {
       "begin" : "#!fold-case"

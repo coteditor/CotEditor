@@ -578,10 +578,6 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
       "begin" : "\\bB\"[01][01_]*\"",
       "description" : "bit string base_specifier",
       "ignoreCase" : true,

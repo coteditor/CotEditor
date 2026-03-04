@@ -51,26 +51,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "'",
-      "end" : "'"
-    },
-    {
-      "begin" : "'''",
-      "end" : "'''",
-      "isMultiline" : true
-    }
-  ],
   "values" : [
     {
       "begin" : "false"

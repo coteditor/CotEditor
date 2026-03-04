@@ -11,5 +11,11 @@
         "begin" : ";"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    }
+  ]
 }

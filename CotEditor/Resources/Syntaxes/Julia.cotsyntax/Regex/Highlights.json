@@ -3111,16 +3111,6 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "isMultiline" : true
-    },
-    {
       "begin" : "b\""
     },
     {

@@ -3328,16 +3328,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
-  ],
   "values" : [
     {
       "begin" : "add",

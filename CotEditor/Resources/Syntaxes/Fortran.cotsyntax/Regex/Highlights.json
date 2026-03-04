@@ -1452,16 +1452,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
-  ],
   "types" : [
     {
       "begin" : "\\bcharacter\\b(?!\\()",

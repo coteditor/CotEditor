@@ -9,6 +9,21 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "$'",
+      "end" : "'"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

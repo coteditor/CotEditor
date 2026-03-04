@@ -256,12 +256,6 @@
       "begin" : "subgraph"
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    }
-  ],
   "variables" : [
     {
       "begin" : "box"

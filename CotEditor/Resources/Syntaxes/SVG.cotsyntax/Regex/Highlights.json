@@ -1553,10 +1553,6 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
       "begin" : "(?<==)\\s*'",
       "end" : "'",
       "regularExpression" : true

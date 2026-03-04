@@ -13,6 +13,13 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "isMultiline" : true
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

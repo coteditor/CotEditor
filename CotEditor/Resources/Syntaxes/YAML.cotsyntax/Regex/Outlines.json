@@ -1,14 +1,14 @@
 [
   {
-    "pattern" : "^([^\\r\\n -].*?):",
     "description" : "top level element",
-    "template" : "$1:",
-    "kind" : "value"
+    "kind" : "value",
+    "pattern" : "^([^\\r\\n -].*?):",
+    "template" : "$1:"
   },
   {
-    "pattern" : "^---",
     "description" : "block",
-    "template" : "",
-    "kind" : "separator"
+    "kind" : "separator",
+    "pattern" : "^---",
+    "template" : ""
   }
 ]

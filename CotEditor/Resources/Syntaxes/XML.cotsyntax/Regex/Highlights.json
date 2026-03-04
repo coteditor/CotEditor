@@ -35,11 +35,6 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true
-    },
-    {
       "begin" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
       "regularExpression" : true
     }

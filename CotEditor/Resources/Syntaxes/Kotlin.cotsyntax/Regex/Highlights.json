@@ -302,17 +302,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "isMultiline" : true
-    }
-  ],
   "types" : [
     {
       "begin" : "Annotation"

@@ -3013,17 +3013,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
-  ],
   "types" : [
     {
       "begin" : "(?<=class create )\\w+",

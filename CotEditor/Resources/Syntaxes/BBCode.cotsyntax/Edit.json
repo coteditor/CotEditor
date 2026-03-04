@@ -1,0 +1,9 @@
+{
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeRule" : "none"
+    }
+  ]
+}

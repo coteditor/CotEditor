@@ -13,6 +13,52 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "b\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "r\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "r#\"",
+      "end" : "\"#",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "r##\"",
+      "end" : "\"##",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "br\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "br#\"",
+      "end" : "\"#",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "br##\"",
+      "end" : "\"##",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

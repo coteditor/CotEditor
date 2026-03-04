@@ -12,6 +12,20 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "isMultiline" : true,
+      "escapeRule" : "doubleDelimiter"
+    }
+  ],
   "lexicalRules" : {
     "delimiterEscapeRule" : "none"
   },

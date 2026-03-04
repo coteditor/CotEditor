@@ -9,6 +9,30 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "'",
+      "end" : "'"
+    },
+    {
+      "begin" : "'''",
+      "end" : "'''",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "`",
+      "end" : "`"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

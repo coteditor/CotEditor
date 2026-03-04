@@ -15,5 +15,18 @@
         "begin" : ":"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeRule" : "doubleDelimiter",
+      "isMultiline" : true
+    }
+  ]
 }

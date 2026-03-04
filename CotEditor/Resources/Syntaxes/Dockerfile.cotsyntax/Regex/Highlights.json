@@ -59,15 +59,5 @@
     {
       "begin" : "WORKDIR"
     }
-  ],
-  "strings" : [
-    {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
   ]
 }

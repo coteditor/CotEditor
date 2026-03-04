@@ -16,6 +16,13 @@
       }
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeRule" : "doubleDelimiter"
+    }
+  ],
   "lexicalRules" : {
     "delimiterEscapeRule" : "doubleDelimiter"
   },

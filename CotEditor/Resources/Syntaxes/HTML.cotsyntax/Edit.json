@@ -10,6 +10,18 @@
 
     ]
   },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeRule" : "none"
+    }
+  ],
   "lexicalRules" : {
     "delimiterEscapeRule" : "none"
   }

@@ -42,10 +42,6 @@
   ],
   "strings" : [
     {
-      "begin" : "\"",
-      "end" : "\""
-    },
-    {
       "begin" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
       "regularExpression" : true
     },
