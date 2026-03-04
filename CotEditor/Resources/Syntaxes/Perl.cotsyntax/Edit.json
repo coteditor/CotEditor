@@ -16,6 +16,11 @@
     {
       "begin" : "\"",
       "end" : "\""
+    },
+    {
+      "begin" : "qq/",
+      "end" : "/",
+      "isMultiline" : true
     }
   ],
   "indentation" : {

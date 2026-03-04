@@ -373,14 +373,6 @@
     {
       "begin" : "(?<=#include)[\\t ]*<.+>",
       "regularExpression" : true
-    },
-    {
-      "begin" : "L\""
-    },
-    {
-      "begin" : "R\"",
-      "end" : "\"",
-      "isMultiline" : true
     }
   ],
   "types" : [

@@ -790,10 +790,6 @@
       "begin" : "/[^\\r\\n/]*/[^\\r\\n/]*/[a-z]*\\b",
       "description" : "regex",
       "regularExpression" : true
-    },
-    {
-      "begin" : "qq/",
-      "end" : "/"
     }
   ],
   "values" : [

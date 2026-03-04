@@ -23,6 +23,18 @@
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
       "isMultiline" : true
+    },
+    {
+      "begin" : "b\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "r\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "v\"",
+      "end" : "\""
     }
   ],
   "indentation" : {

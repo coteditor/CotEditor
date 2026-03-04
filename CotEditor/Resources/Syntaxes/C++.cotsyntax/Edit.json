@@ -16,6 +16,52 @@
     {
       "begin" : "\"",
       "end" : "\""
+    },
+    {
+      "begin" : "L\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "u8\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "u\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "U\"",
+      "end" : "\""
+    },
+    {
+      "begin" : "R\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "LR\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "u8R\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "uR\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "UR\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
     }
   ],
   "indentation" : {

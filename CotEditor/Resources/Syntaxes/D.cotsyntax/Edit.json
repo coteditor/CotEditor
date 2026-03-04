@@ -20,11 +20,32 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "isMultiline" : true
     },
     {
       "begin" : "`",
-      "end" : "`"
+      "end" : "`",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "q{",
+      "end" : "}",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "r\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
+    },
+    {
+      "begin" : "x\"",
+      "end" : "\"",
+      "isMultiline" : true,
+      "escapeRule" : "none"
     }
   ],
   "indentation" : {

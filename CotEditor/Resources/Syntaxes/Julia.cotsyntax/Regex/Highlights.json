@@ -3109,17 +3109,6 @@
       "begin" : "NaN32"
     }
   ],
-  "strings" : [
-    {
-      "begin" : "b\""
-    },
-    {
-      "begin" : "r\""
-    },
-    {
-      "begin" : "v\""
-    }
-  ],
   "types" : [
     {
       "begin" : "AbstractArray"

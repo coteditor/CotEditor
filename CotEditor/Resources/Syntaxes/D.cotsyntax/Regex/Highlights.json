@@ -2185,17 +2185,6 @@
     },
     {
       "begin" : "q\""
-    },
-    {
-      "begin" : "q{",
-      "end" : "}",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "r\""
-    },
-    {
-      "begin" : "x\""
     }
   ],
   "types" : [
