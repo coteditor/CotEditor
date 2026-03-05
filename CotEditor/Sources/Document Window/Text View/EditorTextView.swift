@@ -145,7 +145,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var spaceWidth: Double = 0
     
-    private let matchingBracketPairs: [SymbolPair] = SymbolPair.braces + SymbolPair.quotes
+    private let matchingSymbolPairs: [SymbolPair] = SymbolPair.braces + SymbolPair.quotes
     private var isTypingPairedQuotes = false
     
     private var mouseDownPoint: NSPoint = .zero
@@ -470,7 +470,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // balance brackets and quotes
         if self.isAutomaticSymbolBalancingEnabled, replacementRange.isEmpty {
             // with opening symbol input
-            if let pair = self.matchingBracketPairs.first(where: { String($0.begin) == plainString }) {
+            if let pair = self.matchingSymbolPairs.first(where: { String($0.begin) == plainString }) {
                 // wrap selection with brackets if some text is selected
                 if !self.rangeForUserTextChange.isEmpty {
                     self.surroundSelections(begin: String(pair.begin), end: String(pair.end))
@@ -496,7 +496,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             }
             
             // just move cursor if closing bracket is already typed
-            if self.matchingBracketPairs.contains(where: { String($0.end) == plainString }),
+            if self.matchingSymbolPairs.contains(where: { String($0.end) == plainString }),
                plainString.unicodeScalars.first == self.string.character(after: self.rangeForUserTextChange),
                self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool == true
             {
@@ -595,7 +595,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
            self.rangeForUserTextChange.isEmpty,
            let lastCharacter = self.string.character(before: self.rangeForUserTextChange),
            let nextCharacter = self.string.character(after: self.rangeForUserTextChange),
-           self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
+           self.matchingSymbolPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
             self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
             self.selectedRange = NSRange(location: self.rangeForUserTextChange.location - 1, length: 2)
