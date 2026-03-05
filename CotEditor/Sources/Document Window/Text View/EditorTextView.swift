@@ -98,7 +98,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var commentDelimiters: Syntax.Comment = Syntax.Comment()
     var commentsOutAfterIndent: Bool = false
     var appendsCommentSpacer: Bool = false
-    var delimiterEscapeRule: DelimiterEscapeRule = .backslash
+    var quoteDelimiters: [Syntax.PairDelimiter] = []  { didSet { self.invalidateQuotePairs() } }
     var indentTokens: [IndentToken] = []
     var syntaxCompletionWords: [Syntax.CompletionWord] = []
     var completionWordTypes: CompletionWordTypes = []
@@ -145,7 +145,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var spaceWidth: Double = 0
     
-    private let matchingSymbolPairs: [SymbolPair] = SymbolPair.braces + SymbolPair.quotes
+    private var quotePairs: [(pair: SymbolPair, escapeRule: DelimiterEscapeRule)] = []
+    private var matchingSymbolPairs: [SymbolPair]  { SymbolPair.braces + self.quotePairs.map(\.pair) }
     private var isTypingPairedQuotes = false
     
     private var mouseDownPoint: NSPoint = .zero
@@ -702,7 +703,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching symbol
             if self.highlightsBraces {
-                self.highlightMatchingSymbol(candidates: SymbolPair.braces, escapeRule: self.delimiterEscapeRule)
+                self.highlightMatchingSymbol(candidates: SymbolPair.braces, escapeRule: .none)
             }
             
             // update instance highlights
@@ -767,13 +768,15 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             {
                 return syntaxRange
             }
+        } else if let quoteRange = self.quoteRangeOfSymbolPair(at: characterIndex) {
+            return NSRange(quoteRange, in: self.string)
         }
         
         // select inside of brackets
         if let pairRange = self.string.rangeOfSymbolPair(
             at: characterIndex,
             candidates: SymbolPair.braces + [.ltgt],
-            escapeRule: self.delimiterEscapeRule
+            escapeRule: .none
         ) {
             return NSRange(pairRange, in: self.string)
         }
@@ -1375,7 +1378,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             let enclosingRange = self.string.rangeOfEnclosingSymbolPair(
                 at: selectedRange,
                 candidates: SymbolPair.braces + [.ltgt],
-                escapeRule: self.delimiterEscapeRule
+                escapeRule: .none
             )
         else { return }
         
@@ -1384,6 +1387,42 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     
     // MARK: Private Methods
+    
+    /// Updates single-character quote pairs from syntax delimiters.
+    private func invalidateQuotePairs() {
+        
+        let delimiters = self.quoteDelimiters
+            .compactMap { delimiter -> (pair: SymbolPair, escapeRule: DelimiterEscapeRule)? in
+                guard
+                    delimiter.begin.count == 1,
+                    delimiter.end.count == 1,
+                    let begin = delimiter.begin.first,
+                    let end = delimiter.end.first
+                else { return nil }
+                
+                return (.init(begin, end), delimiter.escapeRule)
+            }
+        
+        guard !delimiters.isEmpty else {
+            self.quotePairs = []
+            return
+        }
+        
+        // Keep the first appearance to preserve syntax-defined priority.
+        var seen: Set<SymbolPair> = []
+        self.quotePairs = delimiters.filter { seen.insert($0.pair).inserted }
+    }
+    
+    
+    /// Finds a quote pair range at the given index by applying each pair's own escaping rule.
+    private func quoteRangeOfSymbolPair(at index: String.Index) -> ClosedRange<String.Index>? {
+        
+        self.quotePairs
+            .filter { $0.pair.begin == self.string[index] || $0.pair.end == self.string[index] }
+            .compactMap { self.string.rangeOfSymbolPair(at: index, candidates: [$0.pair], escapeRule: $0.escapeRule) }
+            .min { NSRange($0, in: self.string).length < NSRange($1, in: self.string).length }
+    }
+    
     
     /// Updates colors and related appearance settings with the current theme.
     private func applyTheme() {

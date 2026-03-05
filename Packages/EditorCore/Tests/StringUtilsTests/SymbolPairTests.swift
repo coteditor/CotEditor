@@ -119,11 +119,11 @@ struct SymbolPairTests {
         let string = #"foo \(bar\) baz"#
         let beginIndex = try! #require(string.firstIndex(of: "("))
         
+        let backslashRange = string.rangeOfSymbolPair(at: beginIndex, candidates: SymbolPair.braces, escapeRule: .backslash)
         let defaultRange = string.rangeOfSymbolPair(at: beginIndex, candidates: SymbolPair.braces)
-        let unescapedRange = string.rangeOfSymbolPair(at: beginIndex, candidates: SymbolPair.braces, escapeRule: .none)
         
-        #expect(defaultRange == nil)
-        #expect(unescapedRange == string.index(5)...string.index(10))
+        #expect(backslashRange == nil)
+        #expect(defaultRange == string.index(5)...string.index(10))
     }
     
     

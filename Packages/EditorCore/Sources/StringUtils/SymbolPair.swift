@@ -90,7 +90,7 @@ public extension StringProtocol {
     ///   - candidates: Symbol pairs to find.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeRule: The delimiter escape rule.
-    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> ClosedRange<Index>? {
+    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .none) -> ClosedRange<Index>? {
         
         guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
         
