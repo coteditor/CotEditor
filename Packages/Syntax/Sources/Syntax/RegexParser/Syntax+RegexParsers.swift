@@ -44,20 +44,17 @@ extension Syntax {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = SyntaxType.allCases
-            .reduce(into: [:]) { dict, type in
-                dict[type] = self.highlights[type]
-            }
-            .reduce(into: [SyntaxType: [Syntax.Highlight]]()) { dict, item in
+            .reduce(into: [SyntaxType: [Syntax.Highlight]]()) { dict, type in
                 var highlights: [Syntax.Highlight] = []
                 var words: [String] = []
                 var caseInsensitiveWords: [String] = []
                 
-                for highlight in item.value {
+                for highlight in self.highlights[type] ?? [] {
                     if // extract paired delimiters such as quotes
                         let token = NestableToken(highlight: highlight),
                         nestables[token] == nil  // not registered yet
                     {
-                        nestables[token] = item.key
+                        nestables[token] = type
                         
                     } else if // extract simple words
                         !highlight.isRegularExpression, highlight.end == nil
@@ -80,7 +77,7 @@ extension Syntax {
                     highlights.append(Syntax.Highlight(words: caseInsensitiveWords, ignoreCase: true))
                 }
                 if !highlights.isEmpty {
-                    dict[item.key] = highlights
+                    dict[type] = highlights
                 }
             }
             .mapValues { $0.compactMap { try? $0.extractor } }
@@ -95,8 +92,7 @@ extension Syntax {
         
         guard !extractors.isEmpty || !nestables.isEmpty else { return nil }
         
-        return RegexHighlightParser(extractors: extractors, nestables: nestables, lexicalRules: self.lexicalRules
-        )
+        return RegexHighlightParser(extractors: extractors, nestables: nestables, lexicalRules: self.lexicalRules)
     }
 }
 
