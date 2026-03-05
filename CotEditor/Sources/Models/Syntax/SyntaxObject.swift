@@ -85,6 +85,7 @@ import Syntax
     var inlineComments: [InlineComment] = []
     var blockComments: [BlockComment] = []
     var stringDelimiters: [PairDelimiter] = []
+    var characterDelimiters: [PairDelimiter] = []
     var indentations: [BlockIndent] = []
     var lexicalRules: Syntax.LexicalRules = .default
     
@@ -138,6 +139,7 @@ extension SyntaxObject {
                 blocks: self.blockComments.map(\.value)
               ),
               stringDelimiters: self.stringDelimiters.map(\.value),
+              characterDelimiters: self.characterDelimiters.map(\.value),
               indentation: .init(blockDelimiters: self.indentations.map(\.value)),
               lexicalRules: self.lexicalRules,
               
@@ -161,6 +163,7 @@ extension SyntaxObject {
         self.inlineComments = value.commentDelimiters.inlines.map { .init(value: $0) }
         self.blockComments = value.commentDelimiters.blocks.map { .init(value: $0) }
         self.stringDelimiters = value.stringDelimiters.map { .init(value: $0) }
+        self.characterDelimiters = value.characterDelimiters.map { .init(value: $0) }
         self.indentations = value.indentation.blockDelimiters.map { .init(value: $0) }
         self.lexicalRules = value.lexicalRules
         

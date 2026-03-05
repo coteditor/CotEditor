@@ -208,6 +208,7 @@ struct SyntaxFileWrapperTests {
         #expect(syntax.commentDelimiters.isEmpty)
         #expect(syntax.lexicalRules == .default)
         #expect(syntax.stringDelimiters.isEmpty)
+        #expect(syntax.characterDelimiters.isEmpty)
         #expect(syntax.completions.isEmpty)
         #expect(syntax.highlights.isEmpty)
         #expect(syntax.outlines.isEmpty)
@@ -220,6 +221,7 @@ struct SyntaxFileWrapperTests {
         let edit = Syntax.Edit(
             comment: .init(inlines: [.init(begin: "//")], blocks: [.init(begin: "/*", end: "*/")]),
             stringDelimiters: [.init(begin: "'", end: "'", isMultiline: true, escapeRule: .doubleDelimiter)],
+            characterDelimiters: [.init(begin: "'", end: "'", escapeRule: .none)],
             lexicalRules: .init(delimiterEscapeRule: .none)
         )
         let completions: [Syntax.CompletionWord] = [.init(text: "print", type: SyntaxType.commands)]
@@ -250,6 +252,7 @@ struct SyntaxFileWrapperTests {
         #expect(syntax.commentDelimiters.blocks == [.init(begin: "/*", end: "*/")])
         #expect(syntax.lexicalRules.delimiterEscapeRule == .none)
         #expect(syntax.stringDelimiters == [.init(begin: "'", end: "'", isMultiline: true, escapeRule: .doubleDelimiter)])
+        #expect(syntax.characterDelimiters == [.init(begin: "'", end: "'", escapeRule: .none)])
         #expect(syntax.completions.map { $0.text } == ["print"])
         #expect(syntax.highlights[SyntaxType.keywords]?.map { $0.begin } == ["func"])
         #expect(syntax.outlines.map { $0.pattern } == ["^func"])
@@ -265,6 +268,7 @@ struct SyntaxFileWrapperTests {
             outlines: [.init(pattern: "^#", template: "header")],
             commentDelimiters: .init(inlines: [.init(begin: "#")]),
             stringDelimiters: [.init(begin: "\"", end: "\"", isMultiline: true, escapeRule: .backslash)],
+            characterDelimiters: [.init(begin: "'", end: "'", escapeRule: .none)],
             lexicalRules: .init(delimiterEscapeRule: .none),
             completions: [.init(text: "hello", type: SyntaxType.keywords)],
             metadata: .init(author: "tester")
@@ -284,6 +288,7 @@ struct SyntaxFileWrapperTests {
         let edit = try JSONDecoder().decode(Syntax.Edit.self, from: editData)
         #expect(try #require(edit.lexicalRules).delimiterEscapeRule == .none)
         #expect(try #require(edit.stringDelimiters) == [.init(begin: "\"", end: "\"", isMultiline: true, escapeRule: .backslash)])
+        #expect(try #require(edit.characterDelimiters) == [.init(begin: "'", end: "'", escapeRule: .none)])
     }
     
     
@@ -308,7 +313,24 @@ struct SyntaxFileWrapperTests {
         #expect(edit.comment == nil)
         #expect(edit.indentation == nil)
         #expect(edit.lexicalRules == nil)
+        #expect(edit.characterDelimiters == nil)
         #expect(edit.stringDelimiters == [.init(begin: "'", end: "'", escapeRule: .doubleDelimiter)])
+    }
+    
+    
+    @Test func fileWrapperSerializationIncludesCharacterDelimitersOnly() throws {
+        
+        let syntax = Syntax(characterDelimiters: [.init(begin: "'", end: "'", escapeRule: .none)])
+        
+        let wrapper = try syntax.fileWrapper
+        let editData = try #require(wrapper.fileWrappers?["Edit.json"]?.regularFileContents)
+        let edit = try JSONDecoder().decode(Syntax.Edit.self, from: editData)
+        
+        #expect(edit.comment == nil)
+        #expect(edit.indentation == nil)
+        #expect(edit.lexicalRules == nil)
+        #expect(edit.stringDelimiters == nil)
+        #expect(edit.characterDelimiters == [.init(begin: "'", end: "'", escapeRule: .none)])
     }
     
     

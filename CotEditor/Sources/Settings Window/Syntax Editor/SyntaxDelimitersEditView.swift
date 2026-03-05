@@ -32,6 +32,7 @@ struct SyntaxDelimitersEditView: View {
     @Binding var inlineComments: [SyntaxObject.InlineComment]
     @Binding var blockComments: [SyntaxObject.BlockComment]
     @Binding var stringDelimiters: [SyntaxObject.PairDelimiter]
+    @Binding var characterDelimiters: [SyntaxObject.PairDelimiter]
     @Binding var indentations: [SyntaxObject.BlockIndent]
     @Binding var lexicalRules: Syntax.LexicalRules
     
@@ -72,6 +73,17 @@ struct SyntaxDelimitersEditView: View {
                 Text("String delimiters:", tableName: "SyntaxEditor", comment: "label")
                     .accessibilityAddTraits(.isHeader)
                 StringDelimitersEditView(items: $stringDelimiters)
+            }
+            .padding(.bottom)
+            
+            VStack(alignment: .leading) {
+                Text(SyntaxType.characters.label)
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 2)
+                
+                Text("Character delimiters:", tableName: "SyntaxEditor", comment: "label")
+                    .accessibilityAddTraits(.isHeader)
+                CharacterDelimitersEditView(items: $characterDelimiters)
             }
             .padding(.bottom)
             
@@ -274,6 +286,69 @@ private struct StringDelimitersEditView: View {
 }
 
 
+// MARK: - Character Delimiters
+
+private struct CharacterDelimitersEditView: View {
+    
+    typealias Item = SyntaxObject.PairDelimiter
+    
+    @Binding var items: [Item]
+    
+    @State private var selection: Set<Item.ID> = []
+    @FocusState private var focusedField: Item.ID?
+    
+    
+    var body: some View {
+        
+        Table($items, selection: $selection) {
+            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.begin, label: EmptyView.init)
+                    .focused($focusedField, equals: item.id)
+            }
+            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.end, label: EmptyView.init)
+            }
+            TableColumn(String(localized: "Escape", defaultValue: "Escape", table: "SyntaxEditor", comment: "table column header")) { $item in
+                Picker(selection: $item.value.escapeRule) {
+                    ForEach(DelimiterEscapeRule.allCases, id: \.self) { rule in
+                        if rule == .none {
+                            Divider()
+                        }
+                        Text(rule.label)
+                    }
+                } label: {
+                    EmptyView()
+                } currentValueLabel: {
+                    let rule = item.value.escapeRule
+                    Text(rule.label)
+                        .foregroundStyle((rule != .none) ? .primary : .tertiary)
+                }
+                .buttonStyle(.plain)
+                .labelsHidden()
+                .onChange(of: item.value.escapeRule) { _, newValue in
+                    guard self.selection.contains(item.id) else { return }
+                    $items
+                        .filter(with: self.selection)
+                        .filter { $0.id != item.id }
+                        .forEach { $0.value.escapeRule.wrappedValue = newValue }
+                }
+            }
+            .width(132)
+            TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(text: $item.value.description ?? "", label: EmptyView.init)
+            }
+        }
+        .tableStyle(.bordered)
+        .border(Color(nsColor: .gridColor))
+        .frame(height: 100)
+        
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
+        }
+    }
+}
+
+
 // MARK: - Indentations
 
 private struct BlockEditView: View {
@@ -353,6 +428,7 @@ private extension DelimiterEscapeRule {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: .init(begin: "/*", end: "*/"))]
     @Previewable @State var stringDelimiters: [SyntaxObject.PairDelimiter] = [.init(value: .init(begin: "\"", end: "\""))]
+    @Previewable @State var characterDelimiters: [SyntaxObject.PairDelimiter] = [.init(value: .init(begin: "'", end: "'"))]
     @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: .init(begin: "{", end: "}"))]
     @Previewable @State var rules: Syntax.LexicalRules = .default
     
@@ -360,6 +436,7 @@ private extension DelimiterEscapeRule {
         inlineComments: $inlineComments,
         blockComments: $blockComments,
         stringDelimiters: $stringDelimiters,
+        characterDelimiters: $characterDelimiters,
         indentations: $indentations,
         lexicalRules: $rules
     )

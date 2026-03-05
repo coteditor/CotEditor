@@ -87,6 +87,9 @@ extension Syntax {
         for delimiter in self.stringDelimiters {
             nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: delimiter.isMultiline, isNestable: true, escapeRule: delimiter.escapeRule)] = .strings
         }
+        for delimiter in self.characterDelimiters {
+            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: false, isNestable: true, escapeRule: delimiter.escapeRule)] = .characters
+        }
         for delimiter in self.commentDelimiters.blocks {
             nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable, escapeRule: self.lexicalRules.delimiterEscapeRule)] = .comments
         }

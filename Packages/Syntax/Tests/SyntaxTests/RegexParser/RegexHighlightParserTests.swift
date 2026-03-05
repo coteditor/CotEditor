@@ -141,6 +141,24 @@ struct RegexHighlightParserTests {
         
         #expect(matches == ["'x''y'", "'z'"])
     }
+    
+    
+    @Test func characterDelimitersUseOwnEscapeRule() async throws {
+        
+        let syntax = Syntax(
+            characterDelimiters: [.init(begin: "'", end: "'", escapeRule: .doubleDelimiter)]
+        )
+        let parser = try #require(syntax.highlightParser)
+        let source = "a 'x''y' 'z'"
+        
+        let result = try #require(await parser.parseHighlights(in: source, range: source.nsRange))
+        let characterRanges = result.highlights
+            .filter { $0.value == .characters }
+            .map(\.range)
+        let matches = characterRanges.map((source as NSString).substring(with:))
+        
+        #expect(matches == ["'x''y'", "'z'"])
+    }
 }
 
 

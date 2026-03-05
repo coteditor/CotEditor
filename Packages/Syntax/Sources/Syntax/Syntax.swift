@@ -284,6 +284,7 @@ public struct Syntax: Equatable, Sendable {
     
     public var commentDelimiters: Comment
     public var stringDelimiters: [PairDelimiter]
+    public var characterDelimiters: [PairDelimiter]
     public var indentation: Indentation
     public var lexicalRules: LexicalRules
     public var completions: [CompletionWord]
@@ -300,6 +301,7 @@ public struct Syntax: Equatable, Sendable {
         outlines: [Outline] = [],
         commentDelimiters: Comment = .init(),
         stringDelimiters: [PairDelimiter] = [],
+        characterDelimiters: [PairDelimiter] = [],
         indentation: Indentation = .init(),
         lexicalRules: LexicalRules = .default,
         completions: [CompletionWord] = [],
@@ -312,6 +314,7 @@ public struct Syntax: Equatable, Sendable {
         self.outlines = outlines
         self.commentDelimiters = commentDelimiters
         self.stringDelimiters = stringDelimiters
+        self.characterDelimiters = characterDelimiters
         self.indentation = indentation
         self.lexicalRules = lexicalRules
         self.completions = completions

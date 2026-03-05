@@ -36,6 +36,7 @@ extension Syntax {
         syntax.fileMap.sanitize()
         syntax.commentDelimiters.sanitize()
         syntax.stringDelimiters.sanitize()
+        syntax.characterDelimiters.sanitize()
         syntax.indentation.sanitize()
         
         for type in SyntaxType.allCases {

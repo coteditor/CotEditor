@@ -1329,6 +1329,47 @@
         }
       }
     },
+    "Character delimiters:" : {
+      "comment" : "label",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeichen-Trennzeichen:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Character delimiters:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delimitadores de carácter:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Délimiteurs de caractère :"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字区切り:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Teken-scheidingstekens:"
+          }
+        }
+      }
+    },
     "Completion" : {
       "comment" : "table column header",
       "localizations" : {
@@ -4846,7 +4887,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Délimiteurs de chaîne :"
           }
         },

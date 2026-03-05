@@ -53,6 +53,7 @@ extension Syntax {
         
         var comment: Comment?
         var stringDelimiters: [PairDelimiter]?
+        var characterDelimiters: [PairDelimiter]?
         var indentation: Indentation?
         var lexicalRules: LexicalRules?
     }
@@ -92,6 +93,7 @@ extension Syntax {
             .map { try decoder.decode(Edit.self, from: $0) }
         self.commentDelimiters = edit?.comment ?? .init()
         self.stringDelimiters = edit?.stringDelimiters ?? []
+        self.characterDelimiters = edit?.characterDelimiters ?? []
         self.indentation = edit?.indentation ?? .init()
         self.lexicalRules = edit?.lexicalRules ?? .default
         
@@ -124,10 +126,11 @@ extension Syntax {
             let infoData = try encoder.encode(info)
             fileWrapper.addRegularFile(withContents: infoData, preferredFilename: Filename.info)
             
-            if !self.commentDelimiters.isEmpty || !self.stringDelimiters.isEmpty || !self.indentation.isEmpty || self.lexicalRules != .default {
+            if !self.commentDelimiters.isEmpty || !self.stringDelimiters.isEmpty || !self.characterDelimiters.isEmpty || !self.indentation.isEmpty || self.lexicalRules != .default {
                 let edit = Edit(
                     comment: self.commentDelimiters.isEmpty ? nil : self.commentDelimiters,
                     stringDelimiters: self.stringDelimiters.isEmpty ? nil : self.stringDelimiters,
+                    characterDelimiters: self.characterDelimiters.isEmpty ? nil : self.characterDelimiters,
                     indentation: self.indentation.isEmpty ? nil : self.indentation,
                     lexicalRules: self.lexicalRules == .default ? nil : self.lexicalRules)
                 let data = try encoder.encode(edit)
