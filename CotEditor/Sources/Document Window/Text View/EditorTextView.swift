@@ -145,7 +145,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var spaceWidth: Double = 0
     
-    private let matchingBracketPairs: [BracePair] = BracePair.braces + BracePair.quotes
+    private let matchingBracketPairs: [SymbolPair] = SymbolPair.braces + SymbolPair.quotes
     private var isTypingPairedQuotes = false
     
     private var mouseDownPoint: NSPoint = .zero
@@ -700,9 +700,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         if !stillSelectingFlag, !self.isShowingCompletion {
-            // highlight matching brace
+            // highlight matching symbol
             if self.highlightsBraces {
-                self.highlightMatchingBrace(candidates: BracePair.braces, escapeRule: self.delimiterEscapeRule)
+                self.highlightMatchingSymbol(candidates: SymbolPair.braces, escapeRule: self.delimiterEscapeRule)
             }
             
             // update instance highlights
@@ -748,7 +748,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         guard
             proposedCharRange.isEmpty,  // not on expanding selection
-            wordRange.length == 1  // clicked character can be a brace
+            wordRange.length == 1  // clicked character can be a symbol
         else { return wordRange }
         
         let characterIndex = String.Index(utf16Offset: wordRange.lowerBound, in: self.string)
@@ -770,9 +770,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         // select inside of brackets
-        if let pairRange = self.string.rangeOfBracePair(
+        if let pairRange = self.string.rangeOfSymbolPair(
             at: characterIndex,
-            candidates: BracePair.braces + [.ltgt],
+            candidates: SymbolPair.braces + [.ltgt],
             escapeRule: self.delimiterEscapeRule
         ) {
             return NSRange(pairRange, in: self.string)
@@ -1372,9 +1372,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         guard
             let selectedRange = Range(self.selectedRange, in: self.string),
-            let enclosingRange = self.string.rangeOfEnclosingBracePair(
+            let enclosingRange = self.string.rangeOfEnclosingSymbolPair(
                 at: selectedRange,
-                candidates: BracePair.braces + [.ltgt],
+                candidates: SymbolPair.braces + [.ltgt],
                 escapeRule: self.delimiterEscapeRule
             )
         else { return }

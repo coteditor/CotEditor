@@ -1,5 +1,5 @@
 //
-//  NSTextView+BracePair.swift
+//  NSTextView+SymbolPair.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -28,13 +28,13 @@ import StringUtils
 
 extension NSTextView {
     
-    /// Finds the matching braces for the character before the cursors in the visible area and highlights them.
+    /// Finds the matching symbols for the character before the cursors in the visible area and highlights them.
     ///
     /// - Parameters:
-    ///   - candidates: Brace pairs to find.
-    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - candidates: Symbol pairs to find.
+    ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeRule: The delimiter escape rule.
-    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) {
+    final func highlightMatchingSymbol(candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) {
         
         guard
             !self.string.isEmpty,
@@ -53,7 +53,7 @@ extension NSTextView {
         let range = Range(visibleRange, in: self.string)
         
         lastIndexes
-            .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore, escapeRule: escapeRule) }
+            .compactMap { self.string.indexOfSymbolPair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore, escapeRule: escapeRule) }
             .compactMap(\.index)
             .map { NSRange($0...$0, in: self.string) }
             .forEach { self.showFindIndicator(for: $0) }

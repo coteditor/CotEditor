@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,13 +61,13 @@ class RegexTextView: NSTextView {
             case .search = self.parseMode,
             granularity == .selectByWord,
             proposedCharRange.isEmpty,  // not on expanding selection
-            range.length == 1  // clicked character can be a brace
+            range.length == 1  // clicked character can be a symbol
         else { return range }
         
         let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         
         // select inside of brackets
-        if let pairRange = self.string.rangeOfBracePair(at: characterIndex, candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]")) {
+        if let pairRange = self.string.rangeOfSymbolPair(at: characterIndex, candidates: [SymbolPair("(", ")"), SymbolPair("[", "]")], ignoring: SymbolPair("[", "]")) {
             return NSRange(pairRange, in: self.string)
         }
         
@@ -86,7 +86,7 @@ class RegexTextView: NSTextView {
             !stillSelectingFlag
         else { return }
         
-        self.highlightMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
+        self.highlightMatchingSymbol(candidates: [SymbolPair("(", ")"), SymbolPair("[", "]")], ignoring: SymbolPair("[", "]"))
     }
     
     

@@ -1,5 +1,5 @@
 //
-//  BracePair.swift
+//  SymbolPair.swift
 //  StringUtils
 //
 //  CotEditor
@@ -26,17 +26,17 @@
 
 import Foundation
 
-public typealias BracePair = Pair<Character>
+public typealias SymbolPair = Pair<Character>
 
 public extension Pair where T == Character {
     
-    static let braces: [BracePair] = [BracePair("(", ")"),
-                                      BracePair("{", "}"),
-                                      BracePair("[", "]")]
-    static let quotes: [BracePair] = [BracePair("\"", "\""),
-                                      BracePair("'", "'"),
-                                      BracePair("`", "`")]
-    static let ltgt = BracePair("<", ">")
+    static let braces: [SymbolPair] = [SymbolPair("(", ")"),
+                                       SymbolPair("{", "}"),
+                                       SymbolPair("[", "]")]
+    static let quotes: [SymbolPair] = [SymbolPair("\"", "\""),
+                                       SymbolPair("'", "'"),
+                                       SymbolPair("`", "`")]
+    static let ltgt = SymbolPair("<", ">")
     
     
     enum PairIndex: Equatable, Sendable {
@@ -69,30 +69,30 @@ public enum DelimiterEscapeRule: String, Sendable, CaseIterable, Codable {
 
 public extension StringProtocol {
     
-    /// Finds the range enclosed by one of given brace pairs.
+    /// Finds the range enclosed by one of given symbol pairs.
     ///
     /// - Parameters:
     ///   - range: The character range on which to base the search.
     ///   - candidates: The pairs of symbols to search.
     ///   - escapeRule: The delimiter escape rule.
-    /// - Returns: The range of the enclosing brace pair, or `nil` if not found.
-    func rangeOfEnclosingBracePair(at range: Range<Index>, candidates: [BracePair], escapeRule: DelimiterEscapeRule = .backslash) -> Range<Index>? {
+    /// - Returns: The range of the enclosing symbol pair, or `nil` if not found.
+    func rangeOfEnclosingSymbolPair(at range: Range<Index>, candidates: [SymbolPair], escapeRule: DelimiterEscapeRule = .backslash) -> Range<Index>? {
         
-        BracePairScanner(string: String(self), candidates: candidates, baseRange: range, escapeRule: escapeRule)
+        SymbolPairScanner(string: String(self), candidates: candidates, baseRange: range, escapeRule: escapeRule)
             .scan()
     }
     
     
-    /// Finds the range enclosed by the brace pair, one of which locates at the given index.
+    /// Finds the range enclosed by the symbol pair, one of which locates at the given index.
     ///
     /// - Parameters:
-    ///   - index: The character index of the brace character to find the mate.
-    ///   - candidates: Brace pairs to find.
-    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - index: The character index of the symbol character to find the mate.
+    ///   - candidates: Symbol pairs to find.
+    ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeRule: The delimiter escape rule.
-    func rangeOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> ClosedRange<Index>? {
+    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> ClosedRange<Index>? {
         
-        guard let pairIndex = self.indexOfBracePair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
+        guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
         
         return switch pairIndex {
             case .begin(let beginIndex): beginIndex...index
@@ -101,16 +101,16 @@ public extension StringProtocol {
     }
     
     
-    /// Finds the mate of a brace pair.
+    /// Finds the mate of a symbol pair.
     ///
     /// - Parameters:
-    ///   - index: The character index of the brace character to find the mate.
-    ///   - candidates: Brace pairs to find.
+    ///   - index: The character index of the symbol character to find the mate.
+    ///   - candidates: Symbol pairs to find.
     ///   - range: The range of characters to find in.
-    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeRule: The delimiter escape rule.
     /// - Returns: The character index of the matched pair.
-    func indexOfBracePair(at index: Index, candidates: [BracePair], in range: Range<Index>? = nil, ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> BracePair.PairIndex? {
+    func indexOfSymbolPair(at index: Index, candidates: [SymbolPair], in range: Range<Index>? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> SymbolPair.PairIndex? {
         
         guard escapeRule != .backslash || !self.isEscaped(at: index) else { return nil }
         
@@ -119,8 +119,8 @@ public extension StringProtocol {
         guard let pair = candidates.first(where: { $0.begin == character || $0.end == character }) else { return nil }
         
         if pair.begin == pair.end {
-            let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule)
-            let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule)
+            let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule)
+            let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule)
             
             return switch (beginIndex, endIndex) {
                 case let (beginIndex?, nil): .begin(beginIndex)
@@ -131,11 +131,11 @@ public extension StringProtocol {
         
         switch character {
             case pair.begin:
-                guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
+                guard let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
                 return .end(endIndex)
                 
             case pair.end:
-                guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
+                guard let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
                 return .begin(beginIndex)
                 
             default: preconditionFailure()
@@ -143,18 +143,18 @@ public extension StringProtocol {
     }
     
     
-    /// Finds character index of matched opening brace before a given index.
+    /// Finds character index of matched opening symbol before a given index.
     ///
     /// This method ignores escaped characters.
     ///
     /// - Parameters:
-    ///   - endIndex: The character index of the closing brace of the pair to find.
-    ///   - pair: The brace pair to find.
+    ///   - endIndex: The character index of the closing symbol of the pair to find.
+    ///   - pair: The symbol pair to find.
     ///   - beginIndex: The lower boundary of the find range.
-    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeRule: The delimiter escape rule.
-    /// - Returns: The character index of the matched opening brace, or `nil` if not found.
-    func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
+    /// - Returns: The character index of the matched opening symbol, or `nil` if not found.
+    func indexOfSymbolPair(endIndex: Index, pair: SymbolPair, until beginIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
         
         assert(endIndex <= self.endIndex)
         
@@ -217,18 +217,18 @@ public extension StringProtocol {
     }
     
     
-    /// Finds character index of matched closing brace after a given index.
+    /// Finds character index of matched closing symbol after a given index.
     ///
     /// This method ignores escaped characters.
     ///
     /// - Parameters:
-    ///   - beginIndex: The character index of the opening brace of the pair to find.
-    ///   - pair: The brace pair to find.
+    ///   - beginIndex: The character index of the opening symbol of the pair to find.
+    ///   - pair: The symbol pair to find.
     ///   - endIndex: The upper boundary of the find range.
-    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeRule: The delimiter escape rule.
-    /// - Returns: The character index of the matched closing brace, or `nil` if not found.
-    func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
+    /// - Returns: The character index of the matched closing symbol, or `nil` if not found.
+    func indexOfSymbolPair(beginIndex: Index, pair: SymbolPair, until endIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
         
         assert(beginIndex >= self.startIndex)
         
@@ -297,19 +297,19 @@ public extension StringProtocol {
 
 // MARK: -
 
-private final class BracePairScanner {
+private final class SymbolPairScanner {
     
     let string: String
-    let candidates: [BracePair]
+    let candidates: [SymbolPair]
     
     private var scanningRange: Range<String.Index>
-    private var scanningPair: BracePair?
+    private var scanningPair: SymbolPair?
     private let escapeRule: DelimiterEscapeRule
     private var finished: Bool = false
     private var found: Bool = false
     
     
-    init(string: String, candidates: [BracePair], baseRange: Range<String.Index>, escapeRule: DelimiterEscapeRule) {
+    init(string: String, candidates: [SymbolPair], baseRange: Range<String.Index>, escapeRule: DelimiterEscapeRule) {
         
         assert(candidates.allSatisfy({ $0.begin != $0.end }))
         
@@ -322,7 +322,7 @@ private final class BracePairScanner {
     
     // MARK: Public Methods
     
-    /// Finds the nearest range enclosed by one of the candidate brace pairs.
+    /// Finds the nearest range enclosed by one of the candidate symbol pairs.
     ///
     /// - Returns: The range of characters.
     func scan() -> Range<String.Index>? {
@@ -341,11 +341,11 @@ private final class BracePairScanner {
     
     // MARK: Private Methods
     
-    /// Scans the next brace from the current scanning range.
+    /// Scans the next symbol from the current scanning range.
     private func scanForward() {
         
         var index = self.scanningRange.upperBound
-        var nestDepths: [BracePair: Int] = [:]
+        var nestDepths: [SymbolPair: Int] = [:]
         var isEscaped = self.escapeRule == .backslash &&
             (index != self.string.startIndex) &&
             self.string[self.string.index(before: index)] == "\\"
@@ -382,11 +382,11 @@ private final class BracePairScanner {
     }
     
     
-    /// Scans the previous brace from the current scanning range.
+    /// Scans the previous symbol from the current scanning range.
     private func scanBackward() {
         
         var index = self.scanningRange.lowerBound
-        var nestDepths: [BracePair: Int] = [:]
+        var nestDepths: [SymbolPair: Int] = [:]
         
         for character in self.string[..<index].reversed() {
             index = self.string.index(before: index)

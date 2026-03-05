@@ -57,7 +57,7 @@ public enum IndentToken: Equatable, Sendable {
     }
     
     
-    var characters: BracePair? {
+    var characters: SymbolPair? {
         
         switch self {
             case .tokenPair: nil
@@ -192,7 +192,7 @@ public extension String {
         // decrease indent level if the line is consists of only whitespace
         guard
             self[lineRange].starts(with: /[ \t]+\R?$/),
-            let precedingIndex = self.indexOfBracePair(endIndex: insertionIndex, pair: pair)
+            let precedingIndex = self.indexOfSymbolPair(endIndex: insertionIndex, pair: pair)
         else { return 0 }
         
         let desiredLevel = self.indentLevel(at: precedingIndex, tabWidth: indentWidth)
