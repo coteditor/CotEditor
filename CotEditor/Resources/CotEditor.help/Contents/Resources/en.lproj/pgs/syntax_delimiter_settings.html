@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="comment, comment-out, uncomment, indentation, escape">
+	<meta name="keywords" content="comment, comment-out, uncomment, string, character, indentation, escape">
 	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
@@ -15,7 +15,7 @@
 
 <h1>Define delimiters in CotEditor on Mac</h1>
 
-<p>In CotEditor, you can define delimiters for comments, strings, automatic indentation, and delimiter escaping for each syntax. These settings are used by comment commands, smart indentation while typing, regular-expression-based syntax highlighting, and paired-symbol matching in the editor.</p>
+<p>In CotEditor, you can configure delimiter-related settings for each syntax. These settings affect editor behavior while typing and regular-expression-based syntax highlighting.</p>
 
 <p>To define delimiters for a syntax, select Delimiters in the list on the left side of the syntax editor, then configure options on the right. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
 
@@ -59,7 +59,7 @@
 <section>
 <h2>Define string delimiters</h2>
 
-<p>String delimiters are used to determine string ranges for the Strings element in regular-expression-based syntax highlighting. Text enclosed by the Begin String and End String is treated as a string.</p>
+<p>String delimiters are used to determine string ranges for the Strings element in regular-expression-based syntax highlighting. They are also used for paired-symbol matching in the editor. Text enclosed by the Begin String and End String is treated as a string.</p>
 
 <table>
 	<thead>
@@ -70,10 +70,32 @@
 		<tr><th>End String</th><td><p>Delimiter that ends a string.</p></td></tr>
 		<tr><th>Multiline</th><td><p>If selected, strings can span across line breaks.</p></td></tr>
 		<tr><th>Escape</th><td><p>The escape style for this string delimiter. The default value is “Backslash.”</p></td></tr>
+		<tr><th>Description</th><td><p>A note for your reference (optional).</p></td></tr>
 	</tbody>
 </table>
 
 <p>If you define multiple string delimiters, you can support different quote styles in the same syntax (for example, <code>&quot;...&quot;</code> and <code>'...'</code>).</p>
+</section>
+
+
+<section>
+<h2>Define character delimiters</h2>
+
+<p>Character delimiters are used to determine character-literal ranges for the Characters element in regular-expression-based syntax highlighting. They are also used for paired-symbol matching in the editor. Text enclosed by the Begin String and End String is treated as a character literal.</p>
+
+<table>
+	<thead>
+		<tr><th>Field</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>Begin String</th><td><p>Delimiter that starts a character literal.</p></td></tr>
+		<tr><th>End String</th><td><p>Delimiter that ends a character literal.</p></td></tr>
+		<tr><th>Escape</th><td><p>The escape style for this character delimiter. The default value is “Backslash.”</p></td></tr>
+		<tr><th>Description</th><td><p>A note for your reference (optional).</p></td></tr>
+	</tbody>
+</table>
+
+<p>If you define multiple character delimiters, you can support different literal forms in the same syntax.</p>
 </section>
 
 
@@ -90,6 +112,7 @@
 		<tr><th>IC</th><td><p>Ignore case. Enable this only for case-insensitive languages.</p></td></tr>
 		<tr><th>Begin String</th><td><p>Token that starts an indentation block.</p></td></tr>
 		<tr><th>End String</th><td><p>Token that closes the block. You can leave this empty for begin-only rules (for example, a trailing <code>:</code>).</p></td></tr>
+		<tr><th>Description</th><td><p>A note for your reference (optional).</p></td></tr>
 	</tbody>
 </table>
 
@@ -109,7 +132,7 @@
 <tbody>
 	<tr>
 		<th>Delimiter escape style</th>
-		<td><p>The style applied to begin/end delimiter pairs other than string delimiters, such as comment delimiters.</p>
+		<td><p>The style applied to begin/end delimiter pairs other than string and character delimiters, such as comment delimiters.</p>
 			<ul>
 				<li><em>Backslash</em>: Treat a backslash (&#x005C;) as an escape character. A delimiter immediately preceded by a backslash is ignored.</li>
 				<li><em>Double delimiter</em>: Treat two consecutive delimiters as an escaped delimiter. This style is applied only when the begin and end delimiters are the same single character.</li>
@@ -119,7 +142,7 @@
 </tbody>
 </table>
 
-<p>For example, for the string delimiter is <code>&quot;</code>, a sequence like <code>\&quot;</code> does not end the string if the escape style is “Backslash.” With the “Double delimiter” style, a sequence like <code>&quot;&quot;</code> is treated as an escaped delimiter.</p>
+<p>For example, if a delimiter is <code>&quot;</code>, a sequence like <code>\&quot;</code> does not end the range when the escape style is “Backslash.” With the “Double delimiter” style, a sequence like <code>&quot;&quot;</code> is treated as an escaped delimiter.</p>
 </section>
 
 
