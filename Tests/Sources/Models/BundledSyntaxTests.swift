@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-import Syntax
+@testable import Syntax
 @testable import CotEditor
 
 actor BundledSyntaxTests {
@@ -44,6 +44,23 @@ actor BundledSyntaxTests {
             
             #expect(throws: Never.self, "The bundled \(name) syntax is invalid.") {
                 dict[name] = try Syntax(contentsOf: url)
+            }
+        }
+    }
+    
+    
+    @Test func checkRemainingNestablesFromHighlight() {
+        
+        for (name, syntax) in self.syntaxes where !syntax.highlights.isEmpty {
+            for (key, highlights) in syntax.highlights {
+                for highlight in highlights {
+                    switch NestableToken(highlight: highlight) {
+                        case .pair(let pair, let multiline, _, let escapeRule):
+                            print("✔︎", name, key, pair, multiline, escapeRule, highlight.description)
+                        default:
+                            continue
+                    }
+                }
             }
         }
     }
