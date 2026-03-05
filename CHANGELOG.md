@@ -6,7 +6,7 @@
 ### Fixes
 
 - Fix an issue where snippets were not included in the settings export.
-- Fix an issue where the settings impored from a settings archive included filename extensions.
+- Fix an issue where the settings imported from a settings archive included filename extensions.
 - [trivial] Fix an issue in the What’s New window where the window could not close with the Esc key.
 
 
