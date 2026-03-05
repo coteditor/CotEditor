@@ -81,7 +81,7 @@ extension Syntax.Indentation {
 }
 
 
-extension [Syntax.StringDelimiter] {
+extension [Syntax.PairDelimiter] {
     
     mutating func sanitize() {
         

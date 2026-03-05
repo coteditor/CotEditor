@@ -170,7 +170,7 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
-    public struct StringDelimiter: Equatable, Sendable {
+    public struct PairDelimiter: Equatable, Sendable {
         
         public var begin: String
         public var end: String
@@ -283,7 +283,7 @@ public struct Syntax: Equatable, Sendable {
     public var outlines: [Outline]
     
     public var commentDelimiters: Comment
-    public var stringDelimiters: [StringDelimiter]
+    public var stringDelimiters: [PairDelimiter]
     public var indentation: Indentation
     public var lexicalRules: LexicalRules
     public var completions: [CompletionWord]
@@ -299,7 +299,7 @@ public struct Syntax: Equatable, Sendable {
         highlights: [SyntaxType: [Highlight]] = [:],
         outlines: [Outline] = [],
         commentDelimiters: Comment = .init(),
-        stringDelimiters: [StringDelimiter] = [],
+        stringDelimiters: [PairDelimiter] = [],
         indentation: Indentation = .init(),
         lexicalRules: LexicalRules = .default,
         completions: [CompletionWord] = [],

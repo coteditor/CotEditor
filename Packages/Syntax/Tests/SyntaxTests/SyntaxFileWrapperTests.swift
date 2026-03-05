@@ -125,7 +125,7 @@ struct SyntaxFileWrapperTests {
             "end": "\"",
         ])
         
-        let delimiter = try JSONDecoder().decode(Syntax.StringDelimiter.self, from: data)
+        let delimiter = try JSONDecoder().decode(Syntax.PairDelimiter.self, from: data)
         
         #expect(delimiter.begin == "\"")
         #expect(delimiter.end == "\"")
@@ -137,7 +137,7 @@ struct SyntaxFileWrapperTests {
     
     @Test func stringDelimiterEncodingSkipsDefaults() throws {
         
-        let delimiter = Syntax.StringDelimiter(begin: "'", end: "'", escapeRule: .none)
+        let delimiter = Syntax.PairDelimiter(begin: "'", end: "'", escapeRule: .none)
         let data = try JSONEncoder().encode(delimiter)
         let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
         
@@ -151,7 +151,7 @@ struct SyntaxFileWrapperTests {
     
     @Test func stringDelimiterEncodingIncludesDescription() throws {
         
-        let delimiter = Syntax.StringDelimiter(begin: "'", end: "'", description: "single quoted")
+        let delimiter = Syntax.PairDelimiter(begin: "'", end: "'", description: "single quoted")
         let data = try JSONEncoder().encode(delimiter)
         let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
         

@@ -184,7 +184,7 @@ extension Syntax.Comment.Block {
 }
 
 
-extension Syntax.StringDelimiter: Codable {
+extension Syntax.PairDelimiter: Codable {
     
     private enum CodingKeys: String, CodingKey {
         

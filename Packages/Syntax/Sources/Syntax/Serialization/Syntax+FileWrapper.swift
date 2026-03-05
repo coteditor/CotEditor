@@ -52,7 +52,7 @@ extension Syntax {
     struct Edit: Equatable, Sendable, Codable {
         
         var comment: Comment?
-        var stringDelimiters: [StringDelimiter]?
+        var stringDelimiters: [PairDelimiter]?
         var indentation: Indentation?
         var lexicalRules: LexicalRules?
     }

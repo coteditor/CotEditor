@@ -31,7 +31,7 @@ struct SyntaxDelimitersEditView: View {
     
     @Binding var inlineComments: [SyntaxObject.InlineComment]
     @Binding var blockComments: [SyntaxObject.BlockComment]
-    @Binding var stringDelimiters: [SyntaxObject.StringDelimiter]
+    @Binding var stringDelimiters: [SyntaxObject.PairDelimiter]
     @Binding var indentations: [SyntaxObject.BlockIndent]
     @Binding var lexicalRules: Syntax.LexicalRules
     
@@ -204,7 +204,7 @@ private struct BlockCommentsEditView: View {
 
 private struct StringDelimitersEditView: View {
     
-    typealias Item = SyntaxObject.StringDelimiter
+    typealias Item = SyntaxObject.PairDelimiter
     
     @Binding var items: [Item]
     
@@ -352,7 +352,7 @@ private extension DelimiterEscapeRule {
 #Preview {
     @Previewable @State var inlineComments: [SyntaxObject.InlineComment] = [.init(value: .init(begin: "//"))]
     @Previewable @State var blockComments: [SyntaxObject.BlockComment] = [.init(value: .init(begin: "/*", end: "*/"))]
-    @Previewable @State var stringDelimiters: [SyntaxObject.StringDelimiter] = [.init(value: .init(begin: "\"", end: "\""))]
+    @Previewable @State var stringDelimiters: [SyntaxObject.PairDelimiter] = [.init(value: .init(begin: "\"", end: "\""))]
     @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: .init(begin: "{", end: "}"))]
     @Previewable @State var rules: Syntax.LexicalRules = .default
     

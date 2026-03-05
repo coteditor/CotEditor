@@ -40,7 +40,7 @@ import Syntax
     typealias KeyString = Item<String>
     typealias InlineComment = Item<Syntax.Comment.Inline>
     typealias BlockComment = Item<Syntax.Comment.Block>
-    typealias StringDelimiter = Item<Syntax.StringDelimiter>
+    typealias PairDelimiter = Item<Syntax.PairDelimiter>
     typealias BlockIndent = Item<Syntax.Delimiter>
     typealias CompletionWord = Item<Syntax.CompletionWord>
     typealias Metadata = Syntax.Metadata
@@ -84,7 +84,7 @@ import Syntax
     
     var inlineComments: [InlineComment] = []
     var blockComments: [BlockComment] = []
-    var stringDelimiters: [StringDelimiter] = []
+    var stringDelimiters: [PairDelimiter] = []
     var indentations: [BlockIndent] = []
     var lexicalRules: Syntax.LexicalRules = .default
     
@@ -253,7 +253,7 @@ extension SyntaxObject.BlockIndent {
 }
 
 
-extension SyntaxObject.StringDelimiter {
+extension SyntaxObject.PairDelimiter {
     
     init() {
         
