@@ -73,6 +73,12 @@
       "description" : "UTF-32 raw string literal (simplified delimiter handling)"
     }
   ],
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

@@ -5,12 +5,6 @@
       "regularExpression" : true
     }
   ],
-  "characters" : [
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
-  ],
   "commands" : [
     {
       "begin" : "\\bany(?=\\()",

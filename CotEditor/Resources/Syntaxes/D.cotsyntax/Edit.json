@@ -52,6 +52,12 @@
       "description" : "Hex string literal"
     }
   ],
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

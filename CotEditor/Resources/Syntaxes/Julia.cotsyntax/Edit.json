@@ -40,6 +40,12 @@
       "description" : "Version number literal"
     }
   ],
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

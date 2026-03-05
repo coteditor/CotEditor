@@ -66,6 +66,12 @@
       "description" : "Raw byte string literal (2 hashes)"
     }
   ],
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

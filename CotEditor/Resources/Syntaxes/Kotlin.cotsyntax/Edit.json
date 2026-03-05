@@ -25,6 +25,12 @@
       "escapeRule" : "none"
     }
   ],
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'"
+    }
+  ],
   "indentation" : {
     "blockDelimiters" : [
       {

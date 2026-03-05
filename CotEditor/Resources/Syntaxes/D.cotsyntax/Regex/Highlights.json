@@ -19,12 +19,6 @@
       "begin" : "@property"
     }
   ],
-  "characters" : [
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
-  ],
   "commands" : [
     {
       "begin" : "_d_array_bounds"

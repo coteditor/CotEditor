@@ -40,12 +40,6 @@
       "begin" : "#warning"
     }
   ],
-  "characters" : [
-    {
-      "begin" : "'",
-      "end" : "'"
-    }
-  ],
   "commands" : [
     {
       "begin" : "cross"
