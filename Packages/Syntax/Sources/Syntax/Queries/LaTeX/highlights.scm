@@ -1,5 +1,5 @@
 ;
-;  highlights.scm
+;  Highlights.scm
 ;  for LaTeX
 ;
 ;  CotEditor

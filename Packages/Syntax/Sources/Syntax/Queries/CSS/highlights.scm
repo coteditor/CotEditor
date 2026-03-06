@@ -1,5 +1,5 @@
 ;
-;  Highlights.scm
+;  highlights.scm
 ;  for CSS
 ;
 ;  CotEditor

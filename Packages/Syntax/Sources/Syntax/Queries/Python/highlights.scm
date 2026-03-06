@@ -1,5 +1,5 @@
 ;
-;  Highlights.scm
+;  highlights.scm
 ;  for Python
 ;
 ;  CotEditor
