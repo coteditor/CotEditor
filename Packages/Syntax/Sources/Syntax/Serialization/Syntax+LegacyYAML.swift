@@ -223,6 +223,13 @@ extension Syntax: Decodable {
         highlights[.strings] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .strings)?.map(\.highlight) ?? []
         highlights[.characters] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .characters)?.map(\.highlight) ?? []
         highlights[.comments] = try values.decodeIfPresent([LegacyHighlight].self, forKey: .comments)?.map(\.highlight) ?? []
+        
+        // migrate delimiter pairs from highlights to dedicated delimiter properties
+        let (stringHighlights, stringDelimiters) = Self.extractDelimiters(from: highlights[.strings] ?? [])
+        let (characterHighlights, characterDelimiters) = Self.extractDelimiters(from: highlights[.characters] ?? [])
+        highlights[.strings] = stringHighlights
+        highlights[.characters] = characterHighlights
+        
         self.highlights = highlights
         
         self.outlines = (try values.decodeIfPresent([LegacyOutline].self, forKey: .outlines)?.map(\.outline) ?? [])
@@ -233,13 +240,13 @@ extension Syntax: Decodable {
                     outline.kind = .separator
                     return outline
                 }
-               return outline
+                return outline
             }
         
         self.commentDelimiters = (try values.decodeIfPresent([String: String].self, forKey: .commentDelimiters))
             .flatMap(Comment.init(legacyDictionary:)) ?? .init()
-        self.stringDelimiters = []
-        self.characterDelimiters = []
+        self.stringDelimiters = stringDelimiters
+        self.characterDelimiters = characterDelimiters
         self.indentation = Indentation()
         self.lexicalRules = .default
         self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?
@@ -247,6 +254,31 @@ extension Syntax: Decodable {
             .compactMap { CompletionWord(text: $0) } ?? []
         
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
+    }
+    
+    
+    /// Separates delimiter-like highlights from the given array.
+    ///
+    /// - Parameter highlights: The highlight array to partition.
+    /// - Returns: A tuple of remaining highlights and extracted pair delimiters.
+    private static func extractDelimiters(from highlights: [Highlight]) -> ([Highlight], [PairDelimiter]) {
+
+        var remainingHighlights: [Highlight] = []
+        var delimiters: [PairDelimiter] = []
+
+        for highlight in highlights {
+            if !highlight.isRegularExpression,
+               let end = highlight.end, !end.isEmpty,
+               highlight.begin == end,
+               highlight.begin.allSatisfy("\"'`".contains)
+            {
+                delimiters.append(PairDelimiter(begin: highlight.begin, end: end, description: highlight.description))
+            } else {
+                remainingHighlights.append(highlight)
+            }
+        }
+
+        return (remainingHighlights, delimiters)
     }
 }
 
