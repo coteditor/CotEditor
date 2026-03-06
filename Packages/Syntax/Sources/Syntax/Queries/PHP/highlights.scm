@@ -331,6 +331,8 @@
 ; MARK: Characters
 ; ----------------------------
 
+(escape_sequence) @characters
+
 
 ; MARK: Comments
 ; ----------------------------

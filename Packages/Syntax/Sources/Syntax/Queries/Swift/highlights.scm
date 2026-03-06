@@ -108,8 +108,6 @@
   (super_expression)
 ] @keywords
 
-(shebang_line) @keywords
-
 
 ; MARK: Commands
 ; ----------------------------
@@ -282,3 +280,5 @@
   (comment)
   (multiline_comment)
 ] @comments
+
+(shebang_line) @comments

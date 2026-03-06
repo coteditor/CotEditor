@@ -142,7 +142,7 @@
 
 (generic_command
   (command_name) @keywords
-  (#lua-match? @keywords "^\\if[a-zA-Z@]+$"))
+  (#match? @keywords "^\\\\if[a-zA-Z@]+$"))
 
 (generic_command
   (command_name) @keywords

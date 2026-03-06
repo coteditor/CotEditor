@@ -62,6 +62,9 @@
   (inline_modifier)
 ] @keywords
 
+((identifier) @keywords
+  (#match? @keywords "^this$|^super$"))
+
 
 ; MARK: Commands
 ; ----------------------------
@@ -160,9 +163,6 @@
   (boolean_literal)
   (null_literal)
 ] @values
-
-((identifier) @values
-  (#match? @values "^this$|^super$"))
 
 
 ; MARK: Numbers

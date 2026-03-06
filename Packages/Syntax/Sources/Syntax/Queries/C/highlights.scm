@@ -104,10 +104,7 @@
 ; MARK: Numbers
 ; ----------------------------
 
-[
-  (number_literal)
-  (char_literal)
-] @numbers
+(number_literal) @numbers
 
 
 ; MARK: Strings
@@ -123,6 +120,12 @@
 ; ----------------------------
 
 (field_identifier) @attributes
+
+
+; MARK: Characters
+; ----------------------------
+
+(char_literal) @characters
 
 
 ; MARK: Comments

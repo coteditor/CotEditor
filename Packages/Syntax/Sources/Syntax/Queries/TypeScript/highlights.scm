@@ -106,8 +106,7 @@
 
 ; built-in functions
 ((identifier) @commands
- (#eq? @commands "require")
- (#is-not? local))
+ (#eq? @commands "require"))
 
 
 ; MARK: Types
@@ -153,8 +152,7 @@
 
 ; built-in variables (mixed env: JS/Node/Browser)
 ((identifier) @variables
- (#match? @variables "^(arguments|module|console|window|document|globalThis)$")
- (#is-not? local))
+ (#match? @variables "^(arguments|module|console|window|document|globalThis)$"))
 
 ; UPPER_SNAKE_CASE identifiers
 ([
