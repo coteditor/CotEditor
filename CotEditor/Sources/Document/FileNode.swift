@@ -144,23 +144,39 @@ final class FileNode {
 }
 
 
-extension FileNode: Equatable {
+extension FileNode: Equatable, Hashable {
     
     static func == (lhs: FileNode, rhs: FileNode) -> Bool {
         
-        lhs.file.isDirectory == rhs.file.isDirectory &&
-        lhs.file.name == rhs.file.name &&
-        lhs.file.isWritable == rhs.file.isWritable &&
-        lhs.parents.map(\.file.name) == rhs.parents.map(\.file.name)
+        lhs === rhs
+    }
+    
+    
+    func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(ObjectIdentifier(self))
     }
 }
 
 
-extension FileNode: Hashable {
+extension FileNode {
     
-    func hash(into hasher: inout Hasher) {
+    struct IdentityKey: Hashable {
         
-        hasher.combine(self.file.fileURL)
+        var isDirectory: Bool
+        var name: String
+        var isWritable: Bool
+        var parentNames: [String]
+    }
+    
+    
+    /// A semantic key used to match recreated nodes in UI operations.
+    var identityKey: IdentityKey {
+        
+        IdentityKey(isDirectory: self.file.isDirectory,
+                    name: self.file.name,
+                    isWritable: self.file.isWritable,
+                    parentNames: self.parents.map(\.file.name))
     }
 }
 

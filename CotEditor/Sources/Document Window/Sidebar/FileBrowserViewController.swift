@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -350,7 +350,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // -> reload later in viewWillAppear
         guard !self.view.isHiddenOrHasHiddenAncestor else { return }
         
-        self.outlineView.reloadItem((self.document.fileNode == node) ? nil : node, reloadChildren: true)
+        self.outlineView.reloadItem(self.outlineParentItem(for: node), reloadChildren: true)
     }
     
     
@@ -528,8 +528,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // update UI
-        if let index = self.children(of: folderNode)?.firstIndex(of: node) {
-            let parent = (folderNode == self.document.fileNode) ? nil : folderNode
+        if let index = self.index(of: node, in: folderNode) {
+            let parent = self.outlineParentItem(for: folderNode)
             self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .slideDown)
         }
         self.select(node: node, edit: true)
@@ -553,8 +553,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // update UI
-        if let index = self.children(of: folderNode)?.firstIndex(of: node) {
-            let parent = (folderNode == self.document.fileNode) ? nil : folderNode
+        if let index = self.index(of: node, in: folderNode) {
+            let parent = self.outlineParentItem(for: folderNode)
             self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .slideDown)
         }
         self.select(node: node, edit: true)
@@ -583,8 +583,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // update UI
-        if let index = self.children(of: newNode.parent)?.firstIndex(of: newNode) {
-            let parent = (newNode.parent == self.document.fileNode) ? nil : newNode.parent
+        if let index = self.index(of: newNode, in: newNode.parent) {
+            let parent = self.outlineParentItem(for: newNode.parent)
             self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .slideDown)
         }
         self.select(node: newNode)
@@ -713,7 +713,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         if updatesExpansion {
-            let nodesToExpand = Set(matchedNodes.flatMap(\.parents))
+            var seenNodeKeys: Set<FileNode.IdentityKey> = []
+            let nodesToExpand = matchedNodes.flatMap(\.parents)
+                .filter { seenNodeKeys.insert($0.identityKey).inserted }
                 .sorted(using: KeyPathComparator(\.parents.count))
                 .prefix(1_000)  // limit the number of items to avoid getting stuck
             for node in nodesToExpand {
@@ -960,10 +962,14 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         self.outlineView.beginUpdates()
         for fileURL in fileURLs {
             if operation == .move {
-                guard
-                    let node = self.document.fileNode?.node(at: fileURL),
-                    node.parent != destNode  // ignore same location
-                else { continue }
+                guard let node = self.document.fileNode?.node(at: fileURL) else { continue }
+                
+                let isSameLocation = if let parent = node.parent {
+                    parent === destNode || parent.identityKey == destNode.identityKey
+                } else {
+                    false
+                }
+                guard !isSameLocation else { continue }  // ignore same location
                 
                 do {
                     try self.document.moveItem(at: node, to: destNode)
@@ -974,7 +980,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
                 
                 let oldIndex = self.outlineView.childIndex(forItem: node)
                 let oldParent = self.outlineView.parent(forItem: node)
-                let childIndex = self.children(of: destNode)?.firstIndex(of: node)
+                let childIndex = self.index(of: node, in: destNode)
                 self.outlineView.moveItem(at: oldIndex, inParent: oldParent, to: childIndex ?? 0, inParent: item)
                 
             } else {
@@ -986,7 +992,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
                     continue
                 }
                 
-                let childIndex = self.children(of: destNode)?.firstIndex(of: node)
+                let childIndex = self.index(of: node, in: destNode)
                 self.outlineView.insertItems(at: [childIndex ?? 0], inParent: item, withAnimation: .slideDown)
             }
             
@@ -1044,6 +1050,43 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     private func children(of node: FileNode?) -> [FileNode]? {
         
         (node ?? self.document.fileNode)?.filteredChildren(includesHiddenNodes: self.showsHiddenFiles)
+    }
+    
+    
+    /// Returns the parent item representation for the outline view.
+    ///
+    /// Top-level items use `nil` as parent.
+    ///
+    /// - Parameter parentNode: The parent node to convert, or `nil` for root.
+    /// - Returns: `nil` for top-level/root items; otherwise the given `parentNode`.
+    private func outlineParentItem(for parentNode: FileNode?) -> FileNode? {
+        
+        guard let parentNode else { return nil }
+        
+        return (parentNode.parent == nil) ? nil : parentNode
+    }
+    
+    
+    /// Returns the child index for the given node in the given parent.
+    ///
+    /// This lookup prefers object identity for NSOutlineView consistency and
+    /// falls back to semantic identity to tolerate recreated node instances.
+    ///
+    /// - Parameters:
+    ///   - targetNode: The child node whose index should be resolved.
+    ///   - parentNode: The parent node that contains the target node, or `nil` for root.
+    /// - Returns: The zero-based index in the displayed children, or `nil` if unresolved.
+    private func index(of targetNode: FileNode, in parentNode: FileNode?) -> Int? {
+        
+        guard let children = self.children(of: parentNode) else { return nil }
+        
+        if let index = children.firstIndex(where: { $0 === targetNode }) {
+            return index
+        }
+        
+        let targetKey = targetNode.identityKey
+        
+        return children.firstIndex { $0.identityKey == targetKey }
     }
 }
 
@@ -1175,7 +1218,7 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         // sort
         let parent = self.outlineView.parent(forItem: node)
         let oldIndex = self.outlineView.childIndex(forItem: node)
-        if let newIndex = self.children(of: node.parent)?.firstIndex(of: node), newIndex != oldIndex {
+        if let newIndex = self.index(of: node, in: node.parent), newIndex != oldIndex {
             self.outlineView.moveItem(at: oldIndex, inParent: parent, to: newIndex, inParent: parent)
         }
         
