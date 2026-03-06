@@ -8,37 +8,37 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 (tag_name) @keywords
 (erroneous_end_tag_name) @keywords.error
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (doctype) @commands
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (attribute_name) @attributes
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 (attribute_value) @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 (entity) @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

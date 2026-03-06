@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -310,7 +310,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (invocation
@@ -334,7 +334,7 @@
     parameter: [(literal)]?)))
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (object_reference
@@ -393,7 +393,7 @@
 ] @types
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (field
@@ -430,7 +430,7 @@
 ] @attributes
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (relation
@@ -442,14 +442,14 @@
 (parameter) @variables
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 ; -> Keep @strings before @values/@numbers because all are literal-based.
 (literal) @strings
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 [
@@ -459,7 +459,7 @@
 ] @values
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 ((literal) @numbers
@@ -472,7 +472,7 @@
   (#match? @numbers "^[-+]?[0-9]+[eE][-+]?[0-9]+$"))
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

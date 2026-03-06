@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -73,7 +73,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 ; function and method calls
@@ -110,7 +110,7 @@
  (#is-not? local))
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (type_identifier) @types
@@ -121,7 +121,7 @@
   (#match? @types "^[A-Z][a-z]\\w*$"))
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 ; decorators
@@ -145,7 +145,7 @@
   value: [(function_expression) (arrow_function)])
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (required_parameter (identifier) @variables)
@@ -170,7 +170,7 @@
 ] @variables
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 [
@@ -181,13 +181,13 @@
 ] @values
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 (number) @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -198,7 +198,7 @@
 (regex) @strings
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

@@ -12,7 +12,7 @@
 ; (identifier) @variables
 
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -60,7 +60,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 ; general attribute access: obj.attr / pkg.mod.name
@@ -92,7 +92,7 @@
   (#match? @commands "^__\\w+__$"))
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (type (identifier) @types)
@@ -104,7 +104,7 @@
  (#match? @types.constructor "^[A-Z]"))
 
 
-; Attributes (decorators)
+; MARK: Attributes (decorators)
 ; ----------------------------
 
 ; @name
@@ -130,7 +130,7 @@
     function: (attribute attribute: (identifier) @attributes)))
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 ; Normal variables are set at the beginning of the file.
@@ -142,7 +142,7 @@
   (#eq? @variables "super"))
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 [
@@ -169,7 +169,7 @@
   "__future__" @values)
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -178,19 +178,19 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 (string) @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 (escape_sequence) @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

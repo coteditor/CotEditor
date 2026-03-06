@@ -1,14 +1,14 @@
 ;
-; highlights.scm
-; for Makefile
+;  highlights.scm
+;  for Makefile
 ;
 ;  CotEditor
 ;  https://coteditor.com
 ;
-; © 2026 1024jp
+;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -36,7 +36,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 [
@@ -73,7 +73,7 @@
 ] @commands
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (targets
@@ -83,7 +83,7 @@
   (#match? @types "[\\%\\*\\?]"))
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (variable_assignment
@@ -101,7 +101,7 @@
 ] @variables
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -110,7 +110,7 @@
 ] @strings
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

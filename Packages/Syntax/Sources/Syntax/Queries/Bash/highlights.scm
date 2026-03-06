@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -32,7 +32,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 ((command_name) @commands
@@ -42,13 +42,13 @@
   name: (word) @commands)
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (variable_name) @variables
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 ((command
@@ -56,13 +56,13 @@
  (#match? @values "^-"))
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 (file_descriptor) @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -73,7 +73,7 @@
 ] @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 [
@@ -89,7 +89,7 @@
 ] @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

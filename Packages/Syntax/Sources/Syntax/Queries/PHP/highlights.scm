@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -82,7 +82,7 @@
 ] @keywords.tag
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (namespace_use_clause
@@ -121,7 +121,7 @@
   name: (name) @commands)
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (namespace_definition
@@ -196,7 +196,7 @@
   ])
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (attribute_group
@@ -217,7 +217,7 @@
       name: (name) @attributes)))
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 ; property
@@ -251,7 +251,7 @@
         (name) @variables))))
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 (namespace_use_clause
@@ -306,7 +306,7 @@
 ] @values
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -315,7 +315,7 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -328,11 +328,11 @@
 ] @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

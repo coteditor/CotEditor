@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -62,7 +62,7 @@
 (scoped_identifier (self) @keywords)
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (call_expression
@@ -94,7 +94,7 @@
 (function_signature_item (identifier) @commands)
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (type_identifier) @types
@@ -123,7 +123,7 @@
     name: (type_identifier) @types))
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 [
@@ -132,7 +132,7 @@
 ] @attributes
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (field_identifier) @variables
@@ -141,7 +141,7 @@
 (self) @variables.builtin
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 (boolean_literal) @values
@@ -150,7 +150,7 @@
  (#match? @values "^[A-Z][A-Z\\d_]+$"))
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -159,7 +159,7 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -168,7 +168,7 @@
 ] @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 [
@@ -177,7 +177,7 @@
 ] @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 [

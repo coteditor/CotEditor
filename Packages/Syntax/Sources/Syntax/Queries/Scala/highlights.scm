@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -63,7 +63,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (function_declaration
@@ -89,7 +89,7 @@
   interpolator: (identifier) @commands)
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (type_identifier) @types
@@ -119,13 +119,13 @@
   value: (identifier) @types
   (#match? @types "^[A-Z]"))
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (annotation) @attributes
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (class_parameter
@@ -153,7 +153,7 @@
   name: (identifier) @variables)
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 [
@@ -165,7 +165,7 @@
   (#match? @values "^this$|^super$"))
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -174,7 +174,7 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -184,13 +184,13 @@
 ] @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 (interpolation "$" @characters)
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 [

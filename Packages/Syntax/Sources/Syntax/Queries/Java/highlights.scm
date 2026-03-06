@@ -12,7 +12,7 @@
 (identifier) @variables
 
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -74,7 +74,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (method_declaration
@@ -84,7 +84,7 @@
   name: (identifier) @commands.method)
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (type_identifier) @types
@@ -125,7 +125,7 @@
 ] @types.builtin
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (annotation
@@ -137,13 +137,13 @@
 "@" @attributes
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 ; -> Normal variables are set at the beginning of the file.
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 ((identifier) @values
@@ -156,7 +156,7 @@
 ] @values.builtin
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -168,7 +168,7 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -177,13 +177,13 @@
 ] @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 (escape_sequence) @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 [

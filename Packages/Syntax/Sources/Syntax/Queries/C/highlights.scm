@@ -12,7 +12,7 @@
 (identifier) @variables
 
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -53,7 +53,7 @@
 (preproc_directive) @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (call_expression
@@ -70,7 +70,7 @@
   name: (identifier) @commands)
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 [
@@ -92,7 +92,7 @@
   declarator: (type_identifier) @types)
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 ((identifier) @values
@@ -101,7 +101,7 @@
 (null) @values.builtin
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -110,7 +110,7 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -119,13 +119,13 @@
 ] @strings
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (field_identifier) @attributes
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

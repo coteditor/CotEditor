@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -26,7 +26,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (function_name) @commands
@@ -45,13 +45,13 @@
 ] @commands
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (important) @types
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 ; selectors
@@ -70,7 +70,7 @@
 (attribute_name) @attributes
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 [
@@ -84,13 +84,13 @@
  (#match? @variables "^--"))
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 (plain_value) @values
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -105,7 +105,7 @@
  (#match? @numbers "^(%|px|em|rem|ex|rex|ch|rch|ic|ric|cap|rcap|lh|rlh|cm|mm|Q|q|in|pt|pc)/[0-9]*\.?[0-9]+$"))
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 (attribute_selector (plain_value) @strings)
@@ -114,7 +114,7 @@
 (color_value) @strings
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

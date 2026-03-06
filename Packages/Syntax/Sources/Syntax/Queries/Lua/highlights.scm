@@ -12,7 +12,7 @@
 (identifier) @variables
 
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 "return" @keywords.return
@@ -93,7 +93,7 @@
 ] @keywords.operator
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (function_declaration
@@ -169,14 +169,14 @@
   ))
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 ((identifier) @types.constant
  (#match? @types.constant "^[A-Z][A-Z_0-9]*$"))
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (field
@@ -190,7 +190,7 @@
     (identifier) @attributes))
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 ((identifier) @variables.builtin
@@ -200,7 +200,7 @@
   (identifier) @variables)
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 (vararg_expression) @values
@@ -213,25 +213,25 @@
 ] @values.builtin
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 (number) @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 (string) @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 (escape_sequence) @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

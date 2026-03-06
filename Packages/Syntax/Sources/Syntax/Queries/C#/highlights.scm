@@ -5,8 +5,10 @@
 ;  CotEditor
 ;  https://coteditor.com
 ;
+;  © 2026 1024jp
+;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -80,7 +82,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (method_declaration name: (identifier) @commands.method)
@@ -91,7 +93,7 @@
 (invocation_expression (member_access_expression name: (identifier) @commands.method))
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (interface_declaration name: (identifier) @types)
@@ -108,14 +110,14 @@
 (predefined_type) @types.builtin
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 (attribute name: (identifier) @attributes)
 (type_parameter (identifier) @attributes)
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (parameter name: (identifier) @variables)
@@ -127,7 +129,7 @@
 (foreach_statement left: (identifier) @variables)
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 (enum_member_declaration (identifier) @values)
@@ -138,7 +140,7 @@
 ] @values.builtin
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -147,7 +149,7 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -159,13 +161,13 @@
 ] @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 (escape_sequence) @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

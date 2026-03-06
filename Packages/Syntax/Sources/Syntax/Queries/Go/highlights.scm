@@ -8,7 +8,7 @@
 ;  © 2026 1024jp
 ;
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -40,7 +40,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 (call_expression
@@ -61,24 +61,24 @@
   name: (field_identifier) @commands.method)
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (type_identifier) @types
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 (field_identifier) @variables
 (identifier) @variables
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 [
@@ -89,7 +89,7 @@
 ] @values
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 [
@@ -99,7 +99,7 @@
 ] @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -109,13 +109,13 @@
 ] @strings
 
 
-; Characters
+; MARK: Characters
 ; ----------------------------
 
 (escape_sequence) @characters
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments

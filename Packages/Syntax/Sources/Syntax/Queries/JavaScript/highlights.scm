@@ -12,7 +12,7 @@
 (identifier) @variables
 
 
-; Keywords
+; MARK: Keywords
 ; ----------------------------
 
 [
@@ -59,7 +59,7 @@
 ] @keywords
 
 
-; Commands
+; MARK: Commands
 ; ----------------------------
 
 ; function and method calls
@@ -96,7 +96,7 @@
  (#is-not? local))
 
 
-; Types
+; MARK: Types
 ; ----------------------------
 
 (class_declaration name: (identifier) @types)
@@ -107,7 +107,7 @@
   (#match? @types "^[A-Z][a-z]\\w*$"))
 
 
-; Attributes
+; MARK: Attributes
 ; ----------------------------
 
 ; dot-accessed properties
@@ -124,7 +124,7 @@
   value: [(function_expression) (arrow_function)])
 
 
-; Variables
+; MARK: Variables
 ; ----------------------------
 
 ; built-in variables (mixed env: JS/Node/Browser)
@@ -148,7 +148,7 @@
 ; -> Normal variables are set at the beginning of the file.
 
 
-; Values
+; MARK: Values
 ; ----------------------------
 
 [
@@ -159,13 +159,13 @@
 ] @values
 
 
-; Numbers
+; MARK: Numbers
 ; ----------------------------
 
 (number) @numbers
 
 
-; Strings
+; MARK: Strings
 ; ----------------------------
 
 [
@@ -176,7 +176,7 @@
 (regex) @strings
 
 
-; Comments
+; MARK: Comments
 ; ----------------------------
 
 (comment) @comments
