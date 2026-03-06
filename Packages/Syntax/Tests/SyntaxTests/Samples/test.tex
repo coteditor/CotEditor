@@ -1,0 +1,121 @@
+% !TeX program = lualatex
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\title{Tree-sitter LaTeX Test}
+\author{CotEditor}
+
+\newcommand{\pkg}[1]{\texttt{#1}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray}
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}\label{sec:intro}
+This document references Section~\ref{sec:intro} and cites \cite{knuth1984texbook}.
+We also link to \href{https://coteditor.com}{CotEditor website}.
+
+\subsection{Math}
+Inline math $a_1 = b^2$ and display:
+\[
+  E = mc^2
+\]
+\[
+  \nabla \cdot \vect{F} = \frac{\partial F_x}{\partial x}
+  + \frac{\partial F_y}{\partial y}
+  + \frac{\partial F_z}{\partial z}
+\]
+
+\subsection{Theorem}
+\begin{theorem}
+For all integers $n \ge 1$, we have
+\[
+  \sum_{k=1}^{n} k = \frac{n(n+1)}{2}.
+\]
+\end{theorem}
+
+\begin{proof}
+The statement follows by induction on $n$.
+\end{proof}
+
+\begin{itemize}
+  \item Load package \pkg{graphicx}
+  \item Configure \pkg{hyperref} for links
+  \item Use \pkg{listings} for source code
+\end{itemize}
+
+\subsection{Enumerations}
+\begin{enumerate}
+  \item First item
+  \item Second item with nested list:
+  \begin{enumerate}
+    \item Nested one
+    \item Nested two
+  \end{enumerate}
+  \item Third item
+\end{enumerate}
+
+\section{Figures and Tables}\label{sec:figures}
+\subsection{Figure}
+\begin{figure}[htbp]
+  \centering
+  \fbox{\rule{0pt}{4cm}\rule{6cm}{0pt}}
+  \caption{Placeholder figure}
+  \label{fig:placeholder}
+\end{figure}
+
+\subsection{Table}
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{lrr}
+    \hline
+    Item & Count & Ratio \\
+    \hline
+    Alpha & 12 & 0.25 \\
+    Beta & 24 & 0.50 \\
+    Gamma & 12 & 0.25 \\
+    \hline
+  \end{tabular}
+  \caption{Simple numeric table}
+  \label{tab:simple}
+\end{table}
+
+\section{Code}
+Example Python snippet:
+\begin{lstlisting}
+def fib(n: int) -> int:
+    if n <= 1:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+for i in range(10):
+    print(i, fib(i))
+\end{lstlisting}
+
+\section{Cross References}
+Figure~\ref{fig:placeholder} and Table~\ref{tab:simple}
+are defined in Section~\ref{sec:figures}.
+
+\paragraph{Inline note}
+This is a paragraph-level heading with \emph{emphasis}, \textbf{strong text},
+and \texttt{inline code-like text}.
+
+\subparagraph{Detail}
+Additional subparagraph content with symbols: $\alpha, \beta, \gamma$.
+
+\section*{Unnumbered}
+This section is intentionally unnumbered.
+
+\end{document}

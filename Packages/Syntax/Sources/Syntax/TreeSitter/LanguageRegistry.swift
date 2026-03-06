@@ -36,6 +36,7 @@ import TreeSitterGo
 import TreeSitterHTML
 import TreeSitterJava
 import TreeSitterJavaScript
+import TreeSitterLatex
 import TreeSitterLua
 import TreeSitterMake
 import TreeSitterMarkdown
@@ -175,6 +176,7 @@ private extension TreeSitterSyntax {
             case .html: unsafe tree_sitter_html()
             case .java: unsafe tree_sitter_java()
             case .javaScript: unsafe tree_sitter_javascript()
+            case .latex: unsafe tree_sitter_latex()
             case .lua: unsafe tree_sitter_lua()
             case .makefile: unsafe tree_sitter_make()
             case .markdown: unsafe tree_sitter_markdown()

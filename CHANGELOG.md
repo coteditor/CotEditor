@@ -13,6 +13,7 @@
     - HTML
     - Java
     - JavaScript
+    - LaTeX (only for outline extraction)
     - Lua
     - Makefile
     - Markdown (only for outline extraction)

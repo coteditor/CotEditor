@@ -34,6 +34,7 @@ public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     case html = "HTML"
     case java = "Java"
     case javaScript = "JavaScript"
+    case latex = "LaTeX"
     case lua = "Lua"
     case makefile = "Makefile"
     case markdown = "Markdown"
@@ -53,7 +54,7 @@ public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     public var features: ParserFeatures {
         
         switch self {
-            case .markdown: [.outline]
+            case .latex, .markdown: [.outline]
             default: [.highlight, .outline]
         }
     }

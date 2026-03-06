@@ -94,6 +94,7 @@ private extension TreeSitterSyntax {
             case .html: "test.html"
             case .java: "test.java"
             case .javaScript: "test.js"
+            case .latex: "test.tex"
             case .lua: "test.lua"
             case .makefile: "Makefile"
             case .markdown: "test.md"

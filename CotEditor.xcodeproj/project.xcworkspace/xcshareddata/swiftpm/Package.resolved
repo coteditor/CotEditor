@@ -1,5 +1,5 @@
 {
-  "originHash" : "aa130cd395fba2d2474320df953c189ce7e6d5ae1fb072893c8b3020cce967c2",
+  "originHash" : "efb1c5e410190bf1d55ef7515ee014328f3ecd6d9cc2bcfd9f899b5deddf172b",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -125,6 +125,15 @@
       "state" : {
         "branch" : "swiftPackage",
         "revision" : "0f459c8e007c8ab6488577e0877ee27df0ddcdfc"
+      }
+    },
+    {
+      "identity" : "tree-sitter-latex",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/1024jp/tree-sitter-latex",
+      "state" : {
+        "branch" : "swiftPackage",
+        "revision" : "e27d10e475cb091fb15df58a0d055ff6464e6024"
       }
     },
     {

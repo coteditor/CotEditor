@@ -15,6 +15,7 @@ The following languages are currently supported by tree-sitter in this package:
 - HTML
 - Java
 - JavaScript
+- LaTeX (outline extraction only)
 - Lua
 - Makefile
 - Markdown (outline extraction only)
