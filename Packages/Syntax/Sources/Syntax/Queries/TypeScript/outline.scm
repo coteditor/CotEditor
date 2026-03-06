@@ -24,3 +24,6 @@
 ; Functions
 (function_declaration
   name: (identifier) @outline.function)
+
+(method_definition
+  name: (property_identifier) @outline.function)

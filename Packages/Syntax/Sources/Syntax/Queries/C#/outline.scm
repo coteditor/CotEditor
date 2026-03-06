@@ -5,6 +5,8 @@
 ;  CotEditor
 ;  https://coteditor.com
 ;
+;  © 2026 1024jp
+;
 
 ; Containers
 (namespace_declaration

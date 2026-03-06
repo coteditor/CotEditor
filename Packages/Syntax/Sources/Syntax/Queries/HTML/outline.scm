@@ -12,42 +12,42 @@
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.heading.1)
-  (#match? @tag "^h1$"))
+  (#eq? @tag "h1"))
 
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.heading.2)
-  (#match? @tag "^h2$"))
+  (#eq? @tag "h2"))
 
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.heading.3)
-  (#match? @tag "^h3$"))
+  (#eq? @tag "h3"))
 
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.heading.4)
-  (#match? @tag "^h4$"))
+  (#eq? @tag "h4"))
 
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.heading.5)
-  (#match? @tag "^h5$"))
+  (#eq? @tag "h5"))
 
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.heading.6)
-  (#match? @tag "^h6$"))
+  (#eq? @tag "h6"))
 
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.title)
-  (#match? @tag "^title$"))
+  (#eq? @tag "title"))
 
 ; hr separator
 ((self_closing_tag (tag_name) @outline.separator)
-  (#match? @outline.separator "^hr$"))
+  (#eq? @outline.separator "hr"))
 
 ((element
    (start_tag (tag_name) @outline.separator))
-  (#match? @outline.separator "^hr$"))
+  (#eq? @outline.separator "hr"))

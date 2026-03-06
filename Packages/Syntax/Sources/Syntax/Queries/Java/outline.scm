@@ -23,7 +23,7 @@
 
 ; Functions
 (method_declaration
-  (identifier) @outline.function)
+  name: (identifier) @outline.function)
 
 (constructor_declaration
   name: (identifier) @outline.function)

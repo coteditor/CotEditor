@@ -1,11 +1,11 @@
 ;
-; outline.scm
-; for Makefile
+;  outline.scm
+;  for Makefile
 ;
 ;  CotEditor
 ;  https://coteditor.com
 ;
-; © 2026 1024jp
+;  © 2026 1024jp
 ;
 
 ; Targets

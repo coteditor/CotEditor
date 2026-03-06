@@ -5,6 +5,8 @@
 ;  CotEditor
 ;  https://coteditor.com
 ;
+;  © 2026 1024jp
+;
 
 (title_declaration
   text: (curly_group
