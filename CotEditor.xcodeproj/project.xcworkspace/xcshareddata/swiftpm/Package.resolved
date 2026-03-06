@@ -1,5 +1,5 @@
 {
-  "originHash" : "e0fcd4196948e45581b732f1f5082f81131d1d20be708463e18b206105c4c2b4",
+  "originHash" : "aa130cd395fba2d2474320df953c189ce7e6d5ae1fb072893c8b3020cce967c2",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -71,6 +71,15 @@
       "state" : {
         "branch" : "swiftPackage",
         "revision" : "5d2ee65083eaf1523ef73f5720442bb28ec17aa8"
+      }
+    },
+    {
+      "identity" : "tree-sitter-c-sharp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tree-sitter/tree-sitter-c-sharp",
+      "state" : {
+        "revision" : "362a8a41b265056592a0c3771664a21d23a71392",
+        "version" : "0.23.1"
       }
     },
     {

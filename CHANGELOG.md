@@ -7,6 +7,7 @@
 
 - Introduce a new parser, tree-sitter, for syntax highlighting and outline extraction in multiple built-in syntaxes:
     - C
+    - C#
     - CSS
     - Go
     - HTML

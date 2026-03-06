@@ -1,0 +1,462 @@
+[
+  {
+    "text" : "#define",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#elif",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#endif",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#endregion",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#error",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#line",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#pragma",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#region",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#undef",
+    "type" : "keywords"
+  },
+  {
+    "text" : "#warning",
+    "type" : "keywords"
+  },
+  {
+    "text" : "abstract",
+    "type" : "attributes"
+  },
+  {
+    "text" : "add",
+    "type" : "attributes"
+  },
+  {
+    "text" : "alias",
+    "type" : "attributes"
+  },
+  {
+    "text" : "as",
+    "type" : "attributes"
+  },
+  {
+    "text" : "ascending",
+    "type" : "commands"
+  },
+  {
+    "text" : "async",
+    "type" : "attributes"
+  },
+  {
+    "text" : "await",
+    "type" : "attributes"
+  },
+  {
+    "text" : "base",
+    "type" : "variables"
+  },
+  {
+    "text" : "bool",
+    "type" : "types"
+  },
+  {
+    "text" : "break",
+    "type" : "keywords"
+  },
+  {
+    "text" : "by",
+    "type" : "commands"
+  },
+  {
+    "text" : "byte",
+    "type" : "types"
+  },
+  {
+    "text" : "case",
+    "type" : "keywords"
+  },
+  {
+    "text" : "catch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "char",
+    "type" : "types"
+  },
+  {
+    "text" : "checked",
+    "type" : "keywords"
+  },
+  {
+    "text" : "class",
+    "type" : "types"
+  },
+  {
+    "text" : "const",
+    "type" : "attributes"
+  },
+  {
+    "text" : "continue",
+    "type" : "keywords"
+  },
+  {
+    "text" : "decimal",
+    "type" : "types"
+  },
+  {
+    "text" : "default",
+    "type" : "keywords"
+  },
+  {
+    "text" : "delegate",
+    "type" : "types"
+  },
+  {
+    "text" : "descending",
+    "type" : "commands"
+  },
+  {
+    "text" : "do",
+    "type" : "keywords"
+  },
+  {
+    "text" : "double",
+    "type" : "types"
+  },
+  {
+    "text" : "dynamic",
+    "type" : "types"
+  },
+  {
+    "text" : "else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "enum",
+    "type" : "types"
+  },
+  {
+    "text" : "equals",
+    "type" : "commands"
+  },
+  {
+    "text" : "event",
+    "type" : "attributes"
+  },
+  {
+    "text" : "explicit",
+    "type" : "attributes"
+  },
+  {
+    "text" : "extern",
+    "type" : "attributes"
+  },
+  {
+    "text" : "false",
+    "type" : "values"
+  },
+  {
+    "text" : "finally",
+    "type" : "keywords"
+  },
+  {
+    "text" : "fixed",
+    "type" : "keywords"
+  },
+  {
+    "text" : "float",
+    "type" : "types"
+  },
+  {
+    "text" : "for",
+    "type" : "keywords"
+  },
+  {
+    "text" : "foreach",
+    "type" : "keywords"
+  },
+  {
+    "text" : "from",
+    "type" : "commands"
+  },
+  {
+    "text" : "get",
+    "type" : "attributes"
+  },
+  {
+    "text" : "global",
+    "type" : "attributes"
+  },
+  {
+    "text" : "goto",
+    "type" : "keywords"
+  },
+  {
+    "text" : "group",
+    "type" : "commands"
+  },
+  {
+    "text" : "if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "implicit",
+    "type" : "attributes"
+  },
+  {
+    "text" : "in",
+    "type" : "keywords"
+  },
+  {
+    "text" : "int",
+    "type" : "types"
+  },
+  {
+    "text" : "interface",
+    "type" : "types"
+  },
+  {
+    "text" : "internal",
+    "type" : "attributes"
+  },
+  {
+    "text" : "into",
+    "type" : "commands"
+  },
+  {
+    "text" : "is",
+    "type" : "attributes"
+  },
+  {
+    "text" : "join",
+    "type" : "commands"
+  },
+  {
+    "text" : "let",
+    "type" : "commands"
+  },
+  {
+    "text" : "lock",
+    "type" : "keywords"
+  },
+  {
+    "text" : "long",
+    "type" : "types"
+  },
+  {
+    "text" : "namespace",
+    "type" : "keywords"
+  },
+  {
+    "text" : "new",
+    "type" : "attributes"
+  },
+  {
+    "text" : "null",
+    "type" : "values"
+  },
+  {
+    "text" : "object",
+    "type" : "types"
+  },
+  {
+    "text" : "on",
+    "type" : "commands"
+  },
+  {
+    "text" : "operator",
+    "type" : "attributes"
+  },
+  {
+    "text" : "orderby",
+    "type" : "commands"
+  },
+  {
+    "text" : "out",
+    "type" : "attributes"
+  },
+  {
+    "text" : "override",
+    "type" : "attributes"
+  },
+  {
+    "text" : "params",
+    "type" : "attributes"
+  },
+  {
+    "text" : "partial",
+    "type" : "attributes"
+  },
+  {
+    "text" : "private",
+    "type" : "attributes"
+  },
+  {
+    "text" : "protected",
+    "type" : "attributes"
+  },
+  {
+    "text" : "public",
+    "type" : "attributes"
+  },
+  {
+    "text" : "readonly",
+    "type" : "attributes"
+  },
+  {
+    "text" : "ref",
+    "type" : "attributes"
+  },
+  {
+    "text" : "remove",
+    "type" : "attributes"
+  },
+  {
+    "text" : "return",
+    "type" : "keywords"
+  },
+  {
+    "text" : "sbyte",
+    "type" : "types"
+  },
+  {
+    "text" : "sealed",
+    "type" : "attributes"
+  },
+  {
+    "text" : "select",
+    "type" : "commands"
+  },
+  {
+    "text" : "set",
+    "type" : "attributes"
+  },
+  {
+    "text" : "short",
+    "type" : "types"
+  },
+  {
+    "text" : "sizeof",
+    "type" : "attributes"
+  },
+  {
+    "text" : "stackalloc",
+    "type" : "keywords"
+  },
+  {
+    "text" : "static",
+    "type" : "attributes"
+  },
+  {
+    "text" : "string",
+    "type" : "types"
+  },
+  {
+    "text" : "struct",
+    "type" : "types"
+  },
+  {
+    "text" : "switch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "this",
+    "type" : "variables"
+  },
+  {
+    "text" : "throw",
+    "type" : "keywords"
+  },
+  {
+    "text" : "true",
+    "type" : "values"
+  },
+  {
+    "text" : "try",
+    "type" : "keywords"
+  },
+  {
+    "text" : "typeof",
+    "type" : "attributes"
+  },
+  {
+    "text" : "uint",
+    "type" : "types"
+  },
+  {
+    "text" : "ulong",
+    "type" : "types"
+  },
+  {
+    "text" : "unchecked",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unsafe",
+    "type" : "attributes"
+  },
+  {
+    "text" : "ushort",
+    "type" : "types"
+  },
+  {
+    "text" : "using",
+    "type" : "keywords"
+  },
+  {
+    "text" : "value",
+    "type" : "attributes"
+  },
+  {
+    "text" : "var",
+    "type" : "types"
+  },
+  {
+    "text" : "virtual",
+    "type" : "attributes"
+  },
+  {
+    "text" : "void",
+    "type" : "types"
+  },
+  {
+    "text" : "volatile",
+    "type" : "attributes"
+  },
+  {
+    "text" : "where",
+    "type" : "commands"
+  },
+  {
+    "text" : "while",
+    "type" : "keywords"
+  },
+  {
+    "text" : "yield",
+    "type" : "keywords"
+  }
+]

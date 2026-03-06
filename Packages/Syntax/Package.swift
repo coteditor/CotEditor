@@ -21,6 +21,7 @@ let package = Package(
         
         .package(url: "https://github.com/tree-sitter/tree-sitter-bash", from: Version(0, 25, 1)),
         .package(url: "https://github.com/1024jp/tree-sitter-c", branch: "swiftPackage"),
+        .package(url: "https://github.com/tree-sitter/tree-sitter-c-sharp", from: Version(0, 23, 1)),
         .package(url: "https://github.com/1024jp/tree-sitter-css", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter/tree-sitter-go", from: Version(0, 25, 0)),
         .package(url: "https://github.com/tree-sitter/tree-sitter-html", from: Version(0, 23, 2)),
@@ -47,6 +48,7 @@ let package = Package(
                 .product(name: "SwiftTreeSitterLayer", package: "swift-tree-sitter"),
                 .product(name: "TreeSitterBash", package: "tree-sitter-bash"),
                 .product(name: "TreeSitterC", package: "tree-sitter-c"),
+                .product(name: "TreeSitterCSharp", package: "tree-sitter-c-sharp"),
                 .product(name: "TreeSitterCSS", package: "tree-sitter-css"),
                 .product(name: "TreeSitterGo", package: "tree-sitter-go"),
                 .product(name: "TreeSitterHTML", package: "tree-sitter-html"),

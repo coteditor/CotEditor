@@ -9,6 +9,7 @@ The following languages are currently supported by tree-sitter in this package:
 
 - Bash
 - C
+- C#
 - CSS
 - Go
 - HTML
