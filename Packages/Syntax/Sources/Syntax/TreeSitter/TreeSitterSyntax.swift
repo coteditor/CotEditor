@@ -54,7 +54,7 @@ public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     public var features: ParserFeatures {
         
         switch self {
-            case .latex, .markdown: [.outline]
+            case .markdown: [.outline]
             default: [.highlight, .outline]
         }
     }
