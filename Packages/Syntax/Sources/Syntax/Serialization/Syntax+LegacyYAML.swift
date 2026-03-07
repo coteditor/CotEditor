@@ -248,7 +248,6 @@ extension Syntax: Decodable {
         self.stringDelimiters = stringDelimiters
         self.characterDelimiters = characterDelimiters
         self.indentation = Indentation()
-        self.lexicalRules = .default
         self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?
             .compactMap(\.keyString)
             .compactMap { CompletionWord(text: $0) } ?? []

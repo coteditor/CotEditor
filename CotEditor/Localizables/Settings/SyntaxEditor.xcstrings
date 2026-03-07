@@ -1572,46 +1572,6 @@
         }
       }
     },
-    "Delimiter escape style:" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escape-Stil für Trennzeichen:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delimiter escape style:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Estilo de escape de delimitadores:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Style d’échappement des délimiteurs :"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "区切り文字のエスケープ方法:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Escapestijl voor scheidingstekens:"
-          }
-        }
-      }
-    },
     "DelimiterEscapeRule.backslash.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -2479,46 +2439,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Escape"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Escape"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Échappement"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "エスケープ"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Escapen"
-          }
-        }
-      }
-    },
-    "Escaping" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escape"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escaping"
           }
         },
         "es" : {

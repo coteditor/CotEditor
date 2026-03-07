@@ -190,7 +190,6 @@ struct SyntaxEditView: View {
                         stringDelimiters: $syntax.stringDelimiters,
                         characterDelimiters: $syntax.characterDelimiters,
                         indentations: $syntax.indentations,
-                        lexicalRules: $syntax.lexicalRules,
                         canCustomizeHighlight: self.customizableFeatures.contains(.highlight)
                     )
                 }

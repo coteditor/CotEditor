@@ -51,8 +51,8 @@ extension Syntax {
                 var caseInsensitiveWords: [String] = []
                 
                 for highlight in self.highlights[type] ?? [] {
-                    if // extract paired delimiters such as quotes
-                        let token = NestableToken(highlight: highlight, escapeRule: self.lexicalRules.delimiterEscapeRule),
+                    if // extract paired delimiters
+                        let token = NestableToken(highlight: highlight),
                         nestables[token] == nil  // not registered yet
                     {
                         nestables[token] = type
@@ -91,7 +91,7 @@ extension Syntax {
             nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: false, isNestable: true, escapeRule: delimiter.escapeRule)] = .characters
         }
         for delimiter in self.commentDelimiters.blocks {
-            nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable, escapeRule: self.lexicalRules.delimiterEscapeRule)] = .comments
+            nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable, escapeRule: .none)] = .comments
         }
         for delimiter in self.commentDelimiters.inlines {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
@@ -99,7 +99,7 @@ extension Syntax {
         
         guard !extractors.isEmpty || !nestables.isEmpty else { return nil }
         
-        return RegexHighlightParser(extractors: extractors, nestables: nestables, lexicalRules: self.lexicalRules)
+        return RegexHighlightParser(extractors: extractors, nestables: nestables)
     }
 }
 

@@ -34,7 +34,6 @@ struct SyntaxDelimitersEditView: View {
     @Binding var stringDelimiters: [SyntaxObject.PairDelimiter]
     @Binding var characterDelimiters: [SyntaxObject.PairDelimiter]
     @Binding var indentations: [SyntaxObject.BlockIndent]
-    @Binding var lexicalRules: Syntax.LexicalRules
     
     var canCustomizeHighlight: Bool = true
     
@@ -100,23 +99,6 @@ struct SyntaxDelimitersEditView: View {
                     .padding(.top, 2)
             }
             .padding(.bottom)
-            
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Escaping", tableName: "SyntaxEditor")
-                    .fontWeight(.semibold)
-                    .padding(.top, 2)
-                
-                Form {
-                    Picker(String(localized: "Delimiter escape style:", table: "SyntaxEditor"), selection: $lexicalRules.delimiterEscapeRule) {
-                        ForEach(DelimiterEscapeRule.allCases, id: \.self) { rule in
-                            Text(rule.label)
-                        }
-                    }
-                    .pickerStyle(.radioGroup)
-                    .horizontalRadioGroupLayout()
-                    .fixedSize()
-                }
-            }
             
             if self.canCustomizeHighlight {
                 Text("The delimiters defined here are used for syntax highlighting as well.", tableName: "SyntaxEditor")
@@ -430,14 +412,12 @@ private extension DelimiterEscapeRule {
     @Previewable @State var stringDelimiters: [SyntaxObject.PairDelimiter] = [.init(value: .init(begin: "\"", end: "\""))]
     @Previewable @State var characterDelimiters: [SyntaxObject.PairDelimiter] = [.init(value: .init(begin: "'", end: "'"))]
     @Previewable @State var indentations: [SyntaxObject.BlockIndent] = [.init(value: .init(begin: "{", end: "}"))]
-    @Previewable @State var rules: Syntax.LexicalRules = .default
     
     SyntaxDelimitersEditView(
         inlineComments: $inlineComments,
         blockComments: $blockComments,
         stringDelimiters: $stringDelimiters,
         characterDelimiters: $characterDelimiters,
-        indentations: $indentations,
-        lexicalRules: $rules
+        indentations: $indentations
     )
 }

@@ -35,15 +35,15 @@ enum NestableToken: Equatable, Hashable, Sendable {
     case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeRule: DelimiterEscapeRule = .backslash)
     
     
-    init?(highlight: Syntax.Highlight, escapeRule: DelimiterEscapeRule = .backslash) {
-        
+    init?(highlight: Syntax.Highlight) {
+
         guard
             !highlight.isRegularExpression,
             let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
             pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
         else { return nil }
-        
-        self = .pair(pair, isMultiline: highlight.isMultiline, isNestable: true, escapeRule: escapeRule)
+
+        self = .pair(pair, isMultiline: highlight.isMultiline, isNestable: true)
     }
 }
 
@@ -73,9 +73,8 @@ extension [NestableToken: SyntaxType] {
     /// - Parameters:
     ///   - string: The string to parse.
     ///   - range: The range where to parse.
-    ///   - escapeRule: The delimiter escaping rule.
     /// - Throws: CancellationError.
-    func parseHighlights(in string: String, range parseRange: NSRange, escapeRule: DelimiterEscapeRule) throws -> [SyntaxType: [NSRange]] {
+    func parseHighlights(in string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
         
         let positions: [NestableItem] = try self
             .flatMap { token, type in
@@ -83,7 +82,7 @@ extension [NestableToken: SyntaxType] {
                 return token.positions(in: string, type: type, range: parseRange)
             }
             .filter { item in
-                switch item.token.escapeRule(default: escapeRule) {
+                switch item.token.escapeRule {
                     case .backslash: !string.isEscaped(at: item.range.location)
                     case .doubleDelimiter, .none: true
                 }
@@ -124,7 +123,7 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
-                let appliesDoubleDelimiter = beginPosition.token.escapeRule(default: escapeRule) == .doubleDelimiter && beginPosition.token.isSingleSamePair
+                let appliesDoubleDelimiter = beginPosition.token.escapeRule == .doubleDelimiter && beginPosition.token.isSingleSamePair
                 
                 var nestDepth = 0
                 var skipCount = 0
@@ -179,19 +178,6 @@ extension [NestableToken: SyntaxType] {
 
 private extension NestableToken {
     
-    /// Returns the effective delimiter-escape rule for this token.
-    ///
-    /// - Parameter fallback: The lexical default rule used when the token does not define one.
-    /// - Returns: The token-specific rule for `pair`, or `fallback` for `inline`.
-    func escapeRule(default fallback: DelimiterEscapeRule) -> DelimiterEscapeRule {
-        
-        switch self {
-            case .inline: fallback
-            case .pair(_, _, _, let escapeRule): escapeRule
-        }
-    }
-    
-    
     /// Whether this token can span multiple lines.
     var allowsMultiline: Bool {
         
@@ -208,6 +194,16 @@ private extension NestableToken {
         switch self {
             case .inline: false
             case .pair(_, _, let isNestable, _): isNestable
+        }
+    }
+    
+    
+    /// The effective delimiter-escape rule for this token.
+    var escapeRule: DelimiterEscapeRule {
+        
+        switch self {
+            case .inline: .none
+            case .pair(_, _, _, let escapeRule): escapeRule
         }
     }
     

@@ -87,7 +87,6 @@ import Syntax
     var stringDelimiters: [PairDelimiter] = []
     var characterDelimiters: [PairDelimiter] = []
     var indentations: [BlockIndent] = []
-    var lexicalRules: Syntax.LexicalRules = .default
     
     var outlines: [Outline] = []
     var completions: [CompletionWord] = []
@@ -141,7 +140,6 @@ extension SyntaxObject {
               stringDelimiters: self.stringDelimiters.map(\.value),
               characterDelimiters: self.characterDelimiters.map(\.value),
               indentation: .init(blockDelimiters: self.indentations.map(\.value)),
-              lexicalRules: self.lexicalRules,
               
               completions: self.completions.map(\.value),
               
@@ -165,7 +163,6 @@ extension SyntaxObject {
         self.stringDelimiters = value.stringDelimiters.map { .init(value: $0) }
         self.characterDelimiters = value.characterDelimiters.map { .init(value: $0) }
         self.indentations = value.indentation.blockDelimiters.map { .init(value: $0) }
-        self.lexicalRules = value.lexicalRules
         
         self.completions = value.completions.map { .init(value: $0) }
         

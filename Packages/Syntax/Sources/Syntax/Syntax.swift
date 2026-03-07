@@ -224,20 +224,6 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
-    public struct LexicalRules: Equatable, Sendable {
-        
-        public var delimiterEscapeRule: DelimiterEscapeRule
-        
-        public static let `default` = Self()
-        
-        
-        public init(delimiterEscapeRule: DelimiterEscapeRule = .backslash) {
-            
-            self.delimiterEscapeRule = delimiterEscapeRule
-        }
-    }
-    
-    
     public struct CompletionWord: Equatable, Sendable, Codable {
         
         public var text: String
@@ -286,7 +272,6 @@ public struct Syntax: Equatable, Sendable {
     public var stringDelimiters: [PairDelimiter]
     public var characterDelimiters: [PairDelimiter]
     public var indentation: Indentation
-    public var lexicalRules: LexicalRules
     public var completions: [CompletionWord]
     
     public var metadata: Metadata
@@ -303,7 +288,6 @@ public struct Syntax: Equatable, Sendable {
         stringDelimiters: [PairDelimiter] = [],
         characterDelimiters: [PairDelimiter] = [],
         indentation: Indentation = .init(),
-        lexicalRules: LexicalRules = .default,
         completions: [CompletionWord] = [],
         metadata: Metadata = .init()
     ) {
@@ -316,7 +300,6 @@ public struct Syntax: Equatable, Sendable {
         self.stringDelimiters = stringDelimiters
         self.characterDelimiters = characterDelimiters
         self.indentation = indentation
-        self.lexicalRules = lexicalRules
         self.completions = completions
         self.metadata = metadata
     }

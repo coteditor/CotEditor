@@ -17,8 +17,5 @@
       "isMultiline" : true,
       "escapeRule" : "none"
     }
-  ],
-  "lexicalRules" : {
-    "delimiterEscapeRule" : "none"
-  }
+  ]
 }

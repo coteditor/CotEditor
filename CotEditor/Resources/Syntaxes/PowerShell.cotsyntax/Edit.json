@@ -26,9 +26,6 @@
       "escapeRule" : "doubleDelimiter"
     }
   ],
-  "lexicalRules" : {
-    "delimiterEscapeRule" : "none"
-  },
   "indentation" : {
     "blockDelimiters" : [
       {

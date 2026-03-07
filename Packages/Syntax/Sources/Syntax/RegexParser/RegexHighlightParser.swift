@@ -38,20 +38,14 @@ actor RegexHighlightParser: HighlightParsing {
     
     private let extractors: [SyntaxType: [any HighlightExtractable]]
     private let nestables: [NestableToken: SyntaxType]
-    private let lexicalRules: Syntax.LexicalRules
     
     
     // MARK: Lifecycle
     
-    init(
-        extractors: [SyntaxType: [any HighlightExtractable]],
-        nestables: [NestableToken: SyntaxType],
-        lexicalRules: Syntax.LexicalRules = .default
-    ) {
+    init(extractors: [SyntaxType: [any HighlightExtractable]], nestables: [NestableToken: SyntaxType]) {
         
         self.extractors = extractors
         self.nestables = nestables
-        self.lexicalRules = lexicalRules
     }
     
     
@@ -66,8 +60,8 @@ actor RegexHighlightParser: HighlightParsing {
     /// - Throws: `CancellationError`.
     func parseHighlights(in string: String, range: NSRange) async throws -> (highlights: [Highlight], updateRange: NSRange)? {
         
-        try await withThrowingTaskGroup { [extractors, nestables, lexicalRules] group in
-            group.addTask { try nestables.parseHighlights(in: string, range: range, escapeRule: lexicalRules.delimiterEscapeRule) }
+        try await withThrowingTaskGroup { [extractors, nestables] group in
+            group.addTask { try nestables.parseHighlights(in: string, range: range) }
             
             for (type, extractors) in extractors {
                 for extractor in extractors {

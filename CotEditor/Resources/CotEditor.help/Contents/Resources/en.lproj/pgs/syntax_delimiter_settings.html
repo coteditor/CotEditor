@@ -123,23 +123,17 @@
 <section>
 <h2>Escape delimiters</h2>
 
-<p>Choose how CotEditor escapes delimiters in a document. This setting is used for regular-expression-based syntax highlighting and for matching paired symbols in the editor.</p>
+<p>Each string delimiter and character delimiter has an Escape setting that determines how the delimiter character can be used inside the delimited range. CotEditor uses this setting for regular-expression-based syntax highlighting and for matching paired symbols in the editor. The following escape styles are available:</p>
 
 <table>
-<thead>
-	<tr><th>Option</th><th>Description</th></tr>
-</thead>
-<tbody>
-	<tr>
-		<th>Delimiter escape style</th>
-		<td><p>The style applied to begin/end delimiter pairs other than string and character delimiters, such as comment delimiters.</p>
-			<ul>
-				<li><em>Backslash</em>: Treat a backslash (&#x005C;) as an escape character. A delimiter immediately preceded by a backslash is ignored.</li>
-				<li><em>Double delimiter</em>: Treat two consecutive delimiters as an escaped delimiter. This style is applied only when the begin and end delimiters are the same single character.</li>
-				<li><em>None</em>: Do not treat any character as an escape. Every delimiter is matched.</li>
-			</ul></td>
-	</tr>
-</tbody>
+	<thead>
+		<tr><th>Option</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>Backslash (default)</th><td><p>Treat a backslash (&#x005C;) as an escape character. A delimiter immediately preceded by a backslash is ignored.</p></td></tr>
+		<tr><th>Double delimiter</th><td><p>Treat two consecutive delimiters as an escaped delimiter. This style is applied only when the begin and end delimiters are the same single character.</p></td></tr>
+		<tr><th>None</th><td><p>Do not treat any character as an escape. Every delimiter is matched as-is.</p></td></tr>
+	</tbody>
 </table>
 
 <p>For example, if a delimiter is <code>&quot;</code>, a sequence like <code>\&quot;</code> does not end the range when the escape style is “Backslash.” With the “Double delimiter” style, a sequence like <code>&quot;&quot;</code> is treated as an escaped delimiter.</p>
