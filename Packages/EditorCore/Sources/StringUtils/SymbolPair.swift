@@ -59,7 +59,7 @@ public extension Pair.PairIndex {
 }
 
 
-public enum DelimiterEscapeRule: String, Sendable, CaseIterable, Codable {
+public enum DelimiterEscapeStyle: String, Sendable, CaseIterable, Codable {
     
     case backslash
     case doubleDelimiter
@@ -74,11 +74,11 @@ public extension StringProtocol {
     /// - Parameters:
     ///   - range: The character range on which to base the search.
     ///   - candidates: The pairs of symbols to search.
-    ///   - escapeRule: The delimiter escape rule.
+    ///   - escapeStyle: The delimiter escape style.
     /// - Returns: The range of the enclosing symbol pair, or `nil` if not found.
-    func rangeOfEnclosingSymbolPair(at range: Range<Index>, candidates: [SymbolPair], escapeRule: DelimiterEscapeRule = .backslash) -> Range<Index>? {
+    func rangeOfEnclosingSymbolPair(at range: Range<Index>, candidates: [SymbolPair], escapeStyle: DelimiterEscapeStyle = .backslash) -> Range<Index>? {
         
-        SymbolPairScanner(string: String(self), candidates: candidates, baseRange: range, escapeRule: escapeRule)
+        SymbolPairScanner(string: String(self), candidates: candidates, baseRange: range, escapeStyle: escapeStyle)
             .scan()
     }
     
@@ -89,10 +89,10 @@ public extension StringProtocol {
     ///   - index: The character index of the symbol character to find the mate.
     ///   - candidates: Symbol pairs to find.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeRule: The delimiter escape rule.
-    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .none) -> ClosedRange<Index>? {
+    ///   - escapeStyle: The delimiter escape style.
+    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .none) -> ClosedRange<Index>? {
         
-        guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
+        guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeStyle: escapeStyle) else { return nil }
         
         return switch pairIndex {
             case .begin(let beginIndex): beginIndex...index
@@ -108,19 +108,19 @@ public extension StringProtocol {
     ///   - candidates: Symbol pairs to find.
     ///   - range: The range of characters to find in.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeRule: The delimiter escape rule.
+    ///   - escapeStyle: The delimiter escape style.
     /// - Returns: The character index of the matched pair.
-    func indexOfSymbolPair(at index: Index, candidates: [SymbolPair], in range: Range<Index>? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> SymbolPair.PairIndex? {
+    func indexOfSymbolPair(at index: Index, candidates: [SymbolPair], in range: Range<Index>? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .backslash) -> SymbolPair.PairIndex? {
         
-        guard escapeRule != .backslash || !self.isEscaped(at: index) else { return nil }
+        guard escapeStyle != .backslash || !self.isEscaped(at: index) else { return nil }
         
         let character = self[index]
         
         guard let pair = candidates.first(where: { $0.begin == character || $0.end == character }) else { return nil }
         
         if pair.begin == pair.end {
-            let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule)
-            let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule)
+            let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeStyle: escapeStyle)
+            let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeStyle: escapeStyle)
             
             return switch (beginIndex, endIndex) {
                 case let (beginIndex?, nil): .begin(beginIndex)
@@ -131,11 +131,11 @@ public extension StringProtocol {
         
         switch character {
             case pair.begin:
-                guard let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
+                guard let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeStyle: escapeStyle) else { return nil }
                 return .end(endIndex)
                 
             case pair.end:
-                guard let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeRule: escapeRule) else { return nil }
+                guard let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeStyle: escapeStyle) else { return nil }
                 return .begin(beginIndex)
                 
             default: preconditionFailure()
@@ -152,9 +152,9 @@ public extension StringProtocol {
     ///   - pair: The symbol pair to find.
     ///   - beginIndex: The lower boundary of the find range.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeRule: The delimiter escape rule.
+    ///   - escapeStyle: The delimiter escape style.
     /// - Returns: The character index of the matched opening symbol, or `nil` if not found.
-    func indexOfSymbolPair(endIndex: Index, pair: SymbolPair, until beginIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
+    func indexOfSymbolPair(endIndex: Index, pair: SymbolPair, until beginIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .backslash) -> Index? {
         
         assert(endIndex <= self.endIndex)
         
@@ -162,7 +162,7 @@ public extension StringProtocol {
         
         guard beginIndex < endIndex else { return nil }
         
-        if escapeRule == .doubleDelimiter, pair.begin == pair.end {
+        if escapeStyle == .doubleDelimiter, pair.begin == pair.end {
             var index = endIndex
             
             while index > beginIndex {
@@ -193,20 +193,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.begin where ignoredNestDepth == 0:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.end where ignoredNestDepth == 0:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.begin:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.end:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -226,9 +226,9 @@ public extension StringProtocol {
     ///   - pair: The symbol pair to find.
     ///   - endIndex: The upper boundary of the find range.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeRule: The delimiter escape rule.
+    ///   - escapeStyle: The delimiter escape style.
     /// - Returns: The character index of the matched closing symbol, or `nil` if not found.
-    func indexOfSymbolPair(beginIndex: Index, pair: SymbolPair, until endIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeRule: DelimiterEscapeRule = .backslash) -> Index? {
+    func indexOfSymbolPair(beginIndex: Index, pair: SymbolPair, until endIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .backslash) -> Index? {
         
         assert(beginIndex >= self.startIndex)
         
@@ -239,7 +239,7 @@ public extension StringProtocol {
         
         guard beginIndex < endIndex else { return nil }
         
-        if escapeRule == .doubleDelimiter, pair.begin == pair.end {
+        if escapeStyle == .doubleDelimiter, pair.begin == pair.end {
             var index = beginIndex
             
             while index < endIndex {
@@ -270,20 +270,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.end where ignoredNestDepth == 0:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.begin where ignoredNestDepth == 0:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.end:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.begin:
-                    guard escapeRule != .backslash || !self.isEscaped(at: index) else { continue }
+                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -304,19 +304,19 @@ private final class SymbolPairScanner {
     
     private var scanningRange: Range<String.Index>
     private var scanningPair: SymbolPair?
-    private let escapeRule: DelimiterEscapeRule
+    private let escapeStyle: DelimiterEscapeStyle
     private var finished: Bool = false
     private var found: Bool = false
     
     
-    init(string: String, candidates: [SymbolPair], baseRange: Range<String.Index>, escapeRule: DelimiterEscapeRule) {
+    init(string: String, candidates: [SymbolPair], baseRange: Range<String.Index>, escapeStyle: DelimiterEscapeStyle) {
         
         assert(candidates.allSatisfy({ $0.begin != $0.end }))
         
         self.string = string
         self.candidates = candidates
         self.scanningRange = baseRange
-        self.escapeRule = escapeRule
+        self.escapeStyle = escapeStyle
     }
     
     
@@ -346,7 +346,7 @@ private final class SymbolPairScanner {
         
         var index = self.scanningRange.upperBound
         var nestDepths: [SymbolPair: Int] = [:]
-        var isEscaped = self.escapeRule == .backslash &&
+        var isEscaped = self.escapeStyle == .backslash &&
             (index != self.string.startIndex) &&
             self.string[self.string.index(before: index)] == "\\"
         
@@ -371,7 +371,7 @@ private final class SymbolPairScanner {
                 }
             }
             
-            if self.escapeRule == .backslash, character == "\\" {
+            if self.escapeStyle == .backslash, character == "\\" {
                 isEscaped = true
             } else {
                 isEscaped = false
@@ -392,7 +392,7 @@ private final class SymbolPairScanner {
             index = self.string.index(before: index)
             
             if let pair = self.candidates.first(where: { $0.begin == character }) {
-                guard self.escapeRule != .backslash || !self.string.isEscaped(at: index) else { continue }
+                guard self.escapeStyle != .backslash || !self.string.isEscaped(at: index) else { continue }
                 
                 if nestDepths[pair, default: 0] > 0 {
                     nestDepths[pair, default: 0] -= 1
@@ -404,7 +404,7 @@ private final class SymbolPairScanner {
                 }
                 
             } else if let pair = self.candidates.first(where: { $0.end == character }) {
-                guard self.escapeRule != .backslash || !self.string.isEscaped(at: index) else { continue }
+                guard self.escapeStyle != .backslash || !self.string.isEscaped(at: index) else { continue }
                 
                 nestDepths[pair, default: 0] += 1
             }

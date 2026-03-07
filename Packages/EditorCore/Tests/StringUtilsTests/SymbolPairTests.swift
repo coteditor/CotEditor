@@ -119,7 +119,7 @@ struct SymbolPairTests {
         let string = #"foo \(bar\) baz"#
         let beginIndex = try! #require(string.firstIndex(of: "("))
         
-        let backslashRange = string.rangeOfSymbolPair(at: beginIndex, candidates: SymbolPair.braces, escapeRule: .backslash)
+        let backslashRange = string.rangeOfSymbolPair(at: beginIndex, candidates: SymbolPair.braces, escapeStyle: .backslash)
         let defaultRange = string.rangeOfSymbolPair(at: beginIndex, candidates: SymbolPair.braces)
         
         #expect(backslashRange == nil)
@@ -132,9 +132,9 @@ struct SymbolPairTests {
         let string = "'a''b'"
         let quotes = SymbolPair.quotes
         
-        let openingRange = string.rangeOfSymbolPair(at: string.index(0), candidates: quotes, escapeRule: .doubleDelimiter)
-        let closingRange = string.rangeOfSymbolPair(at: string.index(5), candidates: quotes, escapeRule: .doubleDelimiter)
-        let escapedRange = string.rangeOfSymbolPair(at: string.index(2), candidates: quotes, escapeRule: .doubleDelimiter)
+        let openingRange = string.rangeOfSymbolPair(at: string.index(0), candidates: quotes, escapeStyle: .doubleDelimiter)
+        let closingRange = string.rangeOfSymbolPair(at: string.index(5), candidates: quotes, escapeStyle: .doubleDelimiter)
+        let escapedRange = string.rangeOfSymbolPair(at: string.index(2), candidates: quotes, escapeStyle: .doubleDelimiter)
         
         #expect(openingRange == string.index(0)...string.index(5))
         #expect(closingRange == string.index(0)...string.index(5))
@@ -147,8 +147,8 @@ struct SymbolPairTests {
         let string = "'a\\'b' 'c'"
         let quotes = SymbolPair.quotes
         
-        let backslashRange = string.rangeOfSymbolPair(at: string.index(0), candidates: quotes, escapeRule: .backslash)
-        let noneRange = string.rangeOfSymbolPair(at: string.index(0), candidates: quotes, escapeRule: .none)
+        let backslashRange = string.rangeOfSymbolPair(at: string.index(0), candidates: quotes, escapeStyle: .backslash)
+        let noneRange = string.rangeOfSymbolPair(at: string.index(0), candidates: quotes, escapeStyle: .none)
         
         #expect(backslashRange == string.index(0)...string.index(5))
         #expect(noneRange == string.index(0)...string.index(3))

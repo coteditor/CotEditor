@@ -16,7 +16,7 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "escapeRule" : "doubleDelimiter"
+      "escapeStyle" : "doubleDelimiter"
     }
   ],
   "indentation" : {

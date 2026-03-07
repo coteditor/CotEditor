@@ -14,12 +14,12 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "escapeRule" : "none"
+      "escapeStyle" : "none"
     },
     {
       "begin" : "'",
       "end" : "'",
-      "escapeRule" : "none"
+      "escapeStyle" : "none"
     }
   ]
 }

@@ -32,7 +32,7 @@ import StringUtils
 enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
-    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeRule: DelimiterEscapeRule = .backslash)
+    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeStyle: DelimiterEscapeStyle = .backslash)
     
     
     init?(highlight: Syntax.Highlight) {
@@ -82,7 +82,7 @@ extension [NestableToken: SyntaxType] {
                 return token.positions(in: string, type: type, range: parseRange)
             }
             .filter { item in
-                switch item.token.escapeRule {
+                switch item.token.escapeStyle {
                     case .backslash: !string.isEscaped(at: item.range.location)
                     case .doubleDelimiter, .none: true
                 }
@@ -123,7 +123,7 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
-                let appliesDoubleDelimiter = beginPosition.token.escapeRule == .doubleDelimiter && beginPosition.token.isSingleSamePair
+                let appliesDoubleDelimiter = beginPosition.token.escapeStyle == .doubleDelimiter && beginPosition.token.isSingleSamePair
                 
                 var nestDepth = 0
                 var skipCount = 0
@@ -198,12 +198,12 @@ private extension NestableToken {
     }
     
     
-    /// The effective delimiter-escape rule for this token.
-    var escapeRule: DelimiterEscapeRule {
+    /// The effective delimiter-escape style for this token.
+    var escapeStyle: DelimiterEscapeStyle {
         
         switch self {
             case .inline: .none
-            case .pair(_, _, _, let escapeRule): escapeRule
+            case .pair(_, _, _, let escapeStyle): escapeStyle
         }
     }
     

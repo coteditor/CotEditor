@@ -145,7 +145,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var spaceWidth: Double = 0
     
-    private var quotePairs: [(pair: SymbolPair, escapeRule: DelimiterEscapeRule)] = []
+    private var quotePairs: [(pair: SymbolPair, escapeStyle: DelimiterEscapeStyle)] = []
     private var matchingSymbolPairs: [SymbolPair]  { SymbolPair.braces + self.quotePairs.map(\.pair) }
     private var isTypingPairedQuotes = false
     
@@ -703,7 +703,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching symbol
             if self.highlightsBraces {
-                self.highlightMatchingSymbol(candidates: SymbolPair.braces, escapeRule: .none)
+                self.highlightMatchingSymbol(candidates: SymbolPair.braces, escapeStyle: .none)
             }
             
             // update instance highlights
@@ -776,7 +776,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if let pairRange = self.string.rangeOfSymbolPair(
             at: characterIndex,
             candidates: SymbolPair.braces + [.ltgt],
-            escapeRule: .none
+            escapeStyle: .none
         ) {
             return NSRange(pairRange, in: self.string)
         }
@@ -1378,7 +1378,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             let enclosingRange = self.string.rangeOfEnclosingSymbolPair(
                 at: selectedRange,
                 candidates: SymbolPair.braces + [.ltgt],
-                escapeRule: .none
+                escapeStyle: .none
             )
         else { return }
         
@@ -1392,7 +1392,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private func invalidateQuotePairs() {
         
         let delimiters = self.quoteDelimiters
-            .compactMap { delimiter -> (pair: SymbolPair, escapeRule: DelimiterEscapeRule)? in
+            .compactMap { delimiter -> (pair: SymbolPair, escapeStyle: DelimiterEscapeStyle)? in
                 guard
                     delimiter.begin.count == 1,
                     delimiter.end.count == 1,
@@ -1400,7 +1400,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                     let end = delimiter.end.first
                 else { return nil }
                 
-                return (.init(begin, end), delimiter.escapeRule)
+                return (.init(begin, end), delimiter.escapeStyle)
             }
         
         guard !delimiters.isEmpty else {
@@ -1419,7 +1419,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         self.quotePairs
             .filter { $0.pair.begin == self.string[index] || $0.pair.end == self.string[index] }
-            .compactMap { self.string.rangeOfSymbolPair(at: index, candidates: [$0.pair], escapeRule: $0.escapeRule) }
+            .compactMap { self.string.rangeOfSymbolPair(at: index, candidates: [$0.pair], escapeStyle: $0.escapeStyle) }
             .min { NSRange($0, in: self.string).length < NSRange($1, in: self.string).length }
     }
     

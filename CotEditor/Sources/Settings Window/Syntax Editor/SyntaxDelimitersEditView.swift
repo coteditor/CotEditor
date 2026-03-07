@@ -229,8 +229,8 @@ private struct StringDelimitersEditView: View {
             .width(56)
             .alignment(.center)
             TableColumn(String(localized: "Escape", defaultValue: "Escape", table: "SyntaxEditor", comment: "table column header")) { $item in
-                Picker(selection: $item.value.escapeRule) {
-                    ForEach(DelimiterEscapeRule.allCases, id: \.self) { rule in
+                Picker(selection: $item.value.escapeStyle) {
+                    ForEach(DelimiterEscapeStyle.allCases, id: \.self) { rule in
                         if rule == .none {
                             Divider()
                         }
@@ -239,18 +239,18 @@ private struct StringDelimitersEditView: View {
                 } label: {
                     EmptyView()
                 } currentValueLabel: {
-                    let rule = item.value.escapeRule
+                    let rule = item.value.escapeStyle
                     Text(rule.label)
                         .foregroundStyle((rule != .none) ? .primary : .tertiary)
                 }
                 .buttonStyle(.plain)
                 .labelsHidden()
-                .onChange(of: item.value.escapeRule) { _, newValue in
+                .onChange(of: item.value.escapeStyle) { _, newValue in
                     guard self.selection.contains(item.id) else { return }
                     $items
                         .filter(with: self.selection)
                         .filter { $0.id != item.id }
-                        .forEach { $0.value.escapeRule.wrappedValue = newValue }
+                        .forEach { $0.value.escapeStyle.wrappedValue = newValue }
                 }
             }
             TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
@@ -291,8 +291,8 @@ private struct CharacterDelimitersEditView: View {
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
             TableColumn(String(localized: "Escape", defaultValue: "Escape", table: "SyntaxEditor", comment: "table column header")) { $item in
-                Picker(selection: $item.value.escapeRule) {
-                    ForEach(DelimiterEscapeRule.allCases, id: \.self) { rule in
+                Picker(selection: $item.value.escapeStyle) {
+                    ForEach(DelimiterEscapeStyle.allCases, id: \.self) { rule in
                         if rule == .none {
                             Divider()
                         }
@@ -301,18 +301,18 @@ private struct CharacterDelimitersEditView: View {
                 } label: {
                     EmptyView()
                 } currentValueLabel: {
-                    let rule = item.value.escapeRule
+                    let rule = item.value.escapeStyle
                     Text(rule.label)
                         .foregroundStyle((rule != .none) ? .primary : .tertiary)
                 }
                 .buttonStyle(.plain)
                 .labelsHidden()
-                .onChange(of: item.value.escapeRule) { _, newValue in
+                .onChange(of: item.value.escapeStyle) { _, newValue in
                     guard self.selection.contains(item.id) else { return }
                     $items
                         .filter(with: self.selection)
                         .filter { $0.id != item.id }
-                        .forEach { $0.value.escapeRule.wrappedValue = newValue }
+                        .forEach { $0.value.escapeStyle.wrappedValue = newValue }
                 }
             }
             .width(132)
@@ -382,21 +382,21 @@ private struct BlockEditView: View {
 
 // MARK: - Localizations
 
-private extension DelimiterEscapeRule {
+private extension DelimiterEscapeStyle {
     
     var label: String {
         
         switch self {
             case .backslash:
-                String(localized: "DelimiterEscapeRule.backslash.label",
+                String(localized: "DelimiterEscapeStyle.backslash.label",
                        defaultValue: "Backslash",
                        table: "SyntaxEditor")
             case .doubleDelimiter:
-                String(localized: "DelimiterEscapeRule.doubleDelimiter.label",
+                String(localized: "DelimiterEscapeStyle.doubleDelimiter.label",
                        defaultValue: "Double delimiter",
                        table: "SyntaxEditor")
             case .none:
-                String(localized: "DelimiterEscapeRule.none.label",
+                String(localized: "DelimiterEscapeStyle.none.label",
                        defaultValue: "None",
                        table: "SyntaxEditor")
         }

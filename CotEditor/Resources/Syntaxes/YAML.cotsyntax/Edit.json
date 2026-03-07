@@ -25,7 +25,7 @@
     {
       "begin" : "'",
       "end" : "'",
-      "escapeRule" : "doubleDelimiter",
+      "escapeStyle" : "doubleDelimiter",
       "isMultiline" : true
     }
   ]

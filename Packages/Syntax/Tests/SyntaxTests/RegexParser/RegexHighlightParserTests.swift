@@ -128,7 +128,7 @@ struct RegexHighlightParserTests {
     @Test func stringDelimitersUseOwnEscapeRule() async throws {
         
         let syntax = Syntax(
-            stringDelimiters: [.init(begin: "'", end: "'", escapeRule: .doubleDelimiter)]
+            stringDelimiters: [.init(begin: "'", end: "'", escapeStyle: .doubleDelimiter)]
         )
         let parser = try #require(syntax.highlightParser)
         let source = "a 'x''y' 'z'"
@@ -146,7 +146,7 @@ struct RegexHighlightParserTests {
     @Test func characterDelimitersUseOwnEscapeRule() async throws {
         
         let syntax = Syntax(
-            characterDelimiters: [.init(begin: "'", end: "'", escapeRule: .doubleDelimiter)]
+            characterDelimiters: [.init(begin: "'", end: "'", escapeStyle: .doubleDelimiter)]
         )
         let parser = try #require(syntax.highlightParser)
         let source = "a 'x''y' 'z'"

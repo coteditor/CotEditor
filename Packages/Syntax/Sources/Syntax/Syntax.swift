@@ -175,18 +175,18 @@ public struct Syntax: Equatable, Sendable {
         public var begin: String
         public var end: String
         public var isMultiline: Bool
-        public var escapeRule: DelimiterEscapeRule
+        public var escapeStyle: DelimiterEscapeStyle
         public var description: String?
         
         public var isEmpty: Bool { self.begin.isEmpty || self.end.isEmpty }
         
         
-        public init(begin: String = "", end: String = "", isMultiline: Bool = false, escapeRule: DelimiterEscapeRule = .backslash, description: String? = nil) {
+        public init(begin: String = "", end: String = "", isMultiline: Bool = false, escapeStyle: DelimiterEscapeStyle = .backslash, description: String? = nil) {
             
             self.begin = begin
             self.end = end
             self.isMultiline = isMultiline
-            self.escapeRule = escapeRule
+            self.escapeStyle = escapeStyle
             self.description = description
         }
     }

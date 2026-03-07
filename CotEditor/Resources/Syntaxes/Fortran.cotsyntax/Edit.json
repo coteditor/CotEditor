@@ -13,12 +13,12 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "escapeRule" : "doubleDelimiter"
+      "escapeStyle" : "doubleDelimiter"
     },
     {
       "begin" : "'",
       "end" : "'",
-      "escapeRule" : "doubleDelimiter"
+      "escapeStyle" : "doubleDelimiter"
     }
   ],
   "indentation" : {

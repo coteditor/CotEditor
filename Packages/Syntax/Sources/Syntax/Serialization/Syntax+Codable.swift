@@ -191,7 +191,7 @@ extension Syntax.PairDelimiter: Codable {
         case begin
         case end
         case isMultiline
-        case escapeRule
+        case escapeStyle
         case description
     }
     
@@ -203,7 +203,7 @@ extension Syntax.PairDelimiter: Codable {
         self.begin = try container.decode(String.self, forKey: .begin)
         self.end = try container.decode(String.self, forKey: .end)
         self.isMultiline = try container.decodeIfPresent(Bool.self, forKey: .isMultiline) ?? false
-        self.escapeRule = (try? container.decodeIfPresent(DelimiterEscapeRule.self, forKey: .escapeRule)) ?? .backslash
+        self.escapeStyle = (try? container.decodeIfPresent(DelimiterEscapeStyle.self, forKey: .escapeStyle)) ?? .backslash
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
     }
     
@@ -217,8 +217,8 @@ extension Syntax.PairDelimiter: Codable {
         if self.isMultiline {
             try container.encode(true, forKey: .isMultiline)
         }
-        if self.escapeRule != .backslash {
-            try container.encode(self.escapeRule, forKey: .escapeRule)
+        if self.escapeStyle != .backslash {
+            try container.encode(self.escapeStyle, forKey: .escapeStyle)
         }
         if let description = self.description {
             try container.encode(description, forKey: .description)

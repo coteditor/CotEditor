@@ -41,35 +41,35 @@
       "begin" : "R\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeRule" : "none",
+      "escapeStyle" : "none",
       "description" : "Raw string literal (simplified delimiter handling)"
     },
     {
       "begin" : "LR\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeRule" : "none",
+      "escapeStyle" : "none",
       "description" : "Wide raw string literal (simplified delimiter handling)"
     },
     {
       "begin" : "u8R\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeRule" : "none",
+      "escapeStyle" : "none",
       "description" : "UTF-8 raw string literal (simplified delimiter handling)"
     },
     {
       "begin" : "uR\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeRule" : "none",
+      "escapeStyle" : "none",
       "description" : "UTF-16 raw string literal (simplified delimiter handling)"
     },
     {
       "begin" : "UR\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeRule" : "none",
+      "escapeStyle" : "none",
       "description" : "UTF-32 raw string literal (simplified delimiter handling)"
     }
   ],

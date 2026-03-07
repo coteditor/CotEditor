@@ -22,13 +22,13 @@
     {
       "begin" : "'",
       "end" : "'",
-      "escapeRule" : "none"
+      "escapeStyle" : "none"
     },
     {
       "begin" : "'''",
       "end" : "'''",
       "isMultiline" : true,
-      "escapeRule" : "none"
+      "escapeStyle" : "none"
     }
   ]
 }

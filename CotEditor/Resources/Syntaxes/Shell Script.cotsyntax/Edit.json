@@ -17,7 +17,7 @@
     {
       "begin" : "'",
       "end" : "'",
-      "escapeRule" : "none"
+      "escapeStyle" : "none"
     },
     {
       "begin" : "$'",

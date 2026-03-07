@@ -1572,7 +1572,7 @@
         }
       }
     },
-    "DelimiterEscapeRule.backslash.label" : {
+    "DelimiterEscapeStyle.backslash.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -1679,7 +1679,7 @@
         }
       }
     },
-    "DelimiterEscapeRule.doubleDelimiter.label" : {
+    "DelimiterEscapeStyle.doubleDelimiter.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
@@ -1726,7 +1726,7 @@
         }
       }
     },
-    "DelimiterEscapeRule.none.label" : {
+    "DelimiterEscapeStyle.none.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

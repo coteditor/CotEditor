@@ -85,13 +85,13 @@ extension Syntax {
             .filter { !$0.value.isEmpty }
         
         for delimiter in self.stringDelimiters {
-            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: delimiter.isMultiline, isNestable: true, escapeRule: delimiter.escapeRule)] = .strings
+            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: delimiter.isMultiline, isNestable: true, escapeStyle: delimiter.escapeStyle)] = .strings
         }
         for delimiter in self.characterDelimiters {
-            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: false, isNestable: true, escapeRule: delimiter.escapeRule)] = .characters
+            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: false, isNestable: true, escapeStyle: delimiter.escapeStyle)] = .characters
         }
         for delimiter in self.commentDelimiters.blocks {
-            nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable, escapeRule: .none)] = .comments
+            nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable, escapeStyle: .none)] = .comments
         }
         for delimiter in self.commentDelimiters.inlines {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
