@@ -90,4 +90,28 @@ struct SyntaxValidationTests {
         #expect(errors.contains { $0.code == .nestableBlockComment && $0.scope == .blockComment && $0.value == "%%" })
         #expect(!errors.contains { $0.code == .nestableBlockComment && $0.value == "##" })
     }
+    
+    
+    @Test func doubleDelimiterEscapeValidation() {
+        
+        let syntax = Syntax(
+            stringDelimiters: [
+                .init(begin: "'", end: "'", escapeStyle: .doubleDelimiter),
+                .init(begin: "'''", end: "'''", escapeStyle: .doubleDelimiter),
+                .init(begin: "\"", end: "\"", escapeStyle: .backslash),
+            ],
+            characterDelimiters: [
+                .init(begin: "'", end: "'", escapeStyle: .doubleDelimiter),
+                .init(begin: "#|", end: "|#", escapeStyle: .doubleDelimiter),
+            ]
+        )
+        
+        let errors = syntax.validate()
+        
+        #expect(!errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .stringDelimiter && $0.value == "'" })
+        #expect(errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .stringDelimiter && $0.value == "'''" })
+        #expect(!errors.contains { $0.code == .doubleDelimiterEscape && $0.value == "\"" })
+        #expect(!errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .characterDelimiter && $0.value == "'" })
+        #expect(errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .characterDelimiter && $0.value == "|#" })
+    }
 }

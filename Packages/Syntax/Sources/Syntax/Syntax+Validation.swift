@@ -38,6 +38,7 @@ public extension Syntax {
             case regularExpression
             case blockComment
             case nestableBlockComment
+            case doubleDelimiterEscape
         }
         
         
@@ -46,6 +47,8 @@ public extension Syntax {
             case highlight(SyntaxType)
             case outline
             case blockComment
+            case stringDelimiter
+            case characterDelimiter
         }
         
         
@@ -127,6 +130,14 @@ public extension Syntax {
                     nil
             }
         }
+        
+        // validate double delimiter escape style
+        errors += self.stringDelimiters
+            .filter { $0.escapeStyle == .doubleDelimiter && $0.end.count != 1 }
+            .map { Error(.doubleDelimiterEscape, scope: .stringDelimiter, value: $0.end) }
+        errors += self.characterDelimiters
+            .filter { $0.escapeStyle == .doubleDelimiter && $0.end.count != 1 }
+            .map { Error(.doubleDelimiterEscape, scope: .characterDelimiter, value: $0.end) }
         
         return errors
     }

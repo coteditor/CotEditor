@@ -5032,6 +5032,53 @@
         }
       }
     },
+    "Syntax.Error.Code.doubleDelimiterEscape" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doppelte Trennzeichen-Escape erfordert ein einstelliges End-Trennzeichen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Double delimiter escape requires a single-character end delimiter."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double delimiter escape requires a single-character end delimiter."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El escape de delimitador doble requiere un delimitador final de un solo carácter."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "L'échappement par double délimiteur nécessite un délimiteur de fin d'un seul caractère."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記号の繰り返しによるエスケープには1文字の終了記号が必要です。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Dubbele scheidingsteken-escape vereist een scheidingsteken van één teken aan het einde."
+          }
+        }
+      }
+    },
     "Syntax.Error.Code.duplicated" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
