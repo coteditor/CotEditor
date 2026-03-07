@@ -25,6 +25,7 @@
 //
 
 import Testing
+import StringUtils
 @testable import Syntax
 
 struct SyntaxValidationTests {
