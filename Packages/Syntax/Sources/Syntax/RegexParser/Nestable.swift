@@ -32,17 +32,17 @@ import StringUtils
 enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
-    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeStyle: DelimiterEscapeStyle = .backslash)
+    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeCharacter: Character? = nil)
     
     
     init?(highlight: Syntax.Highlight) {
-
+        
         guard
             !highlight.isRegularExpression,
             let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
             pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
         else { return nil }
-
+        
         self = .pair(pair, isMultiline: highlight.isMultiline, isNestable: true)
     }
 }
@@ -82,9 +82,12 @@ extension [NestableToken: SyntaxType] {
                 return token.positions(in: string, type: type, range: parseRange)
             }
             .filter { item in
-                switch item.token.escapeStyle {
-                    case .backslash: !string.isEscaped(at: item.range.location)
-                    case .doubleDelimiter, .none: true
+                switch item.token {
+                    case .pair(let pair, _, _, let escapeCharacter?) where String(escapeCharacter) != pair.end:
+                        // -> Double-delimiter style needs no positional escape check
+                        !(string as NSString).isEscaped(at: item.range.location, by: escapeCharacter)
+                    default:
+                        true
                 }
             }
             .sorted(using: [KeyPathComparator(\.range.location),
@@ -123,7 +126,10 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
-                let appliesDoubleDelimiter = beginPosition.token.escapeStyle == .doubleDelimiter && beginPosition.token.hasSingleEnd
+                let appliesDoubleDelimiter: Bool = switch beginPosition.token {
+                    case .pair(let pair, _, _, let escapeCharacter?): String(escapeCharacter) == pair.end
+                    default: false
+                }
                 
                 var nestDepth = 0
                 var skipCount = 0
@@ -196,25 +202,6 @@ private extension NestableToken {
             case .inline: false
             case .pair(_, _, let isNestable, _): isNestable
         }
-    }
-    
-    
-    /// The effective delimiter-escape style for this token.
-    var escapeStyle: DelimiterEscapeStyle {
-        
-        switch self {
-            case .inline: .none
-            case .pair(_, _, _, let escapeStyle): escapeStyle
-        }
-    }
-    
-    
-    /// Whether the token has a single-character end delimiter.
-    var hasSingleEnd: Bool {
-        
-        guard case .pair(let pair, _, _, _) = self else { return false }
-        
-        return pair.end.count == 1
     }
     
     

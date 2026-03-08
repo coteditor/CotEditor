@@ -132,9 +132,9 @@ extension Syntax.Error.Code {
                 String(localized: "Syntax.Error.Code.nestableBlockComment",
                        defaultValue: "Nestable block comment must use different begin and end delimiters.",
                        table: "SyntaxEditor")
-            case .doubleDelimiterEscape:
-                String(localized: "Syntax.Error.Code.doubleDelimiterEscape",
-                       defaultValue: "Double delimiter escape requires a single-character end delimiter.",
+            case .invalidEscapeCharacter:
+                String(localized: "Syntax.Error.Code.invalidEscapeCharacter",
+                       defaultValue: "The escape character must be a single character in UTF-16 code unit.",
                        table: "SyntaxEditor")
         }
     }
@@ -169,7 +169,6 @@ private extension Syntax.Error.Scope {
         .init(.regularExpression, scope: .outline, value: "[]"),
         .init(.blockComment, scope: .blockComment, value: "bb"),
         .init(.nestableBlockComment, scope: .blockComment, value: "/*"),
-        .init(.doubleDelimiterEscape, scope: .stringDelimiter, value: "'''"),
     ]
     
     return SyntaxValidationView(errors: errors)

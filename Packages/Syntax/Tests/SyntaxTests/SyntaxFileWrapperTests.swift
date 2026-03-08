@@ -129,7 +129,7 @@ struct SyntaxFileWrapperTests {
         
         #expect(delimiter.begin == "\"")
         #expect(delimiter.end == "\"")
-        #expect(delimiter.escapeStyle == .backslash)
+        #expect(delimiter.escapeCharacter == nil)
         #expect(!delimiter.isMultiline)
         #expect(delimiter.description == nil)
     }
@@ -137,14 +137,14 @@ struct SyntaxFileWrapperTests {
     
     @Test func stringDelimiterEncodingSkipsDefaults() throws {
         
-        let delimiter = Syntax.PairDelimiter(begin: "'", end: "'", escapeStyle: .none)
+        let delimiter = Syntax.PairDelimiter(begin: "'", end: "'")
         let data = try JSONEncoder().encode(delimiter)
         let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
         
         #expect(object["begin"] as? String == "'")
         #expect(object["end"] as? String == "'")
         #expect(object["isMultiline"] == nil)
-        #expect(object["escapeStyle"] as? String == "none")
+        #expect(object["escapeCharacter"] == nil)
         #expect(object["description"] == nil)
     }
     
@@ -158,7 +158,7 @@ struct SyntaxFileWrapperTests {
         #expect(object["begin"] as? String == "'")
         #expect(object["end"] as? String == "'")
         #expect(object["isMultiline"] == nil)
-        #expect(object["escapeStyle"] == nil)
+        #expect(object["escapeCharacter"] == nil)
         #expect(object["description"] as? String == "single quoted")
     }
     
@@ -219,8 +219,8 @@ struct SyntaxFileWrapperTests {
         let info = Syntax.Info(kind: Syntax.Kind.code, fileMap: .init(extensions: ["swift"]), metadata: .init(author: "me"))
         let edit = Syntax.Edit(
             comment: .init(inlines: [.init(begin: "//")], blocks: [.init(begin: "/*", end: "*/")]),
-            stringDelimiters: [.init(begin: "'", end: "'", isMultiline: true, escapeStyle: .doubleDelimiter)],
-            characterDelimiters: [.init(begin: "'", end: "'", escapeStyle: .none)]
+            stringDelimiters: [.init(begin: "'", end: "'", isMultiline: true, escapeCharacter: "'")],
+            characterDelimiters: [.init(begin: "'", end: "'")]
         )
         let completions: [Syntax.CompletionWord] = [.init(text: "print", type: SyntaxType.commands)]
         let highlights: [SyntaxType: [Syntax.Highlight]] = [
@@ -248,8 +248,8 @@ struct SyntaxFileWrapperTests {
         #expect(syntax.metadata.author == "me")
         #expect(syntax.commentDelimiters.inlines.map { $0.begin } == ["//"])
         #expect(syntax.commentDelimiters.blocks == [.init(begin: "/*", end: "*/")])
-        #expect(syntax.stringDelimiters == [.init(begin: "'", end: "'", isMultiline: true, escapeStyle: .doubleDelimiter)])
-        #expect(syntax.characterDelimiters == [.init(begin: "'", end: "'", escapeStyle: .none)])
+        #expect(syntax.stringDelimiters == [.init(begin: "'", end: "'", isMultiline: true, escapeCharacter: "'")])
+        #expect(syntax.characterDelimiters == [.init(begin: "'", end: "'")])
         #expect(syntax.completions.map { $0.text } == ["print"])
         #expect(syntax.highlights[SyntaxType.keywords]?.map { $0.begin } == ["func"])
         #expect(syntax.outlines.map { $0.pattern } == ["^func"])
@@ -264,8 +264,8 @@ struct SyntaxFileWrapperTests {
             highlights: [SyntaxType.keywords: [.init(begin: "todo")]],
             outlines: [.init(pattern: "^#", template: "header")],
             commentDelimiters: .init(inlines: [.init(begin: "#")]),
-            stringDelimiters: [.init(begin: "\"", end: "\"", isMultiline: true, escapeStyle: .backslash)],
-            characterDelimiters: [.init(begin: "'", end: "'", escapeStyle: .none)],
+            stringDelimiters: [.init(begin: "\"", end: "\"", isMultiline: true, escapeCharacter: "\\")],
+            characterDelimiters: [.init(begin: "'", end: "'")],
             completions: [.init(text: "hello", type: SyntaxType.keywords)],
             metadata: .init(author: "tester")
         )
@@ -282,8 +282,8 @@ struct SyntaxFileWrapperTests {
         
         let editData = try #require(root["Edit.json"]?.regularFileContents)
         let edit = try JSONDecoder().decode(Syntax.Edit.self, from: editData)
-        #expect(try #require(edit.stringDelimiters) == [.init(begin: "\"", end: "\"", isMultiline: true, escapeStyle: .backslash)])
-        #expect(try #require(edit.characterDelimiters) == [.init(begin: "'", end: "'", escapeStyle: .none)])
+        #expect(try #require(edit.stringDelimiters) == [.init(begin: "\"", end: "\"", isMultiline: true, escapeCharacter: "\\")])
+        #expect(try #require(edit.characterDelimiters) == [.init(begin: "'", end: "'")])
     }
     
     
@@ -298,7 +298,7 @@ struct SyntaxFileWrapperTests {
     
     @Test func fileWrapperSerializationIncludesStringDelimitersOnly() throws {
         
-        let syntax = Syntax(stringDelimiters: [.init(begin: "'", end: "'", escapeStyle: .doubleDelimiter)])
+        let syntax = Syntax(stringDelimiters: [.init(begin: "'", end: "'", escapeCharacter: "'")])
         
         let wrapper = try syntax.fileWrapper
         let editData = try #require(wrapper.fileWrappers?["Edit.json"]?.regularFileContents)
@@ -307,13 +307,13 @@ struct SyntaxFileWrapperTests {
         #expect(edit.comment == nil)
         #expect(edit.indentation == nil)
         #expect(edit.characterDelimiters == nil)
-        #expect(edit.stringDelimiters == [.init(begin: "'", end: "'", escapeStyle: .doubleDelimiter)])
+        #expect(edit.stringDelimiters == [.init(begin: "'", end: "'", escapeCharacter: "'")])
     }
     
     
     @Test func fileWrapperSerializationIncludesCharacterDelimitersOnly() throws {
         
-        let syntax = Syntax(characterDelimiters: [.init(begin: "'", end: "'", escapeStyle: .none)])
+        let syntax = Syntax(characterDelimiters: [.init(begin: "'", end: "'")])
         
         let wrapper = try syntax.fileWrapper
         let editData = try #require(wrapper.fileWrappers?["Edit.json"]?.regularFileContents)
@@ -322,7 +322,7 @@ struct SyntaxFileWrapperTests {
         #expect(edit.comment == nil)
         #expect(edit.indentation == nil)
         #expect(edit.stringDelimiters == nil)
-        #expect(edit.characterDelimiters == [.init(begin: "'", end: "'", escapeStyle: .none)])
+        #expect(edit.characterDelimiters == [.init(begin: "'", end: "'")])
     }
     
     

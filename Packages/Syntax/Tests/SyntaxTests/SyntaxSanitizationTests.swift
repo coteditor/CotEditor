@@ -62,7 +62,7 @@ struct SyntaxSanitizationTests {
             stringDelimiters: [
                 .init(begin: "", end: "\""),
                 .init(begin: "\"", end: ""),
-                .init(begin: "'''", end: "'''", isMultiline: true, escapeStyle: .none),
+                .init(begin: "'''", end: "'''", isMultiline: true),
                 .init(begin: "\"", end: "\""),
             ],
             characterDelimiters: [
@@ -91,7 +91,7 @@ struct SyntaxSanitizationTests {
         #expect(sanitized.commentDelimiters.inlines.map(\.begin) == ["//"])
         #expect(sanitized.commentDelimiters.blocks == [.init(begin: "/*", end: "*/")])
         #expect(sanitized.stringDelimiters == [.init(begin: "\"", end: "\""),
-                                               .init(begin: "'''", end: "'''", isMultiline: true, escapeStyle: .none)])
+                                               .init(begin: "'''", end: "'''", isMultiline: true)])
         #expect(sanitized.characterDelimiters == [.init(begin: "'", end: "'")])
         
         #expect(sanitized.completions.map(\.text) == ["apple", "Zoo"])

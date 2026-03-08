@@ -59,14 +59,6 @@ public extension Pair.PairIndex {
 }
 
 
-public enum DelimiterEscapeStyle: String, Sendable, CaseIterable, Codable {
-    
-    case backslash
-    case doubleDelimiter
-    case none
-}
-
-
 public extension StringProtocol {
     
     /// Finds the range enclosed by one of given symbol pairs.
@@ -74,11 +66,11 @@ public extension StringProtocol {
     /// - Parameters:
     ///   - range: The character range on which to base the search.
     ///   - candidates: The pairs of symbols to search.
-    ///   - escapeStyle: The delimiter escape style.
+    ///   - escapeCharacter: The escape character, or `nil` for no escape.
     /// - Returns: The range of the enclosing symbol pair, or `nil` if not found.
-    func rangeOfEnclosingSymbolPair(at range: Range<Index>, candidates: [SymbolPair], escapeStyle: DelimiterEscapeStyle = .backslash) -> Range<Index>? {
+    func rangeOfEnclosingSymbolPair(at range: Range<Index>, candidates: [SymbolPair], escapeCharacter: Character? = nil) -> Range<Index>? {
         
-        SymbolPairScanner(string: String(self), candidates: candidates, baseRange: range, escapeStyle: escapeStyle)
+        SymbolPairScanner(string: String(self), candidates: candidates, baseRange: range, escapeCharacter: escapeCharacter)
             .scan()
     }
     
@@ -89,10 +81,10 @@ public extension StringProtocol {
     ///   - index: The character index of the symbol character to find the mate.
     ///   - candidates: Symbol pairs to find.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeStyle: The delimiter escape style.
-    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .none) -> ClosedRange<Index>? {
+    ///   - escapeCharacter: The escape character, or `nil` for no escape.
+    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) -> ClosedRange<Index>? {
         
-        guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeStyle: escapeStyle) else { return nil }
+        guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeCharacter: escapeCharacter) else { return nil }
         
         return switch pairIndex {
             case .begin(let beginIndex): beginIndex...index
@@ -108,19 +100,22 @@ public extension StringProtocol {
     ///   - candidates: Symbol pairs to find.
     ///   - range: The range of characters to find in.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeStyle: The delimiter escape style.
+    ///   - escapeCharacter: The escape character, or `nil` for no escape.
     /// - Returns: The character index of the matched pair.
-    func indexOfSymbolPair(at index: Index, candidates: [SymbolPair], in range: Range<Index>? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .backslash) -> SymbolPair.PairIndex? {
-        
-        guard escapeStyle != .backslash || !self.isEscaped(at: index) else { return nil }
+    func indexOfSymbolPair(at index: Index, candidates: [SymbolPair], in range: Range<Index>? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) -> SymbolPair.PairIndex? {
         
         let character = self[index]
         
         guard let pair = candidates.first(where: { $0.begin == character || $0.end == character }) else { return nil }
         
+        // check if this position is escaped (non-double-delimiter style)
+        if let escapeCharacter, escapeCharacter != pair.end {
+            guard !self.isEscaped(at: index, by: escapeCharacter) else { return nil }
+        }
+        
         if pair.begin == pair.end {
-            let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeStyle: escapeStyle)
-            let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeStyle: escapeStyle)
+            let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeCharacter: escapeCharacter)
+            let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeCharacter: escapeCharacter)
             
             return switch (beginIndex, endIndex) {
                 case let (beginIndex?, nil): .begin(beginIndex)
@@ -131,14 +126,14 @@ public extension StringProtocol {
         
         switch character {
             case pair.begin:
-                guard let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeStyle: escapeStyle) else { return nil }
+                guard let endIndex = self.indexOfSymbolPair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeCharacter: escapeCharacter) else { return nil }
                 return .end(endIndex)
                 
             case pair.end:
-                guard let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeStyle: escapeStyle) else { return nil }
+                guard let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeCharacter: escapeCharacter) else { return nil }
                 // verify this end is the actual matching end by forward-searching from the found begin
-                if escapeStyle == .doubleDelimiter {
-                    let foundEnd = self.indexOfSymbolPair(beginIndex: beginIndex, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeStyle: escapeStyle)
+                if let escapeCharacter, escapeCharacter == pair.end {
+                    let foundEnd = self.indexOfSymbolPair(beginIndex: beginIndex, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeCharacter: escapeCharacter)
                     guard foundEnd == index else { return nil }
                 }
                 return .begin(beginIndex)
@@ -157,9 +152,9 @@ public extension StringProtocol {
     ///   - pair: The symbol pair to find.
     ///   - beginIndex: The lower boundary of the find range.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeStyle: The delimiter escape style.
+    ///   - escapeCharacter: The escape character, or `nil` for no escape.
     /// - Returns: The character index of the matched opening symbol, or `nil` if not found.
-    func indexOfSymbolPair(endIndex: Index, pair: SymbolPair, until beginIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .backslash) -> Index? {
+    func indexOfSymbolPair(endIndex: Index, pair: SymbolPair, until beginIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) -> Index? {
         
         assert(endIndex <= self.endIndex)
         
@@ -170,7 +165,8 @@ public extension StringProtocol {
         var index = endIndex
         var nestDepth = 0
         
-        if escapeStyle == .doubleDelimiter {
+        // double-delimiter style: escape character is the same as end delimiter
+        if let escapeCharacter, escapeCharacter == pair.end {
             while index > beginIndex {
                 index = self.index(before: index)
                 
@@ -201,20 +197,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.begin where ignoredNestDepth == 0:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.end where ignoredNestDepth == 0:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.begin:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.end:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -234,9 +230,9 @@ public extension StringProtocol {
     ///   - pair: The symbol pair to find.
     ///   - endIndex: The upper boundary of the find range.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeStyle: The delimiter escape style.
+    ///   - escapeCharacter: The escape character, or `nil` for no escape.
     /// - Returns: The character index of the matched closing symbol, or `nil` if not found.
-    func indexOfSymbolPair(beginIndex: Index, pair: SymbolPair, until endIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .backslash) -> Index? {
+    func indexOfSymbolPair(beginIndex: Index, pair: SymbolPair, until endIndex: Index? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) -> Index? {
         
         assert(beginIndex >= self.startIndex)
         
@@ -247,7 +243,8 @@ public extension StringProtocol {
         
         guard beginIndex < endIndex else { return nil }
         
-        if escapeStyle == .doubleDelimiter {
+        // double-delimiter style: escape character is the same as end delimiter
+        if let escapeCharacter, escapeCharacter == pair.end {
             var index = beginIndex
             
             while index < endIndex {
@@ -278,20 +275,20 @@ public extension StringProtocol {
             
             switch self[index] {
                 case pair.end where ignoredNestDepth == 0:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
                     
                 case pair.begin where ignoredNestDepth == 0:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     nestDepth += 1
                     
                 case pairToIgnore?.end:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     ignoredNestDepth -= 1
                     
                 case pairToIgnore?.begin:
-                    guard escapeStyle != .backslash || !self.isEscaped(at: index) else { continue }
+                    if let escapeCharacter, self.isEscaped(at: index, by: escapeCharacter) { continue }
                     ignoredNestDepth += 1
                     
                 default: break
@@ -312,19 +309,19 @@ private final class SymbolPairScanner {
     
     private var scanningRange: Range<String.Index>
     private var scanningPair: SymbolPair?
-    private let escapeStyle: DelimiterEscapeStyle
+    private let escapeCharacter: Character?
     private var finished: Bool = false
     private var found: Bool = false
     
     
-    init(string: String, candidates: [SymbolPair], baseRange: Range<String.Index>, escapeStyle: DelimiterEscapeStyle) {
+    init(string: String, candidates: [SymbolPair], baseRange: Range<String.Index>, escapeCharacter: Character?) {
         
         assert(candidates.allSatisfy({ $0.begin != $0.end }))
         
         self.string = string
         self.candidates = candidates
         self.scanningRange = baseRange
-        self.escapeStyle = escapeStyle
+        self.escapeCharacter = escapeCharacter
     }
     
     
@@ -354,9 +351,11 @@ private final class SymbolPairScanner {
         
         var index = self.scanningRange.upperBound
         var nestDepths: [SymbolPair: Int] = [:]
-        var isEscaped = self.escapeStyle == .backslash &&
-            (index != self.string.startIndex) &&
-            self.string[self.string.index(before: index)] == "\\"
+        var isEscaped = if let escapeCharacter {
+            self.string.isEscaped(at: index, by: escapeCharacter)
+        } else {
+            false
+        }
         
         for character in self.string[index...] {
             index = self.string.index(after: index)
@@ -379,11 +378,7 @@ private final class SymbolPairScanner {
                 }
             }
             
-            if self.escapeStyle == .backslash, character == "\\" {
-                isEscaped = true
-            } else {
-                isEscaped = false
-            }
+            isEscaped = (character == self.escapeCharacter)
         }
         
         self.finished = true
@@ -400,7 +395,7 @@ private final class SymbolPairScanner {
             index = self.string.index(before: index)
             
             if let pair = self.candidates.first(where: { $0.begin == character }) {
-                guard self.escapeStyle != .backslash || !self.string.isEscaped(at: index) else { continue }
+                if let escapeCharacter, self.string.isEscaped(at: index, by: escapeCharacter) { continue }
                 
                 if nestDepths[pair, default: 0] > 0 {
                     nestDepths[pair, default: 0] -= 1
@@ -412,7 +407,7 @@ private final class SymbolPairScanner {
                 }
                 
             } else if let pair = self.candidates.first(where: { $0.end == character }) {
-                guard self.escapeStyle != .backslash || !self.string.isEscaped(at: index) else { continue }
+                if let escapeCharacter, self.string.isEscaped(at: index, by: escapeCharacter) { continue }
                 
                 nestDepths[pair, default: 0] += 1
             }

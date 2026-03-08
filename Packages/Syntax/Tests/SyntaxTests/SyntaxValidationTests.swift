@@ -93,26 +93,24 @@ struct SyntaxValidationTests {
     }
     
     
-    @Test func doubleDelimiterEscapeValidation() {
+    @Test func invalidEscapeCharacterValidation() {
         
         let syntax = Syntax(
             stringDelimiters: [
-                .init(begin: "'", end: "'", escapeStyle: .doubleDelimiter),
-                .init(begin: "'''", end: "'''", escapeStyle: .doubleDelimiter),
-                .init(begin: "\"", end: "\"", escapeStyle: .backslash),
+                .init(begin: "'", end: "'", escapeCharacter: "'"),      // valid (single UTF-16)
+                .init(begin: "\"", end: "\"", escapeCharacter: "\\"),   // valid (single UTF-16)
+                .init(begin: "\"", end: "\"", escapeCharacter: "🐕"),   // invalid (surrogate pair)
             ],
             characterDelimiters: [
-                .init(begin: "'", end: "'", escapeStyle: .doubleDelimiter),
-                .init(begin: "#|", end: "|#", escapeStyle: .doubleDelimiter),
+                .init(begin: "'", end: "'", escapeCharacter: "`"),      // valid
             ]
         )
         
         let errors = syntax.validate()
         
-        #expect(!errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .stringDelimiter && $0.value == "'" })
-        #expect(errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .stringDelimiter && $0.value == "'''" })
-        #expect(!errors.contains { $0.code == .doubleDelimiterEscape && $0.value == "\"" })
-        #expect(!errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .characterDelimiter && $0.value == "'" })
-        #expect(errors.contains { $0.code == .doubleDelimiterEscape && $0.scope == .characterDelimiter && $0.value == "|#" })
+        #expect(!errors.contains { $0.code == .invalidEscapeCharacter && $0.value == "'" })
+        #expect(!errors.contains { $0.code == .invalidEscapeCharacter && $0.value == "\\" })
+        #expect(errors.contains { $0.code == .invalidEscapeCharacter && $0.scope == .stringDelimiter && $0.value == "🐕" })
+        #expect(!errors.contains { $0.code == .invalidEscapeCharacter && $0.scope == .characterDelimiter })
     }
 }

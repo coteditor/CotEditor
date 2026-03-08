@@ -276,7 +276,7 @@ extension Syntax: Decodable {
                highlight.begin == end,
                highlight.begin.allSatisfy("\"'`".contains)
             {
-                delimiters.append(PairDelimiter(begin: highlight.begin, end: end, description: highlight.description))
+                delimiters.append(PairDelimiter(begin: highlight.begin, end: end, escapeCharacter: "\\", description: highlight.description))
             } else {
                 remainingHighlights.append(highlight)
             }

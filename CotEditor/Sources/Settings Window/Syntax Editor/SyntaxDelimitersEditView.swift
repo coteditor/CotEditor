@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import StringUtils
 import Syntax
 
 struct SyntaxDelimitersEditView: View {
@@ -228,30 +227,12 @@ private struct StringDelimitersEditView: View {
             }
             .width(56)
             .alignment(.center)
-            TableColumn(String(localized: "Escape Style", defaultValue: "Escape Style", table: "SyntaxEditor", comment: "table column header")) { $item in
-                Picker(selection: $item.value.escapeStyle) {
-                    ForEach(DelimiterEscapeStyle.allCases, id: \.self) { rule in
-                        if rule == .none {
-                            Divider()
-                        }
-                        Text(rule.label)
-                    }
-                } label: {
-                    EmptyView()
-                } currentValueLabel: {
-                    let rule = item.value.escapeStyle
-                    Text(rule.label)
-                        .foregroundStyle((rule != .none) ? .primary : .tertiary)
-                }
-                .buttonStyle(.plain)
-                .labelsHidden()
-                .onChange(of: item.value.escapeStyle) { _, newValue in
-                    guard self.selection.contains(item.id) else { return }
-                    $items
-                        .filter(with: self.selection)
-                        .filter { $0.id != item.id }
-                        .forEach { $0.value.escapeStyle.wrappedValue = newValue }
-                }
+            TableColumn(String(localized: "Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
+                let binding = Binding<String>(
+                    get: { item.value.escapeCharacter.map(String.init) ?? "" },
+                    set: { $item.value.escapeCharacter.wrappedValue = $0.first }
+                )
+                TextField(text: binding, label: EmptyView.init)
             }
             TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.description ?? "", label: EmptyView.init)
@@ -290,32 +271,13 @@ private struct CharacterDelimitersEditView: View {
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Escape Style", defaultValue: "Escape Style", table: "SyntaxEditor", comment: "table column header")) { $item in
-                Picker(selection: $item.value.escapeStyle) {
-                    ForEach(DelimiterEscapeStyle.allCases, id: \.self) { rule in
-                        if rule == .none {
-                            Divider()
-                        }
-                        Text(rule.label)
-                    }
-                } label: {
-                    EmptyView()
-                } currentValueLabel: {
-                    let rule = item.value.escapeStyle
-                    Text(rule.label)
-                        .foregroundStyle((rule != .none) ? .primary : .tertiary)
-                }
-                .buttonStyle(.plain)
-                .labelsHidden()
-                .onChange(of: item.value.escapeStyle) { _, newValue in
-                    guard self.selection.contains(item.id) else { return }
-                    $items
-                        .filter(with: self.selection)
-                        .filter { $0.id != item.id }
-                        .forEach { $0.value.escapeStyle.wrappedValue = newValue }
-                }
+            TableColumn(String(localized: "Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
+                let binding = Binding<String>(
+                    get: { item.value.escapeCharacter.map(String.init) ?? "" },
+                    set: { $item.value.escapeCharacter.wrappedValue = $0.first }
+                )
+                TextField(text: binding, label: EmptyView.init)
             }
-            .width(132)
             TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.description ?? "", label: EmptyView.init)
             }
@@ -375,30 +337,6 @@ private struct BlockEditView: View {
         
         AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
             self.focusedField = item.id
-        }
-    }
-}
-
-
-// MARK: - Localizations
-
-private extension DelimiterEscapeStyle {
-    
-    var label: String {
-        
-        switch self {
-            case .backslash:
-                String(localized: "DelimiterEscapeStyle.backslash.label",
-                       defaultValue: "Backslash",
-                       table: "SyntaxEditor")
-            case .doubleDelimiter:
-                String(localized: "DelimiterEscapeStyle.doubleDelimiter.label",
-                       defaultValue: "Double delimiter",
-                       table: "SyntaxEditor")
-            case .none:
-                String(localized: "DelimiterEscapeStyle.none.label",
-                       defaultValue: "None",
-                       table: "SyntaxEditor")
         }
     }
 }

@@ -26,7 +26,6 @@
 //
 
 import Foundation
-internal import StringUtils
 
 public extension Syntax {
     
@@ -38,7 +37,7 @@ public extension Syntax {
             case regularExpression
             case blockComment
             case nestableBlockComment
-            case doubleDelimiterEscape
+            case invalidEscapeCharacter
         }
         
         
@@ -131,13 +130,15 @@ public extension Syntax {
             }
         }
         
-        // validate double delimiter escape style
+        // validate escape characters are single UTF-16 code unit
         errors += self.stringDelimiters
-            .filter { $0.escapeStyle == .doubleDelimiter && $0.end.count != 1 }
-            .map { Error(.doubleDelimiterEscape, scope: .stringDelimiter, value: $0.end) }
+            .compactMap(\.escapeCharacter)
+            .filter { $0.utf16.count != 1 }
+            .map { Error(.invalidEscapeCharacter, scope: .stringDelimiter, value: String($0)) }
         errors += self.characterDelimiters
-            .filter { $0.escapeStyle == .doubleDelimiter && $0.end.count != 1 }
-            .map { Error(.doubleDelimiterEscape, scope: .characterDelimiter, value: $0.end) }
+            .compactMap(\.escapeCharacter)
+            .filter { $0.utf16.count != 1 }
+            .map { Error(.invalidEscapeCharacter, scope: .characterDelimiter, value: String($0)) }
         
         return errors
     }

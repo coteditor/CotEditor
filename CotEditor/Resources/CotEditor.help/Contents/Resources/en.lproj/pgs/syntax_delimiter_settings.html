@@ -69,12 +69,12 @@
 		<tr><th>Begin String</th><td><p>Delimiter that starts a string.</p></td></tr>
 		<tr><th>End String</th><td><p>Delimiter that ends a string.</p></td></tr>
 		<tr><th>Multiline</th><td><p>If selected, strings can span across line breaks.</p></td></tr>
-		<tr><th>Escape</th><td><p>The escape style for this string delimiter. The default value is “Backslash.”</p></td></tr>
+		<tr><th>Escape Character</th><td><p>The character used to escape the end delimiter inside the string. Leave empty for no escaping.</p></td></tr>
 		<tr><th>Description</th><td><p>A note for your reference (optional).</p></td></tr>
 	</tbody>
 </table>
 
-<p>If you define multiple string delimiters, you can support different quote styles in the same syntax (for example, <code>&quot;...&quot;</code> and <code>'...'</code>).</p>
+<p>If you define multiple string delimiters, you can support different quote styles in the same syntax (for example, <code>&quot;…&quot;</code> and <code>&quot;&quot;&quot;…&quot;&quot;&quot;</code>).</p>
 </section>
 
 
@@ -90,12 +90,10 @@
 	<tbody>
 		<tr><th>Begin String</th><td><p>Delimiter that starts a character literal.</p></td></tr>
 		<tr><th>End String</th><td><p>Delimiter that ends a character literal.</p></td></tr>
-		<tr><th>Escape</th><td><p>The escape style for this character delimiter. The default value is “Backslash.”</p></td></tr>
+		<tr><th>Escape Character</th><td><p>The character used to escape the end delimiter inside the character literal. Leave empty for no escaping.</p></td></tr>
 		<tr><th>Description</th><td><p>A note for your reference (optional).</p></td></tr>
 	</tbody>
 </table>
-
-<p>If you define multiple character delimiters, you can support different literal forms in the same syntax.</p>
 </section>
 
 
@@ -117,26 +115,6 @@
 </table>
 
 <p>If both Begin String and End String are set and the End String is immediately after the insertion point, CotEditor inserts an extra blank line and keeps the closing line at the original indentation level.</p>
-</section>
-
-
-<section>
-<h2>Escape delimiters</h2>
-
-<p>Each string delimiter and character delimiter has an Escape setting that determines how the delimiter character can be used inside the delimited range. CotEditor uses this setting for regular-expression-based syntax highlighting and for matching paired symbols in the editor. The following escape styles are available:</p>
-
-<table>
-	<thead>
-		<tr><th>Option</th><th>Description</th></tr>
-	</thead>
-	<tbody>
-		<tr><th>Backslash (default)</th><td><p>Treat a backslash (&#x005C;) as an escape character. A delimiter immediately preceded by a backslash is ignored.</p></td></tr>
-		<tr><th>Double delimiter</th><td><p>Treat two consecutive delimiters as an escaped delimiter. This style is applied only when the begin and end delimiters are the same single character.</p></td></tr>
-		<tr><th>None</th><td><p>Do not treat any character as an escape. Every delimiter is matched as-is.</p></td></tr>
-	</tbody>
-</table>
-
-<p>For example, if a delimiter is <code>&quot;</code>, a sequence like <code>\&quot;</code> does not end the range when the escape style is “Backslash.” With the “Double delimiter” style, a sequence like <code>&quot;&quot;</code> is treated as an escaped delimiter.</p>
 </section>
 
 

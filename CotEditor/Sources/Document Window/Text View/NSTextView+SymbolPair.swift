@@ -33,8 +33,8 @@ extension NSTextView {
     /// - Parameters:
     ///   - candidates: Symbol pairs to find.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
-    ///   - escapeStyle: The delimiter escape style.
-    final func highlightMatchingSymbol(candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeStyle: DelimiterEscapeStyle = .backslash) {
+    ///   - escapeCharacter: The escape character, or `nil` for no escape.
+    final func highlightMatchingSymbol(candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) {
         
         guard
             !self.string.isEmpty,
@@ -53,7 +53,7 @@ extension NSTextView {
         let range = Range(visibleRange, in: self.string)
         
         lastIndexes
-            .compactMap { self.string.indexOfSymbolPair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore, escapeStyle: escapeStyle) }
+            .compactMap { self.string.indexOfSymbolPair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore, escapeCharacter: escapeCharacter) }
             .compactMap(\.index)
             .map { NSRange($0...$0, in: self.string) }
             .forEach { self.showFindIndicator(for: $0) }

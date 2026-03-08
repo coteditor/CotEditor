@@ -54,15 +54,17 @@ private let maxEscapesCheckLength = 8
 
 public extension StringProtocol {
     
-    /// Checks if character at the index is escaped with backslash.
+    /// Checks if character at the index is escaped with the given character.
     ///
-    /// - Parameter index: The index of the character to check.
+    /// - Parameters:
+    ///   - index: The index of the character to check.
+    ///   - character: The escape character.
     /// - Returns: `true` when the character at the given index is escaped.
-    func isEscaped(at index: Index) -> Bool {
+    func isEscaped(at index: Index, by character: Character = "\\") -> Bool {
         
         let count = self[..<index].suffix(maxEscapesCheckLength)
             .reversed()
-            .prefix { $0 == "\\" }
+            .prefix { $0 == character }
             .count
         
         return !count.isMultiple(of: 2)
@@ -72,16 +74,22 @@ public extension StringProtocol {
 
 public extension NSString {
     
-    /// Checks if character at the location is escaped with backslash.
+    /// Checks if character at the location is escaped with the given character.
     ///
-    /// - Parameter location: The UTF16-based location of the character to check.
+    /// - Parameters:
+    ///   - location: The UTF16-based location of the character to check.
+    ///   - escapeCharacter: The escape character.
     /// - Returns: `true` when the character at the given index is escaped.
-    final func isEscaped(at location: Int) -> Bool {
+    final func isEscaped(at location: Int, by escapeCharacter: Character = "\\") -> Bool {
+        
+        assert(escapeCharacter.utf16.count == 1)
+        
+        guard let codeUnit = escapeCharacter.utf16.first else { return false }
         
         let lowerBound = max(location - maxEscapesCheckLength, 0)
         let count = (lowerBound..<location)
             .reversed()
-            .prefix { self.character(at: $0) == 0x005C }
+            .prefix { self.character(at: $0) == codeUnit }
             .count
         
         return !count.isMultiple(of: 2)
