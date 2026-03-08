@@ -29,6 +29,8 @@ public import Foundation
 public extension String {
     
     /// Unescaped version of the string by unescaping the characters with backslashes.
+    ///
+    /// This method does not support Unicode scalar escape (`\u{n}`).
     var unescaped: String {
         
         // -> According to the Swift documentation, these are the all combinations with backslash.
