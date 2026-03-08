@@ -244,7 +244,7 @@ enum SyntaxName {
         
         guard legacyURL.isReachable else { return }
         
-        self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: self.userSettingDirectoryURL, deletingOriginal: false)
+        self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: self.userSettingDirectoryURL, deletingOriginal: false, shouldMigrate: { !self.bundledSettingNames.contains($0) })
     }
     
     

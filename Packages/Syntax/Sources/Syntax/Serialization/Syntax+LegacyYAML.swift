@@ -37,9 +37,10 @@ public extension Syntax {
     ///   - directoryURL: The directory to scan (non-recursively) for legacy YAML syntax definition files.
     ///   - destinationURL: Optional destination directory where converted `.cotsyntax` packages will be written.
     ///   - deletingOriginal: If `true`, remove each original YAML file after its successful migration.
+    ///   - shouldMigrate: A closure that determines whether a syntax with the given name should be migrated.
     /// - Returns: The number of migrated syntaxes.
     /// - Throws: An error if reading the directory contents fails.
-    @discardableResult static func migrateFormat(in directoryURL: URL, to destinationURL: URL? = nil, deletingOriginal: Bool = true) throws -> Int {
+    @discardableResult static func migrateFormat(in directoryURL: URL, to destinationURL: URL? = nil, deletingOriginal: Bool = true, shouldMigrate: (_ name: String) -> Bool = { _ in true }) throws -> Int {
         
         let urls = try FileManager.default.contentsOfDirectory(at: directoryURL,
                                                                includingPropertiesForKeys: [.contentTypeKey],
@@ -48,6 +49,10 @@ public extension Syntax {
         
         var count = 0
         for url in urls {
+            let name = url.deletingPathExtension().lastPathComponent
+            
+            guard shouldMigrate(name) else { continue }
+            
             do {
                 try self.migrate(fileURL: url, to: destinationURL, deletingOriginal: deletingOriginal)
             } catch {
