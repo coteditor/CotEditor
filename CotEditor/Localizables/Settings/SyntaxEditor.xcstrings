@@ -2426,43 +2426,43 @@
         }
       }
     },
-    "Escape" : {
+    "Escape Style" : {
       "comment" : "table column header",
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escape"
+            "state" : "needs_review",
+            "value" : "Escape-Stil"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escape"
+            "value" : "Escape Style"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Escape"
+            "value" : "Estilo de escape"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Échappement"
+            "value" : "Style d'échappement"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "エスケープ"
+            "value" : "エスケープスタイル"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Escapen"
+            "value" : "Escape-stijl"
           }
         }
       }

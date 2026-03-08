@@ -228,7 +228,7 @@ private struct StringDelimitersEditView: View {
             }
             .width(56)
             .alignment(.center)
-            TableColumn(String(localized: "Escape", defaultValue: "Escape", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(String(localized: "Escape Style", defaultValue: "Escape Style", table: "SyntaxEditor", comment: "table column header")) { $item in
                 Picker(selection: $item.value.escapeStyle) {
                     ForEach(DelimiterEscapeStyle.allCases, id: \.self) { rule in
                         if rule == .none {
@@ -290,7 +290,7 @@ private struct CharacterDelimitersEditView: View {
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Escape", defaultValue: "Escape", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(String(localized: "Escape Style", defaultValue: "Escape Style", table: "SyntaxEditor", comment: "table column header")) { $item in
                 Picker(selection: $item.value.escapeStyle) {
                     ForEach(DelimiterEscapeStyle.allCases, id: \.self) { rule in
                         if rule == .none {
