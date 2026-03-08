@@ -123,7 +123,7 @@ extension [NestableToken: SyntaxType] {
             
             // search corresponding end delimiter
             let endIndex: Int? = {
-                let appliesDoubleDelimiter = beginPosition.token.escapeStyle == .doubleDelimiter && beginPosition.token.isSingleSamePair
+                let appliesDoubleDelimiter = beginPosition.token.escapeStyle == .doubleDelimiter && beginPosition.token.hasSingleEnd
                 
                 var nestDepth = 0
                 var skipCount = 0
@@ -140,6 +140,7 @@ extension [NestableToken: SyntaxType] {
                         if appliesDoubleDelimiter, index < positions.count {
                             skipCount = positions[(index + offset + 1)...].prefix { next in
                                 next.token == position.token &&
+                                next.role.contains(.end) &&
                                 next.range.location <= searchUpperBound &&
                                 next.range.location == position.range.location + 1 + skipCount
                             }.count
@@ -208,12 +209,12 @@ private extension NestableToken {
     }
     
     
-    /// Whether the token is a one-character symmetric pair delimiter.
-    var isSingleSamePair: Bool {
+    /// Whether the token has a single-character end delimiter.
+    var hasSingleEnd: Bool {
         
         guard case .pair(let pair, _, _, _) = self else { return false }
         
-        return pair.begin == pair.end && pair.begin.count == 1
+        return pair.end.count == 1
     }
     
     

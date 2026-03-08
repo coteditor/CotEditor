@@ -142,6 +142,21 @@ struct SymbolPairTests {
     }
     
     
+    @Test func rangeOfSymbolPairWithDoubleDelimiterEscapingAsymmetric() {
+        
+        let string = "[a]]b]"
+        let brackets: [SymbolPair] = [SymbolPair("[", "]")]
+        
+        let openingRange = string.rangeOfSymbolPair(at: string.index(0), candidates: brackets, escapeStyle: .doubleDelimiter)
+        let closingRange = string.rangeOfSymbolPair(at: string.index(5), candidates: brackets, escapeStyle: .doubleDelimiter)
+        let escapedRange = string.rangeOfSymbolPair(at: string.index(2), candidates: brackets, escapeStyle: .doubleDelimiter)
+        
+        #expect(openingRange == string.index(0)...string.index(5))
+        #expect(closingRange == string.index(0)...string.index(5))
+        #expect(escapedRange == nil)
+    }
+
+
     @Test func samePairBackslashVsNone() {
         
         let string = "'a\\'b' 'c'"

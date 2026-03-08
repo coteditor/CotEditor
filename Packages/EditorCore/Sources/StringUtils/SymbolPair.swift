@@ -136,6 +136,11 @@ public extension StringProtocol {
                 
             case pair.end:
                 guard let beginIndex = self.indexOfSymbolPair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore, escapeStyle: escapeStyle) else { return nil }
+                // verify this end is the actual matching end by forward-searching from the found begin
+                if escapeStyle == .doubleDelimiter {
+                    let foundEnd = self.indexOfSymbolPair(beginIndex: beginIndex, pair: pair, until: range?.upperBound, ignoring: pairToIgnore, escapeStyle: escapeStyle)
+                    guard foundEnd == index else { return nil }
+                }
                 return .begin(beginIndex)
                 
             default: preconditionFailure()
@@ -162,32 +167,35 @@ public extension StringProtocol {
         
         guard beginIndex < endIndex else { return nil }
         
-        if escapeStyle == .doubleDelimiter, pair.begin == pair.end {
-            var index = endIndex
-            
+        var index = endIndex
+        var nestDepth = 0
+        
+        if escapeStyle == .doubleDelimiter {
             while index > beginIndex {
                 index = self.index(before: index)
                 
-                guard self[index] == pair.begin else { continue }
-                
-                if index > beginIndex {
-                    let previousIndex = self.index(before: index)
-                    if self[previousIndex] == pair.begin {
-                        index = previousIndex
-                        continue
+                if self[index] == pair.end {
+                    if index > beginIndex {
+                        let previousIndex = self.index(before: index)
+                        if self[previousIndex] == pair.end {
+                            index = previousIndex
+                            continue
+                        }
                     }
+                    if pair.begin == pair.end {
+                        return index  // same-pair: first non-doubled is the match
+                    }
+                    nestDepth += 1
+                } else if self[index] == pair.begin {
+                    if nestDepth == 0 { return index }
+                    nestDepth -= 1
                 }
-                
-                return index
             }
             
             return nil
         }
         
-        var index = endIndex
-        var nestDepth = 0
         var ignoredNestDepth = 0
-        
         while index > beginIndex {
             index = self.index(before: index)
             
@@ -239,7 +247,7 @@ public extension StringProtocol {
         
         guard beginIndex < endIndex else { return nil }
         
-        if escapeStyle == .doubleDelimiter, pair.begin == pair.end {
+        if escapeStyle == .doubleDelimiter {
             var index = beginIndex
             
             while index < endIndex {
