@@ -49,8 +49,8 @@ public final class BidiScrollView: NSScrollView {
         guard self.isInconsistentContentDirection else { return }
         
         self.tileScrollers()
+        self.tileVerticalRulerView()
         self.adjustContentInsets()
-        self.tileRulerView()
     }
     
     
@@ -113,7 +113,7 @@ public final class BidiScrollView: NSScrollView {
     
     
     /// Lays out the vertical ruler view by taking the content layout direction into the account.
-    private func tileRulerView() {
+    private func tileVerticalRulerView() {
         
         assert(self.isInconsistentContentDirection)
         
@@ -124,13 +124,17 @@ public final class BidiScrollView: NSScrollView {
             !rulerView.isHidden
         else { return }
         
+        let rulerThickness = rulerView.requiredThickness
+        
         switch self.contentDirection {
             case .leftToRight:
                 rulerView.frame.origin.x = 0
-                self.contentView.contentInsets.right = 0
+                self.contentView.frame.origin.x = rulerThickness
+                self.contentView.frame.size.width = self.bounds.width - rulerThickness
             case .rightToLeft:
-                rulerView.frame.origin.x = self.frame.maxX - rulerView.requiredThickness
-                self.contentView.contentInsets.left = 0
+                rulerView.frame.origin.x = self.bounds.width - rulerThickness
+                self.contentView.frame.origin.x = 0
+                self.contentView.frame.size.width = self.bounds.width - rulerThickness
             @unknown default:
                 assertionFailure()
         }
