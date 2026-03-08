@@ -2,8 +2,7 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\"",
-      "escapeStyle" : "none"
+      "end" : "\""
     }
   ]
 }

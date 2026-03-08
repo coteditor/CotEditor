@@ -12,25 +12,30 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "'",
-      "end" : "'"
+      "end" : "'",
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "'''",
       "end" : "'''",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "`",
-      "end" : "`"
+      "end" : "`",
+      "escapeCharacter" : "\\"
     }
   ],
   "indentation" : {

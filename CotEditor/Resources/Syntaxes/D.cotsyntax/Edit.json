@@ -21,41 +21,39 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "`",
       "end" : "`",
       "isMultiline" : true,
-      "escapeStyle" : "none",
       "description" : "WYSIWYG string literal"
     },
     {
       "begin" : "q{",
       "end" : "}",
       "isMultiline" : true,
-      "escapeStyle" : "none",
       "description" : "Token string literal with { } delimiter"
     },
     {
       "begin" : "r\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeStyle" : "none",
       "description" : "WYSIWYG string literal with r-prefix"
     },
     {
       "begin" : "x\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeStyle" : "none",
       "description" : "Hex string literal"
     }
   ],
   "characterDelimiters" : [
     {
       "begin" : "'",
-      "end" : "'"
+      "end" : "'",
+      "escapeCharacter" : "\\"
     }
   ],
   "indentation" : {

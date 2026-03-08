@@ -14,8 +14,7 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "isMultiline" : true,
-      "escapeStyle" : "none"
+      "isMultiline" : true
     }
   ]
 }

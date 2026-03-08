@@ -13,13 +13,11 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\"",
-      "escapeStyle" : "none"
+      "end" : "\""
     },
     {
       "begin" : "'",
-      "end" : "'",
-      "escapeStyle" : "none"
+      "end" : "'"
     }
   ]
 }

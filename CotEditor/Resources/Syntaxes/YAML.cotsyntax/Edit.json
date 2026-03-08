@@ -20,12 +20,13 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "'",
       "end" : "'",
-      "escapeStyle" : "doubleDelimiter",
+      "escapeCharacter" : "'",
       "isMultiline" : true
     }
   ]

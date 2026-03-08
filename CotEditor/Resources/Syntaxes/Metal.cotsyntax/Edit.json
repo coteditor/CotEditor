@@ -15,13 +15,15 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "escapeCharacter" : "\\"
     }
   ],
   "characterDelimiters" : [
     {
       "begin" : "'",
-      "end" : "'"
+      "end" : "'",
+      "escapeCharacter" : "\\"
     }
   ],
   "indentation" : {

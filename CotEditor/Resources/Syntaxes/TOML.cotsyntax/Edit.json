@@ -12,23 +12,23 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "'",
-      "end" : "'",
-      "escapeStyle" : "none"
+      "end" : "'"
     },
     {
       "begin" : "'''",
       "end" : "'''",
-      "isMultiline" : true,
-      "escapeStyle" : "none"
+      "isMultiline" : true
     }
   ]
 }

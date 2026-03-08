@@ -16,19 +16,20 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
-      "isMultiline" : true,
-      "escapeStyle" : "none"
+      "isMultiline" : true
     }
   ],
   "characterDelimiters" : [
     {
       "begin" : "'",
-      "end" : "'"
+      "end" : "'",
+      "escapeCharacter" : "\\"
     }
   ],
   "indentation" : {

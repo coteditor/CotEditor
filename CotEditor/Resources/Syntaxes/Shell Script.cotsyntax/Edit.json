@@ -12,16 +12,17 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "'",
-      "end" : "'",
-      "escapeStyle" : "none"
+      "end" : "'"
     },
     {
       "begin" : "$'",
       "end" : "'",
+      "escapeCharacter" : "\\",
       "description" : "ANSI-C quoted string literal"
     }
   ],

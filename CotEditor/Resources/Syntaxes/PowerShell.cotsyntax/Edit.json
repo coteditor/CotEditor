@@ -17,13 +17,13 @@
       "begin" : "\"",
       "end" : "\"",
       "isMultiline" : true,
-      "escapeStyle" : "none"
+      "escapeCharacter" : "`"
     },
     {
       "begin" : "'",
       "end" : "'",
       "isMultiline" : true,
-      "escapeStyle" : "doubleDelimiter"
+      "escapeCharacter" : "'"
     }
   ],
   "indentation" : {

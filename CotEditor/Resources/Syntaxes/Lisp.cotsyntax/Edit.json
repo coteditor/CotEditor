@@ -17,7 +17,8 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     }
   ],
   "indentation" : {

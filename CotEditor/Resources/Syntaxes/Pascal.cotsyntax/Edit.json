@@ -20,7 +20,7 @@
     {
       "begin" : "'",
       "end" : "'",
-      "escapeStyle" : "doubleDelimiter"
+      "escapeCharacter" : "'"
     }
   ],
   "indentation" : {

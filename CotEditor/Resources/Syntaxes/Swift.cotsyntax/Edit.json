@@ -16,37 +16,35 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "#\"",
       "end" : "\"#",
-      "escapeStyle" : "none",
       "description" : "Raw string literal (1 #)"
     },
     {
       "begin" : "##\"",
       "end" : "\"##",
-      "escapeStyle" : "none",
       "description" : "Raw string literal (2 #)"
     },
     {
       "begin" : "#\"\"\"",
       "end" : "\"\"\"#",
       "isMultiline" : true,
-      "escapeStyle" : "none",
       "description" : "Raw multiline string literal (1 #)"
     },
     {
       "begin" : "##\"\"\"",
       "end" : "\"\"\"##",
       "isMultiline" : true,
-      "escapeStyle" : "none",
       "description" : "Raw multiline string literal (2 #)"
     }
   ],

@@ -15,17 +15,20 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "'",
       "end" : "'",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "qq/",
       "end" : "/",
       "isMultiline" : true,
+      "escapeCharacter" : "\\",
       "description" : "Interpolated string with / delimiter (qq)"
     }
   ],

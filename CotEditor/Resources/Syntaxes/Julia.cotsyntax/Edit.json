@@ -17,33 +17,39 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
-      "isMultiline" : true
+      "isMultiline" : true,
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "b\"",
       "end" : "\"",
+      "escapeCharacter" : "\\",
       "description" : "Byte string literal"
     },
     {
       "begin" : "r\"",
       "end" : "\"",
+      "escapeCharacter" : "\\",
       "description" : "Regular expression literal"
     },
     {
       "begin" : "v\"",
       "end" : "\"",
+      "escapeCharacter" : "\\",
       "description" : "Version number literal"
     }
   ],
   "characterDelimiters" : [
     {
       "begin" : "'",
-      "end" : "'"
+      "end" : "'",
+      "escapeCharacter" : "\\"
     }
   ],
   "indentation" : {
