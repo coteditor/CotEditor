@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="syntax coloring, syntax style, Outline, completion">
+	<meta name="keywords" content="syntax coloring, syntax style, Outline, completion, tree-sitter">
 	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
@@ -15,6 +15,8 @@
 <h1>Define a syntax in CotEditor on Mac</h1>
 
 <p>Use the syntax editor in CotEditor to customize built-in syntaxes or create your own.</p>
+
+<p>Your changes to a built-in syntax are saved as a user customization, and you can restore the original definition whenever needed.</p>
 
 
 <section>
@@ -44,8 +46,27 @@
 	<li><p><em><a href="syntax_completion_settings.html">Completion</a></em>: Define completion candidates.</p></li>
 	<li><p><em><a href="syntax_highlight_settings.html">highlighting elements</a></em>: Define the rules for syntax highlighting.</p></li>
 	<li><p><em><a href="syntax_metadata_settings.html">Information</a></em>: Edit metadata for the syntax definition.</p></li>
-	<li><p><em>Validation</em>: Verify that no grammatical or formatting errors are present in the definition.</p></li>
+	<li><p><em>Validation</em>: Check for issues such as invalid regular expressions, duplicate entries, or invalid comment delimiters in the definition.</p></li>
 </ul>
+</section>
+
+
+<section>
+<h2>Learn about syntax parsing</h2>
+
+<p>CotEditor uses one of two approaches for syntax highlighting and outline extraction, depending on the syntax: regular expression based parsing or tree-sitter based parsing. Other aspects of a syntax definition, such as file mapping, comment delimiters, and completion candidates, are always defined in the syntax definition and can be customized by users regardless of the parsing approach.</p>
+
+<h3>Regular expression based parsing</h3>
+
+<p>Most syntaxes use keyword extraction and regular-expression pattern matching for highlighting and outline extraction. Because this approach does not depend on a language's grammar, it is easy to define and customize. In the syntax editor, users can customize the highlighting rules and outline extraction patterns for each syntax, or create entirely new syntax definitions from scratch.</p>
+
+<h3>Tree-sitter based parsing</h3>
+
+<p>Some built-in syntaxes use <a href="https://tree-sitter.github.io" rel="external" title="Tree-sitter">tree-sitter</a>, a parser that builds a full syntax tree from source code. Because tree-sitter understands a language's grammar, it can handle complex constructs such as deeply nested blocks, context-dependent keywords, and multi-line expressions more accurately than regular expressions alone.</p>
+
+<p>Tree-sitter based parsing is available for about 20 built-in languages, including Swift, Python, JavaScript, Rust, and Go. Because tree-sitter based highlighting and outline rules are managed by the app, users cannot customize them or add tree-sitter support for additional languages.</p>
+
+<p><em class="note">Note:</em> For performance reasons, the Markdown syntax uses tree-sitter only for outline extraction. Its syntax highlighting remains regular expression based.</p>
 </section>
 
 
