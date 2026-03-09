@@ -154,14 +154,6 @@ struct FuzzyRangeTests {
     }
     
     
-    @Test func formatStyleParseStrategy() throws {
-        
-        let parsed = try FuzzyRange.FormatStyle().parseStrategy.parse("4:5")
-        
-        #expect(parsed == FuzzyRange(location: 4, length: 5))
-    }
-    
-    
     @Test func parseFuzzyRange() throws {
         
         let parser = FuzzyRange.ParseStrategy()

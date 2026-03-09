@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2024 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,7 +43,6 @@ import Testing
         #expect(TextFinder.Action.selectAll.rawValue == NSTextFinder.Action.selectAll.rawValue)
         #expect(TextFinder.Action.selectAllInSelection.rawValue == NSTextFinder.Action.selectAllInSelection.rawValue)
         #expect(TextFinder.Action.hideFindInterface.rawValue == NSTextFinder.Action.hideFindInterface.rawValue)
-        #expect(TextFinder.Action.showReplaceInterface.rawValue == NSTextFinder.Action.showReplaceInterface.rawValue)
         #expect(TextFinder.Action.showReplaceInterface.rawValue == NSTextFinder.Action.showReplaceInterface.rawValue)
         #expect(TextFinder.Action.hideReplaceInterface.rawValue == NSTextFinder.Action.hideReplaceInterface.rawValue)
     }

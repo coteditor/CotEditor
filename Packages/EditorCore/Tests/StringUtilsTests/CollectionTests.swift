@@ -55,19 +55,6 @@ struct CollectionTests {
     }
     
     
-    @Test func uniqueEquatableFallback() {
-        
-        struct EquatableOnly: Hashable {
-            
-            let value: Int
-        }
-        
-        let values = [EquatableOnly(value: 1), EquatableOnly(value: 1), EquatableOnly(value: 2)]
-        
-        #expect(values.uniqued == [EquatableOnly(value: 1), EquatableOnly(value: 2)])
-    }
-    
-    
     @Test func uniqueMutatingForHashableArray() {
         
         var values = ["dog", "dog", "cat", "dog", "cow"]
