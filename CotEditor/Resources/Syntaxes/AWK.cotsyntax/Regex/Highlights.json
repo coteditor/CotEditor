@@ -1,11 +1,4 @@
 {
-  "characters" : [
-    {
-      "begin" : "/",
-      "description" : "regular expression",
-      "end" : "/"
-    }
-  ],
   "commands" : [
     {
       "begin" : "atan2"

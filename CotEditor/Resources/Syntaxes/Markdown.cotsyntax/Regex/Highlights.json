@@ -13,25 +13,36 @@
   ],
   "characters" : [
     {
-      "begin" : "(?:\\R{2,}|\\A)((?:([ ]{4}|\\t)(.*(?:\\R+|\\Z)))+)((?=^[ ]{0,4}\\S)|\\Z)",
-      "description" : "codeblock",
+      "begin" : "(?<!\\\\)</[a-zA-Z][a-zA-Z1-6]*>",
+      "description" : "HTML tag",
       "regularExpression" : true
     },
     {
-      "begin" : "^[~]{3,}[{[:space:]](?!~~~)(?:.|\\R)*?\\R[\\t ]*[~]{3,}[\\t ]*$",
-      "description" : "[extra] codeblock",
+      "begin" : "(?<!\\\\)<[a-zA-Z][a-zA-Z1-6]*(\\s[^<>]+)?>",
+      "description" : "HTML tag",
       "regularExpression" : true
     },
     {
-      "begin" : "`",
-      "description" : "code",
-      "end" : "`"
+      "begin" : "(?<=\\]) ?(?<!\\\\)\\[.*?(?<!\\\\)\\]",
+      "description" : "a href",
+      "regularExpression" : true
     },
     {
-      "begin" : "```",
-      "description" : "[github] codeblock",
-      "end" : "```",
-      "isMultiline" : true
+      "begin" : "(?<=])\\(.*?\\)",
+      "description" : "a href",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "^[ ]{0,3}\\*\\[[^\\^].*(?<!\\\\)\\]:\\s",
+      "description" : "[extra] abbr",
+      "end" : "(\\R[ \\t]*\\R)|\\z",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "^[ ]{0,3}\\[[^\\^].*(?<!\\\\)\\]:[ \\t]+",
+      "description" : "a href",
+      "end" : "(\\R[ \\t]*\\R)|\\z",
+      "regularExpression" : true
     }
   ],
   "commands" : [
@@ -108,35 +119,13 @@
   ],
   "strings" : [
     {
-      "begin" : "(?<!\\\\)</[a-zA-Z][a-zA-Z1-6]*>",
-      "description" : "HTML tag",
+      "begin" : "(?:\\R{2,}|\\A)((?:([ ]{4}|\\t)(.*(?:\\R+|\\Z)))+)((?=^[ ]{0,4}\\S)|\\Z)",
+      "description" : "codeblock",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<!\\\\)<[a-zA-Z][a-zA-Z1-6]*(\\s[^<>]+)?>",
-      "description" : "HTML tag",
-      "regularExpression" : true
-    },
-    {
-      "begin" : "(?<=\\]) ?(?<!\\\\)\\[.*?(?<!\\\\)\\]",
-      "description" : "a href",
-      "regularExpression" : true
-    },
-    {
-      "begin" : "(?<=])\\(.*?\\)",
-      "description" : "a href",
-      "regularExpression" : true
-    },
-    {
-      "begin" : "^[ ]{0,3}\\*\\[[^\\^].*(?<!\\\\)\\]:\\s",
-      "description" : "[extra] abbr",
-      "end" : "(\\R[ \\t]*\\R)|\\z",
-      "regularExpression" : true
-    },
-    {
-      "begin" : "^[ ]{0,3}\\[[^\\^].*(?<!\\\\)\\]:[ \\t]+",
-      "description" : "a href",
-      "end" : "(\\R[ \\t]*\\R)|\\z",
+      "begin" : "^[~]{3,}[{[:space:]](?!~~~)(?:.|\\R)*?\\R[\\t ]*[~]{3,}[\\t ]*$",
+      "description" : "[extra] codeblock",
       "regularExpression" : true
     }
   ],

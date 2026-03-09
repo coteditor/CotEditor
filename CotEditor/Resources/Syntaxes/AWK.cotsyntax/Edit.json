@@ -9,13 +9,6 @@
       }
     ]
   },
-  "stringDelimiters" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "escapeCharacter" : "\\"
-    }
-  ],
   "indentation" : {
     "blockDelimiters" : [
       {
@@ -23,5 +16,18 @@
         "end" : "}"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeCharacter" : "\\"
+    },
+    {
+      "begin" : "/",
+      "description" : "regular expression",
+      "end" : "/",
+      "escapeCharacter" : "\\"
+    }
+  ]
 }

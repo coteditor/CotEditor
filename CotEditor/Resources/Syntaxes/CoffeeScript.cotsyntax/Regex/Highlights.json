@@ -1,12 +1,4 @@
 {
-  "characters" : [
-    {
-      "begin" : "///",
-      "description" : "heregex",
-      "end" : "///",
-      "isMultiline" : true
-    }
-  ],
   "keywords" : [
     {
       "begin" : "and"

@@ -55,8 +55,8 @@ actor BundledSyntaxTests {
             for (key, highlights) in syntax.highlights {
                 for highlight in highlights {
                     switch NestableToken(highlight: highlight) {
-                        case .pair(let pair, let multiline, _, let escapeCharacter):
-                            print("✔︎", name, key, pair, multiline, escapeCharacter, highlight.description)
+                        case .pair(let pair, let multiline, _, _):
+                            print("✔︎", name, key, pair, multiline, highlight.description ?? "")
                         default:
                             continue
                     }
