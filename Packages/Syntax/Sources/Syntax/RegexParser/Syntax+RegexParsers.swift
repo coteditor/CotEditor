@@ -43,46 +43,24 @@ extension Syntax {
     /// The parser for the syntax highlighting.
     public var highlightParser: (any HighlightParsing)? {
         
-        var nestables: [NestableToken: SyntaxType] = [:]
-        let extractors = SyntaxType.allCases
-            .reduce(into: [SyntaxType: [Syntax.Highlight]]()) { dict, type in
-                var highlights: [Syntax.Highlight] = []
-                var words: [String] = []
-                var caseInsensitiveWords: [String] = []
-                
-                for highlight in self.highlights[type] ?? [] {
-                    if // extract paired delimiters
-                        let token = NestableToken(highlight: highlight),
-                        nestables[token] == nil  // not registered yet
-                    {
-                        nestables[token] = type
-                        
-                    } else if // extract simple words
-                        !highlight.isRegularExpression, highlight.end == nil
-                    {
-                        if highlight.ignoreCase {
-                            caseInsensitiveWords.append(highlight.begin)
-                        } else {
-                            words.append(highlight.begin)
-                        }
-                    } else {
-                        highlights.append(highlight)
-                    }
-                }
-                
-                // transform simple word highlights to single regex for performance reasons
-                if !words.isEmpty {
-                    highlights.append(Syntax.Highlight(words: words, ignoreCase: false))
-                }
-                if !caseInsensitiveWords.isEmpty {
-                    highlights.append(Syntax.Highlight(words: caseInsensitiveWords, ignoreCase: true))
-                }
-                if !highlights.isEmpty {
-                    dict[type] = highlights
-                }
-            }
+        let extractors = self.highlights
+            .mapValues(\.consolidatingSimpleWords)
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
+        let nestables = self.nestables
+        
+        guard !extractors.isEmpty || !nestables.isEmpty else { return nil }
+        
+        return RegexHighlightParser(extractors: extractors, nestables: nestables)
+    }
+    
+    
+    // MARK: Internal Methods
+    
+    /// `NestableToken`s for the regex-based syntax highlighting.
+    var nestables: [NestableToken: SyntaxType] {
+        
+        var nestables: [NestableToken: SyntaxType] = [:]
         
         for delimiter in self.stringDelimiters {
             nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: delimiter.isMultiline, isNestable: true, escapeCharacter: delimiter.escapeCharacter)] = .strings
@@ -97,9 +75,42 @@ extension Syntax {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
         }
         
-        guard !extractors.isEmpty || !nestables.isEmpty else { return nil }
+        return nestables
+    }
+}
+
+
+extension Collection where Element == Syntax.Highlight {
+
+    /// Returns highlights by consolidating simple word definitions into single regex patterns for performance.
+    var consolidatingSimpleWords: [Syntax.Highlight] {
         
-        return RegexHighlightParser(extractors: extractors, nestables: nestables)
+        var highlights: [Syntax.Highlight] = []
+        var words: [String] = []
+        var caseInsensitiveWords: [String] = []
+        
+        for highlight in self {
+            if !highlight.isRegularExpression, highlight.end == nil {
+                // extract simple words
+                if highlight.ignoreCase {
+                    caseInsensitiveWords.append(highlight.begin)
+                } else {
+                    words.append(highlight.begin)
+                }
+            } else {
+                highlights.append(highlight)
+            }
+        }
+        
+        // transform simple word highlights to single regex for performance reasons
+        if !words.isEmpty {
+            highlights.append(Syntax.Highlight(words: words, ignoreCase: false))
+        }
+        if !caseInsensitiveWords.isEmpty {
+            highlights.append(Syntax.Highlight(words: caseInsensitiveWords, ignoreCase: true))
+        }
+        
+        return highlights
     }
 }
 

@@ -33,18 +33,6 @@ enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
     case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeCharacter: Character? = nil)
-    
-    
-    init?(highlight: Syntax.Highlight) {
-        
-        guard
-            !highlight.isRegularExpression,
-            let pair = highlight.end.map({ Pair(highlight.begin, $0) }),
-            pair.array.allSatisfy({ $0.rangeOfCharacter(from: .alphanumerics) == nil })  // symbol
-        else { return nil }
-        
-        self = .pair(pair, isMultiline: highlight.isMultiline, isNestable: true)
-    }
 }
 
 

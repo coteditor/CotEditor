@@ -31,36 +31,6 @@ import StringUtils
 
 struct NestableTests {
     
-    @Suite struct TokenTests {
-        
-        @Test func pairMultiline() {
-            
-            let highlight = Syntax.Highlight(begin: "/*", end: "*/", isMultiline: true)
-            let token = NestableToken(highlight: highlight)
-            
-            #expect(token == .pair(Pair("/*", "*/"), isMultiline: true, isNestable: true))
-        }
-        
-        
-        @Test func inlineRejectedWhenWordy() {
-            
-            let highlight = Syntax.Highlight(begin: "todo", end: nil)
-            let token = NestableToken(highlight: highlight)
-            
-            #expect(token == nil)
-        }
-        
-        
-        @Test func pairRejectedWhenRegex() {
-            
-            let highlight = Syntax.Highlight(begin: "\"", end: "\"", isRegularExpression: true)
-            let token = NestableToken(highlight: highlight)
-            
-            #expect(token == nil)
-        }
-    }
-    
-    
     @Suite struct ParseTests {
         
         @Test func inlineComments() throws {

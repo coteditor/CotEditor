@@ -49,23 +49,6 @@ actor BundledSyntaxTests {
     }
     
     
-    @Test func checkRemainingNestablesFromHighlight() {
-        
-        for (name, syntax) in self.syntaxes where !syntax.highlights.isEmpty {
-            for (key, highlights) in syntax.highlights {
-                for highlight in highlights {
-                    switch NestableToken(highlight: highlight) {
-                        case .pair(let pair, let multiline, _, _):
-                            print("✔︎", name, key, pair, multiline, highlight.description ?? "")
-                        default:
-                            continue
-                    }
-                }
-            }
-        }
-    }
-    
-    
     @Test func validateAllSyntaxes() {
         
         #expect(!self.syntaxes.isEmpty)
