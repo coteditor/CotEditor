@@ -885,7 +885,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         textView.wrapsLines = self.wrapsLines
         textView.showsInvisibles = self.showsInvisibles
         textView.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
-        textView.baseWritingDirection = self.writingDirection
+        if textView.baseWritingDirection != self.writingDirection {
+            textView.baseWritingDirection = self.writingDirection
+        }
         textView.showsPageGuide = self.showsPageGuide
         textView.showsIndentGuides = self.showsIndentGuides
         viewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
