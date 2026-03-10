@@ -170,6 +170,7 @@ struct UnixScript: Script {
                 editor.insert(string: output, at: .afterAll)
                 
             case .newDocument:
+                guard !output.isEmpty else { return }  // create document only when output is available
                 try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
                 
             case .pasteboard:
