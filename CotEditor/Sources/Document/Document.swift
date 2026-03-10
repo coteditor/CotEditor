@@ -417,6 +417,10 @@ extension NSTextView: EditorCounter.Source { }
             
             self.allowsLossySaving = false
             
+            // `NSTextStorage` can still be locked while an IME composition is active during revert/reload.
+            if let textView, textView.hasMarkedText() {
+                textView.inputContext?.discardMarkedText()
+            }
             self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
             
             self.fileEncoding = fileEncoding
