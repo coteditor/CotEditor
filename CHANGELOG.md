@@ -66,6 +66,11 @@
 6.2.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Create a new document in a UNIX script only when the output is actually available, using the `%%%{CotEditorXOutput=NewDocument}%%%` option.
+
+
 ### Fixes
 
 - Fix an issue where snippets were not included in the settings export.
