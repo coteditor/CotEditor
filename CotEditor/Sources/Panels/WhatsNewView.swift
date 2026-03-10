@@ -229,6 +229,8 @@ private extension NewFeature {
     var helpAnchor: String? {
         
         switch self {
+            case .syntax:
+                "syntax_definition"
             default:
                 nil
         }
