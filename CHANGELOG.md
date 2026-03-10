@@ -10,6 +10,7 @@
 
 ### Fixes
 
+- Fix an issue where the initial file extension for Markdown documents was .txt instead of .md.
 - Fix an issue where snippets were not included in the settings export.
 - Fix an issue where the settings imported from a settings archive included filename extensions.
 - Fix descriptions in the user guide for UNIX scripting.
