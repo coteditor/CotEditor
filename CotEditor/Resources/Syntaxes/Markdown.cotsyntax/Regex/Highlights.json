@@ -124,6 +124,12 @@
       "regularExpression" : true
     },
     {
+      "begin" : "\\A([-+]{3})\\R.*\\R\\1$",
+      "description" : "FrontMatter (YAML/TOML)",
+      "isMultiline" : true,
+      "regularExpression" : true
+    },
+    {
       "begin" : "^[~]{3,}[{[:space:]](?!~~~)(?:.|\\R)*?\\R[\\t ]*[~]{3,}[\\t ]*$",
       "description" : "[extra] codeblock",
       "regularExpression" : true
