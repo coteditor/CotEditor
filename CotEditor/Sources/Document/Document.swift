@@ -25,8 +25,8 @@
 //
 
 import AppKit
-import Observation
 import Combine
+import Synchronization
 import SwiftUI
 import UniformTypeIdentifiers
 import OSLog
@@ -103,6 +103,7 @@ extension NSTextView: EditorCounter.Source { }
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
     private var saveOptions: SaveOptions?
+    private let selectedRanges: Mutex<[NSRange]> = .init([])
     
     // temporal data used only within saving process
     private var lastSavedData: Data?
@@ -790,12 +791,11 @@ extension NSTextView: EditorCounter.Source { }
         
         super.updateUserActivityState(userActivity)
         
-        if let textView = self.textView {
-            let selectedRanges = textView.selectedRanges
-                .map(\.rangeValue)
-                .map(NSStringFromRange)
+        let selectedRanges = self.selectedRanges.withLock(\.self)
+        
+        if !selectedRanges.isEmpty {
             userActivity.addUserInfoEntries(from: [
-                UserActivityInfo.selectedRanges.key: selectedRanges,
+                UserActivityInfo.selectedRanges.key: selectedRanges.map(NSStringFromRange),
             ])
         }
     }
@@ -813,6 +813,7 @@ extension NSTextView: EditorCounter.Source { }
         {
             textView.selectedRanges = ranges as [NSValue]
             textView.scrollRangeToVisible(textView.selectedRange)
+            self.updateSelectedRanges(ranges)
         }
     }
     
@@ -968,6 +969,15 @@ extension NSTextView: EditorCounter.Source { }
     var textViews: [NSTextView] {
         
         self.viewController?.textViews ?? []
+    }
+    
+    
+    /// Updates the current selection ranges without touching AppKit views off the main thread.
+    func updateSelectedRanges(_ ranges: [NSRange]) {
+        
+        self.selectedRanges.withLock { $0 = ranges }
+        
+        self.userActivity?.needsSave = true
     }
     
     

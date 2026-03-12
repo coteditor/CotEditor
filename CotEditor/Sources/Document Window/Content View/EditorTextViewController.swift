@@ -310,7 +310,12 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     func textViewDidChangeSelection(_ notification: Notification) {
         
-        self.document.userActivity?.needsSave = true
+        guard
+            let textView = notification.object as? NSTextView,
+            !textView.hasMarkedText()
+        else { return }
+        
+        self.document.updateSelectedRanges(textView.selectedRanges.map(\.rangeValue))
     }
     
     
