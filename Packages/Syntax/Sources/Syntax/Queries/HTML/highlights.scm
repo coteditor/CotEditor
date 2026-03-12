@@ -29,7 +29,11 @@
 ; MARK: Strings
 ; ----------------------------
 
-(attribute_value) @strings
+(attribute
+  (attribute_value) @strings)
+
+(attribute
+  (quoted_attribute_value) @strings)
 
 
 ; MARK: Characters
