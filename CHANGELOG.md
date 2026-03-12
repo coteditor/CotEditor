@@ -68,18 +68,19 @@
 
 ### Improvements
 
-- Create a new document in a UNIX script only when the output is actually available, using the `%%%{CotEditorXOutput=NewDocument}%%%` option.
+- Create a new document from a UNIX script only when output is available, using the `%%%{CotEditorXOutput=NewDocument}%%%` option.
+- Improve overall stability.
 
 
 ### Fixes
 
-- Fix an issue where the initial file extension for Markdown documents was .txt instead of .md.
+- Fix an issue where the default file extension for Markdown documents was .txt instead of .md.
 - Fix an issue where snippets were not included in the settings export.
-- Fix an issue where the settings imported from a settings archive included filename extensions.
+- Fix an issue where settings imported from a settings archive incorrectly included filename extensions.
 - Fix descriptions in the user guide for UNIX scripting.
-- Address a possible crash in the file browser where the app could unexpectedly quit while creating, duplicating, or moving files.
-- Address a possible crash when a documet was updated by another process.
-- [trivial] Fix an issue in the What’s New window where the window could not close with the Esc key.
+- Address a potential crash in the file browser when creating, duplicating, or moving files.
+- Address a potential crash when a document was modified by another process.
+- [trivial] Fix an issue where the What’s New window could not be closed with the Esc key.
 
 
 
