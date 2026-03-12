@@ -73,7 +73,13 @@ extension NSTextView: EditorCounter.Source { }
     
     @ObservationIgnored @Published @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }  // @objc for AppleScript support
     var isTransient = false  // untitled & empty document that was created automatically
-    @ObservationIgnored nonisolated(unsafe) var isVerticalText = false
+    
+    nonisolated var isVerticalText: Bool {
+        
+        get { self._isVerticalText.withLock(\.self) }
+        set { self._isVerticalText.withLock { $0 = newValue } }
+    }
+    private let _isVerticalText: Mutex<Bool> = .init(false)
     
     
     // MARK: Readonly Properties
@@ -93,12 +99,12 @@ extension NSTextView: EditorCounter.Source { }
     
     @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
     
-    @ObservationIgnored private nonisolated(unsafe) var isInitialized = false
-    @ObservationIgnored private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
-    @ObservationIgnored private nonisolated(unsafe) var fileData: Data?
+    private let isInitialized: Mutex<Bool> = .init(false)
+    private let readingEncoding: Mutex<String.Encoding?>  // encoding to read document file
+    private let fileData: Mutex<Data?> = .init(nil)
+    private let syntaxFileExtension: Mutex<String?>
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
-    @ObservationIgnored private nonisolated(unsafe) var syntaxFileExtension: String?
     private var isExternalUpdateAlertShown = false
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
@@ -107,7 +113,7 @@ extension NSTextView: EditorCounter.Source { }
     
     // temporal data used only within saving process
     private var lastSavedData: Data?
-    @ObservationIgnored private nonisolated(unsafe) var lastAdditionalFileAttributes: [String: any Sendable] = [:]
+    private let lastAdditionalFileAttributes: Mutex<[String: any Sendable]> = .init([:])
     
     private var urlDetector: URLDetector?
     
@@ -124,7 +130,7 @@ extension NSTextView: EditorCounter.Source { }
         
         let openOptions = (DocumentController.shared as! DocumentController).openOptions
         
-        self.isEditable = if let openOptions { !openOptions.isReadOnly } else { true }
+        self.isEditable = openOptions?.isReadOnly != true
         
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
@@ -132,13 +138,14 @@ extension NSTextView: EditorCounter.Source { }
         var syntaxName = UserDefaults.standard[.syntax]
         let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
+        let fileExtension = syntax?.fileMap.extensions?.first
         self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
-        self.syntaxFileExtension = syntax?.fileMap.extensions?.first
+        self.syntaxFileExtension = .init(fileExtension)
         self.syntaxName = syntaxName
         
         // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
-        self.readingEncoding = openOptions?.encoding
+        self.readingEncoding = .init(openOptions?.encoding)
         
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
@@ -149,7 +156,7 @@ extension NSTextView: EditorCounter.Source { }
         
         super.init()
         
-        if let syntaxFileExtension, let type = UTType(filenameExtension: syntaxFileExtension) {
+        if let fileExtension, let type = UTType(filenameExtension: fileExtension) {
             self.fileType = type.identifier
         }
         
@@ -327,7 +334,7 @@ extension NSTextView: EditorCounter.Source { }
             return pathExtension
         }
         
-        return self.syntaxFileExtension
+        return self.syntaxFileExtension.withLock(\.self)
     }
     
     
@@ -366,14 +373,15 @@ extension NSTextView: EditorCounter.Source { }
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_READ
         let extendedAttributes = ExtendedFileAttributes(dictionary: attributes)
+        let isInitialized = self.isInitialized.withLock(\.self)
         
         let strategy: String.DecodingStrategy = {
-            if let encoding = self.readingEncoding {
+            if let encoding = self.readingEncoding.withLock(\.self) {
                 return .specific(encoding)
             }
             
             var encodingCandidates = EncodingManager.shared.fileEncodings.compactMap(\.self?.encoding)
-            if self.isInitialized {  // prioritize the current encoding
+            if isInitialized {  // prioritize the current encoding
                 let currentEncoding = DispatchQueue.syncOnMain { self.fileEncoding.encoding }
                 encodingCandidates.insert(currentEncoding, at: 0)
             }
@@ -386,10 +394,10 @@ extension NSTextView: EditorCounter.Source { }
         let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
         
         // .readingEncoding is only valid once
-        self.readingEncoding = nil
+        self.readingEncoding.withLock { $0 = nil }
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
-        self.fileData = data
+        self.fileData.withLock { $0 = data }
         
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
@@ -428,11 +436,11 @@ extension NSTextView: EditorCounter.Source { }
             self.lineEnding = self.lineEndingScanner.lineEndings.majorValue() ?? self.lineEnding  // keep default if no line endings are found
             
             // determine syntax (only on the first file open)
-            if !self.isInitialized {
+            if !isInitialized {
                 let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
                 self.setSyntax(name: syntaxName ?? SyntaxName.none)
+                self.isInitialized.withLock { $0 = true }
             }
-            self.isInitialized = true
             
             self.viewController?.invalidateStyleInTextStorage()
         }
@@ -501,7 +509,8 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         // obtain the additional file attributes to save while the saving process remains on the main thread (2025-04, macOS 15)
-        self.lastAdditionalFileAttributes = self.additionalFileAttributes(for: saveOperation)
+        let additionalFileAttributes = self.additionalFileAttributes(for: saveOperation)
+        self.lastAdditionalFileAttributes.withLock { $0 = additionalFileAttributes }
         
         // workaround the issue that invoking the async version super blocks the save process
         // (2022, macOS 12-26 + Xcode 13-26, FB11203469).
@@ -519,7 +528,7 @@ extension NSTextView: EditorCounter.Source { }
             // store file data in order to check the file content identity in `presentedItemDidChange()`
             if saveOperation != .autosaveElsewhereOperation {
                 assert(self.lastSavedData != nil)
-                self.fileData = self.lastSavedData
+                self.fileData.withLock { $0 = self.lastSavedData }
             }
             self.lastSavedData = nil
             
@@ -570,7 +579,7 @@ extension NSTextView: EditorCounter.Source { }
     override nonisolated func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
         try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
-            .merging(self.lastAdditionalFileAttributes) { _, new in new }
+            .merging(self.lastAdditionalFileAttributes.withLock(\.self)) { _, new in new }
     }
     
     
@@ -1002,11 +1011,11 @@ extension NSTextView: EditorCounter.Source { }
         guard let fileURL = self.fileURL else { throw .noFile }
         
         // reinterpret
-        self.readingEncoding = encoding
+        self.readingEncoding.withLock { $0 = encoding }
         do {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
         } catch {
-            self.readingEncoding = nil
+            self.readingEncoding.withLock { $0 = nil }
             throw .reinterpretationFailed(encoding)
         }
     }
@@ -1116,13 +1125,14 @@ extension NSTextView: EditorCounter.Source { }
         SyntaxManager.shared.noteRecentSetting(name: name)
         
         // update
-        self.syntaxFileExtension = syntax.fileMap.extensions?.first
+        let fileExtension = syntax.fileMap.extensions?.first
+        self.syntaxFileExtension.withLock { $0 = fileExtension }
         self.syntaxController.update(syntax: syntax, name: name)
         self.syntaxName = name
         
         // keep fileType in sync with the selected syntax so the Save panel suggests the right extension
         // (2026-02, macOS 26.2)
-        let type = self.syntaxFileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
+        let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
         self.fileType = type.identifier
         
         self.invalidateMode()
@@ -1278,7 +1288,7 @@ extension NSTextView: EditorCounter.Source { }
                 
                 // check if file content was changed from the stored file data
                 let data = try Data(contentsOf: newURL)
-                didChange = data != self.fileData
+                didChange = (data != self.fileData.withLock(\.self))
             } catch {
                 readingError = error
             }
