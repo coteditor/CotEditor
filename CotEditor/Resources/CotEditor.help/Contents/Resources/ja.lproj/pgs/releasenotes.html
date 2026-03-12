@@ -21,6 +21,39 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 6.2.5</h1>
+		<p>リリース: <time>2026-03-14</time></p>
+	</header>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li><code>%%%{CotEditorXOutput=NewDocument}%%%</code>オプションを使ったUNIX scriptで、実際に出力があるときだけ新規書類を作成するよう改良</li>
+			<li>安定性を向上</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>Markdown書類の初期拡張子が.mdではなく.txtになる不具合を修正</li>
+			<li>設定の書き出しにスニペットが含まれていなかった不具合を修正</li>
+			<li>設定アーカイブから読み込んだ設定にファイル名拡張子が含まれてしまう不具合を修正</li>
+			<li>ユーザガイドのUNIXスクリプトの説明を修正</li>
+			<li>ファイルの作成・複製・移動中にアプリが予期せずクラッシュする可能性があるファイルブラウザの不具合に対処</li>
+			<li>書類がほかのプロセスから更新されたときに予期せずクラッシュする可能性がある不具合に対処</li>
+			<li><span class="trivial">trivial</span>: Escキーで「CotEditorの新機能」ウインドウを閉じられないことがある不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 6.2.4</h1>
 		<p>リリース: <time>2026-03-01</time></p>
 	</header>
