@@ -12,7 +12,6 @@
 :root {
 	font: 400 17px/1.5 -apple-system, sans-serif;
 	font-size-adjust: from-font;
-	text-rendering: optimizeLegibility;
 	text-autospace: normal;
 	text-spacing-trim: trim-start;
 	

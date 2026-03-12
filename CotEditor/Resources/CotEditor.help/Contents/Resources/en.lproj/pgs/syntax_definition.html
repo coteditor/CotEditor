@@ -61,7 +61,7 @@
 	</thead>
 	<tbody>
 		<tr><th>Regular-expression-based</th>
-			<td><p>This method uses keyword and regular-expression pattern matching. In this method, settings in the Delimiters pane are also used to highlight comments, strings, and characters. Because it does not depend on a language's grammar, it is easy to define and customize. In the syntax editor, you can customize the highlighting rules and outline extraction patterns for each syntax, or create entirely new syntax definitions from scratch.</p></td>
+			<td><p>This method uses keyword and regular-expression pattern matching. In this method, settings in the Delimiters pane are also used to highlight comments, strings, and characters. Because it is defined as a set of matching patterns rather than a full grammar, it is easy to define and customize.</p></td>
 		</tr>
 		<tr><th>Tree-sitter-based</th>
 			<td><p><a href="https://tree-sitter.github.io" rel="external" title="Tree-sitter">Tree-sitter</a> is a parser that builds a full syntax tree from source code. Because it understands a language's grammar, it can handle complex constructs such as deeply nested blocks, context-dependent keywords, and multi-line expressions more accurately than regular expressions alone.</p></td>
@@ -69,7 +69,7 @@
 	</tbody>
 </table>
 
-<p>Tree-sitter-based parsing is available for about 20 built-in syntaxes, including Swift, Python, JavaScript, HTML, and CSS. Because tree-sitter-based highlighting and outline rules are managed by the app, you cannot customize them or add tree-sitter support for additional languages.</p>
+<p>Tree-sitter-based parsing is available for about 20 built-in syntaxes, including Swift, Python, JavaScript, HTML, and CSS. Because tree-sitter-based highlighting and outline rules are managed by the app, you cannot customize them or add tree-sitter support for additional syntaxes. By contrast, regular-expression-based syntaxes can be customized in the syntax editor: you can adjust the highlighting rules and outline extraction patterns for each syntax, or create entirely new syntax definitions from scratch.</p>
 
 <p><em class="note">Note:</em> For performance reasons, the Markdown syntax uses tree-sitter only for outline extraction. Its syntax highlighting remains regular-expression-based.</p>
 </section>

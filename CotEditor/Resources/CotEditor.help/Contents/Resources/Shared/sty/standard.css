@@ -14,12 +14,7 @@
 :root {
 	--accent-blue: hsl(198, 40%, 45%);
 	--accent-green: hsl(80, 60%, 35%);
-	--accent-background: hsl(206, 50%, 97%);
-}
-@media (prefers-color-scheme: dark) {
-	:root {
-		--accent-background: hsl(206, 30%, 20%);
-	}
+	--accent-background: light-dark(hsl(206, 50%, 97%), hsl(206, 30%, 20%));
 }
 
 img {
@@ -230,7 +225,7 @@ span.invisible {
 }
 
 pre.source {
-	background: hsl(0, 0%, 98%);
+	background: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 10%));
 	border: 1px solid -apple-system-separator;
 	border-radius: 0.5rem;
 	max-inline-size: 50rem;
@@ -240,35 +235,17 @@ pre.source {
 }
 
 code.AppleScript {
-	color: hsl(213, 50%, 25%);
+	color: light-dark(hsl(213, 50%, 25%), hsl(213, 30%, 75%));
 }
-code span.keyword   { color: #1b556b; font-weight: bold; }
-code span.tag       { color: #1b556b }
-code span.command   { color: #947231 }
-code span.type      { color: #ae3d16 }
-code span.attribute { color: #862753 }
-code span.variable  { color: #348986; font-style: italic; }
-code span.value     { color: #b22729 }
-code span.string    { color: #526e2a }
-code span.comment   { color: #66747a }
-
-@media (prefers-color-scheme: dark) {
-	pre.source {
-		background: hsl(0, 0%, 10%);
-	}
-	code.AppleScript {
-		color: hsl(213, 30%, 75%);
-	}
-	code span.keyword   { color: #5199b3 }
-	code span.tag       { color: #5199b3 }
-	code span.command   { color: #d4a046 }
-	code span.type      { color: #ed734c }
-	code span.attribute { color: #c76090 }
-	code span.variable  { color: #75c9c6 }
-	code span.value     { color: #f26669 }
-	code span.string    { color: #90ad65 }
-	code span.comment   { color: #808080 }
-}
+code span.keyword   { color: light-dark(#1b556b, #5199b3); font-weight: bold; }
+code span.tag       { color: light-dark(#1b556b, #5199b3) }
+code span.command   { color: light-dark(#947231, #d4a046) }
+code span.type      { color: light-dark(#ae3d16, #ed734c) }
+code span.attribute { color: light-dark(#862753, #c76090) }
+code span.variable  { color: light-dark(#348986, #75c9c6); font-style: italic; }
+code span.value     { color: light-dark(#b22729, #f26669) }
+code span.string    { color: light-dark(#526e2a, #90ad65) }
+code span.comment   { color: light-dark(#66747a, #808080) }
 
 
 /* See also */
