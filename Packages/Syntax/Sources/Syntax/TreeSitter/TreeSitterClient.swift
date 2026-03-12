@@ -106,11 +106,9 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         try Task.checkCancellation()
         
         let updateRange = invalidations.unionRange()?.union(range) ?? range
-        
-        let highlights = try self.layer.highlights(in: updateRange, provider: string.predicateNSStringProvider)
-            .compactMap(\.highlight)
-            .sorted(using: [KeyPathComparator(\.range.location),
-                            KeyPathComparator(\.range.length)])
+        let highlights = try self.queryCaptures(.highlights, in: updateRange, string: string as NSString)
+            .sorted()
+            .compactMap(Highlight.init(capture:))
         
         return (highlights, updateRange)
     }
@@ -134,23 +132,14 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         
         try Task.checkCancellation()
         
-        let outlineRange = IndexSet(integersIn: Range(string.range)!)
-        let cursor = try self.layer.executeQuery(.outline, in: outlineRange)
-        let matches = cursor.resolve(with: SwiftTreeSitter.Predicate.Context(textProvider: string.predicateNSStringProvider))
         let policy = self.syntax.outlinePolicy
-        
-        let items = matches
-            .flatMap(\.captures)
+        let items: [OutlineItem] = try self.queryCaptures(.outline, in: string.range, string: string as NSString)
             .filter { $0.depth == 0 }  // ignore injection
-            .compactMap {
-                OutlineCapture(capture: $0, policy: policy)
-            }
-            .compactMap { capture -> OutlineItem? in
+            .compactMap { OutlineCapture(capture: $0, policy: policy) }
+            .compactMap { capture in
                 if capture.kind == .separator {
                     return OutlineItem.separator(range: capture.range, indent: .level(capture.depth))
                 }
-                
-                guard !capture.range.isEmpty else { return nil }
                 
                 let title = (string as NSString).substring(with: capture.range)
                 
@@ -160,6 +149,8 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
             }
         
         let normalizedItems = policy.normalize(items)
+        
+        try Task.checkCancellation()
         
         return self.outlineIdentityResolver.resolve(normalizedItems)
             .removingDuplicateIDs
@@ -178,21 +169,44 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         self.layer.replaceContent(with: content)
         self.pendingAffectedRanges.update(editedRange: content.nsRange)
     }
+    
+    
+    /// Executes a tree-sitter query and collects all captures.
+    ///
+    /// - Parameters:
+    ///   - definition: The query definition to execute.
+    ///   - range: The UTF-16 range in which the query should run.
+    ///   - string: The full source text used to resolve query predicates.
+    /// - Returns: The captures produced by the query in cursor order.
+    private func queryCaptures(_ definition: Query.Definition, in range: NSRange, string: NSString) throws -> [QueryCapture] {
+        
+        let cursor = try self.layer.executeQuery(definition, in: range)
+        let context = Predicate.Context { nsRange, _ in string.substring(with: nsRange) }
+        var matchSequence = cursor.resolve(with: context)
+        
+        var captures: [QueryCapture] = []
+        while let match = matchSequence.next() {
+            try Task.checkCancellation()
+            captures.append(contentsOf: match.captures)
+        }
+        
+        return captures
+    }
 }
 
 
 // MARK: -
 
-private extension NamedRange {
+private extension Highlight {
     
-    var highlight: Highlight? {
+    init?(capture: QueryCapture) {
         
         guard
-            let baseName = self.nameComponents.first,
+            let baseName = capture.nameComponents.first,
             let type = SyntaxType(rawValue: baseName)
         else { return nil }
         
-        return ValueRange(value: type, range: self.range)
+        self.init(value: type, range: capture.range)
     }
 }
 
@@ -220,15 +234,6 @@ private struct OutlineCapture {
         self.kind = kind
         self.range = capture.range
         self.depth = policy.depth(captureNameComponents: components, ancestorNodeTypes: ancestorNodeTypes)
-    }
-}
-
-
-private extension NSString {
-    
-    var predicateNSStringProvider: SwiftTreeSitter.Predicate.TextProvider {
-        
-        { nsRange, _ in self.substring(with: nsRange) }
     }
 }
 
