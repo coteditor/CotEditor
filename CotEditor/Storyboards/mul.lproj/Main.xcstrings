@@ -6836,7 +6836,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "копие"
+            "value": "Копие"
           }
         }
       }
@@ -7976,7 +7976,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "мащабиране"
+            "value": "Мащабиране"
           }
         }
       }
@@ -16982,7 +16982,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "реч"
+            "value": "Реч"
           }
         }
       }
@@ -18692,7 +18692,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "реч"
+            "value": "Реч"
           }
         }
       }
@@ -25190,7 +25190,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "споделяне…"
+            "value": "Споделяне…"
           }
         }
       }
