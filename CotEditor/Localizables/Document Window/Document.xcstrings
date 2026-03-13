@@ -1603,7 +1603,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "знаци"
+            "value": "Знаци"
           }
         }
       }
@@ -1942,7 +1942,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "линии"
+            "value": "Линии"
           }
         }
       }
