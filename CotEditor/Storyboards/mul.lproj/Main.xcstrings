@@ -3188,7 +3188,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "инспектор"
+            "value": "Инспектор"
           }
         }
       }
@@ -24848,7 +24848,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "инспектор"
+            "value": "Инспектор"
           }
         }
       }

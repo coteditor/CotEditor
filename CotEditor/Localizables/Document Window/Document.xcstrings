@@ -9122,7 +9122,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Структура меню"
+            "value": "Меню „Структура“"
           }
         },
         "tr": {
@@ -14122,7 +14122,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Покажете инспектор"
+            "value": "Покажи инспектора"
           }
         }
       }
