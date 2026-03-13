@@ -316,13 +316,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Намерено съвпадение %lld."
+                  "value": "Намерено е %lld съвпадение."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld намерени съвпадения."
+                  "value": "Намерени са %lld съвпадения."
                 }
               }
             }
@@ -645,13 +645,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld мач заменен."
+                  "value": "Заменено е %lld съвпадение."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld съвпадения са заменени."
+                  "value": "Заменени са %lld съвпадения."
                 }
               }
             }
@@ -2953,19 +2953,19 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld мач"
+                  "value": "%lld съвпадение"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld съвпада"
+                  "value": "%lld съвпадения"
                 }
               },
               "zero": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Не е намерено"
+                  "value": "Няма съвпадения"
                 }
               }
             }
@@ -3492,13 +3492,13 @@
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld заменен"
+                  "value": "%lld заменени"
                 }
               },
               "zero": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Не е заменен"
+                  "value": "Няма заменени"
                 }
               }
             }

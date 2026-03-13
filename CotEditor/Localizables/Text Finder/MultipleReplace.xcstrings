@@ -324,7 +324,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Изберете CotEditor Replace Definition или TSV (Tab-separated values) файлове."
+            "value": "Изберете файлове на CotEditor Replace Definition или TSV (Tab-separated values)."
           }
         }
       }

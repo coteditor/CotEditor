@@ -530,7 +530,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CotEditor е програма с отворен код\n, лицензирана под лиценза на Apache, версия 2.0"
+            "value": "CotEditor е програма с отворен код,\nлицензирана под Apache License, Version 2.0."
           }
         }
       }

@@ -454,7 +454,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Осъществено от Tree-Sitter, където е най-важно"
+            "value": "С tree-sitter там, където е най-важно"
           }
         }
       }

@@ -1168,7 +1168,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Избор на отстъп с клавиш Tab"
+            "value": "Отстъп на избраното с клавиша Tab"
           }
         }
       }
