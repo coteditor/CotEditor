@@ -97,7 +97,12 @@ struct SyntaxEditView: View {
             List(selection: $pane) {
                 Section(String(localized: "Features", table: "SyntaxEditor", comment: "section header in sidebar")) {
                     ForEach(Pane.features, id: \.self) { pane in
-                        Text(pane.label)
+                        switch pane {
+                            case .outline where !self.customizableFeatures.contains(.outline):
+                                Self.lockedPaneLabel(pane)
+                            default:
+                                Text(pane.label)
+                        }
                     }
                 }
                 Section(String(localized: "Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
@@ -106,8 +111,7 @@ struct SyntaxEditView: View {
                             Text(pane.label)
                         }
                     } else {
-                        Text(Pane.builtIn.label)
-                            .id(Pane.builtIn)
+                        Self.lockedPaneLabel(.builtIn)
                     }
                 }
                 Section(String(localized: "Definition File", table: "SyntaxEditor", comment: "section header in sidebar")) {
@@ -174,6 +178,17 @@ struct SyntaxEditView: View {
         .alert(error: $error)
         .frame(minWidth: 400, idealWidth: 740, minHeight: 560, idealHeight: 580)
         .presentationSizing(.fitted)
+    }
+    
+    
+    @ViewBuilder private static func lockedPaneLabel(_ pane: Pane) -> some View {
+        
+        HStack(alignment: .firstTextBaseline, spacing: 4) {
+            Text(pane.label)
+            Image(systemName: "pencil.slash")
+                .foregroundStyle(.secondary)
+        }
+        .id(pane)
     }
     
     
