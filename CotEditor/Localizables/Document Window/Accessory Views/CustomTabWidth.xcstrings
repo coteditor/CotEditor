@@ -1,106 +1,112 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Tab width:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Šířka tabulátoru:"
+  "sourceLanguage": "en",
+  "strings": {
+    "Tab width:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Šířka tabulátoru:"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tabulatorbreite:"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabulatorbreite:"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tab width:"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab width:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anchura del tabulador:"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anchura del tabulador:"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Largeur de tabulation :"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Largeur de tabulation :"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Larghezza Tab:"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Larghezza Tab:"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "タブ幅:"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タブ幅:"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "탭 너비:"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탭 너비:"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tabbreedte:"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabbreedte:"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Szerokość tabulatora:"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szerokość tabulatora:"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Largura da Tabulação:"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Largura da Tabulação:"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ширина столбца:"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ширина столбца:"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sekme genişliği:"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sekme genişliği:"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "制表符宽度："
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "制表符宽度："
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "定位符號寬度："
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "定位符號寬度："
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "定位符號間隔闊度："
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "定位符號間隔闊度："
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ширина на табулацията:"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

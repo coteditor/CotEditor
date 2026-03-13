@@ -1,408 +1,432 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Close" : {
-      "comment" : "button label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zavřít"
+  "sourceLanguage": "en",
+  "strings": {
+    "Close": {
+      "comment": "button label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zavřít"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schließen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schließen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cerrar"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fermer"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fermer"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chiudi"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiudi"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "閉じる"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "閉じる"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "닫기"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "닫기"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sluit"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sluit"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zamknij"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zamknij"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fechar"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fechar"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Закрыть"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закрыть"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kapat"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapat"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "关闭"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "關閉"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "關閉"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "關閉"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "關閉"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Затвори"
           }
         }
       }
     },
-    "Detection failed" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detekce selhala"
+    "Detection failed": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detekce selhala"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erkennung fehlgeschlagen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erkennung fehlgeschlagen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detection failed"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detection failed"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La detección falló"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La detección falló"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Échec de la détection"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de la détection"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Individuazione fallita"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Individuazione fallita"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "検出に失敗しました"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "検出に失敗しました"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "감지 실패"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "감지 실패"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detentie mislukt"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detentie mislukt"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wykrywanie nie powiodło się"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wykrywanie nie powiodło się"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Falha na detecção"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falha na detecção"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ошибка распознования"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ошибка распознования"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Algılama başarısız"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algılama başarısız"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "检测失败"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检测失败"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "偵測失敗"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "偵測失敗"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "偵測失敗"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "偵測失敗"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разпознаването е неуспешно"
           }
         }
       }
     },
-    "Insert" : {
-      "comment" : "button label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vložit"
+    "Insert": {
+      "comment": "button label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vložit"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hinzufügen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzufügen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insert"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserción"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserción"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insérer"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insérer"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserisci"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "挿入"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "挿入"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "삽입"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "삽입"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voeg in"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voeg in"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wstaw"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wstaw"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserir"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserir"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вставить"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вставить"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ekle"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekle"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "插入"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "插入"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "插入"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вмъкни"
           }
         }
       }
     },
-    "No text detected" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nebyl detekován žádný text"
+    "No text detected": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nebyl detekován žádný text"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein Text erkannt"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Text erkannt"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No text detected"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No text detected"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se ha detectado texto"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha detectado texto"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aucun texte détecté"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun texte détecté"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nessun testo rilevato"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun testo rilevato"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "テキストは検出されませんでした"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テキストは検出されませんでした"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "감지된 텍스트 없음"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "감지된 텍스트 없음"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geen tekst gedetecteerd"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen tekst gedetecteerd"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie wykryto tekstu"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie wykryto tekstu"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenhum texto detectado"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum texto detectado"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст не распознан"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Текст не распознан"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Metin saptanmadı"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metin saptanmadı"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未检测到文本"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未检测到文本"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未偵測到文字"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未偵測到文字"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未偵測到文字"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未偵測到文字"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Няма открит текст"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

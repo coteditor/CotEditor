@@ -1,409 +1,433 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Automatic" : {
-      "comment" : "menu item title for automatic encoding detection",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatický"
+  "sourceLanguage": "en",
+  "strings": {
+    "Automatic": {
+      "comment": "menu item title for automatic encoding detection",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatický"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisch"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatic"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automático"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automático"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatique"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatique"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatica"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatica"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "자동"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자동"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisch"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatycznie"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatycznie"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automático"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automático"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматически"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматически"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otomatik"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otomatik"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自动"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматично"
           }
         }
       }
     },
-    "Open as read-only" : {
-      "comment" : "toggle button label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otevřít jen ke čtení"
+    "Open as read-only": {
+      "comment": "toggle button label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevřít jen ke čtení"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mit Schreibschutz öffnen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Schreibschutz öffnen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open as read-only"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open as read-only"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir como solo lectura"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir como solo lectura"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrir en lecture seule"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir en lecture seule"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri in sola lettura"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri in sola lettura"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "読み出し専用で開く"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "読み出し専用で開く"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "읽기 전용으로 열기"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "읽기 전용으로 열기"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Open als alleen-lezen"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Open als alleen-lezen"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otwórz tylko do odczytu"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz tylko do odczytu"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir como somente leitura"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir como somente leitura"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Открыть только для чтения"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть только для чтения"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salt okunur olarak aç"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salt okunur olarak aç"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以只读方式打开"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以只读方式打开"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以唯讀模式開啟"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以唯讀模式開啟"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以唯讀方式開啟"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以唯讀方式開啟"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори само за четене"
           }
         }
       }
     },
-    "Show invisible files" : {
-      "comment" : "toggle button label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zobrazit neviditelné soubory"
+    "Show invisible files": {
+      "comment": "toggle button label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zobrazit neviditelné soubory"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unsichtbare Dateien anzeigen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unsichtbare Dateien anzeigen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show invisible files"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show invisible files"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostrar archivos ocultos"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar archivos ocultos"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Afficher les fichiers cachés"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les fichiers cachés"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostra i file nascosti"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostra i file nascosti"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "不可視ファイルを表示"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不可視ファイルを表示"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "보이지 않는 파일 표시"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "보이지 않는 파일 표시"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toon onzichtbare bestanden"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toon onzichtbare bestanden"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pokaż ukryte pliki"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokaż ukryte pliki"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostrar arquivos ocultos"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar arquivos ocultos"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Показать скрытые файлы"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать скрытые файлы"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gizli dosyaları göster"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizli dosyaları göster"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示不可见的文件"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示不可见的文件"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "顯示隱藏檔案"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "顯示隱藏檔案"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "顯示隱藏檔案"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "顯示隱藏檔案"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Покажи скритите файлове"
           }
         }
       }
     },
-    "Text encoding:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kódování textu:"
+    "Text encoding:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kódování textu:"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Textcodierung:"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textcodierung:"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Text encoding:"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text encoding:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codificación del texto:"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codificación del texto:"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Encodage du texte :"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encodage du texte :"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codifica testo:"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codifica testo:"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "テキストエンコーディング:"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テキストエンコーディング:"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "텍스트 인코딩:"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "텍스트 인코딩:"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tekstcodering:"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstcodering:"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kodowanie tekstu:"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kodowanie tekstu:"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codificação do texto:"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codificação do texto:"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодировка текста:"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кодировка текста:"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Metin kodlaması:"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metin kodlaması:"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文本编码："
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文本编码："
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文字編碼："
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文字編碼："
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文字編碼："
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文字編碼："
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кодиране на текста:"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

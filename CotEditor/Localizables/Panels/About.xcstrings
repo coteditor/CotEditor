@@ -1,1523 +1,1613 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "%@ icon" : {
-      "comment" : "%@ is application name",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ikona %@"
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ icon": {
+      "comment": "%@ is application name",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikona %@"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@-Symbol"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@-Symbol"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ icon"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ icon"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Icono de %@"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icono de %@"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Icône %@"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icône %@"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Icona %@"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icona %@"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "“%@”アイコン"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”アイコン"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ 아이콘"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 아이콘"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@-symbool"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@-symbool"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ikona %@"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ikona %@"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ícone do %@"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ícone do %@"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ simgesi"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ simgesi"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@图标"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@图标"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@圖像"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@圖像"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@圖像"
-          }
-        }
-      }
-    },
-    "About %@" : {
-      "comment" : "%@ is app name",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O aplikaci %@"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@圖像"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Über „%@“"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "About %@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acerca de %@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "À propos de %@"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Informazioni su %@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@について"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@에 관하여"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Over %@"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@…"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sobre o %@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "О программе %@"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Hakkında"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "关于%@"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "關於%@"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "關於%@"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Икона %@"
           }
         }
       }
     },
-    "and everyone who supports CotEditor!" : {
-      "comment" : "last line of the Special Thanks section",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "a všem, kteří podporují CotEditor!"
+    "About %@": {
+      "comment": "%@ is app name",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O aplikaci %@"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "und alle, die CotEditor unterstützen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Über „%@“"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "and everyone who supports CotEditor!"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About %@"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Y a todos los que apoyan CotEditor!"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de %@"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ainsi que tous ceux supportant CotEditor !"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À propos de %@"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "e a tutti i sostenitori di CotEditor!"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informazioni su %@"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "そしてCotEditorを支えてくれるすべての皆さま!"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@について"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "그리고 CotEditor를 응원해주시는 모든 분들!"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@에 관하여"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "en iedereen die CotEditor steunt!"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over %@"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "oraz wszyscy, którzy wspierają CotEditora!"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@…"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "e todos que apoiam o CotEditor!"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sobre o %@"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "и все кто поддерживает CotEditor!"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "О программе %@"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ve CotEditor’u destekleyen herkes!"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Hakkında"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以及支持CotEditor的各位！"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关于%@"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以及應援著CotEditor的諸位！"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "關於%@"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以及支持CotEditor的各位！"
-          }
-        }
-      }
-    },
-    "Code Contributors" : {
-      "comment" : "section heading",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přispěvatelé do kódu"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "關於%@"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Code-Beitragenden"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Code Contributors"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contribuyentes del código"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contributeurs du code"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Collaboratori al codice"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "コード貢献者"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "코드 기여자"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Code Bijdragers"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Współautorzy kodu"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contribuidores do Código"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Авторы кода"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kod Katkıcıları"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "源代码贡献者"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "原始碼貢獻者們"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "程式碼貢獻者"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Относно %@"
           }
         }
       }
     },
-    "CotEditor is an open source program\nlicensed under the Apache License, Version 2.0." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor je open source program\nlicencovaný pod licencí Apache, verze 2.0."
+    "and everyone who supports CotEditor!": {
+      "comment": "last line of the Special Thanks section",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "a všem, kteří podporují CotEditor!"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor ist ein Open-Source-Programm,\ndas unter der Apache-Lizenz, Version 2.0 lizenziert ist."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "und alle, die CotEditor unterstützen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor is an open source program\nlicenced under the Apache Licence, Version 2.0"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "and everyone who supports CotEditor!"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor es un programa de código abierto\nbajo la licencia Apache, versión 2.0."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Y a todos los que apoyan CotEditor!"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor est un programme open source\nsous licence Apache, version 2.0."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ainsi que tous ceux supportant CotEditor !"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor è un programma Open-Source,\nrilasciato sotto la licenza Apache, Versione 2.0."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e a tutti i sostenitori di CotEditor!"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditorはオープンソースプログラムとして\nApache License, Version 2.0でライセンスされてます。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "そしてCotEditorを支えてくれるすべての皆さま!"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor는 오픈소스 프로그램이며,\nApache License, Version 2.0으로 보호됩니다."
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "그리고 CotEditor를 응원해주시는 모든 분들!"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor is een open source programma\ngelicentieerd onder de Apache-licentie, versie 2.0."
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "en iedereen die CotEditor steunt!"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor jest programem o otwartym kodzie źródłowym licencjonowanym na podstawie licencji Apache, wersja 2.0."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "oraz wszyscy, którzy wspierają CotEditora!"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O CotEditor é um programa de código aberto\nlicenciado sob a Licença Apache, Versão 2.0."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e todos que apoiam o CotEditor!"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor — программа с открытым исходным кодом,\nлицензированная Apache License, версия 2.0."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "и все кто поддерживает CotEditor!"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor, Apacha Lisansı Sürüm 2.0 altında\nlisanslanmış açık kaynaklı bir programdır."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ve CotEditor’u destekleyen herkes!"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor是基于Apache协议2.0版的开源软件"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以及支持CotEditor的各位！"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor是基於Apache協議2.0版的開源軟體"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以及應援著CotEditor的諸位！"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor是依Apache許可協議2.0版本授權的開放原始碼程式。"
-          }
-        }
-      }
-    },
-    "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor používá následující úžasné technologie. Jsme velmi vděční všem, kteří nám umožnili použít jejich přínosnou práci."
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以及支持CotEditor的各位！"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor verwendet die folgenden großartigen Technologien. Wir sind sehr dankbar für diejenigen, die uns ihre wertvolle Arbeit zur Verfügung stellen."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor se desarrolla utilizando las siguientes tecnologías excepcionales. Agradecemos profundamente a quienes nos permiten usar su valioso trabajo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor utilise les technologies géniales suivantes. Nous sommes très reconnaissants envers ceux nous permettant d’utiliser leurs précieux travaux."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor fa uso delle fantastiche seguenti tecnologie. Un enorme grazie a coloro che ci permettono di utilizzarle."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditorは下記の素晴らしい技術を使用しています。有益な作品の公開に深く感謝いたします。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor는 다음과 같은 멋진 기술을 활용합니다. 가치있는 작업물을 사용할 수 있게 해주신 분들께 매우 감사드립니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor gebruikt de volgende geweldige technologieën. We zijn degenen die ons hun waardevolle werk laten gebruiken zeer dankbaar."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor wykorzystuje poniższe niesamowite technologie. Jesteśmy głęboko wdzięczni tym, którzy pozwolili nam skorzystać ze swojej cennej pracy."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos àqueles que nos permitem usar seu valioso trabalho."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor использует следующие замечательные технологии. Мы безмерно благодарны всем, кто позволил нам использовать их ценные труды."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor aşağıdaki muhteşem teknolojileri kullanır. Değerli çalışmalarını kullanmamıza izin veren herkese şükran borçluyuz."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor使用了下述绝伦的技术。对于让我们得以使用这些宝贵作品的人们，我们深表谢意。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor有使用到下述絕倫的技術。我們對那些讓我們用上了這些技術的人士們深表敬意。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor採用了以下令人驚奇的技術。我們衷心多謝所有允許我們使用其寶貴成果的人。"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "и всички, които подкрепят CotEditor!"
           }
         }
       }
     },
-    "Credits" : {
-      "comment" : "button label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kredity"
+    "Code Contributors": {
+      "comment": "section heading",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Přispěvatelé do kódu"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anerkennung"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code-Beitragenden"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Credits"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code Contributors"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créditos"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contribuyentes del código"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crédits"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contributeurs du code"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crediti"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collaboratori al codice"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "クレジット"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コード貢献者"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기여자"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "코드 기여자"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Credits"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code Bijdragers"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uznania"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Współautorzy kodu"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créditos"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contribuidores do Código"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Авторы"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Авторы кода"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Emeği Geçenler"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kod Katkıcıları"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "鸣谢"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "源代码贡献者"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "銘謝"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原始碼貢獻者們"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "致謝"
-          }
-        }
-      }
-    },
-    "License" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licence"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "程式碼貢獻者"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lizenz"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licence"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licencia"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licence"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licenza"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "利用許諾契約"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "사용권 계약"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licentie"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licencja"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licença"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лицензия"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lisans"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "许可证"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "許可證"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "許可證"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сътрудници на кода"
           }
         }
       }
     },
-    "Licenses" : {
-      "comment" : "button label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licence"
+    "CotEditor is an open source program\nlicensed under the Apache License, Version 2.0.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor je open source program\nlicencovaný pod licencí Apache, verze 2.0."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lizenzen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor ist ein Open-Source-Programm,\ndas unter der Apache-Lizenz, Version 2.0 lizenziert ist."
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licences"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor is an open source program\nlicenced under the Apache Licence, Version 2.0"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licencias"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor es un programa de código abierto\nbajo la licencia Apache, versión 2.0."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licences"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor est un programme open source\nsous licence Apache, version 2.0."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licenze"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor è un programma Open-Source,\nrilasciato sotto la licenza Apache, Versione 2.0."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "利用許諾契約"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditorはオープンソースプログラムとして\nApache License, Version 2.0でライセンスされてます。"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "사용권 계약"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor는 오픈소스 프로그램이며,\nApache License, Version 2.0으로 보호됩니다."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licenties"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor is een open source programma\ngelicentieerd onder de Apache-licentie, versie 2.0."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licencje"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor jest programem o otwartym kodzie źródłowym licencjonowanym na podstawie licencji Apache, wersja 2.0."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licenças"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O CotEditor é um programa de código aberto\nlicenciado sob a Licença Apache, Versão 2.0."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лицензии"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor — программа с открытым исходным кодом,\nлицензированная Apache License, версия 2.0."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lisanslar"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor, Apacha Lisansı Sürüm 2.0 altında\nlisanslanmış açık kaynaklı bir programdır."
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "许可证"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor是基于Apache协议2.0版的开源软件"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "許可證"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor是基於Apache協議2.0版的開源軟體"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "許可證"
-          }
-        }
-      }
-    },
-    "Localization" : {
-      "comment" : "section heading",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokalizace"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor是依Apache許可協議2.0版本授權的開放原始碼程式。"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokalisierung"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Localisation"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Localización"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Localisation"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Localizzazione"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ローカリゼーション"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "번역"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokalisatie"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokalizacja"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Localização"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Авторы переводов"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yerelleştirme"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "本地化"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "本地化"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "本地化"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor е програма с отворен код\n, лицензирана под лиценза на Apache, версия 2.0"
           }
         }
       }
     },
-    "only on non-AppStore version" : {
-      "comment" : "annotation for the Sparkle framework license",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pouze u verzí mimo App Store"
+    "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor používá následující úžasné technologie. Jsme velmi vděční všem, kteří nám umožnili použít jejich přínosnou práci."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "nur bei der non-AppStore version"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor verwendet die folgenden großartigen Technologien. Wir sind sehr dankbar für diejenigen, die uns ihre wertvolle Arbeit zur Verfügung stellen."
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "only on non-AppStore version"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo en la versión fuera de la AppStore"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor se desarrolla utilizando las siguientes tecnologías excepcionales. Agradecemos profundamente a quienes nos permiten usar su valioso trabajo."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "uniquement la version non-AppStore"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor utilise les technologies géniales suivantes. Nous sommes très reconnaissants envers ceux nous permettant d’utiliser leurs précieux travaux."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "solo sulla versione non sull’AppStore"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor fa uso delle fantastiche seguenti tecnologie. Un enorme grazie a coloro che ci permettono di utilizzarle."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "非AppStore版のみ"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditorは下記の素晴らしい技術を使用しています。有益な作品の公開に深く感謝いたします。"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "비 AppStore 버전에만 해당"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor는 다음과 같은 멋진 기술을 활용합니다. 가치있는 작업물을 사용할 수 있게 해주신 분들께 매우 감사드립니다."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "alleen op niet-AppStore versie"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor gebruikt de volgende geweldige technologieën. We zijn degenen die ons hun waardevolle werk laten gebruiken zeer dankbaar."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "tylko w wersji poza App Store"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor wykorzystuje poniższe niesamowite technologie. Jesteśmy głęboko wdzięczni tym, którzy pozwolili nam skorzystać ze swojej cennej pracy."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "apenas na versão fora da App Store"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos àqueles que nos permitem usar seu valioso trabalho."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "только в версии не из AppStore"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor использует следующие замечательные технологии. Мы безмерно благодарны всем, кто позволил нам использовать их ценные труды."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "yalnızca App Store olmayan sürümde"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor aşağıdaki muhteşem teknolojileri kullanır. Değerli çalışmalarını kullanmamıza izin veren herkese şükran borçluyuz."
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "仅在「非App Store」版本使用"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor使用了下述绝伦的技术。对于让我们得以使用这些宝贵作品的人们，我们深表谢意。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "僅「非Mac App Store」發行版有使用到该模组"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor有使用到下述絕倫的技術。我們對那些讓我們用上了這些技術的人士們深表敬意。"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "僅非App Store版本使用"
-          }
-        }
-      }
-    },
-    "original developer" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "původní vývojář"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor採用了以下令人驚奇的技術。我們衷心多謝所有允許我們使用其寶貴成果的人。"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Originale Entwickler"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "original developer"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "desarrollador original"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "développeur original"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "sviluppatore iniziale"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "オリジナル開発者"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "원 개발자"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "oorspronkelijke ontwikkelaar"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pierwotny deweloper"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "desenvolvedor original"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "начальный разработчик"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ilk geliştirici"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "原开发者"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "原開發者"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "原始開發者"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor използва следните страхотни технологии. Ние сме дълбоко благодарни на тези, които ни позволиха да използваме тяхната ценна работа."
           }
         }
       }
     },
-    "Special Thanks" : {
-      "comment" : "section heading",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zvláštní poděkování"
+    "Credits": {
+      "comment": "button label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kredity"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spezieller Dank"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anerkennung"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Special Thanks"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credits"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un agradecimiento especial"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créditos"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Merci spécial"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crédits"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Molte grazie a"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crediti"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スペシャルサンクス"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "クレジット"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "고마운 분들"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기여자"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Speciale dank"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credits"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Specjalne podziękowania"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uznania"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agradecimentos Especiais"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créditos"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отдельное спасибо"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Авторы"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Özel Teşekkürler"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emeği Geçenler"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "特别感谢"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鸣谢"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "特別感謝"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "銘謝"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "特別感謝"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "致謝"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кредити"
           }
         }
       }
     },
-    "The CotEditor Project" : {
-      "comment" : "section heading",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Projekt CotEditor"
+    "License": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licence"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Das CotEditor Projekt"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lizenz"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The CotEditor Project"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licence"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El proyecto CotEditor"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licencia"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le projet CotEditor"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licence"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Progetto CotEditor"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licenza"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditorプロジェクト"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "利用許諾契約"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor 프로젝트"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용권 계약"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Het CotEditor-project"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licentie"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Projekt CotEditor"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licencja"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Projeto CotEditor"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licença"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Основной автор"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Лицензия"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Projesi"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lisans"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor项目"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "许可证"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor專案"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "許可證"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor項目"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "許可證"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Лиценз"
           }
         }
       }
     },
-    "Version %@ (%@)" : {
-      "comment" : "%1$@ is version number and %2$@ is build number",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verze %1$@ (%2$@)"
+    "Licenses": {
+      "comment": "button label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licence"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version %1$@ (%2$@)"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lizenzen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Version %1$@ (%2$@)"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licences"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version %1$@ (%2$@)"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licencias"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versión %1$@ (%2$@)"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licences"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version %1$@ (%2$@)"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licenze"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versione %1$@ (%2$@)"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "利用許諾契約"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "バージョン %1$@ (%2$@)"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용권 계약"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "버전 %1$@ (%2$@)"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licenties"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versie %1$@ (%2$@)"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licencje"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wersja %1$@ (%2$@)"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licenças"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versão %1$@ (%2$@)"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Лицензии"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Версия %1$@ (%2$@)"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lisanslar"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sürüm %1$@ (%2$@)"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "许可证"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "版本 %1$@ (%2$@)"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "許可證"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "版本 %1$@ (%2$@)"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "許可證"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "版本%1$@ (%2$@)"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Лицензи"
+          }
+        }
+      }
+    },
+    "Localization": {
+      "comment": "section heading",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokalizace"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokalisierung"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localisation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localización"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localisation"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localizzazione"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ローカリゼーション"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "번역"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokalisatie"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokalizacja"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localização"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Авторы переводов"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerelleştirme"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地化"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地化"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地化"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Локализация"
+          }
+        }
+      }
+    },
+    "only on non-AppStore version": {
+      "comment": "annotation for the Sparkle framework license",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pouze u verzí mimo App Store"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nur bei der non-AppStore version"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "only on non-AppStore version"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo en la versión fuera de la AppStore"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "uniquement la version non-AppStore"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "solo sulla versione non sull’AppStore"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非AppStore版のみ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "비 AppStore 버전에만 해당"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "alleen op niet-AppStore versie"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tylko w wersji poza App Store"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "apenas na versão fora da App Store"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "только в версии не из AppStore"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "yalnızca App Store olmayan sürümde"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅在「非App Store」版本使用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "僅「非Mac App Store」發行版有使用到该模组"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "僅非App Store版本使用"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "само във версия извън AppStore"
+          }
+        }
+      }
+    },
+    "original developer": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "původní vývojář"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Originale Entwickler"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "original developer"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "desarrollador original"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "développeur original"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sviluppatore iniziale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オリジナル開発者"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "원 개발자"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "oorspronkelijke ontwikkelaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pierwotny deweloper"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "desenvolvedor original"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "начальный разработчик"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ilk geliştirici"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原开发者"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原開發者"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原始開發者"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "оригинален разработчик"
+          }
+        }
+      }
+    },
+    "Special Thanks": {
+      "comment": "section heading",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zvláštní poděkování"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spezieller Dank"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Special Thanks"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un agradecimiento especial"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Merci spécial"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Molte grazie a"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スペシャルサンクス"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "고마운 분들"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speciale dank"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Specjalne podziękowania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agradecimentos Especiais"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отдельное спасибо"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özel Teşekkürler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "特别感谢"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "特別感謝"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "特別感謝"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Специални благодарности"
+          }
+        }
+      }
+    },
+    "The CotEditor Project": {
+      "comment": "section heading",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projekt CotEditor"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das CotEditor Projekt"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The CotEditor Project"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proyecto CotEditor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le projet CotEditor"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progetto CotEditor"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditorプロジェクト"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor 프로젝트"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het CotEditor-project"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projekt CotEditor"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projeto CotEditor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Основной автор"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor Projesi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor项目"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor專案"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor項目"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проектът CotEditor"
+          }
+        }
+      }
+    },
+    "Version %@ (%@)": {
+      "comment": "%1$@ is version number and %2$@ is build number",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verze %1$@ (%2$@)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %1$@ (%2$@)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Version %1$@ (%2$@)"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %1$@ (%2$@)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %1$@ (%2$@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %1$@ (%2$@)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versione %1$@ (%2$@)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バージョン %1$@ (%2$@)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "버전 %1$@ (%2$@)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versie %1$@ (%2$@)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wersja %1$@ (%2$@)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versão %1$@ (%2$@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Версия %1$@ (%2$@)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sürüm %1$@ (%2$@)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版本 %1$@ (%2$@)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版本 %1$@ (%2$@)"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版本%1$@ (%2$@)"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Версия %1$@ (%2$@)"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

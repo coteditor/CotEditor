@@ -1,107 +1,113 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Make file executable" : {
-      "comment" : "toggle button label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vytvořit spustitelný soubor"
+  "sourceLanguage": "en",
+  "strings": {
+    "Make file executable": {
+      "comment": "toggle button label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vytvořit spustitelný soubor"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Datei als ausführbar definieren"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datei als ausführbar definieren"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Make file executable"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make file executable"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hacer que el archivo sea ejecutable"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hacer que el archivo sea ejecutable"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rendre ce fichier exécutable"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rendre ce fichier exécutable"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rendi eseguibile il file"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rendi eseguibile il file"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "実行可能ファイルにする"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "実行可能ファイルにする"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "파일을 실행 가능하게"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파일을 실행 가능하게"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maak bestand uitvoerbaar"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maak bestand uitvoerbaar"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ustaw plik jako wykonywalny"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ustaw plik jako wykonywalny"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Transforme em arquivo executável"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transforme em arquivo executável"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сделать выполняемым"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сделать выполняемым"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dosyayı çalıştırılabilir yap"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosyayı çalıştırılabilir yap"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使文件可执行"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使文件可执行"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "製作執行檔"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "製作執行檔"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使檔案可執行"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使檔案可執行"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Направи файла изпълним"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

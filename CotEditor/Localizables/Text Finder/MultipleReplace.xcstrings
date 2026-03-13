@@ -1,826 +1,874 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Delete Rules" : {
-      "comment" : "action name",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Smazat pravidla"
+  "sourceLanguage": "en",
+  "strings": {
+    "Delete Rules": {
+      "comment": "action name",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smazat pravidla"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regeln löschen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regeln löschen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete Rules"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Rules"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eliminar reglas"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar reglas"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Supprimer les règles"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer les règles"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elimina Regole"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina Regole"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "条件を削除"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条件を削除"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "규칙 삭제"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "규칙 삭제"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verwijder linialen"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijder linialen"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usuń reguły"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuń reguły"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apagar Regras"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar Regras"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Удалить правило"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить правило"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kural Sil"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kural Sil"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "删除规则"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除规则"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "刪除規則"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除規則"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "刪除規則"
-          }
-        }
-      }
-    },
-    "Edit Rule" : {
-      "comment" : "action name",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upravit pravidlo"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除規則"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regel bearbeiten"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit Rule"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Editar regla"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modifier la règle"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modifica Regola"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "条件を編集"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "규칙 편집"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bewerk liniaal"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edytuj regułę"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Editar Regra"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изменить правило"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kural Düzenle"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "编辑规则"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "編輯規則"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "編輯規則"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изтриване на правила"
           }
         }
       }
     },
-    "FileImporter.message" : {
-      "comment" : "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings.",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vyberte soubor definice nahrazení CotEditoru nebo TSV (hodnoty oddělené tabulátory)."
+    "Edit Rule": {
+      "comment": "action name",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upravit pravidlo"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle CotEditor-Ersetzungsdefinitionsdateien oder TSV-Dateien (Tab-separierte Werte)."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regel bearbeiten"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose CotEditor Replace Definition or TSV (Tab-separated values) files."
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Rule"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose CotEditor Replace Definition or TSV (Tab-separated values) files."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar regla"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Selecciona archivos de definición de reemplazo de CotEditor o archivos TSV (valores separados por tabulaciones)."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier la règle"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choisissez des fichiers de la liste de remplacements CotEditor ou des fichiers TSV (valeurs séparées par des tabulations)."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica Regola"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scegliere una definizione sostiuzioni di\nCotEditor oppure file TSV (valori separati da tabulatore)."
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条件を編集"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor置換定義かTSV （タブ区切り値）ファイルを選択してください。"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "규칙 편집"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor 대치 정의 또는 TSV(탭으로 분리된 값) 파일을 선택하십시오."
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bewerk liniaal"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kies bestanden van Vervangingsdefinitie CotEditor of TSV-bestanden (door tabs gescheiden waarden)."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edytuj regułę"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wybierz pliki definicji zastąpienia CotEditora lub TSV (wartości oddzielonych tabulatorem)."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar Regra"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escolha arquivos de Definição de Substituição do CotEditor ou TSV (valores separados por tabulação)."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменить правило"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Выберите файл замен CotEditor, или TSV (файл значений, разделенных табулятором)."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kural Düzenle"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dosyalardan CotEditor Değişiklik Tanımları veya Tab ile Ayrılmış Değerler seçin."
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑规则"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "选择CotEditor替换定义文件或TSV（制表符分隔值）文件。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "編輯規則"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選取承載了CotEditor取代定義或定位符號分隔值的檔案。"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "編輯規則"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇CotEditor取代定義檔或TSV（定位符號分隔值）檔案。"
-          }
-        }
-      }
-    },
-    "Insert Rule" : {
-      "comment" : "action name",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přidat pravidlo"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regel hinzufügen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert Rule"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insertar regla"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nouvelle règle"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserisci Regola"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "条件を追加"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "규칙 삽입"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voeg liniaal in"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wstaw regułę"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserir Regra"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вставить правило"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kural Ekle"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "插入规则"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "插入規則"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "插入規則"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Редактиране на правило"
           }
         }
       }
     },
-    "Move Rules" : {
-      "comment" : "action name",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přesunout pravidla"
+    "FileImporter.message": {
+      "comment": "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings.",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vyberte soubor definice nahrazení CotEditoru nebo TSV (hodnoty oddělené tabulátory)."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regeln verschieben"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle CotEditor-Ersetzungsdefinitionsdateien oder TSV-Dateien (Tab-separierte Werte)."
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Move Rules"
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Choose CotEditor Replace Definition or TSV (Tab-separated values) files."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mover reglas"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose CotEditor Replace Definition or TSV (Tab-separated values) files."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déplacer les règles"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Selecciona archivos de definición de reemplazo de CotEditor o archivos TSV (valores separados por tabulaciones)."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sposta Regole"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Choisissez des fichiers de la liste de remplacements CotEditor ou des fichiers TSV (valeurs séparées par des tabulations)."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "条件を移動"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegliere una definizione sostiuzioni di\nCotEditor oppure file TSV (valori separati da tabulatore)."
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "규칙 이동"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor置換定義かTSV （タブ区切り値）ファイルを選択してください。"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verplaats liniaal"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CotEditor 대치 정의 또는 TSV(탭으로 분리된 값) 파일을 선택하십시오."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Przesuń regułę"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kies bestanden van Vervangingsdefinitie CotEditor of TSV-bestanden (door tabs gescheiden waarden)."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mover Regras"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz pliki definicji zastąpienia CotEditora lub TSV (wartości oddzielonych tabulatorem)."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Переместить правило"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha arquivos de Definição de Substituição do CotEditor ou TSV (valores separados por tabulação)."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kural Taşı"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите файл замен CotEditor, или TSV (файл значений, разделенных табулятором)."
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "移动规则"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosyalardan CotEditor Değişiklik Tanımları veya Tab ile Ayrılmış Değerler seçin."
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "移動規則"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择CotEditor替换定义文件或TSV（制表符分隔值）文件。"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "移動規則"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選取承載了CotEditor取代定義或定位符號分隔值的檔案。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇CotEditor取代定義檔或TSV（定位符號分隔值）檔案。"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изберете CotEditor Replace Definition или TSV (Tab-separated values) файлове."
           }
         }
       }
     },
-    "Multiple Replace" : {
-      "comment" : "window title",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vícenásobné nahrazení"
+    "Insert Rule": {
+      "comment": "action name",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Přidat pravidlo"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Multiples Ersetzen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regel hinzufügen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Multiple Replace"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insert Rule"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reemplazo múltiple"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insertar regla"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remplacements multiples"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvelle règle"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sostituzione multipla"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci Regola"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "複数置換"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条件を追加"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "다중 대치"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "규칙 삽입"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vervang meerdere"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voeg liniaal in"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wielokrotne zastąpienia"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wstaw regułę"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Substituição Múltipla"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserir Regra"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Множественная замена"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вставить правило"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Çoklu Değiştir"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kural Ekle"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "多重替换"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入规则"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "多重取代"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入規則"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "多重取代"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入規則"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вмъкване на правило"
           }
         }
       }
     },
-    "Reload All Definitions" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Znovu načíst všechny definice"
+    "Move Rules": {
+      "comment": "action name",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Přesunout pravidla"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle Definitionen neu laden"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regeln verschieben"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Reload All Definitions"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move Rules"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reload All Definitions"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover reglas"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recargar todas las definiciones"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déplacer les règles"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recharger toutes les définitions"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sposta Regole"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ricarica tutte le definizioni"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条件を移動"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "すべての定義を再読み込み"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "규칙 이동"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모든 정의 다시 로드"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verplaats liniaal"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Laad alle definities opnieuw"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przesuń regułę"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Załaduj ponownie wszystkie definicje"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover Regras"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recarregar Todas as Definições"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Переместить правило"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Перезагрузить все определения"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kural Taşı"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tüm Tanımları Yeniden Yükle"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移动规则"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "重载全部定义"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移動規則"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "過載全部定義"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移動規則"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "重新載入全部定義"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Правила за преместване"
           }
         }
       }
     },
-    "Sidebar" : {
-      "comment" : "accessibility label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Boční panel"
+    "Multiple Replace": {
+      "comment": "window title",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vícenásobné nahrazení"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seitenleiste"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiples Ersetzen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sidebar"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple Replace"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Barra lateral"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazo múltiple"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Barre latérale"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplacements multiples"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Barra laterale"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituzione multipla"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サイドバー"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "複数置換"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "사이드바"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다중 대치"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Navigatiekolom"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vervang meerdere"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pasek boczny"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wielokrotne zastąpienia"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Barra Lateral"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substituição Múltipla"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боковая панель"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Множественная замена"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kenar çubuğu"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çoklu Değiştir"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "边栏"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多重替换"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "側邊欄"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多重取代"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "側邊欄"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多重取代"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Множествена замяна"
+          }
+        }
+      }
+    },
+    "Reload All Definitions": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Znovu načíst všechny definice"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Definitionen neu laden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Reload All Definitions"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload All Definitions"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recargar todas las definiciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recharger toutes les définitions"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ricarica tutte le definizioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべての定義を再読み込み"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 정의 다시 로드"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laad alle definities opnieuw"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Załaduj ponownie wszystkie definicje"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recarregar Todas as Definições"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перезагрузить все определения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tüm Tanımları Yeniden Yükle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重载全部定义"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過載全部定義"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新載入全部定義"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Презареди всички дефиниции"
+          }
+        }
+      }
+    },
+    "Sidebar": {
+      "comment": "accessibility label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boční panel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seitenleiste"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra lateral"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barre latérale"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra laterale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사이드바"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigatiekolom"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasek boczny"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra Lateral"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Боковая панель"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kenar çubuğu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "边栏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "側邊欄"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "側邊欄"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Странична лента"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

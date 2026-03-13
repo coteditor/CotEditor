@@ -1,107 +1,113 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "%@ with BOM" : {
-      "comment" : "encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ s BOM"
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ with BOM": {
+      "comment": "encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ s BOM"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ mit BOM"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mit BOM"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ with BOM"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ with BOM"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ con BOM"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ con BOM"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ avec BOM"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ avec BOM"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ con BOM"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ con BOM"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@BOM付き"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@BOM付き"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ (BOM)"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (BOM)"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " (%@) met BOM"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " (%@) met BOM"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ z BOM"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ z BOM"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ com BOM"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ com BOM"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ с меткой порядка байтов (BOM)"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ с меткой порядка байтов (BOM)"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BOM ile %@"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BOM ile %@"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ with BOM"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ with BOM"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ with BOM"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ with BOM"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ with BOM"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ with BOM"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ с BOM"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

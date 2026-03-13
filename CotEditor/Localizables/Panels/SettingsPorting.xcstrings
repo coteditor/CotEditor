@@ -1,631 +1,333 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "%lld custom syntaxes" : {
-      "localizations" : {
-        "cs" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastní syntaxe"
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld custom syntaxes": {
+      "localizations": {
+        "cs": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastní syntaxe"
                 }
               },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastních syntaxí"
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastních syntaxí"
                 }
               },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastní syntaxe"
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastní syntaxe"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastních syntaxí"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastních syntaxí"
                 }
               }
             }
           }
         },
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld eigene Syntax"
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld eigene Syntax"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld eigene Syntaxen"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld eigene Syntaxen"
                 }
               }
             }
           }
         },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld custom syntax"
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld custom syntax"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld custom syntaxes"
+              "other": {
+                "stringUnit": {
+                  "state": "new",
+                  "value": "%lld custom syntaxes"
                 }
               }
             }
           }
         },
-        "en-GB" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld custom syntax"
+        "en-GB": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld custom syntax"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld custom syntaxes"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld custom syntaxes"
                 }
               }
             }
           }
         },
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld sintaxis personalizada"
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld sintaxis personalizada"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld sintaxis personalizadas"
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld sintaxis personalizadas"
                 }
               }
             }
           }
         },
-        "fr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld syntaxe personnalisée"
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld syntaxe personnalisée"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld syntaxes personnalisées"
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld syntaxes personnalisées"
                 }
               }
             }
           }
         },
-        "it" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sintassi personalizzata"
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sintassi personalizzata"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sintassi personalizzate"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sintassi personalizzate"
                 }
               }
             }
           }
         },
-        "ja" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld件のカスタムシンタックス"
+        "ja": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld件のカスタムシンタックス"
                 }
               }
             }
           }
         },
-        "ko" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%ll개의 사용자 정의 구문"
+        "ko": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%ll개의 사용자 정의 구문"
                 }
               }
             }
           }
         },
-        "nl" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld aangepaste syntaxis"
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld aangepaste syntaxis"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld aangepaste syntaxis"
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld aangepaste syntaxis"
                 }
               }
             }
           }
         },
-        "pl" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własne składnie"
+        "pl": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własne składnie"
                 }
               },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własnych składni"
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własnych składni"
                 }
               },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własna składnia"
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własna składnia"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własnej składni"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własnej składni"
                 }
               }
             }
           }
         },
-        "pt" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sintaxe personalizada"
+        "pt": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sintaxe personalizada"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sintaxes personalizadas"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sintaxes personalizadas"
                 }
               }
             }
           }
         },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательских синтаксисов"
+        "ru": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательских синтаксисов"
                 }
               },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательских синтаксисов"
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательских синтаксисов"
                 }
               },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательский синтаксис"
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательский синтаксис"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательских синтаксисов"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательских синтаксисов"
                 }
               }
             }
           }
         },
-        "tr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld özel sözdizim"
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld özel sözdizim"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld özel sözdizim"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld özel sözdizim"
                 }
               }
             }
           }
         },
-        "zh-Hans" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld个自定义语法"
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld个自定义语法"
                 }
               }
             }
           }
         },
-        "zh-Hant" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld個自訂語法"
+        "zh-Hant": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld個自訂語法"
                 }
               }
             }
           }
         },
-        "zh-HK" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld個自訂語法"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "%lld custom themes" : {
-      "localizations" : {
-        "cs" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastní motivy"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastních motivů"
-                }
-              },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastní motiv"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld vlastních motivů"
+        "zh-HK": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld個自訂語法"
                 }
               }
             }
           }
         },
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld eigenes Thema"
+        "bg": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld персонализиран синтаксис"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld eigene Themen"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld custom theme"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld custom themes"
-                }
-              }
-            }
-          }
-        },
-        "en-GB" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld custom theme"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld custom themes"
-                }
-              }
-            }
-          }
-        },
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld tema personalizado"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld temas personalizados"
-                }
-              }
-            }
-          }
-        },
-        "fr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld thème personnalisé"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld thèmes personnalisés"
-                }
-              }
-            }
-          }
-        },
-        "it" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld tema personalizzato"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld temi personalizzati"
-                }
-              }
-            }
-          }
-        },
-        "ja" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld件のカスタムテーマ"
-                }
-              }
-            }
-          }
-        },
-        "ko" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld개의 사용자 정의 테마"
-                }
-              }
-            }
-          }
-        },
-        "nl" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld aangepast thema"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld aangepaste thema's"
-                }
-              }
-            }
-          }
-        },
-        "pl" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własne motywy"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własnych motywów"
-                }
-              },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własny motyw"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld własnego motywu"
-                }
-              }
-            }
-          }
-        },
-        "pt" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld tema personalizado"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld temas personalizados"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательских тем"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательских тем"
-                }
-              },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательская тема"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld пользовательских тем"
-                }
-              }
-            }
-          }
-        },
-        "tr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld özel tema"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld özel tema"
-                }
-              }
-            }
-          }
-        },
-        "zh-Hans" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld个自定义主题"
-                }
-              }
-            }
-          }
-        },
-        "zh-Hant" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld個自訂主題"
-                }
-              }
-            }
-          }
-        },
-        "zh-HK" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld個自訂主題"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld персонализиран синтаксис"
                 }
               }
             }
@@ -633,316 +335,333 @@
         }
       }
     },
-    "%lld definitions" : {
-      "comment" : "unit for multiple replace settings",
-      "localizations" : {
-        "cs" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definice"
+    "%lld custom themes": {
+      "localizations": {
+        "cs": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastní motivy"
                 }
               },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definic"
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastních motivů"
                 }
               },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definice"
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastní motiv"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definic"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld vlastních motivů"
                 }
               }
             }
           }
         },
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Definition"
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld eigenes Thema"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Definitionen"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld eigene Themen"
                 }
               }
             }
           }
         },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definition"
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld custom theme"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld definitions"
+              "other": {
+                "stringUnit": {
+                  "state": "new",
+                  "value": "%lld custom themes"
                 }
               }
             }
           }
         },
-        "en-GB" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definition"
+        "en-GB": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld custom theme"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld themes"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld custom themes"
                 }
               }
             }
           }
         },
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld definición"
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld tema personalizado"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld definiciones"
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld temas personalizados"
                 }
               }
             }
           }
         },
-        "fr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld définition"
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld thème personnalisé"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld définitions"
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld thèmes personnalisés"
                 }
               }
             }
           }
         },
-        "it" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definizione"
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tema personalizzato"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definizioni"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld temi personalizzati"
                 }
               }
             }
           }
         },
-        "ja" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld件の定義"
+        "ja": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld件のカスタムテーマ"
                 }
               }
             }
           }
         },
-        "ko" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld개의 정의"
+        "ko": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld개의 사용자 정의 테마"
                 }
               }
             }
           }
         },
-        "nl" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld definitie"
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld aangepast thema"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld definities"
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld aangepaste thema's"
                 }
               }
             }
           }
         },
-        "pl" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definicje"
+        "pl": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własne motywy"
                 }
               },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definicji"
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własnych motywów"
                 }
               },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definicja"
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własny motyw"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definicji"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld własnego motywu"
                 }
               }
             }
           }
         },
-        "pt" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definição"
+        "pt": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tema personalizado"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld definições"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld temas personalizados"
                 }
               }
             }
           }
         },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld определений"
+        "ru": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательских тем"
                 }
               },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld определений"
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательских тем"
                 }
               },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld определение"
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательская тема"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld определений"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld пользовательских тем"
                 }
               }
             }
           }
         },
-        "tr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld tanım"
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld özel tema"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld tanım"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld özel tema"
                 }
               }
             }
           }
         },
-        "zh-Hans" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld个定义"
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld个自定义主题"
                 }
               }
             }
           }
         },
-        "zh-Hant" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld個定義"
+        "zh-Hant": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld個自訂主題"
                 }
               }
             }
           }
         },
-        "zh-HK" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld個定義"
+        "zh-HK": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld個自訂主題"
+                }
+              }
+            }
+          }
+        },
+        "bg": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld персонализирана тема"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld потребителски теми"
                 }
               }
             }
@@ -950,1255 +669,1662 @@
         }
       }
     },
-    "Choose a CotEditor settings archive to import." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vyberte archiv nastavení CotEditoru, který chcete importovat."
+    "%lld definitions": {
+      "comment": "unit for multiple replace settings",
+      "localizations": {
+        "cs": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definice"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definic"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definice"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definic"
+                }
+              }
+            }
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle ein CotEditor-Einstellungsarchiv, das importiert werden soll."
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Definition"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Definitionen"
+                }
+              }
+            }
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose a CotEditor settings archive to import."
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definition"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "new",
+                  "value": "%lld definitions"
+                }
+              }
+            }
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Seleccione el archivo de configuración de CotEditor que quiera importar."
+        "en-GB": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definition"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld themes"
+                }
+              }
+            }
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choisissez une archive de paramètres CotEditor à importer."
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld definición"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld definiciones"
+                }
+              }
+            }
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selezionare un archivio di impostazioni di CotEditor da importare."
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld définition"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld définitions"
+                }
+              }
+            }
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "読み込むCotEditor設定アーカイブを選択"
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definizione"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definizioni"
+                }
+              }
+            }
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "가져올 CotEditor 설정 아카이브를 선택하십시오."
+        "ja": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld件の定義"
+                }
+              }
+            }
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Kies een CotEditor-instellingenarchief om te importeren."
+        "ko": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld개의 정의"
+                }
+              }
+            }
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wybierz archiwum ustawień CotEditora, które chcesz importować."
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld definitie"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld definities"
+                }
+              }
+            }
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escolha um arquivo de configurações do CotEditor para importar."
+        "pl": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definicje"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definicji"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definicja"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definicji"
+                }
+              }
+            }
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Выберите архив настроек CotEditor для импорта."
+        "pt": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definição"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld definições"
+                }
+              }
+            }
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İçe aktarılacak bir CotEditor ayarları arşivi seçin."
+        "ru": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld определений"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld определений"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld определение"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld определений"
+                }
+              }
+            }
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "选择要导入的CotEditor设置归档。"
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tanım"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tanım"
+                }
+              }
+            }
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇要匯入的CotEditor設定封存檔。"
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld个定义"
+                }
+              }
+            }
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇要輸入的CotEditor設定封存檔。"
+        "zh-Hant": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld個定義"
+                }
+              }
+            }
+          }
+        },
+        "zh-HK": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld個定義"
+                }
+              }
+            }
+          }
+        },
+        "bg": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Определение на %lld"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld определения"
+                }
+              }
+            }
           }
         }
       }
     },
-    "Error.versionMismatch.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tento archiv nastavení byl vytvořen jinou verzí CotEditoru (%@)."
+    "Choose a CotEditor settings archive to import.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vyberte archiv nastavení CotEditoru, který chcete importovat."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dieses Einstellungsarchiv wurde von einer anderen Version von CotEditor (%@) erstellt."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle ein CotEditor-Einstellungsarchiv, das importiert werden soll."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "This settings archive was created by a different version of CotEditor (%@)."
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a CotEditor settings archive to import."
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can still import these items, but some settings may be incompatible."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Seleccione el archivo de configuración de CotEditor que quiera importar."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Este archivo de ajustes fue creado por otra versión de CotEditor (%@)."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Choisissez une archive de paramètres CotEditor à importer."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cet archive de réglages a été créé par une autre version de CotEditor (%@)."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selezionare un archivio di impostazioni di CotEditor da importare."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Questo archivio di impostazioni è stato creato con una versione differente di CotEditor (%@)."
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "読み込むCotEditor設定アーカイブを選択"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "この設定アーカイブは、別のバージョンのCotEditor（%@）で作成されています。"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가져올 CotEditor 설정 아카이브를 선택하십시오."
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이 설정 아카이브는 다른 버전의 CotEditor에서 생성되었습니다. (%@)"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kies een CotEditor-instellingenarchief om te importeren."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Dit instellingenarchief is gemaakt door een andere versie van CotEditor (%@).\n"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz archiwum ustawień CotEditora, które chcesz importować."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To archiwum ustawień zostało utworzone przy użyciu innej wersji CotEditora (%@)."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha um arquivo de configurações do CotEditor para importar."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Este arquivo de configurações foi criado por uma versão diferente do CotEditor (%@)."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите архив настроек CotEditor для импорта."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Этот архив настроек был создан другой версией CotEditor (%@)."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçe aktarılacak bir CotEditor ayarları arşivi seçin."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu ayarlar arşivi, CotEditor’ün farklı bir sürümü (%@) ile oluşturuldu."
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择要导入的CotEditor设置归档。"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此设置归档由不同版本的CotEditor 创建（%@）。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇要匯入的CotEditor設定封存檔。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此設定封存檔是由不同版本的CotEditor (%@) 所建立。"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇要輸入的CotEditor設定封存檔。"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此設定封存檔是由不同版本的CotEditor （%@）製作。"
-          }
-        }
-      }
-    },
-    "Error.versionMismatch.recoverySuggestion" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tyto položky můžete přesto importovat, ale některá nastavení mohou být nekompatibilní."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du kannst diese Elemente weiterhin importieren, aber einige Einstellungen sind möglicherweise nicht kompatibel."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can still import these items, but some settings may be incompatible."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can still import these items, but some settings may be incompatible."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Puede importar estos elementos igualmente, pero algunos ajustes podrían no ser compatibles."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vous pouvez toujours importer ces éléments, mais certains réglages peuvent être incompatibles."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puoi comunque importare l'archivio, ma alcune impostazioni potrebbero essere incompatibili."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "読み込むことはできますが、一部の設定は互換性がない場合があります。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이 항목들을 가져올 수 있지만 일부 설정이 호환되지 않을 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Je kunt deze items alsnog importeren, maar sommige instellingen zijn mogelijk niet compatibel."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nadal możesz importować te ustawienia, choć niektóre z nich mogą być niekompatybilne."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você ainda pode importar estes itens, mas algumas configurações podem ser incompatíveis."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вы можете импортировать эти элементы, но некоторые настройки могут быть несовместимы."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu öğeleri yine de içe aktarabilirsiniz; ancak bazı ayarlar uyumsuz olabilir."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您仍可继续导入这些项目，但部分设置可能不兼容。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您仍可匯入這些項目，但部分設定可能不相容。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你仍然可輸入這些項目，但部份設定可能不相容。"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Избери архив с настройки на CotEditor за импортиране."
           }
         }
       }
     },
-    "Export selected settings as an archive to allow importing into other computers." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exportovat vybraná nastavení jako archiv pro import do jiných počítačů."
+    "Error.versionMismatch.description": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tento archiv nastavení byl vytvořen jinou verzí CotEditoru (%@)."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exportiere ausgewählte Einstellungen als Archiv, um sie auf andere Computer importieren zu können."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Einstellungsarchiv wurde von einer anderen Version von CotEditor (%@) erstellt."
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Export selected settings as an archive to allow importing into other computers."
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "This settings archive was created by a different version of CotEditor (%@)."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Exportar los ajustes seleccionados como un archivo para poder importarla a otros ordenadores."
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can still import these items, but some settings may be incompatible."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Exporter les réglages sélectionnés sous forme d'archive afin de pouvoir les importer sur d'autres ordinateurs."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este archivo de ajustes fue creado por otra versión de CotEditor (%@)."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esporta le impostazioni selezionate in un archivio per poterle importare in altri computer."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cet archive de réglages a été créé par une autre version de CotEditor (%@)."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選択した設定をアーカイブとして書き出して、他のコンピュータで読み込むことができます。"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questo archivio di impostazioni è stato creato con una versione differente di CotEditor (%@)."
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "선택한 설정을 아카이브로 내보내 다른 컴퓨터로 가져올 수 있도록 합니다."
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この設定アーカイブは、別のバージョンのCotEditor（%@）で作成されています。"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Exporteer geselecteerde instellingen als archief om ze naar andere computers te kunnen importeren."
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 설정 아카이브는 다른 버전의 CotEditor에서 생성되었습니다. (%@)"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eksportuj wybrane ustawienia w formie archiwum, by umożliwić ich importowanie do innych komputerów."
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dit instellingenarchief is gemaakt door een andere versie van CotEditor (%@).\n"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exporte as configurações selecionadas como um arquivo para permitir a importação em outros computadores."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To archiwum ustawień zostało utworzone przy użyciu innej wersji CotEditora (%@)."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Экспортируйте выбранные настройки в виде архива, чтобы их можно было импортировать на другом компьютере."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este arquivo de configurações foi criado por uma versão diferente do CotEditor (%@)."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seçili ayarları arşiv olarak dışa aktararak diğer bilgisayarlara aktarılmasını sağlayın."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот архив настроек был создан другой версией CotEditor (%@)."
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "将所选设置导出为归档文件，以便导入到其他电脑。"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayarlar arşivi, CotEditor’ün farklı bir sürümü (%@) ile oluşturuldu."
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "將選取的設定匯出為封存檔，以便匯入至其他電腦。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设置归档由不同版本的CotEditor 创建（%@）。"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "將選擇的設定輸出為封存檔，以便輸入到其他電腦。"
-          }
-        }
-      }
-    },
-    "Export Settings" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exportovat nastavení"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此設定封存檔是由不同版本的CotEditor (%@) 所建立。"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellungen exportieren"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此設定封存檔是由不同版本的CotEditor （%@）製作。"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Export Settings"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exportar ajustes"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exporter les réglages"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esporta impostazioni"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定を書き出す"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "설정 내보내기"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exporteer instellingen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eksportuj ustawienia"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exportar Ajustes"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Экспортировать настройки"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ayarları Dışa Aktar"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "导出设置"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "輸出設定"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "輸出設定"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Този архив с настройки е създаден от различна версия на CotEditor (%@)."
           }
         }
       }
     },
-    "Import Settings" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importovat nastavení"
+    "Error.versionMismatch.recoverySuggestion": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tyto položky můžete přesto importovat, ale některá nastavení mohou být nekompatibilní."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellungen importieren"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst diese Elemente weiterhin importieren, aber einige Einstellungen sind möglicherweise nicht kompatibel."
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Import Settings"
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "You can still import these items, but some settings may be incompatible."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importar ajustes"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can still import these items, but some settings may be incompatible."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importer les réglages"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Puede importar estos elementos igualmente, pero algunos ajustes podrían no ser compatibles."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importa impostazioni"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vous pouvez toujours importer ces éléments, mais certains réglages peuvent être incompatibles."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定を読み込む"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puoi comunque importare l'archivio, ma alcune impostazioni potrebbero essere incompatibili."
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "설정 가져오기"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "読み込むことはできますが、一部の設定は互換性がない場合があります。"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importeer instellingen"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 항목들을 가져올 수 있지만 일부 설정이 호환되지 않을 수 있습니다."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importuj ustawienia"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Je kunt deze items alsnog importeren, maar sommige instellingen zijn mogelijk niet compatibel."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importar Ajustes"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadal możesz importować te ustawienia, choć niektóre z nich mogą być niekompatybilne."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Импортировать настройки"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você ainda pode importar estes itens, mas algumas configurações podem ser incompatíveis."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ayarları İçe Aktar"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы можете импортировать эти элементы, но некоторые настройки могут быть несовместимы."
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "导入设置"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu öğeleri yine de içe aktarabilirsiniz; ancak bazı ayarlar uyumsuz olabilir."
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "輸入設定"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您仍可继续导入这些项目，但部分设置可能不兼容。"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "輸入設定"
-          }
-        }
-      }
-    },
-    "Select the items to import:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vyberte položky k importu:"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您仍可匯入這些項目，但部分設定可能不相容。"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Objekte für den Import wählen:"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你仍然可輸入這些項目，但部份設定可能不相容。"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select the items to import:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selecciona los ítems que quieras importar:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélectionner les éléments à importer :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleziona gli elementi da importare:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "読み込む項目を選択:"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "가져올 항목 선택:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selecteer de onderdelen die je wilt importeren:"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zaznacz rzeczy do zaimportowania:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selecione os itens que deseja importar:"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Выберите объекты для импорта:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İçe aktarılacak öğeleri seçin:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "选择要导入的项目："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇要輸入的項目："
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇要輸入的項目："
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все още можете да импортирате тези елементи, но някои настройки може да са несъвместими."
           }
         }
       }
     },
-    "SettingTypes.replacements.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Více definic nahrazení"
+    "Export selected settings as an archive to allow importing into other computers.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportovat vybraná nastavení jako archiv pro import do jiných počítačů."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Definitionen für das Multiple Ersetzen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportiere ausgewählte Einstellungen als Archiv, um sie auf andere Computer importieren zu können."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Multiple Replace Definitions"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export selected settings as an archive to allow importing into other computers."
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Multiple Replace Definitions"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Exportar los ajustes seleccionados como un archivo para poder importarla a otros ordenadores."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Definiciones de reemplazo múltiples"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Exporter les réglages sélectionnés sous forme d'archive afin de pouvoir les importer sur d'autres ordinateurs."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Définitions de remplacement multiples"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esporta le impostazioni selezionate in un archivio per poterle importare in altri computer."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Definizioni di sostituzioni multiple"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択した設定をアーカイブとして書き出して、他のコンピュータで読み込むことができます。"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "複数置換定義"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "선택한 설정을 아카이브로 내보내 다른 컴퓨터로 가져올 수 있도록 합니다."
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "다중 대치 정의"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Exporteer geselecteerde instellingen als archief om ze naar andere computers te kunnen importeren."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Definities voor meerdere vervangingen"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksportuj wybrane ustawienia w formie archiwum, by umożliwić ich importowanie do innych komputerów."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Definicje wielokrotnych zastąpień"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporte as configurações selecionadas como um arquivo para permitir a importação em outros computadores."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Definições de Substituição Múltipla"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экспортируйте выбранные настройки в виде архива, чтобы их можно было импортировать на другом компьютере."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Массовые правила замен текста"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seçili ayarları arşiv olarak dışa aktararak diğer bilgisayarlara aktarılmasını sağlayın."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Birden çok değişiklik tanımı"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将所选设置导出为归档文件，以便导入到其他电脑。"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "多重替换定义"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將選取的設定匯出為封存檔，以便匯入至其他電腦。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "多重取代定義"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將選擇的設定輸出為封存檔，以便輸入到其他電腦。"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "多重取代定義"
-          }
-        }
-      }
-    },
-    "SettingTypes.settings.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Všechna nastavení v okně Nastavení"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle Einstellungen im Fenster „Einstellungen“"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "All settings in the Settings window"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All settings in the Settings window"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Todos los ajustes de la ventana Ajustes"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tous les paramètres dans la fenêtre Réglages"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tutte le impostazioni nella\nfinestra Impostazioni"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「設定」ウインドウ内のすべての設定"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "설정 윈도우의 모든 설정"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Alle instellingen in het venster 'Instellingen'"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wszystkie ustawienia w oknie Ustawienia"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Todas as configurações na janela de Configurações"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Все настройки в окне «Настройки»"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ayarlar penceresindeki tüm ayarlar"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "设置窗口中的所有设置"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「設定」視窗內的全部設定"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「設定」視窗內的所有設定"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Експортирайте избраните настройки като архив, за да разрешите импортиране в други компютри."
           }
         }
       }
     },
-    "SettingTypes.settings.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nastavení"
+    "Export Settings": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportovat nastavení"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellungen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen exportieren"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Settings"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export Settings"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Settings"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar ajustes"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajustes"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter les réglages"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Réglages"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esporta impostazioni"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Impostazioni"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定を書き出す"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정 내보내기"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "설정"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporteer instellingen"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Instellingen"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksportuj ustawienia"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ustawienia"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar Ajustes"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajustes"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экспортировать настройки"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройки"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarları Dışa Aktar"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ayarlar"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出设置"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "设置"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸出設定"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸出設定"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Експортиране на настройки"
           }
         }
       }
     },
-    "SettingTypes.syntaxes.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntaxe"
+    "Import Settings": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importovat nastavení"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntaxen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen importieren"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Syntaxes"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import Settings"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntaxes"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar ajustes"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sintaxis"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer les réglages"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Syntaxes"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa impostazioni"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sintassi"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定を読み込む"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "シンタックス"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정 가져오기"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "구문"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importeer instellingen"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Syntaxis"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importuj ustawienia"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Składnie"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar Ajustes"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sintaxes"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импортировать настройки"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксисы"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarları İçe Aktar"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sözdizimler"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入设置"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "语法"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入設定"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "語法"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入設定"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "語法"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настройки за импортиране"
           }
         }
       }
     },
-    "SettingTypes.themes.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Motivy"
+    "Select the items to import:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vyberte položky k importu:"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Themen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objekte für den Import wählen:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Themes"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select the items to import:"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Themes"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecciona los ítems que quieras importar:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Temas"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionner les éléments à importer :"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Thèmes"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona gli elementi da importare:"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temi"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "読み込む項目を選択:"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "テーマ"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가져올 항목 선택:"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "테마"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer de onderdelen die je wilt importeren:"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Thema's"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaznacz rzeczy do zaimportowania:"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Motywy"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecione os itens que deseja importar:"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temas"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите объекты для импорта:"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Темы"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçe aktarılacak öğeleri seçin:"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temalar"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择要导入的项目："
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "主题"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇要輸入的項目："
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "主題"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇要輸入的項目："
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "主題"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Избери елементите за импортиране:"
+          }
+        }
+      }
+    },
+    "SettingTypes.replacements.label": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Více definic nahrazení"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definitionen für das Multiple Ersetzen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Multiple Replace Definitions"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple Replace Definitions"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Definiciones de reemplazo múltiples"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Définitions de remplacement multiples"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definizioni di sostituzioni multiple"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "複数置換定義"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다중 대치 정의"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Definities voor meerdere vervangingen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definicje wielokrotnych zastąpień"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definições de Substituição Múltipla"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Массовые правила замен текста"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Birden çok değişiklik tanımı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多重替换定义"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多重取代定義"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多重取代定義"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Множество дефиниции за замяна"
+          }
+        }
+      }
+    },
+    "SettingTypes.settings.description": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Všechna nastavení v okně Nastavení"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Einstellungen im Fenster „Einstellungen“"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "All settings in the Settings window"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All settings in the Settings window"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Todos los ajustes de la ventana Ajustes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tous les paramètres dans la fenêtre Réglages"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutte le impostazioni nella\nfinestra Impostazioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「設定」ウインドウ内のすべての設定"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정 윈도우의 모든 설정"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alle instellingen in het venster 'Instellingen'"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie ustawienia w oknie Ustawienia"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as configurações na janela de Configurações"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все настройки в окне «Настройки»"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlar penceresindeki tüm ayarlar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置窗口中的所有设置"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「設定」視窗內的全部設定"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「設定」視窗內的所有設定"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Всички настройки в прозореца Настройки"
+          }
+        }
+      }
+    },
+    "SettingTypes.settings.label": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nastavení"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Settings"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instellingen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ustawienia"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настройки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настройки"
+          }
+        }
+      }
+    },
+    "SettingTypes.syntaxes.label": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntaxe"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntaxen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Syntaxes"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntaxes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sintaxis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Syntaxes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sintassi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "シンタックス"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구문"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Syntaxis"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Składnie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sintaxes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Синтаксисы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sözdizimler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "语法"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "語法"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "語法"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Синтаксис"
+          }
+        }
+      }
+    },
+    "SettingTypes.themes.label": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motivy"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Themen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Themes"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Themes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Temas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Thèmes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テーマ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "테마"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Thema's"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motywy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temalar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主题"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主題"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主題"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Теми"
           }
         }
       }
     }
   },
-  "version" : "1.1"
+  "version": "1.1"
 }

@@ -1,434 +1,458 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "donation.onetime.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chutný šálek"
+  "sourceLanguage": "en",
+  "strings": {
+    "donation.onetime.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chutný šálek"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eine köstliche Tasse"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine köstliche Tasse"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A tasty cup"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A tasty cup"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A tasty cup"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A tasty cup"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una deliciosa taza"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una deliciosa taza"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Une tasse savoureuse"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Une tasse savoureuse"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una gustosa tazza"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una gustosa tazza"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "おいしい1杯"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "おいしい1杯"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "커피 한 잔"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "커피 한 잔"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Een lekker kopje"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Een lekker kopje"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Smaczna filiżanka"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smaczna filiżanka"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma saborosa xícara"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma saborosa xícara"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вкусная чашка"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вкусная чашка"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lezzetli bir kupa"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lezzetli bir kupa"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "一杯美味的咖啡"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一杯美味的咖啡"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "一杯美味的咖啡"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一杯美味的咖啡"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "一杯美味的咖啡"
-          }
-        }
-      }
-    },
-    "donation.onetime.displayName" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一杯美味的咖啡"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "エスプレッソ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "에스프레소"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Экспрессо"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espresso"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "浓缩咖啡"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "濃縮咖啡"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "濃縮咖啡"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вкусна чаша"
           }
         }
       }
     },
-    "donation.subscription.yearly.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Káva pro každodenní vývoj"
+    "donation.onetime.displayName": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kaffee für die tägliche Entwicklung"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coffee for daily development"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coffee for daily development"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Café para el desarrollo diario"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Café pour le développement quotidien"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Caffà per lo sviluppo quotidiano"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "日々の開発のためのコーヒー"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "エスプレッソ"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "일일 개발을 위한 커피"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "에스프레소"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koffie voor dagelijkse ontwikkeling"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kawa dla codziennego rozwoju"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Café para desenvolvimento diário"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кофе для ежедневной разработки"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экспрессо"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Günlük geliştirme için kahve"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espresso"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "日常开发的咖啡"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "浓缩咖啡"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以咖啡資助軟體研發"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "濃縮咖啡"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "用咖啡支持日常關發"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "濃縮咖啡"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Еспресо"
           }
         }
       }
     },
-    "donation.subscription.yearly.displayName" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kávové boby"
+    "donation.subscription.yearly.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Káva pro každodenní vývoj"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kaffeebohnen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaffee für die tägliche Entwicklung"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coffee Beans"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coffee for daily development"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coffee Beans"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coffee for daily development"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Granos de café"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Café para el desarrollo diario"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grains de café"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Café pour le développement quotidien"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chicchi di caffè"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caffà per lo sviluppo quotidiano"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "コーヒー豆"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日々の開発のためのコーヒー"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "커피 원두"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일일 개발을 위한 커피"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koffiebonen"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koffie voor dagelijkse ontwikkeling"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kawa ziarnista"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kawa dla codziennego rozwoju"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grãos de Café"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Café para desenvolvimento diário"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мешок кофе"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кофе для ежедневной разработки"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kahve Çekirdekleri"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günlük geliştirme için kahve"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "咖啡豆"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日常开发的咖啡"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "咖啡豆"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以咖啡資助軟體研發"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "咖啡豆"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用咖啡支持日常關發"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кафе за ежедневно развитие"
+          }
+        }
+      }
+    },
+    "donation.subscription.yearly.displayName": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kávové boby"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaffeebohnen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coffee Beans"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coffee Beans"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Granos de café"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grains de café"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chicchi di caffè"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コーヒー豆"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "커피 원두"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koffiebonen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kawa ziarnista"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grãos de Café"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мешок кофе"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kahve Çekirdekleri"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "咖啡豆"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "咖啡豆"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "咖啡豆"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кафе на зърна"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

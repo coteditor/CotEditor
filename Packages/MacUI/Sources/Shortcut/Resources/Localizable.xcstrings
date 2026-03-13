@@ -1,95 +1,101 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Space" : {
-      "comment" : "keyboard key name",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mezerník"
+  "sourceLanguage": "en",
+  "strings": {
+    "Space": {
+      "comment": "keyboard key name",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mezerník"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leertaste"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leertaste"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Space"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Space"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espacio"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacio"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espace"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espace"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spazio"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spazio"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スペース"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スペース"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spatie"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spatie"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spacja"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spacja"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espaço"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espaço"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Boşluk"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boşluk"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空格"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空格"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空格"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Интервал"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

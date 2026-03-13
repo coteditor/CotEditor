@@ -1,2430 +1,2574 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Add period with double-space" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přidat tečku pomocí dvojité mezery"
+  "sourceLanguage": "en",
+  "strings": {
+    "Add period with double-space": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Přidat tečku pomocí dvojité mezery"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Punkt mit doppeltem Leerzeichen hinzufügen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punkt mit doppeltem Leerzeichen hinzufügen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add full stop with double-space"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add full stop with double-space"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añadir punto y seguido al pulsar el espacio dos veces"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir punto y seguido al pulsar el espacio dos veces"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajouter un point en saisissant deux espaces"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un point en saisissant deux espaces"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aggiungi punto con doppio spazio"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi punto con doppio spazio"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スペースバーを2回押してピリオドを入力"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スペースバーを2回押してピリオドを入力"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "스페이스를 두 번 눌러 마침표 추가"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스페이스를 두 번 눌러 마침표 추가"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voeg punt toe via dubbele spatie"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voeg punt toe via dubbele spatie"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podwójna spacja dodaje kropkę"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podwójna spacja dodaje kropkę"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicionar ponto final com dois espaços"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar ponto final com dois espaços"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавлять точку двойным пробелом"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавлять точку двойным пробелом"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Çift boşlukla nokta ekle"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çift boşlukla nokta ekle"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "连按两下空格键插入句号"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连按两下空格键插入句号"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "加入全形句號"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加入全形句號"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "加入全形句號"
-          }
-        }
-      }
-    },
-    "Automatically insert closing brackets and quotes" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automaticky vkládat uzavírací závorky a uvozovky"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加入全形句號"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klammern und Anführungszeichen automatisch schließen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatically insert closing brackets and quotes"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserte automáticamente los corchetes de cierre y las comillas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insérer automatiquement les parenthèses et guillemets fermants"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserisci automaticamente parentesi e virgolette di chiusura"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "括弧と引用符を自動的に閉じる"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "닫는 괄호 및 인용 부호 자동 삽입"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voeg automatisch haakjes en aanhalingstekens in"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatycznie wstawiaj zamykające nawiasy i cudzysłowy"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inserir chaves e aspas finais automaticamente"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматически вставлять закрывающие скобки и кавычки"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kapatma ayraçlarını ve tırnaklarını kendiliğinden ekle"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自动补全括号和引号"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動補全括弧和引號"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動插入封閉括號與引號"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавете точка с двоен интервал"
           }
         }
       }
     },
-    "Check grammar with spelling" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kontrolovat gramatiku a pravopis"
+    "Automatically insert closing brackets and quotes": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automaticky vkládat uzavírací závorky a uvozovky"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechtschreib- und Grammatikprüfung"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klammern und Anführungszeichen automatisch schließen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Check Grammar With Spelling"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically insert closing brackets and quotes"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comprobar gramática con la ortografía"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserte automáticamente los corchetes de cierre y las comillas"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vérifier la grammaire et l’orthographe"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insérer automatiquement les parenthèses et guillemets fermants"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Controlla grammatica e ortografia"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci automaticamente parentesi e virgolette di chiusura"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スペルと一緒に文法をチェック"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "括弧と引用符を自動的に閉じる"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "입력할 때 문법 검사"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "닫는 괄호 및 인용 부호 자동 삽입"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Controleer grammatica tegelijk met spelling"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voeg automatisch haakjes en aanhalingstekens in"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprawdzaj gramatykę i pisownię"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatycznie wstawiaj zamykające nawiasy i cudzysłowy"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verificar Gramática com Ortografia"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserir chaves e aspas finais automaticamente"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверить грамматику и правописание"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматически вставлять закрывающие скобки и кавычки"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yazım ve dilbilgisi denetimi yap"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapatma ayraçlarını ve tırnaklarını kendiliğinden ekle"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "检查拼写和语法"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动补全括号和引号"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "檢查拼字文法"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動補全括弧和引號"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "檢查文法及串字"
-          }
-        }
-      }
-    },
-    "Check spelling while typing" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kontrolovat pravopis při psaní"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動插入封閉括號與引號"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Während der Texteingabe prüfen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Check spelling while typing"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comprobar ortografía mientras se escribe"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vérifier l’orthographe lors de la saisie"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Controlla ortografia mentre scrivo"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "入力中にスペルチェック"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "입력할 때 맞춤법 검사"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Controleer spelling tijdens typen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprawdzaj pisownię, gdy piszę"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verificar Ortografia Durante Digitação"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверять правописание при вводе"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yazarken yazım denetimi yap"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "键入时检查拼写"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在輸入時同步檢查拼字"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在輸入時同時檢查串字"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматично вмъкване на затварящи скоби и кавички"
           }
         }
       }
     },
-    "Completion list includes:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zahrnout seznam pro dokončování:"
+    "Check grammar with spelling": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontrolovat gramatiku a pravopis"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vervollständigungsliste enthält:"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechtschreib- und Grammatikprüfung"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Completion list includes:"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Grammar With Spelling"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La lista de autocompletado incluye:"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobar gramática con la ortografía"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La liste de complétion inclue :"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier la grammaire et l’orthographe"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La lista di completamento include:"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla grammatica e ortografia"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "入力補完候補リストに含む単語:"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スペルと一緒に文法をチェック"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "자동완성 목록에 포함:"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "입력할 때 문법 검사"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "De lijst met voltooiingen omvat:"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controleer grammatica tegelijk met spelling"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lista uzupełnień zawiera:"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdzaj gramatykę i pisownię"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lista de preenchimento inclui:"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar Gramática com Ortografia"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Список автодополнения включает в себя:"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверить грамматику и правописание"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tamamlama listesi şunları içerir:"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazım ve dilbilgisi denetimi yap"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "补全列表包括："
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查拼写和语法"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "補全列表包括："
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檢查拼字文法"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完成列表包括："
-          }
-        }
-      }
-    },
-    "Completion:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dokončování:"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檢查文法及串字"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vervollständigung:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Completion:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autocompletado:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Complétion :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Completamento:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "入力補完:"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "자동완성:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voltooiing:"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uzupełnienia:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preenchimento:"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автодополнение:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tamamlama:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "补全："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "補全："
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完成："
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверка на граматиката с правопис"
           }
         }
       }
     },
-    "Correct spelling automatically" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automaticky opravovat pravopis"
+    "Check spelling while typing": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontrolovat pravopis při psaní"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechtschreibung automatisch korrigieren"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Während der Texteingabe prüfen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correct Spelling Automatically"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check spelling while typing"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Corregir ortografía automáticamente"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobar ortografía mientras se escribe"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Corriger l’orthographe automatiquement"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier l’orthographe lors de la saisie"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correggi automaticamente ortografia"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla ortografia mentre scrivo"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スペルを自動的に修正"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入力中にスペルチェック"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "맞춤법 자동 수정"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "입력할 때 맞춤법 검사"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Corrigeer spelling automatisch"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controleer spelling tijdens typen"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Poprawiaj pisownię automatycznie"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdzaj pisownię, gdy piszę"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Corrigir Ortografia Automaticamente"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar Ortografia Durante Digitação"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматически исправлять ошибки"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверять правописание при вводе"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yazım hatalarını otomatik düzelt"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazarken yazım denetimi yap"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自动纠正拼写"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "键入时检查拼写"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動修正拼字"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在輸入時同步檢查拼字"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動更正串字"
-          }
-        }
-      }
-    },
-    "Font:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Písmo:"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在輸入時同時檢查串字"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schrift:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Font:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tipo de letra:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Police :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Font:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "フォント:"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "서체:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lettertype:"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czcionka:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fonte:"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шрифт:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Font:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "字体："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "字體："
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "字體："
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверявайте правописа, докато пишете"
           }
         }
       }
     },
-    "FontType.monospaced.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neproporcionální"
+    "Completion list includes:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zahrnout seznam pro dokončování:"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nichtproportional"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vervollständigungsliste enthält:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Monospaced"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completion list includes:"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monospaced"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La lista de autocompletado incluye:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monoespaciado"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La liste de complétion inclue :"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monochasse"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La lista di completamento include:"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spaziatura fissa"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入力補完候補リストに含む単語:"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "等幅"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자동완성 목록에 포함:"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "고정폭"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De lijst met voltooiingen omvat:"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niet-proportioneel"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista uzupełnień zawiera:"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O stałej szerokości"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista de preenchimento inclui:"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monoespaçado"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Список автодополнения включает в себя:"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Моноширинный"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamlama listesi şunları içerir:"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sabit Genişlikli"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "补全列表包括："
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "等宽"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "補全列表包括："
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "等寬型"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成列表包括："
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "等寬"
-          }
-        }
-      }
-    },
-    "FontType.standard.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standardní"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standard"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Standard"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standard"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Estándar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standard"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standard"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標準"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "표준"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standaard"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podstawowa"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Padrão"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартный"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standart"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "标准"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標準型"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標準"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Списъкът за завършване включва:"
           }
         }
       }
     },
-    "Mode" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Režim"
+    "Completion:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dokončování:"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modus"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vervollständigung:"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completion:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocompletado:"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complétion :"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modalità"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completamento:"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "モード"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入力補完:"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모드"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자동완성:"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modus"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voltooiing:"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tryb"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uzupełnienia:"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preenchimento:"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автодополнение:"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mod"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamlama:"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "模式"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "补全："
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "模式"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "補全："
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "模式"
-          }
-        }
-      }
-    },
-    "Not found" : {
-      "comment" : "accessibility label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenalezeno"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成："
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht gefunden"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not found"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No encontrado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Introuvable"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non trovato"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "見つかりませんでした"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "발견되지 않음"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niet gevonden"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie znaleziono"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Não Encontrado"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не найдено"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulunamadı"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未找到"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "找不到"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未找到"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завършване:"
           }
         }
       }
     },
-    "Smart copy/paste" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inteligentní kopírování/vkládání"
+    "Correct spelling automatically": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automaticky opravovat pravopis"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Intelligentes Kopieren/Ersetzen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechtschreibung automatisch korrigieren"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Smart copy/paste"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correct Spelling Automatically"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copiado/pegado inteligente"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corregir ortografía automáticamente"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copier-coller intelligent"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corriger l’orthographe automatiquement"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copia/incolla smart"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correggi automaticamente ortografia"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スマートコピー/ペースト"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スペルを自動的に修正"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "스마트 복사하기/붙여넣기"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "맞춤법 자동 수정"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slim kopiëren/plakken"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrigeer spelling automatisch"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kopiowanie/wklejanie inteligentne"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poprawiaj pisownię automatycznie"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copiar/colar inteligente"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrigir Ortografia Automaticamente"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смарт-копирование/вставка"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматически исправлять ошибки"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Akıllı kopyala/yapıştır"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazım hatalarını otomatik düzelt"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智能拷贝/粘贴"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动纠正拼写"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智慧型拷貝/貼上"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動修正拼字"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智慧型複製/貼上"
-          }
-        }
-      }
-    },
-    "Smart dashes" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inteligentní pomlčky"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動更正串字"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Intelligente Bindestriche"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Smart dashes"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guiones inteligentes"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tirets intelligents"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trattini smart"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スマートダッシュ記号"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "스마트 대시"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slimme streepjes"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Myślniki inteligentne"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hifens Inteligentes"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смарт-тире"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Akıllı tireler"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智能破折号"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智慧型破折號"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智慧型破折號"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Правилно изписване автоматично"
           }
         }
       }
     },
-    "Smart quotes" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inteligentní uvozovky"
+    "Font:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Písmo:"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Intelligente Anführungszeichen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrift:"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Smart quotes"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comillas tipográficas"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de letra:"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guillemets courbes"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Police :"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Virgolette smart"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font:"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スマート引用符"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォント:"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "스마트 인용 부호"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서체:"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slimme aanhalingstekens"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettertype:"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cytaty inteligentne"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czcionka:"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aspas Inteligentes"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonte:"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смарт-кавычки"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шрифт:"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Akıllı tırnaklar"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font:"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智能引号"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体："
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智慧型引號"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字體："
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智慧型引號"
-          }
-        }
-      }
-    },
-    "Spelling:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pravopis:"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字體："
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechtschreibung:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spelling:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ortografía:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Orthographe :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ortografia:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スペル:"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "맞춤법:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spelling:"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pisownia:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ortografia:"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правописание:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yazım denetimi:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "拼写："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "串字檢查："
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "串字："
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шрифт:"
           }
         }
       }
     },
-    "Standard words" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standardní slova"
+    "FontType.monospaced.label": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neproporcionální"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Normale Wörter"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nichtproportional"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standard words"
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Monospaced"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Palabras estándar"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monospaced"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mots courants"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monoespaciado"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parole standard"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monochasse"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "一般単語"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaziatura fissa"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "표준 단어"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等幅"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standaardwoorden"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "고정폭"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standardowe wyrazy"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet-proportioneel"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Palavras padrão"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O stałej szerokości"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартные слова"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monoespaçado"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standart sözcükler"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Моноширинный"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "标准单词"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sabit Genişlikli"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標準單字"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等宽"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標準字詞"
-          }
-        }
-      }
-    },
-    "Substitution:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nahrazení:"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等寬型"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ersetzung:"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等寬"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Substitution:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sustitución:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Substitution :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sostituzione:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自動変換:"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "대체:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vervanging:"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zastąpienia:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Substituição:"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замены:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Değişimler:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "替换："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "取代："
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "替代項目："
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Еднопространствен"
           }
         }
       }
     },
-    "Suggest completions while typing" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Navrhovat dokončování textu při psaní"
+    "FontType.standard.label": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standardní"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Während der Texteingabe Vervollständigungen vorschlagen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suggest completions while typing"
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Standard"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sugerir terminaciones mientras se escribe"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Afficher des suggestions pendant la saisie"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estándar"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suggerisci completamento durante l’inserimento"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "入力中に補完候補を表示"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "입력할 때 완성 제안"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標準"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stel voltooiingen voor tijdens typen"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "표준"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sugeruj uzupełnienia podczas pisania"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standaard"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sugerir preenchimento ao digitar"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podstawowa"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предлагать варианты при вводе"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Padrão"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yazarken tamamlamaları öner"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стандартный"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "键入时提供补齐建议"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standart"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在輸入時建議關聯字"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在輸入時建議關聯字"
-          }
-        }
-      }
-    },
-    "Syntax" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntaxe"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標準型"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntax"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標準"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntax"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sintaxis"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntaxe"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sintassi"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "シンタックス"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "구문"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Syntaxis"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Składnia"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sintaxe"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтакс"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sözdizim"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "语法"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文法定義"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "語法"
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стандартен"
           }
         }
       }
     },
-    "Text replacement" : {
-      "comment" : "use localization provided by Apple",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nahrazovat text"
+    "Mode": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Režim"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Text ersetzen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modus"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Text replacement"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reemplazar texto"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remplacement de texte"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sostituzione testo"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "テキストの置換"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "モード"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "텍스트 대치"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모드"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tekstvervanging"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modus"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zastępowanie tekstu"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Substituição de texto"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замена текста"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Metin değişimi"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mod"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文本替换"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模式"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "替代文字"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模式"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文字替代"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模式"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим"
           }
         }
       }
     },
-    "This syntax does not exist" : {
-      "comment" : "tooltip",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tato syntaxe neexistuje"
+    "Not found": {
+      "comment": "accessibility label",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenalezeno"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dieses Syntax existiert nicht"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht gefunden"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This syntax does not exist"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not found"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esta sintaxis no existe"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No encontrado"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cette syntaxe n’existe pas"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introuvable"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Questa sintassi non esiste"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non trovato"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "このシンタックスは存在しません"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "見つかりませんでした"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "존재하지 않는 구문"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "발견되지 않음"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deze syntaxis bestaat niet"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet gevonden"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ta składnia nie istnieje"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie znaleziono"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esta sintaxe não existe"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não Encontrado"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Этот синтаксис не существует"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не найдено"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu sözdizim yok"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulunamadı"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此语法不存在"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此語法不存在"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此語法不存在"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не е намерено"
           }
         }
       }
     },
-    "Words defined in syntax" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slova definovaná v syntaxi"
+    "Smart copy/paste": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inteligentní kopírování/vkládání"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wörter, die in der Syntax definiert sind"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intelligentes Kopieren/Ersetzen"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Words defined in syntax"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart copy/paste"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Palabras definidas en sintaxis"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiado/pegado inteligente"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mots définis dans la syntaxe"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier-coller intelligent"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parole definite nella sintassi"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia/incolla smart"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "シンタックスで定義された単語"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマートコピー/ペースト"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "구문에서 정의된 단어"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스마트 복사하기/붙여넣기"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Woorden gedefinieerd in syntaxis"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slim kopiëren/plakken"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wyrazy zdefiniowane w składni"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopiowanie/wklejanie inteligentne"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Palavras definidas na sintaxe"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar/colar inteligente"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Слова, определенные в синтаксисе"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Смарт-копирование/вставка"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sözdizimde tanımlı sözcükler"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akıllı kopyala/yapıştır"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "语法中包含的单词"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智能拷贝/粘贴"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "被程式文法所定義的單字"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智慧型拷貝/貼上"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "語法中定義的字詞"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智慧型複製/貼上"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Интелигентно копиране/поставяне"
           }
         }
       }
     },
-    "Words in document" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slova v dokumentu"
+    "Smart dashes": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inteligentní pomlčky"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wörter im Dokument"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intelligente Bindestriche"
           }
         },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Words in document"
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart dashes"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Palabras en el documento"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guiones inteligentes"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mots du document"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tirets intelligents"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parole del documento"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trattini smart"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書類に含まれる単語"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマートダッシュ記号"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "문서 내의 단어"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스마트 대시"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Woorden in document"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slimme streepjes"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wyrazy w dokumencie"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Myślniki inteligentne"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Palavras no documento"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hifens Inteligentes"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Слова в документе"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Смарт-тире"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belgedeki sözcükler"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akıllı tireler"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文稿中的单词"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智能破折号"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文件中的單字"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智慧型破折號"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文件中的字詞"
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智慧型破折號"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Интелигентни чертички"
+          }
+        }
+      }
+    },
+    "Smart quotes": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inteligentní uvozovky"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intelligente Anführungszeichen"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart quotes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comillas tipográficas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guillemets courbes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Virgolette smart"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマート引用符"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스마트 인용 부호"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slimme aanhalingstekens"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cytaty inteligentne"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aspas Inteligentes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Смарт-кавычки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akıllı tırnaklar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智能引号"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智慧型引號"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智慧型引號"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Интелигентни цитати"
+          }
+        }
+      }
+    },
+    "Spelling:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pravopis:"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechtschreibung:"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelling:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ortografía:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orthographe :"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ortografia:"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スペル:"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "맞춤법:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelling:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pisownia:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ortografia:"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Правописание:"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazım denetimi:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拼写："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "串字檢查："
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "串字："
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Правопис:"
+          }
+        }
+      }
+    },
+    "Standard words": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standardní slova"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normale Wörter"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard words"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palabras estándar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mots courants"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parole standard"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一般単語"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "표준 단어"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standaardwoorden"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standardowe wyrazy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palavras padrão"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стандартные слова"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standart sözcükler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准单词"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標準單字"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標準字詞"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стандартни думи"
+          }
+        }
+      }
+    },
+    "Substitution:": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nahrazení:"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ersetzung:"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitution:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sustitución:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitution :"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituzione:"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動変換:"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "대체:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vervanging:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zastąpienia:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substituição:"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Замены:"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişimler:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取代："
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替代項目："
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Замяна:"
+          }
+        }
+      }
+    },
+    "Suggest completions while typing": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navrhovat dokončování textu při psaní"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Während der Texteingabe Vervollständigungen vorschlagen"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggest completions while typing"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerir terminaciones mientras se escribe"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher des suggestions pendant la saisie"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggerisci completamento durante l’inserimento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入力中に補完候補を表示"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "입력할 때 완성 제안"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stel voltooiingen voor tijdens typen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugeruj uzupełnienia podczas pisania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerir preenchimento ao digitar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Предлагать варианты при вводе"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazarken tamamlamaları öner"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "键入时提供补齐建议"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在輸入時建議關聯字"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在輸入時建議關聯字"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Предлагайте завършвания, докато пишете"
+          }
+        }
+      }
+    },
+    "Syntax": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntaxe"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntax"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntax"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sintaxis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntaxe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sintassi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "シンタックス"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구문"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syntaxis"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Składnia"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sintaxe"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Синтакс"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sözdizim"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "语法"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文法定義"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "語法"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Синтаксис"
+          }
+        }
+      }
+    },
+    "Text replacement": {
+      "comment": "use localization provided by Apple",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nahrazovat text"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text ersetzen"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text replacement"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazar texto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplacement de texte"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituzione testo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テキストの置換"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "텍스트 대치"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstvervanging"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zastępowanie tekstu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substituição de texto"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Замена текста"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metin değişimi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文本替换"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替代文字"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文字替代"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Замяна на текст"
+          }
+        }
+      }
+    },
+    "This syntax does not exist": {
+      "comment": "tooltip",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tato syntaxe neexistuje"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Syntax existiert nicht"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This syntax does not exist"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta sintaxis no existe"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette syntaxe n’existe pas"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa sintassi non esiste"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このシンタックスは存在しません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "존재하지 않는 구문"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze syntaxis bestaat niet"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta składnia nie istnieje"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta sintaxe não existe"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот синтаксис не существует"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu sözdizim yok"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此语法不存在"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此語法不存在"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此語法不存在"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Този синтаксис не съществува"
+          }
+        }
+      }
+    },
+    "Words defined in syntax": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slova definovaná v syntaxi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wörter, die in der Syntax definiert sind"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Words defined in syntax"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palabras definidas en sintaxis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mots définis dans la syntaxe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parole definite nella sintassi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "シンタックスで定義された単語"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구문에서 정의된 단어"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woorden gedefinieerd in syntaxis"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wyrazy zdefiniowane w składni"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palavras definidas na sintaxe"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Слова, определенные в синтаксисе"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sözdizimde tanımlı sözcükler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "语法中包含的单词"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "被程式文法所定義的單字"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "語法中定義的字詞"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Думи, дефинирани в синтаксиса"
+          }
+        }
+      }
+    },
+    "Words in document": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slova v dokumentu"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wörter im Dokument"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Words in document"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palabras en el documento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mots du document"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parole del documento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "書類に含まれる単語"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "문서 내의 단어"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woorden in document"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wyrazy w dokumencie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palavras no documento"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Слова в документе"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belgedeki sözcükler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文稿中的单词"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件中的單字"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件中的字詞"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Думи в документа"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }
