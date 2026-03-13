@@ -424,7 +424,7 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Намерена е команда %lld"
+                  "value": "Намерена е %lld команда"
                 }
               },
               "other": {

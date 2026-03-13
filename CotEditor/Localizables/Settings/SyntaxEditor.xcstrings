@@ -535,13 +535,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Открита е грешка."
+                  "value": "Открита е %lld грешка."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld открити грешки."
+                  "value": "Открити са %lld грешки."
                 }
               }
             }

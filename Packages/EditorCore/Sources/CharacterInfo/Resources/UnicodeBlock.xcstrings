@@ -102,7 +102,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Adlam"
+            "value": "Адлам"
           }
         }
       }
@@ -208,7 +208,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aegean Numbers"
+            "value": "Егейски числа"
           }
         }
       }
@@ -314,7 +314,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ahom"
+            "value": "Ахом"
           }
         }
       }
@@ -420,7 +420,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alchemical Symbols"
+            "value": "Алхимични символи"
           }
         }
       }
@@ -526,7 +526,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alphabetic Presentation Forms"
+            "value": "Азбучни форми за представяне"
           }
         }
       }
@@ -632,7 +632,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anatolian Hieroglyphs"
+            "value": "Анатолийски йероглифи"
           }
         }
       }
@@ -738,7 +738,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ancient Greek Musical Notation"
+            "value": "Древногръцка музикална нотация"
           }
         }
       }
@@ -844,7 +844,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ancient Greek Numbers"
+            "value": "Древногръцки числа"
           }
         }
       }
@@ -950,7 +950,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ancient Symbols"
+            "value": "Древни символи"
           }
         }
       }
@@ -1056,7 +1056,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic"
+            "value": "Арабски"
           }
         }
       }
@@ -1162,7 +1162,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic Extended-A"
+            "value": "Арабски, разширение A"
           }
         }
       }
@@ -1268,7 +1268,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic Extended-B"
+            "value": "Арабски, разширение B"
           }
         }
       }
@@ -1374,7 +1374,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic Extended-C"
+            "value": "Арабски, разширение C"
           }
         }
       }
@@ -1480,7 +1480,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic Maths Alphabetic Symbols"
+            "value": "Арабски математически азбучни символи"
           }
         }
       }
@@ -1586,7 +1586,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic Presentation Forms-A"
+            "value": "Арабски форми за представяне-A"
           }
         }
       }
@@ -1692,7 +1692,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic Presentation Forms-B"
+            "value": "Арабски форми за представяне-B"
           }
         }
       }
@@ -1798,7 +1798,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arabic Supplement"
+            "value": "Допълнение към арабската писменост"
           }
         }
       }
@@ -1904,7 +1904,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Armenian"
+            "value": "Арменски"
           }
         }
       }
@@ -2010,7 +2010,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrows"
+            "value": "Стрелки"
           }
         }
       }
@@ -2116,7 +2116,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avestan"
+            "value": "Авестан"
           }
         }
       }
@@ -2222,7 +2222,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balinese"
+            "value": "Балинесе"
           }
         }
       }
@@ -2328,7 +2328,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bamum"
+            "value": "Бамум"
           }
         }
       }
@@ -2434,7 +2434,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bamum Supplement"
+            "value": "Бамум допълнение"
           }
         }
       }
@@ -2540,7 +2540,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Basic Latin"
+            "value": "Основна латиница"
           }
         }
       }
@@ -2646,7 +2646,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bassa Vah"
+            "value": "Басса Вах"
           }
         }
       }
@@ -2752,7 +2752,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batak"
+            "value": "Батак"
           }
         }
       }
@@ -2858,7 +2858,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bengali"
+            "value": "Бенгалски"
           }
         }
       }
@@ -2964,7 +2964,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bhaiksuki"
+            "value": "Бхаиксуки"
           }
         }
       }
@@ -3070,7 +3070,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Block Elements"
+            "value": "Блокови елементи"
           }
         }
       }
@@ -3176,7 +3176,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bopomofo"
+            "value": "Бопомофо"
           }
         }
       }
@@ -3282,7 +3282,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bopomofo Extended"
+            "value": "Бопомофо разширение"
           }
         }
       }
@@ -3388,7 +3388,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Box Drawing"
+            "value": "Рамки и линии"
           }
         }
       }
@@ -3494,7 +3494,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Brahmi"
+            "value": "Брахми"
           }
         }
       }
@@ -3600,7 +3600,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Braille Patterns"
+            "value": "Брайлови шаблони"
           }
         }
       }
@@ -3706,7 +3706,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buginese"
+            "value": "Бугинесе"
           }
         }
       }
@@ -3812,7 +3812,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buhid"
+            "value": "Бухид"
           }
         }
       }
@@ -3918,7 +3918,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Byzantine Musical Symbols"
+            "value": "Византийски музикални символи"
           }
         }
       }
@@ -4024,7 +4024,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Carian"
+            "value": "Кариан"
           }
         }
       }
@@ -4130,7 +4130,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Caucasian Albanian"
+            "value": "Каукасиан Албаниан"
           }
         }
       }
@@ -4236,7 +4236,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chakma"
+            "value": "Чакма"
           }
         }
       }
@@ -4342,7 +4342,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cham"
+            "value": "Чам"
           }
         }
       }
@@ -4448,7 +4448,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cherokee"
+            "value": "Чероки"
           }
         }
       }
@@ -4554,7 +4554,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cherokee Supplement"
+            "value": "Чероки допълнение"
           }
         }
       }
@@ -4660,7 +4660,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chess Symbols"
+            "value": "Шахматни символи"
           }
         }
       }
@@ -4766,7 +4766,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chorasmian"
+            "value": "Чорасмиан"
           }
         }
       }
@@ -4872,7 +4872,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Compatibility"
+            "value": "Кджк съвместимост"
           }
         }
       }
@@ -4978,7 +4978,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Compatibility Forms"
+            "value": "Форми за съвместимост CJK"
           }
         }
       }
@@ -5084,7 +5084,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Compatibility Ideographs"
+            "value": "Идеограми за съвместимост CJK"
           }
         }
       }
@@ -5190,7 +5190,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Compatibility Ideographs Supp."
+            "value": "Идеограми за съвместимост CJK, допълнение"
           }
         }
       }
@@ -5296,7 +5296,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Radicals Supplement"
+            "value": "Допълнение към радикалите CJK"
           }
         }
       }
@@ -5402,7 +5402,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Strokes"
+            "value": "Щрихи CJK"
           }
         }
       }
@@ -5508,7 +5508,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Symbols and Punctuation"
+            "value": "Символи и пунктуация CJK"
           }
         }
       }
@@ -5614,7 +5614,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs"
+            "value": "Унифицирани идеограми CJK"
           }
         }
       }
@@ -5720,7 +5720,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. A"
+            "value": "Унифицирани идеограми CJK, разширение A"
           }
         }
       }
@@ -5826,7 +5826,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. B"
+            "value": "Унифицирани идеограми CJK, разширение B"
           }
         }
       }
@@ -5932,7 +5932,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. C"
+            "value": "Унифицирани идеограми CJK, разширение C"
           }
         }
       }
@@ -6038,7 +6038,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. D"
+            "value": "Унифицирани идеограми CJK, разширение D"
           }
         }
       }
@@ -6144,7 +6144,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. E"
+            "value": "Унифицирани идеограми CJK, разширение E"
           }
         }
       }
@@ -6250,7 +6250,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. F"
+            "value": "Унифицирани идеограми CJK, разширение F"
           }
         }
       }
@@ -6356,7 +6356,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. G"
+            "value": "Унифицирани идеограми CJK, разширение G"
           }
         }
       }
@@ -6462,7 +6462,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. H"
+            "value": "Унифицирани идеограми CJK, разширение H"
           }
         }
       }
@@ -6568,7 +6568,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "CJK Unified Ideographs Ext. I"
+            "value": "Унифицирани идеограми CJK, разширение I"
           }
         }
       }
@@ -6674,7 +6674,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Combining Diacritical Marks"
+            "value": "Комбиниращи диакритични знаци"
           }
         }
       }
@@ -6780,7 +6780,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Combining Diacritical Marks Extended"
+            "value": "Разширени комбиниращи диакритични знаци"
           }
         }
       }
@@ -6886,7 +6886,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Combining Diacritical Marks for Symbols"
+            "value": "Комбиниращи диакритични знаци за символи"
           }
         }
       }
@@ -6992,7 +6992,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Combining Diacritical Marks Supplement"
+            "value": "Допълнение към комбиниращите диакритични знаци"
           }
         }
       }
@@ -7098,7 +7098,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Combining Half Marks"
+            "value": "Комбининг половин знаци"
           }
         }
       }
@@ -7204,7 +7204,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Common Indic Number Forms"
+            "value": "Общи индийски число форми"
           }
         }
       }
@@ -7310,7 +7310,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Control Pictures"
+            "value": "Контролни изображения"
           }
         }
       }
@@ -7416,7 +7416,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Coptic"
+            "value": "Коптски"
           }
         }
       }
@@ -7522,7 +7522,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Coptic Epact Numbers"
+            "value": "Коптик Епакт числа"
           }
         }
       }
@@ -7628,7 +7628,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Counting Rod Numerals"
+            "value": "Броеве с пръчки"
           }
         }
       }
@@ -7734,7 +7734,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cuneiform"
+            "value": "Клинопис"
           }
         }
       }
@@ -7840,7 +7840,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cuneiform Numbers and Punctuation"
+            "value": "Кунеиформ числа и пунктуация"
           }
         }
       }
@@ -7946,7 +7946,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Currency Symbols"
+            "value": "Валутни символи"
           }
         }
       }
@@ -8052,7 +8052,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cypriot Syllabary"
+            "value": "Кипърска сричкова писменост"
           }
         }
       }
@@ -8158,7 +8158,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cypro-Minoan"
+            "value": "Кйпро-Миноан"
           }
         }
       }
@@ -8264,7 +8264,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cyrillic"
+            "value": "Кирилица"
           }
         }
       }
@@ -8370,7 +8370,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cyrillic Extended-A"
+            "value": "Кирилица, разширение A"
           }
         }
       }
@@ -8476,7 +8476,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cyrillic Extended-B"
+            "value": "Кирилица, разширение B"
           }
         }
       }
@@ -8582,7 +8582,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cyrillic Extended-C"
+            "value": "Кирилица, разширение C"
           }
         }
       }
@@ -8688,7 +8688,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cyrillic Extended-D"
+            "value": "Кирилица, разширение D"
           }
         }
       }
@@ -8794,7 +8794,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cyrillic Supplement"
+            "value": "Допълнение към кирилицата"
           }
         }
       }
@@ -8900,7 +8900,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deseret"
+            "value": "Дезерет"
           }
         }
       }
@@ -9006,7 +9006,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Devanagari"
+            "value": "Деванагари"
           }
         }
       }
@@ -9112,7 +9112,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Devanagari Extended"
+            "value": "Деванагари разширение"
           }
         }
       }
@@ -9218,7 +9218,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Devanagari Extended-A"
+            "value": "Деванагари разширение-А"
           }
         }
       }
@@ -9324,7 +9324,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dingbats"
+            "value": "Дингбати"
           }
         }
       }
@@ -9430,7 +9430,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dives Akuru"
+            "value": "Дивес Акуру"
           }
         }
       }
@@ -9536,7 +9536,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dogra"
+            "value": "Догра"
           }
         }
       }
@@ -9642,7 +9642,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Domino Tiles"
+            "value": "Домино Тилес"
           }
         }
       }
@@ -9748,7 +9748,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Duployan"
+            "value": "Дуплоян"
           }
         }
       }
@@ -9854,7 +9854,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Early Dynastic Cuneiform"
+            "value": "Еарлй Дйнастик Кунеиформ"
           }
         }
       }
@@ -9960,7 +9960,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Egyptian Hieroglyph Format Controls"
+            "value": "Егйптиан Хиероглйф Формат Контролс"
           }
         }
       }
@@ -10066,7 +10066,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Egyptian Hieroglyphs"
+            "value": "Егйптиан Хиероглйфс"
           }
         }
       }
@@ -10172,7 +10172,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Egyptian Hieroglyphs Extended-A"
+            "value": "Егйптиан Хиероглйфс разширение-А"
           }
         }
       }
@@ -10278,7 +10278,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elbasan"
+            "value": "Елбасан"
           }
         }
       }
@@ -10384,7 +10384,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elymaic"
+            "value": "Елймаик"
           }
         }
       }
@@ -10490,7 +10490,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emoticons"
+            "value": "Емотикони"
           }
         }
       }
@@ -10596,7 +10596,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enclosed Alphanumeric Supplement"
+            "value": "Допълнение към оградените буквено-цифрови знаци"
           }
         }
       }
@@ -10702,7 +10702,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enclosed Alphanumerics"
+            "value": "Оградени Алфанумерикс"
           }
         }
       }
@@ -10808,7 +10808,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enclosed CJK Letters and Months"
+            "value": "Оградени букви и месеци CJK"
           }
         }
       }
@@ -10914,7 +10914,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enclosed Ideographic Supplement"
+            "value": "Допълнение към оградените идеографски знаци"
           }
         }
       }
@@ -11020,7 +11020,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ethiopic"
+            "value": "Етиопски"
           }
         }
       }
@@ -11126,7 +11126,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ethiopic Extended"
+            "value": "Етиопик разширение"
           }
         }
       }
@@ -11232,7 +11232,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ethiopic Extended-A"
+            "value": "Етиопик разширение-А"
           }
         }
       }
@@ -11338,7 +11338,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ethiopic Extended-B"
+            "value": "Етиопик разширение-Б"
           }
         }
       }
@@ -11444,7 +11444,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ethiopic Supplement"
+            "value": "Етиопик допълнение"
           }
         }
       }
@@ -11550,7 +11550,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garay"
+            "value": "Гарай"
           }
         }
       }
@@ -11656,7 +11656,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "General Punctuation"
+            "value": "Обща пунктуация"
           }
         }
       }
@@ -11762,7 +11762,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geometric Shapes"
+            "value": "Геометрични фигури"
           }
         }
       }
@@ -11868,7 +11868,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geometric Shapes Extended"
+            "value": "Разширени геометрични фигури"
           }
         }
       }
@@ -11974,7 +11974,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Georgian"
+            "value": "Грузински"
           }
         }
       }
@@ -12080,7 +12080,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Georgian Extended"
+            "value": "Георгиан разширение"
           }
         }
       }
@@ -12186,7 +12186,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Georgian Supplement"
+            "value": "Георгиан допълнение"
           }
         }
       }
@@ -12292,7 +12292,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Glagolitic"
+            "value": "Глаголица"
           }
         }
       }
@@ -12398,7 +12398,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Glagolitic Supplement"
+            "value": "Глаголитик допълнение"
           }
         }
       }
@@ -12504,7 +12504,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gothic"
+            "value": "Готски"
           }
         }
       }
@@ -12610,7 +12610,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grantha"
+            "value": "Гранта"
           }
         }
       }
@@ -12716,7 +12716,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Greek and Coptic"
+            "value": "Гръцки и коптски"
           }
         }
       }
@@ -12822,7 +12822,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Greek Extended"
+            "value": "Гръцки, разширение"
           }
         }
       }
@@ -12928,7 +12928,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gujarati"
+            "value": "Гуджарати"
           }
         }
       }
@@ -13034,7 +13034,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gunjala Gondi"
+            "value": "Гунджала Гонди"
           }
         }
       }
@@ -13140,7 +13140,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gurmukhi"
+            "value": "Гурмукхи"
           }
         }
       }
@@ -13246,7 +13246,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gurung Khema"
+            "value": "Гурунг Хема"
           }
         }
       }
@@ -13352,7 +13352,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Half-Width and Full-Width Forms"
+            "value": "Полуширинни и пълноширинни форми"
           }
         }
       }
@@ -13458,7 +13458,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangul Compatibility Jamo"
+            "value": "Хангул съвместимост Джамо"
           }
         }
       }
@@ -13564,7 +13564,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangul Jamo"
+            "value": "Хангул Джамо"
           }
         }
       }
@@ -13670,7 +13670,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangul Jamo Extended-A"
+            "value": "Хангул Джамо разширение-А"
           }
         }
       }
@@ -13776,7 +13776,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangul Jamo Extended-B"
+            "value": "Хангул Джамо разширение-Б"
           }
         }
       }
@@ -13882,7 +13882,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangul Syllables"
+            "value": "Хангул Сйллаблес"
           }
         }
       }
@@ -13988,7 +13988,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hanifi Rohingya"
+            "value": "Ханифи рохингия"
           }
         }
       }
@@ -14094,7 +14094,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hanunoo"
+            "value": "Хануну"
           }
         }
       }
@@ -14200,7 +14200,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hatran"
+            "value": "Хатран"
           }
         }
       }
@@ -14306,7 +14306,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hebrew"
+            "value": "Иврит"
           }
         }
       }
@@ -14412,7 +14412,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "High Private Use Surrogates"
+            "value": "Хигх частна употреба Суррогатес"
           }
         }
       }
@@ -14518,7 +14518,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "High Surrogates"
+            "value": "Хигх Суррогатес"
           }
         }
       }
@@ -14624,7 +14624,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hiragana"
+            "value": "Хирагана"
           }
         }
       }
@@ -14730,7 +14730,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ideographic Desc. Characters"
+            "value": "Идеографик Деск. Чарактерс"
           }
         }
       }
@@ -14836,7 +14836,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ideographic Symbols and Punctuation"
+            "value": "Идеографик символи и пунктуация"
           }
         }
       }
@@ -14942,7 +14942,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Imperial Aramaic"
+            "value": "Империал Арамаик"
           }
         }
       }
@@ -15048,7 +15048,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Indic Siyaq Numbers"
+            "value": "Индийски Сияк числа"
           }
         }
       }
@@ -15154,7 +15154,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inscriptional Pahlavi"
+            "value": "Инскриптионал Пахлави"
           }
         }
       }
@@ -15260,7 +15260,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inscriptional Parthian"
+            "value": "Инскриптионал Партиан"
           }
         }
       }
@@ -15366,7 +15366,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "IPA Extensions"
+            "value": "Ипа Екстенсионс"
           }
         }
       }
@@ -15472,7 +15472,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Javanese"
+            "value": "Джаванесе"
           }
         }
       }
@@ -15578,7 +15578,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kaithi"
+            "value": "Каити"
           }
         }
       }
@@ -15684,7 +15684,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kaktovik Numerals"
+            "value": "Кактовик числа"
           }
         }
       }
@@ -15790,7 +15790,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kana Extended-A"
+            "value": "Кана разширение-А"
           }
         }
       }
@@ -15896,7 +15896,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kana Extended-B"
+            "value": "Кана разширение-Б"
           }
         }
       }
@@ -16002,7 +16002,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kana Supplement"
+            "value": "Кана допълнение"
           }
         }
       }
@@ -16108,7 +16108,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kanbun"
+            "value": "Канбун"
           }
         }
       }
@@ -16214,7 +16214,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kangxi Radicals"
+            "value": "Кангкси Радикалс"
           }
         }
       }
@@ -16320,7 +16320,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kannada"
+            "value": "Каннада"
           }
         }
       }
@@ -16426,7 +16426,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Katakana"
+            "value": "Катакана"
           }
         }
       }
@@ -16532,7 +16532,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Katakana Phonetic Extensions"
+            "value": "Катакана Фонетик Екстенсионс"
           }
         }
       }
@@ -16638,7 +16638,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kawi"
+            "value": "Кауи"
           }
         }
       }
@@ -16744,7 +16744,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kayah Li"
+            "value": "Каях Ли"
           }
         }
       }
@@ -16850,7 +16850,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kharoshthi"
+            "value": "Харощхи"
           }
         }
       }
@@ -16956,7 +16956,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Khitan Small Script"
+            "value": "Хитан Смалл Скрипт"
           }
         }
       }
@@ -17062,7 +17062,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Khmer"
+            "value": "Кхмерски"
           }
         }
       }
@@ -17168,7 +17168,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Khmer Symbols"
+            "value": "Хмер символи"
           }
         }
       }
@@ -17274,7 +17274,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Khojki"
+            "value": "Ходжки"
           }
         }
       }
@@ -17380,7 +17380,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Khudawadi"
+            "value": "Худауади"
           }
         }
       }
@@ -17396,7 +17396,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kirat Rai"
+            "value": "Кират Раи"
           }
         }
       }
@@ -17502,7 +17502,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lao"
+            "value": "Лаоски"
           }
         }
       }
@@ -17608,7 +17608,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended Additional"
+            "value": "Латин разширение Аддитионал"
           }
         }
       }
@@ -17714,7 +17714,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended-A"
+            "value": "Латиница, разширение A"
           }
         }
       }
@@ -17820,7 +17820,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended-B"
+            "value": "Латиница, разширение B"
           }
         }
       }
@@ -17926,7 +17926,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended-C"
+            "value": "Латиница, разширение C"
           }
         }
       }
@@ -18032,7 +18032,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended-D"
+            "value": "Латиница, разширение D"
           }
         }
       }
@@ -18138,7 +18138,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended-E"
+            "value": "Латиница, разширение E"
           }
         }
       }
@@ -18244,7 +18244,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended-F"
+            "value": "Латиница, разширение F"
           }
         }
       }
@@ -18350,7 +18350,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin Extended-G"
+            "value": "Латиница, разширение G"
           }
         }
       }
@@ -18456,7 +18456,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Latin-1 Supplement"
+            "value": "Допълнителна латиница-1"
           }
         }
       }
@@ -18562,7 +18562,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lepcha"
+            "value": "Лепча"
           }
         }
       }
@@ -18668,7 +18668,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Letterlike Symbols"
+            "value": "Леттерлике символи"
           }
         }
       }
@@ -18774,7 +18774,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Limbu"
+            "value": "Лимбу"
           }
         }
       }
@@ -18880,7 +18880,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Linear A"
+            "value": "Линеар А"
           }
         }
       }
@@ -18986,7 +18986,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Linear B Ideograms"
+            "value": "Линеар Б Идеограмс"
           }
         }
       }
@@ -19092,7 +19092,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Linear B Syllabary"
+            "value": "Линеар Б Сйллабарй"
           }
         }
       }
@@ -19198,7 +19198,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lisu"
+            "value": "Лису"
           }
         }
       }
@@ -19304,7 +19304,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lisu Supplement"
+            "value": "Лису допълнение"
           }
         }
       }
@@ -19410,7 +19410,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low Surrogates"
+            "value": "Лоу Суррогатес"
           }
         }
       }
@@ -19516,7 +19516,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lycian"
+            "value": "Лйкиан"
           }
         }
       }
@@ -19622,7 +19622,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lydian"
+            "value": "Лйдиан"
           }
         }
       }
@@ -19728,7 +19728,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mahajani"
+            "value": "Махаджани"
           }
         }
       }
@@ -19834,7 +19834,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mahjong Tiles"
+            "value": "Махджонг Тилес"
           }
         }
       }
@@ -19940,7 +19940,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Makasar"
+            "value": "Макасар"
           }
         }
       }
@@ -20046,7 +20046,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Malayalam"
+            "value": "Малаялам"
           }
         }
       }
@@ -20152,7 +20152,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mandaic"
+            "value": "Мандаик"
           }
         }
       }
@@ -20258,7 +20258,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manichaean"
+            "value": "Маничаеан"
           }
         }
       }
@@ -20364,7 +20364,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Marchen"
+            "value": "Марчен"
           }
         }
       }
@@ -20470,7 +20470,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Masaram Gondi"
+            "value": "Масарам Гонди"
           }
         }
       }
@@ -20576,7 +20576,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Maths Alphanumeric Symbols"
+            "value": "Математически Алфанумерик символи"
           }
         }
       }
@@ -20682,7 +20682,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mathematical Operators"
+            "value": "Математикал оператори"
           }
         }
       }
@@ -20788,7 +20788,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mayan Numerals"
+            "value": "Маян числа"
           }
         }
       }
@@ -20894,7 +20894,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Medefaidrin"
+            "value": "Медефаидрин"
           }
         }
       }
@@ -21000,7 +21000,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meetei Mayek"
+            "value": "Митеи Майек"
           }
         }
       }
@@ -21106,7 +21106,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meetei Mayek Extensions"
+            "value": "Митеи Майек Екстенсионс"
           }
         }
       }
@@ -21212,7 +21212,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mende Kikakui"
+            "value": "Менде Кикакуи"
           }
         }
       }
@@ -21318,7 +21318,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meroitic Cursive"
+            "value": "Мероитик Курсиве"
           }
         }
       }
@@ -21424,7 +21424,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meroitic Hieroglyphs"
+            "value": "Мероитик Хиероглйфс"
           }
         }
       }
@@ -21530,7 +21530,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miao"
+            "value": "Миао"
           }
         }
       }
@@ -21636,7 +21636,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miscellaneous Maths Symbols-A"
+            "value": "Разни математически символи-А"
           }
         }
       }
@@ -21742,7 +21742,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miscellaneous Maths Symbols-B"
+            "value": "Разни математически символи-Б"
           }
         }
       }
@@ -21848,7 +21848,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miscellaneous Symbols"
+            "value": "Разни символи"
           }
         }
       }
@@ -21954,7 +21954,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miscellaneous Symbols and Arrows"
+            "value": "Разни символи и стрелки"
           }
         }
       }
@@ -22060,7 +22060,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miscellaneous Symbols And Pictographs"
+            "value": "Разни символи Анд Пиктографс"
           }
         }
       }
@@ -22166,7 +22166,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miscellaneous Technical"
+            "value": "Разни Течникал"
           }
         }
       }
@@ -22272,7 +22272,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Modi"
+            "value": "Моди"
           }
         }
       }
@@ -22378,7 +22378,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Modifier Tone Letters"
+            "value": "Модифиер Тоне букви"
           }
         }
       }
@@ -22484,7 +22484,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mongolian"
+            "value": "Монголски"
           }
         }
       }
@@ -22590,7 +22590,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mongolian Supplement"
+            "value": "Монголиан допълнение"
           }
         }
       }
@@ -22696,7 +22696,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mro"
+            "value": "Мро"
           }
         }
       }
@@ -22802,7 +22802,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Multani"
+            "value": "Мултани"
           }
         }
       }
@@ -22908,7 +22908,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Musical Symbols"
+            "value": "Музикални символи"
           }
         }
       }
@@ -23014,7 +23014,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Myanmar"
+            "value": "Мианмарски"
           }
         }
       }
@@ -23120,7 +23120,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Myanmar Extended-A"
+            "value": "Мянмар разширение-А"
           }
         }
       }
@@ -23226,7 +23226,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Myanmar Extended-B"
+            "value": "Мянмар разширение-Б"
           }
         }
       }
@@ -23332,7 +23332,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Myanmar Extended-C"
+            "value": "Мянмар разширение-К"
           }
         }
       }
@@ -23438,7 +23438,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "N’Ko"
+            "value": "Н'ко"
           }
         }
       }
@@ -23544,7 +23544,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nabataean"
+            "value": "Набатаеан"
           }
         }
       }
@@ -23650,7 +23650,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nag Mundari"
+            "value": "Наг Мундари"
           }
         }
       }
@@ -23756,7 +23756,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nandinagari"
+            "value": "Нандинагари"
           }
         }
       }
@@ -23862,7 +23862,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "New Tai Lue"
+            "value": "Неу Таи Луе"
           }
         }
       }
@@ -23968,7 +23968,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Newa"
+            "value": "Неуа"
           }
         }
       }
@@ -24074,7 +24074,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Number Forms"
+            "value": "Число форми"
           }
         }
       }
@@ -24180,7 +24180,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nushu"
+            "value": "Нушу"
           }
         }
       }
@@ -24286,7 +24286,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nyiakeng Puachue Hmong"
+            "value": "Нйиакенг Пуачуе Хмонг"
           }
         }
       }
@@ -24392,7 +24392,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ogham"
+            "value": "Огам"
           }
         }
       }
@@ -24498,7 +24498,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ol Chiki"
+            "value": "Ол Чики"
           }
         }
       }
@@ -24514,7 +24514,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ol Onal"
+            "value": "Ол Онал"
           }
         }
       }
@@ -24620,7 +24620,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old Hungarian"
+            "value": "Олд Хунгариан"
           }
         }
       }
@@ -24726,7 +24726,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old Italic"
+            "value": "Староиталийски"
           }
         }
       }
@@ -24832,7 +24832,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old North Arabian"
+            "value": "Олд Норт Арабиан"
           }
         }
       }
@@ -24938,7 +24938,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old Permic"
+            "value": "Олд Пермик"
           }
         }
       }
@@ -25044,7 +25044,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old Persian"
+            "value": "Староперсийски"
           }
         }
       }
@@ -25150,7 +25150,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old Sogdian"
+            "value": "Олд Согдиан"
           }
         }
       }
@@ -25256,7 +25256,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old South Arabian"
+            "value": "Олд Сут Арабиан"
           }
         }
       }
@@ -25362,7 +25362,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old Turkic"
+            "value": "Олд Туркик"
           }
         }
       }
@@ -25468,7 +25468,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Old Uyghur"
+            "value": "Олд Уйгхур"
           }
         }
       }
@@ -25574,7 +25574,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optical Character Recognition"
+            "value": "Оптикал Чарактер Рекогнитион"
           }
         }
       }
@@ -25680,7 +25680,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oriya"
+            "value": "Ория"
           }
         }
       }
@@ -25786,7 +25786,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ornamental Dingbats"
+            "value": "Орнаментал Дингбац"
           }
         }
       }
@@ -25892,7 +25892,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Osage"
+            "value": "Осаге"
           }
         }
       }
@@ -25998,7 +25998,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Osmanya"
+            "value": "Османя"
           }
         }
       }
@@ -26104,7 +26104,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ottoman Siyaq Numbers"
+            "value": "Оттоман Сияк числа"
           }
         }
       }
@@ -26210,7 +26210,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pahawh Hmong"
+            "value": "Пахаух Хмонг"
           }
         }
       }
@@ -26316,7 +26316,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Palmyrene"
+            "value": "Палмйрене"
           }
         }
       }
@@ -26422,7 +26422,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pau Cin Hau"
+            "value": "Пау Кин Хау"
           }
         }
       }
@@ -26528,7 +26528,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phags-pa"
+            "value": "Фагс-Па"
           }
         }
       }
@@ -26634,7 +26634,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phaistos Disc"
+            "value": "Фаистос Диск"
           }
         }
       }
@@ -26740,7 +26740,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phoenician"
+            "value": "Фоеникиан"
           }
         }
       }
@@ -26846,7 +26846,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phonetic Extensions"
+            "value": "Фонетик Екстенсионс"
           }
         }
       }
@@ -26952,7 +26952,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phonetic Extensions Supplement"
+            "value": "Фонетик Екстенсионс допълнение"
           }
         }
       }
@@ -27058,7 +27058,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Playing Cards"
+            "value": "Плайинг Кардс"
           }
         }
       }
@@ -27164,7 +27164,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Private Use Area"
+            "value": "Частна употреба област"
           }
         }
       }
@@ -27270,7 +27270,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Psalter Pahlavi"
+            "value": "Псалтер Пахлави"
           }
         }
       }
@@ -27376,7 +27376,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rejang"
+            "value": "Реджанг"
           }
         }
       }
@@ -27482,7 +27482,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rumi Numeral Symbols"
+            "value": "Руми Нумерал символи"
           }
         }
       }
@@ -27588,7 +27588,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Runic"
+            "value": "Рунически"
           }
         }
       }
@@ -27694,7 +27694,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samaritan"
+            "value": "Самаритан"
           }
         }
       }
@@ -27800,7 +27800,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saurashtra"
+            "value": "Сауращра"
           }
         }
       }
@@ -27906,7 +27906,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sharada"
+            "value": "Шарада"
           }
         }
       }
@@ -28012,7 +28012,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Shavian"
+            "value": "Шавиан"
           }
         }
       }
@@ -28118,7 +28118,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Shorthand Format Controls"
+            "value": "Шортанд Формат Контролс"
           }
         }
       }
@@ -28224,7 +28224,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Siddham"
+            "value": "Сиддхам"
           }
         }
       }
@@ -28330,7 +28330,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sinhala"
+            "value": "Синхалски"
           }
         }
       }
@@ -28436,7 +28436,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sinhala Archaic Numbers"
+            "value": "Синхала Арчаик числа"
           }
         }
       }
@@ -28542,7 +28542,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Small Form Variants"
+            "value": "Малки вариантни форми"
           }
         }
       }
@@ -28648,7 +28648,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Small Kana Extension"
+            "value": "Смалл Кана Екстенсион"
           }
         }
       }
@@ -28754,7 +28754,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sogdian"
+            "value": "Согдиан"
           }
         }
       }
@@ -28860,7 +28860,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sora Sompeng"
+            "value": "Сора Сомпенг"
           }
         }
       }
@@ -28966,7 +28966,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soyombo"
+            "value": "Соьомбо"
           }
         }
       }
@@ -29072,7 +29072,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spacing Modifier Letters"
+            "value": "Спакинг Модифиер букви"
           }
         }
       }
@@ -29178,7 +29178,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Specials"
+            "value": "Спекиалс"
           }
         }
       }
@@ -29284,7 +29284,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sundanese"
+            "value": "Сунданесе"
           }
         }
       }
@@ -29390,7 +29390,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sundanese Supplement"
+            "value": "Сунданесе допълнение"
           }
         }
       }
@@ -29496,7 +29496,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sunuwar"
+            "value": "Сунууар"
           }
         }
       }
@@ -29602,7 +29602,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Superscripts and Subscripts"
+            "value": "Суперскрипц и Субскрипц"
           }
         }
       }
@@ -29708,7 +29708,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplemental Arrows-A"
+            "value": "Допълнителни стрелки-A"
           }
         }
       }
@@ -29814,7 +29814,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplemental Arrows-B"
+            "value": "Допълнителни стрелки-B"
           }
         }
       }
@@ -29920,7 +29920,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplemental Arrows-C"
+            "value": "Допълнителни стрелки-C"
           }
         }
       }
@@ -30026,7 +30026,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplemental Maths Operators"
+            "value": "Супплементал математически оператори"
           }
         }
       }
@@ -30132,7 +30132,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplemental Punctuation"
+            "value": "Допълнителна пунктуация"
           }
         }
       }
@@ -30238,7 +30238,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplemental Symbols and Pictographs"
+            "value": "Супплементал символи и Пиктографс"
           }
         }
       }
@@ -30344,7 +30344,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplementary Private Use Area-A"
+            "value": "Допълнителна област за частна употреба-A"
           }
         }
       }
@@ -30450,7 +30450,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supplementary Private Use Area-B"
+            "value": "Допълнителна област за частна употреба-B"
           }
         }
       }
@@ -30556,7 +30556,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sutton SignWriting"
+            "value": "Суттон Сигнуритинг"
           }
         }
       }
@@ -30662,7 +30662,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Syloti Nagri"
+            "value": "Сйлоти Нагри"
           }
         }
       }
@@ -30768,7 +30768,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Symbols and Pictographs Extended-A"
+            "value": "Разширени символи и пиктограми-A"
           }
         }
       }
@@ -30874,7 +30874,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Symbols for Legacy Computing"
+            "value": "Символи Фор Легакй Компутинг"
           }
         }
       }
@@ -30890,7 +30890,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Symbols for Legacy Computing Supplement"
+            "value": "Допълнение към символите за наследени компютърни системи"
           }
         }
       }
@@ -30996,7 +30996,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Syriac"
+            "value": "Сирийски"
           }
         }
       }
@@ -31102,7 +31102,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Syriac Supplement"
+            "value": "Сйриак допълнение"
           }
         }
       }
@@ -31208,7 +31208,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tagalog"
+            "value": "Тагалог"
           }
         }
       }
@@ -31314,7 +31314,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tagbanwa"
+            "value": "Тагбануа"
           }
         }
       }
@@ -31420,7 +31420,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tags"
+            "value": "Тагс"
           }
         }
       }
@@ -31526,7 +31526,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tai Le"
+            "value": "Таи Ле"
           }
         }
       }
@@ -31632,7 +31632,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tai Tham"
+            "value": "Таи Там"
           }
         }
       }
@@ -31738,7 +31738,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tai Viet"
+            "value": "Таи Виет"
           }
         }
       }
@@ -31844,7 +31844,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tai Xuan Jing Symbols"
+            "value": "Таи Ксуан Джинг символи"
           }
         }
       }
@@ -31950,7 +31950,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Takri"
+            "value": "Такри"
           }
         }
       }
@@ -32056,7 +32056,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tamil"
+            "value": "Тамилски"
           }
         }
       }
@@ -32162,7 +32162,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tamil Supplement"
+            "value": "Тамил допълнение"
           }
         }
       }
@@ -32268,7 +32268,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tangsa"
+            "value": "Тангса"
           }
         }
       }
@@ -32374,7 +32374,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tangut"
+            "value": "Тангут"
           }
         }
       }
@@ -32480,7 +32480,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tangut Components"
+            "value": "Тангут Компоненц"
           }
         }
       }
@@ -32586,7 +32586,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tangut Supplement"
+            "value": "Тангут допълнение"
           }
         }
       }
@@ -32692,7 +32692,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telugu"
+            "value": "Телугу"
           }
         }
       }
@@ -32798,7 +32798,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thaana"
+            "value": "Таана"
           }
         }
       }
@@ -32904,7 +32904,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thai"
+            "value": "Тайландски"
           }
         }
       }
@@ -33010,7 +33010,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tibetan"
+            "value": "Тибетски"
           }
         }
       }
@@ -33116,7 +33116,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tifinagh"
+            "value": "Тифинагх"
           }
         }
       }
@@ -33222,7 +33222,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tirhuta"
+            "value": "Тирхута"
           }
         }
       }
@@ -33328,7 +33328,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todhri"
+            "value": "Тодхри"
           }
         }
       }
@@ -33344,7 +33344,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toto"
+            "value": "Тото"
           }
         }
       }
@@ -33450,7 +33450,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Transport And Map Symbols"
+            "value": "Транспорт Анд Мап символи"
           }
         }
       }
@@ -33556,7 +33556,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tulu-Tigalari"
+            "value": "Тулу-Тигалари"
           }
         }
       }
@@ -33662,7 +33662,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ugaritic"
+            "value": "Угаритик"
           }
         }
       }
@@ -33768,7 +33768,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unified Canadian Aboriginal Syllabics"
+            "value": "Унифицирани сричкови знаци на канадските аборигени"
           }
         }
       }
@@ -33874,7 +33874,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unified Canadian Aboriginal Syllabics Extended"
+            "value": "Разширени унифицирани сричкови знаци на канадските аборигени"
           }
         }
       }
@@ -33980,7 +33980,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unified Canadian Aboriginal Syllabics Extended-A"
+            "value": "Разширени унифицирани сричкови знаци на канадските аборигени-A"
           }
         }
       }
@@ -34086,7 +34086,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vai"
+            "value": "Ваи"
           }
         }
       }
@@ -34192,7 +34192,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Variation Selectors"
+            "value": "Вариатион Селекторс"
           }
         }
       }
@@ -34298,7 +34298,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Variation Selectors Supplement"
+            "value": "Допълнение към селекторите на варианти"
           }
         }
       }
@@ -34404,7 +34404,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vedic Extensions"
+            "value": "Ведик Екстенсионс"
           }
         }
       }
@@ -34510,7 +34510,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vertical Forms"
+            "value": "Вертикални форми"
           }
         }
       }
@@ -34616,7 +34616,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vithkuqi"
+            "value": "Виткуки"
           }
         }
       }
@@ -34722,7 +34722,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wancho"
+            "value": "Уанчо"
           }
         }
       }
@@ -34828,7 +34828,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Warang Citi"
+            "value": "Уаранг Кити"
           }
         }
       }
@@ -34934,7 +34934,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yezidi"
+            "value": "Йезиди"
           }
         }
       }
@@ -35040,7 +35040,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yi Radicals"
+            "value": "Радикали И"
           }
         }
       }
@@ -35146,7 +35146,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yi Syllables"
+            "value": "Срички И"
           }
         }
       }
@@ -35252,7 +35252,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yijing Hexagram Symbols"
+            "value": "Йиджинг Хексаграм символи"
           }
         }
       }
@@ -35358,7 +35358,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zanabazar Square"
+            "value": "Занабазар Скуаре"
           }
         }
       }
@@ -35464,7 +35464,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Znamenny Musical Notation"
+            "value": "Знаменнй музикални нотация"
           }
         }
       }

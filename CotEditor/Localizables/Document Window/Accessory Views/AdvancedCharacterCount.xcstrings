@@ -328,7 +328,7 @@
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "*%lld* знаци"
+                  "value": "*%lld* знака"
                 }
               }
             }

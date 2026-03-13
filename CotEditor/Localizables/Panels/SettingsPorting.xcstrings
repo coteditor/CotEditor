@@ -327,7 +327,7 @@
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld персонализиран синтаксис"
+                  "value": "%lld персонализирани синтаксиса"
                 }
               }
             }
@@ -661,7 +661,7 @@
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld потребителски теми"
+                  "value": "%lld персонализирани теми"
                 }
               }
             }
@@ -990,7 +990,7 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Определение на %lld"
+                  "value": "%lld определение"
                 }
               },
               "other": {

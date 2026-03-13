@@ -110,7 +110,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нестандартна NFC-базирана форма за нормализация, съответстваща на Modified NFD"
+            "value": "Нестандартна NFC-базирана форма за нормализация, съответстваща на модифицирана NFD"
           }
         }
       }
@@ -1322,7 +1322,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "NFKC Case-Fold"
+            "value": "NFKC с уеднаквяване на регистъра"
           }
         }
       }
