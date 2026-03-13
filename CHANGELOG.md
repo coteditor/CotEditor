@@ -14,6 +14,7 @@
 - Fix an issue where the default file extension for Markdown documents was .txt instead of .md.
 - Fix an issue where snippets were not included in the settings export.
 - Fix an issue where settings imported from a settings archive incorrectly included filename extensions.
+- Fix an issue where invisible characters were not printed even if the “Print Invisible” option in the print settings was enabled.
 - Fix descriptions in the user guide for UNIX scripting.
 - Address a potential crash in the file browser when creating, duplicating, or moving files.
 - Address a potential crash when a document was modified by another process.
