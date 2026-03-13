@@ -1603,7 +1603,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "герои"
+            "value": "знаци"
           }
         }
       }
@@ -5010,7 +5010,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Несъвместими герои"
+            "value": "Несъвместими знаци"
           }
         }
       }
