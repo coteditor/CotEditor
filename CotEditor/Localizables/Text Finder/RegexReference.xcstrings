@@ -527,7 +527,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "произволен характер"
+            "value": "произволен знак"
           }
         }
       }
@@ -2971,7 +2971,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "празен знак"
+            "value": "празен символ"
           }
         }
       }
@@ -3183,7 +3183,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "характер на думата"
+            "value": "знак от дума"
           }
         }
       }

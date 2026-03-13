@@ -1983,7 +1983,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Показване на модел"
+            "value": "Покажи режима"
           }
         }
       }
@@ -2565,7 +2565,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Характеристики"
+            "value": "Възможности"
           }
         }
       }
@@ -5644,7 +5644,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Контур"
+            "value": "Структура"
           }
         }
       }
