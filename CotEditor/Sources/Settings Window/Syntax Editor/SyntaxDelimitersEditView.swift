@@ -144,8 +144,14 @@ private struct InlineCommentsEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-            self.focusedField = item.id
+        HStack {
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+            Text("\(self.items.count) items", tableName: "SyntaxEditor")
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .controlSize(.small)
         }
     }
 }
@@ -186,8 +192,14 @@ private struct BlockCommentsEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-            self.focusedField = item.id
+        HStack {
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+            Text("\(self.items.count) items", tableName: "SyntaxEditor")
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .controlSize(.small)
         }
     }
 }
@@ -230,7 +242,7 @@ private struct StringDelimitersEditView: View {
             TableColumn(String(localized: "Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
                 let binding = Binding<String>(
                     get: { item.value.escapeCharacter.map(String.init) ?? "" },
-                    set: { $item.value.escapeCharacter.wrappedValue = $0.first }
+                    set: { item.value.escapeCharacter = $0.first }
                 )
                 TextField(text: binding, label: EmptyView.init)
             }
@@ -242,8 +254,14 @@ private struct StringDelimitersEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-            self.focusedField = item.id
+        HStack {
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+            Text("\(self.items.count) items", tableName: "SyntaxEditor")
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .controlSize(.small)
         }
     }
 }
@@ -274,7 +292,7 @@ private struct CharacterDelimitersEditView: View {
             TableColumn(String(localized: "Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
                 let binding = Binding<String>(
                     get: { item.value.escapeCharacter.map(String.init) ?? "" },
-                    set: { $item.value.escapeCharacter.wrappedValue = $0.first }
+                    set: { item.value.escapeCharacter = $0.first }
                 )
                 TextField(text: binding, label: EmptyView.init)
             }
@@ -286,8 +304,14 @@ private struct CharacterDelimitersEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-            self.focusedField = item.id
+        HStack {
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+            Text("\(self.items.count) items", tableName: "SyntaxEditor")
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .controlSize(.small)
         }
     }
 }
@@ -335,8 +359,14 @@ private struct BlockEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-            self.focusedField = item.id
+        HStack {
+            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+                self.focusedField = item.id
+            }
+            Text("\(self.items.count) items", tableName: "SyntaxEditor")
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .controlSize(.small)
         }
     }
 }
