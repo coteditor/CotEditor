@@ -52,13 +52,6 @@ enum ThemeName {
 
 final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccessorizing {
     
-    // MARK: Public Properties
-    
-    // settings on current window to be set by Document.
-    var documentShowsLineNumber = false
-    var documentShowsInvisibles = false
-    
-    
     // MARK: Private Properties
     
     @IBOutlet private weak var colorPopUpButton: NSPopUpButton?
@@ -109,8 +102,9 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             self.theme = defaults[.printTheme] ?? ThemeManager.shared.userDefaultSettingName(inDarkMode: NSApp.effectiveAppearance.isDark)
             self.printsBackground = defaults[.printBackground]
             
-            self.printsLineNumbers = self.documentShowsLineNumber
-            self.printsInvisibles = self.documentShowsInvisibles
+            // reset for KVO to the view
+            self.printsInvisibles = self.printsInvisibles
+            self.printsLineNumbers = self.printsLineNumbers
             
             self.printsHeaderAndFooter = defaults[.printHeaderAndFooter]
             

@@ -97,8 +97,6 @@ extension NSTextView: EditorCounter.Source { }
     
     // MARK: Private Properties
     
-    @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
-    
     private let isInitialized: Mutex<Bool> = .init(false)
     private let readingEncoding: Mutex<String.Encoding?>  // encoding to read document file
     private let fileData: Mutex<Data?> = .init(nil)
@@ -706,26 +704,22 @@ extension NSTextView: EditorCounter.Source { }
     
     override func printOperation(withSettings printSettings: [NSPrintInfo.AttributeKey: Any]) throws -> NSPrintOperation {
         
-        let viewController = self.viewController!
-        
-        self.printPanelAccessoryController.documentShowsInvisibles = viewController.showsInvisibles
-        self.printPanelAccessoryController.documentShowsLineNumber = viewController.showsLineNumber
-        
-        // create printView
         // -> Because the last *edited* date is not recorded anywhere, use `.now` if the document was modified since the last save.
-        let lastModifiedDate = self.hasUnautosavedChanges ? .now : self.fileModificationDate
         let info = PrintTextView.DocumentInfo(
             name: self.displayName,
             fileURL: self.fileURL,
-            lastModifiedDate: lastModifiedDate,
+            lastModifiedDate: self.hasUnautosavedChanges ? .now : self.fileModificationDate,
             syntaxName: self.syntaxName
         )
+        
+        // create printView
         let textStorage = NSTextStorage(string: self.textStorage.string)
         let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info)
         if let selectedRanges = self.textView?.selectedRanges {
             printView.selectedRanges = selectedRanges
         }
         
+        let viewController = self.viewController!
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.baseWritingDirection = viewController.writingDirection
         printView.ligature = self.textView?.ligature ?? .standard
@@ -742,12 +736,16 @@ extension NSTextView: EditorCounter.Source { }
         
         // create print operation
         let printInfo = self.printInfo
+        printInfo[.printsInvisibles] = viewController.showsInvisibles
+        printInfo[.printsLineNumbers] = viewController.showsLineNumber
         printInfo.dictionary().addEntries(from: printSettings)
         let printOperation = NSPrintOperation(view: printView, printInfo: printInfo)
         printOperation.showsProgressPanel = true
         
+        let accessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
+        
         // setup print panel
-        printOperation.printPanel.addAccessoryController(self.printPanelAccessoryController)
+        printOperation.printPanel.addAccessoryController(accessoryController)
         printOperation.printPanel.options.formUnion([.showsPaperSize, .showsOrientation, .showsScaling])
         if printView.selectedRanges.count == 1, !printView.selectedRange.isEmpty {
             printOperation.printPanel.options.formUnion(.showsPrintSelection)
