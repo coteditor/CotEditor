@@ -1,6 +1,6 @@
 # Change Log
 
-6.2.5 (unreleased)
+6.2.5 (796)
 --------------------------
 
 ### Improvements
