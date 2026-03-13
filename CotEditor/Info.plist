@@ -28,6 +28,7 @@
 				<string>public.fortran-source</string>
 				<string>public.html</string>
 				<string>public.json</string>
+				<string>public.markdown</string>
 				<string>public.patch-file</string>
 				<string>public.perl-script</string>
 				<string>public.php-script</string>
@@ -45,7 +46,6 @@
 				<string>com.sun.java-source</string>
 				<string>com.textpattern.textile</string>
 				<string>dev.dart.dart-script</string>
-				<string>public.markdown</string>
 				<string>org.dlang.d-source</string>
 				<string>org.golang.go-script</string>
 				<string>org.haskell.haskell-script</string>
@@ -711,6 +711,40 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Markdown document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Markdown-fill</string>
+				<key>UTTypeIconText</key>
+				<string>md</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.markdown</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/markdown</string>
+					<string>text/x-markdown</string>
+					<string>text/x-web-markdown</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>md</string>
+					<string>mkd</string>
+					<string>markdown</string>
+					<string>mdown</string>
+					<string>mkdn</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -1203,42 +1237,6 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>dart</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.plain-text</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Markdown document</string>
-			<key>UTTypeIcons</key>
-			<dict>
-				<key>UTTypeIconBackgroundName</key>
-				<string>Markdown-fill</string>
-				<key>UTTypeIconText</key>
-				<string>md</string>
-			</dict>
-			<key>UTTypeIdentifier</key>
-			<string>public.markdown</string>
-			<key>UTTypeReferenceURL</key>
-			<string>http://daringfireball.net/projects/markdown/</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>text/markdown</string>
-					<string>text/x-markdown</string>
-					<string>text/x-web-markdown</string>
-				</array>
-				<key>public.filename-extension</key>
-				<array>
-					<string>md</string>
-					<string>mkd</string>
-					<string>markdown</string>
-					<string>mdown</string>
-					<string>mkdn</string>
 				</array>
 			</dict>
 		</dict>
