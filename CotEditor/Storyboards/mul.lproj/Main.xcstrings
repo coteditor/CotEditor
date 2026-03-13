@@ -110,7 +110,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Изберете Word"
+            "value": "Избери дума"
           }
         }
       }
@@ -10142,7 +10142,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Shift надясно"
+            "value": "Измести надясно"
           }
         }
       }
@@ -11966,7 +11966,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "AppleScript речник"
+            "value": "Речник на AppleScript"
           }
         }
       }
@@ -12194,7 +12194,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Поставете Yen Mark"
+            "value": "Вмъкни знак за йена"
           }
         }
       }
@@ -13448,7 +13448,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Затворете Split Editor"
+            "value": "Затвори разделения редактор"
           }
         }
       }
@@ -18578,7 +18578,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Изберете Enclosing Symbols"
+            "value": "Избери ограждащите знаци"
           }
         }
       }
@@ -24620,7 +24620,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вмъкване от iPhone или iPad"
+            "value": "Вмъкни от iPhone или iPad"
           }
         }
       }

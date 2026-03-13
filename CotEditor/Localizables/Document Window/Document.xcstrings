@@ -850,7 +850,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Затворете Split Editor"
+            "value": "Затвори разделения редактор"
           }
         }
       }
@@ -3021,7 +3021,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Извличане на Outline…"
+            "value": "Извличане на структурата…"
           }
         }
       }
@@ -9045,7 +9045,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Контур"
+            "value": "Структура"
           }
         }
       }
@@ -9152,7 +9152,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Контурно меню"
+            "value": "Меню на структурата"
           }
         }
       }
@@ -13331,7 +13331,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Shift надясно"
+            "value": "Измести надясно"
           }
         }
       }
