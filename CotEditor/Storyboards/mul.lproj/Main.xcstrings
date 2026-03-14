@@ -1376,7 +1376,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Проверка на граматиката с правопис"
+            "value" : "Проверка на граматика и правопис"
           }
         },
         "cs" : {
@@ -1946,7 +1946,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замяна на кавички"
+            "value" : "Замени кавички"
           }
         },
         "cs" : {
@@ -2858,7 +2858,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Проверете правописа, докато пишете"
+            "value" : "Проверка на правопис по време на въвеждане на текст"
           }
         },
         "cs" : {
@@ -2972,7 +2972,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Копирай пътя на файла"
+            "value" : "Копирай път към файл"
           }
         },
         "cs" : {
@@ -3428,7 +3428,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Минимизиране"
+            "value" : "Минимизирай"
           }
         },
         "cs" : {
@@ -4454,7 +4454,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Настройка на страницата…"
+            "value" : "Настройване на страница…"
           }
         },
         "cs" : {
@@ -4568,7 +4568,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Печат…"
+            "value" : "Принтиране…"
           }
         },
         "cs" : {
@@ -5594,7 +5594,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отвори последните"
+            "value" : "Отвори скорошни"
           }
         },
         "cs" : {
@@ -5708,7 +5708,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отвори последните"
+            "value" : "Отвори скорошни"
           }
         },
         "cs" : {
@@ -7646,7 +7646,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Избери всичко"
+            "value" : "Избери всички"
           }
         },
         "cs" : {
@@ -9584,7 +9584,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "По-голям"
+            "value" : "Най-голям"
           }
         },
         "cs" : {
@@ -9926,7 +9926,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Покажи шрифтовете"
+            "value" : "Покажи шрифтове"
           }
         },
         "cs" : {
@@ -17222,7 +17222,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Покажи заместванията"
+            "value" : "Покажи замествания"
           }
         },
         "cs" : {
@@ -18020,7 +18020,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замяна на тирета"
+            "value" : "Замени тирета"
           }
         },
         "cs" : {
@@ -19958,7 +19958,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Правилно изписване автоматично"
+            "value" : "Автоматична поправка на правопис"
           }
         },
         "cs" : {
@@ -22466,7 +22466,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Към селекцията"
+            "value" : "Прескочи до избраното"
           }
         },
         "cs" : {
@@ -23150,7 +23150,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Интелигентно копиране/поставяне"
+            "value" : "Интелигентно Копиране/Поставяне"
           }
         },
         "cs" : {
@@ -24062,7 +24062,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Направете главни букви"
+            "value" : "С главни букви"
           }
         },
         "cs" : {
@@ -24860,7 +24860,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Интелигентни цитати"
+            "value" : "Интелигентни кавички"
           }
         },
         "cs" : {
@@ -25088,7 +25088,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Споделяне…"
+            "value" : "Сподели…"
           }
         },
         "cs" : {
@@ -25772,7 +25772,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замяна на текст"
+            "value" : "Замени текст"
           }
         },
         "cs" : {
@@ -26000,7 +26000,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Покажи правопис и граматика"
+            "value" : "Покажи Правопис и граматика"
           }
         },
         "cs" : {
@@ -27026,7 +27026,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замени"
+            "value" : "Замествания"
           }
         },
         "cs" : {
@@ -27482,7 +27482,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Направете малки букви"
+            "value" : "С малки букви"
           }
         },
         "cs" : {

@@ -17189,7 +17189,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "По-голям"
+            "value" : "Най-голям"
           }
         },
         "cs" : {
@@ -17415,7 +17415,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Увеличете размера на текста"
+            "value" : "Увеличи размера на текста"
           }
         },
         "cs" : {
@@ -17641,7 +17641,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Намалете размера на текста"
+            "value" : "Намали размера на текста"
           }
         },
         "cs" : {

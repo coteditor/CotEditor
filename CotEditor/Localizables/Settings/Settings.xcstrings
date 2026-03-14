@@ -7,7 +7,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Външен вид"
+            "value" : "Основни"
           }
         },
         "cs" : {
@@ -572,7 +572,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ключови връзки"
+            "value" : "Команди"
           }
         },
         "cs" : {

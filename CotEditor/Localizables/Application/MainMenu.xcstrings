@@ -112,7 +112,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "По-голям"
+            "value" : "Най-голям"
           }
         },
         "cs" : {
@@ -3308,7 +3308,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Избери всичко"
+            "value" : "Избери всички"
           }
         },
         "cs" : {

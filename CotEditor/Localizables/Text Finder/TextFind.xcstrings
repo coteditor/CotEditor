@@ -6102,7 +6102,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Игнориране на главни и малки букви"
+            "value" : "Игнорирай главни букви"
           }
         },
         "cs" : {
@@ -7706,7 +7706,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Избери всичко"
+            "value" : "Избери всички"
           }
         },
         "cs" : {
