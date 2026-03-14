@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "顏色碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветен код"
+          }
         }
       }
     },
@@ -202,6 +208,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HSL"
@@ -313,6 +325,12 @@
             "state" : "translated",
             "value" : "CSS HSLa"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLa"
+          }
         }
       }
     },
@@ -420,6 +438,12 @@
             "state" : "translated",
             "value" : "CSS關鍵字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS ключова дума"
+          }
         }
       }
     },
@@ -523,6 +547,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS RGB"
@@ -634,6 +664,12 @@
             "state" : "translated",
             "value" : "CSS RGBa"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBa"
+          }
         }
       }
     },
@@ -740,6 +776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "十六進位"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шестнадесетичен"
           }
         }
       }
@@ -848,6 +890,12 @@
             "state" : "translated",
             "value" : "帶有Alpha的十六進位"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шестнадесетичен с алфа"
+          }
         }
       }
     },
@@ -955,6 +1003,12 @@
             "state" : "translated",
             "value" : "十六進位（短）"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шестнадесетичен (кратък)"
+          }
         }
       }
     },
@@ -1056,6 +1110,12 @@
             "state" : "translated",
             "value" : "插入"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поставете"
+          }
         }
       }
     },
@@ -1156,6 +1216,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "樣式表關鍵字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключови думи в таблицата със стилове"
           }
         }
       }

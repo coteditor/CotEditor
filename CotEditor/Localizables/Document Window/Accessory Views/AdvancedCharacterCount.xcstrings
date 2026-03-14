@@ -315,6 +315,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* знак"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* знака"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -415,6 +433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "進階字元量計數⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширен брой знаци…"
           }
         }
       }
@@ -524,6 +548,12 @@
             "state" : "translated",
             "value" : "計算使用指定編碼方式編碼的文字的Byte數。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преброяване на байтове от текста, кодиран с посоченото кодиране."
+          }
         }
       }
     },
@@ -631,6 +661,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Byte"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байт"
           }
         }
       }
@@ -740,6 +776,12 @@
             "state" : "translated",
             "value" : "以Unicode中定義的直覺方式計數。由多個Unicode代碼位（如表情符號）組成的字元以一個字元計算。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бройте по интуитивния начин, дефиниран в Unicode. Символ, състоящ се от множество Unicode кодови точки, като емотикони, се брои като един знак."
+          }
         }
       }
     },
@@ -847,6 +889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字位聚類"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графемен клъстер"
           }
         }
       }
@@ -956,6 +1004,12 @@
             "state" : "translated",
             "value" : "計數Unicode代碼位（與計數UTF-32相同）。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преброяване на Unicode кодови точки. Същото като броенето на UTF-32."
+          }
         }
       }
     },
@@ -1063,6 +1117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode純量"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уникод скалар"
           }
         }
       }
@@ -1172,6 +1232,12 @@
             "state" : "translated",
             "value" : "計數Unicode代碼位，但將代理配對計算為兩個字元。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бройте Unicode кодови точки, но сурогатна двойка като два знака."
+          }
         }
       }
     },
@@ -1280,6 +1346,12 @@
             "state" : "translated",
             "value" : "UTF-16"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
         }
       }
     },
@@ -1380,6 +1452,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "複製"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копирай"
           }
         }
       }
@@ -1482,6 +1560,12 @@
             "state" : "translated",
             "value" : "編碼："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране:"
+          }
         }
       }
     },
@@ -1582,6 +1666,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "失敗"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "неуспешно"
           }
         }
       }
@@ -1684,6 +1774,12 @@
             "state" : "translated",
             "value" : "忽略每行結尾"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай краищата на редовете"
+          }
         }
       }
     },
@@ -1784,6 +1880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "忽略空白字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай интервалите"
           }
         }
       }
@@ -1886,6 +1988,12 @@
             "state" : "translated",
             "value" : "標準化："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормализация:"
+          }
         }
       }
     },
@@ -1986,6 +2094,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示選項"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи опциите"
           }
         }
       }
@@ -2088,6 +2202,12 @@
             "state" : "translated",
             "value" : "開始"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт"
+          }
         }
       }
     },
@@ -2188,6 +2308,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "停止進階字元量計數"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спиране на разширеното броене на символи"
           }
         }
       }
@@ -2290,6 +2416,12 @@
             "state" : "translated",
             "value" : "停止計數"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спрете броенето"
+          }
         }
       }
     },
@@ -2390,6 +2522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "將連續的空格視為一個空格"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Третирайте последователните интервали като един интервал"
           }
         }
       }
@@ -2492,6 +2630,12 @@
             "state" : "translated",
             "value" : "單位："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единица:"
+          }
         }
       }
     },
@@ -2592,6 +2736,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白字元："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интервали:"
           }
         }
       }

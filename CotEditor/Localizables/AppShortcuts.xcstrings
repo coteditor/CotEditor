@@ -141,6 +141,14 @@
               "在${applicationName}中製作文件"
             ]
           }
+        },
+        "bg" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Създай документ в ${applicationName}"
+            ]
+          }
         }
       }
     }

@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "（不包括點）"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(без точка)"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
           }
         }
       }
@@ -512,6 +524,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "已找到%lld個錯誤。"
+                }
+              }
+            }
+          }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Открита е %lld грешка."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Открити са %lld грешки."
                 }
               }
             }
@@ -834,6 +864,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld елемент"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld елемента"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -934,6 +982,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "作者："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор:"
           }
         }
       }
@@ -1036,6 +1090,12 @@
             "state" : "translated",
             "value" : "開頭字串"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало на низ"
+          }
         }
       }
     },
@@ -1137,6 +1197,12 @@
             "state" : "translated",
             "value" : "區塊註解："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блокиране на коментар:"
+          }
         }
       }
     },
@@ -1177,6 +1243,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Blokscheidingstekens:"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блокови разделители:"
           }
         }
       }
@@ -1224,6 +1296,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "內置"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вградена"
           }
         }
       }
@@ -1326,6 +1404,12 @@
             "state" : "translated",
             "value" : "內置語法無法重新命名。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вградените синтаксиси не могат да бъдат преименувани."
+          }
         }
       }
     },
@@ -1366,6 +1450,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Teken-scheidingstekens:"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители на знаци:"
           }
         }
       }
@@ -1468,6 +1558,12 @@
             "state" : "translated",
             "value" : "完成"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завършване"
+          }
         }
       }
     },
@@ -1569,6 +1665,12 @@
             "state" : "translated",
             "value" : "定義檔案"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл с дефиниции"
+          }
         }
       }
     },
@@ -1609,6 +1711,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Scheidingstekens"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители"
           }
         }
       }
@@ -1711,6 +1819,12 @@
             "state" : "translated",
             "value" : "描述"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
+          }
         }
       }
     },
@@ -1812,6 +1926,12 @@
             "state" : "translated",
             "value" : "描述："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
+          }
         }
       }
     },
@@ -1858,6 +1978,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示模式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи режима"
           }
         }
       }
@@ -1960,6 +2086,12 @@
             "state" : "translated",
             "value" : "發佈URL："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL адрес за разпространение:"
+          }
         }
       }
     },
@@ -2060,6 +2192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "結尾字串"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краен низ"
           }
         }
       }
@@ -2162,6 +2300,12 @@
             "state" : "translated",
             "value" : "完全符合"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цяло съвпадение"
+          }
         }
       }
     },
@@ -2202,6 +2346,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Escape-teken"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ескейп персонаж"
           }
         }
       }
@@ -2304,6 +2454,12 @@
             "state" : "translated",
             "value" : "副檔名："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширения:"
+          }
         }
       }
     },
@@ -2404,6 +2560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "特點"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възможности"
           }
         }
       }
@@ -2506,6 +2668,12 @@
             "state" : "translated",
             "value" : "檔案對應"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Картографиране на файлове"
+          }
         }
       }
     },
@@ -2606,6 +2774,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案名稱："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "имена на файлове:"
           }
         }
       }
@@ -2708,6 +2882,12 @@
             "state" : "translated",
             "value" : "重點標示"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подчертаване"
+          }
         }
       }
     },
@@ -2805,6 +2985,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -2910,6 +3096,12 @@
             "state" : "translated",
             "value" : "如未指定，語法完成字詞將依重點標示設定產生。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ако не е указано, думите за завършване на синтаксиса се генерират въз основа на настройките за осветяване."
+          }
         }
       }
     },
@@ -3011,6 +3203,12 @@
             "state" : "translated",
             "value" : "忽略大小寫"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнориране на главни и малки букви"
+          }
         }
       }
     },
@@ -3110,6 +3308,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "縮排："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отстъп:"
           }
         }
       }
@@ -3212,6 +3416,12 @@
             "state" : "translated",
             "value" : "資料"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
+          }
         }
       }
     },
@@ -3312,6 +3522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "內文註解："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вграден коментар:"
           }
         }
       }
@@ -3414,6 +3630,12 @@
             "state" : "translated",
             "value" : "解讀器："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преводачи:"
+          }
         }
       }
     },
@@ -3515,6 +3737,12 @@
             "state" : "translated",
             "value" : "種類"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Любезен"
+          }
         }
       }
     },
@@ -3614,6 +3842,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "種類："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вид:"
           }
         }
       }
@@ -3716,6 +3950,12 @@
             "state" : "translated",
             "value" : "上次修改時間："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последна промяна:"
+          }
         }
       }
     },
@@ -3817,6 +4057,12 @@
             "state" : "translated",
             "value" : "許可證："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лиценз:"
+          }
         }
       }
     },
@@ -3864,6 +4110,12 @@
             "state" : "translated",
             "value" : "只限行開頭"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Само начало на линията"
+          }
         }
       }
     },
@@ -3909,6 +4161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "由應用程式管理"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управлява се от приложението"
           }
         }
       }
@@ -3969,6 +4227,12 @@
             "state" : "translated",
             "value" : "多行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Многоредов"
+          }
         }
       }
     },
@@ -4009,6 +4273,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nesting"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гнездо"
           }
         }
       }
@@ -4110,6 +4380,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未找到錯誤。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е открита грешка."
           }
         }
       }
@@ -4217,6 +4493,12 @@
             "state" : "translated",
             "value" : "無"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма"
+          }
         }
       }
     },
@@ -4314,6 +4596,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -4419,6 +4707,12 @@
             "state" : "translated",
             "value" : "常規表示式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редовен израз"
+          }
         }
       }
     },
@@ -4520,6 +4814,12 @@
             "state" : "translated",
             "value" : "常規表示式模式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Образец на регулярен израз"
+          }
         }
       }
     },
@@ -4560,6 +4860,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Tekenreeks-scheidingstekens:"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители на низове:"
           }
         }
       }
@@ -4660,6 +4966,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "語法名稱"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име на синтаксиса"
           }
         }
       }
@@ -4768,6 +5080,12 @@
             "state" : "translated",
             "value" : "區塊註解需要開頭與結尾分隔符號。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блокираният коментар се нуждае както от начални, така и от крайни разделители."
+          }
         }
       }
     },
@@ -4875,6 +5193,12 @@
             "state" : "translated",
             "value" : "同一個字詞已被註冊多次。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Една и съща дума се регистрира няколко пъти."
+          }
         }
       }
     },
@@ -4922,6 +5246,12 @@
             "state" : "needs_review",
             "value" : "Het escape-teken moet een enkel teken in UTF-16 code-eenheid zijn."
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символът за екраниране трябва да бъде един знак в UTF-16 кодова единица."
+          }
         }
       }
     },
@@ -4968,6 +5298,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geneste blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нестабилният блоков коментар трябва да използва различни начални и крайни разделители."
           }
         }
       }
@@ -5075,6 +5411,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無效的常規表示式。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден регулярен израз."
           }
         }
       }
@@ -5184,6 +5526,12 @@
             "state" : "translated",
             "value" : "完成"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завършване"
+          }
         }
       }
     },
@@ -5292,6 +5640,12 @@
             "state" : "translated",
             "value" : "大綱"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура"
+          }
         }
       }
     },
@@ -5345,6 +5699,12 @@
             "state" : "translated",
             "value" : "此語言使用一個基於結構的通用剖析器，稱為「tree-sitter」，用於語法分析。\n由於截取規則是由應用程式管理的，你無法自訂它們。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Този език използва tree-sitter, анализатор с общо предназначение и структурен подход към синтаксиса.\nТъй като правилата за извличане се управляват от приложението, те не могат да се персонализират."
+          }
         }
       }
     },
@@ -5384,6 +5744,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De blokscheidingstekens worden tijdens het typen gebruikt voor automatische inspringing."
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блоковите разделители се използват за автоматичен отстъп при въвеждане."
           }
         }
       }
@@ -5430,6 +5796,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "此處定義的註解分隔符號亦會用於語法重點標示。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дефинираните тук разделители се използват и за подчертаване на синтаксиса."
           }
         }
       }
@@ -5532,6 +5904,12 @@
             "state" : "translated",
             "value" : "解譯器用於在文件中透過「`#!`」確定語法的標頭。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интерпретаторите се използват за определяне на синтаксиса от заглавката `#!` в документа."
+          }
         }
       }
     },
@@ -5578,6 +5956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "類型"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип"
           }
         }
       }
@@ -5680,6 +6064,12 @@
             "state" : "translated",
             "value" : "驗證"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Валидиране"
+          }
         }
       }
     },
@@ -5780,6 +6170,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия:"
           }
         }
       }

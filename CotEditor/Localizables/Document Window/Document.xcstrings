@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : " (預設)"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(по подразбиране)"
+          }
         }
       }
     },
@@ -197,6 +203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@像素/吋"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ пиксела/инч"
           }
         }
       }
@@ -299,6 +311,12 @@
             "state" : "translated",
             "value" : "替身"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Псевдоним"
+          }
         }
       }
     },
@@ -399,6 +417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "區塊"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок"
           }
         }
       }
@@ -501,6 +525,12 @@
             "state" : "translated",
             "value" : "類別"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категория"
+          }
         }
       }
     },
@@ -601,6 +631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знак"
           }
         }
       }
@@ -703,6 +739,12 @@
             "state" : "translated",
             "value" : "關閉分割編輯器"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затваряне на разделния редактор"
+          }
         }
       }
     },
@@ -803,6 +845,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "關閉分割編輯器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затвори разделения редактор"
           }
         }
       }
@@ -905,6 +953,12 @@
             "state" : "translated",
             "value" : "代碼位"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодова точка"
+          }
         }
       }
     },
@@ -1006,6 +1060,12 @@
             "state" : "translated",
             "value" : "代碼位"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодови точки"
+          }
         }
       }
     },
@@ -1106,6 +1166,12 @@
             "state" : "translated",
             "value" : "色彩描述"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветен профил"
+          }
         }
       }
     },
@@ -1205,6 +1271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "色彩空間"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветно пространство"
           }
         }
       }
@@ -1307,6 +1379,12 @@
             "state" : "translated",
             "value" : "已轉換"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразувано"
+          }
         }
       }
     },
@@ -1407,6 +1485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "計數"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брой"
           }
         }
       }
@@ -1515,6 +1599,12 @@
             "state" : "translated",
             "value" : "字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаци"
+          }
         }
       }
     },
@@ -1621,6 +1711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "欄"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Колона"
           }
         }
       }
@@ -1729,6 +1825,12 @@
             "state" : "translated",
             "value" : "行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линия"
+          }
         }
       }
     },
@@ -1835,6 +1937,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линии"
           }
         }
       }
@@ -1943,6 +2051,12 @@
             "state" : "translated",
             "value" : "位置"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Местоположение"
+          }
         }
       }
     },
@@ -2050,6 +2164,12 @@
             "state" : "translated",
             "value" : "字詞"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Думи"
+          }
         }
       }
     },
@@ -2151,6 +2271,12 @@
             "state" : "translated",
             "value" : "製作時間"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създадено"
+          }
         }
       }
     },
@@ -2250,6 +2376,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尺寸"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размери"
           }
         }
       }
@@ -2352,6 +2484,12 @@
             "state" : "translated",
             "value" : "文件包括未儲存的變更"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът има незапазени промени"
+          }
         }
       }
     },
@@ -2453,6 +2591,12 @@
             "state" : "translated",
             "value" : "製作副本"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дубликат"
+          }
         }
       }
     },
@@ -2552,6 +2696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "持續時間"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дължина"
           }
         }
       }
@@ -2654,6 +2804,12 @@
             "state" : "translated",
             "value" : "編輯器"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "редактор"
+          }
         }
       }
     },
@@ -2755,6 +2911,12 @@
             "state" : "translated",
             "value" : "編碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране"
+          }
         }
       }
     },
@@ -2854,6 +3016,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "擷取大綱⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Извличане на структурата…"
           }
         }
       }
@@ -2956,6 +3124,12 @@
             "state" : "translated",
             "value" : "檔案"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл"
+          }
         }
       }
     },
@@ -3057,6 +3231,12 @@
             "state" : "translated",
             "value" : "檔案瀏覽器"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлов браузър"
+          }
         }
       }
     },
@@ -3157,6 +3337,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案大小"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на файла"
           }
         }
       }
@@ -3265,6 +3451,12 @@
             "state" : "translated",
             "value" : "封存檔"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архив"
+          }
         }
       }
     },
@@ -3371,6 +3563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "音訊"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аудио"
           }
         }
       }
@@ -3479,6 +3677,12 @@
             "state" : "translated",
             "value" : "資料夾"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Папка"
+          }
         }
       }
     },
@@ -3585,6 +3789,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ"
           }
         }
       }
@@ -3693,6 +3903,12 @@
             "state" : "translated",
             "value" : "影像"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изображение"
+          }
         }
       }
     },
@@ -3799,6 +4015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "影片"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Филм"
           }
         }
       }
@@ -4113,6 +4335,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "已找到%lld個不相容的字元。"
+                }
+              }
+            }
+          }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерен е %lld несъвместим знак."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %lld несъвместими знака."
                 }
               }
             }
@@ -4434,6 +4674,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерен е %1$lld край на ред, различен от %2$@."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %1$lld края на ред, различни от %2$@."
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -4535,6 +4793,12 @@
             "state" : "translated",
             "value" : "完整路徑"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пълен път"
+          }
         }
       }
     },
@@ -4634,6 +4898,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "影像DPI"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DPI на изображението"
           }
         }
       }
@@ -4736,6 +5006,12 @@
             "state" : "translated",
             "value" : "不相容的字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несъвместими знаци"
+          }
         }
       }
     },
@@ -4836,6 +5112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不一致的每行結尾"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непоследователни краища на редове"
           }
         }
       }
@@ -4938,6 +5220,12 @@
             "state" : "translated",
             "value" : "資料"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
+          }
         }
       }
     },
@@ -5038,6 +5326,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檢閱器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор"
           }
         }
       }
@@ -5147,6 +5441,12 @@
             "state" : "translated",
             "value" : "文件檢閱器"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор по документи"
+          }
         }
       }
     },
@@ -5254,6 +5554,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "大綱"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура"
           }
         }
       }
@@ -5363,6 +5669,12 @@
             "state" : "translated",
             "value" : "警告"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предупреждения"
+          }
         }
       }
     },
@@ -5463,6 +5775,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "跳去下個大綱項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Към следващия елемент от структурата"
           }
         }
       }
@@ -5565,6 +5883,12 @@
             "state" : "translated",
             "value" : "跳去上個大綱項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Към предишния елемент от структурата"
+          }
         }
       }
     },
@@ -5664,6 +5988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "種類"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вид"
           }
         }
       }
@@ -5766,6 +6096,12 @@
             "state" : "translated",
             "value" : "行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линия"
+          }
         }
       }
     },
@@ -5866,6 +6202,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "每行結尾"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Край на ред"
           }
         }
       }
@@ -5968,6 +6310,12 @@
             "state" : "translated",
             "value" : "每行結尾"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краища на редове"
+          }
         }
       }
     },
@@ -6068,6 +6416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номера на редовете"
           }
         }
       }
@@ -6170,6 +6524,12 @@
             "state" : "translated",
             "value" : "模式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
         }
       }
     },
@@ -6271,6 +6631,12 @@
             "state" : "translated",
             "value" : "已修改"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Променено"
+          }
         }
       }
     },
@@ -6371,6 +6737,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "移至垃圾桶"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване в кошчето"
           }
         }
       }
@@ -6480,6 +6852,12 @@
             "state" : "translated",
             "value" : "無法還原此操作。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тази операция не може да бъде отменена."
+          }
         }
       }
     },
@@ -6586,6 +6964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "你要將「%@」移至垃圾桶嗎？"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да преместите „%@ “ в кошчето?"
           }
         }
       }
@@ -6837,6 +7221,18 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Искате ли да преместите%lld избрани елементи в кошчето?"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -6937,6 +7333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име"
           }
         }
       }
@@ -7039,6 +7441,12 @@
             "state" : "translated",
             "value" : "顯示導覽列"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лента за навигация"
+          }
         }
       }
     },
@@ -7139,6 +7547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新增檔案"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов файл"
           }
         }
       }
@@ -7241,6 +7655,12 @@
             "state" : "translated",
             "value" : "新增資料夾"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нова папка"
+          }
         }
       }
     },
@@ -7342,6 +7762,12 @@
             "state" : "translated",
             "value" : "下個大綱項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следващ елемент от структурата"
+          }
         }
       }
     },
@@ -7441,6 +7867,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未選擇文件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма избран документ"
           }
         }
       }
@@ -7543,6 +7975,12 @@
             "state" : "translated",
             "value" : "無過濾結果"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма резултати от филтъра"
+          }
         }
       }
     },
@@ -7643,6 +8081,12 @@
             "state" : "translated",
             "value" : "未找到問題。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма открити проблеми."
+          }
         }
       }
     },
@@ -7742,6 +8186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法編輯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без редактиране"
           }
         }
       }
@@ -7844,6 +8294,12 @@
             "state" : "translated",
             "value" : "未選擇"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е избрано"
+          }
         }
       }
     },
@@ -7943,6 +8399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以純文字形式開啟"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори като обикновен текст"
           }
         }
       }
@@ -8045,6 +8507,12 @@
             "state" : "translated",
             "value" : "在新視窗開啟"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори в нов прозорец"
+          }
         }
       }
     },
@@ -8145,6 +8613,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開啟󠄁原始檔案"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори оригинала"
           }
         }
       }
@@ -8247,6 +8721,12 @@
             "state" : "translated",
             "value" : "以外部編輯器開啟"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори с външен редактор"
+          }
         }
       }
     },
@@ -8348,6 +8828,12 @@
             "state" : "translated",
             "value" : "原始"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оригинал"
+          }
         }
       }
     },
@@ -8447,6 +8933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分享⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Друго…"
           }
         }
       }
@@ -8549,6 +9041,12 @@
             "state" : "translated",
             "value" : "大綱"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура"
+          }
         }
       }
     },
@@ -8624,7 +9122,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Структура меню"
+            "value" : "Меню „Структура“"
           }
         },
         "tr" : {
@@ -8649,6 +9147,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "大綱選單"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню на структурата"
           }
         }
       }
@@ -8751,6 +9255,12 @@
             "state" : "translated",
             "value" : "擁有者"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Собственик"
+          }
         }
       }
     },
@@ -8851,6 +9361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "權限"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешения"
           }
         }
       }
@@ -8953,6 +9469,12 @@
             "state" : "translated",
             "value" : "上個大綱項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предишен елемент от структурата"
+          }
         }
       }
     },
@@ -9053,6 +9575,12 @@
             "state" : "translated",
             "value" : "正在掃描不相容的字元⋯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сканиране на несъвместими знаци…"
+          }
         }
       }
     },
@@ -9152,6 +9680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在資料夾中尋找⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене в папка…"
           }
         }
       }
@@ -9254,6 +9788,12 @@
             "state" : "translated",
             "value" : "選擇一個字元來顯示其Unicode資料。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете единичен знак, за да се покаже Unicode информация."
+          }
         }
       }
     },
@@ -9354,6 +9894,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分享⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Споделяне…"
           }
         }
       }
@@ -9456,6 +10002,12 @@
             "state" : "translated",
             "value" : "顯示已隱藏的檔案"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи скритите файлове"
+          }
         }
       }
     },
@@ -9556,6 +10108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在Finder顯示"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи във Finder"
           }
         }
       }
@@ -9658,6 +10216,12 @@
             "state" : "translated",
             "value" : "側邊欄"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Странична лента"
+          }
         }
       }
     },
@@ -9758,6 +10322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "大小"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер"
           }
         }
       }
@@ -9860,6 +10430,12 @@
             "state" : "translated",
             "value" : "分割編輯器"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделен редактор"
+          }
         }
       }
     },
@@ -9960,6 +10536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分割編輯器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделен редактор"
           }
         }
       }
@@ -10062,6 +10644,12 @@
             "state" : "translated",
             "value" : "狀態列"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лента за състояние"
+          }
         }
       }
     },
@@ -10162,6 +10750,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標籤"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Етикети"
           }
         }
       }
@@ -10264,6 +10858,12 @@
             "state" : "translated",
             "value" : "文字編碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране на текста"
+          }
         }
       }
     },
@@ -10364,6 +10964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字設定"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстови настройки"
           }
         }
       }
@@ -10466,6 +11072,12 @@
             "state" : "translated",
             "value" : "多謝你的有心支持！"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Благодаря ви за любезната подкрепа!"
+          }
         }
       }
     },
@@ -10566,6 +11178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此文件無法編輯。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не може да се редактира."
           }
         }
       }
@@ -10674,6 +11292,12 @@
             "state" : "translated",
             "value" : "註解"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментирайте"
+          }
         }
       }
     },
@@ -10780,6 +11404,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "將所選範圍加入/取消加入註解"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментиране или премахване на коментар"
           }
         }
       }
@@ -10888,6 +11518,12 @@
             "state" : "translated",
             "value" : "編輯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране"
+          }
         }
       }
     },
@@ -10994,6 +11630,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "防止文件被編輯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предотвратете редактирането на документа"
           }
         }
       }
@@ -11102,6 +11744,12 @@
             "state" : "translated",
             "value" : "允許編輯文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешете редактиране на документа"
+          }
         }
       }
     },
@@ -11208,6 +11856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "表情與符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Емотикони и символи"
           }
         }
       }
@@ -11316,6 +11970,12 @@
             "state" : "translated",
             "value" : "顯示表情與符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи емотикони и символи"
+          }
         }
       }
     },
@@ -11422,6 +12082,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене"
           }
         }
       }
@@ -11530,6 +12196,12 @@
             "state" : "translated",
             "value" : "顯示尋找與取代"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи „Търсене и замяна“"
+          }
         }
       }
     },
@@ -11636,6 +12308,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字體"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифтове"
           }
         }
       }
@@ -11745,6 +12423,12 @@
             "state" : "translated",
             "value" : "字體類型"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип на шрифта"
+          }
         }
       }
     },
@@ -11851,6 +12535,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "等寬"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еднопространствен"
           }
         }
       }
@@ -11959,6 +12649,12 @@
             "state" : "translated",
             "value" : "顯示字體"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи шрифтовете"
+          }
         }
       }
     },
@@ -12065,6 +12761,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартен"
           }
         }
       }
@@ -12173,6 +12875,12 @@
             "state" : "translated",
             "value" : "更改字體"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на шрифта"
+          }
         }
       }
     },
@@ -12279,6 +12987,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "縮排"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отстъп"
           }
         }
       }
@@ -12387,6 +13101,12 @@
             "state" : "translated",
             "value" : "左移"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване наляво"
+          }
         }
       }
     },
@@ -12493,6 +13213,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "將行移至左側"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместете линиите наляво"
           }
         }
       }
@@ -12601,6 +13327,12 @@
             "state" : "translated",
             "value" : "右移"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Измести надясно"
+          }
         }
       }
     },
@@ -12707,6 +13439,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "將行移至右側"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместете линиите надясно"
           }
         }
       }
@@ -12815,6 +13553,12 @@
             "state" : "translated",
             "value" : "縮排選擇"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избор на отстъп"
+          }
         }
       }
     },
@@ -12921,6 +13665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "縮排指引"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Водачи за отстъпи"
           }
         }
       }
@@ -13029,6 +13779,12 @@
             "state" : "translated",
             "value" : "顯示縮排指引線"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи водачите за отстъп"
+          }
         }
       }
     },
@@ -13135,6 +13891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "隱藏縮排指引線"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрий водачите за отстъп"
           }
         }
       }
@@ -13243,6 +14005,12 @@
             "state" : "translated",
             "value" : "檢閱器"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор"
+          }
         }
       }
     },
@@ -13349,6 +14117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示檢閱器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи инспектора"
           }
         }
       }
@@ -13457,6 +14231,12 @@
             "state" : "translated",
             "value" : "隱形符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидими"
+          }
         }
       }
     },
@@ -13563,6 +14343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示隱形字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи невидимите знаци"
           }
         }
       }
@@ -13671,6 +14457,12 @@
             "state" : "translated",
             "value" : "隱藏隱形字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрийте невидимите знаци"
+          }
         }
       }
     },
@@ -13777,6 +14569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保持在最上方"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бъдете на върха"
           }
         }
       }
@@ -13885,6 +14683,12 @@
             "state" : "translated",
             "value" : "保持視窗總是在最上方"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дръжте прозореца винаги отгоре"
+          }
         }
       }
     },
@@ -13992,6 +14796,12 @@
             "state" : "translated",
             "value" : "列印"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат"
+          }
         }
       }
     },
@@ -14098,6 +14908,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "列印文件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпечатайте документ"
           }
         }
       }
@@ -14207,6 +15023,12 @@
             "state" : "translated",
             "value" : "分享文件檔案"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Споделете файл с документ"
+          }
         }
       }
     },
@@ -14313,6 +15135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檢查串字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка на правописа"
           }
         }
       }
@@ -14421,6 +15249,12 @@
             "state" : "translated",
             "value" : "顯示串字與文法檢查"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи правопис и граматика"
+          }
         }
       }
     },
@@ -14527,6 +15361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
           }
         }
       }
@@ -14636,6 +15476,12 @@
             "state" : "translated",
             "value" : "已刪除"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрито"
+          }
         }
       }
     },
@@ -14744,6 +15590,12 @@
             "state" : "translated",
             "value" : "最近使用"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наскоро използван"
+          }
         }
       }
     },
@@ -14850,6 +15702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更改語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на синтаксиса"
           }
         }
       }
@@ -14958,6 +15816,12 @@
             "state" : "translated",
             "value" : "定位符號樣式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стил на раздела"
+          }
         }
       }
     },
@@ -15064,6 +15928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "自訂⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализиран…"
           }
         }
       }
@@ -15173,6 +16043,12 @@
             "state" : "translated",
             "value" : "定位符號間隔闊度"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина на раздела"
+          }
         }
       }
     },
@@ -15279,6 +16155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用空格進行縮排"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай интервали за отстъп"
           }
         }
       }
@@ -15387,6 +16269,12 @@
             "state" : "translated",
             "value" : "使用空格進行縮排"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай интервали за отстъп"
+          }
         }
       }
     },
@@ -15493,6 +16381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用定位符號進行縮排"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай табулации за отстъп"
           }
         }
       }
@@ -15601,6 +16495,12 @@
             "state" : "translated",
             "value" : "橫書"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хоризонтална"
+          }
         }
       }
     },
@@ -15707,6 +16607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "橫書"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хоризонтална"
           }
         }
       }
@@ -15815,6 +16721,12 @@
             "state" : "translated",
             "value" : "文字方向"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ориентация на текста"
+          }
         }
       }
     },
@@ -15921,6 +16833,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "切換文字方向"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Превключване на ориентацията на текста"
           }
         }
       }
@@ -16029,6 +16947,12 @@
             "state" : "translated",
             "value" : "直書"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикална"
+          }
         }
       }
     },
@@ -16135,6 +17059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "直書"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикална"
           }
         }
       }
@@ -16244,6 +17174,12 @@
             "state" : "translated",
             "value" : "實際大小"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Действителен размер"
+          }
         }
       }
     },
@@ -16350,6 +17286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "放大"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По-голям"
           }
         }
       }
@@ -16458,6 +17400,12 @@
             "state" : "translated",
             "value" : "字體大小"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на текста"
+          }
         }
       }
     },
@@ -16564,6 +17512,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "放大文字大小"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увеличете размера на текста"
           }
         }
       }
@@ -16672,6 +17626,12 @@
             "state" : "translated",
             "value" : "縮小"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По-малък"
+          }
         }
       }
     },
@@ -16778,6 +17738,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "縮小文字大小"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намалете размера на текста"
           }
         }
       }
@@ -16886,6 +17852,12 @@
             "state" : "translated",
             "value" : "更改文字大小"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на размера на текста"
+          }
         }
       }
     },
@@ -16992,6 +17964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "換行"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обвиване на линии"
           }
         }
       }
@@ -17100,6 +18078,12 @@
             "state" : "translated",
             "value" : "換行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увийте линии"
+          }
         }
       }
     },
@@ -17206,6 +18190,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消換行"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разопаковане на редове"
           }
         }
       }
@@ -17314,6 +18304,12 @@
             "state" : "translated",
             "value" : "書寫方向"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посока на писане"
+          }
         }
       }
     },
@@ -17420,6 +18416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "由左至右"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отляво надясно"
           }
         }
       }
@@ -17528,6 +18530,12 @@
             "state" : "translated",
             "value" : "由左至右"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отляво надясно"
+          }
         }
       }
     },
@@ -17634,6 +18642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "由右至左"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "От дясно на ляво"
           }
         }
       }
@@ -17742,6 +18756,12 @@
             "state" : "translated",
             "value" : "由右至左"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "От дясно на ляво"
+          }
         }
       }
     },
@@ -17848,6 +18868,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更改書寫方向"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Променете посоката на писане"
           }
         }
       }

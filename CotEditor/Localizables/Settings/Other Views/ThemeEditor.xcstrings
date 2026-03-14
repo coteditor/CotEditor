@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "作者："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор:"
+          }
         }
       }
     },
@@ -197,6 +203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "背景："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "фон:"
           }
         }
       }
@@ -298,6 +310,12 @@
             "state" : "translated",
             "value" : "現用行："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущ ред:"
+          }
         }
       }
     },
@@ -397,6 +415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "游標："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсор:"
           }
         }
       }
@@ -498,6 +522,12 @@
             "state" : "translated",
             "value" : "描述："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
+          }
         }
       }
     },
@@ -597,6 +627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重點標示："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Акцент:"
           }
         }
       }
@@ -698,6 +734,12 @@
             "state" : "translated",
             "value" : "隱形符號："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидими:"
+          }
         }
       }
     },
@@ -797,6 +839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "許可證："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лиценз:"
           }
         }
       }
@@ -899,6 +947,12 @@
             "state" : "translated",
             "value" : "未定義"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е дефинирано"
+          }
         }
       }
     },
@@ -998,6 +1052,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重新載入所有主題"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Презареди всички теми"
           }
         }
       }
@@ -1099,6 +1159,12 @@
             "state" : "translated",
             "value" : "選擇："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избор:"
+          }
         }
       }
     },
@@ -1198,6 +1264,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示主題檔案資訊"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи информация за файла на темата"
           }
         }
       }
@@ -1299,6 +1371,12 @@
             "state" : "translated",
             "value" : "語法"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
         }
       }
     },
@@ -1398,6 +1476,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст:"
           }
         }
       }
@@ -1505,6 +1589,12 @@
             "state" : "translated",
             "value" : "主題"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
         }
       }
     },
@@ -1604,6 +1694,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "主題編輯器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор на теми"
           }
         }
       }
@@ -1705,6 +1801,12 @@
             "state" : "translated",
             "value" : "URL："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
         }
       }
     },
@@ -1805,6 +1907,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用系統顏色"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай системния цвят"
           }
         }
       }

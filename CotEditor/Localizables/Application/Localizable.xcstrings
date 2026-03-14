@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "（%@）"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
         }
       }
     },
@@ -199,6 +205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
           }
         }
       }
@@ -307,6 +319,12 @@
             "state" : "translated",
             "value" : "%1$@：%2$@"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
         }
       }
     },
@@ -413,6 +431,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "加入"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добави"
           }
         }
       }
@@ -521,6 +545,12 @@
             "state" : "translated",
             "value" : "加入新項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добави нов елемент"
+          }
         }
       }
     },
@@ -627,6 +657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрий"
           }
         }
       }
@@ -735,6 +771,12 @@
             "state" : "translated",
             "value" : "刪除已選擇的項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрий избраните елементи"
+          }
         }
       }
     },
@@ -841,6 +883,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "製作副本"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублирай"
           }
         }
       }
@@ -949,6 +997,12 @@
             "state" : "translated",
             "value" : "製作「%@」的副本"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублирай „%@“"
+          }
         }
       }
     },
@@ -1055,6 +1109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактирай"
           }
         }
       }
@@ -1163,6 +1223,12 @@
             "state" : "translated",
             "value" : "輸出⋯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортирай…"
+          }
         }
       }
     },
@@ -1269,6 +1335,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸出「%@」⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортирай „%@“…"
           }
         }
       }
@@ -1377,6 +1449,12 @@
             "state" : "translated",
             "value" : "輸入⋯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортирай…"
+          }
         }
       }
     },
@@ -1483,6 +1561,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸入"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортирай"
           }
         }
       }
@@ -1591,6 +1675,12 @@
             "state" : "translated",
             "value" : "重新命名"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преименувай"
+          }
         }
       }
     },
@@ -1697,6 +1787,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重新命名「%@」"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преименувай „%@“"
           }
         }
       }
@@ -1805,6 +1901,12 @@
             "state" : "translated",
             "value" : "取代"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени"
+          }
         }
       }
     },
@@ -1911,6 +2013,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "還原"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови"
           }
         }
       }
@@ -2019,6 +2127,12 @@
             "state" : "translated",
             "value" : "還原「%@」"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови „%@“"
+          }
         }
       }
     },
@@ -2125,6 +2239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "還原預設值"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови настройките по подразбиране"
           }
         }
       }
@@ -2233,6 +2353,12 @@
             "state" : "translated",
             "value" : "在Finder中顯示"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи във Finder"
+          }
         }
       }
     },
@@ -2339,6 +2465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在Finder中顯示「%@」"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи „%@“ във Finder"
           }
         }
       }
@@ -2447,6 +2579,12 @@
             "state" : "translated",
             "value" : "隱藏的咖啡"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидимо кафе"
+          }
         }
       }
     },
@@ -2553,6 +2691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "咖啡杯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чаша кафе"
           }
         }
       }
@@ -2662,6 +2806,12 @@
             "state" : "translated",
             "value" : "動作"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Действия"
+          }
         }
       }
     },
@@ -2768,6 +2918,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отказ"
           }
         }
       }
@@ -2877,6 +3033,12 @@
             "state" : "translated",
             "value" : "此動作無法還原。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Това действие не може да бъде отменено."
+          }
         }
       }
     },
@@ -2984,6 +3146,12 @@
             "state" : "translated",
             "value" : "確定要刪除「%@」嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сигурни ли сте, че искате да изтриете „%@“?"
+          }
         }
       }
     },
@@ -3090,6 +3258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案「%@」已在另一個視窗中開啟。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът „%@“ вече е отворен в друг прозорец."
           }
         }
       }
@@ -3199,6 +3373,12 @@
             "state" : "translated",
             "value" : "如要在此視窗中開啟它，請先關閉現有視窗。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За да го отворите в този прозорец, първо затворете съществуващия прозорец."
+          }
         }
       }
     },
@@ -3306,6 +3486,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不儲存"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не запазвай"
           }
         }
       }
@@ -3415,6 +3601,12 @@
             "state" : "translated",
             "value" : "如不儲存，將會遺失所作的變更。不相容的字元在儲存時被替代或移除。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вашите промени ще бъдат загубени, ако не ги запазите. Несъвместимите знаци се заместват или премахват при запазване."
+          }
         }
       }
     },
@@ -3523,6 +3715,12 @@
             "state" : "translated",
             "value" : "你要儲存對文件「%@」所作的變更嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да запазите промените в документа „%@“?"
+          }
         }
       }
     },
@@ -3629,6 +3827,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法編輯文件。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не може да се редактира."
           }
         }
       }
@@ -3737,6 +3941,12 @@
             "state" : "translated",
             "value" : "如要更改文件，請先允許編輯。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За да направите промени в документа, първо разрешете редактирането."
+          }
         }
       }
     },
@@ -3843,6 +4053,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案「%@」似乎不是文字資料。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът „%@“ не изглежда като текстови данни."
           }
         }
       }
@@ -3952,6 +4168,12 @@
             "state" : "translated",
             "value" : "檔案似乎是%@。\n\n確定要開啟󠄁檔案嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът изглежда е %@.\n\nНаистина ли искате да отворите файла?"
+          }
         }
       }
     },
@@ -4059,6 +4281,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未知的類型"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "непознат тип"
           }
         }
       }
@@ -4168,6 +4396,12 @@
             "state" : "translated",
             "value" : "開啟󠄁"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори"
+          }
         }
       }
     },
@@ -4275,6 +4509,12 @@
             "state" : "translated",
             "value" : "檔案「%1$@」的大小為%2$@。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът „%1$@“ е с размер %2$@."
+          }
         }
       }
     },
@@ -4381,6 +4621,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開啟󠄁此大型檔案可能會令應用程式執行緩慢或無回應。\n\n確定要開啟󠄁檔案嗎？"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отварянето на такъв голям файл може да забави приложението или да спре да реагира.\n\nНаистина ли искате да отворите файла?"
           }
         }
       }
@@ -4490,6 +4736,12 @@
             "state" : "translated",
             "value" : "檢視不相容的字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прегледай несъвместимите знаци"
+          }
         }
       }
     },
@@ -4597,6 +4849,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "儲存可用的文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запази наличния текст"
           }
         }
       }
@@ -4706,6 +4964,12 @@
             "state" : "translated",
             "value" : "不相容的字元在儲存時被替代或移除。你要強制儲存嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несъвместимите знаци се заместват или премахват при запазване. Искате ли все пак да запазите файла?"
+          }
         }
       }
     },
@@ -4812,6 +5076,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完成"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
           }
         }
       }
@@ -4920,6 +5190,12 @@
             "state" : "translated",
             "value" : "轉換"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразувай"
+          }
         }
       }
     },
@@ -5026,6 +5302,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重新解讀"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преинтерпретирай"
           }
         }
       }
@@ -5134,6 +5416,12 @@
             "state" : "translated",
             "value" : "你要使用「%@」來轉換或重新解讀此文件嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли документът да се преобразува или да се преинтерпретира с „%@“?"
+          }
         }
       }
     },
@@ -5240,6 +5528,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更改文字編碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на кодирането на текста"
           }
         }
       }
@@ -5349,6 +5643,12 @@
             "state" : "translated",
             "value" : "%1$@的複製%2$lld"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ копие %2$lld"
+          }
         }
       }
     },
@@ -5457,6 +5757,12 @@
             "state" : "translated",
             "value" : "%@的複製"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ копие"
+          }
         }
       }
     },
@@ -5563,6 +5869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖放檔案的絕對路徑。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Абсолютният път на изпуснатия файл."
           }
         }
       }
@@ -5671,6 +5983,12 @@
             "state" : "translated",
             "value" : "拖放檔案的上層目錄名稱。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името на родителската директория на изпуснатия файл."
+          }
         }
       }
     },
@@ -5777,6 +6095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案內容（如拖放檔案是文字檔案）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Ако изпуснатият файл е текстов файл) съдържанието на файла."
           }
         }
       }
@@ -5885,6 +6209,12 @@
             "state" : "translated",
             "value" : "拖放檔案的副檔名。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширението на изпуснатия файл."
+          }
         }
       }
     },
@@ -5991,6 +6321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖放檔案的副檔名（轉換成小寫）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширението на изпуснатия файл (преобразувано в малки букви)."
           }
         }
       }
@@ -6099,6 +6435,12 @@
             "state" : "translated",
             "value" : "拖放檔案的副檔名（轉換成大寫）。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширението на изпуснатия файл (преобразувано в главни букви)."
+          }
         }
       }
     },
@@ -6205,6 +6547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖放檔案的名稱，包括副檔名（如存在）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името на изпуснатия файл, включително разширението (ако съществува)."
           }
         }
       }
@@ -6313,6 +6661,12 @@
             "state" : "translated",
             "value" : "拖放檔案的名稱，不包括副檔名。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името на изпуснатия файл без разширение."
+          }
         }
       }
     },
@@ -6419,6 +6773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "影像高度（如拖放檔案是影像）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Ако изпуснатият файл е изображение) височина на изображението."
           }
         }
       }
@@ -6527,6 +6887,12 @@
             "state" : "translated",
             "value" : "影像闊度（如拖放檔案是影像）。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Ако изпуснатият файл е изображение) ширина на изображението."
+          }
         }
       }
     },
@@ -6633,6 +6999,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖放檔案與文件之間的相對路徑。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относителният път между изпуснатия файл и документа."
           }
         }
       }
@@ -6741,6 +7113,12 @@
             "state" : "translated",
             "value" : "過濾"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Филтър"
+          }
         }
       }
     },
@@ -6847,6 +7225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "清除最近的過濾條件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните филтри"
           }
         }
       }
@@ -6955,6 +7339,12 @@
             "state" : "translated",
             "value" : "最近的過濾條件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни филтри"
+          }
         }
       }
     },
@@ -7061,6 +7451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無最近的過濾條件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма последни филтри"
           }
         }
       }
@@ -7170,6 +7566,12 @@
             "state" : "translated",
             "value" : "開啟原始位置以授予CotEditor取用權限。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори първоначалното местоположение, за да предоставиш достъп на CotEditor."
+          }
         }
       }
     },
@@ -7277,6 +7679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「%@」已存在。要取代嗎？"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ вече съществува. Искате ли да го замените?"
           }
         }
       }
@@ -7386,6 +7794,12 @@
             "state" : "translated",
             "value" : "相同名稱的自訂設定已經存在。如取代，將會覆寫目前的內容。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализирана настройка със същото име вече съществува. Замяната му ще презапише текущото му съдържание."
+          }
         }
       }
     },
@@ -7492,6 +7906,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "轉換"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразувай"
           }
         }
       }
@@ -7600,6 +8020,12 @@
             "state" : "translated",
             "value" : "忽略"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай"
+          }
         }
       }
     },
@@ -7706,6 +8132,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檢視"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преглед"
           }
         }
       }
@@ -7814,6 +8246,12 @@
             "state" : "translated",
             "value" : "你要將所有每行結尾轉換成%@（此文件中最常用的每行結尾）嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли всички краища на редовете да се преобразуват до %@, най-често използваният край на ред в този документ?"
+          }
         }
       }
     },
@@ -7921,6 +8359,12 @@
             "state" : "translated",
             "value" : "此文件中最常用的每行結尾是%@。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Най-често използваният край на ред в този документ е %@."
+          }
         }
       }
     },
@@ -8027,6 +8471,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此文件的每行結尾不一致。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът има смесени краища на редовете."
           }
         }
       }
@@ -8136,6 +8586,12 @@
             "state" : "translated",
             "value" : "不要再詢問此文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не питайте отново за този документ"
+          }
         }
       }
     },
@@ -8243,6 +8699,12 @@
             "state" : "translated",
             "value" : "名稱「%@」已經被使用。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името „%@“ вече е заето."
+          }
         }
       }
     },
@@ -8349,6 +8811,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱不能留空。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да бъде празно."
           }
         }
       }
@@ -8458,6 +8926,12 @@
             "state" : "translated",
             "value" : "名稱不能包括「%@」。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да съдържа „%@“."
+          }
         }
       }
     },
@@ -8564,6 +9038,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱不能包括新行。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да съдържа нови редове."
           }
         }
       }
@@ -8672,6 +9152,12 @@
             "state" : "translated",
             "value" : "請選擇其他名稱。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете друго име."
+          }
         }
       }
     },
@@ -8778,6 +9264,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱「%@」已被保留使用。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името „%@“ е запазено."
           }
         }
       }
@@ -8886,6 +9378,12 @@
             "state" : "translated",
             "value" : "名稱不能以「.」開頭。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да започва с „.“."
+          }
         }
       }
     },
@@ -8992,6 +9490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名稱太長。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името е твърде дълго."
           }
         }
       }
@@ -9101,6 +9605,12 @@
             "state" : "translated",
             "value" : "依循以下模板填寫，然後將其發佈至%1$@或傳送至%2$@。請注意，可能會在問題頁面上分享你的電子郵件內容。請用英文或日文填寫你的訊息。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попълнете шаблона по-долу, след което го публикувайте в %1$@ или го изпратете до %2$@. Имайте предвид, че съдържанието на имейла може да бъде споделено на страницата с проблеми. Напишете съобщението на английски или японски."
+          }
         }
       }
     },
@@ -9207,6 +9717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "環境"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Среда"
           }
         }
       }
@@ -9315,6 +9831,12 @@
             "state" : "translated",
             "value" : "預期結果"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очакван резултат"
+          }
         }
       }
     },
@@ -9422,6 +9944,12 @@
             "state" : "translated",
             "value" : "簡短描述"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кратко описание"
+          }
         }
       }
     },
@@ -9528,6 +10056,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重現問題的步驟"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стъпки за възпроизвеждане на проблема"
           }
         }
       }
@@ -9637,6 +10171,12 @@
             "state" : "translated",
             "value" : "回報問題"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доклад за проблем"
+          }
         }
       }
     },
@@ -9743,6 +10283,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已選擇多個項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избрани са няколко елемента"
           }
         }
       }
@@ -9851,6 +10397,12 @@
             "state" : "translated",
             "value" : "未選擇項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма избран елемент"
+          }
         }
       }
     },
@@ -9951,6 +10503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "上次修改時間：%@"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последна промяна на %@"
           }
         }
       }
@@ -10060,6 +10618,12 @@
             "state" : "translated",
             "value" : "跳去URL"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори URL"
+          }
         }
       }
     },
@@ -10166,6 +10730,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此文件包括與「%@」不相容的字元。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът съдържа знаци, несъвместими с „%@“."
           }
         }
       }
@@ -10275,6 +10845,12 @@
             "state" : "translated",
             "value" : "更改編碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смени кодирането"
+          }
         }
       }
     },
@@ -10381,6 +10957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不相容的字元在儲存時被替代或移除。你要更改文字編碼並檢視不相容的字元嗎？"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несъвместимите знаци се заместват или премахват при запазване. Искате ли да промените кодирането на текста и да прегледате несъвместимите знаци?"
           }
         }
       }
@@ -10489,6 +11071,12 @@
             "state" : "translated",
             "value" : "無"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма"
+          }
         }
       }
     },
@@ -10592,6 +11180,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CMYK"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CMYK"
@@ -10704,6 +11298,12 @@
             "state" : "translated",
             "value" : "DeviceN"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceN"
+          }
         }
       }
     },
@@ -10810,6 +11410,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "灰色"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сив"
           }
         }
       }
@@ -10919,6 +11525,12 @@
             "state" : "translated",
             "value" : "已製作索引"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Индексиран"
+          }
         }
       }
     },
@@ -11022,6 +11634,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lab"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lab"
@@ -11134,6 +11752,12 @@
             "state" : "translated",
             "value" : "模式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шарка"
+          }
         }
       }
     },
@@ -11237,6 +11861,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RGB"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RGB"
@@ -11348,6 +11978,12 @@
             "state" : "translated",
             "value" : "好"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
         }
       }
     },
@@ -11448,6 +12084,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "列印日期：%@"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпечатано на %@"
           }
         }
       }
@@ -11556,6 +12198,12 @@
             "state" : "translated",
             "value" : "此文件沒有檔案可以重新解讀。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът няма файл за преинтерпретиране."
+          }
         }
       }
     },
@@ -11662,6 +12310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法使用文字編碼「%@」重新解讀文件。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не можа да бъде преинтерпретиран с текстово кодиране „%@“."
           }
         }
       }
@@ -11770,6 +12424,12 @@
             "state" : "translated",
             "value" : "此文件可能使用了不同的文字編碼儲存，或可能不是文字檔案。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът може да е бил записан с различно текстово кодиране или може да не е текстов файл."
+          }
         }
       }
     },
@@ -11876,6 +12536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "沒有文件可以用作輸入。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма документ за вход."
           }
         }
       }
@@ -11984,6 +12650,12 @@
             "state" : "translated",
             "value" : "沒有文件可以用作輸出。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма документ, в който да поставите резултата."
+          }
         }
       }
     },
@@ -12090,6 +12762,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法編輯文件。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не може да се редактира."
           }
         }
       }
@@ -12198,6 +12876,12 @@
             "state" : "translated",
             "value" : "程式碼「%@」不存在。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не съществува."
+          }
         }
       }
     },
@@ -12304,6 +12988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法開啟程式碼檔案「%@」。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не може да бъде отворен."
           }
         }
       }
@@ -12412,6 +13102,12 @@
             "state" : "translated",
             "value" : "無法執行程式碼「%@」，因為你沒有執行它的權限。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не може да бъде изпълнен, защото нямате разрешение да го изпълните."
+          }
         }
       }
     },
@@ -12518,6 +13214,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檢查程式碼檔案的權限。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете разрешенията на файла на скрипта."
           }
         }
       }
@@ -12626,6 +13328,12 @@
             "state" : "translated",
             "value" : "無法讀取程式碼「%@」。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не може да бъде прочетен."
+          }
         }
       }
     },
@@ -12732,6 +13440,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檢查程式碼檔案。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете файла със скрипта."
           }
         }
       }
@@ -12840,6 +13554,12 @@
             "state" : "translated",
             "value" : "無法刪除「%@」。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ не можа да бъде изтрит."
+          }
         }
       }
     },
@@ -12946,6 +13666,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法輸入「%@」。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ не можа да бъде импортиран."
           }
         }
       }
@@ -13054,6 +13780,12 @@
             "state" : "translated",
             "value" : "無法載入「%@」。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ не можа да бъде зареден."
+          }
         }
       }
     },
@@ -13160,6 +13892,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "解碼錯誤：%@"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грешка при декодиране: %@"
           }
         }
       }
@@ -13268,6 +14006,12 @@
             "state" : "translated",
             "value" : "無法找到「%@」的原始檔。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не беше намерен оригинален файл за „%@“."
+          }
         }
       }
     },
@@ -13374,6 +14118,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「%1$@」已經被「%2$@」命令使用。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%1$@“ вече се използва от командата „%2$@“."
           }
         }
       }
@@ -13482,6 +14232,12 @@
             "state" : "translated",
             "value" : "Shift鍵只可以與其他變更鍵搭配使用。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавишът Shift може да се използва само заедно с друг модифициращ клавиш."
+          }
         }
       }
     },
@@ -13588,6 +14344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "單個按鍵類型無法用作快捷鍵。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самостоятелен клавиш не е валиден пряк път."
           }
         }
       }
@@ -13696,6 +14458,12 @@
             "state" : "translated",
             "value" : "自訂快捷鍵不支援組合「%@」。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбинацията „%@“ не се поддържа за персонализиране на пряк път."
+          }
         }
       }
     },
@@ -13802,6 +14570,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "插入摘錄之後的插入點。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точката на вмъкване след вмъкване на фрагмента."
           }
         }
       }
@@ -13910,6 +14684,12 @@
             "state" : "translated",
             "value" : "所選的文字。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избраният текст."
+          }
         }
       }
     },
@@ -14016,6 +14796,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма"
           }
         }
       }
@@ -14125,6 +14911,12 @@
             "state" : "translated",
             "value" : "未知"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестно"
+          }
         }
       }
     },
@@ -14231,6 +15023,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "捨棄變更"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отхвърли промените"
           }
         }
       }
@@ -14340,6 +15138,12 @@
             "state" : "translated",
             "value" : "確定要捨棄你所作的更改並使用「%@」重新開啟文件嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сигурни ли сте, че искате да отхвърлите промените и да отворите отново документа с „%@“?"
+          }
         }
       }
     },
@@ -14447,6 +15251,12 @@
             "state" : "translated",
             "value" : "此文件有未儲存的變更。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът има незапазени промени."
+          }
         }
       }
     },
@@ -14548,6 +15358,12 @@
             "state" : "translated",
             "value" : "未命名"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неозаглавен"
+          }
         }
       }
     },
@@ -14648,6 +15464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未命名資料夾"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "неозаглавена папка"
           }
         }
       }
@@ -14756,6 +15578,12 @@
             "state" : "translated",
             "value" : "保留CotEditor編輯的版本"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запази версията на CotEditor"
+          }
         }
       }
     },
@@ -14862,6 +15690,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обнови"
           }
         }
       }
@@ -14970,6 +15804,12 @@
             "state" : "translated",
             "value" : "你要保留CotEditor的版本，還是將其更新到修改後的版本？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да запазите версията на CotEditor или да я актуализирате до модифицираната версия?"
+          }
         }
       }
     },
@@ -15077,6 +15917,12 @@
             "state" : "translated",
             "value" : "其他應用程式已對此檔案進行修改。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът е променен от друго приложение."
+          }
         }
       }
     },
@@ -15183,6 +16029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他應用程式已對此檔案進行修改。CotEditor中亦有尚未儲存的變更。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът е променен от друго приложение. Има и незапазени промени в CotEditor."
           }
         }
       }

@@ -417,6 +417,30 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерена е %lld команда"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %lld команди"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Няма намерени команди"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -518,6 +542,12 @@
             "state" : "translated",
             "value" : "指令"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
+          }
         }
       }
     },
@@ -617,6 +647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "快速動作"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бързи действия"
           }
         }
       }
@@ -718,6 +754,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт"
           }
         }
       }

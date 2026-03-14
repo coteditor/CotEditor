@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "關閉"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затвори"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "偵測失敗"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разпознаването е неуспешно"
           }
         }
       }
@@ -300,6 +312,12 @@
             "state" : "translated",
             "value" : "插入"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкни"
+          }
         }
       }
     },
@@ -399,6 +417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未偵測到文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма открит текст"
           }
         }
       }

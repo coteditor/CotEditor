@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "Classic Mac OS"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Класически Mac OS"
+          }
         }
       }
     },
@@ -200,6 +206,12 @@
             "state" : "translated",
             "value" : "Windows"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
         }
       }
     },
@@ -297,6 +309,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS / Unix"
@@ -403,6 +421,12 @@
             "state" : "translated",
             "value" : "Unix Line Separator"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител на редове в Unix"
+          }
         }
       }
     },
@@ -505,6 +529,12 @@
             "state" : "translated",
             "value" : "Unix Next Line"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следващ ред в Unix"
+          }
         }
       }
     },
@@ -606,6 +636,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix Paragraph Separator"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител на абзаци в Unix"
           }
         }
       }

@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "刪除規則"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтриване на правила"
+          }
         }
       }
     },
@@ -199,6 +205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯規則"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране на правило"
           }
         }
       }
@@ -308,6 +320,12 @@
             "state" : "translated",
             "value" : "選擇CotEditor取代定義檔或TSV（定位符號分隔值）檔案。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете файлове на CotEditor Replace Definition или TSV (стойности, разделени с табулация)."
+          }
         }
       }
     },
@@ -408,6 +426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "插入規則"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на правило"
           }
         }
       }
@@ -510,6 +534,12 @@
             "state" : "translated",
             "value" : "移動規則"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правила за преместване"
+          }
         }
       }
     },
@@ -610,6 +640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "多重取代"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множествена замяна"
           }
         }
       }
@@ -717,6 +753,12 @@
             "state" : "translated",
             "value" : "重新載入全部定義"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Презареди всички дефиниции"
+          }
         }
       }
     },
@@ -817,6 +859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "側邊欄"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Странична лента"
           }
         }
       }

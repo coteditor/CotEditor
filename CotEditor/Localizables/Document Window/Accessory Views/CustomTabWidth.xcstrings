@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "定位符號間隔闊度："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина на табулацията:"
+          }
         }
       }
     }

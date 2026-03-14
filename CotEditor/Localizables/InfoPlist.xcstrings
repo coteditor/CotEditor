@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "AWK程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AWK скрипт"
+          }
         }
       }
     },
@@ -197,6 +203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BibTeX文獻目錄"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BibTeX библиография"
           }
         }
       }
@@ -298,6 +310,12 @@
             "state" : "translated",
             "value" : "C標題碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C заглавка"
+          }
         }
       }
     },
@@ -397,6 +415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C原始碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C източник"
           }
         }
       }
@@ -498,6 +522,12 @@
             "state" : "translated",
             "value" : "C#原始碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C# източник"
+          }
         }
       }
     },
@@ -597,6 +627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C++標題碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++ заглавка"
           }
         }
       }
@@ -698,6 +734,12 @@
             "state" : "translated",
             "value" : "C++原始碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++ източник"
+          }
         }
       }
     },
@@ -798,6 +840,12 @@
             "state" : "translated",
             "value" : "CSS樣式表"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каскаден стилов лист"
+          }
         }
       }
     },
@@ -886,6 +934,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "CotEditor"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "CotEditor"
           }
         }
@@ -997,6 +1051,12 @@
             "state" : "translated",
             "value" : "Cot editor"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор на детско легло"
+          }
         }
       }
     },
@@ -1096,6 +1156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定檔"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфигурация"
           }
         }
       }
@@ -1197,6 +1263,12 @@
             "state" : "translated",
             "value" : "CotEditor取代定義檔"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Замени дефиницията"
+          }
         }
       }
     },
@@ -1297,6 +1369,12 @@
             "state" : "translated",
             "value" : "CotEditor設定封存檔"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Архив на настройките"
+          }
         }
       }
     },
@@ -1342,6 +1420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Синтаксис"
           }
         }
       }
@@ -1443,6 +1527,12 @@
             "state" : "translated",
             "value" : "CotEditor主題"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Тема"
+          }
         }
       }
     },
@@ -1542,6 +1632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "D原始碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D източник"
           }
         }
       }
@@ -1643,6 +1739,12 @@
             "state" : "translated",
             "value" : "Dart程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дартс скрипт"
+          }
         }
       }
     },
@@ -1742,6 +1844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diff"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "разл"
           }
         }
       }
@@ -1843,6 +1951,12 @@
             "state" : "translated",
             "value" : "Fortran原始碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Fortran"
+          }
         }
       }
     },
@@ -1942,6 +2056,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Go程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go скрипт"
           }
         }
       }
@@ -2043,6 +2163,12 @@
             "state" : "translated",
             "value" : "Haskell程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хаскел скрипт"
+          }
         }
       }
     },
@@ -2143,6 +2269,12 @@
             "state" : "translated",
             "value" : "HTML文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTML документ"
+          }
         }
       }
     },
@@ -2239,6 +2371,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "INI"
@@ -2343,6 +2481,12 @@
             "state" : "translated",
             "value" : "Java原始碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Java"
+          }
         }
       }
     },
@@ -2439,6 +2583,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "JavaScript"
@@ -2543,6 +2693,12 @@
             "state" : "translated",
             "value" : "JSON文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON документ"
+          }
         }
       }
     },
@@ -2642,6 +2798,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Julia程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сценарият на Джулия"
           }
         }
       }
@@ -2743,6 +2905,12 @@
             "state" : "translated",
             "value" : "Kotlin程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Котлин скрипт"
+          }
         }
       }
     },
@@ -2842,6 +3010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lisp程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisp скрипт"
           }
         }
       }
@@ -2943,6 +3117,12 @@
             "state" : "translated",
             "value" : "Lua程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lua скрипт"
+          }
         }
       }
     },
@@ -3043,6 +3223,12 @@
             "state" : "translated",
             "value" : "Markdown文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markdown документ"
+          }
         }
       }
     },
@@ -3142,6 +3328,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mojo程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mojo скрипт"
           }
         }
       }
@@ -3251,6 +3443,12 @@
             "state" : "translated",
             "value" : "CotEditor需要你的批准才能使用AppleScript控制其他應用程式。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor се нуждае от вашето одобрение, за да контролира други приложения с AppleScript."
+          }
         }
       }
     },
@@ -3261,6 +3459,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp"
           }
         }
@@ -3364,6 +3568,12 @@
             "state" : "translated",
             "value" : "Perl程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perl скрипт"
+          }
         }
       }
     },
@@ -3463,6 +3673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PHP程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PHP скрипт"
           }
         }
       }
@@ -3564,6 +3780,12 @@
             "state" : "translated",
             "value" : "純文字文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обикновен текстов документ"
+          }
         }
       }
     },
@@ -3663,6 +3885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Python程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python скрипт"
           }
         }
       }
@@ -3764,6 +3992,12 @@
             "state" : "translated",
             "value" : "reStructured文字文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реструктуриран текстов документ"
+          }
         }
       }
     },
@@ -3863,6 +4097,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ruby程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruby скрипт"
           }
         }
       }
@@ -3964,6 +4204,12 @@
             "state" : "translated",
             "value" : "Rust程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust скрипт"
+          }
         }
       }
     },
@@ -4063,6 +4309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scala原始碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Scala"
           }
         }
       }
@@ -4164,6 +4416,12 @@
             "state" : "translated",
             "value" : "可變式向量圖形"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мащабируема векторна графика"
+          }
         }
       }
     },
@@ -4263,6 +4521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scheme程式碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт на схема"
           }
         }
       }
@@ -4364,6 +4628,12 @@
             "state" : "translated",
             "value" : "Shell程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell скрипт"
+          }
         }
       }
     },
@@ -4463,6 +4733,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SQL原始碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SQL източник"
           }
         }
       }
@@ -4564,6 +4840,12 @@
             "state" : "translated",
             "value" : "Swift原始碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бърз източник"
+          }
         }
       }
     },
@@ -4663,6 +4945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TeX文件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TeX документ"
           }
         }
       }
@@ -4764,6 +5052,12 @@
             "state" : "translated",
             "value" : "Textile文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстилен документ"
+          }
         }
       }
     },
@@ -4864,6 +5158,12 @@
             "state" : "translated",
             "value" : "TOML文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOML документ"
+          }
         }
       }
     },
@@ -4960,6 +5260,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UUID"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "UUID"
@@ -5064,6 +5370,12 @@
             "state" : "translated",
             "value" : "Verilog原始碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Verilog"
+          }
         }
       }
     },
@@ -5163,6 +5475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "VHDL原始碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VHDL източник"
           }
         }
       }
@@ -5264,6 +5582,12 @@
             "state" : "translated",
             "value" : "XML文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XML документ"
+          }
         }
       }
     },
@@ -5363,6 +5687,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "YAML文件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YAML документ"
           }
         }
       }

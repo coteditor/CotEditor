@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "阿德拉姆文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Адлам"
+          }
         }
       }
     },
@@ -197,6 +203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "愛琴海數字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Егейски числа"
           }
         }
       }
@@ -298,6 +310,12 @@
             "state" : "translated",
             "value" : "阿洪姆文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ахом"
+          }
         }
       }
     },
@@ -397,6 +415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "鍊金術符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алхимични символи"
           }
         }
       }
@@ -498,6 +522,12 @@
             "state" : "translated",
             "value" : "字母顯示形式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Азбучни форми за представяне"
+          }
         }
       }
     },
@@ -597,6 +627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "安納托利亞象形文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анатолийски йероглифи"
           }
         }
       }
@@ -698,6 +734,12 @@
             "state" : "translated",
             "value" : "古希臘樂譜符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древногръцка музикална нотация"
+          }
         }
       }
     },
@@ -797,6 +839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "古希臘數字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древногръцки числа"
           }
         }
       }
@@ -898,6 +946,12 @@
             "state" : "translated",
             "value" : "古代符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Древни символи"
+          }
         }
       }
     },
@@ -997,6 +1051,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабски"
           }
         }
       }
@@ -1098,6 +1158,12 @@
             "state" : "translated",
             "value" : "阿拉伯文延伸-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабски, разширение A"
+          }
         }
       }
     },
@@ -1197,6 +1263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯文延伸-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабски, разширение B"
           }
         }
       }
@@ -1298,6 +1370,12 @@
             "state" : "translated",
             "value" : "阿拉伯文延伸-C"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабски, разширение C"
+          }
         }
       }
     },
@@ -1397,6 +1475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯文數學字母符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабски математически азбучни символи"
           }
         }
       }
@@ -1498,6 +1582,12 @@
             "state" : "translated",
             "value" : "阿拉伯顯示形式-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабски форми за представяне-A"
+          }
         }
       }
     },
@@ -1597,6 +1687,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿拉伯顯示形式-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабски форми за представяне-B"
           }
         }
       }
@@ -1698,6 +1794,12 @@
             "state" : "translated",
             "value" : "阿拉伯文補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към арабската писменост"
+          }
         }
       }
     },
@@ -1797,6 +1899,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "亞美尼亞文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арменски"
           }
         }
       }
@@ -1898,6 +2006,12 @@
             "state" : "translated",
             "value" : "箭嘴"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стрелки"
+          }
         }
       }
     },
@@ -1997,6 +2111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "阿維斯陀文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авестан"
           }
         }
       }
@@ -2098,6 +2218,12 @@
             "state" : "translated",
             "value" : "峇里文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Балинесе"
+          }
         }
       }
     },
@@ -2197,6 +2323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴姆穆文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бамум"
           }
         }
       }
@@ -2298,6 +2430,12 @@
             "state" : "translated",
             "value" : "巴姆穆文補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бамум допълнение"
+          }
         }
       }
     },
@@ -2397,6 +2535,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "基本拉丁文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основна латиница"
           }
         }
       }
@@ -2498,6 +2642,12 @@
             "state" : "translated",
             "value" : "巴薩文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Басса Вах"
+          }
         }
       }
     },
@@ -2597,6 +2747,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴塔克文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Батак"
           }
         }
       }
@@ -2698,6 +2854,12 @@
             "state" : "translated",
             "value" : "孟加拉文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бенгалски"
+          }
         }
       }
     },
@@ -2797,6 +2959,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拜克舒基文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бхаиксуки"
           }
         }
       }
@@ -2898,6 +3066,12 @@
             "state" : "translated",
             "value" : "區塊元件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блокови елементи"
+          }
         }
       }
     },
@@ -2997,6 +3171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "漢語注音符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бопомофо"
           }
         }
       }
@@ -3098,6 +3278,12 @@
             "state" : "translated",
             "value" : "漢語注音符號延伸"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бопомофо разширение"
+          }
         }
       }
     },
@@ -3197,6 +3383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "製表符"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рамки и линии"
           }
         }
       }
@@ -3298,6 +3490,12 @@
             "state" : "translated",
             "value" : "婆羅米文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брахми"
+          }
         }
       }
     },
@@ -3397,6 +3595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "點字模式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брайлови шаблони"
           }
         }
       }
@@ -3498,6 +3702,12 @@
             "state" : "translated",
             "value" : "布吉文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бугинесе"
+          }
         }
       }
     },
@@ -3597,6 +3807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "布錫文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бухид"
           }
         }
       }
@@ -3698,6 +3914,12 @@
             "state" : "translated",
             "value" : "拜占庭音樂符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Византийски музикални символи"
+          }
         }
       }
     },
@@ -3797,6 +4019,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "卡里亞文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кариан"
           }
         }
       }
@@ -3898,6 +4126,12 @@
             "state" : "translated",
             "value" : "高加索阿爾巴尼亞語"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каукасиан Албаниан"
+          }
         }
       }
     },
@@ -3997,6 +4231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "查克馬文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чакма"
           }
         }
       }
@@ -4098,6 +4338,12 @@
             "state" : "translated",
             "value" : "占文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чам"
+          }
         }
       }
     },
@@ -4197,6 +4443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "柴羅基文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чероки"
           }
         }
       }
@@ -4298,6 +4550,12 @@
             "state" : "translated",
             "value" : "柴羅基文補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чероки допълнение"
+          }
         }
       }
     },
@@ -4397,6 +4655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "棋符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шахматни символи"
           }
         }
       }
@@ -4498,6 +4762,12 @@
             "state" : "translated",
             "value" : "花剌子模文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чорасмиан"
+          }
         }
       }
     },
@@ -4597,6 +4867,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓相容"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кджк съвместимост"
           }
         }
       }
@@ -4698,6 +4974,12 @@
             "state" : "translated",
             "value" : "中日韓相容格式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форми за съвместимост CJK"
+          }
         }
       }
     },
@@ -4797,6 +5079,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓相容表意文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идеограми за съвместимост CJK"
           }
         }
       }
@@ -4898,6 +5186,12 @@
             "state" : "translated",
             "value" : "中日韓相容表意文字補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идеограми за съвместимост CJK, допълнение"
+          }
         }
       }
     },
@@ -4997,6 +5291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓部首補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към радикалите CJK"
           }
         }
       }
@@ -5098,6 +5398,12 @@
             "state" : "translated",
             "value" : "中日韓筆劃"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щрихи CJK"
+          }
         }
       }
     },
@@ -5197,6 +5503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓符號和標點符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи и пунктуация CJK"
           }
         }
       }
@@ -5298,6 +5610,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK"
+          }
         }
       }
     },
@@ -5397,6 +5715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸A"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение A"
           }
         }
       }
@@ -5498,6 +5822,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸B"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение B"
+          }
         }
       }
     },
@@ -5597,6 +5927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸C"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение C"
           }
         }
       }
@@ -5698,6 +6034,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸D"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение D"
+          }
         }
       }
     },
@@ -5797,6 +6139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸E"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение E"
           }
         }
       }
@@ -5898,6 +6246,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸F"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение F"
+          }
         }
       }
     },
@@ -5997,6 +6351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸G"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение G"
           }
         }
       }
@@ -6098,6 +6458,12 @@
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸H"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение H"
+          }
         }
       }
     },
@@ -6197,6 +6563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中日韓統一表意文字延伸I"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение I"
           }
         }
       }
@@ -6298,6 +6670,12 @@
             "state" : "translated",
             "value" : "組合的變音符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбиниращи диакритични знаци"
+          }
         }
       }
     },
@@ -6397,6 +6775,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "組合的變音符號延伸"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени комбиниращи диакритични знаци"
           }
         }
       }
@@ -6498,6 +6882,12 @@
             "state" : "translated",
             "value" : "組合的變音符號標記"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбиниращи диакритични знаци за символи"
+          }
         }
       }
     },
@@ -6597,6 +6987,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "組合的變音符號補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към комбиниращите диакритични знаци"
           }
         }
       }
@@ -6698,6 +7094,12 @@
             "state" : "translated",
             "value" : "組合的半標記"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбининг половин знаци"
+          }
         }
       }
     },
@@ -6797,6 +7199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般印度數字形式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общи индийски число форми"
           }
         }
       }
@@ -6898,6 +7306,12 @@
             "state" : "translated",
             "value" : "控制圖片"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контролни изображения"
+          }
         }
       }
     },
@@ -6997,6 +7411,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "科普特文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коптски"
           }
         }
       }
@@ -7098,6 +7518,12 @@
             "state" : "translated",
             "value" : "科普特文閏餘數字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коптик Епакт числа"
+          }
         }
       }
     },
@@ -7197,6 +7623,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "算籌數字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Броеве с пръчки"
           }
         }
       }
@@ -7298,6 +7730,12 @@
             "state" : "translated",
             "value" : "楔形文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клинопис"
+          }
         }
       }
     },
@@ -7397,6 +7835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "楔形文字數字和標點符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кунеиформ числа и пунктуация"
           }
         }
       }
@@ -7498,6 +7942,12 @@
             "state" : "translated",
             "value" : "貨幣符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Валутни символи"
+          }
         }
       }
     },
@@ -7597,6 +8047,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "賽浦雷特字音表"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кипърска сричкова писменост"
           }
         }
       }
@@ -7698,6 +8154,12 @@
             "state" : "translated",
             "value" : "塞浦路斯-米諾斯文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кйпро-Миноан"
+          }
         }
       }
     },
@@ -7797,6 +8259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西里爾字母"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кирилица"
           }
         }
       }
@@ -7898,6 +8366,12 @@
             "state" : "translated",
             "value" : "西里爾字母延伸-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кирилица, разширение A"
+          }
         }
       }
     },
@@ -7997,6 +8471,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西里爾字母延伸-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кирилица, разширение B"
           }
         }
       }
@@ -8098,6 +8578,12 @@
             "state" : "translated",
             "value" : "西里爾字母延伸-C"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кирилица, разширение C"
+          }
         }
       }
     },
@@ -8197,6 +8683,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西里爾字母延伸-D"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кирилица, разширение D"
           }
         }
       }
@@ -8298,6 +8790,12 @@
             "state" : "translated",
             "value" : "西里爾字母補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към кирилицата"
+          }
         }
       }
     },
@@ -8397,6 +8895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "德瑟雷特文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дезерет"
           }
         }
       }
@@ -8498,6 +9002,12 @@
             "state" : "translated",
             "value" : "天城文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Деванагари"
+          }
         }
       }
     },
@@ -8597,6 +9107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "天城文延伸"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Деванагари разширение"
           }
         }
       }
@@ -8698,6 +9214,12 @@
             "state" : "translated",
             "value" : "天城文延伸-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Деванагари разширение-А"
+          }
         }
       }
     },
@@ -8797,6 +9319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dingbats"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дингбати"
           }
         }
       }
@@ -8898,6 +9426,12 @@
             "state" : "translated",
             "value" : "迪維斯阿庫魯文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дивес Акуру"
+          }
         }
       }
     },
@@ -8997,6 +9531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "多格拉文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Догра"
           }
         }
       }
@@ -9098,6 +9638,12 @@
             "state" : "translated",
             "value" : "西洋骨牌牌面"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Домино Тилес"
+          }
         }
       }
     },
@@ -9197,6 +9743,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "杜普盧耶速記符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дуплоян"
           }
         }
       }
@@ -9298,6 +9850,12 @@
             "state" : "translated",
             "value" : "古王朝楔形文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еарлй Дйнастик Кунеиформ"
+          }
         }
       }
     },
@@ -9397,6 +9955,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "埃及象形文字格式控制項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Егйптиан Хиероглйф Формат Контролс"
           }
         }
       }
@@ -9498,6 +10062,12 @@
             "state" : "translated",
             "value" : "埃及象形文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Егйптиан Хиероглйфс"
+          }
         }
       }
     },
@@ -9597,6 +10167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "埃及象形文字延伸-A"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Егйптиан Хиероглйфс разширение-А"
           }
         }
       }
@@ -9698,6 +10274,12 @@
             "state" : "translated",
             "value" : "愛爾巴桑文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Елбасан"
+          }
         }
       }
     },
@@ -9797,6 +10379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "埃利邁文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Елймаик"
           }
         }
       }
@@ -9898,6 +10486,12 @@
             "state" : "translated",
             "value" : "表情符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Емотикони"
+          }
         }
       }
     },
@@ -9997,6 +10591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "框住的英數補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към оградените буквено-цифрови знаци"
           }
         }
       }
@@ -10098,6 +10698,12 @@
             "state" : "translated",
             "value" : "框住的英數字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оградени Алфанумерикс"
+          }
         }
       }
     },
@@ -10197,6 +10803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "框住的中日韓字母和月份"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оградени букви и месеци CJK"
           }
         }
       }
@@ -10298,6 +10910,12 @@
             "state" : "translated",
             "value" : "框住的表意文字補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към оградените идеографски знаци"
+          }
         }
       }
     },
@@ -10397,6 +11015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "衣索比亞文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Етиопски"
           }
         }
       }
@@ -10498,6 +11122,12 @@
             "state" : "translated",
             "value" : "衣索比亞文延伸"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Етиопик разширение"
+          }
         }
       }
     },
@@ -10597,6 +11227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "衣索比亞文延伸-A"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Етиопик разширение-А"
           }
         }
       }
@@ -10698,6 +11334,12 @@
             "state" : "translated",
             "value" : "衣索比亞文延伸-B"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Етиопик разширение-Б"
+          }
         }
       }
     },
@@ -10797,6 +11439,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "衣索比亞文補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Етиопик допълнение"
           }
         }
       }
@@ -10898,6 +11546,12 @@
             "state" : "translated",
             "value" : "加雷字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гарай"
+          }
         }
       }
     },
@@ -10997,6 +11651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般標點符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обща пунктуация"
           }
         }
       }
@@ -11098,6 +11758,12 @@
             "state" : "translated",
             "value" : "幾何形狀"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Геометрични фигури"
+          }
         }
       }
     },
@@ -11197,6 +11863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "幾何形狀延伸"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени геометрични фигури"
           }
         }
       }
@@ -11298,6 +11970,12 @@
             "state" : "translated",
             "value" : "格魯吉亞文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грузински"
+          }
         }
       }
     },
@@ -11397,6 +12075,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "格魯吉亞文擴充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Георгиан разширение"
           }
         }
       }
@@ -11498,6 +12182,12 @@
             "state" : "translated",
             "value" : "格魯吉亞文補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Георгиан допълнение"
+          }
         }
       }
     },
@@ -11597,6 +12287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "格拉哥里文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глаголица"
           }
         }
       }
@@ -11698,6 +12394,12 @@
             "state" : "translated",
             "value" : "格拉哥里文補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глаголитик допълнение"
+          }
         }
       }
     },
@@ -11797,6 +12499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "歌德文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готски"
           }
         }
       }
@@ -11898,6 +12606,12 @@
             "state" : "translated",
             "value" : "帕拉瓦文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гранта"
+          }
         }
       }
     },
@@ -11997,6 +12711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "希臘和科普替文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гръцки и коптски"
           }
         }
       }
@@ -12098,6 +12818,12 @@
             "state" : "translated",
             "value" : "希臘文延伸"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гръцки, разширение"
+          }
         }
       }
     },
@@ -12197,6 +12923,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "古吉拉特文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гуджарати"
           }
         }
       }
@@ -12298,6 +13030,12 @@
             "state" : "translated",
             "value" : "貢賈拉貢德文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гунджала Гонди"
+          }
         }
       }
     },
@@ -12397,6 +13135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "古木基文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гурмукхи"
           }
         }
       }
@@ -12498,6 +13242,12 @@
             "state" : "translated",
             "value" : "古隆凱瑪文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гурунг Хема"
+          }
         }
       }
     },
@@ -12597,6 +13347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "半形與全形格式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полуширинни и пълноширинни форми"
           }
         }
       }
@@ -12698,6 +13454,12 @@
             "state" : "translated",
             "value" : "韓文相容字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангул съвместимост Джамо"
+          }
         }
       }
     },
@@ -12797,6 +13559,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "韓文字母"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангул Джамо"
           }
         }
       }
@@ -12898,6 +13666,12 @@
             "state" : "translated",
             "value" : "韓文字母延伸-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангул Джамо разширение-А"
+          }
         }
       }
     },
@@ -12997,6 +13771,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "韓文字母延伸-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангул Джамо разширение-Б"
           }
         }
       }
@@ -13098,6 +13878,12 @@
             "state" : "translated",
             "value" : "韓文音節"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангул Сйллаблес"
+          }
         }
       }
     },
@@ -13197,6 +13983,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "哈乃斐羅興亞文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ханифи рохингия"
           }
         }
       }
@@ -13298,6 +14090,12 @@
             "state" : "translated",
             "value" : "漢奴奴"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хануну"
+          }
         }
       }
     },
@@ -13397,6 +14195,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "哈拉特文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хатран"
           }
         }
       }
@@ -13498,6 +14302,12 @@
             "state" : "translated",
             "value" : "希伯來文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иврит"
+          }
         }
       }
     },
@@ -13597,6 +14407,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高位專用代理"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хигх частна употреба Суррогатес"
           }
         }
       }
@@ -13698,6 +14514,12 @@
             "state" : "translated",
             "value" : "高位代理"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хигх Суррогатес"
+          }
         }
       }
     },
@@ -13797,6 +14619,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "平假名"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хирагана"
           }
         }
       }
@@ -13898,6 +14726,12 @@
             "state" : "translated",
             "value" : "表意文字描述字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идеографик Деск. Чарактерс"
+          }
         }
       }
     },
@@ -13997,6 +14831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "表意文字符號和標點符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идеографик символи и пунктуация"
           }
         }
       }
@@ -14098,6 +14938,12 @@
             "state" : "translated",
             "value" : "皇室阿拉姆文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Империал Арамаик"
+          }
         }
       }
     },
@@ -14197,6 +15043,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "印度西亞格數字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Индийски Сияк числа"
           }
         }
       }
@@ -14298,6 +15150,12 @@
             "state" : "translated",
             "value" : "巴拉維碑銘體"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инскриптионал Пахлави"
+          }
         }
       }
     },
@@ -14397,6 +15255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "帕提亞碑銘體"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инскриптионал Партиан"
           }
         }
       }
@@ -14498,6 +15362,12 @@
             "state" : "translated",
             "value" : "IPA延伸"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ипа Екстенсионс"
+          }
         }
       }
     },
@@ -14597,6 +15467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "爪哇文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Джаванесе"
           }
         }
       }
@@ -14698,6 +15574,12 @@
             "state" : "translated",
             "value" : "凱提體"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каити"
+          }
         }
       }
     },
@@ -14797,6 +15679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "卡克托維克數字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кактовик числа"
           }
         }
       }
@@ -14898,6 +15786,12 @@
             "state" : "translated",
             "value" : "假名延伸-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кана разширение-А"
+          }
         }
       }
     },
@@ -14997,6 +15891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "假名延伸-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кана разширение-Б"
           }
         }
       }
@@ -15098,6 +15998,12 @@
             "state" : "translated",
             "value" : "假名補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кана допълнение"
+          }
         }
       }
     },
@@ -15197,6 +16103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "漢字批註"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Канбун"
           }
         }
       }
@@ -15298,6 +16210,12 @@
             "state" : "translated",
             "value" : "康熙部首"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кангкси Радикалс"
+          }
         }
       }
     },
@@ -15397,6 +16315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "坎納達文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каннада"
           }
         }
       }
@@ -15498,6 +16422,12 @@
             "state" : "translated",
             "value" : "片假名"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Катакана"
+          }
         }
       }
     },
@@ -15597,6 +16527,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "片假名語音延伸"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Катакана Фонетик Екстенсионс"
           }
         }
       }
@@ -15698,6 +16634,12 @@
             "state" : "translated",
             "value" : "卡維文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кауи"
+          }
         }
       }
     },
@@ -15797,6 +16739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "克耶李文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каях Ли"
           }
         }
       }
@@ -15898,6 +16846,12 @@
             "state" : "translated",
             "value" : "佉盧文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Харощхи"
+          }
         }
       }
     },
@@ -15997,6 +16951,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "契丹小字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хитан Смалл Скрипт"
           }
         }
       }
@@ -16098,6 +17058,12 @@
             "state" : "translated",
             "value" : "高棉文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхмерски"
+          }
         }
       }
     },
@@ -16197,6 +17163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高棉符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хмер символи"
           }
         }
       }
@@ -16298,6 +17270,12 @@
             "state" : "translated",
             "value" : "和卓文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ходжки"
+          }
         }
       }
     },
@@ -16398,6 +17376,12 @@
             "state" : "translated",
             "value" : "胡達巴德文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Худауади"
+          }
         }
       }
     },
@@ -16407,6 +17391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "基拉特拉伊文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кират Раи"
           }
         }
       }
@@ -16508,6 +17498,12 @@
             "state" : "translated",
             "value" : "老撾文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лаоски"
+          }
         }
       }
     },
@@ -16607,6 +17603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸附加文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латин разширение Аддитионал"
           }
         }
       }
@@ -16708,6 +17710,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латиница, разширение A"
+          }
         }
       }
     },
@@ -16807,6 +17815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латиница, разширение B"
           }
         }
       }
@@ -16908,6 +17922,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-C"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латиница, разширение C"
+          }
         }
       }
     },
@@ -17007,6 +18027,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸-D"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латиница, разширение D"
           }
         }
       }
@@ -17108,6 +18134,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-E"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латиница, разширение E"
+          }
         }
       }
     },
@@ -17207,6 +18239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拉丁延伸-F"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латиница, разширение F"
           }
         }
       }
@@ -17308,6 +18346,12 @@
             "state" : "translated",
             "value" : "拉丁延伸-G"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латиница, разширение G"
+          }
         }
       }
     },
@@ -17407,6 +18451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin-1補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнителна латиница-1"
           }
         }
       }
@@ -17508,6 +18558,12 @@
             "state" : "translated",
             "value" : "雷布查語"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лепча"
+          }
         }
       }
     },
@@ -17607,6 +18663,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "類字母符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Леттерлике символи"
           }
         }
       }
@@ -17708,6 +18770,12 @@
             "state" : "translated",
             "value" : "林布文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лимбу"
+          }
         }
       }
     },
@@ -17807,6 +18875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "線性A"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линеар А"
           }
         }
       }
@@ -17908,6 +18982,12 @@
             "state" : "translated",
             "value" : "線性B表意文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линеар Б Идеограмс"
+          }
         }
       }
     },
@@ -18007,6 +19087,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "線性B音節"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линеар Б Сйллабарй"
           }
         }
       }
@@ -18108,6 +19194,12 @@
             "state" : "translated",
             "value" : "僳語"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лису"
+          }
         }
       }
     },
@@ -18207,6 +19299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "傈僳文補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лису допълнение"
           }
         }
       }
@@ -18308,6 +19406,12 @@
             "state" : "translated",
             "value" : "低位代理"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лоу Суррогатес"
+          }
         }
       }
     },
@@ -18407,6 +19511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "呂基亞文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лйкиан"
           }
         }
       }
@@ -18508,6 +19618,12 @@
             "state" : "translated",
             "value" : "利底安文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лйдиан"
+          }
         }
       }
     },
@@ -18607,6 +19723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "馬拉加尼文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Махаджани"
           }
         }
       }
@@ -18708,6 +19830,12 @@
             "state" : "translated",
             "value" : "麻將牌面"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Махджонг Тилес"
+          }
         }
       }
     },
@@ -18807,6 +19935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "錫江"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Макасар"
           }
         }
       }
@@ -18908,6 +20042,12 @@
             "state" : "translated",
             "value" : "馬來亞拉姆文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малаялам"
+          }
         }
       }
     },
@@ -19007,6 +20147,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "曼達安文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мандаик"
           }
         }
       }
@@ -19108,6 +20254,12 @@
             "state" : "translated",
             "value" : "摩尼字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маничаеан"
+          }
         }
       }
     },
@@ -19207,6 +20359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "瑪欽文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Марчен"
           }
         }
       }
@@ -19308,6 +20466,12 @@
             "state" : "translated",
             "value" : "馬薩拉姆貢德文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Масарам Гонди"
+          }
         }
       }
     },
@@ -19407,6 +20571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "數學英數符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Математически Алфанумерик символи"
           }
         }
       }
@@ -19508,6 +20678,12 @@
             "state" : "translated",
             "value" : "數學運算子"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Математикал оператори"
+          }
         }
       }
     },
@@ -19607,6 +20783,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "馬雅數字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маян числа"
           }
         }
       }
@@ -19708,6 +20890,12 @@
             "state" : "translated",
             "value" : "梅德法伊德林文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Медефаидрин"
+          }
         }
       }
     },
@@ -19807,6 +20995,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "曼尼普爾文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Митеи Майек"
           }
         }
       }
@@ -19908,6 +21102,12 @@
             "state" : "translated",
             "value" : "曼尼普爾文延伸"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Митеи Майек Екстенсионс"
+          }
         }
       }
     },
@@ -20007,6 +21207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "圖拉伊門德字母"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Менде Кикакуи"
           }
         }
       }
@@ -20108,6 +21314,12 @@
             "state" : "translated",
             "value" : "麥羅埃文草體"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мероитик Курсиве"
+          }
         }
       }
     },
@@ -20207,6 +21419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "麥羅埃文象形文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мероитик Хиероглйфс"
           }
         }
       }
@@ -20308,6 +21526,12 @@
             "state" : "translated",
             "value" : "苗文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Миао"
+          }
         }
       }
     },
@@ -20407,6 +21631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "混合數學符號-A"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разни математически символи-А"
           }
         }
       }
@@ -20508,6 +21738,12 @@
             "state" : "translated",
             "value" : "混合數學符號-B"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разни математически символи-Б"
+          }
         }
       }
     },
@@ -20607,6 +21843,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разни символи"
           }
         }
       }
@@ -20708,6 +21950,12 @@
             "state" : "translated",
             "value" : "其他符號和箭嘴"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разни символи и стрелки"
+          }
         }
       }
     },
@@ -20807,6 +22055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他符號和象形文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разни символи Анд Пиктографс"
           }
         }
       }
@@ -20908,6 +22162,12 @@
             "state" : "translated",
             "value" : "其他技術"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разни Течникал"
+          }
         }
       }
     },
@@ -21007,6 +22267,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "摩迪文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моди"
           }
         }
       }
@@ -21108,6 +22374,12 @@
             "state" : "translated",
             "value" : "聲調修飾字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модифиер Тоне букви"
+          }
         }
       }
     },
@@ -21207,6 +22479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "蒙古文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Монголски"
           }
         }
       }
@@ -21308,6 +22586,12 @@
             "state" : "translated",
             "value" : "蒙古文補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Монголиан допълнение"
+          }
         }
       }
     },
@@ -21407,6 +22691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "繆文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мро"
           }
         }
       }
@@ -21508,6 +22798,12 @@
             "state" : "translated",
             "value" : "穆塔尼文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мултани"
+          }
         }
       }
     },
@@ -21607,6 +22903,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "音樂符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Музикални символи"
           }
         }
       }
@@ -21708,6 +23010,12 @@
             "state" : "translated",
             "value" : "緬甸文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мианмарски"
+          }
         }
       }
     },
@@ -21807,6 +23115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "緬甸文延伸-A"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мянмар разширение-А"
           }
         }
       }
@@ -21908,6 +23222,12 @@
             "state" : "translated",
             "value" : "緬甸文延伸-B"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мянмар разширение-Б"
+          }
         }
       }
     },
@@ -22007,6 +23327,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "緬甸文延伸-C"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мянмар разширение-К"
           }
         }
       }
@@ -22108,6 +23434,12 @@
             "state" : "translated",
             "value" : "西非書面語言（N’Ko）"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Н'ко"
+          }
         }
       }
     },
@@ -22207,6 +23539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "納巴泰字母"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Набатаеан"
           }
         }
       }
@@ -22308,6 +23646,12 @@
             "state" : "translated",
             "value" : "蒙達里文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наг Мундари"
+          }
         }
       }
     },
@@ -22407,6 +23751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "南迪那嘎黎文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нандинагари"
           }
         }
       }
@@ -22508,6 +23858,12 @@
             "state" : "translated",
             "value" : "新傣仂文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неу Таи Луе"
+          }
         }
       }
     },
@@ -22607,6 +23963,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尼瓦爾文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неуа"
           }
         }
       }
@@ -22708,6 +24070,12 @@
             "state" : "translated",
             "value" : "數字形式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Число форми"
+          }
         }
       }
     },
@@ -22807,6 +24175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "女書"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нушу"
           }
         }
       }
@@ -22908,6 +24282,12 @@
             "state" : "translated",
             "value" : "創世紀苗文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нйиакенг Пуачуе Хмонг"
+          }
         }
       }
     },
@@ -23007,6 +24387,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "歐甘文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Огам"
           }
         }
       }
@@ -23108,6 +24494,12 @@
             "state" : "translated",
             "value" : "桑塔利文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ол Чики"
+          }
         }
       }
     },
@@ -23117,6 +24509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "奧爾奧納爾文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ол Онал"
           }
         }
       }
@@ -23218,6 +24616,12 @@
             "state" : "translated",
             "value" : "古匈牙利文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Олд Хунгариан"
+          }
         }
       }
     },
@@ -23317,6 +24721,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "古意大利文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Староиталийски"
           }
         }
       }
@@ -23418,6 +24828,12 @@
             "state" : "translated",
             "value" : "古北阿拉伯文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Олд Норт Арабиан"
+          }
         }
       }
     },
@@ -23517,6 +24933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "古彼爾姆文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Олд Пермик"
           }
         }
       }
@@ -23618,6 +25040,12 @@
             "state" : "translated",
             "value" : "古波斯文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Староперсийски"
+          }
         }
       }
     },
@@ -23717,6 +25145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "古粟特字母"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Олд Согдиан"
           }
         }
       }
@@ -23818,6 +25252,12 @@
             "state" : "translated",
             "value" : "古南阿拉伯文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Олд Сут Арабиан"
+          }
         }
       }
     },
@@ -23917,6 +25357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "突厥語"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Олд Туркик"
           }
         }
       }
@@ -24018,6 +25464,12 @@
             "state" : "translated",
             "value" : "古維吾爾文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Олд Уйгхур"
+          }
         }
       }
     },
@@ -24117,6 +25569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "光學字元辨識"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оптикал Чарактер Рекогнитион"
           }
         }
       }
@@ -24218,6 +25676,12 @@
             "state" : "translated",
             "value" : "歐利亞文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ория"
+          }
         }
       }
     },
@@ -24317,6 +25781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修飾性Dingbats"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Орнаментал Дингбац"
           }
         }
       }
@@ -24418,6 +25888,12 @@
             "state" : "translated",
             "value" : "奧塞奇文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Осаге"
+          }
         }
       }
     },
@@ -24517,6 +25993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "奧斯曼亞文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Османя"
           }
         }
       }
@@ -24618,6 +26100,12 @@
             "state" : "translated",
             "value" : "奧斯曼西亞格數字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оттоман Сияк числа"
+          }
         }
       }
     },
@@ -24717,6 +26205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "楊松錄苗文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пахаух Хмонг"
           }
         }
       }
@@ -24818,6 +26312,12 @@
             "state" : "translated",
             "value" : "帕爾米拉字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Палмйрене"
+          }
         }
       }
     },
@@ -24917,6 +26417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "袍清豪文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пау Кин Хау"
           }
         }
       }
@@ -25018,6 +26524,12 @@
             "state" : "translated",
             "value" : "八思巴文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фагс-Па"
+          }
         }
       }
     },
@@ -25117,6 +26629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "費斯托斯泥圓盤文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фаистос Диск"
           }
         }
       }
@@ -25218,6 +26736,12 @@
             "state" : "translated",
             "value" : "腓尼基文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фоеникиан"
+          }
         }
       }
     },
@@ -25317,6 +26841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "語音延伸"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фонетик Екстенсионс"
           }
         }
       }
@@ -25418,6 +26948,12 @@
             "state" : "translated",
             "value" : "語音擴展補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фонетик Екстенсионс допълнение"
+          }
         }
       }
     },
@@ -25517,6 +27053,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "啤牌"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Плайинг Кардс"
           }
         }
       }
@@ -25618,6 +27160,12 @@
             "state" : "translated",
             "value" : "專用區域"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Частна употреба област"
+          }
         }
       }
     },
@@ -25717,6 +27265,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴列維文詩篇體"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Псалтер Пахлави"
           }
         }
       }
@@ -25818,6 +27372,12 @@
             "state" : "translated",
             "value" : "勒姜文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реджанг"
+          }
         }
       }
     },
@@ -25917,6 +27477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "魯米數字符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Руми Нумерал символи"
           }
         }
       }
@@ -26018,6 +27584,12 @@
             "state" : "translated",
             "value" : "古北歐文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рунически"
+          }
         }
       }
     },
@@ -26117,6 +27689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "薩馬利亞文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самаритан"
           }
         }
       }
@@ -26218,6 +27796,12 @@
             "state" : "translated",
             "value" : "索拉什特拉文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сауращра"
+          }
         }
       }
     },
@@ -26317,6 +27901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "沙拉達文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шарада"
           }
         }
       }
@@ -26418,6 +28008,12 @@
             "state" : "translated",
             "value" : "簫伯納文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шавиан"
+          }
         }
       }
     },
@@ -26517,6 +28113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "速記符號格式控制"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шортанд Формат Контролс"
           }
         }
       }
@@ -26618,6 +28220,12 @@
             "state" : "translated",
             "value" : "悉曇字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сиддхам"
+          }
         }
       }
     },
@@ -26717,6 +28325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "僧伽羅文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхалски"
           }
         }
       }
@@ -26818,6 +28432,12 @@
             "state" : "translated",
             "value" : "僧伽羅古數字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхала Арчаик числа"
+          }
         }
       }
     },
@@ -26917,6 +28537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "小寫格式變體"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малки вариантни форми"
           }
         }
       }
@@ -27018,6 +28644,12 @@
             "state" : "translated",
             "value" : "小型假名擴充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смалл Кана Екстенсион"
+          }
         }
       }
     },
@@ -27117,6 +28749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "粟特字母"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Согдиан"
           }
         }
       }
@@ -27218,6 +28856,12 @@
             "state" : "translated",
             "value" : "索拉桑朋文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сора Сомпенг"
+          }
         }
       }
     },
@@ -27317,6 +28961,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "索永布文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соьомбо"
           }
         }
       }
@@ -27418,6 +29068,12 @@
             "state" : "translated",
             "value" : "間隔修飾字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спакинг Модифиер букви"
+          }
         }
       }
     },
@@ -27517,6 +29173,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "特殊文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спекиалс"
           }
         }
       }
@@ -27618,6 +29280,12 @@
             "state" : "translated",
             "value" : "巽他文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунданесе"
+          }
         }
       }
     },
@@ -27717,6 +29385,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巽他文補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунданесе допълнение"
           }
         }
       }
@@ -27818,6 +29492,12 @@
             "state" : "translated",
             "value" : "蘇努瓦爾文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунууар"
+          }
         }
       }
     },
@@ -27917,6 +29597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "上標和下標"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Суперскрипц и Субскрипц"
           }
         }
       }
@@ -28018,6 +29704,12 @@
             "state" : "translated",
             "value" : "補充箭嘴-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнителни стрелки-A"
+          }
         }
       }
     },
@@ -28117,6 +29809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充箭嘴-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнителни стрелки-B"
           }
         }
       }
@@ -28218,6 +29916,12 @@
             "state" : "translated",
             "value" : "補充箭嘴-C"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнителни стрелки-C"
+          }
         }
       }
     },
@@ -28317,6 +30021,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充數學運算子"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Супплементал математически оператори"
           }
         }
       }
@@ -28418,6 +30128,12 @@
             "state" : "translated",
             "value" : "補充性標點符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнителна пунктуация"
+          }
         }
       }
     },
@@ -28517,6 +30233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充符號和象形文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Супплементал символи и Пиктографс"
           }
         }
       }
@@ -28618,6 +30340,12 @@
             "state" : "translated",
             "value" : "補充專用區域-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнителна област за частна употреба-A"
+          }
         }
       }
     },
@@ -28717,6 +30445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充專用區域-B"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнителна област за частна употреба-B"
           }
         }
       }
@@ -28818,6 +30552,12 @@
             "state" : "translated",
             "value" : "薩頓書寫符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Суттон Сигнуритинг"
+          }
         }
       }
     },
@@ -28917,6 +30657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "希洛弟納格里文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сйлоти Нагри"
           }
         }
       }
@@ -29018,6 +30764,12 @@
             "state" : "translated",
             "value" : "符號和象形文字延伸-A"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени символи и пиктограми-A"
+          }
         }
       }
     },
@@ -29118,6 +30870,12 @@
             "state" : "translated",
             "value" : "傳統運算符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи Фор Легакй Компутинг"
+          }
         }
       }
     },
@@ -29127,6 +30885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "傳統運算符號補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към символите за наследени компютърни системи"
           }
         }
       }
@@ -29228,6 +30992,12 @@
             "state" : "translated",
             "value" : "敘利亞文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сирийски"
+          }
         }
       }
     },
@@ -29327,6 +31097,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "敘利亞字母補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сйриак допълнение"
           }
         }
       }
@@ -29428,6 +31204,12 @@
             "state" : "translated",
             "value" : "塔加拉文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тагалог"
+          }
         }
       }
     },
@@ -29527,6 +31309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "塔加班瓦文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тагбануа"
           }
         }
       }
@@ -29628,6 +31416,12 @@
             "state" : "translated",
             "value" : "標籤"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тагс"
+          }
         }
       }
     },
@@ -29727,6 +31521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "台樂文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таи Ле"
           }
         }
       }
@@ -29828,6 +31628,12 @@
             "state" : "translated",
             "value" : "蘭納文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таи Там"
+          }
         }
       }
     },
@@ -29927,6 +31733,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "越南傣文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таи Виет"
           }
         }
       }
@@ -30028,6 +31840,12 @@
             "state" : "translated",
             "value" : "太玄經符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таи Ксуан Джинг символи"
+          }
         }
       }
     },
@@ -30127,6 +31945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "塔克里文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Такри"
           }
         }
       }
@@ -30228,6 +32052,12 @@
             "state" : "translated",
             "value" : "泰米爾文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тамилски"
+          }
         }
       }
     },
@@ -30327,6 +32157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "泰米爾文補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тамил допълнение"
           }
         }
       }
@@ -30428,6 +32264,12 @@
             "state" : "translated",
             "value" : "唐薩文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангса"
+          }
         }
       }
     },
@@ -30527,6 +32369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西夏文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангут"
           }
         }
       }
@@ -30628,6 +32476,12 @@
             "state" : "translated",
             "value" : "西夏文補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангут Компоненц"
+          }
         }
       }
     },
@@ -30727,6 +32581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西夏文補充"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангут допълнение"
           }
         }
       }
@@ -30828,6 +32688,12 @@
             "state" : "translated",
             "value" : "泰盧固文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Телугу"
+          }
         }
       }
     },
@@ -30927,6 +32793,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "塔安那文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таана"
           }
         }
       }
@@ -31028,6 +32900,12 @@
             "state" : "translated",
             "value" : "泰文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тайландски"
+          }
         }
       }
     },
@@ -31127,6 +33005,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "藏文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тибетски"
           }
         }
       }
@@ -31228,6 +33112,12 @@
             "state" : "translated",
             "value" : "提非納文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тифинагх"
+          }
         }
       }
     },
@@ -31327,6 +33217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "邁蒂利文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тирхута"
           }
         }
       }
@@ -31428,6 +33324,12 @@
             "state" : "translated",
             "value" : "托德里字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тодхри"
+          }
         }
       }
     },
@@ -31437,6 +33339,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toto"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тото"
           }
         }
       }
@@ -31538,6 +33446,12 @@
             "state" : "translated",
             "value" : "交通工具和地圖符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Транспорт Анд Мап символи"
+          }
         }
       }
     },
@@ -31637,6 +33551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "圖盧-提加拉文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тулу-Тигалари"
           }
         }
       }
@@ -31738,6 +33658,12 @@
             "state" : "translated",
             "value" : "烏加列文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Угаритик"
+          }
         }
       }
     },
@@ -31837,6 +33763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "統一加拿大原住民音符"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани сричкови знаци на канадските аборигени"
           }
         }
       }
@@ -31938,6 +33870,12 @@
             "state" : "translated",
             "value" : "統一加拿大原住民音符延伸"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени унифицирани сричкови знаци на канадските аборигени"
+          }
         }
       }
     },
@@ -32037,6 +33975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "統一加拿大原住民音符延伸-A"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени унифицирани сричкови знаци на канадските аборигени-A"
           }
         }
       }
@@ -32138,6 +34082,12 @@
             "state" : "translated",
             "value" : "瓦伊文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваи"
+          }
         }
       }
     },
@@ -32237,6 +34187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "變體選擇器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вариатион Селекторс"
           }
         }
       }
@@ -32338,6 +34294,12 @@
             "state" : "translated",
             "value" : "變體選擇器補充"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допълнение към селекторите на варианти"
+          }
         }
       }
     },
@@ -32437,6 +34399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "吠陀梵文延伸"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ведик Екстенсионс"
           }
         }
       }
@@ -32538,6 +34506,12 @@
             "state" : "translated",
             "value" : "直書形式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикални форми"
+          }
         }
       }
     },
@@ -32637,6 +34611,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "維斯庫奇文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виткуки"
           }
         }
       }
@@ -32738,6 +34718,12 @@
             "state" : "translated",
             "value" : "萬秋文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уанчо"
+          }
         }
       }
     },
@@ -32837,6 +34823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "瓦蘭齊地文"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уаранг Кити"
           }
         }
       }
@@ -32938,6 +34930,12 @@
             "state" : "translated",
             "value" : "雅茲迪文"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Йезиди"
+          }
         }
       }
     },
@@ -33037,6 +35035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yi部首"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Радикали И"
           }
         }
       }
@@ -33138,6 +35142,12 @@
             "state" : "translated",
             "value" : "Yi音節"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Срички И"
+          }
         }
       }
     },
@@ -33237,6 +35247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "八卦符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Йиджинг Хексаграм символи"
           }
         }
       }
@@ -33338,6 +35354,12 @@
             "state" : "translated",
             "value" : "札那巴札爾方形字母"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Занабазар Скуаре"
+          }
         }
       }
     },
@@ -33437,6 +35459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "贊玫尼聖歌樂譜符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаменнй музикални нотация"
           }
         }
       }

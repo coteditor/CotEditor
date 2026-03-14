@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "自動"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично"
+          }
         }
       }
     },
@@ -199,6 +205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以唯讀方式開啟"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори само за четене"
           }
         }
       }
@@ -301,6 +313,12 @@
             "state" : "translated",
             "value" : "顯示隱藏檔案"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи скритите файлове"
+          }
         }
       }
     },
@@ -400,6 +418,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字編碼："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране на текста:"
           }
         }
       }

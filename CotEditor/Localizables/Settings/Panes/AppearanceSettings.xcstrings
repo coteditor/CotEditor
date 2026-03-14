@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "%@點"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ точки"
+          }
         }
       }
     },
@@ -200,6 +206,12 @@
             "state" : "translated",
             "value" : "%@倍"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ пъти"
+          }
         }
       }
     },
@@ -300,6 +312,12 @@
             "state" : "translated",
             "value" : "柔邊處理"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Антиалиас"
+          }
         }
       }
     },
@@ -399,6 +417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "外觀："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Външен вид:"
           }
         }
       }
@@ -507,6 +531,12 @@
             "state" : "translated",
             "value" : "配合系統"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Система за съвпадение"
+          }
         }
       }
     },
@@ -613,6 +643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "深色"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тъмно"
           }
         }
       }
@@ -721,6 +757,12 @@
             "state" : "translated",
             "value" : "淺色"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "светлина"
+          }
         }
       }
     },
@@ -820,6 +862,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯器透明度："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозрачност на редактора:"
           }
         }
       }
@@ -921,6 +969,12 @@
             "state" : "translated",
             "value" : "字體大小"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на шрифта"
+          }
         }
       }
     },
@@ -1020,6 +1074,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "連字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лигатури"
           }
         }
       }
@@ -1121,6 +1181,12 @@
             "state" : "translated",
             "value" : "行高："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Височина на реда:"
+          }
         }
       }
     },
@@ -1220,6 +1286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "等寬字體："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Едноразмерен шрифт:"
           }
         }
       }
@@ -1329,6 +1401,12 @@
             "state" : "translated",
             "value" : "你要將它用作等寬字體嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да го използвате за моноширинен шрифт?"
+          }
         }
       }
     },
@@ -1435,6 +1513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇的字體可能不是等寬字體。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избраният шрифт изглежда не е с едно пространство."
           }
         }
       }
@@ -1543,6 +1627,12 @@
             "state" : "translated",
             "value" : "透明"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозрачен"
+          }
         }
       }
     },
@@ -1650,6 +1740,12 @@
             "state" : "translated",
             "value" : "不透明"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозрачен"
+          }
         }
       }
     },
@@ -1751,6 +1847,12 @@
             "state" : "translated",
             "value" : "選擇⋯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери …"
+          }
         }
       }
     },
@@ -1850,6 +1952,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準字體："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартен шрифт:"
           }
         }
       }
@@ -1951,6 +2059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "倍"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пъти"
           }
         }
       }

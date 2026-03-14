@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "可用語法："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налични синтаксиси:"
+          }
         }
       }
     },
@@ -197,6 +203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "自訂語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализирани синтаксиси"
           }
         }
       }
@@ -298,6 +310,12 @@
             "state" : "translated",
             "value" : "預設每行結尾："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краища на редове по подразбиране:"
+          }
         }
       }
     },
@@ -397,6 +415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "預設語法："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис по подразбиране:"
           }
         }
       }
@@ -498,6 +522,12 @@
             "state" : "translated",
             "value" : "預設文字編碼："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране на текста по подразбиране:"
+          }
         }
       }
     },
@@ -598,6 +628,12 @@
             "state" : "translated",
             "value" : "編輯列表⋯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактирай списъка…"
+          }
         }
       }
     },
@@ -697,6 +733,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯所選項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране на избрания елемент"
           }
         }
       }
@@ -804,6 +846,12 @@
             "state" : "translated",
             "value" : "編輯⋯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране…"
+          }
         }
       }
     },
@@ -904,6 +952,12 @@
             "state" : "translated",
             "value" : "編碼優先次序："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приоритети на кодиране:"
+          }
         }
       }
     },
@@ -1003,6 +1057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "參考文件中的編碼聲明"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обърнете се към декларацията за кодиране в документа"
           }
         }
       }
@@ -1110,6 +1170,12 @@
             "state" : "translated",
             "value" : "重新載入所有語法"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Презареди всички синтаксиси"
+          }
         }
       }
     },
@@ -1216,6 +1282,12 @@
             "state" : "translated",
             "value" : "顯示檔案對映衝突"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи конфликтите при съпоставяне на файлове"
+          }
         }
       }
     },
@@ -1316,6 +1388,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此語法不存在"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Този синтаксис не съществува"
           }
         }
       }
@@ -1422,6 +1500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此語法是自訂的。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Този синтаксис е персонализиран."
           }
         }
       }

@@ -105,6 +105,12 @@
             "state" : "translated",
             "value" : "在CotEditor中製作包括指定文字的新文件。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създайте нов документ с посочения текст в CotEditor."
+          }
         }
       }
     },
@@ -211,6 +217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "内容"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Съдържание"
           }
         }
       }
@@ -319,6 +331,12 @@
             "state" : "translated",
             "value" : "製作文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на документ"
+          }
         }
       }
     },
@@ -425,6 +443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "製作文件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на документ"
           }
         }
       }

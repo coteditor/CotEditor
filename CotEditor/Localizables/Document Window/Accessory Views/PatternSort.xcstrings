@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "清除最近項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните"
+          }
         }
       }
     },
@@ -199,6 +205,12 @@
             "state" : "translated",
             "value" : "欄"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Колона"
+          }
         }
       }
     },
@@ -298,6 +310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分隔符號："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител:"
           }
         }
       }
@@ -400,6 +418,12 @@
             "state" : "translated",
             "value" : "模式為空"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Празен модел"
+          }
         }
       }
     },
@@ -501,6 +525,12 @@
             "state" : "translated",
             "value" : "整個行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Целият ред"
+          }
         }
       }
     },
@@ -601,6 +631,12 @@
             "state" : "translated",
             "value" : "忽略大小寫"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без значение на главни и малки букви"
+          }
         }
       }
     },
@@ -700,6 +736,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "降序"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В низходящ ред"
           }
         }
       }
@@ -802,6 +844,12 @@
             "state" : "translated",
             "value" : "無效的模式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден шаблон"
+          }
         }
       }
     },
@@ -901,6 +949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保持第一行顯示在最上方"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запазете първия ред отгоре"
           }
         }
       }
@@ -1002,6 +1056,12 @@
             "state" : "translated",
             "value" : "模式："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон:"
+          }
         }
       }
     },
@@ -1101,6 +1161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиция:"
           }
         }
       }
@@ -1203,6 +1269,12 @@
             "state" : "translated",
             "value" : "最近"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни"
+          }
         }
       }
     },
@@ -1303,6 +1375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "常規表示式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярен израз"
           }
         }
       }
@@ -1405,6 +1483,12 @@
             "state" : "translated",
             "value" : "常規表示式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярен израз"
+          }
         }
       }
     },
@@ -1504,6 +1588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "遵循語言規則"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уважавайте езиковите правила"
           }
         }
       }
@@ -1606,6 +1696,12 @@
             "state" : "translated",
             "value" : "範例行，用來檢查行中的甚麼部分將用於排序比較。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примерен ред, за да проверите коя част от ред ще се използва за сравнение на сортиране."
+          }
         }
       }
     },
@@ -1705,6 +1801,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "範例："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пример:"
           }
         }
       }
@@ -1807,6 +1909,12 @@
             "state" : "translated",
             "value" : "排序"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортиране"
+          }
         }
       }
     },
@@ -1906,6 +2014,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "排序關鍵字："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ за сортиране:"
           }
         }
       }
@@ -2007,6 +2121,12 @@
             "state" : "translated",
             "value" : "排序選項："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опция за сортиране:"
+          }
         }
       }
     },
@@ -2107,6 +2227,12 @@
             "state" : "translated",
             "value" : "將數字視為數值"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Третирайте числата като числови стойности"
+          }
         }
       }
     },
@@ -2206,6 +2332,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用捕捉組："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай прихваната група:"
           }
         }
       }

@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "使檔案可執行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Направи файла изпълним"
+          }
         }
       }
     }

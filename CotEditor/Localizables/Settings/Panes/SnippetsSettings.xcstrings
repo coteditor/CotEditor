@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "全部"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всички"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "指令"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
           }
         }
       }
@@ -300,6 +312,12 @@
             "state" : "translated",
             "value" : "描述"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
+          }
         }
       }
     },
@@ -400,6 +418,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "副檔名"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширения"
           }
         }
       }
@@ -502,6 +526,12 @@
             "state" : "translated",
             "value" : "檔案拖移項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пускане на файл"
+          }
         }
       }
     },
@@ -602,6 +632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖放檔案的副檔名（逗號分隔）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлови разширения на изпуснат файл (разделени със запетая)."
           }
         }
       }
@@ -704,6 +740,12 @@
             "state" : "translated",
             "value" : "插入變數"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на променлива"
+          }
         }
       }
     },
@@ -803,6 +845,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "插入格式："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Формат на вмъкване:"
           }
         }
       }
@@ -911,6 +959,12 @@
             "state" : "translated",
             "value" : "按鍵"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
         }
       }
     },
@@ -1018,6 +1072,12 @@
             "state" : "translated",
             "value" : "名稱"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име"
+          }
         }
       }
     },
@@ -1118,6 +1178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
           }
         }
       }
@@ -1220,6 +1286,12 @@
             "state" : "translated",
             "value" : "此檔案拖移項目設定所使用的語法。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис, в който се използва тази настройка за изпускане на файл."
+          }
         }
       }
     },
@@ -1320,6 +1392,12 @@
             "state" : "translated",
             "value" : "選單命令或鍵盤快捷鍵插入的文字："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст за вмъкване чрез команда в менюто или чрез клавишна комбинация:"
+          }
         }
       }
     },
@@ -1419,6 +1497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "透過將檔案拖放至编辑器中插入的文字："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст за вмъкване чрез пускане на файлове в редактора:"
           }
         }
       }

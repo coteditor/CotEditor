@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "ACTION NAME"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ИМЕ НА ДЕЙСТВИЕТО"
+          }
         }
       },
       "shouldTranslate" : false
@@ -119,6 +125,12 @@
             "state" : "translated",
             "value" : "選單"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню"
+          }
         }
       }
     },
@@ -227,6 +239,12 @@
             "state" : "translated",
             "value" : "指令"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
+          }
         }
       }
     },
@@ -238,6 +256,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "MENU"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "МЕНЮ"
           }
         }
       },
@@ -347,6 +371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按鍵"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
           }
         }
       }

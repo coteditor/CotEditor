@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "重複的語法"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублиран синтаксис"
+          }
         }
       }
     },
@@ -199,6 +205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "副檔名"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширение"
           }
         }
       }
@@ -301,6 +313,12 @@
             "state" : "translated",
             "value" : "檔案名稱"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име на файл"
+          }
         }
       }
     },
@@ -401,6 +419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "解譯器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преводач"
           }
         }
       }
@@ -503,6 +527,12 @@
             "state" : "translated",
             "value" : "語法對應衝突"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфликти при картографиране на синтаксис"
+          }
         }
       }
     },
@@ -602,6 +632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以下檔案對應規則使用了多個語法註冊。CotEditor自動使用第一個語法。如要解決衝突，請編輯每個語法定義。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следните правила за съпоставяне на файлове са регистрирани в множество синтаксиси. CotEditor използва първия синтаксис автоматично. За да разрешите конфликти, редактирайте всяка дефиниция на синтаксис."
           }
         }
       }
@@ -703,6 +739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用的語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използван синтаксис"
           }
         }
       }

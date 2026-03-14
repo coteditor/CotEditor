@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "%@圖像"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Икона %@"
+          }
         }
       }
     },
@@ -199,6 +205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "關於%@"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относно %@"
           }
         }
       }
@@ -301,6 +313,12 @@
             "state" : "translated",
             "value" : "以及支持CotEditor的各位！"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "и всички, които подкрепят CotEditor!"
+          }
         }
       }
     },
@@ -402,6 +420,12 @@
             "state" : "translated",
             "value" : "程式碼貢獻者"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сътрудници на кода"
+          }
         }
       }
     },
@@ -502,6 +526,12 @@
             "state" : "translated",
             "value" : "CotEditor是依Apache許可協議2.0版本授權的開放原始碼程式。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor е програма с отворен код,\nлицензирана под Apache License, Version 2.0."
+          }
         }
       }
     },
@@ -601,6 +631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor採用了以下令人驚奇的技術。我們衷心多謝所有允許我們使用其寶貴成果的人。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor използва следните страхотни технологии. Ние сме дълбоко благодарни на тези, които ни позволиха да използваме тяхната ценна работа."
           }
         }
       }
@@ -703,6 +739,12 @@
             "state" : "translated",
             "value" : "致謝"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кредити"
+          }
         }
       }
     },
@@ -802,6 +844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "許可證"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лиценз"
           }
         }
       }
@@ -904,6 +952,12 @@
             "state" : "translated",
             "value" : "許可證"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лицензи"
+          }
         }
       }
     },
@@ -1004,6 +1058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "本地化"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Локализация"
           }
         }
       }
@@ -1106,6 +1166,12 @@
             "state" : "translated",
             "value" : "僅非App Store版本使用"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "само във версията извън App Store"
+          }
         }
       }
     },
@@ -1205,6 +1271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "原始開發者"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "оригинален разработчик"
           }
         }
       }
@@ -1307,6 +1379,12 @@
             "state" : "translated",
             "value" : "特別感謝"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Специални благодарности"
+          }
         }
       }
     },
@@ -1407,6 +1485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проектът CotEditor"
           }
         }
       }
@@ -1514,6 +1598,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本%1$@ (%2$@)"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %1$@ (%2$@)"
           }
         }
       }

@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "清除最近項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無效的代碼"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден код"
           }
         }
       }
@@ -299,6 +311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни"
           }
         }
       }

@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "0次或多次"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 или повече пъти"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
             "state" : "translated",
             "value" : "1次或0次"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 или 0 пъти"
+          }
         }
       }
     },
@@ -297,6 +309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1次或多次"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 или повече пъти"
           }
         }
       }
@@ -399,6 +417,12 @@
             "state" : "translated",
             "value" : "錨點"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Котви"
+          }
         }
       }
     },
@@ -498,6 +522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "任何字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "произволен знак"
           }
         }
       }
@@ -599,6 +629,12 @@
             "state" : "translated",
             "value" : "任何A至Z間的字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "всеки знак в диапазона от A до Z"
+          }
         }
       }
     },
@@ -698,6 +734,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "任何不在A至Z間的字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "всеки знак извън диапазона от A до Z"
           }
         }
       }
@@ -799,6 +841,12 @@
             "state" : "translated",
             "value" : "至少0次但不多於n次"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поне 0, но не повече от n пъти"
+          }
         }
       }
     },
@@ -899,6 +947,12 @@
             "state" : "translated",
             "value" : "至少n次但不多過m次"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поне n, но не повече от m пъти"
+          }
         }
       }
     },
@@ -998,6 +1052,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "至少n次"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поне n пъти"
           }
         }
       }
@@ -1100,6 +1160,12 @@
             "state" : "translated",
             "value" : "反向參照"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задна справка"
+          }
         }
       }
     },
@@ -1201,6 +1267,12 @@
             "state" : "translated",
             "value" : "基本常規表示式語法"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основен синтаксис на регулярен израз"
+          }
         }
       }
     },
@@ -1300,6 +1372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行開頭"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "началото на реда"
           }
         }
       }
@@ -1402,6 +1480,12 @@
             "state" : "translated",
             "value" : "字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаци"
+          }
         }
       }
     },
@@ -1502,6 +1586,12 @@
             "state" : "translated",
             "value" : "十進位制"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "десетично число"
+          }
         }
       }
     },
@@ -1601,6 +1691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行結尾"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "край на реда"
           }
         }
       }
@@ -1703,6 +1799,12 @@
             "state" : "translated",
             "value" : "延伸分組"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени групи"
+          }
         }
       }
     },
@@ -1802,6 +1904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "第一個符合"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "първо съвпадение"
           }
         }
       }
@@ -1903,6 +2011,12 @@
             "state" : "translated",
             "value" : "ICU常規表示式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICU регулярни изрази"
+          }
         }
       }
     },
@@ -2002,6 +2116,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "往前"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поглед напред"
           }
         }
       }
@@ -2103,6 +2223,12 @@
             "state" : "translated",
             "value" : "往後"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поглед отзад"
+          }
         }
       }
     },
@@ -2202,6 +2328,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n次"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n пъти"
           }
         }
       }
@@ -2303,6 +2435,12 @@
             "state" : "translated",
             "value" : "新行字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "знак за нов ред"
+          }
         }
       }
     },
@@ -2402,6 +2540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "非空白字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "знак без интервал"
           }
         }
       }
@@ -2504,6 +2648,12 @@
             "state" : "translated",
             "value" : "數量詞"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Квантори"
+          }
         }
       }
     },
@@ -2603,6 +2753,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "定位符號字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "табулатор"
           }
         }
       }
@@ -2705,6 +2861,12 @@
             "state" : "translated",
             "value" : "此語法符合%@規範。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксисът отговаря на спецификациите %@."
+          }
         }
       }
     },
@@ -2804,6 +2966,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "празен символ"
           }
         }
       }
@@ -2905,6 +3073,12 @@
             "state" : "translated",
             "value" : "字詞邊界"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "граница на думата"
+          }
         }
       }
     },
@@ -3004,6 +3178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字詞字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "знак от дума"
           }
         }
       }

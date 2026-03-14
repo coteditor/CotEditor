@@ -105,6 +105,12 @@
             "state" : "translated",
             "value" : "外觀"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Външен вид"
+          }
         }
       }
     },
@@ -211,6 +217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "捐贈"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дарение"
           }
         }
       }
@@ -319,6 +331,12 @@
             "state" : "translated",
             "value" : "編輯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране"
+          }
         }
       }
     },
@@ -425,6 +443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "格式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форматиране"
           }
         }
       }
@@ -533,6 +557,12 @@
             "state" : "translated",
             "value" : "一般"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общи"
+          }
         }
       }
     },
@@ -639,6 +669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按鍵連結"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключови връзки"
           }
         }
       }
@@ -747,6 +783,12 @@
             "state" : "translated",
             "value" : "模式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
         }
       }
     },
@@ -854,6 +896,12 @@
             "state" : "translated",
             "value" : "程式碼摘錄"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откъси"
+          }
         }
       }
     },
@@ -960,6 +1008,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "視窗"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозорец"
           }
         }
       }

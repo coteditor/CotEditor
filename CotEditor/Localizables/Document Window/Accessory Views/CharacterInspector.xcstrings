@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "<一個由%lld個字元組成的字母>"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<буква, съставена от %lld знака>"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "區塊："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок:"
           }
         }
       }
@@ -299,6 +311,12 @@
             "state" : "translated",
             "value" : "類別："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "категория:"
+          }
         }
       }
     },
@@ -398,6 +416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "代碼位："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодова точка:"
           }
         }
       }
@@ -500,6 +524,12 @@
             "state" : "translated",
             "value" : "已停用"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отхвърлено"
+          }
         }
       }
     },
@@ -599,6 +629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無區塊"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без блок"
           }
         }
       }
@@ -700,6 +736,12 @@
             "state" : "translated",
             "value" : "未知"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестно"
+          }
         }
       }
     },
@@ -799,6 +841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия:"
           }
         }
       }

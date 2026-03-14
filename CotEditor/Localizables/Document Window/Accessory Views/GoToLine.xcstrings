@@ -99,6 +99,12 @@
             "state" : "translated",
             "value" : "前往"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напред"
+          }
         }
       }
     },
@@ -200,6 +206,12 @@
             "state" : "translated",
             "value" : "行號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер на ред"
+          }
         }
       }
     },
@@ -299,6 +311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ред:"
           }
         }
       }

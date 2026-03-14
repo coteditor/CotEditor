@@ -106,6 +106,12 @@
             "state" : "translated",
             "value" : "表情符號樣式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Емоджи стил"
+          }
         }
       }
     },
@@ -213,6 +219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字樣式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстов стил"
           }
         }
       }
@@ -322,6 +334,12 @@
             "state" : "translated",
             "value" : "膚色III"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тен на кожата III"
+          }
         }
       }
     },
@@ -429,6 +447,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "膚色IV"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тен на кожата IV"
           }
         }
       }
@@ -538,6 +562,12 @@
             "state" : "translated",
             "value" : "膚色V"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвят на кожата V"
+          }
         }
       }
     },
@@ -645,6 +675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "膚色VI"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвят на кожата VI"
           }
         }
       }
@@ -754,6 +790,12 @@
             "state" : "translated",
             "value" : "膚色I-II"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвят на кожата I-II"
+          }
         }
       }
     },
@@ -854,6 +896,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "變體"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вариант"
           }
         }
       }

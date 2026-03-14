@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "開頭："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало:"
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
             "state" : "translated",
             "value" : "結尾："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Край:"
+          }
         }
       }
     },
@@ -297,6 +309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "環繞："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Огради с:"
           }
         }
       }

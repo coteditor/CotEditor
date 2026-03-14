@@ -106,6 +106,12 @@
             "state" : "translated",
             "value" : "列印背景"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат на фонове"
+          }
         }
       }
     },
@@ -213,6 +219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字大小"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на шрифта"
           }
         }
       }
@@ -322,6 +334,12 @@
             "state" : "translated",
             "value" : "標頭"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавка"
+          }
         }
       }
     },
@@ -429,6 +447,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "列印標頭與註腳"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат на горни и долни колонтитули"
           }
         }
       }
@@ -538,6 +562,12 @@
             "state" : "translated",
             "value" : "列印行號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпечатайте номера на редове"
+          }
         }
       }
     },
@@ -646,6 +676,12 @@
             "state" : "translated",
             "value" : "列印隱形符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат на невидимки"
+          }
         }
       }
     },
@@ -657,6 +693,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "DUMMY"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "манекен"
           }
         }
       },
@@ -767,6 +809,12 @@
             "state" : "translated",
             "value" : "註腳"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Долен колонтитул"
+          }
         }
       }
     },
@@ -875,6 +923,12 @@
             "state" : "translated",
             "value" : "黑白"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Черно и Бяло"
+          }
         }
       }
     },
@@ -886,6 +940,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "DUMMY"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "манекен"
           }
         }
       },
@@ -996,6 +1056,12 @@
             "state" : "translated",
             "value" : "點"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pt"
+          }
         }
       }
     },
@@ -1007,6 +1073,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "DUMMY"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "манекен"
           }
         }
       },
@@ -1020,6 +1092,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "DUMMY"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "манекен"
           }
         }
       },
@@ -1129,6 +1207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顏色"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвят"
           }
         }
       }

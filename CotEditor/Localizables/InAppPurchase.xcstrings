@@ -105,6 +105,12 @@
             "state" : "translated",
             "value" : "一杯美味的咖啡"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вкусна чаша"
+          }
         }
       }
     },
@@ -211,6 +217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "濃縮咖啡"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еспресо"
           }
         }
       }
@@ -319,6 +331,12 @@
             "state" : "translated",
             "value" : "用咖啡支持日常關發"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кафе за ежедневно развитие"
+          }
         }
       }
     },
@@ -425,6 +443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "咖啡豆"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кафе на зърна"
           }
         }
       }

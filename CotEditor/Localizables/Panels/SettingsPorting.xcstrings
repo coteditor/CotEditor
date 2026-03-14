@@ -314,6 +314,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld персонализиран синтаксис"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld персонализирани синтаксиса"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -626,6 +644,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld個自訂主題"
+                }
+              }
+            }
+          }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld персонализирана тема"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld персонализирани теми"
                 }
               }
             }
@@ -947,6 +983,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld определение"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld определения"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -1046,6 +1100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇要輸入的CotEditor設定封存檔。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери архив с настройки на CotEditor за импортиране."
           }
         }
       }
@@ -1154,6 +1214,12 @@
             "state" : "translated",
             "value" : "此設定封存檔是由不同版本的CotEditor （%@）製作。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Този архив с настройки е създаден от различна версия на CotEditor (%@)."
+          }
         }
       }
     },
@@ -1261,6 +1327,12 @@
             "state" : "translated",
             "value" : "你仍然可輸入這些項目，但部份設定可能不相容。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все още можете да импортирате тези елементи, но някои настройки може да са несъвместими."
+          }
         }
       }
     },
@@ -1360,6 +1432,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "將選擇的設定輸出為封存檔，以便輸入到其他電腦。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортирайте избраните настройки като архив, за да разрешите импортиране в други компютри."
           }
         }
       }
@@ -1461,6 +1539,12 @@
             "state" : "translated",
             "value" : "輸出設定"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортиране на настройки"
+          }
         }
       }
     },
@@ -1561,6 +1645,12 @@
             "state" : "translated",
             "value" : "輸入設定"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки за импортиране"
+          }
         }
       }
     },
@@ -1660,6 +1750,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇要輸入的項目："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери елементите за импортиране:"
           }
         }
       }
@@ -1768,6 +1864,12 @@
             "state" : "translated",
             "value" : "多重取代定義"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множество дефиниции за замяна"
+          }
         }
       }
     },
@@ -1874,6 +1976,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「設定」視窗內的所有設定"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всички настройки в прозореца Настройки"
           }
         }
       }
@@ -1982,6 +2090,12 @@
             "state" : "translated",
             "value" : "設定"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
         }
       }
     },
@@ -2089,6 +2203,12 @@
             "state" : "translated",
             "value" : "語法"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
         }
       }
     },
@@ -2195,6 +2315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "主題"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теми"
           }
         }
       }

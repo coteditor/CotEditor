@@ -100,6 +100,12 @@
             "state" : "translated",
             "value" : "新增包括所選範圍的CotEditor視窗"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов CotEditor прозорец, съдържащ селекция"
+          }
         }
       }
     },
@@ -200,6 +206,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在CotEditor中開啟"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори в CotEditor"
           }
         }
       }

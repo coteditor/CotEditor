@@ -104,6 +104,12 @@
             "state" : "translated",
             "value" : "在註解分隔符號後插入一個空格"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добави интервал към разделителите на коментари"
+          }
         }
       }
     },
@@ -203,6 +209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在輸入時同時自動縮排"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматичен отстъп, докато пишете"
           }
         }
       }
@@ -304,6 +316,12 @@
             "state" : "translated",
             "value" : "自動裁剪後端空白字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично изрязване на белите интервали в края"
+          }
         }
       }
     },
@@ -403,6 +421,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "註解："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "коментар:"
           }
         }
       }
@@ -504,6 +528,12 @@
             "state" : "translated",
             "value" : "內容解析："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анализ на съдържанието:"
+          }
         }
       }
     },
@@ -603,6 +633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "延遲："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закъснение:"
           }
         }
       }
@@ -704,6 +740,12 @@
             "state" : "translated",
             "value" : "在開啟文件時偵測縮排樣式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откриване на стил на отстъп при отваряне на документ"
+          }
         }
       }
     },
@@ -803,6 +845,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重點標示所選文字的實例"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отбелязвай съвпаденията на избрания текст"
           }
         }
       }
@@ -904,6 +952,12 @@
             "state" : "translated",
             "value" : "重點標示配對的括號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отбелязвай съответстващите скоби"
+          }
         }
       }
     },
@@ -1003,6 +1057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "包括只有空白字元的行"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включително редове само с интервали"
           }
         }
       }
@@ -1104,6 +1164,12 @@
             "state" : "translated",
             "value" : "使用Tab鍵進行縮排選擇"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отстъп на избраното с клавиша Tab"
+          }
         }
       }
     },
@@ -1203,6 +1269,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "縮排闊度："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина на отстъпа:"
           }
         }
       }
@@ -1304,6 +1376,12 @@
             "state" : "translated",
             "value" : "縮排："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отстъп:"
+          }
         }
       }
     },
@@ -1403,6 +1481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在縮排後插入註解分隔符號"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на разделители на коментари след отстъп"
           }
         }
       }
@@ -1504,6 +1588,12 @@
             "state" : "translated",
             "value" : "連結文件中的URL"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URLи на връзки в документа"
+          }
         }
       }
     },
@@ -1603,6 +1693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "偏好使用"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предпочитайте да използвате:"
           }
         }
       }
@@ -1705,6 +1801,12 @@
             "state" : "translated",
             "value" : "秒"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "секунди"
+          }
         }
       }
     },
@@ -1805,6 +1907,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "個空格"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пространства"
           }
         }
       }
@@ -1907,6 +2015,12 @@
             "state" : "translated",
             "value" : "空格"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пространства"
+          }
         }
       }
     },
@@ -2008,6 +2122,12 @@
             "state" : "translated",
             "value" : "定位符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раздели"
+          }
         }
       }
     },
@@ -2107,6 +2227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白字元："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "интервал:"
           }
         }
       }

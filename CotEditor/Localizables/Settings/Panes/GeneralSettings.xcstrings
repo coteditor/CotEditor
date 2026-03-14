@@ -98,6 +98,12 @@
             "state" : "translated",
             "value" : "編輯時可以自動覆寫檔案的系統功能。即使關閉此功能，CotEditor亦會秘密製作一個備份，以備程式意外結束。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системна функция, която автоматично презаписва вашите файлове, докато редактирате. Дори да е изключен, CotEditor скрито създава резервно копие, в случай че неочаквано се затвори."
+          }
         }
       }
     },
@@ -198,6 +204,12 @@
             "state" : "translated",
             "value" : "自動檢查更新項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично проверявайте за актуализации"
+          }
         }
       }
     },
@@ -297,6 +309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "命令列工具："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инструмент за команден ред:"
           }
         }
       }
@@ -405,6 +423,12 @@
             "state" : "translated",
             "value" : "目前`cot`符號連結的目標不是正在執行的CotEditor。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущата символна връзка `cot` не е насочена към работещия CotEditor."
+          }
         }
       }
     },
@@ -512,6 +536,12 @@
             "state" : "translated",
             "value" : "目前`cot`符號連結的目標可能是無效路徑。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущата символна връзка `cot` може да е насочена към невалиден път."
+          }
         }
       }
     },
@@ -612,6 +642,12 @@
             "state" : "translated",
             "value" : "對話框警告："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Диалогови предупреждения:"
+          }
         }
       }
     },
@@ -711,6 +747,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "儲存文件："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запазване на документ:"
           }
         }
       }
@@ -819,6 +861,12 @@
             "state" : "translated",
             "value" : "保留CotEditor的版本"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запазете версията на CotEditor"
+          }
         }
       }
     },
@@ -925,6 +973,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "詢問如何解決"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попитайте как да разрешите"
           }
         }
       }
@@ -1033,6 +1087,12 @@
             "state" : "translated",
             "value" : "更新至變更的版本"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Актуализиране до модифицирана версия"
+          }
         }
       }
     },
@@ -1132,6 +1192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "啟用包括版本的自動儲存"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активиране на автоматичното запазване с версии"
           }
         }
       }
@@ -1233,6 +1299,12 @@
             "state" : "translated",
             "value" : "不一致的每行結尾"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непоследователни краища на редове"
+          }
         }
       }
     },
@@ -1332,6 +1404,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已安装於%@"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "инсталиран на %@"
           }
         }
       }
@@ -1434,6 +1512,12 @@
             "state" : "translated",
             "value" : "稍後"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "по-късно"
+          }
         }
       }
     },
@@ -1534,6 +1618,12 @@
             "state" : "translated",
             "value" : "進一步了解⋯"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Научете повече"
+          }
         }
       }
     },
@@ -1633,6 +1723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "管理警告⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление на предупрежденията…"
           }
         }
       }
@@ -1741,6 +1837,12 @@
             "state" : "translated",
             "value" : "你要立即重新啟動CotEditor嗎？"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да рестартирате CotEditor сега?"
+          }
         }
       }
     },
@@ -1847,6 +1949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "App的行為將在之後的下次啟動時更改。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поведението на приложението ще се промени от следващото стартиране след това."
           }
         }
       }
@@ -1955,6 +2063,12 @@
             "state" : "translated",
             "value" : "更改將在下次啟󠄁動時首先套用。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяната ще бъде приложена първо при следващото стартиране."
+          }
         }
       }
     },
@@ -2061,6 +2175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不執行任何動作"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не правете нищо"
           }
         }
       }
@@ -2169,6 +2289,12 @@
             "state" : "translated",
             "value" : "顯示開啟󠄁對話框"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи диалогов прозорец за отваряне"
+          }
         }
       }
     },
@@ -2276,6 +2402,12 @@
             "state" : "translated",
             "value" : "製作新文件"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на нов документ"
+          }
         }
       }
     },
@@ -2375,6 +2507,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在開啟󠄁時："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "При стартиране:"
           }
         }
       }
@@ -2476,6 +2614,12 @@
             "state" : "translated",
             "value" : "無論此設定如何，使用預先發佈版本時永遠都會包括新的預先發佈版本。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Независимо от тази настройка, новите предварителни версии винаги се включват при използване на предварителна версия."
+          }
         }
       }
     },
@@ -2575,6 +2719,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重新開啟最後開啟的視窗"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторно отваряне на прозорци от последната сесия"
           }
         }
       }
@@ -2677,6 +2827,12 @@
             "state" : "translated",
             "value" : "立即重新啟動"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рестартирайте сега"
+          }
         }
       }
     },
@@ -2776,6 +2932,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "軟件更新："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Актуализация на софтуера:"
           }
         }
       }
@@ -2877,6 +3039,12 @@
             "state" : "translated",
             "value" : "隱藏以下警告："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потискане на следните предупреждения:"
+          }
         }
       }
     },
@@ -2976,6 +3144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "如可用，更新到預先發佈版本"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Актуализирайте до предварителните версии, когато са налични"
           }
         }
       }
@@ -3077,6 +3251,12 @@
             "state" : "translated",
             "value" : "當文件被另一個應用程式更改時："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когато документът е променен от друго приложение:"
+          }
         }
       }
     },
@@ -3177,6 +3357,12 @@
             "state" : "translated",
             "value" : "當沒有其他檔案開啟時："
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когато нищо друго не е отворено:"
+          }
         }
       }
     },
@@ -3276,6 +3462,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用`cot`命令列工具，你可以啟動CotEditor，並讓它透過命令列開啟檔案。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С инструмента за команден ред `cot` можете да стартирате CotEditor и да му позволите да отваря файлове от командния ред."
           }
         }
       }

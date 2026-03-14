@@ -87,6 +87,12 @@
             "state" : "translated",
             "value" : "空格"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интервал"
+          }
         }
       }
     }

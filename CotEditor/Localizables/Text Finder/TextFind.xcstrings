@@ -309,6 +309,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерено е %lld съвпадение."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %lld съвпадения."
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -620,6 +638,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Заменено е %lld съвпадение."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Заменени са %lld съвпадения."
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -719,6 +755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "進階尋找選項"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени опции за намиране"
           }
         }
       }
@@ -821,6 +863,12 @@
             "state" : "translated",
             "value" : "進階選項"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени опции"
+          }
         }
       }
     },
@@ -921,6 +969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "清除"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ясно"
           }
         }
       }
@@ -1023,6 +1077,12 @@
             "state" : "translated",
             "value" : "清除最近的取代項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчистване на последните замени"
+          }
         }
       }
     },
@@ -1123,6 +1183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "清除最近的搜尋項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчистване на последните търсения"
           }
         }
       }
@@ -1225,6 +1291,12 @@
             "state" : "translated",
             "value" : "關閉"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затвори"
+          }
         }
       }
     },
@@ -1325,6 +1397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "關閉尋找結果。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затваряне на резултата от търсенето."
           }
         }
       }
@@ -1427,6 +1505,12 @@
             "state" : "translated",
             "value" : "尋找"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене"
+          }
         }
       }
     },
@@ -1527,6 +1611,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找與取代"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намиране и замяна"
           }
         }
       }
@@ -1629,6 +1719,12 @@
             "state" : "translated",
             "value" : "尋找全部"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери всички"
+          }
         }
       }
     },
@@ -1729,6 +1825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找並列出所有符合的項目。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери и изброй всички съвпадения."
           }
         }
       }
@@ -1831,6 +1933,12 @@
             "state" : "translated",
             "value" : "尋找下一個"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намиране на следващия"
+          }
         }
       }
     },
@@ -1931,6 +2039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找下一個符合的項目。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери следващото съвпадение."
           }
         }
       }
@@ -2033,6 +2147,12 @@
             "state" : "translated",
             "value" : "尋找上一個"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери предишното"
+          }
         }
       }
     },
@@ -2133,6 +2253,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找上一個符合的項目。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери предишното съвпадение."
           }
         }
       }
@@ -2235,6 +2361,12 @@
             "state" : "translated",
             "value" : "尋找結果"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намиране на резултат"
+          }
         }
       }
     },
@@ -2335,6 +2467,12 @@
             "state" : "translated",
             "value" : "尋找文字：%@"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери текст: %@"
+          }
         }
       }
     },
@@ -2382,6 +2520,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Resultaat %1$lld van %2$lld."
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Съвпадение %1$lld от %2$lld."
           }
         }
       }
@@ -2802,6 +2946,30 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld съвпадение"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld съвпадения"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Няма съвпадения"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -2906,6 +3074,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld/%2$lld"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld/%2$lld"
@@ -3311,6 +3485,24 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld заменени"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Няма заменени"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -3418,6 +3610,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "换行尋找"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обгръщане на търсенето"
           }
         }
       }
@@ -3527,6 +3725,12 @@
             "state" : "translated",
             "value" : "逐步搜尋"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсете постепенно"
+          }
         }
       }
     },
@@ -3634,6 +3838,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "搜尋忽略變音符號（例如ö = o）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсенето игнорира диакритичните знаци (напр. ö = o)."
           }
         }
       }
@@ -3743,6 +3953,12 @@
             "state" : "translated",
             "value" : "忽略變音符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирайте диакритичните знаци"
+          }
         }
       }
     },
@@ -3850,6 +4066,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "搜尋忽略字元形式的闊度差異（例如ａ = a）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсенето игнорира разликите в ширината във формата на знаците (напр. ａ = a)."
           }
         }
       }
@@ -3959,6 +4181,12 @@
             "state" : "translated",
             "value" : "忽略闊度差異"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирайте разликите в ширината"
+          }
         }
       }
     },
@@ -4066,6 +4294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "精確的字元等價。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точна еквивалентност знак по знак."
           }
         }
       }
@@ -4175,6 +4409,12 @@
             "state" : "translated",
             "value" : "嚴格區分字元"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разграничавайте стриктно знаците"
+          }
         }
       }
     },
@@ -4282,6 +4522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "允許「^」與「$」符合行的開頭與結尾（多行）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позволете ^ и $ да съответстват на началото и края на редовете (многоредово)."
           }
         }
       }
@@ -4391,6 +4637,12 @@
             "state" : "translated",
             "value" : "使錨點符合行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Котвите съответстват на линиите"
+          }
         }
       }
     },
@@ -4498,6 +4750,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "允許「.」符合任何字元，當中包括換行符號（單行）。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешете . за съпоставяне на произволен знак, включително знаци за нов ред (един ред)."
           }
         }
       }
@@ -4607,6 +4865,12 @@
             "state" : "translated",
             "value" : "使用點符合行分隔符號"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точката съответства на разделителите на редовете"
+          }
         }
       }
     },
@@ -4714,6 +4978,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "限制搜尋結果為整個字詞。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ограничете резултатите от търсенето до цели думи."
           }
         }
       }
@@ -4823,6 +5093,12 @@
             "state" : "translated",
             "value" : "只符合整個字詞"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свържете само цели думи"
+          }
         }
       }
     },
@@ -4930,6 +5206,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在取代文字中使用反斜線取消跳脫元字元。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Премахнете екранирането на метасимволите с обратна наклонена черта в заместващия текст."
           }
         }
       }
@@ -5039,6 +5321,12 @@
             "state" : "translated",
             "value" : "取消跳脫取代文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отменете екранирането на заместващ текст"
+          }
         }
       }
     },
@@ -5147,6 +5435,12 @@
             "state" : "translated",
             "value" : "使用Unicode TR#29來指定字詞邊界"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай Unicode TR#29 за границите на думите"
+          }
         }
       }
     },
@@ -5254,6 +5548,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用Unicode字詞邊界"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай граници на Unicode думи"
           }
         }
       }
@@ -5662,6 +5962,30 @@
               }
             }
           }
+        },
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерено е едно съвпадение в „%2$@.“"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени %1$lld съвпадения в „%2$@.“"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Няма намерени съвпадения в „%2$@.“"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -5762,6 +6086,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重點標示全部"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маркирай всички"
           }
         }
       }
@@ -5864,6 +6194,12 @@
             "state" : "translated",
             "value" : "忽略大小寫"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнориране на главни и малки букви"
+          }
         }
       }
     },
@@ -5964,6 +6300,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "所選範圍"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В Избор"
           }
         }
       }
@@ -6066,6 +6408,12 @@
             "state" : "translated",
             "value" : "行"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линия"
+          }
         }
       }
     },
@@ -6166,6 +6514,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "符合的文字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Съответстващ текст"
           }
         }
       }
@@ -6268,6 +6622,12 @@
             "state" : "translated",
             "value" : "最近的取代項目"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скорошни замени"
+          }
         }
       }
     },
@@ -6368,6 +6728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近的搜尋項目"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни търсения"
           }
         }
       }
@@ -6470,6 +6836,12 @@
             "state" : "translated",
             "value" : "常規表示式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редовен израз"
+          }
         }
       }
     },
@@ -6570,6 +6942,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "常規表示式尋找"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене с регулярен израз"
           }
         }
       }
@@ -6672,6 +7050,12 @@
             "state" : "translated",
             "value" : "取代"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени"
+          }
         }
       }
     },
@@ -6772,6 +7156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "全部取代"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени всички"
           }
         }
       }
@@ -6874,6 +7264,12 @@
             "state" : "translated",
             "value" : "使用取代文字取代所有符合的項目。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменете всички съвпадения със заместващия текст."
+          }
         }
       }
     },
@@ -6974,6 +7370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "將目前所選範圍取代為取代文字，然後找到下一個符合的項目。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменете текущата селекция със заместващия текст, след което намерете следващото съвпадение."
           }
         }
       }
@@ -7076,6 +7478,12 @@
             "state" : "translated",
             "value" : "取代"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменете с"
+          }
         }
       }
     },
@@ -7177,6 +7585,12 @@
             "state" : "translated",
             "value" : "搜尋從頭開始。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсенето приключи."
+          }
         }
       }
     },
@@ -7276,6 +7690,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在文字中搜尋⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене в текст…"
           }
         }
       }
@@ -7378,6 +7798,12 @@
             "state" : "translated",
             "value" : "全選"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери всичко"
+          }
         }
       }
     },
@@ -7478,6 +7904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇以忽略搜尋中的字元大小寫。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете, за да игнорирате главните и главни букви при търсене."
           }
         }
       }
@@ -7580,6 +8012,12 @@
             "state" : "translated",
             "value" : "選擇以只從所選範圍中搜尋文字。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете, за да търсите текст само от селекцията."
+          }
         }
       }
     },
@@ -7680,6 +8118,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇以使用常規表示式搜尋。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете за търсене с регулярен израз."
           }
         }
       }
@@ -7782,6 +8226,12 @@
             "state" : "translated",
             "value" : "顯示進階選項"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи разширените опции"
+          }
         }
       }
     },
@@ -7882,6 +8332,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示常規表示式語法的快速參考。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи бърза справка за синтаксиса на регулярните изрази."
           }
         }
       }
@@ -7990,6 +8446,12 @@
             "state" : "translated",
             "value" : "清空尋找的文字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Празен текст за търсене"
+          }
         }
       }
     },
@@ -8096,6 +8558,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸入文字以尋找。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Въведете текст за намиране."
           }
         }
       }
@@ -8204,6 +8672,12 @@
             "state" : "translated",
             "value" : "已選擇了「所選範圍」，但沒有選擇任何項目。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избрана е опцията „в селекцията“, въпреки че нищо не е избрано."
+          }
         }
       }
     },
@@ -8310,6 +8784,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在文件中選擇搜尋範圍，或者取消選擇「所選範圍」選項。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете обхвата на търсене в документа или премахнете отметката от опцията „в селекцията“."
           }
         }
       }
@@ -8418,6 +8898,12 @@
             "state" : "translated",
             "value" : "無效的常規表示式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден регулярен израз"
+          }
         }
       }
     },
@@ -8518,6 +9004,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字搜尋"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстово търсене"
           }
         }
       }
@@ -8620,6 +9112,12 @@
             "state" : "translated",
             "value" : "輸入文字以取代找到的文字。"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Въведете текста, за да замените намерения текст."
+          }
         }
       }
     },
@@ -8720,6 +9218,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸入文字以搜尋。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Въведете текста за търсене."
           }
         }
       }

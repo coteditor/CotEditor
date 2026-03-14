@@ -106,6 +106,12 @@
             "state" : "translated",
             "value" : "與修改後的NFD相對應的非正式的基於NFC的標準化格式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нестандартна NFC-базирана форма за нормализация, съответстваща на модифицирана NFD"
+          }
         }
       }
     },
@@ -206,6 +212,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已修改的NFC"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модифицирана NFC"
           }
         }
       }
@@ -315,6 +327,12 @@
             "state" : "translated",
             "value" : "HFS+中使用的非正式的基於NFD的標準化格式"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нестандартна NFD-базирана форма за нормализация, използвана в HFS+"
+          }
         }
       }
     },
@@ -415,6 +433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已修改的NFD"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модифицирана NFD"
           }
         }
       }
@@ -524,6 +548,12 @@
             "state" : "translated",
             "value" : "標準分解，然後標準合成"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Канонично разлагане, последвано от канонично съставяне"
+          }
         }
       }
     },
@@ -621,6 +651,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -733,6 +769,12 @@
             "state" : "translated",
             "value" : "標準分解"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Канонично разлагане"
+          }
         }
       }
     },
@@ -830,6 +872,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFD"
@@ -942,6 +990,12 @@
             "state" : "translated",
             "value" : "相容性分解，然後標準合成"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разлагане по съвместимост, последвано от канонично съставяне"
+          }
         }
       }
     },
@@ -1039,6 +1093,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -1151,6 +1211,12 @@
             "state" : "translated",
             "value" : "套用NFKC、大小寫折疊與移除預設可忽略的代碼位"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прилага NFKC, уеднаквяване на регистъра и премахване на игнорируемите по подразбиране кодови точки"
+          }
         }
       }
     },
@@ -1251,6 +1317,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC大小寫折疊"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC с уеднаквяване на регистъра"
           }
         }
       }
@@ -1360,6 +1432,12 @@
             "state" : "translated",
             "value" : "相容性分解"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разлагане по съвместимост"
+          }
         }
       }
     },
@@ -1457,6 +1535,12 @@
           }
         },
         "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

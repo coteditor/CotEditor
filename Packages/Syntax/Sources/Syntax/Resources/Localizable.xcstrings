@@ -105,6 +105,12 @@
             "state" : "translated",
             "value" : "程式碼"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Код"
+          }
         }
       }
     },
@@ -212,6 +218,12 @@
             "state" : "translated",
             "value" : "一般"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общи"
+          }
         }
       }
     },
@@ -264,6 +276,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "容器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контейнер"
           }
         }
       }
@@ -318,6 +336,12 @@
             "state" : "translated",
             "value" : "函數"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функция"
+          }
         }
       }
     },
@@ -370,6 +394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標題"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавие"
           }
         }
       }
@@ -424,6 +454,12 @@
             "state" : "translated",
             "value" : "標示"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маркер"
+          }
         }
       }
     },
@@ -476,6 +512,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "參考"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Препратка"
           }
         }
       }
@@ -584,6 +626,12 @@
             "state" : "translated",
             "value" : "分隔符"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител"
+          }
         }
       }
     },
@@ -691,6 +739,12 @@
             "state" : "translated",
             "value" : "標題"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавие"
+          }
         }
       }
     },
@@ -743,6 +797,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "值"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стойност"
           }
         }
       }
@@ -851,6 +911,12 @@
             "state" : "translated",
             "value" : "屬性"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Атрибути"
+          }
         }
       }
     },
@@ -957,6 +1023,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи"
           }
         }
       }
@@ -1065,6 +1137,12 @@
             "state" : "translated",
             "value" : "指令"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команди"
+          }
         }
       }
     },
@@ -1171,6 +1249,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "註解"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментари"
           }
         }
       }
@@ -1279,6 +1363,12 @@
             "state" : "translated",
             "value" : "關鍵字"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключови думи"
+          }
         }
       }
     },
@@ -1385,6 +1475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "數字"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Числа"
           }
         }
       }
@@ -1493,6 +1589,12 @@
             "state" : "translated",
             "value" : "字串"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Низове"
+          }
         }
       }
     },
@@ -1599,6 +1701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "種類"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Типове"
           }
         }
       }
@@ -1707,6 +1815,12 @@
             "state" : "translated",
             "value" : "值"
           }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стойности"
+          }
         }
       }
     },
@@ -1813,6 +1927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "變數"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Променливи"
           }
         }
       }
